@@ -1,0 +1,94 @@
+{% extends "_content.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set parent = "Application for " + application.course %}
+{% set title = application.name %}
+{% set hasSecondary = true %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Applications",
+      href: "/"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  <p class="govuk-body"><a href="#">Download application</a></p>
+
+  {% set personalStatementHtml %}
+    <p class="govuk-body">This is dummy content for now.</p>
+    <p class="govuk-body">Enim hic quo ut accusantium. Ea consequatur itaque explicabo aliquam. Ipsum doloribus labore voluptas eos incidunt. Expedita repudiandae voluptate ratione vitae quisquam maiores sequi. Fuga vel sed laudantium repellat velit ullam omnis ducimus.</p>
+    <p class="govuk-body">Reprehenderit aperiam consequatur atque quis. Similique et alias omnis ipsam assumenda modi odio cumque. Placeat et facere similique aperiam sunt exercitationem provident.</p>
+    <p class="govuk-body">Distinctio molestias neque molestiae quo itaque error ut. Sequi quisquam libero quasi cumque aut sed tempore. Sint voluptatem eveniet et quo odio laborum. Ut nulla maxime suscipit sed.</p>
+    <p class="govuk-body">Et rerum ut dignissimos voluptate architecto beatae. Id qui dolores nihil illo ut quasi. Maiores optio laudantium aut maiores nobis quos unde. Ipsum occaecati porro enim fuga provident accusamus et.</p>
+    <p class="govuk-body">Velit nesciunt reprehenderit laboriosam neque cupiditate tempore omnis voluptatem. Consectetur et animi porro cumque magni aut nihil. Esse rem unde molestiae qui voluptatem atque aut ut. Est ipsam eum assumenda velit et. Architecto sapiente quos quis beatae et molestiae.</p>
+  {% endset %}
+
+  <h2 class="govuk-heading-m">Candidate details</p>
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Full name"
+      },
+      value: {
+        text: application.name
+      }
+    }, {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        text: application["date-of-birth"] | date("d LLLL yyyy")
+      }
+    }, {
+      key: {
+        text: "Nationality"
+      },
+      value: {
+        text: application.nationality
+      }
+    }, {
+      key: {
+        text: "Phone"
+      },
+      value: {
+        text: "01234 567890"
+      }
+    }, {
+      key: {
+        text: "Address"
+      },
+      value: {
+        text: "5 Royal Exchange Square\nGlasgow\nG1 3AH\nUnited Kingdom" | nl2br | safe
+      }
+    }, {
+      key: {
+        text: "Personal statement"
+      },
+      value: {
+        html: personalStatementHtml
+      }
+    }]
+  }) }}
+{% endblock %}
+
+{% block secondary %}
+  <div class="app-card">
+    <h2 class="govuk-heading-m">Status</h2>
+    {{ govukTag({
+      classes: "app-tag--" + application.status + " govuk-!-margin-bottom-4",
+      text: application.status | capitalize
+    }) }}
+    <p class="govuk-body">Application submitted on {{ application.submitted | date("dd LLL yyyy") }}</p>
+
+    {{ govukButton({
+      classes: "govuk-!-margin-bottom-2",
+      text: "Change status",
+      href: "/application/" + application.id + "/change-status"
+    }) }}
+  </div>
+{% endblock %}

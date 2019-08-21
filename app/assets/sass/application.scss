@@ -1,0 +1,21 @@
+// GOV.UK Frontend settings
+$govuk-assets-path: "/govuk/assets/";
+$govuk-global-styles: true;
+
+// Import GOV.UK Frontend and any extension styles if configured
+@import "lib/extensions/extensions";
+
+// Components that aren't in Frontend
+@import "components/autocomplete";
+@import "components/card";
+@import "components/caption";
+@import "components/cookie-banner";
+@import "components/heading";
+@import "components/hidden-link";
+@import "components/icon";
+@import "components/related";
+@import "components/search";
+@import "components/summary";
+@import "components/table";
+@import "components/task-list";
+@import "components/tag";

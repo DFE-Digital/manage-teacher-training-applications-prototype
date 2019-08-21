@@ -1,0 +1,22 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if parent %}
+      <span class="govuk-caption-xl">{{ parent }}</span>
+    {% endif %}
+    <h1 class="govuk-heading-xl">{{ title | safe }}</h1>
+    <form action="{{ formaction | default('#') }}" method="post">
+    {% call govukFieldset() %}
+      {% block primary %}{% endblock %}
+    {% endcall %}
+    </form>
+  </div>
+  {% if hasSecondary %}
+  <div class="govuk-grid-column-one-third">
+    {% block secondary %}{% endblock %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

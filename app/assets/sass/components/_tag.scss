@@ -1,0 +1,25 @@
+.app-tag--empty {
+  background: govuk-colour("white");
+  border: 3px solid $govuk-border-colour;
+  color: govuk-colour("dark-grey");
+}
+
+.app-tag--new {
+  background: govuk-colour("blue");
+  color: govuk-colour("white");
+}
+
+.app-tag--review {
+  background: govuk-colour("bright-purple");
+  color: govuk-colour("white");
+}
+
+.app-tag--recruited {
+  background: govuk-colour("turquoise");
+  color: govuk-colour("white");
+}
+
+.app-tag--rejected {
+  background: govuk-colour("orange");
+  color: govuk-colour("white");
+}

@@ -1,0 +1,25 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+{% if title %}
+  <h1 class="govuk-heading-xl">
+  {% if parent %}
+    <span class="govuk-caption-xl">{{ parent }}</span> {{ title }}
+  {% else %}
+    {{ title | safe }}
+  {% endif %}
+  </h1>
+{% endif %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% block primary %}
+    {% endblock %}
+  </div>
+  {% if hasSecondary %}
+  <div class="govuk-grid-column-one-third">
+    {% block secondary %}
+    {% endblock %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

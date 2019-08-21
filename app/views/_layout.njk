@@ -1,0 +1,113 @@
+{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
+{%- set assetPath = "/govuk/assets" -%}
+
+{% extends "govuk/template.njk" %}
+
+{% from "govuk/components/accordion/macro.njk"        import govukAccordion %}
+{% from "govuk/components/back-link/macro.njk"        import govukBackLink %}
+{% from "govuk/components/breadcrumbs/macro.njk"      import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk"           import govukButton %}
+{% from "govuk/components/character-count/macro.njk"  import govukCharacterCount %}
+{% from "govuk/components/checkboxes/macro.njk"       import govukCheckboxes %}
+{% from "govuk/components/date-input/macro.njk"       import govukDateInput %}
+{% from "govuk/components/details/macro.njk"          import govukDetails %}
+{% from "govuk/components/error-message/macro.njk"    import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk"    import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk"         import govukFieldset %}
+{% from "govuk/components/file-upload/macro.njk"      import govukFileUpload %}
+{% from "govuk/components/input/macro.njk"            import govukInput %}
+{% from "govuk/components/inset-text/macro.njk"       import govukInsetText %}
+{% from "govuk/components/panel/macro.njk"            import govukPanel %}
+{% from "govuk/components/phase-banner/macro.njk"     import govukPhaseBanner %}
+{% from "govuk/components/radios/macro.njk"           import govukRadios %}
+{% from "govuk/components/select/macro.njk"           import govukSelect %}
+{% from "govuk/components/skip-link/macro.njk"        import govukSkipLink %}
+{% from "govuk/components/summary-list/macro.njk"     import govukSummaryList %}
+{% from "govuk/components/table/macro.njk"            import govukTable %}
+{% from "govuk/components/tabs/macro.njk"             import govukTabs %}
+{% from "govuk/components/tag/macro.njk"              import govukTag %}
+{% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
+{% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
+
+{% from "_components/autocomplete/macro.njk" import appAutocomplete %}
+{% from "_components/cookie-banner/macro.njk" import appCookieBanner %}
+{% from "_components/icon/macro.njk" import appIcon %}
+{% from "_components/related/macro.njk" import appRelated %}
+{% from "_components/search/macro.njk" import appSearch %}
+{% from "_components/task-list/macro.njk" import appTaskList %}
+
+{% block head %}
+  {% include "_includes/head.njk" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {% if title %}{{ title }} - {% endif %}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block header %}
+  {% if shouldShowCookieMessage %}
+  {{ appCookieBanner({
+    text: cookieText
+  })}}
+  {% endif %}
+
+  {% if data.candidate["name"] %}
+    {% set signOutText = "Sign out (" + data.candidate["name"] + ")" %}
+  {% else %}
+    {% set signOutText = "Sign out" %}
+  {% endif %}
+
+  {{ govukHeader({
+    homepageUrl: "https://www.gov.uk",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container",
+    navigation: ([{
+      href: "/",
+      text: "Sign out (Jane Doe)"
+    }] if isSignedOut != true)
+  }) }}
+{% endblock %}
+
+{% block bodyStart %}
+  <div data-module="edge">
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "prototype"
+    },
+    html: "This is a prototype of a new service. Some parts of this prototype do not work yet."
+  }) }}
+  {% block pageNavigation %}
+  {% endblock %}
+{% endblock %}
+
+{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
+
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [{
+          href: "https://govuk-prototype-kit.herokuapp.com/",
+          text: "GOV.UK Prototype Kit " + releaseVersion
+        }, {
+          href: "/prototype-admin/clear-data",
+          text: "Clear data"
+        }]
+      }
+    }) }}
+  {% endblock %}
+{% endif %}
+
+{% block bodyEnd %}
+  </div>
+
+  {% block scripts %}
+    {{ data | log }}
+    {% include "_includes/scripts.njk" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+{% endblock %}

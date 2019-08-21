@@ -1,0 +1,81 @@
+{% extends "_content-wide.njk" %}
+
+{% set title = "Applications" %}
+{% set parent = "2019-20 recruitment cycle" %}
+
+{% block primary %}
+  <ul class="govuk-list govuk-grid-row">
+    <li class="govuk-grid-column-one-quarter">
+      <a class="app-card app-card--status-new" href="?status=new" aria-current="{{ 'page' if status == 'new' else 'false' }}">
+        <span class="app-card__count">5</span> new
+      </a>
+    </li>
+    <li class="govuk-grid-column-one-quarter">
+      <a class="app-card app-card--status-review" href="?status=review" aria-current="{{ 'page' if status == 'review' else 'false' }}">
+        <span class="app-card__count">1</span> in review
+      </a>
+    </li>
+    <li class="govuk-grid-column-one-quarter">
+      <a class="app-card app-card--status-recruited" href="?status=recruited" aria-current="{{ 'page' if status == 'recruited' else 'false' }}">
+        <span class="app-card__count">1</span> recruited
+      </a>
+    </li>
+    <li class="govuk-grid-column-one-quarter">
+      <a class="app-card app-card--status-rejected" href="?status=rejected" aria-current="{{ 'page' if status == 'rejected' else 'false' }}">
+        <span class="app-card__count">1</span> rejected
+      </a>
+    </li>
+  </ul>
+
+  <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
+
+  {{ appSearch({
+    classes: "govuk-!-margin-bottom-4",
+    method: 'post',
+    input: {
+      id: "search",
+      name: "search"
+    },
+    label: {
+      text: "Find an application",
+      classes: "govuk-!-font-weight-bold"
+    },
+    hint: {
+      text: "You can search by candidate name or application number"
+    },
+    button: {
+      text: "Search"
+    }
+  }) }}
+
+  {% set applications = data["applications"] %}
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="col">Candidate name</th>
+        <th class="govuk-table__header" scope="col">Status</th>
+        <th class="govuk-table__header" scope="col">Course</th>
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col">Received on</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+    {% for application in applications | toArray %}
+      {% if status and application.status == status %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="/application/{{ application.id }}">{{ application.name }}</a>
+          </td>
+          <td class="govuk-table__cell">
+            {{ govukTag({
+              classes: "app-tag--" + application.status,
+              text: application.status
+            }) }}
+          </td>
+          <td class="govuk-table__cell">{{ application.course }}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">{{ application.submitted | date("dd LLL yyyy") }}</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

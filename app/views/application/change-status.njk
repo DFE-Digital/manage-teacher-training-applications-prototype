@@ -1,0 +1,140 @@
+{% extends "_form.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set formaction = "/application/" + application.id %}
+{% set title = "Change status" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Applications",
+      href: "/"
+    }, {
+      text: application.name,
+      href: "/application/" + application.id
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {% set currentStatusHtml %}
+    {{ govukTag({
+      classes: "app-tag--" + application.status,
+      text: application.status | capitalize
+    }) }}
+  {% endset %}
+
+  <h2 class="govuk-heading-m">Application details</p>
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "Full name"
+        },
+        value: {
+          text: application.name
+        }
+      }, {
+        key: {
+          text: "Course"
+        },
+        value: {
+          text: application.course
+        }
+      }, {
+        key: {
+          text: "Current status"
+        },
+        value: {
+          html: currentStatusHtml
+        }
+      }]
+    }) }}
+
+  {% set inReviewHtml %}
+    {{ govukRadios({
+      idPrefix: "status-review-stage",
+      name: "status-review-stage",
+      classes: "govuk-radios--small",
+      fieldset: {
+        legend: {
+          text: "At what review stage is the application in?",
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [{
+        text: "Downloaded and distributed"
+      }, {
+        text: "Feedback received"
+      }]
+    }) }}
+  {% endset %}
+
+  {% set rejectedHtml %}
+    {{ govukRadios({
+      idPrefix: "status-rejected-stage",
+      name: "status-rejected-stage",
+      classes: "govuk-radios--small",
+      fieldset: {
+        legend: {
+          text: "At what stage was the candidate rejected?",
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [{
+        text: "At first sift (eligibility to train)"
+      }, {
+        text: "At first sift (suitability to teach)"
+      }, {
+        text: "After interview (suitability to teach)"
+      }, {
+        text: "After interview (failed to attend)"
+      }, {
+        text: "Offer reject by candidate"
+      }]
+    }) }}
+
+    {{ govukTextarea({
+      id: "status-rejected-comment",
+      name: "status-rejected-comment",
+      label: {
+        text: "Comments",
+        classes: "govuk-label--s"
+      }
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    idPrefix: "status",
+    name: "status",
+    fieldset: {
+      legend: {
+        text: "Change status to",
+        classes: "govuk-label--m"
+      }
+    },
+    items: [{
+      value: "review",
+      text: "In review",
+      conditional: {
+        html: inReviewHtml
+      }
+    }, {
+      value: "recruited",
+      text: "Recruited"
+    }, {
+      value: "rejected",
+      text: "Rejected",
+      conditional: {
+        html: rejectedHtml
+      }
+    }]
+  }) }}
+
+  {{ govukButton({
+    text: "Change status"
+  }) }}
+
+  <p class="govuk-body"><a href="{{ formaction }}">Cancel</a></p>
+{% endblock %}

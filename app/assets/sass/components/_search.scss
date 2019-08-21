@@ -1,0 +1,42 @@
+.app-search {
+  font-size: 0; // Fallback
+}
+
+.app-search form {
+  align-items: flex-end;
+  display: flex;
+}
+
+.app-search .govuk-form-group {
+  display: inline-block;
+  flex: 1;
+  margin-bottom: 0;
+  vertical-align: top;
+}
+
+.app-search__label,
+.app-search__hint {
+  text-align: left;
+}
+
+.app-search__input:focus {
+  position: relative;
+  z-index: 1;
+}
+
+.app-search__button {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-left: govuk-spacing(2);
+  position: relative;
+  top: -2px; // Override default gov properties due to active pixel movement
+  vertical-align: bottom;
+  width: auto;
+}
+
+.app-search--inline {
+  padding: govuk-spacing(2) 0 !important;
+  @include govuk-media-query($from: desktop) {
+    padding: 0 !important;
+  }
+}
