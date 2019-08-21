@@ -34,6 +34,7 @@
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
+    "keypather": "^3.1.0",
     "luxon": "^1.17.2",
     "marked": "^0.7.0",
     "notifications-node-client": "^4.1.0",
