@@ -52,25 +52,6 @@
       }]
     }) }}
 
-  {% set inReviewHtml %}
-    {{ govukRadios({
-      idPrefix: "status-review-stage",
-      name: "status-review-stage",
-      classes: "govuk-radios--small",
-      fieldset: {
-        legend: {
-          text: "At what review stage is the application in?",
-          classes: "govuk-fieldset__legend--s"
-        }
-      },
-      items: [{
-        text: "Downloaded and distributed"
-      }, {
-        text: "Feedback received"
-      }]
-    }) }}
-  {% endset %}
-
   {% set rejectedHtml %}
     {{ govukRadios({
       idPrefix: "status-rejected-stage",
@@ -116,10 +97,7 @@
     },
     items: [{
       value: "review",
-      text: "In review",
-      conditional: {
-        html: inReviewHtml
-      }
+      text: "In review"
     }, {
       value: "recruited",
       text: "Recruited"
