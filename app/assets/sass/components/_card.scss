@@ -28,7 +28,7 @@
 
 .app-card--status-review {
   &[aria-current="page"] {
-    background: govuk-colour("bright-purple");
+    background: govuk-colour("orange");
     color: govuk-colour("white");
   }
 }
@@ -42,7 +42,7 @@
 
 .app-card--status-rejected {
   &[aria-current="page"] {
-    background: govuk-colour("orange");
+    background: govuk-colour("red");
     color: govuk-colour("white");
   }
 }

@@ -56,8 +56,17 @@ module.exports = (env) => {
         value.id = key
         arr.push(value)
       }
+
       return arr
     }
+  }
+
+  /**
+   * Convert object to array
+   * @type {Object} obj
+   */
+  filters.filterBy = (arr, key, value) => {
+    return arr.filter(i => i[key] === value)
   }
 
   return filters

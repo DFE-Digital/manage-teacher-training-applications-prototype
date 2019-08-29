@@ -4,25 +4,30 @@
 {% set parent = "2019-20 recruitment cycle" %}
 
 {% block primary %}
+  {% set applications = applications | toArray %}
+  {% set new = applications | filterBy("status", "new") %}
+  {% set review = applications | filterBy("status", "review") %}
+  {% set recruited = applications | filterBy("status", "recruited") %}
+  {% set rejected = applications | filterBy("status", "rejected") %}
   <ul class="govuk-list govuk-grid-row">
     <li class="govuk-grid-column-one-quarter">
       <a class="app-card app-card--status-new" href="?status=new" aria-current="{{ 'page' if status == 'new' else 'false' }}">
-        <span class="app-card__count">5</span> new
+        <span class="app-card__count">{{ new | length | default("0") }}</span> new
       </a>
     </li>
     <li class="govuk-grid-column-one-quarter">
       <a class="app-card app-card--status-review" href="?status=review" aria-current="{{ 'page' if status == 'review' else 'false' }}">
-        <span class="app-card__count">1</span> in review
+        <span class="app-card__count">{{ review | length | default("0") }}</span> in review
       </a>
     </li>
     <li class="govuk-grid-column-one-quarter">
       <a class="app-card app-card--status-recruited" href="?status=recruited" aria-current="{{ 'page' if status == 'recruited' else 'false' }}">
-        <span class="app-card__count">1</span> recruited
+        <span class="app-card__count">{{ recruited | length | default("0") }}</span> recruited
       </a>
     </li>
     <li class="govuk-grid-column-one-quarter">
       <a class="app-card app-card--status-rejected" href="?status=rejected" aria-current="{{ 'page' if status == 'rejected' else 'false' }}">
-        <span class="app-card__count">1</span> rejected
+        <span class="app-card__count">{{ rejected | length | default("0") }}</span> rejected
       </a>
     </li>
   </ul>
@@ -48,19 +53,22 @@
     }
   }) }}
 
-  {% set applications = data["applications"] %}
   <table class="govuk-table" data-module="sortable-table">
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th class="govuk-table__header" scope="col" aria-sort="ascending">Candidate name</th>
         <th class="govuk-table__header" scope="col">Status</th>
-        <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
+        <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
         <th class="govuk-table__header govuk-table__header--numeric" scope="col">Received</th>
+      {% if status == "new" or status == "review" %}
         <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Rejected by default</th>
+      {% else %}
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">{{ status | capitalize }}</th>
+      {% endif %}
       </tr>
     </thead>
     <tbody class="govuk-table__body">
-    {% for application in applications | toArray %}
+    {% for application in applications %}
       {% if status and application.status == status %}
         {% set rbd = application.submitted | addDays(40) %}
         {% set remaining = rbd | daysFromNow(rbd) %}
@@ -75,8 +83,14 @@
             }) }}
           </td>
           <td class="govuk-table__cell">{{ application.course }}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.submitted | date("yyyyMMdd") }}">{{ application.submitted | date("dd LLL yyyy") }}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.submitted | date("yyyyMMdd") }}">{{ application.submitted | date("d LLL yyyy") }}</td>
+        {% if status == "new" or status == "review" %}
           <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ rbd | date("yyyyMMdd") }}">{{ remaining }} days</td>
+        {% elif status == "recruited" %}
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.recruited | date("yyyyMMdd") }}">{{ application.recruited | date("d LLL yyyy") }}</td>
+        {% elif status == "rejected" %}
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.rejected | date("yyyyMMdd") }}">{{ application.rejected | date("d LLL yyyy") }}</td>
+        {% endif %}
         </tr>
       {% endif %}
     {% endfor %}
