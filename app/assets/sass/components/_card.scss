@@ -12,6 +12,11 @@
   &:hover {
     color: govuk-colour("dark-blue");
   }
+
+  &[aria-current="page"] {
+    background: govuk-colour("blue");
+    color: govuk-colour("white");
+  }
 }
 
 .app-card__count {
@@ -21,7 +26,7 @@
 
 .app-card--status-new {
   &[aria-current="page"] {
-    background: govuk-colour("blue");
+    background: govuk-colour("dark-grey");
     color: govuk-colour("white");
   }
 }

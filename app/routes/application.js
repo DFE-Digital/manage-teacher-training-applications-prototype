@@ -5,7 +5,7 @@ module.exports = router => {
   // Render application page
   router.all('/', (req, res) => {
     res.render('index', {
-      status: req.query.status || 'new'
+      status: req.query.status
     })
   })
 
