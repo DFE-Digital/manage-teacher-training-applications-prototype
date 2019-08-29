@@ -4,8 +4,6 @@
 module.exports = router => {
   // Render application page
   router.all('/', (req, res) => {
-    console.log(req.query.status)
-
     res.render('index', {
       status: req.query.status || 'new'
     })
@@ -13,8 +11,6 @@ module.exports = router => {
 
   // Render application page
   router.all('/application/:applicationId', (req, res) => {
-    console.log(req.query.status)
-
     res.render('application/index', {
       applicationId: req.params.applicationId,
       status: req.query.status

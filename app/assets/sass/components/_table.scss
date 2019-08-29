@@ -6,3 +6,76 @@
   padding-right: govuk-spacing(2) !important;
   text-align: right;
 }
+
+.app-table-sortable-status {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0
+}
+
+[aria-sort] button,
+[aria-sort] button:hover {
+  @include govuk-link-style-default;
+  background-color: transparent;
+  border-width: 0;
+  box-shadow: 0 0 0 0;
+  color: $govuk-link-colour;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0 10px 0 0;
+  position: relative;
+  text-align: inherit;
+  font-size: 1em;
+  margin: 0;
+}
+
+
+[aria-sort]:first-child button {
+  right: auto;
+}
+
+[aria-sort] button:before {
+  content: " \25bc";
+  position: absolute;
+  right: (govuk-spacing(1) * -1);
+  bottom: 2px;
+  font-size: 0.33em;
+}
+
+[aria-sort] button:before,
+[aria-sort] button:after {
+  position: absolute;
+}
+
+[aria-sort] button:after {
+  content: " \25b2";
+  right: (govuk-spacing(1) * -1);
+  top: 2px;
+  font-size: 0.33em;
+}
+
+[aria-sort="ascending"] button:before,
+[aria-sort="descending"] button:before {
+  content: none;
+}
+
+[aria-sort="ascending"] button:after {
+  content: " \25b2";
+  font-size: 0.67em;
+  right: (govuk-spacing(1) * -1);
+  top: 4px;
+}
+
+[aria-sort="descending"] button:after {
+  content: " \25bc";
+  font-size: 0.67em;
+  right: (govuk-spacing(1) * -1);
+  top: 4px;
+}
