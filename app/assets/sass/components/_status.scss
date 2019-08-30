@@ -1,0 +1,36 @@
+.app-status {
+  @include govuk-font($size: 16, $weight: bold);
+
+  @include govuk-media-query($from: desktop) {
+    @include govuk-font($size: 19, $weight: bold);
+  }
+
+  [aria-current="page"] {
+    background: govuk-colour("blue");
+    color: govuk-colour("white");
+  }
+
+  [href*="review"][aria-current="page"] {
+    background: govuk-colour("orange");
+    color: govuk-colour("white");
+  }
+
+  [href*="recruited"][aria-current="page"] {
+    background: govuk-colour("turquoise");
+    color: govuk-colour("white");
+  }
+
+  [href*="rejected"][aria-current="page"] {
+    background: govuk-colour("red");
+    color: govuk-colour("white");
+  }
+}
+
+.app-status__count {
+  @include govuk-font($size: 48, $weight: bold);
+
+  @include govuk-media-query($from: desktop) {
+    @include govuk-font($size: 80, $weight: bold);
+  }
+  display: block;
+}

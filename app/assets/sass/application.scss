@@ -17,6 +17,7 @@ $govuk-grid-widths: (
 // Components that aren't in Frontend
 @import "components/autocomplete";
 @import "components/card";
+@import "components/card-list";
 @import "components/caption";
 @import "components/cookie-banner";
 @import "components/heading";
@@ -24,6 +25,7 @@ $govuk-grid-widths: (
 @import "components/icon";
 @import "components/related";
 @import "components/search";
+@import "components/status";
 @import "components/summary";
 @import "components/table";
 @import "components/task-list";

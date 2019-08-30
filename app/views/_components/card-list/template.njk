@@ -1,0 +1,7 @@
+<ul class="app-card-list {%- if params.classes %} {{ params.classes }}{% endif %}">
+{% for item in params.items %}
+  <li class="app-card-list__item {%- if item.classes %} {{ item.classes }}{% endif %}">
+    <a class="app-card" href="{{ item.href }}" aria-current="{{ item.current }}">{{ item.html | safe }}</a>
+  </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,19 @@
+.app-card-list {
+  @extend %govuk-list;
+  @include govuk-media-query($from: tablet) {
+    @include govuk-clearfix;
+    margin-right: - ($govuk-gutter-half);
+    margin-left: - ($govuk-gutter-half);
+  }
+}
+
+.app-card-list__item {
+  @include govuk-media-query($from: tablet) {
+    @include govuk-grid-column("one-fifth");
+  }
+  display: flex;
+}
+
+.app-card-list__item > * {
+  flex: 1;
+}
