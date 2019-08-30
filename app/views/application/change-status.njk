@@ -93,7 +93,7 @@
       value: "new",
       text: "New",
       checked: application.status == "new"
-    }, {
+    } if application.status == "new", {
       value: "review",
       text: "In review",
       checked: application.status == "review"
