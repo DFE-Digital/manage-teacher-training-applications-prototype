@@ -73,36 +73,42 @@
         <th class="govuk-table__header" scope="col" aria-sort="none">Candidate name</th>
         <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
         <th class="govuk-table__header" scope="col">Status</th>
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Received</th>
-      {% if status == "new" or status == "review" %}
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Rejected by default</th>
-      {% elif status == "recruited" or status == "rejected" %}
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Submitted</th>
+      {% if status == "recruited" or status == "rejected" %}
         <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">{{ status | capitalize }}</th>
+      {% else %}
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Rejected by default</th>
       {% endif %}
       </tr>
     </thead>
     <tbody class="govuk-table__body">
-    {% for application in applications %}
-      {% set rbd = application.submitted | addDays(40) %}
+    {% for a in applications %}
+      {% set rbd = a.submitted | addDays(40) %}
       {% set remaining = rbd | daysFromNow(rbd) %}
       <tr class="govuk-table__row">
         <td class="govuk-table__cell">
-          <a href="/application/{{ application.id }}">{{ application.name }}</a>
+          <a href="/application/{{ a.id }}">{{ a.name }}</a>
         </td>
-        <td class="govuk-table__cell">{{ application.course }}</td>
+        <td class="govuk-table__cell">{{ a.course }}</td>
         <td class="govuk-table__cell">
           {{ govukTag({
-            classes: "app-tag--" + application.status,
-            text: application.status
+            classes: "app-tag--" + a.status,
+            text: a.status
           }) }}
         </td>
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.submitted | date("yyyyMMdd") }}">{{ application.submitted | date("d LLL yyyy") }}</td>
-      {% if status == "new" or status == "review" %}
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ rbd | date("yyyyMMdd") }}">{{ remaining }} days</td>
-      {% elif status == "recruited" %}
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.recruited | date("yyyyMMdd") }}">{{ application.recruited | date("d LLL yyyy") }}</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ a.submitted | date("d LLL yyyy") }}</td>
+      {% if status == "recruited" %}
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.recruited | date("yyyyMMdd") }}">{{ a.recruited | date("d LLL yyyy") }}</td>
       {% elif status == "rejected" %}
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ application.rejected | date("yyyyMMdd") }}">{{ application.rejected | date("d LLL yyyy") }}</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.rejected | date("yyyyMMdd") }}">{{ a.rejected | date("d LLL yyyy") }}</td>
+      {% else %}
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ rbd | date("yyyyMMdd") }}">
+        {% if a.status == "recruited" or a.status == "rejected" %}
+          –
+        {% else %}
+          {{ remaining }} days
+        {% endif %}
+        </td>
       {% endif %}
       </tr>
     {% endfor %}

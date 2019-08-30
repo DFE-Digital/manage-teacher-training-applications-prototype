@@ -226,7 +226,7 @@ module.exports = {
     },
     course: 'Religious Studies (V6X9)',
     status: 'new',
-    submitted: '2019-08-29'
+    submitted: '2019-08-19'
   },
   102: {
     id: 102,
@@ -254,7 +254,7 @@ module.exports = {
     },
     course: 'Computer Science and Information Technology (IX99)',
     status: 'new',
-    submitted: '2019-08-29'
+    submitted: '2019-08-26'
   },
   103: {
     id: 103,
@@ -282,7 +282,7 @@ module.exports = {
     },
     course: 'History (33MP)',
     status: 'new',
-    submitted: '2019-08-29'
+    submitted: '2019-08-26'
   },
   104: {
     id: 104,
@@ -314,7 +314,7 @@ module.exports = {
     },
     course: 'Primary (2PPM)',
     status: 'new',
-    submitted: '2019-08-29'
+    submitted: '2019-08-28'
   },
   105: {
     id: 105,
@@ -344,6 +344,6 @@ module.exports = {
     },
     course: 'Mathematics (GX11)',
     status: 'new',
-    submitted: '2019-08-29'
+    submitted: '2019-09-01'
   }
 }
