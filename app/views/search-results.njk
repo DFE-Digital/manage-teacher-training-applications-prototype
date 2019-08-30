@@ -16,6 +16,7 @@
 
 {% block primary %}
   {% set applications = applications | toArray | filterBy("name", q) %}
+  {% if applications | length > 0 %}
   <table class="govuk-table" data-module="sortable-table">
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
@@ -53,6 +54,15 @@
     {% endfor %}
     </tbody>
   </table>
+  {% else %}
+    <p class="govuk-body-l">There are no matching results.</p>
+    <p class="govuk-body">Improve your search results by:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>double-checking your spelling</li>
+      <li>using fewer keywords</li>
+      <li>searching for something less specific</li>
+    </ul>
+  {% endif %}
 
   {{ appSearch({
     classes: "app-card govuk-!-margin-bottom-4",
