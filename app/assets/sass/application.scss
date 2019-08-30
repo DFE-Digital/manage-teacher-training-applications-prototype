@@ -30,3 +30,8 @@ $govuk-grid-widths: (
 @import "components/table";
 @import "components/task-list";
 @import "components/tag";
+
+// Overrides
+.govuk-table__cell--numeric {
+  white-space: nowrap;
+}

@@ -28,9 +28,8 @@
 
 .app-status__count {
   @include govuk-font($size: 48, $weight: bold);
-
   @include govuk-media-query($from: desktop) {
-    @include govuk-font($size: 80, $weight: bold);
+    @include govuk-font($size: 80, $weight: bold, $line-height: 0.9);
   }
   display: block;
 }
