@@ -86,7 +86,22 @@
       classes: "app-tag--" + application.status + " govuk-!-margin-bottom-4",
       text: application.status | capitalize
     }) }}
-    <p class="govuk-body">Application submitted on {{ application.submitted | date("dd LLL yyyy") }}</p>
+    <dl class="govuk-body">
+      <dt class="govuk-!-font-weight-bold">Application submitted<dt>
+      <dd class="govuk-!-margin-left-0">{{ application.submitted | date("dd LLL yyyy") }}</dd>
+    </dl>
+
+  {% if application.recruited %}
+    <dl class="govuk-body">
+      <dt class="govuk-!-font-weight-bold">Candidate recruited<dt>
+      <dd class="govuk-!-margin-left-0">{{ application.recruited | date("dd LLL yyyy") }}</dd>
+    </dl>
+  {% elif application.rejected %}
+    <dl class="govuk-body">
+      <dt class="govuk-!-font-weight-bold">Candidate rejected<dt>
+      <dd class="govuk-!-margin-left-0">{{ application.rejected | date("dd LLL yyyy") }}</dd>
+    </dl>
+  {% endif %}
 
     {{ govukButton({
       classes: "govuk-!-margin-bottom-2",

@@ -66,7 +66,8 @@ module.exports = (env) => {
    * @type {Object} obj
    */
   filters.filterBy = (arr, key, value) => {
-    return arr.filter(i => i[key] === value)
+    value = value.toUpperCase()
+    return arr.filter(i => i[key].toUpperCase().includes(value))
   }
 
   return filters

@@ -24,13 +24,6 @@
   display: block;
 }
 
-.app-card--status-new {
-  &[aria-current="page"] {
-    background: govuk-colour("dark-grey");
-    color: govuk-colour("white");
-  }
-}
-
 .app-card--status-review {
   &[aria-current="page"] {
     background: govuk-colour("orange");

@@ -116,7 +116,7 @@ module.exports = {
   },
   5: {
     id: 5,
-    name: 'Daniel Jenning',
+    name: 'Daniel James Jennings',
     'date-of-birth': '1998-12-16',
     nationality: 'British',
     'contact-details': {

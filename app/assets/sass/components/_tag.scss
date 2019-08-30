@@ -2,11 +2,16 @@
   background: govuk-colour("white");
   border: 3px solid $govuk-border-colour;
   color: govuk-colour("dark-grey");
+  margin-top: -3px;
+  margin-bottom: -3px;
 }
 
 .app-tag--new {
-  background: govuk-colour("dark-grey");
-  color: govuk-colour("white");
+  background: govuk-colour("white");
+  border: 3px solid govuk-colour("blue");
+  color: govuk-colour("blue");
+  margin-top: -3px;
+  margin-bottom: -3px;
 }
 
 .app-tag--review {
