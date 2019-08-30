@@ -76,7 +76,7 @@
         <th class="govuk-table__header" scope="col" aria-sort="none">Candidate name</th>
         <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
         <th class="govuk-table__header" scope="col">Status</th>
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Submitted</th>
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Submitted</th>
       {% if status == "recruited" or status == "rejected" %}
         <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">{{ status | capitalize }}</th>
       {% else %}
@@ -85,7 +85,7 @@
       </tr>
     </thead>
     <tbody class="govuk-table__body">
-    {% for a in applications %}
+    {% for a in applications | reverse %}
       {% set rbd = a.submitted | addDays(40) %}
       {% set remaining = rbd | daysFromNow(rbd) %}
       <tr class="govuk-table__row">

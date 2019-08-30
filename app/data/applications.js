@@ -197,7 +197,7 @@ module.exports = {
     },
     course: 'Media Studies (33MP)',
     status: 'rejected',
-    submitted: '2019-07-19',
+    submitted: '2019-08-09',
     rejected: '2019-08-23'
   },
   101: {
@@ -226,7 +226,7 @@ module.exports = {
     },
     course: 'Religious Studies (V6X9)',
     status: 'new',
-    submitted: '2019-08-19'
+    submitted: '2019-08-26'
   },
   102: {
     id: 102,
@@ -282,7 +282,7 @@ module.exports = {
     },
     course: 'History (33MP)',
     status: 'new',
-    submitted: '2019-08-26'
+    submitted: '2019-08-27'
   },
   104: {
     id: 104,
