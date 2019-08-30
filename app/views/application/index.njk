@@ -101,6 +101,13 @@
       <dt class="govuk-!-font-weight-bold">Candidate rejected<dt>
       <dd class="govuk-!-margin-left-0">{{ application.rejected | date("dd LLL yyyy") }}</dd>
     </dl>
+  {% else %}
+    {% set rbd = application.submitted | addDays(40) %}
+    {% set remaining = rbd | daysFromNow(rbd) %}
+    <dl class="govuk-body">
+      <dt class="govuk-!-font-weight-bold">Rejected by default<dt>
+      <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
+    </dl>
   {% endif %}
 
     {{ govukButton({
