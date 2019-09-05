@@ -44,21 +44,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
       <div class="app-card">
-        <h2 class="govuk-heading-s">
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
           <a href="/">All applications ({{ applications | length | default("0") }})</a>
         </h2>
 
-        <h2 class="govuk-heading-s">
-          <a href="?status=new">New ({{ new | length | default("0") }})</a>
-        </h2>
-
         <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-          <a href="?status=review">In progress ({{ review | length | default("0") }})</a>
+          <a href="?status=new">New ({{ new | length | default("0") }})</a>
         </h2>
         <ul class="govuk-list govuk-body-s">
           <li><a href="#">References pending</a></li>
-          <li><a href="#">Invited to interview</a></li>
+          <li><a href="#">References submitted</a></li>
         </ul>
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+          <a href="?status=review">Interviewing ({{ review | length | default("0") }})</a>
+        </h2>
+        {# <ul class="govuk-list govuk-body-s">
+          <li><a href="#">References pending</a></li>
+          <li><a href="#">Invited to interview</a></li>
+        </ul> #}
 
         <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
           <a href="#">Offer made (2)</a>
@@ -66,11 +70,10 @@
         <ul class="govuk-list govuk-body-s">
           <li><a href="#">Conditional</a></li>
           <li><a href="#">Unconditional</a></li>
-          <li><a href="#">Accepted</a></li>
-          <li><a href="#">Meeting conditions</a></li>
+          <li><a href="#">Accepted (conditional)</a></li>
         </ul>
 
-        <h2 class="govuk-heading-s">
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
           <a href="?status=recruited">Confirmed ({{ recruited | length | default("0") }})</a>
         </h2>
 
@@ -131,7 +134,7 @@
       {% elif status == "rejected" %}
         {% set applications = rejected %}
       {% endif %}
-      <table class="govuk-table govuk-!-font-size-16" data-module="sortable-table">
+      <table class="govuk-table" data-module="sortable-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>

@@ -66,7 +66,7 @@ module.exports = (env) => {
       case "recruited":
         return "Confirmed"
       case "review":
-        return "In progress"
+        return "Interviewing"
       case "recruited":
         return "Offer accepted"
       default:
