@@ -61,6 +61,19 @@ module.exports = (env) => {
     }
   }
 
+  filters.statusName = (status) => {
+    switch(status) {
+      case "recruited":
+        return "Confirmed"
+      case "review":
+        return "In progress"
+      case "recruited":
+        return "Offer accepted"
+      default:
+        return status
+    }
+  }
+
   /**
    * Convert object to array
    * @type {Object} obj

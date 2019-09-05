@@ -4,6 +4,7 @@
   color: govuk-colour("dark-grey");
   margin-top: -3px;
   margin-bottom: -3px;
+  white-space: nowrap;
 }
 
 .app-tag--new {
@@ -12,19 +13,23 @@
   color: govuk-colour("blue");
   margin-top: -3px;
   margin-bottom: -3px;
+  white-space: nowrap;
 }
 
 .app-tag--review {
   background: govuk-colour("orange");
   color: govuk-colour("white");
+  white-space: nowrap;
 }
 
 .app-tag--recruited {
   background: govuk-colour("turquoise");
   color: govuk-colour("white");
+  white-space: nowrap;
 }
 
 .app-tag--rejected {
   background: govuk-colour("red");
   color: govuk-colour("white");
+  white-space: nowrap;
 }
