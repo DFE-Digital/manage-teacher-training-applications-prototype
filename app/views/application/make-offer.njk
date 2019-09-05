@@ -1,0 +1,117 @@
+{% extends "_form-wide.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set formaction = "/application/" + application.id %}
+{% set parent = application.name + " – " + application.course %}
+{% set title = "Make an offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/change-status"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {% set detailsHtml %}
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "Full name"
+        },
+        value: {
+          text: application.name
+        }
+      }, {
+        key: {
+          text: "Course"
+        },
+        value: {
+          html: application.course + "<br />PGCE with QTS full time"
+        }
+      }, {
+        key: {
+          text: "Starting"
+        },
+        value: {
+          text: "September 2020"
+        }
+      }, {
+        key: {
+          text: "Preferred location"
+        },
+        value: {
+          html: "Alliance Academy<br />Edgeware, Road Name, SW1 1AA"
+        }
+      }]
+    }) }}
+  {% endset %}
+
+  {% set conditionalHtml %}
+    {{ detailsHtml | safe }}
+
+    {{ govukTextarea({
+      id: "condition-of-offer-1",
+      name: "condition-of-offer-1",
+      rows: 5,
+      label: {
+        text: "First condition",
+        classes: "govuk-label--s"
+      }
+    }) }}
+
+    {{ govukTextarea({
+      id: "condition-of-offer-2",
+      name: "condition-of-offer-2",
+      rows: 5,
+      label: {
+        text: "Second condition (optional)",
+        classes: "govuk-label--s"
+      }
+    }) }}
+
+    {{ govukTextarea({
+      id: "condition-of-offer-3",
+      name: "condition-of-offer-3",
+      rows: 5,
+      label: {
+        text: "Third condition (optional)",
+        classes: "govuk-label--s"
+      }
+    }) }}
+
+    {{ govukTextarea({
+      id: "condition-of-offer-further",
+      name: "condition-of-offer-further",
+      rows: 10,
+      label: {
+        text: "Further conditions (optional)",
+        classes: "govuk-label--s"
+      }
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    idPrefix: "status",
+    classes: "govuk-!-margin-top-2",
+    name: "status",
+    items: [{
+      value: "conditional",
+      text: "Make a conditional offer",
+      conditional: {
+        html: conditionalHtml
+      }
+    }, {
+      value: "unconditional",
+      text: "Make an unconditional offer",
+      conditional: {
+        html: detailsHtml
+      }
+    }]
+  }) }}
+
+  {{ govukButton({
+    text: "Make offer"
+  }) }}
+
+  <p class="govuk-body"><a href="{{ formaction }}">Cancel</a></p>
+{% endblock %}

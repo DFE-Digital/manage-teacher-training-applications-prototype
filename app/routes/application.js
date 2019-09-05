@@ -17,6 +17,14 @@ module.exports = router => {
     })
   })
 
+  router.post('/application/:applicationId/changed-status', (req, res) => {
+    if (req.body.status == "offer") {
+      res.redirect(`/application/${req.params.applicationId}/make-offer`)
+    } else {
+      res.redirect(`/application/${req.params.applicationId}`)
+    }
+  })
+
   // Render other application pages
   router.all('/application/:applicationId/:view', (req, res) => {
     res.render(`application/${req.params.view}`, {

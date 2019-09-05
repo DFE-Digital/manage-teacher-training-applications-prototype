@@ -1,7 +1,8 @@
 {% extends "_form-wide.njk" %}
 
 {% set application = applications[applicationId] %}
-{% set formaction = "/application/" + application.id %}
+{% set formaction = "/application/" + application.id + "/changed-status" %}
+{% set parent = application.name + " – " + application.course %}
 {% set title = "Change status" %}
 
 {% block pageNavigation %}
@@ -12,31 +13,6 @@
 
 {% block primary %}
   {% set isPrimaryCourse = application.course.includes("Primary") %}
-
-  {% set currentStatusHtml %}
-    {{ govukTag({
-      classes: "app-tag--" + application.status,
-      text: application.status | capitalize
-    }) }}
-  {% endset %}
-
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Candidate"
-      },
-      value: {
-        text: application.name
-      }
-    }, {
-      key: {
-        text: "Course"
-      },
-      value: {
-        text: application.course
-      }
-    }]
-  }) }}
 
   {% set rejectedHtml %}
     {{ govukRadios({
@@ -88,6 +64,7 @@
 
   {{ govukRadios({
     idPrefix: "status",
+    classes: "govuk-!-margin-top-2",
     name: "status",
     items: [{
       value: "new",
@@ -95,15 +72,19 @@
       checked: application.status == "new"
     } if application.status == "new", {
       value: "review",
-      text: "In review",
+      text: "Invite to interview",
       checked: application.status == "review"
     }, {
+      value: "offer",
+      text: "Make offer",
+      checked: application.status == "offer"
+    }, {
       value: "recruited",
-      text: "Recruited",
+      text: "Confirm enrolment",
       checked: application.status == "recruited"
     }, {
       value: "rejected",
-      text: "Rejected",
+      text: "Reject candidate",
       checked: application.status == "rejected",
       conditional: {
         html: rejectedHtml
@@ -112,7 +93,7 @@
   }) }}
 
   {{ govukButton({
-    text: "Change status"
+    text: "Continue"
   }) }}
 
   <p class="govuk-body"><a href="{{ formaction }}">Cancel</a></p>
