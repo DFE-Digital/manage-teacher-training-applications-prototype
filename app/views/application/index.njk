@@ -84,7 +84,7 @@
     <h2 class="govuk-heading-m">Status</h2>
     {{ govukTag({
       classes: "app-tag--" + application.status + " govuk-!-margin-bottom-4",
-      text: application.status | capitalize
+      text: application.status | statusName | capitalize
     }) }}
     <dl class="govuk-body">
       <dt class="govuk-!-font-weight-bold">Application submitted<dt>
