@@ -54,7 +54,9 @@ module.exports = (env) => {
       const arr = []
       for (const [key, value] of Object.entries(obj)) {
         value.id = key
-        arr.push(value)
+        if (value !== '') {
+          arr.push(value)
+        }
       }
 
       return arr
@@ -62,13 +64,13 @@ module.exports = (env) => {
   }
 
   filters.statusName = (status) => {
-    switch(status) {
-      case "recruited":
-        return "Confirmed"
-      case "review":
-        return "Interviewing"
-      case "recruited":
-        return "Offer accepted"
+    switch (status) {
+      case 'recruited':
+        return 'Offer'
+      case 'rejected':
+        return 'Reject'
+      case 'review':
+        return 'Interviewing'
       default:
         return status
     }

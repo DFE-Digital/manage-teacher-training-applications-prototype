@@ -18,7 +18,7 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/changed-status', (req, res) => {
-    if (req.body.status == "offer") {
+    if (req.body.status === 'offer') {
       res.redirect(`/application/${req.params.applicationId}/make-offer`)
     } else {
       res.redirect(`/application/${req.params.applicationId}`)

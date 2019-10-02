@@ -1,0 +1,24 @@
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "English is main language?"
+    },
+    value: {
+      text: application["language-skills"]["english-is-main"]
+    }
+  }, {
+    key: {
+      text: "Other languages spoken"
+    },
+    value: {
+      text: application["language-skills"]["other"] or "—"
+    }
+  } if application["language-skills"]["english-is-main"] == "Yes", {
+    key: {
+      text: "English language qualifications and other languages spoken"
+    },
+    value: {
+      text: application["language-skills"]["english-qualifications"] or "—"
+    }
+  } if application["language-skills"]["english-is-main"] == "No"]
+}) }}

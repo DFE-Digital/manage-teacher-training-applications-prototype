@@ -1,0 +1,76 @@
+{% set workHistory = application["work-history"]
+  | toArray
+  | sort(attribute="start-date")
+%}
+{% if workHistory.length >= 1 %}
+  {% set rowData = [] %}
+  {% for item in application["work-history"] | toArray | sort(attribute="start-date") %}
+    {% set summaryHtml %}
+      {{ item.role + " – " + item.type if item.category == "job" else "Gap (" + item.duration + ")" }}
+      {%- if item["worked-with-children"] == "Yes" %}
+        {{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }}
+      {% endif %}
+    {% endset %}
+    {% set detailsHtml %}
+      {% set descriptionHtml %}
+        <p class="govuk-body">{{ item.description or "None provided" }}</p>
+        {%- if item["worked-with-children"] == "Yes" %}
+          <p class="govuk-body">{{ appIcon({
+            classes: "govuk-!-margin-right-1",
+            icon: "tick",
+            hidden: true
+          }) }} This role involved working with children</p>
+        {%- endif %}
+      {% endset %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Employer"
+          },
+          value: {
+            text: item.org
+          }
+        } if item.role, {
+          key: {
+            text: "Description"
+          },
+          value: {
+            html: descriptionHtml
+          }
+        }]
+      }) }}
+    {% endset %}
+    {% set role %}
+      {{ govukDetails({
+        classes: "govuk-!-margin-0",
+        summaryHtml: summaryHtml,
+        html: detailsHtml
+      }) }}
+    {% endset %}
+    {% set org = item.org if item.category == "job" %}
+    {% set startDate = item["start-date"] | date("LLLL yyyy") %}
+    {% set endDate = item["end-date"] | date("LLLL yyyy") if item["end-date"] else "Present" %}
+    {% set rows = rowData.push([{
+      html: [startDate, endDate] | join(" - ")
+    }, {
+      html: role
+    }]) %}
+  {% endfor %}
+  {{ govukTable({
+    head: [{
+      text: "Dates",
+      attributes: {
+        width: "30%"
+      }
+    }, {
+      text: "Role"
+    }],
+    rows: rowData
+  }) }}
+{% else %}
+  <p class="govuk-body">Candidate has no work history.</p>
+{% endif %}

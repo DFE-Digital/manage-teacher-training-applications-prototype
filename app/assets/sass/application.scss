@@ -35,3 +35,41 @@ $govuk-grid-widths: (
 .govuk-table__cell--numeric {
   white-space: nowrap;
 }
+
+.govuk-summary-list__key {
+  vertical-align: top;
+}
+
+.govuk-summary-list__value {
+  .govuk-table__row:last-of-type .govuk-table__cell {
+    border-bottom: transparent;
+  }
+}
+
+.govuk-details__text {
+  .govuk-summary-list__row:last-of-type > * {
+    border-bottom: transparent;
+  }
+}
+
+// Override GOV.UK Frontend print styles
+@media print {
+  .govuk-template {
+    background-color: transparent;
+  }
+
+  .govuk-width-container {
+    max-width: 95%;
+  }
+
+  .govuk-breadcrumbs,
+  .govuk-button,
+  .govuk-back-link,
+  .govuk-footer,
+  .govuk-header__menu-button,
+  .govuk-header__navigation,
+  .govuk-phase-banner,
+  .govuk-summary-list__actions {
+    display: none !important;
+  }
+}

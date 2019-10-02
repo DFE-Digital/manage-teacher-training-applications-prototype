@@ -1,0 +1,45 @@
+<nav class="app-card">
+  <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+    <a href="/">All applications ({{ applications | length | default("0") }})</a>
+  </h2>
+
+  <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+    <a href="?status=new">New ({{ new | length | default("0") }})</a>
+  </h2>
+  <ul class="govuk-list govuk-body-s">
+    <li><a href="#">References pending</a></li>
+    <li><a href="#">References submitted</a></li>
+  </ul>
+
+  <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+    <a href="?status=review">Interviewing ({{ review | length | default("0") }})</a>
+  </h2>
+  <ul class="govuk-list govuk-body-s">
+    <li><a href="#">References pending</a></li>
+    <li><a href="#">Invited to interview</a></li>
+  </ul>
+
+  <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+    <a href="#">Offer made (2)</a>
+  </h2>
+  <ul class="govuk-list govuk-body-s">
+    <li><a href="#">Conditional</a></li>
+    <li><a href="#">Unconditional</a></li>
+    <li><a href="#">Accepted (conditional)</a></li>
+  </ul>
+
+  <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
+    <a href="?status=recruited">Confirmed ({{ recruited | length | default("0") }})</a>
+  </h2>
+
+  <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+    <a href="?status=rejected">Rejected ({{ rejected | length | default("0") }})</a>
+  </h2>
+  <ul class="govuk-list govuk-body-s">
+    <li><a href="#">Rejected by us</a></li>
+    <li><a href="#">Rejected by default</a></li>
+    <li><a href="#">Withdrawn</a></li>
+    <li><a href="#">Offer rejected</a></li>
+    <li><a href="#">Declined by default</a></li>
+  </ul>
+</nav>

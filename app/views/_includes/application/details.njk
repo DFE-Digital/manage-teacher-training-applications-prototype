@@ -1,0 +1,59 @@
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Full name"
+    },
+    value: {
+      text: name
+    }
+  }, {
+    key: {
+      text: "Date of birth"
+    },
+    value: {
+      text: application["personal-details"]["date-of-birth"] | date("d LLLL yyyy")
+    }
+  }, {
+    key: {
+      text: "Nationality"
+    },
+    value: {
+      text: application["personal-details"].nationality
+    }
+  }, {
+    key: {
+      text: "Second nationality"
+    },
+    value: {
+      text: application["personal-details"]["second-nationality"]
+    }
+  } if application["personal-details"]["second-nationality"], {
+    key: {
+      text: "Residency status"
+    },
+    value: {
+      text: application["personal-details"]["residency-status"]
+    }
+  } if application["personal-details"]["residency-status"], {
+    key: {
+      text: "Phone number"
+    },
+    value: {
+      html: "<a href=\"tel:" + application["contact-details"].tel | replace(" ", "") + "\">" + application["contact-details"].tel + "</a>"
+    }
+  }, {
+    key: {
+      text: "Email address"
+    },
+    value: {
+      html: "<a href=\"mailto:" + application["contact-details"].email + "\">" + application["contact-details"].email + "</a>"
+    }
+  }, {
+    key: {
+      text: "Address"
+    },
+    value: {
+      html: application["contact-details"].address | toArray | join("<br>")
+    }
+  }]
+}) }}

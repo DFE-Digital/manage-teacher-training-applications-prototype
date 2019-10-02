@@ -1,0 +1,33 @@
+{% set rowData = [] %}
+{% for item in application.degree | toArray %}
+  {% set detailsHtml %}
+    <p class="govuk-body-s">{{ item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") }}</p>
+  {% endset %}
+  {% set degree %}
+    {{ govukDetails({
+      classes: "govuk-!-margin-0",
+      summaryHtml: [item.type, item.subject] | join(" – "),
+      html: detailsHtml
+    }) }}
+  {% endset %}
+  {% set grade = item["grade-predicted"] + " (Predicted)" if item["grade-predicted"] else item.grade %}
+  {% set rows = rowData.push([{
+    html: degree
+  }, {
+    html: item.year
+  }, {
+    html: grade
+  }]) %}
+{% endfor %}
+{{ govukTable({
+  head: [{
+    classes: "govuk-!-width-one-half",
+    text: "Degree"
+  }, {
+    classes: "govuk-!-width-one-quarter",
+    text: "Awarded"
+  }, {
+    text: "Grade"
+  }],
+  rows: rowData
+}) }}
