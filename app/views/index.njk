@@ -10,177 +10,60 @@
   {% set recruited = applications | filterBy("status", "recruited") %}
   {% set rejected = applications | filterBy("status", "rejected") %}
 
-  {# {{ appCardList({
-    items: [{
-      classes: "app-status",
-      href: "/",
-      current: "false" if status else "page",
-      html: "<span class=\"app-status__count\">" + applications | length | default("0") + "</span><span class=\"app-status__type\">applications</span>"
-    }, {
-      classes: "app-status",
-      href: "?status=new",
-      current: "page" if status == "new" else "false",
-      html: "<span class=\"app-status__count\">" + new | length | default("0") + "</span> new"
-    }, {
-      classes: "app-status",
-      href: "?status=review",
-      current: "page" if status == "review" else "false",
-      html: "<span class=\"app-status__count\">" + review | length | default("0") + "</span> in review"
-    }, {
-      classes: "app-status",
-      href: "?status=recruited",
-      current: "page" if status == "recruited" else "false",
-      html: "<span class=\"app-status__count\">" + recruited | length | default("0") + "</span> recruited"
-    }, {
-      classes: "app-status",
-      href: "?status=rejected",
-      current: "page" if status == "rejected" else "false",
-      html: "<span class=\"app-status__count\">" + rejected | length | default("0") + "</span> rejected"
-    }]
-  }) }}
-
-  <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m"> #}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-quarter">
-      <div class="app-card">
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
-          <a href="/">All applications ({{ applications | length | default("0") }})</a>
-        </h2>
-
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-          <a href="?status=new">New ({{ new | length | default("0") }})</a>
-        </h2>
-        <ul class="govuk-list govuk-body-s">
-          <li><a href="#">References pending</a></li>
-          <li><a href="#">References submitted</a></li>
-        </ul>
-
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
-          <a href="?status=review">Interviewing ({{ review | length | default("0") }})</a>
-        </h2>
-        {# <ul class="govuk-list govuk-body-s">
-          <li><a href="#">References pending</a></li>
-          <li><a href="#">Invited to interview</a></li>
-        </ul> #}
-
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-          <a href="#">Offer made (2)</a>
-        </h2>
-        <ul class="govuk-list govuk-body-s">
-          <li><a href="#">Conditional</a></li>
-          <li><a href="#">Unconditional</a></li>
-          <li><a href="#">Accepted (conditional)</a></li>
-        </ul>
-
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-6">
-          <a href="?status=recruited">Confirmed ({{ recruited | length | default("0") }})</a>
-        </h2>
-
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-          <a href="?status=rejected">Rejected ({{ rejected | length | default("0") }})</a>
-        </h2>
-        <ul class="govuk-list govuk-body-s">
-          <li><a href="#">Rejected by us</a></li>
-          <li><a href="#">Rejected by default</a></li>
-          <li><a href="#">Withdrawn</a></li>
-          <li><a href="#">Offer rejected</a></li>
-          <li><a href="#">Declined by default</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="govuk-grid-column-two-thirds" style="width: 75%">
-      {{ appSearch({
-        classes: "govuk-!-margin-bottom-4",
-        action: "/search-results",
-        method: "get",
-        input: {
-          id: "search",
-          name: "q"
-        },
-        label: {
-          text: "Find an application",
-          classes: "govuk-!-font-weight-bold"
-        },
-        hint: {
-          text: "You can search by candidate name or application number"
-        },
-        button: {
-          text: "Search"
-        }
-      }) }}
-
-      <hr class="govuk-section-break govuk-section-break--m">
-
-      {% if status == "new" %}
-        <h2 class="govuk-heading-l">New applications</h2>
-      {% elif status == "review" %}
-        <h2 class="govuk-heading-l">In progress</h2>
-      {% elif status == "recruited" %}
-        <h2 class="govuk-heading-l">Confirmed</h2>
-      {% elif status == "rejected" %}
-        <h2 class="govuk-heading-l">Rejected</h2>
+  {% if status == "new" %}
+    {% set applications = new %}
+  {% elif status == "review" %}
+    {% set applications = review %}
+  {% elif status == "recruited" %}
+    {% set applications = recruited %}
+  {% elif status == "rejected" %}
+    {% set applications = rejected %}
+  {% endif %}
+  <table class="govuk-table" data-module="sortable-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
+        <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
+        <th class="govuk-table__header" scope="col">Status</th>
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Received</th>
+      {% if status == "recruited" or status == "rejected" %}
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">{{ status | capitalize }}</th>
       {% else %}
-        <h2 class="govuk-heading-l">All applications</h2>
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Reject by default</th>
       {% endif %}
-
-
-      {% if status == "new" %}
-        {% set applications = new %}
-      {% elif status == "review" %}
-        {% set applications = review %}
-      {% elif status == "recruited" %}
-        {% set applications = recruited %}
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+    {% for a in applications | reverse %}
+      {% set rbd = a.submitted | addDays(40) %}
+      {% set remaining = rbd | daysFromNow(rbd) %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
+        </td>
+        <td class="govuk-table__cell">{{ a.course }}</td>
+        <td class="govuk-table__cell">
+          {{ govukTag({
+            classes: "app-tag--" + a.status,
+            text: a.status | statusName
+          }) }}
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ a.submitted | date("d LLL yyyy") }}</td>
+      {% if status == "recruited" %}
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.recruited | date("yyyyMMdd") }}">{{ a.recruited | date("d LLL yyyy") }}</td>
       {% elif status == "rejected" %}
-        {% set applications = rejected %}
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.rejected | date("yyyyMMdd") }}">{{ a.rejected | date("d LLL yyyy") }}</td>
+      {% else %}
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ rbd | date("yyyyMMdd") }}">
+        {% if a.status == "recruited" or a.status == "rejected" %}
+          –
+        {% else %}
+          {{ rbd | date("d LLL yyyy") }} ({{ remaining }} days)
+        {% endif %}
+        </td>
       {% endif %}
-      <table class="govuk-table" data-module="sortable-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
-            <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
-            <th class="govuk-table__header" scope="col">Status</th>
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Received</th>
-          {% if status == "recruited" or status == "rejected" %}
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">{{ status | capitalize }}</th>
-          {% else %}
-            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Reject by default</th>
-          {% endif %}
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-        {% for a in applications | reverse %}
-          {% set rbd = a.submitted | addDays(40) %}
-          {% set remaining = rbd | daysFromNow(rbd) %}
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <a href="/application/{{ a.id }}">{{ a.name }}</a>
-            </td>
-            <td class="govuk-table__cell">{{ a.course }}</td>
-            <td class="govuk-table__cell">
-              {{ govukTag({
-                classes: "app-tag--" + a.status,
-                text: a.status | statusName
-              }) }}
-            </td>
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ a.submitted | date("d LLL yyyy") }}</td>
-          {% if status == "recruited" %}
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.recruited | date("yyyyMMdd") }}">{{ a.recruited | date("d LLL yyyy") }}</td>
-          {% elif status == "rejected" %}
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.rejected | date("yyyyMMdd") }}">{{ a.rejected | date("d LLL yyyy") }}</td>
-          {% else %}
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ rbd | date("yyyyMMdd") }}">
-            {% if a.status == "recruited" or a.status == "rejected" %}
-              –
-            {% else %}
-              {{ remaining }} days
-            {% endif %}
-            </td>
-          {% endif %}
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

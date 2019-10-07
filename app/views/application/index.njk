@@ -1,9 +1,9 @@
-{% extends "_content.njk" %}
+{% extends "_content-wide.njk" %}
 
 {% set application = applications[applicationId] %}
 {% set parent = "Application for " + application.course %}
-{% set title = application.name %}
-{% set hasSecondary = true %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = name %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -17,103 +17,75 @@
 {% endblock %}
 
 {% block primary %}
-  <p class="govuk-body"><a href="/public/applications/{{ application.id }}.pdf">Download application</a></p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/application/details.njk" %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <div class="app-card">
+        <h2 class="govuk-heading-m">Status</h2>
+        {{ govukTag({
+          classes: "app-tag--" + application.status + " govuk-!-margin-bottom-4",
+          text: application.status | statusName | capitalize
+        }) }}
+        <dl class="govuk-body">
+          <dt class="govuk-!-font-weight-bold">Application submitted<dt>
+          <dd class="govuk-!-margin-left-0">{{ application.submitted | date("dd LLL yyyy") }}</dd>
+        </dl>
 
-  <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Candidate details</h2>
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Full name"
-      },
-      value: {
-        text: application.name
-      }
-    }, {
-      key: {
-        text: "Date of birth"
-      },
-      value: {
-        text: application["date-of-birth"] | date("d LLLL yyyy")
-      }
-    }, {
-      key: {
-        text: "Nationality"
-      },
-      value: {
-        text: application.nationality
-      }
-    }, {
-      key: {
-        text: "Email"
-      },
-      value: {
-        html: "<a href=\"mailto:" + application["contact-details"].email + "\">" + application["contact-details"].email + "</a>"
-      }
-    }, {
-      key: {
-        text: "Phone"
-      },
-      value: {
-        text: application["contact-details"].tel
-      }
-    }]
-  }) }}
+      {% if application.recruited %}
+        <dl class="govuk-body">
+          <dt class="govuk-!-font-weight-bold">Candidate recruited<dt>
+          <dd class="govuk-!-margin-left-0">{{ application.recruited | date("dd LLL yyyy") }}</dd>
+        </dl>
+      {% elif application.rejected %}
+        <dl class="govuk-body">
+          <dt class="govuk-!-font-weight-bold">Candidate rejected<dt>
+          <dd class="govuk-!-margin-left-0">{{ application.rejected | date("dd LLL yyyy") }}</dd>
+        </dl>
+      {% else %}
+        {% set rbd = application.submitted | addDays(40) %}
+        {% set remaining = rbd | daysFromNow(rbd) %}
+        <dl class="govuk-body">
+          <dt class="govuk-!-font-weight-bold">Reject by default<dt>
+          <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
+        </dl>
+      {% endif %}
 
-  <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Qualifications</h2>
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Degree"
-      },
-      value: {
-        text: application.qualifications.degree.type + ", " + application.qualifications.degree.subject + " – " + application.qualifications.degree.grade
-      }
-    }, {
-      key: {
-        text: "GCSEs"
-      },
-      value: {
-        html: application.qualifications.maths.type + ", Maths " + " – " + application.qualifications.maths.grade + "<br>" + application.qualifications.english.type + ", English " + " – " + application.qualifications.english.grade
-      }
-    }]
-  }) }}
-{% endblock %}
-
-{% block secondary %}
-  <div class="app-card">
-    <h2 class="govuk-heading-m">Status</h2>
-    {{ govukTag({
-      classes: "app-tag--" + application.status + " govuk-!-margin-bottom-4",
-      text: application.status | statusName | capitalize
-    }) }}
-    <dl class="govuk-body">
-      <dt class="govuk-!-font-weight-bold">Application submitted<dt>
-      <dd class="govuk-!-margin-left-0">{{ application.submitted | date("dd LLL yyyy") }}</dd>
-    </dl>
-
-  {% if application.recruited %}
-    <dl class="govuk-body">
-      <dt class="govuk-!-font-weight-bold">Candidate recruited<dt>
-      <dd class="govuk-!-margin-left-0">{{ application.recruited | date("dd LLL yyyy") }}</dd>
-    </dl>
-  {% elif application.rejected %}
-    <dl class="govuk-body">
-      <dt class="govuk-!-font-weight-bold">Candidate rejected<dt>
-      <dd class="govuk-!-margin-left-0">{{ application.rejected | date("dd LLL yyyy") }}</dd>
-    </dl>
-  {% else %}
-    {% set rbd = application.submitted | addDays(40) %}
-    {% set remaining = rbd | daysFromNow(rbd) %}
-    <dl class="govuk-body">
-      <dt class="govuk-!-font-weight-bold">Rejected by default<dt>
-      <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
-    </dl>
-  {% endif %}
-
-    {{ govukButton({
-      classes: "govuk-!-margin-bottom-2",
-      text: "Change status",
-      href: "/application/" + application.id + "/change-status"
-    }) }}
+      {% if application.status == "new" %}
+        {{ govukButton({
+          classes: "govuk-!-margin-bottom-6",
+          text: "Make decision",
+          href: "/application/" + application.id + "/decision"
+        }) }}
+      {% endif %}
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
+      </div>
+    </div>
   </div>
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Qualifications</h2>
+  {% include "_includes/application/degrees.njk" %}
+  {% include "_includes/application/gcses.njk" %}
+  {% include "_includes/application/other-qualifications.njk" %}
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Work history</h2>
+  {% include "_includes/application/work-history.njk" %}
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">School experience and volunteering</h2>
+  {% include "_includes/application/school-experience.njk" %}
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Language Skills</h2>
+  {% include "_includes/application/language-skills.njk" %}
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Personal statement</h2>
+  {% include "_includes/application/personal-statement.njk" %}
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
+  {% set referenceId = "first" %}
+  {% include "_includes/application/reference.njk" %}
+
+  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+  {% set referenceId = "second" %}
+  {% include "_includes/application/reference.njk" %}
 {% endblock %}

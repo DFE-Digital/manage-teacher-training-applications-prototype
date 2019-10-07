@@ -1,9 +1,10 @@
 {% extends "_form-wide.njk" %}
 
 {% set application = applications[applicationId] %}
-{% set formaction = "/application/" + application.id + "/changed-status" %}
-{% set parent = application.name + " – " + application.course %}
-{% set title = "Change status" %}
+{% set formaction = "/application/" + applicationId + "/changed-status" %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set parent = name + " – " + application.course %}
+{% set title = "Make decision" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -51,15 +52,6 @@
         text: "Other"
       }]
     }) }}
-
-    {{ govukTextarea({
-      id: "status-rejected-comment",
-      name: "status-rejected-comment",
-      label: {
-        text: "Comments",
-        classes: "govuk-label--s"
-      }
-    }) }}
   {% endset %}
 
   {{ govukRadios({
@@ -67,21 +59,9 @@
     classes: "govuk-!-margin-top-2",
     name: "status",
     items: [{
-      value: "new",
-      text: "New",
-      checked: application.status == "new"
-    } if application.status == "new", {
-      value: "review",
-      text: "Invite to interview",
-      checked: application.status == "review"
-    }, {
       value: "offer",
       text: "Make offer",
       checked: application.status == "offer"
-    }, {
-      value: "recruited",
-      text: "Confirm enrolment",
-      checked: application.status == "recruited"
     }, {
       value: "rejected",
       text: "Reject candidate",
@@ -96,5 +76,5 @@
     text: "Continue"
   }) }}
 
-  <p class="govuk-body"><a href="{{ formaction }}">Cancel</a></p>
+  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
 {% endblock %}

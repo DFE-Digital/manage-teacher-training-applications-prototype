@@ -1,0 +1,31 @@
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Why do they want to be a teacher?"
+    },
+    value: {
+      html: application["personal-statement"].vocation | nl2br or "—"
+    }
+  }, {
+    key: {
+      text: "Knowledge about the subject they want to teach"
+    },
+    value: {
+      html: application["personal-statement"]["subject-knowledge"] | nl2br or "—"
+    }
+  }, {
+    key: {
+      text: "Interview preferences"
+    },
+    value: {
+      html: application["personal-statement"].interview | nl2br or "—"
+    }
+  }, {
+    key: {
+      text: "Anything else?"
+    },
+    value: {
+      html: application["miscellaneous"] | nl2br or "—"
+    }
+  }]
+}) }}

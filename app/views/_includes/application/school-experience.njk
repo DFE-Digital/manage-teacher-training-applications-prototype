@@ -1,0 +1,75 @@
+{% set schoolExperience = application["school-experience"]
+  | toArray
+  | sort(attribute="start-date")
+%}
+{% if schoolExperience.length >= 1 %}
+  {% set rowData = [] %}
+  {% for item in schoolExperience %}
+    {% set summaryHtml %}
+      {{ item.role }}
+      {%- if item["worked-with-children"] == "Yes" %}
+        {{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }}
+      {% endif %}
+    {% endset %}
+    {% set detailsHtml %}
+      {% set descriptionHtml %}
+        <p class="govuk-body">{{ item["time-commitment"] or "—" }}</p>
+        {%- if item["worked-with-children"] == "Yes" %}
+          <p class="govuk-body">{{ appIcon({
+            classes: "govuk-!-margin-right-1",
+            icon: "tick",
+            hidden: true
+          }) }} This role involved working with children</p>
+        {%- endif %}
+      {% endset %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Organisation"
+          },
+          value: {
+            text: item.org
+          }
+        }, {
+          key: {
+            text: "Time commitment"
+          },
+          value: {
+            html: descriptionHtml
+          }
+        }]
+      }) }}
+    {% endset %}
+    {% set role %}
+      {{ govukDetails({
+        classes: "govuk-!-margin-0",
+        summaryHtml: summaryHtml,
+        html: detailsHtml
+      }) }}
+    {% endset %}
+    {% set startDate = item["start-date"] | date("LLLL yyyy") %}
+    {% set endDate = item["end-date"] | date("LLLL yyyy") if item["end-date"] else "Present" %}
+    {% set rows = rowData.push([{
+      html: [startDate, endDate] | join(" - ")
+    }, {
+      html: role
+    }]) %}
+  {% endfor %}
+  {{ govukTable({
+    head: [{
+      text: "Dates",
+      attributes: {
+        width: "30%"
+      }
+    }, {
+      text: "Role"
+    }],
+    rows: rowData
+  }) }}
+{% else %}
+  <p class="govuk-body">Candidate has no school experience.</p>
+{% endif %}

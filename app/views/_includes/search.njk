@@ -1,0 +1,19 @@
+{{ appSearch({
+  classes: "govuk-!-margin-bottom-4",
+  action: "/search-results",
+  method: "get",
+  input: {
+    id: "search",
+    name: "q"
+  },
+  label: {
+    text: "Find an application",
+    classes: "govuk-!-font-weight-bold"
+  },
+  hint: {
+    text: "You can search by candidate name or application number"
+  },
+  button: {
+    text: "Search"
+  }
+}) }}

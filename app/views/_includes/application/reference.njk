@@ -1,0 +1,76 @@
+{% set reference = application["references"][referenceId] %}
+{% set referenceHtml %}
+  {% if reference.status == "received" %}
+    {% set rowData = [] %}
+    {% for item in reference.ratings %}
+      {% set rows = rowData.push([{
+        text: item.label
+      }, {
+        html: item.value + " <span aria-label=\"out of\">/</span> 10" if item.value else "Don’t know",
+        format: "numeric"
+      }]) %}
+    {% endfor %}
+    {% if reference["comments"] %}
+      <p class="govuk-inset-text govuk-!-margin-top-0 govuk-!-margin-bottom-4 govuk-!-padding-top-0 govuk-!-padding-bottom-0">{{ reference["comments"] }}</p>
+    {% endif %}
+    {% if reference["safe-to-work-with-children"] == "Yes" %}
+      <p class="govuk-body">{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} Referee considers this candidate safe to work with children.</p>
+    {% endif %}
+    {{ govukTable({
+      head: [{
+        text: "Attribute"
+      }, {
+        text: "Rating",
+        format: "numeric"
+      }],
+      rows: rowData
+    }) }}
+  {% else %}
+    {{ govukTag({
+      classes: "app-tag--" + reference.status,
+      text: reference.status | statusName
+    }) }}
+  {% endif %}
+{% endset %}
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Name"
+    },
+    value: {
+      text: reference.name
+    }
+  }, {
+    key: {
+      text: "Email address"
+    },
+    value: {
+      html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+    }
+  }, {
+    key: {
+      text: "Phone number"
+    },
+    value: {
+      html: "<a href=\"tel:" + reference.tel | replace(" ", "") + "\">" + reference.tel + "</a>"
+    }
+  }, {
+    key: {
+      text: "Relationship to candidate"
+    },
+    value: {
+      text: reference.relationship
+    }
+  }, {
+    key: {
+      html: "Reference"
+    },
+    value: {
+      html: referenceHtml
+    }
+  }]
+}) }}

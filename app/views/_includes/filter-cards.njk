@@ -1,0 +1,28 @@
+{{ appCardList({
+  items: [{
+    classes: "app-status",
+    href: "/",
+    current: "false" if status else "page",
+    html: "<span class=\"app-status__count\">" + applications | length | default("0") + "</span><span class=\"app-status__type\">applications</span>"
+  }, {
+    classes: "app-status",
+    href: "?status=new",
+    current: "page" if status == "new" else "false",
+    html: "<span class=\"app-status__count\">" + new | length | default("0") + "</span> new"
+  }, {
+    classes: "app-status",
+    href: "?status=review",
+    current: "page" if status == "review" else "false",
+    html: "<span class=\"app-status__count\">" + review | length | default("0") + "</span> in review"
+  }, {
+    classes: "app-status",
+    href: "?status=recruited",
+    current: "page" if status == "recruited" else "false",
+    html: "<span class=\"app-status__count\">" + recruited | length | default("0") + "</span> recruited"
+  }, {
+    classes: "app-status",
+    href: "?status=rejected",
+    current: "page" if status == "rejected" else "false",
+    html: "<span class=\"app-status__count\">" + rejected | length | default("0") + "</span> rejected"
+  }]
+}) }}
