@@ -32,7 +32,7 @@
   {% else %}
     {{ govukTag({
       classes: "app-tag--" + reference.status,
-      text: reference.status | statusName
+      text: reference.status | capitalize
     }) }}
   {% endif %}
 {% endset %}

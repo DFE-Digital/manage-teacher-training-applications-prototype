@@ -2,9 +2,17 @@ module.exports = {
   1: {
     id: 1,
     course: 'Biology (2P36)',
-    status: 'recruited',
-    submitted: '2019-07-15',
-    recruited: '2019-08-12',
+    status: {
+      submitted: {
+        date: '2019-07-15'
+      },
+      offer: {
+        date: '2019-07-30'
+      },
+      accepted: {
+        date: '2019-08-05'
+      }
+    },
     'personal-details': {
       'given-name': 'Eloise',
       'family-name': 'Wells',
@@ -50,9 +58,18 @@ module.exports = {
   2: {
     id: 2,
     course: 'Media Studies (33MP)',
-    status: 'rejected',
-    submitted: '2019-08-21',
-    rejected: '2019-08-28',
+    status: {
+      submitted: {
+        date: '2019-07-15'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-08-10'
+      },
+      accepted: {
+        date: '2019-08-10'
+      }
+    },
     'personal-details': {
       'given-name': 'Becky',
       'family-name': 'Brother',
@@ -98,9 +115,18 @@ module.exports = {
   3: {
     id: 3,
     course: 'Chemistry (2P38)',
-    status: 'recruited',
-    submitted: '2019-07-23',
-    recruited: '2019-08-31',
+    status: {
+      submitted: {
+        date: '2019-07-15'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-08-10'
+      },
+      declined: {
+        date: '2019-08-12'
+      }
+    },
     'personal-details': {
       'given-name': 'Charlie',
       'family-name': 'April',
@@ -146,8 +172,14 @@ module.exports = {
   4: {
     id: 4,
     course: 'Biology (2P36)',
-    status: 'rejected',
-    submitted: '2019-08-25',
+    status: {
+      submitted: {
+        date: '2019-07-15'
+      },
+      rejected: {
+        date: '2019-08-12'
+      }
+    },
     'personal-details': {
       'given-name': 'Charlotte',
       'family-name': 'Campbel',
@@ -193,8 +225,15 @@ module.exports = {
   5: {
     id: 5,
     course: 'Mathematics (2P3K)',
-    status: 'recruited',
-    submitted: '2019-08-02',
+    status: {
+      submitted: {
+        date: '2019-07-15'
+      },
+      rejected: {
+        type: 'conditional',
+        date: '2019-08-10'
+      }
+    },
     'personal-details': {
       'given-name': 'Daniel James',
       'family-name': 'Jennings',
@@ -240,9 +279,18 @@ module.exports = {
   6: {
     id: 6,
     course: 'Business studies (2P37)',
-    status: 'recruited',
-    submitted: '2019-07-24',
-    recruited: '2019-09-01',
+    status: {
+      submitted: {
+        date: '2019-08-15'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-09-10'
+      },
+      declined: {
+        date: '2019-09-12'
+      }
+    },
     'personal-details': {
       'given-name': 'Elizabeth',
       'family-name': 'Rose',
@@ -288,9 +336,18 @@ module.exports = {
   7: {
     id: 7,
     course: 'Media Studies (33MP)',
-    status: 'rejected',
-    submitted: '2019-08-09',
-    rejected: '2019-08-23',
+    status: {
+      submitted: {
+        date: '2019-09-15'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-08-10'
+      },
+      rejected: {
+        date: '2019-09-12'
+      }
+    },
     'personal-details': {
       'given-name': 'Ester',
       'family-name': 'Fairley',
@@ -336,8 +393,15 @@ module.exports = {
   101: {
     id: 101,
     course: 'Religious Studies (V6X9)',
-    status: 'new',
-    submitted: '2019-09-26',
+    status: {
+      submitted: {
+        date: '2019-09-01'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-09-23'
+      }
+    },
     'personal-details': {
       'given-name': 'Francis',
       'family-name': 'Platt',
@@ -566,8 +630,15 @@ module.exports = {
   102: {
     id: 102,
     course: 'Computer Science and Information Technology (IX99)',
-    status: 'new',
-    submitted: '2019-09-26',
+    status: {
+      submitted: {
+        date: '2019-09-01'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-09-23'
+      }
+    },
     'personal-details': {
       'given-name': 'James',
       'family-name': 'Khan',
@@ -794,8 +865,15 @@ module.exports = {
   103: {
     id: 103,
     course: 'History (33MP)',
-    status: 'new',
-    submitted: '2019-09-27',
+    status: {
+      submitted: {
+        date: '2019-09-16'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-10-01'
+      }
+    },
     'personal-details': {
       'given-name': 'Jeremy',
       'family-name': 'Brown',
@@ -1043,8 +1121,15 @@ module.exports = {
   104: {
     id: 104,
     course: 'Primary (2PPM)',
-    status: 'new',
-    submitted: '2019-09-28',
+    status: {
+      submitted: {
+        date: '2019-09-18'
+      },
+      offer: {
+        type: 'conditional',
+        date: '2019-10-05'
+      }
+    },
     'personal-details': {
       'given-name': 'May',
       'family-name': 'Cole',
@@ -1261,8 +1346,11 @@ module.exports = {
   105: {
     id: 105,
     course: 'Mathematics (GX11)',
-    status: 'new',
-    submitted: '2019-09-01',
+    status: {
+      submitted: {
+        date: '2019-09-21'
+      }
+    },
     'personal-details': {
       'given-name': 'Poppy',
       'family-name': 'Noor',
@@ -1460,8 +1548,11 @@ module.exports = {
   201: {
     id: 201,
     course: 'Biology (2P36)',
-    status: 'new',
-    submitted: '2019-10-04',
+    status: {
+      submitted: {
+        date: '2019-10-08'
+      }
+    },
     'personal-details': {
       'given-name': 'Elise',
       'family-name': 'Briggs',
