@@ -1,7 +1,7 @@
 {% extends "_form-wide.njk" %}
 
 {% set application = applications[applicationId] %}
-{% set formaction = "/application/" + applicationId + "/changed-status" %}
+{% set formaction = "/application/" + applicationId + "/decision/answer" %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set parent = name + " – " + application.course %}
 {% set title = "Make decision" %}
@@ -59,13 +59,19 @@
     classes: "govuk-!-margin-top-2",
     name: "status",
     items: [{
-      value: "offer",
-      text: "Make offer",
-      checked: application.status == "offer"
+      value: "offer-conditional",
+      html: "Make a <strong>conditional</strong> offer",
+      checked: application.status.offer.type == "conditional"
+    }, {
+      value: "offer-unconditional",
+      html: "Make an <strong>unconditional</strong> offer",
+      checked: application.status.offer.type == "unconditional"
+    }, {
+      divider: "or"
     }, {
       value: "rejected",
       text: "Reject candidate",
-      checked: application.status == "rejected",
+      checked: application.status.recjected,
       conditional: {
         html: rejectedHtml
       }

@@ -1,0 +1,54 @@
+{% extends "_form.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set formaction = "/application/" + applicationId %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set parent = name + " – " + application.course %}
+{% set title = "Confirm " + type + " offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: referrer
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "First condition"
+      },
+      value: {
+        text:
+      }
+    }, {
+      key: {
+        text: "Second condition"
+      },
+      value: {
+        html: application.course + "<br />PGCE with QTS full time"
+      }
+    }, {
+      key: {
+        text: "Third condition"
+      },
+      value: {
+        text: "September 2020"
+      }
+    }, {
+      key: {
+        text: "Further conditions"
+      },
+      value: {
+        html: "Alliance Academy<br />Edgeware, Road Name, SW1 1AA"
+      }
+    }]
+  }) }}
+
+  <p class="govuk-body"><mark>Legal text</mark></p>
+  {{ govukButton({
+    text: "Make offer"
+  }) }}
+
+  <p class="govuk-body"><a href="{{ formaction }}">Cancel</a></p>
+{% endblock %}

@@ -17,12 +17,23 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/changed-status', (req, res) => {
-    if (req.body.status === 'offer') {
-      res.redirect(`/application/${req.params.applicationId}/make-offer`)
+  router.post('/application/:applicationId/decision/answer', (req, res) => {
+    if (req.body.status === 'offer-conditional') {
+      res.redirect(`/application/${req.params.applicationId}/conditions`)
+    } else if (req.body.status === 'offer-unconditional') {
+      res.redirect(`/application/${req.params.applicationId}/confirm?type=unconditional`)
     } else {
       res.redirect(`/application/${req.params.applicationId}`)
     }
+  })
+
+  router.all('/application/:applicationId/confirm', (req, res) => {
+    const type = req.query.type
+
+    res.render('application/confirm', {
+      applicationId: req.params.applicationId,
+      type
+    })
   })
 
   // Render other application pages
