@@ -4,18 +4,21 @@
 {% set parent = "2019-20 recruitment cycle" %}
 
 {% block primary %}
-  {% set applications = applications | toArray %}
-  {% set new = applications | filterBy("status", "new") %}
-  {% set review = applications | filterBy("status", "review") %}
-  {% set recruited = applications | filterBy("status", "recruited") %}
-  {% set rejected = applications | filterBy("status", "rejected") %}
+  {% set applications = data.applications | toArray %}
+  {% set new = applications | filterByStatus("new") %}
+  {% set offer = applications | filterByStatus("offer") %}
+  {% set accepted = applications | filterByStatus("accepted") %}
+  {% set declined = applications | filterByStatus("declined") %}
+  {% set rejected = applications | filterByStatus("rejected") %}
 
   {% if status == "new" %}
     {% set applications = new %}
-  {% elif status == "review" %}
-    {% set applications = review %}
-  {% elif status == "recruited" %}
-    {% set applications = recruited %}
+  {% elif status == "offer" %}
+    {% set applications = offer %}
+  {% elif status == "accepted" %}
+    {% set applications = accepted %}
+  {% elif status == "declined" %}
+    {% set applications = declined %}
   {% elif status == "rejected" %}
     {% set applications = rejected %}
   {% endif %}
@@ -25,18 +28,14 @@
         <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
         <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
         <th class="govuk-table__header" scope="col">Status</th>
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Received</th>
-      {% if status == "recruited" or status == "rejected" %}
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">{{ status | capitalize }}</th>
-      {% else %}
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Reject by default</th>
-      {% endif %}
+        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
       </tr>
     </thead>
     <tbody class="govuk-table__body">
     {% for a in applications | reverse %}
-      {% set rbd = a.submitted | addDays(40) %}
+      {% set rbd = a.status.submitted.date | addDays(40) %}
       {% set remaining = rbd | daysFromNow(rbd) %}
+      {% set updated = a.status.rejected.date or a.status.declined.date or a.status.accepted.date or a.status.offer.date or a.status.submitted.date %}
       <tr class="govuk-table__row">
         <td class="govuk-table__cell">
           <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
@@ -44,24 +43,11 @@
         <td class="govuk-table__cell">{{ a.course }}</td>
         <td class="govuk-table__cell">
           {{ govukTag({
-            classes: "app-tag--" + a.status,
-            text: a.status | statusName
+            classes: "app-tag--" + a.status | status,
+            text: a.status | status | capitalize
           }) }}
         </td>
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ a.submitted | date("d LLL yyyy") }}</td>
-      {% if status == "recruited" %}
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.recruited | date("yyyyMMdd") }}">{{ a.recruited | date("d LLL yyyy") }}</td>
-      {% elif status == "rejected" %}
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.rejected | date("yyyyMMdd") }}">{{ a.rejected | date("d LLL yyyy") }}</td>
-      {% else %}
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ rbd | date("yyyyMMdd") }}">
-        {% if a.status == "recruited" or a.status == "rejected" %}
-          –
-        {% else %}
-          {{ rbd | date("d LLL yyyy") }} ({{ remaining }} days)
-        {% endif %}
-        </td>
-      {% endif %}
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
       </tr>
     {% endfor %}
     </tbody>

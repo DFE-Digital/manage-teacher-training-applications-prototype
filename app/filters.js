@@ -63,26 +63,60 @@ module.exports = (env) => {
     }
   }
 
-  filters.statusName = (status) => {
-    switch (status) {
-      case 'recruited':
-        return 'Offer'
-      case 'rejected':
-        return 'Reject'
-      case 'review':
-        return 'Interviewing'
+  filters.status = (status, type) => {
+    let id, title
+    switch (true) {
+      case ('rejected' in status):
+        id = 'rejected'
+        title = 'Rejected'
+        break
+      case ('offer' in status) && ('declined' in status):
+        id = 'declined'
+        title = 'Offer declined'
+        break
+      case ('offer' in status) && ('accepted' in status):
+        id = 'accepted'
+        title = 'Offer accepted'
+        break
+      case ('offer' in status):
+        id = 'offer'
+        title = 'Offer made'
+        break
       default:
-        return status
+        id = 'new'
+        title = 'New'
     }
+    if (type === 'title') {
+      return title
+    }
+
+    return id
   }
 
   /**
    * Convert object to array
    * @type {Object} obj
    */
-  filters.filterBy = (arr, key, value) => {
-    value = value.toUpperCase()
-    return arr.filter(i => i[key].toUpperCase().includes(value))
+  filters.filterByStatus = (arr, status) => {
+    arr.forEach(a => {
+      switch (true) {
+        case ('rejected' in a.status):
+          a.stage = 'rejected'
+          break
+        case ('offer' in a.status) && ('declined' in a.status):
+          a.stage = 'declined'
+          break
+        case ('offer' in a.status) && ('accepted' in a.status):
+          a.stage = 'accepted'
+          break
+        case ('offer' in a.status):
+          a.stage = 'offer'
+          break
+        default:
+          a.stage = 'new'
+      }
+    })
+    return arr.filter(i => i.stage === status)
   }
 
   return filters

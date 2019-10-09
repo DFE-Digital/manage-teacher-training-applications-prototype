@@ -7,7 +7,7 @@
       <span class="govuk-caption-xl">{{ parent }}</span>
     {% endif %}
     <h1 class="govuk-heading-xl">{{ title | safe }}</h1>
-    <form action="{{ formaction | default('#') }}" method="post">
+    <form{% if formaction %} action="{{ formaction }}"{% endif %} method="post">
     {% call govukFieldset() %}
       {% block primary %}{% endblock %}
     {% endcall %}

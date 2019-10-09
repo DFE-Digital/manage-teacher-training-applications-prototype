@@ -1,17 +1,8 @@
 {% set rowData = [] %}
 {% for item in application["other-qualifications"] | toArray %}
-  {% set detailsHtml %}
-    <p class="govuk-body-s">{{ item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") }}</p>
-  {% endset %}
-  {% set qualification %}
-    {{ govukDetails({
-      classes: "govuk-!-margin-0",
-      summaryHtml: [item.type, item.subject] | join(" – "),
-      html: detailsHtml
-    }) }}
-  {% endset %}
+  {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
   {% set rows = rowData.push([{
-    html: qualification
+    html: [item.type, item.subject] | join(" – ")
   }, {
     html: item.year
   }, {

@@ -6,7 +6,7 @@
   {% set rowData = [] %}
   {% for item in application["work-history"] | toArray | sort(attribute="start-date") %}
     {% set summaryHtml %}
-      {{ item.role + " – " + item.type if item.category == "job" else "Gap (" + item.duration + ")" }}
+      {{ item.role + " – " + item.type if item.category == "job" else "Break (" + item.duration + ")" }}
       {%- if item["worked-with-children"] == "Yes" %}
         {{ appIcon({
           classes: "govuk-!-margin-right-1",

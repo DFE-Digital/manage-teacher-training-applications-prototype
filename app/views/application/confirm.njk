@@ -1,0 +1,96 @@
+{% extends "_form.njk" %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set status = application.status %}
+{% if type == "conditional" %}
+  {% set title = "Confirm conditional offer" %}
+  {% set lastpage = "/offer" %}
+{% elif type == "unconditional" %}
+  {% set title = "Confirm unconditional offer" %}
+  {% set lastpage = "/decision" %}
+{% else %}
+  {% set title = "Confirm rejection" %}
+  {% set lastpage = "/reject" %}
+{% endif %}
+{% set parent = name + " – " + application.course %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + lastpage
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {% set conditions = status.offer.conditions %}
+  {% set reasons = status.rejected.reasons %}
+
+  {% set reasonsHtml %}
+    {% if reasons %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for reason in reasons %}
+      <li>{{ reason }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endset %}
+
+  {% if type == "conditional" and conditions %}
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "First condition"
+        },
+        value: {
+          text: conditions[0]
+        }
+      } if conditions[0], {
+        key: {
+          text: "Second condition"
+        },
+        value: {
+          text: conditions[1]
+        }
+      } if conditions[1], {
+        key: {
+          text: "Third condition"
+        },
+        value: {
+          text: conditions[2]
+        }
+      } if conditions[2], {
+        key: {
+          text: "Further conditions"
+        },
+        value: {
+          text: conditions[3]
+        }
+      } if conditions[3]]
+    }) }}
+  {% elif type == "reject" and reasons %}
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "Reasons for rejection"
+        },
+        value: {
+          text: reasonsHtml | safe or "None provided"
+        }
+      }, {
+        key: {
+          text: "Other comments"
+        },
+        value: {
+          text: status.rejected.comments or "None provided"
+        }
+      }]
+    }) }}
+  {% endif %}
+
+  <p class="govuk-body"><mark>Legal text</mark></p>
+  {{ govukButton({
+    text: "Confirm offer"
+  }) }}
+
+  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+{% endblock %}

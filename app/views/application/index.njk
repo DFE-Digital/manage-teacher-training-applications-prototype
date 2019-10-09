@@ -1,6 +1,7 @@
 {% extends "_content-wide.njk" %}
 
-{% set application = applications[applicationId] %}
+{% set application = data.applications[applicationId] %}
+{% set status = application.status %}
 {% set parent = "Application for " + application.course %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set title = name %}
@@ -17,6 +18,10 @@
 {% endblock %}
 
 {% block primary %}
+  {{ appBanner({
+    text: "Application status changed to ‘" + status | status("title") + "’",
+    type: "success"
+  }) if success }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/details.njk" %}
@@ -25,36 +30,47 @@
       <div class="app-card">
         <h2 class="govuk-heading-m">Status</h2>
         {{ govukTag({
-          classes: "app-tag--" + application.status + " govuk-!-margin-bottom-4",
-          text: application.status | statusName | capitalize
+          classes: "app-tag--" + status | status + " govuk-!-margin-bottom-4",
+          text: status | status("title") | capitalize
         }) }}
+        {% if status.offer %}
+          <span class="govuk-body govuk-!-margin-left-1">{{ status.offer.type | capitalize }}</span>
+        {% endif %}
         <dl class="govuk-body">
           <dt class="govuk-!-font-weight-bold">Application submitted<dt>
-          <dd class="govuk-!-margin-left-0">{{ application.submitted | date("dd LLL yyyy") }}</dd>
+          <dd class="govuk-!-margin-left-0">{{ status.submitted.date | date("dd LLL yyyy") }}</dd>
         </dl>
-
-      {% if application.recruited %}
+      {% if status.rejected %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Candidate recruited<dt>
-          <dd class="govuk-!-margin-left-0">{{ application.recruited | date("dd LLL yyyy") }}</dd>
+          <dt class="govuk-!-font-weight-bold">Application rejected<dt>
+          <dd class="govuk-!-margin-left-0">{{ status.rejected.date | date("dd LLL yyyy") }}</dd>
         </dl>
-      {% elif application.rejected %}
+      {% elif status.declined %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Candidate rejected<dt>
-          <dd class="govuk-!-margin-left-0">{{ application.rejected | date("dd LLL yyyy") }}</dd>
+          <dt class="govuk-!-font-weight-bold">Offer declined<dt>
+          <dd class="govuk-!-margin-left-0">{{ status.declined.date | date("dd LLL yyyy") }}</dd>
+        </dl>
+      {% elif status.accepted %}
+        <dl class="govuk-body">
+          <dt class="govuk-!-font-weight-bold">Offer accepted<dt>
+          <dd class="govuk-!-margin-left-0">{{ status.accepted.date | date("dd LLL yyyy") }}</dd>
+        </dl>
+      {% elif status.offer %}
+        {% set dbd = status.submitted.date | addDays(10) %}
+        {% set remaining = dbd | daysFromNow(dbd) %}
+        <dl class="govuk-body">
+          <dt class="govuk-!-font-weight-bold">Decline by default<dt>
+          <dd class="govuk-!-margin-left-0">{{ dbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
         </dl>
       {% else %}
-        {% set rbd = application.submitted | addDays(40) %}
+        {% set rbd = status.submitted.date | addDays(40) %}
         {% set remaining = rbd | daysFromNow(rbd) %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Reject by default<dt>
-          <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
+          <dt class="govuk-!-font-weight-bold">Respond to the applicant by:<dt>
+          <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }}</dd>
         </dl>
-      {% endif %}
-
-      {% if application.status == "new" %}
         {{ govukButton({
-          classes: "govuk-!-margin-bottom-6",
+          classes: "govuk-!-margin-bottom-4",
           text: "Make decision",
           href: "/application/" + application.id + "/decision"
         }) }}

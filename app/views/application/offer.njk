@@ -1,0 +1,92 @@
+{% extends "_form.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set parent = name + " – " + application.course %}
+{% set title = "Conditions of offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/decision"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Full name"
+      },
+      value: {
+        text: name
+      }
+    }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: application.course + "<br />PGCE with QTS full time"
+      }
+    }, {
+      key: {
+        text: "Starting"
+      },
+      value: {
+        text: "September 2020"
+      }
+    }, {
+      key: {
+        text: "Preferred location"
+      },
+      value: {
+        html: "Alliance Academy<br />Edgeware, Road Name, SW1 1AA"
+      }
+    }]
+  }) }}
+
+  {{ govukTextarea({
+    id: "condition-1",
+    name: "condition-1",
+    rows: 5,
+    label: {
+      text: "First condition",
+      classes: "govuk-label--s"
+    }
+  }) }}
+
+  {{ govukTextarea({
+    id: "condition-2",
+    name: "condition-2",
+    rows: 5,
+    label: {
+      text: "Second condition (optional)",
+      classes: "govuk-label--s"
+    }
+  }) }}
+
+  {{ govukTextarea({
+    id: "condition-3",
+    name: "condition-3",
+    rows: 5,
+    label: {
+      text: "Third condition (optional)",
+      classes: "govuk-label--s"
+    }
+  }) }}
+
+  {{ govukTextarea({
+    id: "condition-4",
+    name: "condition-4",
+    rows: 5,
+    label: {
+      text: "Further conditions (optional)",
+      classes: "govuk-label--s"
+    }
+  }) }}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  <p class="govuk-body"><a href="/application/{{ application.id }}>Cancel</a></p>
+{% endblock %}
