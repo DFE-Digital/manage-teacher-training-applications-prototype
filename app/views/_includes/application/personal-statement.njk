@@ -1,14 +1,29 @@
+{% set vocationKeyHtml %}
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Vocation</h3>
+  <p class="govuk-hint" style="hanging-punctuation: first;">“Why do you want to be a teacher?”</p>
+{% endset %}
+
+{% set subjectKnowledgeKeyHtml %}
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
+  <p class="govuk-hint" style="hanging-punctuation: first;">“Your knowledge about the subject you want to teach”</p>
+{% endset %}
+
+{% set miscellaneousKeyHtml %}
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Additional information</h3>
+  <p class="govuk-hint" style="hanging-punctuation: first;">“Is there anything else you would like to tell us about your application?”</p>
+{% endset %}
+
 {{ govukSummaryList({
   rows: [{
     key: {
-      text: "Why do they want to be a teacher?"
+      html: vocationKeyHtml
     },
     value: {
       html: application["personal-statement"].vocation | nl2br or "—"
     }
   }, {
     key: {
-      text: "Knowledge about the subject they want to teach"
+      html: subjectKnowledgeKeyHtml
     },
     value: {
       html: application["personal-statement"]["subject-knowledge"] | nl2br or "—"
@@ -22,7 +37,7 @@
     }
   }, {
     key: {
-      text: "Anything else?"
+      html: miscellaneousKeyHtml
     },
     value: {
       html: application["miscellaneous"] | nl2br or "—"
