@@ -66,8 +66,8 @@
         {% set rbd = status.submitted.date | addDays(40) %}
         {% set remaining = rbd | daysFromNow(rbd) %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Reject by default<dt>
-          <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
+          <dt class="govuk-!-font-weight-bold">Respond to the applicant by:<dt>
+          <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }}</dd>
         </dl>
         {{ govukButton({
           classes: "govuk-!-margin-bottom-4",
