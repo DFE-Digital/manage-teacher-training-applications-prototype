@@ -11,9 +11,12 @@ module.exports = router => {
 
   // Render application page
   router.all('/application/:applicationId', (req, res) => {
+    const success = req.query.success
+
     res.render('application/index', {
       applicationId: req.params.applicationId,
-      status: req.query.status
+      status: req.query.status,
+      success
     })
   })
 
@@ -36,7 +39,7 @@ module.exports = router => {
       }
       application.status.rejected = rejected
 
-      res.redirect(`/application/${req.params.applicationId}`)
+      res.redirect(`/application/${req.params.applicationId}?success=true`)
     }
   })
 
@@ -96,7 +99,7 @@ module.exports = router => {
     // Delete previous decision
     delete req.session.data.decision
 
-    res.redirect(`/application/${req.params.applicationId}`)
+    res.redirect(`/application/${req.params.applicationId}?success=true`)
   })
 
   // Render other application pages

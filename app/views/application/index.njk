@@ -18,6 +18,10 @@
 {% endblock %}
 
 {% block primary %}
+  {{ appBanner({
+    text: "Application status changed to ‘" + status | status("title") + "’",
+    type: "success"
+  }) if success }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/details.njk" %}
