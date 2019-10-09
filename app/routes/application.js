@@ -29,7 +29,7 @@ module.exports = router => {
     if (decision === 'offer-conditional') {
       res.redirect(`/application/${applicationId}/offer`)
     } else if (decision === 'offer-unconditional') {
-      res.redirect(`/application/${applicationId}/confirm?type=unconditional`)
+      res.redirect(`/application/${applicationId}/confirm`)
     } else {
       // Update application status with rejection decision
       const rejected = {
@@ -91,6 +91,7 @@ module.exports = router => {
 
     // Update application status with offer decision
     const offer = {
+      type: conditions ? 'conditional' : 'unconditional',
       date: new Date().toISOString(),
       conditions
     }

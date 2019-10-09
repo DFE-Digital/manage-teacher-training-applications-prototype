@@ -33,6 +33,9 @@
           classes: "app-tag--" + status | status + " govuk-!-margin-bottom-4",
           text: status | status("title") | capitalize
         }) }}
+        {% if status.offer %}
+          <span class="govuk-body govuk-!-margin-left-1">{{ status.offer.type | capitalize }}</span>
+        {% endif %}
         <dl class="govuk-body">
           <dt class="govuk-!-font-weight-bold">Application submitted<dt>
           <dd class="govuk-!-margin-left-0">{{ status.submitted.date | date("dd LLL yyyy") }}</dd>
