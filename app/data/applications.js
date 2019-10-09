@@ -453,7 +453,7 @@ module.exports = {
       },
       4: {
         description: 'I attended a semester exchange programme, allowing me to study abroad at the University of Strasbourg.',
-        category: 'gap',
+        category: 'break',
         duration: '6 months',
         'start-date': '2016-08-01',
         'end-date': '2017-02-01'
@@ -690,7 +690,7 @@ module.exports = {
       },
       4: {
         description: 'In full-time education for DipHE - Salvation Army Officership (ordination training).',
-        category: 'gap',
+        category: 'break',
         duration: '2 years',
         'start-date': '2013-08-01',
         'end-date': '2015-07-01'
@@ -915,7 +915,7 @@ module.exports = {
       },
       3: {
         description: 'Travelling in India',
-        category: 'gap',
+        category: 'break',
         duration: '6 months',
         'start-date': '2013-05-01',
         'end-date': '2013-11-01'
@@ -1124,10 +1124,6 @@ module.exports = {
     status: {
       submitted: {
         date: '2019-09-18'
-      },
-      offer: {
-        type: 'conditional',
-        date: '2019-10-05'
       }
     },
     'personal-details': {
@@ -1382,7 +1378,7 @@ module.exports = {
       },
       2: {
         description: 'I was concentrating on completing my studies at Strathclyde University and, when term finished, visiting my family in India.',
-        category: 'gap',
+        category: 'break',
         duration: '8 months',
         'start-date': '2016-12-01',
         'end-date': '2017-01-01'
@@ -1594,7 +1590,7 @@ module.exports = {
       },
       3: {
         description: 'Unable to complete work whilst studying ',
-        category: 'gap',
+        category: 'break',
         duration: '1 year, 4 months',
         'start-date': '2014-09-01',
         'end-date': '2019-05-01'

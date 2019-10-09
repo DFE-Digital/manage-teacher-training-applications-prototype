@@ -1,14 +1,13 @@
 {% extends "_form.njk" %}
 
 {% set application = applications[applicationId] %}
-{% set formaction = "/application/" + applicationId + "/confirm?type=conditional" %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set parent = name + " – " + application.course %}
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/change-status"
+    href: "/application/" + application.id + "/decision"
   }) }}
 {% endblock %}
 
@@ -46,8 +45,8 @@
   }) }}
 
   {{ govukTextarea({
-    id: "condition-of-offer-1",
-    name: "condition-of-offer-1",
+    id: "condition-1",
+    name: "condition-1",
     rows: 5,
     label: {
       text: "First condition",
@@ -56,8 +55,8 @@
   }) }}
 
   {{ govukTextarea({
-    id: "condition-of-offer-2",
-    name: "condition-of-offer-2",
+    id: "condition-2",
+    name: "condition-2",
     rows: 5,
     label: {
       text: "Second condition (optional)",
@@ -66,8 +65,8 @@
   }) }}
 
   {{ govukTextarea({
-    id: "condition-of-offer-3",
-    name: "condition-of-offer-3",
+    id: "condition-3",
+    name: "condition-3",
     rows: 5,
     label: {
       text: "Third condition (optional)",
@@ -76,8 +75,8 @@
   }) }}
 
   {{ govukTextarea({
-    id: "condition-of-offer-further",
-    name: "condition-of-offer-further",
+    id: "condition-4",
+    name: "condition-4",
     rows: 5,
     label: {
       text: "Further conditions (optional)",

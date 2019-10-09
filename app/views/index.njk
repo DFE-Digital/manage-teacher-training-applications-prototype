@@ -4,7 +4,7 @@
 {% set parent = "2019-20 recruitment cycle" %}
 
 {% block primary %}
-  {% set applications = applications | toArray %}
+  {% set applications = data.applications | toArray %}
   {% set new = applications | filterByStatus("new") %}
   {% set offer = applications | filterByStatus("offer") %}
   {% set accepted = applications | filterByStatus("accepted") %}
