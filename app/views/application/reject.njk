@@ -1,0 +1,93 @@
+{% extends "_form.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set parent = name + " – " + application.course %}
+{% set title = "Reject candidate" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/decision"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "reasons",
+    name: "reasons",
+    fieldset: {
+      legend: {
+        text: "Reason for rejection",
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    items: [{
+      value: "No Maths GCSE grade 4 (C) or above",
+      text: "No Maths GCSE grade 4 (C) or above"
+    }, {
+      value: "No English GCSE grade 4 (C) or above",
+      text: "No English GCSE grade 4 (C) or above"
+    }, {
+      value: "No Science GCSE grade 4 (C) or above",
+      text: "No Science GCSE grade 4 (C) or above"
+    } if isPrimaryCourse, {
+      value: "No degree/degree doesn’t meet course requirements",
+      html: "<span class=\"govuk-!-margin-bottom-4 govuk-!-display-block\">No degree/degree doesn’t meet course requirements</span>"
+    }, {
+      value: "Candidate didn’t know their subject well enough",
+      text: "Candidate didn’t know their subject well enough"
+    } if not isPrimaryCourse, {
+      value: "Candidate needs to improve their personal statement",
+      text: "Candidate needs to improve their personal statement"
+    }, {
+      value: "Candidate needs to improve at the interview or assessment stage",
+      text: "Candidate needs to improve at the interview or assessment stage"
+    }, {
+      value: "Candidate needs to improve how they interact with pupils",
+      text: "Candidate needs to improve how they interact with pupils"
+    }, {
+      value: "Candidate is unsuitable for teaching",
+      text: "Candidate is unsuitable for teaching"
+    }, {
+      value: "Candidate gave some information that wasn’t true or their own work",
+      text: "Candidate gave some information that wasn’t true or their own work"
+    }, {
+      value: "References didn’t validate candidate’s suitability for the course",
+      html: "References didn’t validate candidate’s suitability for the course"
+    }, {
+      value: "Candidate didn’t reply to the interview offer",
+      text: "Candidate didn’t reply to the interview offer"
+    }, {
+      value: "Candidate didn’t come to the interview or assessment",
+      html: "<span class=\"govuk-!-margin-bottom-4 govuk-!-display-block\">Candidate didn’t come to the interview or assessment</span>"
+    }, {
+      value: "Training programme was full by the time we reached a decision",
+      text: "Training programme was full by the time we reached a decision"
+    }, {
+      value: "Training programme was withdrawn",
+      html: "<span class=\"govuk-!-margin-bottom-4 govuk-!-display-block\">Training programme was withdrawn</span>"
+    }, {
+      value: "Other",
+      text: "Other (please provide feedback below)"
+    }]
+  }) }}
+
+  {{ govukTextarea({
+    id: "comments",
+    name: "comments",
+    label: {
+      text: "Please explain in more detail why the candidate was rejected (optional)",
+      classes: "govuk-label--m"
+    },
+    hint: {
+      text: "This feedback will be sent to the candidate."
+    }
+  }) }}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+{% endblock %}

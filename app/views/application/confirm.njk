@@ -1,25 +1,41 @@
 {% extends "_form.njk" %}
 
-{% set application = applications[applicationId] %}
+{% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set type = "conditional" if conditions else "unconditional" %}
+{% set status = application.status %}
+{% if type == "conditional" %}
+  {% set title = "Confirm conditional offer" %}
+  {% set lastpage = "/offer" %}
+{% elif type == "unconditional" %}
+  {% set title = "Confirm unconditional offer" %}
+  {% set lastpage = "/decision" %}
+{% else %}
+  {% set title = "Confirm rejection" %}
+  {% set lastpage = "/reject" %}
+{% endif %}
 {% set parent = name + " – " + application.course %}
-{% set title = "Confirm " + type + " offer" %}
 
 {% block pageNavigation %}
-  {% if type == "conditional" %}
-    {{ govukBackLink({
-      href: "/application/" + application.id + "/offer"
-    }) }}
-  {% else %}
-    {{ govukBackLink({
-      href: "/application/" + application.id + "/decision"
-    }) }}
-  {% endif %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + lastpage
+  }) }}
 {% endblock %}
 
 {% block primary %}
-  {% if conditions %}
+  {% set conditions = status.offer.conditions %}
+  {% set reasons = status.rejected.reasons %}
+
+  {% set reasonsHtml %}
+    {% if reasons %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for reason in reasons %}
+      <li>{{ reason }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endset %}
+
+  {% if type == "conditional" and conditions %}
     {{ govukSummaryList({
       rows: [{
         key: {
@@ -51,6 +67,24 @@
         }
       } if conditions[3]]
     }) }}
+  {% elif type == "reject" and reasons %}
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "Reasons for rejection"
+        },
+        value: {
+          text: reasonsHtml | safe or "None provided"
+        }
+      }, {
+        key: {
+          text: "Other comments"
+        },
+        value: {
+          text: status.rejected.comments or "None provided"
+        }
+      }]
+    }) }}
   {% endif %}
 
   <p class="govuk-body"><mark>Legal text</mark></p>
@@ -58,5 +92,5 @@
     text: "Confirm offer"
   }) }}
 
-  <p class="govuk-body"><a href="{{ formaction }}">Cancel</a></p>
+  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
 {% endblock %}

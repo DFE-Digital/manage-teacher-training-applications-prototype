@@ -23,23 +23,14 @@ module.exports = router => {
   // Submit decision
   router.post('/application/:applicationId/decision', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
     const { decision } = req.body
 
     if (decision === 'offer-conditional') {
       res.redirect(`/application/${applicationId}/offer`)
     } else if (decision === 'offer-unconditional') {
-      res.redirect(`/application/${applicationId}/confirm`)
+      res.redirect(`/application/${applicationId}/confirm?type=unconditional`)
     } else {
-      // Update application status with rejection decision
-      const rejected = {
-        date: new Date().toISOString(),
-        reason: req.body['reject-reason'] || '',
-        comments: req.body['reject-comments'] || ''
-      }
-      application.status.rejected = rejected
-
-      res.redirect(`/application/${req.params.applicationId}?success=true`)
+      res.redirect(`/application/${applicationId}/reject`)
     }
   })
 
@@ -60,17 +51,30 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/confirm?type=conditional`)
   })
 
-  // Show offer confirmation
-  router.get('/application/:applicationId/confirm', (req, res) => {
-    const type = req.query.type
+  // Submit reject reasons
+  router.post('/application/:applicationId/reject', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
+    // Update application status with reject reasons
+    application.status.rejected = {}
+    application.status.rejected.reasons = req.body.reasons
+    application.status.rejected.comment = req.body.comments
+
+    res.redirect(`/application/${applicationId}/confirm?type=reject`)
+  })
+
+  // Show confirmation
+  router.get('/application/:applicationId/confirm', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+    const status = application.status
+    const type = req.query.type
+
     // Get conditions if provided
-    let conditions = false
-    if (application.status.offer) {
-      conditions = application.status.offer.conditions
-    }
+    const conditions = status.offer
+      ? status.offer.conditions
+      : false
 
     res.render('application/confirm', {
       applicationId: req.params.applicationId,
@@ -82,22 +86,20 @@ module.exports = router => {
   router.post('/application/:applicationId/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
+    const status = application.status
 
-    // Get conditions if provided
-    let conditions = false
-    if (application.status.offer) {
-      conditions = application.status.offer.conditions
+    // Update application offer/rejected status with decision date (and offer type)
+    if (status.rejected) {
+      status.rejected.date = new Date().toISOString()
+    } else if (status.offer) {
+      status.offer.type = 'conditional'
+      status.offer.date = new Date().toISOString()
+    } else {
+      status.offer = {}
+      status.offer.type = 'unconditional'
+      status.offer.date = new Date().toISOString()
     }
 
-    // Update application status with offer decision
-    const offer = {
-      type: conditions ? 'conditional' : 'unconditional',
-      date: new Date().toISOString(),
-      conditions
-    }
-    application.status.offer = offer
-
-    // Delete previous decision
     delete req.session.data.decision
 
     res.redirect(`/application/${req.params.applicationId}?success=true`)

@@ -13,69 +13,6 @@
 
 {% block primary %}
   {% set isPrimaryCourse = application.course.includes("Primary") %}
-
-  {% set rejectHtml %}
-    {{ govukRadios({
-      idPrefix: "reject-eligibility",
-      name: "reject-reason",
-      classes: "govuk-radios--small",
-      fieldset: {
-        legend: {
-          text: "Reason for rejection",
-          classes: "govuk-fieldset__legend--s"
-        }
-      },
-      items: [{
-        value: "missing-maths-english",
-        text: "Candidate did not have fundamental maths and English skills"
-      }, {
-        value: "missing-maths",
-        text: "Candidate did not have necessary maths qualifications"
-      }, {
-        value: "missing-english",
-        text: "Candidate did not have necessary English qualifications"
-      }, {
-        value: "missing-science",
-        text: "Candidate did not have necessary science qualifications"
-      } if isPrimaryCourse, {
-        value: "missing-subject-knowledge",
-        text: "Candidate did not have an appropriate level of subject knowledge"
-      } if not isPrimaryCourse, {
-        value: "interview",
-        text: "Candidate did not perform well at interview or assessment"
-      }, {
-        value: "did-not-attend",
-        text: "Candidate did not attend interview or assessment"
-      }, {
-        value: "did-not-respond",
-        text: "Candidate did not respond"
-      }, {
-        value: "candidate-withdraw",
-        text: "Candidate withdrew their application"
-      }, {
-        value: "course-full",
-        text: "Training programme was full"
-      }, {
-        value: "course-withdraw",
-        text: "Training programme was withdrawn"
-      }, {
-        divider: "or"
-      }, {
-        value: "other",
-        text: "Other"
-      }]
-    }) }}
-
-    {{ govukTextarea({
-      id: "reject-comments",
-      name: "reject-comments",
-      label: {
-        text: "Comments",
-        classes: "govuk-label--s"
-      }
-    }) }}
-  {% endset %}
-
   {{ govukRadios({
     idPrefix: "status",
     classes: "govuk-!-margin-top-2",
@@ -93,10 +30,7 @@
     }, {
       value: "reject",
       text: "Reject candidate",
-      checked: checked("decision", "reject"),
-      conditional: {
-        html: rejectHtml
-      }
+      checked: checked("decision", "reject")
     }]
   }) }}
 
