@@ -33,6 +33,7 @@
 {% from "_components/banner/macro.njk" import appBanner %}
 {% from "_components/card-list/macro.njk" import appCardList %}
 {% from "_components/cookie-banner/macro.njk" import appCookieBanner %}
+{% from "_components/footer/macro.njk" import appFooter %}
 {% from "_components/icon/macro.njk" import appIcon %}
 {% from "_components/related/macro.njk" import appRelated %}
 {% from "_components/search/macro.njk" import appSearch %}
@@ -90,21 +91,19 @@
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
-{% if useAutoStoreData %}
-  {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [{
-          href: "https://govuk-prototype-kit.herokuapp.com/",
-          text: "GOV.UK Prototype Kit " + releaseVersion
-        }, {
-          href: "/admin/clear-data",
-          text: "Clear data"
-        }]
-      }
-    }) }}
-  {% endblock %}
-{% endif %}
+{% block footer %}
+  {{ appFooter({
+    classes: "govuk-footer--app",
+    meta: {
+      title: "Support and guidance",
+      html: "If you have a question, or you’ve had a problem using this service, you can email: <a href=\"mailto:becomingateacher@digital.education.gov.uk\">becomingateacher@digital.education.gov.uk</a>.",
+      items: [{
+        href: "/admin/clear-data",
+        text: "Clear data"
+      } if not urStudy]
+    }
+  }) }}
+{% endblock %}
 
 {% block bodyEnd %}
   </div>
