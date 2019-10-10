@@ -54,12 +54,6 @@
   })}}
   {% endif %}
 
-  {% if data.candidate["name"] %}
-    {% set signOutText = "Sign out (" + data.candidate["name"] + ")" %}
-  {% else %}
-    {% set signOutText = "Sign out" %}
-  {% endif %}
-
   {{ govukHeader({
     homepageUrl: "https://www.gov.uk",
     serviceName: serviceName,
@@ -69,7 +63,7 @@
       href: "/",
       text: "Sign out (Jane Doe)"
     }] if isSignedOut != true)
-  }) }}
+  }) if not data.bare }}
 {% endblock %}
 
 {% block bodyStart %}
@@ -82,7 +76,7 @@
       text: "prototype"
     },
     html: "This is a prototype of a new service. Some parts of this prototype do not work yet."
-  }) }}
+  }) if not data.bare }}
   {% block pageNavigation %}
   {% endblock %}
   {% block pageBanner %}
@@ -102,7 +96,7 @@
         text: "Clear data"
       } if not urStudy]
     }
-  }) }}
+  }) if not data.bare }}
 {% endblock %}
 
 {% block bodyEnd %}

@@ -1,5 +1,6 @@
 const applications = require('./applications')
 
 module.exports = {
-  applications
+  applications,
+  bare: process.env.BARE
 }

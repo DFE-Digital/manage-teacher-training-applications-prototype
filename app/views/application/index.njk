@@ -14,7 +14,7 @@
     }, {
       text: title
     }]
-  }) }}
+  }) if not data.bare }}
 {% endblock %}
 
 {% block primary %}
@@ -73,9 +73,11 @@
           classes: "govuk-!-margin-bottom-4",
           text: "Make decision",
           href: "/application/" + application.id + "/decision"
-        }) }}
+        }) if not data.bare }}
       {% endif %}
+      {% if not data.bare %}
         <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
+      {% endif %}
       </div>
     </div>
   </div>
