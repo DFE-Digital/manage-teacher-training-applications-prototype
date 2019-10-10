@@ -12,14 +12,25 @@
 {% endblock %}
 
 {% block primary %}
+  {% set otherHtml %}
+    {{ govukInput({
+      id: "other-reason",
+      name: "other-reason",
+      label: {
+        text: "Please specify"
+      }
+    }) }}
+  {% endset %}
+
+  <h2 class="govuk-heading-m">Reason for rejection</h2>
   {{ govukCheckboxes({
     classes: "govuk-checkboxes--small",
-    idPrefix: "reasons",
+    idPrefix: "reasons-qualifications",
     name: "reasons",
     fieldset: {
       legend: {
-        text: "Reason for rejection",
-        classes: "govuk-fieldset__legend--m"
+        text: "Qualifications",
+        classes: "govuk-fieldset__legend--s"
       }
     },
     items: [{
@@ -33,8 +44,21 @@
       text: "No Science GCSE grade 4 (C) or above"
     } if isPrimaryCourse, {
       value: "No degree/degree doesn’t meet course requirements",
-      html: "<span class=\"govuk-!-margin-bottom-4 govuk-!-display-block\">No degree/degree doesn’t meet course requirements</span>"
-    }, {
+      text: "No degree/degree doesn’t meet course requirements"
+    }]
+  }) }}
+
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "reasons-assessment",
+    name: "reasons",
+    fieldset: {
+      legend: {
+        text: "Application and assessment",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
       value: "Candidate didn’t know their subject well enough",
       text: "Candidate didn’t know their subject well enough"
     } if not isPrimaryCourse, {
@@ -44,32 +68,74 @@
       value: "Candidate needs to improve at the interview or assessment stage",
       text: "Candidate needs to improve at the interview or assessment stage"
     }, {
+      value: "Candidate didn’t reply to the interview offer",
+      text: "Candidate didn’t reply to the interview offer"
+    }, {
+      value: "Candidate didn’t come to the interview or assessment",
+      text: "Candidate didn’t come to the interview or assessment"
+    }, {
       value: "Candidate needs to improve how they interact with pupils",
       text: "Candidate needs to improve how they interact with pupils"
-    }, {
-      value: "Candidate is unsuitable for teaching",
-      text: "Candidate is unsuitable for teaching"
-    }, {
+    }]
+  }) }}
+
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "reasons-suitability",
+    name: "reasons",
+    fieldset: {
+      legend: {
+        text: "Suitability and safeguarding",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
       value: "Candidate gave some information that wasn’t true or their own work",
       text: "Candidate gave some information that wasn’t true or their own work"
     }, {
       value: "References didn’t validate candidate’s suitability for the course",
       html: "References didn’t validate candidate’s suitability for the course"
     }, {
-      value: "Candidate didn’t reply to the interview offer",
-      text: "Candidate didn’t reply to the interview offer"
-    }, {
-      value: "Candidate didn’t come to the interview or assessment",
-      html: "<span class=\"govuk-!-margin-bottom-4 govuk-!-display-block\">Candidate didn’t come to the interview or assessment</span>"
-    }, {
+      value: "Candidate is unsuitable for teaching",
+      text: "Candidate is unsuitable for teaching"
+    }]
+  }) }}
+
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "reasons-programme",
+    name: "reasons",
+    fieldset: {
+      legend: {
+        text: "Training programme",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
       value: "Training programme was full by the time we reached a decision",
       text: "Training programme was full by the time we reached a decision"
     }, {
       value: "Training programme was withdrawn",
-      html: "<span class=\"govuk-!-margin-bottom-4 govuk-!-display-block\">Training programme was withdrawn</span>"
-    }, {
+      text: "Training programme was withdrawn"
+    }]
+  }) }}
+
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "reasons-other",
+    name: "reasons",
+    fieldset: {
+      legend: {
+        text: "Other",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
       value: "Other",
-      text: "Other (please provide feedback below)"
+      text: "Other reason not listed above",
+      conditional: {
+        html: otherHtml
+      }
     }]
   }) }}
 
