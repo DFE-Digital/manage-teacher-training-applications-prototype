@@ -53,7 +53,7 @@
       text: "Address"
     },
     value: {
-      html: application["contact-details"].address | toArray | join("<br>")
+      html: application["contact-details"].address | toArray | join("<br>") if application["contact-details"].address else "Not provided"
     }
   }]
 }) }}
