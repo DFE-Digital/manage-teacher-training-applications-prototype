@@ -51,6 +51,14 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/confirm?type=conditional`)
   })
 
+  // Show rejection options
+  router.get('/application/:applicationId/reject', (req, res) => {
+    res.render('application/reject', {
+      applicationId: req.params.applicationId,
+      reasons: req.query.reasons
+    })
+  })
+
   // Submit reject reasons
   router.post('/application/:applicationId/reject', (req, res) => {
     const applicationId = req.params.applicationId
