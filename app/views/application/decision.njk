@@ -3,7 +3,7 @@
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set parent = name + " – " + application.course %}
-{% set title = "Make decision" %}
+{% set title = "Manage application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
