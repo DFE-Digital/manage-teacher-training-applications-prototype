@@ -59,7 +59,7 @@
         {% set dbd = status.submitted.date | addDays(10) %}
         {% set remaining = dbd | daysFromNow(dbd) %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Decline by default<dt>
+          <dt class="govuk-!-font-weight-bold">Candidate must respond by:<dt>
           <dd class="govuk-!-margin-left-0">{{ dbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
         </dl>
       {% else %}
@@ -71,7 +71,7 @@
         </dl>
         {{ govukButton({
           classes: "govuk-!-margin-bottom-4",
-          text: "Make decision",
+          text: "Respond to application",
           href: "/application/" + application.id + "/decision"
         }) if not data.bare }}
       {% endif %}

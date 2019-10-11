@@ -349,7 +349,7 @@ module.exports = {
       }
     },
     'personal-details': {
-      'given-name': 'Ester',
+      'given-name': 'Esther',
       'family-name': 'Fairley',
       'date-of-birth': '1982-08-10',
       nationality: 'British',
@@ -357,7 +357,7 @@ module.exports = {
     },
     'contact-details': {
       tel: '07700 900007',
-      email: 'ester.fairley@example.com',
+      email: 'esther.fairley@example.com',
       address: {
         line1: '67 Seaford Road',
         line2: '',
