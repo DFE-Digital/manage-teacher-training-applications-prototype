@@ -3,7 +3,7 @@
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set parent = name + " – " + application.course %}
-{% set title = "Reject candidate" %}
+{% set title = "Reject application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -145,11 +145,11 @@
     id: "comments",
     name: "comments",
     label: {
-      text: "Please explain why the candidate was rejected",
+      text: "Please explain why this application was rejected",
       classes: "govuk-label--m"
     },
     hint: {
-      text: "This feedback will be sent to the candidate."
+      text: "We will forward your feedback to the candidate"
     }
   }) }}
 
