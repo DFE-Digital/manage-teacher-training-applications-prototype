@@ -35,7 +35,7 @@
     {% endif %}
   {% endset %}
 
-  {% if type == "conditional" and conditions %}
+  {% if type == "conditional" and conditions | length > 0 %}
     {{ govukSummaryList({
       rows: [{
         key: {
@@ -87,8 +87,8 @@
     }) }}
   {% endif %}
 
-  <p class="govuk-body"><p>When you confirm this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
-  <p class="govuk-body"><p>You can only change the conditions of this offer with the candidate’s permission.</p>
+  <p class="govuk-body">When you confirm this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
+  <p class="govuk-body">You can only change the conditions of this offer with the candidate’s permission.</p>
   {{ govukButton({
     text: "Confirm offer"
   }) }}
