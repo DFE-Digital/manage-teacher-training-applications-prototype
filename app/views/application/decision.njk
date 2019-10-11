@@ -1,4 +1,4 @@
-{% extends "_form-wide.njk" %}
+{% extends "_form.njk" %}
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
