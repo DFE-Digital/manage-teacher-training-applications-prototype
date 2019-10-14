@@ -4,11 +4,8 @@
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set status = application.status %}
 {% if type == "conditional" %}
-  {% set title = "Confirm conditional offer" %}
+  {% set title = "Confirm offer" %}
   {% set lastpage = "/offer" %}
-{% elif type == "unconditional" %}
-  {% set title = "Confirm unconditional offer" %}
-  {% set lastpage = "/decision" %}
 {% else %}
   {% set title = "Confirm rejection" %}
   {% set lastpage = "/reject" %}

@@ -25,10 +25,8 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const { decision } = req.body
 
-    if (decision === 'offer-conditional') {
+    if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer`)
-    } else if (decision === 'offer-unconditional') {
-      res.redirect(`/application/${applicationId}/confirm?type=unconditional`)
     } else {
       res.redirect(`/application/${applicationId}/reject`)
     }
@@ -48,7 +46,7 @@ module.exports = router => {
     if (req.body['condition-4']) { conditions.push(req.body['condition-4']) }
     application.status.offer.conditions = conditions
 
-    res.redirect(`/application/${applicationId}/confirm?type=conditional`)
+    res.redirect(`/application/${applicationId}/confirm?type=offer`)
   })
 
   // Show rejection options
@@ -100,11 +98,6 @@ module.exports = router => {
     if (status.rejected) {
       status.rejected.date = new Date().toISOString()
     } else if (status.offer) {
-      status.offer.type = 'conditional'
-      status.offer.date = new Date().toISOString()
-    } else {
-      status.offer = {}
-      status.offer.type = 'unconditional'
       status.offer.date = new Date().toISOString()
     }
 

@@ -44,17 +44,17 @@
         </dl>
       {% elif status.declined %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">{{ status.offer.type | capitalize }} offer declined<dt>
+          <dt class="govuk-!-font-weight-bold">Offer declined<dt>
           <dd class="govuk-!-margin-left-0">{{ status.declined.date | date("dd LLL yyyy") }}</dd>
         </dl>
       {% elif status.accepted %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">{{ status.offer.type | capitalize }} offer accepted<dt>
+          <dt class="govuk-!-font-weight-bold">Offer accepted<dt>
           <dd class="govuk-!-margin-left-0">{{ status.accepted.date | date("dd LLL yyyy") }}</dd>
         </dl>
       {% elif status.offer %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">{{ status.offer.type | capitalize }} offer made<dt>
+          <dt class="govuk-!-font-weight-bold">Offer made<dt>
           <dd class="govuk-!-margin-left-0">{{ status.offer.date | date("dd LLL yyyy") }}</dd>
         </dl>
       {% else %}
