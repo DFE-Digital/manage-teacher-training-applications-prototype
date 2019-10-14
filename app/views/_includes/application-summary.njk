@@ -1,0 +1,32 @@
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-8",
+  rows: [{
+    key: {
+      text: "Full name"
+    },
+    value: {
+      text: name
+    }
+  }, {
+    key: {
+      text: "Course"
+    },
+    value: {
+      html: application.course + "<br />PGCE with QTS full time"
+    }
+  }, {
+    key: {
+      text: "Starting"
+    },
+    value: {
+      text: "September 2020"
+    }
+  }, {
+    key: {
+      text: "Preferred location"
+    },
+    value: {
+      html: "Alliance Academy<br />Edgeware, Road Name, SW1 1AA"
+    }
+  }]
+}) }}

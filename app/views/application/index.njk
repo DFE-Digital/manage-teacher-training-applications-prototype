@@ -33,46 +33,38 @@
           classes: "app-tag--" + status | status + " govuk-!-margin-bottom-4",
           text: status | status("title") | capitalize
         }) }}
-        <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Application submitted<dt>
-          <dd class="govuk-!-margin-left-0">{{ status.submitted.date | date("dd LLL yyyy") }}</dd>
+        <dl class="app-definition-list">
+          <dt>Application submitted<dt>
+          <dd>{{ status.submitted.date | date("dd LLL yyyy") }}</dd>
+        {% if status.rejected %}
+          <dt>Application rejected<dt>
+          <dd>{{ status.rejected.date | date("dd LLL yyyy") }}</dd>
+        {% elif status.declined %}
+          <dt>Offer declined<dt>
+          <dd>{{ status.declined.date | date("dd LLL yyyy") }}</dd>
+        {% elif status.accepted %}
+          <dt>Offer accepted<dt>
+          <dd>{{ status.accepted.date | date("dd LLL yyyy") }}</dd>
+        {% elif status.offer %}
+          <dt>Offer made<dt>
+          <dd>{{ status.offer.date | date("dd LLL yyyy") }}</dd>
+        {% else %}
+          {% set rbd = status.submitted.date | addDays(40) %}
+          {% set remaining = rbd | daysFromNow(rbd) %}
+          <dt>Respond to the applicant by<dt>
+          <dd>{{ rbd | date("dd LLL yyyy") }}</dd>
+        {% endif %}
         </dl>
-      {% if status.rejected %}
-        <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Application rejected<dt>
-          <dd class="govuk-!-margin-left-0">{{ status.rejected.date | date("dd LLL yyyy") }}</dd>
-        </dl>
-      {% elif status.declined %}
-        <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Offer declined<dt>
-          <dd class="govuk-!-margin-left-0">{{ status.declined.date | date("dd LLL yyyy") }}</dd>
-        </dl>
-      {% elif status.accepted %}
-        <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Offer accepted<dt>
-          <dd class="govuk-!-margin-left-0">{{ status.accepted.date | date("dd LLL yyyy") }}</dd>
-        </dl>
-      {% elif status.offer %}
-        <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Offer made<dt>
-          <dd class="govuk-!-margin-left-0">{{ status.offer.date | date("dd LLL yyyy") }}</dd>
-        </dl>
-      {% else %}
-        {% set rbd = status.submitted.date | addDays(40) %}
-        {% set remaining = rbd | daysFromNow(rbd) %}
-        <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Respond to the applicant by:<dt>
-          <dd class="govuk-!-margin-left-0">{{ rbd | date("dd LLL yyyy") }}</dd>
-        </dl>
+
         {{ govukButton({
           classes: "govuk-!-margin-bottom-4",
           text: "Respond to application",
           href: "/application/" + application.id + "/decision"
-        }) if not data.bare }}
-      {% endif %}
-      {% if not data.bare %}
+        }) if not (status.rejected or status.declined or status.accepted or status.offer or data.bare) }}
+
+        {% if not data.bare %}
         <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
-      {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>

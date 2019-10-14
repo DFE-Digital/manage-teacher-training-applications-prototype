@@ -45,6 +45,8 @@ module.exports = router => {
     if (req.body['condition-3']) { conditions.push(req.body['condition-3']) }
     if (req.body['condition-4']) { conditions.push(req.body['condition-4']) }
     application.status.offer.conditions = conditions
+    application.status.offer['standard-conditions'] = req.body['standard-conditions']
+    application.status.offer.recommendations = req.body.recommendations
 
     res.redirect(`/application/${applicationId}/confirm?type=offer`)
   })

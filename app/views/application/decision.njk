@@ -1,14 +1,22 @@
-{% extends "_form.njk" %}
+{% extends "_form-wide.njk" %}
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set parent = name + " – " + application.course %}
+{% set parent = "Application for " + application.course %}
 {% set title = "Respond to application" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/application/" + application.id
-  }) }}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Applications",
+      href: "/"
+    }, {
+      text: name,
+      href: "/application/" + application.id
+    }, {
+      text: title
+    }]
+  }) if not data.bare }}
 {% endblock %}
 
 {% block primary %}
@@ -19,10 +27,8 @@
     name: "decision",
     items: [{
       value: "offer",
-      text: "Make an offer and include any conditions or recommendations",
+      text: "Make an offer (including any conditions or recommendations)",
       checked: checked("decision", "offer")
-    }, {
-      divider: "or"
     }, {
       value: "reject",
       text: "Reject application",
