@@ -33,9 +33,6 @@
           classes: "app-tag--" + status | status + " govuk-!-margin-bottom-4",
           text: status | status("title") | capitalize
         }) }}
-        {% if status.offer %}
-          <span class="govuk-body govuk-!-margin-left-1">{{ status.offer.type | capitalize }}</span>
-        {% endif %}
         <dl class="govuk-body">
           <dt class="govuk-!-font-weight-bold">Application submitted<dt>
           <dd class="govuk-!-margin-left-0">{{ status.submitted.date | date("dd LLL yyyy") }}</dd>
@@ -47,20 +44,18 @@
         </dl>
       {% elif status.declined %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Offer declined<dt>
+          <dt class="govuk-!-font-weight-bold">{{ status.offer.type | capitalize }} offer declined<dt>
           <dd class="govuk-!-margin-left-0">{{ status.declined.date | date("dd LLL yyyy") }}</dd>
         </dl>
       {% elif status.accepted %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Offer accepted<dt>
+          <dt class="govuk-!-font-weight-bold">{{ status.offer.type | capitalize }} offer accepted<dt>
           <dd class="govuk-!-margin-left-0">{{ status.accepted.date | date("dd LLL yyyy") }}</dd>
         </dl>
       {% elif status.offer %}
-        {% set dbd = status.submitted.date | addDays(10) %}
-        {% set remaining = dbd | daysFromNow(dbd) %}
         <dl class="govuk-body">
-          <dt class="govuk-!-font-weight-bold">Candidate must respond by:<dt>
-          <dd class="govuk-!-margin-left-0">{{ dbd | date("dd LLL yyyy") }} ({{ remaining}} days time)</dd>
+          <dt class="govuk-!-font-weight-bold">{{ status.offer.type | capitalize }} offer made<dt>
+          <dd class="govuk-!-margin-left-0">{{ status.offer.date | date("dd LLL yyyy") }}</dd>
         </dl>
       {% else %}
         {% set rbd = status.submitted.date | addDays(40) %}
