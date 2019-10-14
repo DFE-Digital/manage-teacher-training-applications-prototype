@@ -1837,6 +1837,12 @@ module.exports = {
         category: 'job',
         'start-date': '2018-08-01',
         'end-date': '2019-06-01'
+      },
+      4: {
+        category: 'break',
+        duration: '3 years, 10 months',
+        'start-date': '2014-10-01',
+        'end-date': '2018-08-01'
       }
       // 4: {
       //   description: 'I studied A Levels from September 2013 until August 2015. I studied my BSc from September 2015 until July 2018.',

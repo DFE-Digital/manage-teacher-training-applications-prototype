@@ -17,7 +17,7 @@
     {% endset %}
     {% set detailsHtml %}
       {% set descriptionHtml %}
-        <p class="govuk-body">{{ item.description or "None provided" }}</p>
+        <p class="govuk-body">{{ item.description }}</p>
         {%- if item["worked-with-children"] == "Yes" %}
           <p class="govuk-body">{{ appIcon({
             classes: "govuk-!-margin-right-1",
@@ -45,11 +45,15 @@
       }) }}
     {% endset %}
     {% set role %}
-      {{ govukDetails({
-        classes: "govuk-!-margin-0",
-        summaryHtml: summaryHtml,
-        html: detailsHtml
-      }) }}
+      {% if item.descrition or item["worked-with-children"] %}
+        {{ govukDetails({
+          classes: "govuk-!-margin-0",
+          summaryHtml: summaryHtml,
+          html: detailsHtml
+        }) }}
+      {% else %}
+        Unexplained break in work history ({{ item.duration }})
+      {% endif %}
     {% endset %}
     {% set org = item.org if item.category == "job" %}
     {% set startDate = item["start-date"] | date("LLLL yyyy") %}
