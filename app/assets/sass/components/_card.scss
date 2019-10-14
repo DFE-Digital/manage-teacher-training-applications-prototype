@@ -7,13 +7,4 @@
   @include govuk-media-query($from: desktop) {
     padding: govuk-spacing(4);
   }
-
-  &:link,
-  &:visited {
-    color: govuk-colour("blue");
-  }
-
-  &:hover {
-    color: govuk-colour("dark-blue");
-  }
 }

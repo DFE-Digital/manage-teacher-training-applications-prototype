@@ -1,19 +1,20 @@
-{% extends "_form.njk" %}
+{% extends "_form-wide.njk" %}
 
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set status = application.status %}
-{% if type == "conditional" %}
-  {% set title = "Confirm conditional offer" %}
+{% set conditions = status.offer.conditions %}
+{% set standardConditions = status.offer["standard-conditions"] %}
+{% set recommendations = status.offer.recommendations %}
+{% set reasons = status.rejected.reasons %}
+{% set parent = "Application for " + application.course %}
+{% if type == "offer" %}
+  {% set title = "Confirm offer" %}
   {% set lastpage = "/offer" %}
-{% elif type == "unconditional" %}
-  {% set title = "Confirm unconditional offer" %}
-  {% set lastpage = "/decision" %}
 {% else %}
   {% set title = "Confirm rejection" %}
   {% set lastpage = "/reject" %}
 {% endif %}
-{% set parent = name + " – " + application.course %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -22,8 +23,25 @@
 {% endblock %}
 
 {% block primary %}
-  {% set conditions = status.offer.conditions %}
-  {% set reasons = status.rejected.reasons %}
+  {% set conditionsHtml %}
+    {% if conditions %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for condition in conditions %}
+      <li>{{ condition }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endset %}
+
+  {% set standardConditionsHtml %}
+    {% if standardConditions %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for condition in standardConditions %}
+      <li>{{ condition }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endset %}
 
   {% set reasonsHtml %}
     {% if reasons %}
@@ -35,63 +53,60 @@
     {% endif %}
   {% endset %}
 
-  {% if type == "conditional" and conditions | length > 0 %}
-    {{ govukSummaryList({
-      rows: [{
-        key: {
-          text: "First condition"
-        },
-        value: {
-          text: conditions[0]
-        }
-      } if conditions[0], {
-        key: {
-          text: "Second condition"
-        },
-        value: {
-          text: conditions[1]
-        }
-      } if conditions[1], {
-        key: {
-          text: "Third condition"
-        },
-        value: {
-          text: conditions[2]
-        }
-      } if conditions[2], {
-        key: {
-          text: "Further conditions"
-        },
-        value: {
-          text: conditions[3]
-        }
-      } if conditions[3]]
-    }) }}
-  {% elif type == "reject" and reasons %}
-    {{ govukSummaryList({
-      rows: [{
-        key: {
-          text: "Reasons for rejection"
-        },
-        value: {
-          text: reasonsHtml | safe or "None provided"
-        }
-      }, {
-        key: {
-          text: "Other comments"
-        },
-        value: {
-          text: status.rejected.comments or "None provided"
-        }
-      }]
-    }) }}
-  {% endif %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if type == "offer" %}
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Standard conditions"
+            },
+            value: {
+              text: standardConditionsHtml | safe
+            }
+          }, {
+            key: {
+              text: "Further conditions"
+            },
+            value: {
+              text: conditionsHtml | safe or "None provided"
+            }
+          } if conditions | length > 0, {
+            key: {
+              text: "Recommendations"
+            },
+            value: {
+              text: recommendations
+            }
+          } if recommendations]
+        }) if standardConditions or conditions or recommendations }}
+        <p class="govuk-body">When you confirm this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
+        <p class="govuk-body">You can only change the conditions of this offer with the candidate’s permission.</p>
+      {% elif type == "reject" %}
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Reasons for rejection"
+            },
+            value: {
+              text: reasonsHtml | safe or "None provided"
+            }
+          } if reasons, {
+            key: {
+              text: "Other comments" if reasons else "Reasons for rejection"
+            },
+            value: {
+              text: status.rejected.comments or "None provided"
+            }
+          }]
+        }) }}
+        <p class="govuk-body">Are you sure you want to reject this application? You can’t undo this action once confirmed.</p>
+      {% endif %}
 
-  <p class="govuk-body">When you confirm this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
-  <p class="govuk-body">You can only change the conditions of this offer with the candidate’s permission.</p>
-  {{ govukButton({
-    text: "Confirm offer"
-  }) }}
-
-  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      {{ govukButton({
+        text: title
+      }) }}
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
 {% endblock %}

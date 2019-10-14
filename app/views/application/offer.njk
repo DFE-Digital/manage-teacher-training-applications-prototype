@@ -1,8 +1,8 @@
-{% extends "_form.njk" %}
+{% extends "_form-wide.njk" %}
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set parent = name + " – " + application.course %}
+{% set parent = "Application for " + application.course %}
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
@@ -12,82 +12,91 @@
 {% endblock %}
 
 {% block primary %}
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Full name"
-      },
-      value: {
-        text: name
-      }
-    }, {
-      key: {
-        text: "Course"
-      },
-      value: {
-        html: application.course + "<br />PGCE with QTS full time"
-      }
-    }, {
-      key: {
-        text: "Starting"
-      },
-      value: {
-        text: "September 2020"
-      }
-    }, {
-      key: {
-        text: "Preferred location"
-      },
-      value: {
-        html: "Alliance Academy<br />Edgeware, Road Name, SW1 1AA"
-      }
-    }]
-  }) }}
+  {% include "_includes/application-summary.njk" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukCheckboxes({
+        classes: "govuk-checkboxes--small",
+        idPrefix: "standard-conditions",
+        name: "standard-conditions",
+        fieldset: {
+          legend: {
+            text: "Standard conditions",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [{
+          value: "Health check",
+          text: "Health check",
+          checked: true
+        }, {
+          value: "Criminal record check",
+          text: "Criminal record check",
+          checked: true
+        }, {
+          value: "Payment of fees",
+          text: "Payment of fees",
+          checked: true
+        }]
+      }) }}
 
-  <h2 class="govuk-heading-m">Please enter the academic conditions of your offer</h2>
-  {{ govukTextarea({
-    id: "condition-1",
-    name: "condition-1",
-    rows: 5,
-    label: {
-      text: "First condition",
-      classes: "govuk-label--s"
-    }
-  }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
+      <p class="govuk-body">Outline any further conditions and give a deadline for completing them.</p>
+      {{ govukTextarea({
+        id: "condition-1",
+        name: "condition-1",
+        rows: 3,
+        label: {
+          text: "First condition",
+          classes: "govuk-label--s"
+        }
+      }) }}
 
-  {{ govukTextarea({
-    id: "condition-2",
-    name: "condition-2",
-    rows: 5,
-    label: {
-      text: "Second condition (optional)",
-      classes: "govuk-label--s"
-    }
-  }) }}
+      {{ govukTextarea({
+        id: "condition-2",
+        name: "condition-2",
+        rows: 3,
+        label: {
+          text: "Second condition",
+          classes: "govuk-label--s"
+        }
+      }) }}
 
-  {{ govukTextarea({
-    id: "condition-3",
-    name: "condition-3",
-    rows: 5,
-    label: {
-      text: "Third condition (optional)",
-      classes: "govuk-label--s"
-    }
-  }) }}
+      {{ govukTextarea({
+        id: "condition-3",
+        name: "condition-3",
+        rows: 3,
+        label: {
+          text: "Third condition",
+          classes: "govuk-label--s"
+        }
+      }) }}
 
-  {{ govukTextarea({
-    id: "condition-4",
-    name: "condition-4",
-    rows: 5,
-    label: {
-      text: "Further conditions (optional)",
-      classes: "govuk-label--s"
-    }
-  }) }}
+      {{ govukTextarea({
+        id: "condition-4",
+        name: "condition-4",
+        rows: 3,
+        label: {
+          text: "Further conditions",
+          classes: "govuk-label--s"
+        }
+      }) }}
 
-  {{ govukButton({
-    text: "Continue"
-  }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Recommendations (optional)</h2>
+      {{ govukTextarea({
+        id: "recommendations",
+        name: "recommendations",
+        rows: 5,
+        label: {
+          text: "Outline any recommendations, such as completing a subject knowledge enhancement course."
+        }
+      }) }}
 
-  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
 {% endblock %}

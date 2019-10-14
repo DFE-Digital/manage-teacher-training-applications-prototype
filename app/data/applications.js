@@ -63,7 +63,6 @@ module.exports = {
         date: '2019-07-15'
       },
       offer: {
-        type: 'conditional',
         date: '2019-08-10'
       },
       accepted: {
@@ -120,7 +119,6 @@ module.exports = {
         date: '2019-07-15'
       },
       offer: {
-        type: 'conditional',
         date: '2019-08-10'
       },
       declined: {
@@ -230,7 +228,6 @@ module.exports = {
         date: '2019-07-15'
       },
       rejected: {
-        type: 'conditional',
         date: '2019-08-10'
       }
     },
@@ -284,7 +281,6 @@ module.exports = {
         date: '2019-08-15'
       },
       offer: {
-        type: 'conditional',
         date: '2019-09-10'
       },
       declined: {
@@ -341,7 +337,6 @@ module.exports = {
         date: '2019-09-15'
       },
       offer: {
-        type: 'conditional',
         date: '2019-08-10'
       },
       rejected: {
@@ -398,7 +393,6 @@ module.exports = {
         date: '2019-09-01'
       },
       offer: {
-        type: 'conditional',
         date: '2019-09-23'
       }
     },
@@ -635,7 +629,6 @@ module.exports = {
         date: '2019-09-01'
       },
       offer: {
-        type: 'conditional',
         date: '2019-09-23'
       }
     },
@@ -870,7 +863,6 @@ module.exports = {
         date: '2019-09-16'
       },
       offer: {
-        type: 'conditional',
         date: '2019-10-01'
       }
     },
