@@ -67,7 +67,7 @@ module.exports = router => {
     // Update application status with reject reasons
     application.status.rejected = {}
     application.status.rejected.reasons = req.body.reasons
-    application.status.rejected.comment = req.body.comments
+    application.status.rejected.comments = req.body.comments
 
     res.redirect(`/application/${applicationId}/confirm?type=reject`)
   })
