@@ -26,12 +26,12 @@
           }
         },
         items: [{
-          value: "Health check",
-          text: "Health check",
+          value: "Fitness to teach check",
+          text: "Fitness to teach check",
           checked: true
         }, {
-          value: "Criminal record check",
-          text: "Criminal record check",
+          value: "Disclosure and barring service check",
+          text: "Disclosure and barring service check",
           checked: true
         }, {
           value: "Payment of fees",
@@ -41,7 +41,7 @@
       }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
-      <p class="govuk-body">Outline any further conditions and give a deadline for completing them.</p>
+      <p class="govuk-body">Outline any further conditions (for example, studying a subject knowledge enhancement course) and give deadlines for completing them.</p>
       {{ govukTextarea({
         id: "condition-1",
         name: "condition-1",
@@ -88,10 +88,11 @@
         name: "recommendations",
         rows: 5,
         label: {
-          text: "Outline any recommendations, such as completing a subject knowledge enhancement course."
+          text: "Outline any recommendations (for example, organising school experience)."
         }
       }) }}
 
+    
       {{ govukButton({
         text: "Continue"
       }) }}
