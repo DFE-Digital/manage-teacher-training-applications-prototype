@@ -1,0 +1,22 @@
+{% extends "_email.njk" %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Manage teacher training applications: " + name + " has accepted your offer to join " + application.course %}
+{% set from = "apply-for-teacher-training@education.gov.uk" %}
+{% set to = "admin@provider-name.example" %}
+
+{% block content %}
+  <p class="govuk-body">Dear [Provider name],</p>
+  <p class="govuk-body">We’re pleased to tell you that <strong>{{ name }}</strong> has accepted your offer to join <strong>{{ application.course }}</strong> starting September 2020.</p>
+  <p class="govuk-body">You can check candidate responses any time by logging into <a href="/">Manage teacher training applications</a>.</p>
+
+  <h2 class="govuk-heading-m">Next steps</h2>
+  <p class="govuk-body">Please get in touch with {{ application["personal-details"]["given-name"] }} to follow up on any conditions or recommendations you have set out.</p>
+  <p class="govuk-body">You can refer to these in the offer email we sent to the candidate (we cc’d you on this email).</p>
+  <p class="govuk-body">Please email us at <a href="mailto:mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a> when this candidate has met their conditions and has been enrolled. We can then pass their details on to our funding department at the Department for Education.</p>
+  <p class="govuk-body">Thank you for your continuing participation in piloting the DfE Apply service. If you have questions or concerns, please email <a href="mailto:mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.</p>
+  <p class="govuk-body">Regards,
+  <p class="govuk-body">Apply for teacher training<br>
+    Department for Education</p>
+{% endblock %}

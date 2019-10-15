@@ -29,10 +29,16 @@
     <div class="govuk-grid-column-one-third">
       <div class="app-card">
         <h2 class="govuk-heading-m">Status</h2>
-        {{ govukTag({
-          classes: "app-tag--" + status | status + " govuk-!-margin-bottom-4",
-          text: status | status("title") | capitalize
-        }) }}
+        {% if status.declined or status.accepted %}
+          <a href="/email/{{ applicationId }}/candidate-{{ status | status }}-offer">
+        {% endif %}
+          {{ govukTag({
+            classes: "app-tag--" + status | status + " govuk-!-margin-bottom-4",
+            text: status | status("title") | capitalize
+          }) }}
+        {% if status.declined or status.accepted %}
+          </a>
+        {% endif %}
         <dl class="app-definition-list">
           <dt>Application submitted<dt>
           <dd>{{ status.submitted.date | date("dd LLL yyyy") }}</dd>

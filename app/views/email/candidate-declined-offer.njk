@@ -1,0 +1,17 @@
+{% extends "_email.njk" %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Manage teacher training applications: " + name + " has declined your offer to join " + application.course %}
+{% set from = "apply-for-teacher-training@education.gov.uk" %}
+{% set to = "admin@provider-name.example" %}
+
+{% block content %}
+  <p class="govuk-body">Dear [Provider name],</p>
+  <p class="govuk-body">We’re getting in touch to let you know that <strong>{{ name }}</strong> has declined your offer to join <strong>{{ application.course }}</strong>.
+  <p class="govuk-body">You can check candidate responses any time by logging into <a href="/">Manage teacher training applications</a>.</p>
+  <p class="govuk-body">Thank you for your continuing participation in piloting the DfE Apply service. If you have questions or concerns, please email <a href="mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.</p>
+  <p class="govuk-body">Regards,
+  <p class="govuk-body">Apply for teacher training<br>
+    Department for Education</p>
+{% endblock %}
