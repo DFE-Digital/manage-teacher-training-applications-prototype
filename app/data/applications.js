@@ -1523,12 +1523,41 @@ module.exports = {
         }]
       },
       second: {
-        status: 'pending',
+        status: 'received',
         type: 'Academic',
         name: 'Peter Giles',
         email: 'pete.giles@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Masters course leader'
+        relationship: 'Course leader for my masters programme.',
+        comments: 'A charismatic talented and able woman. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.',
+        ratings: [{
+          label: 'Passion for their subject',
+          value: 8
+        }, {
+          label: 'Knowledge about their subject',
+          value: 9
+        }, {
+          label: 'General academic performance',
+          value: 7
+        }, {
+          label: 'Ability to meet deadlines and organise their time',
+          value: 9
+        }, {
+          label: 'Ability to think critically',
+          value: 8
+        }, {
+          label: 'Ability to work collaboratively',
+          value: 10
+        }, {
+          label: 'Mental and emotional resilience ',
+          value: 9
+        }, {
+          label: 'Literacy',
+          value: 8
+        }, {
+          label: 'Numeracy',
+          value: 6
+        }]
       }
     },
     miscellaneous: ''
@@ -1851,7 +1880,7 @@ module.exports = {
         'worked-with-children': 'Yes',
         'start-date': '2017-03-01',
         'end-date': '2018-03-01',
-        'time-commitment': ''
+        'time-commitment': 'Several hours each week alongside my degree studies.'
       },
       2: {
         role: 'Outreach Officer',
@@ -1859,7 +1888,7 @@ module.exports = {
         'worked-with-children': 'Yes',
         'start-date': '2017-03-01',
         'end-date': '2018-03-01',
-        'time-commitment': ''
+        'time-commitment': '3 hours a week.'
       },
       3: {
         role: 'Classroom Helper',
@@ -1867,7 +1896,7 @@ module.exports = {
         'worked-with-children': 'Yes',
         'start-date': '2017-07-01',
         'end-date': '2019-07-01',
-        'time-commitment': ''
+        'time-commitment': 'Roughly 2 or 3 days a month.'
       }
     },
     degree: {
