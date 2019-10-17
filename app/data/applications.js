@@ -1369,13 +1369,6 @@ module.exports = {
         'end-date': false
       },
       2: {
-        description: 'I was concentrating on completing my studies at Strathclyde University and, when term finished, visiting my family in India.',
-        category: 'break',
-        duration: '8 months',
-        'start-date': '2016-12-01',
-        'end-date': '2017-01-01'
-      },
-      3: {
         role: 'Resident assistant (winter vacation)',
         org: 'Tutorful',
         type: 'Part-time',
@@ -1385,7 +1378,7 @@ module.exports = {
         'start-date': '2016-12-01',
         'end-date': '2017-01-01'
       },
-      4: {
+      3: {
         role: 'Graduate teaching assistant',
         org: 'Creighton University',
         type: 'Part-time',
@@ -1395,7 +1388,7 @@ module.exports = {
         'start-date': '2013-08-01',
         'end-date': '2016-11-01'
       },
-      5: {
+      4: {
         role: 'Summer intern',
         org: 'American Association of Variable Star Observers',
         type: 'Full-time',
@@ -1405,7 +1398,7 @@ module.exports = {
         'start-date': '2013-06-01',
         'end-date': '2013-08-01'
       },
-      6: {
+      5: {
         role: 'Undergraduate teaching assistant',
         org: 'Minnesota State University, Moorhead',
         type: 'Part-time',
