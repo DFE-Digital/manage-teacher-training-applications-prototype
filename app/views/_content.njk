@@ -1,6 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% block content %}
+  {% block beforePageTitle %}{% endblock %}
+
   {% if title %}
     <h1 class="govuk-heading-xl">
       {% if parent %}<span class="govuk-caption-xl">{{ parent }}</span>{% endif %}

@@ -17,11 +17,15 @@
   }) if not data.bare }}
 {% endblock %}
 
-{% block primary %}
+{% block beforePageTitle %}
   {{ appBanner({
-    text: "Application status changed to ‘" + status | status("title") + "’",
-    type: "success"
+    html: "<h2 class=\"govuk-heading-m\">Application status changed to ‘" + status | status("title") + "’</h2>",
+    type: "success",
+    icon: false
   }) if success }}
+{% endblock %}
+
+{% block primary %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/details.njk" %}
