@@ -1821,6 +1821,7 @@ module.exports = {
       //   'postal-code': 'SO1  8UZ'
       // }
     },
+    'reasonable-adjustments': 'I currently require use of a wheelchair, so any interview location needs to be accessible. I should be back on my feet by the time I begin my training.',
     'work-history': {
       1: {
         role: 'Care Partner',
