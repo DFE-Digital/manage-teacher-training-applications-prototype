@@ -1,16 +1,20 @@
 {% set vocationKeyHtml %}
   <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Vocation</h3>
-  <p class="govuk-hint">(Question to candidate:“Why do you want to be a teacher?”)</p>
+  <p class="govuk-hint">(Question to candidate: “Why do you want to be a teacher?”)</p>
 {% endset %}
 
 {% set subjectKnowledgeKeyHtml %}
   <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
-  <p class="govuk-hint">(Question to candidate:“Your knowledge about the subject you want to teach”)</p>
+  <p class="govuk-hint">(Question to candidate: “Your knowledge about the subject you want to teach”)</p>
+{% endset %}
+
+{% set supportKeyHtml %}
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Any support needed</h3>
 {% endset %}
 
 {% set miscellaneousKeyHtml %}
   <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Additional information</h3>
-  <p class="govuk-hint">(Question to candidate:“Is there anything else you would like to tell us about your application?”)</p>
+  <p class="govuk-hint">(Question to candidate: “Is there anything else you would like to tell us about your application?”)</p>
 {% endset %}
 
 {{ govukSummaryList({
@@ -34,6 +38,13 @@
     },
     value: {
       html: application["personal-statement"].interview | nl2br or "—"
+    }
+  } if data.flags.interview_preferences == true, {
+    key: {
+      html: supportKeyHtml
+    },
+    value: {
+      html: application["reasonable-adjustments"] | nl2br or "—"
     }
   }, {
     key: {
