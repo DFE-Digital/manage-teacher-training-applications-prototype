@@ -12,11 +12,6 @@
   <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Any support needed</h3>
 {% endset %}
 
-{% set miscellaneousKeyHtml %}
-  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Additional information</h3>
-  <p class="govuk-hint">(Question to candidate: “Is there anything else you would like to tell us about your application?”)</p>
-{% endset %}
-
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -45,13 +40,6 @@
     },
     value: {
       html: application["reasonable-adjustments"] | nl2br or "—"
-    }
-  }, {
-    key: {
-      html: miscellaneousKeyHtml
-    },
-    value: {
-      html: application["miscellaneous"] | nl2br or "—"
     }
   }]
 }) }}

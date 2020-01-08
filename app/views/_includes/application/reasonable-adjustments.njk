@@ -1,0 +1,17 @@
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      html: "Is extra assistance required?"
+    },
+    value: {
+      text: "Yes" if application["reasonable-adjustments"] else "No"
+    }
+  }, {
+    key: {
+      html: "Relevant information"
+    },
+    value: {
+      html: application["reasonable-adjustments"] | nl2br or "—"
+    }
+  } if application["reasonable-adjustments"]]
+}) }}
