@@ -14,6 +14,7 @@
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
+    "@ministryofjustice/frontend": "0.0.17-alpha",
     "acorn": "^7.1.0",
     "ansi-colors": "^4.0.0",
     "basic-auth": "^2.0.0",
