@@ -58,19 +58,14 @@
       },
       items: [
         {
-          value: 'blue',
-          text: 'Blue',
-          checked: checked("provider", "blue") == 'checked'
+          value: 'Somerset SCITT',
+          text: 'Somerset SCITT',
+          checked: checked("provider", "Somerset SCITT") == 'checked'
         },
         {
-          value: 'yellow',
-          text: 'Yellow',
-          checked: checked("provider", "yellow") == 'checked'
-        },
-        {
-          value: 'red',
-          text: 'Red',
-          checked: checked("provider", "red") == 'checked'
+          value: 'GORSE SCITT',
+          text: 'GORSE SCITT',
+          checked: checked("provider", "GORSE SCITT") == 'checked'
         }
       ]
     }) }}
@@ -133,40 +128,70 @@
       </div>
       <div class="moj-scrollable-pane">
         <div class="moj-scrollable-pane__wrapper">
-          <table class="govuk-table" data-module="sortable-tabe">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
-                <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
-                <th class="govuk-table__header" scope="col" aria-sort="none">Provider</th>
-                <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
-                <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              {% for a in applications %}
-                {% set rbd = a.status.submitted.date | addDays(40) %}
-                {% set remaining = rbd | daysFromNow(rbd) %}
-                {% set updated = a.status.rejected.date or a.status.declined.date or a.status.accepted.date or a.status.offer.date or a.status.submitted.date %}
+
+          {% if applications.length %}
+
+            <table class="govuk-table" data-module="sortable-tabe">
+              <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">
-                    <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
-                  </td>
-                  <td class="govuk-table__cell">{{ a.course }}</td>
-                  <td class="govuk-table__cell">{{ a.provider }}</td>
-                  <td class="govuk-table__cell">
-                    {{ govukTag({
-                      classes: "app-tag--" + a.status | status,
-                      text: a.status | status | capitalize
-                    }) }}
-                  </td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Provider</th>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
                 </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+              </thead>
+              <tbody class="govuk-table__body">
+                {% for a in applications %}
+                  {% set rbd = a.status.submitted.date | addDays(40) %}
+                  {% set remaining = rbd | daysFromNow(rbd) %}
+                  {% set updated = a.status.rejected.date or a.status.declined.date or a.status.accepted.date or a.status.offer.date or a.status.submitted.date %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                      <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
+                    </td>
+                    <td class="govuk-table__cell">{{ a.course }}</td>
+                    <td class="govuk-table__cell">{{ a.provider }}</td>
+                    <td class="govuk-table__cell">
+                      {{ govukTag({
+                        classes: "app-tag--" + a.status | status,
+                        text: a.status | status | capitalize
+                      }) }}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif%}
         </div>
       </div>
+
+      {% if applications.length %}
+        {{ mojPagination({
+          results: {
+            from: 1,
+            to: 15,
+            count: 30
+          },
+            next: {
+            text: 'Next',
+            href: ''
+          },
+            items: [{
+            text: '1',
+            href: '/page=1',
+            selected: true
+          }, {
+            text: '2',
+            href: '/page=2'
+          }]
+        }) }}
+      {% endif %}
+
+      {% if not applications.length %}
+        <p>No applications for the selected filters.</p>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
