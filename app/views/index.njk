@@ -47,8 +47,8 @@
     }) }}
 
     {{ govukCheckboxes({
-      idPrefix: 'type',
-      name: 'type',
+      idPrefix: 'provider',
+      name: 'provider',
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
@@ -58,18 +58,19 @@
       },
       items: [
         {
-          value: '1',
+          value: 'blue',
           text: 'Blue',
-          checked: false
+          checked: checked("provider", "blue") == 'checked'
         },
         {
-          value: '2',
+          value: 'yellow',
           text: 'Yellow',
-          checked: false
+          checked: checked("provider", "yellow") == 'checked'
         },
         {
-          value: '3',
-          text: 'Red'
+          value: 'red',
+          text: 'Red',
+          checked: checked("provider", "red") == 'checked'
         }
       ]
     }) }}
@@ -87,6 +88,33 @@
           </div>
         </div>
         <div class="moj-filter__content">
+          {% if selectedFilters %}
+            <div class="moj-filter__selected">
+
+              <div class="moj-filter__selected-heading">
+
+                <div class="moj-filter__heading-title">
+                  <h2 class="govuk-heading-m">Selected filters</h2>
+                </div>
+
+                <div class="moj-filter__heading-action">
+                  <p><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear</a></p>
+                </div>
+
+              </div>
+
+              {% for category in selectedFilters.categories %}
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
+
+                <ul class="moj-filter-tags">
+                  {% for item in category.items %}
+                    <li><a class="moj-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endfor %}
+
+            </div>
+          {% endif %}
           <div class="moj-filter__options">
             <form method="get" action="/">
               <button class="govuk-button" data-module="govuk-button">
