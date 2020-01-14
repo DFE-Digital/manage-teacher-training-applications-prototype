@@ -5,6 +5,7 @@
 
 {% block primary %}
 
+
   {% set filterOptionsHtml %}
     {{ govukCheckboxes({
       idPrefix: 'status',
@@ -19,19 +20,28 @@
       items: [
         {
           value: 'new',
-          text: 'New'
+          text: 'New',
+          checked: checked("status", "new") == 'checked'
         },
         {
           value: 'offered',
-          text: 'Offered'
+          text: 'Offered',
+          checked: checked("status", "offered") == 'checked'
         },
         {
           value: 'rejected',
-          text: 'Rejected'
+          text: 'Rejected',
+          checked: checked("status", "rejected") == 'checked'
         },
         {
           value: 'declined',
-          text: 'Declined'
+          text: 'Declined',
+          checked: checked("status", "declined") == 'checked'
+        },
+        {
+          value: 'accepted',
+          text: 'Accepted',
+          checked: checked("status", "accepted") == 'checked'
         }
       ]
     }) }}

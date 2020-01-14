@@ -33,6 +33,8 @@ module.exports = router => {
       })
     }
 
+
+
     res.render('index', {
       applications: apps
     })

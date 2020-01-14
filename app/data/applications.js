@@ -3,7 +3,7 @@ module.exports = {
     id: 1,
     provider: 'Provider name',
     course: 'Biology (2P36)',
-    statusA: 'declined',
+    statusA: 'accepted',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -61,7 +61,7 @@ module.exports = {
     id: 2,
     provider: 'Provider name',
     course: 'Media Studies (33MP)',
-    statusA: 'declined',
+    statusA: 'accepted',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -119,7 +119,7 @@ module.exports = {
     id: 3,
     provider: 'Provider name',
     course: 'Chemistry (2P38)',
-    statusA: 'new',
+    statusA: 'declined',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -177,7 +177,7 @@ module.exports = {
     id: 4,
     provider: 'Provider name',
     course: 'Biology (2P36)',
-    statusA: 'new',
+    statusA: 'rejected',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -232,7 +232,7 @@ module.exports = {
     id: 5,
     provider: 'Provider name',
     course: 'Mathematics (2P3K)',
-    statusA: 'new',
+    statusA: 'rejected',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -287,7 +287,7 @@ module.exports = {
     id: 6,
     provider: 'Provider name',
     course: 'Business studies (2P37)',
-    statusA: 'new',
+    statusA: 'declined',
     status: {
       submitted: {
         date: '2019-08-15'
@@ -345,7 +345,7 @@ module.exports = {
     id: 7,
     provider: 'Provider name',
     course: 'Media Studies (33MP)',
-    statusA: 'new',
+    statusA: 'rejected',
     status: {
       submitted: {
         date: '2019-09-15'
@@ -403,7 +403,7 @@ module.exports = {
     id: 101,
     provider: 'Provider name',
     course: 'Religious Studies (V6X9)',
-    statusA: 'new',
+    statusA: 'offered',
     status: {
       submitted: {
         date: '2019-09-01'
@@ -641,7 +641,7 @@ module.exports = {
     id: 102,
     provider: 'Provider name',
     course: 'Computer Science and Information Technology (IX99)',
-    statusA: 'new',
+    statusA: 'offered',
     status: {
       submitted: {
         date: '2019-09-01'
@@ -877,7 +877,7 @@ module.exports = {
     id: 103,
     provider: 'Provider name',
     course: 'History (33MP)',
-    statusA: 'new',
+    statusA: 'offered',
     status: {
       submitted: {
         date: '2019-09-16'
