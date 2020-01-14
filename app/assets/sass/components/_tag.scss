@@ -1,36 +1,42 @@
-@mixin tag($color: "blue", $filled: true) {
-  white-space: nowrap;
-
-  @if $filled {
-    background-color: govuk-colour($color);
-    color: govuk-colour("white");
-  } @else {
-    background-color: govuk-colour("white");
-    outline: 3px solid govuk-colour($color);
-    color: govuk-colour($color);
-  }
-}
-
+.app-tag--grey,
 .app-tag--empty {
-  @include tag("dark-grey", $filled: false);
+  color: govuk-shade(govuk-colour("dark-grey"), 30);
+  background: govuk-tint(govuk-colour("dark-grey"), 90);
 }
 
+.app-tag--purple,
 .app-tag--new {
-  @include tag("blue", $filled: false);
+  color: govuk-shade(govuk-colour("purple"), 20);
+  background: govuk-tint(govuk-colour("purple"), 80);
 }
 
-.app-tag--offer {
-  @include tag("turquoise", $filled: false);
+.app-tag--turquoise,
+.app-tag--offered {
+  color: govuk-shade(govuk-colour("turquoise"), 40);
+  background: govuk-tint(govuk-colour("turquoise"), 70);
 }
 
+.app-tag--blue,
 .app-tag--accepted {
-  @include tag("turquoise");
+  color: govuk-shade(govuk-colour("blue"), 30);
+  background: govuk-tint(govuk-colour("blue"), 80);
 }
 
+.app-tag--orange,
 .app-tag--declined {
-  @include tag("orange");
+  color: govuk-shade(govuk-colour("orange"), 55);
+  background: govuk-tint(govuk-colour("orange"), 70);
 }
 
+.app-tag--red,
 .app-tag--rejected {
-  @include tag($color: "red");
+  color: govuk-shade(govuk-colour("red"), 20);
+  background: govuk-tint(govuk-colour("red"), 80);
 }
+
+.app-tag--green {
+  color: govuk-shade(govuk-colour("green"), 20);
+  background: govuk-tint(govuk-colour("green"), 80);
+}
+
+

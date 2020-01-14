@@ -17,7 +17,7 @@ $('body').on('submit', 'form', function (e) {
       names[$this.attr('name')] = true
       var $input = $('<input type="hidden">')
       $input.attr('name', $this.attr('name'))
-      $input.attr('value', '_unchecked')
+      // $input.attr('value', '_unchecked')
       $inputs.push($input)
     }
   })

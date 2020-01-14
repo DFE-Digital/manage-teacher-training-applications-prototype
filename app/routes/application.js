@@ -1,11 +1,40 @@
 /**
  * Application routes
  */
+
+const applications = require( '../data/applications')
+
 module.exports = router => {
   // Render application page
   router.all('/', (req, res) => {
+
+    // Clone and turn into an array
+    let apps = Object.values(applications).reverse();
+    const { status, provider } = req.query
+
+    const statuses = status && (Array.isArray(status) ? status : [ status ])
+    const providers = provider && (Array.isArray(provider) ? provider : [ provider ])
+    const hasFilters = !!(statuses || providers)
+
+    if( hasFilters ){
+      apps = apps.filter((app) => {
+        let statusValid = true;
+        let providerValid = true;
+
+        if( statuses ){
+          statusValid = statuses.includes(app.statusA)
+        }
+
+        if( provider ){
+          providerValid = providers.includes(app.provider)
+        }
+
+        return statusValid && providerValid;
+      })
+    }
+
     res.render('index', {
-      status: req.query.status
+      applications: apps
     })
   })
 

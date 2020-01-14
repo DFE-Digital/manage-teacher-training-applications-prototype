@@ -1,12 +1,14 @@
 module.exports = {
   1: {
     id: 1,
+    provider: 'Provider name',
     course: 'Biology (2P36)',
+    statusA: 'declined',
     status: {
       submitted: {
         date: '2019-07-15'
       },
-      offer: {
+      offered: {
         date: '2019-07-30'
       },
       accepted: {
@@ -57,12 +59,14 @@ module.exports = {
   },
   2: {
     id: 2,
+    provider: 'Provider name',
     course: 'Media Studies (33MP)',
+    statusA: 'declined',
     status: {
       submitted: {
         date: '2019-07-15'
       },
-      offer: {
+      offered: {
         date: '2019-08-10'
       },
       accepted: {
@@ -113,12 +117,14 @@ module.exports = {
   },
   3: {
     id: 3,
+    provider: 'Provider name',
     course: 'Chemistry (2P38)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-07-15'
       },
-      offer: {
+      offered: {
         date: '2019-08-10'
       },
       declined: {
@@ -169,7 +175,9 @@ module.exports = {
   },
   4: {
     id: 4,
+    provider: 'Provider name',
     course: 'Biology (2P36)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -222,7 +230,9 @@ module.exports = {
   },
   5: {
     id: 5,
+    provider: 'Provider name',
     course: 'Mathematics (2P3K)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -275,12 +285,14 @@ module.exports = {
   },
   6: {
     id: 6,
+    provider: 'Provider name',
     course: 'Business studies (2P37)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-08-15'
       },
-      offer: {
+      offered: {
         date: '2019-09-10'
       },
       declined: {
@@ -331,12 +343,14 @@ module.exports = {
   },
   7: {
     id: 7,
+    provider: 'Provider name',
     course: 'Media Studies (33MP)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-09-15'
       },
-      offer: {
+      offered: {
         date: '2019-08-10'
       },
       rejected: {
@@ -387,12 +401,14 @@ module.exports = {
   },
   101: {
     id: 101,
+    provider: 'Provider name',
     course: 'Religious Studies (V6X9)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-09-01'
       },
-      offer: {
+      offered: {
         date: '2019-09-23'
       }
     },
@@ -623,12 +639,14 @@ module.exports = {
   },
   102: {
     id: 102,
+    provider: 'Provider name',
     course: 'Computer Science and Information Technology (IX99)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-09-01'
       },
-      offer: {
+      offered: {
         date: '2019-09-23'
       }
     },
@@ -857,12 +875,14 @@ module.exports = {
   },
   103: {
     id: 103,
+    provider: 'Provider name',
     course: 'History (33MP)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-09-16'
       },
-      offer: {
+      offered: {
         date: '2019-10-01'
       }
     },
@@ -1112,7 +1132,9 @@ module.exports = {
   },
   104: {
     id: 104,
+    provider: 'Provider name',
     course: 'Primary (2PPM)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-09-18'
@@ -1333,7 +1355,9 @@ module.exports = {
   },
   105: {
     id: 105,
+    provider: 'Provider name',
     course: 'Mathematics (GX11)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-09-21'
@@ -1557,7 +1581,9 @@ module.exports = {
   },
   201: {
     id: 201,
+    provider: 'Provider name',
     course: 'Biology (2P36)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-10-08'
@@ -1797,7 +1823,9 @@ module.exports = {
   },
   202: {
     id: 202,
+    provider: 'Provider name',
     course: 'Upper Primary with Modern Foreign Languages (XR9C)',
+    statusA: 'new',
     status: {
       submitted: {
         date: '2019-10-10'
