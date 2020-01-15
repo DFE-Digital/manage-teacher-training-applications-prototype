@@ -4,52 +4,219 @@
 {% set parent = "2019-20 recruitment cycle" %}
 
 {% block primary %}
-  {% set applications = data.applications | toArray %}
-  {% set new = applications | filterByStatus("new") %}
-  {% set offer = applications | filterByStatus("offer") %}
-  {% set accepted = applications | filterByStatus("accepted") %}
-  {% set declined = applications | filterByStatus("declined") %}
-  {% set rejected = applications | filterByStatus("rejected") %}
 
-  {% if status == "new" %}
-    {% set applications = new %}
-  {% elif status == "offer" %}
-    {% set applications = offer %}
-  {% elif status == "accepted" %}
-    {% set applications = accepted %}
-  {% elif status == "declined" %}
-    {% set applications = declined %}
-  {% elif status == "rejected" %}
-    {% set applications = rejected %}
-  {% endif %}
-  <table class="govuk-table" data-module="sortable-table">
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
-        <th class="govuk-table__header govuk-!-width-one-third" scope="col" aria-sort="none">Course</th>
-        <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
-        <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
-      </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-    {% for a in applications | reverse %}
-      {% set rbd = a.status.submitted.date | addDays(40) %}
-      {% set remaining = rbd | daysFromNow(rbd) %}
-      {% set updated = a.status.rejected.date or a.status.declined.date or a.status.accepted.date or a.status.offer.date or a.status.submitted.date %}
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell">
-          <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
-        </td>
-        <td class="govuk-table__cell">{{ a.course }}</td>
-        <td class="govuk-table__cell">
-          {{ govukTag({
-            classes: "app-tag--" + a.status | status,
-            text: a.status | status | capitalize
-          }) }}
-        </td>
-        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+
+  {% set filterOptionsHtml %}
+    {{ govukCheckboxes({
+      idPrefix: 'status',
+      name: 'status',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Status',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'new',
+          text: 'New',
+          checked: checked("status", "new") == 'checked'
+        },
+        {
+          value: 'offered',
+          text: 'Offered',
+          checked: checked("status", "offered") == 'checked'
+        },
+        {
+          value: 'rejected',
+          text: 'Rejected',
+          checked: checked("status", "rejected") == 'checked'
+        },
+        {
+          value: 'declined',
+          text: 'Declined',
+          checked: checked("status", "declined") == 'checked'
+        },
+        {
+          value: 'accepted',
+          text: 'Accepted',
+          checked: checked("status", "accepted") == 'checked'
+        }
+      ]
+    }) }}
+
+    {{ govukCheckboxes({
+      idPrefix: 'provider',
+      name: 'provider',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Provider',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'Somerset SCITT',
+          text: 'Somerset SCITT',
+          checked: checked("provider", "Somerset SCITT") == 'checked'
+        },
+        {
+          value: 'GORSE SCITT',
+          text: 'GORSE SCITT',
+          checked: checked("provider", "GORSE SCITT") == 'checked'
+        }
+      ]
+    }) }}
+  {% endset %}
+
+  <div class="moj-filter-layout">
+    <div class="moj-filter-layout__filter">
+      <div class="moj-filter" tabindex="-1">
+        <div class="moj-filter__header">
+          <div class="moj-filter__header-title">
+            <h2 class="govuk-heading-m">Filter</h2>
+          </div>
+          <div class="moj-filter__header-action">
+
+          </div>
+        </div>
+        <div class="moj-filter__content">
+          {% if selectedFilters %}
+            <div class="moj-filter__selected">
+
+              <div class="moj-filter__selected-heading">
+
+                <div class="moj-filter__heading-title">
+                  <h2 class="govuk-heading-m">Selected filters</h2>
+                </div>
+
+                <div class="moj-filter__heading-action">
+                  <p><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear</a></p>
+                </div>
+
+              </div>
+
+              {% for category in selectedFilters.categories %}
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
+
+                <ul class="moj-filter-tags">
+                  {% for item in category.items %}
+                    <li><a class="moj-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endfor %}
+
+            </div>
+          {% endif %}
+          <div class="moj-filter__options">
+            <form method="get" action="/">
+              <button class="govuk-button" data-module="govuk-button">
+                Apply filters
+              </button>
+              {{filterOptionsHtml | safe}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="moj-filter-layout__content">
+      <div class="moj-action-bar">
+        <div class="moj-action-bar__filter"></div>
+      </div>
+      <div class="moj-scrollable-pane">
+        <div class="moj-scrollable-pane__wrapper">
+
+          {% if applications.length %}
+
+            <table class="govuk-table" data-module="sortable-tabe">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Provider</th>
+                  <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                {% for a in applications %}
+                  {% set rbd = a.status.submitted.date | addDays(40) %}
+                  {% set remaining = rbd | daysFromNow(rbd) %}
+                  {% set updated = a.status.rejected.date or a.status.declined.date or a.status.accepted.date or a.status.offer.date or a.status.submitted.date %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                      <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
+                    </td>
+                    <td class="govuk-table__cell">{{ a.course }}</td>
+                    <td class="govuk-table__cell">{{ a.provider }}</td>
+                    <td class="govuk-table__cell">
+                      {{ govukTag({
+                        classes: "app-tag--" + a.status | status,
+                        text: a.status | status | capitalize
+                      }) }}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif%}
+        </div>
+      </div>
+
+      {% if applications.length %}
+        {{ mojPagination({
+          results: {
+            from: 1,
+            to: 15,
+            count: 30
+          },
+            next: {
+            text: 'Next',
+            href: ''
+          },
+            items: [{
+            text: '1',
+            href: '/page=1',
+            selected: true
+          }, {
+            text: '2',
+            href: '/page=2'
+          }]
+        }) }}
+      {% endif %}
+
+      {% if not applications.length %}
+        <p>No applications for the selected filters.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new MOJFrontend.FilterToggleButton({
+    bigModeMediaQuery: '(min-width: 48.063em)',
+    startHidden: false,
+    toggleButton: {
+      container: $('.moj-action-bar__filter'),
+      showText: 'Show filter',
+      hideText: 'Hide filter',
+      classes: 'govuk-button--secondary'
+    },
+    closeButton: {
+      container: $('.moj-filter__header-action'),
+      text: 'Close'
+    },
+    filter: {
+      container: $('.moj-filter')
+    }
+  });
+  {# new MOJFrontend.SortableTable({
+    table: $('table')[0]
+  }); #}
+  </script>
 {% endblock %}
