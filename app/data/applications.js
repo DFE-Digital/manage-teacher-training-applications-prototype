@@ -61,7 +61,7 @@ module.exports = {
     id: 2,
     provider: 'The Beach Teaching School',
     course: 'Media Studies (33MP)',
-    statusA: 'accepted',
+    statusA: 'conditions-met',
     status: {
       submitted: {
         date: '2019-07-15'
@@ -71,6 +71,9 @@ module.exports = {
       },
       accepted: {
         date: '2019-08-10'
+      },
+      'conditions-met': {
+        date: '2019-09-11'
       }
     },
     'personal-details': {

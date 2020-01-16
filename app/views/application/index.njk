@@ -66,11 +66,31 @@
         {% endif %}
         </dl>
 
-        {{ govukButton({
-          classes: "govuk-!-margin-bottom-4",
-          text: "Respond to application",
-          href: "/application/" + application.id + "/decision"
-        }) if not (status.rejected or status.declined or status.accepted or status.offer or data.bare) }}
+        {% if application.statusA == 'new' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Respond to application",
+            href: "/application/" + application.id + "/decision"
+          })}}
+        {% elseif application.statusA == 'offered' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Change offer",
+            href: "/application/" + application.id + "/decision"
+          })}}
+        {% elseif application.statusA == 'accepted' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Cancel offer",
+            href: "/application/" + application.id + "/decision"
+          })}}
+        {% elseif application.statusA == 'conditions-met' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Enroll candidate",
+            href: "/application/" + application.id + "/decision"
+          })}}
+        {% endif %}
 
         {% if not data.bare %}
         <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
