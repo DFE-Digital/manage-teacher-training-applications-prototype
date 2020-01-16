@@ -1,7 +1,7 @@
 module.exports = {
   1: {
     id: 1,
-    provider: 'GORSE SCITT',
+    provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     statusA: 'accepted',
     status: {
@@ -59,7 +59,7 @@ module.exports = {
   },
   2: {
     id: 2,
-    provider: 'GORSE SCITT',
+    provider: 'The Beach Teaching School',
     course: 'Media Studies (33MP)',
     statusA: 'accepted',
     status: {
@@ -117,7 +117,7 @@ module.exports = {
   },
   3: {
     id: 3,
-    provider: 'GORSE SCITT',
+    provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
     statusA: 'declined',
     status: {
@@ -175,7 +175,7 @@ module.exports = {
   },
   4: {
     id: 4,
-    provider: 'GORSE SCITT',
+    provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     statusA: 'rejected',
     status: {
@@ -230,7 +230,7 @@ module.exports = {
   },
   5: {
     id: 5,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Mathematics (2P3K)',
     statusA: 'rejected',
     status: {
@@ -285,7 +285,7 @@ module.exports = {
   },
   6: {
     id: 6,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Business studies (2P37)',
     statusA: 'declined',
     status: {
@@ -343,7 +343,7 @@ module.exports = {
   },
   7: {
     id: 7,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
     statusA: 'rejected',
     status: {
@@ -401,7 +401,7 @@ module.exports = {
   },
   101: {
     id: 101,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
     statusA: 'offered',
     status: {
@@ -639,7 +639,7 @@ module.exports = {
   },
   102: {
     id: 102,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Computer Science and Information Technology (IX99)',
     statusA: 'offered',
     status: {
@@ -875,7 +875,7 @@ module.exports = {
   },
   103: {
     id: 103,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'History (33MP)',
     statusA: 'offered',
     status: {
@@ -1132,7 +1132,7 @@ module.exports = {
   },
   104: {
     id: 104,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Primary (2PPM)',
     statusA: 'new',
     status: {
@@ -1355,7 +1355,7 @@ module.exports = {
   },
   105: {
     id: 105,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Mathematics (GX11)',
     statusA: 'new',
     status: {
@@ -1581,7 +1581,7 @@ module.exports = {
   },
   201: {
     id: 201,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Biology (2P36)',
     statusA: 'new',
     status: {
@@ -1823,7 +1823,7 @@ module.exports = {
   },
   202: {
     id: 202,
-    provider: 'Somerset SCITT',
+    provider: 'Somerset SCITT consortium',
     course: 'Upper Primary with Modern Foreign Languages (XR9C)',
     statusA: 'new',
     status: {
