@@ -886,7 +886,13 @@ module.exports = {
         date: '2019-09-16'
       },
       offered: {
-        date: '2019-10-01'
+        date: '2019-10-01',
+        'standard-conditions': [
+          { description: 'a', complete: false }
+        ],
+        conditions: [
+          { description: 'b', complete: false }
+        ]
       }
     },
     'personal-details': {

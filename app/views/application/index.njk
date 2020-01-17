@@ -99,10 +99,12 @@
     </div>
   </div>
 
-  {% if application.status.offer.conditions or application.status.offer["standard-conditions"] %}
+  {% if application.status.offered.conditions or application.status.offered["standard-conditions"] %}
     <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Conditions</h2>
 
-    TASK LIST GOES HERE
+    {{appTaskList({
+      items: conditions
+    })}}
 
   {% endif %}
 

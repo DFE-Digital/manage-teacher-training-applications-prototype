@@ -96,9 +96,43 @@ module.exports = router => {
   // Render application page
   router.all('/application/:applicationId', (req, res) => {
     const success = req.query.success
+    const applicationId = req.params.applicationId
+
+    const application = req.session.data.applications[applicationId]
+    let conditions = [];
+
+    if(application.status.offered) {
+
+      if(application.status.offered['standard-conditions']) {
+        application.status.offered['standard-conditions'].map((item) => {
+          return {
+            text: item.description,
+            href: '#',
+            complete: item.complete
+          }
+        }).forEach((item) => {
+          conditions.push(item)
+        });
+      }
+
+      if(application.status.offered.conditions) {
+
+        application.status.offered.conditions.map((item) => {
+          return {
+            text: item.description,
+            href: '#',
+            complete: item.complete
+          }
+        }).forEach((item) => {
+          conditions.push(item)
+        });
+      }
+
+    }
 
     res.render('application/index', {
-      applicationId: req.params.applicationId,
+      applicationId: applicationId,
+      conditions: conditions,
       status: req.query.status,
       success
     })
@@ -134,15 +168,23 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
 
     // Update application status with offer conditions
-    application.status.offer = {}
+    application.status.offered = {}
     const conditions = []
-    if (req.body['condition-1']) { conditions.push(req.body['condition-1']) }
-    if (req.body['condition-2']) { conditions.push(req.body['condition-2']) }
-    if (req.body['condition-3']) { conditions.push(req.body['condition-3']) }
-    if (req.body['condition-4']) { conditions.push(req.body['condition-4']) }
-    application.status.offer.conditions = conditions
-    application.status.offer['standard-conditions'] = req.body['standard-conditions']
-    application.status.offer.recommendations = req.body.recommendations
+    if (req.body['condition-1']) { conditions.push({ description: req.body['condition-1'], complete: false }) }
+    if (req.body['condition-2']) { conditions.push({ description: req.body['condition-2'], complete: false }) }
+    if (req.body['condition-3']) { conditions.push({ description: req.body['condition-3'], complete: false }) }
+    if (req.body['condition-4']) { conditions.push({ description: req.body['condition-4'], complete: false }) }
+    application.status.offered.conditions = conditions
+
+    application.status.offered['standard-conditions'] = req.body['standard-conditions'].map((item) => {
+      return {
+        description: item,
+        complete: false
+      }
+    })
+
+    // application.status.offered['standard-conditions'] = req.body['standard-conditions']
+    application.status.offered.recommendations = req.body.recommendations
 
     res.redirect(`/application/${applicationId}/confirm?type=offer`)
   })
