@@ -108,7 +108,11 @@ module.exports = router => {
           return {
             text: item.description,
             href: '#',
-            complete: item.complete
+            complete: item.complete,
+            tag: {
+              classes: 'app-tag--grey',
+              text: 'Incomplete'
+            }
           }
         }).forEach((item) => {
           conditions.push(item)
@@ -116,12 +120,15 @@ module.exports = router => {
       }
 
       if(application.status.offered.conditions) {
-
         application.status.offered.conditions.map((item) => {
           return {
             text: item.description,
             href: '#',
-            complete: item.complete
+            complete: item.complete,
+            tag: {
+              classes: 'app-tag--grey',
+              text: 'Incomplete'
+            }
           }
         }).forEach((item) => {
           conditions.push(item)

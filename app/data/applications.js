@@ -888,10 +888,10 @@ module.exports = {
       offered: {
         date: '2019-10-01',
         'standard-conditions': [
-          { description: 'a', complete: false }
+          { description: 'Fitness to teach check', complete: false }
         ],
         conditions: [
-          { description: 'b', complete: false }
+          { description: 'You need to take English speaking course', complete: false }
         ]
       }
     },
