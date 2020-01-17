@@ -75,20 +75,20 @@
         {% elseif application.statusA == 'offered' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
-            text: "Change offer",
-            href: "/application/" + application.id + "/decision"
+            text: "Change response",
+            href: "/application/" + application.id + "/change-response"
           })}}
         {% elseif application.statusA == 'accepted' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
-            text: "Cancel offer",
-            href: "/application/" + application.id + "/decision"
+            text: "Change response",
+            href: "/application/" + application.id + "/change-response"
           })}}
         {% elseif application.statusA == 'conditions-met' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
             text: "Enroll candidate",
-            href: "/application/" + application.id + "/decision"
+            href: "/application/" + application.id + "/enroll-candidate"
           })}}
         {% endif %}
 
@@ -98,6 +98,13 @@
       </div>
     </div>
   </div>
+
+  {% if application.status.offer.conditions or application.status.offer["standard-conditions"] %}
+    <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Conditions</h2>
+
+    TASK LIST GOES HERE
+
+  {% endif %}
 
   <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Assistance needed to become a teacher</h2>
   {% include "_includes/application/reasonable-adjustments.njk" %}

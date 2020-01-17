@@ -1,0 +1,166 @@
+{% extends "_form-wide.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set parent = "Application for " + application.course %}
+{% set title = "Cancel offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/change-response"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+  {% include "_includes/application-summary.njk" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if reasons %}
+        <h2 class="govuk-heading-m">Reason for rejection</h2>
+        {{ govukCheckboxes({
+          classes: "govuk-checkboxes--small",
+          idPrefix: "reasons-qualifications",
+          name: "reasons",
+          fieldset: {
+            legend: {
+              text: "Qualifications",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [{
+            value: "No Maths GCSE grade 4 (C) or above",
+            text: "No Maths GCSE grade 4 (C) or above"
+          }, {
+            value: "No English GCSE grade 4 (C) or above",
+            text: "No English GCSE grade 4 (C) or above"
+          }, {
+            value: "No Science GCSE grade 4 (C) or above",
+            text: "No Science GCSE grade 4 (C) or above"
+          } if isPrimaryCourse, {
+            value: "No degree/degree doesn’t meet course requirements",
+            text: "No degree/degree doesn’t meet course requirements"
+          }]
+        }) }}
+
+        {{ govukCheckboxes({
+          classes: "govuk-checkboxes--small",
+          idPrefix: "reasons-assessment",
+          name: "reasons",
+          fieldset: {
+            legend: {
+              text: "Application and assessment",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [{
+            value: "Candidate did not show enough subject knowledge at this&nbsp;time",
+            html: "Candidate did not show enough subject knowledge at this&nbsp;time"
+          } if not isPrimaryCourse, {
+            value: "Candidate could improve their personal statement next&nbsp;time",
+            html: "Candidate could improve their personal statement next&nbsp;time"
+          }, {
+            value: "Candidate could improve at the interview or assessment stage next&nbsp;time",
+            html: "Candidate could improve at the interview or assessment stage next&nbsp;time"
+          }, {
+            value: "Candidate didn’t reply to the interview offer",
+            text: "Candidate didn’t reply to the interview offer"
+          }, {
+            value: "Candidate didn’t come to the interview or&nbsp;assessment",
+            html: "Candidate didn’t come to the interview or&nbsp;assessment"
+          }, {
+            value: "Candidate could improve how they interact with pupils in the assessment next&nbsp;time",
+            html: "Candidate could improve how they interact with pupils in the assessment next&nbsp;time"
+          }]
+        }) }}
+
+        {{ govukCheckboxes({
+          classes: "govuk-checkboxes--small",
+          idPrefix: "reasons-suitability",
+          name: "reasons",
+          fieldset: {
+            legend: {
+              text: "Suitability and safeguarding",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [{
+            value: "We think some of the information given by the candidate wasn’t true or their own&nbsp;work",
+            html: "We think some of the information given by the candidate wasn’t true or their own&nbsp;work"
+          }, {
+            value: "References didn’t validate candidate’s suitability for the&nbsp;course",
+            html: "References didn’t validate candidate’s suitability for the&nbsp;course"
+          }, {
+            value: "Candidate is unsuitable for teaching at this&nbsp;stage",
+            html: "Candidate is unsuitable for teaching at this&nbsp;stage"
+          }]
+        }) }}
+
+        {{ govukCheckboxes({
+          classes: "govuk-checkboxes--small",
+          idPrefix: "reasons-programme",
+          name: "reasons",
+          fieldset: {
+            legend: {
+              text: "Training programme",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [{
+            value: "Training programme was full by the time we reached a decision",
+            text: "Training programme was full by the time we reached a decision"
+          }, {
+            value: "Training programme was withdrawn",
+            text: "Training programme was withdrawn"
+          }]
+        }) }}
+
+        {% set otherHtml %}
+          {{ govukInput({
+            id: "other-reason",
+            name: "other-reason",
+            label: {
+              text: "Please specify"
+            }
+          }) }}
+        {% endset %}
+
+        {{ govukCheckboxes({
+          classes: "govuk-checkboxes--small",
+          idPrefix: "reasons-other",
+          name: "reasons",
+          fieldset: {
+            legend: {
+              text: "Other",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [{
+            value: "Other",
+            text: "Other reason not listed above",
+            conditional: {
+              html: otherHtml
+            }
+          }]
+        }) }}
+      {% endif %}
+
+      {{ govukTextarea({
+        id: "comments",
+        name: "comments",
+        label: {
+          text: "Explain why you're cancelling the offer",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "We'll forward your feedback to the candidate"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

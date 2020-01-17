@@ -116,6 +116,18 @@ module.exports = router => {
     }
   })
 
+  // Change decision
+  router.post('/application/:applicationId/change-response', (req, res) => {
+    const applicationId = req.params.applicationId
+    const { decision } = req.body
+
+    if (decision === 'different-offer') {
+      res.redirect(`/application/${applicationId}/different-offer`)
+    } else {
+      res.redirect(`/application/${applicationId}/cancel-offer`)
+    }
+  })
+
   // Submit offer conditions
   router.post('/application/:applicationId/offer', (req, res) => {
     const applicationId = req.params.applicationId
