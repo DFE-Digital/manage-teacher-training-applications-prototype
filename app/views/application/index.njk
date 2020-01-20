@@ -75,14 +75,14 @@
         {% elseif application.statusA == 'offered' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
-            text: "Change response",
-            href: "/application/" + application.id + "/change-response"
+            text: "Edit response",
+            href: "/application/" + application.id + "/edit-response"
           })}}
         {% elseif application.statusA == 'accepted' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
-            text: "Change response",
-            href: "/application/" + application.id + "/change-response"
+            text: "Edit response",
+            href: "/application/" + application.id + "/edit-response"
           })}}
         {% elseif application.statusA == 'conditions-met' %}
           {{govukButton({

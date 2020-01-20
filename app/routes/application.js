@@ -158,7 +158,7 @@ module.exports = router => {
   })
 
   // Change decision
-  router.post('/application/:applicationId/change-response', (req, res) => {
+  router.post('/application/:applicationId/edit-response', (req, res) => {
     const applicationId = req.params.applicationId
     const { decision } = req.body
 
