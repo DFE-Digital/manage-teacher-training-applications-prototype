@@ -1,4 +1,4 @@
-{% extends "_form-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
@@ -19,29 +19,74 @@
   }) if not data.bare }}
 {% endblock %}
 
-{% block primary %}
-  {% set isPrimaryCourse = application.course.includes("Primary") %}
-  {{ govukRadios({
-    idPrefix: "status",
-    classes: "govuk-!-margin-top-2",
-    name: "decision",
-    items: [{
-      value: "offer",
-      text: "Make an offer",
-      hint: {
-        text: "Including any conditions or recommendations"
+{% block content %}
+  {# {% set isPrimaryCourse = application.course.includes("Primary") %} #}
+  <h1 class="govuk-heading-xl">Respond to application</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Candidate name"
+            },
+            value: {
+              html: application['personal-details']['given-name'] + ' ' +  application['personal-details']['family-name']
+            }
+          },
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+
+
+  <form action="{{ formaction | default('') }}" method="post">
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          html: "Choose response",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: true
+        }
       },
-      checked: checked("decision", "offer")
-    }, {
-      value: "reject",
-      text: "Reject application",
-      checked: checked("decision", "reject")
-    }]
-  }) }}
+      idPrefix: "status",
+      classes: "govuk-!-margin-top-2",
+      name: "decision",
+      items: [{
+        value: "offer",
+        text: "Make an offer",
+        hint: {
+          text: "Including any conditions or recommendations"
+        },
+        checked: checked("decision", "offer")
+      }, {
+        value: "reject",
+        text: "Reject application",
+        checked: checked("decision", "reject")
+      }]
+    }) }}
 
-  {{ govukButton({
-    text: "Continue"
-  }) }}
-
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  </form>
   <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
 {% endblock %}
