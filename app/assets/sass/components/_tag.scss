@@ -12,7 +12,7 @@
 
 .app-tag--turquoise,
 .app-tag--offered {
-  color: govuk-shade(govuk-colour("turquoise"), 40);
+  color: govuk-shade(govuk-colour("turquoise"), 60);
   background: govuk-tint(govuk-colour("turquoise"), 70);
 }
 
@@ -23,20 +23,23 @@
 }
 
 .app-tag--orange,
-.app-tag--declined {
+.app-tag--declined,
+.app-tag--withdrawn {
   color: govuk-shade(govuk-colour("orange"), 55);
   background: govuk-tint(govuk-colour("orange"), 70);
 }
 
 .app-tag--red,
 .app-tag--rejected {
-  color: govuk-shade(govuk-colour("red"), 20);
+  color: govuk-shade(govuk-colour("red"), 30);
   background: govuk-tint(govuk-colour("red"), 80);
 }
 
-.app-tag--green {
+.app-tag--green,
+.app-tag--conditions-met {
   color: govuk-shade(govuk-colour("green"), 20);
   background: govuk-tint(govuk-colour("green"), 80);
+  white-space: nowrap;
 }
 
 
