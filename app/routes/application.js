@@ -165,7 +165,7 @@ module.exports = router => {
     if (decision === 'different-offer') {
       res.redirect(`/application/${applicationId}/different-offer`)
     } else {
-      res.redirect(`/application/${applicationId}/cancel-offer`)
+      res.redirect(`/application/${applicationId}/withdraw-offer`)
     }
   })
 

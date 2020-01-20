@@ -1,0 +1,41 @@
+{% extends "_layout.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set parent = "Application for " + application.course %}
+{% set title = "Withdraw offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/edit-response"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">Withdraw offer</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/application-summary.njk" %}
+      <form>
+
+        {{ govukTextarea({
+          id: "comments",
+          name: "comments",
+          label: {
+            text: "Explain why you're withdrawing the offer",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "We'll forward your feedback to the candidate"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
