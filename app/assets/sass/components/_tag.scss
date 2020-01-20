@@ -23,7 +23,8 @@
 }
 
 .app-tag--orange,
-.app-tag--declined {
+.app-tag--declined,
+.app-tag--withdrawn {
   color: govuk-shade(govuk-colour("orange"), 55);
   background: govuk-tint(govuk-colour("orange"), 70);
 }

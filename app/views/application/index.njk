@@ -23,6 +23,13 @@
     type: "success",
     icon: false
   }) if success }}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash }}
+
 {% endblock %}
 
 {% block primary %}
@@ -84,6 +91,12 @@
             text: "Edit response",
             href: "/application/" + application.id + "/edit-response"
           })}}
+        {% elseif application.statusA == 'withdrawn' %}
+          {# {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Edit response",
+            href: "/application/" + application.id + "/edit-response"
+          })}} #}
         {% elseif application.statusA == 'conditions-met' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",

@@ -70,6 +70,10 @@ module.exports = (env) => {
         id = 'rejected'
         title = 'Rejected'
         break
+      case ('withdrawn' in status):
+        id = 'withdrawn'
+        title = 'Withdrawn'
+        break
       case ('offered' in status) && ('declined' in status):
         id = 'declined'
         title = 'Declined'

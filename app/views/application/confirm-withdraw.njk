@@ -16,25 +16,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-xl">{{title}}</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
 
-        {% include "_includes/application-summary.njk" %}
+      {% include "_includes/application-summary.njk" %}
 
-        {# {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Reasons for withdrawal"
-            },
-            value: {
-              text: data.comments
-            }
-          }]
-        }) if data.comments}} #}
+      {# {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Reasons for withdrawal"
+          },
+          value: {
+            text: data.comments
+          }
+        }]
+      }) if data.comments}} #}
 
-      {{ govukButton({
-        text: "Confirm withdrawal",
-        classes: "govuk-button--warning"
-      }) }}
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm withdrawal",
+          classes: "govuk-button--warning"
+        }) }}
+      </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>

@@ -137,11 +137,18 @@ module.exports = router => {
 
     }
 
+    var successFlash = req.flash('success')
+
+    if (successFlash[0] === 'application-withdrawn') {
+      var flash = "Application successfully withdrawn";
+    }
+
     res.render('application/index', {
       applicationId: applicationId,
       conditions: conditions,
       status: req.query.status,
-      success
+      success,
+      flash: flash
     })
   })
 
@@ -169,15 +176,29 @@ module.exports = router => {
     }
   })
 
+   // Show rejection options
+   router.get('/application/:applicationId/withdraw', (req, res) => {
+    res.render('application/withdraw', {
+      applicationId: req.params.applicationId
+    })
+  })
+
   // post comments about withdrawing
   router.post('/application/:applicationId/withdraw', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/confirm-withdraw`)
+  })
+
+  // post comments about withdrawing
+  router.post('/application/:applicationId/confirm-withdraw', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
     // Update application status with reject reasons
-    application.status.withdraw = {}
-    application.status.withdraw.comments = req.body.comments
-    res.redirect(`/application/${applicationId}/confirm-withdraw`)
+    application.statusA = "withdrawn";
+    application.status.withdrawn = {}
+    application.status.withdrawn.comments = req.body.comments
+    req.flash('success', 'application-withdrawn')
+    res.redirect(`/application/${applicationId}`)
   })
 
 
