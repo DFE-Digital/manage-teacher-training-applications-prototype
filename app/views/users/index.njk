@@ -1,0 +1,73 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Users" %}
+
+{% block beforePageTitle %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">Application status changed to ‘" + status | status("title") + "’</h2>",
+    type: "success",
+    icon: false
+  }) if success }}
+{% endblock %}
+
+{% block primary %}
+
+  {{govukButton({
+    text: 'Invite user',
+    href: '/users/new'
+  })}}
+
+  <div class="govuk-grid-ro">
+    <div class="govuk-grid-column-two-third">
+
+      {{ govukTable({
+        head: [
+          {
+            text: "Email address"
+          },
+          {
+            text: "First name"
+          },
+          {
+            text: "Last name"
+          },
+           {
+            text: "Providers"
+          }
+        ],
+        rows: [
+          [
+            {
+              html: '<a href="#">harry.potter@wizardschool.com</a>'
+            },
+            {
+              text: "Harry"
+            },
+            {
+              text: "Potter"
+            },
+            {
+              text: "Somerset SCITT consortium, The Beach Teaching School"
+            }
+          ],
+          [
+            {
+              html: '<a href="#">hermione.granger@wizardschoo.com</a>'
+            },
+            {
+              text: "Hermione"
+            },
+            {
+              text: "Granger"
+            },
+            {
+              text: "The Beach Teaching School"
+            }
+          ]
+        ]
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

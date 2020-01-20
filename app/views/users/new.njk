@@ -1,0 +1,94 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Invite a user" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Users",
+      href: "/users"
+    }, {
+      text: title
+    }]
+  }) if not data.bare }}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form>
+        {{ govukInput({
+          label: {
+            text: "Email address",
+            classes: "govuk-label--m"
+          },
+          id: "email-address",
+          name: "email-address",
+          type: "email",
+          autocomplete: "email",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "First name",
+            classes: "govuk-label--m"
+          },
+          id: "first-name",
+          name: "first-name",
+          type: "text",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name",
+            classes: "govuk-label--m"
+          },
+          id: "last-name",
+          name: "last-name",
+          type: "text",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+        {{ govukCheckboxes({
+          idPrefix: "waste",
+          name: "waste",
+          fieldset: {
+            legend: {
+              text: "Choose providers",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select at least one provider"
+          },
+          items: [
+            {
+              value: "Somerset SCITT consortium",
+              text: "Somerset SCITT consortium"
+            },
+            {
+              value: "The Beach Teaching School",
+              text: "The Beach Teaching School"
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Invite user"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

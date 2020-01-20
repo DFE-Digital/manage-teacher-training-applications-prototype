@@ -63,6 +63,14 @@
     containerClasses: "govuk-width-container",
     navigation: ([{
       href: "/",
+      text: "Applications",
+      active: primaryNavId == 'applications'
+    }, {
+      href: "/users",
+      text: "Users",
+      active: primaryNavId == 'users'
+    }, {
+      href: "/",
       text: "Sign out (Jane Doe)"
     }] if isSignedOut != true)
   }) if not data.bare }}
