@@ -165,9 +165,21 @@ module.exports = router => {
     if (decision === 'different-offer') {
       res.redirect(`/application/${applicationId}/different-offer`)
     } else {
-      res.redirect(`/application/${applicationId}/withdraw-offer`)
+      res.redirect(`/application/${applicationId}/withdraw`)
     }
   })
+
+  // post comments about withdrawing
+  router.post('/application/:applicationId/withdraw', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    // Update application status with reject reasons
+    application.status.withdraw = {}
+    application.status.withdraw.comments = req.body.comments
+    res.redirect(`/application/${applicationId}/confirm-withdraw`)
+  })
+
 
   // Submit offer conditions
   router.post('/application/:applicationId/offer', (req, res) => {
