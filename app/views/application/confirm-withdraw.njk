@@ -1,0 +1,42 @@
+{% extends "_layout.njk" %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% set title = "Confirm that you want to withdraw the offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + '/withdraw'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">{{title}}</h1>
+
+        {% include "_includes/application-summary.njk" %}
+
+        {# {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Reasons for withdrawal"
+            },
+            value: {
+              text: data.comments
+            }
+          }]
+        }) if data.comments}} #}
+
+      {{ govukButton({
+        text: "Confirm withdrawal",
+        classes: "govuk-button--warning"
+      }) }}
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}
