@@ -18,18 +18,26 @@
 
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
+      {% if data.comments %}
+        <h2 class="govuk-heading-m">Offer details</h2>
+      {% endif %}
+
       {% include "_includes/application-summary.njk" %}
 
-      {# {{ govukSummaryList({
-        rows: [{
-          key: {
-            text: "Reasons for withdrawal"
-          },
-          value: {
-            text: data.comments
-          }
-        }]
-      }) if data.comments}} #}
+      {% if data.comments %}
+        <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Reasons for withdrawal"
+            },
+            value: {
+              text: data.comments
+            }
+          }]
+        })}}
+      {% endif %}
 
       <form method="post">
         {{ govukButton({
