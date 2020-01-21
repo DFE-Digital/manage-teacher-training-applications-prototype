@@ -69,7 +69,6 @@ module.exports = router => {
       }
     }
 
-
     res.render('index', {
       applications: apps,
       selectedFilters: selectedFilters
@@ -140,7 +139,7 @@ module.exports = router => {
     var successFlash = req.flash('success')
 
     if (successFlash[0] === 'application-withdrawn') {
-      var flash = "Application successfully withdrawn";
+      var flash = "Offer successfully withdrawn";
     }
 
     res.render('application/index', {

@@ -413,6 +413,9 @@ module.exports = {
       },
       offered: {
         date: '2019-09-23'
+      },
+      withdrawn: {
+        date: '2019-09-23'
       }
     },
     'personal-details': {
