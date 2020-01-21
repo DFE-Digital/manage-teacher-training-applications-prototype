@@ -1,5 +1,6 @@
 {% extends "_content-wide.njk" %}
 
+{% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set status = application.status %}
 {% set parent = "Application for " + application.course %}
