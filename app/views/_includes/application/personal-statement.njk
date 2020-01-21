@@ -12,6 +12,11 @@
   <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Any support needed</h3>
 {% endset %}
 
+{% set suitabilityKeyHtml %}
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Safeguarding</h3>
+  <p class="govuk-hint">We ask the candidate if they want to disclose anything before their DBS check.</p>
+{% endset %}
+
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -40,6 +45,13 @@
     },
     value: {
       html: application["reasonable-adjustments"] | nl2br or "—"
+    }
+  }, {
+    key: {
+      html: suitabilityKeyHtml
+    },
+    value: {
+      html: application["suitability"] | nl2br or "Nothing disclosed"
     }
   }]
 }) }}
