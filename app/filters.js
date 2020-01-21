@@ -65,27 +65,30 @@ module.exports = (env) => {
 
   filters.status = (status, type) => {
     let id, title
-    switch (true) {
-      case ('rejected' in status):
-        id = 'rejected'
+
+    if('withdrawn' in status) {
+      id = 'withdrawn'
+      title = 'Withdrawn'
+    } else if('rejected' in status) {
+      id = 'rejected'
         title = 'Rejected'
-        break
-      case ('offered' in status) && ('declined' in status):
-        id = 'declined'
-        title = 'Offer declined'
-        break
-      case ('offered' in status) && ('accepted' in status):
-        id = 'accepted'
-        title = 'Offer accepted'
-        break
-      case ('offered' in status):
-        id = 'offered'
-        title = 'Offer made'
-        break
-      default:
-        id = 'new'
-        title = 'New'
+    } else if('declined' in status) {
+      id = 'declined'
+      title = 'Declined'
+    } else if('conditions-met' in status) {
+      id = 'conditions-met'
+      title = 'Conditions met'
+    } else if('accepted' in status) {
+      id = 'accepted'
+      title = 'Accepted'
+    } else if('offered' in status) {
+      id = 'offered'
+      title = 'Offered'
+    } else {
+      id = 'new'
+      title = 'New'
     }
+
     if (type === 'title') {
       return title
     }

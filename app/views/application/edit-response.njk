@@ -1,10 +1,9 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set parent = "Application for " + application.course %}
-{% set title = "Respond to application" %}
+{# {% set parent = "Application for " + application.course %} #}
+{% set title = "Edit response" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -22,39 +21,13 @@
 
 {% block content %}
   {# {% set isPrimaryCourse = application.course.includes("Primary") %} #}
-  <h1 class="govuk-heading-xl">Respond to application</h1>
+
+  <h1 class="govuk-heading-xl">Edit response</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Candidate name"
-            },
-            value: {
-              html: application['personal-details']['given-name'] + ' ' +  application['personal-details']['family-name']
-            }
-          },
-          {
-            key: {
-              text: "Course"
-            },
-            value: {
-              html: application.course
-            }
-          },
-          {
-            key: {
-              text: "Provider"
-            },
-            value: {
-              html: application.provider
-            }
-          }
-        ]
-      }) }}
+      {% include "_includes/application-summary.njk" %}
     </div>
   </div>
 
@@ -72,15 +45,15 @@
       classes: "govuk-!-margin-top-2",
       name: "decision",
       items: [{
-        value: "offer",
-        text: "Make an offer",
+        value: "different-offer",
+        text: "Offer a different course",
         hint: {
           text: "Including any conditions or recommendations"
         },
         checked: checked("decision", "offer")
       }, {
         value: "reject",
-        text: "Reject application",
+        text: "Withdraw offer",
         checked: checked("decision", "reject")
       }]
     }) }}
@@ -89,5 +62,6 @@
       text: "Continue"
     }) }}
   </form>
+
   <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
 {% endblock %}

@@ -43,6 +43,11 @@
           value: 'accepted',
           text: 'Accepted',
           checked: checked("status", "accepted") == 'checked'
+        },
+        {
+          value: 'conditions-met',
+          text: 'Conditions met',
+          checked: checked("status", "conditions-met") == 'checked'
         }
       ]
     }) }}
@@ -157,7 +162,7 @@
                       {{ govukTag({
                         classes: "app-tag--" + a.status | status,
                         text: a.status | status | capitalize
-                      }) }}
+                      })}}
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
                   </tr>

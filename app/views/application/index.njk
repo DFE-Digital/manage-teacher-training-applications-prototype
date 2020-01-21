@@ -24,6 +24,13 @@
     type: "success",
     icon: false
   }) if success }}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash }}
+
 {% endblock %}
 
 {% block primary %}
@@ -67,11 +74,38 @@
         {% endif %}
         </dl>
 
-        {{ govukButton({
-          classes: "govuk-!-margin-bottom-4",
-          text: "Respond to application",
-          href: "/application/" + application.id + "/decision"
-        }) if not (status.rejected or status.declined or status.accepted or status.offer or data.bare) }}
+        {% if application.statusA == 'new' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Respond to application",
+            href: "/application/" + application.id + "/decision"
+          })}}
+        {% elseif application.statusA == 'offered' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Edit response",
+            href: "/application/" + application.id + "/edit-response"
+          })}}
+        {% elseif application.statusA == 'accepted' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Edit response",
+            href: "/application/" + application.id + "/edit-response"
+          })}}
+        {% elseif application.statusA == 'withdrawn' %}
+          {# {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Edit response",
+            href: "/application/" + application.id + "/edit-response"
+          })}} #}
+        {% elseif application.statusA == 'conditions-met' %}
+          {{govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: "Enroll candidate",
+            href: "/application/" + application.id + "/enroll-candidate"
+          })}}
+          <p><a href="#">Cancel offer</a></p>
+        {% endif %}
 
         {% if not data.bare %}
         <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
@@ -79,6 +113,19 @@
       </div>
     </div>
   </div>
+
+  {% if application.status.offered.conditions or application.status.offered["standard-conditions"] %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Conditions</h2>
+
+        {{appTaskList({
+          items: conditions
+        })}}
+
+      </div>
+    </div>
+  {% endif %}
 
   <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Assistance needed to become a teacher</h2>
   {% include "_includes/application/reasonable-adjustments.njk" %}

@@ -3,7 +3,7 @@
 {% block content %}
   {% block beforePageTitle %}{% endblock %}
 
-  <form action="{{ formaction | default('#') }}" method="post">
+  <form action="{{ formaction | default('') }}" method="post">
     {% set legendHtml %}
       {% if parent %}<span class="govuk-caption-xl">{{ parent }}</span>{% endif %}
       {{ title | safe }}
@@ -11,7 +11,7 @@
     {% call govukFieldset({
       legend: {
         html: legendHtml,
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-8",
+        classes: "govuk-fieldset__legend--xl",
         isPageHeading: true
       }
     }) %}
