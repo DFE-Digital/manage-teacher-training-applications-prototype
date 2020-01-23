@@ -161,7 +161,7 @@
                     <td class="govuk-table__cell">
                       {{ govukTag({
                         classes: "app-tag--" + a.status | status,
-                        text: a.status | status | capitalize
+                        text: a.status | status("title") | capitalize
                       })}}
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>

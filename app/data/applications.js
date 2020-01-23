@@ -406,7 +406,7 @@ module.exports = {
     id: 101,
     provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
-    statusA: 'offered',
+    statusA: 'withdrawn',
     status: {
       submitted: {
         date: '2019-09-01'
