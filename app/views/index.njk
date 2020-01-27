@@ -137,12 +137,11 @@
 
           {% if applications.length %}
 
-            <table class="govuk-table" data-module="sortable-tabe">
+            <table class="govuk-table" data-module="sortable-tabl">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
                   <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Provider</th>
                   <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
                   <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
                 </tr>
@@ -156,8 +155,8 @@
                     <td class="govuk-table__cell">
                       <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
                     </td>
-                    <td class="govuk-table__cell">{{ a.course }}</td>
-                    <td class="govuk-table__cell">{{ a.provider }}</td>
+                    <td class="govuk-table__cell">
+                    <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span> {{ a.course }}</td>
                     <td class="govuk-table__cell">
                       {{ govukTag({
                         classes: "app-tag--" + a.status | status,
