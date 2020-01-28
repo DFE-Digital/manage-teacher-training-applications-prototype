@@ -9,7 +9,7 @@ module.exports = router => {
   router.all('/', (req, res) => {
 
     // Clone and turn into an array
-    let apps = Object.values(applications).reverse();
+    let apps = Object.values(req.session.data.applications).reverse();
     const { status, provider } = req.query
 
     let statuses = status && (Array.isArray(status) ? status : [ status ].filter((status) => {
@@ -140,6 +140,14 @@ module.exports = router => {
 
     if (successFlash[0] === 'application-withdrawn') {
       var flash = "Offer successfully withdrawn";
+    }
+
+    if (successFlash[0] === 'conditions-met') {
+      var flash = "Conditions successfully marked as met";
+    }
+
+    if (successFlash[0] === 'conditions-not-met') {
+      var flash = "Conditions successfully marked as not met";
     }
 
     res.render('application/index', {
@@ -286,8 +294,26 @@ module.exports = router => {
   })
 
   // Render other application pages
-  router.all('/application/:applicationId/:view', (req, res) => {
-    res.render(`application/${req.params.view}`, {
+  router.get('/application/:applicationId/edit-response', (req, res) => {
+    res.render(`application/edit-response`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/edit-respoinse', (req, res) => {
+    res.render(`application/edit-response`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/confirm-withdraw', (req, res) => {
+    res.render(`application/confirm-withdraw`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/withdraw', (req, res) => {
+    res.render(`application/withdraw`, {
       applicationId: req.params.applicationId
     })
   })

@@ -1,3 +1,7 @@
+.govuk-tag {
+  white-space: nowrap;
+}
+
 .app-tag--grey,
 .app-tag--empty {
   color: govuk-shade(govuk-colour("dark-grey"), 30);
@@ -30,7 +34,8 @@
 }
 
 .app-tag--red,
-.app-tag--rejected {
+.app-tag--rejected,
+.app-tag--conditions-not-met {
   color: govuk-shade(govuk-colour("red"), 30);
   background: govuk-tint(govuk-colour("red"), 80);
 }
