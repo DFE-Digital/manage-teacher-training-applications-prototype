@@ -354,7 +354,7 @@ module.exports = {
     id: 7,
     provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
-    statusA: 'rejected',
+    statusA: 'withdrawn-by-candidate',
     status: {
       submitted: {
         date: '2019-09-15'
@@ -362,7 +362,7 @@ module.exports = {
       offered: {
         date: '2019-08-10'
       },
-      rejected: {
+      'withdrawn-by-candidate': {
         date: '2019-09-12'
       }
     },
@@ -412,7 +412,7 @@ module.exports = {
     id: 101,
     provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
-    statusA: 'withdrawn',
+    statusA: 'withdrawn-by-us',
     status: {
       submitted: {
         date: '2019-09-01'
@@ -420,7 +420,7 @@ module.exports = {
       offered: {
         date: '2019-09-23'
       },
-      withdrawn: {
+      'withdrawn-by-us': {
         date: '2019-09-23'
       }
     },

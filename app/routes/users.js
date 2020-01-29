@@ -1,15 +1,17 @@
 module.exports = router => {
 
   router.get('/users', (req, res) => {
-    // var successFlash = req.flash('success')
 
-    // if (successFlash[0] === 'application-withdrawn') {
-    //   var flash = "Offer successfully withdrawn";
-    // }
+    let flash;
 
+    // real flash
+    flash = (req.flash('success')[0] == 'user-invited') ? "User successfully invited" : null
+
+    // fake flash in query string for taking screenshots
+    flash = req.query.flash == 'user-invited' ? "User successfully invited" : null
 
     res.render('users/index', {
-      flash: (req.flash('success')[0] == 'user-invited') ? "User successfully invited" : null
+      flash: flash
     })
   })
 

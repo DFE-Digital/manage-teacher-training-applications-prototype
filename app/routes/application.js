@@ -201,9 +201,9 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
 
     // Update application status with reject reasons
-    application.statusA = "withdrawn";
-    application.status.withdrawn = {}
-    application.status.withdrawn.comments = req.body.comments
+    application.statusA = "withdrawn-by-us";
+    application.status['withdrawn-by-us'] = {}
+    application.status['withdrawn-by-us'].comments = req.body.comments
     req.flash('success', 'application-withdrawn')
     res.redirect(`/application/${applicationId}`)
   })
