@@ -9,7 +9,7 @@ module.exports = router => {
   router.all('/', (req, res) => {
 
     // Clone and turn into an array
-    let apps = Object.values(applications).reverse();
+    let apps = Object.values(req.session.data.applications).reverse();
     const { status, provider } = req.query
 
     let statuses = status && (Array.isArray(status) ? status : [ status ].filter((status) => {
