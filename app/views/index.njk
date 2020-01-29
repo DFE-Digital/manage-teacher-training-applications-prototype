@@ -20,6 +20,21 @@
       },
       items: [
         {
+          value: 'accepted',
+          text: 'Accepted',
+          checked: checked("status", "accepted") == 'checked'
+        },
+        {
+          value: 'conditions-met',
+          text: 'Conditions met',
+          checked: checked("status", "conditions-met") == 'checked'
+        },
+        {
+          value: 'declined',
+          text: 'Declined',
+          checked: checked("status", "declined") == 'checked'
+        },
+        {
           value: 'new',
           text: 'New',
           checked: checked("status", "new") == 'checked'
@@ -35,19 +50,14 @@
           checked: checked("status", "rejected") == 'checked'
         },
         {
-          value: 'declined',
-          text: 'Declined',
-          checked: checked("status", "declined") == 'checked'
+          value: 'withdrawn-by-candidate',
+          text: 'Withdrawn by candidate',
+          checked: checked("status", "withdrawn-by-candidate") == 'checked'
         },
         {
-          value: 'accepted',
-          text: 'Accepted',
-          checked: checked("status", "accepted") == 'checked'
-        },
-        {
-          value: 'conditions-met',
-          text: 'Conditions met',
-          checked: checked("status", "conditions-met") == 'checked'
+          value: 'withdrawn-by-us',
+          text: 'Withdrawn by us',
+          checked: checked("status", "withdrawn-by-us") == 'checked'
         }
       ]
     }) }}

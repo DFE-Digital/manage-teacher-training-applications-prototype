@@ -1,3 +1,8 @@
+.govuk-tag {
+  white-space: nowrap;
+}
+
+
 .app-tag--grey,
 .app-tag--empty {
   color: govuk-shade(govuk-colour("dark-grey"), 30);
@@ -24,7 +29,8 @@
 
 .app-tag--orange,
 .app-tag--declined,
-.app-tag--withdrawn {
+.app-tag--withdrawn-by-us,
+.app-tag--withdrawn-by-candidate {
   color: govuk-shade(govuk-colour("orange"), 55);
   background: govuk-tint(govuk-colour("orange"), 70);
 }
@@ -39,7 +45,5 @@
 .app-tag--conditions-met {
   color: govuk-shade(govuk-colour("green"), 20);
   background: govuk-tint(govuk-colour("green"), 80);
-  white-space: nowrap;
 }
-
 
