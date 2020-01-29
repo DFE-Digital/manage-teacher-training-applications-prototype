@@ -20,13 +20,12 @@
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  padding: 0 10px 0 0;
+  padding: 0 govuk-spacing(3) 0 0;
   position: relative;
   text-align: inherit;
   font-size: 1em;
   margin: 0;
 }
-
 
 [aria-sort]:first-child button {
   right: auto;
@@ -35,7 +34,6 @@
 [aria-sort] button:before {
   content: " \25bc";
   position: absolute;
-  right: (govuk-spacing(1) * -1);
   top: 10px;
   font-size: 0.33em;
 }
@@ -47,7 +45,6 @@
 
 [aria-sort] button:after {
   content: " \25b2";
-  right: (govuk-spacing(1) * -1);
   top: 2px;
   font-size: 0.33em;
 }
@@ -60,13 +57,23 @@
 [aria-sort="ascending"] button:after {
   content: " \25b2";
   font-size: 0.67em;
-  right: (govuk-spacing(1) * -1);
   top: 4px;
 }
 
 [aria-sort="descending"] button:after {
   content: " \25bc";
   font-size: 0.67em;
-  right: (govuk-spacing(1) * -1);
   top: 4px;
+}
+
+[aria-sort="none"] button:before,
+[aria-sort="none"] button:after {
+  right: 3px;
+}
+
+[aria-sort="ascending"] button:before,
+[aria-sort="ascending"] button:after,
+[aria-sort="descending"] button:before,
+[aria-sort="descending"] button:after {
+  right: 0px;
 }
