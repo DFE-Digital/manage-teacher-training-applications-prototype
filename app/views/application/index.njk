@@ -126,6 +126,46 @@
     </div>
   </div>
 
+  <h2 class="govuk-heading-l">Course details</h2>
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Provider"
+      },
+      value: {
+        text: application["provider"]
+      }
+    }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        text: application["course"]
+      }
+    }, {
+      key: {
+        text: "Cycle"
+      },
+      value: {
+        text: '2020'
+      }
+    }, {
+      key: {
+        text: "Preferred location"
+      },
+      value: {
+        text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      }
+    }, {
+      key: {
+        text: "Study mode"
+      },
+      value: {
+        text: 'Full time'
+      }
+    }]
+  }) }}
+
   {% if application.status.offered.conditions or application.status.offered["standard-conditions"] %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
