@@ -10,25 +10,6 @@
         format: "numeric"
       }]) %}
     {% endfor %}
-    {% if reference["comments"] %}
-      <p class="govuk-inset-text govuk-!-margin-top-0 govuk-!-margin-bottom-4 govuk-!-padding-top-0 govuk-!-padding-bottom-0">{{ reference["comments"] }}</p>
-    {% endif %}
-    {% if reference["safe-to-work-with-children"] == "Yes" %}
-      <p class="govuk-body">{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} Referee considers this candidate safe to work with children.</p>
-    {% endif %}
-    {{ govukTable({
-      head: [{
-        text: "Attribute"
-      }, {
-        text: "Rating",
-        format: "numeric"
-      }],
-      rows: rowData
-    }) }}
   {% else %}
     {{ govukTag({
       classes: "app-tag--" + reference.status,
@@ -70,7 +51,7 @@
       html: "Reference"
     },
     value: {
-      html: referenceHtml
+      html: reference['comments'] | nl2br or "—"
     }
   }]
 }) }}
