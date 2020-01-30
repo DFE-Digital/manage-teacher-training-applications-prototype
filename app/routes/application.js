@@ -3,6 +3,7 @@
  */
 
 const applications = require( '../data/applications')
+const utils = require( '../data/application-utils')
 
 module.exports = router => {
   // Render application page
@@ -96,45 +97,7 @@ module.exports = router => {
   router.all('/application/:applicationId', (req, res) => {
     const success = req.query.success
     const applicationId = req.params.applicationId
-
     const application = req.session.data.applications[applicationId]
-    let conditions = [];
-
-    if(application.status.offered) {
-
-      if(application.status.offered['standard-conditions']) {
-        application.status.offered['standard-conditions'].map((item) => {
-          return {
-            text: item.description,
-            href: '#',
-            complete: item.complete,
-            tag: {
-              classes: 'app-tag--grey',
-              text: 'Incomplete'
-            }
-          }
-        }).forEach((item) => {
-          conditions.push(item)
-        });
-      }
-
-      if(application.status.offered.conditions) {
-        application.status.offered.conditions.map((item) => {
-          return {
-            text: item.description,
-            href: '#',
-            complete: item.complete,
-            tag: {
-              classes: 'app-tag--grey',
-              text: 'Incomplete'
-            }
-          }
-        }).forEach((item) => {
-          conditions.push(item)
-        });
-      }
-
-    }
 
     var successFlash = req.flash('success')
 
@@ -152,7 +115,7 @@ module.exports = router => {
 
     res.render('application/index', {
       applicationId: applicationId,
-      conditions: conditions,
+      conditions: utils.getConditions(application),
       status: req.query.status,
       success,
       flash: flash
