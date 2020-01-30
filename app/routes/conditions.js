@@ -1,30 +1,7 @@
 const applications = require( '../data/applications')
+const utils = require( '../data/application-utils')
 
 module.exports = router => {
-
-  function getConditions(application) {
-    let conditions = [];
-    if(application['standard-conditions']) {
-      application['standard-conditions'].map((item) => {
-        return {
-          text: item.description
-        }
-      }).forEach((item) => {
-        conditions.push(item)
-      });
-    }
-
-    if(application.conditions) {
-      application.conditions.map((item) => {
-        return {
-          text: item.description
-        }
-      }).forEach((item) => {
-        conditions.push(item)
-      });
-    }
-    return conditions;
-  }
 
   router.get('/application/:applicationId/mark-conditions', (req, res) => {
     const applicationId = req.params.applicationId;
@@ -32,7 +9,7 @@ module.exports = router => {
 
     res.render('application/mark-conditions', {
       applicationId: applicationId,
-      conditions: getConditions(application)
+      conditions: utils.getConditions(application)
     })
   })
 
@@ -53,7 +30,7 @@ module.exports = router => {
 
     res.render('application/confirm-conditions-met', {
       applicationId: applicationId,
-      conditions: getConditions(application)
+      conditions: utils.getConditions(application)
     })
   })
 
@@ -73,7 +50,7 @@ module.exports = router => {
 
     res.render('application/confirm-conditions-not-met', {
       applicationId: applicationId,
-      conditions: getConditions(application)
+      conditions: utils.getConditions(application)
     })
   })
 

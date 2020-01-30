@@ -129,7 +129,7 @@
   </div>
 
   <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l">Course details</h2>
       {{ govukSummaryList({
         rows: [{
@@ -170,8 +170,8 @@
         }]
       }) }}
 
-      {% if application.status.offered.conditions or application.status.offered["standard-conditions"] %}
-        <h2 class="govuk-heading-l govuk-!-margin-top-8">Conditions</h2>
+      {% if conditions %}
+         <h2 class="govuk-heading-l govuk-!-margin-top-8">Offer conditions</h2>
 
         {{appTaskList({
           items: conditions
