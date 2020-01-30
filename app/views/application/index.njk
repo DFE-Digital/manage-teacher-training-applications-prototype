@@ -128,84 +128,84 @@
     </div>
   </div>
 
-  <h2 class="govuk-heading-l">Course details</h2>
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Provider"
-      },
-      value: {
-        text: application["provider"]
-      }
-    }, {
-      key: {
-        text: "Course"
-      },
-      value: {
-        text: application["course"]
-      }
-    }, {
-      key: {
-        text: "Cycle"
-      },
-      value: {
-        text: '2020'
-      }
-    }, {
-      key: {
-        text: "Preferred location"
-      },
-      value: {
-        text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
-      }
-    }, {
-      key: {
-        text: "Study mode"
-      },
-      value: {
-        text: 'Full time'
-      }
-    }]
-  }) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Course details</h2>
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Provider"
+          },
+          value: {
+            text: application["provider"]
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            text: application["course"]
+          }
+        }, {
+          key: {
+            text: "Cycle"
+          },
+          value: {
+            text: '2020'
+          }
+        }, {
+          key: {
+            text: "Preferred location"
+          },
+          value: {
+            text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+          }
+        }, {
+          key: {
+            text: "Study mode"
+          },
+          value: {
+            text: 'Full time'
+          }
+        }]
+      }) }}
 
-  {% if conditions %}
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-         <h2 class="govuk-heading-m govuk-!-margin-top-8">Offer conditions</h2>
+      {% if conditions %}
+         <h2 class="govuk-heading-l govuk-!-margin-top-8">Offer conditions</h2>
 
         {{appTaskList({
           items: conditions
         })}}
+      {% endif %}
 
-      </div>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Assistance needed to become a teacher</h2>
+      {% include "_includes/application/reasonable-adjustments.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Qualifications</h2>
+      {% include "_includes/application/degrees.njk" %}
+      {% include "_includes/application/gcses.njk" %}
+      {% include "_includes/application/other-qualifications.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Work history</h2>
+      {% include "_includes/application/work-history.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">School experience and volunteering</h2>
+      {% include "_includes/application/school-experience.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Language Skills</h2>
+      {% include "_includes/application/language-skills.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Personal statement</h2>
+      {% include "_includes/application/personal-statement.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
+      {% set referenceId = "first" %}
+      {% include "_includes/application/reference.njk" %}
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+      {% set referenceId = "second" %}
+      {% include "_includes/application/reference.njk" %}
+
     </div>
-  {% endif %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Assistance needed to become a teacher</h2>
-  {% include "_includes/application/reasonable-adjustments.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Qualifications</h2>
-  {% include "_includes/application/degrees.njk" %}
-  {% include "_includes/application/gcses.njk" %}
-  {% include "_includes/application/other-qualifications.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Work history</h2>
-  {% include "_includes/application/work-history.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">School experience and volunteering</h2>
-  {% include "_includes/application/school-experience.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Language Skills</h2>
-  {% include "_includes/application/language-skills.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">Personal statement</h2>
-  {% include "_includes/application/personal-statement.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
-  {% set referenceId = "first" %}
-  {% include "_includes/application/reference.njk" %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
-  {% set referenceId = "second" %}
-  {% include "_includes/application/reference.njk" %}
+  </div>
 {% endblock %}
