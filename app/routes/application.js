@@ -280,4 +280,16 @@ module.exports = router => {
       applicationId: req.params.applicationId
     })
   })
+
+  router.get('/application/:applicationId/decision', (req, res) => {
+    res.render(`application/decision`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/offer', (req, res) => {
+    res.render(`application/offer`, {
+      applicationId: req.params.applicationId
+    })
+  })
 }
