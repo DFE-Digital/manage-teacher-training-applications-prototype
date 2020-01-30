@@ -15,6 +15,12 @@ module.exports = {
         date: '2019-08-05'
       }
     },
+    'standard-conditions': [
+      { description: 'Fitness to teach check', complete: false }
+    ],
+    conditions: [
+      { description: 'You need to take English speaking course', complete: false }
+    ],
     'personal-details': {
       'given-name': 'Eloise',
       'family-name': 'Wells',

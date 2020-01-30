@@ -142,6 +142,14 @@ module.exports = router => {
       var flash = "Offer successfully withdrawn";
     }
 
+    if (successFlash[0] === 'conditions-met') {
+      var flash = "Conditions successfully marked as met";
+    }
+
+    if (successFlash[0] === 'conditions-not-met') {
+      var flash = "Conditions successfully marked as not met";
+    }
+
     res.render('application/index', {
       applicationId: applicationId,
       conditions: conditions,
@@ -286,8 +294,26 @@ module.exports = router => {
   })
 
   // Render other application pages
-  router.all('/application/:applicationId/:view', (req, res) => {
-    res.render(`application/${req.params.view}`, {
+  router.get('/application/:applicationId/edit-response', (req, res) => {
+    res.render(`application/edit-response`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/edit-respoinse', (req, res) => {
+    res.render(`application/edit-response`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/confirm-withdraw', (req, res) => {
+    res.render(`application/confirm-withdraw`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.get('/application/:applicationId/withdraw', (req, res) => {
+    res.render(`application/withdraw`, {
       applicationId: req.params.applicationId
     })
   })

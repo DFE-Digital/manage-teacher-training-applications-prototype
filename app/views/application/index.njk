@@ -89,15 +89,17 @@
         {% elseif application.statusA == 'accepted' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
-            text: "Edit response",
-            href: "/application/" + application.id + "/edit-response"
+            text: "Confirm conditions",
+            href: "/application/" + application.id + "/mark-conditions"
           })}}
-        {% elseif application.statusA == 'withdrawn' %}
+        {% elseif application.statusA == 'withdrawn-by-us' %}
           {# {{govukButton({
             classes: "govuk-!-margin-bottom-4",
             text: "Edit response",
             href: "/application/" + application.id + "/edit-response"
           })}} #}
+        {% elseif application.statusA == 'conditions-not-met' %}
+
         {% elseif application.statusA == 'conditions-met' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",

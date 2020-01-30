@@ -81,6 +81,9 @@ module.exports = (env) => {
     } else if('conditions-met' in status) {
       id = 'conditions-met'
       title = 'Conditions met'
+    } else if('conditions-not-met' in status) {
+      id = 'conditions-not-met'
+      title = 'Conditions not met'
     } else if('accepted' in status) {
       id = 'accepted'
       title = 'Accepted'

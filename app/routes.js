@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 require('./routes/application')(router)
+require('./routes/conditions')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
 
