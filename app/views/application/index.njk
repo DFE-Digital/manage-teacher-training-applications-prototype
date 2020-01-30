@@ -57,15 +57,27 @@
         {% if status.rejected %}
           <dt>Application rejected<dt>
           <dd>{{ status.rejected.date | date("dd LLL yyyy") }}</dd>
+        {% elif status['conditions-met'] %}
+          <dt>Conditions met on<dt>
+          <dd>{{ status['conditions-met'].date | date("dd LLL yyyy") }}</dd>
+        {% elif status['conditions-not-met'] %}
+          <dt>Conditions not met on<dt>
+          <dd>{{ status['conditions-not-met'].date | date("dd LLL yyyy") }}</dd>
+        {% elif status['withdrawn-by-us'] %}
+          <dt>Withdrawn on<dt>
+          <dd>{{ status['withdrawn-by-us'].date | date("dd LLL yyyy") }}</dd>
+        {% elif status['withdrawn-by-candidate'] %}
+          <dt>Withdrawn on<dt>
+          <dd>{{ status['withdrawn-by-candidate'].date | date("dd LLL yyyy") }}</dd>
         {% elif status.declined %}
           <dt>Offer declined<dt>
           <dd>{{ status.declined.date | date("dd LLL yyyy") }}</dd>
         {% elif status.accepted %}
           <dt>Offer accepted<dt>
           <dd>{{ status.accepted.date | date("dd LLL yyyy") }}</dd>
-        {% elif status.offer %}
+        {% elif status.offered %}
           <dt>Offer made<dt>
-          <dd>{{ status.offer.date | date("dd LLL yyyy") }}</dd>
+          <dd>{{ status.offered.date | date("dd LLL yyyy") }}</dd>
         {% else %}
           {% set rbd = status.submitted.date | addDays(40) %}
           {% set remaining = rbd | daysFromNow(rbd) %}
@@ -109,12 +121,52 @@
           <p><a href="#">Cancel offer</a></p>
         {% endif %}
 
-        {% if not data.bare %}
+        {# {% if not data.bare %}
         <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
-        {% endif %}
+        {% endif %} #}
       </div>
     </div>
   </div>
+
+  <h2 class="govuk-heading-l">Course details</h2>
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Provider"
+      },
+      value: {
+        text: application["provider"]
+      }
+    }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        text: application["course"]
+      }
+    }, {
+      key: {
+        text: "Cycle"
+      },
+      value: {
+        text: '2020'
+      }
+    }, {
+      key: {
+        text: "Preferred location"
+      },
+      value: {
+        text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      }
+    }, {
+      key: {
+        text: "Study mode"
+      },
+      value: {
+        text: 'Full time'
+      }
+    }]
+  }) }}
 
   {% if application.status.offered.conditions or application.status.offered["standard-conditions"] %}
     <div class="govuk-grid-row">
