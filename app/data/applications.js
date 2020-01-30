@@ -895,15 +895,15 @@ module.exports = {
         date: '2019-09-16'
       },
       offered: {
-        date: '2019-10-01',
-        'standard-conditions': [
-          { description: 'Fitness to teach check', complete: false }
-        ],
-        conditions: [
-          { description: 'You need to take English speaking course', complete: false }
-        ]
+        date: '2019-10-01'
       }
     },
+    'standard-conditions': [
+      { description: 'Fitness to teach check', complete: false }
+    ],
+    conditions: [
+      { description: 'You need to take English speaking course', complete: false }
+    ],
     'personal-details': {
       'given-name': 'Jeremy',
       'family-name': 'Brown',
