@@ -20,6 +20,12 @@
 
       {% include "_includes/application-summary.njk" %}
 
+      <h2 class="govuk-heading-l">Conditions</h2>
+
+      {{appTaskList({
+        items: conditions
+      })}}
+
       <form method="post">
         {{ govukButton({
           text: "Yes I’m sure - mark conditions as met"
