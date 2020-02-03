@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Are you sure you want to withdraw the offer?" %}
+{% set title = "Are you sure you want to withdraw this offer?" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
