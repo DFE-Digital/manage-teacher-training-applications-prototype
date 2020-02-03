@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Are you sure you want to mark the conditions as not met?" %}
+{% set title = "Are you sure the candidate did not meet the conditions?" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -28,7 +28,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Yes I’m sure – mark conditions as not met",
+          text: "Yes I’m sure – they did not meet the conditions",
           classes: 'govuk-button--warning'
         }) }}
       </form>
