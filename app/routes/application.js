@@ -99,26 +99,22 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
-    var successFlash = req.flash('success')
-
-    if (successFlash[0] === 'application-withdrawn') {
-      var flash = "Offer successfully withdrawn";
-    }
-
-    if (successFlash[0] === 'conditions-met') {
-      var flash = "Conditions successfully marked as met";
-    }
-
-    if (successFlash[0] === 'conditions-not-met') {
-      var flash = "Conditions successfully marked as not met";
-    }
+    var flashMessage = utils.getFlashMessage({
+      flash: req.flash('success'),
+      overrideValue: req.query.flash,
+      map: {
+        'offer-withdrawn': 'Offer successfully withdrawn',
+        'conditions-met': 'Conditions successfully marked as met',
+        'conditions-not-met': 'Conditions successfully marked as not met'
+      }
+    })
 
     res.render('application/index', {
       applicationId: applicationId,
       conditions: utils.getConditions(application),
       status: req.query.status,
       success,
-      flash: flash
+      flash: flashMessage
     })
   })
 
@@ -167,7 +163,7 @@ module.exports = router => {
     application.statusA = "withdrawn-by-us";
     application.status['withdrawn-by-us'] = {}
     application.status['withdrawn-by-us'].comments = req.body.comments
-    req.flash('success', 'application-withdrawn')
+    req.flash('success', 'offer-withdrawn')
     res.redirect(`/application/${applicationId}`)
   })
 

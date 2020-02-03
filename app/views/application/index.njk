@@ -3,7 +3,6 @@
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set status = application.status %}
-{% set parent = "Application for " + application.course %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set title = name %}
 

@@ -20,3 +20,17 @@ exports.getConditions = (application) => {
   }
   return conditions;
 };
+
+exports.getFlashMessage = (options) => {
+  if(options.overrideValue) {
+    return options.overrideValue;
+  }
+
+  if(options.flash && options.map) {
+    for (let key in options.map){
+      if(options.map.hasOwnProperty(key) && options.flash[0] == key) {
+        return options.map[key];
+      }
+    }
+  }
+};
