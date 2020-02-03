@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Confirm the conditions have been met" %}
+{% set title = "Are you sure you want to mark the conditions as met?" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -22,7 +22,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm"
+          text: "Yes I’m sure - mark conditions as met"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
