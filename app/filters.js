@@ -68,10 +68,10 @@ module.exports = (env) => {
 
     if('withdrawn-by-us' in status) {
       id = 'withdrawn-by-us'
-      title = 'Withdrawn by us'
+      title = 'Offer withdrawn'
     } else if('withdrawn-by-candidate' in status) {
       id = 'withdrawn-by-candidate'
-      title = 'Withdrawn by candidate'
+      title = 'Application withdrawn'
     } else if('rejected' in status) {
       id = 'rejected'
         title = 'Rejected'
