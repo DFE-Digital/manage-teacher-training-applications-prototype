@@ -8,15 +8,6 @@
   <p class="govuk-hint">(Question to candidate: “Your knowledge about the subject you want to teach”)</p>
 {% endset %}
 
-{% set supportKeyHtml %}
-  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Any support needed</h3>
-{% endset %}
-
-{% set suitabilityKeyHtml %}
-  <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Safeguarding</h3>
-  <p class="govuk-hint">We ask the candidate if they want to disclose anything before their DBS check.</p>
-{% endset %}
-
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -31,27 +22,6 @@
     },
     value: {
       html: application["personal-statement"]["subject-knowledge"] | nl2br or "—"
-    }
-  }, {
-    key: {
-      text: "Interview preferences"
-    },
-    value: {
-      html: application["personal-statement"].interview | nl2br or "—"
-    }
-  } if data.flags.interview_preferences == true, {
-    key: {
-      html: supportKeyHtml
-    },
-    value: {
-      html: application["reasonable-adjustments"] | nl2br or "—"
-    }
-  }, {
-    key: {
-      html: suitabilityKeyHtml
-    },
-    value: {
-      html: application["suitability"] | nl2br or "Nothing disclosed"
     }
   }]
 }) }}

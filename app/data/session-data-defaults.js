@@ -4,6 +4,6 @@ module.exports = {
   applications,
   bare: process.env.BARE,
   flags: {
-    interview_preferences: false
+    interview_preferences: true
   }
 }
