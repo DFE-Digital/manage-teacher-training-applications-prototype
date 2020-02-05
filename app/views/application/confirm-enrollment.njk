@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Are you sure you want to enroll the candidate?" %}
+{% set title = "Are you sure you want to enrol this candidate?" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -22,7 +22,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Yes I’m sure - enroll them"
+          text: "Yes I’m sure – enrol them"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
