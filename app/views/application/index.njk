@@ -177,8 +177,13 @@
         })}}
       {% endif %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Assistance needed to become a teacher</h2>
-      {% include "_includes/application/reasonable-adjustments.njk" %}
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Accessibility needs</h2>
+      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+      <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "—"}}</p>
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Interview needs</h2>
+      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+      <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "—"}}</p>
 
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Qualifications</h2>
       {% include "_includes/application/degrees.njk" %}
@@ -196,6 +201,11 @@
 
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Personal statement</h2>
       {% include "_includes/application/personal-statement.njk" %}
+
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Safeguarding</h2>
+      {# <p class="govuk-body">We ask the candidate if they want to disclose anything before their DBS check.</p> #}
+      <p class="govuk-body">{{application["suitability"] | nl2br or "Nothing disclosed"}}</p>
 
       <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
