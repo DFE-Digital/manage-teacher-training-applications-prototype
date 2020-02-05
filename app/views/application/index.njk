@@ -56,6 +56,9 @@
         {% if status.rejected %}
           <dt>Application rejected<dt>
           <dd>{{ status.rejected.date | date("dd LLL yyyy") }}</dd>
+        {% elif application.statusA == 'enrolled' %}
+          <dt>Enrolled on<dt>
+          <dd>{{ status.enrolled.date | date("dd LLL yyyy") }}</dd>
         {% elif status['conditions-met'] %}
           <dt>Conditions met on<dt>
           <dd>{{ status['conditions-met'].date | date("dd LLL yyyy") }}</dd>
@@ -118,6 +121,8 @@
             href: "/application/" + application.id + "/confirm-enrollment"
           })}}
           <p><a href="#">Cancel offer</a></p>
+        {% elseif application.statusA == 'enrolled' %}
+
         {% endif %}
 
         {# {% if not data.bare %}

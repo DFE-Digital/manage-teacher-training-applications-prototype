@@ -303,7 +303,7 @@ module.exports = router => {
 
     // Update application status with reject reasons
     application.statusA = "enrolled";
-    application.status['enrolled'] = { date: Date.now() };
+    application.status['enrolled'] = { date: new Date().toISOString() };
     req.flash('success', 'enrolled')
     res.redirect(`/application/${applicationId}`)
   })
