@@ -1,0 +1,48 @@
+{% extends "_layout.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Choose provider" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/different-course"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/application-summary.njk" %}
+      <form method="post">
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Select training provider",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          idPrefix: "provider",
+          name: "provider",
+          items: [{
+            value: "Somerset SCITT consortium",
+            text: "Somerset SCITT consortium",
+            checked: checked("provider", "Somerset SCITT consortium")
+          }, {
+            value: "The Beach Teaching School",
+            text: "The Beach Teaching School",
+            checked: checked("provider", "The Beach Teaching School")
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
