@@ -21,7 +21,8 @@
 }
 
 .app-tag--blue,
-.app-tag--accepted {
+.app-tag--accepted,
+.app-tag--enrolled {
   color: govuk-shade(govuk-colour("blue"), 30);
   background: govuk-tint(govuk-colour("blue"), 80);
 }

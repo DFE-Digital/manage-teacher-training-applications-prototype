@@ -106,7 +106,8 @@ module.exports = router => {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
-        'different-course-offered': 'Course offered successfully'
+        'different-course-offered': 'Course offered successfully',
+        'enrolled': 'Candidate successfully enrolled'
       }
     })
 
@@ -295,6 +296,24 @@ module.exports = router => {
       applicationId: req.params.applicationId
     })
   })
+  
+  router.get('/application/:applicationId/confirm-enrollment', (req, res) => {
+    res.render(`application/confirm-enrollment`, {
+      applicationId: req.params.applicationId
+    })
+  })
+  
+  // post comments about withdrawing
+  router.post('/application/:applicationId/confirm-enrollment', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    // Update application status with reject reasons
+    application.statusA = "enrolled";
+    application.status['enrolled'] = { date: new Date().toISOString() };
+    req.flash('success', 'enrolled')
+    res.redirect(`/application/${applicationId}`)
+  })
 
   router.post('/application/:applicationId/different-course', (req, res) => {
     const applicationId = req.params.applicationId
@@ -361,5 +380,4 @@ module.exports = router => {
     req.flash('success', 'different-course-offered')
     res.redirect(`/application/${req.params.applicationId}`)
   })
-
 }

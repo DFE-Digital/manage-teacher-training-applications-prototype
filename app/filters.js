@@ -66,7 +66,10 @@ module.exports = (env) => {
   filters.status = (status, type) => {
     let id, title
 
-    if('withdrawn-by-us' in status) {
+    if('enrolled' in status) {
+      id = 'enrolled'
+      title = 'Enrolled'
+    } else if('withdrawn-by-us' in status) {
       id = 'withdrawn-by-us'
       title = 'Offer withdrawn'
     } else if('withdrawn-by-candidate' in status) {
