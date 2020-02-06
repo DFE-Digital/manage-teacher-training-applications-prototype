@@ -107,7 +107,9 @@ module.exports = router => {
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
         'different-course-offered': 'Course offered successfully',
-        'enrolled': 'Candidate successfully enrolled'
+        'enrolled': 'Candidate successfully enrolled',
+        'offered': 'Offer successfully made to candidate',
+        'rejected': 'Application rejected successfully'
       }
     })
 
@@ -162,13 +164,12 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
 
     // Update application status with reject reasons
-    application.statusA = "withdrawn-by-us";
-    application.status['withdrawn-by-us'] = {}
-    application.status['withdrawn-by-us'].comments = req.body.comments
+    application.status = "Offer withdrawn";
+    // application.offer.withdrawnComments = req.body.comments
+    application.offer.withdrawnDate = new Date().toISOString()
     req.flash('success', 'offer-withdrawn')
     res.redirect(`/application/${applicationId}`)
   })
-
 
   // Submit offer conditions
   router.post('/application/:applicationId/offer', (req, res) => {
@@ -176,23 +177,23 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
 
     // Update application status with offer conditions
-    application.status.offered = {}
+    application.status = "Offered";
+    application.offer = {};
     const conditions = []
     if (req.body['condition-1']) { conditions.push({ description: req.body['condition-1'], complete: false }) }
     if (req.body['condition-2']) { conditions.push({ description: req.body['condition-2'], complete: false }) }
     if (req.body['condition-3']) { conditions.push({ description: req.body['condition-3'], complete: false }) }
     if (req.body['condition-4']) { conditions.push({ description: req.body['condition-4'], complete: false }) }
-    application.status.offered.conditions = conditions
+    application.offer.conditions = conditions
 
-    application.status.offered['standard-conditions'] = req.body['standard-conditions'].map((item) => {
+    application.offer.standardConditions = req.body['standard-conditions'].map((item) => {
       return {
         description: item,
         complete: false
       }
     })
 
-    // application.status.offered['standard-conditions'] = req.body['standard-conditions']
-    application.status.offered.recommendations = req.body.recommendations
+    application.offer.recommendations = req.body.recommendations
 
     res.redirect(`/application/${applicationId}/confirm?type=offer`)
   })
@@ -211,11 +212,12 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
 
     // Update application status with reject reasons
-    application.status.rejected = {}
-    application.status.rejected.reasons = req.body.reasons
-    application.status.rejected.comments = req.body.comments
+    application.status = "Rejected";
+    application.rejectedReasons = req.body.reasons
+    application.rejectedComments = req.body.comments
 
     res.redirect(`/application/${applicationId}/confirm?type=reject`)
+
   })
 
   // Show confirmation
@@ -226,13 +228,13 @@ module.exports = router => {
     const type = req.query.type
 
     // Get conditions if provided
-    const conditions = status.offer
-      ? status.offer.conditions
-      : false
+    // const conditions = application.offer.conditions
+    //   ? application.offer.conditions
+    //   : false
 
     res.render('application/confirm', {
       applicationId: req.params.applicationId,
-      conditions,
+      // conditions,
       type
     })
   })
@@ -243,15 +245,17 @@ module.exports = router => {
     const status = application.status
 
     // Update application offer/rejected status with decision date (and offer type)
-    if (status.rejected) {
-      status.rejected.date = new Date().toISOString()
-    } else if (status.offer) {
-      status.offer.date = new Date().toISOString()
+    if (status == "Rejected") {
+      rejectedDate = new Date().toISOString()
+      req.flash('success', 'rejected')
+    } else if (status == "Offered") {
+      application.offer.madeDate = new Date().toISOString()
+      req.flash('success', 'offered')
     }
 
     delete req.session.data.decision
 
-    res.redirect(`/application/${req.params.applicationId}?success=true`)
+    res.redirect(`/application/${req.params.applicationId}`)
   })
 
   // Render other application pages
@@ -309,8 +313,8 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
 
     // Update application status with reject reasons
-    application.statusA = "enrolled";
-    application.status['enrolled'] = { date: new Date().toISOString() };
+    application.status = "Enrolled";
+    application.offer.enrolledDate = new Date().toISOString();
     req.flash('success', 'enrolled')
     res.redirect(`/application/${applicationId}`)
   })

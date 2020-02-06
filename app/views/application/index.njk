@@ -19,12 +19,6 @@
 
 {% block beforePageTitle %}
   {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">Application status changed to ‘" + status | status("title") + "’</h2>",
-    type: "success",
-    icon: false
-  }) if success }}
-
-  {{ appBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
@@ -57,7 +51,7 @@
           <dt>Offer made<dt>
           <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
           <dt>Application rejected<dt>
-          <dd>{{ application.offer.rejectedDate | date("dd LLL yyyy") }}</dd>
+          <dd>{{ application.rejectedDate | date("dd LLL yyyy") }}</dd>
         {% elif application.status == 'enrolled' %}
           <dt>Enrolled on<dt>
           <dd>{{ status.enrolled.date | date("dd LLL yyyy") }}</dd>

@@ -167,10 +167,10 @@ module.exports = {
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
+    rejectedDate: '2019-08-12',
     status: 'Rejected',
     offer: {
       madeDate: '2019-08-10',
-      rejectedDate: '2019-08-12',
       standardConditions: [],
       conditions: []
     },

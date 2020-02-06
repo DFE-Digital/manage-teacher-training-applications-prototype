@@ -161,7 +161,7 @@
                 {% for a in applications %}
                   {% set rbd = a.status.submitted.date | addDays(40) %}
                   {% set remaining = rbd | daysFromNow(rbd) %}
-                  {% set updated = a.offer.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
+                  {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
                       <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
