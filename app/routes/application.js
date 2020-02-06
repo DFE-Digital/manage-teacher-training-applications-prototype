@@ -27,7 +27,7 @@ module.exports = router => {
         let providerValid = true;
 
         if( statuses && statuses.length ){
-          statusValid = statuses.includes(app.statusA)
+          statusValid = statuses.includes(app.status)
         }
 
         if( providers && providers.length ){
@@ -296,13 +296,13 @@ module.exports = router => {
       applicationId: req.params.applicationId
     })
   })
-  
+
   router.get('/application/:applicationId/confirm-enrollment', (req, res) => {
     res.render(`application/confirm-enrollment`, {
       applicationId: req.params.applicationId
     })
   })
-  
+
   // post comments about withdrawing
   router.post('/application/:applicationId/confirm-enrollment', (req, res) => {
     const applicationId = req.params.applicationId

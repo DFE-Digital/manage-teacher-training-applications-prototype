@@ -3,24 +3,14 @@ module.exports = {
     id: 1,
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
-    statusA: 'accepted',
-    status: {
-      submitted: {
-        date: '2019-07-15'
-      },
-      offered: {
-        date: '2019-07-30'
-      },
-      accepted: {
-        date: '2019-08-05'
-      }
+    submittedDate: '2019-07-15',
+    status: 'Accepted',
+    offer: {
+      madeDate: '2019-07-30',
+      acceptedDate: '2019-07-30',
+      standardConditions: [{ description: 'Fitness to teach check', complete: false }],
+      conditions: [{ description: 'You need to take English speaking course', complete: false }]
     },
-    'standard-conditions': [
-      { description: 'Fitness to teach check', complete: false }
-    ],
-    conditions: [
-      { description: 'You need to take English speaking course', complete: false }
-    ],
     'personal-details': {
       'given-name': 'Eloise',
       'family-name': 'Wells',
@@ -67,20 +57,14 @@ module.exports = {
     id: 2,
     provider: 'The Beach Teaching School',
     course: 'Media Studies (33MP)',
-    statusA: 'conditions-met',
-    status: {
-      submitted: {
-        date: '2019-07-15'
-      },
-      offered: {
-        date: '2019-08-10'
-      },
-      accepted: {
-        date: '2019-08-10'
-      },
-      'conditions-met': {
-        date: '2019-09-11'
-      }
+    submittedDate: '2019-07-15',
+    status: 'Conditions met',
+    offer: {
+      madeDate: '2019-08-10',
+      acceptedDate: '2019-08-10',
+      conditionsMetDate: '2019-09-12',
+      standardConditions: [],
+      conditions: []
     },
     'personal-details': {
       'given-name': 'Becky',
@@ -128,17 +112,13 @@ module.exports = {
     id: 3,
     provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
-    statusA: 'declined',
-    status: {
-      submitted: {
-        date: '2019-07-15'
-      },
-      offered: {
-        date: '2019-08-10'
-      },
-      declined: {
-        date: '2019-08-12'
-      }
+    submittedDate: '2019-07-15',
+    status: 'Declined',
+    offer: {
+      madeDate: '2019-08-10',
+      declinedDate: '2019-08-12',
+      standardConditions: [],
+      conditions: []
     },
     'personal-details': {
       'given-name': 'Charlie',
@@ -186,15 +166,15 @@ module.exports = {
     id: 4,
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
-    statusA: 'rejected',
-    status: {
-      submitted: {
-        date: '2019-07-15'
-      },
-      rejected: {
-        date: '2019-08-12'
-      }
+    submittedDate: '2019-07-15',
+    status: 'Rejected',
+    offer: {
+      madeDate: '2019-08-10',
+      rejectedDate: '2019-08-12',
+      standardConditions: [],
+      conditions: []
     },
+
     'personal-details': {
       'given-name': 'Charlotte',
       'family-name': 'Campbel',
@@ -241,14 +221,13 @@ module.exports = {
     id: 5,
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (2P3K)',
-    statusA: 'rejected',
-    status: {
-      submitted: {
-        date: '2019-07-15'
-      },
-      rejected: {
-        date: '2019-08-10'
-      }
+    submittedDate: '2019-07-15',
+    status: 'Rejected',
+    offer: {
+      madeDate: '2019-08-10',
+      rejectedDate: '2019-08-10',
+      standardConditions: [],
+      conditions: []
     },
     'personal-details': {
       'given-name': 'Daniel James',
@@ -296,17 +275,13 @@ module.exports = {
     id: 6,
     provider: 'Somerset SCITT consortium',
     course: 'Business studies (2P37)',
-    statusA: 'declined',
-    status: {
-      submitted: {
-        date: '2019-08-15'
-      },
-      offered: {
-        date: '2019-09-10'
-      },
-      declined: {
-        date: '2019-09-12'
-      }
+    submittedDate: '2019-08-15',
+    status: 'Declined',
+    offer: {
+      madeDate: '2019-09-10',
+      declinedDate: '2019-09-12',
+      standardConditions: [],
+      conditions: []
     },
     'personal-details': {
       'given-name': 'Elizabeth',
@@ -354,17 +329,13 @@ module.exports = {
     id: 7,
     provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
-    statusA: 'withdrawn-by-candidate',
-    status: {
-      submitted: {
-        date: '2019-09-15'
-      },
-      offered: {
-        date: '2019-08-10'
-      },
-      'withdrawn-by-candidate': {
-        date: '2019-09-12'
-      }
+    submittedDate: '2019-09-15',
+    withdrawnDate: '2019-09-12',
+    status: 'Application withdrawn',
+    offer: {
+      madeDate: '2019-08-10',
+      standardConditions: [],
+      conditions: []
     },
     'personal-details': {
       'given-name': 'Esther',
@@ -412,18 +383,16 @@ module.exports = {
     id: 101,
     provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
-    statusA: 'withdrawn-by-us',
-    status: {
-      submitted: {
-        date: '2019-09-01'
-      },
-      offered: {
-        date: '2019-09-23'
-      },
-      'withdrawn-by-us': {
-        date: '2019-09-23'
-      }
+
+    submittedDate: '2019-09-01',
+    status: 'Offer withdrawn',
+    offer: {
+      madeDate: '2019-09-23',
+      withdrawnDate: '2019-09-23',
+      standardConditions: [],
+      conditions: []
     },
+
     'personal-details': {
       'given-name': 'Francis',
       'family-name': 'Platt',
@@ -653,14 +622,12 @@ module.exports = {
     id: 102,
     provider: 'Somerset SCITT consortium',
     course: 'Computer Science and Information Technology (IX99)',
-    statusA: 'offered',
-    status: {
-      submitted: {
-        date: '2019-09-01'
-      },
-      offered: {
-        date: '2019-09-23'
-      }
+    submittedDate: '2019-09-01',
+    status: 'Offered',
+    offer: {
+      madeDate: '2019-09-23',
+      standardConditions: [],
+      conditions: []
     },
     'personal-details': {
       'given-name': 'James',
@@ -889,21 +856,14 @@ module.exports = {
     id: 103,
     provider: 'Somerset SCITT consortium',
     course: 'History (33MP)',
-    statusA: 'offered',
-    status: {
-      submitted: {
-        date: '2019-09-16'
-      },
-      offered: {
-        date: '2019-10-01'
-      }
+    submittedDate: '2019-09-16',
+    status: 'Offered',
+    offer: {
+      madeDate: '2019-10-01',
+      standardConditions: [{ description: 'Fitness to teach check', complete: false }],
+      conditions: [{ description: 'You need to take English speaking course', complete: false }]
     },
-    'standard-conditions': [
-      { description: 'Fitness to teach check', complete: false }
-    ],
-    conditions: [
-      { description: 'You need to take English speaking course', complete: false }
-    ],
+
     'personal-details': {
       'given-name': 'Jeremy',
       'family-name': 'Brown',
@@ -1152,12 +1112,8 @@ module.exports = {
     id: 104,
     provider: 'Somerset SCITT consortium',
     course: 'Primary (2PPM)',
-    statusA: 'new',
-    status: {
-      submitted: {
-        date: '2019-09-18'
-      }
-    },
+    submittedDate: '2019-09-18',
+    status: 'New',
     'personal-details': {
       'given-name': 'May',
       'family-name': 'Cole',
@@ -1375,12 +1331,8 @@ module.exports = {
     id: 105,
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (GX11)',
-    statusA: 'new',
-    status: {
-      submitted: {
-        date: '2019-09-21'
-      }
-    },
+    submittedDate: '2019-09-21',
+    status: 'New',
     'personal-details': {
       'given-name': 'Poppy',
       'family-name': 'Noor',
@@ -1601,12 +1553,8 @@ module.exports = {
     id: 201,
     provider: 'Somerset SCITT consortium',
     course: 'Biology (2P36)',
-    statusA: 'new',
-    status: {
-      submitted: {
-        date: '2019-10-08'
-      }
-    },
+    submittedDate: '2019-10-08',
+    status: 'New',
     'personal-details': {
       'given-name': 'Elise',
       'family-name': 'Briggs',
@@ -1843,12 +1791,8 @@ module.exports = {
     id: 202,
     provider: 'Somerset SCITT consortium',
     course: 'Upper Primary with Modern Foreign Languages (XR9C)',
-    statusA: 'new',
-    status: {
-      submitted: {
-        date: '2019-10-10'
-      }
-    },
+    submittedDate: '2019-10-10',
+    status: 'New',
     'personal-details': {
       'given-name': 'Kelly Jane',
       'family-name': 'Spears',

@@ -20,44 +20,44 @@
       },
       items: [
         {
-          value: 'accepted',
+          value: 'Accepted',
           text: 'Accepted',
-          checked: checked("status", "accepted") == 'checked'
+          checked: checked("status", "Accepted") == 'checked'
         },
         {
-          value: 'conditions-met',
+          value: 'Conditions met',
           text: 'Conditions met',
-          checked: checked("status", "conditions-met") == 'checked'
+          checked: checked("status", "Conditions met") == 'checked'
         },
         {
-          value: 'declined',
+          value: 'Declined',
           text: 'Declined',
-          checked: checked("status", "declined") == 'checked'
+          checked: checked("status", "Declined") == 'checked'
         },
         {
-          value: 'new',
+          value: 'New',
           text: 'New',
-          checked: checked("status", "new") == 'checked'
+          checked: checked("status", "New") == 'checked'
         },
         {
-          value: 'offered',
+          value: 'Offered',
           text: 'Offered',
-          checked: checked("status", "offered") == 'checked'
+          checked: checked("status", "Offered") == 'Checked'
         },
         {
-          value: 'rejected',
+          value: 'Rejected',
           text: 'Rejected',
-          checked: checked("status", "rejected") == 'checked'
+          checked: checked("status", "Rejected") == 'checked'
         },
         {
-          value: 'withdrawn-by-candidate',
+          value: 'Application withdrawn',
           text: 'Application withdrawn',
-          checked: checked("status", "withdrawn-by-candidate") == 'checked'
+          checked: checked("status", "Application withdrawn") == 'checked'
         },
         {
-          value: 'withdrawn-by-us',
+          value: 'Offer withdrawn',
           text: 'Offer withdrawn',
-          checked: checked("status", "withdrawn-by-us") == 'checked'
+          checked: checked("status", "Offer withdrawn") == 'checked'
         }
       ]
     }) }}
@@ -161,7 +161,7 @@
                 {% for a in applications %}
                   {% set rbd = a.status.submitted.date | addDays(40) %}
                   {% set remaining = rbd | daysFromNow(rbd) %}
-                  {% set updated = a.status.rejected.date or a.status.declined.date or a.status.accepted.date or a.status.offer.date or a.status.submitted.date %}
+                  {% set updated = a.offer.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
                       <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
@@ -170,11 +170,11 @@
                     <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span> {{ a.course }}</td>
                     <td class="govuk-table__cell">
                       {{ govukTag({
-                        classes: "app-tag--" + a.status | status,
-                        text: a.status | status("title") | capitalize
+                        classes: a.status | statusClass,
+                        text: a.status
                       })}}
                     </td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ a.submitted | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ updated | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
                   </tr>
                 {% endfor %}
               </tbody>
