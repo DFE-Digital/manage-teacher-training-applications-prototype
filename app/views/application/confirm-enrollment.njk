@@ -1,0 +1,32 @@
+{% extends "_layout.njk" %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% set title = "Are you sure you want to enrol this candidate?" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {% include "_includes/application-summary.njk" %}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Yes I’m sure – enrol them"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}
