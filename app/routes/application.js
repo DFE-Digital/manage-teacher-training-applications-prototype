@@ -105,7 +105,8 @@ module.exports = router => {
       map: {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
-        'conditions-not-met': 'Conditions successfully marked as not met'
+        'conditions-not-met': 'Conditions successfully marked as not met',
+        'different-course-offered': 'Course offered successfully'
       }
     })
 
@@ -295,7 +296,6 @@ module.exports = router => {
     })
   })
 
-  // post comments about withdrawing
   router.post('/application/:applicationId/different-course', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
@@ -317,16 +317,49 @@ module.exports = router => {
     })
   })
 
+  router.post('/application/:applicationId/different-course/provider', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/different-course/course`)
+  })
+
   router.get('/application/:applicationId/different-course/course', (req, res) => {
     res.render(`application/different-course--course`, {
       applicationId: req.params.applicationId
     })
   })
 
+  router.post('/application/:applicationId/different-course/course', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/different-course/location`)
+  })
+
   router.get('/application/:applicationId/different-course/location', (req, res) => {
-    res.render(`application/different-course--course`, {
+    res.render(`application/different-course--location`, {
       applicationId: req.params.applicationId
     })
+  })
+
+  router.post('/application/:applicationId/different-course/location', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/different-course/conditions`)
+  })
+
+  router.get('/application/:applicationId/different-course/conditions', (req, res) => {
+    res.render(`application/different-course--conditions`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.post('/application/:applicationId/different-course/conditions', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/different-course/confirm`)
+  })
+
+  router.get('/application/:applicationId/different-course/confirm', (req, res) => {
+    res.render(`application/different-course--confirm`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.post('/application/:applicationId/different-course/confirm', (req, res) => {
+    req.flash('success', 'different-course-offered')
+    res.redirect(`/application/${req.params.applicationId}`)
   })
 
 }
