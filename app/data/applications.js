@@ -223,12 +223,8 @@ module.exports = {
     course: 'Mathematics (2P3K)',
     submittedDate: '2019-07-15',
     status: 'Rejected',
-    offer: {
-      madeDate: '2019-08-10',
-      rejectedDate: '2019-08-10',
-      standardConditions: [],
-      conditions: []
-    },
+    rejectedDate: '2019-08-10',
+
     'personal-details': {
       'given-name': 'Daniel James',
       'family-name': 'Jennings',
@@ -330,13 +326,8 @@ module.exports = {
     provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-09-15',
-    withdrawnDate: '2019-09-12',
+    withdrawnDate: '2019-09-16',
     status: 'Application withdrawn',
-    offer: {
-      madeDate: '2019-08-10',
-      standardConditions: [],
-      conditions: []
-    },
     'personal-details': {
       'given-name': 'Esther',
       'family-name': 'Fairley',

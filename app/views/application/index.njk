@@ -29,203 +29,378 @@
 {% block primary %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/application/details.njk" %}
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <div class="app-card">
-        <h2 class="govuk-heading-m">Status</h2>
-        {% if status.declined or status.accepted %}
-          <a href="/email/{{ applicationId }}/candidate">
+
+      {# <p class="govuk-body"><a href="">View application</a></p><br><br> #}
+
+      <div class="app-card govuk-!-margin-bottom-9">
+        {% if application.status == "Offered" %}
+          <h2 class="govuk-heading-l">Offer made to {{name}}</h2>
         {% endif %}
-            {{ govukTag({
-              classes: "govuk-!-margin-bottom-4 " + status | statusClass,
-              text: status
-            }) }}
-        {% if status.declined or status.accepted %}
-          </a>
+
+
+
+        {% set rbd = application.submittedDate | addDays(40) %}
+        {% set remaining = rbd | daysFromNow(rbd) %}
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: govukTag({
+                classes: status | statusClass,
+                text: status
+              })
+            }
+          }, {
+            key: {
+              text: "Application submitted"
+            },
+            value: {
+              text: application.submittedDate | date("dd LLL yyyy")
+            }
+          }, {
+            key: {
+              text: "Respond to applicant by"
+            },
+            value: {
+              text: rbd | date("dd LLL yyyy")
+            }
+          } if not application.offer.madeDate,
+          {
+            key: {
+              text: "Offer made"
+            },
+            value: {
+              text: application.offer.madeDate | date("dd LLL yyyy")
+            }
+          } if application.offer.madeDate,
+          {
+            key: {
+              text: "Offer accepted"
+            },
+            value: {
+              text: application.offer.acceptedDate | date("dd LLL yyyy")
+            }
+          } if application.offer.acceptedDate,
+          {
+            key: {
+              text: "Offer declined"
+            },
+            value: {
+              text: application.offer.declinedDate | date("dd LLL yyyy")
+            }
+          } if application.offer.declinedDate,
+          {
+            key: {
+              text: "Conditions met"
+            },
+            value: {
+              text: application.offer.conditionsMetDate  | date("dd LLL yyyy")
+            }
+          } if application.offer.conditionsMetDate,
+          {
+            key: {
+              text: "Application withdrawn"
+            },
+            value: {
+              text: application.withdrawnDate  | date("dd LLL yyyy")
+            }
+          } if application.withdrawnDate,
+          {
+            key: {
+              text: "Offer withdrawn"
+            },
+            value: {
+              text: application.offer.withdrawnDate  | date("dd LLL yyyy")
+            }
+          } if application.offer.withdrawnDate,
+          {
+            key: {
+              text: "Application rejected"
+            },
+            value: {
+              text: application.rejectedDate  | date("dd LLL yyyy")
+            }
+          } if application.rejectedDate,
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: '<span class="govuk-caption-m govuk-!-font-size-16">'+application.provider+'</span>'+ application.course
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/${applicationId}/different-course",
+                  text: "Change",
+                  visuallyHiddenText: ""
+                }
+              ]
+            }
+          } if application.status == "Offered",
+          {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/${applicationId}/different-course",
+                  text: "Change",
+                  visuallyHiddenText: ""
+                }
+              ]
+            }
+          } if application.status == "Offered"
+        ]})}}
+
+        {# <h2 class="govuk-heading-m">Course details</h2> #}
+
+        {# {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }, {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }]
+        }) }} #}
+
+        {% if application.offer and conditions %}
+
+          {{ govukTable({
+            head: [
+              {
+                text: "Conditions"
+              },
+              {
+                text: "",
+                format: "numeric"
+              }
+            ],
+            rows: [
+              [
+                {
+                  text: "This is quite a long condition that could wrap onto more than one line."
+                },
+                {
+                  html: govukTag({ text: 'Not met' if application.status != "Conditions met" and application.status != "Enrolled"  else "Met", classes: 'app-tag--grey' if application.status != "Conditions met" and application.status != "Enrolled" }),
+                  format: "numeric"
+                }
+              ],
+              [
+                {
+                  text: "This is a really really super long condition that could wrap onto more than one line."
+                },
+                {
+                  html: govukTag({ text: 'Not met' if application.status != "Conditions met" and application.status != "Enrolled"  else "Met", classes: 'app-tag--grey' if application.status != "Conditions met" and application.status != "Enrolled" }),
+                  format: "numeric"
+                }
+              ]
+            ]
+          }) }}
         {% endif %}
-        <dl class="app-definition-list">
-          <dt>Application submitted<dt>
-          <dd>{{ application.submittedDate | date("dd LLL yyyy") }}</dd>
+
+        {% if application.status == "Offered" %}
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            <a href="/application/{{applicationId}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
+          </p>
+        {% endif %}
+
+        {% if application.status == "Conditions met" %}
+          {{govukButton({
+            text: "Enrol candidate",
+            href: "/application/" + application.id + "/confirm-enrollment"
+          })}}
+
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            <a href="#" class="app-withdraw-link">Cancel offer</a>
+          </p>
+        {% endif %}
+
         {% if application.status == 'Rejected' %}
-          <dt>Offer made<dt>
-          <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
-          <dt>Application rejected<dt>
-          <dd>{{ application.rejectedDate | date("dd LLL yyyy") }}</dd>
+
         {% elif application.status == 'enrolled' %}
           <dt>Enrolled on<dt>
           <dd>{{ status.enrolled.date | date("dd LLL yyyy") }}</dd>
-        {% elif application.status == 'Conditions met' %}
-          {# <dt>Offered on<dt>
-          <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
-          <dt>Accepted on<dt>
-          <dd>{{ application.offer.acceptedDate | date("dd LLL yyyy") }}</dd> #}
-          <dt>Conditions met on<dt>
-          <dd>{{ application.offer.conditionsMetDate | date("dd LLL yyyy") }}</dd>
         {% elif status['conditions-not-met'] %}
           <dt>Conditions not met on<dt>
           <dd>{{ status['conditions-not-met'].date | date("dd LLL yyyy") }}</dd>
-        {% elif application.status == 'Offer withdrawn' %}
-          <dt>Offered on<dt>
-          <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
-          <dt>Withdrawn on<dt>
-          <dd>{{ application.offer.withdrawnDate | date("dd LLL yyyy") }}</dd>
-        {% elif application.status == 'Application withdrawn' %}
-          <dt>Offered on<dt>
-          <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
-          <dt>Withdrawn on<dt>
-          <dd>{{ application.withdrawnDate | date("dd LLL yyyy") }}</dd>
-        {% elif application.status == 'Declined' %}
-          <dt>Offered on<dt>
-          <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
-          <dt>Offer declined<dt>
-          <dd>{{ application.offer.declinedDate | date("dd LLL yyyy") }}</dd>
-        {% elif application.status == 'Accepted' %}
-          <dt>Offer accepted<dt>
-          <dd>{{ application.offer.acceptedDate | date("dd LLL yyyy") }}</dd>
-        {% elif application.status == 'Offered' %}
-          <dt>Offer made<dt>
-          <dd>{{ application.offer.madeDate | date("dd LLL yyyy") }}</dd>
-        {% else %}
-          {% set rbd = application.submittedDate | addDays(40) %}
-          {% set remaining = rbd | daysFromNow(rbd) %}
-          <dt>Respond to the applicant by<dt>
-          <dd>{{ rbd | date("dd LLL yyyy") }}</dd>
         {% endif %}
         </dl>
 
         {% if application.status == 'New' %}
           {{govukButton({
-            classes: "govuk-!-margin-bottom-4",
+            classes: "govuk-!-margin-bottom-0",
             text: "Respond to application",
             href: "/application/" + application.id + "/decision"
           })}}
         {% elseif application.status == 'Offered' %}
-          {{govukButton({
-            classes: "govuk-!-margin-bottom-4",
+          {# {{govukButton({
+            classes: "govuk-!-margin-bottom-0",
             text: "Change response",
             href: "/application/" + application.id + "/edit-response"
-          })}}
-        {% elseif application.statusA == 'accepted' %}
+          })}} #}
+        {% elseif application.status == 'Accepted' %}
           {{govukButton({
-            classes: "govuk-!-margin-bottom-4",
+            classes: "govuk-!-margin-bottom-0",
             text: "Confirm conditions",
             href: "/application/" + application.id + "/mark-conditions"
           })}}
         {% elseif application.statusA == 'withdrawn-by-us' %}
           {# {{govukButton({
-            classes: "govuk-!-margin-bottom-4",
+            classes: "govuk-!-margin-bottom-0",
             text: "Edit response",
             href: "/application/" + application.id + "/edit-response"
           })}} #}
         {% elseif application.statusA == 'conditions-not-met' %}
 
-        {% elseif application.status == 'Conditions met' %}
-          {{govukButton({
-            classes: "govuk-!-margin-bottom-4",
-            text: "Enrol candidate",
-            href: "/application/" + application.id + "/confirm-enrollment"
-          })}}
-          <p><a href="#">Cancel offer</a></p>
         {% elseif application.statusA == 'enrolled' %}
 
         {% endif %}
-
-        {# {% if not data.bare %}
-        <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" download>Download application (CSV)</a></p>
-        {% endif %} #}
       </div>
-    </div>
-  </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-l">Course details</h2>
-      {{ govukSummaryList({
-        rows: [{
-          key: {
-            text: "Provider"
-          },
-          value: {
-            text: application["provider"]
-          }
-        }, {
-          key: {
-            text: "Course"
-          },
-          value: {
-            text: application["course"]
-          }
-        }, {
-          key: {
-            text: "Cycle"
-          },
-          value: {
-            text: '2020'
-          }
-        }, {
-          key: {
-            text: "Preferred location"
-          },
-          value: {
-            text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
-          }
-        }, {
-          key: {
-            text: "Study mode"
-          },
-          value: {
-            text: 'Full time'
-          }
-        }]
-      }) }}
+      <div style="display: ">
 
-      {% if conditions.length %}
-         <h2 class="govuk-heading-l govuk-!-margin-top-8">Offer conditions</h2>
+        <h2 class="govuk-heading-l">Application</h2>
 
-        {{appTaskList({
-          items: conditions
-        })}}
-      {% endif %}
+        {% include "_includes/application/details.njk" %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Accessibility needs</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
-      <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "Not specified."}}</p>
+        <h2 class="govuk-heading-m">Course details</h2>
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Provider"
+            },
+            value: {
+              text: application["provider"]
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              text: application["course"]
+            }
+          }, {
+            key: {
+              text: "Cycle"
+            },
+            value: {
+              text: '2020'
+            }
+          }, {
+            key: {
+              text: "Preferred location"
+            },
+            value: {
+              text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+            }
+          }, {
+            key: {
+              text: "Study mode"
+            },
+            value: {
+              text: 'Full time'
+            }
+          }]
+        }) }}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Interview needs</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
-      <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "Not specified."}}</p>
+        {% if conditions.length %}
+          <h2 class="govuk-heading-m govuk-!-margin-top-8">Offer conditions</h2>
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Qualifications</h2>
-      {% include "_includes/application/degrees.njk" %}
-      {% include "_includes/application/gcses.njk" %}
-      {% include "_includes/application/other-qualifications.njk" %}
+          {{appTaskList({
+            items: conditions
+          })}}
+        {% endif %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Work history</h2>
-      {% include "_includes/application/work-history.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Accessibility needs</h2>
+        {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+        <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "Not specified."}}</p>
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">School experience and volunteering</h2>
-      {% include "_includes/application/school-experience.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Interview needs</h2>
+        {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+        <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "Not specified."}}</p>
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Language Skills</h2>
-      {% include "_includes/application/language-skills.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Qualifications</h2>
+        {% include "_includes/application/degrees.njk" %}
+        {% include "_includes/application/gcses.njk" %}
+        {% include "_includes/application/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Personal statement</h2>
-      {% include "_includes/application/personal-statement.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Work history</h2>
+        {% include "_includes/application/work-history.njk" %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">School experience and volunteering</h2>
+        {% include "_includes/application/school-experience.njk" %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Language Skills</h2>
+        {% include "_includes/application/language-skills.njk" %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Personal statement</h2>
+        {% include "_includes/application/personal-statement.njk" %}
 
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Safeguarding</h2>
-      {# <p class="govuk-body">We ask the candidate if they want to disclose anything before their DBS check.</p> #}
-      <p class="govuk-body">{{application["suitability"] | nl2br or "Nothing disclosed"}}</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Safeguarding</h2>
+        {# <p class="govuk-body">We ask the candidate if they want to disclose anything before their DBS check.</p> #}
+        <p class="govuk-body">{{application["suitability"] | nl2br or "Nothing disclosed"}}</p>
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
-      {% set referenceId = "first" %}
-      {% include "_includes/application/reference.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
+        {% set referenceId = "first" %}
+        {% include "_includes/application/reference.njk" %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
-      {% set referenceId = "second" %}
-      {% include "_includes/application/reference.njk" %}
-
+        <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+        {% set referenceId = "second" %}
+        {% include "_includes/application/reference.njk" %}
+      </div>
     </div>
   </div>
 {% endblock %}

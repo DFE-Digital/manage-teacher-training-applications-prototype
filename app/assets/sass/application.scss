@@ -103,3 +103,9 @@ $govuk-grid-widths: (
   overflow: hidden;
   width: 100%;
 }
+
+
+.app-withdraw-link:link,
+.app-withdraw-link:visited {
+  color: govuk-colour("red");
+}
