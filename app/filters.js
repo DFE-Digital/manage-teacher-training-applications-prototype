@@ -63,6 +63,27 @@ module.exports = (env) => {
     }
   }
 
+  filters.statusClass = (status) => {
+    switch(status) {
+      case "Offer withdrawn":
+        return 'app-tag--red'
+      case "Application withdrawn":
+        return 'app-tag--orange'
+      case "Declined":
+        return 'app-tag--orange'
+      case "Rejected":
+        return 'app-tag--red'
+      case "Accepted":
+        return 'app-tag--blue'
+      case "Conditions met":
+        return 'app-tag--green'
+      case "Offered":
+        return 'app-tag--turquoise'
+      case "New":
+        return 'app-tag--purple'
+    }
+  },
+
   filters.status = (status, type) => {
     let id, title
 
