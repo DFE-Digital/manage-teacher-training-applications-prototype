@@ -140,7 +140,7 @@
                 }
               ]
             }
-          } if application.status == "Offered",
+          } if application.offer,
           {
             key: {
               text: "Location"
@@ -157,7 +157,7 @@
                 }
               ]
             }
-          } if application.status == "Offered"
+          } if application.offer
         ]})}}
 
         {# <h2 class="govuk-heading-m">Course details</h2> #}
@@ -219,7 +219,7 @@
 
           <h2 class="govuk-heading-s">Conditions</h2>
 
-          <p class="govuk-body"><a href="/application/{{applicationId}}/withdraw">Manage conditions</a></p>
+          {# <p class="govuk-body"><a href="/application/{{applicationId}}/withdraw">Manage conditions</a></p> #}
 
           {{ govukTable({
 
@@ -263,46 +263,20 @@
           </p>
         {% endif %}
 
-        {% if application.status == 'Rejected' %}
-
-        {% elif application.status == 'enrolled' %}
-          <dt>Enrolled on<dt>
-          <dd>{{ status.enrolled.date | date("dd LLL yyyy") }}</dd>
-        {% elif status['conditions-not-met'] %}
-          <dt>Conditions not met on<dt>
-          <dd>{{ status['conditions-not-met'].date | date("dd LLL yyyy") }}</dd>
-        {% endif %}
-        </dl>
-
         {% if application.status == 'New' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-0",
             text: "Respond to application",
             href: "/application/" + application.id + "/decision"
           })}}
-        {% elseif application.status == 'Offered' %}
-          {# {{govukButton({
-            classes: "govuk-!-margin-bottom-0",
-            text: "Change response",
-            href: "/application/" + application.id + "/edit-response"
-          })}} #}
         {% elseif application.status == 'Accepted' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-0",
             text: "Confirm conditions",
             href: "/application/" + application.id + "/mark-conditions"
           })}}
-        {% elseif application.statusA == 'withdrawn-by-us' %}
-          {# {{govukButton({
-            classes: "govuk-!-margin-bottom-0",
-            text: "Edit response",
-            href: "/application/" + application.id + "/edit-response"
-          })}} #}
-        {% elseif application.statusA == 'conditions-not-met' %}
-
-        {% elseif application.statusA == 'enrolled' %}
-
         {% endif %}
+
       </div>
 
       <div style="display: ">
