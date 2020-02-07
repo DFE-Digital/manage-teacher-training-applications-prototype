@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
+require('./routes/application-list')(router)
 require('./routes/application')(router)
+require('./routes/enroll')(router)
+require('./routes/withdraw-offer')(router)
+require('./routes/make-different-offer')(router)
 require('./routes/conditions')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
