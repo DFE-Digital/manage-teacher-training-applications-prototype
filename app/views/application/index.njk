@@ -35,12 +35,12 @@
       <div class="app-card">
         <h2 class="govuk-heading-m">Status</h2>
         {% if status.declined or status.accepted %}
-          <a href="/email/{{ applicationId }}/candidate-{{ status | status }}-offer">
+          <a href="/email/{{ applicationId }}/candidate">
         {% endif %}
-          {{ govukTag({
-            classes: "govuk-!-margin-bottom-4 " + status | statusClass,
-            text: status
-          }) }}
+            {{ govukTag({
+              classes: "govuk-!-margin-bottom-4 " + status | statusClass,
+              text: status
+            }) }}
         {% if status.declined or status.accepted %}
           </a>
         {% endif %}
