@@ -22,7 +22,9 @@
 {% block content %}
   {# {% set isPrimaryCourse = application.course.includes("Primary") %} #}
 
-  <h1 class="govuk-heading-xl">Change response</h1>
+  <h1 class="govuk-heading-xl">Edit response</h1>
+
+  <p class="govuk-body">Because this candidate has not accepted your offer, you can still make changes.</p>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -36,7 +38,7 @@
     {{ govukRadios({
       fieldset: {
         legend: {
-          html: "Choose response",
+          html: "What would you like to do?",
           classes: "govuk-fieldset__legend--m"
         }
       },
@@ -44,14 +46,14 @@
       name: "decision",
       items: [{
         value: "different-course",
-        text: "Offer a different course",
+        text: "Offer this candidate a different course or location",
         hint: {
-          text: "Including any conditions or recommendations"
+          text: "You can include new conditions or recommendations"
         },
         checked: checked("decision", "different-course")
       }, {
         value: "reject",
-        text: "Withdraw offer",
+        text: "Withdraw your offer",
         checked: checked("decision", "reject")
       }]
     }) }}
