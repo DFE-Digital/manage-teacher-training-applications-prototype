@@ -89,7 +89,14 @@ $govuk-grid-widths: (
 
 .moj-filter__header {
   background: govuk-colour('light-grey');
-  box-shadow: inset 0 0 0 1px #b1b4b6;
+  box-shadow: none;
+  border: 1px solid #b1b4b6;
+}
+
+.moj-filter__selected {
+  box-shadow: none;
+  border: 1px solid #b1b4b6;
+  border-top: 0;
 }
 
 .moj-pagination {
