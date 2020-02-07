@@ -5,6 +5,8 @@
 
 {% set title = "Are you sure you want to enrol this candidate?" %}
 
+
+
 {% block pageNavigation %}
   {{ govukBackLink({
     href: "/application/" + application.id
@@ -12,6 +14,14 @@
 {% endblock %}
 
 {% block content %}
+
+<p class="govuk-body">When you enrol this candidate, you:
+  <ul class="govuk-list govuk-list--bullet">
+    <li>confirm they have successfully started their training</li>
+    <li>enable payment of fees (you will need to add them to the <a href=\"https://www.gov.uk/guidance/database-of-trainee-teachers-and-providers-dttp/">Database for Trainee Teachers and Providers</a>)</li>
+    <li>get access to diversity and equality information relating to this candidate</li>
+  </ul>
+</p>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
