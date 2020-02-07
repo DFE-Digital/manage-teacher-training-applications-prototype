@@ -1095,7 +1095,8 @@ module.exports = {
         name: 'Joesph Bloggs',
         email: 'j.bloggs@example.ac.uk',
         tel: '07700 900001',
-        relationship: 'University tutor'
+        relationship: 'University tutor',
+        comments: 'A charismatic talented and able person. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.'
       },
       second: {
         status: 'pending',
@@ -1103,7 +1104,8 @@ module.exports = {
         name: 'Janice Doe',
         email: 'janice.doe@example.com',
         tel: '07700 900002',
-        relationship: 'Manager'
+        relationship: 'Manager',
+        comments: 'A charismatic talented and able bloke. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.'
       }
     },
     miscellaneous: ''
@@ -1479,35 +1481,7 @@ module.exports = {
         tel: '07700 900001',
         relationship: 'Scotland and borders area supervisor at Tutorful',
         'safe-to-work-with-children': 'Yes',
-        comments: 'Fantastic personality. Great with people. Strong communicator . Excellent character. Passionate about teaching . Great potential. Go for her. A charismatic talented able young woman who is far better than her official degree result. An exceptional person.',
-        ratings: [{
-          label: 'Passion for their subject',
-          value: 7
-        }, {
-          label: 'Knowledge about their subject',
-          value: 10
-        }, {
-          label: 'General academic performance',
-          value: 9
-        }, {
-          label: 'Ability to meet deadlines and organise their time',
-          value: 7
-        }, {
-          label: 'Ability to think critically',
-          value: 10
-        }, {
-          label: 'Ability to work collaboratively',
-          value: false
-        }, {
-          label: 'Mental and emotional resilience ',
-          value: 8
-        }, {
-          label: 'Literacy',
-          value: 9
-        }, {
-          label: 'Numeracy',
-          value: 7
-        }]
+        comments: 'Fantastic personality. Great with people. Strong communicator . Excellent character. Passionate about teaching . Great potential. Go for her. A charismatic talented able young woman who is far better than her official degree result. An exceptional person.'
       },
       second: {
         status: 'received',
@@ -1516,35 +1490,7 @@ module.exports = {
         email: 'pete.giles@example.ac.uk',
         tel: '07700 900002',
         relationship: 'Course leader for my masters programme.',
-        comments: 'A charismatic talented and able woman. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.',
-        ratings: [{
-          label: 'Passion for their subject',
-          value: 8
-        }, {
-          label: 'Knowledge about their subject',
-          value: 9
-        }, {
-          label: 'General academic performance',
-          value: 7
-        }, {
-          label: 'Ability to meet deadlines and organise their time',
-          value: 9
-        }, {
-          label: 'Ability to think critically',
-          value: 8
-        }, {
-          label: 'Ability to work collaboratively',
-          value: 10
-        }, {
-          label: 'Mental and emotional resilience ',
-          value: 9
-        }, {
-          label: 'Literacy',
-          value: 8
-        }, {
-          label: 'Numeracy',
-          value: 6
-        }]
+        comments: 'A charismatic talented and able woman. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.'
       }
     },
     miscellaneous: ''
@@ -1717,35 +1663,7 @@ module.exports = {
         tel: '07700 900001',
         relationship: 'Brian is the manager of the bar at Bristol City FC bar, where I currently work part-time.',
         'safe-to-work-with-children': 'Yes',
-        comments: 'Elise is a very smart young woman who I have had the pleasure of working with since spring last year (2019).\n\n We rely on bar staff to be responsible, reliable, trustworthy with stock and takings, and maintain excellent time-keeping. In all of these respects Elise exceeded expectations. She remained calm in difficult situations and was always equally happy to work independently or as part of a team.\n\n Elise has great communication skills and during her time with us there have been no misunderstandings or difficulties either with customers or with staff. She manages everything to a very good standard and always goes the extra mile – for example by designing and creating a social media campaign for the bar’s relaunch.\n\n I was also impressed by the way she organised a 5-a-side football team from amongst her fellow staff – her enthusiasm and love of sport made her an inspiration.\n\n If she’s able to bring the same patience, people skills and good humour to teaching as she does to working behind the bar, I believe that she will make a fantastic teacher.',
-        ratings: [{
-          label: 'Passion for their subject',
-          value: 7
-        }, {
-          label: 'Knowledge about their subject',
-          value: 10
-        }, {
-          label: 'General academic performance',
-          value: 9
-        }, {
-          label: 'Ability to meet deadlines and organise their time',
-          value: 7
-        }, {
-          label: 'Ability to think critically',
-          value: 10
-        }, {
-          label: 'Ability to work collaboratively',
-          value: false
-        }, {
-          label: 'Mental and emotional resilience ',
-          value: 8
-        }, {
-          label: 'Literacy',
-          value: 9
-        }, {
-          label: 'Numeracy',
-          value: 7
-        }]
+        comments: 'Elise is a very smart young woman who I have had the pleasure of working with since spring last year (2019).\n\n We rely on bar staff to be responsible, reliable, trustworthy with stock and takings, and maintain excellent time-keeping. In all of these respects Elise exceeded expectations. She remained calm in difficult situations and was always equally happy to work independently or as part of a team.\n\n Elise has great communication skills and during her time with us there have been no misunderstandings or difficulties either with customers or with staff. She manages everything to a very good standard and always goes the extra mile – for example by designing and creating a social media campaign for the bar’s relaunch.\n\n I was also impressed by the way she organised a 5-a-side football team from amongst her fellow staff – her enthusiasm and love of sport made her an inspiration.\n\n If she’s able to bring the same patience, people skills and good humour to teaching as she does to working behind the bar, I believe that she will make a fantastic teacher.'
       },
       second: {
         status: 'received',
@@ -1754,35 +1672,7 @@ module.exports = {
         email: 'simon.taylor@bristolacademy.co.uk',
         tel: '07700 900002',
         relationship: 'Simon Taylor is head of PE at one of the schools where I have regularly provided cover as a PE teacher through my agency PE Direct.',
-        comments: 'Elise Briggs has good time management and attendance. When working for Bristol Academy as a temporary PE teacher, Elise always demonstrated the utmost commitment and dedication towards her classes. I also felt completely confident in Elise to leave her to assist students without having to suggest what to do – she would automatically do it.\n\n She always gave myself and other teachers respect and worked well under direction; at the same time, I would feel confident knowing she would be able to teach the students without needing my support or guidance. Her degree in Sport and Physical Education gives her the confidence to take control of a class and lead. \n\n Elise also shows a huge passion for teaching not just sport, but also choreography. After showing a talent for it, she was given opportunities to choreograph pieces within the competition class which she excelled at. Elise knows her technical theory so when teaching she always explains what the students should be doing and how that helps, explaining the muscles used, etc. \n\n Elise showed a good sense of emotion towards the students at Bristol Academy, and built  bonds that allowed the students to feel they could go to her and learn from her. I feel Elise would make an excellent teacher and I would highly recommend her for this course. ',
-        ratings: [{
-          label: 'Passion for their subject',
-          value: 8
-        }, {
-          label: 'Knowledge about their subject',
-          value: 9
-        }, {
-          label: 'General academic performance',
-          value: 7
-        }, {
-          label: 'Ability to meet deadlines and organise their time',
-          value: 9
-        }, {
-          label: 'Ability to think critically',
-          value: 8
-        }, {
-          label: 'Ability to work collaboratively',
-          value: 10
-        }, {
-          label: 'Mental and emotional resilience ',
-          value: 9
-        }, {
-          label: 'Literacy',
-          value: 8
-        }, {
-          label: 'Numeracy',
-          value: 6
-        }]
+        comments: 'Elise Briggs has good time management and attendance. When working for Bristol Academy as a temporary PE teacher, Elise always demonstrated the utmost commitment and dedication towards her classes. I also felt completely confident in Elise to leave her to assist students without having to suggest what to do – she would automatically do it.\n\n She always gave myself and other teachers respect and worked well under direction; at the same time, I would feel confident knowing she would be able to teach the students without needing my support or guidance. Her degree in Sport and Physical Education gives her the confidence to take control of a class and lead. \n\n Elise also shows a huge passion for teaching not just sport, but also choreography. After showing a talent for it, she was given opportunities to choreograph pieces within the competition class which she excelled at. Elise knows her technical theory so when teaching she always explains what the students should be doing and how that helps, explaining the muscles used, etc. \n\n Elise showed a good sense of emotion towards the students at Bristol Academy, and built  bonds that allowed the students to feel they could go to her and learn from her. I feel Elise would make an excellent teacher and I would highly recommend her for this course. '
       }
     },
     miscellaneous: ''
@@ -2031,35 +1921,7 @@ module.exports = {
         tel: '07700 900001',
         relationship: 'Jane was head of department over the 12 months I was employed as an English teacher at Jun Wu Primary School in Chengdu, China. ',
         'safe-to-work-with-children': 'Yes',
-        comments: 'When we employed Kelly Jane Spears as a full-time teacher of English to our students (aged 7 to 11), we were immediately impressed by her knowledge of and passion for the English language.\n\n I can only compliment Kelly regarding her organisation, including time-keeping and lesson-planning. Her appreciation of the students’ needs, both academic and social and emotional, formed a solid base for differentiation according to the tasks at hand. Kelly showed her commitment to education and a great degree of care for the welfare of the students she worked with.\n\n Kelly was able to demonstrate great confidence in her work, be it teaching, giving advice during meetings or writing reports. This made her an invaluable member of our department’s team. Kelly was able to use different resources to assess, teach and to support students. She set appropriate targets and drew on effective strategies to help students to make progress, according to the pace of their learning.\n\n Kelly worked both as a team member and individually, showing initiative and supporting students both in lessons and outside of lessons. She excelled at helping the students sustain concentration and motivation. She also dedicated a great deal of her own resources to ensure that students achieved their best, both during lessons and small group sessions.\n\n It appears that studying and working in different environments, here in China and in the UK, has given Kelly valuable experience in working with different people. She was able to draw on this to enrich the life of the students in her care. Her enthusiasm, creativity and communication skills meant she was not only able to enhance our students’ learning, but also to build their emotional resilience and investment in their own learning.',
-        ratings: [{
-          label: 'Passion for their subject',
-          value: 7
-        }, {
-          label: 'Knowledge about their subject',
-          value: 10
-        }, {
-          label: 'General academic performance',
-          value: 9
-        }, {
-          label: 'Ability to meet deadlines and organise their time',
-          value: 7
-        }, {
-          label: 'Ability to think critically',
-          value: 10
-        }, {
-          label: 'Ability to work collaboratively',
-          value: false
-        }, {
-          label: 'Mental and emotional resilience ',
-          value: 8
-        }, {
-          label: 'Literacy',
-          value: 9
-        }, {
-          label: 'Numeracy',
-          value: 7
-        }]
+        comments: 'When we employed Kelly Jane Spears as a full-time teacher of English to our students (aged 7 to 11), we were immediately impressed by her knowledge of and passion for the English language.\n\n I can only compliment Kelly regarding her organisation, including time-keeping and lesson-planning. Her appreciation of the students’ needs, both academic and social and emotional, formed a solid base for differentiation according to the tasks at hand. Kelly showed her commitment to education and a great degree of care for the welfare of the students she worked with.\n\n Kelly was able to demonstrate great confidence in her work, be it teaching, giving advice during meetings or writing reports. This made her an invaluable member of our department’s team. Kelly was able to use different resources to assess, teach and to support students. She set appropriate targets and drew on effective strategies to help students to make progress, according to the pace of their learning.\n\n Kelly worked both as a team member and individually, showing initiative and supporting students both in lessons and outside of lessons. She excelled at helping the students sustain concentration and motivation. She also dedicated a great deal of her own resources to ensure that students achieved their best, both during lessons and small group sessions.\n\n It appears that studying and working in different environments, here in China and in the UK, has given Kelly valuable experience in working with different people. She was able to draw on this to enrich the life of the students in her care. Her enthusiasm, creativity and communication skills meant she was not only able to enhance our students’ learning, but also to build their emotional resilience and investment in their own learning.'
       },
       second: {
         status: 'received',
@@ -2068,35 +1930,7 @@ module.exports = {
         email: 'sam.fairey@playclub.co.uk',
         tel: '07700 900002',
         relationship: 'Sam was my line manager at Play Club, where I worked full-time as a play leader for 4 to 11 year olds.',
-        comments: 'Kelly Jane Spears is very well-suited to teaching and working with children. She is caring, enthusiastic, encouraging, dedicated and kind. She is passionate about using play and the arts to develop children’s confidence, emotional intelligence and self-esteem, and her love of sharing that passion with others shines through. She is a great team member, and can also work independently, taking initiative to achieve results. She works well under pressure and is reliable, always fulfilling her tasks and going over and above. She has good literacy and numeracy, and as part of her role at our organisation, she was excellent with reception and administration responsibilities. As a play leader she is supportive, receptive and energetic. She interacts well with both staff and students, is responsible, and has strong communication skills. In terms of character, she is honest, hard-working and full of integrity. I highly recommend her and am confident she will be an excellent candidate. ',
-        ratings: [{
-          label: 'Passion for their subject',
-          value: 8
-        }, {
-          label: 'Knowledge about their subject',
-          value: 9
-        }, {
-          label: 'General academic performance',
-          value: 7
-        }, {
-          label: 'Ability to meet deadlines and organise their time',
-          value: 9
-        }, {
-          label: 'Ability to think critically',
-          value: 8
-        }, {
-          label: 'Ability to work collaboratively',
-          value: 10
-        }, {
-          label: 'Mental and emotional resilience ',
-          value: 9
-        }, {
-          label: 'Literacy',
-          value: 8
-        }, {
-          label: 'Numeracy',
-          value: 6
-        }]
+        comments: 'Kelly Jane Spears is very well-suited to teaching and working with children. She is caring, enthusiastic, encouraging, dedicated and kind. She is passionate about using play and the arts to develop children’s confidence, emotional intelligence and self-esteem, and her love of sharing that passion with others shines through. She is a great team member, and can also work independently, taking initiative to achieve results. She works well under pressure and is reliable, always fulfilling her tasks and going over and above. She has good literacy and numeracy, and as part of her role at our organisation, she was excellent with reception and administration responsibilities. As a play leader she is supportive, receptive and energetic. She interacts well with both staff and students, is responsible, and has strong communication skills. In terms of character, she is honest, hard-working and full of integrity. I highly recommend her and am confident she will be an excellent candidate. '
       }
     },
     miscellaneous: ''
