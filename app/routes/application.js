@@ -1,16 +1,8 @@
-/**
- * Application routes
- */
-
-const applications = require( '../data/applications')
 const utils = require( '../data/application-utils')
 
 module.exports = router => {
-  // Render application page
 
-
-  // Render application page
-  router.all('/application/:applicationId', (req, res) => {
+  router.get('/application/:applicationId', (req, res) => {
     const success = req.query.success
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
@@ -149,13 +141,11 @@ module.exports = router => {
     res.redirect(`/application/${req.params.applicationId}`)
   })
 
-  // Render other application pages
   router.get('/application/:applicationId/edit-response', (req, res) => {
     res.render(`application/edit-response`, {
       applicationId: req.params.applicationId
     })
   })
-
 
   router.get('/application/:applicationId/decision', (req, res) => {
     res.render(`application/decision`, {

@@ -1,4 +1,3 @@
-const applications = require( '../data/applications')
 const utils = require( '../data/application-utils')
 
 module.exports = router => {
@@ -63,7 +62,6 @@ module.exports = router => {
     req.flash('success', 'conditions-not-met');
     res.redirect(`/application/${applicationId}`);
   })
-
 
 
 }

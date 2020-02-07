@@ -2,49 +2,37 @@
   white-space: nowrap;
 }
 
-.app-tag--grey,
-.app-tag--empty {
+.app-tag--grey {
   color: govuk-shade(govuk-colour("dark-grey"), 30);
   background: govuk-tint(govuk-colour("dark-grey"), 90);
 }
 
-.app-tag--purple,
-.app-tag--new {
+.app-tag--purple {
   color: govuk-shade(govuk-colour("purple"), 20);
   background: govuk-tint(govuk-colour("purple"), 80);
 }
 
-.app-tag--turquoise,
-.app-tag--offered {
+.app-tag--turquoise {
   color: govuk-shade(govuk-colour("turquoise"), 60);
   background: govuk-tint(govuk-colour("turquoise"), 70);
 }
 
-.app-tag--blue,
-.app-tag--accepted,
-.app-tag--enrolled {
+.app-tag--blue {
   color: govuk-shade(govuk-colour("blue"), 30);
   background: govuk-tint(govuk-colour("blue"), 80);
 }
 
-.app-tag--orange,
-.app-tag--declined,
-.app-tag--withdrawn-by-us,
-.app-tag--withdrawn-by-candidate {
+.app-tag--orange {
   color: govuk-shade(govuk-colour("orange"), 55);
   background: govuk-tint(govuk-colour("orange"), 70);
 }
 
-.app-tag--red,
-.app-tag--rejected,
-.app-tag--conditions-not-met {
+.app-tag--red {
   color: govuk-shade(govuk-colour("red"), 30);
   background: govuk-tint(govuk-colour("red"), 80);
 }
 
-.app-tag--green,
-.app-tag--conditions-met {
+.app-tag--green {
   color: govuk-shade(govuk-colour("green"), 20);
   background: govuk-tint(govuk-colour("green"), 80);
 }
-

@@ -1,6 +1,3 @@
-const applications = require( '../data/applications')
-const utils = require( '../data/application-utils')
-
 module.exports = router => {
   router.get('/application/:applicationId/confirm-enrollment', (req, res) => {
     res.render(`application/confirm-enrollment`, {
