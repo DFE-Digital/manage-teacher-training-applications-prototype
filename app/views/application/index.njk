@@ -217,16 +217,12 @@
 
         {% if application.offer and conditions %}
 
+          <h2 class="govuk-heading-s">Conditions</h2>
+
+          <p class="govuk-body"><a href="/application/{{applicationId}}/withdraw">Manage conditions</a></p>
+
           {{ govukTable({
-            head: [
-              {
-                text: "Conditions"
-              },
-              {
-                text: "",
-                format: "numeric"
-              }
-            ],
+
             rows: [
               [
                 {
