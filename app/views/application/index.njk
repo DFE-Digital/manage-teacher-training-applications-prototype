@@ -103,7 +103,7 @@
         {% elseif application.status == 'Offered' %}
           {{govukButton({
             classes: "govuk-!-margin-bottom-4",
-            text: "Change response",
+            text: "Edit response",
             href: "/application/" + application.id + "/edit-response"
           })}}
         {% elseif application.statusA == 'accepted' %}
