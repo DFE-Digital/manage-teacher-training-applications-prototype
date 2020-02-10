@@ -279,98 +279,97 @@
 
       </div>
 
-      <div style="display: ">
-
-        <h2 class="govuk-heading-l">Application</h2>
-
-        {% include "_includes/application/details.njk" %}
-
-        <h2 class="govuk-heading-m">Course details</h2>
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Provider"
-            },
-            value: {
-              text: application["provider"]
-            }
-          }, {
-            key: {
-              text: "Course"
-            },
-            value: {
-              text: application["course"]
-            }
-          }, {
-            key: {
-              text: "Cycle"
-            },
-            value: {
-              text: '2020'
-            }
-          }, {
-            key: {
-              text: "Preferred location"
-            },
-            value: {
-              text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
-            }
-          }, {
-            key: {
-              text: "Study mode"
-            },
-            value: {
-              text: 'Full time'
-            }
-          }]
-        }) }}
-
-        {% if conditions.length %}
-          <h2 class="govuk-heading-m govuk-!-margin-top-8">Offer conditions</h2>
-
-          {{appTaskList({
-            items: conditions
-          })}}
-        {% endif %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Accessibility needs</h2>
-        {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
-        <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "Not specified."}}</p>
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Interview needs</h2>
-        {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
-        <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "Not specified."}}</p>
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Qualifications</h2>
-        {% include "_includes/application/degrees.njk" %}
-        {% include "_includes/application/gcses.njk" %}
-        {% include "_includes/application/other-qualifications.njk" %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Work history</h2>
-        {% include "_includes/application/work-history.njk" %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">School experience and volunteering</h2>
-        {% include "_includes/application/school-experience.njk" %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Language Skills</h2>
-        {% include "_includes/application/language-skills.njk" %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Personal statement</h2>
-        {% include "_includes/application/personal-statement.njk" %}
 
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Safeguarding</h2>
-        {# <p class="govuk-body">We ask the candidate if they want to disclose anything before their DBS check.</p> #}
-        <p class="govuk-body">{{application["suitability"] | nl2br or "Nothing disclosed"}}</p>
+      <h2 class="govuk-heading-l">Application</h2>
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
-        {% set referenceId = "first" %}
-        {% include "_includes/application/reference.njk" %}
+      {% include "_includes/application/details.njk" %}
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
-        {% set referenceId = "second" %}
-        {% include "_includes/application/reference.njk" %}
-      </div>
+      <h2 class="govuk-heading-m">Course details</h2>
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Provider"
+          },
+          value: {
+            text: application["provider"]
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            text: application["course"]
+          }
+        }, {
+          key: {
+            text: "Cycle"
+          },
+          value: {
+            text: '2020'
+          }
+        }, {
+          key: {
+            text: "Preferred location"
+          },
+          value: {
+            text: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+          }
+        }, {
+          key: {
+            text: "Study mode"
+          },
+          value: {
+            text: 'Full time'
+          }
+        }]
+      }) }}
+
+      {% if conditions.length %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Offer conditions</h2>
+
+        {{appTaskList({
+          items: conditions
+        })}}
+      {% endif %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Accessibility needs</h2>
+      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+      <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "Not specified."}}</p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Interview needs</h2>
+      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+      <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "Not specified."}}</p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Qualifications</h2>
+      {% include "_includes/application/degrees.njk" %}
+      {% include "_includes/application/gcses.njk" %}
+      {% include "_includes/application/other-qualifications.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Work history</h2>
+      {% include "_includes/application/work-history.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">School experience and volunteering</h2>
+      {% include "_includes/application/school-experience.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Language Skills</h2>
+      {% include "_includes/application/language-skills.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Personal statement</h2>
+      {% include "_includes/application/personal-statement.njk" %}
+
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Safeguarding</h2>
+      {# <p class="govuk-body">We ask the candidate if they want to disclose anything before their DBS check.</p> #}
+      <p class="govuk-body">{{application["suitability"] | nl2br or "Nothing disclosed"}}</p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
+      {% set referenceId = "first" %}
+      {% include "_includes/application/reference.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+      {% set referenceId = "second" %}
+      {% include "_includes/application/reference.njk" %}
     </div>
   </div>
 {% endblock %}
