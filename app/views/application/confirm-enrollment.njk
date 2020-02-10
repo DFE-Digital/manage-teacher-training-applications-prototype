@@ -20,6 +20,13 @@
 
       {% include "_includes/application-summary.njk" %}
 
+      <p class="govuk-body">When you enrol this candidate, you:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>confirm they have successfully started their training</li>
+        <li>enable payment of fees (you will need to add them to the <a href="https://www.gov.uk/guidance/database-of-trainee-teachers-and-providers-dttp/">Database for Trainee Teachers and Providers</a>)</li>
+        <li>get access to diversity and equality information relating to this candidate</li>
+      </ul>
+
       <form method="post">
         {{ govukButton({
           text: "Yes I’m sure – enrol them"
