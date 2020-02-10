@@ -37,8 +37,8 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
-    application.statusA = "conditions-met";
-    application.status['conditions-met'] = { };
+    application.status = "Conditions met";
+    application.status.conditionsMetDate = new Date().toISOString()
     req.flash('success', 'conditions-met');
     res.redirect(`/application/${applicationId}`);
   })
@@ -57,8 +57,8 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
-    application.statusA = "conditions-not-met";
-    application.status['conditions-not-met'] = { };
+    application.status = "Conditions not met";
+    application.status.conditionsNotMetDate = new Date().toISOString()
     req.flash('success', 'conditions-not-met');
     res.redirect(`/application/${applicationId}`);
   })
