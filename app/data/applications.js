@@ -113,10 +113,12 @@ module.exports = {
     provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
-    status: 'Declined',
+    status: 'Enrolled',
     offer: {
       madeDate: '2019-08-10',
-      declinedDate: '2019-08-12',
+      acceptedDate: '2019-08-12',
+      conditionsMetDate: '2019-09-12',
+      enrolledDate: '2019-09-14',
       standardConditions: [],
       conditions: []
     },
