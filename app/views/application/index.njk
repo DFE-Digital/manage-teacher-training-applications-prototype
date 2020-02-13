@@ -60,14 +60,14 @@
             value: {
               text: application.submittedDate | date("dd LLL yyyy")
             }
-          }, {
+          } if application.status == 'New', {
             key: {
               text: "Respond to applicant by"
             },
             value: {
               text: rbd | date("dd LLL yyyy")
             }
-          } if not application.offer.madeDate,
+          } if application.status == 'New',
           {
             key: {
               text: "Offer made"
@@ -75,7 +75,7 @@
             value: {
               text: application.offer.madeDate | date("dd LLL yyyy")
             }
-          } if application.offer.madeDate,
+          } if application.status == 'Offered',
           {
             key: {
               text: "Offer accepted"
@@ -83,7 +83,7 @@
             value: {
               text: application.offer.acceptedDate | date("dd LLL yyyy")
             }
-          } if application.offer.acceptedDate,
+          } if application.status == 'Accepted',
           {
             key: {
               text: "Offer declined"
@@ -91,7 +91,7 @@
             value: {
               text: application.offer.declinedDate | date("dd LLL yyyy")
             }
-          } if application.offer.declinedDate,
+          } if application.status == 'Declined',
           {
             key: {
               text: "Conditions met"
@@ -99,7 +99,7 @@
             value: {
               text: application.offer.conditionsMetDate  | date("dd LLL yyyy")
             }
-          } if application.offer.conditionsMetDate,
+          } if application.status == 'Conditions met',
           {
             key: {
               text: "Enrolled"
@@ -115,7 +115,7 @@
             value: {
               text: application.withdrawnDate  | date("dd LLL yyyy")
             }
-          } if application.withdrawnDate,
+          } if application.status == 'Application withdrawn',
           {
             key: {
               text: "Offer withdrawn"
@@ -314,6 +314,10 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
       {% include "_includes/application/reference.njk" %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-l">Timeline</h2>
+      {{ appTimeline({items: timeline})}}
     </div>
   </div>
 {% endblock %}

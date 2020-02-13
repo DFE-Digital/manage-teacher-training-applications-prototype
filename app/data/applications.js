@@ -65,8 +65,8 @@ module.exports = {
       madeDate: '2019-08-10',
       acceptedDate: '2019-08-10',
       conditionsMetDate: '2019-09-12',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: true }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: true }]
     },
     'personal-details': {
       'given-name': 'Becky',
@@ -121,8 +121,8 @@ module.exports = {
       acceptedDate: '2019-08-12',
       conditionsMetDate: '2019-09-12',
       enrolledDate: '2019-09-14',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: true }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: true }]
     },
     'personal-details': {
       'given-name': 'Charlie',
