@@ -269,14 +269,6 @@
         }]
       }) }}
 
-      {% if conditions.length %}
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Offer conditions</h2>
-
-        {{appTaskList({
-          items: conditions
-        })}}
-      {% endif %}
-
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Accessibility needs</h2>
       {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "Not specified."}}</p>
