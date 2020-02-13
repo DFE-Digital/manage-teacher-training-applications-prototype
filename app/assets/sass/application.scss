@@ -88,15 +88,25 @@ $govuk-grid-widths: (
 }
 
 .moj-filter__header {
-  background: govuk-colour('light-grey');
+  background: govuk-colour('white');
   box-shadow: none;
   border: 1px solid #b1b4b6;
+  border-bottom: 0;
+  padding-top: govuk-spacing(3);
+  padding-bottom: govuk-spacing(3);
 }
 
 .moj-filter__selected {
   box-shadow: none;
   border: 1px solid #b1b4b6;
   border-top: 0;
+  border-bottom: 0;
+  padding-top: govuk-spacing(5);
+  padding-bottom: govuk-spacing(5);
+}
+
+.moj-filter__options {
+  box-shadow: none;
 }
 
 .moj-pagination {
