@@ -192,6 +192,11 @@
           </table>
         {% endif %}
 
+        {% if application.offer and application.offer.recommendations %}
+          <h2 class="govuk-heading-s">Recommendations</h2>
+          <p class="govuk-body">{{application.offer.recommendations}}</p>
+        {% endif %}
+
         {% if application.status == "Offered" %}
           <p class="govuk-body govuk-!-margin-bottom-0">
             <a href="/application/{{applicationId}}/withdraw">Withdraw offer</a>

@@ -175,20 +175,10 @@ module.exports = router => {
 
     if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer`)
+    } else if (decision === 'different-course') {
+        res.redirect(`/application/${applicationId}/different-course`)
     } else {
       res.redirect(`/application/${applicationId}/reject`)
-    }
-  })
-
-  // Change decision
-  router.post('/application/:applicationId/edit-response', (req, res) => {
-    const applicationId = req.params.applicationId
-    const { decision } = req.body
-
-    if (decision === 'different-course') {
-      res.redirect(`/application/${applicationId}/different-course`)
-    } else {
-      res.redirect(`/application/${applicationId}/withdraw`)
     }
   })
 
