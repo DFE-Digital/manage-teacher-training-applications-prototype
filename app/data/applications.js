@@ -173,11 +173,6 @@ module.exports = {
     submittedDate: '2019-07-15',
     rejectedDate: '2019-08-12',
     status: 'Rejected',
-    offer: {
-      madeDate: '2019-08-10',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
-    },
 
     'personal-details': {
       'given-name': 'Charlotte',
