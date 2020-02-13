@@ -46,7 +46,7 @@
     "require-dir": "^1.0.0",
     "sync-request": "^6.1.0",
     "universal-analytics": "^0.4.16",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   },
   "greenkeeper": {
     "ignore": [

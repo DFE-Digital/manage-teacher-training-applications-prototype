@@ -21,6 +21,8 @@ module.exports = router => {
       }
     })
 
+    console.log(utils.getConditions(application));
+
     res.render('application/index', {
       applicationId: applicationId,
       conditions: utils.getConditions(application),

@@ -1,20 +1,12 @@
 exports.getConditions = (application) => {
   let conditions = [];
-  if(application['standard-conditions']) {
-    application['standard-conditions'].map((item) => {
-      return {
-        text: item.description
-      }
-    }).forEach((item) => {
+  if(application.offer && application.offer.standardConditions) {
+    application.offer.standardConditions.forEach((item) => {
       conditions.push(item)
     });
   }
-  if(application.conditions) {
-    application.conditions.map((item) => {
-      return {
-        text: item.description
-      }
-    }).forEach((item) => {
+  if(application.offer && application.offer.conditions) {
+    application.offer.conditions.forEach((item) => {
       conditions.push(item)
     });
   }

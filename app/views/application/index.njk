@@ -142,7 +142,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/${applicationId}/different-course",
+                  href: "/application/"+applicationId+"/different-course",
                   text: "Change",
                   visuallyHiddenText: ""
                 }
@@ -159,7 +159,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/${applicationId}/different-course",
+                  href: "/application/"+applicationId+"/different-course",
                   text: "Change",
                   visuallyHiddenText: ""
                 }
@@ -168,90 +168,28 @@
           } if application.offer
         ]})}}
 
-        {# <h2 class="govuk-heading-m">Course details</h2> #}
-
-        {# {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Course"
-            },
-            value: {
-              html: application.course
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          }, {
-            key: {
-              text: "Location"
-            },
-            value: {
-              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Provider"
-            },
-            value: {
-              html: application.provider
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          }]
-        }) }} #}
-
         {% if application.offer and conditions %}
 
           <h2 class="govuk-heading-s">Conditions</h2>
 
           {# <p class="govuk-body"><a href="/application/{{applicationId}}/withdraw">Manage conditions</a></p> #}
 
-          {{ govukTable({
-
-            rows: [
-              [
-                {
-                  text: "This is quite a long condition that could wrap onto more than one line."
-                },
-                {
-                  html: govukTag({ text: 'Not met' if application.status != "Conditions met" and application.status != "Enrolled"  else "Met", classes: 'app-tag--grey' if application.status != "Conditions met" and application.status != "Enrolled" }),
-                  format: "numeric"
-                }
-              ],
-              [
-                {
-                  text: "This is a really really super long condition that could wrap onto more than one line."
-                },
-                {
-                  html: govukTag({ text: 'Not met' if application.status != "Conditions met" and application.status != "Enrolled"  else "Met", classes: 'app-tag--grey' if application.status != "Conditions met" and application.status != "Enrolled" }),
-                  format: "numeric"
-                }
-              ]
-            ]
-          }) }}
+          <table class="govuk-table">
+            <tbody class="govuk-table__body">
+              {% for condition in conditions %}
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">{{condition.description}}</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">
+                    {% if condition.met %}
+                      {{govukTag({ text: 'Met' })}}
+                    {% else %}
+                      {{govukTag({ text: 'Not met', classes: 'app-tag--grey' })}}
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         {% endif %}
 
         {% if application.status == "Offered" %}
