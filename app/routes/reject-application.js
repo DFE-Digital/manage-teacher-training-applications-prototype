@@ -4,8 +4,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/reject', (req, res) => {
     res.render('application/reject', {
-      applicationId: req.params.applicationId,
-      reasons: req.query.reasons
+      applicationId: req.params.applicationId
     })
   })
 
@@ -16,7 +15,7 @@ module.exports = router => {
   router.get('/application/:applicationId/confirm-reject', (req, res) => {
     res.render('application/confirm-rejection', {
       applicationId: req.params.applicationId,
-      reasons: req.session.data.reasons
+      reasons: req.session.data.comments
     })
   })
 

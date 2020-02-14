@@ -13,16 +13,6 @@
 
 {% block primary %}
 
-  {% set reasonsHtml %}
-    {% if reasons %}
-    <ul class="govuk-list govuk-list--bullet">
-      {% for reason in reasons %}
-      <li>{{ reason }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  {% endset %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukSummaryList({
@@ -31,16 +21,9 @@
             text: "Reasons for rejection"
           },
           value: {
-            text: reasonsHtml | safe or "No reasons given"
+            text: reasons | safe or "No reasons given"
           }
-        } if reasons, {
-          key: {
-            text: "Other comments" if reasons else "Reasons for rejection"
-          },
-          value: {
-            text: status.rejected.comments or "No reasons given"
-          }
-        }]
+        } if reasons]
       }) }}
       <p class="govuk-body">Are you sure you want to reject this application? You can’t undo this action once you confirm.</p>
 
