@@ -1,0 +1,36 @@
+{% extends "_form-wide.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Confirm rejection" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/reject"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Reasons for rejection"
+          },
+          value: {
+            text: reasons | safe or "No reasons given"
+          }
+        } if reasons]
+      }) }}
+      <p class="govuk-body">Are you sure you want to reject this application? You can’t undo this action once you confirm.</p>
+
+      {{ govukButton({
+        text: title
+      }) }}
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
