@@ -180,11 +180,14 @@
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">{{condition.description}}</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">
-                    {% if condition.met %}
-                      {{govukTag({ text: 'Met' })}}
-                    {% else %}
-                      {{govukTag({ text: 'Not met', classes: 'app-tag--grey' })}}
+                    {% if condition.status == "Pending" %}
+                      {% set statusClass = "app-tag--grey" %}
+                    {% elseif condition.status == "Met" %}
+                      {% set statusClass = "" %}
+                    {% elseif condition.status == "Not met" %}
+                      {% set statusClass = "app-tag--red" %}
                     {% endif %}
+                    {{govukTag({ text: condition.status, classes: statusClass })}}
                   </td>
                 </tr>
               {% endfor %}

@@ -129,6 +129,21 @@ module.exports = router => {
       })
     }
 
+    if(application.offer && application.offer.conditionsNotMetDate) {
+      timeline.push({
+        label: {
+          text:  "Conditions not met"
+        },
+        datetime: {
+          timestamp: application.offer.conditionsNotMetDate,
+          type: "datetime"
+        },
+        byline: {
+          text: "provider"
+        }
+      })
+    }
+
     if(application.offer && application.offer.withdrawnDate) {
       timeline.push({
         label: {
