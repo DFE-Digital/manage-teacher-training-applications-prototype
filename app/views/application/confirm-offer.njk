@@ -13,11 +13,11 @@
 {% endblock %}
 
 {% block primary %}
-  {% set conditionsHtml %}
-    {% if conditions %}
+  {% set furtherConditionsHtml %}
+    {% if furtherConditions %}
       <ul class="govuk-list govuk-list--bullet">
-        {% for condition in conditions %}
-        <li>{{ condition }}</li>
+        {% for condition in furtherConditions %}
+          <li>{{ condition.description }}</li>
         {% endfor %}
       </ul>
     {% endif %}
@@ -27,7 +27,7 @@
     {% if standardConditions %}
       <ul class="govuk-list govuk-list--bullet">
         {% for condition in standardConditions %}
-        <li>{{ condition }}</li>
+          <li>{{ condition.description }}</li>
         {% endfor %}
       </ul>
     {% endif %}
@@ -53,22 +53,24 @@
             value: {
               text: standardConditionsHtml | safe
             }
-          }, {
+          } if standardConditions | length > 0, {
             key: {
               text: "Further conditions"
             },
             value: {
-              text: conditionsHtml | safe or "No conditions set"
+              text: furtherConditionsHtml | safe or "No conditions set"
             }
-          } if conditions | length > 0, {
+          } if furtherConditions | length > 0,
+          {
             key: {
               text: "Recommendations"
             },
             value: {
               text: recommendations
             }
-          } if recommendations]
-        }) if standardConditions or conditions or recommendations }}
+          } if recommendations
+        ]}) if standardConditions or furtherConditions or recommendations
+        }}
         <p class="govuk-body govuk-!-font-weight-bold">Please make a note of the conditions and recommendations you have set.</p>
         <p class="govuk-body">By confirming this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
         <p class="govuk-body">Once the candidate has accepted, you can only change the conditions of this offer with their permission.</p>
