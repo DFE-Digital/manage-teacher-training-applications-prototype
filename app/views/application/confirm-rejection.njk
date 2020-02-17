@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Confirm rejection" %}
+{% set title = "Are you sure you want to reject this application?" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -25,10 +25,10 @@
           }
         } if reasons]
       }) }}
-      <p class="govuk-body">Are you sure you want to reject this application? You can’t undo this action once you confirm.</p>
+
 
       {{ govukButton({
-        text: title
+        text: "Yes I'm sure – reject this application"
       }) }}
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>

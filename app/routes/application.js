@@ -18,7 +18,7 @@ module.exports = router => {
         'different-course-offered': 'Course offered successfully',
         'enrolled': 'Candidate successfully enrolled',
         'offered': 'Offer successfully made to candidate',
-        'rejected': 'Application rejected successfully'
+        'rejected': 'Application successfully rejected'
       }
     })
 

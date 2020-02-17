@@ -3,7 +3,6 @@
 {% set primaryNavId = 'applications' %}
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set parent = "Application for " + application.course %}
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
