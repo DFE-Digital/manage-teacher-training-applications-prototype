@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Are you sure you want to withdraw this offer?" %}
+{% set title = "Check and confirm withdrawal" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,30 +18,50 @@
 
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% if data.comments %}
-        <h2 class="govuk-heading-m">Offer details</h2>
-      {% endif %}
-
-      {% include "_includes/application-summary.njk" %}
-
-      {% if data.comments %}
-        <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
-
-        {{ govukSummaryList({
-          rows: [{
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-8",
+        rows: [{
+          key: {
+            text: "Candidate name"
+          },
+          value: {
+            text: name
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            html: application.course
+          }
+        }, {
+          key: {
+            text: "Location"
+          },
+          value: {
+            html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+          }
+        },
+        {
+          key: {
+            text: "Provider"
+          },
+          value: {
+            html: application.provider
+          }
+        }, {
             key: {
-              text: "Reasons for withdrawal"
+              text: "Reason for withdrawal"
             },
             value: {
               text: data.comments
             }
-          }]
-        })}}
-      {% endif %}
+          } if data.comments]
+      }) }}
 
       <form method="post">
         {{ govukButton({
-          text: "Yes I'm sure - withdraw offer",
+          text: "Withdraw offer",
           classes: "govuk-button--warning"
         }) }}
       </form>
