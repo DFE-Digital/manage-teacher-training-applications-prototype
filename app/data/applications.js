@@ -10,8 +10,8 @@ module.exports = {
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-07-30',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     'personal-details': {
       'given-name': 'Eloise',
@@ -65,8 +65,8 @@ module.exports = {
       madeDate: '2019-08-10',
       acceptedDate: '2019-08-10',
       conditionsMetDate: '2019-09-12',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: true }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: true }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     'personal-details': {
       'given-name': 'Becky',
@@ -121,8 +121,8 @@ module.exports = {
       acceptedDate: '2019-08-12',
       conditionsMetDate: '2019-09-12',
       enrolledDate: '2019-09-14',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: true }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: true }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     'personal-details': {
       'given-name': 'Charlie',
@@ -171,8 +171,13 @@ module.exports = {
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
-    rejectedDate: '2019-08-12',
-    status: 'Rejected',
+    status: 'Conditions not met',
+    offer: {
+      madeDate: '2019-07-18',
+      conditionsNotMetDate: '2019-08-12',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Not met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
 
     'personal-details': {
       'given-name': 'Charlotte',
@@ -275,8 +280,8 @@ module.exports = {
     offer: {
       madeDate: '2019-09-10',
       declinedDate: '2019-09-12',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     'personal-details': {
       'given-name': 'Elizabeth',
@@ -379,8 +384,8 @@ module.exports = {
     offer: {
       madeDate: '2019-09-23',
       withdrawnDate: '2019-09-23',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
 
     'personal-details': {
@@ -616,8 +621,8 @@ module.exports = {
     status: 'Offered',
     offer: {
       madeDate: '2019-09-23',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     'personal-details': {
       'given-name': 'James',
@@ -850,8 +855,8 @@ module.exports = {
     status: 'Offered',
     offer: {
       madeDate: '2019-10-01',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', met: false }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', met: false }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
 
     'personal-details': {
