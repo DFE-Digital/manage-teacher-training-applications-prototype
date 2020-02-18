@@ -1,4 +1,4 @@
-{% extends "_form-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
@@ -12,7 +12,7 @@
   }) }}
 {% endblock %}
 
-{% block primary %}
+{% block content %}
   {% set furtherConditionsHtml %}
     {% if furtherConditions %}
       <ul class="govuk-list govuk-list--bullet">
@@ -45,6 +45,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
       {{ govukSummaryList({
           rows: [{
             key: {
@@ -104,9 +105,11 @@
       <p class="govuk-body">By confirming this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
       <p class="govuk-body">Once the candidate has accepted, you can only change the conditions of this offer with their permission.</p>
 
-      {{ govukButton({
-        text: "Make offer"
-      }) }}
+      <form method="post">
+        {{ govukButton({
+          text: "Make offer"
+        }) }}
+      </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
