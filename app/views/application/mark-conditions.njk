@@ -27,10 +27,11 @@
       {% include "_includes/application-summary.njk" %}
 
       <h2 class="govuk-heading-l">Conditions</h2>
-
-      {{appTaskList({
-        items: conditions
-      })}}
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+        {% for condition in conditions %}
+          <li>{{condition.description}}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 
