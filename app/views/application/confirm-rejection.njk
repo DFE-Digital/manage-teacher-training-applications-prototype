@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Are you sure you want to reject this application?" %}
+{% set title = "Check and confirm rejection" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -15,20 +15,53 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+
+
+
       {{ govukSummaryList({
         rows: [{
+    key: {
+      text: "Candidate name"
+    },
+    value: {
+      text: name
+    }
+  }, {
+    key: {
+      text: "Course"
+    },
+    value: {
+      html: application.course
+    }
+  }, {
+    key: {
+      text: "Preferred location"
+    },
+    value: {
+      html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+    }
+  },
+  {
+    key: {
+      text: "Provider"
+    },
+    value: {
+      html: application.provider
+    }
+  }, {
           key: {
-            text: "Reasons for rejection"
+            text: "Reason for rejection"
           },
           value: {
-            text: reasons | safe or "No reasons given"
+            text: reasons | safe
           }
         } if reasons]
       }) }}
 
 
       {{ govukButton({
-        text: "Yes I'm sure – reject this application"
+        text: "Reject application"
       }) }}
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
