@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Are you sure you want to mark the conditions as met?" %}
+{% set title = "Check and confirm conditions have been met" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -22,13 +22,15 @@
 
       <h2 class="govuk-heading-l">Conditions</h2>
 
-      {{appTaskList({
-        items: conditions
-      })}}
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+        {% for condition in conditions %}
+          <li>{{condition.description}}</li>
+        {% endfor %}
+      </ul>
 
       <form method="post">
         {{ govukButton({
-          text: "Yes I’m sure - mark conditions as met"
+          text: "Confirm conditions as met"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>

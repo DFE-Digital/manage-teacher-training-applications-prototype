@@ -1,10 +1,10 @@
-{% extends "_form-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set parent = "Application for " + application.course %}
-{% set title = "Confirm offer" %}
+
+{% set title = "Check and confirm offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -12,7 +12,7 @@
   }) }}
 {% endblock %}
 
-{% block primary %}
+{% block content %}
   {% set furtherConditionsHtml %}
     {% if furtherConditions %}
       <ul class="govuk-list govuk-list--bullet">
@@ -45,8 +45,38 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        {{ govukSummaryList({
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+      {{ govukSummaryList({
           rows: [{
+            key: {
+              text: "Candidate name"
+            },
+            value: {
+              text: name
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            }
+          }, {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            }
+          }, {
             key: {
               text: "Standard conditions"
             },
@@ -70,14 +100,16 @@
             }
           } if recommendations
         ]}) if standardConditions or furtherConditions or recommendations
-        }}
-        <p class="govuk-body govuk-!-font-weight-bold">Please make a note of the conditions and recommendations you have set.</p>
-        <p class="govuk-body">By confirming this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
-        <p class="govuk-body">Once the candidate has accepted, you can only change the conditions of this offer with their permission.</p>
+      }}
 
-      {{ govukButton({
-        text: title
-      }) }}
+      <p class="govuk-body">By confirming this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
+      <p class="govuk-body">Once the candidate has accepted, you can only change the conditions of this offer with their permission.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Make offer"
+        }) }}
+      </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>

@@ -34,7 +34,19 @@
 
       <div class="app-card govuk-!-margin-bottom-9">
         {% if application.status == "Offered" %}
-          <h2 class="govuk-heading-l">Offer made to {{name}}</h2>
+          <h2 class="govuk-heading-l">Offer made</h2>
+        {% endif %}
+
+        {% if application.status == "Conditions met" %}
+          <h2 class="govuk-heading-l">Conditions of offer have been met</h2>
+        {% endif %}
+
+        {% if application.status == "Conditions not met" %}
+          <h2 class="govuk-heading-l">Conditions of offer have not been met</h2>
+        {% endif %}
+
+        {% if application.status == "Rejected" %}
+          <h2 class="govuk-heading-l">Application rejected</h2>
         {% endif %}
 
 

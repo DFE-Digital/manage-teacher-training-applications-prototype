@@ -1,9 +1,9 @@
-{% extends "_form-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Confirm rejection" %}
+{% set title = "Check and confirm rejection" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -11,25 +11,57 @@
   }) }}
 {% endblock %}
 
-{% block primary %}
-
+{% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
       {{ govukSummaryList({
         rows: [{
+            key: {
+              text: "Candidate name"
+            },
+            value: {
+              text: name
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            }
+          }, {
+            key: {
+              text: "Preferred location"
+            },
+            value: {
+              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            }
+          }, {
           key: {
-            text: "Reasons for rejection"
+            text: "Reason for rejection"
           },
           value: {
-            text: reasons | safe or "No reasons given"
+            text: reasons | safe
           }
         } if reasons]
       }) }}
-      <p class="govuk-body">Are you sure you want to reject this application? You can’t undo this action once you confirm.</p>
 
-      {{ govukButton({
-        text: title
-      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Reject application"
+        }) }}
+      </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
