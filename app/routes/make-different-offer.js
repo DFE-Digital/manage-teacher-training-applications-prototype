@@ -64,8 +64,34 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/different-course/confirm', (req, res) => {
+
+    let standardConditions = req.session.data['standard-conditions'].map((item) => {
+      return {
+        description: item
+      }
+    })
+
+    let furtherConditions = [];
+
+    if (req.session.data['condition-1']) {
+      furtherConditions.push({ id: uuid(), description: req.session.data['condition-1'], met: false })
+    }
+    if (req.session.data['condition-2']) {
+      furtherConditions.push({ id: uuid(), description: req.session.data['condition-2'], met: false })
+    }
+    if (req.session.data['condition-3']) {
+      furtherConditions.push({ id: uuid(), description: req.session.data['condition-3'], met: false })
+    }
+    if (req.session.data['condition-4']) {
+      furtherConditions.push({ id: uuid(), description: req.session.data['condition-4'], met: false })
+    }
+
+    let recommendations = req.session.data.recommendations
     res.render(`application/different-course--confirm`, {
-      applicationId: req.params.applicationId
+      applicationId: req.params.applicationId,
+      standardConditions,
+      furtherConditions,
+      recommendations
     })
   })
 
