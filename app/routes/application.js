@@ -197,7 +197,11 @@ module.exports = router => {
     if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer`)
     } else if (decision === 'different-course') {
-        res.redirect(`/application/${applicationId}/different-course`)
+      res.redirect(`/application/${applicationId}/different-course/course`)
+    } else if (decision === 'different-location') {
+      res.redirect(`/application/${applicationId}/different-course/location`)
+    } else if (decision === 'different-provider') {
+      res.redirect(`/application/${applicationId}/different-course/provider`)
     } else {
       res.redirect(`/application/${applicationId}/reject`)
     }

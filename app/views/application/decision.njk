@@ -63,8 +63,7 @@
     {{ govukRadios({
       fieldset: {
         legend: {
-          html: "Choose response (you'll be able to add conditions and recommendations)",
-
+          html: "Choose response",
           classes: "govuk-fieldset__legend--m",
           isPageHeading: true
         }
@@ -79,21 +78,20 @@
         checked: checked("decision", "offer")
       },
       {
-        value: "offer",
+        value: "different-course",
         text: "Make an offer but change course",
 
-        checked: checked("decision", "offer")
+        checked: checked("decision", "different-course")
       },{
-        value: "offer",
+        value: "different-location",
         text: "Make an offer but change location",
 
-        checked: checked("decision", "offer")
+        checked: checked("decision", "different-location")
       },
       {
-        value: "different-course",
+        value: "different-provider",
         text: "Make an offer but change training provider",
-
-        checked: checked("decision", "different-offer")
+        checked: checked("decision", "different-provider")
       }, {
         value: "reject",
         text: "Reject application",
