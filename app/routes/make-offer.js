@@ -27,16 +27,16 @@ module.exports = router => {
     let furtherConditions = [];
 
     if (req.session.data['condition-1']) {
-      furtherConditions.push({ id: uuid(), description: req.session.data['condition-1'], met: false })
+      furtherConditions.push({ description: req.session.data['condition-1']})
     }
     if (req.session.data['condition-2']) {
-      furtherConditions.push({ id: uuid(), description: req.session.data['condition-2'], met: false })
+      furtherConditions.push({ description: req.session.data['condition-2']})
     }
     if (req.session.data['condition-3']) {
-      furtherConditions.push({ id: uuid(), description: req.session.data['condition-3'], met: false })
+      furtherConditions.push({ description: req.session.data['condition-3']})
     }
     if (req.session.data['condition-4']) {
-      furtherConditions.push({ id: uuid(), description: req.session.data['condition-4'], met: false })
+      furtherConditions.push({ description: req.session.data['condition-4']})
     }
 
     let recommendations = req.session.data.recommendations
@@ -61,22 +61,22 @@ module.exports = router => {
       return {
         id: uuid(),
         description: item,
-        complete: false
+        status: 'Pending'
       }
     })
 
     const conditions = []
     if (req.session.data['condition-1']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-1'], met: false })
+      conditions.push({ id: uuid(), description: req.session.data['condition-1'], status: 'Pending' })
     }
     if (req.session.data['condition-2']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-2'], met: false })
+      conditions.push({ id: uuid(), description: req.session.data['condition-2'], status: 'Pending' })
     }
     if (req.session.data['condition-3']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-3'], met: false })
+      conditions.push({ id: uuid(), description: req.session.data['condition-3'], status: 'Pending' })
     }
     if (req.session.data['condition-4']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-4'], met: false })
+      conditions.push({ id: uuid(), description: req.session.data['condition-4'], status: 'Pending' })
     }
     application.offer.conditions = conditions;
 
