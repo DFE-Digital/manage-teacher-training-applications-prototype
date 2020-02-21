@@ -34,39 +34,39 @@
 
       <div class="app-card govuk-!-margin-bottom-9">
         {% if application.status == "Offered" %}
-          <h2 class="govuk-heading-l">Offer made</h2>
+          <h2 class="govuk-heading-l">Offer made to candidate</h2>
         {% endif %}
 
         {% if application.status == "Conditions met" %}
-          <h2 class="govuk-heading-l">Conditions of offer have been met</h2>
+          <h2 class="govuk-heading-l">Candidate met conditions</h2>
         {% endif %}
 
         {% if application.status == "Conditions not met" %}
-          <h2 class="govuk-heading-l">Conditions of offer have not been met</h2>
+          <h2 class="govuk-heading-l">Candidate did not meet conditions</h2>
         {% endif %}
 
         {% if application.status == "Rejected" %}
-          <h2 class="govuk-heading-l">Application rejected</h2>
+          <h2 class="govuk-heading-l">Candidate's application rejected</h2>
         {% endif %}
 
         {% if application.status == "Offer withdrawn" %}
-          <h2 class="govuk-heading-l">Offer withdrawn</h2>
+          <h2 class="govuk-heading-l">Offer to candidate withdrawn</h2>
         {% endif %}
 
         {% if application.status == "Application withdrawn" %}
-          <h2 class="govuk-heading-l">Candidate has withdrawn their application</h2>
+          <h2 class="govuk-heading-l">Candidate withdrew application</h2>
         {% endif %}
 
         {% if application.status == "Declined" %}
-          <h2 class="govuk-heading-l">Candidate declined the offer</h2>
+          <h2 class="govuk-heading-l">Candidate declined offer</h2>
         {% endif %}
 
         {% if application.status == "Accepted" %}
-          <h2 class="govuk-heading-l">Candidate has accepted the offer</h2>
+          <h2 class="govuk-heading-l">Candidate accepted offer</h2>
         {% endif %}
 
         {% if application.status == "Enrolled" %}
-          <h2 class="govuk-heading-l">Candidate has enrolled on the course</h2>
+          <h2 class="govuk-heading-l">Candidate enrolled</h2>
         {% endif %}
 
 
