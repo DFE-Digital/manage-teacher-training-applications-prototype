@@ -17,7 +17,7 @@ module.exports = router => {
         'conditions-not-met': 'Conditions successfully marked as not met',
         'different-course-offered': 'Course offered successfully',
         'enrolled': 'Candidate successfully enrolled',
-        'offered': 'Offer successfully made to candidate',
+        'offered': 'Offer successfully made',
         'rejected': 'Application successfully rejected'
       }
     })
