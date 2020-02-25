@@ -18,11 +18,14 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
-    let standardConditions = req.session.data['standard-conditions'].map((item) => {
-      return {
-        description: item
-      }
-    })
+    let standardConditions;
+    if(req.session.data['standard-conditions']){
+      standardConditions = req.session.data['standard-conditions'].map((item) => {
+        return {
+          description: item
+        }
+      })
+    }
 
     let furtherConditions = [];
 

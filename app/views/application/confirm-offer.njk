@@ -14,22 +14,26 @@
 
 {% block content %}
   {% set furtherConditionsHtml %}
-    {% if furtherConditions %}
+    {% if furtherConditions.length %}
       <ul class="govuk-list govuk-list--bullet">
         {% for condition in furtherConditions %}
           <li>{{ condition.description }}</li>
         {% endfor %}
       </ul>
+    {% else %}
+      <p class="govuk-body">None specified</p>
     {% endif %}
   {% endset %}
 
   {% set standardConditionsHtml %}
-    {% if standardConditions %}
+    {% if standardConditions.length %}
       <ul class="govuk-list govuk-list--bullet">
         {% for condition in standardConditions %}
           <li>{{ condition.description }}</li>
         {% endfor %}
       </ul>
+    {% else %}
+      <p class="govuk-body">None specified</p>
     {% endif %}
   {% endset %}
 
@@ -40,6 +44,14 @@
         <li>{{ reason }}</li>
         {% endfor %}
       </ul>
+    {% endif %}
+  {% endset %}
+
+  {% set recommendationsHtml %}
+    {% if recommendations %}
+      <p class="govuk-body">{{recommendations}}</p>
+    {% else %}
+      <p class="govuk-body">None specified</p>
     {% endif %}
   {% endset %}
 
@@ -83,23 +95,23 @@
             value: {
               text: standardConditionsHtml | safe
             }
-          } if standardConditions | length > 0, {
+          }, {
             key: {
               text: "Further conditions"
             },
             value: {
-              text: furtherConditionsHtml | safe or "No conditions set"
+              text: furtherConditionsHtml | safe
             }
-          } if furtherConditions | length > 0,
+          },
           {
             key: {
               text: "Recommendations"
             },
             value: {
-              text: recommendations
+              text: recommendationsHtml | safe
             }
-          } if recommendations
-        ]}) if standardConditions or furtherConditions or recommendations
+          }
+        ]})
       }}
 
       <p class="govuk-body">By confirming this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
