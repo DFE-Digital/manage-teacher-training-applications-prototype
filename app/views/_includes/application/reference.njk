@@ -41,6 +41,13 @@
     }
   }, {
     key: {
+      html: "Type"
+    },
+    value: {
+      html: reference.type
+    }
+  }, {
+    key: {
       text: "Relationship to candidate"
     },
     value: {
@@ -51,7 +58,7 @@
       html: "Reference"
     },
     value: {
-      html: reference['comments'] | nl2br or "—"
+      html: reference.comments | nl2br or "—"
     }
   }]
 }) }}
