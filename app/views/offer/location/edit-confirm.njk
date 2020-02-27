@@ -20,37 +20,7 @@
 
       <h2 class="govuk-heading-l">Original offer</h2>
 
-      {{ govukSummaryList({
-        rows: [{
-          key: {
-            text: "Candidate name"
-          },
-          value: {
-            text: name
-          }
-        }, {
-          key: {
-            text: "Provider"
-          },
-          value: {
-            html: application.provider
-          }
-        }, {
-          key: {
-            text: "Course"
-          },
-          value: {
-            html: application.course
-          }
-        }, {
-          key: {
-            text: "Location"
-          },
-          value: {
-            html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-          }
-        }
-      ]}) }}
+      {% include "_includes/offer-summary.njk" %}
 
       <h2 class="govuk-heading-l">New offer</h2>
 
