@@ -1,0 +1,247 @@
+<div class="app-card govuk-!-margin-bottom-9">
+  {% if application.status == "Offered" %}
+    <h2 class="govuk-heading-m">Offer made to candidate</h2>
+  {% endif %}
+
+  {% if application.status == "Conditions met" %}
+    <h2 class="govuk-heading-m">Candidate met conditions</h2>
+  {% endif %}
+
+  {% if application.status == "Conditions not met" %}
+    <h2 class="govuk-heading-m">Candidate did not meet conditions</h2>
+  {% endif %}
+
+  {% if application.status == "Rejected" %}
+    <h2 class="govuk-heading-m">Candidate's application rejected</h2>
+  {% endif %}
+
+  {% if application.status == "Offer withdrawn" %}
+    <h2 class="govuk-heading-m">Offer to candidate withdrawn</h2>
+  {% endif %}
+
+  {% if application.status == "Application withdrawn" %}
+    <h2 class="govuk-heading-m">Candidate withdrew application</h2>
+  {% endif %}
+
+  {% if application.status == "Declined" %}
+    <h2 class="govuk-heading-m">Candidate declined offer</h2>
+  {% endif %}
+
+  {% if application.status == "Accepted" %}
+    <h2 class="govuk-heading-m">Candidate accepted offer</h2>
+  {% endif %}
+
+  {% if application.status == "Enrolled" %}
+    <h2 class="govuk-heading-m">Candidate enrolled</h2>
+  {% endif %}
+
+  {% set rbd = application.submittedDate | addDays(40) %}
+  {% set remaining = rbd | daysFromNow(rbd) %}
+
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Status"
+      },
+      value: {
+        html: govukTag({
+          classes: status | statusClass,
+          text: status
+        })
+      }
+    }, {
+      key: {
+        text: "Application submitted"
+      },
+      value: {
+        text: application.submittedDate | date("dd LLL yyyy")
+      }
+    } if application.status == 'New', {
+      key: {
+        text: "Respond to applicant by"
+      },
+      value: {
+        text: rbd | date("dd LLL yyyy")
+      }
+    } if application.status == 'New',
+    {
+      key: {
+        text: "Offer made"
+      },
+      value: {
+        text: application.offer.madeDate | date("dd LLL yyyy")
+      }
+    } if application.status == 'Offered',
+    {
+      key: {
+        text: "Offer accepted"
+      },
+      value: {
+        text: application.offer.acceptedDate | date("dd LLL yyyy")
+      }
+    } if application.status == 'Accepted',
+    {
+      key: {
+        text: "Offer declined"
+      },
+      value: {
+        text: application.offer.declinedDate | date("dd LLL yyyy")
+      }
+    } if application.status == 'Declined',
+    {
+      key: {
+        text: "Conditions met"
+      },
+      value: {
+        text: application.offer.conditionsMetDate  | date("dd LLL yyyy")
+      }
+    } if application.status == 'Conditions met',
+    {
+      key: {
+        text: "Enrolled"
+      },
+      value: {
+        text: application.offer.enrolledDate  | date("dd LLL yyyy")
+      }
+    } if application.offer.enrolledDate,
+    {
+      key: {
+        text: "Application withdrawn"
+      },
+      value: {
+        text: application.withdrawnDate  | date("dd LLL yyyy")
+      }
+    } if application.status == 'Application withdrawn',
+    {
+      key: {
+        text: "Offer withdrawn"
+      },
+      value: {
+        text: application.offer.withdrawnDate  | date("dd LLL yyyy")
+      }
+    } if application.offer.withdrawnDate,
+    {
+      key: {
+        text: "Application rejected"
+      },
+      value: {
+        text: application.rejectedDate  | date("dd LLL yyyy")
+      }
+    } if application.rejectedDate,
+    {
+      key: {
+        text: "Provider"
+      },
+      value: {
+        html: application.provider
+      },
+      actions: {
+        items: [
+          {
+            href: "/application/"+applicationId+"/different-provider",
+            text: "Change",
+            visuallyHiddenText: ""
+          }
+        ]
+      } if application.status == "Offered"
+    } if application.offer,
+    {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: application.course
+      },
+      actions: {
+        items: [
+          {
+            href: "/application/"+applicationId+"/different-course",
+            text: "Change",
+            visuallyHiddenText: ""
+          }
+        ]
+      } if application.status == "Offered"
+    } if application.offer,
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      },
+      actions: {
+        items: [
+          {
+            href: "/application/"+applicationId+"/offer/location/edit",
+            text: "Change",
+            visuallyHiddenText: ""
+          }
+        ]
+      } if application.status == "Offered"
+    } if application.offer
+  ]})}}
+
+  {% if application.offer and conditions %}
+
+    <h2 class="govuk-heading-s">Conditions</h2>
+
+    {# <p class="govuk-body"><a href="/application/{{applicationId}}/withdraw">Manage conditions</a></p> #}
+
+    <table class="govuk-table">
+      <tbody class="govuk-table__body">
+        {% for condition in conditions %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{condition.description}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  {% if application.offer and application.offer.recommendations %}
+    <h2 class="govuk-heading-s">Recommendations</h2>
+    <p class="govuk-body">{{application.offer.recommendations}}</p>
+  {% endif %}
+
+  {% if application.status == "Offered" %}
+    <p class="govuk-body govuk-!-margin-bottom-0">
+      <a href="/application/{{applicationId}}/withdraw">Withdraw offer</a>
+    </p>
+  {% endif %}
+
+  {% if application.status == "Conditions met" %}
+    {{govukButton({
+      text: "Enrol candidate",
+      href: "/application/" + application.id + "/confirm-enrollment"
+    })}}
+
+    <p class="govuk-body govuk-!-margin-bottom-0">
+      <a href="#" class="app-withdraw-link">Cancel offer</a>
+    </p>
+  {% endif %}
+
+  {% if application.status == 'New' %}
+    {{govukButton({
+      classes: "govuk-!-margin-bottom-0",
+      text: "Respond to application",
+      href: "/application/" + application.id + "/decision"
+    })}}
+  {% elseif application.status == 'Accepted' %}
+    {{govukButton({
+      classes: "govuk-!-margin-bottom-0",
+      text: "Confirm conditions",
+      href: "/application/" + application.id + "/mark-conditions"
+    })}}
+  {% endif %}
+
+</div>

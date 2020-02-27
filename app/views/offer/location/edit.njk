@@ -1,0 +1,65 @@
+{% extends "_layout.njk" %}
+
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Change location" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/application-summary.njk" %}
+      <form method="post">
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Select location",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          idPrefix: "location",
+          name: "location",
+          items: [{
+            value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
+            text: "Alliance Academy",
+            hint: { text: 'Edgeware, Road Name, SW1 1AA' },
+            checked: checked("location", "Alliance Academy, Edgeware, Road Name, SW1 1AA")
+          }, {
+            value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
+            text: "Bruntcliffe Academy",
+            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' },
+            checked: checked("location", "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ")
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete({
+      name: "course",
+      element: document.querySelector('#course-autocomplete-container'),
+      id: 'course',
+      showAllValues: true,
+      source: [
+        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
+      ]
+    })
+  </script>
+{% endblock %}

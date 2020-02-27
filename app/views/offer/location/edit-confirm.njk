@@ -1,0 +1,64 @@
+{% extends "_layout.njk" %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% set title = "Check and confirm change of offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + '/offer/location/edit'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Candidate name"
+            },
+            value: {
+              text: name
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            }
+          }, {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            }
+          }
+        ]})
+      }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Change offer"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}
