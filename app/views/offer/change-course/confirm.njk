@@ -7,7 +7,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + '/offer/provider/edit-location'
+    href: "/application/" + application.id + '/offer/change-course/location'
   }) }}
 {% endblock %}
 
@@ -20,7 +20,7 @@
 
       <h2 class="govuk-heading-l">Original offer</h2>
 
-     {% include "_includes/offer-summary.njk" %}
+      {% include "_includes/offer-summary.njk" %}
 
       <h2 class="govuk-heading-l">New offer</h2>
 
@@ -37,7 +37,7 @@
             text: "Provider"
           },
           value: {
-            html: data.trainingprovider
+            html: application.provider
           }
         }, {
           key: {
