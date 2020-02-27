@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Check and confirm change of offer" %}
+{% set title = "Check and confirm changes to offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,39 +18,73 @@
 
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
+      <h2 class="govuk-heading-l">Original offer</h2>
+
       {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Candidate name"
-            },
-            value: {
-              text: name
-            }
-          }, {
-            key: {
-              text: "Course"
-            },
-            value: {
-              html: application.course
-            }
-          }, {
-            key: {
-              text: "Location"
-            },
-            value: {
-              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-            }
+        rows: [{
+          key: {
+            text: "Candidate name"
           },
-          {
-            key: {
-              text: "Provider"
-            },
-            value: {
-              html: application.provider
-            }
+          value: {
+            text: name
           }
-        ]})
-      }}
+        }, {
+          key: {
+            text: "Provider"
+          },
+          value: {
+            html: application.provider
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            html: application.course
+          }
+        }, {
+          key: {
+            text: "Location"
+          },
+          value: {
+            html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+          }
+        }
+      ]}) }}
+
+      <h2 class="govuk-heading-l">New offer</h2>
+
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Candidate name"
+          },
+          value: {
+            text: name
+          }
+        }, {
+          key: {
+            text: "Provider"
+          },
+          value: {
+            html: data.trainingprovider
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            html: data.course
+          }
+        }, {
+          key: {
+            text: "Location"
+          },
+          value: {
+            html: data.location
+          }
+        }
+      ]}) }}
 
       <form method="post">
         {{ govukButton({

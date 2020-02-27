@@ -19,9 +19,9 @@ module.exports = router => {
         'enrolled': 'Candidate successfully enrolled',
         'offered': 'Offer successfully made',
         'rejected': 'Application successfully rejected',
-        'change-offer-location': 'Location of offer changed successfully',
-        'change-offer-course': 'Course changed successfully',
-        'change-offer-provider': 'Course changed successfully'
+        'change-offer-location': 'Offer changed successfully',
+        'change-offer-course': 'Offer changed successfully',
+        'change-offer-provider': 'Offer changed successfully'
       }
     })
 
