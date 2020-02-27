@@ -20,7 +20,8 @@ module.exports = router => {
         'offered': 'Offer successfully made',
         'rejected': 'Application successfully rejected',
         'change-offer-location': 'Location of offer changed successfully',
-        'change-offer-course': 'Course changed successfully'
+        'change-offer-course': 'Course changed successfully',
+        'change-offer-provider': 'Course changed successfully'
       }
     })
 

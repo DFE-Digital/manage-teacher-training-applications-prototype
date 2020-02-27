@@ -3,11 +3,11 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Check and confirm change of course" %}
+{% set title = "Check and confirm change of offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + '/offer/course/edit-location'
+    href: "/application/" + application.id + '/offer/provider/edit-location'
   }) }}
 {% endblock %}
 
