@@ -2,7 +2,7 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Choose new location" %}
+{% set title = "Change location" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block content %}
-
   <h1 class="govuk-heading-xl">{{title}}</h1>
+  <h2 class="govuk-heading-m">Your existing offer</h2>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/offer-summary.njk" %}
