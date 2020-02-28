@@ -6,7 +6,9 @@ module.exports = router => {
 
     // Clone and turn into an array
     let apps = Object.values(req.session.data.applications).reverse();
-    const { status, provider, keywords } = req.query
+    let { status, provider, keywords } = req.query
+
+    keywords = keywords || req.session.data.keywords;
 
     let statuses = status && (Array.isArray(status) ? status : [ status ].filter((status) => {
       return status !== '_unchecked'
