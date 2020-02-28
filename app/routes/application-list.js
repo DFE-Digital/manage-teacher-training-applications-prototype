@@ -89,6 +89,11 @@ module.exports = router => {
     })
   })
 
+  router.get('/remove-keywords-filter', (req, res) => {
+    req.session.data.keywords = '';
+    res.redirect('/');
+  })
+
   router.get('/remove-status-filter/:status', (req, res) => {
     req.session.data.status = req.session.data.status.filter(item => item !== req.params.status);
     res.redirect('/');
@@ -102,6 +107,7 @@ module.exports = router => {
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.status = null;
     req.session.data.provider = null;
+    req.session.data.keywords = null;
     res.redirect('/');
   })
 
