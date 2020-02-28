@@ -2,41 +2,45 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Change training provider" %}
+{% set title = "Change course" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/different-course"
+    href: "/application/" + application.id
   }) }}
 {% endblock %}
 
 {% block content %}
-
-
   <h1 class="govuk-heading-xl">{{title}}</h1>
-  <h2 class="govuk-heading-m">Existing offer</h2>
+  <h2 class="govuk-heading-m">Your existing offer</h2>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/application-summary.njk" %}
+      {% include "_includes/offer-summary.njk" %}
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select alternative provider",
+              html: "Select course",
               classes: "govuk-fieldset__legend--m"
             }
           },
-          idPrefix: "providerx",
-          name: "providerx",
+          idPrefix: "course",
+          name: "course",
           items: [{
-            value: "Somerset SCITT consortium",
-            text: "Somerset SCITT consortium",
-            checked: checked("providerx", "Somerset SCITT consortium")
+            value: "Primary (X100)",
+            text: "Primary (X100)",
+            hint: {
+              text: 'PGCE with QTS full time'
+            },
+            checked: checked("course", "Primary (X100)")
           }, {
-            value: "The Beach Teaching School",
-            text: "The Beach Teaching School",
-            checked: checked("providerx", "The Beach Teaching School")
+            value: "Primary (X121)",
+            text: "Primary (X121)",
+            hint: {
+              text: 'QTS full time'
+            },
+            checked: checked("course", "Primary (X121)")
           }]
         }) }}
 
