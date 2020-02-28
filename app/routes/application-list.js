@@ -6,20 +6,23 @@ module.exports = router => {
 
     // Clone and turn into an array
     let apps = Object.values(req.session.data.applications).reverse();
-    const { status, provider } = req.query
+    const { status, provider, keywords } = req.query
 
     let statuses = status && (Array.isArray(status) ? status : [ status ].filter((status) => {
       return status !== '_unchecked'
     })) || req.session.data.status;
+
     let providers = provider && (Array.isArray(provider) ? provider : [ provider ].filter((provider) => {
       return provider !== '_unchecked'
     })) || req.session.data.provider;
-    const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) )
+
+    const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) || (keywords) )
 
     if( hasFilters ){
       apps = apps.filter((app) => {
         let statusValid = true;
         let providerValid = true;
+        let candidateNameValid = true;
 
         if( statuses && statuses.length ){
           statusValid = statuses.includes(app.status)
@@ -29,7 +32,13 @@ module.exports = router => {
           providerValid = providers.includes(app.provider)
         }
 
-        return statusValid && providerValid;
+        var candidateName = app['personal-details']['given-name'] + ' ' + app['personal-details']['family-name'];
+
+        if(keywords) {
+          candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
+        }
+
+        return statusValid && providerValid && candidateNameValid;
       })
     }
 
@@ -37,6 +46,16 @@ module.exports = router => {
     if(hasFilters) {
       selectedFilters = {
         categories: []
+      }
+
+      if(keywords) {
+        selectedFilters.categories.push({
+          heading: { text: "Name of candidate" },
+          items: [{
+            text: keywords,
+            href: `/remove-keywords-filter`
+          }]
+        })
       }
 
       if(statuses && statuses.length) {
