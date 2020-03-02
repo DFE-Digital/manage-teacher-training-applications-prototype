@@ -52,7 +52,7 @@ module.exports = router => {
 
       if(keywords) {
         selectedFilters.categories.push({
-          heading: { text: "Name of candidate" },
+          heading: { text: "Candidate's name" },
           items: [{
             text: keywords,
             href: `/remove-keywords-filter`
