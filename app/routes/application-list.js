@@ -6,20 +6,25 @@ module.exports = router => {
 
     // Clone and turn into an array
     let apps = Object.values(req.session.data.applications).reverse();
-    const { status, provider } = req.query
+    let { status, provider, keywords } = req.query
+
+    keywords = keywords || req.session.data.keywords;
 
     let statuses = status && (Array.isArray(status) ? status : [ status ].filter((status) => {
       return status !== '_unchecked'
     })) || req.session.data.status;
+
     let providers = provider && (Array.isArray(provider) ? provider : [ provider ].filter((provider) => {
       return provider !== '_unchecked'
     })) || req.session.data.provider;
-    const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) )
+
+    const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) || (keywords) )
 
     if( hasFilters ){
       apps = apps.filter((app) => {
         let statusValid = true;
         let providerValid = true;
+        let candidateNameValid = true;
 
         if( statuses && statuses.length ){
           statusValid = statuses.includes(app.status)
@@ -29,7 +34,13 @@ module.exports = router => {
           providerValid = providers.includes(app.provider)
         }
 
-        return statusValid && providerValid;
+        var candidateName = app['personal-details']['given-name'] + ' ' + app['personal-details']['family-name'];
+
+        if(keywords) {
+          candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
+        }
+
+        return statusValid && providerValid && candidateNameValid;
       })
     }
 
@@ -37,6 +48,16 @@ module.exports = router => {
     if(hasFilters) {
       selectedFilters = {
         categories: []
+      }
+
+      if(keywords) {
+        selectedFilters.categories.push({
+          heading: { text: "Candidate's name" },
+          items: [{
+            text: keywords,
+            href: `/remove-keywords-filter`
+          }]
+        })
       }
 
       if(statuses && statuses.length) {
@@ -70,6 +91,11 @@ module.exports = router => {
     })
   })
 
+  router.get('/remove-keywords-filter', (req, res) => {
+    req.session.data.keywords = '';
+    res.redirect('/');
+  })
+
   router.get('/remove-status-filter/:status', (req, res) => {
     req.session.data.status = req.session.data.status.filter(item => item !== req.params.status);
     res.redirect('/');
@@ -83,6 +109,7 @@ module.exports = router => {
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.status = null;
     req.session.data.provider = null;
+    req.session.data.keywords = null;
     res.redirect('/');
   })
 

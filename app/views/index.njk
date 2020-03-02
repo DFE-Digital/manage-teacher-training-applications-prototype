@@ -6,136 +6,9 @@
 
 {% block primary %}
 
-
-  {% set filterOptionsHtml %}
-    {{ govukCheckboxes({
-      idPrefix: 'status',
-      name: 'status',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Status',
-          classes: 'govuk-fieldset__legend--m'
-        }
-      },
-      items: [
-        {
-          value: 'Accepted',
-          text: 'Accepted',
-          checked: checked("status", "Accepted") == 'checked'
-        },
-        {
-          value: 'Conditions met',
-          text: 'Conditions met',
-          checked: checked("status", "Conditions met") == 'checked'
-        },
-        {
-          value: 'Declined',
-          text: 'Declined',
-          checked: checked("status", "Declined") == 'checked'
-        },
-        {
-          value: 'New',
-          text: 'New',
-          checked: checked("status", "New") == 'checked'
-        },
-        {
-          value: 'Offered',
-          text: 'Offered',
-          checked: checked("status", "Offered") == 'Checked'
-        },
-        {
-          value: 'Rejected',
-          text: 'Rejected',
-          checked: checked("status", "Rejected") == 'checked'
-        },
-        {
-          value: 'Application withdrawn',
-          text: 'Application withdrawn',
-          checked: checked("status", "Application withdrawn") == 'checked'
-        },
-        {
-          value: 'Offer withdrawn',
-          text: 'Offer withdrawn',
-          checked: checked("status", "Offer withdrawn") == 'checked'
-        }
-      ]
-    }) }}
-
-    {{ govukCheckboxes({
-      idPrefix: 'provider',
-      name: 'provider',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Provider',
-          classes: 'govuk-fieldset__legend--m'
-        }
-      },
-      items: [
-        {
-          value: 'Somerset SCITT consortium',
-          text: 'Somerset SCITT consortium',
-          checked: checked("provider", "Somerset SCITT consortium") == 'checked'
-        },
-        {
-          value: 'The Beach Teaching School',
-          text: 'The Beach Teaching School',
-          checked: checked("provider", "The Beach Teaching School") == 'checked'
-        }
-      ]
-    }) }}
-  {% endset %}
-
   <div class="moj-filter-layout">
     <div class="moj-filter-layout__filter">
-      <div class="moj-filter" tabindex="-1">
-        <div class="moj-filter__header">
-          <div class="moj-filter__header-title">
-            <h2 class="govuk-heading-m">Filter</h2>
-          </div>
-          <div class="moj-filter__header-action">
-
-          </div>
-        </div>
-        <div class="moj-filter__content">
-          {% if selectedFilters %}
-            <div class="moj-filter__selected">
-
-              <div class="moj-filter__selected-heading">
-
-                <div class="moj-filter__heading-title">
-                  <h2 class="govuk-heading-m">Selected filters</h2>
-                </div>
-
-                <div class="moj-filter__heading-action">
-                  <p><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear</a></p>
-                </div>
-
-              </div>
-
-              {% for category in selectedFilters.categories %}
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
-
-                <ul class="moj-filter-tags">
-                  {% for item in category.items %}
-                    <li><a class="moj-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
-                  {% endfor %}
-                </ul>
-              {% endfor %}
-
-            </div>
-          {% endif %}
-          <div class="moj-filter__options">
-            <form method="get" action="/">
-              <button class="govuk-button" data-module="govuk-button">
-                Apply filters
-              </button>
-              {{filterOptionsHtml | safe}}
-            </form>
-          </div>
-        </div>
-      </div>
+      {% include "_includes/filter-panel.njk" %}
     </div>
 
     <div class="moj-filter-layout__content">
@@ -144,10 +17,7 @@
       </div>
       <div class="moj-scrollable-pane">
         <div class="moj-scrollable-pane__wrapper">
-
           {% if applications.length %}
-
-
             <table class="govuk-table" data-module="sortable-table">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
