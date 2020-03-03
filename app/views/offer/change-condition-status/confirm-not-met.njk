@@ -2,7 +2,7 @@
 
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Confirm condition has not been met" %}
+{% set title = "Confirm condition not met" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -40,7 +40,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm condition as not met",
+          text: "Confirm not met",
           classes: 'govuk-button--warning'
         }) }}
       </form>
