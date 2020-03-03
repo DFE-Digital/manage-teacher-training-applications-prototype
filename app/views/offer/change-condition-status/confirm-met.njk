@@ -1,0 +1,50 @@
+{% extends "_layout.njk" %}
+
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% set title = "Confirm condition met" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + '/condition/' + condition.id + '/change-status'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Candidate name"
+          },
+          value: {
+            text: name
+          }
+        }, {
+          key: {
+            text: "Condition"
+          },
+          value: {
+            text: condition.description
+          }
+        } ]
+      }) }}
+      {% if hasOnlyOneConditionNotMet %}
+        <p>This is the candidate&rsquo;s final outstanding condition. When you confirm it as met, we'll email them to explain they can now expect to be enrolled.</p>
+      {% endif %}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm met"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}

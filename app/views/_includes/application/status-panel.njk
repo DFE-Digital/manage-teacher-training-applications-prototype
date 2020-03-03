@@ -185,18 +185,21 @@
 
     <h2 class="govuk-heading-s">Conditions</h2>
 
-    {# <p class="govuk-body"><a href="/application/{{applicationId}}/withdraw">Manage conditions</a></p> #}
-
     <table class="govuk-table">
       <tbody class="govuk-table__body">
         {% for condition in conditions %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{condition.description}}</td>
+            <td class="govuk-table__cell">
+              {{condition.description}}
+              {% if application.status == "Accepted" %}
+                <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
+              {% endif %}
+            </td>
             <td class="govuk-table__cell govuk-table__cell--numeric">
               {% if condition.status == "Pending" %}
                 {% set statusClass = "app-tag--grey" %}
               {% elseif condition.status == "Met" %}
-                {% set statusClass = "" %}
+                {% set statusClass = "app-tag--green" %}
               {% elseif condition.status == "Not met" %}
                 {% set statusClass = "app-tag--red" %}
               {% endif %}
@@ -237,11 +240,11 @@
       href: "/application/" + application.id + "/decision"
     })}}
   {% elseif application.status == 'Accepted' %}
-    {{govukButton({
+    {# {{govukButton({
       classes: "govuk-!-margin-bottom-0",
       text: "Confirm conditions",
       href: "/application/" + application.id + "/mark-conditions"
-    })}}
+    })}} #}
   {% endif %}
 
 </div>
