@@ -1,7 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Change status of ‘" + condition.description + "’ " %}
+{% set title = "Update condition" %}
+
 
 {% block pageNavigation %}
   {{ govukBackLink({
