@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Change status of condition" %}
+{% set title = "Change status of ‘" + condition.description + "’ " %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,7 +18,7 @@
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: condition.description,
+              html: "Choose status",
               classes: "govuk-fieldset__legend--m"
             }
           },
