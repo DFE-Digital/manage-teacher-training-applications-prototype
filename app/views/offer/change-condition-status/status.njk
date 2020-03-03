@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Change status of ‘" + condition.description + "’ " %}
+{% set title = "Update status of condition" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -10,11 +10,33 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">{{title}}</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/offer-summary.njk" %}
+      {# <span class="govuk-caption-xl">{{name}}</span> #}
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Candidate"
+    },
+    value: {
+      text: name
+    }
+  }, {
+    key: {
+      text: "Condition"
+    },
+    value: {
+      text: condition.description
+    }
+  } ]
+}) }}
+
+
+
       <form method="post">
+
         {{ govukRadios({
           fieldset: {
             legend: {
