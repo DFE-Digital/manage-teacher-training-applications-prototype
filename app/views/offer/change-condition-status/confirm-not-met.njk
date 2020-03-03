@@ -2,7 +2,7 @@
 
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Confirm ‘" + condition.description + "’ has not been met" %}
+{% set title = "Confirm condition has not been met" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -17,7 +17,23 @@
 
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% include "_includes/offer-summary.njk" %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Candidate"
+          },
+          value: {
+            text: name
+          }
+        }, {
+          key: {
+            text: "Condition"
+          },
+          value: {
+            text: condition.description
+          }
+        } ]
+      }) }}
       {% if hasOnlyOneConditionNotMet %}
         {# <p>You will not be able to change the status of the conditions after marking this condition as met.</p> #}
       {% endif %}

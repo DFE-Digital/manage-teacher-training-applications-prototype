@@ -22,8 +22,8 @@ module.exports = router => {
         'change-offer-location': 'Offer changed successfully',
         'change-offer-course': 'Offer changed successfully',
         'change-offer-provider': 'Offer changed successfully',
-        'change-condition-status-to-met': 'Condition successfully marked as met',
-        'change-condition-status-to-not-met': 'Condition successfully marked as not met'
+        'change-condition-status-to-met': 'Successfully marked the condition as met',
+        'change-condition-status-to-not-met': 'Successfully marked the condition as mot met'
       }
     })
 
