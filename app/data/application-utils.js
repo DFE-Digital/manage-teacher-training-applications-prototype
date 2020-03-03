@@ -13,6 +13,18 @@ exports.getConditions = (application) => {
   return conditions;
 };
 
+exports.getCondition = (application, conditionId) => {
+  return this.getConditions(application).find(condition => condition.id == conditionId);
+};
+
+exports.hasMetAllConditions = (application) => {
+  return this.getConditions(application).filter(condition => condition.status == "Pending").length === 0;
+}
+
+exports.hasOnlyOneConditionNotMet = (application) => {
+  return this.getConditions(application).filter(condition => condition.status == "Pending").length === 1;
+}
+
 exports.getFlashMessage = (options) => {
   if(options.overrideValue) {
     return options.overrideValue;

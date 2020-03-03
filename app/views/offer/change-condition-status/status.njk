@@ -1,0 +1,49 @@
+{% extends "_layout.njk" %}
+
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Change status of condition" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/offer-summary.njk" %}
+      <form method="post">
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: condition.description,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          idPrefix: "conditionstatus",
+          name: "conditionstatus",
+          items: [{
+            value: "Pending",
+            text: "Pending",
+            checked: condition.status == 'Pending'
+          }, {
+            value: "Met",
+            text: "Met",
+            checked: condition.status == 'Met'
+          }, {
+            value: "Not met",
+            text: "Not met",
+            checked: condition.status == 'Not met'
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
