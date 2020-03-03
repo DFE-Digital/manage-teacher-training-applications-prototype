@@ -17,6 +17,35 @@
     }) }}
   {% endif %}
 {% endset %}
+{% set relationshipHtml %}
+  {% if reference.relationship.validated %}
+    <p class="govuk-body">Yes</p>
+  {% else %}
+    <p class="govuk-body">Amended by referee:</p>
+    {{ govukInsetText({
+      text: reference.relationship.correction,
+      classes: "govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-padding-bottom-0"
+    }) }}
+  {% endif %}
+{% endset %}
+{% set safeguardingHtml -%}
+  {%- if reference.safeguarding.response == "yes" -%}
+    {{ govukInsetText({
+      html: reference.safeguarding.concerns | nl2br,
+      classes: "govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-padding-bottom-0"
+    }) }}
+  {%- elif reference.safeguarding.response == "no" -%}
+    <p class="govuk-body">No</p>
+  {%- elif reference.safeguarding.response == "unknown" -%}
+    <p class="govuk-body">Don’t know</p>
+  {%- endif -%}
+{%- endset %}
+{% set commentsHtml %}
+  {{ govukInsetText({
+    html: reference.comments | nl2br,
+    classes: "govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-padding-bottom-0"
+  }) }}
+{% endset %}
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -41,24 +70,38 @@
     }
   }, {
     key: {
-      html: "Type"
+      html: "Type of reference"
     },
     value: {
       html: reference.type
     }
   }, {
     key: {
-      text: "Relationship to candidate"
+      text: "Relationship between candidate and referee"
     },
     value: {
-      text: reference.relationship
+      text: reference.relationship.summary | nl2br
+    }
+  }, {
+    key: {
+      text: "Relationship confirmed by referee?"
+    },
+    value: {
+      html: relationshipHtml
+    }
+  }, {
+    key: {
+      text: "Does referee know of a reason why this candidate should not work with children?"
+    },
+    value: {
+      html: safeguardingHtml
     }
   }, {
     key: {
       html: "Reference"
     },
     value: {
-      html: reference.comments | nl2br or "—"
+      html: commentsHtml
     }
   }]
 }) }}

@@ -1,4 +1,4 @@
-var uuid = require('uuid/v4');
+var uuid = require('uuid/v4')
 
 module.exports = {
   1: {
@@ -43,7 +43,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -51,7 +53,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -98,7 +102,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -106,7 +112,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -154,7 +162,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -162,7 +172,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -209,7 +221,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -217,7 +231,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -259,7 +275,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -267,7 +285,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -313,7 +333,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -321,7 +343,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -362,7 +386,9 @@ module.exports = {
         name: 'Joe Bloggs',
         email: 'j.bloggs@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       },
       second: {
         status: 'pending',
@@ -370,7 +396,9 @@ module.exports = {
         name: 'Jane Doe',
         email: 'jane.doe@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     }
   },
@@ -600,7 +628,9 @@ module.exports = {
         name: 'Harry Smith',
         email: 'henry.smith@example.ac.uk',
         tel: '07700 900001',
-        relationship: 'University tutor'
+        relationship: {
+          summary: 'University tutor'
+        }
       },
       second: {
         status: 'pending',
@@ -608,7 +638,9 @@ module.exports = {
         name: 'Janice Doe',
         email: 'janice.doe@example.org',
         tel: '07700 900002',
-        relationship: 'Faith leader who I have known since January 2018'
+        relationship: {
+          summary: 'Faith leader who I have known since January 2018'
+        }
       }
     },
     miscellaneous: 'I will be taking a TEFL course in September for one month to gain a professional qualification as a TEFL teacher, which I hope will help me find work running evening classes online or at a language school in the UK this year.'
@@ -834,7 +866,9 @@ module.exports = {
         name: 'Joesph Bloggs',
         email: 'j.bloggs@example.ac.uk',
         tel: '07700 900001',
-        relationship: 'University tutor'
+        relationship: {
+          summary: 'University tutor'
+        }
       },
       second: {
         status: 'pending',
@@ -842,7 +876,9 @@ module.exports = {
         name: 'Janice Doe',
         email: 'janice.doe@example.com',
         tel: '07700 900002',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'Manager'
+        }
       }
     },
     miscellaneous: ''
@@ -1090,7 +1126,9 @@ module.exports = {
         name: 'Joesph Bloggs',
         email: 'j.bloggs@example.ac.uk',
         tel: '07700 900001',
-        relationship: 'University tutor',
+        relationship: {
+          summary: 'University tutor'
+        },
         comments: 'A charismatic talented and able person. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.'
       },
       second: {
@@ -1099,7 +1137,9 @@ module.exports = {
         name: 'Janice Doe',
         email: 'janice.doe@example.com',
         tel: '07700 900002',
-        relationship: 'Manager',
+        relationship: {
+          summary: 'Manager'
+        },
         comments: 'A charismatic talented and able bloke. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.'
       }
     },
@@ -1311,7 +1351,9 @@ module.exports = {
         name: 'Alex James',
         email: 'alex.james@example.com',
         tel: '07700 900001',
-        relationship: 'Manager'
+        relationship: {
+          summary: 'University tutor'
+        }
       },
       second: {
         status: 'pending',
@@ -1319,7 +1361,9 @@ module.exports = {
         name: 'Peter Giles',
         email: 'pete.giles@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Degree course supervisor'
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
       }
     },
     miscellaneous: ''
@@ -1467,7 +1511,7 @@ module.exports = {
       'subject-knowledge': 'I pursued an MSc in Applied Physics at the University of Strathclyde and for my dissertation, I worked on the aftermath of the space radiation on bio/matter. Previously, I obtained a Bachelor of Science in Physics with an emphasis in astronomy and a minor in Mathematics at Minnesota State University Moorhead (MSUM), USA.\n\n In my postgraduate career, I was enrolled in plasma physics courses and under the supervision of Professors Hidding and Sheng, I examined the effects of relativistic electrons at an altitude of 405 km where the International space station is on the orbit.\n\nIn addition to taking mathematics and astronomy courses in my undergraduate career, I was actively engaged in observational astronomy research throughout my undergraduate career at the Paul P. Feder Observatory at the Regional Science Center of MSUM. Under the supervision of Drs. Linda Irene Winkler, Matthew Craig, and Juan Cabanela, I performed a coarse calibration on the SBIG SGS Spectrograph using the high voltage mercury and neon light sources in the summer of 2011.\n\nMy senior year project entitled, “Analyzing Brightness Variations of an SX Phoenicis Star, XX Cyg,” which involved collecting and analyzing photometric data of XX Cyg in four Johnson/Cousins Ic filters. Through my research, I found that the period of XX Cyg is 0.134868±0.000003 days. I investigated the nature of the limit cycles of algebraic systems, which involved studying autonomous nonlinear differential equations in my senior year. I found that Van der Pol Equations are used in modeling stellar pulsation mechanism.',
       interview: ''
     },
-    'safeguarding': 'I have a shoplifting charge from when I was 18.',
+    safeguarding: 'I have a shoplifting charge from when I was 18.',
     references: {
       first: {
         status: 'received',
@@ -1475,8 +1519,12 @@ module.exports = {
         name: 'Alex James',
         email: 'alex.james@example.com',
         tel: '07700 900001',
-        relationship: 'Scotland and borders area supervisor at Tutorful',
-        'safe-to-work-with-children': 'Yes',
+        relationship: {
+          summary: 'Scotland and borders area supervisor at Tutorful'
+        },
+        safeguarding: {
+          response: 'no'
+        },
         comments: 'Fantastic personality. Great with people. Strong communicator . Excellent character. Passionate about teaching . Great potential. Go for her. A charismatic talented able young woman who is far better than her official degree result. An exceptional person.'
       },
       second: {
@@ -1485,7 +1533,12 @@ module.exports = {
         name: 'Peter Giles',
         email: 'pete.giles@example.ac.uk',
         tel: '07700 900002',
-        relationship: 'Course leader for my masters programme.',
+        relationship: {
+          summary: 'Course leader for my masters programme.'
+        },
+        safeguarding: {
+          response: 'no'
+        },
         comments: 'A charismatic talented and able woman. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for her.'
       }
     },
@@ -1651,7 +1704,7 @@ module.exports = {
       'subject-knowledge': 'I am involved within coaching and have completed a Level One World Rugby Coaching Badge. Alongside this, I represented my district over 3 successive years in both High and Long jump. Following my participation, I was invited to assist the organising and officiating of Gloucestershire school events, these including indoor athletics, touch rugby and netball. Helping run these developed my knowledge of planning sporting events and the efficiency needed to run these, this valuable work experience sparked my interest in following a career in teaching PE at secondary level.\n\nI have completed a number of work experience placements and internships throughout my academic career. Whilst at college, I regularly returned to my secondary school and aided in the teaching of Physical Education lessons, these have helped in the development of coaching skills that I have transferred into a job role as a PE Cover Supervisor within the South Wales region. This role has given me the opportunity to work with different age groups, sporting abilities and individuals from varying socioeconomic backgrounds and has given me the chance to build my leadership skills, specifically important within the safety aspects of the PE lessons. My job here has not been limited to PE and I have covered lessons in other departments such as Humanities, Maths and Art. This has allowed me to link PE with other subject areas across the curriculum, for example, presenting athlete data in graphs, tables and spreadsheets using skills found in Maths and ICT. My chosen degree has allowed me to complete two further placements within secondary schools. All my undertaken work experience has given me insights into a variety of teaching and coaching styles, including ways in which to encourage and maintain healthy lifestyle choices and adhere to these.\n\nOne of the most valuable experiences I gained was whilst at college where I was a member of the Sports Career Ready Academy. Being chosen through an interview process, Career Ready provided the opportunity to attend employability masterclasses with professionals and practice these skills in real life scenarios, including networking and interviews. This has allowed me to develop a wide range of employability skills including organisation and time management while also providing me opportunities to network with sporting institutes including Bristol City FC, Sport England and Active Gloucestershire.',
       interview: 'I am unable to travel on Tuesdays and Thursdays.'
     },
-    'safeguarding': 'Request',
+    safeguarding: 'Request',
     references: {
       first: {
         status: 'received',
@@ -1659,8 +1712,14 @@ module.exports = {
         name: 'Brian Todd',
         email: 'brian.todd@bristolcity.co.uk',
         tel: '07700 900001',
-        relationship: 'Brian is the manager of the bar at Bristol City FC bar, where I currently work part-time.',
-        'safe-to-work-with-children': 'Yes',
+        relationship: {
+          summary: 'Brian is the manager of the bar at Bristol City FC bar, where I currently work part-time.',
+          validated: true
+        },
+        safeguarding: {
+          response: 'yes',
+          concerns: 'Elise is impatient and intolerant by nature, and therefore not suited to work with children.'
+        },
         comments: 'Elise is a very smart young woman who I have had the pleasure of working with since spring last year (2019).\n\n We rely on bar staff to be responsible, reliable, trustworthy with stock and takings, and maintain excellent time-keeping. In all of these respects Elise exceeded expectations. She remained calm in difficult situations and was always equally happy to work independently or as part of a team.\n\n Elise has great communication skills and during her time with us there have been no misunderstandings or difficulties either with customers or with staff. She manages everything to a very good standard and always goes the extra mile – for example by designing and creating a social media campaign for the bar’s relaunch.\n\n I was also impressed by the way she organised a 5-a-side football team from amongst her fellow staff – her enthusiasm and love of sport made her an inspiration.\n\n If she’s able to bring the same patience, people skills and good humour to teaching as she does to working behind the bar, I believe that she will make a fantastic teacher.'
       },
       second: {
@@ -1669,7 +1728,14 @@ module.exports = {
         name: 'Simon Taylor',
         email: 'simon.taylor@bristolacademy.co.uk',
         tel: '07700 900002',
-        relationship: 'Simon Taylor is head of PE at one of the schools where I have regularly provided cover as a PE teacher through my agency PE Direct.',
+        relationship: {
+          summary: 'Simon Taylor is head of PE at one of the schools where I have regularly provided cover as a PE teacher through my agency PE Direct.',
+          validated: false,
+          correction: 'I worked with Elise regularly over a period of a year, but was not the head of PE.'
+        },
+        safeguarding: {
+          response: 'unknown'
+        },
         comments: 'Elise Briggs has good time management and attendance. When working for Bristol Academy as a temporary PE teacher, Elise always demonstrated the utmost commitment and dedication towards her classes. I also felt completely confident in Elise to leave her to assist students without having to suggest what to do – she would automatically do it.\n\n She always gave myself and other teachers respect and worked well under direction; at the same time, I would feel confident knowing she would be able to teach the students without needing my support or guidance. Her degree in Sport and Physical Education gives her the confidence to take control of a class and lead. \n\n Elise also shows a huge passion for teaching not just sport, but also choreography. After showing a talent for it, she was given opportunities to choreograph pieces within the competition class which she excelled at. Elise knows her technical theory so when teaching she always explains what the students should be doing and how that helps, explaining the muscles used, etc. \n\n Elise showed a good sense of emotion towards the students at Bristol Academy, and built  bonds that allowed the students to feel they could go to her and learn from her. I feel Elise would make an excellent teacher and I would highly recommend her for this course. '
       }
     },
@@ -1917,8 +1983,13 @@ module.exports = {
         name: 'Jane Smith',
         email: 'j.smith@junwu.edu.com',
         tel: '07700 900001',
-        relationship: 'Jane was head of department over the 12 months I was employed as an English teacher at Jun Wu Primary School in Chengdu, China. ',
-        'safe-to-work-with-children': 'Yes',
+        relationship: {
+          summary: 'Jane was head of department over the 12 months I was employed as an English teacher at Jun Wu Primary School in Chengdu, China.',
+          validated: true
+        },
+        safeguarding: {
+          response: 'no'
+        },
         comments: 'When we employed Kelly Jane Spears as a full-time teacher of English to our students (aged 7 to 11), we were immediately impressed by her knowledge of and passion for the English language.\n\n I can only compliment Kelly regarding her organisation, including time-keeping and lesson-planning. Her appreciation of the students’ needs, both academic and social and emotional, formed a solid base for differentiation according to the tasks at hand. Kelly showed her commitment to education and a great degree of care for the welfare of the students she worked with.\n\n Kelly was able to demonstrate great confidence in her work, be it teaching, giving advice during meetings or writing reports. This made her an invaluable member of our department’s team. Kelly was able to use different resources to assess, teach and to support students. She set appropriate targets and drew on effective strategies to help students to make progress, according to the pace of their learning.\n\n Kelly worked both as a team member and individually, showing initiative and supporting students both in lessons and outside of lessons. She excelled at helping the students sustain concentration and motivation. She also dedicated a great deal of her own resources to ensure that students achieved their best, both during lessons and small group sessions.\n\n It appears that studying and working in different environments, here in China and in the UK, has given Kelly valuable experience in working with different people. She was able to draw on this to enrich the life of the students in her care. Her enthusiasm, creativity and communication skills meant she was not only able to enhance our students’ learning, but also to build their emotional resilience and investment in their own learning.'
       },
       second: {
@@ -1927,7 +1998,13 @@ module.exports = {
         name: 'Sam Fairey',
         email: 'sam.fairey@playclub.co.uk',
         tel: '07700 900002',
-        relationship: 'Sam was my line manager at Play Club, where I worked full-time as a play leader for 4 to 11 year olds.',
+        relationship: {
+          summary: 'Sam was my line manager at Play Club, where I worked full-time as a play leader for 4 to 11 year olds.',
+          validated: true
+        },
+        safeguarding: {
+          response: 'no'
+        },
         comments: 'Kelly Jane Spears is very well-suited to teaching and working with children. She is caring, enthusiastic, encouraging, dedicated and kind. She is passionate about using play and the arts to develop children’s confidence, emotional intelligence and self-esteem, and her love of sharing that passion with others shines through. She is a great team member, and can also work independently, taking initiative to achieve results. She works well under pressure and is reliable, always fulfilling her tasks and going over and above. She has good literacy and numeracy, and as part of her role at our organisation, she was excellent with reception and administration responsibilities. As a play leader she is supportive, receptive and energetic. She interacts well with both staff and students, is responsible, and has strong communication skills. In terms of character, she is honest, hard-working and full of integrity. I highly recommend her and am confident she will be an excellent candidate. '
       }
     },
