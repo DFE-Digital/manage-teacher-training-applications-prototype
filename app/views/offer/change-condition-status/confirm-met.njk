@@ -35,8 +35,12 @@
         } ]
       }) }}
       {% if hasOnlyOneConditionNotMet %}
-        <p>This is the candidate&rsquo;s final outstanding condition. When you confirm it as met, we'll email them to explain they can now expect to be enrolled.</p>
+        {{ govukWarningText({
+          text: "The candidate will be told that they've met all of the conditions and that you'll be in touch about enrolment.",
+          iconFallbackText: "Warning"
+        }) }}
       {% endif %}
+
 
       <form method="post">
         {{ govukButton({
