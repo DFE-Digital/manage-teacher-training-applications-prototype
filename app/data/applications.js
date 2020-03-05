@@ -1734,7 +1734,7 @@ module.exports = {
           correction: 'I worked with Elise regularly over a period of a year, but was not the head of PE.'
         },
         safeguarding: {
-          response: 'unknown'
+          response: 'no'
         },
         comments: 'Elise Briggs has good time management and attendance. When working for Bristol Academy as a temporary PE teacher, Elise always demonstrated the utmost commitment and dedication towards her classes. I also felt completely confident in Elise to leave her to assist students without having to suggest what to do – she would automatically do it.\n\n She always gave myself and other teachers respect and worked well under direction; at the same time, I would feel confident knowing she would be able to teach the students without needing my support or guidance. Her degree in Sport and Physical Education gives her the confidence to take control of a class and lead. \n\n Elise also shows a huge passion for teaching not just sport, but also choreography. After showing a talent for it, she was given opportunities to choreograph pieces within the competition class which she excelled at. Elise knows her technical theory so when teaching she always explains what the students should be doing and how that helps, explaining the muscles used, etc. \n\n Elise showed a good sense of emotion towards the students at Bristol Academy, and built  bonds that allowed the students to feel they could go to her and learn from her. I feel Elise would make an excellent teacher and I would highly recommend her for this course. '
       }
