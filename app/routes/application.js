@@ -23,7 +23,7 @@ module.exports = router => {
         'change-offer-course': 'Offer changed successfully',
         'change-offer-provider': 'Offer changed successfully',
         'change-condition-status-to-met': 'Successfully marked the condition as met',
-        'change-condition-status-to-not-met': 'Successfully marked the condition as mot met'
+        'change-condition-status-to-not-met': 'Successfully marked the condition as not met'
       }
     })
 
