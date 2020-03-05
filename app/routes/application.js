@@ -15,15 +15,15 @@ module.exports = router => {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
-        'different-course-offered': 'Course offered successfully',
+        'different-course-offered': 'Course successfully offered',
         'enrolled': 'Candidate successfully enrolled',
         'offered': 'Offer successfully made',
         'rejected': 'Application successfully rejected',
-        'change-offer-location': 'Offer changed successfully',
-        'change-offer-course': 'Offer changed successfully',
-        'change-offer-provider': 'Offer changed successfully',
-        'change-condition-status-to-met': 'Successfully marked the condition as met',
-        'change-condition-status-to-not-met': 'Successfully marked the condition as not met'
+        'change-offer-location': 'Offer successfully changed ',
+        'change-offer-course': 'Offer successfully changed ',
+        'change-offer-provider': 'Offer successfully changed ',
+        'change-condition-status-to-met': 'Condition successfully updated to met',
+        'change-condition-status-to-not-met': 'Condition successfully updated to not met'
       }
     })
 

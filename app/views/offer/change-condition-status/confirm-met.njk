@@ -2,7 +2,7 @@
 
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Confirm condition has been met" %}
+{% set title = "Confirm condition met" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -20,7 +20,7 @@
       {{ govukSummaryList({
         rows: [{
           key: {
-            text: "Candidate"
+            text: "Candidate name"
           },
           value: {
             text: name
@@ -36,15 +36,15 @@
       }) }}
       {% if hasOnlyOneConditionNotMet %}
         {{ govukWarningText({
-        text: "The candidate will be told that they've met all of the conditions and that you'll be in touch about enrolment.",
-        iconFallbackText: "Warning"
-      }) }}
+          text: "The candidate will be told that they've met all of the conditions and that you'll be in touch about enrolment.",
+          iconFallbackText: "Warning"
+        }) }}
       {% endif %}
 
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm condition as met"
+          text: "Confirm met"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
