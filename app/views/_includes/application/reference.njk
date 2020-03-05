@@ -36,8 +36,6 @@
     }) }}
   {%- elif reference.safeguarding.response == "no" -%}
     <p class="govuk-body">No</p>
-  {%- elif reference.safeguarding.response == "unknown" -%}
-    <p class="govuk-body">Don’t know</p>
   {%- endif -%}
 {%- endset %}
 {% set commentsHtml %}
@@ -91,7 +89,7 @@
     }
   }, {
     key: {
-      text: "Does referee know of a reason why this candidate should not work with children?"
+      text: "Does referee know of any reason why this candidate should not work with children?"
     },
     value: {
       html: safeguardingHtml
