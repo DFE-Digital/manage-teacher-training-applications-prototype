@@ -33,15 +33,15 @@
                     </div>
                     <div class="app-list__flex">
                       <div class="app-list__item-cell">
-                        <span class="govuk-caption-m govuk-!-font-size-16">{{ a.id }}</span>
                         <p><a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a></p>
+                        <span class="govuk-caption-m govuk-!-font-size-16">{{ a.id }}</span>
                       </div>
                       <div class="app-list__item-cell">
                         <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span> <p>{{ a.course }}</p>
                       </div>
                     </div>
                     {% if a.note %}
-                      <div class="app-list__flex app-list__flex--border">
+                      <div class="app-list__flex app-list__flex--note">
                         {# <div class="app-list__item-cell">
                           <span class="govuk-caption-m govuk-!-font-size-16">Last updated</span>
                         </div> #}

@@ -164,7 +164,7 @@ $govuk-grid-widths: (
 .app-list__item-noflex span {
   flex-grow: 1;
   text-align: right;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .app-list__item-cell p {
@@ -173,4 +173,10 @@ $govuk-grid-widths: (
 
 .app-list__flex--border {
   border-top: 1px solid govuk-colour('mid-grey');
+}
+
+.app-list__flex--note .app-list__item-cell {
+  // border-top: 1px solid govuk-colour('mid-grey');
+  border-left: 5px solid govuk-colour('mid-grey');
+  padding-left: 15px;
 }
