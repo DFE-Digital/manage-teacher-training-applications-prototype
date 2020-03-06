@@ -5,76 +5,24 @@
 {% if workHistory.length >= 1 %}
   {% set rowData = [] %}
   {% for item in application["work-history"] | toArray | sort(attribute="start-date") %}
-    {% set summaryHtml %}
-      {{ item.role + " – " + item.type if item.category == "job" else "Break (" + item.duration + ")" }}
-      {%- if item["worked-with-children"] == "Yes" %}
-        {{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }}
-      {% endif %}
-    {% endset %}
-    {% set detailsHtml %}
-      {% set descriptionHtml %}
-        <p class="govuk-body">{{ item.description }}</p>
-        {%- if item["worked-with-children"] == "Yes" %}
-          <p class="govuk-body">{{ appIcon({
-            classes: "govuk-!-margin-right-1",
-            icon: "tick",
-            hidden: true
-          }) }} This role involved working with children</p>
-        {%- endif %}
-      {% endset %}
-      {{ govukSummaryList({
-        rows: [{
-          key: {
-            text: "Employer"
-          },
-          value: {
-            text: item.org
-          }
-        } if item.role, {
-          key: {
-            text: "Description"
-          },
-          value: {
-            html: descriptionHtml
-          }
-        }]
-      }) }}
-    {% endset %}
-    {% set role %}
-      {% if item.descrition or item["worked-with-children"] %}
-        {{ govukDetails({
-          classes: "govuk-!-margin-0",
-          summaryHtml: summaryHtml,
-          html: detailsHtml
-        }) }}
-      {% else %}
-        Unexplained break in work history ({{ item.duration }})
-      {% endif %}
-    {% endset %}
     {% set org = item.org if item.category == "job" %}
     {% set startDate = item["start-date"] | date("LLLL yyyy") %}
     {% set endDate = item["end-date"] | date("LLLL yyyy") if item["end-date"] else "Present" %}
-    {% set rows = rowData.push([{
-      html: [startDate, endDate] | join(" - ")
-    }, {
-      html: role
-    }]) %}
+
+    <div class="app-experience__item">
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.role + " – " + item.type if item.category == "job" else "Break (" + item.duration + ")" }}</h3>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{org}}</p>
+      <p class="govuk-caption-m govuk-!-font-size-16">{{[startDate, endDate] | join(" - ")}}</p>
+      <p class="govuk-body">{{ item.description }}</p>
+      {%- if item["worked-with-children"] == "Yes" %}
+        <p class="govuk-body govuk-!-font-size-16">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Worked with children</p>
+      {%- endif %}
+    </div>
   {% endfor %}
-  {{ govukTable({
-    head: [{
-      text: "Dates",
-      attributes: {
-        width: "30%"
-      }
-    }, {
-      text: "Role"
-    }],
-    rows: rowData
-  }) }}
 {% else %}
   <p class="govuk-body">Candidate has no work history.</p>
 {% endif %}

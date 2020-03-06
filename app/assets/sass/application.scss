@@ -114,3 +114,9 @@ $govuk-grid-widths: (
   overflow: hidden;
   width: 100%;
 }
+
+
+.app-experience__item {
+  margin-bottom: govuk-spacing(4);
+  border-bottom: 1px solid govuk-colour('mid-grey');
+}
