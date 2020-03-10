@@ -1,13 +1,13 @@
 <div class="app-list-item5 app-list-item5--{{loop.index}}">
-<div class="app-list-item5__status">
+  <div class="app-list-item5__status">
     {{govukTag({
       classes: a.status | statusClass,
       text: a.status
     })}}
-    <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-3 govuk-caption-m govuk-!-font-size-16">Updated on {{updated | date("d LLL yyyy")}}</p>
+    <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-2 govuk-caption-m govuk-!-font-size-16">Updated on {{updated | date("d LLL yyyy")}}</p>
 
     {% if a.note %}
-      <p class="app-list-item5__note govuk-!-margin-bottom-0 govuk-!-font-size-16" style="color: #1d70b8;">{{a.note}}</p>
+      <p class="app-list-item5__note govuk-!-margin-bottom-0 govuk-!-font-size-16">{{a.note}}</p>
     {% endif %}
   </div>
   <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
