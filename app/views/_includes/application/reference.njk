@@ -38,12 +38,6 @@
     <p class="govuk-body">No</p>
   {%- endif -%}
 {%- endset %}
-{% set commentsHtml %}
-  {{ govukInsetText({
-    html: reference.comments | nl2br,
-    classes: "govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-padding-bottom-0"
-  }) }}
-{% endset %}
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -99,7 +93,7 @@
       html: "Reference"
     },
     value: {
-      html: commentsHtml
+      html: reference.comments | nl2br
     }
   }]
 }) }}
