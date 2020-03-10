@@ -7,6 +7,7 @@ module.exports = {
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
     status: 'Accepted',
+    note: "Talk to candidate on 15 June",
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-07-30',
@@ -124,6 +125,7 @@ module.exports = {
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
     status: 'Enrolled',
+    note: "Call Charlie 17 May",
     offer: {
       madeDate: '2019-08-10',
       acceptedDate: '2019-08-12',
@@ -1550,9 +1552,7 @@ module.exports = {
     course: 'Biology (2P36)',
     submittedDate: '2019-10-08',
     status: 'New',
-    note: {
-
-    },
+    note: "Needs review",
     'personal-details': {
       'given-name': 'Elise',
       'family-name': 'Briggs',

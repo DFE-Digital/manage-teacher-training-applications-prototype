@@ -1,24 +1,25 @@
 <div class="app-list-item5 app-list-item5--{{loop.index}}">
-  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+<div class="app-list-item5__status">
+    {{govukTag({
+      classes: a.status | statusClass,
+      text: a.status
+    })}}
+    <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-3 govuk-caption-m govuk-!-font-size-16">Updated on {{updated | date("d LLL yyyy")}}</p>
+
+    {% if a.note %}
+      <p class="app-list-item5__note govuk-!-margin-bottom-0 govuk-!-font-size-16" style="color: #1d70b8;">{{a.note}}</p>
+    {% endif %}
+  </div>
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
     <a href="/application/{{ a.id }}">
       {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
-      {{govukTag({
-        classes: a.status | statusClass,
-        text: a.status
-      })}}
+
   </h3>
+
 
   <div style="max-width:280px;">
     <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span>
     <p class="govuk-!-margin-bottom-0">{{ a.course }}</p>
     {# <span class="govuk-caption-m govuk-!-font-size-16" style="color: #f47738;">Accredited body is Bill Ltd</span> #}
-  </div>
-
-  <div class="app-list-item5__note">
-    {% if a.note %}
-      <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Follow up with candidate ({{updated | date("d LLL yyyy")}})</p>
-    {% else %}
-      <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Updated on {{updated | date("d LLL yyyy")}}</p>
-    {% endif %}
   </div>
 </div>

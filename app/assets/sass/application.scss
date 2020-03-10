@@ -251,12 +251,18 @@ $govuk-grid-widths: (
   margin-bottom: 15px;
   padding-bottom: 15px;
   clear: both;
-  position: relative;
+  // position: relative;
+  overflow: hidden;
+}
+
+.app-list-item5__status {
+  float: right;
+  right: 0;
+  top: 0;
+  text-align: right;
 
   .govuk-tag {
-    position: absolute;
-    top: 0;
-    right: 0;
+    margin-bottom: 5px;
   }
 }
 
@@ -264,18 +270,14 @@ $govuk-grid-widths: (
   border-top: 1px solid govuk-colour('mid-grey');
   padding-top: 15px;
 
-  .govuk-tag {
+  .app-list-item5__status {
     top: 15px;
   }
 }
 
 .app-list-item5__note {
-  position: absolute;
-  right: 0;
-  bottom: 15px;
+
 }
-
-
 
 .moj-action-bar__filter {
 
