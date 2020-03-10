@@ -219,6 +219,58 @@ $govuk-grid-widths: (
   }
 }
 
+.app-list-item4 {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  clear: both;
+}
+
+.app-list-item4--1   {
+  border-top: 1px solid govuk-colour('mid-grey');
+  padding-top: 15px;
+
+  .govuk-tag {
+    top: 15px;
+  }
+}
+
+.app-list-item4__datalist {
+
+  margin-bottom: 0;
+
+  dd, dt {
+    border: none;
+    padding-bottom: 0;
+  }
+}
+
+
+.app-list-item5 {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  clear: both;
+  position: relative;
+
+  .govuk-tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.app-list-item5--1   {
+  border-top: 1px solid govuk-colour('mid-grey');
+  padding-top: 15px;
+
+  .govuk-tag {
+    top: 15px;
+  }
+}
+
+
+
 .moj-action-bar__filter {
 
 

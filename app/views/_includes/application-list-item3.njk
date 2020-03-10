@@ -3,7 +3,7 @@
 
     <h3 class="govuk-heading-s govuk-!-margin-bottom-3">
       <a href="/application/{{ a.id }}">
-        {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a><span style="font-weight: normal; display: inline" class="govuk-caption-m govuk-!-font-size-16">&nbsp;({{a.id}})</span>
+        {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
     </h3>
 
     {{govukTag({

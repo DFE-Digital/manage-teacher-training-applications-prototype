@@ -22,7 +22,7 @@
               {% set rbd = a.status.submitted.date | addDays(40) %}
               {% set remaining = rbd | daysFromNow(rbd) %}
               {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-              {% include "_includes/application-list-item3.njk" %}
+              {% include "_includes/application-list-item5.njk" %}
             {% endfor %}
           {% endif%}
         </div>
