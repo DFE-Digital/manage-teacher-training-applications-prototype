@@ -16,75 +16,14 @@
         <div class="moj-action-bar__filter"></div>
       </div>
       <div class="moj-scrollable-pan">
-        <div class="app-list">
+        <div class="app-list2">
           {% if applications.length %}
-
             {% for a in applications %}
               {% set rbd = a.status.submitted.date | addDays(40) %}
               {% set remaining = rbd | daysFromNow(rbd) %}
               {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-                  <div class="app-list__item">
-                    <div class="app-list__item-noflex">
-                      {{ govukTag({
-                        classes: a.status | statusClass,
-                        text: a.status
-                      })}}
-                      <span class="govuk-caption-m govuk-!-font-size-16">Last updated {{ updated | date("d LLL yyyy") }}</span>
-                    </div>
-                    <div class="app-list__flex">
-                      <div class="app-list__item-cell">
-                        <p><a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a></p>
-                        <span class="govuk-caption-m govuk-!-font-size-16">{{ a.id }}</span>
-                      </div>
-                      <div class="app-list__item-cell">
-                        <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span> <p>{{ a.course }}</p>
-                      </div>
-                    </div>
-                    {% if a.note %}
-                      <div class="app-list__flex app-list__flex--note">
-                        {# <div class="app-list__item-cell">
-                          <span class="govuk-caption-m govuk-!-font-size-16">Last updated</span>
-                        </div> #}
-                        <div class="app-list__item-cell">
-                          <span class="govuk-caption-m govuk-!-font-size-16">Note</span>
-                          <p>Follow up with candidate</p>
-                        </div>
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endfor %}
-
-            {# <table class="govuk-table" data-module="sortable-table">
-              <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
-                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
-                </tr>
-              </thead>
-              <tbody class="govuk-table__body">
-                {% for a in applications %}
-                  {% set rbd = a.status.submitted.date | addDays(40) %}
-                  {% set remaining = rbd | daysFromNow(rbd) %}
-                  {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                      <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
-                    </td>
-                    <td class="govuk-table__cell">
-                    <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span> {{ a.course }}</td>
-                    <td class="govuk-table__cell">
-                      {{ govukTag({
-                        classes: a.status | statusClass,
-                        text: a.status
-                      })}}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ updated | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table> #}
+              {% include "_includes/application-list-item3.njk" %}
+            {% endfor %}
           {% endif%}
         </div>
       </div>
@@ -137,8 +76,5 @@
       container: $('.moj-filter')
     }
   });
-  {# new MOJFrontend.SortableTable({
-    table: $('table')[0]
-  }); #}
   </script>
 {% endblock %}
