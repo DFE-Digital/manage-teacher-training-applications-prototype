@@ -82,10 +82,8 @@ $govuk-grid-widths: (
   background: none;
 }
 
-@media (min-width: 48.0625em) {
-  .moj-filter-layout__filter {
-    max-width: 300px;
-  }
+.moj-filter-layout__filter {
+  max-width: 300px;
 }
 
 .moj-filter__header {
@@ -276,9 +274,7 @@ $govuk-grid-widths: (
 }
 
 .app-list-item5__note {
-  // border-right: 5px solid govuk-colour('blue');
   padding-left: 15px;
-  // padding-right: 15px;
   display: inline-block;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -298,8 +294,6 @@ $govuk-grid-widths: (
 }
 
 .moj-action-bar__filter {
-
-
   @include govuk-media-query($from: desktop) {
     display: none;
   }
