@@ -110,7 +110,13 @@
       {% include "_includes/application/language-skills.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Personal statement</h2>
-      {% include "_includes/application/personal-statement.njk" %}
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Vocation</h3>
+      <p class="govuk-hint">Question to candidate: “Why do you want to be a teacher?”</p>
+      <p>{{application["personal-statement"].vocation | safe | nl2br or "—"}}</p>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
+      <p class="govuk-hint">Question to candidate: “Your knowledge about the subject you want to teach”</p>
+      <p>{{application["personal-statement"]["subject-knowledge"] | safe | nl2br or "—" }}</p>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
