@@ -1,0 +1,24 @@
+<div class="app-list-item3 app-list-item3--{{loop.index}}">
+  <div class="app-list-item3__left">
+
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-3">
+      <a href="/application/{{ a.id }}">
+        {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
+    </h3>
+
+    {{govukTag({
+      classes: a.status | statusClass + " govuk-!-margin-bottom-3",
+      text: a.status
+    })}}
+
+    <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">Last update {{updated | date("d LLL yyyy")}}</p>
+  </div>
+  <div class="app-list-item3__right">
+    <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span>
+    <p>{{ a.course }}</p>
+
+    {% if a.note %}
+      <p>Follow up with candidate</p>
+    {% endif %}
+  </div>
+</div>

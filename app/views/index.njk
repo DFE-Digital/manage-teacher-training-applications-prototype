@@ -15,7 +15,7 @@
       <div class="moj-action-bar">
         <div class="moj-action-bar__filter"></div>
       </div>
-      <div class="moj-scrollable-pane">
+      {# <div class="moj-scrollable-pane">
         <div class="moj-scrollable-pane__wrapper">
           {% if applications.length %}
             <table class="govuk-table" data-module="sortable-table">
@@ -49,6 +49,19 @@
                 {% endfor %}
               </tbody>
             </table>
+          {% endif%}
+        </div>
+      </div> #}
+
+      <div>
+        <div class="app-list2">
+          {% if applications.length %}
+            {% for a in applications %}
+              {% set rbd = a.status.submitted.date | addDays(40) %}
+              {% set remaining = rbd | daysFromNow(rbd) %}
+              {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
+              {% include "_includes/application-list-item5.njk" %}
+            {% endfor %}
           {% endif%}
         </div>
       </div>
@@ -101,8 +114,5 @@
       container: $('.moj-filter')
     }
   });
-  {# new MOJFrontend.SortableTable({
-    table: $('table')[0]
-  }); #}
   </script>
 {% endblock %}

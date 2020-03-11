@@ -1,0 +1,52 @@
+<div class="app-list-item4 app-list-item4--{{loop.index}}">
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+    <a href="/application/{{ a.id }}">
+      {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
+  </h3>
+
+  {% set courseHtml %}
+    <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span>
+      <p>{{ a.course }}</p>
+  {% endset %}
+
+  {{ govukSummaryList({
+    classes: 'app-list-item4__datalist',
+    rows: [
+      {
+        key: {
+          text: "Status"
+        },
+        value: {
+          html: govukTag({
+            classes: a.status | statusClass,
+            text: a.status
+          })
+        }
+      },
+      {
+        key: {
+          text: "Course"
+        },
+        value: {
+          html: courseHtml
+        }
+      },
+      {
+        key: {
+          text: "Last updated"
+        },
+        value: {
+          html: updated | date("d LLL yyyy")
+        }
+      },
+      {
+        key: {
+          text: "Note"
+        },
+        value: {
+          html: "Follow up with candidate"
+        }
+      } if a.note
+    ]
+  }) }}
+</div>
