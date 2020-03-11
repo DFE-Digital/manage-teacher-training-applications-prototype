@@ -21,19 +21,21 @@
   {% if reference.relationship.validated %}
     <p class="govuk-body">Yes</p>
   {% else %}
-    <p class="govuk-body">Amended by referee:</p>
+    <p class="govuk-body">No</p>
+  {% endif %}
+{% endset %}
+
+{# <p class="govuk-body">Amended by referee:</p>
     {{ govukInsetText({
       text: reference.relationship.correction,
       classes: "govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-padding-bottom-0"
     }) }}
-  {% endif %}
-{% endset %}
-{% set safeguardingHtml -%}
+  {% endif %} #}
+
+
+{% set safeguardingResponseHtml -%}
   {%- if reference.safeguarding.response == "yes" -%}
-    {{ govukInsetText({
-      html: reference.safeguarding.concerns | nl2br,
-      classes: "govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-padding-bottom-0"
-    }) }}
+    <p class="govuk-body">Yes</p>
   {%- elif reference.safeguarding.response == "no" -%}
     <p class="govuk-body">No</p>
   {%- endif -%}
@@ -83,12 +85,29 @@
     }
   }, {
     key: {
+      text: "Relationship amended by referee"
+    },
+    value: {
+      text: reference.relationship.correction
+    }
+  } if not reference.relationship.validated,
+  {
+    key: {
       text: "Does referee know of any reason why this candidate should not work with children?"
     },
     value: {
-      html: safeguardingHtml
+      html: safeguardingResponseHtml
     }
-  }, {
+  },
+  {
+    key: {
+      text: "Reason(s) given by referee why this candidate should not work with children"
+    },
+    value: {
+      html: reference.safeguarding.concerns | nl2br
+    }
+  } if reference.safeguarding.response == "yes",
+  {
     key: {
       html: "Reference"
     },
