@@ -3,6 +3,7 @@ var uuid = require('uuid/v4')
 module.exports = {
   "GH12354": {
     id: "GH12354",
+    accreditingbody: "University of Bath",
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
@@ -68,6 +69,7 @@ module.exports = {
   },
   "EW65341": {
     id: "EW65341",
+    accreditingbody: "University of Bristol",
     provider: 'The Beach Teaching School',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-07-15',
@@ -127,6 +129,7 @@ module.exports = {
   },
   "RT88789": {
     id: "RT88789",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
@@ -194,6 +197,7 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
+    accreditingbody: "University of Bath",
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
@@ -253,6 +257,7 @@ module.exports = {
   },
   "PL098988": {
     id: "PL098988",
+    accreditingbody: "University of Bristol",
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (2P3K)',
     submittedDate: '2019-07-15',
@@ -307,6 +312,7 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Business studies (2P37)',
     submittedDate: '2019-08-15',
@@ -365,6 +371,7 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
+    accreditingbody: "University of Bristol",
     provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-09-15',
@@ -418,6 +425,7 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
 
@@ -661,6 +669,7 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Computer Science and Information Technology (IX99)',
     submittedDate: '2019-09-01',
@@ -899,6 +908,7 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'History (33MP)',
     submittedDate: '2019-09-16',
@@ -1161,6 +1171,7 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Primary (2PPM)',
     submittedDate: '2019-09-18',
@@ -1384,6 +1395,7 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
+    accreditingbody: "University of Bristol",
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (GX11)',
     submittedDate: '2019-09-21',
@@ -1560,6 +1572,7 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
+    accreditingbody: "University of Bath",
     provider: 'Somerset SCITT consortium',
     course: 'Biology (2P36)',
     submittedDate: '2019-10-08',
@@ -1764,6 +1777,7 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Upper Primary with Modern Foreign Languages (XR9C)',
     submittedDate: '2019-10-10',

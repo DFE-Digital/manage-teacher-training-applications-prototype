@@ -11,13 +11,13 @@
     {% endif %}
   </div>
   <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-    <a href="/application/{{ a.id }}">
+    <a href="/application/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
       {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}
     </a>
   </h3>
   <div style="max-width:280px;">
     <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span>
-    <p class="govuk-!-margin-bottom-0">{{ a.course }}</p>
-    {# <span class="govuk-caption-m govuk-!-font-size-16" style="color: #f47738;">Accredited body is Bill Ltd</span> #}
+    <p class="govuk-!-margin-bottom-1">{{ a.course }}</p>
+    <span class="govuk-caption-m govuk-!-font-size-16" style="color: #4c2c92;">Accredited by {{a.accreditingbody}}</span>
   </div>
 </div>

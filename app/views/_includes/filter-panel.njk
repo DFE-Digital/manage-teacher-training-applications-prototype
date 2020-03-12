@@ -88,6 +88,35 @@
         }
       ]
     }) }}
+
+    {{ govukCheckboxes({
+      idPrefix: 'accreditingbody',
+      name: 'accreditingbody',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Accrediting body',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'Somerset SCITT consortium',
+          text: 'Somerset SCITT consortium',
+          checked: checked("accreditingbody", "Somerset SCITT consortium") == 'checked'
+        },
+        {
+          value: 'University of Bristol',
+          text: 'University of Bristol',
+          checked: checked("accreditingbody", "University of Bristol") == 'checked'
+        },
+        {
+          value: 'University of Bath',
+          text: 'University of Bath',
+          checked: checked("accreditingbody", "University of Bath") == 'checked'
+        }
+      ]
+    }) }}
   {% endset %}
 
   <div class="moj-filter" tabindex="-1">
