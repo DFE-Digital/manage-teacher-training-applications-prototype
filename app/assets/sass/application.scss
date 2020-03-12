@@ -330,3 +330,12 @@ $govuk-grid-widths: (
   float: left;
   box-sizing: border-box;
 }
+
+h1 .govuk-tag {
+  position: relative;
+  top: -7px;
+}
+
+.app-print-button {
+  text-align: right;
+}

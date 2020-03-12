@@ -1,8 +1,8 @@
 var uuid = require('uuid/v4')
 
 module.exports = {
-  1: {
-    id: 1,
+  "GH12354": {
+    id: "GH12354",
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
@@ -60,8 +60,8 @@ module.exports = {
       }
     }
   },
-  2: {
-    id: 2,
+  "EW65341": {
+    id: "EW65341",
     provider: 'The Beach Teaching School',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-07-15',
@@ -119,8 +119,8 @@ module.exports = {
       }
     }
   },
-  3: {
-    id: 3,
+  "RT88789": {
+    id: "RT88789",
     provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
@@ -180,8 +180,8 @@ module.exports = {
       }
     }
   },
-  4: {
-    id: 4,
+  "ID540900": {
+    id: "ID540900",
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
@@ -239,8 +239,8 @@ module.exports = {
       }
     }
   },
-  5: {
-    id: 5,
+  "PL098988": {
+    id: "PL098988",
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (2P3K)',
     submittedDate: '2019-07-15',
@@ -293,8 +293,8 @@ module.exports = {
       }
     }
   },
-  6: {
-    id: 6,
+  "QW211115": {
+    id: "QW211115",
     provider: 'Somerset SCITT consortium',
     course: 'Business studies (2P37)',
     submittedDate: '2019-08-15',
@@ -351,8 +351,8 @@ module.exports = {
       }
     }
   },
-  7: {
-    id: 7,
+  "KH96344": {
+    id: "KH96344",
     provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-09-15',
@@ -404,8 +404,8 @@ module.exports = {
       }
     }
   },
-  101: {
-    id: 101,
+  "WP010100": {
+    id: "WP010100",
     provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
 
@@ -647,8 +647,8 @@ module.exports = {
     },
     miscellaneous: 'I will be taking a TEFL course in September for one month to gain a professional qualification as a TEFL teacher, which I hope will help me find work running evening classes online or at a language school in the UK this year.'
   },
-  102: {
-    id: 102,
+  "PW908111": {
+    id: "PW908111",
     provider: 'Somerset SCITT consortium',
     course: 'Computer Science and Information Technology (IX99)',
     submittedDate: '2019-09-01',
@@ -885,8 +885,8 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  103: {
-    id: 103,
+  "AB5499": {
+    id: "AB5499",
     provider: 'Somerset SCITT consortium',
     course: 'History (33MP)',
     submittedDate: '2019-09-16',
@@ -1147,8 +1147,8 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  104: {
-    id: 104,
+  "CV943651": {
+    id: "CV943651",
     provider: 'Somerset SCITT consortium',
     course: 'Primary (2PPM)',
     submittedDate: '2019-09-18',
@@ -1370,8 +1370,8 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  105: {
-    id: 105,
+  "RE123123": {
+    id: "RE123123",
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (GX11)',
     submittedDate: '2019-09-21',

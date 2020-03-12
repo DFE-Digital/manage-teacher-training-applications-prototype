@@ -1,4 +1,4 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
@@ -17,22 +17,54 @@
   }) if not data.bare }}
 {% endblock %}
 
-{% block beforePageTitle %}
+{% block content %}
   {{ appBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
   }) if flash }}
-
-{% endblock %}
-
-{% block primary %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{ application.id }}</span>
+      <h1 class="govuk-heading-xl">
+        {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
+      </h1>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <p class="app-print-button"><a href="javascript:window.print();">Print page</a></p>
+    </div>
+  </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% include "_includes/application/status-panel.njk" %}
+      {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') %}
+        {% include "_includes/application/status-panel.njk" %}
+      {% endif %}
 
-      <h2 class="govuk-heading-l">Application</h2>
+
+      {# {% set rbd = application.submittedDate | addDays(40) %}
+      {% set remaining = rbd | daysFromNow(rbd) %} #}
+
+      {# {% if application.status == 'New' %}
+        <p>Respond to applicant by {{rbd | date("dd LLL yyyy")}}</p>
+        {{govukButton({
+          text: "Respond to application",
+          href: "/application/" + application.id + "/decision"
+        })}}
+      {% endif %} #}
+
+
+      <h2 class="govuk-heading-l">Notes</h2>
+      {# <p>No notes</p> #}
+      <p><a href="#">Add new note</a></p>
+      {# {{govukButton({
+        text: "Add note",
+        classes: "govuk-button--secondary",
+        href: "/application/" + application.id + "/notes"
+      })}} #}
+
+
+      <h2 class="govuk-heading-l govuk-!-margin-top-6">Application</h2>
 
       {% include "_includes/application/details.njk" %}
 
@@ -79,12 +111,9 @@
 
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Disability and other needs</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Safeguarding</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
-
       {% if application.safeguarding == 'Request' %}
         <p class="govuk-body">The candidate has shared safeguarding information. <a href="#">Request access</a>.</p>
       {% else %}
@@ -92,7 +121,6 @@
       {% endif %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Interview</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
       <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "No information shared"}}</p>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Qualifications</h2>
@@ -127,8 +155,9 @@
       {% include "_includes/application/reference.njk" %}
     </div>
     <div class="govuk-grid-column-one-third">
-      <h2 class="govuk-heading-l">Timeline</h2>
+      <h2 class="govuk-heading-l">Recent events</h2>
       {{ appTimeline({items: timeline})}}
+      <p class="govuk-body"><a href="">View all events</a>
     </div>
   </div>
 {% endblock %}

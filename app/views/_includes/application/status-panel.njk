@@ -1,70 +1,30 @@
-<div class="app-card govuk-!-margin-bottom-9">
-  {% if application.status == "Offered" %}
-    <h2 class="govuk-heading-m">Offer made to candidate</h2>
-  {% endif %}
-
-  {% if application.status == "Conditions met" %}
-    <h2 class="govuk-heading-m">Candidate met conditions</h2>
-  {% endif %}
-
-  {% if application.status == "Conditions not met" %}
-    <h2 class="govuk-heading-m">Candidate did not meet conditions</h2>
-  {% endif %}
-
-  {% if application.status == "Rejected" %}
-    <h2 class="govuk-heading-m">Candidate's application rejected</h2>
-  {% endif %}
-
-  {% if application.status == "Offer withdrawn" %}
-    <h2 class="govuk-heading-m">Offer to candidate withdrawn</h2>
-  {% endif %}
-
-  {% if application.status == "Application withdrawn" %}
-    <h2 class="govuk-heading-m">Candidate withdrew application</h2>
-  {% endif %}
-
-  {% if application.status == "Declined" %}
-    <h2 class="govuk-heading-m">Candidate declined offer</h2>
-  {% endif %}
-
-  {% if application.status == "Accepted" %}
-    <h2 class="govuk-heading-m">Candidate accepted offer</h2>
-  {% endif %}
-
-  {% if application.status == "Enrolled" %}
-    <h2 class="govuk-heading-m">Candidate enrolled</h2>
-  {% endif %}
-
+<div class="app-car govuk-!-margin-bottom-9">
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
+  {% if application.status == 'New' %}
+
+    {% set warningHtml %}
+      <p>Respond by {{rbd | date("dd LLL yyyy")}}</p>
+    {% endset %}
+
+    {{ govukWarningText({
+      html: warningHtml,
+      classes: "govuk-!-margin-bottom-0",
+      iconFallbackText: "Warning"
+    }) }}
+
+    {{govukButton({
+      text: "Respond to application",
+      classes: "govuk-!-margin-bottom-0",
+      href: "/application/" + application.id + "/decision"
+    })}}
+  {% else %}
+    <h2 class="govuk-heading-l">Offer</h2>
+  {% endif %}
+
   {{ govukSummaryList({
     rows: [{
-      key: {
-        text: "Status"
-      },
-      value: {
-        html: govukTag({
-          classes: status | statusClass,
-          text: status
-        })
-      }
-    }, {
-      key: {
-        text: "Application submitted"
-      },
-      value: {
-        text: application.submittedDate | date("dd LLL yyyy")
-      }
-    } if application.status == 'New', {
-      key: {
-        text: "Respond to applicant by"
-      },
-      value: {
-        text: rbd | date("dd LLL yyyy")
-      }
-    } if application.status == 'New',
-    {
       key: {
         text: "Offer made"
       },
@@ -104,14 +64,6 @@
         text: application.offer.enrolledDate  | date("dd LLL yyyy")
       }
     } if application.offer.enrolledDate,
-    {
-      key: {
-        text: "Application withdrawn"
-      },
-      value: {
-        text: application.withdrawnDate  | date("dd LLL yyyy")
-      }
-    } if application.status == 'Application withdrawn',
     {
       key: {
         text: "Offer withdrawn"
@@ -183,7 +135,7 @@
 
   {% if application.offer and conditions %}
 
-    <h2 class="govuk-heading-s">Conditions</h2>
+    <h2 class="govuk-heading-m">Conditions</h2>
 
     <table class="govuk-table">
       <tbody class="govuk-table__body">
@@ -231,20 +183,6 @@
     <p class="govuk-body govuk-!-margin-bottom-0">
       <a href="#" class="app-withdraw-link">Cancel offer</a>
     </p>
-  {% endif %}
-
-  {% if application.status == 'New' %}
-    {{govukButton({
-      classes: "govuk-!-margin-bottom-0",
-      text: "Respond to application",
-      href: "/application/" + application.id + "/decision"
-    })}}
-  {% elseif application.status == 'Accepted' %}
-    {# {{govukButton({
-      classes: "govuk-!-margin-bottom-0",
-      text: "Confirm conditions",
-      href: "/application/" + application.id + "/mark-conditions"
-    })}} #}
   {% endif %}
 
 </div>
