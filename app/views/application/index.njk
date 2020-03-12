@@ -58,7 +58,7 @@
 
       <p><a href="#">Add new note</a></p>
 
-      {% if application.notes %}
+      {# {% if application.notes %}
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -77,6 +77,18 @@
             {% endfor %}
           </tbody>
         </table>
+      {% endif %} #}
+
+      {% if application.notes %}
+        <div class="app-notes">
+          {% for note in application.notes.items %}
+            <div class="app-notes__note">
+              <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{note.subject}}</h3>
+              <p class="govuk-!-margin-bottom-1">{{note.body | nl2br or "No information shared"}}</p>
+              <span class="govuk-caption-m govuk-!-font-size-16">{{note.sender}}</span>
+            </div>
+          {% endfor %}
+        </div>
       {% endif %}
 
       <h2 class="govuk-heading-l govuk-!-margin-top-6">Application</h2>

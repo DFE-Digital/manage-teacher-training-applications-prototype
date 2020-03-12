@@ -339,3 +339,15 @@ h1 .govuk-tag {
 .app-print-button {
   text-align: right;
 }
+
+
+.app-notes {
+  border-top: 1px solid govuk-colour('mid-grey');
+  padding-top: 10px;
+}
+
+.app-notes__note {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding-bottom: 10px;
+}
+
