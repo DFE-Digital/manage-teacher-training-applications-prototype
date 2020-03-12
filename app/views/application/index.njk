@@ -55,14 +55,29 @@
 
 
       <h2 class="govuk-heading-l">Notes</h2>
-      {# <p>No notes</p> #}
-      <p><a href="#">Add new note</a></p>
-      {# {{govukButton({
-        text: "Add note",
-        classes: "govuk-button--secondary",
-        href: "/application/" + application.id + "/notes"
-      })}} #}
 
+      <p><a href="#">Add new note</a></p>
+
+      {% if application.notes %}
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Subject</th>
+              <th scope="col" class="govuk-table__header">Body</th>
+              <th scope="col" class="govuk-table__header">Sender</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for note in application.notes.items %}
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell">{{note.subject}}</td>
+                <td scope="row" class="govuk-table__cell">{{note.body}}</td>
+                <td scope="row" class="govuk-table__cell">{{note.sender}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
 
       <h2 class="govuk-heading-l govuk-!-margin-top-6">Application</h2>
 

@@ -7,7 +7,13 @@ module.exports = {
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
     status: 'Accepted',
-    note: "Talk to candidate on 15 June",
+    notes: {
+      items: [{
+        subject: "Talk to candidate on 15 June",
+        body: "Make sure to prepare this and that ready for a chat",
+        sender: "Laura Tennant"
+      }]
+    },
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-07-30',
@@ -125,7 +131,13 @@ module.exports = {
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
     status: 'Enrolled',
-    note: "Call Charlie 17 May",
+    notes: {
+      items: [{
+        subject: "Call Charlie 17 May",
+        body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
+        sender: "Emma Hill-French"
+      }]
+    },
     offer: {
       madeDate: '2019-08-10',
       acceptedDate: '2019-08-12',
@@ -1552,7 +1564,13 @@ module.exports = {
     course: 'Biology (2P36)',
     submittedDate: '2019-10-08',
     status: 'New',
-    note: "Needs review",
+    notes: {
+      items: [{
+        "subject": "Needs review",
+        "body": "Make sure you review this application paying close attention to their qualifications",
+        "sender": "Emma Frith"
+      }]
+    },
     'personal-details': {
       'given-name': 'Elise',
       'family-name': 'Briggs',
