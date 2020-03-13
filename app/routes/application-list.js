@@ -137,7 +137,7 @@ module.exports = router => {
     req.session.data.status = null;
     req.session.data.provider = null;
     req.session.data.keywords = null;
-    req.session.data.acredditingbody = null;
+    req.session.data.accreditingbody = null;
     res.redirect('/');
   })
 

@@ -1579,9 +1579,10 @@ module.exports = {
     status: 'New',
     notes: {
       items: [{
-        "subject": "Needs review",
-        "body": "Make sure you review this application paying close attention to their qualifications",
-        "sender": "Emma Frith"
+        subject: "Needs review",
+        body: "Make sure you review this application paying close attention to their qualifications",
+        sender: "Pepper Potts",
+        date: '2020-01-20'
       }]
     },
     'personal-details': {
