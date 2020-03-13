@@ -249,7 +249,7 @@ $govuk-grid-widths: (
   margin-bottom: 15px;
   padding-bottom: 15px;
   clear: both;
-  // position: relative;
+  position: relative;
   overflow: hidden;
 }
 
@@ -278,7 +278,7 @@ $govuk-grid-widths: (
   display: inline-block;
   padding-top: 1px;
   padding-bottom: 1px;
-  color: govuk-colour('blue');
+  color: govuk-colour('black');
   position: relative;
 }
 
@@ -286,7 +286,7 @@ $govuk-grid-widths: (
   border-radius: 25px;
   height: 10px;
   width: 10px;
-  background: govuk-colour('blue');
+  background: govuk-colour('black');
   content: " ";
   position: absolute;
   left: 0;
