@@ -84,6 +84,26 @@
           ]
         }) }}
 
+        {{ govukCheckboxes({
+          idPrefix: "permissions",
+          name: "permissions",
+          fieldset: {
+            legend: {
+              text: "Choose permissions",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Manage users",
+              text: "Manage users",
+              hint: {
+                text: "Invite and delete users"
+              }
+            }
+          ]
+        }) }}
+
         {{govukButton({
           text: "Invite user"
         })}}

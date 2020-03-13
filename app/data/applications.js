@@ -1,13 +1,20 @@
 var uuid = require('uuid/v4')
 
 module.exports = {
-  1: {
-    id: 1,
+  "GH12354": {
+    id: "GH12354",
+    accreditingbody: "University of Bath",
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
     status: 'Accepted',
-    note: "Talk to candidate on 15 June",
+    notes: {
+      items: [{
+        subject: "Talk to candidate on 15 June",
+        body: "Make sure to prepare this and that ready for a chat",
+        sender: "Laura Tennant"
+      }]
+    },
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-07-30',
@@ -60,8 +67,9 @@ module.exports = {
       }
     }
   },
-  2: {
-    id: 2,
+  "EW65341": {
+    id: "EW65341",
+    accreditingbody: "University of Bristol",
     provider: 'The Beach Teaching School',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-07-15',
@@ -119,13 +127,20 @@ module.exports = {
       }
     }
   },
-  3: {
-    id: 3,
+  "RT88789": {
+    id: "RT88789",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
-    status: 'Enrolled',
-    note: "Call Charlie 17 May",
+    status: 'Enroled',
+    notes: {
+      items: [{
+        subject: "Call Charlie 17 May",
+        body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
+        sender: "Emma Hill-French"
+      }]
+    },
     offer: {
       madeDate: '2019-08-10',
       acceptedDate: '2019-08-12',
@@ -180,8 +195,9 @@ module.exports = {
       }
     }
   },
-  4: {
-    id: 4,
+  "ID540900": {
+    id: "ID540900",
+    accreditingbody: "University of Bath",
     provider: 'The Beach Teaching School',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
@@ -239,8 +255,9 @@ module.exports = {
       }
     }
   },
-  5: {
-    id: 5,
+  "PL098988": {
+    id: "PL098988",
+    accreditingbody: "University of Bristol",
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (2P3K)',
     submittedDate: '2019-07-15',
@@ -293,8 +310,9 @@ module.exports = {
       }
     }
   },
-  6: {
-    id: 6,
+  "QW211115": {
+    id: "QW211115",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Business studies (2P37)',
     submittedDate: '2019-08-15',
@@ -351,8 +369,9 @@ module.exports = {
       }
     }
   },
-  7: {
-    id: 7,
+  "KH96344": {
+    id: "KH96344",
+    accreditingbody: "University of Bristol",
     provider: 'Somerset SCITT consortium',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-09-15',
@@ -404,8 +423,9 @@ module.exports = {
       }
     }
   },
-  101: {
-    id: 101,
+  "WP010100": {
+    id: "WP010100",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Religious Studies (V6X9)',
 
@@ -647,8 +667,9 @@ module.exports = {
     },
     miscellaneous: 'I will be taking a TEFL course in September for one month to gain a professional qualification as a TEFL teacher, which I hope will help me find work running evening classes online or at a language school in the UK this year.'
   },
-  102: {
-    id: 102,
+  "PW908111": {
+    id: "PW908111",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Computer Science and Information Technology (IX99)',
     submittedDate: '2019-09-01',
@@ -885,8 +906,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  103: {
-    id: 103,
+  "AB5499": {
+    id: "AB5499",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'History (33MP)',
     submittedDate: '2019-09-16',
@@ -1147,8 +1169,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  104: {
-    id: 104,
+  "CV943651": {
+    id: "CV943651",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Primary (2PPM)',
     submittedDate: '2019-09-18',
@@ -1370,8 +1393,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  105: {
-    id: 105,
+  "RE123123": {
+    id: "RE123123",
+    accreditingbody: "University of Bristol",
     provider: 'Somerset SCITT consortium',
     course: 'Mathematics (GX11)',
     submittedDate: '2019-09-21',
@@ -1548,11 +1572,19 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
+    accreditingbody: "University of Bath",
     provider: 'Somerset SCITT consortium',
     course: 'Biology (2P36)',
     submittedDate: '2019-10-08',
     status: 'New',
-    note: "Needs review",
+    notes: {
+      items: [{
+        subject: "Needs review",
+        body: "Make sure you review this application paying close attention to their qualifications",
+        sender: "Pepper Potts",
+        date: '2020-01-20'
+      }]
+    },
     'personal-details': {
       'given-name': 'Elise',
       'family-name': 'Briggs',
@@ -1746,6 +1778,7 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
+    accreditingbody: "Somerset SCITT consortium",
     provider: 'Somerset SCITT consortium',
     course: 'Upper Primary with Modern Foreign Languages (XR9C)',
     submittedDate: '2019-10-10',

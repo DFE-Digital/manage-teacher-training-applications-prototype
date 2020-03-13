@@ -249,7 +249,7 @@ $govuk-grid-widths: (
   margin-bottom: 15px;
   padding-bottom: 15px;
   clear: both;
-  // position: relative;
+  position: relative;
   overflow: hidden;
 }
 
@@ -278,7 +278,7 @@ $govuk-grid-widths: (
   display: inline-block;
   padding-top: 1px;
   padding-bottom: 1px;
-  color: govuk-colour('blue');
+  color: govuk-colour('black');
   position: relative;
 }
 
@@ -286,7 +286,7 @@ $govuk-grid-widths: (
   border-radius: 25px;
   height: 10px;
   width: 10px;
-  background: govuk-colour('blue');
+  background: govuk-colour('black');
   content: " ";
   position: absolute;
   left: 0;
@@ -330,3 +330,24 @@ $govuk-grid-widths: (
   float: left;
   box-sizing: border-box;
 }
+
+h1 .govuk-tag {
+  position: relative;
+  top: -7px;
+}
+
+.app-print-button {
+  text-align: right;
+}
+
+
+.app-notes {
+  border-top: 1px solid govuk-colour('mid-grey');
+  padding-top: 10px;
+}
+
+.app-notes__note {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding-bottom: 10px;
+}
+

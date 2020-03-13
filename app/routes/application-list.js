@@ -6,7 +6,7 @@ module.exports = router => {
 
     // Clone and turn into an array
     let apps = Object.values(req.session.data.applications).reverse();
-    let { status, provider, keywords } = req.query
+    let { status, provider, accreditingbody, keywords } = req.query
 
     keywords = keywords || req.session.data.keywords;
 
@@ -18,12 +18,17 @@ module.exports = router => {
       return provider !== '_unchecked'
     })) || req.session.data.provider;
 
-    const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) || (keywords) )
+    let accreditingbodies = accreditingbody && (Array.isArray(accreditingbody) ? accreditingbody : [ accreditingbody ].filter((provider) => {
+      return accreditingbody !== '_unchecked'
+    })) || req.session.data.accreditingbody;
+
+    const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) )
 
     if( hasFilters ){
       apps = apps.filter((app) => {
         let statusValid = true;
         let providerValid = true;
+        let accreditingbodyValid = true;
         let candidateNameValid = true;
 
         if( statuses && statuses.length ){
@@ -34,13 +39,17 @@ module.exports = router => {
           providerValid = providers.includes(app.provider)
         }
 
+        if( accreditingbodies && accreditingbodies.length ){
+          accreditingbodyValid = accreditingbodies.includes(app.accreditingbody)
+        }
+
         var candidateName = app['personal-details']['given-name'] + ' ' + app['personal-details']['family-name'];
 
         if(keywords) {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
         }
 
-        return statusValid && providerValid && candidateNameValid;
+        return statusValid && providerValid && candidateNameValid && accreditingbodyValid;
       })
     }
 
@@ -83,6 +92,18 @@ module.exports = router => {
           })
         })
       }
+
+      if(accreditingbodies && accreditingbodies.length) {
+        selectedFilters.categories.push({
+          heading: { text: "Accrediting bodies" },
+          items: accreditingbodies.map((accreditingbody) => {
+            return {
+              text: accreditingbody,
+              href: `/remove-accreditingbody-filter/${accreditingbody}`
+            }
+          })
+        })
+      }
     }
 
     res.render('index', {
@@ -106,10 +127,17 @@ module.exports = router => {
     res.redirect('/');
   })
 
+  router.get('/remove-accreditingbody-filter/:accreditingbody', (req, res) => {
+    // console.log(req.session.data.accreditingbody);
+    req.session.data.accreditingbody = req.session.data.accreditingbody.filter(item => item !== req.params.accreditingbody);
+    res.redirect('/');
+  })
+
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.status = null;
     req.session.data.provider = null;
     req.session.data.keywords = null;
+    req.session.data.accreditingbody = null;
     res.redirect('/');
   })
 
