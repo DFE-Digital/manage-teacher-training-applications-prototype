@@ -133,7 +133,7 @@ module.exports = {
     provider: 'The Beach Teaching School',
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
-    status: 'Enrolled',
+    status: 'Enroled',
     notes: {
       items: [{
         subject: "Call Charlie 17 May",

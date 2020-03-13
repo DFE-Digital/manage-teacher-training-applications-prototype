@@ -83,7 +83,7 @@ module.exports = (env) => {
         return 'app-tag--turquoise'
       case "New":
         return 'app-tag--purple'
-      case "Enrolled":
+      case "Enroled":
         return 'app-tag--blue'
     }
   }

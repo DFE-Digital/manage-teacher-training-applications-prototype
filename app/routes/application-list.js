@@ -20,7 +20,7 @@ module.exports = router => {
 
     let accreditingbodies = accreditingbody && (Array.isArray(accreditingbody) ? accreditingbody : [ accreditingbody ].filter((provider) => {
       return accreditingbody !== '_unchecked'
-    })) || req.session.data.provider;
+    })) || req.session.data.accreditingbody;
 
     const hasFilters = !!( ( statuses && statuses.length > 0) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) )
 
@@ -128,6 +128,7 @@ module.exports = router => {
   })
 
   router.get('/remove-accreditingbody-filter/:accreditingbody', (req, res) => {
+    // console.log(req.session.data.accreditingbody);
     req.session.data.accreditingbody = req.session.data.accreditingbody.filter(item => item !== req.params.accreditingbody);
     res.redirect('/');
   })
@@ -136,6 +137,7 @@ module.exports = router => {
     req.session.data.status = null;
     req.session.data.provider = null;
     req.session.data.keywords = null;
+    req.session.data.acredditingbody = null;
     res.redirect('/');
   })
 
