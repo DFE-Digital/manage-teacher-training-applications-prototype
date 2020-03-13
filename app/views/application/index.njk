@@ -78,15 +78,15 @@
 
 
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Disability and other needs</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Disability, access and other needs</h2>
       {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Safeguarding</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Criminal convictions and professional misconduct</h2>
       {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
 
       {% if application.safeguarding == 'Request' %}
-        <p class="govuk-body">The candidate has shared safeguarding information. <a href="#">Request access</a>.</p>
+        <p class="govuk-body">The candidate has shared information related to safeguarding. Please contact them directly for more details.</p>
       {% else %}
         <p class="govuk-body">{{application.safeguarding | nl2br or "No information shared"}}</p>
       {% endif %}
