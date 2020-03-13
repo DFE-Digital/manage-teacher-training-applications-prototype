@@ -23,9 +23,26 @@
     type: "success",
     icon: false
   }) if flash }}
+
+  {% set rbd = application.submittedDate | addDays(40) %}
+  {% set remaining = rbd | daysFromNow(rbd) %}
+
+  {% if application.status == 'New' %}
+    {% set bannerHtml %}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">You have 22 days to send a response. <a class="govuk-link--no-visited-state" href="/application/{{application.id}}/decision">Respond to application</a>.</h2>
+    {% endset %}
+    {{ appBanner({
+      html: bannerHtml,
+      type: "information",
+      icon: false
+    }) }}
+  {% endif %}
+
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">{{ application.id }}</span>
+      {# <span class="govuk-caption-xl">{{ application.id }}</span> #}
       <h1 class="govuk-heading-xl">
         {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
       </h1>
@@ -37,7 +54,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') %}
+      {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') and (application.status != 'New')%}
         {% include "_includes/application/status-panel.njk" %}
       {% endif %}
 
@@ -57,27 +74,6 @@
       <h2 class="govuk-heading-l">Notes</h2>
 
       <p><a href="#">Add new note</a></p>
-
-      {# {% if application.notes %}
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Subject</th>
-              <th scope="col" class="govuk-table__header">Body</th>
-              <th scope="col" class="govuk-table__header">Sender</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            {% for note in application.notes.items %}
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">{{note.subject}}</td>
-                <td scope="row" class="govuk-table__cell">{{note.body}}</td>
-                <td scope="row" class="govuk-table__cell">{{note.sender}}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% endif %} #}
 
       {% if application.notes %}
         <div class="app-notes">

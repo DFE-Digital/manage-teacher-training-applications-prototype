@@ -4,7 +4,7 @@
 
   {% if application.status == 'New' %}
 
-    {% set warningHtml %}
+    {# {% set warningHtml %}
       <p>Respond by {{rbd | date("dd LLL yyyy")}}</p>
     {% endset %}
 
@@ -18,7 +18,7 @@
       text: "Respond to application",
       classes: "govuk-!-margin-bottom-0",
       href: "/application/" + application.id + "/decision"
-    })}}
+    })}} #}
   {% else %}
     <h2 class="govuk-heading-l">Offer</h2>
   {% endif %}
