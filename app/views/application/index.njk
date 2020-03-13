@@ -86,7 +86,7 @@
       {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
 
       {% if application.safeguarding == 'Request' %}
-        <p class="govuk-body">The candidate has shared information related to safeguarding. We've informed them that they should be prepared to discuss this with their training provider at interview.</p>
+        <p class="govuk-body">The candidate has shared information related to safeguarding. Please contact them directly for more details.</p>
       {% else %}
         <p class="govuk-body">{{application.safeguarding | nl2br or "No information shared"}}</p>
       {% endif %}
