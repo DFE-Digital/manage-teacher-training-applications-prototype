@@ -24,8 +24,8 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId]
     application.status = "Rejected";
     application.rejectedDate = new Date().toISOString();
-    application.rejectedReasons = req.session.data.reasons;
-    application.rejectedComments = req.session.data.comments
+    // application.rejectedReasons = req.session.data.reasons;
+    // application.rejectedComments = req.session.data.comments
     req.flash('success', 'rejected')
     res.redirect(`/application/${applicationId}`)
   })
