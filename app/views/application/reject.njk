@@ -14,20 +14,520 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{title}}</h1>
+      {# <h1 class="govuk-heading-xl">{{title}}</h1> #}
 
-      {% include "_includes/application-summary.njk" %}
+      {# {% include "_includes/application-summary.njk" %} #}
+
+
+      <h1 class="govuk-heading-xl">Tell {{name}} why you're rejecting them</h1>
+      <p>Help the candidate reapply successfully in the future by giving them useful feedback.</p>
+
       <form method="post">
-        {{ govukTextarea({
-          id: "comments",
-          name: "comments",
+
+      {{ govukRadios({
+        fieldset: {
+          legend: {
+            html: "Is it because the course is full?",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: true
+          }
+        },
+        name: "course-full",
+        items: [{
+          value: "Yes",
+          text: "Yes",
+          checked: checked("course-full", "Yes")
+        },
+        {
+          value: "No",
+          text: "No",
+          checked: checked("course-full", "No")
+        }]
+      }) }}
+
+
+
+
+
+
+      {% set qualificationsOtherHtml %}
+        {{ govukInput({
           label: {
-            text: "Please explain why this application was rejected",
-            classes: "govuk-label--m"
+            text: "Other"
+          },
+          id: "other-qualification-reason",
+          name: "other-qualification-reason"
+        }) }}
+      {% endset %}
+
+      {% set qualificationCheckboxesHtml %}
+        {{ govukCheckboxes({
+            classes: "govuk-checkboxes--small",
+            idPrefix: "reasons-qualifications",
+            name: "reasons",
+            fieldset: {
+              legend: {
+                text: "Qualifications",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [{
+              value: "No Maths GCSE grade 4 (C) or above",
+              text: "No Maths GCSE grade 4 (C) or above"
+            }, {
+              value: "No English GCSE grade 4 (C) or above",
+              text: "No English GCSE grade 4 (C) or above"
+            }, {
+              value: "No Science GCSE grade 4 (C) or above",
+              text: "No Science GCSE grade 4 (C) or above"
+            } if isPrimaryCourse, {
+              value: "No degree/degree doesn’t meet course requirements",
+              text: "No degree/degree doesn’t meet course requirements"
+            }, {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: qualificationsOtherHtml
+              }
+            }]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Is it to do with their qualifications?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
+          },
+          name: "to-do-with-qualifications",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("to-do-with-qualifications", "Yes"),
+            conditional: {
+              html: qualificationCheckboxesHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("to-do-with-qualifications", "No")
+          }]
+        }) }}
+
+
+
+
+
+
+
+
+
+
+
+
+        {% set applicationOtherHtml %}
+          {{ govukInput({
+            label: {
+              text: "Other"
+            },
+            id: "other-application-reason",
+            name: "other-application-reason"
+          }) }}
+        {% endset %}
+
+        {% set applicationCheckboxesHtml %}
+          {{ govukCheckboxes({
+            classes: "govuk-checkboxes--small",
+            idPrefix: "reasons-assessment",
+            name: "reasons",
+            fieldset: {
+              legend: {
+                text: "Application and assessment",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [{
+              value: "Candidate did not show enough subject knowledge at this time",
+              html: "Candidate did not show enough subject knowledge at this time"
+            } if not isPrimaryCourse, {
+              value: "Candidate could improve their personal statement next time",
+              html: "Candidate could improve their personal statement next time"
+            }, {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: applicationOtherHtml
+                }
+              }]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Is it to do with their application?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
+          },
+          name: "to-do-with-application",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("to-do-with-application", "Yes"),
+            conditional: {
+              html: applicationCheckboxesHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("to-do-with-application", "No")
+          }]
+        }) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% set interviewOtherHtml %}
+          {{ govukInput({
+            label: {
+              text: "Other"
+            },
+            id: "other-interview-reason",
+            name: "other-interview-reason"
+          }) }}
+        {% endset %}
+
+        {% set interviewCheckboxesHtml %}
+          {{ govukCheckboxes({
+            classes: "govuk-checkboxes--small",
+            name: "reasons-interview",
+            fieldset: {
+              legend: {
+                text: "Interview and assessment",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [{
+              value: "Candidate could improve at the interview or assessment stage next time",
+              html: "Candidate could improve at the interview or assessment stage next time"
+            }, {
+              value: "Candidate didn’t reply to the interview offer",
+              text: "Candidate didn’t reply to the interview offer"
+            }, {
+              value: "Candidate didn’t come to the interview or assessment",
+              html: "Candidate didn’t come to the interview or assessment"
+            }, {
+              value: "Candidate could improve how they interact with pupils in the assessment next time",
+              html: "Candidate could improve how they interact with pupils in the assessment next time"
+            }, {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: interviewOtherHtml
+                }
+              }]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Is it to do with the interview or assessment?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
+          },
+          name: "to-do-with-interview",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("to-do-with-interview", "Yes"),
+            conditional: {
+              html: interviewCheckboxesHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("to-do-with-interview", "No")
+          }]
+        }) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% set safeguardingOtherHtml %}
+          {{ govukInput({
+            label: {
+              text: "Other"
+            },
+            id: "other-safeguarding-reason",
+            name: "other-safeguarding-reason"
+          }) }}
+        {% endset %}
+
+        {% set safeguardingCheckboxesHtml %}
+          {{ govukCheckboxes({
+            classes: "govuk-checkboxes--small",
+            idPrefix: "reasons-suitability",
+            name: "reasons",
+            fieldset: {
+              legend: {
+                text: "Suitability and safeguarding",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [{
+              value: "We think some of the information given by the candidate wasn’t true or their own&nbsp;work",
+              html: "We think some of the information given by the candidate wasn’t true or their own&nbsp;work"
+            }, {
+              value: "References didn’t validate candidate’s suitability for the&nbsp;course",
+              html: "References didn’t validate candidate’s suitability for the&nbsp;course"
+            }, {
+              value: "Candidate is unsuitable for teaching at this&nbsp;stage",
+              html: "Candidate is unsuitable for teaching at this&nbsp;stage"
+            }, {
+              value: "Other",
+              html: "Other",
+              conditional: {
+                html: safeguardingOtherHtml
+              }
+            }]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Is it to do with the suitability or safeguarding?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
+          },
+          name: "to-do-with-safeguarding",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("to-do-with-safeguarding", "Yes"),
+            conditional: {
+              html: safeguardingCheckboxesHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("to-do-with-safeguarding", "No")
+          }]
+        }) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% set somethingElseHtml %}
+          {{ govukTextarea({
+            label: {
+              text: "Other"
+            },
+            id: "other-something-else",
+            name: "other-something-else"
+          }) }}
+        {% endset %}
+
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Is it to do with something else not covered above?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
+          },
+          name: "to-do-with-somethingElse",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("to-do-with-somethingElse", "Yes"),
+            conditional: {
+              html: somethingElseHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("to-do-with-somethingElse", "No")
+          }]
+        }) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% set anythingElseHtml %}
+          {{ govukTextarea({
+            label: {
+              text: "Other"
+            },
+            id: "other-anything-else",
+            name: "other-anything-else"
+          }) }}
+        {% endset %}
+
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Is there anything else you could tell the candidate?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
           },
           hint: {
-            text: "We will forward your feedback to the candidate"
-          }
+            text: "The more you tell the candidate the better their application will be next time they apply"
+          },
+          name: "to-do-with-anything-else",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("to-do-with-anything-else", "Yes"),
+            conditional: {
+              html: anythingElseHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("to-do-with-anything-else", "No")
+          }]
+        }) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Would you consider the candidate again if they addressed the things you mentioned above?",
+              classes: "govuk-fieldset__legend--m",
+              isPageHeading: true
+            }
+          },
+          name: "consideragain",
+          items: [{
+            value: "Yes",
+            text: "Yes",
+            checked: checked("consideragain", "Yes")
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("consideragain", "No")
+          }]
         }) }}
 
         {{ govukButton({
