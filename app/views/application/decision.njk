@@ -7,17 +7,9 @@
 {% set title = "Respond to application" %}
 
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Applications",
-      href: "/"
-    }, {
-      text: name,
-      href: "/application/" + application.id
-    }, {
-      text: title
-    }]
-  }) if not data.bare }}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
 {% endblock %}
 
 {% block content %}
