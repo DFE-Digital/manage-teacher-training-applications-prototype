@@ -2,19 +2,17 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Change training provider" %}
+{% set title = "Make an offer but change the course" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/different-course"
+    href: "/application/" + application.id + "/decision"
   }) }}
 {% endblock %}
 
 {% block content %}
 
-
   <h1 class="govuk-heading-xl">{{title}}</h1>
-  <h2 class="govuk-heading-m">Candidate preferences</h2>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application-summary.njk" %}
@@ -23,20 +21,20 @@
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select alternative provider",
+              html: "Select course",
               classes: "govuk-fieldset__legend--m"
             }
           },
-          idPrefix: "providerx",
-          name: "providerx",
+          idPrefix: "course",
+          name: "course",
           items: [{
-            value: "Somerset SCITT consortium",
-            text: "Somerset SCITT consortium",
-            checked: checked("providerx", "Somerset SCITT consortium")
+            value: "Primary (X100)",
+            text: "Primary (X100)",
+            checked: checked("course", "Primary (X100)")
           }, {
-            value: "The Beach Teaching School",
-            text: "The Beach Teaching School",
-            checked: checked("providerx", "The Beach Teaching School")
+            value: "Primary (X121)",
+            text: "Primary (X121)",
+            checked: checked("course", "Primary (X121)")
           }]
         }) }}
 
@@ -47,4 +45,19 @@
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete({
+      name: "course",
+      element: document.querySelector('#course-autocomplete-container'),
+      id: 'course',
+      showAllValues: true,
+      source: [
+        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
+      ]
+    })
+  </script>
 {% endblock %}

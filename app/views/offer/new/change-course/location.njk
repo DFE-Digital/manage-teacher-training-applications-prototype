@@ -2,11 +2,11 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Pick a new course" %}
+{% set title = "Choose location" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/different-course/provider"
+    href: "/application/" + application.id + "/new/change-course"
   }) }}
 {% endblock %}
 
@@ -21,20 +21,22 @@
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select course",
+              html: "Select location",
               classes: "govuk-fieldset__legend--m"
             }
           },
-          idPrefix: "course",
-          name: "course",
+          idPrefix: "location",
+          name: "location",
           items: [{
-            value: "Primary (X100)",
-            text: "Primary (X100)",
-            checked: checked("course", "Primary (X100)")
+            value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
+            text: "Alliance Academy",
+            hint: { text: 'Edgeware, Road Name, SW1 1AA' },
+            checked: checked("location", "Alliance Academy, Edgeware, Road Name, SW1 1AA")
           }, {
-            value: "Primary (X121)",
-            text: "Primary (X121)",
-            checked: checked("course", "Primary (X121)")
+            value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
+            text: "Bruntcliffe Academy",
+            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' },
+            checked: checked("location", "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ")
           }]
         }) }}
 

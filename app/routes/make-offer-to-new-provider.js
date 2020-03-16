@@ -2,68 +2,47 @@ var uuid = require('uuid/v4');
 
 module.exports = router => {
 
-  router.get('/application/:applicationId/different-course', (req, res) => {
-    res.render(`application/different-course`, {
+  router.get('/application/:applicationId/new/change-provider', (req, res) => {
+    res.render(`offer/new/change-provider/provider`, {
       applicationId: req.params.applicationId
     })
   })
 
-  router.post('/application/:applicationId/different-course', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
-
-    var changing = req.body['course-change'];
-
-    if (changing === 'provider') {
-      res.redirect(`/application/${applicationId}/different-course/provider`)
-    } else if (changing === 'course') {
-      res.redirect(`/application/${applicationId}/different-course/course`)
-    } else if (changing === 'location') {
-      res.redirect(`/application/${applicationId}/different-course/location`)
-    }
+  router.post('/application/:applicationId/new/change-provider', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/new/change-provider/course`)
   })
 
-  router.get('/application/:applicationId/different-course/provider', (req, res) => {
-    res.render(`application/different-course--provider`, {
+  router.get('/application/:applicationId/new/change-provider/course', (req, res) => {
+    res.render(`offer/new/change-provider/course`, {
       applicationId: req.params.applicationId
     })
   })
 
-  router.post('/application/:applicationId/different-course/provider', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/different-course/course`)
+  router.post('/application/:applicationId/new/change-provider/course', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/new/change-provider/location`)
   })
 
-  router.get('/application/:applicationId/different-course/course', (req, res) => {
-    res.render(`application/different-course--course`, {
+  router.get('/application/:applicationId/new/change-provider/location', (req, res) => {
+    res.render(`offer/new/change-provider/location`, {
       applicationId: req.params.applicationId
     })
   })
 
-  router.post('/application/:applicationId/different-course/course', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/different-course/location`)
+  router.post('/application/:applicationId/new/change-provider/location', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/new/change-provider/conditions`)
   })
 
-  router.get('/application/:applicationId/different-course/location', (req, res) => {
-    res.render(`application/different-course--location`, {
+  router.get('/application/:applicationId/new/change-provider/conditions', (req, res) => {
+    res.render(`offer/new/change-provider/conditions`, {
       applicationId: req.params.applicationId
     })
   })
 
-  router.post('/application/:applicationId/different-course/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/different-course/conditions`)
+  router.post('/application/:applicationId/new/change-provider/conditions', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/new/change-provider/confirm`)
   })
 
-  router.get('/application/:applicationId/different-course/conditions', (req, res) => {
-    res.render(`application/different-course--conditions`, {
-      applicationId: req.params.applicationId
-    })
-  })
-
-  router.post('/application/:applicationId/different-course/conditions', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/different-course/confirm`)
-  })
-
-  router.get('/application/:applicationId/different-course/confirm', (req, res) => {
+  router.get('/application/:applicationId/new/change-provider/confirm', (req, res) => {
 
     let standardConditions = req.session.data['standard-conditions'].map((item) => {
       return {
@@ -87,7 +66,7 @@ module.exports = router => {
     }
 
     let recommendations = req.session.data.recommendations
-    res.render(`application/different-course--confirm`, {
+    res.render(`offer/new/change-provider/confirm`, {
       applicationId: req.params.applicationId,
       standardConditions,
       furtherConditions,
@@ -95,7 +74,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/different-course/confirm', (req, res) => {
+  router.post('/application/:applicationId/new/change-provider/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
     application.status = 'Offered';
@@ -127,7 +106,7 @@ module.exports = router => {
     application.offer.conditions = conditions;
 
     application.offer.recommendations = req.session.data.recommendations
-    req.flash('success', 'different-course-offered')
+    req.flash('success', 'offer-made-to-new-provider')
     res.redirect(`/application/${req.params.applicationId}`)
   })
 }
