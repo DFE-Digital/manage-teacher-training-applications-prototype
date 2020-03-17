@@ -2,7 +2,7 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Select alternative location" %}
+{% set title = "Change location" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
