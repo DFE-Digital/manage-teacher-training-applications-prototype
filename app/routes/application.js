@@ -15,7 +15,6 @@ module.exports = router => {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
-        'different-course-offered': 'Course successfully offered',
         'enrolled': 'Candidate successfully enrolled',
         'offered': 'Offer successfully made',
         'rejected': 'Application successfully rejected',
@@ -23,7 +22,10 @@ module.exports = router => {
         'change-offer-course': 'Offer successfully changed ',
         'change-offer-provider': 'Offer successfully changed ',
         'change-condition-status-to-met': 'Condition successfully updated to met',
-        'change-condition-status-to-not-met': 'Condition successfully updated to not met'
+        'change-condition-status-to-not-met': 'Condition successfully updated to not met',
+        'offer-made-to-new-provider': 'Offer successfully made',
+        'offer-made-to-new-course': 'Offer successfully made',
+        'offer-made-to-new-location': 'Offer successfully made'
       }
     })
 
@@ -50,11 +52,11 @@ module.exports = router => {
     if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer`)
     } else if (decision === 'different-course') {
-      res.redirect(`/application/${applicationId}/different-course/course`)
+      res.redirect(`/application/${applicationId}/new/change-course`)
     } else if (decision === 'different-location') {
-      res.redirect(`/application/${applicationId}/different-course/location`)
+      res.redirect(`/application/${applicationId}/new/change-location`)
     } else if (decision === 'different-provider') {
-      res.redirect(`/application/${applicationId}/different-course/provider`)
+      res.redirect(`/application/${applicationId}/new/change-provider`)
     } else {
       res.redirect(`/application/${applicationId}/reject`)
     }

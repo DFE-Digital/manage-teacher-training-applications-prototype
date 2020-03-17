@@ -2,27 +2,30 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Make an offer but change course" %}
+{% set title = "Select alternative course" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id
+    href: "/application/" + application.id + "/decision"
   }) }}
 {% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">{{title}}</h1>
-  <h2 class="govuk-heading-m">Your existing offer</h2>
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/offer-summary.njk" %}
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select course",
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true
             }
           },
           idPrefix: "course",
@@ -30,16 +33,10 @@
           items: [{
             value: "Primary (X100)",
             text: "Primary (X100)",
-            hint: {
-              text: 'PGCE with QTS full time'
-            },
             checked: checked("course", "Primary (X100)")
           }, {
             value: "Primary (X121)",
             text: "Primary (X121)",
-            hint: {
-              text: 'QTS full time'
-            },
             checked: checked("course", "Primary (X121)")
           }]
         }) }}
@@ -51,4 +48,19 @@
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete({
+      name: "course",
+      element: document.querySelector('#course-autocomplete-container'),
+      id: 'course',
+      showAllValues: true,
+      source: [
+        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
+      ]
+    })
+  </script>
 {% endblock %}

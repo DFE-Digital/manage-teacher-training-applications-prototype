@@ -7,12 +7,11 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/decision"
+    href: "/application/" + application.id + "/new/change-location/conditions"
   }) }}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
@@ -84,21 +83,11 @@
           value: data["condition-4"]
         }) }}
 
-        {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Recommendations (optional)</h2>
-        {{ govukTextarea({
-          id: "recommendations",
-          name: "recommendations",
-          rows: 5,
-          label: {
-            text: "Outline any recommendations (for example, organising school experience)."
-          }
-        }) }} #}
-
-
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
+
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>

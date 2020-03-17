@@ -2,39 +2,44 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Pick a new course" %}
+{% set title = "Select location" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/different-course/provider"
+    href: "/application/" + application.id + "/new/change-course"
   }) }}
 {% endblock %}
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">{{title}}</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/application-summary.njk" %}
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select course",
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true
             }
           },
-          idPrefix: "course",
-          name: "course",
+          idPrefix: "location",
+          name: "location",
           items: [{
-            value: "Primary (X100)",
-            text: "Primary (X100)",
-            checked: checked("course", "Primary (X100)")
+            value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
+            text: "Alliance Academy",
+            hint: { text: 'Edgeware, Road Name, SW1 1AA' },
+            checked: checked("location", "Alliance Academy, Edgeware, Road Name, SW1 1AA")
           }, {
-            value: "Primary (X121)",
-            text: "Primary (X121)",
-            checked: checked("course", "Primary (X121)")
+            value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
+            text: "Bruntcliffe Academy",
+            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' },
+            checked: checked("location", "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ")
           }]
         }) }}
 

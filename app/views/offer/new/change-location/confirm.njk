@@ -1,6 +1,5 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
@@ -8,27 +7,30 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer"
+    href: "/application/" + application.id + '/new/change-location/conditions'
   }) }}
 {% endblock %}
 
+{% set conditionsHtml %}
+  {% if conditions.length %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for condition in conditions %}
+        <li>{{ condition.description }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="govuk-body">None specified</p>
+  {% endif %}
+{% endset %}
+
 {% block content %}
-  {% set conditionsHtml %}
-    {% if conditions.length %}
-      <ul class="govuk-list govuk-list--bullet">
-        {% for condition in conditions %}
-          <li>{{ condition.description }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="govuk-body">None specified</p>
-    {% endif %}
-  {% endset %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
+
       {{ govukSummaryList({
           rows: [{
             key: {
@@ -49,7 +51,7 @@
               text: "Location"
             },
             value: {
-              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+              html: data.location
             }
           },
           {
@@ -62,7 +64,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/" + application.id + "/offer",
+                  href: "/application/" + application.id + "/new/change-location/conditions",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
@@ -83,4 +85,5 @@
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
+
 {% endblock %}
