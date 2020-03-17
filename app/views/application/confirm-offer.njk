@@ -26,9 +26,9 @@
   {% endset %}
 
   {% set standardConditionsHtml %}
-    {% if standardConditions.length %}
+    {% if conditions.length %}
       <ul class="govuk-list govuk-list--bullet">
-        {% for condition in standardConditions %}
+        {% for condition in conditions %}
           <li>{{ condition.description }}</li>
         {% endfor %}
       </ul>
@@ -37,34 +37,25 @@
     {% endif %}
   {% endset %}
 
-  {% set reasonsHtml %}
-    {% if reasons %}
-      <ul class="govuk-list govuk-list--bullet">
-        {% for reason in reasons %}
-        <li>{{ reason }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endset %}
-
-  {% set recommendationsHtml %}
+  {# {% set recommendationsHtml %}
     {% if recommendations %}
       <p class="govuk-body">{{recommendations}}</p>
     {% else %}
       <p class="govuk-body">None specified</p>
     {% endif %}
-  {% endset %}
+  {% endset %} #}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
       {{ govukSummaryList({
           rows: [{
             key: {
-              text: "Candidate name"
+              text: "Provider"
             },
             value: {
-              text: name
+              html: application.provider
             }
           }, {
             key: {
@@ -83,32 +74,19 @@
           },
           {
             key: {
-              text: "Provider"
-            },
-            value: {
-              html: application.provider
-            }
-          }, {
-            key: {
               text: "Standard conditions"
             },
             value: {
               text: standardConditionsHtml | safe
-            }
-          }, {
-            key: {
-              text: "Further conditions"
             },
-            value: {
-              text: furtherConditionsHtml | safe
-            }
-          },
-          {
-            key: {
-              text: "Recommendations"
-            },
-            value: {
-              text: recommendationsHtml | safe
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
+                }
+              ]
             }
           }
         ]})

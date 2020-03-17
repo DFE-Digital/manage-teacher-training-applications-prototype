@@ -3,7 +3,6 @@
 {% set primaryNavId = 'applications' %}
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set parent = "Application for " + application.course %}
 {% set title = "Respond to application" %}
 
 {% block pageNavigation %}
@@ -13,13 +12,16 @@
 {% endblock %}
 
 {% block content %}
-  {# {% set isPrimaryCourse = application.course.includes("Primary") %} #}
-  <h1 class="govuk-heading-xl">Respond to application</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukSummaryList({
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        Respond to application
+      {% endset %}
+
+      {# {{ govukSummaryList({
         rows: [
           {
             key: {
@@ -46,7 +48,7 @@
             }
           }
         ]
-      }) }}
+      }) }} #}
     </div>
   </div>
 
@@ -55,13 +57,12 @@
     {{ govukRadios({
       fieldset: {
         legend: {
-          html: "Choose response",
-          classes: "govuk-fieldset__legend--m",
+          html: h1,
+          classes: "govuk-fieldset__legend--xl",
           isPageHeading: true
         }
       },
       idPrefix: "status",
-      classes: "govuk-!-margin-top-2",
       name: "decision",
       items: [{
         value: "offer",

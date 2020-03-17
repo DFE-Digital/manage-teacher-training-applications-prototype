@@ -42,13 +42,9 @@ module.exports = router => {
       furtherConditions.push({ description: req.session.data['condition-4']})
     }
 
-    let recommendations = req.session.data.recommendations
-
     res.render('application/confirm-offer', {
       applicationId: req.params.applicationId,
-      standardConditions,
-      furtherConditions,
-      recommendations
+      conditions: standardConditions.concat(furtherConditions)
     })
   })
 
