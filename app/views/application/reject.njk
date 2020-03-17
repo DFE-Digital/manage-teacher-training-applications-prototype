@@ -14,12 +14,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {# <h1 class="govuk-heading-xl">{{title}}</h1> #}
-
-      {# {% include "_includes/application-summary.njk" %} #}
-
-
-      <h1 class="govuk-heading-xl">Tell {{name}} why you're rejecting them</h1>
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">Tell the candidate why you're rejecting their application</h1>
       <p>Help the candidate reapply successfully in the future by giving them useful feedback.</p>
 
       <form method="post">
