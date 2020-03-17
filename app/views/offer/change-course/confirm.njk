@@ -15,7 +15,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
+      <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <h2 class="govuk-heading-l">Your existing offer</h2>
@@ -26,13 +26,6 @@
 
       {{ govukSummaryList({
         rows: [{
-          key: {
-            text: "Candidate name"
-          },
-          value: {
-            text: name
-          }
-        }, {
           key: {
             text: "Provider"
           },
@@ -45,6 +38,15 @@
           },
           value: {
             html: data.course
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/offer/change-course",
+                text: "Change",
+                visuallyHiddenText: "location"
+              }
+            ]
           }
         }, {
           key: {
@@ -52,6 +54,15 @@
           },
           value: {
             html: data.location
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/offer/change-course/location",
+                text: "Change",
+                visuallyHiddenText: "location"
+              }
+            ]
           }
         }
       ]}) }}
