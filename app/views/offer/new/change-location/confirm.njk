@@ -11,51 +11,33 @@
   }) }}
 {% endblock %}
 
-
-{% set furtherConditionsHtml %}
-    {% if furtherConditions %}
-      <ul class="govuk-list govuk-list--bullet">
-        {% for condition in furtherConditions %}
-          <li>{{ condition.description }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endset %}
-
-  {% set standardConditionsHtml %}
-    {% if standardConditions %}
-      <ul class="govuk-list govuk-list--bullet">
-        {% for condition in standardConditions %}
-          <li>{{ condition.description }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endset %}
-
-  {% set reasonsHtml %}
-    {% if reasons %}
-      <ul class="govuk-list govuk-list--bullet">
-        {% for reason in reasons %}
-        <li>{{ reason }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endset %}
+{% set conditionsHtml %}
+  {% if conditions.length %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for condition in conditions %}
+        <li>{{ condition.description }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="govuk-body">None specified</p>
+  {% endif %}
+{% endset %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {{ govukSummaryList({
           rows: [{
             key: {
-              text: "Candidate name"
+              text: "Provider"
             },
             value: {
-              text: name
+              html: application.provider
             }
           }, {
             key: {
@@ -74,35 +56,22 @@
           },
           {
             key: {
-              text: "Provider"
+              text: "Conditions"
             },
             value: {
-              html: application.provider
-            }
-          },{
-            key: {
-              text: "Standard conditions"
+              text: conditionsHtml | safe
             },
-            value: {
-              text: standardConditionsHtml | safe
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/new/change-location/conditions",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
+                }
+              ]
             }
-          } if standardConditions | length > 0, {
-            key: {
-              text: "Further conditions"
-            },
-            value: {
-              text: furtherConditionsHtml | safe or "No conditions set"
-            }
-          } if furtherConditions | length > 0,
-          {
-            key: {
-              text: "Recommendations"
-            },
-            value: {
-              text: recommendations
-            }
-          } if recommendations
-        ]}) if standardConditions or furtherConditions or recommendations
+          }
+        ]})
       }}
 
       <p class="govuk-body">By making this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
