@@ -2,7 +2,7 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Make an offer but change training provider" %}
+{% set title = "Select alternative provider" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -14,16 +14,19 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{title}}</h1>
-      <h2 class="govuk-heading-m">Candidate preferences</h2>
-      {% include "_includes/application-summary.njk" %}
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
+
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select alternative provider",
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
           },
           idPrefix: "providerx",

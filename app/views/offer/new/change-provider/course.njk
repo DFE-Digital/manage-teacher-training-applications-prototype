@@ -2,7 +2,7 @@
 
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Choose course" %}
+{% set title = "Select course" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -12,17 +12,20 @@
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">{{title}}</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/application-summary.njk" %}
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Select course",
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
           },
           idPrefix: "course",
