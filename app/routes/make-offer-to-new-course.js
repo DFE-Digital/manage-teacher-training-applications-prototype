@@ -58,9 +58,7 @@ module.exports = router => {
     let recommendations = req.session.data.recommendations
     res.render(`offer/new/change-course/confirm`, {
       applicationId: req.params.applicationId,
-      standardConditions,
-      furtherConditions,
-      recommendations
+      conditions: standardConditions.concat(furtherConditions)
     })
   })
 
