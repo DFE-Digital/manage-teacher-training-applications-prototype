@@ -1,4 +1,4 @@
-<div class="app-application-card app-application-card--{{loop.index}}">
+<div class="app-application-card">
 
   <div class="app-application-card__primary">
     <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
@@ -18,12 +18,10 @@
         text: a.status
       })}}
     </div>
-
     <div>
       {% if a.notes %}
         <p class="app-application-card__note">{{a.notes.items[0].subject}}</p>
       {% endif %}
-
       <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Updated on {{updated | date("d LLL yyyy")}}</p>
     </div>
   </div>

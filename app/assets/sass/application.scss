@@ -20,6 +20,7 @@ $govuk-grid-widths: (
 
 // Components that aren't in Frontend
 @import "components/autocomplete";
+@import "components/application-card";
 @import "components/banner";
 @import "components/card";
 @import "components/card-list";
@@ -76,6 +77,10 @@ $govuk-grid-widths: (
   .govuk-summary-list__actions {
     display: none !important;
   }
+}
+
+.moj-action-bar {
+  overflow: hidden;
 }
 
 .moj-action-bar__filter:after {
@@ -183,88 +188,6 @@ $govuk-grid-widths: (
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
-.app-application-cards {
-  clear: both;
-}
-
-.app-application-card {
-  border-bottom: 1px solid govuk-colour('mid-grey');
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  // position: relative;
-  @include govuk-media-query($from: tablet) {
-    // overflow: hidden;
-    display: flex;
-    align-items: stretch;
-  }
-}
-
-.app-application-card__primary {
-  @include govuk-media-query($from: tablet) {
-    width: 60%;
-  }
-
-  p {
-    margin-bottom: 0;
-  }
-}
-
-.app-application-card__secondary {
-  @include govuk-media-query($from: tablet) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 40%;
-    text-align: right;
-  }
-}
-
-.app-application-card__status {
-  margin-bottom: govuk-spacing(2);
-  margin-top: govuk-spacing(3);
-  @include govuk-media-query($from: tablet) {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-
-.app-application-card__note {
-  margin-bottom: govuk-spacing(1);
-  @include govuk-font(16);
-}
-
-.app-application-card__note {
-  padding-left: 15px;
-  display: inline-block;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  color: govuk-colour('black');
-  position: relative;
-}
-
-.app-application-card__note:before {
-  border-radius: 25px;
-  height: 10px;
-  width: 10px;
-  background: govuk-colour('black');
-  content: " ";
-  position: absolute;
-  left: 0;
-  top: 6px;
-}
-
-
-// .app-application-card__status {
-//   float: right;
-//   right: 0;
-//   top: 0;
-//   text-align: right;
-
-//   .govuk-tag {
-//     margin-bottom: 5px;
-//   }
-// }
 
 
 
