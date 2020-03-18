@@ -15,25 +15,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {{ govukSummaryList({
-        rows: [{
-          key: {
-            text: "Candidate name"
-          },
-          value: {
-            text: name
-          }
-        }, {
-          key: {
-            text: "Condition"
-          },
-          value: {
-            text: condition.description
-          }
-        } ]
+      {{ govukInsetText({
+        text: condition.description
       }) }}
+
       {% if hasOnlyOneConditionNotMet %}
         {{ govukWarningText({
           text: "The candidate will be told that they've met all of the conditions and that you'll be in touch about enrolment.",
