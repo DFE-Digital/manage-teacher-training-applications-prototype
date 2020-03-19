@@ -38,6 +38,38 @@
         {% endif %}
       {% endset %}
 
+      {% set missingQualificationsReasonsHtml %}
+        {% set checkboxValue = "No Maths GCSE grade 4 (C) or above, or valid equivalent" %}
+        {% if checked("missing-qualifications-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "No English GCSE grade 4 (C) or above, or valid equivalent" %}
+        {% if checked("missing-qualifications-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)" %}
+        {% if checked("missing-qualifications-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "No degree" %}
+        {% if checked("missing-qualifications-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "Degree doesn’t meet course requirements" %}
+        {% if checked("missing-qualifications-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "Other" %}
+        {% if checked("missing-qualifications-reasons", "Other") %}
+          <p>{{checkboxValue}}: {{data['candidate-actions-reasons-other']}}</p>
+        {% endif %}
+      {% endset %}
+
 
 
       {{ govukSummaryList({
@@ -90,7 +122,39 @@
               }
             ]
           }
-        }
+        }, {
+          key: {
+            text: "Was it due to missing qualifications?"
+          },
+          value: {
+            html: data['missing-qualifications']
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/reject/",
+                text: "Change",
+                visuallyHiddenText: ""
+              }
+            ]
+          }
+        }, {
+          key: {
+            text: "Missing qualification reasons"
+          },
+          value: {
+            html: missingQualificationsReasonsHtml
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/reject/",
+                text: "Change",
+                visuallyHiddenText: ""
+              }
+            ]
+          }
+        } if data['missing-qualifications'] == "Yes"
         ]
       }) }}
 
