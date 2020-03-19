@@ -25,7 +25,8 @@
               text: "Please give details"
             },
             id: "candidate-actions-reasons-other",
-            name: "candidate-actions-reasons-other"
+            name: "candidate-actions-reasons-other",
+            value: data['candidate-actions-reasons-other']
           }) }}
         {% endset %}
         {% set candidateActionsReasonsHtml %}
@@ -40,13 +41,16 @@
             },
             items: [{
               value: "Didn’t reply to our interview offer",
-              html: "Didn’t reply to our interview offer"
+              html: "Didn’t reply to our interview offer",
+              checked: checked("candidate-actions-reasons", "Didn’t reply to our interview offer")
             }, {
               value: "Didn’t attend interview",
-              text: "Didn’t attend interview"
+              text: "Didn’t attend interview",
+              checked: checked("candidate-actions-reasons", "Didn’t attend interview")
             }, {
                 value: "Other",
                 text: "Other",
+                checked: checked("candidate-actions-reasons", "Other"),
                 conditional: {
                   html: candidateActionsReasonsOtherHtml
                 }
@@ -109,17 +113,17 @@
             label: {
               text: "Please give details"
             },
-            id: "candidate-actions-reasons-other",
-            name: "candidate-actions-reasons-other"
+            id: "missing-qualifications-reasons-other",
+            name: "missing-qualifications-reasons-other"
           }) }}
         {% endset %}
         {% set missingQualificationsReasonsHtml %}
           {{ govukCheckboxes({
             classes: "govuk-checkboxes--small",
-            name: "candidate-actions-reasons",
+            name: "missing-qualifications-reasons",
             fieldset: {
               legend: {
-                text: "Select mising qualification reason(s)",
+                text: "Select missing qualification reason(s)",
                 classes: "govuk-fieldset__legend--s"
               }
             },

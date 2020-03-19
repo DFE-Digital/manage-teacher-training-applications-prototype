@@ -17,37 +17,81 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
+
+
+      <h2 class="govuk-heading-l">Reasons for rejection</h2>
+
+      {% set candidateActionReasonsHtml %}
+        {% set checkboxValue = "Didn’t reply to our interview offer" %}
+        {% if checked("candidate-actions-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "Didn’t attend interview" %}
+        {% if checked("candidate-actions-reasons", checkboxValue) %}
+          <p>{{checkboxValue}}</p>
+        {% endif %}
+
+        {% set checkboxValue = "Other" %}
+        {% if checked("candidate-actions-reasons", "Other") %}
+          <p>{{checkboxValue}}: {{data['candidate-actions-reasons-other']}}</p>
+        {% endif %}
+      {% endset %}
+
+
+
       {{ govukSummaryList({
         rows: [{
-            key: {
-              text: "Provider"
-            },
-            value: {
-              html: application.provider
-            }
-          }, {
-            key: {
-              text: "Course"
-            },
-            value: {
-              html: application.course
-            }
-          }, {
-            key: {
-              text: "Location"
-            },
-            value: {
-              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-            }
-          },
-          {
           key: {
-            text: "Reason for rejection"
+            text: "Was it due to candidate actions?"
           },
           value: {
-            text: "Reasons displayed here"
+            html: data['candidate-actions']
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/reject/",
+                text: "Change",
+                visuallyHiddenText: ""
+              }
+            ]
           }
-        }]
+        }, {
+          key: {
+            text: "Candidate action reasons"
+          },
+          value: {
+            html: candidateActionReasonsHtml
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/reject/",
+                text: "Change",
+                visuallyHiddenText: ""
+              }
+            ]
+          }
+        } if data['candidate-actions'] == "Yes",
+        {
+          key: {
+            text: "Was it because this course is full?"
+          },
+          value: {
+            html: data['course-full']
+          },
+          actions: {
+            items: [
+              {
+                href: "/application/" + application.id + "/reject/",
+                text: "Change",
+                visuallyHiddenText: ""
+              }
+            ]
+          }
+        }
+        ]
       }) }}
 
 
