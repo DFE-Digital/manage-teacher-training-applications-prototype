@@ -364,6 +364,11 @@
         ]
       }) }}
 
+        {{ govukWarningText({
+          text: "The candidate will be told that their application has been rejected and why.",
+          iconFallbackText: "Warning"
+        }) }}
+
 
       <form method="post">
         {{ govukButton({
