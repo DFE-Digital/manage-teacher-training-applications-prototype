@@ -133,7 +133,7 @@
         {% set checkboxValue = "Yes" %}
         {% set textBoxName = "another-issue-details" %}
         {% if checked(fieldName, checkboxValue) %}
-          <p>Details: {{data[textBoxName]}}</p>
+          <p>Other details: {{data[textBoxName]}}</p>
         {% endif %}
       {% endset %}
 
@@ -144,7 +144,7 @@
         {% set checkboxValue = "Yes" %}
         {% set textBoxName = "other-feedback-details" %}
         {% if checked(fieldName, checkboxValue) %}
-          <p>Details: {{data[textBoxName]}}</p>
+          <p>Other details: {{data[textBoxName]}}</p>
         {% endif %}
       {% endset %}
 
@@ -155,7 +155,7 @@
         {% set checkboxValue = "Yes" %}
         {% set textBoxName = "future-applications-details" %}
         {% if checked(fieldName, checkboxValue) %}
-          <p>Details: {{data[textBoxName]}}</p>
+          <p>Other details: {{data[textBoxName]}}</p>
         {% endif %}
       {% endset %}
 
@@ -180,7 +180,7 @@
           }
         }, {
           key: {
-            text: "Candidate action reasons"
+            text: "What did the candidate do?"
           },
           value: {
             html: candidateActionReasonsHtml
@@ -229,7 +229,7 @@
           }
         }, {
           key: {
-            text: "Missing qualification reasons"
+            text: "What qualifications was the candidate missing?"
           },
           value: {
             html: missingQualificationsReasonsHtml
@@ -262,7 +262,7 @@
           }
         }, {
           key: {
-            text: "Application quality reasons"
+            text: "What parts of the application was lacking?"
           },
           value: {
             html: applicationQualityReasonsHtml
@@ -295,7 +295,7 @@
           }
         }, {
           key: {
-            text: "Safeguarding reasons"
+            text: "What issues came up around safeguarding?"
           },
           value: {
             html: safeguardingReasonsHtml
