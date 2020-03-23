@@ -280,14 +280,14 @@ module.exports = {
 
       // Application quality
       "application-quality": "Yes",
-      "application-quality-reasons": "Personal statement could be improved, Subject knowledge could be improved, Other",
+      "application-quality-reasons": "Personal statement, Subject knowledge, Other",
       "application-quality-reasons-other": "Spelling wasn’t great",
       "application-quality-reasons-subject-knowledge": "Didn't know enough about maths",
       "application-quality-reasons-personal-statement": "Lack of passion",
 
       // Safeguarding
       "safeguarding": "Yes",
-      "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes them unsuitable to work with children",
+      "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
       "safeguarding-reasons-false-information": "False information about past",
       "safeguarding-reasons-plagiarism": "Copied a blog post",
       "safeguarding-reasons-reference-information": "John had a patchy history",
