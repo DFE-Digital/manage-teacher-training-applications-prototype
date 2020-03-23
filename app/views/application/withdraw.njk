@@ -13,21 +13,21 @@
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">Withdraw offer</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/application-summary.njk" %}
+      {% set h1 %}
+        Tell {{name}} why you're withdrawing your offer
+      {% endset %}
       <form method="post">
 
         {{ govukTextarea({
-          id: "comments",
-          name: "comments",
+          id: "withdraw-reasons",
+          name: "withdraw-reasons",
+          value: data['withdraw-reasons'],
           label: {
-            text: "Tell us why you're withdrawing this offer",
-            classes: "govuk-label--m"
-          },
-          hint: {
-            text: "We'll forward your feedback to the candidate"
+            text: h1,
+            classes: "govuk-label--xl",
+            isPageHeading: true
           }
         }) }}
 

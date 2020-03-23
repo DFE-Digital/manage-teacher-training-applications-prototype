@@ -16,47 +16,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-8",
         rows: [{
           key: {
-            text: "Candidate name"
+            text: "Your reasons for withdrawing this offer"
           },
           value: {
-            text: name
-          }
-        }, {
-          key: {
-            text: "Course"
+            html: data['withdraw-reasons']
           },
-          value: {
-            html: application.course
-          }
-        }, {
-          key: {
-            text: "Location"
-          },
-          value: {
-            html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-          }
-        },
-        {
-          key: {
-            text: "Provider"
-          },
-          value: {
-            html: application.provider
-          }
-        }, {
-            key: {
-              text: "Reason for withdrawal"
-            },
-            value: {
-              text: data.comments
+          actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/withdraw",
+                  text: "Change",
+                  visuallyHiddenText: "reasons"
+                }
+              ]
             }
-          } if data.comments]
+        }]
+      }) }}
+
+      {{ govukWarningText({
+        text: "We’ll tell the candidate you withdrew your offer, and share your reasons, if you gave them.",
+        iconFallbackText: "Warning"
       }) }}
 
       <form method="post">
