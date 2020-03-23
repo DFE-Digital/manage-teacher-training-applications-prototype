@@ -20,7 +20,8 @@
 
       <form method="post">
         {% set candidateActionsReasonsOtherHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -60,7 +61,7 @@
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Was it due to candidate actions?",
+              html: "Was it due to candidate behaviour?",
               classes: "govuk-fieldset__legend--m",
               isPageHeading: true
             }
@@ -109,7 +110,8 @@
 
         <!-- Missing qualifications -->
         {% set missingQualificationsReasonsOtherHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -186,7 +188,8 @@
 
         <!-- Application quality -->
         {% set applicationQualityReasonsPersonalStatementHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -196,7 +199,8 @@
           }) }}
         {% endset %}
         {% set applicationQualityReasonsSubjectKnowledgeHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -206,7 +210,8 @@
           }) }}
         {% endset %}
         {% set applicationQualityReasonsOtherHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -221,21 +226,21 @@
             name: "application-quality-reasons",
             fieldset: {
               legend: {
-                text: "What parts of the application was lacking?",
+                text: "Which parts of the application need improvement?",
                 classes: "govuk-fieldset__legend--s"
               }
             },
             items: [{
-              value: "Personal statement could be improved",
-              html: "Personal statement could be improved",
-              checked: checked("application-quality-reasons", "Personal statement could be improved"),
+              value: "Personal statement",
+              html: "Personal statement",
+              checked: checked("application-quality-reasons", "Personal statement"),
               conditional: {
                 html: applicationQualityReasonsPersonalStatementHtml
               }
             }, {
-              value: "Subject knowledge could be improved",
-              text: "Subject knowledge could be improved",
-              checked: checked("application-quality-reasons", "Subject knowledge could be improved"),
+              value: "Subject knowledge",
+              text: "Subject knowledge",
+              checked: checked("application-quality-reasons", "Subject knowledge"),
               conditional: {
                 html: applicationQualityReasonsSubjectKnowledgeHtml
               }
@@ -277,7 +282,8 @@
 
         <!-- Safeguarding -->
         {% set safeguardingFalseInformationHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -287,7 +293,8 @@
           }) }}
         {% endset %}
         {% set safeguardingPlagiarismHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -297,7 +304,8 @@
           }) }}
         {% endset %}
         {% set safeguardingReferenceInformationHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -307,7 +315,8 @@
           }) }}
         {% endset %}
         {% set safeguardingDisclosedInformationHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -317,7 +326,8 @@
           }) }}
         {% endset %}
         {% set safeguardingVettingInformationHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -327,7 +337,8 @@
           }) }}
         {% endset %}
         {% set safeguardingOtherHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -342,7 +353,7 @@
             name: "safeguarding-reasons",
             fieldset: {
               legend: {
-                text: "What issues came up around safeguarding?",
+                text: "Which safeguarding issues in particular?",
                 classes: "govuk-fieldset__legend--s"
               }
             },
@@ -375,9 +386,9 @@
                 html: safeguardingDisclosedInformationHtml
               }
             }, {
-              value: "Information revealed by our vetting process makes them unsuitable to work with children",
-              text: "Information revealed by our vetting process makes them unsuitable to work with children",
-              checked: checked('safeguarding-reasons', 'Information revealed by our vetting process makes them unsuitable to work with children'),
+              value: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
+              text: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
+              checked: checked('safeguarding-reasons', 'Information revealed by our vetting process makes the candidate unsuitable to work with children'),
               conditional: {
                 html: safeguardingVettingInformationHtml
               }
@@ -419,10 +430,11 @@
 
         <!-- Another issue -->
         {% set anotherIssueDetailsHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
             label: {
               text: "Please give details"
             },
+            maxlength: 300,
             id: "another-issue-details",
             name: "another-issue-details",
             value: data['another-issue-details']
@@ -456,7 +468,8 @@
 
         <!-- Other feedback -->
         {% set otherFeedbackDetailsHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -493,7 +506,8 @@
 
         <!-- Future applications -->
         {% set futureApplicationsDetailsHtml %}
-          {{ govukInput({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details (optional)"
             },

@@ -68,13 +68,13 @@
 
       {% set applicationQualityReasonsHtml %}
         {% set fieldName = "application-quality-reasons" %}
-        {% set checkboxValue = "Personal statement could be improved" %}
+        {% set checkboxValue = "Personal statement" %}
         {% set textBoxName = "application-quality-reasons-personal-statement" %}
         {% if checked(fieldName, checkboxValue) %}
           <p>{{checkboxValue}}: {{data[textBoxName]}}</p>
         {% endif %}
 
-        {% set checkboxValue = "Subject knowledge could be improved" %}
+        {% set checkboxValue = "Subject knowledge" %}
         {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
         {% if checked(fieldName, checkboxValue) %}
           <p>{{checkboxValue}}: {{data[textBoxName]}}</p>
@@ -113,7 +113,7 @@
           <p>{{checkboxValue}}: {{data[textBoxName]}}</p>
         {% endif %}
 
-        {% set checkboxValue = "Information revealed by our vetting process makes them unsuitable to work with children" %}
+        {% set checkboxValue = "Information revealed by our vetting process makes the candidate unsuitable to work with children" %}
         {% set textBoxName = "safeguarding-reasons-vetting-information" %}
         {% if checked(fieldName, checkboxValue) %}
           <p>{{checkboxValue}}: {{data[textBoxName]}}</p>
@@ -164,7 +164,7 @@
       {{ govukSummaryList({
         rows: [{
           key: {
-            text: "Was it due to candidate actions?"
+            text: "Was it due to candidate behaviour?"
           },
           value: {
             html: data['candidate-actions']
@@ -262,7 +262,7 @@
           }
         }, {
           key: {
-            text: "What parts of the application was lacking?"
+            text: "Which parts of the application need improvement?"
           },
           value: {
             html: applicationQualityReasonsHtml
@@ -295,7 +295,7 @@
           }
         }, {
           key: {
-            text: "What issues came up around safeguarding?"
+            text: "Which safeguarding issues in particular?"
           },
           value: {
             html: safeguardingReasonsHtml
