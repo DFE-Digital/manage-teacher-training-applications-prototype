@@ -20,7 +20,8 @@
 
       <form method="post">
         {% set candidateActionsReasonsOtherHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -109,7 +110,8 @@
 
         <!-- Missing qualifications -->
         {% set missingQualificationsReasonsOtherHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -186,7 +188,8 @@
 
         <!-- Application quality -->
         {% set applicationQualityReasonsPersonalStatementHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -196,7 +199,8 @@
           }) }}
         {% endset %}
         {% set applicationQualityReasonsSubjectKnowledgeHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -206,7 +210,8 @@
           }) }}
         {% endset %}
         {% set applicationQualityReasonsOtherHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -277,7 +282,8 @@
 
         <!-- Safeguarding -->
         {% set safeguardingFalseInformationHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -287,7 +293,8 @@
           }) }}
         {% endset %}
         {% set safeguardingPlagiarismHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -297,7 +304,8 @@
           }) }}
         {% endset %}
         {% set safeguardingReferenceInformationHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -307,7 +315,8 @@
           }) }}
         {% endset %}
         {% set safeguardingDisclosedInformationHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -317,7 +326,8 @@
           }) }}
         {% endset %}
         {% set safeguardingVettingInformationHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -327,7 +337,8 @@
           }) }}
         {% endset %}
         {% set safeguardingOtherHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -419,10 +430,11 @@
 
         <!-- Another issue -->
         {% set anotherIssueDetailsHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
             label: {
               text: "Please give details"
             },
+            maxlength: 300,
             id: "another-issue-details",
             name: "another-issue-details",
             value: data['another-issue-details']
@@ -456,7 +468,8 @@
 
         <!-- Other feedback -->
         {% set otherFeedbackDetailsHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details"
             },
@@ -493,7 +506,8 @@
 
         <!-- Future applications -->
         {% set futureApplicationsDetailsHtml %}
-          {{ govukTextarea({
+          {{ govukCharacterCount({
+            maxlength: 300,
             label: {
               text: "Please give details (optional)"
             },
