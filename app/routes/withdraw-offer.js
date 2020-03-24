@@ -1,3 +1,5 @@
+const utils = require( '../data/application-utils')
+
 module.exports = router => {
 
   router.get('/application/:applicationId/withdraw', (req, res) => {
@@ -17,13 +19,14 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/confirm-withdraw', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const applicationId = req.params.applicationId;
+    const application = req.session.data.applications[applicationId];
 
     application.status = "Offer withdrawn";
-    application.offer.withdrawnDate = new Date().toISOString()
-    req.flash('success', 'offer-withdrawn')
-    res.redirect(`/application/${applicationId}`)
+    application.offer.withdrawnDate = new Date().toISOString();
+    application.offer.withdrawnReasons = utils.getRejectReasons(req.session.data);
+    req.flash('success', 'offer-withdrawn');
+    res.redirect(`/application/${applicationId}`);
   })
 
 }
