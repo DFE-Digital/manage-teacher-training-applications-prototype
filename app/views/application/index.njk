@@ -43,12 +43,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {# <span class="govuk-caption-xl">{{ application.id }}</span> #}
-      <h1 class="govuk-heading-xl">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
         {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
       </h1>
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <p class="app-print-button"><a href="javascript:window.print();">Print page</a></p>
+      <p><a href="#" download>Download application (PDF)</a></p>
     </div>
   </div>
   <div class="govuk-grid-row">
@@ -65,9 +63,6 @@
         {% set showRejectedDate = true %}
         {% include "_includes/reject-playback.njk" %}
       {% endif %}
-
-
-
 
       {# {% set rbd = application.submittedDate | addDays(40) %}
       {% set remaining = rbd | daysFromNow(rbd) %} #}
