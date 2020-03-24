@@ -3,7 +3,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Are you sure you want to enrol this candidate?" %}
+{% set title = "Check and confirm enrolment" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -16,20 +16,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-xl">{{name}}</h1>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% include "_includes/application-summary.njk" %}
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-8",
+        rows: [{
+          key: {
+            text: "Provider"
+          },
+          value: {
+            html: application.provider
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            html: application.course
+          }
+        }, {
+          key: {
+            text: "Location"
+          },
+          value: {
+            html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+          }
+        }]
+      }) }}
 
-      {# <p class="govuk-body">When you enrol this candidate, you:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>confirm they have successfully started their training</li>
-        <li>enable payment of fees (you will need to add them to the <a href="https://www.gov.uk/guidance/database-of-trainee-teachers-and-providers-dttp/">Database for Trainee Teachers and Providers</a>)</li>
-        <li>get access to diversity and equality information relating to this candidate</li>
-      </ul> #}
 
       <form method="post">
         {{ govukButton({
-          text: "Yes I’m sure – enrol them"
+          text: "Enrol candidate"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
