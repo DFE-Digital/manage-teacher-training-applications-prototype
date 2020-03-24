@@ -12,7 +12,8 @@ module.exports = {
       items: [{
         subject: "Talk to candidate on 15 June",
         body: "Make sure to prepare this and that ready for a chat",
-        sender: "Laura Tennant"
+        sender: "Laura Tennant",
+        date: '2020-01-20'
       }]
     },
     offer: {
@@ -138,7 +139,8 @@ module.exports = {
       items: [{
         subject: "Call Charlie 17 May",
         body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
-        sender: "Emma Hill-French"
+        sender: "Emma Hill-French",
+        date: '2020-01-20'
       }]
     },
     offer: {
@@ -263,6 +265,50 @@ module.exports = {
     submittedDate: '2019-07-15',
     status: 'Rejected',
     rejectedDate: '2019-08-10',
+    rejectedReasons: {
+
+      // Candidate actions
+      "candidate-actions": "Yes",
+      "candidate-actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+      "candidate-actions-reasons-other": "Another reasons goes here",
+
+      // Course full
+      "course-full": "Yes",
+
+      // Missing qualifications
+      "missing-qualifications": "Yes",
+      "missing-qualifications-reasons": "No Maths GCSE grade 4 (C) or above, or valid equivalent,No English GCSE grade 4 (C) or above, or valid equivalent, Other",
+      "missing-qualifications-reasons-other": "Another reason goes here",
+
+      // Application quality
+      "application-quality": "Yes",
+      "application-quality-reasons": "Personal statement, Subject knowledge, Other",
+      "application-quality-reasons-other": "Spelling wasn’t great",
+      "application-quality-reasons-subject-knowledge": "Didn't know enough about maths",
+      "application-quality-reasons-personal-statement": "Lack of passion",
+
+      // Safeguarding
+      "safeguarding": "Yes",
+      "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
+      "safeguarding-reasons-false-information": "False information about past",
+      "safeguarding-reasons-plagiarism": "Copied a blog post",
+      "safeguarding-reasons-reference-information": "John had a patchy history",
+      "safeguarding-reasons-disclosed-information": "Information disclosed wasn't truthful",
+      "safeguarding-reasons-vetting-information": "Vetting information explained not suitable",
+      "safeguarding-reasons-other": "Something else regarding safeguarding",
+
+      // Another issue
+      "another-issue": "Yes",
+      "another-issue-details": "Another detail here",
+
+      // Other feedback
+      "other-feedback": "Yes",
+      "other-feedback-details": "Other feedback here",
+
+      // Future applications
+      "future-applications": "Yes",
+      "future-applications-details": "Be happy to consider again"
+    },
 
     'personal-details': {
       'given-name': 'Daniel James',
@@ -434,6 +480,50 @@ module.exports = {
     offer: {
       madeDate: '2019-09-23',
       withdrawnDate: '2019-09-23',
+      withdrawnReasons: {
+
+        // Candidate actions
+        "candidate-actions": "Yes",
+        "candidate-actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+        "candidate-actions-reasons-other": "Another reasons goes here",
+
+        // Course full
+        "course-full": "Yes",
+
+        // Missing qualifications
+        "missing-qualifications": "Yes",
+        "missing-qualifications-reasons": "No Maths GCSE grade 4 (C) or above, or valid equivalent,No English GCSE grade 4 (C) or above, or valid equivalent, Other",
+        "missing-qualifications-reasons-other": "Another reason goes here",
+
+        // Application quality
+        "application-quality": "Yes",
+        "application-quality-reasons": "Personal statement, Subject knowledge, Other",
+        "application-quality-reasons-other": "Spelling wasn’t great",
+        "application-quality-reasons-subject-knowledge": "Didn't know enough about maths",
+        "application-quality-reasons-personal-statement": "Lack of passion",
+
+        // Safeguarding
+        "safeguarding": "Yes",
+        "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
+        "safeguarding-reasons-false-information": "False information about past",
+        "safeguarding-reasons-plagiarism": "Copied a blog post",
+        "safeguarding-reasons-reference-information": "John had a patchy history",
+        "safeguarding-reasons-disclosed-information": "Information disclosed wasn't truthful",
+        "safeguarding-reasons-vetting-information": "Vetting information explained not suitable",
+        "safeguarding-reasons-other": "Something else regarding safeguarding",
+
+        // Another issue
+        "another-issue": "Yes",
+        "another-issue-details": "Another detail here",
+
+        // Other feedback
+        "other-feedback": "Yes",
+        "other-feedback-details": "Other feedback here",
+
+        // Future applications
+        "future-applications": "Yes",
+        "future-applications-details": "Be happy to consider again"
+      },
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },

@@ -1,0 +1,520 @@
+{% set candidateActionsReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "candidate-actions-reasons-other",
+    name: "candidate-actions-reasons-other",
+    value: data['candidate-actions-reasons-other']
+  }) }}
+{% endset %}
+{% set candidateActionsReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "candidate-actions-reasons",
+    fieldset: {
+      legend: {
+        text: "What did the candidate do? ",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Didn’t reply to our interview offer",
+      html: "Didn’t reply to our interview offer",
+      checked: checked("candidate-actions-reasons", "Didn’t reply to our interview offer")
+    }, {
+      value: "Didn’t attend interview",
+      text: "Didn’t attend interview",
+      checked: checked("candidate-actions-reasons", "Didn’t attend interview")
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("candidate-actions-reasons", "Other"),
+        conditional: {
+          html: candidateActionsReasonsOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to candidate behaviour?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "candidate-actions",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("candidate-actions", "Yes"),
+    conditional: {
+      html: candidateActionsReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("candidate-actions", "No")
+  }]
+}) }}
+
+
+
+<!-- Course full -->
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it because this course is full?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "course-full",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("course-full", "Yes")
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("course-full", "No")
+  }]
+})}}
+
+
+
+<!-- Missing qualifications -->
+{% set missingQualificationsReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "missing-qualifications-reasons-other",
+    name: "missing-qualifications-reasons-other",
+    value: data["missing-qualifications-reasons-other"]
+  }) }}
+{% endset %}
+{% set missingQualificationsReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "missing-qualifications-reasons",
+    fieldset: {
+      legend: {
+        text: "Which qualification(s) was the candidate missing?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
+      html: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
+      checked: checked("missing-qualifications-reasons", "No Maths GCSE grade 4 (C) or above, or valid equivalent")
+    }, {
+      value: "No English GCSE grade 4 (C) or above, or valid equivalent",
+      text: "No English GCSE grade 4 (C) or above, or valid equivalent",
+      checked: checked("missing-qualifications-reasons", "No English GCSE grade 4 (C) or above, or valid equivalent")
+    }, {
+      value: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
+      text: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
+      checked: checked("missing-qualifications-reasons", "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)")
+    }, {
+      value: "No degree",
+      text: "No degree",
+      checked: checked("missing-qualifications-reasons", "No degree")
+    }, {
+      value: "Degree doesn’t meet course requirements",
+      text: "Degree doesn’t meet course requirements",
+      checked: checked("missing-qualifications-reasons", "Degree doesn’t meet course requirements")
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("missing-qualifications-reasons", "Other"),
+        conditional: {
+          html: missingQualificationsReasonsOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to missing qualifications?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "missing-qualifications",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("missing-qualifications", "Yes"),
+    conditional: {
+      html: missingQualificationsReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("missing-qualifications", "No")
+  }]
+}) }}
+
+
+
+<!-- Application quality -->
+{% set applicationQualityReasonsPersonalStatementHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "application-quality-reasons-personal-statement",
+    name: "application-quality-reasons-personal-statement",
+    value: data['application-quality-reasons-personal-statement']
+  }) }}
+{% endset %}
+{% set applicationQualityReasonsSubjectKnowledgeHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "application-quality-reasons-subject-knowledge",
+    name: "application-quality-reasons-subject-knowledge",
+    value: data['application-quality-reasons-subject-knowledge']
+  }) }}
+{% endset %}
+{% set applicationQualityReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "application-quality-reasons-other",
+    name: "application-quality-reasons-other",
+    value: data['application-quality-reasons-other']
+  }) }}
+{% endset %}
+{% set applicationQualityReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "application-quality-reasons",
+    fieldset: {
+      legend: {
+        text: "Which parts of the application needed improvement?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Personal statement",
+      html: "Personal statement",
+      checked: checked("application-quality-reasons", "Personal statement"),
+      conditional: {
+        html: applicationQualityReasonsPersonalStatementHtml
+      }
+    }, {
+      value: "Subject knowledge",
+      text: "Subject knowledge",
+      checked: checked("application-quality-reasons", "Subject knowledge"),
+      conditional: {
+        html: applicationQualityReasonsSubjectKnowledgeHtml
+      }
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("application-quality-reasons", "Other"),
+        conditional: {
+          html: applicationQualityReasonsOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to the quality of their application?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "application-quality",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("application-quality", "Yes"),
+    conditional: {
+      html: applicationQualityReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("application-quality", "No")
+  }]
+}) }}
+
+
+
+<!-- Safeguarding -->
+{% set safeguardingFalseInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-false-information",
+    name: "safeguarding-reasons-false-information",
+    value: data['safeguarding-reasons-false-information']
+  }) }}
+{% endset %}
+{% set safeguardingPlagiarismHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-plagiarism",
+    name: "safeguarding-reasons-plagiarism",
+    value: data['safeguarding-reasons-plagiarism']
+  }) }}
+{% endset %}
+{% set safeguardingReferenceInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-reference-information",
+    name: "safeguarding-reasons-reference-information",
+    value: data['safeguarding-reasons-reference-information']
+  }) }}
+{% endset %}
+{% set safeguardingDisclosedInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-disclosed-information",
+    name: "safeguarding-reasons-disclosed-information",
+    value: data['safeguarding-reasons-disclosed-information']
+  }) }}
+{% endset %}
+{% set safeguardingVettingInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-vetting-information",
+    name: "safeguarding-reasons-vetting-information",
+    value: data['safeguarding-reasons-vetting-information']
+  }) }}
+{% endset %}
+{% set safeguardingOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-other",
+    name: "safeguarding-reasons-other",
+    value: data['safeguarding-reasons-other']
+  }) }}
+{% endset %}
+{% set safeguardingReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "safeguarding-reasons",
+    fieldset: {
+      legend: {
+        text: "Which safeguarding issues in particular?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Information given on application form false or inaccurate",
+      html: "Information given on application form false or inaccurate",
+      checked: checked('safeguarding-reasons', 'Information given on application form false or inaccurate'),
+      conditional: {
+        html: safeguardingFalseInformationHtml
+      }
+    }, {
+      value: "Evidence of plagiarism in personal statement or elsewhere",
+      text: "Evidence of plagiarism in personal statement or elsewhere",
+      checked: checked('safeguarding-reasons', 'Evidence of plagiarism in personal statement or elsewhere'),
+      conditional: {
+        html: safeguardingPlagiarismHtml
+      }
+    }, {
+      value: "References unsatisfactory",
+      text: "References unsatisfactory",
+      checked: checked('safeguarding-reasons', 'References unsatisfactory'),
+      conditional: {
+        html: safeguardingReferenceInformationHtml
+      }
+    }, {
+      value: "Information disclosed by candidate makes them unsuitable to work with children",
+      text: "Information disclosed by candidate makes them unsuitable to work with children",
+      checked: checked('safeguarding-reasons', 'Information disclosed by candidate makes them unsuitable to work with children'),
+      conditional: {
+        html: safeguardingDisclosedInformationHtml
+      }
+    }, {
+      value: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
+      text: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
+      checked: checked('safeguarding-reasons', 'Information revealed by our vetting process makes the candidate unsuitable to work with children'),
+      conditional: {
+        html: safeguardingVettingInformationHtml
+      }
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked('safeguarding-reasons', 'Other'),
+        conditional: {
+          html: safeguardingOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it related to safeguarding?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "safeguarding",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("safeguarding", "Yes"),
+    conditional: {
+      html: safeguardingReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("safeguarding", "No")
+  }]
+}) }}
+
+
+
+<!-- Another issue -->
+{% set anotherIssueDetailsHtml %}
+  {{ govukCharacterCount({
+    label: {
+      text: "Please give details"
+    },
+    maxlength: 300,
+    id: "another-issue-details",
+    name: "another-issue-details",
+    value: data['another-issue-details']
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it related to an issue we haven’t covered here?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "another-issue",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("another-issue", "Yes"),
+    conditional: {
+      html: anotherIssueDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("another-issue", "No")
+  }]
+}) }}
+
+
+
+<!-- Other feedback -->
+{% set otherFeedbackDetailsHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "other-feedback-details",
+    name: "other-feedback-details",
+    value: data['other-feedback-details']
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Is there any other advice or feedback you’d like to give " + name + "?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "other-feedback",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("other-feedback", "Yes"),
+    conditional: {
+      html: otherFeedbackDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("other-feedback", "No")
+  }]
+}) }}
+
+
+
+<!-- Future applications -->
+{% set futureApplicationsDetailsHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details (optional)"
+    },
+    id: "future-applications-details",
+    name: "future-applications-details",
+    value: data['future-applications-details']
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Would you be interested in future applications from " + name + "?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "future-applications",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("future-applications", "Yes"),
+    conditional: {
+      html: futureApplicationsDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("future-applications", "No")
+  }]
+}) }}

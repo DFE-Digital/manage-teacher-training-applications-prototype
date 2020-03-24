@@ -1,4 +1,5 @@
 var uuid = require('uuid/v4');
+const utils = require( '../data/application-utils')
 
 module.exports = router => {
 
@@ -20,14 +21,13 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/confirm-reject', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const applicationId = req.params.applicationId;
+    const application = req.session.data.applications[applicationId];
     application.status = "Rejected";
     application.rejectedDate = new Date().toISOString();
-    // application.rejectedReasons = req.session.data.reasons;
-    // application.rejectedComments = req.session.data.comments
-    req.flash('success', 'rejected')
-    res.redirect(`/application/${applicationId}`)
+    application.rejectedReasons = utils.getRejectReasons(req.session.data);
+    req.flash('success', 'rejected');
+    res.redirect(`/application/${applicationId}`);
   })
 
 }

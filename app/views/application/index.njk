@@ -58,6 +58,16 @@
         {% include "_includes/application/status-panel.njk" %}
       {% endif %}
 
+      {% if application.rejectedReasons %}
+        <h2 class="govuk-heading-l">Reasons for rejection</h2>
+        {% set rejectedDate = application.rejectedDate %}
+        {% set rejectedReasons = application.rejectedReasons %}
+        {% set showRejectedDate = true %}
+        {% include "_includes/reject-playback.njk" %}
+      {% endif %}
+
+
+
 
       {# {% set rbd = application.submittedDate | addDays(40) %}
       {% set remaining = rbd | daysFromNow(rbd) %} #}

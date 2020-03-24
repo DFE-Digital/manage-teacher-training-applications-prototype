@@ -133,6 +133,15 @@
     } if application.offer
   ]})}}
 
+  {% if application.offer.withdrawnReasons %}
+    <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
+    {% set rejectedDate = application.offer.withdrawnDate %}
+    {% set rejectedReasons = application.offer.withdrawnReasons %}
+    {% set showRejectedDate = false %}
+    {% include "_includes/reject-playback.njk" %}
+  {% endif %}
+
+
   {% if application.offer and conditions %}
 
     <h2 class="govuk-heading-m">Conditions</h2>
