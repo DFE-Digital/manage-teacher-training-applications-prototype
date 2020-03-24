@@ -12,7 +12,8 @@ module.exports = {
       items: [{
         subject: "Talk to candidate on 15 June",
         body: "Make sure to prepare this and that ready for a chat",
-        sender: "Laura Tennant"
+        sender: "Laura Tennant",
+        date: '2020-01-20'
       }]
     },
     offer: {
@@ -138,7 +139,8 @@ module.exports = {
       items: [{
         subject: "Call Charlie 17 May",
         body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
-        sender: "Emma Hill-French"
+        sender: "Emma Hill-French",
+        date: '2020-01-20'
       }]
     },
     offer: {
