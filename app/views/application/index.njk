@@ -50,6 +50,32 @@
     </div>
   </div>
   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-tabs govuk-!-margin-bottom-9">
+        <ul class="govuk-tabs__list">
+          <li class="govuk-tabs__list-item govuk-tabs__list-item--selected app-tabs__list-item--selected" role="presentation">
+            <a class="govuk-tabs__tab app-tabs__tab" role="tab" tabindex="-1" aria-selected="true" href="#description"> Application </a>
+          </li>
+          <li class="govuk-tabs__list-item app-tabs__list-item">
+            <a class="govuk-tabs__tab app-tabs__tab" href="/organisations/S31/2020/courses/X121/details">
+              Offer </a>
+          </li>
+          <li class="govuk-tabs__list-item app-tabs__list-item">
+            <a class="govuk-tabs__tab app-tabs__tab" href="/organisations/S31/2020/courses/X121/details">
+              Notes </a>
+          </li>
+          <li class="govuk-tabs__list-item app-tabs__list-item">
+            <a class="govuk-tabs__tab app-tabs__tab" href="/organisations/S31/2020/courses/X121/details">
+              Timeline </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') and (application.status != 'New')%}
