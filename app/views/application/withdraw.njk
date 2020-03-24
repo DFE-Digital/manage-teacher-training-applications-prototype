@@ -15,21 +15,11 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        Tell {{name}} why you're withdrawing your offer
-      {% endset %}
+      <h1 class="govuk-heading-xl">Tell {{name}} why you're withdrawing your offer</h1>
+      <p>You can increase this candidate’s chances of future success by giving them feedback.</p>
       <form method="post">
 
-        {{ govukTextarea({
-          id: "withdraw-reasons",
-          name: "withdraw-reasons",
-          value: data['withdraw-reasons'],
-          label: {
-            text: h1,
-            classes: "govuk-label--xl",
-            isPageHeading: true
-          }
-        }) }}
+        {% include "_includes/reject-form-fields.njk" %}
 
         {{ govukButton({
           text: "Continue"

@@ -19,26 +19,8 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-8",
-        rows: [{
-          key: {
-            text: "Your reasons for withdrawing this offer"
-          },
-          value: {
-            html: data['withdraw-reasons']
-          },
-          actions: {
-              items: [
-                {
-                  href: "/application/" + application.id + "/withdraw",
-                  text: "Change",
-                  visuallyHiddenText: "reasons"
-                }
-              ]
-            }
-        }]
-      }) }}
+      {% set rejectSummaryListUrl = "/application/" + application.id + "/withdraw/" %}
+      {% include "_includes/reject-summary-list.njk" %}
 
       {{ govukWarningText({
         text: "We’ll tell the candidate you withdrew your offer, and share your reasons, if you gave them.",
