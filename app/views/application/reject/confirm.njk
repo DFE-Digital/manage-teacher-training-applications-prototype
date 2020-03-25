@@ -17,7 +17,7 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set rejectSummaryListUrl = "/application/" + application.id + "/reject/" %}
+      {% set rejectSummaryListUrl = "/application/" + application.id + "/reject" %}
       {% include "_includes/reject-summary-list.njk" %}
 
       {{ govukWarningText({
