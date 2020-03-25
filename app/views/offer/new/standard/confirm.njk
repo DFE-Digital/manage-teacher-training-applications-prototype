@@ -8,7 +8,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer"
+    href: "/application/" + application.id + "/offer/new"
   }) }}
 {% endblock %}
 
@@ -62,7 +62,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/" + application.id + "/offer",
+                  href: "/application/" + application.id + "/offer/new",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
