@@ -2,19 +2,19 @@ var uuid = require('uuid/v4');
 
 module.exports = router => {
 
-  router.get('/application/:applicationId/offer', (req, res) => {
-    res.render(`application/offer`, {
+  router.get('/application/:applicationId/offer/new', (req, res) => {
+    res.render(`offer/new/standard/conditions`, {
       applicationId: req.params.applicationId
     })
   })
 
-  router.post('/application/:applicationId/offer', (req, res) => {
+  router.post('/application/:applicationId/offer/new', (req, res) => {
     const applicationId = req.params.applicationId
-    res.redirect(`/application/${applicationId}/confirm-offer`)
+    res.redirect(`/application/${applicationId}/offer/new/confirm`)
   })
 
   // Show confirmation
-  router.get('/application/:applicationId/confirm-offer', (req, res) => {
+  router.get('/application/:applicationId/offer/new/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
@@ -42,13 +42,13 @@ module.exports = router => {
       furtherConditions.push({ description: req.session.data['condition-4']})
     }
 
-    res.render('application/confirm-offer', {
+    res.render('offer/new/standard/confirm', {
       applicationId: req.params.applicationId,
       conditions: standardConditions.concat(furtherConditions)
     })
   })
 
-  router.post('/application/:applicationId/confirm-offer', (req, res) => {
+  router.post('/application/:applicationId/offer/new/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
     application.status = 'Offered';
