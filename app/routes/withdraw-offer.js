@@ -3,22 +3,22 @@ const utils = require( '../data/application-utils')
 module.exports = router => {
 
   router.get('/application/:applicationId/withdraw', (req, res) => {
-    res.render('application/withdraw', {
+    res.render('offer/withdraw/withdraw', {
       applicationId: req.params.applicationId
     })
   })
 
   router.post('/application/:applicationId/withdraw', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/confirm-withdraw`)
+    res.redirect(`/application/${req.params.applicationId}/withdraw/confirm`)
   })
 
-  router.get('/application/:applicationId/confirm-withdraw', (req, res) => {
-    res.render(`application/confirm-withdraw`, {
+  router.get('/application/:applicationId/withdraw/confirm', (req, res) => {
+    res.render(`offer/withdraw/confirm`, {
       applicationId: req.params.applicationId
     })
   })
 
-  router.post('/application/:applicationId/confirm-withdraw', (req, res) => {
+  router.post('/application/:applicationId/withdraw/confirm', (req, res) => {
     const applicationId = req.params.applicationId;
     const application = req.session.data.applications[applicationId];
 
