@@ -66,28 +66,13 @@
       {% endif %}
 
       {% if application.rejectedReasons %}
-        {# <h2 class="govuk-heading-l">Reasons for rejection</h2> #}
+        <h2 class="govuk-heading-l">Reasons for rejection</h2>
         {% set rejectedDate = application.rejectedDate %}
         {% set rejectedReasons = application.rejectedReasons %}
         {% set showRejectedDate = true %}
-        {# {% include "_includes/reject-playback.njk" %} #}
+        {% include "_includes/reject-playback.njk" %}
       {% endif %}
 
-      {# {% set rbd = application.submittedDate | addDays(40) %}
-      {% set remaining = rbd | daysFromNow(rbd) %} #}
-
-      {# {% if application.status == 'New' %}
-        <p>Respond to applicant by {{rbd | date("dd LLL yyyy")}}</p>
-        {{govukButton({
-          text: "Respond to application",
-          href: "/application/" + application.id + "/decision"
-        })}}
-      {% endif %} #}
-
-
-
-
-      {# <span class="govuk-caption-xl">{{name}}</span> #}
       {# <h1 class="govuk-heading-l">Application</h1> #}
 
       <h2 class="govuk-heading-l">Personal details</h2>
