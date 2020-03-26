@@ -85,21 +85,7 @@
       {% endif %} #}
 
 
-      {# <h2 class="govuk-heading-l">Notes</h2>
 
-      <p><a href="#">Add new note</a></p>
-
-      {% if application.notes %}
-        <div class="app-notes">
-          {% for note in application.notes.items %}
-            <div class="app-notes__note">
-              <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{note.subject}}</h3>
-              <p class="govuk-!-margin-bottom-1">{{note.body | nl2br or "No information shared"}}</p>
-              <span class="govuk-caption-m govuk-!-font-size-16">{{note.sender}}, {{note.date | date("d LLL yyyy")}}</span>
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %} #}
 
       {# <span class="govuk-caption-xl">{{name}}</span> #}
       {# <h1 class="govuk-heading-l">Application</h1> #}
@@ -197,11 +183,6 @@
       <h3 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
       {% include "_includes/application/reference.njk" %}
-    </div>
-    <div class="govuk-grid-column-one-third">
-      {# <h2 class="govuk-heading-l">Recent events</h2>
-      {{ appTimeline({items: timeline})}}
-      <p class="govuk-body"><a href="">View all events</a> #}
     </div>
   </div>
 {% endblock %}

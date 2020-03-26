@@ -43,9 +43,31 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
+    const flashMessage = utils.getFlashMessage({
+      flash: req.flash('success'),
+      overrideValue: req.query.flash,
+      map: {
+        'offer-withdrawn': 'Offer successfully withdrawn',
+        'conditions-met': 'Conditions successfully marked as met',
+        'conditions-not-met': 'Conditions successfully marked as not met',
+        'enrolled': 'Candidate successfully enrolled',
+        'offered': 'Offer successfully made',
+        'rejected': 'Application successfully rejected',
+        'change-offer-location': 'Offer successfully changed ',
+        'change-offer-course': 'Offer successfully changed ',
+        'change-offer-provider': 'Offer successfully changed ',
+        'change-condition-status-to-met': 'Condition successfully updated to met',
+        'change-condition-status-to-not-met': 'Condition successfully updated to not met',
+        'offer-made-to-new-provider': 'Offer successfully made',
+        'offer-made-to-new-course': 'Offer successfully made',
+        'offer-made-to-new-location': 'Offer successfully made'
+      }
+    })
+
     res.render('application/offer', {
       applicationId: applicationId,
-      conditions: utils.getConditions(application)
+      conditions: utils.getConditions(application),
+      flash: flashMessage
     })
   })
 
