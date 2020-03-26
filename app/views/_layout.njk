@@ -58,7 +58,7 @@
   })}}
   {% endif %}
 
-  {{ govukHeader({
+  {# {{ govukHeader({
     homepageUrl: "https://www.gov.uk",
     serviceName: serviceName,
     serviceUrl: "/",
@@ -75,7 +75,60 @@
       href: "/",
       text: "Sign out (Jane Doe)"
     }] if isSignedOut != true)
-  }) if not data.bare }}
+  }) if not data.bare }} #}
+
+  {%- from "moj/components/header/macro.njk" import mojHeader -%}
+
+{{ mojHeader({
+  logotype: "crown",
+organisationLabel: {
+text: 'GOV.UK',
+href: '/'
+},
+serviceLabel: {
+text: serviceName,
+href: '/'
+},
+navigation: {
+label: 'Account navigation',
+items: [{
+      href: "/",
+      text: "Applications",
+      active: primaryNavId == 'applications'
+    } if x == y, {
+      href: "/users",
+      text: "Users",
+      active: primaryNavId == 'users'
+    }, {
+      href: "/",
+      text: "Sign out"
+    } ]
+}
+
+}) }}
+
+
+{%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
+
+{# {{ mojPrimaryNavigation({
+label: 'Primary navigation',
+items: [
+{
+      href: "/",
+      text: "Applications",
+      active: primaryNavId == 'applications'
+    }, {
+      href: "/users",
+      text: "Users",
+      active: primaryNavId == 'users'
+    }
+]
+}) }} #}
+
+  {% block afterHeader %}
+
+  {% endblock %}
+
 {% endblock %}
 
 {% block bodyStart %}
@@ -83,12 +136,12 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukPhaseBanner({
+  {# {{ govukPhaseBanner({
     tag: {
       text: "prototype"
     },
     html: "This is a prototype of a new service. Some parts of this prototype do not work yet."
-  }) if not data.bare }}
+  }) if not data.bare }} #}
   {% block pageNavigation %}
   {% endblock %}
   {% block pageBanner %}

@@ -2,9 +2,11 @@
 
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
+{% set subNavId = "application" %}
 {% set status = application.status %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set title = name %}
+
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -38,56 +40,37 @@
     }) }}
   {% endif %}
 
+{# <span class="govuk-caption-xl">{{name}}</span> #}
+      {# <span class="govuk-caption-xl">{{application.id}}</span> #}
+      <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
-
-  <div class="govuk-grid-row">
+  {# <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {# <span class="govuk-caption-xl">{{ application.id }}</span> #}
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
         {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
       </h1>
-      <p class="govuk-!-margin-bottom-9"><a href="#" download>Download application (PDF)</a></p>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-tabs govuk-!-margin-bottom-9">
-        <ul class="govuk-tabs__list">
-          <li class="govuk-tabs__list-item govuk-tabs__list-item--selected app-tabs__list-item--selected" role="presentation">
-            <a class="govuk-tabs__tab app-tabs__tab" role="tab" tabindex="-1" aria-selected="true" href="#description"> Application </a>
-          </li>
-          <li class="govuk-tabs__list-item app-tabs__list-item">
-            <a class="govuk-tabs__tab app-tabs__tab" href="/organisations/S31/2020/courses/X121/details">
-              Offer </a>
-          </li>
-          <li class="govuk-tabs__list-item app-tabs__list-item">
-            <a class="govuk-tabs__tab app-tabs__tab" href="/organisations/S31/2020/courses/X121/details">
-              Notes </a>
-          </li>
-          <li class="govuk-tabs__list-item app-tabs__list-item">
-            <a class="govuk-tabs__tab app-tabs__tab" href="/organisations/S31/2020/courses/X121/details">
-              Timeline </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
+    </div>
+  </div> #}
+
+  {% include "_includes/application/sub-nav.njk" %}
 
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <p class="govuk-body"><a href="#" download>Download application (PDF)</a></p>
+
       {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') and (application.status != 'New')%}
-        {% include "_includes/application/status-panel.njk" %}
+        {# {% include "_includes/application/status-panel.njk" %} #}
       {% endif %}
 
       {% if application.rejectedReasons %}
-        <h2 class="govuk-heading-l">Reasons for rejection</h2>
+        {# <h2 class="govuk-heading-l">Reasons for rejection</h2> #}
         {% set rejectedDate = application.rejectedDate %}
         {% set rejectedReasons = application.rejectedReasons %}
         {% set showRejectedDate = true %}
-        {% include "_includes/reject-playback.njk" %}
+        {# {% include "_includes/reject-playback.njk" %} #}
       {% endif %}
 
       {# {% set rbd = application.submittedDate | addDays(40) %}
@@ -102,7 +85,7 @@
       {% endif %} #}
 
 
-      <h2 class="govuk-heading-l">Notes</h2>
+      {# <h2 class="govuk-heading-l">Notes</h2>
 
       <p><a href="#">Add new note</a></p>
 
@@ -116,13 +99,15 @@
             </div>
           {% endfor %}
         </div>
-      {% endif %}
+      {% endif %} #}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-6">Application</h2>
+      {# <span class="govuk-caption-xl">{{name}}</span> #}
+      {# <h1 class="govuk-heading-l">Application</h1> #}
 
+      <h2 class="govuk-heading-l">Personal details</h2>
       {% include "_includes/application/details.njk" %}
 
-      <h2 class="govuk-heading-m">Course details</h2>
+      <h2 class="govuk-heading-l">Course details</h2>
       {{ govukSummaryList({
         rows: [{
           key: {
@@ -165,11 +150,11 @@
 
 
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Disability, access and other needs</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Disability, access and other needs</h2>
       {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Criminal convictions and professional misconduct</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Criminal convictions and professional misconduct</h2>
       {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
 
       {% if application.safeguarding == 'Request' %}
@@ -178,10 +163,10 @@
         <p class="govuk-body">{{application.safeguarding | nl2br or "No information shared"}}</p>
       {% endif %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Interview</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Interview</h2>
       <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "No information shared"}}</p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Qualifications</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Qualifications</h2>
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
       {% include "_includes/application/other-qualifications.njk" %}
@@ -192,10 +177,10 @@
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Unpaid experience and volunteering</h2>
       {% include "_includes/application/school-experience.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Language skills</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Language skills</h2>
       {% include "_includes/application/language-skills.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Personal statement</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Personal statement</h2>
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Vocation</h3>
       <p class="govuk-hint">Question to candidate: “Why do you want to be a teacher?”</p>
       <p>{{application["personal-statement"].vocation | safe | nl2br or "—"}}</p>
@@ -204,18 +189,19 @@
       <p class="govuk-hint">Question to candidate: “Your knowledge about the subject you want to teach”</p>
       <p>{{application["personal-statement"]["subject-knowledge"] | safe | nl2br or "—" }}</p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">First referee</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-botto-2">References</h2>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
       {% include "_includes/application/reference.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+      <h3 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
       {% include "_includes/application/reference.njk" %}
     </div>
     <div class="govuk-grid-column-one-third">
-      <h2 class="govuk-heading-l">Recent events</h2>
+      {# <h2 class="govuk-heading-l">Recent events</h2>
       {{ appTimeline({items: timeline})}}
-      <p class="govuk-body"><a href="">View all events</a>
+      <p class="govuk-body"><a href="">View all events</a> #}
     </div>
   </div>
 {% endblock %}

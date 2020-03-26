@@ -31,11 +31,42 @@ module.exports = router => {
 
     res.render('application/index', {
       applicationId: applicationId,
-      timeline: utils.getTimeline(application),
-      conditions: utils.getConditions(application),
+      // timeline: utils.getTimeline(application),
+      // conditions: utils.getConditions(application),
       status: req.query.status,
       success,
       flash: flashMessage
+    })
+  })
+
+  router.get('/application/:applicationId/offer', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    res.render('application/offer', {
+      applicationId: applicationId,
+      conditions: utils.getConditions(application)
+    })
+  })
+
+  router.get('/application/:applicationId/notes', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    res.render('application/notes', {
+      applicationId: applicationId,
+      conditions: utils.getConditions(application)
+    })
+  })
+
+  router.get('/application/:applicationId/timeline', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    res.render('application/timeline', {
+      applicationId: applicationId,
+      timeline: utils.getTimeline(application),
+      conditions: utils.getConditions(application)
     })
   })
 

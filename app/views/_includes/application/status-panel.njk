@@ -2,25 +2,8 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  {% if application.status == 'New' %}
-
-    {# {% set warningHtml %}
-      <p>Respond by {{rbd | date("dd LLL yyyy")}}</p>
-    {% endset %}
-
-    {{ govukWarningText({
-      html: warningHtml,
-      classes: "govuk-!-margin-bottom-0",
-      iconFallbackText: "Warning"
-    }) }}
-
-    {{govukButton({
-      text: "Respond to application",
-      classes: "govuk-!-margin-bottom-0",
-      href: "/application/" + application.id + "/decision"
-    })}} #}
-  {% else %}
-    <h2 class="govuk-heading-l">Offer</h2>
+  {% if application.status != 'New' %}
+    {# <h2 class="govuk-heading-l">Offer</h2> #}
   {% endif %}
 
   {{ govukSummaryList({
