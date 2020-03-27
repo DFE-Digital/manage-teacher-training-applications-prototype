@@ -267,15 +267,17 @@ h1 .govuk-tag {
 }
 
 .moj-header__logotype-crown {
-  margin-bottom: 3px;
+  margin-top: 2px;
 }
 
 .moj-header {
   border-bottom: 10px solid #fff;
+  padding-top: 10px;
 }
 
 .moj-header__container {
   border-bottom: 10px solid govuk-colour('blue');
   margin-bottom: -10px;
   position: relative;
+  padding-bottom: 1px;
 }
