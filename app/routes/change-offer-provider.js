@@ -40,7 +40,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     // const application = req.session.data.applications[applicationId]
     req.flash('success', 'change-offer-provider')
-    res.redirect(`/application/${applicationId}`)
+    res.redirect(`/application/${applicationId}/offer`)
   })
 
 }

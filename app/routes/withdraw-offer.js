@@ -26,7 +26,7 @@ module.exports = router => {
     application.offer.withdrawnDate = new Date().toISOString();
     application.offer.withdrawnReasons = utils.getRejectReasons(req.session.data);
     req.flash('success', 'offer-withdrawn');
-    res.redirect(`/application/${applicationId}`);
+    res.redirect(`/application/${applicationId}/offer`);
   })
 
 }

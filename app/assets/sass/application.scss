@@ -212,3 +212,72 @@ h1 .govuk-tag {
   padding-bottom: 10px;
 }
 
+
+
+.app-tabs {
+  &__tab {
+    font-weight: bold !important;
+    text-align: left !important;
+    text-decoration: none !important;
+  }
+
+  &__list-item--selected {
+    background-color: govuk-colour("white") !important;
+    border-top: govuk-spacing(1) solid $govuk-link-colour !important;
+    color: $govuk-text-colour !important;
+    padding-top: govuk-spacing(2) !important;
+  }
+}
+
+.govuk-header {
+  border-bottom: 10px solid #1d70b8;
+}
+
+.app-identity-bar {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  // background-color: #f3f2f1;
+  border-bottom: 1px solid govuk-colour('mid-grey');
+}
+
+.app-identity-bar__inner {
+  overflow: hidden;
+}
+
+.app-identity-bar__left {
+  float: left;
+}
+
+.app-identity-bar__right {
+  float: right;
+}
+.moj-primary-navigation {
+  // border-bottom: 1px solid govuk-colour('light-grey');
+}
+
+.moj-header__navigation-item {
+  // @include govuk-font(16);
+  // margin-top: govuk-spacing(1);
+  margin-right: govuk-spacing(3);
+}
+
+.moj-header__navigation-link[aria-current=page] {
+  // color: govuk-colour('blue');
+  font-weight: bold;
+}
+
+.moj-header__logotype-crown {
+  margin-top: 2px;
+}
+
+.moj-header {
+  border-bottom: 10px solid #fff;
+  padding-top: 10px;
+}
+
+.moj-header__container {
+  border-bottom: 10px solid govuk-colour('blue');
+  margin-bottom: -10px;
+  position: relative;
+  padding-bottom: 1px;
+}

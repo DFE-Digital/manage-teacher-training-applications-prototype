@@ -1,0 +1,69 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set subNavId = "timeline" %}
+{% set status = application.status %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = name %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Applications",
+      href: "/"
+    }, {
+      text: title
+    }]
+  }) if not data.bare }}
+{% endblock %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash }}
+
+  {% set rbd = application.submittedDate | addDays(40) %}
+  {% set remaining = rbd | daysFromNow(rbd) %}
+
+  {% if application.status == 'New' %}
+    {% set bannerHtml %}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">You have 22 days to send a response. <a class="govuk-link--no-visited-state" href="/application/{{application.id}}/decision">Respond to application</a>.</h2>
+    {% endset %}
+    {{ appBanner({
+      html: bannerHtml,
+      type: "information",
+      icon: false
+    }) }}
+  {% endif %}
+
+{# <span class="govuk-caption-xl">{{name}}</span> #}
+      {# <span class="govuk-caption-xl">{{application.id}}</span> #}
+      <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
+
+  {# <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
+        {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
+      </h1>
+
+    </div>
+  </div> #}
+
+  {% include "_includes/application/sub-nav.njk" %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      {{ appTimeline({items: timeline})}}
+
+
+
+
+    </div>
+  </div>
+{% endblock %}

@@ -4,14 +4,9 @@
 {% set title = "Invite a user" %}
 
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Users",
-      href: "/users"
-    }, {
-      text: title
-    }]
-  }) if not data.bare }}
+  {{ govukBackLink({
+    href: "/users/"
+  }) }}
 {% endblock %}
 
 {% block primary %}

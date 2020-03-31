@@ -14,7 +14,7 @@ module.exports = router => {
     application.status = "Enrolled";
     application.offer.enrolledDate = new Date().toISOString();
     req.flash('success', 'enrolled')
-    res.redirect(`/application/${applicationId}`)
+    res.redirect(`/application/${applicationId}/offer`)
   })
 
 }
