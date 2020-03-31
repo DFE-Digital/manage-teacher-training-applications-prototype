@@ -22,6 +22,7 @@
     <div class="govuk-grid-column-two-third">
 
       {{ govukTable({
+        firstCellIsHeader: true,
         head: [
           {
             text: "Name"
@@ -36,7 +37,7 @@
         rows: [
           [
             {
-              html: '<a href="/users/change">Harry Potter</a><br><span class="govuk-!-font-size-16 govuk-caption-m">harry.potter@wizardschool.com</span>'
+              html: '<a href="/users/edit">Harry Potter</a><br><span class="govuk-!-font-size-16 govuk-caption-m">harry.potter@wizardschool.com</span>'
             },
             {
               text: "Manage users"
@@ -47,7 +48,7 @@
           ],
           [
             {
-              html: '<a href="/users/change">Hermione Granger</a><br><span class="govuk-!-font-size-16 govuk-caption-m">herione.granger@wizardschool.com</span>'
+              html: '<a href="/users/edit">Hermione Granger</a><br><span class="govuk-!-font-size-16 govuk-caption-m">herione.granger@wizardschool.com</span>'
             },
             {
               text: ""

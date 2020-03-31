@@ -1,7 +1,7 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Invite user" %}
+{% set title = "Harry Potter" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -9,11 +9,11 @@
   }) }}
 {% endblock %}
 
-{% block primary %}
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
+      <h1 class="govuk-heading-xl">{{title}}</h1>
       <form novalidate method="post" action="/users">
         {{ govukInput({
           label: {
@@ -26,7 +26,8 @@
           autocomplete: "email",
           attributes: {
             spellcheck: "false"
-          }
+          },
+          value: "harry.potter@wizardschool.com"
         }) }}
 
         {{ govukInput({
@@ -39,7 +40,8 @@
           type: "text",
           attributes: {
             spellcheck: "false"
-          }
+          },
+          value: "Harry"
         }) }}
 
         {{ govukInput({
@@ -52,7 +54,8 @@
           type: "text",
           attributes: {
             spellcheck: "false"
-          }
+          },
+          value: "Potter"
         }) }}
 
 
@@ -72,14 +75,16 @@
                 text: "Manage users",
                 hint: {
                   text: "Invite and delete users"
-                }
+                },
+                checked: true
               },
               {
                 value: "Make decisions",
                 text: "Make decisions",
                 hint: {
                   text: "Make and change offers"
-                }
+                },
+                checked: true
               }
             ]
           }) }}
@@ -101,14 +106,16 @@
                 text: "Manage users",
                 hint: {
                   text: "Invite and delete users"
-                }
+                },
+                checked: true
               },
               {
                 value: "Make decisions",
                 text: "Make decisions",
                 hint: {
                   text: "Make and change offers"
-                }
+                },
+                checked: true
               }
             ]
           }) }}
@@ -132,20 +139,22 @@
               text: "Somerset SCITT consortium",
               conditional: {
                 html: p1PermissionsHtml
-              }
+              },
+              checked: true
             },
             {
               value: "The Beach Teaching School",
               text: "The Beach Teaching School",
               conditional: {
                 html: p2PermissionsHtml
-              }
+              },
+              checked: true
             }
           ]
         }) }}
 
         {{govukButton({
-          text: "Invite user"
+          text: "Save"
         })}}
       </form>
     </div>
