@@ -1,63 +1,36 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
 {% set title = "Users" %}
 
-{% block beforePageTitle %}
+{% block content %}
   {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
     type: "success",
     icon: false
-  }) if flash }}
-{% endblock %}
+  }) if flashMessage }}
 
-{% block primary %}
-
-  {{govukButton({
-    text: 'Invite user',
-    href: '/users/new'
-  })}}
-
-  <div class="govuk-grid-ro">
+  <div class="govuk-grid">
     <div class="govuk-grid-column-two-third">
-
-      {{ govukTable({
-        head: [
-          {
-            text: "Email address"
-          },
-          {
-            text: "Permissions"
-          },
-          {
-            text: "Providers"
-          }
-        ],
-        rows: [
-          [
-            {
-              html: '<a href="#">harry.potter@wizardschool.com</a>'
-            },
-            {
-              text: "Manage users"
-            },
-            {
-              text: "Somerset SCITT consortium, The Beach Teaching School"
-            }
-          ],
-          [
-            {
-              html: '<a href="#">hermione.granger@wizardschoo.com</a>'
-            },
-            {
-              text: ""
-            },
-            {
-              text: "The Beach Teaching School"
-            }
-          ]
-        ]
-      }) }}
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+      {{govukButton({
+        text: 'Invite user',
+        href: '/users/new'
+      })}}
+      <div class="app-application-card">
+        <div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/show">Harry Potter</a></h2>
+          <p class="govuk-!-margin-bottom-1">harry.potter@wizardschool.com</p>
+          <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">Somerset SCITT consortium and one more</p>
+        </div>
+      </div>
+      <div class="app-application-card">
+        <div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/show">Hermione Granger</a></h2>
+          <p class="govuk-!-margin-bottom-1">hermione.granger@wizardschool.com</p>
+          <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">Somerset SCITT consortium and one more</p>
+        <div>
+      </div>
     </div>
   </div>
 

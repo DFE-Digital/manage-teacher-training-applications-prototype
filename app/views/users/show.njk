@@ -1,0 +1,105 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Harry Potter" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Users",
+      href: "/users"
+    }, {
+      text: title
+    }]
+  }) if not data.bare }}
+{% endblock %}
+
+{% block content %}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {% set permissionsHtml %}
+        <h3 class="govuk-heading-s">Somerset SCITT consortium</h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Manage users</li>
+          <li>Make decisions</li>
+        </ul>
+        <h3 class="govuk-heading-s">The Beach Teaching School</h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Manage users</li>
+        </ul>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Harry Potter"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/change-name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "harry.potter@wizardschool.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/change-email-address",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Permissions"
+            },
+            value: {
+              html: permissionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/change-permissions",
+                  text: "Change",
+                  visuallyHiddenText: "permissions"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Delete user",
+        classes: "govuk-button--warning",
+        href: "/users/delete"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

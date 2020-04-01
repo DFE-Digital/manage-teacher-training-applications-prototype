@@ -1,61 +1,25 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Invite user" %}
+{% set title = "Harry Potter" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/users/"
+    href: "/users/show"
   }) }}
 {% endblock %}
 
-{% block primary %}
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% set h1 %}
+        <span class="govuk-caption-xl">Harry Potter</span>
+        Change permissions
+      {% endset %}
+
       <form novalidate method="post">
-        {{ govukInput({
-          label: {
-            text: "Email address",
-            classes: "govuk-label--m"
-          },
-          id: "email-address",
-          name: "email-address",
-          type: "email",
-          autocomplete: "email",
-          attributes: {
-            spellcheck: "false"
-          }
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "First name",
-            classes: "govuk-label--m"
-          },
-          id: "first-name",
-          name: "first-name",
-          type: "text",
-          attributes: {
-            spellcheck: "false"
-          }
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "Last name",
-            classes: "govuk-label--m"
-          },
-          id: "last-name",
-          name: "last-name",
-          type: "text",
-          attributes: {
-            spellcheck: "false"
-          }
-        }) }}
-
-
         {% set p1PermissionsHtml %}
           {{ govukCheckboxes({
             idPrefix: "p1",
@@ -72,14 +36,16 @@
                 text: "Manage users",
                 hint: {
                   text: "Invite and delete users"
-                }
+                },
+                checked: true
               },
               {
                 value: "Make decisions",
                 text: "Make decisions",
                 hint: {
                   text: "Make and change offers"
-                }
+                },
+                checked: true
               }
             ]
           }) }}
@@ -101,7 +67,8 @@
                 text: "Manage users",
                 hint: {
                   text: "Invite and delete users"
-                }
+                },
+                checked: true
               },
               {
                 value: "Make decisions",
@@ -119,8 +86,9 @@
           name: "provider",
           fieldset: {
             legend: {
-              text: "Permissions",
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
           },
           hint: {
@@ -132,21 +100,22 @@
               text: "Somerset SCITT consortium",
               conditional: {
                 html: p1PermissionsHtml
-              }
+              },
+              checked: true
             },
             {
               value: "The Beach Teaching School",
               text: "The Beach Teaching School",
               conditional: {
                 html: p2PermissionsHtml
-              }
+              },
+              checked: true
             }
           ]
         }) }}
-
-        {{govukButton({
-          text: "Invite user"
-        })}}
+        {{ govukButton({
+          text: "Save"
+        }) }}
       </form>
     </div>
   </div>
