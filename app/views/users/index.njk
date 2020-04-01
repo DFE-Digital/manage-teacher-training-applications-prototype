@@ -3,15 +3,13 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Users" %}
 
-{% block beforePageTitle %}
+{% block content %}
   {{ appBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
     type: "success",
     icon: false
   }) if flashMessage }}
-{% endblock %}
 
-{% block content %}
   <div class="govuk-grid">
     <div class="govuk-grid-column-two-third">
       <h1 class="govuk-heading-xl">{{title}}</h1>

@@ -7,7 +7,7 @@
   {{ govukBreadcrumbs({
     items: [{
       text: "Users",
-      href: "/"
+      href: "/users"
     }, {
       text: title
     }]
@@ -15,6 +15,12 @@
 {% endblock %}
 
 {% block content %}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -56,12 +62,12 @@
               text: "Email address"
             },
             value: {
-              text: "5 January 1978"
+              text: "harry.potter@wizardschool.com"
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/users/change-email-address",
                   text: "Change",
                   visuallyHiddenText: "email address"
                 }
@@ -78,7 +84,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/users/change-permissions",
                   text: "Change",
                   visuallyHiddenText: "permissions"
                 }
@@ -90,7 +96,8 @@
 
       {{ govukButton({
         text: "Delete user",
-        classes: "govuk-button--warning"
+        classes: "govuk-button--warning",
+        href: "/users/delete"
       }) }}
     </div>
   </div>

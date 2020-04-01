@@ -14,27 +14,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-xl">Harry Potter</span>
-      <h1 class="govuk-heading-xl">Change name</h1>
+      {% set h1 %}
+        <span class="govuk-caption-xl">Harry Potter</span>
+        Change email address
+      {% endset %}
 
       <form novalidate method="post">
         {{ govukInput({
           label: {
-            text: "First name",
-            classes: "govuk-label--m"
+            html: h1,
+            classes: "govuk-label--xl",
+            isPageHeading: true
           },
-          id: "first-name",
-          name: "first-name",
-          value: "Harry"
-        }) }}
-        {{ govukInput({
-          label: {
-            text: "Last name",
-            classes: "govuk-label--m"
-          },
-          id: "last-name",
-          name: "last-name",
-          value: "Potter"
+          id: "new-email-address",
+          name: "new-email-address",
+          value: "harry.potter@wizardschool.com"
         }) }}
         {{ govukButton({
           text: "Save"
