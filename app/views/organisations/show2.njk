@@ -1,0 +1,75 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'organisations' %}
+{% set title = "St Mary’s University" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Organisations",
+      href: "/organisations"
+    }, {
+      text: title
+    }]
+  }) if not data.bare }}
+{% endblock %}
+
+{% block content %}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <h2 class="govuk-heading-l">Courses provided by St Mary’s University</h2>
+      <p>St Mary’s University can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+        <li>make recommendations</li>
+        <li>see criminal convictions</li>
+      </ul>
+
+      <p><a href="#2">Change permissions</a>
+
+      {# <p>Provider X can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+        <li>see criminal convictions</li>
+      </ul> #}
+
+      <h2 class="govuk-heading-l">Courses provided by Catholic School Teaching Alliance</h2>
+      <p>St Mary’s University can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+      </ul>
+
+      <p>Catholic School Teaching Alliance can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make recommendations</li>
+        <li>see criminal convictions</li>
+      </ul>
+
+
+
+      <h2 class="govuk-heading-l">Courses provided by Provider X</h2>
+      <p>St Mary’s University can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make recommendations</li>
+      </ul>
+
+      <p>Provider X can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+        <li>see criminal convictions</li>
+      </ul>
+
+
+    </div>
+  </div>
+
+{% endblock %}

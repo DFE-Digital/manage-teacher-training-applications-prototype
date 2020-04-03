@@ -1,0 +1,40 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Harry Potter" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/users/show"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set h1 %}
+        <span class="govuk-caption-xl">Harry Potter</span>
+        Change email address
+      {% endset %}
+
+      <form novalidate method="post">
+        {{ govukInput({
+          label: {
+            html: h1,
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          id: "new-email-address",
+          name: "new-email-address",
+          value: "harry.potter@wizardschool.com"
+        }) }}
+        {{ govukButton({
+          text: "Save"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

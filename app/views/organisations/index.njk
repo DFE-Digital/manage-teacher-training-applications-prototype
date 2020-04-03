@@ -1,0 +1,29 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'organisations' %}
+{% set title = "Organisations" %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  <div class="govuk-grid">
+    <div class="govuk-grid-column-two-third">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+      <div class="app-application-card">
+        <div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisations/show">Catholic Teaching School Alliance</a></h2>
+        </div>
+      </div>
+      <div class="app-application-card">
+        <div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisations/show2">St Mary’s University</a></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

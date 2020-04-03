@@ -95,7 +95,11 @@ items: [{
       href: "/",
       text: "Applications",
       active: primaryNavId == 'applications'
-    } if x == y, {
+    }, {
+      href: "/organisations",
+      text: "Organisations",
+      active: primaryNavId == 'organisations'
+    }, {
       href: "/users",
       text: "Users",
       active: primaryNavId == 'users'
@@ -109,8 +113,8 @@ items: [{
 
 
 {%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
-
-{# {{ mojPrimaryNavigation({
+{#
+{{ mojPrimaryNavigation({
 label: 'Primary navigation',
 items: [
 {
@@ -118,6 +122,11 @@ items: [
       text: "Applications",
       active: primaryNavId == 'applications'
     }, {
+      href: "/organisations",
+      text: "Organisations",
+      active: primaryNavId == 'organisations'
+    },
+    {
       href: "/users",
       text: "Users",
       active: primaryNavId == 'users'
