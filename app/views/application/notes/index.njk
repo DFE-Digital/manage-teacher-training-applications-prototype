@@ -58,15 +58,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p><a href="#">Add note</a></p>
+      {{govukButton({
+        text: "Add note",
+        href: "/application/" + application.id + "/notes/new"
+      })}}
 
       {% if application.notes %}
         <div class="app-notes">
           {% for note in application.notes.items %}
             <div class="app-notes__note">
-              <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{note.subject}}</h3>
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="#">{{note.subject}}</a></h2>
               <p class="govuk-!-margin-bottom-1">{{note.body | nl2br or "No information shared"}}</p>
-              <span class="govuk-caption-m govuk-!-font-size-16">{{note.sender}}, {{note.date | date("d LLL yyyy")}}</span>
+              <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{note.sender}}, {{note.date | date("d LLL yyyy")}} at {{note.date | time }}</p>
             </div>
           {% endfor %}
         </div>

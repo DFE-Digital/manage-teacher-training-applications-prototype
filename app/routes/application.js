@@ -75,9 +75,18 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
 
-    res.render('application/notes', {
+    res.render('application/notes/index', {
       applicationId: applicationId,
       conditions: utils.getConditions(application)
+    })
+  })
+
+  router.get('/application/:applicationId/notes/new', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    res.render('application/notes/new', {
+      applicationId: applicationId
     })
   })
 
