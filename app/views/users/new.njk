@@ -68,6 +68,13 @@
             },
             items: [
               {
+                value: "Manage organisation",
+                text: "Manage organisation",
+                hint: {
+                  text: "Setup relationships and configure offer conditions"
+                }
+              },
+              {
                 value: "Manage users",
                 text: "Manage users",
                 hint: {
@@ -79,6 +86,13 @@
                 text: "Make decisions",
                 hint: {
                   text: "Make and change offers"
+                }
+              },
+              {
+                value: "See safeguarding information",
+                text: "See safeguarding information",
+                hint: {
+                  text: "See safeguarding information that candidates disclose in their application"
                 }
               }
             ]
@@ -97,6 +111,13 @@
             },
             items: [
               {
+                value: "Manage organisation",
+                text: "Manage organisation",
+                hint: {
+                  text: "Setup relationships and configure offer conditions"
+                }
+              },
+              {
                 value: "Manage users",
                 text: "Manage users",
                 hint: {
@@ -109,6 +130,13 @@
                 hint: {
                   text: "Make and change offers"
                 }
+              },
+              {
+                value: "See safeguarding information",
+                text: "See safeguarding information",
+                hint: {
+                  text: "See safeguarding information that candidates disclose in their application"
+                }
               }
             ]
           }) }}
@@ -119,24 +147,24 @@
           name: "provider",
           fieldset: {
             legend: {
-              text: "Permissions",
+              text: "Providers",
               classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
-            text: "Select at least one provider"
+            text: "Select at least one provider this user will have access to"
           },
           items: [
             {
-              value: "Somerset SCITT consortium",
-              text: "Somerset SCITT consortium",
+              value: "Aston Manor Academy",
+              text: "Aston Manor Academy",
               conditional: {
                 html: p1PermissionsHtml
               }
             },
             {
-              value: "The Beach Teaching School",
-              text: "The Beach Teaching School",
+              value: "Titan Partnership Ltd",
+              text: "Titan Partnership Ltd",
               conditional: {
                 html: p2PermissionsHtml
               }
