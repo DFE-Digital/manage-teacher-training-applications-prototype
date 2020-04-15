@@ -36,8 +36,12 @@ module.exports = router => {
   })
 
   router.post('/users/new', (req, res) => {
+    res.redirect(`/users/new-check`);
+  })
+
+  router.post('/users/new-check', (req, res) => {
     req.flash('success', 'user-invited');
-    res.redirect(`/users`);
+    res.redirect(`/users/`);
   })
 
   router.post('/users/change-name', (req, res) => {

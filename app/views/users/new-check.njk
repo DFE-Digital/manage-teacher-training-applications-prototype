@@ -1,0 +1,131 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Check details before you send the invite" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/users/"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set permissionsHtml %}
+        <p>Aston Manor Academy</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>manage organisation</li>
+          <li>manage users</li>
+          <li>make decisions</li>
+        </ul>
+
+        <p>Titan Partnership Ltd</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>manage organisation</li>
+          <li>manage users</li>
+          <li>make decisions</li>
+        </ul>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "First name"
+            },
+            value: {
+              text: "Bill"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: "Wessel"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "bill.wessel@titan.org.uk"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Permissions"
+            },
+            value: {
+              html: permissionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-l">What Bill will be able to do</h2>
+
+      <p>For Aston Manor Academy, he’ll be able to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>manage organisation</li>
+        <li>manage users</li>
+        <li>make decisions</li>
+      </ul>
+
+      <p>For Titan Partnership Ltd, he’ll be able to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>manage organisation</li>
+        <li>manage users</li>
+        <li>make decisions</li>
+      </ul>
+
+      <form novalidate method="post">
+        {{govukButton({
+          text: "Invite user"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
