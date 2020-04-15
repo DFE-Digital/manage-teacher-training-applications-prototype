@@ -3,8 +3,8 @@ var uuid = require('uuid/v4')
 module.exports = {
   "GH12354": {
     id: "GH12354",
-    accreditingbody: "University of Bath",
-    provider: 'The Beach Teaching School',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
     status: 'Accepted',
@@ -70,8 +70,8 @@ module.exports = {
   },
   "EW65341": {
     id: "EW65341",
-    accreditingbody: "University of Bristol",
-    provider: 'The Beach Teaching School',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-07-15',
     status: 'Conditions met',
@@ -130,8 +130,8 @@ module.exports = {
   },
   "RT88789": {
     id: "RT88789",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'The Beach Teaching School',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Chemistry (2P38)',
     submittedDate: '2019-07-15',
     status: 'Enrolled',
@@ -199,8 +199,8 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
-    accreditingbody: "University of Bath",
-    provider: 'The Beach Teaching School',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Biology (2P36)',
     submittedDate: '2019-07-15',
     status: 'Conditions not met',
@@ -259,8 +259,8 @@ module.exports = {
   },
   "PL098988": {
     id: "PL098988",
-    accreditingbody: "University of Bristol",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Titan Partnership Ltd',
     course: 'Mathematics (2P3K)',
     submittedDate: '2019-07-15',
     status: 'Rejected',
@@ -358,8 +358,8 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Titan Partnership Ltd',
     course: 'Business studies (2P37)',
     submittedDate: '2019-08-15',
     status: 'Declined',
@@ -417,8 +417,8 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
-    accreditingbody: "University of Bristol",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Titan Partnership Ltd',
     course: 'Media Studies (33MP)',
     submittedDate: '2019-09-15',
     withdrawnDate: '2019-09-16',
@@ -471,8 +471,8 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Religious Studies (V6X9)',
 
     submittedDate: '2019-09-01',
@@ -759,8 +759,8 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Computer Science and Information Technology (IX99)',
     submittedDate: '2019-09-01',
     status: 'Offered',
@@ -998,8 +998,8 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Titan Partnership Ltd',
     course: 'History (33MP)',
     submittedDate: '2019-09-16',
     status: 'Offered',
@@ -1261,8 +1261,8 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Titan Partnership Ltd',
     course: 'Primary (2PPM)',
     submittedDate: '2019-09-18',
     status: 'New',
@@ -1485,8 +1485,8 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
-    accreditingbody: "University of Bristol",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Mathematics (GX11)',
     submittedDate: '2019-09-21',
     status: 'New',
@@ -1662,8 +1662,8 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
-    accreditingbody: "University of Bath",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Aston Manor Academy',
     course: 'Biology (2P36)',
     submittedDate: '2019-10-08',
     status: 'New',
@@ -1868,8 +1868,8 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
-    accreditingbody: "Somerset SCITT consortium",
-    provider: 'Somerset SCITT consortium',
+    accreditingbody: "Titan Partnership Ltd",
+    provider: 'Titan Partnership Ltd',
     course: 'Upper Primary with Modern Foreign Languages (XR9C)',
     submittedDate: '2019-10-10',
     status: 'New',
@@ -1882,14 +1882,14 @@ module.exports = {
     },
     'contact-details': {
       tel: '07700 900202',
-      email: 'kelly.spears@example.com'
-      // address: {
-      //   line1: '44 Southend Avenue',
-      //   line2: '',
-      //   level2: 'Southampton',
-      //   level1: '',
-      //   'postal-code': 'SO1  8UZ'
-      // }
+      email: 'kelly.spears@example.com',
+      address: {
+        line1: '44 Southend Avenue',
+        line2: '',
+        level2: 'Southampton',
+        level1: '',
+        'postal-code': 'SO1  8UZ'
+      }
     },
     'reasonable-adjustments': 'I currently require use of a wheelchair, so any interview location needs to be accessible. I should be back on my feet by the time I begin my training.',
     'work-history': {
