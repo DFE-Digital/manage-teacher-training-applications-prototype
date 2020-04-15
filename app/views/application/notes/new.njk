@@ -1,0 +1,59 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = name %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Add note</h1>
+
+      <form method="post">
+        {{ govukCharacterCount({
+          label: {
+            text: "Title",
+            classes: "govuk-label--m"
+          },
+          rows: 1,
+          maxlength: 40,
+          id: "subject",
+          name: "subject",
+          type: "text"
+        }) }}
+
+        {{ govukCharacterCount({
+          label: {
+            text: "Message",
+            classes: "govuk-label--m"
+          },
+          maxlength: 500,
+          id: "body",
+          name: "body",
+          type: "text"
+        }) }}
+
+        {{govukButton({
+          text: "Save note"
+        })}}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

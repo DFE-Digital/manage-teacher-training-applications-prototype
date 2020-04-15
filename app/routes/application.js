@@ -71,16 +71,6 @@ module.exports = router => {
     })
   })
 
-  router.get('/application/:applicationId/notes', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
-
-    res.render('application/notes', {
-      applicationId: applicationId,
-      conditions: utils.getConditions(application)
-    })
-  })
-
   router.get('/application/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
@@ -114,4 +104,5 @@ module.exports = router => {
       res.redirect(`/application/${applicationId}/reject`)
     }
   })
+
 }

@@ -1,4 +1,5 @@
 const { DateTime } = require('luxon')
+const moment = require('moment')
 
 module.exports = (env) => {
   /**
@@ -22,6 +23,15 @@ module.exports = (env) => {
       }).toFormat(format)
 
       return datetime
+    }
+  }
+
+  filters.time = (str) => {
+    var m = moment(str);
+    if(m.minutes() > 0) {
+      return m.format('h:mma');
+    } else {
+      return m.format('ha');
     }
   }
 

@@ -237,5 +237,21 @@ exports.getTimeline = (application) => {
       }
     })
   }
+
+  if(application.notes && application.notes.items.length) {
+    timeline.push({
+      label: {
+        text:  "Note added"
+      },
+      datetime: {
+        timestamp: application.notes.items[0].date,
+        type: "datetime"
+      },
+      byline: {
+        text: "Alex Renato (Alliance Academy)"
+      }
+    })
+  }
+
   return timeline.reverse();
 };
