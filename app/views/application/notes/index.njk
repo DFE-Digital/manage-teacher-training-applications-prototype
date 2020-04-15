@@ -20,15 +20,15 @@
 
 {% block content %}
   {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
     type: "success",
     icon: false
-  }) if flash }}
+  }) if flashMessage }}
 
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  {% if application.status == 'New' %}
+  {% if application.status == 'New' and not flashMessage %}
     {% set bannerHtml %}
       <h2 class="govuk-heading-m govuk-!-margin-bottom-0">You have 22 days to send a response. <a class="govuk-link--no-visited-state" href="/application/{{application.id}}/decision">Respond to application</a>.</h2>
     {% endset %}

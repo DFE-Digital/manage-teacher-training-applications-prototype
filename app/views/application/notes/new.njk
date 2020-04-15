@@ -25,7 +25,7 @@
 
       <h1 class="govuk-heading-xl">Add note</h1>
 
-      <form>
+      <form method="post">
         {{ govukCharacterCount({
           label: {
             text: "Title",
@@ -50,8 +50,7 @@
         }) }}
 
         {{govukButton({
-          text: "Save note",
-          href: "/application/" + application.id + "/notes"
+          text: "Save note"
         })}}
       </form>
 
