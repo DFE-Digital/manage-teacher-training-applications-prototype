@@ -1,0 +1,47 @@
+{% extends "_content-wide.njk" %}
+
+{% set title = "Set up relationships for Titan Partnership Ltd" %}
+
+{% block pageNavigation %}
+  {# {{ govukBackLink({
+    href: "/users/"
+  }) }} #}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form novalidate action="/onboard/step2">
+        <h2 class="govuk-heading-m">For courses ratified by Titan Partnership Ltd</h2>
+
+        {{ govukCheckboxes({
+          idPrefix: "permissions",
+          name: "permissions",
+          fieldset: {
+            legend: {
+              html: "Titan Partnership Ltd can",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Make decisions",
+              text: "Make decisions"
+            },
+            {
+              value: "See safeguarding information",
+              text: "See safeguarding information"
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

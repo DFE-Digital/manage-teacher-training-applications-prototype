@@ -1,0 +1,93 @@
+{% extends "_content-wide.njk" %}
+
+{% set title = "Check permissions before saving them" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/onboard/step2"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form novalidate action="/">
+
+        <h2 class="govuk-heading-l">Relationships for Titan Partnership Ltd</h2>
+
+        {% set permissionsOneHtml %}
+          <p>Titan Partnership Ltd can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+        {% endset %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "For courses ratified by Titan Partnership Ltd"
+              },
+              value: {
+                html: permissionsOneHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/onboard",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-l">Relationships for Aston Manor Academy</h2>
+
+        {% set permissionsTwoHtml %}
+          <p>Titan Partnership Ltd can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+
+          <p>Aston Manor Academy can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+        {% endset %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "For courses ratified by Titan Partnership Ltd"
+              },
+              value: {
+                html: permissionsTwoHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/onboard/step2",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Save permissions"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
