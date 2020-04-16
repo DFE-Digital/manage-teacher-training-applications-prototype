@@ -15,17 +15,24 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set permissionsHtml %}
-        <p>Aston Manor Academy</p>
+        <h3 class="govuk-heading-s">Aston Manor Academy</h3>
         <ul class="govuk-list govuk-list--bullet">
           <li>manage organisation</li>
           <li>manage users</li>
+        </ul>
+        <p>For courses ratified by Titan Partnership Ltd</p>
+        <ul class="govuk-list govuk-list--bullet">
           <li>make decisions</li>
         </ul>
 
-        <p>Titan Partnership Ltd</p>
+        <h3 class="govuk-heading-s">Titan Partnership Ltd</h3>
         <ul class="govuk-list govuk-list--bullet">
           <li>manage organisation</li>
           <li>manage users</li>
+        </ul>
+
+        <p>For courses ratified by Titan Partnership Ltd</p>
+        <ul class="govuk-list govuk-list--bullet">
           <li>make decisions</li>
         </ul>
       {% endset %}
@@ -102,23 +109,6 @@
           }
         ]
       }) }}
-
-
-      <h2 class="govuk-heading-l">What Bill will be able to do</h2>
-
-      <p>For Aston Manor Academy, he’ll be able to:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>manage organisation</li>
-        <li>manage users</li>
-        <li>make decisions</li>
-      </ul>
-
-      <p>For Titan Partnership Ltd, he’ll be able to:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>manage organisation</li>
-        <li>manage users</li>
-        <li>make decisions</li>
-      </ul>
 
       <form novalidate method="post">
         {{govukButton({
