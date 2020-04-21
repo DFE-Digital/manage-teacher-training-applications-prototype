@@ -1,0 +1,38 @@
+{% extends "_content-wide.njk" %}
+
+{% set title = "Manage permissions for your organisation and partner organisations" %}
+
+{% block pageNavigation %}
+  {# {{ govukBackLink({
+    href: "/users/"
+  }) }} #}
+{% endblock %}
+
+{% block primary %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>Permissions control who in your organisation can see sensitive information and make decisions about applications.</p>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Your organisation</h3>
+      <p>The Millais Alliance</p>
+
+      <p class="govuk-heading-s govuk-!-margin-bottom-0">Partner organisations</p>
+      <ul class="govuk-list">
+        <li>University of Brighton</li>
+        <li>University of Sussex</li>
+        <li>University of Chichester</li>
+      </ul>
+
+      <form novalidate action="/onboard/step2">
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

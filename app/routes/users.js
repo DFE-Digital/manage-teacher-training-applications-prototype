@@ -36,7 +36,12 @@ module.exports = router => {
   })
 
   router.post('/users/new', (req, res) => {
-    res.redirect(`/users/new-check`);
+    res.redirect(`/users/new/providers`);
+  })
+
+  router.post('/users/new/check', (req, res) => {
+    req.flash('success', 'user-invited');
+    res.redirect(`/users/`);
   })
 
   router.post('/users/new-check', (req, res) => {
@@ -48,7 +53,6 @@ module.exports = router => {
     req.flash('success', 'user-name-updated');
     res.redirect(`/users/show`);
   })
-
 
   router.post('/users/change-email-address', (req, res) => {
     req.flash('success', 'user-email-address-updated');

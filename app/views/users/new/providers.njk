@@ -1,0 +1,45 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/users/new"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-xl">Invite user</span>
+        Choose providers that this user can access
+      {% endset %}
+
+      <form novalidate action="/users/new/permissions">
+        {{ govukCheckboxes({
+          idPrefix: "provider",
+          name: "provider",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "The Millais Alliance",
+              text: "The Millais Alliance"
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

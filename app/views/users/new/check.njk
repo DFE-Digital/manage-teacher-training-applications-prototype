@@ -1,0 +1,171 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Check details before you send the invite" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/users/new"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set permissionsHtml %}
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage organisation</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage users</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Make decisions</p>
+             <div style="padding-left: 25px;">
+         <p class="govuk-!-margin-bottom-1">Applicable to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Brighton
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Sussex
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Chichester
+          </li>
+        </ul>
+        </div>
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} See safeguarding information</p>
+        <div style="padding-left: 25px;">
+         <p class="govuk-!-margin-bottom-1">Applicable to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Brighton
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Sussex
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Chichester
+          </li>
+        </ul>
+        </div>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "First name"
+            },
+            value: {
+              text: "Bill"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: "Wessel"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "bill.wessel@millais.org.uk"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "The Millais Alliance permissions"
+            },
+            value: {
+              html: permissionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>[A bit about what happens next with dfe sign in emails etc]</p>
+
+      <form novalidate method="post">
+        {{govukButton({
+          text: "Invite user"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
