@@ -11,27 +11,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">Manage permissions</span>
-      <h1 class="govuk-heading-xl">Courses run by The Millais Alliance and ratified by University of Brighton</h1>
+      <h1 class="govuk-heading-xl">For courses run by The Millais Alliance and ratified by University of Brighton</h1>
+
+      <p>All applications made to these courses can be viewed by users at your organisation or your partner organisation(s) if they are signed in to their account.</p>
+      <p>To control who has access to decision-making and sensitive information, select permissions for each organisation.</p>
+
 
       {{ govukDetails({
         summaryText: "More about ‘make decisions’",
-        text: "You can make offers, amend offers and reject applications"
+        text: "The organisation can make offers, amend offers and reject applications"
       }) }}
 
       {% set safeguardingExplanationHtml %}
-        <p>You have access to:</p>
+        <p>The organisation has access to:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>information disclosed in the ‘criminal convictions and professional misconduct’ section of the application</li>
+          <li>information disclosed in the ‘criminal convictions and professional misconduct’ section of the application, which may include highly sensitive information about the candidate</li>
           <li>information disclosed in the ‘equality and diversity’ section of the application form</li>
         </ul>
       {% endset %}
 
       {{ govukDetails({
-        summaryText: "More about see safeguarding information",
+        summaryText: "More about 'access to safeguarding information'",
         html: safeguardingExplanationHtml
       }) }}
 
-      <p>By default both organisations will be able to see applications to these courses</p>
+
 
 
       <form novalidate action="/onboard/step3">
@@ -40,18 +44,18 @@
           name: "permissions",
           fieldset: {
             legend: {
-              html: "University of Brighton can",
+              html: "Select permissions for University of Brighton",
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "make decisions",
-              text: "make decisions"
+              text: "they can make decisions"
             },
             {
               value: "see safeguarding information",
-              text: "see safeguarding information"
+              text: "they have access to safeguarding information"
             }
           ]
         }) }}
@@ -61,18 +65,18 @@
           name: "permissions",
           fieldset: {
             legend: {
-              html: "The Millais Alliance can",
+              html: "Select permissions for the Millais Alliance",
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "make decisions",
-              text: "make decisions"
+              text: "they can make decisions"
             },
             {
               value: "see safeguarding information",
-              text: "see safeguarding information"
+              text: "they have access to safeguarding information"
             }
           ]
         }) }}
