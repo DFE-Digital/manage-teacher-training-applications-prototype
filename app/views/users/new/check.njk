@@ -1,7 +1,7 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Check details before you send the invite" %}
+{% set title = "Check permissions before you invite user" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -158,7 +158,7 @@
         ]
       }) }}
 
-      <p>[A bit about what happens next with dfe sign in emails etc]</p>
+      <p>We'll send your invited user an email guiding them through DfE Sign-In and giving them access to their account.</p>
 
       <form novalidate method="post">
         {{govukButton({
