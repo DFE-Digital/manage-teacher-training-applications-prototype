@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Harry Potter" %}
+{% set title = "Caroline Carroll" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -26,26 +26,99 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set permissionsHtml %}
-        <h3 class="govuk-heading-s">Somerset SCITT consortium</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Manage users</li>
-          <li>Make decisions</li>
+       {% set permissionsHtml %}
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage organisation</p>
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage users</p>
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Make decisions</p>
+             <div style="padding-left: 25px;">
+         <p class="govuk-!-margin-bottom-1">Applicable to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Brighton
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Sussex
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Chichester
+          </li>
         </ul>
-        <h3 class="govuk-heading-s">The Beach Teaching School</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Manage users</li>
+        </div>
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} See safeguarding information</p>
+        <div style="padding-left: 25px;">
+         <p class="govuk-!-margin-bottom-1">Applicable to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Brighton
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Sussex
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} University of Chichester
+          </li>
         </ul>
+        </div>
       {% endset %}
-
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Name"
+              text: "First name"
             },
             value: {
-              text: "Harry Potter"
+              text: "Caroline"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/change-name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: "Carroll"
             },
             actions: {
               items: [
@@ -62,7 +135,7 @@
               text: "Email address"
             },
             value: {
-              text: "harry.potter@wizardschool.com"
+              text: "caroline.carroll@millais.org.uk"
             },
             actions: {
               items: [
@@ -76,7 +149,7 @@
           },
           {
             key: {
-              text: "Permissions"
+              text: "The Millais Alliance permissions"
             },
             value: {
               html: permissionsHtml
@@ -93,6 +166,7 @@
           }
         ]
       }) }}
+
 
       {{ govukButton({
         text: "Delete user",

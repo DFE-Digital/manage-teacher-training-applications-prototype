@@ -3,9 +3,9 @@ var uuid = require('uuid/v4')
 module.exports = {
   "GH12354": {
     id: "GH12354",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Biology (2P36)',
+    accreditingbody: "University of Sussex",
+    provider: 'Millais Alliance',
+    course: 'Biology (2GH8)',
     submittedDate: '2019-07-15',
     status: 'Accepted',
     notes: {
@@ -70,9 +70,9 @@ module.exports = {
   },
   "EW65341": {
     id: "EW65341",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Media Studies (33MP)',
+    accreditingbody: "University of Sussex",
+    provider: 'Millais Alliance',
+    course: 'Media Studies (2YWD)',
     submittedDate: '2019-07-15',
     status: 'Conditions met',
     offer: {
@@ -130,9 +130,9 @@ module.exports = {
   },
   "RT88789": {
     id: "RT88789",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Chemistry (2P38)',
+    accreditingbody: "University of Brighton",
+    provider: 'Millais Alliance',
+    course: 'Chemistry (2RN3)',
     submittedDate: '2019-07-15',
     status: 'Enrolled',
     notes: {
@@ -199,9 +199,9 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Biology (2P36)',
+    accreditingbody: "University of Brighton",
+    provider: 'Millais Alliance',
+    course: 'Biology (2RMX)',
     submittedDate: '2019-07-15',
     status: 'Conditions not met',
     offer: {
@@ -259,9 +259,9 @@ module.exports = {
   },
   "PL098988": {
     id: "PL098988",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Titan Partnership Ltd',
-    course: 'Mathematics (2P3K)',
+    accreditingbody: "University of Chichester",
+    provider: 'Millais Alliance',
+    course: 'Mathematics (L422)',
     submittedDate: '2019-07-15',
     status: 'Rejected',
     rejectedDate: '2019-08-10',
@@ -358,9 +358,9 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Titan Partnership Ltd',
-    course: 'Business studies (2P37)',
+    accreditingbody: "University of Sussex",
+    provider: 'Millais Alliance',
+    course: 'Business studies (35DY)',
     submittedDate: '2019-08-15',
     status: 'Declined',
     offer: {
@@ -417,9 +417,9 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Titan Partnership Ltd',
-    course: 'Media Studies (33MP)',
+    accreditingbody: "University of Chichester",
+    provider: 'Millais Alliance',
+    course: 'Media Studies (L433)',
     submittedDate: '2019-09-15',
     withdrawnDate: '2019-09-16',
     status: 'Application withdrawn',
@@ -471,9 +471,9 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Religious Studies (V6X9)',
+    accreditingbody: "University of Brighton",
+    provider: 'Millais Alliance',
+    course: 'Religious Education (2GHD)',
 
     submittedDate: '2019-09-01',
     status: 'Offer withdrawn',
@@ -759,9 +759,9 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Computer Science and Information Technology (IX99)',
+    accreditingbody: "University of Sussex",
+    provider: 'Millais Alliance',
+    course: 'Computing (2YW4)',
     submittedDate: '2019-09-01',
     status: 'Offered',
     offer: {
@@ -998,9 +998,9 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Titan Partnership Ltd',
-    course: 'History (33MP)',
+    accreditingbody: "University of Brighton",
+    provider: 'Millais Alliance',
+    course: 'History (3DT8)',
     submittedDate: '2019-09-16',
     status: 'Offered',
     offer: {
@@ -1261,9 +1261,9 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Titan Partnership Ltd',
-    course: 'Primary (2PPM)',
+    accreditingbody: "University of Chichester",
+    provider: 'Millais Alliance',
+    course: 'Primary (3DVB)',
     submittedDate: '2019-09-18',
     status: 'New',
     'personal-details': {
@@ -1485,9 +1485,9 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Mathematics (GX11)',
+    accreditingbody: "University of Sussex",
+    provider: 'Millais Alliance',
+    course: 'Mathematics (226J)',
     submittedDate: '2019-09-21',
     status: 'New',
     'personal-details': {
@@ -1662,9 +1662,9 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Aston Manor Academy',
-    course: 'Biology (2P36)',
+    accreditingbody: "University of Sussex",
+    provider: 'Millais Alliance',
+    course: 'Biology (2RN4)',
     submittedDate: '2019-10-08',
     status: 'New',
     notes: {
@@ -1868,9 +1868,9 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
-    accreditingbody: "Titan Partnership Ltd",
-    provider: 'Titan Partnership Ltd',
-    course: 'Upper Primary with Modern Foreign Languages (XR9C)',
+    accreditingbody: "University of Brighton",
+    provider: 'Millais Alliance',
+    course: 'Primary (226R)',
     submittedDate: '2019-10-10',
     status: 'New',
     'personal-details': {
