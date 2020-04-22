@@ -1,0 +1,131 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/users/new"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-xl">Invite user</span>
+        Select permissions for courses run by The Millais Alliance
+      {% endset %}
+
+      <form novalidate method="get" action="/users/new/check">
+
+        {% set makeDecisionsHintHtml %}
+          <p class="govuk-!-margin-bottom-1">This user will be able to make decisions on courses ratified by:</p>
+          <ul class="govuk-list">
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Brighton
+            </li>
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Sussex
+            </li>
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Chichester
+            </li>
+          </ul>
+        {% endset %}
+
+        {% set safeguardingInformationHintHtml %}
+          <p class="govuk-!-margin-bottom-1">This user will be able to access safeguarding information on courses ratified by:</p>
+          <ul class="govuk-list">
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Brighton
+            </li>
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Sussex
+            </li>
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Chichester
+            </li>
+          </ul>
+        {% endset %}
+
+
+        {{ govukCheckboxes({
+            name: "permissions",
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "Manage organisation",
+                text: "Manage organisation",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "This user will be able to change permissions between organisations"
+                }
+              },
+              {
+                value: "Manage users",
+                text: "Manage users",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "This user will be able to invite or delete users, and set their permissions"
+                }
+              },
+              {
+                value: "Make decisions",
+                html: "Make decisions",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: makeDecisionsHintHtml
+                }
+              },
+              {
+                value: "See safeguarding information",
+                text: "Access safeguarding information",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: safeguardingInformationHintHtml
+                }
+              }
+            ]
+          }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

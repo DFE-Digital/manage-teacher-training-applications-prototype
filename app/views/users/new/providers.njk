@@ -1,0 +1,48 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/users/new"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-xl">Invite user</span>
+        Select organisation(s) this user will have access to
+      {% endset %}
+
+      <form novalidate action="/users/new/permissions">
+        {{ govukCheckboxes({
+          idPrefix: "provider",
+          name: "provider",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "The user will be able to see all applications made to courses at these organisation(s)."
+          },
+          items: [
+            {
+              value: "The Millais Alliance",
+              text: "The Millais Alliance"
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

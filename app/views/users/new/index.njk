@@ -1,0 +1,67 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Invite user" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/users/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">Invite user</span>
+      <h1 class="govuk-heading-xl">Basic details</h1>
+
+      <form novalidate method="post">
+        {{ govukInput({
+          label: {
+            text: "Email address",
+            classes: "govuk-label--m"
+          },
+          id: "email-address",
+          name: "email-address",
+          type: "email",
+          autocomplete: "email",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "First name",
+            classes: "govuk-label--m"
+          },
+          id: "first-name",
+          name: "first-name",
+          type: "text",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name",
+            classes: "govuk-label--m"
+          },
+          id: "last-name",
+          name: "last-name",
+          type: "text",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

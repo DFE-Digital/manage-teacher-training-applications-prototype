@@ -1,0 +1,40 @@
+{% extends "_content-wide.njk" %}
+
+{% set title = "Set up permissions for your organisation" %}
+
+{% block pageNavigation %}
+  {# {{ govukBackLink({
+    href: "/users/"
+  }) }} #}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>You can control who has access to sensitive information, and who can make decisions about applications.</p>
+      <p>We’ll ask you to set up the permissions between you and your partner organisations first.</p>
+      <p>You’ll then be able to choose permissions for any individual users you add to your organisation.</p>
+
+      <p>You can change these settings at any time.</p>
+
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">Your organisation</h3>
+      <p>The Millais Alliance</p>
+
+      <p class="govuk-heading-m govuk-!-margin-bottom-2">Partner organisations</p>
+      <ul class="govuk-list">
+        <li>University of Brighton</li>
+        <li>University of Sussex</li>
+        <li>University of Chichester</li>
+      </ul>
+
+      <form novalidate action="/onboard/step2">
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

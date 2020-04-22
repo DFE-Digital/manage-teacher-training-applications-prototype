@@ -1,0 +1,124 @@
+{% extends "_layout.njk" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/onboard/step4"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Manage permissions</span>
+      <h1 class="govuk-heading-xl">Check permissions</h1>
+
+      <form novalidate action="/">
+
+        {% set permissionsOneHtml %}
+          <p>University of Brighton can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+
+          <p>The Millais Alliance can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+        {% endset %}
+
+        {% set permissionsTwoHtml %}
+          <p>University of Sussex can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+
+          <p>The Millais Alliance can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+        {% endset %}
+
+        {% set permissionsThreeHtml %}
+          <p>University of Chichester can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+
+          <p>The Millais Alliance can:</p>
+          <ul class="list list--bullet">
+            <li>make decisions</li>
+            <li>see safeguarding information</li>
+          </ul>
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "For courses run by The Millais Alliance and ratified by University of Brighton"
+              },
+              value: {
+                html: permissionsOneHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/onboard/step2",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Courses run by The Millais Alliance and ratified by University of Sussex"
+              },
+              value: {
+                html: permissionsTwoHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/onboard/step3",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Courses run by The Millais Alliance and ratified by University of Chichester"
+              },
+              value: {
+                html: permissionsThreeHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/onboard/step4",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{govukButton({
+          text: "Save permissions"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

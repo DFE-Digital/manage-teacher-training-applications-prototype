@@ -1,11 +1,11 @@
 {% extends "_layout.njk" %}
 
-{% set org = "The Millais Alliance" %}
-{% set partner = "University of Brighton" %}
+{% set org = "University of Chichester" %}
+{% set partner = "University of Chichester" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/onboard/step1"
+    href: "/onboard/step3"
   }) }}
 {% endblock %}
 
@@ -18,7 +18,7 @@
 
       {% include "./_includes/guidance.njk" %}
 
-      <form novalidate action="/onboard/step3">
+      <form novalidate action="/onboard/check">
         {% include "./_includes/checkboxes.njk" %}
         {{govukButton({
           text: "Continue"
