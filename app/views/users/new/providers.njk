@@ -14,14 +14,6 @@
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
         Select organisation(s) this user will have access to
-
-
-
-        {{ govukDetails({
-          classes: "govuk-!-margin-bottom-2",
-          summaryText: "More about ‘access to organisations’",
-          text: "The user will be able to see all applications made to courses at these organisation(s)."
-        }) }}
       {% endset %}
 
       <form novalidate action="/users/new/permissions">
@@ -34,6 +26,9 @@
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
+          },
+          hint: {
+            text: "The user will be able to see all applications made to courses at these organisation(s)."
           },
           items: [
             {

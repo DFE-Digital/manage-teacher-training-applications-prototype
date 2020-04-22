@@ -4,7 +4,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/users/new/providers"
+    href: "/users/new"
   }) }}
 {% endblock %}
 
@@ -14,13 +14,37 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Set up permissions for this user
+        Select permissions for courses run by The Millais Alliance
       {% endset %}
 
       <form novalidate method="get" action="/users/new/check">
 
         {% set makeDecisionsHintHtml %}
-          <p class="govuk-!-margin-bottom-1">The user can make decisions on courses ratified by:</p>
+          <p class="govuk-!-margin-bottom-1">This user will be able to make decisions on courses ratified by:</p>
+          <ul class="govuk-list">
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Brighton
+            </li>
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Sussex
+            </li>
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} University of Chichester
+            </li>
+          </ul>
+        {% endset %}
+
+        {% set safeguardingInformationHintHtml %}
+          <p class="govuk-!-margin-bottom-1">This user will be able to access safeguarding information on courses ratified by:</p>
           <ul class="govuk-list">
             <li>{{ appIcon({
                 classes: "govuk-!-margin-right-1",
@@ -56,27 +80,27 @@
             items: [
               {
                 value: "Manage organisation",
-                text: "Organisational permissions",
+                text: "Manage organisation",
                 label: {
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  text: "The user can amend permissions between organisations (for example, access to decision-making or sensitive information)"
+                  text: "This user will be able to change permissions between organisations"
                 }
               },
               {
                 value: "Manage users",
-                text: "User permissions",
+                text: "Manage users",
                 label: {
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  text: "The user can invite or delete other users, and set their permissions"
+                  text: "This user will be able to invite or delete users, and set their permissions"
                 }
               },
               {
                 value: "Make decisions",
-                html: "Decision-making permissions",
+                html: "Make decisions",
                 label: {
                   classes: "govuk-label--s"
                 },
@@ -86,12 +110,12 @@
               },
               {
                 value: "See safeguarding information",
-                text: "Safeguarding information permissions:",
+                text: "Access safeguarding information",
                 label: {
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  html: makeDecisionsHintHtml
+                  html: safeguardingInformationHintHtml
                 }
               }
             ]
