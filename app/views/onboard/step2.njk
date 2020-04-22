@@ -1,8 +1,11 @@
 {% extends "_layout.njk" %}
 
+{% set org = "The Millais Alliance" %}
+{% set partner = "University of Brighton" %}
+
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/onboard/"
+    href: "/onboard/step1"
   }) }}
 {% endblock %}
 
@@ -11,77 +14,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">Set up permissions</span>
-      <h1 class="govuk-heading-xl">For courses run by The Millais Alliance and ratified by University of Brighton</h1>
+      <h1 class="govuk-heading-xl">For courses run by {{org}} and ratified by {{partner}}</h1>
 
-      <p>All applications made to these courses can be viewed by users at your organisation or your partner organisation(s) if they are signed in to their account.</p>
-      <p>To control who has access to decision-making and sensitive information, select permissions for each organisation.</p>
-
-
-      {{ govukDetails({
-        classes: "govuk-!-margin-bottom-2",
-        summaryText: "More about ‘make decisions’",
-        text: "The organisation can make offers, amend offers and reject applications"
-      }) }}
-
-      {% set safeguardingExplanationHtml %}
-        <p>The organisation has access to:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>information disclosed in the ‘criminal convictions and professional misconduct’ section of the application, which may include highly sensitive information about the candidate</li>
-          <li>information disclosed in the ‘equality and diversity’ section of the application form</li>
-        </ul>
-      {% endset %}
-
-      {{ govukDetails({
-        summaryText: "More about 'access to safeguarding information'",
-        html: safeguardingExplanationHtml
-      }) }}
-
-
-
+      {% include "./_includes/guidance.njk" %}
 
       <form novalidate action="/onboard/step3">
-        {{ govukCheckboxes({
-          idPrefix: "permissions",
-          name: "permissions",
-          fieldset: {
-            legend: {
-              html: "Select permissions for University of Brighton",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "make decisions",
-              text: "they can make decisions"
-            },
-            {
-              value: "see safeguarding information",
-              text: "they have access to safeguarding information"
-            }
-          ]
-        }) }}
-
-        {{ govukCheckboxes({
-          idPrefix: "permissions",
-          name: "permissions",
-          fieldset: {
-            legend: {
-              html: "Select permissions for the Millais Alliance",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "make decisions",
-              text: "they can make decisions"
-            },
-            {
-              value: "see safeguarding information",
-              text: "they have access to safeguarding information"
-            }
-          ]
-        }) }}
-
+        {% include "./_includes/checkboxes.njk" %}
         {{govukButton({
           text: "Continue"
         })}}
