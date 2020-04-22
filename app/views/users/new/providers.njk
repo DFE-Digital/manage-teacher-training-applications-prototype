@@ -13,7 +13,15 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Choose providers that this user can access
+        Select organisation(s) this user will have access to
+
+
+
+        {{ govukDetails({
+          classes: "govuk-!-margin-bottom-2",
+          summaryText: "More about ‘access to organisations’",
+          text: "The user will be able to see all applications made to courses at these organisation(s)."
+        }) }}
       {% endset %}
 
       <form novalidate action="/users/new/permissions">

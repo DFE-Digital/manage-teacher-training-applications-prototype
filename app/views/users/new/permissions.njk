@@ -14,13 +14,13 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Choose permissions
+        Set up permissions for this user
       {% endset %}
 
       <form novalidate method="get" action="/users/new/check">
 
         {% set makeDecisionsHintHtml %}
-          <p class="govuk-!-margin-bottom-1">Applicable to courses ratified by:</p>
+          <p class="govuk-!-margin-bottom-1">The user can make decisions on courses ratified by:</p>
           <ul class="govuk-list">
             <li>{{ appIcon({
                 classes: "govuk-!-margin-right-1",
@@ -56,27 +56,27 @@
             items: [
               {
                 value: "Manage organisation",
-                text: "Manage organisation",
+                text: "Organisational permissions",
                 label: {
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  text: "Setup relationships and configure offer conditions"
+                  text: "The user can amend permissions between organisations (for example, access to decision-making or sensitive information)"
                 }
               },
               {
                 value: "Manage users",
-                text: "Manage users",
+                text: "User permissions",
                 label: {
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  text: "Invite and delete users"
+                  text: "The user can invite or delete other users, and set their permissions"
                 }
               },
               {
                 value: "Make decisions",
-                html: "Make decisions",
+                html: "Decision-making permissions",
                 label: {
                   classes: "govuk-label--s"
                 },
@@ -86,7 +86,7 @@
               },
               {
                 value: "See safeguarding information",
-                text: "See safeguarding information",
+                text: "Safeguarding information permissions:",
                 label: {
                   classes: "govuk-label--s"
                 },
