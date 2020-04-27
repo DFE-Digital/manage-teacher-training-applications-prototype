@@ -19,8 +19,28 @@
 
       <p>You can change these settings at any time.</p>
 
-      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">Your organisation</h3>
-      <p>The Millais Alliance</p>
+      {# <h3 class="govuk-heading-m govuk-!-margin-bottom-2">Your organisations</h3> #}
+
+      <div class="app-application-card">
+        <div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Somesert SCITT Consortium</h2>
+        </div>
+      </div>
+
+      <div class="app-application-card">
+        <div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Ventrus Teaching School Alliance</h2>
+
+          <p class="govuk-!-margin-top-5 govuk-!-margin-bottom-1">Partner organisations:</p>
+          <ul class="govuk-list govuk-!-margin-bottom-0">
+            <li>Somerset SCITT Consortium</li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      {# <p>The Millais Alliance</p>
 
       <p class="govuk-heading-m govuk-!-margin-bottom-2">Partner organisations</p>
       <ul class="govuk-list">
@@ -28,7 +48,7 @@
         <li>University of Sussex</li>
         <li>University of Chichester</li>
       </ul>
-
+ #}
       <form novalidate action="/onboard/step2">
         {{govukButton({
           text: "Continue"
