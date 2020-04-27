@@ -13,7 +13,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Select organisation(s) this user will have access to
+        Select organisations this user will have access to
       {% endset %}
 
       <form novalidate action="/users/new/permissions">
@@ -28,12 +28,16 @@
             }
           },
           hint: {
-            text: "The user will be able to see all applications made to courses at these organisation(s)."
+            text: "The user will be able to see all applications made to courses at these organisations"
           },
           items: [
             {
-              value: "The Millais Alliance",
-              text: "The Millais Alliance"
+              value: "Somerset SCITT Consortium",
+              text: "Somerset SCITT Consortium"
+            },
+            {
+              value: "Ventrus Teaching School Alliance",
+              text: "Ventrus Teaching School Alliance"
             }
           ]
         }) }}

@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
-{% set org = "The Millais Alliance" %}
-{% set partner = "University of Sussex" %}
+{% set org = "Ventrus Teaching School Alliance" %}
+{% set partner = "Somerset SCITT Consortium" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -18,7 +18,7 @@
 
       {% include "./_includes/guidance.njk" %}
 
-      <form novalidate action="/onboard/step4">
+      <form novalidate action="/onboard/check">
         {% include "./_includes/checkboxes.njk" %}
         {{govukButton({
           text: "Continue"

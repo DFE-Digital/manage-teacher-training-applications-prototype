@@ -19,23 +19,27 @@
   ]
 }) }}
 
-{{ govukCheckboxes({
-  idPrefix: "permissions",
-  name: "permissions",
-  fieldset: {
-    legend: {
-      html: "Select permissions for " + partner,
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  items: [
-    {
-      value: "make decisions",
-      text: "they can make decisions"
+{% if partner %}
+
+  {{ govukCheckboxes({
+    idPrefix: "permissions",
+    name: "permissions",
+    fieldset: {
+      legend: {
+        html: "Select permissions for " + partner,
+        classes: "govuk-fieldset__legend--s"
+      }
     },
-    {
-      value: "see safeguarding information",
-      text: "they have access to safeguarding information"
-    }
-  ]
-}) }}
+    items: [
+      {
+        value: "make decisions",
+        text: "they can make decisions"
+      },
+      {
+        value: "see safeguarding information",
+        text: "they have access to safeguarding information"
+      }
+    ]
+  }) }}
+
+{% endif %}

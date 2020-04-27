@@ -1,13 +1,11 @@
-<p>All applications made to these courses can be viewed by users at your organisation or your partner organisation(s) if they are signed in to their account.</p>
-<p>To control who has access to decision-making and sensitive information, select permissions for each organisation.</p>
+{# <p>To control who has access to decision-making and sensitive information, select permissions for each organisation.</p> #}
 
-{{ govukDetails({
-  classes: "govuk-!-margin-bottom-2",
-  summaryText: "More about ‘make decisions’",
-  text: "The organisation can make offers, amend offers and reject applications"
-}) }}
-
-{% set safeguardingExplanationHtml %}
+{% set guidanceHtml %}
+  <h2 class="govuk-heading-m">Everyone can view applications</h2>
+  <p>All applications made to these courses can be viewed by users at your organisation or your partner organisation(s) if they are signed in to their account.</p>
+  <h2 class="govuk-heading-m">More about making decisions</h2>
+  <p>The organisation can make offers, amend offers and reject applications</p>
+  <h2 class="govuk-heading-m">More about access to safeguarding information</h2>
   <p>The organisation has access to:</p>
   <ul class="govuk-list govuk-list--bullet">
     <li>information disclosed in the ‘criminal convictions and professional misconduct’ section of the application, which may include highly sensitive information about the candidate</li>
@@ -16,6 +14,6 @@
 {% endset %}
 
 {{ govukDetails({
-  summaryText: "More about 'access to safeguarding information'",
-  html: safeguardingExplanationHtml
+  summaryText: "Understanding how permissions work",
+  html: guidanceHtml
 }) }}

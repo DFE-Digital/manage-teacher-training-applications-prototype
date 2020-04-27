@@ -4,7 +4,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/users/new/providers"
+    href: "/users/new/permissions"
   }) }}
 {% endblock %}
 
@@ -14,13 +14,13 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Select permissions for courses run by Somerset SCITT Consortium
+        Select permissions for courses run by Ventrus Teaching School Alliance
       {% endset %}
 
-      <form novalidate method="get" action="/users/new/permissions2">
+      <form novalidate method="get" action="/users/new/check">
 
         {% set makeDecisionsHintHtml %}
-          {# <p class="govuk-!-margin-bottom-1">This user will be able to make decisions on courses ratified by:</p>
+          <p class="govuk-!-margin-bottom-1">This user will be able to make decisions on courses ratified by:</p>
           <ul class="govuk-list">
             <li>{{ appIcon({
                 classes: "govuk-!-margin-right-1",
@@ -28,11 +28,11 @@
                 hidden: true
               }) }} The Somerset SCITT Consortium
             </li>
-          </ul> #}
+          </ul>
         {% endset %}
 
         {% set safeguardingInformationHintHtml %}
-          {# <p class="govuk-!-margin-bottom-1">This user will be able to access safeguarding information on courses ratified by:</p>
+          <p class="govuk-!-margin-bottom-1">This user will be able to access safeguarding information on courses ratified by:</p>
           <ul class="govuk-list">
             <li>{{ appIcon({
                 classes: "govuk-!-margin-right-1",
@@ -40,7 +40,7 @@
                 hidden: true
               }) }} The Somerset SCITT Consortium
             </li>
-          </ul> #}
+          </ul>
         {% endset %}
 
 

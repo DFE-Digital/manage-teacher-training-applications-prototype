@@ -36,6 +36,10 @@ module.exports = router => {
   })
 
   router.post('/users/new', (req, res) => {
+    res.redirect(`/users/new/providers`);
+  })
+
+  router.post('/users/providers', (req, res) => {
     res.redirect(`/users/new/permissions`);
   })
 
