@@ -17,11 +17,13 @@
         classes: a.status | statusClass,
         text: a.status
       })}}
-    </div>
-    <div>
+      <div class="govuk-!-margin-bottom-2"></div>
       {% if a.notes %}
         <p class="app-application-card__note">{{a.notes.items[0].subject}}</p>
       {% endif %}
+    </div>
+
+    <div>
       <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Updated on {{updated | date("d LLL yyyy")}}</p>
     </div>
   </div>
