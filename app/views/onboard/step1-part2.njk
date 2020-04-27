@@ -1,0 +1,35 @@
+{% extends "_content-wide.njk" %}
+
+{% set title = "Understanding access and permissions" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/onboard/step1"
+  }) }}
+{% endblock %}
+
+{% block primary %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Reading applications</h2>
+      <p>All users can view applications to these courses without setting any additional permissions.</p>
+      <h2 class="govuk-heading-l">Making decisions</h2>
+      <p>You can choose to allows the organisation to make offers, amend offers and reject applications.</p>
+      <h2 class="govuk-heading-l">Access to safeguarding information</h2>
+      <p>You can choose to give the organisation access to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>information disclosed in the ‘criminal convictions and professional misconduct’ section of the application, which may include highly sensitive information about the candidate</li>
+        <li>information disclosed in the ‘equality and diversity’ section of the application form</li>
+      </ul>
+
+      <form novalidate action="/onboard/step2">
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

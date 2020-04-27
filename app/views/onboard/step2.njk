@@ -4,7 +4,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/onboard/step1"
+    href: "/onboard/step1-part2"
   }) }}
 {% endblock %}
 
@@ -13,7 +13,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">Set up permissions</span>
-      <h1 class="govuk-heading-xl">For courses both run and ratified by {{org}}</h1>
+      <h1 class="govuk-heading-xl">For courses run and ratified by {{org}}</h1>
 
       {% include "./_includes/guidance.njk" %}
 
