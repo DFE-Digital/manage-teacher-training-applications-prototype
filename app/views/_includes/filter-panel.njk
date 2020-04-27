@@ -76,15 +76,35 @@
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: 'Provider',
+          text: 'Your organisations',
           classes: 'govuk-fieldset__legend--m'
         }
       },
       items: [
         {
-          value: 'Millais Alliance',
-          text: 'Millais Alliance',
-          checked: checked("provider", "Millais Alliance") == 'checked'
+          value: 'Growing Expert Teachers',
+          text: 'Growing Expert Teachers',
+          checked: checked("provider", "Growing Expert Teachers") == 'checked'
+        },
+        {
+          value: 'Somerset SCITT Consortium',
+          text: 'Somerset SCITT Consortium',
+          checked: checked("provider", "Somerset SCITT Consortium") == 'checked'
+        },
+        {
+          value: 'Taunton Teaching Alliance',
+          text: 'Taunton Teaching Alliance',
+          checked: checked("provider", "Taunton Teaching Alliance") == 'checked'
+        },
+        {
+          value: 'The Beach Teaching School',
+          text: 'The Beach Teaching School',
+          checked: checked("provider", "The Beach Teaching School") == 'checked'
+        },
+        {
+          value: 'Ventrus Teaching School Alliance',
+          text: 'Ventrus Teaching School Alliance',
+          checked: checked("provider", "Ventrus Teaching School Alliance") == 'checked'
         }
       ]
     }) }}
@@ -95,26 +115,16 @@
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: 'Accredited body',
+          text: 'Courses ratified by',
           classes: 'govuk-fieldset__legend--m'
         }
       },
       items: [
         {
-          value: 'University of Brighton',
-          text: 'University of Brighton',
-          checked: checked("accreditingbody", "University of Brighton") == 'checked'
-        },
-        {
-          value: 'University of Chichester',
-          text: 'University of Chichester',
-          checked: checked("accreditingbody", "University of Chichester") == 'checked'
-        },
-        {
-          value: 'University of Sussex',
-          text: 'University of Sussex',
-          checked: checked("accreditingbody", "University of Sussex") == 'checked'
-        }        
+          value: 'Somerset SCITT Consortium',
+          text: 'Somerset SCITT Consortium',
+          checked: checked("accreditingbody", "Somerset SCITT Consortium") == 'checked'
+        }   
       ]
     }) }}
   {% endset %}

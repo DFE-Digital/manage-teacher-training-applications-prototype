@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Caroline Carroll" %}
+{% set title = "Claudine Leoni" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -32,11 +32,39 @@
               icon: "tick",
               hidden: true
             }) }} Manage organisation</p>
+
         <p class="govuk-!-font-weight-bold">{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
             }) }} Manage users</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Make decisions</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} See safeguarding information</p>
+      {% endset %}
+
+      {% set permissions2Html %}
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage organisation</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage users</p>
+
         <p class="govuk-!-font-weight-bold">{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
@@ -49,19 +77,7 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} University of Brighton
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Sussex
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Chichester
+            }) }} Someset SCITT Consortium
           </li>
         </ul>
         </div>
@@ -77,23 +93,12 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} University of Brighton
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Sussex
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Chichester
+            }) }} Someset SCITT Consortium
           </li>
         </ul>
         </div>
       {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -101,12 +106,12 @@
               text: "First name"
             },
             value: {
-              text: "Caroline"
+              text: "Claudine"
             },
             actions: {
               items: [
                 {
-                  href: "/users/change-name",
+                  href: "/users/new",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -118,12 +123,12 @@
               text: "Last name"
             },
             value: {
-              text: "Carroll"
+              text: "Leoni"
             },
             actions: {
               items: [
                 {
-                  href: "/users/change-name",
+                  href: "/users/new",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -135,21 +140,21 @@
               text: "Email address"
             },
             value: {
-              text: "caroline.carroll@millais.org.uk"
+              text: "cleoni@somerset.gov.uk"
             },
             actions: {
               items: [
                 {
-                  href: "/users/change-email-address",
+                  href: "/users/new",
                   text: "Change",
-                  visuallyHiddenText: "email address"
+                  visuallyHiddenText: "date of birth"
                 }
               ]
             }
           },
           {
             key: {
-              text: "The Millais Alliance permissions"
+              text: "For courses run and ratified by Somerset SCITT Consortium this user can"
             },
             value: {
               html: permissionsHtml
@@ -157,9 +162,26 @@
             actions: {
               items: [
                 {
-                  href: "/users/change-permissions",
+                  href: "/users/new/permissions",
                   text: "Change",
-                  visuallyHiddenText: "permissions"
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium this user can"
+            },
+            value: {
+              html: permissions2Html
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new/permissions2",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
                 }
               ]
             }

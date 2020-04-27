@@ -3,9 +3,9 @@ var uuid = require('uuid/v4')
 module.exports = {
   "GH12354": {
     id: "GH12354",
-    accreditingbody: "University of Sussex",
-    provider: 'Millais Alliance',
-    course: 'Biology (2GH8)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Somerset SCITT Consortium',
+    course: 'Primary (3-7) (X121)',
     submittedDate: '2019-07-15',
     status: 'Accepted',
     notes: {
@@ -70,9 +70,9 @@ module.exports = {
   },
   "EW65341": {
     id: "EW65341",
-    accreditingbody: "University of Sussex",
-    provider: 'Millais Alliance',
-    course: 'Media Studies (2YWD)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Somerset SCITT Consortium',
+    course: 'Primary (5-11) (X100)',
     submittedDate: '2019-07-15',
     status: 'Conditions met',
     offer: {
@@ -130,9 +130,9 @@ module.exports = {
   },
   "RT88789": {
     id: "RT88789",
-    accreditingbody: "University of Brighton",
-    provider: 'Millais Alliance',
-    course: 'Chemistry (2RN3)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Growing Expert Teachers',
+    course: 'Primary (2S8T)',
     submittedDate: '2019-07-15',
     status: 'Enrolled',
     notes: {
@@ -199,9 +199,9 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
-    accreditingbody: "University of Brighton",
-    provider: 'Millais Alliance',
-    course: 'Biology (2RMX)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Growing Expert Teachers',
+    course: 'Primary (2S8T)',
     submittedDate: '2019-07-15',
     status: 'Conditions not met',
     offer: {
@@ -259,9 +259,9 @@ module.exports = {
   },
   "PL098988": {
     id: "PL098988",
-    accreditingbody: "University of Chichester",
-    provider: 'Millais Alliance',
-    course: 'Mathematics (L422)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'The Beach Teaching School',
+    course: 'Primary (2YQN)',
     submittedDate: '2019-07-15',
     status: 'Rejected',
     rejectedDate: '2019-08-10',
@@ -358,9 +358,9 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
-    accreditingbody: "University of Sussex",
-    provider: 'Millais Alliance',
-    course: 'Business studies (35DY)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'The Beach Teaching School',
+    course: 'Primary (2YQN)',
     submittedDate: '2019-08-15',
     status: 'Declined',
     offer: {
@@ -417,9 +417,9 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
-    accreditingbody: "University of Chichester",
-    provider: 'Millais Alliance',
-    course: 'Media Studies (L433)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Taunton Teaching Alliance',
+    course: 'Primary (2RQM)',
     submittedDate: '2019-09-15',
     withdrawnDate: '2019-09-16',
     status: 'Application withdrawn',
@@ -471,9 +471,9 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
-    accreditingbody: "University of Brighton",
-    provider: 'Millais Alliance',
-    course: 'Religious Education (2GHD)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Taunton Teaching Alliance',
+    course: 'Primary (2RQM)',
 
     submittedDate: '2019-09-01',
     status: 'Offer withdrawn',
@@ -609,6 +609,13 @@ module.exports = {
       english: {
         type: 'GCSE',
         subject: 'English',
+        missing: false,
+        grade: 'A*',
+        year: '2012'
+      },
+      science: {
+        type: 'GCSE',
+        subject: 'Science',
         missing: false,
         grade: 'A*',
         year: '2012'
@@ -759,9 +766,9 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
-    accreditingbody: "University of Sussex",
-    provider: 'Millais Alliance',
-    course: 'Computing (2YW4)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Taunton Teaching Alliance',
+    course: 'Primary (2RQM)',
     submittedDate: '2019-09-01',
     status: 'Offered',
     offer: {
@@ -859,12 +866,20 @@ module.exports = {
         missing: false,
         grade: 'A*',
         year: '1997'
-      }
+      },
+      science: {
+        type: 'GCSE',
+        subject: 'Science',
+        country: 'United Kingdom',
+        missing: false,
+        grade: 'B',
+        year: '1997'
+      }      
     },
     'other-qualifications': {
       1: {
         type: 'GCSE',
-        subject: 'Science',
+        subject: 'Geography',
         org: 'Rose View High',
         provenance: 'domestic',
         country: 'United Kingdom',
@@ -998,9 +1013,9 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
-    accreditingbody: "University of Brighton",
-    provider: 'Millais Alliance',
-    course: 'History (3DT8)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Ventrus Teaching School Alliance',
+    course: 'Primary (32VP)',
     submittedDate: '2019-09-16',
     status: 'Offered',
     offer: {
@@ -1261,9 +1276,9 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
-    accreditingbody: "University of Chichester",
-    provider: 'Millais Alliance',
-    course: 'Primary (3DVB)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Ventrus Teaching School Alliance',
+    course: 'Primary (32VP)',
     submittedDate: '2019-09-18',
     status: 'New',
     'personal-details': {
@@ -1485,9 +1500,9 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
-    accreditingbody: "University of Sussex",
-    provider: 'Millais Alliance',
-    course: 'Mathematics (226J)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Ventrus Teaching School Alliance',
+    course: 'Primary (32VP)',
     submittedDate: '2019-09-21',
     status: 'New',
     'personal-details': {
@@ -1595,7 +1610,16 @@ module.exports = {
         type: 'GCSE',
         subject: 'English',
         missing: 'I am prepared to take an equivalency test.'
-      }
+      },
+      science: {
+        type: 'GCSE(A*-G)',
+        subject: 'Sciences combined',
+        country: 'India',
+        missing: false,
+        'award-org': 'WBBSE',
+        grade: '87',
+        year: '2004'
+      },
     },
     'other-qualifications': {
       1: {
@@ -1662,9 +1686,9 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
-    accreditingbody: "University of Sussex",
-    provider: 'Millais Alliance',
-    course: 'Biology (2RN4)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Taunton Teaching Alliance',
+    course: 'Primary (2MKC)',
     submittedDate: '2019-10-08',
     status: 'New',
     notes: {
@@ -1760,6 +1784,14 @@ module.exports = {
         country: 'United Kingdom',
         missing: false,
         grade: 'A*',
+        year: '2015'
+      },
+      science: {
+        type: 'GCSE',
+        subject: 'Science',
+        country: 'United Kingdom',
+        missing: false,
+        grade: 'B',
         year: '2015'
       }
     },
@@ -1868,9 +1900,9 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
-    accreditingbody: "University of Brighton",
-    provider: 'Millais Alliance',
-    course: 'Primary (226R)',
+    accreditingbody: "Somerset SCITT Consortium",
+    provider: 'Somerset SCITT Consortium',
+    course: 'Primary (3-7) (X121)',
     submittedDate: '2019-10-10',
     status: 'New',
     'personal-details': {
