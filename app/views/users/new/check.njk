@@ -36,6 +36,32 @@
               icon: "tick",
               hidden: true
             }) }} Make decisions</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} See safeguarding information</p>
+      {% endset %}
+
+      {% set permissions2Html %}
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage organisation</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage users</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Make decisions</p>
              <div style="padding-left: 25px;">
          <p class="govuk-!-margin-bottom-1">Applicable to courses ratified by:</p>
         <ul class="govuk-list">
@@ -43,19 +69,7 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} University of Brighton
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Sussex
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Chichester
+            }) }} Someset SCITT Consortium
           </li>
         </ul>
         </div>
@@ -71,19 +85,7 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} University of Brighton
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Sussex
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} University of Chichester
+            }) }} Someset SCITT Consortium
           </li>
         </ul>
         </div>
@@ -130,7 +132,7 @@
               text: "Email address"
             },
             value: {
-              text: "bill.wessel@millais.org.uk"
+              text: "bill.wessel@somesertscitt.org.uk"
             },
             actions: {
               items: [
@@ -144,7 +146,7 @@
           },
           {
             key: {
-              text: "For courses run by The Millais Alliance this user can"
+              text: "For courses run and ratified by Somerset SCITT Consortium this user can"
             },
             value: {
               html: permissionsHtml
@@ -152,7 +154,24 @@
             actions: {
               items: [
                 {
-                  href: "/users/new",
+                  href: "/users/new/permissions",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium this user can"
+            },
+            value: {
+              html: permissions2Html
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new/permissions2",
                   text: "Change",
                   visuallyHiddenText: "contact information"
                 }

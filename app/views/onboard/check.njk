@@ -2,7 +2,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/onboard/step4"
+    href: "/onboard/step3"
   }) }}
 {% endblock %}
 
@@ -17,13 +17,7 @@
       <form novalidate action="/">
 
         {% set permissionsOneHtml %}
-          <p>University of Brighton can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-
-          <p>The Millais Alliance can:</p>
+          <p>Somerset SCITT Consortium can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
@@ -31,27 +25,12 @@
         {% endset %}
 
         {% set permissionsTwoHtml %}
-          <p>University of Sussex can:</p>
+          <p>Somerset SCITT Consortium can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
           </ul>
-
-          <p>The Millais Alliance can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-        {% endset %}
-
-        {% set permissionsThreeHtml %}
-          <p>University of Chichester can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-
-          <p>The Millais Alliance can:</p>
+          <p>Ventrus Teaching School Alliance can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
@@ -62,7 +41,7 @@
           rows: [
             {
               key: {
-                text: "For courses run by The Millais Alliance and ratified by University of Brighton"
+                text: "For courses run and ratified by Somerset SCITT Consortium"
               },
               value: {
                 html: permissionsOneHtml
@@ -79,7 +58,7 @@
             },
             {
               key: {
-                text: "Courses run by The Millais Alliance and ratified by University of Sussex"
+                text: "Courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium"
               },
               value: {
                 html: permissionsTwoHtml
@@ -88,23 +67,6 @@
                 items: [
                   {
                     href: "/onboard/step3",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Courses run by The Millais Alliance and ratified by University of Chichester"
-              },
-              value: {
-                html: permissionsThreeHtml
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/onboard/step4",
                     text: "Change",
                     visuallyHiddenText: "name"
                   }
