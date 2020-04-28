@@ -69,7 +69,7 @@
             <div class="app-notes__note">
               <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="#">{{note.subject}}</a></h2>
               <p class="govuk-!-margin-bottom-1">{{note.body | nl2br or "No information shared"}}</p>
-              <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{note.sender}}, {{note.date | date("d LLL yyyy")}} at {{note.date | time }}</p>
+              <p class="app-notes__meta">{{note.sender}}, {{note.date | date("d LLL yyyy")}} at {{note.date | time }}</p>
             </div>
           {% endfor %}
         </div>

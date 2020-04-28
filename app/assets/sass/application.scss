@@ -281,3 +281,10 @@ h1 .govuk-tag {
   position: relative;
   padding-bottom: 1px;
 }
+
+
+.app-notes__meta {
+  @include govuk-font($size: 16);
+  color: govuk-colour("dark-grey");
+  margin-bottom: 0;
+}
