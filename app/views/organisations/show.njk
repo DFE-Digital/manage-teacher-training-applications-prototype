@@ -26,36 +26,91 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set permissionsOneHtml %}
-          <p>Somerset SCITT Consortium can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-        {% endset %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "For courses run by and ratified by Somerset SCITT Consortium"
-              },
-              value: {
-                html: permissionsOneHtml
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/onboard/step2",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
+      <h2 class="govuk-heading-l">
+      For courses Somerset SCITT Consortium run and ratify
+      </h2>
+
+      <p>Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+        <li>see safeguarding information</li>
+      </ul>
+
+      <p><a href="#1">Change</a></p>
+
+      <h2 class="govuk-heading-l">
+      For courses ratified by Somerset SCITT Consortium and run by Growing Expert Teachers
+      </h2>
+
+      {{ govukWarningText({
+        text: "Contact Growing Expert Teachers to change permissions.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
+      <p>Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+      </ul>
+
+      <p>Growing Expert Teachers can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>access safeguarding information</li>
+      </ul>
+
+      <h2 class="govuk-heading-l">
+      For courses ratified by Somerset SCITT Consortium and run by Taunton Teaching Alliance
+      </h2>
+
+      {{ govukWarningText({
+        text: "Contact Taunton Teaching Alliance to change permissions.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
+      <p>Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+      </ul>
+
+      <p>Taunton Teaching Alliance can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>access safeguarding information</li>
+      </ul>
+
+      <h2 class="govuk-heading-l">
+      For courses ratified by Somerset SCITT Consortium and run by The Beach Teaching School
+      </h2>
 
 
+      {{ govukWarningText({
+        text: "Contact The Beach Teaching School to change permissions.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
+      <p>Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+      </ul>
+
+      <p>The Beach Teaching School can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>access safeguarding information</li>
+      </ul>
+
+      <h2 class="govuk-heading-l">
+      For courses ratified by Somerset SCITT Consortium and run by Ventrus Teaching School Alliance
+      </h2>
+
+      <p>Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+      </ul>
+
+      <p>Ventrus Teaching School Alliance can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>access safeguarding information</li>
+      </ul>
+
+      <p>You can also <a href="#1">manage permissions for Ventrus Teaching School Alliance</a>.</p>
 
     </div>
   </div>

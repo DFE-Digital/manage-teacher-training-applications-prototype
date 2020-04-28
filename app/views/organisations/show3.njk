@@ -26,41 +26,21 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set permissionsOneHtml %}
-          <p>Somerset SCITT Consortium can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-          <p>Ventrus Teaching School Alliance can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-        {% endset %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium"
-              },
-              value: {
-                html: permissionsOneHtml
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/onboard/step2",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
+      <h2 class="govuk-heading-l">
+      For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium
+      </h2>
 
+      <p>Ventrus Teaching School Alliance can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>access safeguarding information</li>
+      </ul>
 
+      <p>Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions</li>
+      </ul>
+
+      <p><a href="#1">Change</a></p>
 
     </div>
   </div>
