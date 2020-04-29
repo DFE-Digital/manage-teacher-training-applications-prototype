@@ -15,10 +15,10 @@
       <span class="govuk-caption-xl">Set up permissions</span>
       <h1 class="govuk-heading-xl">For courses run and ratified by {{org}}</h1>
 
-      {% include "./_includes/guidance.njk" %}
+      {% include "_includes/permissions-guidance.njk" %}
 
       <form novalidate action="/onboard/step3">
-        {% include "./_includes/checkboxes.njk" %}
+        {% include "_includes/permissions-checkboxes.njk" %}
         {{govukButton({
           text: "Continue"
         })}}
