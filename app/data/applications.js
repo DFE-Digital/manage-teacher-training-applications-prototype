@@ -6,6 +6,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Somerset SCITT Consortium',
     course: 'Primary (3-7) (X121)',
+    locationname: 'Lingfield - training location',
     submittedDate: '2019-07-15',
     status: 'Accepted',
     notes: {
@@ -73,6 +74,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Somerset SCITT Consortium',
     course: 'Primary (5-11) (X100)',
+    locationname: 'Lingfield - training location',
     submittedDate: '2019-07-15',
     status: 'Conditions met',
     offer: {
@@ -133,6 +135,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Growing Expert Teachers',
     course: 'Primary (2S8T)',
+    locationname: 'Main site',
     submittedDate: '2019-07-15',
     status: 'Enrolled',
     notes: {
@@ -202,6 +205,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Growing Expert Teachers',
     course: 'Primary (2S8T)',
+    locationname: 'Main site',
     submittedDate: '2019-07-15',
     status: 'Conditions not met',
     offer: {
@@ -262,6 +266,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'The Beach Teaching School',
     course: 'Primary (2YQN)',
+    locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
     status: 'Rejected',
     rejectedDate: '2019-08-10',
@@ -361,6 +366,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'The Beach Teaching School',
     course: 'Primary (2YQN)',
+    locationname: 'Camberley - training location',
     submittedDate: '2019-08-15',
     status: 'Declined',
     offer: {
@@ -420,6 +426,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Taunton Teaching Alliance',
     course: 'Primary (2RQM)',
+    locationname: 'Camberley - training location',
     submittedDate: '2019-09-15',
     withdrawnDate: '2019-09-16',
     status: 'Application withdrawn',
@@ -474,6 +481,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Taunton Teaching Alliance',
     course: 'Primary (2RQM)',
+    locationname: 'Main site',
 
     submittedDate: '2019-09-01',
     status: 'Offer withdrawn',
@@ -769,6 +777,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Taunton Teaching Alliance',
     course: 'Primary (2RQM)',
+    locationname: 'Main site',
     submittedDate: '2019-09-01',
     status: 'Offered',
     offer: {
@@ -874,7 +883,7 @@ module.exports = {
         missing: false,
         grade: 'B',
         year: '1997'
-      }      
+      }
     },
     'other-qualifications': {
       1: {
@@ -1016,6 +1025,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
+    locationname: 'Camberley - training location',
     submittedDate: '2019-09-16',
     status: 'Offered',
     offer: {
@@ -1279,6 +1289,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
+    locationname: 'Main site',
     submittedDate: '2019-09-18',
     status: 'New',
     'personal-details': {
@@ -1503,6 +1514,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
+    locationname: 'Main site',
     submittedDate: '2019-09-21',
     status: 'New',
     'personal-details': {
@@ -1689,6 +1701,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Taunton Teaching Alliance',
     course: 'Primary (2MKC)',
+    locationname: 'Main site',
     submittedDate: '2019-10-08',
     status: 'New',
     notes: {
@@ -1903,6 +1916,7 @@ module.exports = {
     accreditingbody: "Somerset SCITT Consortium",
     provider: 'Somerset SCITT Consortium',
     course: 'Primary (3-7) (X121)',
+    locationname: 'Main site',
     submittedDate: '2019-10-10',
     status: 'New',
     'personal-details': {
