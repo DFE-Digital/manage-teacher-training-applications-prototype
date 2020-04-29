@@ -26,6 +26,7 @@ module.exports = router => {
       map: {
         'user-name-updated': 'User’s name successfully updated',
         'user-email-address-updated': 'User’s email address successfully updated',
+        'user-providers-updated': 'User’s access successfully updated',
         'user-permissions-updated': 'User’s permissions successfully updated'
       }
     })
@@ -60,6 +61,11 @@ module.exports = router => {
 
   router.post('/users/change-email-address', (req, res) => {
     req.flash('success', 'user-email-address-updated');
+    res.redirect(`/users/show`);
+  })
+
+  router.post('/users/change-providers', (req, res) => {
+    req.flash('success', 'user-providers-updated');
     res.redirect(`/users/show`);
   })
 
