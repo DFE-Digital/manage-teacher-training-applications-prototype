@@ -26,21 +26,29 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <h2 class="govuk-heading-l">
-      For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium
+      {% set tick %}
+        {{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }}
+      {% endset %}
+
+      <h2 class="govuk-heading-m">
+        For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium
       </h2>
 
-      <p>Ventrus Teaching School Alliance can:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>access safeguarding information</li>
+      <p class="govuk-!-margin-bottom-1">Ventrus Teaching School Alliance can:</p>
+      <ul class="govuk-list">
+        <li>{{tick | safe}} access safeguarding information</li>
       </ul>
 
-      <p>Somerset SCITT Consortium can:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>make decisions</li>
+      <p class="govuk-!-margin-bottom-1">Somerset SCITT Consortium can:</p>
+      <ul class="govuk-list">
+        <li>{{tick | safe}} make decisions</li>
       </ul>
 
-      <p><a href="#1">Change</a></p>
+      <p><a href="#1">Change <span class="govuk-visually-hidden">permissions for Ventrus Teaching School Alliance</span></a></p>
 
     </div>
   </div>

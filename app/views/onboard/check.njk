@@ -16,65 +16,57 @@
 
       <form novalidate action="/">
 
-        {% set permissionsOneHtml %}
-          <p>Somerset SCITT Consortium can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-        {% endset %}
+        <h2 class="govuk-heading-m">
+          For courses run and ratified by Somerset SCITT Consortium
+        </h2>
 
-        {% set permissionsTwoHtml %}
-          <p>Somerset SCITT Consortium can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-          <p>Ventrus Teaching School Alliance can:</p>
-          <ul class="list list--bullet">
-            <li>make decisions</li>
-            <li>see safeguarding information</li>
-          </ul>
-        {% endset %}
+        <p>Somerset SCITT Consortium can:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }}  make decisions</li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} see safeguarding information</li>
+        </ul>
 
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "For courses run and ratified by Somerset SCITT Consortium"
-              },
-              value: {
-                html: permissionsOneHtml
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/onboard/step2",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium"
-              },
-              value: {
-                html: permissionsTwoHtml
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/onboard/step3",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
+        <p><a href="/onboard/step2">Change</a></p>
+
+        <h2 class="govuk-heading-m">
+          For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium
+        </h2>
+
+        <p>Somerset SCITT Consortium can:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} make decisions</li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} see safeguarding information</li>
+        </ul>
+        <p>Ventrus Teaching School Alliance can:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} make decisions</li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} see safeguarding information</li>
+        </ul>
+        <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>
 
         {{govukButton({
           text: "Save permissions"

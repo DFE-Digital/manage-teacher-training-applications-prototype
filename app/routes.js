@@ -15,6 +15,7 @@ require('./routes/change-offer-course')(router)
 require('./routes/change-offer-location')(router)
 require('./routes/change-condition-status')(router)
 require('./routes/notes')(router)
+require('./routes/organisations')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
 
