@@ -108,38 +108,42 @@
       ]
     }) }}
 
-    {{ govukCheckboxes({
-      name: 'locationname',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Location',
-          classes: 'govuk-fieldset__legend--m'
-        }
-      },
-      items: [
-        {
-          value: 'Main site',
-          text: 'Main site',
-          checked: checked("locationname", "Main site") == 'checked'
+    {% if checked("provider", "Growing Expert Teachers") %}
+
+
+      {{ govukCheckboxes({
+        name: 'locationname',
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: 'Locations for Growing Expert Teachers',
+            classes: 'govuk-fieldset__legend--m'
+          }
         },
-        {
-          value: 'Camberley - training location',
-          text: 'Camberley - training location',
-          checked: checked("locationname", "Camberley - training location") == 'checked'
-        },
-        {
-          value: 'Epsom Grinstead - training location',
-          text: 'Epsom Grinstead - training location',
-          checked: checked("locationname", "Epsom Grinstead - training location") == 'checked'
-        },
-        {
-          value: 'Lingfield - training location',
-          text: 'Lingfield - training location',
-          checked: checked("locationname", "Lingfield - training location") == 'checked'
-        }
-      ]
-    }) }}
+        items: [
+          {
+            value: 'Main site',
+            text: 'Main site',
+            checked: checked("locationname", "Main site") == 'checked'
+          },
+          {
+            value: 'Camberley - training location',
+            text: 'Camberley - training location',
+            checked: checked("locationname", "Camberley - training location") == 'checked'
+          },
+          {
+            value: 'Epsom Grinstead - training location',
+            text: 'Epsom Grinstead - training location',
+            checked: checked("locationname", "Epsom Grinstead - training location") == 'checked'
+          },
+          {
+            value: 'Lingfield - training location',
+            text: 'Lingfield - training location',
+            checked: checked("locationname", "Lingfield - training location") == 'checked'
+          }
+        ]
+      }) }}
+    {% endif %}
 
     {{ govukCheckboxes({
       idPrefix: 'accreditingbody',

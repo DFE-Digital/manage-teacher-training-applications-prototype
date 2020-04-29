@@ -4,7 +4,7 @@ module.exports = {
   "GH12354": {
     id: "GH12354",
     accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Somerset SCITT Consortium',
+    provider: 'Growing Expert Teachers',
     course: 'Primary (3-7) (X121)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-07-15',
@@ -264,7 +264,7 @@ module.exports = {
   "PL098988": {
     id: "PL098988",
     accreditingbody: "Somerset SCITT Consortium",
-    provider: 'The Beach Teaching School',
+    provider: 'Growing Expert Teachers',
     course: 'Primary (2YQN)',
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
@@ -364,7 +364,7 @@ module.exports = {
   "QW211115": {
     id: "QW211115",
     accreditingbody: "Somerset SCITT Consortium",
-    provider: 'The Beach Teaching School',
+    provider: 'Growing Expert Teachers',
     course: 'Primary (2YQN)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-08-15',
