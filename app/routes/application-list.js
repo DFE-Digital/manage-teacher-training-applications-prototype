@@ -80,7 +80,7 @@ module.exports = router => {
 
       if(statuses && statuses.length) {
         selectedFilters.categories.push({
-          heading: { text: "Status" },
+          heading: { text: "Statuses" },
           items: statuses.map((status) => {
             return {
               text: status,
@@ -92,7 +92,7 @@ module.exports = router => {
 
       if(locationnames && locationnames.length) {
         selectedFilters.categories.push({
-          heading: { text: "Location" },
+          heading: { text: "Training locations for Growing Expert Teachers" },
           items: locationnames.map((locationname) => {
             return {
               text: locationname,
@@ -104,7 +104,7 @@ module.exports = router => {
 
       if(providers && providers.length) {
         selectedFilters.categories.push({
-          heading: { text: "Provider" },
+          heading: { text: "Providers" },
           items: providers.map((provider) => {
             return {
               text: provider,
@@ -116,7 +116,7 @@ module.exports = router => {
 
       if(accreditingbodies && accreditingbodies.length) {
         selectedFilters.categories.push({
-          heading: { text: "Accrediting bodies" },
+          heading: { text: "Courses ratified by" },
           items: accreditingbodies.map((accreditingbody) => {
             return {
               text: accreditingbody,
