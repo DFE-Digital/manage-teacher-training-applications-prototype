@@ -16,44 +16,6 @@
       <div class="moj-action-bar">
         <div class="moj-action-bar__filter"></div>
       </div>
-      {# <div class="moj-scrollable-pane">
-        <div class="moj-scrollable-pane__wrapper">
-          {% if applications.length %}
-            <table class="govuk-table" data-module="sortable-table">
-              <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Course</th>
-                  <th class="govuk-table__header" scope="col" aria-sort="none">Status</th>
-                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="descending">Last updated</th>
-                </tr>
-              </thead>
-              <tbody class="govuk-table__body">
-                {% for a in applications %}
-                  {% set rbd = a.status.submitted.date | addDays(40) %}
-                  {% set remaining = rbd | daysFromNow(rbd) %}
-                  {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                      <a href="/application/{{ a.id }}">{{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}</a>
-                    </td>
-                    <td class="govuk-table__cell">
-                    <span class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }}</span> {{ a.course }}</td>
-                    <td class="govuk-table__cell">
-                      {{ govukTag({
-                        classes: a.status | statusClass,
-                        text: a.status
-                      })}}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ updated | date("yyyyMMdd") }}">{{ updated | date("d LLL yyyy") }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          {% endif%}
-        </div>
-      </div> #}
-
       <div>
         <div class="app-application-cards">
           {% if applications.length %}
