@@ -14,11 +14,35 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Claudine Leoni</span>
-        Change permissions for courses run by Somerset SCITT Consortium
+        Change permissions for courses run by Ventrus Teaching School Alliance
       {% endset %}
 
-
       <form novalidate method="post">
+
+        {% set makeDecisionsHintHtml %}
+          <p class="govuk-!-margin-bottom-1">This user will be able to make decisions on courses ratified by:</p>
+          <ul class="govuk-list">
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} The Somerset SCITT Consortium
+            </li>
+          </ul>
+        {% endset %}
+
+        {% set safeguardingInformationHintHtml %}
+          <p class="govuk-!-margin-bottom-1">This user will be able to access safeguarding information on courses ratified by:</p>
+          <ul class="govuk-list">
+            <li>{{ appIcon({
+                classes: "govuk-!-margin-right-1",
+                icon: "tick",
+                hidden: true
+              }) }} The Somerset SCITT Consortium
+            </li>
+          </ul>
+        {% endset %}
+
 
         {{ govukCheckboxes({
             name: "permissions",
@@ -30,7 +54,7 @@
               }
             },
             hint: {
-              text: "The user will be able to read all applications made to courses at this organisation. You don't need to set permissions for this."
+              text: "The user will be able to read all applications made to courses at these organisations. You don't need to set permissions for this."
             },
             items: [
               {
@@ -61,6 +85,9 @@
                 label: {
                   classes: "govuk-label--s"
                 },
+                hint: {
+                  html: makeDecisionsHintHtml
+                },
                 checked: true
               },
               {
@@ -68,6 +95,9 @@
                 text: "Access safeguarding information",
                 label: {
                   classes: "govuk-label--s"
+                },
+                hint: {
+                  html: safeguardingInformationHintHtml
                 },
                 checked: true
               }

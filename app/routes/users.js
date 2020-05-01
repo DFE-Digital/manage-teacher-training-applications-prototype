@@ -74,6 +74,11 @@ module.exports = router => {
     res.redirect(`/users/show`);
   })
 
+  router.post('/users/change-permissions2', (req, res) => {
+    req.flash('success', 'user-permissions-updated');
+    res.redirect(`/users/show`);
+  })
+
   router.post('/users/delete', (req, res) => {
     req.flash('success', 'user-account-deleted');
     res.redirect(`/users`);
