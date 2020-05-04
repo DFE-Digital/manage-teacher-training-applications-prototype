@@ -20,7 +20,8 @@
       <form novalidate method="post">
 
         {% set makeDecisionsHintHtml %}
-          <p class="govuk-!-margin-bottom-1">This user will be able to make decisions on courses ratified by:</p>
+          <p class="govuk-!-margin-bottom-1">Make offers, amend offers and reject applications</p>
+          <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
           <ul class="govuk-list">
             <li>{{ appIcon({
                 classes: "govuk-!-margin-right-1",
@@ -32,7 +33,8 @@
         {% endset %}
 
         {% set safeguardingInformationHintHtml %}
-          <p class="govuk-!-margin-bottom-1">This user will be able to access safeguarding information on courses ratified by:</p>
+         <p class="govuk-!-margin-bottom-1">View sensitive material about the candidate</p>
+          <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
           <ul class="govuk-list">
             <li>{{ appIcon({
                 classes: "govuk-!-margin-right-1",
@@ -54,7 +56,7 @@
               }
             },
             hint: {
-              text: "The user will be able to read all applications made to courses at these organisations. You don't need to set permissions for this."
+              text: "The user will still be able to read all applications made to courses at these organisations."
             },
             items: [
               {
@@ -64,7 +66,7 @@
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  html: "<p>This user will be able to change permissions between organisations</p>"
+                  html: "<p>Change permissions between organisations</p>"
                 },
                 checked: true
               },
@@ -75,7 +77,7 @@
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  html: "<p>This user will be able to invite or delete users, and set their permissions</p>"
+                  html: "<p>Invite or delete users and set their permissions</p>"
                 },
                 checked: true
               },

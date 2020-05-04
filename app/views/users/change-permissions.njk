@@ -30,7 +30,7 @@
               }
             },
             hint: {
-              text: "The user will be able to read all applications made to courses at this organisation. You don't need to set permissions for this."
+              text: "The user will still be able to read all applications made to courses at this organisation."
             },
             items: [
               {
@@ -40,7 +40,7 @@
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  html: "<p>This user will be able to change permissions between organisations</p>"
+                  html: "<p>Change permissions between organisations</p>"
                 },
                 checked: true
               },
@@ -51,7 +51,7 @@
                   classes: "govuk-label--s"
                 },
                 hint: {
-                  html: "<p>This user will be able to invite or delete users, and set their permissions</p>"
+                  html: "<p>Invite or delete users and set their permissions</p>"
                 },
                 checked: true
               },
@@ -61,6 +61,9 @@
                 label: {
                   classes: "govuk-label--s"
                 },
+                hint: {
+                  html: "<p>Make offers, amend offers and reject applications</p>"
+                },
                 checked: true
               },
               {
@@ -68,6 +71,9 @@
                 text: "Access safeguarding information",
                 label: {
                   classes: "govuk-label--s"
+                },
+                hint: {
+                  html: "<p>View sensitive material about the candidate</p>"
                 },
                 checked: true
               }
