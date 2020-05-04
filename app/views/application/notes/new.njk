@@ -28,8 +28,11 @@
       <form method="post">
         {{ govukCharacterCount({
           label: {
-            text: "Title",
+            text: "Subject",
             classes: "govuk-label--m"
+          },
+          hint: {
+            text: "This appears on your application list by the relevant candidate"
           },
           rows: 1,
           maxlength: 40,
@@ -38,9 +41,10 @@
           type: "text"
         }) }}
 
+
         {{ govukCharacterCount({
           label: {
-            text: "Message",
+            text: "Note",
             classes: "govuk-label--m"
           },
           maxlength: 500,
