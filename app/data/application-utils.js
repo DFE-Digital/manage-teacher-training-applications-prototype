@@ -102,7 +102,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View application",
-        href: "#1"
+        href: `/application/${application.id}`
       }
     })
   }
@@ -121,7 +121,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View offer",
-        href: "#1"
+        href: `/application/${application.id}/offer`
       }
     })
   }
@@ -140,7 +140,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View offer",
-        href: "#1"
+        href: `/application/${application.id}/offer`
       }
     })
   }
@@ -159,7 +159,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View feedback",
-        href: "#1"
+        href: `/application/${application.id}`
       }
     })
   }
@@ -178,7 +178,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View application",
-        href: "#1"
+        href: `/application/${application.id}`
       }
     })
   }
@@ -197,7 +197,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View offer",
-        href: "#1"
+        href: `/application/${application.id}/offer`
       }
     })
   }
@@ -216,7 +216,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View conditions",
-        href: "#1"
+        href: `/application/${application.id}/offer`
       }
     })
   }
@@ -235,7 +235,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View conditions",
-        href: "#1"
+        href: `/application/${application.id}/offer`
       }
     })
   }
@@ -254,7 +254,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View offer",
-        href: "#1"
+        href: `/application/${application.id}/offer`
       }
     })
   }
@@ -288,7 +288,7 @@ exports.getTimeline = (application) => {
       },
       link: {
         text: "View note",
-        href: "#1"
+        href: `/application/${application.id}/notes/${application.notes.items[0].id}`
       }
     })
   }

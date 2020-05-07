@@ -12,8 +12,9 @@
     items: [{
       text: "Applications",
       href: "/"
-    }, {
-      text: title
+    },  {
+      text: name,
+      href: "/application/" + application.id
     }]
   }) if not data.bare }}
 {% endblock %}
@@ -39,18 +40,7 @@
     }) }}
   {% endif %}
 
-{# <span class="govuk-caption-xl">{{name}}</span> #}
-      {# <span class="govuk-caption-xl">{{application.id}}</span> #}
       <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
-
-  {# <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
-        {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
-      </h1>
-
-    </div>
-  </div> #}
 
   {% include "_includes/application/sub-nav.njk" %}
 
@@ -67,7 +57,7 @@
         <div class="app-notes">
           {% for note in application.notes.items %}
             <div class="app-notes__note">
-              <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="#">{{note.subject}}</a></h2>
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/application/{{application.id}}/notes/{{note.id}}">{{note.subject}}</a></h2>
               <p class="govuk-!-margin-bottom-1">{{note.body | nl2br or "No information shared"}}</p>
               <p class="app-notes__meta">{{note.sender}}, {{note.date | date("d LLL yyyy")}} at {{note.date | time }}</p>
             </div>

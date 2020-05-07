@@ -35,4 +35,14 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/notes`);
   })
 
+  router.get('/application/:applicationId/notes/:noteId', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    res.render('application/notes/show', {
+      applicationId: applicationId,
+      note: application.notes.items.filter(note => note.id == req.params.noteId)[0]
+    })
+  })
+
 }
