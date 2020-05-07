@@ -98,7 +98,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "candidate"
+        text: "Candidate"
+      },
+      link: {
+        text: "View application",
+        href: "#1"
       }
     })
   }
@@ -113,7 +117,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
+      },
+      link: {
+        text: "View offer",
+        href: "#1"
       }
     })
   }
@@ -128,7 +136,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "candidate"
+        text: "Candidate"
+      },
+      link: {
+        text: "View offer",
+        href: "#1"
       }
     })
   }
@@ -143,7 +155,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
+      },
+      link: {
+        text: "View feedback",
+        href: "#1"
       }
     })
   }
@@ -158,7 +174,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "candidate"
+        text: "Candidate"
+      },
+      link: {
+        text: "View application",
+        href: "#1"
       }
     })
   }
@@ -173,7 +193,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "candidate"
+        text: "Candidate"
+      },
+      link: {
+        text: "View offer",
+        href: "#1"
       }
     })
   }
@@ -188,7 +212,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
+      },
+      link: {
+        text: "View conditions",
+        href: "#1"
       }
     })
   }
@@ -203,7 +231,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
+      },
+      link: {
+        text: "View conditions",
+        href: "#1"
       }
     })
   }
@@ -218,7 +250,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
+      },
+      link: {
+        text: "View offer",
+        href: "#1"
       }
     })
   }
@@ -233,7 +269,7 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
       }
     })
   }
@@ -248,7 +284,11 @@ exports.getTimeline = (application) => {
         type: "datetime"
       },
       byline: {
-        text: "Alex Renato (Alliance Academy)"
+        text: "Alex Renato"
+      },
+      link: {
+        text: "View note",
+        href: "#1"
       }
     })
   }
