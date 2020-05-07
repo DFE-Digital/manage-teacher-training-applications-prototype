@@ -8,22 +8,20 @@
         {{- item.label.html | safe if item.label.html else item.label.text -}}
       </h{{ params.headingLevel | default(2) }}>
       {% if item.byline %}
-        <p class="app-timeline__byline">by {{ item.byline.html | safe if item.byline.html else item.byline.text }}</p>
+        <p class="app-timeline__byline">
+          {{ item.byline.html | safe if item.byline.html else item.byline.text -}}{% if item.datetime %}, {% endif %}
+          <time datetime="{{ item.datetime.timestamp }}">
+            {{- item.datetime.timestamp | date("dd LLL yyyy") }} at {{item.datetime.timestamp | time }}
+          </time>
+        </p>
+
       {% endif %}
     </div>
 
-    <p class="app-timeline__date">
-      <time datetime="{{ item.datetime.timestamp }}">
-        {%- if item.datetime.type %}
-          {{- item.datetime.timestamp | date("dd LLL yyyy") -}}
-        {% else %}
-          {{- item.datetime.timestamp | date("dd LLL yyyy") -}}
-        {% endif -%}
-      </time>
-    </p>
-
     <div class="app-timeline__description">
-      {{- item.html | safe if item.html else item.text -}}
+      {% if item.link %}
+        <a href="{{item.link.href}}">{{item.link.text}}</a>
+      {% endif %}
     </div>
 
   </div>

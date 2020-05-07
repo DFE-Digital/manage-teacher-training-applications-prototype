@@ -63,7 +63,7 @@
 .app-timeline__byline {
   @include govuk-font($size: 19);
   color: $govuk-secondary-text-colour;
-  display: inline;
+  // display: inline;
   margin: 0;
 }
 

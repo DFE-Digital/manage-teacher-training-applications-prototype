@@ -11,6 +11,7 @@ module.exports = {
     status: 'Accepted',
     notes: {
       items: [{
+        id: uuid(),
         subject: "Talk to candidate on 15 June",
         body: "Make sure to prepare this and that ready for a chat",
         sender: "Laura Tennant",
@@ -140,6 +141,7 @@ module.exports = {
     status: 'Enrolled',
     notes: {
       items: [{
+        id: uuid(),
         subject: "Call Charlie 17 May",
         body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
         sender: "Emma Hill-French",
@@ -1706,6 +1708,7 @@ module.exports = {
     status: 'New',
     notes: {
       items: [{
+        id: uuid(),
         subject: "Needs review",
         body: "Make sure you review this application paying close attention to their qualifications",
         sender: "Pepper Potts",
