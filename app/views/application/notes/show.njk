@@ -24,8 +24,12 @@
 
 {% block content %}
 
-  <h1 class="govuk-heading-xl">{{note.subject}}</h1>
-
-  <p>{{note.body}}</p>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{note.subject}}</h1>
+        <p>{{note.body}}</p>
+        <p class="govuk-hint govuk-!-font-size-16 govuk-!-margin-bottom-0">{{note.sender}}, {{note.date | date("d LLL yyyy")}} at {{note.date | time }}</p>
+      </div>
+    </div>
 
 {% endblock %}
