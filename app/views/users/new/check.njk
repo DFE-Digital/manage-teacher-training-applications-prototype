@@ -36,12 +36,58 @@
               icon: "tick",
               hidden: true
             }) }} Make decisions</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Growing Expert Teachers
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Taunton Teaching Alliance
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} The Beach Teaching School
+          </li>
+        </ul>
+        </div>
 
         <p class="govuk-!-font-weight-bold">{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
             }) }} See safeguarding information</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Growing Expert Teachers
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Taunton Teaching Alliance
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} The Beach Teaching School
+          </li>
+        </ul>
+        </div>
       {% endset %}
 
       {% set permissions2Html %}
@@ -163,7 +209,7 @@
           },
           {
             key: {
-              text: "Permissions for courses run and ratified by Somerset SCITT Consortium"
+              text: "Permissions: Somerset SCITT Consortium"
             },
             value: {
               html: permissionsHtml
@@ -180,7 +226,7 @@
           },
           {
             key: {
-              text: "Permissions for courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium"
+              text: "Permissions: Ventrus Teaching School Alliance"
             },
             value: {
               html: permissions2Html
