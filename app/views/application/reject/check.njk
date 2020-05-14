@@ -17,13 +17,177 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set rejectSummaryListUrl = "/application/" + application.id + "/reject" %}
-      {% include "_includes/reject-summary-list.njk" %}
+      <div class="app-feedback">
+        <h2 class="govuk-heading-m">
+          Feedback
+        </h2>
 
-      {{ govukWarningText({
+        {% if data['future-applications'] == "Yes" %}
+          <p>This provider has said they would be interested in future applications from you.</p>
+        {% else %}
+          <p>We’re sorry to tell you that this provider has said they would not be interested in future applications from you.</p>
+        {% endif %}
+
+        {% if data['other-offer'] == "Yes" %}
+          <p>This provider has offered you a place on one of your other choices. Check your email inbox or application dashboard for details.</p>
+        {% endif %}
+
+        {% if data['course-full'] == "Yes" %}
+          <p>We’re sorry to tell you that the course you applied to was full.</p>
+        {% endif %}
+
+        {% if data['safeguarding'] == "Yes" %}
+          <h3 class="govuk-heading-s">
+            Safeguarding
+          </h3>
+
+          {% if data['safeguarding-reasons-false-information'] %}
+            <p>Information given on application form false or inaccurate</p>
+
+            <p>{{data['safeguarding-reasons-false-information']}}</p>
+          {% endif %}
+
+          {% if data["safeguarding-reasons-plagiarism"] %}
+            <p>The provider found evidence of plagiarism in your personal statement or elsewhere in your application.</p>
+
+            <p>{{data["safeguarding-reasons-plagiarism"]}}</p>
+          {% endif %}
+
+          {% if data["safeguarding-reasons-reference-information"] %}
+            <p>Your references didn’t support your application.</p>
+
+            <p>{{data["safeguarding-reasons-reference-information"]}}</p>
+          {% endif %}
+
+          {% if data["safeguarding-reasons-disclosed-information"] %}
+            <p>You disclosed information in your application which makes you unsuitable to work with children.</p>
+
+            <p>{{data["safeguarding-reasons-disclosed-information"]}}</p>
+          {% endif %}
+
+          {% if data["safeguarding-reasons-vetting-information"] %}
+            <p>The provider’s vetting process found information which makes you unsuitable to work with children.</p>
+
+            <p>{{data["safeguarding-reasons-vetting-information"]}}</p>
+          {% endif %}
+
+          {% if data["safeguarding-reasons-other"] %}
+            <p>{{data["safeguarding-reasons-other"]}}</p>
+          {% endif %}
+        {% endif %}
+
+
+        {% if data['candidate-actions'] == "Yes" %}
+          <h3 class="govuk-heading-s">
+            Candidate response
+          </h3>
+
+          {% set checkboxValue = "Didn’t reply to our interview offer" %}
+          {% if checked("candidate-actions-reasons", checkboxValue) %}
+            <p>{{checkboxValue}}</p>
+          {% endif %}
+
+          {% set checkboxValue = "Didn’t attend interview" %}
+          {% if checked("candidate-actions-reasons", checkboxValue) %}
+            <p>{{checkboxValue}}</p>
+          {% endif %}
+
+          {% set checkboxValue = "Other" %}
+          {% if checked("candidate-actions-reasons", "Other") %}
+            <p>{{data['candidate-actions-reasons-other']}}</p>
+            <p>{{data['candidate-actions-reasons-other-improve']}}</p>
+          {% endif %}
+
+        {% endif %}
+
+        {% if data['missing-qualifications'] == "Yes" %}
+          <h3 class="govuk-heading-s">
+            Qualifications needed to enrol on this course are missing
+          </h3>
+          {% set checkboxValue = "No Maths GCSE grade 4 (C) or above, or valid equivalent" %}
+          {% if checked("missing-qualifications-reasons", checkboxValue) %}
+            <p>No Maths GCSE grade 4 (C) or above, or valid equivalent.</p>
+          {% endif %}
+
+          {% set checkboxValue = "No English GCSE grade 4 (C) or above, or valid equivalent" %}
+          {% if checked("missing-qualifications-reasons", checkboxValue) %}
+            <p>No English GCSE grade 4 (C) or above, or valid equivalent.</p>
+          {% endif %}
+
+          {% set checkboxValue = "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)" %}
+          {% if checked("missing-qualifications-reasons", checkboxValue) %}
+            <p>No Science GCSE grade 4 (C) or above, or valid equivalent.</p>
+          {% endif %}
+
+          {% set checkboxValue = "No degree" %}
+          {% if checked("missing-qualifications-reasons", checkboxValue) %}
+            <p>No degree.</p>
+          {% endif %}
+
+          {% set checkboxValue = "Degree doesn’t meet course requirements" %}
+          {% if checked("missing-qualifications-reasons", checkboxValue) %}
+            <p>Your degree does not meet the course requirements.</p>
+          {% endif %}
+
+          {% set checkboxValue = "Other" %}
+          {% if checked("missing-qualifications-reasons", "Other") %}
+            <p>{{checkboxValue}}: {{data['candidate-actions-reasons-other']}}</p>
+          {% endif %}
+        {% endif %}
+
+        {% if data['application-quality'] == "Yes" %}
+          <h3 class="govuk-heading-s">
+            Quality of application
+          </h3>
+
+          {% set fieldName = "application-quality-reasons" %}
+          {% set checkboxValue = "Personal statement" %}
+          {% set textBoxName = "application-quality-reasons-personal-statement" %}
+          {% if checked(fieldName, checkboxValue) %}
+            <p>Your personal statement could be improved.</p>
+            <p>{{data[textBoxName]}}</p>
+          {% endif %}
+
+          {% set checkboxValue = "Subject knowledge" %}
+          {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
+          {% if checked(fieldName, checkboxValue) %}
+            <p>Your subject knowledge could be improved.</p>
+            <p>{{data[textBoxName]}}</p>
+          {% endif %}
+
+          {% set checkboxValue = "Other" %}
+          {% if checked(fieldName, checkboxValue) %}
+            <p>{{data["application-quality-reasons-other"]}}</p>
+            <p>{{data["application-quality-reasons-other-improve"]}}</p>
+          {% endif %}
+
+        {% endif %}
+
+        {% if data['interview-performance'] == "Yes" %}
+          <h3 class="govuk-heading-s">
+            Your performance at interview could be improved.
+          </h3>
+
+          <p>{{data['interview-performance-advice']}}</p>
+        {% endif %}
+
+        {% if data['why'] %}
+          <p>{{data['why']}}</p>
+        {% endif %}
+
+        {% if data['other-feedback'] == "Yes" %}
+          <p>The training provider has also offered the following additional advice and feedback:</p>
+          <p>{{data['other-feedback-details']}}</p>
+        {% endif %}
+      </div>
+
+      {# {% set rejectSummaryListUrl = "/application/" + application.id + "/reject" %} #}
+      {# {% include "_includes/reject-summary-list.njk" %} #}
+
+      {# {{ govukWarningText({
         text: "We’ll tell the candidate you rejected their application, and share your reasons.",
         iconFallbackText: "Warning"
-      }) }}
+      }) }} #}
 
       <form method="post">
         {{ govukButton({
