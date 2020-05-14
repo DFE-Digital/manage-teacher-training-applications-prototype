@@ -1,0 +1,144 @@
+{% set safeguardingFalseInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-false-information",
+    name: "safeguarding-reasons-false-information",
+    value: data['safeguarding-reasons-false-information']
+  }) }}
+{% endset %}
+{% set safeguardingPlagiarismHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-plagiarism",
+    name: "safeguarding-reasons-plagiarism",
+    value: data['safeguarding-reasons-plagiarism']
+  }) }}
+{% endset %}
+{% set safeguardingReferenceInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-reference-information",
+    name: "safeguarding-reasons-reference-information",
+    value: data['safeguarding-reasons-reference-information']
+  }) }}
+{% endset %}
+{% set safeguardingDisclosedInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-disclosed-information",
+    name: "safeguarding-reasons-disclosed-information",
+    value: data['safeguarding-reasons-disclosed-information']
+  }) }}
+{% endset %}
+{% set safeguardingVettingInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-vetting-information",
+    name: "safeguarding-reasons-vetting-information",
+    value: data['safeguarding-reasons-vetting-information']
+  }) }}
+{% endset %}
+{% set safeguardingOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "safeguarding-reasons-other",
+    name: "safeguarding-reasons-other",
+    value: data['safeguarding-reasons-other']
+  }) }}
+{% endset %}
+{% set safeguardingReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "safeguarding-reasons",
+    fieldset: {
+      legend: {
+        text: "Which safeguarding issues in particular?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Information given on application form false or inaccurate",
+      html: "Information given on application form false or inaccurate",
+      checked: checked('safeguarding-reasons', 'Information given on application form false or inaccurate'),
+      conditional: {
+        html: safeguardingFalseInformationHtml
+      }
+    }, {
+      value: "Evidence of plagiarism in personal statement or elsewhere",
+      text: "Evidence of plagiarism in personal statement or elsewhere",
+      checked: checked('safeguarding-reasons', 'Evidence of plagiarism in personal statement or elsewhere'),
+      conditional: {
+        html: safeguardingPlagiarismHtml
+      }
+    }, {
+      value: "References unsatisfactory",
+      text: "References unsatisfactory",
+      checked: checked('safeguarding-reasons', 'References unsatisfactory'),
+      conditional: {
+        html: safeguardingReferenceInformationHtml
+      }
+    }, {
+      value: "Information disclosed by candidate makes them unsuitable to work with children",
+      text: "Information disclosed by candidate makes them unsuitable to work with children",
+      checked: checked('safeguarding-reasons', 'Information disclosed by candidate makes them unsuitable to work with children'),
+      conditional: {
+        html: safeguardingDisclosedInformationHtml
+      }
+    }, {
+      value: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
+      text: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
+      checked: checked('safeguarding-reasons', 'Information revealed by our vetting process makes the candidate unsuitable to work with children'),
+      conditional: {
+        html: safeguardingVettingInformationHtml
+      }
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked('safeguarding-reasons', 'Other'),
+        conditional: {
+          html: safeguardingOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it related to safeguarding?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "safeguarding",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("safeguarding", "Yes"),
+    conditional: {
+      html: safeguardingReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("safeguarding", "No")
+  }]
+}) }}

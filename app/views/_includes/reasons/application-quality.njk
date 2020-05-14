@@ -1,0 +1,99 @@
+{% set applicationQualityReasonsPersonalStatementHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "What could they do to improve?"
+    },
+    id: "application-quality-reasons-personal-statement",
+    name: "application-quality-reasons-personal-statement",
+    value: data['application-quality-reasons-personal-statement']
+  }) }}
+{% endset %}
+{% set applicationQualityReasonsSubjectKnowledgeHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "What could they do to improve?"
+    },
+    id: "application-quality-reasons-subject-knowledge",
+    name: "application-quality-reasons-subject-knowledge",
+    value: data['application-quality-reasons-subject-knowledge']
+  }) }}
+{% endset %}
+{% set applicationQualityReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "application-quality-reasons-other",
+    name: "application-quality-reasons-other",
+    value: data['application-quality-reasons-other']
+  }) }}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "What could they do to improve?"
+    },
+    id: "application-quality-reasons-other-improve",
+    name: "application-quality-reasons-other-improve",
+    value: data['application-quality-reasons-other-improve']
+  }) }}
+{% endset %}
+{% set applicationQualityReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "application-quality-reasons",
+    fieldset: {
+      legend: {
+        text: "Which parts of the application needed improvement?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Personal statement",
+      html: "Personal statement",
+      checked: checked("application-quality-reasons", "Personal statement"),
+      conditional: {
+        html: applicationQualityReasonsPersonalStatementHtml
+      }
+    }, {
+      value: "Subject knowledge",
+      text: "Subject knowledge",
+      checked: checked("application-quality-reasons", "Subject knowledge"),
+      conditional: {
+        html: applicationQualityReasonsSubjectKnowledgeHtml
+      }
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("application-quality-reasons", "Other"),
+        conditional: {
+          html: applicationQualityReasonsOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to the quality of their application?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "application-quality",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("application-quality", "Yes"),
+    conditional: {
+      html: applicationQualityReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("application-quality", "No")
+  }]
+}) }}

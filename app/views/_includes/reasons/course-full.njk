@@ -1,0 +1,20 @@
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it because this course is full?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "course-full",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("course-full", "Yes")
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("course-full", "No")
+  }]
+})}}

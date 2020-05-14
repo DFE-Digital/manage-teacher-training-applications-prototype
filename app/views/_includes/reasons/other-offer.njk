@@ -1,0 +1,20 @@
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it because you offered them a place on one of their other choices?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "other-offer",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("other-offer", "Yes")
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("other-offer", "No")
+  }]
+})}}
