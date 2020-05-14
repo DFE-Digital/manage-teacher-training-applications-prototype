@@ -296,7 +296,7 @@ module.exports = {
 
       // Safeguarding
       "safeguarding": "Yes",
-      "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
+      "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References didn’t support application, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
       "safeguarding-reasons-false-information": "False information about past",
       "safeguarding-reasons-plagiarism": "Copied a blog post",
       "safeguarding-reasons-reference-information": "John had a patchy history",

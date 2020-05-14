@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Check and confirm rejection" %}
+{% set title = "Check your feedback and reject application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
