@@ -279,9 +279,6 @@ module.exports = {
       "candidate-actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
       "candidate-actions-reasons-other": "Another reasons goes here",
 
-      // Course full
-      "course-full": "Yes",
-
       // Missing qualifications
       "missing-qualifications": "Yes",
       "missing-qualifications-reasons": "No Maths GCSE grade 4 (C) or above, or valid equivalent,No English GCSE grade 4 (C) or above, or valid equivalent, Other",
@@ -294,6 +291,11 @@ module.exports = {
       "application-quality-reasons-subject-knowledge": "Didn't know enough about maths",
       "application-quality-reasons-personal-statement": "Lack of passion",
 
+      // Course full
+      "course-full": "Yes",
+
+      "other-offer": "Yes",
+
       // Safeguarding
       "safeguarding": "Yes",
       "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References didn’t support application, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
@@ -305,16 +307,14 @@ module.exports = {
       "safeguarding-reasons-other": "Something else regarding safeguarding",
 
       // Another issue
-      "another-issue": "Yes",
-      "another-issue-details": "Another detail here",
+      "why": "Because of something else",
 
       // Other feedback
       "other-feedback": "Yes",
       "other-feedback-details": "Other feedback here",
 
       // Future applications
-      "future-applications": "Yes",
-      "future-applications-details": "Be happy to consider again"
+      "future-applications": "Yes"
     },
 
     'personal-details': {
