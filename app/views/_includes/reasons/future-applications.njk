@@ -1,14 +1,3 @@
-{% set futureApplicationsDetailsHtml %}
-  {{ govukCharacterCount({
-    maxlength: 300,
-    label: {
-      text: "Please give details (optional)"
-    },
-    id: "future-applications-details",
-    name: "future-applications-details",
-    value: data['future-applications-details']
-  }) }}
-{% endset %}
 {{ govukRadios({
   fieldset: {
     legend: {
