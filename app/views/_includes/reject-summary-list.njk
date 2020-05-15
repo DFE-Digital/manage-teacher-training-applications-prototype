@@ -1,4 +1,4 @@
-{% set candidateActionReasonsHtml %}
+      {% set candidateActionReasonsHtml %}
         {% set checkboxValue = "Didn’t reply to our interview offer" %}
         {% if checked("candidate-actions-reasons", checkboxValue) %}
           <p>{{checkboxValue}}</p>
@@ -82,7 +82,7 @@
           <p>{{checkboxValue}}: {{data[textBoxName]}}</p>
         {% endif %}
 
-        {% set checkboxValue = "References unsatisfactory" %}
+        {% set checkboxValue = "References didn’t support application" %}
         {% set textBoxName = "safeguarding-reasons-references" %}
         {% if checked(fieldName, checkboxValue) %}
           <p>{{checkboxValue}}: {{data[textBoxName]}}</p>

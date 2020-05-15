@@ -1,0 +1,23 @@
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Would you be interested in future applications from " + name + "?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "future-applications",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("future-applications", "Yes"),
+    conditional: {
+      html: futureApplicationsDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("future-applications", "No")
+  }]
+}) }}

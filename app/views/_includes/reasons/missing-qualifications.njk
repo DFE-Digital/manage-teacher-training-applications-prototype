@@ -1,0 +1,74 @@
+{% set missingQualificationsReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "missing-qualifications-reasons-other",
+    name: "missing-qualifications-reasons-other",
+    value: data["missing-qualifications-reasons-other"]
+  }) }}
+{% endset %}
+{% set missingQualificationsReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    name: "missing-qualifications-reasons",
+    fieldset: {
+      legend: {
+        text: "Which qualification(s) was the candidate missing?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
+      html: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
+      checked: checked("missing-qualifications-reasons", "No Maths GCSE grade 4 (C) or above, or valid equivalent")
+    }, {
+      value: "No English GCSE grade 4 (C) or above, or valid equivalent",
+      text: "No English GCSE grade 4 (C) or above, or valid equivalent",
+      checked: checked("missing-qualifications-reasons", "No English GCSE grade 4 (C) or above, or valid equivalent")
+    }, {
+      value: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
+      text: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
+      checked: checked("missing-qualifications-reasons", "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)")
+    }, {
+      value: "No degree",
+      text: "No degree",
+      checked: checked("missing-qualifications-reasons", "No degree")
+    }, {
+      value: "Degree doesn’t meet course requirements",
+      text: "Degree doesn’t meet course requirements",
+      checked: checked("missing-qualifications-reasons", "Degree doesn’t meet course requirements")
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("missing-qualifications-reasons", "Other"),
+        conditional: {
+          html: missingQualificationsReasonsOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to missing qualifications?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "missing-qualifications",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("missing-qualifications", "Yes"),
+    conditional: {
+      html: missingQualificationsReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("missing-qualifications", "No")
+  }]
+}) }}

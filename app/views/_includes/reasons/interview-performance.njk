@@ -1,0 +1,34 @@
+{% set interviewPerformanceAdviceHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "What could they do to improve?"
+    },
+    id: "interview-performance-advice",
+    name: "interview-performance-advice",
+    value: data["interview-performance-advice"]
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it related to their performance at interview?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "interview-performance",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("interview-performance", "Yes"),
+    conditional: {
+      html: interviewPerformanceAdviceHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("interview-performance", "No")
+  }]
+}) }}

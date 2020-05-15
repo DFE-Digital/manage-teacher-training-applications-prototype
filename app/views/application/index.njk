@@ -66,11 +66,13 @@
       {% endif %}
 
       {% if application.rejectedReasons %}
-        <h2 class="govuk-heading-l">Reasons for rejection</h2>
         {% set rejectedDate = application.rejectedDate %}
         {% set rejectedReasons = application.rejectedReasons %}
         {% set showRejectedDate = true %}
-        {% include "_includes/reject-playback.njk" %}
+        {# {% include "_includes/reject-playback.njk" %} #}
+
+        <p>You sent the following feedback to the candidate.</p>
+        {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 
       {# <h1 class="govuk-heading-l">Application</h1> #}

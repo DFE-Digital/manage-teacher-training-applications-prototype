@@ -1,13 +1,13 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set application = data.applications[applicationId] %}
+{% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Check and confirm rejection" %}
+{% set title = "Reject application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/reject"
+    href: "/application/" + application.id + "/reject/course-choice-and-safeguarding"
   }) }}
 {% endblock %}
 
@@ -15,21 +15,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl">{{title}}</h1>
-
-      {% set rejectSummaryListUrl = "/application/" + application.id + "/reject" %}
-      {% include "_includes/reject-summary-list.njk" %}
-
-      {{ govukWarningText({
-        text: "We’ll tell the candidate you rejected their application, and share your reasons.",
-        iconFallbackText: "Warning"
-      }) }}
+      <h1 class="govuk-heading-xl">Other reasons for rejection</h1>
 
       <form method="post">
+        {% include "_includes/reject-form-fields-3.njk" %}
         {{ govukButton({
-          text: "Reject application"
+          text: "Continue"
         }) }}
       </form>
+
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>

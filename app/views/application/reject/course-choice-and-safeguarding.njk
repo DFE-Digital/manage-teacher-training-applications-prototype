@@ -7,19 +7,18 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/decision"
+    href: "/application/" + application.id + "/reject"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl"></span>
-      <h1 class="govuk-heading-xl">Tell {{name}} why their application wasn’t successful</h1>
-      <p>You can increase this candidate’s chances of future success by giving them feedback.</p>
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">Course choice and safeguarding</h1>
 
       <form method="post">
-        {% include "_includes/reject-form-fields.njk" %}
+        {% include "_includes/reject-form-fields-2.njk" %}
         {{ govukButton({
           text: "Continue"
         }) }}

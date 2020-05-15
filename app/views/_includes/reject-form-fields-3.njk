@@ -1,0 +1,12 @@
+{% if noReasonsGivenYet %}
+  {% include "_includes/reasons/why.njk" %}
+{% endif %}
+
+{% if data.safeguarding == "No" %}
+  {% include "_includes/reasons/other-advice.njk" %}
+
+  {% if data['other-offer'] != "Yes" %}
+    {% include "_includes/reasons/future-applications.njk" %}
+  {% endif %}
+{% endif %}
+

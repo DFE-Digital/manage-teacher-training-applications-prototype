@@ -39,39 +39,12 @@
     }) }}
   {% endif %}
 
-{# <span class="govuk-caption-xl">{{name}}</span> #}
-      {# <span class="govuk-caption-xl">{{application.id}}</span> #}
-      <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
-
-  {# <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
-        {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
-      </h1>
-
-    </div>
-  </div> #}
+  <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
   {% include "_includes/application/sub-nav.njk" %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') and (application.status != 'New')%}
-        {% include "_includes/application/status-panel.njk" %}
-      {% endif %}
-
-      {% if application.rejectedReasons %}
-        {# <h2 class="govuk-heading-l">Reasons for rejection</h2> #}
-        {% set rejectedDate = application.rejectedDate %}
-        {% set rejectedReasons = application.rejectedReasons %}
-        {% set showRejectedDate = true %}
-        {# {% include "_includes/reject-playback.njk" %} #}
-      {% endif %}
-
-
-
+      {% include "_includes/application/status-panel.njk" %}
     </div>
   </div>
 {% endblock %}

@@ -84,7 +84,7 @@
     <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
   {% endif %}
 
-  {% set checkboxValue = "References unsatisfactory" %}
+  {% set checkboxValue = "References didn’t support application" %}
   {% set textBoxName = "safeguarding-reasons-references" %}
   {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
     <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
@@ -143,6 +143,8 @@
 {% endset %}
 
 
+
+{#
 
 {{ govukSummaryList({
   rows: [{
@@ -244,4 +246,4 @@
     }
   }
   ]
-}) }}
+}) }} #}

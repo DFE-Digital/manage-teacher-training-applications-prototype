@@ -1,0 +1,34 @@
+{% set otherFeedbackDetailsHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "other-feedback-details",
+    name: "other-feedback-details",
+    value: data['other-feedback-details']
+  }) }}
+{% endset %}
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Is there any other advice or feedback you’d like to give " + name + "?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  name: "other-feedback",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("other-feedback", "Yes"),
+    conditional: {
+      html: otherFeedbackDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("other-feedback", "No")
+  }]
+}) }}

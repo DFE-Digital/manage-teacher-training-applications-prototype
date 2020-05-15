@@ -4,9 +4,7 @@ exports.getRejectReasons = (data) => {
     "candidate-actions": data["candidate-actions"],
     "candidate-actions-reasons": data["candidate-actions-reasons"],
     "candidate-actions-reasons-other": data["candidate-actions-reasons-other"],
-
-    // Course full
-    "course-full": data["course-full"],
+    "candidate-actions-reasons-other-improve": data["candidate-actions-reasons-other-improve"],
 
     // Missing qualifications
     "missing-qualifications": data["missing-qualifications"],
@@ -17,8 +15,19 @@ exports.getRejectReasons = (data) => {
     "application-quality": data["application-quality"],
     "application-quality-reasons": data["application-quality-reasons"],
     "application-quality-reasons-other": data["application-quality-reasons-other"],
+    "application-quality-reasons-other-improve": data["application-quality-reasons-other-improve"],
     "application-quality-reasons-subject-knowledge": data["application-quality-reasons-subject-knowledge"],
     "application-quality-reasons-personal-statement": data["application-quality-reasons-personal-statement"],
+
+    // interview performance
+    "interview-performance": data["interview-performance"],
+    "interview-performance-advice": data["interview-performance-advice"],
+
+    // Course full
+    "course-full": data["course-full"],
+
+    // Other offer
+    "other-offer": data["other-offer"],
 
     // Safeguarding
     "safeguarding": data["safeguarding"],
@@ -31,16 +40,14 @@ exports.getRejectReasons = (data) => {
     "safeguarding-reasons-other": data["safeguarding-reasons-other"],
 
     // Another issue
-    "another-issue": data["another-issue"],
-    "another-issue-details": data["another-issue-details"],
+    "why": data["why"],
 
     // Other feedback
     "other-feedback": data["other-feedback"],
     "other-feedback-details": data["other-feedback-details"],
 
     // Future applications
-    "future-applications": data["future-applications"],
-    "future-applications-details": data["future-applications-details"]
+    "future-applications": data["future-applications"]
   };
 }
 
