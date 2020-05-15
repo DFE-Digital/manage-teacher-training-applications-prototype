@@ -1,52 +1,4 @@
-{% set candidateActionsReasonsOtherHtml %}
-  {{ govukCharacterCount({
-    maxlength: 300,
-    label: {
-      text: "Please give details"
-    },
-    id: "candidate-actions-reasons-other",
-    name: "candidate-actions-reasons-other",
-    value: data['candidate-actions-reasons-other']
-  }) }}
 
-  {{ govukCharacterCount({
-    maxlength: 300,
-    label: {
-      text: "What could they do to improve?"
-    },
-    id: "candidate-actions-reasons-other-improve",
-    name: "candidate-actions-reasons-other-improve",
-    value: data['candidate-actions-reasons-other-improve']
-  }) }}
-{% endset %}
-{% set candidateActionsReasonsHtml %}
-  {{ govukCheckboxes({
-    classes: "govuk-checkboxes--small",
-    name: "candidate-actions-reasons",
-    fieldset: {
-      legend: {
-        text: "What did the candidate do? ",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: [{
-      value: "Didn’t reply to our interview offer",
-      html: "Didn’t reply to our interview offer",
-      checked: checked("candidate-actions-reasons", "Didn’t reply to our interview offer")
-    }, {
-      value: "Didn’t attend interview",
-      text: "Didn’t attend interview",
-      checked: checked("candidate-actions-reasons", "Didn’t attend interview")
-    }, {
-        value: "Other",
-        text: "Other",
-        checked: checked("candidate-actions-reasons", "Other"),
-        conditional: {
-          html: candidateActionsReasonsOtherHtml
-        }
-      }]
-  }) }}
-{% endset %}
 {{ govukRadios({
   fieldset: {
     legend: {
@@ -55,13 +7,13 @@
       isPageHeading: true
     }
   },
-  name: "candidate-actions",
+  name: "rejectionReasons[candidate-actions]",
   items: [{
     value: "Yes",
     text: "Yes",
     checked: checked("candidate-actions", "Yes"),
     conditional: {
-      html: candidateActionsReasonsHtml
+      html: "Blah"
     }
   },
   {

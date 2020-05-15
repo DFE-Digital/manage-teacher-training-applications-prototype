@@ -10,6 +10,9 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/reject', (req, res) => {
+
+    console.log(req.session.data);
+
     res.redirect(`/application/${req.params.applicationId}/reject/course-choice-and-safeguarding`);
   })
 
