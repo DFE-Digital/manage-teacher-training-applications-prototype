@@ -4,8 +4,9 @@
 
 {% if data.safeguarding == "No" %}
   {% include "_includes/reasons/other-advice.njk" %}
-  {% include "_includes/reasons/future-applications.njk" %}
+
+  {% if data['other-offer'] != "Yes" %}
+    {% include "_includes/reasons/future-applications.njk" %}
+  {% endif %}
 {% endif %}
-
-
 
