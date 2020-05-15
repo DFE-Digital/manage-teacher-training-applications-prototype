@@ -4,15 +4,18 @@
     label: {
       text: "Please give details"
     },
-    id: "missing-qualifications-reasons-other",
-    name: "missing-qualifications-reasons-other",
-    value: data["missing-qualifications-reasons-other"]
+    id: "rejection-missing-qualifications-reasons-other",
+    name: "rejectionReasons[missing-qualifications-reasons-other]",
+    value: data["rejectionReasons"]["missing-qualifications-reasons-other"]
   }) }}
 {% endset %}
+
+
 {% set missingQualificationsReasonsHtml %}
   {{ govukCheckboxes({
     classes: "govuk-checkboxes--small",
-    name: "missing-qualifications-reasons",
+    name: "rejectionReasons[missing-qualifications-reasons]",
+    idPrefix: "rejection-missing-qualification-reasons",
     fieldset: {
       legend: {
         text: "Which qualification(s) was the candidate missing?",
@@ -22,33 +25,35 @@
     items: [{
       value: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
       html: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
-      checked: checked("missing-qualifications-reasons", "No Maths GCSE grade 4 (C) or above, or valid equivalent")
+      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No Maths GCSE grade 4 (C) or above, or valid equivalent")
     }, {
       value: "No English GCSE grade 4 (C) or above, or valid equivalent",
       text: "No English GCSE grade 4 (C) or above, or valid equivalent",
-      checked: checked("missing-qualifications-reasons", "No English GCSE grade 4 (C) or above, or valid equivalent")
+      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No English GCSE grade 4 (C) or above, or valid equivalent")
     }, {
       value: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
       text: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
-      checked: checked("missing-qualifications-reasons", "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)")
+      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)")
     }, {
       value: "No degree",
       text: "No degree",
-      checked: checked("missing-qualifications-reasons", "No degree")
+      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No degree")
     }, {
       value: "Degree doesn’t meet course requirements",
       text: "Degree doesn’t meet course requirements",
-      checked: checked("missing-qualifications-reasons", "Degree doesn’t meet course requirements")
+      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "Degree doesn’t meet course requirements")
     }, {
         value: "Other",
         text: "Other",
-        checked: checked("missing-qualifications-reasons", "Other"),
+        checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "Other"),
         conditional: {
           html: missingQualificationsReasonsOtherHtml
         }
       }]
   }) }}
 {% endset %}
+
+
 {{ govukRadios({
   fieldset: {
     legend: {
@@ -57,6 +62,7 @@
       isPageHeading: true
     }
   },
+  idPrefix: 'rejection-missing-qualifications',
   name: "missing-qualifications",
   items: [{
     value: "Yes",

@@ -1,0 +1,77 @@
+{% set candidateActionsReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "rejection-actions-reasons-other",
+    name: "rejectionReasons[actions-reasons-other]",
+    value: data['rejectionReasons']['actions-reasons-other']
+  }) }}
+
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "What could they do to improve?"
+    },
+    id: "rejection-actions-reasons-other-improve",
+    name: "rejectionReasons[actions-reasons-other-improve]",
+    value: data['rejectionReasons']['actions-reasons-other-improve']
+  }) }}
+{% endset %}
+
+{% set candidateActionsReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "rejection-actions-reasons",
+    name: "rejectionReasons[actions-reasons]",
+    fieldset: {
+      legend: {
+        text: "What did the candidate do? ",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Didn’t reply to our interview offer",
+      html: "Didn’t reply to our interview offer",
+      checked: checked("['rejectionReasons']['actions-reasons']", "Didn’t reply to our interview offer")
+    }, {
+      value: "Didn’t attend interview",
+      text: "Didn’t attend interview",
+      checked: checked("['rejectionReasons']['actions-reasons']", "Didn’t attend interview")
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("['rejectionReasons']['actions-reasons']", "Other"),
+        conditional: {
+          html: candidateActionsReasonsOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+
+
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to candidate behaviour?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  idPrefix: 'rejection-actions',
+  name: "rejectionReasons[actions]",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("['rejectionReasons']['actions']", "Yes"),
+    conditional: {
+      html: candidateActionsReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("['rejectionReasons']['actions']", "No")
+  }]
+}) }}

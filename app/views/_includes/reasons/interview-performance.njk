@@ -4,11 +4,13 @@
     label: {
       text: "What could they do to improve?"
     },
-    id: "interview-performance-advice",
-    name: "interview-performance-advice",
-    value: data["interview-performance-advice"]
+    id: "rejection-interview-performance-advice",
+    name: "rejectionReasons[interview-performance-advice]",
+    value: data['rejectionReasons']["interview-performance-advice"]
   }) }}
 {% endset %}
+
+
 {{ govukRadios({
   fieldset: {
     legend: {
@@ -17,11 +19,12 @@
       isPageHeading: true
     }
   },
-  name: "interview-performance",
+  idPrefix: "rejection-interview-performance",
+  name: "rejectionReasons[interview-performance]",
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("interview-performance", "Yes"),
+    checked: checked("['rejectionReasons']['interview-performance']", "Yes"),
     conditional: {
       html: interviewPerformanceAdviceHtml
     }
@@ -29,6 +32,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("interview-performance", "No")
+    checked: checked("['rejectionReasons']['interview-performance']", "No")
   }]
 }) }}
