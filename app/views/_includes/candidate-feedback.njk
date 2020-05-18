@@ -15,69 +15,6 @@
 
   <p>Here’s why your application was unsuccessful.</p>
 
-  {% if rejectionReasons['other-offer'] == "Yes" %}
-    <h3 class="govuk-heading-s">
-      They offered you something else
-    </h3>
-    <p>This provider has offered you a place on one of your other choices. Check your email or application dashboard for details.</p>
-  {% endif %}
-
-  {% if rejectionReasons['course-full'] == "Yes" %}
-    <h3 class="govuk-heading-s">
-      Course full
-    </h3>
-    <p>We’re sorry to tell you that the course you applied to was full.</p>
-  {% endif %}
-
-  {% if rejectionReasons['safeguarding'] == "Yes" %}
-    <h3 class="govuk-heading-s">
-      Safeguarding issues
-    </h3>
-
-    {% set fieldName = "safeguarding-reasons" %}
-    {% set checkboxValue = "Information given on application form false or inaccurate" %}
-    {% set textBoxName = "safeguarding-reasons-false-information" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>Information given on application form false or inaccurate</p>
-      <p>{{rejectionReasons[textBoxName]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "Evidence of plagiarism in personal statement or elsewhere" %}
-    {% set textBoxName = "safeguarding-reasons-plagiarism" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>The provider found evidence of plagiarism in your personal statement or elsewhere in your application.</p>
-      <p>{{rejectionReasons["safeguarding-reasons-plagiarism"]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "References didn’t support application" %}
-    {% set textBoxName = "safeguarding-reasons-references" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>Your references didn’t support your application.</p>
-      <p>{{rejectionReasons["safeguarding-reasons-reference-information"]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "Information disclosed by candidate makes them unsuitable to work with children" %}
-    {% set textBoxName = "safeguarding-reasons-disclosed-information" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>You disclosed information in your application which makes you unsuitable to work with children.</p>
-      <p>{{rejectionReasons["safeguarding-reasons-disclosed-information"]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "Information revealed by our vetting process makes the candidate unsuitable to work with children" %}
-    {% set textBoxName = "safeguarding-reasons-vetting-information" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>The provider’s vetting process found information which makes you unsuitable to work with children.</p>
-      <p>{{rejectionReasons["safeguarding-reasons-vetting-information"]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "Other" %}
-    {% set textBoxName = "safeguarding-reasons-other" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>{{rejectionReasons["safeguarding-reasons-other"]}}</p>
-    {% endif %}
-
-  {% endif %}
-
   {% if rejectionReasons['actions'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Something you did
@@ -95,11 +32,43 @@
 
     {% set checkboxValue = "Other" %}
     {% if checked("actions-reasons", "Other", rejectionReasons) %}
-      <p>{{rejectionReasons['actions-reasons-other']}}</p>
-      <p>{{rejectionReasons['actions-reasons-other-improve']}}</p>
+      <p>Other: {{rejectionReasons['actions-reasons-other']}}</p>
+      <p>How to improve: {{rejectionReasons['actions-reasons-other-improve']}}</p>
     {% endif %}
 
   {% endif %}
+
+
+
+  {% if rejectionReasons['application-quality'] == "Yes" %}
+    <h3 class="govuk-heading-s">
+      Quality of application
+    </h3>
+
+    {% set fieldName = "application-quality-reasons" %}
+    {% set checkboxValue = "Personal statement" %}
+    {% set textBoxName = "application-quality-reasons-personal-statement" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>Your personal statement could be improved.</p>
+      <p>{{rejectionReasons[textBoxName]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "Subject knowledge" %}
+    {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>Your subject knowledge could be improved.</p>
+      <p>{{rejectionReasons[textBoxName]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "Other" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>Other: {{rejectionReasons["application-quality-reasons-other"]}}</p>
+      <p>How to improve: {{rejectionReasons["application-quality-reasons-other-improve"]}}</p>
+    {% endif %}
+
+  {% endif %}
+
+
 
   {% if rejectionReasons['missing-qualifications'] == "Yes" %}
     <h3 class="govuk-heading-s">
@@ -132,37 +101,11 @@
 
     {% set checkboxValue = "Other" %}
     {% if checked("missing-qualifications-reasons", "Other") %}
-      <p>{{rejectionReasons['missing-qualifications-reasons-other']}}</p>
+      <p>Other:<br>{{rejectionReasons['missing-qualifications-reasons-other']}}</p>
     {% endif %}
   {% endif %}
 
-  {% if rejectionReasons['application-quality'] == "Yes" %}
-    <h3 class="govuk-heading-s">
-      Quality of application
-    </h3>
 
-    {% set fieldName = "application-quality-reasons" %}
-    {% set checkboxValue = "Personal statement" %}
-    {% set textBoxName = "application-quality-reasons-personal-statement" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>Your personal statement could be improved.</p>
-      <p>{{rejectionReasons[textBoxName]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "Subject knowledge" %}
-    {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>Your subject knowledge could be improved.</p>
-      <p>{{rejectionReasons[textBoxName]}}</p>
-    {% endif %}
-
-    {% set checkboxValue = "Other" %}
-    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>{{rejectionReasons["application-quality-reasons-other"]}}</p>
-      <p>{{rejectionReasons["application-quality-reasons-other-improve"]}}</p>
-    {% endif %}
-
-  {% endif %}
 
   {% if rejectionReasons['interview-performance'] == "Yes" %}
     <h3 class="govuk-heading-s">
@@ -171,6 +114,73 @@
 
     <p>{{rejectionReasons['interview-performance-advice']}}</p>
   {% endif %}
+
+  {% if rejectionReasons['course-full'] == "Yes" %}
+    <h3 class="govuk-heading-s">
+      Course full
+    </h3>
+    <p>We’re sorry to tell you that the course you applied to was full.</p>
+  {% endif %}
+
+
+  {% if rejectionReasons['other-offer'] == "Yes" %}
+    <h3 class="govuk-heading-s">
+      They offered you something else
+    </h3>
+    <p>This provider has offered you a place on one of your other choices. Check your email or application dashboard for details.</p>
+  {% endif %}
+
+
+  {% if rejectionReasons['safeguarding'] == "Yes" %}
+    <h3 class="govuk-heading-s">
+      Safeguarding issues
+    </h3>
+
+    {% set fieldName = "safeguarding-reasons" %}
+    {% set checkboxValue = "Information given on application form false or inaccurate" %}
+    {% set textBoxName = "safeguarding-reasons-false-information" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>Information given on application form false or inaccurate</p>
+      <p>Details: {{rejectionReasons[textBoxName]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "Evidence of plagiarism in personal statement or elsewhere" %}
+    {% set textBoxName = "safeguarding-reasons-plagiarism" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>The provider found evidence of plagiarism in your personal statement or elsewhere in your application.</p>
+      <p>Details: {{rejectionReasons["safeguarding-reasons-plagiarism"]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "References didn’t support application" %}
+    {% set textBoxName = "safeguarding-reasons-references" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>Your references didn’t support your application.</p>
+      <p>Details: {{rejectionReasons["safeguarding-reasons-reference-information"]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "Information disclosed by candidate makes them unsuitable to work with children" %}
+    {% set textBoxName = "safeguarding-reasons-disclosed-information" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>You disclosed information in your application which makes you unsuitable to work with children.</p>
+      <p>Details: {{rejectionReasons["safeguarding-reasons-disclosed-information"]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "Information revealed by our vetting process makes the candidate unsuitable to work with children" %}
+    {% set textBoxName = "safeguarding-reasons-vetting-information" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>The provider’s vetting process found information which makes you unsuitable to work with children.</p>
+      <p>Details: {{rejectionReasons["safeguarding-reasons-vetting-information"]}}</p>
+    {% endif %}
+
+    {% set checkboxValue = "Other" %}
+    {% set textBoxName = "safeguarding-reasons-other" %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>Other: {{rejectionReasons["safeguarding-reasons-other"]}}</p>
+    {% endif %}
+
+  {% endif %}
+
+
 
   {% if rejectionReasons['why'] %}
     <h3 class="govuk-heading-s">
