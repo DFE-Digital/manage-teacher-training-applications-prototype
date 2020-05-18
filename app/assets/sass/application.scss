@@ -297,3 +297,30 @@ h1 .govuk-tag {
     margin-bottom: 0;
   }
 }
+
+.app-feedback__options {
+  margin-bottom: 40px;
+}
+
+.app-feedback__option {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+
+  border-bottom: 1px solid govuk-colour("mid-grey");
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.app-feedback__option--last {
+  margin-bottom: 40px;
+}
+
+.app-list--spaced > li {
+  margin-bottom: govuk-spacing(3) !important;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
