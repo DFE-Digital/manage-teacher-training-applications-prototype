@@ -63,11 +63,11 @@
     }
   },
   idPrefix: 'rejection-missing-qualifications',
-  name: "missing-qualifications",
+  name: "rejectionReasons[missing-qualifications]",
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("missing-qualifications", "Yes"),
+    checked: checked("['rejectionReasons']['missing-qualifications']", "Yes"),
     conditional: {
       html: missingQualificationsReasonsHtml
     }
@@ -75,6 +75,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("missing-qualifications", "No")
+    checked: checked("['rejectionReasons']['missing-qualifications']", "No")
   }]
 }) }}

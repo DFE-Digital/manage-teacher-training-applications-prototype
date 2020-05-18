@@ -1,10 +1,10 @@
 exports.getRejectReasons = (data) => {
   return {
     // Candidate actions
-    "candidate-actions": data["candidate-actions"],
-    "candidate-actions-reasons": data["candidate-actions-reasons"],
-    "candidate-actions-reasons-other": data["candidate-actions-reasons-other"],
-    "candidate-actions-reasons-other-improve": data["candidate-actions-reasons-other-improve"],
+    "actions": data["actions"],
+    "actions-reasons": data["actions-reasons"],
+    "actions-reasons-other": data["actions-reasons-other"],
+    "actions-reasons-other-improve": data["actions-reasons-other-improve"],
 
     // Missing qualifications
     "missing-qualifications": data["missing-qualifications"],

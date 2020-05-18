@@ -4,11 +4,13 @@
     label: {
       text: "Please give details"
     },
-    id: "other-feedback-details",
-    name: "other-feedback-details",
-    value: data['other-feedback-details']
+    id: "rejection-other-feedback-details",
+    name: "rejectionReasons[other-feedback-details]",
+    value: data['rejectionReasons']['other-feedback-details']
   }) }}
 {% endset %}
+
+
 {{ govukRadios({
   fieldset: {
     legend: {
@@ -17,11 +19,12 @@
       isPageHeading: true
     }
   },
-  name: "other-feedback",
+  idPrefix: "rejection-other-feedback",
+  name: "rejectionReasons[other-feedback]",
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("other-feedback", "Yes"),
+    checked: checked("['rejectionReasons']['other-feedback']", "Yes"),
     conditional: {
       html: otherFeedbackDetailsHtml
     }
@@ -29,6 +32,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("other-feedback", "No")
+    checked: checked("['rejectionReasons']['other-feedback']", "No")
   }]
 }) }}

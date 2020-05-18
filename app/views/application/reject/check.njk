@@ -19,11 +19,8 @@
 
       <p>Your feedback will be given to the candidate in the format below.</p>
 
-      {% set rejectedReasons = data %}
+      {% set rejectionReasons = data.rejectionReasons %}
       {% include "_includes/candidate-feedback.njk" %}
-
-      {# {% set rejectSummaryListUrl = "/application/" + application.id + "/reject" %} #}
-      {# {% include "_includes/reject-summary-list.njk" %} #}
 
       <form method="post">
         {{ govukButton({

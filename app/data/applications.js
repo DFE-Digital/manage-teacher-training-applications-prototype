@@ -275,8 +275,8 @@ module.exports = {
     rejectedReasons: {
 
       // Candidate actions
-      "candidate-actions": "Yes",
-      "candidate-actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+      "actions": "Yes",
+      "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
 
       // Future applications
       "future-applications": "Yes"
@@ -458,9 +458,9 @@ module.exports = {
       withdrawnReasons: {
 
         // Candidate actions
-        "candidate-actions": "Yes",
-        "candidate-actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
-        "candidate-actions-reasons-other": "Another reasons goes here",
+        "actions": "Yes",
+        "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+        "actions-reasons-other": "Another reasons goes here",
 
         // Course full
         "course-full": "Yes",

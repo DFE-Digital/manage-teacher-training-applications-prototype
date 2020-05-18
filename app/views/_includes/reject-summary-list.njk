@@ -1,17 +1,17 @@
       {% set candidateActionReasonsHtml %}
         {% set checkboxValue = "Didn’t reply to our interview offer" %}
-        {% if checked("candidate-actions-reasons", checkboxValue) %}
+        {% if checked("actions-reasons", checkboxValue) %}
           <p>{{checkboxValue}}</p>
         {% endif %}
 
         {% set checkboxValue = "Didn’t attend interview" %}
-        {% if checked("candidate-actions-reasons", checkboxValue) %}
+        {% if checked("actions-reasons", checkboxValue) %}
           <p>{{checkboxValue}}</p>
         {% endif %}
 
         {% set checkboxValue = "Other" %}
-        {% if checked("candidate-actions-reasons", "Other") %}
-          <p>{{checkboxValue}}: {{data['candidate-actions-reasons-other']}}</p>
+        {% if checked("actions-reasons", "Other") %}
+          <p>{{checkboxValue}}: {{data['actions-reasons-other']}}</p>
         {% endif %}
       {% endset %}
 
@@ -43,7 +43,7 @@
 
         {% set checkboxValue = "Other" %}
         {% if checked("missing-qualifications-reasons", "Other") %}
-          <p>{{checkboxValue}}: {{data['candidate-actions-reasons-other']}}</p>
+          <p>{{checkboxValue}}: {{data['actions-reasons-other']}}</p>
         {% endif %}
       {% endset %}
 
@@ -146,7 +146,7 @@
             text: "Was it due to candidate behaviour?"
           },
           value: {
-            html: data['candidate-actions']
+            html: data['actions']
           },
           actions: {
             items: [
@@ -173,7 +173,7 @@
               }
             ]
           }
-        } if data['candidate-actions'] == "Yes",
+        } if data['actions'] == "Yes",
         {
           key: {
             text: "Was it because this course is full?"

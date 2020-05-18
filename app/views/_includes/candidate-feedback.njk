@@ -1,10 +1,6 @@
 <div class="app-feedback">
-  {# <h2 class="govuk-heading-m">
-    Training provider feedback
-  </h2> #}
-
-  {% if data['other-offer'] != "Yes" %}
-    {% if data['future-applications'] == "Yes" %}
+  {% if rejectionReasons['other-offer'] != "Yes" %}
+    {% if rejectionReasons['future-applications'] == "Yes" %}
       <h2 class="govuk-heading-m">The provider would be interested in future applications from you</p>
     {% else %}
       <h2 class="govuk-heading-m">
@@ -17,25 +13,23 @@
     </h2>
   {% endif %}
 
-
-
   <p>Here’s why your application was unsuccessful.</p>
 
-  {% if data['other-offer'] == "Yes" %}
+  {% if rejectionReasons['other-offer'] == "Yes" %}
     <h3 class="govuk-heading-s">
       They offered you something else
     </h3>
     <p>This provider has offered you a place on one of your other choices. Check your email or application dashboard for details.</p>
   {% endif %}
 
-  {% if data['course-full'] == "Yes" %}
+  {% if rejectionReasons['course-full'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Course full
     </h3>
     <p>We’re sorry to tell you that the course you applied to was full.</p>
   {% endif %}
 
-  {% if data['safeguarding'] == "Yes" %}
+  {% if rejectionReasons['safeguarding'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Safeguarding issues
     </h3>
@@ -43,106 +37,106 @@
     {% set fieldName = "safeguarding-reasons" %}
     {% set checkboxValue = "Information given on application form false or inaccurate" %}
     {% set textBoxName = "safeguarding-reasons-false-information" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>Information given on application form false or inaccurate</p>
-      <p>{{data[textBoxName]}}</p>
+      <p>{{rejectionReasons[textBoxName]}}</p>
     {% endif %}
 
     {% set checkboxValue = "Evidence of plagiarism in personal statement or elsewhere" %}
     {% set textBoxName = "safeguarding-reasons-plagiarism" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>The provider found evidence of plagiarism in your personal statement or elsewhere in your application.</p>
-      <p>{{data["safeguarding-reasons-plagiarism"]}}</p>
+      <p>{{rejectionReasons["safeguarding-reasons-plagiarism"]}}</p>
     {% endif %}
 
     {% set checkboxValue = "References didn’t support application" %}
     {% set textBoxName = "safeguarding-reasons-references" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>Your references didn’t support your application.</p>
-      <p>{{data["safeguarding-reasons-reference-information"]}}</p>
+      <p>{{rejectionReasons["safeguarding-reasons-reference-information"]}}</p>
     {% endif %}
 
     {% set checkboxValue = "Information disclosed by candidate makes them unsuitable to work with children" %}
     {% set textBoxName = "safeguarding-reasons-disclosed-information" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>You disclosed information in your application which makes you unsuitable to work with children.</p>
-      <p>{{data["safeguarding-reasons-disclosed-information"]}}</p>
+      <p>{{rejectionReasons["safeguarding-reasons-disclosed-information"]}}</p>
     {% endif %}
 
     {% set checkboxValue = "Information revealed by our vetting process makes the candidate unsuitable to work with children" %}
     {% set textBoxName = "safeguarding-reasons-vetting-information" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>The provider’s vetting process found information which makes you unsuitable to work with children.</p>
-      <p>{{data["safeguarding-reasons-vetting-information"]}}</p>
+      <p>{{rejectionReasons["safeguarding-reasons-vetting-information"]}}</p>
     {% endif %}
 
     {% set checkboxValue = "Other" %}
     {% set textBoxName = "safeguarding-reasons-other" %}
-    {% if checked(fieldName, checkboxValue) %}
-      <p>{{data["safeguarding-reasons-other"]}}</p>
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>{{rejectionReasons["safeguarding-reasons-other"]}}</p>
     {% endif %}
 
   {% endif %}
 
-  {% if data['candidate-actions'] == "Yes" %}
+  {% if rejectionReasons['actions'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Something you did
     </h3>
 
     {% set checkboxValue = "Didn’t reply to our interview offer" %}
-    {% if checked("candidate-actions-reasons", checkboxValue) %}
+    {% if checked("actions-reasons", checkboxValue, rejectionReasons) %}
       <p>{{checkboxValue}}</p>
     {% endif %}
 
     {% set checkboxValue = "Didn’t attend interview" %}
-    {% if checked("candidate-actions-reasons", checkboxValue) %}
+    {% if checked("actions-reasons", checkboxValue, rejectionReasons) %}
       <p>{{checkboxValue}}</p>
     {% endif %}
 
     {% set checkboxValue = "Other" %}
-    {% if checked("candidate-actions-reasons", "Other") %}
-      <p>{{data['candidate-actions-reasons-other']}}</p>
-      <p>{{data['candidate-actions-reasons-other-improve']}}</p>
+    {% if checked("actions-reasons", "Other", rejectionReasons) %}
+      <p>{{rejectionReasons['actions-reasons-other']}}</p>
+      <p>{{rejectionReasons['actions-reasons-other-improve']}}</p>
     {% endif %}
 
   {% endif %}
 
-  {% if data['missing-qualifications'] == "Yes" %}
+  {% if rejectionReasons['missing-qualifications'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Qualifications needed to enrol on this course are missing
     </h3>
     {% set checkboxValue = "No Maths GCSE grade 4 (C) or above, or valid equivalent" %}
-    {% if checked("missing-qualifications-reasons", checkboxValue) %}
+    {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
       <p>No Maths GCSE grade 4 (C) or above, or valid equivalent.</p>
     {% endif %}
 
     {% set checkboxValue = "No English GCSE grade 4 (C) or above, or valid equivalent" %}
-    {% if checked("missing-qualifications-reasons", checkboxValue) %}
+    {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
       <p>No English GCSE grade 4 (C) or above, or valid equivalent.</p>
     {% endif %}
 
     {% set checkboxValue = "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)" %}
-    {% if checked("missing-qualifications-reasons", checkboxValue) %}
+    {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
       <p>No Science GCSE grade 4 (C) or above, or valid equivalent.</p>
     {% endif %}
 
     {% set checkboxValue = "No degree" %}
-    {% if checked("missing-qualifications-reasons", checkboxValue) %}
+    {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
       <p>No degree.</p>
     {% endif %}
 
     {% set checkboxValue = "Degree doesn’t meet course requirements" %}
-    {% if checked("missing-qualifications-reasons", checkboxValue) %}
+    {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
       <p>Your degree does not meet the course requirements.</p>
     {% endif %}
 
     {% set checkboxValue = "Other" %}
     {% if checked("missing-qualifications-reasons", "Other") %}
-      <p>{{data['missing-qualifications-reasons-other']}}</p>
+      <p>{{rejectionReasons['missing-qualifications-reasons-other']}}</p>
     {% endif %}
   {% endif %}
 
-  {% if data['application-quality'] == "Yes" %}
+  {% if rejectionReasons['application-quality'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Quality of application
     </h3>
@@ -150,52 +144,52 @@
     {% set fieldName = "application-quality-reasons" %}
     {% set checkboxValue = "Personal statement" %}
     {% set textBoxName = "application-quality-reasons-personal-statement" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>Your personal statement could be improved.</p>
-      <p>{{data[textBoxName]}}</p>
+      <p>{{rejectionReasons[textBoxName]}}</p>
     {% endif %}
 
     {% set checkboxValue = "Subject knowledge" %}
     {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
-    {% if checked(fieldName, checkboxValue) %}
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
       <p>Your subject knowledge could be improved.</p>
-      <p>{{data[textBoxName]}}</p>
+      <p>{{rejectionReasons[textBoxName]}}</p>
     {% endif %}
 
     {% set checkboxValue = "Other" %}
-    {% if checked(fieldName, checkboxValue) %}
-      <p>{{data["application-quality-reasons-other"]}}</p>
-      <p>{{data["application-quality-reasons-other-improve"]}}</p>
+    {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      <p>{{rejectionReasons["application-quality-reasons-other"]}}</p>
+      <p>{{rejectionReasons["application-quality-reasons-other-improve"]}}</p>
     {% endif %}
 
   {% endif %}
 
-  {% if data['interview-performance'] == "Yes" %}
+  {% if rejectionReasons['interview-performance'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Performance at interview
     </h3>
 
-    <p>{{data['interview-performance-advice']}}</p>
+    <p>{{rejectionReasons['interview-performance-advice']}}</p>
   {% endif %}
 
-  {% if data['why'] %}
+  {% if rejectionReasons['why'] %}
     <h3 class="govuk-heading-s">
       Reasons why your application was unsuccessful
     </h3>
-    <p>{{data['why']}}</p>
+    <p>{{rejectionReasons['why']}}</p>
   {% endif %}
 
-  {% if data['other-feedback'] == "Yes" %}
+  {% if rejectionReasons['other-feedback'] == "Yes" %}
     <h3 class="govuk-heading-s">
       Additional advice
     </h3>
-    <p>{{data['other-feedback-details']}}</p>
+    <p>{{rejectionReasons['other-feedback-details']}}</p>
   {% endif %}
 
-  {% if data['other-offer'] != "Yes" %}
-    {% if data['future-applications'] != "Yes" %}
+  {% if rejectionReasons['other-offer'] != "Yes" %}
+    {% if rejectionReasons['future-applications'] != "Yes" %}
       <h3 class="govuk-heading-s">Future applications</h3>
-      <p>The provider would not be interested in future applications from you</p>
+      <p>The provider would not be interested in future applications from you.</p>
     {% endif %}
 
   {% endif %}
