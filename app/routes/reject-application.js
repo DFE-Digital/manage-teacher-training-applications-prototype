@@ -4,7 +4,6 @@ const utils = require( '../data/application-utils')
 module.exports = router => {
 
   router.get('/application/:applicationId/reject', (req, res) => {
-    console.log('render step 1');
     res.render('application/reject/index', {
       applicationId: req.params.applicationId
     })

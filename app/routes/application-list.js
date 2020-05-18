@@ -154,7 +154,6 @@ module.exports = router => {
   })
 
   router.get('/remove-accreditingbody-filter/:accreditingbody', (req, res) => {
-    // console.log(req.session.data.accreditingbody);
     req.session.data.accreditingbody = req.session.data.accreditingbody.filter(item => item !== req.params.accreditingbody);
     res.redirect('/');
   })
