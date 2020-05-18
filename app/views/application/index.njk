@@ -67,11 +67,10 @@
 
       {% if application.rejectedReasons %}
         {% set rejectedDate = application.rejectedDate %}
-        {% set rejectedReasons = application.rejectedReasons %}
+        {% set rejectionReasons = application.rejectedReasons %}
         {% set showRejectedDate = true %}
-        {# {% include "_includes/reject-playback.njk" %} #}
 
-        <p>You sent the following feedback to the candidate.</p>
+        <p>You sent the following feedback to the candidate on {{rejectedDate | date("dd LLL yyyy")}}.</p>
         {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 

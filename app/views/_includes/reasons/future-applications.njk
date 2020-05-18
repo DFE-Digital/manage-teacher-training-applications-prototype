@@ -6,18 +6,16 @@
       isPageHeading: true
     }
   },
-  name: "future-applications",
+  idPrefix: "rejection-future-applications",
+  name: "rejectionReasons[future-applications]",
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("future-applications", "Yes"),
-    conditional: {
-      html: futureApplicationsDetailsHtml
-    }
+    checked: checked("['rejectionReasons']['future-applications']", "Yes")
   },
   {
     value: "No",
     text: "No",
-    checked: checked("future-applications", "No")
+    checked: checked("['rejectionReasons']['future-applications']", "No")
   }]
 }) }}

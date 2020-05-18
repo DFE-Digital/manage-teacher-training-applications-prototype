@@ -1,5 +1,5 @@
 {% set candidateActionReasonsHtml %}
-  {% set fieldName = "candidate-actions-reasons" %}
+  {% set fieldName = "actions-reasons" %}
   {% set checkboxValue = "Didn’t reply to our interview offer" %}
   {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
     <p>{{checkboxValue}}</p>
@@ -12,7 +12,7 @@
 
   {% set checkboxValue = "Other" %}
   {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
-    <p>{{checkboxValue}}: {{rejectedReasons['candidate-actions-reasons-other']}}</p>
+    <p>{{checkboxValue}}: {{rejectedReasons['actions-reasons-other']}}</p>
   {% endif %}
 {% endset %}
 
@@ -45,7 +45,7 @@
 
   {% set checkboxValue = "Other" %}
   {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
-    <p>{{checkboxValue}}: {{rejectedReasons['candidate-actions-reasons-other']}}</p>
+    <p>{{checkboxValue}}: {{rejectedReasons['actions-reasons-other']}}</p>
   {% endif %}
 {% endset %}
 
@@ -159,7 +159,7 @@
       text: "Was it due to candidate behaviour?"
     },
     value: {
-      html: rejectedReasons['candidate-actions']
+      html: rejectedReasons['actions']
     }
   }, {
     key: {
@@ -168,7 +168,7 @@
     value: {
       html: candidateActionReasonsHtml
     }
-  } if rejectedReasons['candidate-actions'] == "Yes",
+  } if rejectedReasons['actions'] == "Yes",
   {
     key: {
       text: "Was it because this course is full?"
