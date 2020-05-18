@@ -1,7 +1,7 @@
 <div class="app-feedback">
   {% if rejectionReasons['other-offer'] != "Yes" %}
     {% if rejectionReasons['future-applications'] == "Yes" %}
-      <h2 class="govuk-heading-m">The provider would be interested in future applications from you</p>
+      <h2 class="govuk-heading-m">This provider would be interested in future applications from you</p>
     {% else %}
       <h2 class="govuk-heading-m">
         Training provider feedback
@@ -13,7 +13,7 @@
     </h2>
   {% endif %}
 
-  <p>Here’s why your application was unsuccessful.</p>
+  <p>Here’s why your application was unsuccessful on this occasion.</p>
 
   {% if rejectionReasons['other-offer'] == "Yes" %}
     <h3 class="govuk-heading-s">
@@ -38,7 +38,7 @@
     {% set checkboxValue = "Information given on application form false or inaccurate" %}
     {% set textBoxName = "safeguarding-reasons-false-information" %}
     {% if checked(fieldName, checkboxValue, rejectionReasons) %}
-      <p>Information given on application form false or inaccurate</p>
+      <p>The information you gave on the application form was false or inaccurate.</p>
       <p>{{rejectionReasons[textBoxName]}}</p>
     {% endif %}
 
@@ -80,7 +80,7 @@
 
   {% if rejectionReasons['actions'] == "Yes" %}
     <h3 class="govuk-heading-s">
-      Something you did
+      Candidate behaviour
     </h3>
 
     {% set checkboxValue = "Didn’t reply to our interview offer" %}
