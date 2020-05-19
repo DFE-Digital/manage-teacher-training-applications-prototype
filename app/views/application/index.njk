@@ -119,15 +119,60 @@
         }]
       }) }}
 
+      {% set guidanceHtml %}
+        <h2 class="govuk-heading-m">Asking for support if you have a disability or other needs</h2>
+        <p class="govuk-body">You might benefit from extra support if you’re disabled, have a mental health condition or educational needs.</p>
+<p class="govuk-body">If you choose to tell us you need support, we’ll let your training provider know. They can then make adjustments so you can attend an interview or do the training.</p>
+<p class="govuk-body">Examples of support could be:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>organising equipment like a hearing loop or an adapted keyboard</li>
+  <li>putting you in touch with support staff if you have a mental health condition</li>
+  <li>making sure classrooms are wheelchair accessible</li>
+</ul>
+<p class="govuk-body">If the help you need is not covered by your provider making adjustments, you might also be able to get support from <a href="https://www.gov.uk/access-to-work">Access to Work</a>. This could include a grant to help cover the costs of practical support in the workplace.</p>
 
+<h2 class="govuk-heading-m">It’s against the law to discriminate</h2>
+<p class="govuk-body">If you’re disabled, <a href="/getintoteaching/train-to-teach-with-a-disability">it’s against the law to discriminate against you</a>. Training providers must not:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>ask disability or health questions if they’re not relevant to your ability to become a teacher</li>
+  <li>reject your application because you’re disabled</li>
+</ul>
+
+      {% endset %}
 
 
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Disability, access and other needs</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
 
+
+
+            {% set guidanceHtml %}
+              <h2 class="govuk-heading-m">Declaring any safeguarding issues</h2>
+              <p class="govuk-body">Teacher training providers need to check that it’s safe for you to work with children and young people.</p>
+
+<p class="govuk-body">As well as confirming your identity and your right to work in the UK, providers will check:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>your criminal record in the UK (they'll do an enhanced <a href="https://www.gov.uk/government/organisations/disclosure-and-barring-service/about#dbs-checks">DBS check)</a> and abroad where relevant</li>
+  <li>whether you’ve been banned from teaching or working with children</li>
+  <li>your professional behaviour, such as whether you’ve been removed from teacher training and what your referees say about you</li>
+</ul>
+
+<p class="govuk-body">Tell your provider about any potential safeguarding issues, such as offences, cautions, reprimands and final warnings. They can give advice about whether this will affect your application.</p>
+
+<p class="govuk-body">It won’t necessarily stop you becoming a teacher.</p>
+
+
+            {% endset %}
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Criminal convictions and professional misconduct</h2>
-      {# <p class="govuk-body">(Question to candidate: “Your knowledge about the subject you want to teach”)</p> #}
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
 
       {% if application.safeguarding == 'Request' %}
         <p class="govuk-body">The candidate has shared information related to safeguarding. Please contact them directly for more details.</p>
@@ -135,33 +180,146 @@
         <p class="govuk-body">{{application.safeguarding | nl2br or "No information shared"}}</p>
       {% endif %}
 
+      {% set guidanceHtml %}
+      <h2 class="govuk-heading-m">Interview needs</h2>
+      <p class="govuk-body">Interviews usually take place over the course of a day. You'll need to attend in person.</p>
+
+<p class="govuk-body">Training providers might not have much flexibility when setting a date and time for interview.</p>
+
+<p class="govuk-body">If there's a reason why you need some flexibility you can tell us about it here.</p>
+
+<p class="govuk-body">For example:</p>
+<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+  <li>you have commitments such as employment or caring responsibilities</li>
+  <li>you'll be travelling a long way to get to the interview</li>
+  <li>you'll need some adjustments because you're disabled</li>
+</ul>
+      {% endset %}
+
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Interview</h2>
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
       <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "No information shared"}}</p>
 
+      {% set guidanceHtml %}
+      <h2 class="govuk-heading-m">Academic and other relevant qualifications</h2>
+      <p class="govuk-body">Your undergraduate degree confirms your eligibility to teach. Enter the details of your degree as they appear on your certificate, translating them into English if necessary.</p>
+    <p class="govuk-body">You should also include any postgraduate degrees.</p>
+      <p class="govuk-body">Enter your other qualifications as completely as you can, including all your GCSEs and A levels (or equivalents), and any other qualifications where you showed skills that might help you as a teacher.</p>
+        {% endset %}
+
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Qualifications</h2>
+
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
+
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
       {% include "_includes/application/other-qualifications.njk" %}
 
+
+      {% set guidanceHtml %}
+      <h2 class="govuk-heading-m">Work history</h2>
+      <p class="govuk-body">Training providers need a complete picture of the last 5 years of of your work history, including time out of the workplace, to safeguard children.</p>
+  <p class="govuk-body">Breaks in work history won’t impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
+        {% endset %}
+
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Work history</h2>
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
       {% include "_includes/application/work-history.njk" %}
 
+      {% set guidanceHtml %}
+      <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
+      <p class="govuk-body">Tell us about any unpaid experience you have working with children or in a school. For example:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>one-off observations in a school</li>
+    <li>volunteering at a children's club</li>
+    <li>being a governor</li>
+  </ul>
+  <p class="govuk-body">You can also tell us about any other volunteering you’ve done, and how this supports your application to become a teacher.</p>
+
+        {% endset %}
+
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Unpaid experience and volunteering</h2>
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
       {% include "_includes/application/school-experience.njk" %}
 
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Language skills</h2>
       {% include "_includes/application/language-skills.njk" %}
 
+
+      {% set guidanceHtml %}
+      <h2 class="govuk-heading-m">Why do you want to be a teacher?</h2>
+      <p class="govuk-body">Use this section to showcase your motivation, commitment and teaching potential, backing up your answer with specific examples.</p>
+    <p class="govuk-body">Give providers an insight into your personality by writing honestly and thoughtfully. Avoid cliché and write in clear, correct, concise English.</p>
+    <p class="govuk-body">You can ask your training provider for examples written by successful applicants, or register with <a href="https://getintoteaching.education.gov.uk/">Get into Teaching</a> for help from a teacher training adviser.</p>
+    <p class="govuk-body govuk-!-font-weight-bold">Suggested topics to cover include:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>why you want to be a teacher</li>
+      <li>your passion for your subject and the age group you’ve chosen to teach</li>
+      <li>the welfare and education of children and/or young people</li>
+      <li>the demands and rewards of the profession</li>
+      <li>personal qualities that will make you a good teacher</li>
+      <li>your contribution to the life of the school outside the classroom  – for example, running extra-curricular activities and clubs</li>
+      <li>if you have school experience or have worked as a volunteer with children or young people, give details of what this has taught you</li>
+    </ul>
+  <h2 class="govuk-heading-m">What do you know about the subject you want to teach?</h2>
+    <p class="govuk-body">Give us detailed evidence for the knowledge and interest you bring to your course choice.</p>
+        <p class="govuk-body">Evidence can include:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the subject of your undergraduate degree</li>
+          <li>modules you studied as part of your degree</li>
+          <li>postgraduate degrees (for example, a Masters or PhD)</li>
+          <li>your A level subjects</li>
+          <li>expertise you’ve gained at work</li>
+        </ul>
+        {% endset %}
       <h2 class="govuk-heading-l govuk-!-margin-top-8">Personal statement</h2>
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
+
+
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Vocation</h3>
-      <p class="govuk-hint">Question to candidate: “Why do you want to be a teacher?”</p>
+
       <p>{{application["personal-statement"].vocation | safe | nl2br or "—"}}</p>
 
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
-      <p class="govuk-hint">Question to candidate: “Your knowledge about the subject you want to teach”</p>
+
       <p>{{application["personal-statement"]["subject-knowledge"] | safe | nl2br or "—" }}</p>
 
+  {% set guidanceHtml %}
+<h2 class="govuk-heading-m">Choosing referees</h2>
+  <p class="govuk-body">Referees should not be family members, partners or friends.</p>
+  <p class="govuk-body">If you’re struggling to find a suitable referee, contact your provider to discuss this.</p>
+  <p class="govuk-body">Types of referee you can add:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>Academic (for example, your university tutor or supervisor – choose an academic referee if you graduated in the last 5 years or you have a predicted grade for your degree)</li>
+    <li>Professional (for example, your current line manager or a previous employer – if you’re self-employed, you could use a client or supplier)</li>
+    <li>School-based (for example, a teacher at a school where you’ve volunteered or gained experience)</li>
+    <li>Character (choose a responsible person who can confirm you’re suitable for teaching – for example, a sports coach – and remember that training providers will only accept character references if there’s also an academic or professional reference)</li>
+
+  </ul>
+
+
+    {% endset %}
+
       <h2 class="govuk-heading-l govuk-!-margin-botto-2">References</h2>
+      {{ govukDetails({
+        summaryText: "View our guidance to the candidate for this section",
+        html: guidanceHtml
+      }) }}
       <h3 class="govuk-heading-m govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
       {% include "_includes/application/reference.njk" %}
