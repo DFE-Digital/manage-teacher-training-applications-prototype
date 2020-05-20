@@ -10,29 +10,16 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/reject', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/reject/course-choice-and-safeguarding`);
-  })
-
-  router.get('/application/:applicationId/reject/course-choice-and-safeguarding', (req, res) => {
-    res.render('application/reject/course-choice-and-safeguarding', {
-      applicationId: req.params.applicationId
-    })
-  })
-
-  router.post('/application/:applicationId/reject/course-choice-and-safeguarding', (req, res) => {
-
     // skip last page if safeguarding is a reason
     if(req.session.data.rejectionReasons.safeguarding == "Yes") {
       res.redirect(`/application/${req.params.applicationId}/reject/check`);
     } else {
       res.redirect(`/application/${req.params.applicationId}/reject/other-reasons-for-rejection`);
     }
-
   })
 
   router.get('/application/:applicationId/reject/other-reasons-for-rejection', (req, res) => {
     var data = req.session.data.rejectionReasons;
-
 
     var noReasonsGivenYet = data['actions'] !== "Yes" && data['missing-qualifications'] !== "Yes" && data['appplication-quality'] !== "Yes" && data['interview-performance'] !== "Yes" && data['course-full'] !== "Yes" && data['other-offer'] !== "Yes" && data['safeguarding'] !== "Yes";
 

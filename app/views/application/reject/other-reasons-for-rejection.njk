@@ -3,11 +3,11 @@
 {% set primaryNavId = 'applications' %}
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Reject application" %}
+{% set title = "Other reasons for rejection" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/reject/course-choice-and-safeguarding"
+    href: "/application/" + application.id + "/reject/"
   }) }}
 {% endblock %}
 
@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl">Other reasons for rejection</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
       <p>When giving details or advice, write as if you’re talking to the candidate – they’ll see this feedback.</p>
 
       <form method="post">

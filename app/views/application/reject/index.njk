@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Reject application" %}
+{% set title = "Reasons for rejection" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -15,11 +15,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl">Candidate behaviour and quality of application</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
       <p>When giving details or advice, write as if you’re talking to the candidate – they’ll see this feedback.</p>
 
       <form method="post">
         {% include "_includes/reject-form-fields-1.njk" %}
+        {% include "_includes/reject-form-fields-2.njk" %}
         {{ govukButton({
           text: "Continue"
         }) }}
