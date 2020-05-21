@@ -29,7 +29,7 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  {% if application.status == 'New' %}
+  {% if application.status == 'Submitted' %}
     {% set bannerHtml %}
       <h2 class="govuk-heading-m govuk-!-margin-bottom-0">You have 22 days to send a response. <a class="govuk-link--no-visited-state" href="/application/{{application.id}}/decision">Respond to application</a>.</h2>
     {% endset %}
@@ -60,10 +60,6 @@
     <div class="govuk-grid-column-two-thirds">
 
       <p class="govuk-body"><a href="#" download>Download application (PDF)</a></p>
-
-      {% if (application.status != 'Rejected')  and (application.status != 'Application withdrawn') and (application.status != 'New')%}
-        {# {% include "_includes/application/status-panel.njk" %} #}
-      {% endif %}
 
       {% if application.rejectedReasons %}
         {% set rejectedDate = application.rejectedDate %}
