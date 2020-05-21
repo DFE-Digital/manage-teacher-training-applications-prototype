@@ -153,7 +153,6 @@ exports.getTimeline = (application) => {
   }
 
   if(application.rejectedDate) {
-    console.log(application.rejectedDate);
     timeline.push({
       label: {
         text:  "Application rejected"
@@ -230,7 +229,6 @@ exports.getTimeline = (application) => {
   }
 
   if(application.offer && application.offer.conditionsNotMetDate) {
-    console.log(application.offer.conditionsNotMetDate);
     timeline.push({
       label: {
         text:  "Conditions not met"
