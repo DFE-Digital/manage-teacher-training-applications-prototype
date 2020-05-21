@@ -15,7 +15,7 @@ module.exports = {
         subject: "Talk to candidate on 15 June",
         body: "Make sure to prepare this and that ready for a chat",
         sender: "Laura Tennant",
-        date: '2020-01-20'
+        date: '2020-01-20T19:20:30'
       }]
     },
     offer: {
@@ -145,7 +145,7 @@ module.exports = {
         subject: "Call Charlie 17 May",
         body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
         sender: "Emma Hill-French",
-        date: '2020-01-20'
+        date: '2020-02-03T09:30:30'
       }]
     },
     offer: {
@@ -1258,7 +1258,7 @@ module.exports = {
     course: 'Primary (32VP)',
     locationname: 'Main site',
     submittedDate: '2019-09-18',
-    status: 'New',
+    status: 'Submitted',
     'personal-details': {
       'given-name': 'May',
       'family-name': 'Cole',
@@ -1483,7 +1483,7 @@ module.exports = {
     course: 'Primary (32VP)',
     locationname: 'Main site',
     submittedDate: '2019-09-21',
-    status: 'New',
+    status: 'Submitted',
     'personal-details': {
       'given-name': 'Poppy',
       'family-name': 'Noor',
@@ -1670,14 +1670,14 @@ module.exports = {
     course: 'Primary (2MKC)',
     locationname: 'Main site',
     submittedDate: '2019-10-08',
-    status: 'New',
+    status: 'Submitted',
     notes: {
       items: [{
         id: uuid(),
         subject: "Needs review",
         body: "Make sure you review this application paying close attention to their qualifications",
         sender: "Pepper Potts",
-        date: '2020-01-20'
+        date: '2020-01-19T08:32:00'
       }]
     },
     'personal-details': {
@@ -1886,7 +1886,7 @@ module.exports = {
     course: 'Primary (3-7) (X121)',
     locationname: 'Main site',
     submittedDate: '2019-10-10',
-    status: 'New',
+    status: 'Submitted',
     'personal-details': {
       'given-name': 'Kelly Jane',
       'family-name': 'Spears',
