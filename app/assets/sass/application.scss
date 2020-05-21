@@ -271,15 +271,15 @@ h1 .govuk-tag {
 }
 
 .moj-header {
-  border-bottom: 10px solid #fff;
-  padding-top: 10px;
+  // border-bottom: 10px solid #fff;
+  // padding-top: 10px;
 }
 
 .moj-header__container {
-  border-bottom: 10px solid govuk-colour('blue');
-  margin-bottom: -10px;
-  position: relative;
-  padding-bottom: 1px;
+  // border-bottom: 10px solid govuk-colour('blue');
+  // margin-bottom: -10px;
+  // position: relative;
+  // padding-bottom: 1px;
 }
 
 
@@ -323,4 +323,27 @@ h1 .govuk-tag {
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.govuk-breadcrumbs {
+  display: none;
+}
+
+.app-notification-link__text {
+  text-decoration: underline;
+  display: inline-block;
+  margin-right: govuk-spacing(1);
+}
+
+.app-notification-link__number {
+  @include govuk-font($size: 16, $line-height: 25px);
+  border-radius: 50%;
+  background-color: govuk-colour('red');
+  color: govuk-colour('white');
+  font-weight: bold;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
 }

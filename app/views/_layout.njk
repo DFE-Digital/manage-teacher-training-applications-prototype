@@ -79,6 +79,12 @@
 
   {%- from "moj/components/header/macro.njk" import mojHeader -%}
 
+{% set alertsLinkHtml %}
+  <span class="app-notification-link">
+    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">21</span>
+  </span>
+{% endset %}
+
 {{ mojHeader({
   logotype: "crown",
 organisationLabel: {
@@ -92,18 +98,14 @@ href: '/'
 navigation: {
 label: 'Account navigation',
 items: [{
-      href: "/",
-      text: "Applications",
-      active: primaryNavId == 'applications'
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
     }, {
-      href: "/organisations",
-      text: "Organisations",
-      active: primaryNavId == 'organisations'
-    }, {
-      href: "/users",
-      text: "Users",
-      active: primaryNavId == 'users'
-    }, {
+      href: "/profile",
+      text: "Profile",
+      active: primaryNavId == 'profile'
+    },  {
       href: "/",
       text: "Sign out"
     } ]
@@ -113,15 +115,34 @@ items: [{
 
 
 {%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
-{#
+
+{% set rightHandSideNavHtml %}
+{# <nav class="moj-primary-navigation">
+  <ul class="moj-primary-navigation__list">
+    <li class="moj-primary-navigation__item">
+      <a class="moj-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'organisations' }} href="/organisations">
+        Organisations
+      </a>
+    </li>
+    <li class="moj-primary-navigation__item">
+      <a class="moj-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'users' }} href="/users">
+        Users
+      </a>
+    </li>
+  </ul>
+
+</nav> #}
+{% endset %}
+
 {{ mojPrimaryNavigation({
-label: 'Primary navigation',
-items: [
-{
+  label: 'Primary navigation',
+  items: [
+    {
       href: "/",
       text: "Applications",
       active: primaryNavId == 'applications'
-    }, {
+    },
+    {
       href: "/organisations",
       text: "Organisations",
       active: primaryNavId == 'organisations'
@@ -131,8 +152,9 @@ items: [
       text: "Users",
       active: primaryNavId == 'users'
     }
-]
-}) }} #}
+  ],
+  searchHtml: rightHandSideNavHtml
+}) }}
 
   {% block afterHeader %}
 
