@@ -127,8 +127,25 @@ module.exports = router => {
       }
     }
 
+    var applications = apps.map(app => {
+      // coz it's in reverse chron
+      var lastEvent = utils.getTimeline(app)[0];
+      if(lastEvent.label.text === "Note added") {
+        app.lastEventType = "note";
+      } else {
+        app.lastEventType = "status";
+      }
+      app.lastEventDate = lastEvent.datetime.timestamp;
+      return app;
+    }).sort(function(a, b) {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.lastEventDate) - new Date(a.lastEventDate);
+    });
+
+
     res.render('index', {
-      applications: apps,
+      applications: applications,
       selectedFilters: selectedFilters
     })
   })

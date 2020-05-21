@@ -15,7 +15,7 @@ module.exports = {
         subject: "Talk to candidate on 15 June",
         body: "Make sure to prepare this and that ready for a chat",
         sender: "Laura Tennant",
-        date: '2020-01-20'
+        date: '2020-01-20T19:20:30'
       }]
     },
     offer: {
@@ -81,7 +81,7 @@ module.exports = {
     offer: {
       madeDate: '2019-08-10',
       acceptedDate: '2019-08-10',
-      conditionsMetDate: '2019-09-12',
+      conditionsMetDate: '2019-09-12T09:01:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
@@ -145,7 +145,7 @@ module.exports = {
         subject: "Call Charlie 17 May",
         body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
         sender: "Emma Hill-French",
-        date: '2020-01-20'
+        date: '2020-02-03T09:30:30'
       }]
     },
     offer: {
@@ -212,7 +212,7 @@ module.exports = {
     status: 'Conditions not met',
     offer: {
       madeDate: '2019-07-18',
-      conditionsNotMetDate: '2019-08-12',
+      conditionsNotMetDate: '2019-08-12T18:52:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Not met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
@@ -271,7 +271,7 @@ module.exports = {
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
     status: 'Rejected',
-    rejectedDate: '2019-08-10',
+    rejectedDate: '2019-08-10T08:32:00',
     rejectedReasons: {
 
       // Candidate actions
@@ -338,7 +338,7 @@ module.exports = {
     status: 'Declined',
     offer: {
       madeDate: '2019-09-10',
-      declinedDate: '2019-09-12',
+      declinedDate: '2019-09-12T16:32:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
@@ -395,7 +395,7 @@ module.exports = {
     course: 'Primary (2RQM)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-09-15',
-    withdrawnDate: '2019-09-16',
+    withdrawnDate: '2019-09-16T12:02:00',
     status: 'Application withdrawn',
     'personal-details': {
       'given-name': 'Esther',
@@ -454,7 +454,7 @@ module.exports = {
     status: 'Offer withdrawn',
     offer: {
       madeDate: '2019-09-23',
-      withdrawnDate: '2019-09-23',
+      withdrawnDate: '2019-09-23T09:45:00',
       withdrawnReasons: {
 
         // Candidate actions
@@ -748,7 +748,7 @@ module.exports = {
     submittedDate: '2019-09-01',
     status: 'Offered',
     offer: {
-      madeDate: '2019-09-23',
+      madeDate: '2019-09-24T11:27:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
@@ -993,10 +993,10 @@ module.exports = {
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
     locationname: 'Camberley - training location',
-    submittedDate: '2019-09-16',
+    submittedDate: '2019-09-16T08:32:00',
     status: 'Offered',
     offer: {
-      madeDate: '2019-10-01',
+      madeDate: '2019-10-01T10:02:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
@@ -1257,8 +1257,8 @@ module.exports = {
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
     locationname: 'Main site',
-    submittedDate: '2019-09-18',
-    status: 'New',
+    submittedDate: '2019-09-18T14:01:00',
+    status: 'Submitted',
     'personal-details': {
       'given-name': 'May',
       'family-name': 'Cole',
@@ -1482,8 +1482,8 @@ module.exports = {
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
     locationname: 'Main site',
-    submittedDate: '2019-09-21',
-    status: 'New',
+    submittedDate: '2019-09-21T18:59:00',
+    status: 'Submitted',
     'personal-details': {
       'given-name': 'Poppy',
       'family-name': 'Noor',
@@ -1670,14 +1670,14 @@ module.exports = {
     course: 'Primary (2MKC)',
     locationname: 'Main site',
     submittedDate: '2019-10-08',
-    status: 'New',
+    status: 'Submitted',
     notes: {
       items: [{
         id: uuid(),
         subject: "Needs review",
         body: "Make sure you review this application paying close attention to their qualifications",
         sender: "Pepper Potts",
-        date: '2020-01-20'
+        date: '2020-01-19T08:32:00'
       }]
     },
     'personal-details': {
@@ -1885,8 +1885,8 @@ module.exports = {
     provider: 'Somerset SCITT Consortium',
     course: 'Primary (3-7) (X121)',
     locationname: 'Main site',
-    submittedDate: '2019-10-10',
-    status: 'New',
+    submittedDate: '2019-10-10T13:32:00',
+    status: 'Submitted',
     'personal-details': {
       'given-name': 'Kelly Jane',
       'family-name': 'Spears',
