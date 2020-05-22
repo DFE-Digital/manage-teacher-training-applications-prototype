@@ -1,0 +1,20 @@
+.app-notification-card {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding-bottom: 15px;
+  padding-top: 15px;
+  position: relative;
+}
+
+.app-notification-card:first-of-type {
+  border-top: 1px solid govuk-colour('mid-grey');
+}
+
+.app-application-card__status {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.app-notification-card:last-of-type {
+  margin-bottom: 30px;
+}
