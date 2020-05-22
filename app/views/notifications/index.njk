@@ -1,0 +1,61 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'notifications' %}
+{% set title = "Notifications" %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  <div class="govuk-grid">
+    <div class="govuk-grid-column-two-third">
+      <h1 class="govuk-heading-xl">{{title}} (5)</h1>
+
+
+      <div class="app-application-card">
+        <div>
+          <p class="app-notes__meta">Today at 1:32pm</p>
+          <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1">Kelly Jane Spears submitted their application</h2>
+          <p class="govuk-!-margin-bottom-0"><a href="#">View application</a>
+        </div>
+      </div>
+
+      <div class="app-application-card">
+        <div>
+          <p class="app-notes__meta">Yesterday at 1:32pm</p>
+          <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1">Eloise Well‘s accepted your offer</h2>
+          <p class="govuk-!-margin-bottom-0"><a href="#">View application</a>
+        </div>
+      </div>
+
+      <div class="app-application-card">
+        <div>
+          <p class="app-notes__meta">19 May 2020 at 9:57am</p>
+          <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1">Esther Fairley withdrew their application</h2>
+          <p class="govuk-!-margin-bottom-0"><a href="#">View offer</a>
+        </div>
+      </div>
+
+      <div class="app-application-card">
+        <div>
+          <p class="app-notes__meta">17 May 2020 at 8:18am</p>
+          <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1">Elizabeth Rose declined your offer</h2>
+          <p class="govuk-!-margin-bottom-0"><a href="#">View offer</a>
+        </div>
+      </div>
+
+      <div class="app-application-card">
+        <div>
+          <p class="app-notes__meta">14 May 2020 at 7:19pm</p>
+          <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1">Daniel James Jennings‘ application was rejected by default</h2>
+          <p class="govuk-!-margin-bottom-0"><a href="#">View application</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

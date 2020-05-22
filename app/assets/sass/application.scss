@@ -338,7 +338,7 @@ h1 .govuk-tag {
 .app-notification-link__number {
   @include govuk-font($size: 16, $line-height: 25px);
   border-radius: 50%;
-  background-color: govuk-colour('red');
+  background-color: govuk-colour('blue');
   color: govuk-colour('white');
   font-weight: bold;
   width: 25px;
