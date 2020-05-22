@@ -70,6 +70,27 @@
   {% endif %}
 {% endset %}
 
+% set safeguardingReasonsHtml %}
+  {% set fieldName = "safeguarding-reasons" %}
+  {% set checkboxValue = "Information given on application form false or inaccurate" %}
+  {% set textBoxName = "safeguarding-reasons-false-information" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "Evidence of plagiarism in personal statement or elsewhere" %}
+  {% set textBoxName = "safeguarding-reasons-plagiarism" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+  {% set checkboxValue = "References didn’t support application" %}
+  {% set textBoxName = "safeguarding-reasons-references" %}
+  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
+    <p>{{checkboxValue}}: {{rejectedReasons[textBoxName]}}</p>
+  {% endif %}
+
+
 {% set safeguardingReasonsHtml %}
   {% set fieldName = "safeguarding-reasons" %}
   {% set checkboxValue = "Information given on application form false or inaccurate" %}
