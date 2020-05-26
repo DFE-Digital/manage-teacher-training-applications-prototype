@@ -1,42 +1,3 @@
-{% set safeguardingFalseInformationHtml %}
-  {{ govukCharacterCount({
-    maxlength: 300,
-    label: {
-      text: "Please give details"
-    },
-    id: "safeguarding-reasons-false-information",
-    name: "rejectionReasons[safeguarding-reasons-false-information]",
-    value: data['rejectionReasons']['safeguarding-reasons-false-information']
-  }) }}
-{% endset %}
-
-
-{% set safeguardingPlagiarismHtml %}
-  {{ govukCharacterCount({
-    maxlength: 300,
-    label: {
-      text: "Please give details"
-    },
-    id: "safeguarding-reasons-plagiarism",
-    name: "rejectionReasons[safeguarding-reasons-plagiarism]",
-    value: data['rejectionReasons']['safeguarding-reasons-plagiarism']
-  }) }}
-{% endset %}
-
-
-{% set safeguardingReferenceInformationHtml %}
-  {{ govukCharacterCount({
-    maxlength: 300,
-    label: {
-      text: "Please give details"
-    },
-    id: "safeguarding-reasons-reference-information",
-    name: "rejectionReasons[safeguarding-reasons-reference-information]",
-    value: data['rejectionReasons']['safeguarding-reasons-reference-information']
-  }) }}
-{% endset %}
-
-
 {% set safeguardingDisclosedInformationHtml %}
   {{ govukCharacterCount({
     maxlength: 300,
@@ -88,27 +49,6 @@
       }
     },
     items: [{
-      value: "Information given on application form false or inaccurate",
-      html: "Information given on application form false or inaccurate",
-      checked: checked("['rejectionReasons']['safeguarding-reasons']", 'Information given on application form false or inaccurate'),
-      conditional: {
-        html: safeguardingFalseInformationHtml
-      }
-    }, {
-      value: "Evidence of plagiarism in personal statement or elsewhere",
-      text: "Evidence of plagiarism in personal statement or elsewhere",
-      checked: checked("['rejectionReasons']['safeguarding-reasons']", 'Evidence of plagiarism in personal statement or elsewhere'),
-      conditional: {
-        html: safeguardingPlagiarismHtml
-      }
-    }, {
-      value: "References didn’t support application",
-      text: "References didn’t support application",
-      checked: checked("['rejectionReasons']['safeguarding-reasons']", 'References didn’t support application'),
-      conditional: {
-        html: safeguardingReferenceInformationHtml
-      }
-    }, {
       value: "Information disclosed by candidate makes them unsuitable to work with children",
       text: "Information disclosed by candidate makes them unsuitable to work with children",
       checked: checked("['rejectionReasons']['safeguarding-reasons']", 'Information disclosed by candidate makes them unsuitable to work with children'),
