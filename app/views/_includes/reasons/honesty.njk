@@ -1,0 +1,120 @@
+{% set honestyFalseInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "honesty-reasons-false-information",
+    name: "rejectionReasons[honesty-reasons-false-information]",
+    value: data['rejectionReasons']['honesty-reasons-false-information']
+  }) }}
+{% endset %}
+
+
+{% set honestyPlagiarismHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "honesty-reasons-plagiarism",
+    name: "rejectionReasons[honesty-reasons-plagiarism]",
+    value: data['rejectionReasons']['honesty-reasons-plagiarism']
+  }) }}
+{% endset %}
+
+
+{% set honestyReferenceInformationHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "honesty-reasons-reference-information",
+    name: "rejectionReasons[honesty-reasons-reference-information]",
+    value: data['rejectionReasons']['honesty-reasons-reference-information']
+  }) }}
+{% endset %}
+
+
+{% set honestyOtherHtml %}
+  {{ govukCharacterCount({
+    maxlength: 300,
+    label: {
+      text: "Please give details"
+    },
+    id: "honesty-reasons-other",
+    name: "rejectionReasons[honesty-reasons-other]",
+    value: data['rejectionReasons']['honesty-reasons-other']
+  }) }}
+{% endset %}
+
+
+{% set honestyReasonsHtml %}
+  {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    idPrefix: "rejection-honesty-reasons",
+    name: "rejectionReasons[honesty-reasons]",
+    fieldset: {
+      legend: {
+        text: "What concerns did you have?",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      value: "Information given on application form false or inaccurate",
+      html: "Information given on application form false or inaccurate",
+      checked: checked("['rejectionReasons']['honesty-reasons']", 'Information given on application form false or inaccurate'),
+      conditional: {
+        html: honestyFalseInformationHtml
+      }
+    }, {
+      value: "Evidence of plagiarism in personal statement or elsewhere",
+      text: "Evidence of plagiarism in personal statement or elsewhere",
+      checked: checked("['rejectionReasons']['honesty-reasons']", 'Evidence of plagiarism in personal statement or elsewhere'),
+      conditional: {
+        html: honestyPlagiarismHtml
+      }
+    }, {
+      value: "References didn’t support application",
+      text: "References didn’t support application",
+      checked: checked("['rejectionReasons']['honesty-reasons']", 'References didn’t support application'),
+      conditional: {
+        html: honestyReferenceInformationHtml
+      }
+    }, {
+        value: "Other",
+        text: "Other",
+        checked: checked("['rejectionReasons']['honesty-reasons']", 'Other'),
+        conditional: {
+          html: honestyOtherHtml
+        }
+      }]
+  }) }}
+{% endset %}
+
+
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it due to concerns about the candidate’s honesty and professionalism?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  idPrefix: "rejection-honesty",
+  name: "rejectionReasons[honesty]",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked("['rejectionReasons']['honesty']", "Yes"),
+    conditional: {
+      html: honestyReasonsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked("['rejectionReasons']['honesty']", "No")
+  }]
+}) }}

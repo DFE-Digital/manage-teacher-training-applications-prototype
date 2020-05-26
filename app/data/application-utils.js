@@ -29,6 +29,16 @@ exports.getRejectReasons = (data) => {
     // Other offer
     "other-offer": data["other-offer"],
 
+    // Honesty
+    "honesty": data["honesty"],
+    "honesty-reasons": data["honesty-reasons"],
+    "honesty-reasons-false-information": data["honesty-reasons-false-information"],
+    "honesty-reasons-plagiarism": data["honesty-reasons-plagiarism"],
+    "honesty-reasons-reference-information": data["honesty-reasons-reference-information"],
+    "honesty-reasons-disclosed-information": data["honesty-reasons-disclosed-information"],
+    "honesty-reasons-vetting-information": data["honesty-reasons-vetting-information"],
+    "honesty-reasons-other": data["honesty-reasons-other"],
+
     // Safeguarding
     "safeguarding": data["safeguarding"],
     "safeguarding-reasons": data["safeguarding-reasons"],

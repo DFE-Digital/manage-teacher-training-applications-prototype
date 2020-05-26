@@ -118,10 +118,13 @@
 
   {% if application.offer.withdrawnReasons %}
     <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
-    {% set rejectedDate = application.offer.withdrawnDate %}
-    {% set rejectedReasons = application.offer.withdrawnReasons %}
-    {% set showRejectedDate = false %}
-    {% include "_includes/reject-playback.njk" %}
+    {% set rejectedDate = application.rejectedDate %}
+    {% set rejectionReasons = application.rejectedReasons %}
+    {% set showRejectedDate = true %}
+
+    <p>You sent the following feedback to the candidate on {{rejectedDate | date("dd LLL yyyy")}}.</p>
+
+    {% include "_includes/candidate-feedback.njk" %}
   {% endif %}
 
 
