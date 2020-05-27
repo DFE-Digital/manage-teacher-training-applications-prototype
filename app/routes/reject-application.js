@@ -21,7 +21,7 @@ module.exports = router => {
   router.get('/application/:applicationId/reject/other-reasons-for-rejection', (req, res) => {
     var data = req.session.data.rejectionReasons;
 
-    var noReasonsGivenYet = data['actions'] !== "Yes" && data['missing-qualifications'] !== "Yes" && data['appplication-quality'] !== "Yes" && data['interview-performance'] !== "Yes" && data['course-full'] !== "Yes" && data['other-offer'] !== "Yes" && data['honesty'] !== "Yes" && data['safeguarding'] !== "Yes";
+    var noReasonsGivenYet = data['actions'] !== "Yes" && data['missing-qualifications'] !== "Yes" && data['application-quality'] !== "Yes" && data['interview-performance'] !== "Yes" && data['course-full'] !== "Yes" && data['other-offer'] !== "Yes" && data['honesty'] !== "Yes" && data['safeguarding'] !== "Yes";
 
     res.render('application/reject/other-reasons-for-rejection', {
       applicationId: req.params.applicationId,
