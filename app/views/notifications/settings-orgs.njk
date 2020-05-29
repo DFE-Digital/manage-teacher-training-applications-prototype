@@ -1,0 +1,142 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'notifications' %}
+{% set title = "Notification settings" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/notifications/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  <div class="govuk-grid-ro">
+    <div class="govuk-grid-column-two-third">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+
+      {% set applicationSubmittedFrequencyHtml %}
+        {{ govukRadios({
+          idPrefix: "permission-frequency",
+          name: "permission-frequency",
+          fieldset: {
+            legend: {
+              text: "Frequency",
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Immediately",
+              text: "Immediately",
+              checked: true
+            },
+            {
+              value: "Daily summary at 8am",
+              text: "Daily summary at 8am"
+            }
+          ]
+        }) }}
+      {% endset %}
+
+      <form>
+
+
+
+        {{ govukCheckboxes({
+          idPrefix: "application-submitted",
+          name: "application-submitted",
+          fieldset: {
+            legend: {
+              text: "When a candidate submits their application",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "By email",
+              html: "<strong>By email</strong>",
+              checked: true,
+              conditional: {
+                html: applicationSubmittedFrequencyHtml
+              }
+            },
+            {
+              value: "In application",
+              html: "<strong>In application</strong>",
+              checked: true
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          idPrefix: "application-submitted",
+          name: "application-submitted",
+          fieldset: {
+            legend: {
+              text: "When an application hasn‘t been responded to within 5 days",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "By email",
+              html: "<strong>By email</strong>",
+              checked: true,
+              conditional: {
+                html: applicationSubmittedFrequencyHtml
+              }
+            },
+            {
+              value: "In application",
+              html: "<strong>In application</strong>",
+              checked: true
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          idPrefix: "application-submitted",
+          name: "application-submitted",
+          fieldset: {
+            legend: {
+              text: "When an application hasn‘t been responded to within 5 days",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "By email",
+              html: "<strong>By email</strong>",
+              checked: true,
+              conditional: {
+                html: applicationSubmittedFrequencyHtml
+              }
+            },
+            {
+              value: "In application",
+              html: "<strong>In application</strong>",
+              checked: true
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Save settings"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -20,121 +20,43 @@
     <div class="govuk-grid-column-two-third">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate submits an application</h2>
+      <p class="govuk-!-margin-bottom-1">Email (immediately), in application</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
-      {% set applicationSubmittedFrequencyHtml %}
-        {{ govukRadios({
-          idPrefix: "permission-frequency",
-          name: "permission-frequency",
-          fieldset: {
-            legend: {
-              text: "Frequency",
-              classes: "govuk-visually-hidden"
-            }
-          },
-          items: [
-            {
-              value: "Immediately",
-              text: "Immediately",
-              checked: true
-            },
-            {
-              value: "Daily summary at 8am",
-              text: "Daily summary at 8am"
-            }
-          ]
-        }) }}
-      {% endset %}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate submits an application with safeguarding information</h2>
+      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am), in application</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
-      <form>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When an application hasn‘t been responded to within 5 days</h2>
+      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When an application is rejected by default</h2>
+      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate withdraws their application</h2>
+      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
-        {{ govukCheckboxes({
-          idPrefix: "application-submitted",
-          name: "application-submitted",
-          fieldset: {
-            legend: {
-              text: "When a candidate submits their application",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "By email",
-              html: "<strong>By email</strong>",
-              checked: true,
-              conditional: {
-                html: applicationSubmittedFrequencyHtml
-              }
-            },
-            {
-              value: "In application",
-              html: "<strong>In application</strong>",
-              checked: true
-            }
-          ]
-        }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate accepts an offer</h2>
+      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
-        {{ govukCheckboxes({
-          idPrefix: "application-submitted",
-          name: "application-submitted",
-          fieldset: {
-            legend: {
-              text: "When an application hasn‘t been responded to within 5 days",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "By email",
-              html: "<strong>By email</strong>",
-              checked: true,
-              conditional: {
-                html: applicationSubmittedFrequencyHtml
-              }
-            },
-            {
-              value: "In application",
-              html: "<strong>In application</strong>",
-              checked: true
-            }
-          ]
-        }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate declines an offer</h2>
+      <p class="govuk-!-margin-bottom-1">In application</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
-        {{ govukCheckboxes({
-          idPrefix: "application-submitted",
-          name: "application-submitted",
-          fieldset: {
-            legend: {
-              text: "When an application hasn‘t been responded to within 5 days",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "By email",
-              html: "<strong>By email</strong>",
-              checked: true,
-              conditional: {
-                html: applicationSubmittedFrequencyHtml
-              }
-            },
-            {
-              value: "In application",
-              html: "<strong>In application</strong>",
-              checked: true
-            }
-          ]
-        }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate declines an offer by default</h2>
+      <p class="govuk-!-margin-bottom-1">In application</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When your permissions change</h2>
+      <p class="govuk-!-margin-bottom-1">Email (immediately)</p>
+      <p><a href="/notifications/edit/application-submitted">Change</a></p>
 
 
-        {{ govukButton({
-          text: "Save settings"
-        }) }}
-      </form>
 
     </div>
   </div>
