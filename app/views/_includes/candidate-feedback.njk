@@ -1,12 +1,7 @@
 <div class="app-feedback">
-  {% if rejectionReasons['other-offer'] != "Yes" %}
-    {% if rejectionReasons['future-applications'] == "Yes" %}
-      <h2 class="govuk-heading-m">The provider would be interested in future applications from you</p>
-    {% else %}
-      <h2 class="govuk-heading-m">
-        Training provider feedback
-      </h2>
-    {% endif %}
+
+  {% if rejectionReasons['future-applications'] == "Yes" %}
+    <h2 class="govuk-heading-m">The provider would be interested in future applications from you</p>
   {% else %}
     <h2 class="govuk-heading-m">
       Training provider feedback
@@ -249,12 +244,10 @@
     <p>{{rejectionReasons['other-feedback-details']}}</p>
   {% endif %}
 
-  {% if rejectionReasons['other-offer'] != "Yes" %}
-    {% if rejectionReasons['future-applications'] != "Yes" %}
-      <h3 class="govuk-heading-s">Future applications</h3>
-      <p>The provider would not be interested in future applications from you.</p>
-    {% endif %}
 
+  {% if rejectionReasons['future-applications'] != "Yes" %}
+    <h3 class="govuk-heading-s">Future applications</h3>
+    <p>The provider would not be interested in future applications from you.</p>
   {% endif %}
 
 </div>
