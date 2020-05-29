@@ -1,8 +1,9 @@
 {% from "govuk/components/tag/macro.njk"              import govukTag %}
 
-<div class="app-notification-card">
+<div class="app-notification-card {% if not params.new %} app-notification-card--read {% endif %}">
 
   <div class="app-notification-card__primary">
+    <p class="govuk-body govuk-!-margin-bottom-0"> {{params.provider}} </h2>
     <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1"> {{params.title}} </h2>
     <span class="govuk-caption-m govuk-!-margin-bottom-4">{{params.dateText}}</span>
     <p class="govuk-!-margin-bottom-0"><a href="{{params.link.href}}">{{params.link.text}}</a>
@@ -16,5 +17,6 @@
         })}}
       {% endif %}
     </div>
+    <p class="govuk-!-margin-bottom-0"><a href="{{params.settings.href}}">Settings</a>
   </div>
 </div>
