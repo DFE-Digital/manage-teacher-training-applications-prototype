@@ -86,6 +86,26 @@
   </span>
 {% endset %}
 
+{{ govukHeader({
+  containerClasses: "govuk-width-container",
+  "navigationClasses": "govuk-header__navigation--end",
+  "productName": serviceName,
+  "navigation": [
+    {
+      href: "/notifications",
+      text: "Notifications (7)",
+      active: primaryNavId == 'notifications'
+    }, {
+      href: "/profile",
+      text: "Profile",
+      active: primaryNavId == 'profile'
+    },  {
+      href: "/",
+      text: "Sign out"
+    }
+  ]
+}) }}
+{#
 {{ mojHeader({
   logotype: "crown",
 organisationLabel: {
@@ -112,7 +132,7 @@ items: [{
     } ]
 }
 
-}) }}
+}) }} #}
 
 
 {%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}

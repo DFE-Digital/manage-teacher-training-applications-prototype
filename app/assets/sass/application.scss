@@ -262,6 +262,10 @@ h1 .govuk-tag {
   margin-right: govuk-spacing(3);
 }
 
+.moj-header__navigation-link {
+  text-decoration: none;
+}
+
 .moj-header__navigation-link[aria-current=page] {
   // color: govuk-colour('blue');
   font-weight: bold;
@@ -331,7 +335,7 @@ h1 .govuk-tag {
 }
 
 .app-notification-link__text {
-  text-decoration: underline;
+  // text-decoration: underline;
   display: inline-block;
   margin-right: govuk-spacing(1);
 }
@@ -347,4 +351,16 @@ h1 .govuk-tag {
   text-align: center;
   display: inline-block;
   text-decoration: none;
+}
+
+.govuk-header__logo {
+  @include govuk-media-query($from: tablet) {
+    width: 60%;
+  }
+}
+
+.govuk-header__content {
+  @include govuk-media-query($from: tablet) {
+    width: 40%;
+  }
 }
