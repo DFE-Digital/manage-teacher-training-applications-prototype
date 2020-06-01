@@ -20,43 +20,315 @@
     <div class="govuk-grid-column-two-third">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate submits an application</h2>
-      <p class="govuk-!-margin-bottom-1">Email (immediately), in application</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
+      <h2 class="govuk-heading-l">
+        Ventrus Teaching School Alliance
+      </h2>
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate submits an application with safeguarding information</h2>
-      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am), in application</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application submitted"
+            },
+            value: {
+              text: "Email (immediately), in application"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application submitted with safeguarding information"
+            },
+            value: {
+              text: "Email (once a day at 8am), in application"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application hasn‘t been responded to within 5 days"
+            },
+            value: {
+              text: "Email (once a day at 8am)"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application rejected by default"
+            },
+            value: {
+              text: "Email (once a day at 8am)"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Application withdrawn" },
+            value: {text: "Email (once a day at 8am)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Offer accepted" },
+            value: {text: "Email (once a day at 8am)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Offer declined" },
+            value: {text: "In application" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Offer declined by default" },
+            value: {text: "In application" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Note added to application" },
+            value: {text: "Email (immediately)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Permission changed" },
+            value: {text: "Email (immediately)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When an application hasn‘t been responded to within 5 days</h2>
-      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
+      <h2 class="govuk-heading-l">
+        Somerset SCITT
+      </h2>
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When an application is rejected by default</h2>
-      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate withdraws their application</h2>
-      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate accepts an offer</h2>
-      <p class="govuk-!-margin-bottom-1">Email (once a day at 8am)</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate declines an offer</h2>
-      <p class="govuk-!-margin-bottom-1">In application</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When a candidate declines an offer by default</h2>
-      <p class="govuk-!-margin-bottom-1">In application</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">When your permissions change</h2>
-      <p class="govuk-!-margin-bottom-1">Email (immediately)</p>
-      <p><a href="/notifications/edit/application-submitted">Change</a></p>
-
-
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application submitted"
+            },
+            value: {
+              text: "Email (immediately), in application"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application submitted with safeguarding information"
+            },
+            value: {
+              text: "Email (once a day at 8am), in application"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application hasn‘t been responded to within 5 days"
+            },
+            value: {
+              text: "Email (once a day at 8am)"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application rejected by default"
+            },
+            value: {
+              text: "Email (once a day at 8am)"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Application withdrawn" },
+            value: {text: "Email (once a day at 8am)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Offer accepted" },
+            value: {text: "Email (once a day at 8am)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Offer declined" },
+            value: {text: "In application" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Offer declined by default" },
+            value: {text: "In application" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Note added to application" },
+            value: {text: "Email (immediately)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Permission changed" },
+            value: {text: "Email (immediately)" },
+            actions: {
+              items: [
+                {
+                  href: "/notifications/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
     </div>
   </div>
