@@ -1,11 +1,16 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'notifications' %}
-{% set title = "Notification settings" %}
+{% set title = "Settings" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/notifications/"
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Notifications",
+      href: "/notifications"
+    }, {
+      text: title
+    }]
   }) }}
 {% endblock %}
 
@@ -31,7 +36,7 @@
               text: "Application submitted"
             },
             value: {
-              text: "Email (immediately), online notifications"
+              html: "Email (immediately)<br>Online notifications"
             },
             actions: {
               items: [
@@ -48,7 +53,7 @@
               text: "Application submitted with safeguarding information"
             },
             value: {
-              text: "Email (once a day at 8am), online notifications"
+              html: "Email (once a day at 8am)<br>Online notifications"
             },
             actions: {
               items: [
@@ -65,7 +70,7 @@
               text: "Application hasn‘t been responded to within 5 days"
             },
             value: {
-              text: "Email (once a day at 8am)"
+              text: "None"
             },
             actions: {
               items: [
@@ -82,7 +87,7 @@
               text: "Application rejected by default"
             },
             value: {
-              text: "Email (once a day at 8am)"
+              text: "None"
             },
             actions: {
               items: [
@@ -122,7 +127,7 @@
           },
           {
             key: { text: "Offer declined" },
-            value: {text: "online notifications" },
+            value: {text: "Online notifications" },
             actions: {
               items: [
                 {
@@ -135,7 +140,7 @@
           },
           {
             key: { text: "Offer declined by default" },
-            value: {text: "online notifications" },
+            value: {text: "None" },
             actions: {
               items: [
                 {
@@ -186,7 +191,7 @@
               text: "Application submitted"
             },
             value: {
-              text: "Email (immediately), online notifications"
+              html: "Email (immediately)<br>Online notifications"
             },
             actions: {
               items: [
@@ -203,7 +208,7 @@
               text: "Application submitted with safeguarding information"
             },
             value: {
-              text: "Email (once a day at 8am), online notifications"
+              html: "Email (once a day at 8am)<br>Online notifications"
             },
             actions: {
               items: [
@@ -277,7 +282,7 @@
           },
           {
             key: { text: "Offer declined" },
-            value: {text: "online notifications" },
+            value: {text: "Online notifications" },
             actions: {
               items: [
                 {
@@ -290,7 +295,7 @@
           },
           {
             key: { text: "Offer declined by default" },
-            value: {text: "online notifications" },
+            value: {text: "Online notifications" },
             actions: {
               items: [
                 {

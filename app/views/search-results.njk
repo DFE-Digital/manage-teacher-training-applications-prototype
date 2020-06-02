@@ -3,17 +3,6 @@
 {% set title = "Search results for " + q %}
 {% set parent = "Applications" %}
 
-{% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Applications",
-      href: "/"
-    }, {
-      text: title
-    }]
-  }) }}
-{% endblock %}
-
 {% block primary %}
   {% set applications = applications | toArray | filterBy("name", q) %}
   {% if applications | length > 0 %}
