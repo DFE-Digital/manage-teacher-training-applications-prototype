@@ -21,11 +21,11 @@
 
       {% set h1 %}
         <span class="govuk-caption-xl">Notification</span>
-        When a candidate submits their application
+        Application submitted
       {% endset %}
 
       {% set applicationSubmittedFrequencyHtml %}
-        {{ govukRadios({
+        {{ govukCheckboxes({
           idPrefix: "permission-frequency",
           name: "permission-frequency",
           fieldset: {
@@ -43,6 +43,10 @@
             {
               value: "Daily summary at 8am",
               text: "Daily summary at 8am"
+            },
+            {
+              value: "Weekly summary on Monday at 8am",
+              text: "Weekly summary on Monday at 8am"
             }
           ]
         }) }}
