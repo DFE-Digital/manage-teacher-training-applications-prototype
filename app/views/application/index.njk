@@ -137,9 +137,9 @@
       {% endset %}
 
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Disability, access and other needs</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Disability, access and other needs</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
@@ -164,16 +164,22 @@
 
 
             {% endset %}
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Criminal convictions and professional misconduct</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Criminal convictions and professional misconduct</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View guidance to candidate",
         html: guidanceHtml
       }) }}
 
-      {% if application.safeguarding == 'Request' %}
-        <p class="govuk-body">The candidate has shared information related to safeguarding. Please contact them directly for more details.</p>
+      {% if application.safeguarding %}
+        {% set safeguardingHtml %}
+          <p class="govuk-body">{{application.safeguarding | nl2br }}</p>
+        {% endset %}
+        {{ govukDetails({
+          summaryText: "View information disclosed by the candidate",
+          html: safeguardingHtml
+        }) }}
       {% else %}
-        <p class="govuk-body">{{application.safeguarding | nl2br or "No information shared"}}</p>
+        <p class="govuk-body">No information shared</p>
       {% endif %}
 
       {% set guidanceHtml %}
@@ -192,9 +198,9 @@
 </ul>
       {% endset %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Interview</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Interview</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
       <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "No information shared"}}</p>
@@ -206,10 +212,10 @@
       <p class="govuk-body">Enter your other qualifications as completely as you can, including all your GCSEs and A levels (or equivalents), and any other qualifications where you showed skills that might help you as a teacher.</p>
         {% endset %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Qualifications</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Qualifications</h2>
 
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
 
@@ -224,9 +230,9 @@
   <p class="govuk-body">Breaks in work history won’t impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
         {% endset %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Work history</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Work history</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
       {% include "_includes/application/work-history.njk" %}
@@ -243,14 +249,14 @@
 
         {% endset %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Unpaid experience and volunteering</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Unpaid experience and volunteering</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
       {% include "_includes/application/school-experience.njk" %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Language skills</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Language skills</h2>
       {% include "_includes/application/language-skills.njk" %}
 
 
@@ -280,9 +286,9 @@
           <li>expertise you’ve gained at work</li>
         </ul>
         {% endset %}
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Personal statement</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Personal statement</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
 
@@ -313,7 +319,7 @@
 
       <h2 class="govuk-heading-l govuk-!-margin-botto-2">References</h2>
       {{ govukDetails({
-        summaryText: "View our guidance to the candidate for this section",
+        summaryText: "View candidate guidance",
         html: guidanceHtml
       }) }}
       <h3 class="govuk-heading-m govuk-!-margin-bottom-2">First referee</h2>
