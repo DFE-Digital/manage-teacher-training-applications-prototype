@@ -1,0 +1,194 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'profile' %}
+{% set title = "Profile" %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+
+
+  {# {% include "_includes/profile-sub-nav.njk" %} #}
+
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+  {% set permissionsHtml %}
+  <p class="govuk-!-font-weight-bold">{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} Manage organisation</p>
+
+  <p class="govuk-!-font-weight-bold">{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} Manage users</p>
+
+  <p class="govuk-!-font-weight-bold">{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} Make decisions</p>
+  <div class="govuk-!-margin-left-5">
+    <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+  <ul class="govuk-list">
+    <li>{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} Growing Expert Teachers
+    </li>
+    <li>{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} Taunton Teaching Alliance
+    </li>
+    <li>{{ appIcon({
+        classes: "govuk-!-margin-right-1",
+        icon: "tick",
+        hidden: true
+      }) }} The Beach Teaching School
+    </li>
+  </ul>
+  </div>
+
+    <p class="govuk-!-font-weight-bold">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} See safeguarding information</p>
+    <div class="govuk-!-margin-left-5">
+      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+    <ul class="govuk-list">
+      <li>{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Growing Expert Teachers
+      </li>
+      <li>{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Taunton Teaching Alliance
+      </li>
+      <li>{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} The Beach Teaching School
+      </li>
+    </ul>
+    </div>
+  {% endset %}
+
+  {% set permissions2Html %}
+    <p class="govuk-!-font-weight-bold">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Manage organisation</p>
+
+    <p class="govuk-!-font-weight-bold">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Manage users</p>
+
+    <p class="govuk-!-font-weight-bold">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Make decisions</p>
+          <div class="govuk-!-margin-left-5">
+      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+    <ul class="govuk-list">
+      <li>{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Somerset SCITT Consortium
+      </li>
+    </ul>
+    </div>
+    <p class="govuk-!-font-weight-bold">{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} See safeguarding information</p>
+    <div class="govuk-!-margin-left-5">
+      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+    <ul class="govuk-list">
+      <li>{{ appIcon({
+          classes: "govuk-!-margin-right-1",
+          icon: "tick",
+          hidden: true
+        }) }} Somerset SCITT Consortium
+      </li>
+    </ul>
+    </div>
+  {% endset %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "First name"
+            },
+            value: {
+              text: "Claudine"
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: "Leoni"
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "cleoni@somerset.gov.uk"
+            }
+          },
+          {
+            key: {
+              text: "Organisations this user has access to"
+            },
+            value: {
+              html: "<p>Somerset SCITT</p><p>Ventrus Teaching School Alliance</p>"
+            }
+          },
+          {
+            key: {
+              text: "Permissions: Somerset SCITT Consortium"
+            },
+            value: {
+              html: permissionsHtml
+            }
+          },
+          {
+            key: {
+              text: "Permissions: Ventrus Teaching School Alliance"
+            },
+            value: {
+              html: permissions2Html
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+{% endblock %}
