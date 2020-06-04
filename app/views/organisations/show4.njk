@@ -3,17 +3,6 @@
 {% set primaryNavId = 'organisations' %}
 {% set title = "The Beach Teaching School" %}
 
-{% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Organisations",
-      href: "/organisations"
-    }, {
-      text: title
-    }]
-  }) if not data.bare }}
-{% endblock %}
-
 {% block content %}
 
   {{ appBanner({
@@ -50,7 +39,7 @@
               actions: {
                 items: [
                   {
-                    
+
                   }
                 ]
               }

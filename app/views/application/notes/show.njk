@@ -8,18 +8,10 @@
 {% set title = name %}
 
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Applications",
-      href: "/"
-    }, {
-      text: name,
-      href: "/application/" + application.id
-    }, {
-      text: "Notes",
-      href: "/application/" + application.id + "/notes"
-    }]
-  }) if not data.bare }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/application/" + application.id + "/notes"
+  }) }}
 {% endblock %}
 
 {% block content %}

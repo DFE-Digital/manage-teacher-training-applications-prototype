@@ -3,17 +3,6 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Claudine Leoni" %}
 
-{% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Users",
-      href: "/users"
-    }, {
-      text: title
-    }]
-  }) if not data.bare }}
-{% endblock %}
-
 {% block content %}
 
   {{ appBanner({

@@ -35,6 +35,7 @@ $govuk-grid-widths: (
 @import "components/tag";
 @import "components/task-list";
 @import "components/timeline";
+@import "components/notification-card";
 
 // Overrides
 .govuk-table__cell--numeric {
@@ -261,6 +262,10 @@ h1 .govuk-tag {
   margin-right: govuk-spacing(3);
 }
 
+.moj-header__navigation-link {
+  text-decoration: none;
+}
+
 .moj-header__navigation-link[aria-current=page] {
   // color: govuk-colour('blue');
   font-weight: bold;
@@ -271,15 +276,15 @@ h1 .govuk-tag {
 }
 
 .moj-header {
-  border-bottom: 10px solid #fff;
-  padding-top: 10px;
+  // border-bottom: 10px solid #fff;
+  // padding-top: 10px;
 }
 
 .moj-header__container {
-  border-bottom: 10px solid govuk-colour('blue');
-  margin-bottom: -10px;
-  position: relative;
-  padding-bottom: 1px;
+  // border-bottom: 10px solid govuk-colour('blue');
+  // margin-bottom: -10px;
+  // position: relative;
+  // padding-bottom: 1px;
 }
 
 
@@ -322,5 +327,36 @@ h1 .govuk-tag {
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.app-notification-link__text {
+  // text-decoration: underline;
+  display: inline-block;
+  margin-right: govuk-spacing(1);
+}
+
+.app-notification-link__number {
+  @include govuk-font($size: 16, $line-height: 25px);
+  border-radius: 50%;
+  background-color: govuk-colour('blue');
+  color: govuk-colour('white');
+  font-weight: bold;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.govuk-header__logo {
+  @include govuk-media-query($from: tablet) {
+    width: 60%;
+  }
+}
+
+.govuk-header__content {
+  @include govuk-media-query($from: tablet) {
+    width: 40%;
   }
 }

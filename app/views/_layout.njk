@@ -42,6 +42,7 @@
 {% from "_components/search/macro.njk" import appSearch %}
 {% from "_components/task-list/macro.njk" import appTaskList %}
 {% from "_components/timeline/macro.njk" import appTimeline %}
+{% from "_components/notification-card/macro.njk" import appNotificationCard %}
 
 {% block head %}
   {% include "_includes/head.njk" %}
@@ -79,6 +80,32 @@
 
   {%- from "moj/components/header/macro.njk" import mojHeader -%}
 
+{% set alertsLinkHtml %}
+  <span class="app-notification-link">
+    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
+  </span>
+{% endset %}
+
+{{ govukHeader({
+  containerClasses: "govuk-width-container",
+  "navigationClasses": "govuk-header__navigation--end",
+  "productName": serviceName,
+  "navigation": [
+    {
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
+    }, {
+      href: "/profile",
+      text: "Account",
+      active: primaryNavId == 'profile'
+    },  {
+      href: "/",
+      text: "Sign out"
+    }
+  ]
+}) }}
+{#
 {{ mojHeader({
   logotype: "crown",
 organisationLabel: {
@@ -92,36 +119,51 @@ href: '/'
 navigation: {
 label: 'Account navigation',
 items: [{
-      href: "/",
-      text: "Applications",
-      active: primaryNavId == 'applications'
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
     }, {
-      href: "/organisations",
-      text: "Organisations",
-      active: primaryNavId == 'organisations'
-    }, {
-      href: "/users",
-      text: "Users",
-      active: primaryNavId == 'users'
-    }, {
+      href: "/profile",
+      text: "Profile",
+      active: primaryNavId == 'profile'
+    },  {
       href: "/",
       text: "Sign out"
     } ]
 }
 
-}) }}
+}) }} #}
 
 
 {%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
-{#
+
+{% set rightHandSideNavHtml %}
+{# <nav class="moj-primary-navigation">
+  <ul class="moj-primary-navigation__list">
+    <li class="moj-primary-navigation__item">
+      <a class="moj-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'organisations' }} href="/organisations">
+        Organisations
+      </a>
+    </li>
+    <li class="moj-primary-navigation__item">
+      <a class="moj-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'users' }} href="/users">
+        Users
+      </a>
+    </li>
+  </ul>
+
+</nav> #}
+{% endset %}
+
 {{ mojPrimaryNavigation({
-label: 'Primary navigation',
-items: [
-{
+  label: 'Primary navigation',
+  items: [
+    {
       href: "/",
       text: "Applications",
       active: primaryNavId == 'applications'
-    }, {
+    },
+    {
       href: "/organisations",
       text: "Organisations",
       active: primaryNavId == 'organisations'
@@ -131,8 +173,9 @@ items: [
       text: "Users",
       active: primaryNavId == 'users'
     }
-]
-}) }} #}
+  ],
+  searchHtml: rightHandSideNavHtml
+}) }}
 
   {% block afterHeader %}
 
