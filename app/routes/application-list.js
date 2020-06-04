@@ -1,4 +1,5 @@
 const utils = require( '../data/application-utils')
+const { DateTime } = require('luxon')
 
 module.exports = router => {
 
@@ -6,7 +7,7 @@ module.exports = router => {
 
     // Clone and turn into an array
     let apps = Object.values(req.session.data.applications).reverse();
-    let { status, provider, accreditingbody, keywords, locationname } = req.query
+    let { status, provider, accreditingbody, keywords, locationname, rbddate } = req.query
 
     keywords = keywords || req.session.data.keywords;
 
@@ -26,7 +27,12 @@ module.exports = router => {
       return accreditingbody !== '_unchecked'
     })) || req.session.data.accreditingbody;
 
-    const hasFilters = !!( ( statuses && statuses.length > 0) || ( locationnames && locationnames.length > 0 ) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) )
+    let rbddates = rbddate && (Array.isArray(rbddate) ? rbddate : [ rbddate ].filter((rbddate) => {
+      return rbddate !== '_unchecked'
+    })) || req.session.data.rbddate;
+
+
+    const hasFilters = !!( ( statuses && statuses.length > 0) || ( locationnames && locationnames.length > 0 ) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) || ( rbddates && rbddates.length > 0) )
 
     if( hasFilters ){
       apps = apps.filter((app) => {
@@ -35,6 +41,7 @@ module.exports = router => {
         let locationnameValid = true;
         let accreditingbodyValid = true;
         let candidateNameValid = true;
+        let rbdValid = true;
 
         if( statuses && statuses.length ){
           statusValid = statuses.includes(app.status)
@@ -58,7 +65,16 @@ module.exports = router => {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
         }
 
-        return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid;
+        if( rbddates && rbddates.length ){
+          // var now = DateTime.local();
+          var now = DateTime.fromISO('2019-08-15');
+          var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
+          var diff = rbd.diff(now, 'days').toObject().days;
+          rbdValid = diff <= 10;
+          console.log(diff);
+        }
+
+        return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid && rbdValid;
       })
     }
 
@@ -75,6 +91,18 @@ module.exports = router => {
             text: keywords,
             href: `/remove-keywords-filter`
           }]
+        })
+      }
+
+      if(rbddates && rbddates.length) {
+        selectedFilters.categories.push({
+          heading: { text: "Reject by default date" },
+          items: rbddates.map((rbddate) => {
+            return {
+              text: rbddate,
+              href: `/remove-rbddate-filter/${rbddate}`
+            }
+          })
         })
       }
 
@@ -155,6 +183,11 @@ module.exports = router => {
     res.redirect('/');
   })
 
+  router.get('/remove-rbddate-filter/:status', (req, res) => {
+    req.session.data.rbddate = req.session.data.rbddate.filter(item => item !== req.params.rbddate);
+    res.redirect('/');
+  })
+
   router.get('/remove-status-filter/:status', (req, res) => {
     req.session.data.status = req.session.data.status.filter(item => item !== req.params.status);
     res.redirect('/');
@@ -181,6 +214,7 @@ module.exports = router => {
     req.session.data.keywords = null;
     req.session.data.accreditingbody = null;
     req.session.data.locationname = null;
+    req.session.data.rbddate = null;
     res.redirect('/');
   })
 

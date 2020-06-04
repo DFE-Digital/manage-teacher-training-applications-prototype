@@ -330,10 +330,15 @@ h1 .govuk-tag {
   }
 }
 
+.app-notification-link {
+  position: relative;
+}
+
 .app-notification-link__text {
   // text-decoration: underline;
   display: inline-block;
   margin-right: govuk-spacing(1);
+  padding-right: 25px;
 }
 
 .app-notification-link__number {
@@ -347,6 +352,9 @@ h1 .govuk-tag {
   text-align: center;
   display: inline-block;
   text-decoration: none;
+  position: absolute;
+  top: -3px;
+  right: 0;
 }
 
 .govuk-header__logo {

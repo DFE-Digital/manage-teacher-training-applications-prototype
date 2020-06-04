@@ -11,6 +11,25 @@
     }) }}
 
     {{ govukCheckboxes({
+      idPrefix: 'rbddate',
+      name: 'rbddate',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Reject by default date',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'Within 10 days',
+          text: 'Within the next 10 days',
+          checked: checked("rbddate", "Within 10 days") == 'checked'
+        }
+      ]
+    }) }}
+
+    {{ govukCheckboxes({
       idPrefix: 'status',
       name: 'status',
       classes: "govuk-checkboxes--small",
