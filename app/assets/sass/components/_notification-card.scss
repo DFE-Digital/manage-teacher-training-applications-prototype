@@ -1,0 +1,44 @@
+.app-notification-card {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding: 15px;
+  position: relative;
+
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+    align-items: stretch;
+  }
+}
+
+.app-notification-card--read {
+  background: govuk-colour("light-grey");
+}
+
+.app-notification-card:first-of-type {
+  border-top: 1px solid govuk-colour('mid-grey');
+}
+
+.app-notification-card__primary {
+  @include govuk-media-query($from: tablet) {
+    width: 80%;
+  }
+}
+
+.app-notification-card__secondary {
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+    text-align: right;
+  }
+}
+
+.app-notification-card__status {
+  // position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.app-notification-card:last-of-type {
+  margin-bottom: 20px;
+}
