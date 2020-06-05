@@ -1,6 +1,12 @@
 const utils = require( '../data/application-utils')
 const { DateTime } = require('luxon')
 
+function getCheckboxValues(name, data) {
+  return name && (Array.isArray(name) ? name : [ name ].filter((name) => {
+    return name !== '_unchecked'
+  })) || data;
+}
+
 module.exports = router => {
 
   router.all('/', (req, res) => {
@@ -11,26 +17,11 @@ module.exports = router => {
 
     keywords = keywords || req.session.data.keywords;
 
-    let statuses = status && (Array.isArray(status) ? status : [ status ].filter((status) => {
-      return status !== '_unchecked'
-    })) || req.session.data.status;
-
-    let providers = provider && (Array.isArray(provider) ? provider : [ provider ].filter((provider) => {
-      return provider !== '_unchecked'
-    })) || req.session.data.provider;
-
-    let locationnames = locationname && (Array.isArray(locationname) ? locationname : [ locationname ].filter((locationname) => {
-      return locationname !== '_unchecked'
-    })) || req.session.data.locationname;
-
-    let accreditingbodies = accreditingbody && (Array.isArray(accreditingbody) ? accreditingbody : [ accreditingbody ].filter((provider) => {
-      return accreditingbody !== '_unchecked'
-    })) || req.session.data.accreditingbody;
-
-    let rbddates = rbddate && (Array.isArray(rbddate) ? rbddate : [ rbddate ].filter((rbddate) => {
-      return rbddate !== '_unchecked'
-    })) || req.session.data.rbddate;
-
+    let rbddates = getCheckboxValues(rbddate, req.session.data.rbddate);
+    let statuses = getCheckboxValues(status, req.session.data.status);
+    let providers = getCheckboxValues(provider, req.session.data.provider);
+    let locationnames = getCheckboxValues(locationname, req.session.data.locationname);
+    let accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody);
 
     const hasFilters = !!( ( statuses && statuses.length > 0) || ( locationnames && locationnames.length > 0 ) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) || ( rbddates && rbddates.length > 0) )
 
@@ -66,12 +57,19 @@ module.exports = router => {
         }
 
         if( rbddates && rbddates.length ){
-          // var now = DateTime.local();
+
           var now = DateTime.fromISO('2019-08-15');
           var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
           var diff = rbd.diff(now, 'days').toObject().days;
-          rbdValid = diff <= 10;
-          console.log(diff);
+
+          if(rbddates.includes("Within the next 5 days")) {
+            rbdValid = diff <= 5;
+          }
+
+          if(rbddates.includes("Within the next 10 days")) {
+            rbdValid = diff <= 10;
+          }
+
         }
 
         return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid && rbdValid;
@@ -183,7 +181,7 @@ module.exports = router => {
     res.redirect('/');
   })
 
-  router.get('/remove-rbddate-filter/:status', (req, res) => {
+  router.get('/remove-rbddate-filter/:rbddate', (req, res) => {
     req.session.data.rbddate = req.session.data.rbddate.filter(item => item !== req.params.rbddate);
     res.redirect('/');
   })
@@ -209,12 +207,12 @@ module.exports = router => {
   })
 
   router.get('/remove-all-filters', (req, res) => {
+    req.session.data.rbddate = null;
     req.session.data.status = null;
     req.session.data.provider = null;
     req.session.data.keywords = null;
     req.session.data.accreditingbody = null;
     req.session.data.locationname = null;
-    req.session.data.rbddate = null;
     res.redirect('/');
   })
 

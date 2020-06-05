@@ -22,9 +22,14 @@
       },
       items: [
         {
-          value: 'Within 10 days',
+          value: 'Within the next 5 days',
+          text: 'Within the next 5 days',
+          checked: checked("rbddate", "Within the next 5 days") == 'checked'
+        },
+        {
+          value: 'Within the next 10 days',
           text: 'Within the next 10 days',
-          checked: checked("rbddate", "Within 10 days") == 'checked'
+          checked: checked("rbddate", "Within the next 10 days") == 'checked'
         }
       ]
     }) }}
