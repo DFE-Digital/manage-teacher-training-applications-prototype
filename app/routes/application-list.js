@@ -183,7 +183,7 @@ module.exports = router => {
       return new Date(b.lastEventDate) - new Date(a.lastEventDate);
     });
 
-    if(sortby == 'reject by default') {
+    if(sortby == 'days left to respond') {
       // applications = applications.sort(function(a, b) {
       //   if(a.status == "Submitted") {
       //     return -1;

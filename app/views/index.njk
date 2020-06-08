@@ -22,11 +22,11 @@
               <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
               <select class="govuk-select sortby-selector" name="sortby" id="sortby">
                 <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
-                <option value="reject by default" {% if data.sortby == 'reject by default' %} selected {% endif%}>Reject by default date</option>
+                <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option>
               </select>
               {{ govukButton({
                 text: "Sort",
-                classes: 'govuk-button--secondary govuk-!-margin-bottom-2'
+                classes: 'govuk-buton--secondary govuk-!-margin-bottom-2'
               }) }}
             </div>
           </form>

@@ -25,8 +25,8 @@
     </div>
 
     <div>
-      {% if data.sortby == 'reject by default' and a.status == 'Submitted' %}
-        <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16" style="white-space: nowrap;">Respond within {{a.daysToRespond}} days</p>
+      {% if data.sortby == 'days left to respond' and a.status == 'Submitted' %}
+        <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">{{a.daysToRespond}} days left to respond</p>
       {% else %}
         <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16" style="white-space: nowrap;">Changed {{a.lastEventDate | date("d LLL yyyy")}} at {{a.lastEventDate | time }}</p>
       {% endif %}
