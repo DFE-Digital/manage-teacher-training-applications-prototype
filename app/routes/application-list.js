@@ -13,17 +13,17 @@ module.exports = router => {
 
     // Clone and turn into an array
     let apps = Object.values(req.session.data.applications).reverse();
-    let { status, provider, accreditingbody, keywords, locationname, rbddate } = req.query
+    let { status, provider, accreditingbody, keywords, locationname, rbddate, sortby } = req.query
 
     keywords = keywords || req.session.data.keywords;
 
-    let rbddates = getCheckboxValues(rbddate, req.session.data.rbddate);
+    // let rbddates = getCheckboxValues(rbddate, req.session.data.rbddate);
     let statuses = getCheckboxValues(status, req.session.data.status);
     let providers = getCheckboxValues(provider, req.session.data.provider);
     let locationnames = getCheckboxValues(locationname, req.session.data.locationname);
     let accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody);
 
-    const hasFilters = !!( ( statuses && statuses.length > 0) || ( locationnames && locationnames.length > 0 ) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) || ( rbddates && rbddates.length > 0) )
+    const hasFilters = !!( ( statuses && statuses.length > 0) || ( locationnames && locationnames.length > 0 ) || ( providers && providers.length > 0 ) || ( accreditingbodies && accreditingbodies.length > 0 ) || (keywords) )
 
     if( hasFilters ){
       apps = apps.filter((app) => {
@@ -32,7 +32,7 @@ module.exports = router => {
         let locationnameValid = true;
         let accreditingbodyValid = true;
         let candidateNameValid = true;
-        let rbdValid = true;
+        // let rbdValid = true;
 
         if( statuses && statuses.length ){
           statusValid = statuses.includes(app.status)
@@ -56,23 +56,27 @@ module.exports = router => {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
         }
 
-        if( rbddates && rbddates.length ){
+        // if( rbddates && rbddates.length ){
 
-          var now = DateTime.fromISO('2019-08-15');
-          var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
-          var diff = rbd.diff(now, 'days').toObject().days;
+        //   var now = DateTime.fromISO('2019-08-15');
+        //   var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
+        //   var diff = rbd.diff(now, 'days').toObject().days;
 
-          if(rbddates.includes("Within the next 5 days")) {
-            rbdValid = diff <= 5;
-          }
+        //   if(rbddates.includes("Within the next 5 days")) {
+        //     rbdValid = diff <= 5;
+        //   }
 
-          if(rbddates.includes("Within the next 10 days")) {
-            rbdValid = diff <= 10;
-          }
+        //   if(rbddates.includes("Within the next 10 days")) {
+        //     rbdValid = diff <= 10;
+        //   }
 
-        }
+        //   if(rbddates.includes("Within the next 20 days")) {
+        //     rbdValid = diff <= 50;
+        //   }
 
-        return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid && rbdValid;
+        // }
+
+        return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid;
       })
     }
 
@@ -92,17 +96,17 @@ module.exports = router => {
         })
       }
 
-      if(rbddates && rbddates.length) {
-        selectedFilters.categories.push({
-          heading: { text: "Reject by default date" },
-          items: rbddates.map((rbddate) => {
-            return {
-              text: rbddate,
-              href: `/remove-rbddate-filter/${rbddate}`
-            }
-          })
-        })
-      }
+      // if(rbddates && rbddates.length) {
+      //   selectedFilters.categories.push({
+      //     heading: { text: "Reject by default date" },
+      //     items: rbddates.map((rbddate) => {
+      //       return {
+      //         text: rbddate,
+      //         href: `/remove-rbddate-filter/${rbddate}`
+      //       }
+      //     })
+      //   })
+      // }
 
       if(statuses && statuses.length) {
         selectedFilters.categories.push({
@@ -161,6 +165,16 @@ module.exports = router => {
       } else {
         app.lastEventType = "status";
       }
+
+      var now = DateTime.fromISO('2019-08-15');
+      var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
+      var diff = rbd.diff(now, 'days').toObject().days;
+
+      app.daysToRespond = Math.round(diff);
+      if(app.status !== 'Submitted') {
+        app.daysToRespond = 1000;
+      }
+
       app.lastEventDate = lastEvent.datetime.timestamp;
       return app;
     }).sort(function(a, b) {
@@ -169,6 +183,18 @@ module.exports = router => {
       return new Date(b.lastEventDate) - new Date(a.lastEventDate);
     });
 
+    if(sortby == 'reject by default') {
+      // applications = applications.sort(function(a, b) {
+      //   if(a.status == "Submitted") {
+      //     return -1;
+      //   } else {
+      //     return 1;
+      //   }
+      // })
+      applications = applications.sort(function(a, b) {
+        return a.daysToRespond - b.daysToRespond;
+      })
+    }
 
     res.render('index', {
       applications: applications,
@@ -181,10 +207,10 @@ module.exports = router => {
     res.redirect('/');
   })
 
-  router.get('/remove-rbddate-filter/:rbddate', (req, res) => {
-    req.session.data.rbddate = req.session.data.rbddate.filter(item => item !== req.params.rbddate);
-    res.redirect('/');
-  })
+  // router.get('/remove-rbddate-filter/:rbddate', (req, res) => {
+  //   req.session.data.rbddate = req.session.data.rbddate.filter(item => item !== req.params.rbddate);
+  //   res.redirect('/');
+  // })
 
   router.get('/remove-status-filter/:status', (req, res) => {
     req.session.data.status = req.session.data.status.filter(item => item !== req.params.status);
@@ -207,7 +233,7 @@ module.exports = router => {
   })
 
   router.get('/remove-all-filters', (req, res) => {
-    req.session.data.rbddate = null;
+    // req.session.data.rbddate = null;
     req.session.data.status = null;
     req.session.data.provider = null;
     req.session.data.keywords = null;
