@@ -19,7 +19,13 @@
 
   {% if application.status == 'Submitted' %}
     {% set bannerHtml %}
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">You have 22 days to send a response. <a class="govuk-link--no-visited-state" href="/application/{{application.id}}/decision">Respond to application</a>.</h2>
+      <h2 class="govuk-heading-m">You have 22 days to respond</h2>
+      <p>On 19 October 2020 this application will be automatically rejected.</p>
+      {{ govukButton({
+        text: "Respond to application",
+        classes: "govuk-!-margin-bottom-0",
+        href: "/application/{{application.id}}/decision"
+      }) }}
     {% endset %}
     {{ appBanner({
       html: bannerHtml,
