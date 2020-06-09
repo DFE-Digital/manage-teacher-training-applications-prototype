@@ -1257,7 +1257,7 @@ module.exports = {
     provider: 'Ventrus Teaching School Alliance',
     course: 'Primary (32VP)',
     locationname: 'Main site',
-    submittedDate: '2019-07-10T14:01:00',
+    submittedDate: '2019-07-05T14:01:00',
     status: 'Submitted',
     'personal-details': {
       'given-name': 'May',

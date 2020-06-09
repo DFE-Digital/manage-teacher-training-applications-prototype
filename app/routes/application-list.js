@@ -171,6 +171,10 @@ module.exports = router => {
       var diff = rbd.diff(now, 'days').toObject().days;
 
       app.daysToRespond = Math.round(diff);
+      if(diff < 1) {
+        app.daysToRespond = 0;
+      }
+
       if(app.status !== 'Submitted') {
         app.daysToRespond = 1000;
       }
