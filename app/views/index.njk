@@ -13,9 +13,25 @@
     </div>
 
     <div class="moj-filter-layout__content">
-      <p style="text-align: right;">Sorting by: last changed</p>
+
       <div class="moj-action-bar">
         <div class="moj-action-bar__filter"></div>
+        <div>
+          <form>
+            <div class="govuk-form-group govuk-!-margin-bottom-2">
+              <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
+              <select class="govuk-select sortby-selector" name="sortby" id="sortby">
+                <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
+                <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option>
+              </select>
+              {{ govukButton({
+                text: "Sort",
+                classes: 'govuk-buton--secondary govuk-!-margin-bottom-2'
+              }) }}
+            </div>
+          </form>
+
+        </div>
       </div>
       <div>
         <div class="app-application-cards">
@@ -68,7 +84,7 @@
       container: $('.moj-action-bar__filter'),
       showText: 'Show filter',
       hideText: 'Hide filter',
-      classes: 'govuk-button--secondary'
+      classes: 'govuk-button--secondary govuk-!-margin-bottom-0'
     },
     closeButton: {
       container: $('.moj-filter__header-action'),

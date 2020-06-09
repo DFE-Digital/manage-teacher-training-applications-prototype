@@ -10,6 +10,60 @@
       value: data.keywords
     }) }}
 
+    {# {{ govukRadios({
+      idPrefix: "sortby",
+      name: "sortby",
+      classes: "govuk-radios--small",
+      fieldset: {
+        legend: {
+          text: "Sort by",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "Last changed",
+          text: "Last changed",
+          checked: checked("sortby", "Last changed")
+        },
+        {
+          value: "Rejected by default date",
+          text: "Rejected by default date",
+          checked: checked("sortby", "Rejected by default date")
+        }
+      ]
+    }) }} #}
+
+    {# {{ govukCheckboxes({
+      idPrefix: 'rbddate',
+      name: 'rbddate',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Reject by default date',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'Within the next 5 days',
+          text: 'Within the next 5 days',
+          checked: checked("rbddate", "Within the next 5 days") == 'checked'
+        },
+        {
+          value: 'Within the next 10 days',
+          text: 'Within the next 10 days',
+          checked: checked("rbddate", "Within the next 10 days") == 'checked'
+        },
+        {
+          value: 'Within the next 20 days',
+          text: 'Within the next 20 days',
+          checked: checked("rbddate", "Within the next 20 days") == 'checked'
+        }
+      ]
+    }) }} #}
+
     {{ govukCheckboxes({
       idPrefix: 'status',
       name: 'status',
