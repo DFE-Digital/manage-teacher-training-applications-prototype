@@ -143,7 +143,7 @@
       {{ govukSummaryList({
         rows: [{
           key: {
-            text: "Was it due to candidate behaviour?"
+            text: "Was it related to candidate behaviour?"
           },
           value: {
             html: data['actions']
@@ -192,7 +192,7 @@
           }
         }, {
           key: {
-            text: "Was it due to missing qualifications?"
+            text: "Was it related to missing qualifications?"
           },
           value: {
             html: data['missing-qualifications']
@@ -225,7 +225,7 @@
         } if data['missing-qualifications'] == "Yes",
         {
           key: {
-            text: "Was it due to the quality of their application?"
+            text: "Was it related to the quality of their application?"
           },
           value: {
             html: data['application-quality']

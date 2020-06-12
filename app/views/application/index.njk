@@ -24,7 +24,7 @@
       {{ govukButton({
         text: "Respond to application",
         classes: "govuk-!-margin-bottom-0",
-        href: "/application/{{application.id}}/decision"
+        href: "/application/" + application.id + "/decision"
       }) }}
     {% endset %}
     {{ appBanner({
