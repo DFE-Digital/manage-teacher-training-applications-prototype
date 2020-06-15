@@ -2,7 +2,7 @@ const utils = require( '../data/application-utils')
 
 module.exports = router => {
 
-  router.get('/organisations/show', (req, res) => {
+  router.get('/organisations/show3', (req, res) => {
 
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -12,14 +12,14 @@ module.exports = router => {
       }
     })
 
-    res.render('organisations/show', {
+    res.render('organisations/show3', {
       flashMessage: flashMessage
     })
   })
 
   router.post('/organisations/edit', (req, res) => {
     req.flash('success', 'permissions-changed');
-    res.redirect(`/organisations/show`);
+    res.redirect(`/organisations/show3`);
   })
 
 }
