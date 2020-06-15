@@ -28,7 +28,10 @@
   {{ govukCharacterCount({
     maxlength: 300,
     label: {
-      text: "Please give details. (If you can't provide this information for legal reasons, say so.)"
+      text: "Please give details"
+    },
+    hint: {
+      text: "If there are details you cannot provide for legal reasons, explain this to the candidate"
     },
     id: "honesty-reasons-reference-information",
     name: "rejectionReasons[honesty-reasons-reference-information]",
