@@ -20,6 +20,20 @@ module.exports = router => {
     })
   })
 
+  router.get('/application/:applicationId/notes/first-time', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+
+    res.render('application/notes/first-time', {
+      applicationId: applicationId
+    })
+  })
+
+  router.post('/application/:applicationId/notes/first-time', (req, res) => {
+    const applicationId = req.params.applicationId;
+    res.redirect(`/application/${applicationId}/notes/new`);
+  })
+
   router.get('/application/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]

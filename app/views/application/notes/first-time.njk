@@ -1,0 +1,62 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = name %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="app-inverted app-inverted--card">
+
+        <h1 class="govuk-heading-l app-heading-l--inverted">How notes work</h1>
+
+        <p class="govuk-body app-body--inverted">
+          Here’s some information about notes and how candidates won’t be able to see them.
+        <p>
+
+        <form method="post">
+
+
+          {{ govukCheckboxes({
+            idPrefix: "hide-tip",
+            name: "hide-tip",
+            classes: "app-inverted-checkbox",
+            fieldset: {
+              legend: {
+                text: "Do you want to hide this tip again in future?",
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "Do not show this tip again",
+                text: "Do not show this tip again"
+              }
+            ]
+          }) }}
+
+          <p class="govuk-body app-body--inverted">You can turn on this tip again by going to your account.</p>
+
+
+          {{govukButton({
+            text: "Continue",
+            classes: "app-button--inverted govuk-!-margin-bottom-0"
+          })}}
+        </form>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

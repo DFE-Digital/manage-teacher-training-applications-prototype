@@ -1,0 +1,39 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = name %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="app-inverted app-inverted--card">
+
+        <h1 class="govuk-heading-l app-heading-l--inverted">New: customise notifications</h1>
+
+        <p class="govuk-body app-body--inverted">
+          You can <a class="app-link--inverted" href="/account/notification-settings/">change your notification settings</a> within your account.
+        <p>
+
+        {{govukButton({
+          text: "Continue",
+          href: "/",
+          classes: "app-button--inverted govuk-!-margin-bottom-0"
+        })}}
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
