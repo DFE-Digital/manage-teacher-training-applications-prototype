@@ -1,6 +1,7 @@
 {% extends "_layout.njk" %}
 
-{% set org = "Somerset SCITT Consortium" %}
+{% set org = "Ventrus Teaching School Alliance" %}
+{% set partner = "Somerset SCITT Consortium" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,7 +14,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">Change permissions</span>
-      <h1 class="govuk-heading-xl">For courses run and ratified by {{org}}</h1>
+      <h1 class="govuk-heading-xl">For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium</h1>
 
       {% include "_includes/permissions-guidance.njk" %}
 
