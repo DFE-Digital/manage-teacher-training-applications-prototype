@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = "The Beach Teaching School" %}
+{% set title = "Westfield TSA" %}
 
 {% block content %}
 
@@ -16,12 +16,12 @@
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {% set permissionsOneHtml %}
-          <p>Somerset SCITT Consortium can:</p>
+          <p>Teaching Excellence SCITT Consortium can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
           </ul>
-          <p>The Beach Teaching School can:</p>
+          <p>Westfield TSA can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
@@ -31,7 +31,7 @@
           rows: [
             {
               key: {
-                text: "For courses run by The Beach Teaching School and ratified by Somerset SCITT Consortium"
+                text: "For courses run by Westfield TSA and ratified by Teaching Excellence SCITT Consortium"
               },
               value: {
                 html: permissionsOneHtml
