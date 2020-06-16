@@ -122,7 +122,7 @@ module.exports = router => {
 
       if(locationnames && locationnames.length) {
         selectedFilters.categories.push({
-          heading: { text: "Training locations for Growing Expert Teachers" },
+          heading: { text: "Training locations for Highfield Academy Alliance" },
           items: locationnames.map((locationname) => {
             return {
               text: locationname,
