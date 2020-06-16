@@ -80,59 +80,10 @@
 
   {%- from "moj/components/header/macro.njk" import mojHeader -%}
 
-{% set alertsLinkHtml %}
-  <span class="app-notification-link">
-    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
-  </span>
-{% endset %}
 
-{{ govukHeader({
-  containerClasses: "govuk-width-container",
-  "navigationClasses": "govuk-header__navigation--end",
-  "productName": serviceName,
-  "navigation": [
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    }, {
-      href: "/profile",
-      text: "Account",
-      active: primaryNavId == 'profile'
-    },  {
-      href: "/",
-      text: "Sign out"
-    }
-  ]
-}) }}
-{#
-{{ mojHeader({
-  logotype: "crown",
-organisationLabel: {
-text: 'GOV.UK',
-href: '/'
-},
-serviceLabel: {
-text: serviceName,
-href: '/'
-},
-navigation: {
-label: 'Account navigation',
-items: [{
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    }, {
-      href: "/profile",
-      text: "Profile",
-      active: primaryNavId == 'profile'
-    },  {
-      href: "/",
-      text: "Sign out"
-    } ]
-}
 
-}) }} #}
+
+{% include "_includes/header.njk" %}
 
 
 {%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
