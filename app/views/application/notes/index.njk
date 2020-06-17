@@ -36,12 +36,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{govukButton({
-        text: "Add note",
-        href: "/application/" + application.id + "/notes/new"
-      })}}
+
 
       {% if application.notes %}
+
+        {{govukButton({
+          text: "Add note",
+          href: "/application/" + application.id + "/notes/first-time"
+        })}}
+
         <div class="app-notes">
           {% for note in application.notes.items %}
             <div class="app-notes__note">
@@ -51,6 +54,13 @@
             </div>
           {% endfor %}
         </div>
+      {% else %}
+        <p>There are no notes yet. We’ll guide you through creating your first note.</p>
+
+        {{govukButton({
+          text: "Add note",
+          href: "/application/" + application.id + "/notes/first-time"
+        })}}
       {% endif %}
 
     </div>

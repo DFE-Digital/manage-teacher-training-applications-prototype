@@ -29,6 +29,7 @@ $govuk-grid-widths: (
 @import "components/footer";
 @import "components/hidden-link";
 @import "components/icon";
+@import "components/inverted";
 @import "components/search";
 @import "components/status";
 @import "components/table";
@@ -382,4 +383,13 @@ h1 .govuk-tag {
 
 .sortby-selector {
   margin-right: 0.5em;
+}
+
+
+
+.app-callout-card {
+  // background-color: govuk-tint(govuk-colour('light-grey'), 0%);
+  border: 1px solid govuk-colour('blue');
+  border-left-width: 7px;
+  @include govuk-responsive-padding(7);
 }
