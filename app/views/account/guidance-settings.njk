@@ -1,0 +1,39 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'account' %}
+{% set subNavId = 'guidance-settings' %}
+{% set title = "Application settings" %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  {% include "_includes/profile-sub-nav.njk" %}
+
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+   {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Show additional guidance for adding a note"
+            },
+            value: {
+              html: "Off"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/account/notification-settings/edit/application-submitted",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+{% endblock %}
