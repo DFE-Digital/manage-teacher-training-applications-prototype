@@ -1,3 +1,54 @@
+{{ govukRadios({
+  idPrefix: "makedecisions",
+  name: "makedecisions",
+  fieldset: {
+    legend: {
+      text: "Which organisations can make decisions?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org + " only",
+      text: org + " only"
+    },
+    {
+      value: partner + " only",
+      text: partner + " only"
+    },
+    {
+      value: "Both " + org + " and " + partner,
+      text: "Both " + org + " and " + partner
+    }
+  ]
+}) }}
+
+{{ govukRadios({
+  idPrefix: "makedecisions",
+  name: "makedecisions",
+  fieldset: {
+    legend: {
+      text: "Which organisations can see safeguarding information?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org + " only",
+      text: org + " only"
+    },
+    {
+      value: partner + " only",
+      text: partner + " only"
+    },
+    {
+      value: "Both " + org + " and " + partner,
+      text: "Both " + org + " and " + partner
+    }
+  ]
+}) }}
+{#
+
 {{ govukCheckboxes({
   idPrefix: "permissions",
   name: "permissions",
@@ -42,4 +93,4 @@
     ]
   }) }}
 
-{% endif %}
+{% endif %} #}
