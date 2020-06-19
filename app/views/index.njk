@@ -4,16 +4,38 @@
 
 {% block content %}
 
-  <span class="govuk-caption-xl">
-    {{data.cycle}} recruitment cycle
-  </span>
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+  {% if data.tabs %}
+    <div class="govuk-tabs govuk-!-margin-bottom-6">
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item {% if data.cycle == "2018-19" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}" role="presentation">
+          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "2018-19" %} aria-selected="true" {% endif %} href="/?cycle=2018-19"> 2018-19 </a>
+        </li>
+        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "2019-20" %}govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
+          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "2019-20" %} aria-selected="true" {% endif %} href="/?cycle=2019-20">
+            2019-20 </a>
+        </li>
+        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "2020-21" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
+          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "2020-21" %} aria-selected="true" {% endif %} href="/?cycle=2020-21">
+            2020-21 </a>
+        </li>
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if not data.tabs %}
+    <span class="govuk-caption-xl">
+      {{data.cycle}} recruitment cycle
+    </span>
+  {% endif %}
+  <h1 class="govuk-heading-xl {% if not data.tabs %}govuk-!-margin-bottom-2{% endif %}">
     Applications
   </h1>
 
-  <p class="govuk-body govuk-!-margin-bottom-9">
-    <a href="/change-cycle" class="govuk-link">Switch cycle</a>
-  </p>
+  {% if not data.tabs %}
+    <p class="govuk-body govuk-!-margin-bottom-9">
+      <a href="/change-cycle" class="govuk-link">Switch cycle</a>
+    </p>
+  {% endif %}
 
   <div class="moj-filter-layout">
     <div class="moj-filter-layout__filter">
