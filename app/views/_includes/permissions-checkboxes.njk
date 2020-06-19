@@ -1,4 +1,4 @@
-{{ govukRadios({
+{{ govukCheckboxes({
   idPrefix: "makedecisions",
   name: "makedecisions",
   fieldset: {
@@ -15,15 +15,11 @@
     {
       value: partner + " only",
       text: partner + " only"
-    },
-    {
-      value: "Both " + org + " and " + partner,
-      text: "Both " + org + " and " + partner
     }
   ]
 }) }}
 
-{{ govukRadios({
+{{ govukCheckboxes({
   idPrefix: "safeguarding",
   name: "safeguarding",
   fieldset: {
@@ -40,57 +36,6 @@
     {
       value: partner + " only",
       text: partner + " only"
-    },
-    {
-      value: "Both " + org + " and " + partner,
-      text: "Both " + org + " and " + partner
     }
   ]
 }) }}
-{#
-
-{{ govukCheckboxes({
-  idPrefix: "permissions",
-  name: "permissions",
-  fieldset: {
-    legend: {
-      html: "Select permissions for " + org,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "make decisions",
-      text: "They can make decisions"
-    },
-    {
-      value: "see safeguarding information",
-      text: "They have access to safeguarding information"
-    }
-  ]
-}) }}
-
-{% if partner %}
-
-  {{ govukCheckboxes({
-    idPrefix: "permissions",
-    name: "permissions",
-    fieldset: {
-      legend: {
-        html: "Select permissions for " + partner,
-        classes: "govuk-fieldset__legend--m"
-      }
-    },
-    items: [
-      {
-        value: "make decisions",
-        text: "They can make decisions"
-      },
-      {
-        value: "see safeguarding information",
-        text: "They have access to safeguarding information"
-      }
-    ]
-  }) }}
-
-{% endif %} #}
