@@ -1,11 +1,19 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set title = "Applications" %}
-{% set parent = "2019-20 recruitment cycle" %}
 
+{% block content %}
 
-{% block primary %}
+  <span class="govuk-caption-xl">
+    {{data.cycle}} recruitment cycle
+  </span>
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+    Applications
+  </h1>
+
+  <p class="govuk-body govuk-!-margin-bottom-9">
+    <a href="/change-cycle" class="govuk-link">Change cycle</a>
+  </p>
 
   <div class="moj-filter-layout">
     <div class="moj-filter-layout__filter">

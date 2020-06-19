@@ -1,0 +1,60 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = '' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "cycle",
+          name: "cycle",
+          fieldset: {
+            legend: {
+              text: "Change cycle",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "2017-18",
+              text: "2017-18",
+              checked: checked("cycle", "2017-18")
+            },
+            {
+              value: "2018-19",
+              text: "2018-19",
+              checked: checked("cycle", "2018-19")
+            },
+            {
+              value: "2019-20",
+              text: "2019-20 - current cycle",
+              checked: checked("cycle", "2019-20")
+            },
+            {
+              value: "2020-21",
+              text: "2020-21",
+              checked: checked("cycle", "2020-21")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Change cycle"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
