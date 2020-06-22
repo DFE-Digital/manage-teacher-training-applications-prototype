@@ -1,6 +1,29 @@
 {{ govukSummaryList({
   rows: [{
     key: {
+      text: "Submitted"
+    },
+    value: {
+      text: application.submittedDate | date("dd LLLL yyyy") + " at " + note.date | time
+    }
+  }, {
+    key: {
+      text: "Cycle"
+    },
+    value: {
+      text: 'Current cycle (2020-2021)'
+    },
+    actions: {
+      items: [
+        {
+          href: '/application/' + application.id + '/cycle/edit',
+          text: "Change",
+          visuallyHiddenText: "cycle"
+        }
+      ]
+    }
+  }, {
+    key: {
       text: "Full name"
     },
     value: {

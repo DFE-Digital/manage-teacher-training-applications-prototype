@@ -7,16 +7,16 @@
   {% if data.tabs %}
     <div class="govuk-tabs govuk-!-margin-bottom-6">
       <ul class="govuk-tabs__list">
-        <li class="govuk-tabs__list-item {% if data.cycle == "2018-19" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}" role="presentation">
-          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "2018-19" %} aria-selected="true" {% endif %} href="/?cycle=2018-19"> 2018-19 </a>
+        <li class="govuk-tabs__list-item {% if data.cycle == "Previous cycle (2019-2020)" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}" role="presentation">
+          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "Previous cycle (2019-2020)" %} aria-selected="true" {% endif %} href="/?cycle=Previous cycle (2019-2020)"> Previous cycle (2019-2020) </a>
         </li>
-        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "2019-20" %}govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "2019-20" %} aria-selected="true" {% endif %} href="/?cycle=2019-20">
-            2019-20 </a>
+        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "Current cycle (2020-2021)" %}govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
+          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "Current cycle (2020-2021)" %} aria-selected="true" {% endif %} href="/?cycle=Current cycle (2020-2021)">
+            Current cycle (2020-2021) </a>
         </li>
-        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "2020-21" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "2020-21" %} aria-selected="true" {% endif %} href="/?cycle=2020-21">
-            2020-21 </a>
+        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "Next cycle (2021-20222)" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
+          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "Next cycle (2021-20222)" %} aria-selected="true" {% endif %} href="/?cycle=Next cycle (2021-20222)">
+            Next cycle (2021-20222) </a>
         </li>
       </ul>
     </div>
@@ -33,7 +33,7 @@
 
   {% if not data.tabs %}
     <p class="govuk-body govuk-!-margin-bottom-9">
-      <a href="/change-cycle" class="govuk-link">Switch cycle</a>
+      <a href="/switch-cycle" class="govuk-link">Switch cycle</a>
     </p>
   {% endif %}
 

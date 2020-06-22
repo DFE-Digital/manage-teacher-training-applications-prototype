@@ -246,7 +246,7 @@ module.exports = router => {
     res.redirect('/');
   })
 
-  router.post('/change-cycle', (req, res) => {
+  router.post('/switch-cycle', (req, res) => {
     res.redirect(`/`);
   })
 

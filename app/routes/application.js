@@ -105,4 +105,10 @@ module.exports = router => {
     }
   })
 
+  router.get('/application/:applicationId/cycle/edit', (req, res) => {
+    res.render(`application/cycle/edit`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
 }

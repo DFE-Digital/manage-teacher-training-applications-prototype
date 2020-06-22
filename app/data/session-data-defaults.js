@@ -2,7 +2,7 @@ const applications = require('./applications')
 
 module.exports = {
   applications,
-  cycle: "2020-2021 (current cycle)",
+  cycle: "Current cycle (2020-2021)",
   bare: process.env.BARE,
   flags: {
     interview_preferences: true

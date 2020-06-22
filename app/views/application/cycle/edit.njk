@@ -1,0 +1,55 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+
+{% set application = data.applications[applicationId] %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "cycle",
+          name: "cycle",
+          fieldset: {
+            legend: {
+              text: "Change cycle",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Current cycle (2020-2021)",
+              text: "Current cycle (2020-2021)",
+              checked: checked("cycle", "Current cycle (2020-2021)")
+            },
+            {
+              value: "Next cycle (2021-2022)",
+              text: "Next cycle (2021-2022)",
+              hint: {
+                text: 'You can change the conditions of the offer after you do this'
+              },
+              checked: checked("cycle", "Next cycle (2021-2022)")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
