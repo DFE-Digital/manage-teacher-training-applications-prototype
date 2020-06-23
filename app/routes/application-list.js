@@ -12,7 +12,9 @@ module.exports = router => {
   router.all('/', (req, res) => {
 
     // Clone and turn into an array
-    let apps = Object.values(req.session.data.applications).reverse();
+    let apps = Object.values(req.session.data.applications).reverse().filter(app => {
+      return app.cycle == req.session.data.cycle;
+    });
     let { status, provider, accreditingbody, keywords, locationname, rbddate, sortby } = req.query
 
     keywords = keywords || req.session.data.keywords;

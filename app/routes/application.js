@@ -115,7 +115,18 @@ module.exports = router => {
   router.post('/application/:applicationId/cycle/edit', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId];
-    application.cycle = req.body.cycle;
+    application.cycle = req.body.applicatoncycle;
+    if(application.cycle == 'Next cycle (2021-2022)') {
+      application.previousOffer = application.offer;
+      application.previousStatus = application.status;
+      application.offer = null;
+      application.status = "Deferred";
+    } else {
+      application.offer = application.previousOffer;
+      application.previousOffer = null;
+      application.status = application.previousStatus;
+      application.previousStatus = null;
+    }
     req.flash('success', 'cycle-changed');
     res.redirect(`/application/${applicationId}`)
   })
