@@ -107,15 +107,26 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/cycle/edit', (req, res) => {
-    res.render(`application/cycle/edit`, {
+    res.render(`application/cycle/edit/cycle`, {
       applicationId: req.params.applicationId
     })
   })
 
   router.post('/application/:applicationId/cycle/edit', (req, res) => {
     const applicationId = req.params.applicationId
+    res.redirect(`/application/${applicationId}/cycle/edit/check`)
+  })
+
+  router.get('/application/:applicationId/cycle/edit/check', (req, res) => {
+    res.render(`application/cycle/edit/check`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.post('/application/:applicationId/cycle/edit/check', (req, res) => {
+    const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId];
-    application.cycle = req.body.applicatoncycle;
+    application.cycle = req.session.data.applicatoncycle;
     if(application.cycle == 'Next cycle (2021-2022)') {
       application.previousOffer = application.offer;
       application.previousStatus = application.status;

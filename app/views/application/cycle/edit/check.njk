@@ -1,0 +1,42 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/application/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">
+        {{name}}
+      </span>
+      <h1 class="govuk-heading-xl">
+        Check and confirm change of cycle
+      </h1>
+
+      <p>The course you have currently offered is not available yet in the next cycle.</p>
+
+      <p>This application will be marked as deferred. You must reinstate your offer at the start of the next cycle.</p>
+
+      <p>When you confirm, the candidate will be notified by email.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm change of cycle"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
