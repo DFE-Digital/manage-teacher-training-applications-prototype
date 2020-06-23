@@ -25,6 +25,21 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-07-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-04-30'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-05-01'
+      }]
+    },
     'personal-details': {
       'given-name': 'Eloise',
       'family-name': 'Wells',
@@ -87,6 +102,25 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Becky',
       'family-name': 'Brother',
@@ -148,6 +182,29 @@ module.exports = {
       conditionsMetDate: '2019-08-12T09:01:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
     },
     'personal-details': {
       'given-name': 'David',
@@ -221,6 +278,29 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Enrolled',
+        user: 'Alex Renato',
+        date: '2019-09-14'
+      }]
+    },
     'personal-details': {
       'given-name': 'Charlie',
       'family-name': 'April',
@@ -278,11 +358,30 @@ module.exports = {
     status: 'Conditions not met',
     offer: {
       madeDate: '2019-02-09',
+      acceptedDate: '2019-02-12T18:52:00',
       conditionsNotMetDate: '2019-04-12T18:52:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Not met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
-
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-01-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-02-09'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-02-12T18:52:00'
+      }, {
+        title: 'Conditions not met',
+        user: 'Alex Renato',
+        date: '2019-04-12T18:52:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Charlotte',
       'family-name': 'Campbel',
@@ -348,7 +447,29 @@ module.exports = {
       // Future applications
       "future-applications": "Yes"
     },
-
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Daniel James',
       'family-name': 'Jennings',
@@ -410,6 +531,29 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Elizabeth',
       'family-name': 'Rose',
@@ -466,6 +610,29 @@ module.exports = {
     submittedDate: '2019-04-15',
     withdrawnDate: '2019-05-16T12:02:00',
     status: 'Application withdrawn',
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Esther',
       'family-name': 'Fairley',
@@ -572,7 +739,29 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
-
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Francis',
       'family-name': 'Platt',
@@ -823,6 +1012,29 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'James',
       'family-name': 'Khan',
@@ -1072,7 +1284,29 @@ module.exports = {
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
-
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Jeremy',
       'family-name': 'Brown',
@@ -1332,6 +1566,29 @@ module.exports = {
     locationname: 'Main site',
     submittedDate: '2019-07-05T14:01:00',
     status: 'Submitted',
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'May',
       'family-name': 'Cole',
@@ -1558,6 +1815,29 @@ module.exports = {
     locationname: 'Main site',
     submittedDate: '2019-07-21T18:59:00',
     status: 'Submitted',
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
     'personal-details': {
       'given-name': 'Poppy',
       'family-name': 'Noor',
@@ -1753,6 +2033,20 @@ module.exports = {
         body: "Make sure you review this application paying close attention to their qualifications",
         sender: "Pepper Potts",
         date: '2019-07-30T08:32:00'
+      }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Note added',
+        user: 'Alex Renato',
+        date: '2019-06-12',
+        meta: {
+          noteIndex: 0
+        }
       }]
     },
     'personal-details': {
@@ -1963,6 +2257,13 @@ module.exports = {
     locationname: 'Main site',
     submittedDate: '2019-08-10T13:32:00',
     status: 'Submitted',
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }]
+    },
     'personal-details': {
       'given-name': 'Kelly Jane',
       'family-name': 'Spears',

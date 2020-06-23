@@ -190,13 +190,6 @@ module.exports = router => {
     });
 
     if(sortby == 'days left to respond') {
-      // applications = applications.sort(function(a, b) {
-      //   if(a.status == "Submitted") {
-      //     return -1;
-      //   } else {
-      //     return 1;
-      //   }
-      // })
       applications = applications.sort(function(a, b) {
         return a.daysToRespond - b.daysToRespond;
       })
