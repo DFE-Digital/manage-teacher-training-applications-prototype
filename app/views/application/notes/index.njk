@@ -55,10 +55,10 @@
           {% endfor %}
         </div>
       {% else %}
-        <p>There are no notes yet. We’ll guide you through creating your first note.</p>
+        <p>Notes are only seen by you and colleagues. We'll guide you through note creation.</p>
 
         {{govukButton({
-          text: "Add note",
+          text: "Continue",
           href: "/application/" + application.id + "/notes/first-time"
         })}}
       {% endif %}
