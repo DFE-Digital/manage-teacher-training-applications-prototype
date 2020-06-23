@@ -453,21 +453,9 @@ module.exports = {
         user: 'Candidate',
         date: '2019-05-15'
       }, {
-        title: 'Offer made',
+        title: 'Application rejected',
         user: 'Alex Renato',
-        date: '2019-06-12'
-      }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-08-10T08:32:00'
       }]
     },
     'personal-details': {
@@ -535,23 +523,15 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-0602'
       }, {
         title: 'Offer made',
         user: 'Alex Renato',
-        date: '2019-06-12'
+        date: '2019-07-01'
       }, {
-        title: 'Offer accepted',
+        title: 'Offer declined',
         user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-07-12T16:32:00'
       }]
     },
     'personal-details': {
@@ -614,23 +594,11 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-04-15'
       }, {
-        title: 'Offer made',
+        title: 'Application withdrawn',
         user: 'Alex Renato',
-        date: '2019-06-12'
-      }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-05-16T12:02:00'
       }]
     },
     'personal-details': {
@@ -686,7 +654,6 @@ module.exports = {
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
     locationname: 'Main site',
-
     submittedDate: '2019-03-02',
     status: 'Offer withdrawn',
     offer: {
@@ -743,23 +710,15 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-03-02'
       }, {
         title: 'Offer made',
         user: 'Alex Renato',
-        date: '2019-06-12'
+        date: '2019-04-01'
       }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
+        title: 'Offer withdrawn',
         user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-04-05T09:45:00'
       }]
     },
     'personal-details': {
@@ -1016,23 +975,11 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-02-01'
       }, {
         title: 'Offer made',
         user: 'Alex Renato',
-        date: '2019-06-12'
-      }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-02-24T11:27:00'
       }]
     },
     'personal-details': {
@@ -1288,23 +1235,11 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-01-16T08:32:00'
       }, {
         title: 'Offer made',
         user: 'Alex Renato',
-        date: '2019-06-12'
-      }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-02-15T10:02:00'
       }]
     },
     'personal-details': {
