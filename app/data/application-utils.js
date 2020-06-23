@@ -58,13 +58,14 @@ exports.getRejectReasons = (data) => {
 
 exports.getConditions = (application) => {
   let conditions = [];
-  if(application.offer && application.offer.standardConditions) {
-    application.offer.standardConditions.forEach((item) => {
+  var offer = application.offer || application.previousOffer;
+  if(offer && offer.standardConditions) {
+    offer.standardConditions.forEach((item) => {
       conditions.push(item)
     });
   }
-  if(application.offer && application.offer.conditions) {
-    application.offer.conditions.forEach((item) => {
+  if(offer && offer.conditions) {
+    offer.conditions.forEach((item) => {
       conditions.push(item)
     });
   }

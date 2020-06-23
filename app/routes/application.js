@@ -25,7 +25,8 @@ module.exports = router => {
         'change-condition-status-to-not-met': 'Condition successfully updated to not met',
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
-        'offer-made-to-new-location': 'Offer successfully made'
+        'offer-made-to-new-location': 'Offer successfully made',
+        'cycle-changed': 'Cycle successfully changed'
       }
     })
 
@@ -103,6 +104,31 @@ module.exports = router => {
     } else {
       res.redirect(`/application/${applicationId}/reject`)
     }
+  })
+
+  router.get('/application/:applicationId/cycle/edit', (req, res) => {
+    res.render(`application/cycle/edit`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.post('/application/:applicationId/cycle/edit', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId];
+    application.cycle = req.body.applicatoncycle;
+    if(application.cycle == 'Next cycle (2021-2022)') {
+      application.previousOffer = application.offer;
+      application.previousStatus = application.status;
+      application.offer = null;
+      application.status = "Deferred";
+    } else {
+      application.offer = application.previousOffer;
+      application.previousOffer = null;
+      application.status = application.previousStatus;
+      application.previousStatus = null;
+    }
+    req.flash('success', 'cycle-changed');
+    res.redirect(`/application/${applicationId}`)
   })
 
 }
