@@ -1,0 +1,142 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% set title = "Check and reconfirm offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% set conditionsHtml %}
+    {% if conditions.length %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for condition in conditions %}
+          <li>
+            {{ condition.description }}
+            {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="govuk-body">None specified</p>
+    {% endif %}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <h2 class="govuk-heading-m">
+        Course details
+      </h2>
+      {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-provider",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
+                }
+              ]
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-course",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
+                }
+              ]
+            }
+          }, {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-location",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
+                }
+              ]
+            }
+          }
+        ]})
+      }}
+
+      <h2 class="govuk-heading-m">
+        Conditions
+      </h2>
+
+      <dl class="govuk-summary-list app-conditions-list">
+      {% for condition in conditions %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+             {{condition.description}}
+             {% if application.status == "Accepted" %}
+                <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
+              {% endif %}
+          </dt>
+          <dd class="govuk-summary-list__value">
+             {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+          </dd>
+          {% if 1 == 1 %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/conditions">
+              Change</a>
+            </dd>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </dl>
+
+      <p class="govuk-body">The candidate will be notified that their offer has been reconfirmed for the new cycle including any changes you’ve made.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Reconfirm offer"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

@@ -197,7 +197,8 @@ module.exports = router => {
 
     res.render('index', {
       applications: applications,
-      selectedFilters: selectedFilters
+      selectedFilters: selectedFilters,
+      hasFilters: hasFilters
     })
   })
 

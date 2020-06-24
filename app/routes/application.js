@@ -61,7 +61,8 @@ module.exports = router => {
         'change-condition-status-to-not-met': 'Condition successfully updated to not met',
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
-        'offer-made-to-new-location': 'Offer successfully made'
+        'offer-made-to-new-location': 'Offer successfully made',
+        'offer-reconfirmed': 'Offer reconfirmed successfully'
       }
     })
 

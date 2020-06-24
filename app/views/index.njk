@@ -37,72 +37,78 @@
     </p>
   {% endif %}
 
-  <div class="moj-filter-layout">
-    <div class="moj-filter-layout__filter">
-      {% include "_includes/filter-panel.njk" %}
-    </div>
-
-    <div class="moj-filter-layout__content">
-
-      <div class="moj-action-bar">
-        <div class="moj-action-bar__filter"></div>
-        <div>
-          <form>
-            <div class="govuk-form-group govuk-!-margin-bottom-2">
-              <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
-              <select class="govuk-select sortby-selector" name="sortby" id="sortby">
-                <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
-                <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option>
-              </select>
-              {{ govukButton({
-                text: "Sort",
-                classes: 'govuk-buton--secondary govuk-!-margin-bottom-2'
-              }) }}
-            </div>
-          </form>
-
-        </div>
+  {% if not hasFilters and not applications.length %}
+    <p>This cycle has no applications yet.</p>
+  {% else  %}
+    <div class="moj-filter-layout">
+      <div class="moj-filter-layout__filter">
+        {% include "_includes/filter-panel.njk" %}
       </div>
-      <div>
-        <div class="app-application-cards">
+
+      <div class="moj-filter-layout__content">
+
+        <div class="moj-action-bar">
+          <div class="moj-action-bar__filter"></div>
+          <div>
+            <form>
+              <div class="govuk-form-group govuk-!-margin-bottom-2">
+                <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
+                <select class="govuk-select sortby-selector" name="sortby" id="sortby">
+                  <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
+                  <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option>
+                </select>
+                {{ govukButton({
+                  text: "Sort",
+                  classes: 'govuk-buton--secondary govuk-!-margin-bottom-2'
+                }) }}
+              </div>
+            </form>
+
+          </div>
+        </div>
+        <div>
           {% if applications.length %}
-            {% for a in applications %}
-              {% set rbd = a.status.submitted.date | addDays(40) %}
-              {% set remaining = rbd | daysFromNow(rbd) %}
-              {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-              {% include "_includes/application-card.njk" %}
-            {% endfor %}
+            <div class="app-application-cards">
+              {% for a in applications %}
+                {% set rbd = a.status.submitted.date | addDays(40) %}
+                {% set remaining = rbd | daysFromNow(rbd) %}
+                {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
+                {% include "_includes/application-card.njk" %}
+              {% endfor %}
+            </div>
           {% endif%}
         </div>
+
+        {% if applications.length %}
+          {{ mojPagination({
+            results: {
+              from: 1,
+              to: 15,
+              count: 30
+            },
+              next: {
+              text: 'Next',
+              href: ''
+            },
+              items: [{
+              text: '1',
+              href: '/page=1',
+              selected: true
+            }, {
+              text: '2',
+              href: '/page=2'
+            }]
+          }) }}
+        {% endif %}
+
+        {% if not applications.length %}
+          <p>No applications for the selected filters. Try removing a filter.</p>
+        {% endif %}
       </div>
-
-      {% if applications.length %}
-        {{ mojPagination({
-          results: {
-            from: 1,
-            to: 15,
-            count: 30
-          },
-            next: {
-            text: 'Next',
-            href: ''
-          },
-            items: [{
-            text: '1',
-            href: '/page=1',
-            selected: true
-          }, {
-            text: '2',
-            href: '/page=2'
-          }]
-        }) }}
-      {% endif %}
-
-      {% if not applications.length %}
-        <p>No applications for the selected filters.</p>
-      {% endif %}
     </div>
-  </div>
+  {% endif %}
+
+
 {% endblock %}
 
 {% block pageScripts %}
