@@ -16,12 +16,12 @@ module.exports = {
         subject: "Talk to candidate on 15 June",
         body: "Make sure to prepare this and that ready for a chat",
         sender: "Laura Tennant",
-        date: '2019-04-20T19:20:30'
+        date: '2019-07-20T19:20:30'
       }]
     },
     offer: {
-      madeDate: '2019-04-30',
-      acceptedDate: '2019-05-01',
+      madeDate: '2019-07-30',
+      acceptedDate: '2019-08-01',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
@@ -31,13 +31,20 @@ module.exports = {
         user: 'Candidate',
         date: '2019-07-15'
       }, {
+        title: 'Note added',
+        user: 'Alex Renato',
+        date: '2019-07-20T19:20:30',
+        meta: {
+          noteIndex: 0
+        }
+      }, {
         title: 'Offer made',
         user: 'Alex Renato',
-        date: '2019-04-30'
+        date: '2019-07-30'
       }, {
         title: 'Offer accepted',
         user: 'Candidate',
-        date: '2019-05-01'
+        date: '2019-08-01'
       }]
     },
     'personal-details': {
@@ -1505,23 +1512,7 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
-      }, {
-        title: 'Offer made',
-        user: 'Alex Renato',
-        date: '2019-06-12'
-      }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-07-05T14:01:00'
       }]
     },
     'personal-details': {
@@ -1754,23 +1745,7 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
-      }, {
-        title: 'Offer made',
-        user: 'Alex Renato',
-        date: '2019-06-12'
-      }, {
-        title: 'Offer accepted',
-        user: 'Candidate',
-        date: '2019-06-13'
-      }, {
-        title: 'Conditions met',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Moved to next cycle',
-        user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-07-21T18:59:00'
       }]
     },
     'personal-details': {
@@ -1964,7 +1939,7 @@ module.exports = {
     notes: {
       items: [{
         id: uuid(),
-        subject: "Needs review",
+        subject: "Check qualifications",
         body: "Make sure you review this application paying close attention to their qualifications",
         sender: "Pepper Potts",
         date: '2019-07-30T08:32:00'
@@ -1974,11 +1949,11 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-07-29'
       }, {
         title: 'Note added',
         user: 'Alex Renato',
-        date: '2019-06-12',
+        date: '2019-07-30T08:32:00',
         meta: {
           noteIndex: 0
         }
@@ -2196,7 +2171,7 @@ module.exports = {
       items: [{
         title: 'Application submitted',
         user: 'Candidate',
-        date: '2019-05-15'
+        date: '2019-08-10T13:32:00'
       }]
     },
     'personal-details': {
