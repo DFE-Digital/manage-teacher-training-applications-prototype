@@ -61,4 +61,15 @@ module.exports = router => {
     res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/conditions`)
   })
 
+  router.get('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
+    res.render(`offer/reconfirm/conditions`, {
+      applicationId: req.params.applicationId
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm`)
+  })
+
+
 }

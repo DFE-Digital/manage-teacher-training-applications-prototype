@@ -1,0 +1,216 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Conditions of offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/offer/reconfirm/check"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
+
+      <div class="moj-add-another">
+        <h1 class="govuk-heading-xl moj-add-another__heading" tabindex="-1">{{title}}</h1>
+
+        <form method="post">
+
+          {% set statusOneHtml %}
+            {{ govukRadios({
+              idPrefix: "statusone",
+              name: "statusone",
+              fieldset: {
+                legend: {
+                  text: "Condition status",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Pending",
+                  text: "Pending"
+                },
+                {
+                  value: "Met",
+                  text: "Met"
+                },
+                {
+                  value: "Not met",
+                  text: "Not met"
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {{ govukCheckboxes({
+            idPrefix: "standard-conditions",
+            name: "standard-conditions",
+            fieldset: {
+              legend: {
+                text: "Standard conditions",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [{
+              value: "Fitness to teach check",
+              text: "Fitness to teach check",
+              checked: true,
+              conditional: {
+                html: statusOneHtml
+              }
+            }, {
+              value: "Disclosure and barring service check",
+              text: "Disclosure and barring service check",
+              checked: false
+            }]
+          }) }}
+
+
+          {% call govukFieldset({
+            classes: 'moj-add-another__item govuk-visually-hidden',
+            legend: {
+              text: 'Condition',
+              classes: 'moj-add-another__title govuk-fieldset__legend--m',
+              isPageHeading: false
+            }
+          }) %}
+
+            {{ govukTextarea({
+              id: 'condition[0][description]',
+              name: 'condition[0][description]',
+              label: {
+                html: 'Condition description',
+                classes: 'govuk-!-font-weight-bold'
+              },
+              attributes: {
+                'data-name': 'condition[%index%][description]',
+                'data-id': 'condition[%index%][description]'
+              }
+            }) }}
+
+            {{ govukRadios({
+              idPrefix: "condition[0][status]",
+              name: "condition[0][status]",
+              fieldset: {
+                legend: {
+                  text: "Condition status",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Pending",
+                  text: "Pending",
+                  attributes: {
+                    'data-name': 'condition[%index%][status][pending]',
+                    'data-id': 'condition[%index%][status][pending]'
+                  }
+                },
+                {
+                  value: "Met",
+                  text: "Met",
+                  attributes: {
+                    'data-name': 'condition[%index%][status][met]',
+                    'data-id': 'condition[%index%][status][met]'
+                  }
+                },
+                {
+                  value: "Not met",
+                  text: "Not met",
+                  attributes: {
+                    'data-name': 'condition[%index%][status][notmet]',
+                    'data-id': 'condition[%index%][status][notmet]'
+                  }
+                }
+              ]
+            }) }}
+
+
+          {% endcall %}
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another condition',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+
+          {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
+          <p class="govuk-body">Outline any further conditions (for example, studying a subject knowledge enhancement course) and give deadlines for completing them.</p>
+          {{ govukTextarea({
+            id: "condition-1",
+            name: "condition-1",
+            rows: 3,
+            label: {
+              text: "First condition",
+              classes: "govuk-label--s"
+            },
+            value: data["condition-1"]
+          }) }}
+
+          {{ govukTextarea({
+            id: "condition-2",
+            name: "condition-2",
+            rows: 3,
+            label: {
+              text: "Second condition",
+              classes: "govuk-label--s"
+            },
+            value: data["condition-2"]
+          }) }}
+
+          {{ govukTextarea({
+            id: "condition-3",
+            name: "condition-3",
+            rows: 3,
+            label: {
+              text: "Third condition",
+              classes: "govuk-label--s"
+            },
+            value: data["condition-3"]
+          }) }}
+
+          {{ govukTextarea({
+            id: "condition-4",
+            name: "condition-4",
+            rows: 3,
+            label: {
+              text: "Further conditions",
+              classes: "govuk-label--s"
+            },
+            value: data["condition-4"]
+          }) }} #}
+
+          {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Recommendations (optional)</h2>
+          {{ govukTextarea({
+            id: "recommendations",
+            name: "recommendations",
+            rows: 5,
+            label: {
+              text: "Outline any recommendations (for example, organising school experience)."
+            }
+          }) }} #}
+
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+      </div>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new MOJFrontend.AddAnother($('.moj-add-another'));
+  </script>
+{% endblock %}
