@@ -73,8 +73,13 @@
           }) }}
 
 
+          {% set fieldsetClasses = "moj-add-another__item" %}
+          {% if not furtherConditions %}
+            {% set fieldsetClasses = "moj-add-another__item govuk-!-display-none " %}
+          {% endif %}
+
           {% call govukFieldset({
-            classes: 'moj-add-another__item govuk-visually-hidden',
+            classes: fieldsetClasses,
             legend: {
               text: 'Condition',
               classes: 'moj-add-another__title govuk-fieldset__legend--m',
@@ -211,6 +216,9 @@
 
 {% block pageScripts %}
   <script>
-    new MOJFrontend.AddAnother($('.moj-add-another'));
+    new MOJFrontend.AddAnother({
+      container: $('.moj-add-another'),
+      allowNoFields: true
+    });
   </script>
 {% endblock %}

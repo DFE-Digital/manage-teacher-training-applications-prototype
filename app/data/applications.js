@@ -176,6 +176,7 @@ module.exports = {
   },
   "EE63341": {
     id: "EE63341",
+    offerUnavailable: true,
     cycle: "Current cycle (2020-2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',

@@ -4,7 +4,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Check and reconfirm offer" %}
+{% set title = "The course is no longer available in this cycle" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -40,10 +40,14 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <div class="app-offer-panel">
-          <h2 class="govuk-heading-m">
+      <p>You need to choose another course because the course you offered in the previous cycle is not available in the current cycle.</p>
+
+      {% set previousOfferHtml %}
+
+        <div class="app-offer-panel">
+          <h3 class="govuk-heading-s">
             Course details
-          </h2>
+          </h3>
           {{ govukSummaryList({
               rows: [{
                 key: {
@@ -51,15 +55,6 @@
                 },
                 value: {
                   html: application.provider
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-provider",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
                 }
               }, {
                 key: {
@@ -67,15 +62,6 @@
                 },
                 value: {
                   html: application.course
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-course",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
                 }
               }, {
                 key: {
@@ -83,15 +69,6 @@
                 },
                 value: {
                   html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-location",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
                 }
               }, {
                 key: {
@@ -99,21 +76,12 @@
                 },
                 value: {
                   html: "Full time"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-study-mode",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
                 }
               }
             ]})
           }}
 
-          <h2 class="govuk-heading-m">
+          <h2 class="govuk-heading-s">
             Conditions
           </h2>
 
@@ -136,25 +104,22 @@
                   {% endif %}
                   {{govukTag({ text: condition.status, classes: statusClass })}}
               </dd>
-              {% if 1 == 1 %}
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/conditions">
-                  Change</a>
-                </dd>
-              {% endif %}
             </div>
           {% endfor %}
-        </dl>
-      </div>
+          </dl>
+        </div>
+      {% endset %}
 
-      <p class="govuk-body">The candidate will be notified that their offer has been reconfirmed for the new cycle including any changes you’ve made.</p>
+      {{ govukDetails({
+        summaryText: "View previous offer",
+        html: previousOfferHtml
+      }) }}
 
-      <form method="post">
-        {{ govukButton({
-          text: "Reconfirm offer"
-        }) }}
-      </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      {{ govukButton({
+        text: "Continue",
+        href: "/application/" + application.id + "/offer/reconfirm/provider"
+      }) }}
+
     </div>
   </div>
 {% endblock %}

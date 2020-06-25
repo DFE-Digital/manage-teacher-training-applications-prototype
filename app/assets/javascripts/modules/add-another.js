@@ -1,15 +1,22 @@
-MOJFrontend.AddAnother = function(container) {
-	this.container = $(container);
+MOJFrontend.AddAnother = function(options) {
+	this.options = options;
+	this.container = $(options.container);
 	this.container.on('click', '.moj-add-another__remove-button', $.proxy(this, 'onRemoveButtonClick'));
 	this.container.on('click', '.moj-add-another__add-button', $.proxy(this, 'onAddButtonClick'));
 	this.container.find('.moj-add-another__add-button, moj-add-another__remove-button').prop('type', 'button');
 };
 
 MOJFrontend.AddAnother.prototype.onAddButtonClick = function(e) {
+	var firstItem = this.getItems().first();
+	if(this.options.allowNoFields && firstItem.hasClass('govuk-!-display-none')) {
+		firstItem.removeClass('govuk-!-display-none');
+		this.createRemoveButton(firstItem);
+		return;
+	}
+
 	var item = this.getNewItem();
 	this.updateAttributes(this.getItems().length, item);
 	this.resetItem(item);
-	var firstItem = this.getItems().first();
 	if(!this.hasRemoveButton(firstItem)) {
 		this.createRemoveButton(firstItem);
 	}
@@ -27,7 +34,6 @@ MOJFrontend.AddAnother.prototype.getItems = function() {
 
 MOJFrontend.AddAnother.prototype.getNewItem = function() {
   var item = this.getItems().first().clone();
-  item.removeClass('govuk-visually-hidden');
 	if(!this.hasRemoveButton(item)) {
 		this.createRemoveButton(item);
 	}
@@ -57,14 +63,20 @@ MOJFrontend.AddAnother.prototype.resetItem = function(item) {
 };
 
 MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function(e) {
-	$(e.currentTarget).parents('.moj-add-another__item').remove();
 	var items = this.getItems();
-	if(items.length === 1) {
-		items.find('.moj-add-another__remove-button').remove();
+
+	if(this.options.allowNoFields && items.length == 1) {
+		$(e.currentTarget).parents('.moj-add-another__item').addClass('govuk-!-display-none');
+	} else {
+		$(e.currentTarget).parents('.moj-add-another__item').remove();
+		if(items.length === 1) {
+			items.find('.moj-add-another__remove-button').remove();
+		}
+		items.each($.proxy(function(index, el) {
+			this.updateAttributes(index, $(el));
+		}, this));
 	}
-	items.each($.proxy(function(index, el) {
-		this.updateAttributes(index, $(el));
-	}, this));
+
 	this.focusHeading();
 };
 

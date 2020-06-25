@@ -7,10 +7,14 @@ module.exports = router => {
     const application = req.session.data.applications[applicationId];
     const conditions = application.previousOffer.standardConditions.concat(application.previousOffer.conditions);
 
-    res.render(`offer/reconfirm/check`, {
-      applicationId: applicationId,
-      conditions: conditions
-    })
+    if(application.offerUnavailable) {
+      res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable`)
+    } else {
+      res.render(`offer/reconfirm/check`, {
+        applicationId: applicationId,
+        conditions: conditions
+      })
+    }
   })
 
   router.post('/application/:applicationId/offer/reconfirm', (req, res) => {
@@ -30,6 +34,16 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/offer`)
   })
 
+  router.get('/application/:applicationId/offer/reconfirm/unavailable', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId];
+    const conditions = application.previousOffer.standardConditions.concat(application.previousOffer.conditions);
+
+    res.render(`offer/reconfirm/unavailable`, {
+      applicationId: applicationId,
+      conditions: conditions
+    })
+  })
 
   router.get('/application/:applicationId/offer/reconfirm/provider', (req, res) => {
     res.render(`offer/reconfirm/provider`, {
@@ -62,6 +76,9 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId];
+    application.offerUnavailable = false;
     res.render(`offer/reconfirm/conditions`, {
       applicationId: req.params.applicationId
     })
