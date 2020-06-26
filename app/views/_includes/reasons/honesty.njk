@@ -1,6 +1,6 @@
 {% set honestyFalseInformationHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },
@@ -13,7 +13,7 @@
 
 {% set honestyPlagiarismHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },
@@ -26,9 +26,12 @@
 
 {% set honestyReferenceInformationHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
+    },
+    hint: {
+      text: "If there are details you cannot provide for legal reasons, you should explain this to the candidate"
     },
     id: "honesty-reasons-reference-information",
     name: "rejectionReasons[honesty-reasons-reference-information]",
@@ -39,7 +42,7 @@
 
 {% set honestyOtherHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },

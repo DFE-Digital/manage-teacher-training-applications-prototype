@@ -1,45 +1,41 @@
 {{ govukCheckboxes({
-  idPrefix: "permissions",
-  name: "permissions",
+  idPrefix: "makedecisions",
+  name: "makedecisions",
   fieldset: {
     legend: {
-      html: "Select permissions for " + org,
+      text: "Select which organisations can make decisions",
       classes: "govuk-fieldset__legend--m"
     }
   },
   items: [
     {
-      value: "make decisions",
-      text: "They can make decisions"
+      value: org,
+      text: org
     },
     {
-      value: "see safeguarding information",
-      text: "They have access to safeguarding information"
+      value: partner,
+      text: partner
     }
   ]
 }) }}
 
-{% if partner %}
-
-  {{ govukCheckboxes({
-    idPrefix: "permissions",
-    name: "permissions",
-    fieldset: {
-      legend: {
-        html: "Select permissions for " + partner,
-        classes: "govuk-fieldset__legend--m"
-      }
+{{ govukCheckboxes({
+  idPrefix: "safeguarding",
+  name: "safeguarding",
+  fieldset: {
+    legend: {
+      text: "Select which organisations can see safeguarding information",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org,
+      text: org
     },
-    items: [
-      {
-        value: "make decisions",
-        text: "They can make decisions"
-      },
-      {
-        value: "see safeguarding information",
-        text: "They have access to safeguarding information"
-      }
-    ]
-  }) }}
-
-{% endif %}
+    {
+      value: partner,
+      text: partner
+    }
+  ]
+}) }}

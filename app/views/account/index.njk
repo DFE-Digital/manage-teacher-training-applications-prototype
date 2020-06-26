@@ -1,6 +1,7 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'profile' %}
+{% set primaryNavId = 'account' %}
+{% set subNavId = 'account' %}
 
 {% set title = "Account" %}
 
@@ -13,7 +14,7 @@
 
 
 
-  {# {% include "_includes/profile-sub-nav.njk" %} #}
+  {% include "_includes/profile-sub-nav.njk" %}
 
   <h1 class="govuk-heading-xl">{{title}}</h1>
 
@@ -42,19 +43,19 @@
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} Growing Expert Teachers
+      }) }} Highfield Academy Alliance
     </li>
     <li>{{ appIcon({
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} Taunton Teaching Alliance
+      }) }} Three Trees Teaching School
     </li>
     <li>{{ appIcon({
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} The Beach Teaching School
+      }) }} Westfield TSA
     </li>
   </ul>
   </div>
@@ -71,19 +72,19 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Growing Expert Teachers
+        }) }} Highfield Academy Alliance
       </li>
       <li>{{ appIcon({
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Taunton Teaching Alliance
+        }) }} Three Trees Teaching School
       </li>
       <li>{{ appIcon({
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} The Beach Teaching School
+        }) }} Westfield TSA
       </li>
     </ul>
     </div>
@@ -114,7 +115,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Somerset SCITT Consortium
+        }) }} Teaching Excellence SCITT Consortium
       </li>
     </ul>
     </div>
@@ -130,7 +131,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Somerset SCITT Consortium
+        }) }} Teaching Excellence SCITT Consortium
       </li>
     </ul>
     </div>
@@ -145,7 +146,7 @@
               text: "First name"
             },
             value: {
-              text: "Claudine"
+              text: "Angela"
             }
           },
           {
@@ -153,7 +154,7 @@
               text: "Last name"
             },
             value: {
-              text: "Leoni"
+              text: "Shah"
             }
           },
           {
@@ -161,7 +162,7 @@
               text: "Email address"
             },
             value: {
-              text: "cleoni@somerset.gov.uk"
+              text: "ashah@tescitt.co.uk"
             }
           },
           {
@@ -169,12 +170,12 @@
               text: "Organisations this user has access to"
             },
             value: {
-              html: "<p>Somerset SCITT</p><p>Ventrus Teaching School Alliance</p>"
+              html: "<p>Teaching Excellence SCITT</p><p>Your Teaching First TSA</p>"
             }
           },
           {
             key: {
-              text: "Permissions: Somerset SCITT Consortium"
+              text: "Permissions: Teaching Excellence SCITT Consortium"
             },
             value: {
               html: permissionsHtml
@@ -182,7 +183,7 @@
           },
           {
             key: {
-              text: "Permissions: Ventrus Teaching School Alliance"
+              text: "Permissions: Your Teaching First TSA"
             },
             value: {
               html: permissions2Html

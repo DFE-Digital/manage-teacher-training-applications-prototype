@@ -3,8 +3,9 @@ var uuid = require('uuid/v4')
 module.exports = {
   "GH12354": {
     id: "GH12354",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Growing Expert Teachers',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
     course: 'Primary (3-7) (X121)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-07-15',
@@ -72,8 +73,9 @@ module.exports = {
   },
   "EW65341": {
     id: "EW65341",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Somerset SCITT Consortium',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-05-15',
@@ -131,10 +133,73 @@ module.exports = {
       }
     }
   },
+  "EE63341": {
+    id: "EE63341",
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
+    course: 'Primary (5-11) (X100)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-05-15',
+    status: 'Deferred',
+    previousOffer: {
+      madeDate: '2019-06-12',
+      acceptedDate: '2019-06-13',
+      conditionsMetDate: '2019-08-12T09:01:00',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    'personal-details': {
+      'given-name': 'David',
+      'family-name': 'Smith',
+      'date-of-birth': '1985-01-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900002',
+      email: 'david.smith@example.com',
+      address: {
+        line1: '83 Scarcroft Road',
+        line2: '',
+        level2: 'Bulwick',
+        level1: 'Westhamptonshire',
+        'postal-code': 'IV21 8JQ'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
   "RT88789": {
     id: "RT88789",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Growing Expert Teachers',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
     course: 'Primary (2S8T)',
     locationname: 'Main site',
     submittedDate: '2019-07-15',
@@ -204,8 +269,9 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Growing Expert Teachers',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
     course: 'Primary (2S8T)',
     locationname: 'Main site',
     submittedDate: '2019-01-15',
@@ -265,8 +331,9 @@ module.exports = {
   },
   "PL098988": {
     id: "PL098988",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Growing Expert Teachers',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
     course: 'Primary (2YQN)',
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
@@ -330,8 +397,9 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Growing Expert Teachers',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
     course: 'Primary (2YQN)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-06-02',
@@ -390,8 +458,9 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Taunton Teaching Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-04-15',
@@ -445,8 +514,9 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Taunton Teaching Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
     locationname: 'Main site',
 
@@ -741,8 +811,9 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Taunton Teaching Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
     locationname: 'Main site',
     submittedDate: '2019-02-01',
@@ -989,8 +1060,9 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Ventrus Teaching School Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-01-16T08:32:00',
@@ -1253,8 +1325,9 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Ventrus Teaching School Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
     locationname: 'Main site',
     submittedDate: '2019-07-05T14:01:00',
@@ -1478,8 +1551,9 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Ventrus Teaching School Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
     locationname: 'Main site',
     submittedDate: '2019-07-21T18:59:00',
@@ -1665,8 +1739,9 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Taunton Teaching Alliance',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Three Trees Teaching School',
     course: 'Primary (2MKC)',
     locationname: 'Main site',
     submittedDate: '2019-07-29',
@@ -1881,8 +1956,9 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
-    accreditingbody: "Somerset SCITT Consortium",
-    provider: 'Somerset SCITT Consortium',
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
     course: 'Primary (3-7) (X121)',
     locationname: 'Main site',
     submittedDate: '2019-08-10T13:32:00',

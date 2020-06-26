@@ -8,8 +8,18 @@
 
 {% block content %}
 
+  {% set tick %}
+    {{ appIcon({
+      classes: "govuk-!-margin-right-1",
+      icon: "tick",
+      hidden: true
+    }) }}
+  {% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
       <span class="govuk-caption-xl">Set up permissions</span>
       <h1 class="govuk-heading-xl">Check permissions</h1>
@@ -17,10 +27,10 @@
       <form novalidate action="/onboard/confirmation">
 
         {# <h2 class="govuk-heading-m">
-          For courses run and ratified by Somerset SCITT Consortium
+          For courses run and ratified by Teaching Excellence SCITT
         </h2>
 
-        <p>Somerset SCITT Consortium can:</p>
+        <p>Teaching Excellence SCITT can:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -37,43 +47,21 @@
         <p><a href="/onboard/step2">Change</a></p> #}
 
         <h2 class="govuk-heading-m">
-          For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium
+          For courses run by Your Teaching First TSA and ratified by Teaching Excellence SCITT
         </h2>
-        <p>Ventrus Teaching School Alliance can:</p>
+
+        <p>The following organisation(s) can make decisions:</p>
+
         <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} view applications</li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} make decisions</li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} access safeguarding information</li>
+          <li>{{tick | safe }} Your Teaching First TSA</li>
         </ul>
-        <p>Somerset SCITT Consortium can:</p>
+      </ul>
+
+        <p>The following organisation(s) can see safeguarding information:</p>
+
         <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} view applications</li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} make decisions</li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} access safeguarding information</li>
+          <li>{{tick | safe }} Your Teaching First TSA</li>
+          <li>{{tick | safe }} Teaching Excellence SCITT</li>
         </ul>
 
         <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>

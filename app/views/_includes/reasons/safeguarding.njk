@@ -1,6 +1,6 @@
 {% set safeguardingDisclosedInformationHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },
@@ -13,7 +13,7 @@
 
 {% set safeguardingVettingInformationHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },
@@ -26,7 +26,7 @@
 
 {% set safeguardingOtherHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },

@@ -34,18 +34,23 @@
     }) }}
   {% endif %}
 
-{# <span class="govuk-caption-xl">{{name}}</span> #}
-      {# <span class="govuk-caption-xl">{{application.id}}</span> #}
-      <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
+  {% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020-2021)' %}
+    {% set bannerHtml %}
+      <h2 class="govuk-heading-m">You must reinstate your offer</h2>
+      {{ govukButton({
+        text: "Reinstate offer",
+        classes: "govuk-!-margin-bottom-0",
+        href: "/application/" + application.id + "/decision"
+      }) }}
+    {% endset %}
+    {{ appBanner({
+      html: bannerHtml,
+      type: "information",
+      icon: false
+    }) }}
+  {% endif %}
 
-  {# <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
-        {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
-      </h1>
-
-    </div>
-  </div> #}
+  <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
   {% include "_includes/application/sub-nav.njk" %}
 
@@ -66,7 +71,7 @@
 
       {# <h1 class="govuk-heading-l">Application</h1> #}
 
-      <h2 class="govuk-heading-l">Personal details</h2>
+      {# <h2 class="govuk-heading-l">Personal details</h2> #}
       {% include "_includes/application/details.njk" %}
 
       <h2 class="govuk-heading-l">Course details</h2>
@@ -84,13 +89,6 @@
           },
           value: {
             text: application["course"]
-          }
-        }, {
-          key: {
-            text: "Cycle"
-          },
-          value: {
-            text: '2020'
           }
         }, {
           key: {

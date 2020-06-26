@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = "Ventrus Teaching School Alliance" %}
+{% set title = "Your Teaching First TSA" %}
 
 {% block content %}
 
@@ -24,22 +24,22 @@
       {% endset %}
 
       <h2 class="govuk-heading-m">
-        For courses run by Ventrus Teaching School Alliance and ratified by Somerset SCITT Consortium
+        For courses run by Your Teaching First TSA and ratified by Teaching Excellence SCITT
       </h2>
 
-      <p class="govuk-!-margin-bottom-1">Ventrus Teaching School Alliance can:</p>
+      <p>The following organisation(s) can make decisions:</p>
+
       <ul class="govuk-list">
-        <li>{{tick | safe }} view applications</li>
-        <li>{{tick | safe}} access safeguarding information</li>
+        <li>{{tick | safe }} Teaching Excellence SCITT</li>
       </ul>
 
-      <p class="govuk-!-margin-bottom-1">Somerset SCITT Consortium can:</p>
+      <p>The following organisation(s) can see safeguarding information:</p>
+
       <ul class="govuk-list">
-        <li>{{tick | safe }} view applications</li>
-        <li>{{tick | safe}} make decisions</li>
+        <li>{{tick | safe }} Your Teaching First TSA</li>
       </ul>
 
-      <p><a href="#1">Change <span class="govuk-visually-hidden">permissions for Ventrus Teaching School Alliance</span></a></p>
+      <p><a href="/organisations/edit">Change <span class="govuk-visually-hidden">permissions for Your Teaching First TSA</span></a></p>
 
     </div>
   </div>

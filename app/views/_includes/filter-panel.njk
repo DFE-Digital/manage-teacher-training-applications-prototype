@@ -96,6 +96,11 @@
           checked: checked("status", "Conditions met") == 'checked'
         },
         {
+          value: 'Deferred',
+          text: 'Deferred',
+          checked: checked("status", "Deferred") == 'checked'
+        },
+        {
           value: 'Enrolled',
           text: 'Enrolled',
           checked: checked("status", "Enrolled") == 'checked'
@@ -135,34 +140,34 @@
       },
       items: [
         {
-          value: 'Growing Expert Teachers',
-          text: 'Growing Expert Teachers',
-          checked: checked("provider", "Growing Expert Teachers") == 'checked'
+          value: 'Highfield Academy Alliance',
+          text: 'Highfield Academy Alliance',
+          checked: checked("provider", "Highfield Academy Alliance") == 'checked'
         },
         {
-          value: 'Somerset SCITT Consortium',
-          text: 'Somerset SCITT Consortium',
-          checked: checked("provider", "Somerset SCITT Consortium") == 'checked'
+          value: 'Teaching Excellence SCITT',
+          text: 'Teaching Excellence SCITT',
+          checked: checked("provider", "Teaching Excellence SCITT") == 'checked'
         },
         {
-          value: 'Taunton Teaching Alliance',
-          text: 'Taunton Teaching Alliance',
-          checked: checked("provider", "Taunton Teaching Alliance") == 'checked'
+          value: 'Three Trees Teaching School',
+          text: 'Three Trees Teaching School',
+          checked: checked("provider", "Three Trees Teaching School") == 'checked'
         },
         {
-          value: 'The Beach Teaching School',
-          text: 'The Beach Teaching School',
-          checked: checked("provider", "The Beach Teaching School") == 'checked'
+          value: 'Westfield TSA',
+          text: 'Westfield TSA',
+          checked: checked("provider", "Westfield TSA") == 'checked'
         },
         {
-          value: 'Ventrus Teaching School Alliance',
-          text: 'Ventrus Teaching School Alliance',
-          checked: checked("provider", "Ventrus Teaching School Alliance") == 'checked'
+          value: 'Your Teaching First TSA',
+          text: 'Your Teaching First TSA',
+          checked: checked("provider", "Your Teaching First TSA") == 'checked'
         }
       ]
     }) }}
 
-    {% if checked("provider", "Growing Expert Teachers") %}
+    {% if checked("provider", "Highfield Academy Alliance") %}
 
 
       {{ govukCheckboxes({
@@ -170,7 +175,7 @@
         classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
-            text: 'Training locations for Growing Expert Teachers',
+            text: 'Training locations for Highfield Academy Alliance',
             classes: 'govuk-fieldset__legend--m'
           }
         },
@@ -211,9 +216,9 @@
       },
       items: [
         {
-          value: 'Somerset SCITT Consortium',
-          text: 'Somerset SCITT Consortium',
-          checked: checked("accreditingbody", "Somerset SCITT Consortium") == 'checked'
+          value: 'Teaching Excellence SCITT',
+          text: 'Teaching Excellence SCITT',
+          checked: checked("accreditingbody", "Teaching Excellence SCITT") == 'checked'
         }
       ]
     }) }}

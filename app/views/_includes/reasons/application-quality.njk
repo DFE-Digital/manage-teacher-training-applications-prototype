@@ -1,6 +1,6 @@
 {% set applicationQualityReasonsPersonalStatementHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "What could they do to improve?"
     },
@@ -13,7 +13,7 @@
 
 {% set applicationQualityReasonsSubjectKnowledgeHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "What could they do to improve?"
     },
@@ -26,7 +26,7 @@
 
 {% set applicationQualityReasonsOtherHtml %}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "Please give details"
     },
@@ -35,7 +35,7 @@
     value: data['rejectionReasons']['application-quality-reasons-other']
   }) }}
   {{ govukCharacterCount({
-    maxlength: 300,
+    maxwords: 100,
     label: {
       text: "What could they do to improve?"
     },
