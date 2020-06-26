@@ -5,7 +5,7 @@
       text: "Provider"
     },
     value: {
-      html: application.provider
+      html: offer.provider or application.provider
     },
     actions: {
       items: [
@@ -22,7 +22,7 @@
       text: "Course"
     },
     value: {
-      html: application.course
+      html: offer.course or application.course
     },
     actions: {
       items: [
@@ -39,7 +39,7 @@
       text: "Location"
     },
     value: {
-      html: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      html: offer.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
     },
     actions: {
       items: [

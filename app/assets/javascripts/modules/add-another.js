@@ -67,6 +67,7 @@ MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function(e) {
 
 	if(this.options.allowNoFields && items.length == 1) {
 		$(e.currentTarget).parents('.moj-add-another__item').addClass('govuk-!-display-none');
+		this.resetItem($(e.currentTarget).parents('.moj-add-another__item'));
 	} else {
 		$(e.currentTarget).parents('.moj-add-another__item').remove();
 		if(items.length === 1) {

@@ -24,8 +24,8 @@
 
           {% set statusOneHtml %}
             {{ govukRadios({
-              idPrefix: "statusone",
-              name: "statusone",
+              idPrefix: "standard-conditions-status[0]",
+              name: "standard-conditions-status[0]",
               fieldset: {
                 legend: {
                   text: "Condition status",
@@ -35,15 +35,48 @@
               items: [
                 {
                   value: "Pending",
-                  text: "Pending"
+                  text: "Pending",
+                  checked: standardConditions[0].status == "Pending"
                 },
                 {
                   value: "Met",
-                  text: "Met"
+                  text: "Met",
+                  checked: standardConditions[0].status == "Met"
                 },
                 {
                   value: "Not met",
-                  text: "Not met"
+                  text: "Not met",
+                  checked: standardConditions[0].status == "Not met"
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {% set statusTwoHtml %}
+            {{ govukRadios({
+              idPrefix: "standard-conditions-status[1]",
+              name: "standard-conditions-status[1]",
+              fieldset: {
+                legend: {
+                  text: "Condition status",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Pending",
+                  text: "Pending",
+                  checked: standardConditions[1].status == "Pending"
+                },
+                {
+                  value: "Met",
+                  text: "Met",
+                  checked: standardConditions[1].status == "Met"
+                },
+                {
+                  value: "Not met",
+                  text: "Not met",
+                  checked: standardConditions[1].status == "Not met"
                 }
               ]
             }) }}
@@ -61,14 +94,17 @@
             items: [{
               value: "Fitness to teach check",
               text: "Fitness to teach check",
-              checked: true,
+              checked: standardConditions[0].description == "Fitness to teach check",
               conditional: {
                 html: statusOneHtml
               }
             }, {
               value: "Disclosure and barring service check",
               text: "Disclosure and barring service check",
-              checked: false
+              checked: standardConditions[1].description == "Disclosure and barring service check",
+              conditional: {
+                html: statusTwoHtml
+              }
             }]
           }) }}
 
@@ -78,67 +114,74 @@
             {% set fieldsetClasses = "moj-add-another__item govuk-!-display-none " %}
           {% endif %}
 
-          {% call govukFieldset({
-            classes: fieldsetClasses,
-            legend: {
-              text: 'Condition',
-              classes: 'moj-add-another__title govuk-fieldset__legend--m',
-              isPageHeading: false
-            }
-          }) %}
+          {% for condition in furtherConditions %}
 
-            {{ govukTextarea({
-              id: 'condition[0][description]',
-              name: 'condition[0][description]',
-              label: {
-                html: 'Condition description',
-                classes: 'govuk-!-font-weight-bold'
-              },
-              attributes: {
-                'data-name': 'condition[%index%][description]',
-                'data-id': 'condition[%index%][description]'
+            {% call govukFieldset({
+              classes: fieldsetClasses,
+              legend: {
+                text: 'Condition',
+                classes: 'moj-add-another__title govuk-fieldset__legend--m',
+                isPageHeading: false
               }
-            }) }}
+            }) %}
 
-            {{ govukRadios({
-              idPrefix: "condition[0][status]",
-              name: "condition[0][status]",
-              fieldset: {
-                legend: {
-                  text: "Condition status",
-                  classes: "govuk-fieldset__legend--s"
-                }
-              },
-              items: [
-                {
-                  value: "Pending",
-                  text: "Pending",
-                  attributes: {
-                    'data-name': 'condition[%index%][status][pending]',
-                    'data-id': 'condition[%index%][status][pending]'
+              {{ govukTextarea({
+                id: 'furtherConditions[0][description]',
+                name: 'furtherConditions[0][description]',
+                label: {
+                  html: 'Condition description',
+                  classes: 'govuk-!-font-weight-bold'
+                },
+                attributes: {
+                  'data-name': 'furtherCondition[%index%][description]',
+                  'data-id': 'furtherCondition[%index%][description]'
+                },
+                value: condition.description
+              }) }}
+
+              {{ govukRadios({
+                idPrefix: "furtherConditions[0][status]",
+                name: "furtherConditions[0][status]",
+                fieldset: {
+                  legend: {
+                    text: "Condition status",
+                    classes: "govuk-fieldset__legend--s"
                   }
                 },
-                {
-                  value: "Met",
-                  text: "Met",
-                  attributes: {
-                    'data-name': 'condition[%index%][status][met]',
-                    'data-id': 'condition[%index%][status][met]'
+                items: [
+                  {
+                    value: "Pending",
+                    text: "Pending",
+                    checked: condition.status == "Pending",
+                    attributes: {
+                      'data-name': 'furtherCondition[%index%][status][pending]',
+                      'data-id': 'furtherCondition[%index%][status][pending]'
+                    }
+                  },
+                  {
+                    value: "Met",
+                    text: "Met",
+                    checked: condition.status == "Met",
+                    attributes: {
+                      'data-name': 'furtherCondition[%index%][status][met]',
+                      'data-id': 'furtherCondition[%index%][status][met]'
+                    }
+                  },
+                  {
+                    value: "Not met",
+                    text: "Not met",
+                    checked: condition.status == "Not met",
+                    attributes: {
+                      'data-name': 'furtherCondition[%index%][status][notmet]',
+                      'data-id': 'furtherCondition[%index%][status][notmet]'
+                    }
                   }
-                },
-                {
-                  value: "Not met",
-                  text: "Not met",
-                  attributes: {
-                    'data-name': 'condition[%index%][status][notmet]',
-                    'data-id': 'condition[%index%][status][notmet]'
-                  }
-                }
-              ]
-            }) }}
+                ]
+              }) }}
 
-
-          {% endcall %}
+              <button type="button" class="govuk-button govuk-button--secondary moj-add-another__remove-button">Remove</button>
+            {% endcall %}
+          {% endfor %}
 
           <div class="moj-button-action">
             {{ govukButton({

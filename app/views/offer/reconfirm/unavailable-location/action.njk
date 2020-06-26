@@ -4,11 +4,11 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "The course is no longer available in this cycle" %}
+{% set title = "There’s a problem – the course is no longer available" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/"
+    href: "/application/" + application.id + "/reconfirm/unavailable-location/location"
   }) }}
 {% endblock %}
 
@@ -40,14 +40,44 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>You need to choose another course because the course you offered in the previous cycle is not available in the current cycle.</p>
+      <p>{{application.course}} no longer runs at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
 
-      {% set previousOfferHtml %}
+      <p>You need to change your offer now.</p>
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "action",
+          name: "action",
+          fieldset: {
+            legend: {
+              text: "Choose action",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Choose another location",
+              text: "Choose another location"
+            },
+            {
+              value: "Choose another course",
+              text: "Choose another course"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <h2 class="govuk-heading-m">
+        Previous offer
+      </h2>
 
         <div class="app-offer-panel">
-          <h3 class="govuk-heading-s">
-            Course details
-          </h3>
           {{ govukSummaryList({
               rows: [{
                 key: {
@@ -81,7 +111,7 @@
             ]})
           }}
 
-          <h2 class="govuk-heading-s">
+          <h2 class="govuk-heading-m">
             Conditions
           </h2>
 
@@ -106,19 +136,8 @@
               </dd>
             </div>
           {% endfor %}
-          </dl>
+        </dl>
         </div>
-      {% endset %}
-
-      {{ govukDetails({
-        summaryText: "View previous offer",
-        html: previousOfferHtml
-      }) }}
-
-      {{ govukButton({
-        text: "Continue",
-        href: "/application/" + application.id + "/offer/reconfirm/provider"
-      }) }}
 
     </div>
   </div>

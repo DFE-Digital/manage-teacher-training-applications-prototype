@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer/reconfirm/"
+    href: "/application/" + application.id + "/offer/change-provider/course"
   }) }}
 {% endblock %}
 
@@ -31,10 +31,10 @@
           idPrefix: "location",
           name: "location",
           items: [{
-            value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
-            text: "Alliance Academy",
+            value: "Spark Academy, Warwick Avenue, W9 1SF",
+            text: "Spark Academy",
             hint: { text: 'Edgeware, Road Name, SW1 1AA' },
-            checked: checked("location", "Alliance Academy, Edgeware, Road Name, SW1 1AA")
+            checked: checked("location", "Spark Academy, Warwick Avenue, W9 1SF")
           }, {
             value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
             text: "Bruntcliffe Academy",

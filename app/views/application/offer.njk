@@ -28,6 +28,22 @@
     }) }}
   {% endif %}
 
+  {% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020-2021)' %}
+    {% set bannerHtml %}
+      <h2 class="govuk-heading-m">You need to reconfirm your offer</h2>
+      {{ govukButton({
+        text: "Reconfirm offer",
+        classes: "govuk-!-margin-bottom-0",
+        href: "/application/" + application.id + "/offer/reconfirm"
+      }) }}
+    {% endset %}
+    {{ appBanner({
+      html: bannerHtml,
+      type: "information",
+      icon: false
+    }) }}
+  {% endif %}
+
   <h1 class="govuk-heading-xl govuk-!-margin-top-0">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
   {% include "_includes/application/sub-nav.njk" %}
