@@ -4,11 +4,11 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "There’s a problem – the location is no longer available" %}
+{% set title = "There’s a problem – the course is no longer running" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/reconfirm/unavailable-location/location"
+    href: "/application/" + application.id + "/"
   }) }}
 {% endblock %}
 
@@ -40,32 +40,9 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>{{application.course}} no longer runs at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
-
-      <p>You need to change your offer now.</p>
+      <p>You need to choose another course now.</p>
 
       <form method="post">
-
-        {{ govukRadios({
-          idPrefix: "action",
-          name: "action",
-          fieldset: {
-            legend: {
-              text: "Choose action",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Choose another location",
-              text: "Choose another location"
-            },
-            {
-              value: "Choose another course",
-              text: "Choose another course"
-            }
-          ]
-        }) }}
 
         {{ govukButton({
           text: "Continue"

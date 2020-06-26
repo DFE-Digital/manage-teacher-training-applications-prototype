@@ -174,9 +174,96 @@ module.exports = {
       }
     }
   },
+  "XX63345": {
+    id: "XX63345",
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
+    course: 'Primary (5-11) (X100)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-05-15',
+    status: 'Deferred',
+    previousOffer: {
+      madeDate: '2019-06-12',
+      acceptedDate: '2019-06-13',
+      conditionsMetDate: '2019-08-12T09:01:00',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Umar',
+      'family-name': 'Hamza',
+      'date-of-birth': '1985-01-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900002',
+      email: 'umar.hamza@example.com',
+      address: {
+        line1: '83 Scarcroft Road',
+        line2: '',
+        level2: 'Bulwick',
+        level1: 'Westhamptonshire',
+        'postal-code': 'IV21 8JQ'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
   "EE63341": {
     id: "EE63341",
-    offerAvailable: false,
+    offerCanNotBeReconfirmed: {
+      reason: 'location'
+    },
     cycle: "Current cycle (2020-2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
@@ -224,6 +311,94 @@ module.exports = {
     'contact-details': {
       tel: '07700 900002',
       email: 'david.smith@example.com',
+      address: {
+        line1: '83 Scarcroft Road',
+        line2: '',
+        level2: 'Bulwick',
+        level1: 'Westhamptonshire',
+        'postal-code': 'IV21 8JQ'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
+  "JY63391": {
+    id: "JY63391",
+    offerCanNotBeReconfirmed: {
+      reason: 'course'
+    },
+    cycle: "Current cycle (2020-2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
+    course: 'Primary (5-11) (X100)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-05-15',
+    status: 'Deferred',
+    previousOffer: {
+      madeDate: '2019-06-12',
+      acceptedDate: '2019-06-13',
+      conditionsMetDate: '2019-08-12T09:01:00',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-06-12'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }, {
+        title: 'Moved to next cycle',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Jane',
+      'family-name': 'Oxlade',
+      'date-of-birth': '1985-01-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900002',
+      email: 'jane.oxlade@example.com',
       address: {
         line1: '83 Scarcroft Road',
         line2: '',

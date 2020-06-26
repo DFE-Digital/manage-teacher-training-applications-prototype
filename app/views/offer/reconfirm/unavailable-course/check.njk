@@ -1,14 +1,13 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "There’s a problem – the location is no longer available" %}
+{% set title = "Check and reconfirm offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/reconfirm/unavailable-location/location"
+    href: "/application/" + application.id + "/offer/reconfirm/unavailable-course/conditions"
   }) }}
 {% endblock %}
 
@@ -40,44 +39,10 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>{{application.course}} no longer runs at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
-
-      <p>You need to change your offer now.</p>
-
-      <form method="post">
-
-        {{ govukRadios({
-          idPrefix: "action",
-          name: "action",
-          fieldset: {
-            legend: {
-              text: "Choose action",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Choose another location",
-              text: "Choose another location"
-            },
-            {
-              value: "Choose another course",
-              text: "Choose another course"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
-
-      <h2 class="govuk-heading-m">
-        Previous offer
-      </h2>
-
-        <div class="app-offer-panel">
+      <div class="app-offer-panel">
+          <h2 class="govuk-heading-m">
+            Course details
+          </h2>
           {{ govukSummaryList({
               rows: [{
                 key: {
@@ -85,6 +50,15 @@
                 },
                 value: {
                   html: application.provider
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/application/" + application.id + "/offer/reconfirm/change-provider",
+                      text: "Change",
+                      visuallyHiddenText: "conditions"
+                    }
+                  ]
                 }
               }, {
                 key: {
@@ -92,13 +66,31 @@
                 },
                 value: {
                   html: application.course
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/application/" + application.id + "/offer/reconfirm/change-course",
+                      text: "Change",
+                      visuallyHiddenText: "conditions"
+                    }
+                  ]
                 }
               }, {
                 key: {
                   text: "Location"
                 },
                 value: {
-                  html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+                  html: data.location
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/application/" + application.id + "/offer/reconfirm/change-location",
+                      text: "Change",
+                      visuallyHiddenText: "conditions"
+                    }
+                  ]
                 }
               }, {
                 key: {
@@ -106,6 +98,15 @@
                 },
                 value: {
                   html: "Full time"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/application/" + application.id + "/offer/reconfirm/change-study-mode",
+                      text: "Change",
+                      visuallyHiddenText: "conditions"
+                    }
+                  ]
                 }
               }
             ]})
@@ -114,6 +115,8 @@
           <h2 class="govuk-heading-m">
             Conditions
           </h2>
+
+          <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add condition</a></p>
 
           <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
           {% for condition in conditions %}
@@ -134,11 +137,25 @@
                   {% endif %}
                   {{govukTag({ text: condition.status, classes: statusClass })}}
               </dd>
+              {% if 1 == 1 %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/conditions">
+                  Change</a>
+                </dd>
+              {% endif %}
             </div>
           {% endfor %}
         </dl>
-        </div>
+      </div>
 
+      <p class="govuk-body">The candidate will be notified that their offer has been reconfirmed for the new cycle including any changes you’ve made.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Reconfirm offer"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}
