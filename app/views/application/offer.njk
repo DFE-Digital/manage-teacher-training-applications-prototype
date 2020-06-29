@@ -52,12 +52,14 @@
       {% if application.offer %}
         {% set offer = application.offer %}
         <h2 class="govuk-heading-l">Offer</h2>
+        {% set controls = true %}
         {% include "_includes/offer/panel.njk" %}
       {% endif %}
 
       {% if application.previousOffer %}
         {% set offer = application.previousOffer %}
         <h2 class="govuk-heading-l">Previous offer</h2>
+        {% set controls = false %}
         {% include "_includes/offer/panel.njk" %}
       {% endif %}
     </div>

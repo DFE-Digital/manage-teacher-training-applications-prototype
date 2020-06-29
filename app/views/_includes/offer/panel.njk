@@ -122,14 +122,14 @@
   </p>
 {% endif %}
 
-{% if application.status == "Conditions met" %}
+{% if controls and application.status == "Conditions met" %}
   {{govukButton({
     text: "Enrol candidate",
     href: "/application/" + application.id + "/enrol/confirm"
   })}}
 {% endif %}
 
-{% if application.status == "Offered" or application.status == "Accepted" %}
+{% if controls and application.status == "Offered" or application.status == "Accepted" %}
   <p class="govuk-body govuk-!-margin-bottom-0">
     <a href="#" class="app-withdraw-link">Cancel offer</a>
   </p>
