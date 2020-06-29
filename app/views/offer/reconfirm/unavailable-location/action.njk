@@ -1,0 +1,144 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set application = data.applications[applicationId] %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+
+{% set title = "There’s a problem – the location is no longer available" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/reconfirm/unavailable-location/location"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% set conditionsHtml %}
+    {% if conditions.length %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for condition in conditions %}
+          <li>
+            {{ condition.description }}
+            {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="govuk-body">None specified</p>
+    {% endif %}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <p>{{application.course}} no longer runs at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
+
+      <p>You need to change your offer now.</p>
+
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "action",
+          name: "action",
+          fieldset: {
+            legend: {
+              text: "Choose action",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Choose another location",
+              text: "Choose another location"
+            },
+            {
+              value: "Choose another course",
+              text: "Choose another course"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <h2 class="govuk-heading-m">
+        Previous offer
+      </h2>
+
+        <div class="app-offer-panel">
+          {{ govukSummaryList({
+              rows: [{
+                key: {
+                  text: "Provider"
+                },
+                value: {
+                  html: application.provider
+                }
+              }, {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  html: application.course
+                }
+              }, {
+                key: {
+                  text: "Location"
+                },
+                value: {
+                  html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+                }
+              }, {
+                key: {
+                  text: "Full time or part time"
+                },
+                value: {
+                  html: "Full time"
+                }
+              }
+            ]})
+          }}
+
+          <h2 class="govuk-heading-m">
+            Conditions
+          </h2>
+
+          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+          {% for condition in conditions %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {{condition.description}}
+                {% if application.status == "Accepted" %}
+                    <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
+                  {% endif %}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if condition.status == "Pending" %}
+                    {% set statusClass = "app-tag--grey" %}
+                  {% elseif condition.status == "Met" %}
+                    {% set statusClass = "app-tag--green" %}
+                  {% elseif condition.status == "Not met" %}
+                    {% set statusClass = "app-tag--red" %}
+                  {% endif %}
+                  {{govukTag({ text: condition.status, classes: statusClass })}}
+              </dd>
+            </div>
+          {% endfor %}
+        </dl>
+        </div>
+
+    </div>
+  </div>
+{% endblock %}

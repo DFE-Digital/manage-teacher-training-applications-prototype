@@ -28,20 +28,40 @@
     }) }}
   {% endif %}
 
+  {% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020-2021)' %}
+    {% set bannerHtml %}
+      <h2 class="govuk-heading-m">You need to reconfirm your offer</h2>
+      {{ govukButton({
+        text: "Reconfirm offer",
+        classes: "govuk-!-margin-bottom-0",
+        href: "/application/" + application.id + "/offer/reconfirm"
+      }) }}
+    {% endset %}
+    {{ appBanner({
+      html: bannerHtml,
+      type: "information",
+      icon: false
+    }) }}
+  {% endif %}
+
   <h1 class="govuk-heading-xl govuk-!-margin-top-0">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
   {% include "_includes/application/sub-nav.njk" %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if application.offer %}
+        {% set offer = application.offer %}
+        <h2 class="govuk-heading-l">Offer</h2>
+        {% set controls = true %}
+        {% include "_includes/offer/panel.njk" %}
+      {% endif %}
 
       {% if application.previousOffer %}
         {% set offer = application.previousOffer %}
         <h2 class="govuk-heading-l">Previous offer</h2>
-      {% else %}
-        {% set offer = application.offer %}
+        {% set controls = false %}
+        {% include "_includes/offer/panel.njk" %}
       {% endif %}
-
-      {% include "_includes/application/status-panel.njk" %}
     </div>
   </div>
 {% endblock %}
