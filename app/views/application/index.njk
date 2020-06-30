@@ -36,11 +36,11 @@
 
   {% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020-2021)' %}
     {% set bannerHtml %}
-      <h2 class="govuk-heading-m">You must reinstate your offer</h2>
+      <h2 class="govuk-heading-m">You need to reconfirm your offer</h2>
       {{ govukButton({
-        text: "Reinstate offer",
+        text: "Reconfirm offer",
         classes: "govuk-!-margin-bottom-0",
-        href: "/application/" + application.id + "/decision"
+        href: "/application/" + application.id + "/offer/reconfirm"
       }) }}
     {% endset %}
     {{ appBanner({

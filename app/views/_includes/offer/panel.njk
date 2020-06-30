@@ -1,66 +1,11 @@
 {{ govukSummaryList({
-  rows: [{
-    key: {
-      text: "Offer made"
-    },
-    value: {
-      text: offer.madeDate | date("dd LLL yyyy")
-    }
-  } if application.status == 'Offered',
-  {
-    key: {
-      text: "Offer accepted"
-    },
-    value: {
-      text: offer.acceptedDate | date("dd LLL yyyy")
-    }
-  } if application.status == 'Accepted',
-  {
-    key: {
-      text: "Offer declined"
-    },
-    value: {
-      text: offer.declinedDate | date("dd LLL yyyy")
-    }
-  } if application.status == 'Declined',
-  {
-    key: {
-      text: "Conditions met"
-    },
-    value: {
-      text: offer.conditionsMetDate  | date("dd LLL yyyy")
-    }
-  } if application.status == 'Conditions met',
-  {
-    key: {
-      text: "Enrolled"
-    },
-    value: {
-      text: offer.enrolledDate  | date("dd LLL yyyy")
-    }
-  } if offer.enrolledDate,
-  {
-    key: {
-      text: "Offer withdrawn"
-    },
-    value: {
-      text: offer.withdrawnDate  | date("dd LLL yyyy")
-    }
-  } if offer.withdrawnDate,
-  {
-    key: {
-      text: "Application rejected"
-    },
-    value: {
-      text: application.rejectedDate  | date("dd LLL yyyy")
-    }
-  } if application.rejectedDate,
+  rows: [
   {
     key: {
       text: "Provider"
     },
     value: {
-      html: application.provider
+      html: offer.provider or application.provider
     },
     actions: {
       items: [
@@ -77,7 +22,7 @@
       text: "Course"
     },
     value: {
-      html: application.course
+      html: offer.course or application.course
     },
     actions: {
       items: [
@@ -94,12 +39,29 @@
       text: "Location"
     },
     value: {
-      html: 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      html: offer.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
     },
     actions: {
       items: [
         {
           href: "/application/"+applicationId+"/offer/change-location",
+          text: "Change",
+          visuallyHiddenText: ""
+        }
+      ]
+    } if application.status == "Offered"
+  } if offer,
+  {
+    key: {
+      text: "Full time or part time"
+    },
+    value: {
+      html: 'Full time'
+    },
+    actions: {
+      items: [
+        {
+          href: "/application/"+applicationId+"/offer/change-study-mode",
           text: "Change",
           visuallyHiddenText: ""
         }
@@ -118,7 +80,6 @@
 
   {% include "_includes/candidate-feedback.njk" %}
 {% endif %}
-
 
 {% if offer and conditions %}
 
@@ -161,12 +122,14 @@
   </p>
 {% endif %}
 
-{% if application.status == "Conditions met" %}
+{% if controls and application.status == "Conditions met" %}
   {{govukButton({
     text: "Enrol candidate",
     href: "/application/" + application.id + "/enrol/confirm"
   })}}
+{% endif %}
 
+{% if controls and application.status == "Offered" or application.status == "Accepted" %}
   <p class="govuk-body govuk-!-margin-bottom-0">
     <a href="#" class="app-withdraw-link">Cancel offer</a>
   </p>

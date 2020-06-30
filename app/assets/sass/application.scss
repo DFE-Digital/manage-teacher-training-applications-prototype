@@ -393,3 +393,29 @@ h1 .govuk-tag {
   border-left-width: 7px;
   @include govuk-responsive-padding(7);
 }
+
+
+.app-offer-panel {
+  // background-color: govuk-colour('light-grey');
+  border: 5px solid govuk-colour('mid-grey');
+  padding: govuk-spacing(4);
+  margin-bottom: govuk-spacing(4);
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.app-conditions-list {
+  .govuk-summary-list__key {
+    width: 60%;
+    font-weight: normal;
+  }
+
+  .govuk-summary-list__value {
+    width: 20%;
+  }
+
+  .govuk-summary-list__actions {
+    width: 20%;
+  }
+}

@@ -98,213 +98,70 @@ exports.getFlashMessage = (options) => {
   }
 };
 
+function getLink(item, application) {
+  var link = {};
+  switch(item.title) {
+    case "Application submitted":
+      link.text = "View application";
+      link.href = `/application/${application.id}`;
+      break;
+    case "Offer made":
+      link.text = "View offer";
+      link.href = `/application/${application.id}/offer`;
+      break;
+    case "Offer accepted":
+      link.text = "View offer";
+      link.href = `/application/${application.id}/offer`;
+      break;
+    case "Conditions met":
+      link.text = "View conditions";
+      link.href = `/application/${application.id}/offer`;
+      break;
+    case "Conditions not met":
+      link.text = "View conditions";
+      link.href = `/application/${application.id}/offer`;
+      break;
+    case "Offer declined":
+      link.text = "View offer";
+      link.href = `/application/${application.id}/offer`;
+      break;
+    case "Application rejected":
+      link.text = "View feedback";
+      link.href = `/application/${application.id}`;
+      break;
+    case "Application withdrawn":
+      link.text = "View application";
+      link.href = `/application/${application.id}`;
+      break;
+    case "Offer withdrawn":
+      link.text = "View offer";
+      link.href = `/application/${application.id}/offer`;
+      break;
+    case "Enrolled":
+      link = null;
+      break;
+    case "Note added":
+      link.text = "View note";
+      link.href = `/application/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
+      break;
+  }
+  return link;
+}
+
 exports.getTimeline = (application) => {
-  let timeline = [];
-
-  if(application.submittedDate) {
-    timeline.push({
+  return application.events.items.map(item => {
+    return {
       label: {
-        text:  "Application submitted"
+        text: item.title
       },
       datetime: {
-        timestamp: application.submittedDate,
-        type: "datetime"
+        timestamp: item.date,
+        type: 'datetime'
       },
       byline: {
-        text: "Candidate"
+        text: item.user
       },
-      link: {
-        text: "View application",
-        href: `/application/${application.id}`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.madeDate) {
-    timeline.push({
-      label: {
-        text:  "Offer made"
-      },
-      datetime: {
-        timestamp: application.offer.madeDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      },
-      link: {
-        text: "View offer",
-        href: `/application/${application.id}/offer`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.declinedDate) {
-    timeline.push({
-      label: {
-        text:  "Offer declined"
-      },
-      datetime: {
-        timestamp: application.offer.declinedDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Candidate"
-      },
-      link: {
-        text: "View offer",
-        href: `/application/${application.id}/offer`
-      }
-    })
-  }
-
-  if(application.rejectedDate) {
-    timeline.push({
-      label: {
-        text:  "Application rejected"
-      },
-      datetime: {
-        timestamp: application.rejectedDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      },
-      link: {
-        text: "View feedback",
-        href: `/application/${application.id}`
-      }
-    })
-  }
-
-  if(application.withdrawnDate) {
-    timeline.push({
-      label: {
-        text:  "Application withdrawn"
-      },
-      datetime: {
-        timestamp: application.withdrawnDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Candidate"
-      },
-      link: {
-        text: "View application",
-        href: `/application/${application.id}`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.acceptedDate) {
-    timeline.push({
-      label: {
-        text:  "Offer accepted"
-      },
-      datetime: {
-        timestamp: application.offer.acceptedDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Candidate"
-      },
-      link: {
-        text: "View offer",
-        href: `/application/${application.id}/offer`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.conditionsMetDate) {
-    timeline.push({
-      label: {
-        text:  "Conditions met"
-      },
-      datetime: {
-        timestamp: application.offer.conditionsMetDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      },
-      link: {
-        text: "View conditions",
-        href: `/application/${application.id}/offer`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.conditionsNotMetDate) {
-    timeline.push({
-      label: {
-        text:  "Conditions not met"
-      },
-      datetime: {
-        timestamp: application.offer.conditionsNotMetDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      },
-      link: {
-        text: "View conditions",
-        href: `/application/${application.id}/offer`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.withdrawnDate) {
-    timeline.push({
-      label: {
-        text:  "Offer withdrawn"
-      },
-      datetime: {
-        timestamp: application.offer.withdrawnDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      },
-      link: {
-        text: "View offer",
-        href: `/application/${application.id}/offer`
-      }
-    })
-  }
-
-  if(application.offer && application.offer.enrolledDate) {
-    timeline.push({
-      label: {
-        text:  "Enrolled"
-      },
-      datetime: {
-        timestamp: application.offer.enrolledDate,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      }
-    })
-  }
-
-  if(application.notes && application.notes.items.length) {
-    timeline.push({
-      label: {
-        text:  "Note added"
-      },
-      datetime: {
-        timestamp: application.notes.items[0].date,
-        type: "datetime"
-      },
-      byline: {
-        text: "Alex Renato"
-      },
-      link: {
-        text: "View note",
-        href: `/application/${application.id}/notes/${application.notes.items[0].id}`
-      }
-    })
-  }
-
-  return timeline.reverse();
+      link: getLink(item, application)
+    }
+  }).reverse()
 };
