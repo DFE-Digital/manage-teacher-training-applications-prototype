@@ -4,7 +4,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "There’s a problem – the course is no longer running" %}
+{% set title = "This offer was made for a course which is no longer running" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -40,7 +40,7 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>You need to choose another course now.</p>
+      <p>You can choose another course to offer this candidate.</p>
 
       <form method="post">
 
@@ -51,7 +51,7 @@
       </form>
 
       <h2 class="govuk-heading-m">
-        Previous offer
+        Previous cycle offer
       </h2>
 
         <div class="app-offer-panel">

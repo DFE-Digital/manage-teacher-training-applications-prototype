@@ -4,7 +4,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "Check and reconfirm offer" %}
+{% set title = "Check and confirm offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -149,11 +149,11 @@
         </dl>
       </div>
 
-      <p class="govuk-body">The candidate will be notified that their offer has been reconfirmed for the new cycle including any changes you’ve made.</p>
+      <p class="govuk-body">We’ll notify the candidate their deferred offer has been checked and confirmed for the current cycle (2021 to 2022). We'll also inform them of any changes you have made.</p>
 
       <form method="post">
         {{ govukButton({
-          text: "Reconfirm offer"
+          text: "Confirm offer for current cycle"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>

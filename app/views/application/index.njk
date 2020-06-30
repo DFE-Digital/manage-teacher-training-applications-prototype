@@ -36,9 +36,9 @@
 
   {% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020-2021)' %}
     {% set bannerHtml %}
-      <h2 class="govuk-heading-m">You need to reconfirm your offer</h2>
+      <h2 class="govuk-heading-m">Deferred offers must be checked and confirmed for the current cycle</h2>
       {{ govukButton({
-        text: "Reconfirm offer",
+        text: "Check and confirm offer",
         classes: "govuk-!-margin-bottom-0",
         href: "/application/" + application.id + "/offer/reconfirm"
       }) }}

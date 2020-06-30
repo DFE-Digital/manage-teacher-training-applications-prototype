@@ -4,7 +4,7 @@
 {% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 
-{% set title = "There’s a problem – the location is no longer available" %}
+{% set title = "This offer was made with a location which is no longer available" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -40,9 +40,9 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>{{application.course}} no longer runs at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
+      <p>For the current cycle, {{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
 
-      <p>You need to change your offer now.</p>
+      <p>You can choose another location or course to offer this candidate.</p>
 
       <form method="post">
 
@@ -51,18 +51,18 @@
           name: "action",
           fieldset: {
             legend: {
-              text: "Choose action",
+              text: "Update offer",
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "Choose another location",
-              text: "Choose another location"
+              text: "Select alternative location"
             },
             {
               value: "Choose another course",
-              text: "Choose another course"
+              text: "Select alternative course"
             }
           ]
         }) }}
@@ -74,7 +74,7 @@
       </form>
 
       <h2 class="govuk-heading-m">
-        Previous offer
+        Previous cycle offer
       </h2>
 
         <div class="app-offer-panel">
