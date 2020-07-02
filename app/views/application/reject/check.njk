@@ -20,6 +20,7 @@
       <p>Your feedback will be given to the candidate in the format below.</p>
 
       {% set rejectionReasons = data.rejectionReasons %}
+      {% set rejectionChangeLinks = true %}
       {% include "_includes/candidate-feedback.njk" %}
 
       <form method="post">
