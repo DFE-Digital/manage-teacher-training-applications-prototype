@@ -307,7 +307,9 @@
     <div class="app-feedback__panel">
     <h3 class="govuk-heading-s">Future applications</h3>
     <p>The provider would not be interested in future applications from you.</p>
-    <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+    {% if rejectionChangeLinks %}
+      <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+    {% endif %}
     </div>
   {% endif %}
 
