@@ -76,7 +76,7 @@ module.exports = (env) => {
   filters.statusClass = (status) => {
     switch(status) {
       case "Deferred":
-        return 'govuk-tag--pink'
+        return 'govuk-tag--yellow'
       case "Offer withdrawn":
         return 'app-tag--red'
       case "Application withdrawn":
