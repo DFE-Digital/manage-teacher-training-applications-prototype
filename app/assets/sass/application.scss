@@ -419,3 +419,14 @@ h1 .govuk-tag {
     width: 20%;
   }
 }
+
+.app-feedback__panel {
+  position: relative;
+  padding-right: 70px;
+}
+
+.app-rejection-change-link {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
