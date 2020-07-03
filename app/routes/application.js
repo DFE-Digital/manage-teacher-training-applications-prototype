@@ -128,7 +128,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId];
     application.cycle = req.session.data.applicatoncycle;
-    if(application.cycle == 'Next cycle (2021-2022)') {
+    if(application.cycle == 'Next cycle (2021 to 2022)') {
       application.previousOffer = application.offer;
       application.previousStatus = application.status;
       application.offer = null;

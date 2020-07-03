@@ -59,7 +59,7 @@ module.exports = router => {
     const conditions = application.previousOffer.standardConditions.concat(application.previousOffer.conditions);
 
     res.render(`offer/reconfirm/unavailable-location/location`, {
-      applicationId: applicationId,
+      application: application,
       conditions: conditions
     })
   })
@@ -68,12 +68,27 @@ module.exports = router => {
     res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-location/check`)
   })
 
+  router.get('/application/:applicationId/offer/reconfirm/unavailable-location/conditions', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId];
+
+    res.render(`offer/reconfirm/unavailable-location/conditions`, {
+      application: application,
+      standardConditions: application.previousOffer.standardConditions,
+      furtherConditions: application.previousOffer.conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/unavailable-location/conditions', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-location/check`)
+  })
+
   router.get('/application/:applicationId/offer/reconfirm/unavailable-location/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId];
     const conditions = application.previousOffer.standardConditions.concat(application.previousOffer.conditions);
     res.render(`offer/reconfirm/unavailable-location/check`, {
-      applicationId: applicationId,
+      application: application,
       conditions: conditions
     })
   })
@@ -158,7 +173,7 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/reconfirm/unavailable-course/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/conditions`)
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/check`)
   })
 
   router.get('/application/:applicationId/offer/reconfirm/unavailable-course/conditions', (req, res) => {
@@ -250,7 +265,7 @@ module.exports = router => {
     application.offerAvailable = true;
 
     res.render(`offer/reconfirm/conditions`, {
-      applicationId: req.params.applicationId,
+      application: application,
       standardConditions: application.previousOffer.standardConditions,
       furtherConditions: application.previousOffer.conditions
     })
