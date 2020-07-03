@@ -22,8 +22,8 @@ module.exports = {
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-08-01',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }, { id: uuid(), description: 'Disclosure and barring service check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
