@@ -1,12 +1,11 @@
 {% extends "_layout.njk" %}
 
-{% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set title = "Select location" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer/change-provider/course"
+    href: "/application/" + application.id + "/offer/reconfirm/unavailable-location"
   }) }}
 {% endblock %}
 

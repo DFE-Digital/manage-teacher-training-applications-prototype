@@ -62,7 +62,7 @@ module.exports = router => {
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
         'offer-made-to-new-location': 'Offer successfully made',
-        'offer-reconfirmed': 'Offer reconfirmed successfully'
+        'offer-reconfirmed': 'Deferred offer successfully confirmed for current cycle'
       }
     })
 
@@ -128,7 +128,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId];
     application.cycle = req.session.data.applicatoncycle;
-    if(application.cycle == 'Next cycle (2021-2022)') {
+    if(application.cycle == 'Next cycle (2021 to 2022)') {
       application.previousOffer = application.offer;
       application.previousStatus = application.status;
       application.offer = null;

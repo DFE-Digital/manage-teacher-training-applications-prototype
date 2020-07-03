@@ -1,17 +1,18 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer/reconfirm/check"
+    href: "/application/" + application.id + "/offer/reconfirm/unavailable-location/check"
   }) }}
 {% endblock %}
 
 {% block content %}
+
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

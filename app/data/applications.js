@@ -3,7 +3,7 @@ var uuid = require('uuid/v4')
 module.exports = {
   "GH12354": {
     id: "GH12354",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (3-7) (X121)',
@@ -95,7 +95,7 @@ module.exports = {
   },
   "EW65341": {
     id: "EW65341",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -176,7 +176,7 @@ module.exports = {
   },
   "XX63345": {
     id: "XX63345",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -264,7 +264,7 @@ module.exports = {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -352,7 +352,7 @@ module.exports = {
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -437,7 +437,7 @@ module.exports = {
   },
   "RT88789": {
     id: "RT88789",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2S8T)',
@@ -532,7 +532,7 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2S8T)',
@@ -613,7 +613,7 @@ module.exports = {
   },
   "PL098988": {
     id: "PL098988",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2YQN)',
@@ -689,7 +689,7 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2YQN)',
@@ -765,7 +765,7 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
@@ -832,7 +832,7 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
@@ -1142,7 +1142,7 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
@@ -1402,7 +1402,7 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
@@ -1677,7 +1677,7 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
@@ -1910,7 +1910,7 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
@@ -2105,7 +2105,7 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2MKC)',
@@ -2336,7 +2336,7 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (3-7) (X121)',
