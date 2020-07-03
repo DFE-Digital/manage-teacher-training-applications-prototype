@@ -1,6 +1,98 @@
 var uuid = require('uuid/v4')
 
 module.exports = {
+  "ZX12314": {
+    id: "ZX12314",
+    cycle: "Previous cycle (2019 to 2020)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
+    course: 'Primary (3-7) (X121)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-07-15',
+    status: 'Accepted',
+    notes: {
+      items: [{
+        id: uuid(),
+        subject: "Talk to candidate on 15 June",
+        body: "Make sure to prepare this and that ready for a chat",
+        sender: "Laura Tennant",
+        date: '2019-07-20T19:20:30'
+      }]
+    },
+    offer: {
+      madeDate: '2019-07-30',
+      acceptedDate: '2019-08-01',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-07-15'
+      }, {
+        title: 'Note added',
+        user: 'Alex Renato',
+        date: '2019-07-20T19:20:30',
+        meta: {
+          noteIndex: 0
+        }
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-07-30'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-08-01'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Laura',
+      'family-name': 'Say',
+      'date-of-birth': '1989-11-04',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900001',
+      email: 'laura.say@example.com',
+      address: {
+        line1: '47 Simone Weil Avenue',
+        line2: '',
+        level2: 'Wedhampton',
+        level1: 'Wedhamptonshire',
+        'postal-code': 'WH7 2RH'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
   "GH12354": {
     id: "GH12354",
     cycle: "Current cycle (2020 to 2021)",
@@ -63,6 +155,87 @@ module.exports = {
         level2: 'Wedhampton',
         level1: 'Wedhamptonshire',
         'postal-code': 'WH7 2RH'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
+  "DD35341": {
+    id: "DD35341",
+    cycle: "Previous cycle (2019 to 2020)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
+    course: 'Primary (5-11) (X100)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-05-15',
+    status: 'Conditions met',
+    offer: {
+      madeDate: '2019-06-12',
+      acceptedDate: '2019-06-13',
+      conditionsMetDate: '2019-08-12T09:01:00',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Gemma',
+      'family-name': 'Smith',
+      'date-of-birth': '1985-01-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900002',
+      email: 'gemma.smith@example.com',
+      address: {
+        line1: '83 Scarcroft Road',
+        line2: '',
+        level2: 'Bulwick',
+        level1: 'Westhamptonshire',
+        'postal-code': 'IV21 8JQ'
       }
     },
     'language-skills': {
@@ -581,6 +754,82 @@ module.exports = {
         level2: 'Starling',
         level1: 'Starlingshire',
         'postal-code': 'CB11 8RX'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
+  "PL098999": {
+    id: "PL098999",
+    cycle: "Previous cycle (2019 to 2020)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
+    course: 'Primary (2YQN)',
+    locationname: 'Epsom Grinstead - training location',
+    submittedDate: '2019-07-15',
+    status: 'Rejected',
+    rejectedDate: '2019-08-10T08:32:00',
+    rejectedReasons: {
+
+      // Candidate actions
+      "actions": "Yes",
+      "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+
+      // Future applications
+      "future-applications": "Yes"
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Application rejected',
+        user: 'Alex Renato',
+        date: '2019-08-10T08:32:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Kelly Jane',
+      'family-name': 'Spears',
+      'date-of-birth': '1998-12-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900202',
+      email: 'kelly.spears@example.com',
+      address: {
+        line1: '44 Southend Avenue',
+        line2: '',
+        level2: 'Southampton',
+        level1: '',
+        'postal-code': 'SO1  8UZ'
       }
     },
     'language-skills': {

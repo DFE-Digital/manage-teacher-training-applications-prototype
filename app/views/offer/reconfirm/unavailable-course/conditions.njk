@@ -43,11 +43,6 @@
                   value: "Met",
                   text: "Met",
                   checked: standardConditions[0].status == "Met"
-                },
-                {
-                  value: "Not met",
-                  text: "Not met",
-                  checked: standardConditions[0].status == "Not met"
                 }
               ]
             }) }}
@@ -73,11 +68,6 @@
                   value: "Met",
                   text: "Met",
                   checked: standardConditions[1].status == "Met"
-                },
-                {
-                  value: "Not met",
-                  text: "Not met",
-                  checked: standardConditions[1].status == "Not met"
                 }
               ]
             }) }}
@@ -168,15 +158,6 @@
                     attributes: {
                       'data-name': 'furtherCondition[%index%][status][met]',
                       'data-id': 'furtherCondition[%index%][status][met]'
-                    }
-                  },
-                  {
-                    value: "Not met",
-                    text: "Not met",
-                    checked: condition.status == "Not met",
-                    attributes: {
-                      'data-name': 'furtherCondition[%index%][status][notmet]',
-                      'data-id': 'furtherCondition[%index%][status][notmet]'
                     }
                   }
                 ]
