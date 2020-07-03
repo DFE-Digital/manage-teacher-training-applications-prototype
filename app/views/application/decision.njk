@@ -42,13 +42,17 @@
         checked: checked("decision", "different-course")
       },{
         value: "different-location",
-        text: "Make an offer but change location",
+        text: "Make an offer but change main training location",
 
         checked: checked("decision", "different-location")
       },
       {
         value: "different-provider",
         text: "Make an offer but change training provider",
+        hint: {
+                                text: "For example, to another provider in your training partnership"
+                            },
+
         checked: checked("decision", "different-provider")
       }, {
         value: "reject",
