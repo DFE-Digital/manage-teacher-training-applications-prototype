@@ -19,40 +19,8 @@
 
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
-   {% if application.status == 'Submitted' %}
-    {% set bannerHtml %}
-      <h2 class="govuk-heading-m">You have 22 days to respond</h2>
-      <p>On 19 October 2020 this application will be automatically rejected.</p>
-      {{ govukButton({
-        text: "Respond to application",
-        classes: "govuk-!-margin-bottom-0",
-        href: "/application/" + application.id + "/decision"
-      }) }}
-    {% endset %}
-    {{ appBanner({
-      html: bannerHtml,
-      type: "information",
-      icon: false,
-      classes: 'app-banner--purple'
-    }) }}
-  {% endif %}
-
-{% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020 to 2021)' %}
-    {% set bannerHtml %}
-      <h2 class="govuk-heading-m">You must confirm this deferred offer for the current cycle</h2>
-      {{ govukButton({
-        text: "Check and confirm offer",
-        classes: "govuk-!-margin-bottom-0",
-        href: "/application/" + application.id + "/offer/reconfirm"
-      }) }}
-    {% endset %}
-    {{ appBanner({
-      html: bannerHtml,
-      type: "information",
-      icon: false,
-      classes: 'app-banner--yellow'
-    }) }}
-  {% endif %}
+  {% include "_includes/application/respond-prompt.njk" %}
+  {% include "_includes/application/defer-prompt.njk" %}
 
 
   {% include "_includes/application/sub-nav.njk" %}

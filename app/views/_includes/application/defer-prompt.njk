@@ -1,0 +1,16 @@
+{% if application.status == 'Deferred' and application.cycle == 'Current cycle (2020 to 2021)' %}
+    {# {% set bannerHtml %} #}
+      <p class="govuk-body">You need to confirm the course for this deferred offer.</p>
+      {{ govukButton({
+        text: "Check and confirm offer",
+        classes: "govuk-!-margin-bottom-9",
+        href: "/application/" + application.id + "/offer/reconfirm"
+      }) }}
+    {# {% endset %} #}
+    {# {{ appBanner({
+      html: bannerHtml,
+      type: "information",
+      icon: false,
+      classes: 'app-banner--yellow'
+    }) }} #}
+  {% endif %}
