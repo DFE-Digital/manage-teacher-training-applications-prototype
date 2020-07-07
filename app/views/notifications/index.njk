@@ -17,6 +17,7 @@
       <p class="govuk-!-margin-bottom-8"><a href="/account/notification-settings">Notification settings</a></p>
 
       {{appNotificationCard({
+        classes: "app-notification-card--first",
         settings: {
           href: "/account/notification-settings/edit/application-submitted"
         },
@@ -128,7 +129,10 @@
         new: true
       })}}
 
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Seen</h2>
+
       {{appNotificationCard({
+        classes: "app-notification-card--first",
         settings: {
           href: "/account/notification-settings/edit/application-submitted"
         },

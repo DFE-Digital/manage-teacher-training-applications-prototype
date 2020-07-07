@@ -4,6 +4,63 @@
 
 {% block content %}
 
+  <h1 class="govuk-heading-xl">New for you</h1>
+
+  {{appNotificationCard({
+    classes: "app-notification-card--first",
+    settings: {
+      href: "/account/notification-settings/edit/application-submitted"
+    },
+    title: "Laura say’s application was rejected automatically",
+    provider: "Teaching Excellence SCITT",
+    dateText: "Today at 8:19pm",
+    link: {
+      href: "#",
+      text: "Give feedback"
+    }
+  })}}
+
+  {{appNotificationCard({
+    classes: "app-notification-card--firs",
+    settings: {
+      href: "/account/notification-settings/edit/application-submitted"
+    },
+    title: "Charlotte Campbel’s application is going to be automatically rejected in 2 days",
+    provider: "Teaching Excellence SCITT",
+    dateText: "Today at 17:12pm",
+    link: {
+      href: "#",
+      text: "Respond to application"
+    }
+  })}}
+
+  {{appNotificationCard({
+    settings: {
+      href: "/account/notification-settings/edit/application-submitted"
+    },
+    title: "Kelly Jane Spears submitted their application",
+    provider: "Teaching Excellence SCITT",
+    dateText: "Today at 1:33pm",
+    link: {
+      href: "#",
+      text: "Respond to application"
+    }
+  })}}
+
+  {{appNotificationCard({
+      classes: "govuk-!-margin-bottom-9",
+      settings: {
+        href: "/account/notification-settings/edit/application-submitted"
+      },
+    title: "Daniel James Jennings’ application was rejected automatically",
+    provider: "Teaching Excellence SCITT",
+    dateText: "14 May 2020 at 7:19pm",
+    link: {
+      href: "#",
+      text: "Give feedback"
+    }
+  })}}
+
   {% if data.tabs %}
     <div class="govuk-tabs govuk-!-margin-bottom-6">
       <ul class="govuk-tabs__list">
