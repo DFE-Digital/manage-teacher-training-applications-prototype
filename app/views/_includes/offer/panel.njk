@@ -123,10 +123,10 @@
 {% endif %}
 
 {% if controls and application.status == "Conditions met" %}
-  {{govukButton({
+  {# {{govukButton({
     text: "Enrol candidate",
     href: "/application/" + application.id + "/enrol/confirm"
-  })}}
+  })}} #}
 {% endif %}
 
 {% if controls and application.status == "Offered" or application.status == "Accepted" %}

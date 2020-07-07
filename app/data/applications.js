@@ -616,7 +616,7 @@ module.exports = {
     course: 'Primary (2S8T)',
     locationname: 'Main site',
     submittedDate: '2019-07-15',
-    status: 'Enrolled',
+    status: 'Conditions met',
     notes: {
       items: [{
         id: uuid(),
@@ -754,6 +754,73 @@ module.exports = {
         level2: 'Starling',
         level1: 'Starlingshire',
         'postal-code': 'CB11 8RX'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
+  "LD198999": {
+    id: "LD198999",
+    cycle: "Current cycle (2020 to 2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
+    course: 'Primary (2YQN)',
+    locationname: 'Epsom Grinstead - training location',
+    submittedDate: '2019-07-15',
+    status: 'Rejected automatically',
+    rejectedDate: '2019-08-10T08:32:00',
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Application rejected automatically',
+        user: 'Alex Renato',
+        date: '2019-08-10T08:32:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Talia',
+      'family-name': 'Joel',
+      'date-of-birth': '1998-12-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900202',
+      email: 'Talia.joel@example.com',
+      address: {
+        line1: '44 Southend Avenue',
+        line2: '',
+        level2: 'Southampton',
+        level1: '',
+        'postal-code': 'SO1  8UZ'
       }
     },
     'language-skills': {

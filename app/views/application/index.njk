@@ -17,12 +17,12 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-
-
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
   {% include "_includes/application/respond-prompt.njk" %}
   {% include "_includes/application/defer-prompt.njk" %}
+  {% include "_includes/application/feedback-prompt.njk" %}
+
 
   {% include "_includes/application/sub-nav.njk" %}
 

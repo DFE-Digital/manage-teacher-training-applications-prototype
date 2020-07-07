@@ -1,0 +1,8 @@
+{% if application.status == 'Rejected automatically' %}
+  <p class="govuk-body">You need to tell the candidate why their application was rejected automatically.</p>
+  {{ govukButton({
+    text: "Give feedback",
+    classes: "govuk-!-margin-bottom-9",
+    href: "/application/" + application.id + "/feedback"
+  }) }}
+{% endif %}

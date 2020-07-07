@@ -1,6 +1,6 @@
 .app-notification-card {
   border-bottom: 1px solid govuk-colour('mid-grey');
-  padding: 15px;
+  padding: 15px 0;
   position: relative;
 
   @include govuk-media-query($from: tablet) {
@@ -9,11 +9,7 @@
   }
 }
 
-.app-notification-card--read {
-  background: govuk-colour("light-grey");
-}
-
-.app-notification-card:first-of-type {
+.app-notification-card--first {
   border-top: 1px solid govuk-colour('mid-grey');
 }
 
