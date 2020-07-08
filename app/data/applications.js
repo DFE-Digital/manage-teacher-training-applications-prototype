@@ -794,6 +794,9 @@ module.exports = {
     submittedDate: '2019-07-15',
     status: 'Rejected automatically',
     rejectedDate: '2019-08-10T08:32:00',
+    rejectedReasons: {
+      "why": "Blah"
+    },
     events: {
       items: [{
         title: 'Application submitted',

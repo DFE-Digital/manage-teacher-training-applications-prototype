@@ -1,0 +1,43 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set title = "Check and send your feedback" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/reject/other-reasons-for-rejection/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <p>The candidate will see your feedback in the format below.</p>
+
+      <div class="app-feedback">
+        <h2 class="govuk-heading-m">
+        Training provider feedback
+      </h2>
+        <div class="app-feedback__panel">
+          <h3 class="govuk-heading-s">
+            Reasons why your application was unsuccessful
+          </h3>
+          <p>{{data['rejectionReasons']['why']}}</p>
+
+          <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/feedback">Change</a></p>
+        </div>
+      </div>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Send feedback"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

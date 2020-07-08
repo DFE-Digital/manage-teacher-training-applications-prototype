@@ -1,4 +1,4 @@
-{% if application.status == 'Rejected automatically' %}
+{% if application.status == 'Rejected automatically' and not application.rejectedReasons %}
   <p class="govuk-body">You need to tell the candidate why their application was rejected automatically.</p>
   {{ govukButton({
     text: "Give feedback",

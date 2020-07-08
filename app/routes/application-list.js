@@ -1,6 +1,7 @@
 const utils = require( '../data/application-utils')
 const { DateTime } = require('luxon');
 const { notify } = require('browser-sync');
+const { application } = require('express');
 
 function getCheckboxValues(name, data) {
   return name && (Array.isArray(name) ? name : [ name ].filter((name) => {
@@ -197,9 +198,21 @@ module.exports = router => {
         return a.daysToRespond - b.daysToRespond;
       })
       let deferredApplications = applications.filter(app => app.status == "Deferred");
-      let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically");
+      let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
+
       let submittedApplications = applications.filter(app => app.status == "Submitted");
-      let otherApplications = applications.filter(app => (app.status != "Submitted" && app.status != "Deferred" && app.status != "Rejected automatically"));
+      let otherApplications = applications.filter(function(app) {
+        if(app.status != "Submitted") {
+          // return true;
+        }
+        // if(app.status != "Deferred") {
+        //   return false;
+        // }
+        // if(app.status != "Rejected automatically" && !app.rejectedReasons) {
+        //   return false;
+        // }
+        return true;
+      });
 
       applications = [];
       if(deferredApplications.length) {
