@@ -26,7 +26,8 @@ module.exports = router => {
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
         'offer-made-to-new-location': 'Offer successfully made',
-        'cycle-changed': 'Cycle successfully changed'
+        'cycle-changed': 'Cycle successfully changed',
+        'feedback-given': 'Feedback successfully sent'
       }
     })
 
