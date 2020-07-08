@@ -25,7 +25,7 @@
     </div>
 
     <div>
-      {% if data.sortby == 'days left to respond' and a.status == 'Submitted' %}
+      {% if data.sortby == 'needs most attention' and a.status == 'Submitted' %}
         {% if a.daysToRespond == 0 %}
           <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Less than a day to respond</p>
         {% else %}

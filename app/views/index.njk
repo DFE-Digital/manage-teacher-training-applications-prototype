@@ -111,11 +111,11 @@
               <div class="govuk-form-group govuk-!-margin-bottom-2">
                 <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
                 <select class="govuk-select sortby-selector" name="sortby" id="sortby">
-                  {% if data.p %}
-                    <option value="needs attention" {% if data.sortby == 'needs attention' %} selected {% endif%}>Needs most attention</option>
-                  {% endif %}
+
+                  <option value="needs most attention" {% if data.sortby == 'needs most attention' %} selected {% endif%}>Needs most attention</option>
+
                   <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
-                  <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option>
+                  {# <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option> #}
                 </select>
                 {{ govukButton({
                   text: "Sort",
@@ -128,18 +128,22 @@
         </div>
         <div>
           {% if applications.length %}
-            {% if data.p %}
-              {% include "_includes/prioritised-list.njk" %}
-            {% else %}
+
               <div class="app-application-cards">
                 {% for a in applications %}
                   {% set rbd = a.status.submitted.date | addDays(40) %}
                   {% set remaining = rbd | daysFromNow(rbd) %}
                   {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-                  {% include "_includes/application-card.njk" %}
+
+                  {% if a.heading %}
+                    <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
+                  {% else %}
+                    {% include "_includes/application-card.njk" %}
+                  {% endif %}
+
                 {% endfor %}
               </div>
-            {% endif %}
+
           {% endif %}
         </div>
 
