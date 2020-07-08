@@ -205,18 +205,13 @@ module.exports = router => {
         .filter(app => app.status != "Submitted")
         .filter(app => app.status != "Deferred")
 
-
       let rejectedAutomaticallyWithFeedback = applications
         .filter(app => app.status == "Rejected automatically")
         .filter(function(app) {
           return app.rejectedReasons;
         })
 
-        console.log(rejectedAutomaticallyWithFeedback);
-
       otherApplications.concat(rejectedAutomaticallyWithFeedback);
-
-
 
       applications = [];
       if(deferredApplications.length) {
