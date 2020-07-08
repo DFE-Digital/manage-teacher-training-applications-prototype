@@ -201,18 +201,22 @@ module.exports = router => {
       let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
 
       let submittedApplications = applications.filter(app => app.status == "Submitted");
-      let otherApplications = applications.filter(function(app) {
-        if(app.status != "Submitted") {
-          // return true;
-        }
-        // if(app.status != "Deferred") {
-        //   return false;
-        // }
-        // if(app.status != "Rejected automatically" && !app.rejectedReasons) {
-        //   return false;
-        // }
-        return true;
-      });
+      let otherApplications = applications
+        .filter(app => app.status != "Submitted")
+        .filter(app => app.status != "Deferred")
+
+
+      let rejectedAutomaticallyWithFeedback = applications
+        .filter(app => app.status == "Rejected automatically")
+        .filter(function(app) {
+          return app.rejectedReasons;
+        })
+
+        console.log(rejectedAutomaticallyWithFeedback);
+
+      otherApplications.concat(rejectedAutomaticallyWithFeedback);
+
+
 
       applications = [];
       if(deferredApplications.length) {
