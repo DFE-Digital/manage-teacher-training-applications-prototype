@@ -14,7 +14,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Select permissions: Teaching Excellence SCITT
+        Select permissions: {{ data.organisations[0].name }}
       {% endset %}
 
       {% set makeDecisionsHintHtml %}
@@ -25,24 +25,24 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Highfield Academy Alliance
+            }) }} {{ data.organisations[1].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Three Trees Teaching School
+            }) }} {{ data.organisations[2].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Westfield TSA
+            }) }} {{ data.organisations[3].name }}
             <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Teaching Excellence SCITT
+            }) }} {{ data.organisations[0].name }}
           </li>
         </ul>
       {% endset %}
@@ -55,24 +55,24 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Highfield Academy Alliance
+            }) }} {{ data.organisations[1].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Three Trees Teaching School
+            }) }} {{ data.organisations[2].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Westfield TSA
+            }) }} {{ data.organisations[3].name }}
             <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} Teaching Excellence SCITT
+            }) }} {{ data.organisations[0].name }}
           </li>
         </ul>
       {% endset %}

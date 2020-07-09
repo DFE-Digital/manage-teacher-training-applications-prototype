@@ -1,11 +1,16 @@
 var uuid = require('uuid/v4')
+var organisations = require('./organisations')
+organisations = Object.values(organisations).filter(org => {
+  return org.enabled; 
+})
 
 module.exports = {
+
   "ZX12314": {
     id: "ZX12314",
     cycle: "Previous cycle (2019 to 2020)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (3-7) (X121)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-07-15',
@@ -96,8 +101,8 @@ module.exports = {
   "GH12354": {
     id: "GH12354",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (3-7) (X121)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-07-15',
@@ -188,8 +193,8 @@ module.exports = {
   "DD35341": {
     id: "DD35341",
     cycle: "Previous cycle (2019 to 2020)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Teaching Excellence SCITT',
+    accreditingbody: organisations[0].name,
+    provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-05-15',
@@ -269,8 +274,8 @@ module.exports = {
   "EW65341": {
     id: "EW65341",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Teaching Excellence SCITT',
+    accreditingbody: organisations[0].name,
+    provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-05-15',
@@ -350,8 +355,8 @@ module.exports = {
   "XX63345": {
     id: "XX63345",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Teaching Excellence SCITT',
+    accreditingbody: organisations[0].name,
+    provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-05-15',
@@ -438,8 +443,8 @@ module.exports = {
       reason: 'location'
     },
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Teaching Excellence SCITT',
+    accreditingbody: organisations[0].name,
+    provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-05-15',
@@ -526,8 +531,8 @@ module.exports = {
       reason: 'course'
     },
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Teaching Excellence SCITT',
+    accreditingbody: organisations[0].name,
+    provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
     locationname: 'Lingfield - training location',
     submittedDate: '2019-05-15',
@@ -611,8 +616,8 @@ module.exports = {
   "RT88789": {
     id: "RT88789",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (2S8T)',
     locationname: 'Main site',
     submittedDate: '2019-07-15',
@@ -706,8 +711,8 @@ module.exports = {
   "ID540900": {
     id: "ID540900",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (2S8T)',
     locationname: 'Main site',
     submittedDate: '2019-01-15',
@@ -787,8 +792,8 @@ module.exports = {
   "LD198999": {
     id: "LD198999",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (2YQN)',
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
@@ -854,8 +859,8 @@ module.exports = {
   "PL098999": {
     id: "PL098999",
     cycle: "Previous cycle (2019 to 2020)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (2YQN)',
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
@@ -930,8 +935,8 @@ module.exports = {
   "PL098988": {
     id: "PL098988",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (2YQN)',
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
@@ -1006,8 +1011,8 @@ module.exports = {
   "QW211115": {
     id: "QW211115",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Highfield Academy Alliance',
+    accreditingbody: organisations[0].name,
+    provider: organisations[1].name,
     course: 'Primary (2YQN)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-06-02',
@@ -1082,8 +1087,8 @@ module.exports = {
   "KH96344": {
     id: "KH96344",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Three Trees Teaching School',
+    accreditingbody: organisations[0].name,
+    provider: organisations[2].name,
     course: 'Primary (2RQM)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-04-15',
@@ -1149,8 +1154,8 @@ module.exports = {
   "WP010100": {
     id: "WP010100",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Three Trees Teaching School',
+    accreditingbody: organisations[0].name,
+    provider: organisations[2].name,
     course: 'Primary (2RQM)',
     locationname: 'Main site',
     submittedDate: '2019-03-02',
@@ -1459,8 +1464,8 @@ module.exports = {
   "PW908111": {
     id: "PW908111",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Three Trees Teaching School',
+    accreditingbody: organisations[0].name,
+    provider: organisations[2].name,
     course: 'Primary (2RQM)',
     locationname: 'Main site',
     submittedDate: '2019-02-01',
@@ -1719,8 +1724,8 @@ module.exports = {
   "AB5499": {
     id: "AB5499",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Your Teaching First TSA',
+    accreditingbody: organisations[0].name,
+    provider: organisations[4].name,
     course: 'Primary (32VP)',
     locationname: 'Camberley - training location',
     submittedDate: '2019-01-16T08:32:00',
@@ -1994,8 +1999,8 @@ module.exports = {
   "CV943651": {
     id: "CV943651",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Your Teaching First TSA',
+    accreditingbody: organisations[0].name,
+    provider: organisations[4].name,
     course: 'Primary (32VP)',
     locationname: 'Main site',
     submittedDate: '2019-07-05T14:01:00',
@@ -2227,8 +2232,8 @@ module.exports = {
   "RE123123": {
     id: "RE123123",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Your Teaching First TSA',
+    accreditingbody: organisations[0].name,
+    provider: organisations[4].name,
     course: 'Primary (32VP)',
     locationname: 'Main site',
     submittedDate: '2019-07-21T18:59:00',
@@ -2422,8 +2427,8 @@ module.exports = {
   "AS1623": {
     id: "AS1623",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Three Trees Teaching School',
+    accreditingbody: organisations[0].name,
+    provider: organisations[2].name,
     course: 'Primary (2MKC)',
     locationname: 'Main site',
     submittedDate: '2019-07-29',
@@ -2653,8 +2658,8 @@ module.exports = {
   "JF4978": {
     id: "JF4978",
     cycle: "Current cycle (2020 to 2021)",
-    accreditingbody: "Teaching Excellence SCITT",
-    provider: 'Teaching Excellence SCITT',
+    accreditingbody: organisations[0].name,
+    provider: organisations[0].name,
     course: 'Primary (3-7) (X121)',
     locationname: 'Main site',
     submittedDate: '2019-08-10T13:32:00',

@@ -19,7 +19,7 @@
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <h2 class="govuk-heading-m">
-        For courses run by Your Teaching First TSA and ratified by Teaching Excellence SCITT
+        For courses run by {{ data.organisations[4].name }} and ratified by {{ data.organisations[0].name }}
       </h2>
 
       {{ govukSummaryList({
@@ -175,7 +175,7 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        For courses run by Your Teaching First TSA and ratified by Teaching Brilliance University
+        For courses run by {{ data.organisations[4].name }} and ratified by Teaching Brilliance University
       </h2>
 
       {{ govukSummaryList({

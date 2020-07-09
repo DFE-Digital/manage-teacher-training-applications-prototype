@@ -99,7 +99,7 @@ module.exports = router => {
 
     application.offer = {
       madeDate: new Date().toISOString(),
-      provider: 'Teaching Excellence SCITT',
+      provider: data.organisations[0].name,
       course: 'Primary (5-11) (X100)',
       locationname: req.session.data.location
     };
@@ -208,7 +208,7 @@ module.exports = router => {
 
     application.offer = {
       madeDate: new Date().toISOString(),
-      provider: 'Teaching Excellence SCITT',
+      provider: 'data.organisations[0].name',
       course: 'Primary (5-11) (X100)',
       locationname: req.session.data.location
     };

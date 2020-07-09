@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
-{% set org = "Your Teaching First TSA" %}
-{% set partner = "Teaching Excellence SCITT" %}
+{% set org = data.organisations[4].name %}
+{% set partner = data.organisations[0].name %}
 
 {% block beforeContent %}
   {{ govukBackLink({

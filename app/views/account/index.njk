@@ -43,19 +43,19 @@
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} Highfield Academy Alliance
+      }) }} {{ data.organisations[1].name }}
     </li>
     <li>{{ appIcon({
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} Three Trees Teaching School
+      }) }} {{ data.organisations[2].name }}
     </li>
     <li>{{ appIcon({
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} Westfield TSA
+      }) }} {{ data.organisations[3].name }}
     </li>
   </ul>
   </div>
@@ -72,19 +72,19 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Highfield Academy Alliance
+        }) }} {{ data.organisations[1].name }}
       </li>
       <li>{{ appIcon({
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Three Trees Teaching School
+        }) }} {{ data.organisations[2].name }}
       </li>
       <li>{{ appIcon({
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Westfield TSA
+        }) }} {{ data.organisations[3].name }}
       </li>
     </ul>
     </div>
@@ -115,7 +115,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Teaching Excellence SCITT Consortium
+        }) }} {{ data.organisations[0].name }}
       </li>
     </ul>
     </div>
@@ -131,7 +131,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} Teaching Excellence SCITT Consortium
+        }) }} {{ data.organisations[0].name }}
       </li>
     </ul>
     </div>
@@ -170,12 +170,12 @@
               text: "Organisations this user has access to"
             },
             value: {
-              html: "<p>Teaching Excellence SCITT</p><p>Your Teaching First TSA</p>"
+              html: "<p>" + data.organisations[0].name + "</p><p>" + data.organisations[4].name + "</p>"
             }
           },
           {
             key: {
-              text: "Permissions: Teaching Excellence SCITT Consortium"
+              text: "Permissions: " + data.organisations[0].name
             },
             value: {
               html: permissionsHtml
@@ -183,7 +183,7 @@
           },
           {
             key: {
-              text: "Permissions: Your Teaching First TSA"
+              text: "Permissions: " + data.organisations[4].name
             },
             value: {
               html: permissions2Html

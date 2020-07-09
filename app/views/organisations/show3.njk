@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = "Your Teaching First TSA" %}
+{% set title = data.organisations[4].name %}
 
 {% block content %}
 
@@ -24,22 +24,22 @@
       {% endset %}
 
       <h2 class="govuk-heading-m">
-        For courses run by Your Teaching First TSA and ratified by Teaching Excellence SCITT
+        For courses run by {{ data.organisations[4].name }} and ratified by {{ data.organisations[0].name }}
       </h2>
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Teaching Excellence SCITT</li>
+        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can see safeguarding information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Your Teaching First TSA</li>
+        <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
       </ul>
 
-      <p><a href="/organisations/edit">Change <span class="govuk-visually-hidden">permissions for Your Teaching First TSA</span></a></p>
+      <p><a href="/organisations/edit">Change <span class="govuk-visually-hidden">permissions for {{ data.organisations[4].name }}</span></a></p>
 
     </div>
   </div>

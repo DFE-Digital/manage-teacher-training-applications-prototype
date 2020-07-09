@@ -1,7 +1,7 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'organisation' %}
-{% set title = "Catholic Teaching School Alliance" %}
+{% set title = data.organisations[4].name %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -128,15 +128,15 @@
           },
           items: [
             {
-              value: "Teaching Excellence SCITT",
-              text: "Teaching Excellence SCITT",
+              value: data.organisations[0].name,
+              text: data.organisations[0].name,
               conditional: {
                 html: p1PermissionsHtml
               }
             },
             {
-              value: "Your Teaching First TSA",
-              text: "Your Teaching First TSA",
+              value: data.organisations[4].name,
+              text: data.organisations[4].name,
               conditional: {
                 html: p2PermissionsHtml
               }

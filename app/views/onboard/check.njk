@@ -27,10 +27,10 @@
       <form novalidate action="/onboard/confirmation">
 
         {# <h2 class="govuk-heading-m">
-          For courses run and ratified by Teaching Excellence SCITT
+          For courses run and ratified by {{ data.organisations[0].name }}
         </h2>
 
-        <p>Teaching Excellence SCITT can:</p>
+        <p>{{ data.organisations[0].name }} can:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -47,21 +47,21 @@
         <p><a href="/onboard/step2">Change</a></p> #}
 
         <h2 class="govuk-heading-m">
-          For courses run by Your Teaching First TSA and ratified by Teaching Excellence SCITT
+          For courses run by {{ data.organisations[4].name }} and ratified by {{ data.organisations[0].name }}
         </h2>
 
         <p>The following organisation(s) can make decisions:</p>
 
         <ul class="govuk-list">
-          <li>{{tick | safe }} Your Teaching First TSA</li>
+          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
         </ul>
       </ul>
 
         <p>The following organisation(s) can see safeguarding information:</p>
 
         <ul class="govuk-list">
-          <li>{{tick | safe }} Your Teaching First TSA</li>
-          <li>{{tick | safe }} Teaching Excellence SCITT</li>
+          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
         </ul>
 
         <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>

@@ -23,17 +23,17 @@
 
       {# <div class="app-application-card">
         <div>
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">Teaching Excellence SCITT</h2>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">{{ data.organisations[0].name }}</h2>
         </div>s
       </div> #}
 
       <div class="app-application-card govuk-!-margin-bottom-7">
         <div>
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">Your Teaching First TSA</h2>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">{{ data.organisations[4].name }}</h2>
 
           <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-1">Organisations that ratify your courses:</p>
           <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-            <li>Teaching Excellence SCITT</li>
+            <li>{{ data.organisations[0].name }}</li>
           </ul>
         </div>
       </div>

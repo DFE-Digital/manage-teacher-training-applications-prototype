@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = "Teaching Excellence SCITT" %}
+{% set title = data.organisations[0].name %}
 
 {% block content %}
 
@@ -24,85 +24,85 @@
       {% endset %}
 
       <h2 class="govuk-heading-m">
-      For courses ratified by Teaching Excellence SCITT and run by Highfield Academy Alliance
+      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[1].name }}
       </h2>
 
       {{appBanner({
-        text: "Contact Highfield Academy Alliance to change permissions.",
+        text: "Contact " + data.organisations[1].name + " to change permissions.",
         classes: "govuk-!-margin-bottom-4"
       })}}
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Teaching Excellence SCITT</li>
+        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can see safeguarding information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Highfield Academy Alliance</li>
+        <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
       </ul>
 
       <h2 class="govuk-heading-m">
-      For courses ratified by Teaching Excellence SCITT and run by Three Trees Teaching School
+      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[2].name }}
       </h2>
 
       {{appBanner({
-        text: "Contact Three Trees Teaching School to change permissions.",
+        text: "Contact " + data.organisations[2].name + " to change permissions.",
         classes: "govuk-!-margin-bottom-4"
       })}}
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Teaching Excellence SCITT</li>
+        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can see safeguarding information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Three Trees Teaching School</li>
+        <li>{{tick | safe }} {{ data.organisations[2].name }}</li>
       </ul>
 
       <h2 class="govuk-heading-m">
-      For courses ratified by Teaching Excellence SCITT and run by Westfield TSA
+      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[3].name }}
       </h2>
 
       {{appBanner({
-        text: "Contact Westfield TSA to change permissions.",
+        text: "Contact " + data.organisations[3].name + " to change permissions.",
         classes: "govuk-!-margin-bottom-4"
       })}}
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Teaching Excellence SCITT</li>
+        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can see safeguarding information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Westfield TSA</li>
+        <li>{{tick | safe }} {{ data.organisations[3].name }}</li>
       </ul>
 
       <h2 class="govuk-heading-m">
-      For courses ratified by Teaching Excellence SCITT and run by Your Teaching First TSA
+      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[4].name }}
       </h2>
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Teaching Excellence SCITT</li>
+        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can see safeguarding information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} Your Teaching First TSA </li>
+        <li>{{tick | safe }} {{ data.organisations[4].name }} </li>
       </ul>
 
-      <p>You can also <a href="/organisations/show3">manage permissions for Your Teaching First TSA</a>.</p>
+      <p>You can also <a href="/organisations/show3">manage permissions for {{ data.organisations[4].name }}</a>.</p>
 
     </div>
   </div>

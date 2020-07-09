@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = "Highfield Academy Alliance" %}
+{% set title = data.organisations[1].name %}
 
 {% block content %}
 
@@ -16,12 +16,12 @@
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {% set permissionsOneHtml %}
-          <p>Teaching Excellence SCITT Consortium can:</p>
+          <p>{{ data.organisations[0].name }} can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
           </ul>
-          <p>Highfield Academy Alliance can:</p>
+          <p>{{ data.organisations[1].name }} can:</p>
           <ul class="list list--bullet">
             <li>make decisions</li>
             <li>see safeguarding information</li>
@@ -31,7 +31,7 @@
           rows: [
             {
               key: {
-                text: "For courses run by Highfield Academy Alliance and ratified by Teaching Excellence SCITT Consortium"
+                text: "For courses run by " + data.organisations[1].name + " and ratified by " + data.organisations[0].name
               },
               value: {
                 html: permissionsOneHtml
