@@ -60,26 +60,6 @@ module.exports = router => {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
         }
 
-        // if( rbddates && rbddates.length ){
-
-        //   var now = DateTime.fromISO('2019-08-15');
-        //   var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
-        //   var diff = rbd.diff(now, 'days').toObject().days;
-
-        //   if(rbddates.includes("Within the next 5 days")) {
-        //     rbdValid = diff <= 5;
-        //   }
-
-        //   if(rbddates.includes("Within the next 10 days")) {
-        //     rbdValid = diff <= 10;
-        //   }
-
-        //   if(rbddates.includes("Within the next 20 days")) {
-        //     rbdValid = diff <= 50;
-        //   }
-
-        // }
-
         return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid;
       })
     }
@@ -99,18 +79,6 @@ module.exports = router => {
           }]
         })
       }
-
-      // if(rbddates && rbddates.length) {
-      //   selectedFilters.categories.push({
-      //     heading: { text: "Reject by default date" },
-      //     items: rbddates.map((rbddate) => {
-      //       return {
-      //         text: rbddate,
-      //         href: `/remove-rbddate-filter/${rbddate}`
-      //       }
-      //     })
-      //   })
-      // }
 
       if(statuses && statuses.length) {
         selectedFilters.categories.push({
@@ -201,9 +169,14 @@ module.exports = router => {
       let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
 
       let submittedApplications = applications.filter(app => app.status == "Submitted");
+
+      let waitingOnApplications = applications.filter(app => app.status == "Offered").concat(applications.filter(app => app.status == "Accepted"));
+
       let otherApplications = applications
         .filter(app => app.status != "Submitted")
         .filter(app => app.status != "Deferred")
+        .filter(app => app.status != "Offered")
+        .filter(app => app.status != "Accepted")
 
       let rejectedAutomaticallyWithFeedback = applications
         .filter(app => app.status == "Rejected automatically")
@@ -235,10 +208,20 @@ module.exports = router => {
         applications = applications.concat(submittedApplications)
       }
 
-      if(otherApplications.length) {
+      if(waitingOnApplications.length) {
         applications.push({
-          heading: "Everything else"
+          heading: "Applications that are waiting on the candidate"
         })
+        applications = applications.concat(waitingOnApplications)
+      }
+
+      if(otherApplications.length) {
+
+        if(deferredApplications.length || automaticallyRejectedApplications.length || submittedApplications.length || waitingOnApplications.length) {
+          applications.push({
+            heading: "Everything else"
+          })
+        }
         applications = applications.concat(otherApplications);
       }
     }

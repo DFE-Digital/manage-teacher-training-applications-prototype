@@ -94,9 +94,9 @@
     </p>
   {% endif %}
 
-  {% if not hasFilters and not applications.length %}
-    <p>This cycle has no applications yet.</p>
-  {% else  %}
+
+
+
     <div class="moj-filter-layout">
       <div class="moj-filter-layout__filter">
         {% include "_includes/filter-panel.njk" %}
@@ -107,22 +107,21 @@
         <div class="moj-action-bar">
           <div class="moj-action-bar__filter"></div>
           <div>
-            <form>
+            {# <form>
               <div class="govuk-form-group govuk-!-margin-bottom-2">
                 <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
                 <select class="govuk-select sortby-selector" name="sortby" id="sortby">
 
-                  <option value="needs most attention" {% if data.sortby == 'needs most attention' %} selected {% endif%}>Needs most attention</option>
+                  <option value="most urgent" {% if data.sortby == 'most urgent' %} selected {% endif%}>Task mode</option>
 
-                  <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
-                  {# <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option> #}
+                  <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Activity mode</option>
                 </select>
                 {{ govukButton({
-                  text: "Sort",
+                  text: "Change view",
                   classes: 'govuk-buton--secondary govuk-!-margin-bottom-2'
                 }) }}
               </div>
-            </form>
+            </form> #}
 
           </div>
         </div>
@@ -170,11 +169,11 @@
         {% endif %}
 
         {% if not applications.length %}
-          <p>No applications for the selected filters. Try removing a filter.</p>
+          <p>No applications for this cycle.</p>
         {% endif %}
       </div>
     </div>
-  {% endif %}
+
 
 
 {% endblock %}

@@ -89,7 +89,7 @@
 {%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
 
 {% set rightHandSideNavHtml %}
-{# <nav class="moj-primary-navigation">
+<nav class="moj-primary-navigation">
   <ul class="moj-primary-navigation__list">
     <li class="moj-primary-navigation__item">
       <a class="moj-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'organisations' }} href="/organisations">
@@ -103,7 +103,13 @@
     </li>
   </ul>
 
-</nav> #}
+</nav>
+{% endset %}
+
+{% set alertsLinkHtml %}
+  <span class="app-notification-link">
+    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
+  </span>
 {% endset %}
 
 {{ mojPrimaryNavigation({
@@ -115,17 +121,17 @@
       active: primaryNavId == 'applications'
     },
     {
-      href: "/organisations",
-      text: "Organisations",
-      active: primaryNavId == 'organisations'
+      href: "/activity",
+      text: "Activity log",
+      active: primaryNavId == 'activity'
     },
     {
-      href: "/users",
-      text: "Users",
-      active: primaryNavId == 'users'
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
     }
   ],
-  searchHtml: rightHandSideNavHtml
+  searchHtml: rightHandSideNavHtml if 1 == 2
 }) }}
 
   {% block afterHeader %}
