@@ -4,6 +4,63 @@
 
 {% block content %}
 
+  {# <h1 class="govuk-heading-xl">New for you</h1>
+
+  {{appNotificationCard({
+    classes: "app-notification-card--first",
+    settings: {
+      href: "/account/notification-settings/edit/application-submitted"
+    },
+    title: "Laura say’s application was rejected automatically",
+    provider: "Teaching Excellence SCITT",
+    dateText: "Today at 8:19pm",
+    link: {
+      href: "#",
+      text: "Give feedback"
+    }
+  })}}
+
+  {{appNotificationCard({
+    classes: "app-notification-card--firs",
+    settings: {
+      href: "/account/notification-settings/edit/application-submitted"
+    },
+    title: "Charlotte Campbel’s application is going to be automatically rejected in 2 days",
+    provider: "Teaching Excellence SCITT",
+    dateText: "Today at 17:12pm",
+    link: {
+      href: "#",
+      text: "Respond to application"
+    }
+  })}}
+
+  {{appNotificationCard({
+    settings: {
+      href: "/account/notification-settings/edit/application-submitted"
+    },
+    title: "Kelly Jane Spears submitted their application",
+    provider: "Teaching Excellence SCITT",
+    dateText: "Today at 1:33pm",
+    link: {
+      href: "#",
+      text: "Respond to application"
+    }
+  })}}
+
+  {{appNotificationCard({
+      classes: "govuk-!-margin-bottom-9",
+      settings: {
+        href: "/account/notification-settings/edit/application-submitted"
+      },
+    title: "Daniel James Jennings’ application was rejected automatically",
+    provider: "Teaching Excellence SCITT",
+    dateText: "14 May 2020 at 7:19pm",
+    link: {
+      href: "#",
+      text: "Give feedback"
+    }
+  })}} #}
+
   {% if data.tabs %}
     <div class="govuk-tabs govuk-!-margin-bottom-6">
       <ul class="govuk-tabs__list">
@@ -54,8 +111,11 @@
               <div class="govuk-form-group govuk-!-margin-bottom-2">
                 <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
                 <select class="govuk-select sortby-selector" name="sortby" id="sortby">
+
+                  <option value="needs most attention" {% if data.sortby == 'needs most attention' %} selected {% endif%}>Needs most attention</option>
+
                   <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Last changed</option>
-                  <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option>
+                  {# <option value="days left to respond" {% if data.sortby == 'days left to respond' %} selected {% endif%}>Days left to respond</option> #}
                 </select>
                 {{ govukButton({
                   text: "Sort",
@@ -68,15 +128,23 @@
         </div>
         <div>
           {% if applications.length %}
-            <div class="app-application-cards">
-              {% for a in applications %}
-                {% set rbd = a.status.submitted.date | addDays(40) %}
-                {% set remaining = rbd | daysFromNow(rbd) %}
-                {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-                {% include "_includes/application-card.njk" %}
-              {% endfor %}
-            </div>
-          {% endif%}
+
+              <div class="app-application-cards">
+                {% for a in applications %}
+                  {% set rbd = a.status.submitted.date | addDays(40) %}
+                  {% set remaining = rbd | daysFromNow(rbd) %}
+                  {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
+
+                  {% if a.heading %}
+                    <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
+                  {% else %}
+                    {% include "_includes/application-card.njk" %}
+                  {% endif %}
+
+                {% endfor %}
+              </div>
+
+          {% endif %}
         </div>
 
         {% if applications.length %}

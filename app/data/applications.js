@@ -1,9 +1,101 @@
 var uuid = require('uuid/v4')
 
 module.exports = {
+  "ZX12314": {
+    id: "ZX12314",
+    cycle: "Previous cycle (2019 to 2020)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
+    course: 'Primary (3-7) (X121)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-07-15',
+    status: 'Accepted',
+    notes: {
+      items: [{
+        id: uuid(),
+        subject: "Talk to candidate on 15 June",
+        body: "Make sure to prepare this and that ready for a chat",
+        sender: "Laura Tennant",
+        date: '2019-07-20T19:20:30'
+      }]
+    },
+    offer: {
+      madeDate: '2019-07-30',
+      acceptedDate: '2019-08-01',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }, { id: uuid(), description: 'Disclosure and barring service check', status: 'Pending' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-07-15'
+      }, {
+        title: 'Note added',
+        user: 'Alex Renato',
+        date: '2019-07-20T19:20:30',
+        meta: {
+          noteIndex: 0
+        }
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-07-30'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-08-01'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Laura',
+      'family-name': 'Say',
+      'date-of-birth': '1989-11-04',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900001',
+      email: 'laura.say@example.com',
+      address: {
+        line1: '47 Simone Weil Avenue',
+        line2: '',
+        level2: 'Wedhampton',
+        level1: 'Wedhamptonshire',
+        'postal-code': 'WH7 2RH'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
   "GH12354": {
     id: "GH12354",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (3-7) (X121)',
@@ -93,9 +185,90 @@ module.exports = {
       }
     }
   },
+  "DD35341": {
+    id: "DD35341",
+    cycle: "Previous cycle (2019 to 2020)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Teaching Excellence SCITT',
+    course: 'Primary (5-11) (X100)',
+    locationname: 'Lingfield - training location',
+    submittedDate: '2019-05-15',
+    status: 'Conditions met',
+    offer: {
+      madeDate: '2019-06-12',
+      acceptedDate: '2019-06-13',
+      conditionsMetDate: '2019-08-12T09:01:00',
+      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer made',
+        user: 'Alex Renato',
+        date: '2019-05-15'
+      }, {
+        title: 'Offer accepted',
+        user: 'Candidate',
+        date: '2019-06-13'
+      }, {
+        title: 'Conditions met',
+        user: 'Alex Renato',
+        date: '2019-08-12T09:01:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Gemma',
+      'family-name': 'Smith',
+      'date-of-birth': '1985-01-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900002',
+      email: 'gemma.smith@example.com',
+      address: {
+        line1: '83 Scarcroft Road',
+        line2: '',
+        level2: 'Bulwick',
+        level1: 'Westhamptonshire',
+        'postal-code': 'IV21 8JQ'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
   "EW65341": {
     id: "EW65341",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -176,7 +349,7 @@ module.exports = {
   },
   "XX63345": {
     id: "XX63345",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -264,7 +437,7 @@ module.exports = {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -352,7 +525,7 @@ module.exports = {
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (5-11) (X100)',
@@ -437,13 +610,13 @@ module.exports = {
   },
   "RT88789": {
     id: "RT88789",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2S8T)',
     locationname: 'Main site',
     submittedDate: '2019-07-15',
-    status: 'Enrolled',
+    status: 'Conditions met',
     notes: {
       items: [{
         id: uuid(),
@@ -532,7 +705,7 @@ module.exports = {
   },
   "ID540900": {
     id: "ID540900",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2S8T)',
@@ -611,9 +784,152 @@ module.exports = {
       }
     }
   },
+  "LD198999": {
+    id: "LD198999",
+    cycle: "Current cycle (2020 to 2021)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
+    course: 'Primary (2YQN)',
+    locationname: 'Epsom Grinstead - training location',
+    submittedDate: '2019-07-15',
+    status: 'Rejected automatically',
+    rejectedDate: '2019-08-10T08:32:00',
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Application rejected automatically',
+        user: 'Alex Renato',
+        date: '2019-08-10T08:32:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Talia',
+      'family-name': 'Joel',
+      'date-of-birth': '1998-12-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900202',
+      email: 'Talia.joel@example.com',
+      address: {
+        line1: '44 Southend Avenue',
+        line2: '',
+        level2: 'Southampton',
+        level1: '',
+        'postal-code': 'SO1  8UZ'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
+  "PL098999": {
+    id: "PL098999",
+    cycle: "Previous cycle (2019 to 2020)",
+    accreditingbody: "Teaching Excellence SCITT",
+    provider: 'Highfield Academy Alliance',
+    course: 'Primary (2YQN)',
+    locationname: 'Epsom Grinstead - training location',
+    submittedDate: '2019-07-15',
+    status: 'Rejected',
+    rejectedDate: '2019-08-10T08:32:00',
+    rejectedReasons: {
+
+      // Candidate actions
+      "actions": "Yes",
+      "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+
+      // Future applications
+      "future-applications": "Yes"
+    },
+    events: {
+      items: [{
+        title: 'Application submitted',
+        user: 'Candidate',
+        date: '2019-05-15'
+      }, {
+        title: 'Application rejected',
+        user: 'Alex Renato',
+        date: '2019-08-10T08:32:00'
+      }]
+    },
+    'personal-details': {
+      'given-name': 'Kelly Jane',
+      'family-name': 'Spears',
+      'date-of-birth': '1998-12-16',
+      nationality: 'British',
+      'second-nationality': false
+    },
+    'contact-details': {
+      tel: '07700 900202',
+      email: 'kelly.spears@example.com',
+      address: {
+        line1: '44 Southend Avenue',
+        line2: '',
+        level2: 'Southampton',
+        level1: '',
+        'postal-code': 'SO1  8UZ'
+      }
+    },
+    'language-skills': {
+      'english-is-main': 'Yes',
+      other: false,
+      'english-qualifications': false
+    },
+    references: {
+      first: {
+        status: 'pending',
+        type: 'Professional',
+        name: 'Joe Bloggs',
+        email: 'j.bloggs@example.com',
+        tel: '07700 900001',
+        relationship: {
+          summary: 'Manager'
+        }
+      },
+      second: {
+        status: 'pending',
+        type: 'Academic',
+        name: 'Jane Doe',
+        email: 'jane.doe@example.ac.uk',
+        tel: '07700 900002',
+        relationship: {
+          summary: 'Degree course supervisor'
+        }
+      }
+    }
+  },
   "PL098988": {
     id: "PL098988",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2YQN)',
@@ -689,7 +1005,7 @@ module.exports = {
   },
   "QW211115": {
     id: "QW211115",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Highfield Academy Alliance',
     course: 'Primary (2YQN)',
@@ -765,7 +1081,7 @@ module.exports = {
   },
   "KH96344": {
     id: "KH96344",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
@@ -832,7 +1148,7 @@ module.exports = {
   },
   "WP010100": {
     id: "WP010100",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
@@ -1142,7 +1458,7 @@ module.exports = {
   },
   "PW908111": {
     id: "PW908111",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2RQM)',
@@ -1402,7 +1718,7 @@ module.exports = {
   },
   "AB5499": {
     id: "AB5499",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
@@ -1677,7 +1993,7 @@ module.exports = {
   },
   "CV943651": {
     id: "CV943651",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
@@ -1910,7 +2226,7 @@ module.exports = {
   },
   "RE123123": {
     id: "RE123123",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Your Teaching First TSA',
     course: 'Primary (32VP)',
@@ -2105,7 +2421,7 @@ module.exports = {
   },
   "AS1623": {
     id: "AS1623",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Three Trees Teaching School',
     course: 'Primary (2MKC)',
@@ -2336,7 +2652,7 @@ module.exports = {
   },
   "JF4978": {
     id: "JF4978",
-    cycle: "Current cycle (2020-2021)",
+    cycle: "Current cycle (2020 to 2021)",
     accreditingbody: "Teaching Excellence SCITT",
     provider: 'Teaching Excellence SCITT',
     course: 'Primary (3-7) (X121)',

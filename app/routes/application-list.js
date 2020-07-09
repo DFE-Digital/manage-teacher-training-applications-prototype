@@ -1,5 +1,7 @@
 const utils = require( '../data/application-utils')
-const { DateTime } = require('luxon')
+const { DateTime } = require('luxon');
+const { notify } = require('browser-sync');
+const { application } = require('express');
 
 function getCheckboxValues(name, data) {
   return name && (Array.isArray(name) ? name : [ name ].filter((name) => {
@@ -183,16 +185,62 @@ module.exports = router => {
 
       app.lastEventDate = lastEvent.datetime.timestamp;
       return app;
-    }).sort(function(a, b) {
-      // Turn your strings into dates, and then subtract them
-      // to get a value that is either negative, positive, or zero.
-      return new Date(b.lastEventDate) - new Date(a.lastEventDate);
-    });
+    })
 
-    if(sortby == 'days left to respond') {
+    if(sortby == 'last changed') {
+      applications.sort(function(a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.lastEventDate) - new Date(a.lastEventDate);
+      });
+    } else {
       applications = applications.sort(function(a, b) {
         return a.daysToRespond - b.daysToRespond;
       })
+      let deferredApplications = applications.filter(app => app.status == "Deferred");
+      let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
+
+      let submittedApplications = applications.filter(app => app.status == "Submitted");
+      let otherApplications = applications
+        .filter(app => app.status != "Submitted")
+        .filter(app => app.status != "Deferred")
+
+      let rejectedAutomaticallyWithFeedback = applications
+        .filter(app => app.status == "Rejected automatically")
+        .filter(function(app) {
+          return app.rejectedReasons;
+        })
+
+      otherApplications.concat(rejectedAutomaticallyWithFeedback);
+
+      applications = [];
+      if(deferredApplications.length) {
+        applications.push({
+          heading: "Deferred applications that need to be confirmed"
+        })
+        applications = applications.concat(deferredApplications)
+      }
+
+      if(automaticallyRejectedApplications.length) {
+        applications.push({
+          heading: "Automatically rejected applications that need feedback"
+        })
+        applications = applications.concat(automaticallyRejectedApplications)
+      }
+
+      if(submittedApplications.length) {
+        applications.push({
+          heading: "Applications that will be automatically rejected soon"
+        })
+        applications = applications.concat(submittedApplications)
+      }
+
+      if(otherApplications.length) {
+        applications.push({
+          heading: "Everything else"
+        })
+        applications = applications.concat(otherApplications);
+      }
     }
 
     res.render('index', {

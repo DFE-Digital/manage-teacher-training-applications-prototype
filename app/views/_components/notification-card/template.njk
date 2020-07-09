@@ -1,6 +1,6 @@
 {% from "govuk/components/tag/macro.njk"              import govukTag %}
 
-<div class="app-notification-card {% if not params.new %} app-notification-card--read {% endif %}">
+<div class="app-notification-card {{params.classes}}">
 
   <div class="app-notification-card__primary">
     <p class="govuk-body govuk-!-margin-bottom-0"> {{params.provider}} </h2>

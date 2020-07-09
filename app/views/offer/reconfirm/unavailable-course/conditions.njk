@@ -6,11 +6,13 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer/reconfirm/unavailable-course/location"
+    href: "/application/" + application.id + "/offer/reconfirm/unavailable-course/check"
   }) }}
 {% endblock %}
 
 {% block content %}
+
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -41,11 +43,6 @@
                   value: "Met",
                   text: "Met",
                   checked: standardConditions[0].status == "Met"
-                },
-                {
-                  value: "Not met",
-                  text: "Not met",
-                  checked: standardConditions[0].status == "Not met"
                 }
               ]
             }) }}
@@ -71,11 +68,6 @@
                   value: "Met",
                   text: "Met",
                   checked: standardConditions[1].status == "Met"
-                },
-                {
-                  value: "Not met",
-                  text: "Not met",
-                  checked: standardConditions[1].status == "Not met"
                 }
               ]
             }) }}
@@ -87,7 +79,7 @@
             fieldset: {
               legend: {
                 text: "Standard conditions",
-                classes: "govuk-fieldset__legend--m"
+                classes: "govuk-fieldset__legend--l"
               }
             },
             items: [{
@@ -113,6 +105,8 @@
             {% set fieldsetClasses = "moj-add-another__item govuk-!-display-none " %}
           {% endif %}
 
+          <h2 class="govuk-heading-l">Further conditions</h2>
+
           {% for condition in furtherConditions %}
 
             {% call govukFieldset({
@@ -128,7 +122,7 @@
                 id: 'furtherConditions[0][description]',
                 name: 'furtherConditions[0][description]',
                 label: {
-                  html: 'Condition description',
+                  html: 'Details of condition',
                   classes: 'govuk-!-font-weight-bold'
                 },
                 attributes: {
@@ -164,15 +158,6 @@
                     attributes: {
                       'data-name': 'furtherCondition[%index%][status][met]',
                       'data-id': 'furtherCondition[%index%][status][met]'
-                    }
-                  },
-                  {
-                    value: "Not met",
-                    text: "Not met",
-                    checked: condition.status == "Not met",
-                    attributes: {
-                      'data-name': 'furtherCondition[%index%][status][notmet]',
-                      'data-id': 'furtherCondition[%index%][status][notmet]'
                     }
                   }
                 ]

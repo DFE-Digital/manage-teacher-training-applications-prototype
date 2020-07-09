@@ -17,29 +17,13 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  {% if application.status == 'New' %}
-    {% set bannerHtml %}
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">You have 22 days to send a response. <a class="govuk-link--no-visited-state" href="/application/{{application.id}}/decision">Respond to application</a>.</h2>
-    {% endset %}
-    {{ appBanner({
-      html: bannerHtml,
-      type: "information",
-      icon: false
-    }) }}
-  {% endif %}
 
-{# <span class="govuk-caption-xl">{{name}}</span> #}
-      {# <span class="govuk-caption-xl">{{application.id}}</span> #}
-      <h1 class="govuk-heading-xl " style="margin-top: -0px">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
-  {# <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
-        {{ title }} {{ govukTag({ classes: status | statusClass, text: status })}}
-      </h1>
 
-    </div>
-  </div> #}
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
+
+  {% include "_includes/application/respond-prompt.njk" %}
+  {% include "_includes/application/defer-prompt.njk" %}
 
   {% include "_includes/application/sub-nav.njk" %}
 

@@ -1,9 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set application = data.applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
-{% set title = "Check your feedback and reject application" %}
+{% set title = "Check and send your feedback" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -17,15 +16,25 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>Your feedback will be given to the candidate in the format below.</p>
+      <p>The candidate will see your feedback in the format below.</p>
 
-      {% set rejectionReasons = data.rejectionReasons %}
-      {% set rejectionChangeLinks = true %}
-      {% include "_includes/candidate-feedback.njk" %}
+      <div class="app-feedback">
+        <h2 class="govuk-heading-m">
+        Training provider feedback
+      </h2>
+        <div class="app-feedback__panel">
+          <h3 class="govuk-heading-s">
+            Reasons why your application was unsuccessful
+          </h3>
+          <p>{{data['rejectionReasons']['why']}}</p>
+
+          <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/feedback">Change</a></p>
+        </div>
+      </div>
 
       <form method="post">
         {{ govukButton({
-          text: "Reject application"
+          text: "Send feedback"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>

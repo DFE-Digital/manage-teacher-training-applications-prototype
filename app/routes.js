@@ -10,6 +10,7 @@ require('./routes/make-offer-to-new-provider')(router)
 require('./routes/make-offer-to-new-course')(router)
 require('./routes/make-offer-to-new-location')(router)
 require('./routes/reject-application')(router)
+require('./routes/feedback')(router)
 require('./routes/change-offer-provider')(router)
 require('./routes/change-offer-course')(router)
 require('./routes/change-offer-location')(router)
@@ -19,6 +20,7 @@ require('./routes/notes')(router)
 require('./routes/organisations')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
+
 
 // Render other application pages
 router.all('/search-results', (req, res) => {
