@@ -25,14 +25,13 @@
     </div>
 
     <div>
-      {% if data.sortby == 'most urgent' and a.status == 'Submitted' %}
+      {% if a.status == 'Submitted' %}
         {% if a.daysToRespond == 0 %}
           <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Less than a day to respond</p>
         {% else %}
           <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">{{a.daysToRespond}} days left to respond</p>
         {% endif %}
-      {% else %}
-        <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16" style="white-space: nowrap;">Changed {{a.lastEventDate | date("d LLL yyyy")}} at {{a.lastEventDate | time }}</p>
+
       {% endif %}
     </div>
   </div>

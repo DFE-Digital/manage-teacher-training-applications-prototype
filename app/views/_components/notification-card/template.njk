@@ -16,6 +16,8 @@
         })}}
       {% endif %}
     </div>
-    <p class="govuk-body-s govuk-!-margin-bottom-0"><a href="{{params.settings.href}}">Change settings</a>
+    {% if params.settings %}
+      <p class="govuk-body-s govuk-!-margin-bottom-0"><a href="{{params.settings.href}}">Change settings</a>
+    {% endif %}
   </div>
 </div>

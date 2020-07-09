@@ -1,0 +1,20 @@
+<div class="app-log-card {{params.classes}}">
+  <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-3"> {{params.title}}
+    <span class="govuk-!-font-weight-regular">({{params.dateText}})</span>
+  </h2>
+
+  {% if params.note %}
+    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">{{params.note.subject}}</p>
+    <p class="govuk-!-margin-bottom-3">{{params.note.note}}</p>
+  {% endif %}
+
+  {% if params.course %}
+    <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.course.provider}}</p>
+    <p class="govuk-!-margin-bottom-0">{{params.course.subject}} at {{params.course.location}}</p>
+    <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-3">Ratified by {{params.course.accreditedbody}}</p>
+  {% endif %}
+
+  {% if params.link %}
+    <p class="govuk-!-margin-bottom-0"><a href="{{params.link.href}}">{{params.link.text}}</a>
+  {% endif %}
+</div>

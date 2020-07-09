@@ -81,18 +81,18 @@
 
   {% if not data.tabs %}
     <span class="govuk-caption-xl">
-      {{data.cycle}}
+      {{data.cycle}} <a href="/switch-cycle" class="govuk-link govuk-!-font-size-19">Switch cycle</a>
     </span>
   {% endif %}
-  <h1 class="govuk-heading-xl {% if not data.tabs %}govuk-!-margin-bottom-2{% endif %}">
+  <h1 class="govuk-heading-xl {% if not data.tabs %}govuk-!-margin-bottom-{% endif %}">
     Applications
   </h1>
 
-  {% if not data.tabs %}
+  {# {% if not data.tabs %}
     <p class="govuk-body govuk-!-margin-bottom-9">
-      <a href="/switch-cycle" class="govuk-link">Switch cycle</a>
+
     </p>
-  {% endif %}
+  {% endif %} #}
 
 
 
