@@ -1,11 +1,14 @@
 <div class="app-log-card {{params.classes}}">
-  <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-3"> {{params.title}}
-    <span class="govuk-!-font-weight-regular">({{params.dateText}})</span>
+  <h2 class="govuk-heading-s govuk-!-padding-top-0 govuk-!-margin-bottom-3"> {{params.title}}
+  <span class="govuk-!-font-weight-regular"> on {{params.dateText | date("d LLL yyyy")}} at {{params.dateText | time }}</span>
   </h2>
 
   {% if params.note %}
-    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">{{params.note.subject}}</p>
-    <p class="govuk-!-margin-bottom-3">{{params.note.note}}</p>
+    <div class="app-log-card__note">
+      <p class="app-log-card__note-heading">Note</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.note.subject}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.note.body}}</p>
+    </div>
   {% endif %}
 
   {% if params.course %}

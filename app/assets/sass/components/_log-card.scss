@@ -1,12 +1,26 @@
 .app-log-card {
-  border-bottom: 1px solid govuk-colour('mid-grey');
-  padding: 15px 0;
+  // border-bottom: 1px solid govuk-colour('mid-grey');
+  padding: 25px 0;
 }
 
 .app-log-card--first {
-  border-top: 1px solid govuk-colour('mid-grey');
+  // border-top: 1px solid govuk-colour('mid-grey');
 }
 
 .app-log-card:last-of-type {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.app-log-card__note {
+  display: inline-block;
+  width: 50%;
+  border: 1px solid govuk-colour('mid-grey');
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.app-log-card__note-heading {
+  @include govuk-font($size: 16, $weight: normal);
+  color: govuk-colour('dark-grey');
+  margin-bottom: govuk-spacing(1);
 }

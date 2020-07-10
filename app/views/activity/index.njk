@@ -8,6 +8,58 @@
 
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
+
+      {% for event in events %}
+
+        {% set name = [event.app["personal-details"]["given-name"], event.app["personal-details"]["family-name"]] | join(" ") %}
+        {% set note = null %}
+
+        {% if event.event.title == "Enrolled" %}
+          {% set title = event.event.user + " enrolled " + name %}
+        {% elseif event.event.title == "Conditions met" %}
+          {% set title = event.event.user + " recruited " + name %}
+        {% elseif event.event.title == "Moved to next cycle" %}
+          {% set title = event.event.user + " deffered " + name + "’s offer to " + event.app.provider %}
+        {% elseif event.event.title == "Application submitted" %}
+          {% set title = name + " submitted an application to " + event.app.provider  %}
+        {% elseif event.event.title == "Application rejected automatically" %}
+          {% set title = name + "’s application was rejected automatically" %}
+        {% elseif event.event.title == "Application rejected" %}
+          {% set title = event.event.user + " rejected " + name + "’s application"%}
+        {% elseif event.event.title == "Offer accepted" %}
+          {% set title = name + " accepted an offer from " + event.app.provider %}
+        {% elseif event.event.title == "Note added" %}
+          {% set title = event.event.user + " add a note to " + name +"’s application" %}
+          {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
+        {% elseif event.event.title == "Offer declined" %}
+          {% set title = name + " declined an offer from " + event.app.provider %}
+        {% elseif event.event.title == "Offer made" %}
+          {% set title = event.event.user + " made an offer to " + name  %}
+        {% elseif event.event.title == "Application withdrawn" %}
+          {% set title = name + " withdrew their application to " + event.app.provider  %}
+        {% elseif event.event.title == "Conditions not met" %}
+          {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
+        {% elseif event.event.title == "Offer withdrawn" %}
+          {% set title = event.event.user + " withdrew " + name + "’s offer to " + event.app.provider  %}
+        {% else %}
+          {% set title = event.event.title %}
+        {% endif %}
+
+
+
+        {{appLogCard({
+          title: title,
+          dateText: event.event.date | date,
+          note: note if note,
+          link: {
+            href: "#",
+            text: "View application"
+          }
+        })}}
+
+      {% endfor %}
+
+{#
       {{appLogCard({
         classes: "app-notification-card--first",
         title: "Harvey Noel granted you permission to see safeguarding information for courses run and ratified by Teaching Excellence SCITT",
@@ -141,7 +193,7 @@
           href: "#",
           text: "View application"
         }
-      })}}
+      })}} #}
 
 
       {{ mojPagination({
