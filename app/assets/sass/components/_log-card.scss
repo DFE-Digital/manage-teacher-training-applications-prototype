@@ -1,0 +1,12 @@
+.app-log-card {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding: 15px 0;
+}
+
+.app-log-card--first {
+  border-top: 1px solid govuk-colour('mid-grey');
+}
+
+.app-log-card:last-of-type {
+  margin-bottom: 20px;
+}

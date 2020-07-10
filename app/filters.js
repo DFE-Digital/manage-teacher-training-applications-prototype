@@ -78,15 +78,15 @@ module.exports = (env) => {
       case "Deferred":
         return 'govuk-tag--yellow'
       case "Offer withdrawn":
-        return 'app-tag--red'
+        return 'app-tag--orange'
       case "Application withdrawn":
-        return 'app-tag--orange'
+        return 'app-tag--red'
       case "Declined":
-        return 'app-tag--orange'
+        return 'app-tag--red'
       case "Rejected":
-        return 'app-tag--red'
+        return 'app-tag--orange'
       case "Rejected automatically":
-        return 'app-tag--red'
+          return 'app-tag--orange'
       case "Conditions not met":
         return 'app-tag--red'
       case "Accepted":
@@ -98,7 +98,7 @@ module.exports = (env) => {
       case "Submitted":
         return 'app-tag--purple'
       case "Enrolled":
-        return 'app-tag--blue'
+        return ''
     }
   }
 
