@@ -85,6 +85,8 @@ module.exports = (env) => {
         return 'app-tag--red'
       case "Rejected":
         return 'app-tag--orange'
+      case "Rejected automatically":
+          return 'app-tag--orange'
       case "Conditions not met":
         return 'app-tag--red'
       case "Accepted":

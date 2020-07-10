@@ -168,7 +168,9 @@ module.exports = router => {
       let deferredApplications = applications.filter(app => app.status == "Deferred");
       let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
 
-      let submittedApplications = applications.filter(app => app.status == "Submitted");
+      let soonToBeRejectedAutomatically = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond < 5);
+
+      let applicationsThatNeedResponse = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond >= 5);
 
       let waitingOnApplications = applications.filter(app => app.status == "Offered").concat(applications.filter(app => app.status == "Accepted"));
 
@@ -189,28 +191,35 @@ module.exports = router => {
       applications = [];
       if(deferredApplications.length) {
         applications.push({
-          heading: "Deferred applications that need to be confirmed"
+          heading: "Need to be reconfirmed"
         })
         applications = applications.concat(deferredApplications)
       }
 
       if(automaticallyRejectedApplications.length) {
         applications.push({
-          heading: "Automatically rejected applications that need feedback"
+          heading: "Need to be given feedback"
         })
         applications = applications.concat(automaticallyRejectedApplications)
       }
 
-      if(submittedApplications.length) {
+      if(soonToBeRejectedAutomatically.length) {
         applications.push({
-          heading: "Applications that will be automatically rejected soon"
+          heading: "Will be automatically rejected soon"
         })
-        applications = applications.concat(submittedApplications)
+        applications = applications.concat(soonToBeRejectedAutomatically)
+      }
+
+      if(applicationsThatNeedResponse.length) {
+        applications.push({
+          heading: "Needs response"
+        })
+        applications = applications.concat(applicationsThatNeedResponse)
       }
 
       if(waitingOnApplications.length) {
         applications.push({
-          heading: "Applications that are waiting on the candidate"
+          heading: "Waiting on the candidate action"
         })
         applications = applications.concat(waitingOnApplications)
       }
