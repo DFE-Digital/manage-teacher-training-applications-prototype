@@ -359,7 +359,7 @@ module.exports = {
     previousOffer: {
       madeDate: '2019-06-12',
       acceptedDate: '2019-06-13',
-      conditionsMetDate: '2019-08-12T09:01:00',
+      conditionsMetDate: '2019-08-11T09:01:00',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
@@ -379,11 +379,11 @@ module.exports = {
       }, {
         title: 'Conditions met',
         user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-08-11T09:01:00'
       }, {
         title: 'Moved to next cycle',
         user: 'Alex Renato',
-        date: '2019-08-12T09:01:00'
+        date: '2019-08-11T09:01:00'
       }]
     },
     'personal-details': {
@@ -630,7 +630,6 @@ module.exports = {
       madeDate: '2019-06-23',
       acceptedDate: '2019-06-24',
       conditionsMetDate: '2019-08-12',
-      enrolledDate: '2019-09-14',
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
     },
@@ -651,10 +650,6 @@ module.exports = {
         title: 'Conditions met',
         user: 'Alex Renato',
         date: '2019-08-12T09:01:00'
-      }, {
-        title: 'Enrolled',
-        user: 'Alex Renato',
-        date: '2019-09-14'
       }]
     },
     'personal-details': {

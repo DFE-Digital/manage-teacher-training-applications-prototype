@@ -4,144 +4,30 @@
 {% set title = "Activity log" %}
 
 {% block content %}
+  <h1 class="govuk-heading-xl">{{title}}</h1>
 
 
-      <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {{appLogCard({
-        classes: "app-notification-card--first",
-        title: "Harvey Noel granted you permission to see safeguarding information for courses run and ratified by Teaching Excellence SCITT",
-        dateText: "Today at 17:12pm",
-        link: {
-          href: "#",
-          text: "View account"
-        }
-      })}}
+      {% set events = todayEvents %}
 
-      {{appLogCard({
-        title: "Mike Ross added a note to Eloise Well’s application",
-        dateText: "Today at 3:32pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        note: {
-          subject: "Check qualifications",
-          note: "Make sure you review this application paying close attention to their qualifications"
-        },
-        link: {
-          href: "#",
-          text: "View note"
-        }
-      })}}
+      <h2 class="govuk-heading-m">
+        Today
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
 
-      {{appLogCard({
-        title: "Kelly Jane Spears submitted their application",
-        dateText: "Today at 1:33pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
+      {% set events = yesterdayEvents %}
 
-      {{appLogCard({
-        title: "Eloise Well’s accepted your offer",
-        dateText: "Yesterday at 9:57pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
+      <h2 class="govuk-heading-m">
+        Yesterday
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
 
-      {{appLogCard({
-        title: "Esther Fairley withdrew their application",
-        dateText: "19 May 2020 at 9:55am",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View offer"
-        }
-      })}}
+      {% set events = allOtherEvents %}
 
-      {{appLogCard({
-        title: "Elizabeth Rose declined your offer",
-        dateText: "17 May 2020 at 8:18am",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View offer"
-        }
-      })}}
-
-       {{appLogCard({
-
-        title: "Daniel James Jennings’ application was rejected by default",
-        dateText: "14 May 2020 at 7:19pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Elizabeth Rose declined your offer",
-        dateText: "17 May 2020 at 8:18am",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View offer"
-        }
-      })}}
-
-       {{appLogCard({
-        title: "Daniel James Jennings’ application was rejected by default",
-        dateText: "14 May 2020 at 7:19pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
+      <h2 class="govuk-heading-m">
+        Older
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
 
 
       {{ mojPagination({
