@@ -4,106 +4,30 @@
 {% set title = "Activity log" %}
 
 {% block content %}
+  <h1 class="govuk-heading-xl">{{title}}</h1>
 
 
-      <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <div class="moj-timeline">
-        {% for event in events %}
+      {% set events = todayEvents %}
 
-          {% set name = [event.app["personal-details"]["given-name"], event.app["personal-details"]["family-name"]] | join(" ") %}
-          {% set note = null %}
-          {% set offer = null %}
-          {% set application = null %}
-          {% set link = null %}
-          {% set status = null %}
+      <h2 class="govuk-heading-m">
+        Today
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
 
-          {% if event.event.title == "Conditions met" %}
-            {% set status = "recruited" %}
-            {% set title = event.event.user + " recruited " + name %}
-            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set events = yesterdayEvents %}
 
-          {% elseif event.event.title == "Moved to next cycle" %}
-            {% set status = "Deferred" %}
-            {% set title = event.event.user + " deferred " + name + "’s offer" %}
-            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-          {% elseif event.event.title == "Application submitted" %}
-            {% set status = "Submitted" %}
-            {% set title = name + " submitted an application "  %}
-            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-          {% elseif event.event.title == "Application rejected automatically" %}
-            {% set status = "Rejected automatically" %}
-            {% set title = name + "’s application was rejected automatically" %}
-            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-          {% elseif event.event.title == "Application rejected" %}
-            {% set status = "Rejected" %}
-            {% set title = event.event.user + " rejected " + name + "’s application"%}
-          {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody, rejectedReasons: event.app.rejectedReasons } %}
+      <h2 class="govuk-heading-m">
+        Yesterday
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
 
-          {% elseif event.event.title == "Offer accepted" %}
-            {% set status = "Accepted" %}
-            {% set title = name + " accepted an offer"  %}
-            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-            {% set link = { href: "#", text: "View offer" } %}
-          {% elseif event.event.title == "Note added" %}
-            {% set status = "Note added" %}
-            {% set title = event.event.user + " add a note to " + name +"’s application" %}
-            {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
+      {% set events = allOtherEvents %}
 
-          {% elseif event.event.title == "Offer declined" %}
-            {% set status = "Declined" %}
-            {% set title = name + " declined an offer " %}
-            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
-          {% elseif event.event.title == "Offer made" %}
-            {% set status = "Offered" %}
-            {% set title = event.event.user + " made an offer to " + name  %}
-            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
-          {% elseif event.event.title == "Application withdrawn" %}
-            {% set status = "Application withdrawn" %}
-            {% set title = name + " withdrew their application" %}
-            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
-          {% elseif event.event.title == "Conditions not met" %}
-            {% set status = "Conditions not met" %}
-            {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
-
-          {% elseif event.event.title == "Offer withdrawn" %}
-            {% set status = "Offer withdrawn" %}
-            {% set title = event.event.user + " withdrew " + name + "’s offer"  %}
-
-          {% else %}
-            {% set title = event.event.title %}
-          {% endif %}
-
-
-          <div class="moj-timeline__item">
-            <div class="app-timeline__header">
-              <h2 class="app-timeline__title">{{govukTag({
-                classes: status | statusClass,
-                text: status
-              })}} &nbsp;{{title}} </h2>
-
-                <p class="app-timeline__byline">
-                  <time datetime="2019-08-12T09:01:00">{{event.event.date | date("d LLL yyyy")}} at {{params.event.date | time }}
-                  </time>
-                </p>
-            </div>
-            <div class="app-timeline__description">
-              {{appLogCard({
-                title: title,
-                dateText: event.event.date | date,
-                note: note if note,
-                offer: offer if offer,
-                application: application if application,
-                link: link if link
-              })}}
-            </div>
-          </div>
-
-        {% endfor %}
-      </div>
+      <h2 class="govuk-heading-m">
+        Older
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
 
 
       {{ mojPagination({

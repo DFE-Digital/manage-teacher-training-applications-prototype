@@ -20,12 +20,25 @@ module.exports = router => {
     });
 
     allEvents.sort((a, b) => {
-      return new Date(a.event.date) - new Date(b.event.date);
+      return new Date(b.event.date) - new Date(a.event.date);
     })
 
-    allEvents = allEvents.reverse();
+    let todayEvents = allEvents.filter(event => {
+      return event.event.date.indexOf("2019-08-12") >= 0;
+    })
 
-    res.render('activity/index', { events: allEvents });
+
+    let yesterdayEvents = allEvents.filter(event => {
+      return event.event.date.indexOf("2019-08-11") >= 0;
+    })
+
+    let allOtherEvents = allEvents.filter(event => {
+      return event.event.date.indexOf("2019-08-11") == -1 && event.event.date.indexOf("2019-08-12") == -1;
+    })
+
+
+
+    res.render('activity/index', { todayEvents, yesterdayEvents, allOtherEvents });
   })
 
 }

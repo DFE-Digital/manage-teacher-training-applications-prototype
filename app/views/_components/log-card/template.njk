@@ -14,7 +14,9 @@
         {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="{{params.link.href}}">View application</a>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}">View application</a></p>
+
+
     </div>
   {% endif %}
 
@@ -23,7 +25,7 @@
       <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.offer.provider}}</p>
       <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.offer.course}} at {{params.offer.location}}</p>
       <p class="govuk-!-font-size-14 govuk-!-margin-bottom-1">Ratified by {{params.offer.accreditedBody}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="{{params.link.href}}">View offer</a>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/offer">View offer</a></p>
     </div>
   {% endif %}
 
@@ -31,17 +33,8 @@
     <div class="app-log-card__note">
       <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-font-weight-bold">{{params.note.subject}}</p>
       <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">{{params.note.body}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="{{params.link.href}}">View note</a>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/notes">View note</a>
     </div>
   {% endif %}
 
-  {% if params.course %}
-    <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.course.provider}}</p>
-    <p class="govuk-!-margin-bottom-0">{{params.course.subject}} at {{params.course.location}}</p>
-    <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-3">Ratified by {{params.course.accreditedbody}}</p>
-  {% endif %}
-
-  {# {% if params.link %}
-    <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="{{params.link.href}}">{{params.link.text}}</a>
-  {% endif %} #}
 </div>
