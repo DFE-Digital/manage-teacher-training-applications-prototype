@@ -1,0 +1,55 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'activity' %}
+{% set title = "Activity log" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+
+
+      {% set events = todayEvents %}
+
+      <h2 class="govuk-heading-m">
+        Today
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
+
+      {% set events = yesterdayEvents %}
+
+      <h2 class="govuk-heading-m">
+        Yesterday
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
+
+      {% set events = allOtherEvents %}
+
+      <h2 class="govuk-heading-m">
+        Older
+      </h2>
+      {% include "_includes/activity-log/events-timeline.njk" %}
+
+
+      {{ mojPagination({
+          results: {
+            from: 1,
+            to: 15,
+            count: 30
+          },
+            next: {
+            text: 'Next',
+            href: ''
+          },
+            items: [{
+            text: '1',
+            href: '/page=1',
+            selected: true
+          }, {
+            text: '2',
+            href: '/page=2'
+          }]
+        }) }}
+
+
+
+{% endblock %}

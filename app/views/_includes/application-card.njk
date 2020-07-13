@@ -17,22 +17,21 @@
         classes: a.status | statusClass,
         text: a.status
       })}}
-      <div class="govuk-!-margin-bottom-1"></div>
+      {# <div class="govuk-!-margin-bottom-1"></div>
       {% if a.lastEventType == "note" %}
         <div class="app-application-card__note">{{a.notes.items[0].subject}}</div>
       {% endif %}
-      <div class="govuk-!-margin-bottom-2">&nbsp;</div>
+      <div class="govuk-!-margin-bottom-2">&nbsp;</div> #}
     </div>
 
     <div>
-      {% if data.sortby == 'needs most attention' and a.status == 'Submitted' %}
+      {% if a.status == 'Submitted' %}
         {% if a.daysToRespond == 0 %}
           <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Less than a day to respond</p>
         {% else %}
           <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">{{a.daysToRespond}} days left to respond</p>
         {% endif %}
-      {% else %}
-        <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16" style="white-space: nowrap;">Changed {{a.lastEventDate | date("d LLL yyyy")}} at {{a.lastEventDate | time }}</p>
+
       {% endif %}
     </div>
   </div>

@@ -60,26 +60,6 @@ module.exports = router => {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase());
         }
 
-        // if( rbddates && rbddates.length ){
-
-        //   var now = DateTime.fromISO('2019-08-15');
-        //   var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 });
-        //   var diff = rbd.diff(now, 'days').toObject().days;
-
-        //   if(rbddates.includes("Within the next 5 days")) {
-        //     rbdValid = diff <= 5;
-        //   }
-
-        //   if(rbddates.includes("Within the next 10 days")) {
-        //     rbdValid = diff <= 10;
-        //   }
-
-        //   if(rbddates.includes("Within the next 20 days")) {
-        //     rbdValid = diff <= 50;
-        //   }
-
-        // }
-
         return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid;
       })
     }
@@ -99,18 +79,6 @@ module.exports = router => {
           }]
         })
       }
-
-      // if(rbddates && rbddates.length) {
-      //   selectedFilters.categories.push({
-      //     heading: { text: "Reject by default date" },
-      //     items: rbddates.map((rbddate) => {
-      //       return {
-      //         text: rbddate,
-      //         href: `/remove-rbddate-filter/${rbddate}`
-      //       }
-      //     })
-      //   })
-      // }
 
       if(statuses && statuses.length) {
         selectedFilters.categories.push({
@@ -200,10 +168,17 @@ module.exports = router => {
       let deferredApplications = applications.filter(app => app.status == "Deferred");
       let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
 
-      let submittedApplications = applications.filter(app => app.status == "Submitted");
+      let soonToBeRejectedAutomatically = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond < 5);
+
+      let applicationsThatNeedResponse = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond >= 5);
+
+      let waitingOnApplications = applications.filter(app => app.status == "Offered").concat(applications.filter(app => app.status == "Accepted"));
+
       let otherApplications = applications
         .filter(app => app.status != "Submitted")
         .filter(app => app.status != "Deferred")
+        .filter(app => app.status != "Offered")
+        .filter(app => app.status != "Accepted")
 
       let rejectedAutomaticallyWithFeedback = applications
         .filter(app => app.status == "Rejected automatically")
@@ -216,29 +191,46 @@ module.exports = router => {
       applications = [];
       if(deferredApplications.length) {
         applications.push({
-          heading: "Deferred applications that need to be confirmed"
+          heading: "Need to be reconfirmed"
         })
         applications = applications.concat(deferredApplications)
       }
 
       if(automaticallyRejectedApplications.length) {
         applications.push({
-          heading: "Automatically rejected applications that need feedback"
+          heading: "Need to be given feedback"
         })
         applications = applications.concat(automaticallyRejectedApplications)
       }
 
-      if(submittedApplications.length) {
+      if(soonToBeRejectedAutomatically.length) {
         applications.push({
-          heading: "Applications that will be automatically rejected soon"
+          heading: "Will be automatically rejected soon"
         })
-        applications = applications.concat(submittedApplications)
+        applications = applications.concat(soonToBeRejectedAutomatically)
+      }
+
+      if(applicationsThatNeedResponse.length) {
+        applications.push({
+          heading: "Needs response"
+        })
+        applications = applications.concat(applicationsThatNeedResponse)
+      }
+
+      if(waitingOnApplications.length) {
+        applications.push({
+          heading: "Waiting on the candidate action"
+        })
+        applications = applications.concat(waitingOnApplications)
       }
 
       if(otherApplications.length) {
-        applications.push({
-          heading: "Everything else"
-        })
+
+        if(deferredApplications.length || automaticallyRejectedApplications.length || submittedApplications.length || waitingOnApplications.length) {
+          applications.push({
+            heading: "Everything else"
+          })
+        }
         applications = applications.concat(otherApplications);
       }
     }

@@ -37,6 +37,7 @@ $govuk-grid-widths: (
 @import "components/task-list";
 @import "components/timeline";
 @import "components/notification-card";
+@import "components/log-card";
 
 // Overrides
 .govuk-table__cell--numeric {
@@ -354,7 +355,7 @@ h1 .govuk-tag {
   display: inline-block;
   text-decoration: none;
   position: absolute;
-  top: -3px;
+  top: -0px;
   right: 0;
 }
 
@@ -433,7 +434,7 @@ h1 .govuk-tag {
 
 
 .app-application-cards__heading:first-of-type {
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 .app-application-cards__heading {

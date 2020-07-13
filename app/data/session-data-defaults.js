@@ -11,7 +11,7 @@ module.exports = {
   }),
 
   cycle: "Current cycle (2020 to 2021)",
-  sortby: 'needs most attention',
+  sortby: 'most urgent',
   bare: process.env.BARE,
   flags: {
     interview_preferences: true

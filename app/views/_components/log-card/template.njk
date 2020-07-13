@@ -1,0 +1,40 @@
+<div class="app-log-card {{params.classes}}">
+  {# <h2 class="govuk-heading-s govuk-!-padding-top-0 govuk-!-margin-bottom-3"> {{params.title}}
+  <span class="govuk-!-font-weight-regular"> on {{params.dateText | date("d LLL yyyy")}} at {{params.dateText | time }}</span>
+  </h2> #}
+
+  {% if params.application %}
+    <div class="app-log-card__note">
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.application.provider}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.application.course}} at {{params.application.location}}</p>
+      <p class="govuk-!-font-size-14 govuk-!-margin-bottom-1">Ratified by {{params.application.accreditedBody}}</p>
+
+      {% if params.application.rejectedReasons %}
+        {% set rejectedReasons = params.application.rejectedReasons %}
+        {% include "_includes/candidate-feedback.njk" %}
+      {% endif %}
+
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}">View application</a></p>
+
+
+    </div>
+  {% endif %}
+
+  {% if params.offer %}
+    <div class="app-log-card__note">
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.offer.provider}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.offer.course}} at {{params.offer.location}}</p>
+      <p class="govuk-!-font-size-14 govuk-!-margin-bottom-1">Ratified by {{params.offer.accreditedBody}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/offer">View offer</a></p>
+    </div>
+  {% endif %}
+
+  {% if params.note %}
+    <div class="app-log-card__note">
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-font-weight-bold">{{params.note.subject}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">{{params.note.body}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/notes">View note</a>
+    </div>
+  {% endif %}
+
+</div>
