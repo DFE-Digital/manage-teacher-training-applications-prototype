@@ -8,210 +8,102 @@
 
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
+      <div class="moj-timeline">
+        {% for event in events %}
 
-      {% for event in events %}
+          {% set name = [event.app["personal-details"]["given-name"], event.app["personal-details"]["family-name"]] | join(" ") %}
+          {% set note = null %}
+          {% set offer = null %}
+          {% set application = null %}
+          {% set link = null %}
+          {% set status = null %}
 
-        {% set name = [event.app["personal-details"]["given-name"], event.app["personal-details"]["family-name"]] | join(" ") %}
-        {% set note = null %}
-        {% set offer = null %}
-        {% set application = null %}
-        {% set link = null %}
+          {% if event.event.title == "Conditions met" %}
+            {% set status = "recruited" %}
+            {% set title = event.event.user + " recruited " + name %}
+            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
 
-        {% if event.event.title == "Enrolled" %}
-          {% set title = event.event.user + " enrolled " + name %}
-          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% elseif event.event.title == "Moved to next cycle" %}
+            {% set status = "Deferred" %}
+            {% set title = event.event.user + " deferred " + name + "’s offer" %}
+            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% elseif event.event.title == "Application submitted" %}
+            {% set status = "Submitted" %}
+            {% set title = name + " submitted an application "  %}
+            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% elseif event.event.title == "Application rejected automatically" %}
+            {% set status = "Rejected automatically" %}
+            {% set title = name + "’s application was rejected automatically" %}
+            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% elseif event.event.title == "Application rejected" %}
+            {% set status = "Rejected" %}
+            {% set title = event.event.user + " rejected " + name + "’s application"%}
+          {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody, rejectedReasons: event.app.rejectedReasons } %}
 
-        {% elseif event.event.title == "Conditions met" %}
-          {% set title = event.event.user + " recruited " + name %}
-          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% elseif event.event.title == "Offer accepted" %}
+            {% set status = "Accepted" %}
+            {% set title = name + " accepted an offer"  %}
+            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+            {% set link = { href: "#", text: "View offer" } %}
+          {% elseif event.event.title == "Note added" %}
+            {% set status = "Note added" %}
+            {% set title = event.event.user + " add a note to " + name +"’s application" %}
+            {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
 
-        {% elseif event.event.title == "Moved to next cycle" %}
-          {% set title = event.event.user + " deferred " + name + "’s offer" %}
-          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-        {% elseif event.event.title == "Application submitted" %}
-          {% set title = name + " submitted an application "  %}
-          {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-        {% elseif event.event.title == "Application rejected automatically" %}
-          {% set title = name + "’s application was rejected automatically" %}
+          {% elseif event.event.title == "Offer declined" %}
+            {% set status = "Declined" %}
+            {% set title = name + " declined an offer " %}
+            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
 
-        {% elseif event.event.title == "Application rejected" %}
-          {% set title = event.event.user + " rejected " + name + "’s application"%}
+          {% elseif event.event.title == "Offer made" %}
+            {% set status = "Offered" %}
+            {% set title = event.event.user + " made an offer to " + name  %}
+            {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
 
-        {% elseif event.event.title == "Offer accepted" %}
-          {% set title = name + " accepted an offer from " + event.app.provider %}
-          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-          {% set link = { href: "#", text: "View offer" } %}
-        {% elseif event.event.title == "Note added" %}
-          {% set title = event.event.user + " add a note to " + name +"’s application" %}
-          {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
+          {% elseif event.event.title == "Application withdrawn" %}
+            {% set status = "Application withdrawn" %}
+            {% set title = name + " withdrew their application" %}
+            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
 
-        {% elseif event.event.title == "Offer declined" %}
-          {% set title = name + " declined an offer from " + event.app.provider %}
+          {% elseif event.event.title == "Conditions not met" %}
+            {% set status = "Conditions not met" %}
+            {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
 
-        {% elseif event.event.title == "Offer made" %}
-          {% set title = event.event.user + " made an offer to " + name  %}
+          {% elseif event.event.title == "Offer withdrawn" %}
+            {% set status = "Offer withdrawn" %}
+            {% set title = event.event.user + " withdrew " + name + "’s offer"  %}
 
-        {% elseif event.event.title == "Application withdrawn" %}
-          {% set title = name + " withdrew their application to " + event.app.provider  %}
-
-        {% elseif event.event.title == "Conditions not met" %}
-          {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
-
-        {% elseif event.event.title == "Offer withdrawn" %}
-          {% set title = event.event.user + " withdrew " + name + "’s offer to " + event.app.provider  %}
-
-        {% else %}
-          {% set title = event.event.title %}
-        {% endif %}
+          {% else %}
+            {% set title = event.event.title %}
+          {% endif %}
 
 
+          <div class="moj-timeline__item">
+            <div class="app-timeline__header">
+              <h2 class="app-timeline__title">{{govukTag({
+                classes: status | statusClass,
+                text: status
+              })}} &nbsp;{{title}} </h2>
 
-        {{appLogCard({
-          title: title,
-          dateText: event.event.date | date,
-          note: note if note,
-          offer: offer if offer,
-          application: application if application,
-          link: link if link
-        })}}
+                <p class="app-timeline__byline">
+                  <time datetime="2019-08-12T09:01:00">{{event.event.date | date("d LLL yyyy")}} at {{params.event.date | time }}
+                  </time>
+                </p>
+            </div>
+            <div class="app-timeline__description">
+              {{appLogCard({
+                title: title,
+                dateText: event.event.date | date,
+                note: note if note,
+                offer: offer if offer,
+                application: application if application,
+                link: link if link
+              })}}
+            </div>
+          </div>
 
-      {% endfor %}
-
-{#
-      {{appLogCard({
-        classes: "app-notification-card--first",
-        title: "Harvey Noel granted you permission to see safeguarding information for courses run and ratified by Teaching Excellence SCITT",
-        dateText: "Today at 17:12pm",
-        link: {
-          href: "#",
-          text: "View account"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Mike Ross added a note to Eloise Well’s application",
-        dateText: "Today at 3:32pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        note: {
-          subject: "Check qualifications",
-          note: "Make sure you review this application paying close attention to their qualifications"
-        },
-        link: {
-          href: "#",
-          text: "View note"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Kelly Jane Spears submitted their application",
-        dateText: "Today at 1:33pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Eloise Well’s accepted your offer",
-        dateText: "Yesterday at 9:57pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Esther Fairley withdrew their application",
-        dateText: "19 May 2020 at 9:55am",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View offer"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Elizabeth Rose declined your offer",
-        dateText: "17 May 2020 at 8:18am",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View offer"
-        }
-      })}}
-
-       {{appLogCard({
-
-        title: "Daniel James Jennings’ application was rejected by default",
-        dateText: "14 May 2020 at 7:19pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}}
-
-      {{appLogCard({
-        title: "Elizabeth Rose declined your offer",
-        dateText: "17 May 2020 at 8:18am",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View offer"
-        }
-      })}}
-
-       {{appLogCard({
-        title: "Daniel James Jennings’ application was rejected by default",
-        dateText: "14 May 2020 at 7:19pm",
-        course: {
-          provider: 'Teaching Excellence SCITT',
-          subject: 'Primary (5-11) (X100)',
-          location: 'Lingfield - training location',
-          accreditedbody: 'Excellence SCITT'
-        },
-        link: {
-          href: "#",
-          text: "View application"
-        }
-      })}} #}
+        {% endfor %}
+      </div>
 
 
       {{ mojPagination({
