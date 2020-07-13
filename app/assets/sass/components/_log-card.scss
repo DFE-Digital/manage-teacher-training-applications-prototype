@@ -14,13 +14,15 @@
 .app-log-card__note {
   display: inline-block;
   width: 50%;
-  border: 1px solid govuk-colour('mid-grey');
+  // border: 1px solid govuk-colour('mid-grey');
+  background: govuk-colour('light-grey');
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .app-log-card__note-heading {
-  @include govuk-font($size: 16, $weight: normal);
+  @include govuk-font($size: 14, $weight: bold);
+  text-transform: uppercase;
   color: govuk-colour('dark-grey');
   margin-bottom: govuk-spacing(1);
 }

@@ -13,34 +13,53 @@
 
         {% set name = [event.app["personal-details"]["given-name"], event.app["personal-details"]["family-name"]] | join(" ") %}
         {% set note = null %}
+        {% set offer = null %}
+        {% set application = null %}
+        {% set link = null %}
 
         {% if event.event.title == "Enrolled" %}
           {% set title = event.event.user + " enrolled " + name %}
+          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+
         {% elseif event.event.title == "Conditions met" %}
           {% set title = event.event.user + " recruited " + name %}
+          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+
         {% elseif event.event.title == "Moved to next cycle" %}
-          {% set title = event.event.user + " deffered " + name + "’s offer to " + event.app.provider %}
+          {% set title = event.event.user + " deferred " + name + "’s offer" %}
+          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
         {% elseif event.event.title == "Application submitted" %}
-          {% set title = name + " submitted an application to " + event.app.provider  %}
+          {% set title = name + " submitted an application "  %}
+          {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
         {% elseif event.event.title == "Application rejected automatically" %}
           {% set title = name + "’s application was rejected automatically" %}
+
         {% elseif event.event.title == "Application rejected" %}
           {% set title = event.event.user + " rejected " + name + "’s application"%}
+
         {% elseif event.event.title == "Offer accepted" %}
           {% set title = name + " accepted an offer from " + event.app.provider %}
+          {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% set link = { href: "#", text: "View offer" } %}
         {% elseif event.event.title == "Note added" %}
           {% set title = event.event.user + " add a note to " + name +"’s application" %}
           {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
+
         {% elseif event.event.title == "Offer declined" %}
           {% set title = name + " declined an offer from " + event.app.provider %}
+
         {% elseif event.event.title == "Offer made" %}
           {% set title = event.event.user + " made an offer to " + name  %}
+
         {% elseif event.event.title == "Application withdrawn" %}
           {% set title = name + " withdrew their application to " + event.app.provider  %}
+
         {% elseif event.event.title == "Conditions not met" %}
           {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
+
         {% elseif event.event.title == "Offer withdrawn" %}
           {% set title = event.event.user + " withdrew " + name + "’s offer to " + event.app.provider  %}
+
         {% else %}
           {% set title = event.event.title %}
         {% endif %}
@@ -51,10 +70,9 @@
           title: title,
           dateText: event.event.date | date,
           note: note if note,
-          link: {
-            href: "#",
-            text: "View application"
-          }
+          offer: offer if offer,
+          application: application if application,
+          link: link if link
         })}}
 
       {% endfor %}
