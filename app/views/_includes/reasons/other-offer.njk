@@ -1,3 +1,16 @@
+{% set otherOfferDetailsHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Please give details (optional)"
+    },
+    id: "rejection-other-offer-details",
+    name: "rejectionReasons[other-offer-details]",
+    value: data['rejectionReasons']["other-offer-details"]
+  }) }}
+{% endset %}
+
+
 {{ govukRadios({
   fieldset: {
     legend: {
@@ -11,7 +24,10 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['other-offer']", "Yes")
+    checked: checked("['rejectionReasons']['other-offer']", "Yes"),
+    conditional: {
+      html: otherOfferDetailsHtml
+    }
   },
   {
     value: "No",
