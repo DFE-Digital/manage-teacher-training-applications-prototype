@@ -1,7 +1,7 @@
 var uuid = require('uuid/v4')
 var organisations = require('./organisations')
 organisations = Object.values(organisations).filter(org => {
-  return org.enabled; 
+  return org.enabled;
 })
 
 module.exports = {
@@ -800,7 +800,7 @@ module.exports = {
         user: 'Candidate',
         date: '2019-05-15'
       }, {
-        title: 'Application rejected automatically',
+        title: 'Application rejected by default',
         user: 'Alex Renato',
         date: '2019-08-10T08:32:00'
       }]
