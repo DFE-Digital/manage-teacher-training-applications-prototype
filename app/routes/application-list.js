@@ -226,7 +226,7 @@ module.exports = router => {
 
       if(otherApplications.length) {
 
-        if(deferredApplications.length || automaticallyRejectedApplications.length || submittedApplications.length || waitingOnApplications.length) {
+        if(deferredApplications.length || automaticallyRejectedApplications.length || applicationsThatNeedResponse.length || waitingOnApplications.length ) {
           applications.push({
             heading: "Everything else"
           })
