@@ -99,7 +99,7 @@ module.exports = router => {
 
     application.offer = {
       madeDate: new Date().toISOString(),
-      provider: data.organisations[0].name,
+      provider: req.session.data.organisations[0].name,
       course: 'Primary (5-11) (X100)',
       locationname: req.session.data.location
     };
