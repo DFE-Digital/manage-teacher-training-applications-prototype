@@ -191,35 +191,35 @@ module.exports = router => {
       applications = [];
       if(deferredApplications.length) {
         applications.push({
-          heading: "Deferred offers: please check and confirm"
+          heading: "Confirm deferred offers"
         })
         applications = applications.concat(deferredApplications)
       }
 
       if(automaticallyRejectedApplications.length) {
         applications.push({
-          heading: "Rejected by default: please give feedback"
+          heading: "Give feedback: rejected by default"
         })
         applications = applications.concat(automaticallyRejectedApplications)
       }
 
       if(soonToBeRejectedAutomatically.length) {
         applications.push({
-          heading: "Rejected by default in less than 5 days: please respond"
+          heading: "Respond now: about to be rejected by default"
         })
         applications = applications.concat(soonToBeRejectedAutomatically)
       }
 
       if(applicationsThatNeedResponse.length) {
         applications.push({
-          heading: "Submitted applications: please respond"
+          heading: "Ready for review: new applications"
         })
         applications = applications.concat(applicationsThatNeedResponse)
       }
 
       if(waitingOnApplications.length) {
         applications.push({
-          heading: "Offers waiting for a candidate action"
+          heading: "Candidate action needed"
         })
         applications = applications.concat(waitingOnApplications)
       }
@@ -228,7 +228,7 @@ module.exports = router => {
 
         if(deferredApplications.length || automaticallyRejectedApplications.length || applicationsThatNeedResponse.length || waitingOnApplications.length ) {
           applications.push({
-            heading: "All other applications and offers"
+            heading: "No further action needed"
           })
         }
         applications = applications.concat(otherApplications);
