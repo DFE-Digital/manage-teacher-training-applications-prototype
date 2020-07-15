@@ -174,11 +174,14 @@ module.exports = router => {
 
       let waitingOnApplications = applications.filter(app => app.status == "Offered").concat(applications.filter(app => app.status == "Accepted"));
 
+      let successfulApplications = applications.filter(app => app.status == "Conditions met");
+
       let otherApplications = applications
         .filter(app => app.status != "Submitted")
         .filter(app => app.status != "Deferred")
         .filter(app => app.status != "Offered")
         .filter(app => app.status != "Accepted")
+        .filter(app => app.status != "Conditions met")
 
       let rejectedAutomaticallyWithFeedback = applications
         .filter(app => app.status == "Rejected automatically")
@@ -191,44 +194,51 @@ module.exports = router => {
       applications = [];
       if(deferredApplications.length) {
         applications.push({
-          heading: "Need to be reconfirmed"
+          heading: "Reconfirm offers"
         })
         applications = applications.concat(deferredApplications)
       }
 
-      if(automaticallyRejectedApplications.length) {
-        applications.push({
-          heading: "Need to be given feedback"
-        })
-        applications = applications.concat(automaticallyRejectedApplications)
-      }
-
       if(soonToBeRejectedAutomatically.length) {
         applications.push({
-          heading: "Will be automatically rejected soon"
+          heading: "Respond now: about to be automatically rejected"
         })
         applications = applications.concat(soonToBeRejectedAutomatically)
       }
 
+      if(automaticallyRejectedApplications.length) {
+        applications.push({
+          heading: "Give feedback"
+        })
+        applications = applications.concat(automaticallyRejectedApplications)
+      }
+
       if(applicationsThatNeedResponse.length) {
         applications.push({
-          heading: "Needs response"
+          heading: "Ready for review"
         })
         applications = applications.concat(applicationsThatNeedResponse)
       }
 
       if(waitingOnApplications.length) {
         applications.push({
-          heading: "Waiting on the candidate action"
+          heading: "Waiting on the candidate"
         })
         applications = applications.concat(waitingOnApplications)
       }
 
+      if(successfulApplications.length) {
+        applications.push({
+          heading: "Successful candidates"
+        })
+        applications = applications.concat(successfulApplications)
+      }
+
       if(otherApplications.length) {
 
-        if(deferredApplications.length || automaticallyRejectedApplications.length || applicationsThatNeedResponse.length || waitingOnApplications.length ) {
+        if(deferredApplications.length || automaticallyRejectedApplications.length || soonToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
           applications.push({
-            heading: "Everything else"
+            heading: "No action needed"
           })
         }
         applications = applications.concat(otherApplications);
