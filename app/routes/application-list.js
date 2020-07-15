@@ -201,14 +201,14 @@ module.exports = router => {
 
       if(aboutToBeRejectedAutomatically.length) {
         applications.push({
-          heading: "Respond now: about to be rejected automatically"
+          heading: "Deadline approaching: respond to the candidate"
         })
         applications = applications.concat(aboutToBeRejectedAutomatically)
       }
 
       if(needsFeedback.length) {
         applications.push({
-          heading: "Give feedback"
+          heading: "Give feedback: you did not respond in time"
         })
         applications = applications.concat(needsFeedback)
       }
