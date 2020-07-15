@@ -23,7 +23,7 @@
             {% set title = name + " submitted an application "  %}
             {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application rejected automatically" %}
-            {% set status = "Rejected automatically" %}
+            {% set status = "Rejected" %}
             {% set title = name + "’s application was rejected automatically" %}
             {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application rejected" %}

@@ -1,7 +1,7 @@
 var uuid = require('uuid/v4')
 var organisations = require('./organisations')
 organisations = Object.values(organisations).filter(org => {
-  return org.enabled; 
+  return org.enabled;
 })
 
 module.exports = {
@@ -792,7 +792,7 @@ module.exports = {
     course: 'Primary (2YQN)',
     locationname: 'Epsom Grinstead - training location',
     submittedDate: '2019-07-15',
-    status: 'Rejected automatically',
+    status: 'Rejected',
     rejectedDate: '2019-08-10T08:32:00',
     events: {
       items: [{

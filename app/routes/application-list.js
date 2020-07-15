@@ -166,9 +166,9 @@ module.exports = router => {
         return a.daysToRespond - b.daysToRespond;
       })
       let deferredApplications = applications.filter(app => app.status == "Deferred");
-      let automaticallyRejectedApplications = applications.filter(app => app.status == "Rejected automatically" && !app.rejectedReasons);
+      let needsFeedback = applications.filter(app => app.status == "Rejected" && !app.rejectedReasons);
 
-      let soonToBeRejectedAutomatically = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond < 5);
+      let aboutToBeRejectedAutomatically = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond < 5);
 
       let applicationsThatNeedResponse = applications.filter(app => app.status == "Submitted").filter(app => app.daysToRespond >= 5);
 
@@ -183,13 +183,13 @@ module.exports = router => {
         .filter(app => app.status != "Accepted")
         .filter(app => app.status != "Conditions met")
 
-      let rejectedAutomaticallyWithFeedback = applications
-        .filter(app => app.status == "Rejected automatically")
+      let rejectedWithFeedback = applications
+        .filter(app => app.status == "Rejected")
         .filter(function(app) {
           return app.rejectedReasons;
         })
 
-      otherApplications.concat(rejectedAutomaticallyWithFeedback);
+      otherApplications.concat(rejectedWithFeedback);
 
       applications = [];
       if(deferredApplications.length) {
@@ -199,18 +199,18 @@ module.exports = router => {
         applications = applications.concat(deferredApplications)
       }
 
-      if(soonToBeRejectedAutomatically.length) {
+      if(aboutToBeRejectedAutomatically.length) {
         applications.push({
           heading: "Respond now: about to be automatically rejected"
         })
-        applications = applications.concat(soonToBeRejectedAutomatically)
+        applications = applications.concat(aboutToBeRejectedAutomatically)
       }
 
-      if(automaticallyRejectedApplications.length) {
+      if(needsFeedback.length) {
         applications.push({
           heading: "Give feedback"
         })
-        applications = applications.concat(automaticallyRejectedApplications)
+        applications = applications.concat(needsFeedback)
       }
 
       if(applicationsThatNeedResponse.length) {
@@ -236,7 +236,7 @@ module.exports = router => {
 
       if(otherApplications.length) {
 
-        if(deferredApplications.length || automaticallyRejectedApplications.length || soonToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
+        if(deferredApplications.length || needsFeedback.length || aboutToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
           applications.push({
             heading: "No action needed"
           })
