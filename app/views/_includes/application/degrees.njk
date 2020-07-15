@@ -1,19 +1,37 @@
 {% set rowData = [] %}
 {% for item in application.degree | toArray %}
-  {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
+  {% set qualificationHtml %}
+    {{ item.type }} <b>{{ item.subject }}</b>
+    {% if item.provenance == "international" %}
+      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-2">
+        {{ [item.org, item.country] | join(", ") }}
+      </p>
+      {% if item.naric %}
+        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">
+          Comparable to {{ item.naric.comparable }}<br>
+          NARIC: {{ item.naric.reference }}
+        </p>
+      {% endif %}
+    {% endif %}
+  {% endset %}
   {% set grade = item["grade-predicted"] + " (Predicted)" if item["grade-predicted"] else item.grade %}
   {% set rows = rowData.push([{
-    html: [item.type, item.subject] | join(" – ")
+    html: qualificationHtml
   }, {
-    html: item.year
+    text: item['start-date']
   }, {
-    html: grade
+    text: item['end-date']
+  }, {
+    text: grade
   }]) %}
 {% endfor %}
 {{ govukTable({
   head: [{
     classes: "govuk-!-width-one-half",
     text: "Degree(s)"
+  }, {
+    classes: "govuk-!-width-one-quarter",
+    text: "Started"
   }, {
     classes: "govuk-!-width-one-quarter",
     text: "Awarded"

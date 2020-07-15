@@ -2,11 +2,22 @@
 {% for item in application.gcse | toArray %}
   {% if not item.missing %}
     {# Only awarding body non-UK qualification #}
-    {% set institution %}
-      <br><span class="govuk-body-s">{{ [item["award-org"], item.country] | join(", ") if item["award-org"] }}</span>
+    {% set qualificationHtml %}
+      {{ item.type }} <b>{{ item.subject }}</b>
+      {% if item.provenance == "international" %}
+        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-2">
+          {{ item.country }}
+        </p>
+        {% if item.naric %}
+          <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">
+            Comparable to {{ item.naric.comparable }}<br>
+            NARIC: {{ item.naric.reference }}
+          </p>
+        {% endif %}
+      {% endif %}
     {% endset %}
     {% set rows = rowData.push([{
-      html: [item.type, item.subject] | join(" – ") + institution
+      html: qualificationHtml
     }, {
       html: item.year
     }, {
@@ -14,7 +25,7 @@
     }]) %}
   {% else %}
     {% set rows = rowData.push([{
-      html: [item.type, item.subject] | join(" – ")
+      html: item.type + " <b>" +  item.subject + "</b>"
     }, {
       html: item.missing,
       colspan: 2
