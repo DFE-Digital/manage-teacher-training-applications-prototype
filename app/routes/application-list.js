@@ -201,7 +201,7 @@ module.exports = router => {
 
       if(aboutToBeRejectedAutomatically.length) {
         applications.push({
-          heading: "Respond now: about to be automatically rejected"
+          heading: "Respond now: about to be rejected automatically"
         })
         applications = applications.concat(aboutToBeRejectedAutomatically)
       }
