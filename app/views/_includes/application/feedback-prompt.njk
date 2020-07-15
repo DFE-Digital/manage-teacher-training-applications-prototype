@@ -1,7 +1,7 @@
 {% if application.status == 'Rejected automatically' and not application.rejectedReasons %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body">You did not respond to the application within 40 days. You must tell the candidate why their application was unsuccessful.</p>
+      <p class="govuk-body">You did not respond to the application within 40 days. Tell the candidate why their application was unsuccessful.</p>
       {{ govukButton({
         text: "Give feedback",
         classes: "govuk-!-margin-bottom-9",
