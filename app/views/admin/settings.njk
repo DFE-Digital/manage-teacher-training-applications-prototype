@@ -1,0 +1,31 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+  <form method="post">
+
+    {{ govukCheckboxes({
+      idPrefix: "settings",
+      name: "settings",
+      fieldset: {
+        legend: {
+          text: "Settings",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      items: [
+        {
+          value: "Exclude deferred offers",
+          text: "Exclude deferred offers",
+          checked: checked('settings', 'Exclude deferred offers')
+
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Save and go to application list"
+    }) }}
+  </form>
+{% endblock %}
