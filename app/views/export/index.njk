@@ -1,0 +1,189 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'export' %}
+{% set title = "Export data" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+  <p>This will export all your applications as a CSV file.</p>
+
+  <form method="post">
+    {# {{ govukCheckboxes({
+      idPrefix: 'export_cycle',
+      name: 'export_cycle',
+      fieldset: {
+        legend: {
+          text: 'Which cycles do you want to export applications from?',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: "Previous cycle (2019 to 2020)",
+          text: "Previous cycle (2019 to 2020)",
+          checked: checked("export_cycle", "Previous cycle (2019 to 2020)")
+        },
+        {
+          value: "Current cycle (2020 to 2021)",
+          text: "Current cycle (2020 to 2021)",
+          checked: checked("export_cycle", "Current cycle (2020 to 2021)")
+        }
+      ]
+    }) }} #}
+
+    {# {% set statusHtml %}
+    {{ govukCheckboxes({
+      idPrefix: 'export_status',
+      name: 'export_status',
+      fieldset: {
+        legend: {
+          text: 'Select statuses',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'Submitted',
+          text: 'Submitted',
+          checked: checked("export_status", "Submitted") == 'checked'
+        },
+        {
+          value: 'Offered',
+          text: 'Offered',
+          checked: checked("export_status", "Offered") == 'checked'
+        },
+        {
+          value: 'Accepted',
+          text: 'Accepted',
+          checked: checked("export_status", "Accepted") == 'checked'
+        },
+        {
+          value: 'Conditions met',
+          text: 'Conditions met',
+          checked: checked("export_status", "Conditions met") == 'checked'
+        },
+        {
+          value: 'Deferred',
+          text: 'Deferred',
+          checked: checked("export_status", "Deferred") == 'checked'
+        },
+        {
+          value: 'Declined',
+          text: 'Declined',
+          checked: checked("export_status", "Declined") == 'checked'
+        },
+        {
+          value: 'Rejected',
+          text: 'Rejected',
+          checked: checked("export_status", "Rejected") == 'checked'
+        },
+        {
+          value: 'Rejected automatically',
+          text: 'Rejected automatically',
+          checked: checked("export_status", "Rejected automatically") == 'checked'
+        },
+        {
+          value: 'Application withdrawn',
+          text: 'Application withdrawn',
+          checked: checked("export_status", "Application withdrawn") == 'checked'
+        },
+        {
+          value: 'Offer withdrawn',
+          text: 'Offer withdrawn',
+          checked: checked("export_status", "Offer withdrawn") == 'checked'
+        }
+      ]
+    }) }}
+    {% endset %}
+
+    {{ govukRadios({
+      idPrefix: "legend",
+      name: "legend",
+      fieldset: {
+        legend: {
+          text: "Which applications do you want to export?",
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "All applications",
+          text: "All applications",
+          checked: true
+        },
+        {
+          value: "Applications with a specific status",
+          text: "Applications with a specific status",
+          conditional: {
+            html: statusHtml
+          }
+        }
+      ]
+    }) }} #}
+
+    {# {% set datesHtml %}
+
+      {{ govukDateInput({
+        id: "export_to_from",
+        namePrefix: "export_date_from",
+        fieldset: {
+          legend: {
+            text: "Export from date",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        }
+      }) }}
+
+      {{ govukDateInput({
+        id: "export_to_from",
+        namePrefix: "export_to_from",
+        fieldset: {
+          legend: {
+            text: "Export to date",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        }
+      }) }}
+    {% endset %} #}
+
+    {# {{ govukRadios({
+      idPrefix: "export_range",
+      name: "export_range",
+      fieldset: {
+        legend: {
+          text: "Select applications that have changed within a specific timeframe",
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "Only applications that have changed since I last exported",
+          text: "Only applications that have changed since I last exported"
+        },
+        {
+          value: "Only applications that have changed in the last day",
+          text: "Only applications that have changed in the last day"
+        },
+        {
+          value: "Only applications that have changed in the last week",
+          text: "Only applications that have changed in the last week"
+        },
+        {
+          value: "Only applications that have changed in the last month",
+          text: "Only applications that have changed in the last month"
+        }
+      ]
+    }) }} #}
+
+
+
+    {{ govukButton({
+      text: "Export data"
+    }) }}
+
+  </form>
+
+{% endblock %}
