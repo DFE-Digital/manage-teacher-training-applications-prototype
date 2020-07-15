@@ -4,13 +4,13 @@ const applications = require('./applications')
 module.exports = {
   applications,
   organisations: Object.values(organisations).filter(org => {
-    return org.enabled; 
+    return org.enabled
   }),
   accreditedbodies: Object.values(organisations).filter(org => {
-    return org.isaccreditedbody;
+    return org.isaccreditedbody
   }),
 
-  cycle: "Current cycle (2020 to 2021)",
+  cycle: 'Current cycle (2020 to 2021)',
   sortby: 'most urgent',
   bare: process.env.BARE,
   flags: {

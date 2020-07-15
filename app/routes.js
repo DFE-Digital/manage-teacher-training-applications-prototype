@@ -22,7 +22,6 @@ require('./routes/organisations')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
 
-
 // Render other application pages
 router.all('/search-results', (req, res) => {
   res.render('search-results', {

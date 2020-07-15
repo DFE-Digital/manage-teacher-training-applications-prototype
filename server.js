@@ -81,7 +81,7 @@ app.set('view engine', 'njk')
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
-app.use('/assets', express.static(path.join(__dirname, '/node_modules/@ministryofjustice/frontend/moj/assets')));
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/@ministryofjustice/frontend/moj/assets')))
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
@@ -139,7 +139,7 @@ if (useCookieSessionStore === 'true') {
   })))
 }
 
-app.use(flash());
+app.use(flash())
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
@@ -150,7 +150,7 @@ if (useAutoStoreData === 'true') {
 // Clear all data in session if you open /admin/clear-data
 app.post('/admin/clear-data', function (req, res) {
   req.session.data = {}
-  res.redirect('/');
+  res.redirect('/')
 })
 
 // Prevent search indexing

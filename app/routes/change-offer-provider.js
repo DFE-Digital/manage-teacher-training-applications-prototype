@@ -1,5 +1,4 @@
 module.exports = router => {
-
   router.get('/application/:applicationId/offer/change-provider', (req, res) => {
     res.render('offer/change-provider/provider', {
       applicationId: req.params.applicationId
@@ -7,7 +6,7 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/change-provider', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/change-provider/course`);
+    res.redirect(`/application/${req.params.applicationId}/offer/change-provider/course`)
   })
 
   router.get('/application/:applicationId/offer/change-provider/course', (req, res) => {
@@ -17,7 +16,7 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/change-provider/course', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/change-provider/location`);
+    res.redirect(`/application/${req.params.applicationId}/offer/change-provider/location`)
   })
 
   router.get('/application/:applicationId/offer/change-provider/location', (req, res) => {
@@ -27,7 +26,7 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/change-provider/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/change-provider/confirm`);
+    res.redirect(`/application/${req.params.applicationId}/offer/change-provider/confirm`)
   })
 
   router.get('/application/:applicationId/offer/change-provider/confirm', (req, res) => {
@@ -42,5 +41,4 @@ module.exports = router => {
     req.flash('success', 'change-offer-provider')
     res.redirect(`/application/${applicationId}/offer`)
   })
-
 }
