@@ -76,11 +76,6 @@ const generateFakeApplication = (params = {}) => {
     events,
     'personal-details': generatePersonalDetails(faker),
     'contact-details': generateContactDetails(faker),
-    'language-skills': {
-      'english-is-main': 'Yes',
-      other: null,
-      'english-qualifications': false
-    },
     'work-history': generateWorkHistory(faker),
     degree: generateDegree(faker),
     gcse: generateGcse(faker),
