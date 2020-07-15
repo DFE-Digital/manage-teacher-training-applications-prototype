@@ -1,4 +1,4 @@
-var uuid = require('uuid/v4')
+const { v4: uuidv4 } = require('uuid')
 var organisations = require('./organisations')
 organisations = Object.values(organisations).filter(org => {
   return org.enabled
@@ -17,7 +17,7 @@ module.exports = {
     status: 'Accepted',
     notes: {
       items: [{
-        id: uuid(),
+        id: uuidv4(),
         subject: 'Talk to candidate on 15 June',
         body: 'Make sure to prepare this and that ready for a chat',
         sender: 'Laura Tennant',
@@ -27,8 +27,8 @@ module.exports = {
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-08-01',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }, { id: uuid(), description: 'Disclosure and barring service check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }, { id: uuidv4(), description: 'Disclosure and barring service check', status: 'Pending' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -109,7 +109,7 @@ module.exports = {
     status: 'Accepted',
     notes: {
       items: [{
-        id: uuid(),
+        id: uuidv4(),
         subject: 'Talk to candidate on 15 June',
         body: 'Make sure to prepare this and that ready for a chat',
         sender: 'Laura Tennant',
@@ -119,8 +119,8 @@ module.exports = {
     offer: {
       madeDate: '2019-07-30',
       acceptedDate: '2019-08-01',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     events: {
       items: [{
@@ -203,8 +203,8 @@ module.exports = {
       madeDate: '2019-06-12',
       acceptedDate: '2019-06-13',
       conditionsMetDate: '2019-08-12T09:01:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -284,8 +284,8 @@ module.exports = {
       madeDate: '2019-06-12',
       acceptedDate: '2019-06-13',
       conditionsMetDate: '2019-08-12T09:01:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -365,8 +365,8 @@ module.exports = {
       madeDate: '2019-06-12',
       acceptedDate: '2019-06-13',
       conditionsMetDate: '2019-08-11T09:01:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -453,8 +453,8 @@ module.exports = {
       madeDate: '2019-06-12',
       acceptedDate: '2019-06-13',
       conditionsMetDate: '2019-08-12T09:01:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -541,8 +541,8 @@ module.exports = {
       madeDate: '2019-06-12',
       acceptedDate: '2019-06-13',
       conditionsMetDate: '2019-08-12T09:01:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -624,7 +624,7 @@ module.exports = {
     status: 'Conditions met',
     notes: {
       items: [{
-        id: uuid(),
+        id: uuidv4(),
         subject: 'Call Charlie 17 May',
         body: 'Call about their timings for interview. Be conscious that they may be at work at this time.',
         sender: 'Emma Hill-French',
@@ -635,8 +635,8 @@ module.exports = {
       madeDate: '2019-06-23',
       acceptedDate: '2019-06-24',
       conditionsMetDate: '2019-08-12',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -716,8 +716,8 @@ module.exports = {
       madeDate: '2019-02-09',
       acceptedDate: '2019-02-12T18:52:00',
       conditionsNotMetDate: '2019-04-12T18:52:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Not met' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Met' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Not met' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Met' }]
     },
     events: {
       items: [{
@@ -1015,8 +1015,8 @@ module.exports = {
     offer: {
       madeDate: '2019-07-01',
       declinedDate: '2019-07-12T16:32:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     events: {
       items: [{
@@ -1202,8 +1202,8 @@ module.exports = {
         'future-applications': 'Yes',
         'future-applications-details': 'Be happy to consider again'
       },
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     events: {
       items: [{
@@ -1467,8 +1467,8 @@ module.exports = {
     status: 'Offered',
     offer: {
       madeDate: '2019-02-24T11:27:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     events: {
       items: [{
@@ -1727,8 +1727,8 @@ module.exports = {
     status: 'Offered',
     offer: {
       madeDate: '2019-02-15T10:02:00',
-      standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
-      conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
+      standardConditions: [{ id: uuidv4(), description: 'Fitness to teach check', status: 'Pending' }],
+      conditions: [{ id: uuidv4(), description: 'You need to take English speaking course', status: 'Pending' }]
     },
     events: {
       items: [{
@@ -2430,7 +2430,7 @@ module.exports = {
     status: 'Submitted',
     notes: {
       items: [{
-        id: uuid(),
+        id: uuidv4(),
         subject: 'Check qualifications',
         body: 'Make sure you review this application paying close attention to their qualifications',
         sender: 'Pepper Potts',

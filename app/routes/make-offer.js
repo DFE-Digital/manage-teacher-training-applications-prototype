@@ -1,4 +1,4 @@
-var uuid = require('uuid/v4')
+const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
   router.get('/application/:applicationId/offer/new', (req, res) => {
@@ -54,7 +54,7 @@ module.exports = router => {
 
     application.offer.standardConditions = req.session.data['standard-conditions'].map((item) => {
       return {
-        id: uuid(),
+        id: uuidv4(),
         description: item,
         status: 'Pending'
       }
@@ -62,16 +62,16 @@ module.exports = router => {
 
     const conditions = []
     if (req.session.data['condition-1']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-1'], status: 'Pending' })
+      conditions.push({ id: uuidv4(), description: req.session.data['condition-1'], status: 'Pending' })
     }
     if (req.session.data['condition-2']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-2'], status: 'Pending' })
+      conditions.push({ id: uuidv4(), description: req.session.data['condition-2'], status: 'Pending' })
     }
     if (req.session.data['condition-3']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-3'], status: 'Pending' })
+      conditions.push({ id: uuidv4(), description: req.session.data['condition-3'], status: 'Pending' })
     }
     if (req.session.data['condition-4']) {
-      conditions.push({ id: uuid(), description: req.session.data['condition-4'], status: 'Pending' })
+      conditions.push({ id: uuidv4(), description: req.session.data['condition-4'], status: 'Pending' })
     }
     application.offer.conditions = conditions
 
