@@ -1,12 +1,9 @@
-var uuid = require('uuid/v4');
-const utils = require( '../data/application-utils')
+const utils = require('../data/application-utils')
 
 module.exports = router => {
-
   router.get('/application/:applicationId', (req, res) => {
     const success = req.query.success
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
 
     var flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -15,9 +12,9 @@ module.exports = router => {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
-        'enrolled': 'Candidate successfully enrolled',
-        'offered': 'Offer successfully made',
-        'rejected': 'Application successfully rejected',
+        enrolled: 'Candidate successfully enrolled',
+        offered: 'Offer successfully made',
+        rejected: 'Application successfully rejected',
         'change-offer-location': 'Offer successfully changed ',
         'change-offer-course': 'Offer successfully changed ',
         'change-offer-provider': 'Offer successfully changed ',
@@ -52,9 +49,9 @@ module.exports = router => {
         'offer-withdrawn': 'Offer successfully withdrawn',
         'conditions-met': 'Conditions successfully marked as met',
         'conditions-not-met': 'Conditions successfully marked as not met',
-        'enrolled': 'Candidate successfully enrolled',
-        'offered': 'Offer successfully made',
-        'rejected': 'Application successfully rejected',
+        enrolled: 'Candidate successfully enrolled',
+        offered: 'Offer successfully made',
+        rejected: 'Application successfully rejected',
         'change-offer-location': 'Offer successfully changed ',
         'change-offer-course': 'Offer successfully changed ',
         'change-offer-provider': 'Offer successfully changed ',
@@ -86,7 +83,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/decision', (req, res) => {
-    res.render(`application/decision`, {
+    res.render('application/decision', {
       applicationId: req.params.applicationId
     })
   })
@@ -109,7 +106,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/cycle/edit', (req, res) => {
-    res.render(`application/cycle/edit/cycle`, {
+    res.render('application/cycle/edit/cycle', {
       applicationId: req.params.applicationId
     })
   })
@@ -120,28 +117,27 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/cycle/edit/check', (req, res) => {
-    res.render(`application/cycle/edit/check`, {
+    res.render('application/cycle/edit/check', {
       applicationId: req.params.applicationId
     })
   })
 
   router.post('/application/:applicationId/cycle/edit/check', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId];
-    application.cycle = req.session.data.applicatoncycle;
-    if(application.cycle == 'Next cycle (2021 to 2022)') {
-      application.previousOffer = application.offer;
-      application.previousStatus = application.status;
-      application.offer = null;
-      application.status = "Deferred";
+    const application = req.session.data.applications[applicationId]
+    application.cycle = req.session.data.applicatoncycle
+    if (application.cycle === 'Next cycle (2021 to 2022)') {
+      application.previousOffer = application.offer
+      application.previousStatus = application.status
+      application.offer = null
+      application.status = 'Deferred'
     } else {
-      application.offer = application.previousOffer;
-      application.previousOffer = null;
-      application.status = application.previousStatus;
-      application.previousStatus = null;
+      application.offer = application.previousOffer
+      application.previousOffer = null
+      application.status = application.previousStatus
+      application.previousStatus = null
     }
-    req.flash('success', 'cycle-changed');
+    req.flash('success', 'cycle-changed')
     res.redirect(`/application/${applicationId}`)
   })
-
 }

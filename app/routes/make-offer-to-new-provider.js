@@ -1,9 +1,8 @@
-var uuid = require('uuid/v4');
+var uuid = require('uuid/v4')
 
 module.exports = router => {
-
   router.get('/application/:applicationId/new/change-provider', (req, res) => {
-    res.render(`offer/new/change-provider/provider`, {
+    res.render('offer/new/change-provider/provider', {
       applicationId: req.params.applicationId
     })
   })
@@ -13,7 +12,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/new/change-provider/course', (req, res) => {
-    res.render(`offer/new/change-provider/course`, {
+    res.render('offer/new/change-provider/course', {
       applicationId: req.params.applicationId
     })
   })
@@ -23,7 +22,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/new/change-provider/location', (req, res) => {
-    res.render(`offer/new/change-provider/location`, {
+    res.render('offer/new/change-provider/location', {
       applicationId: req.params.applicationId
     })
   })
@@ -33,7 +32,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/new/change-provider/conditions', (req, res) => {
-    res.render(`offer/new/change-provider/conditions`, {
+    res.render('offer/new/change-provider/conditions', {
       applicationId: req.params.applicationId
     })
   })
@@ -43,14 +42,13 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/new/change-provider/confirm', (req, res) => {
-
-    let standardConditions = req.session.data['standard-conditions'].map((item) => {
+    const standardConditions = req.session.data['standard-conditions'].map((item) => {
       return {
         description: item
       }
     })
 
-    let furtherConditions = [];
+    const furtherConditions = []
 
     if (req.session.data['condition-1']) {
       furtherConditions.push({ description: req.session.data['condition-1'] })
@@ -65,7 +63,7 @@ module.exports = router => {
       furtherConditions.push({ description: req.session.data['condition-4'] })
     }
 
-    res.render(`offer/new/change-provider/confirm`, {
+    res.render('offer/new/change-provider/confirm', {
       applicationId: req.params.applicationId,
       conditions: standardConditions.concat(furtherConditions)
     })
@@ -74,10 +72,10 @@ module.exports = router => {
   router.post('/application/:applicationId/new/change-provider/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications[applicationId]
-    application.status = 'Offered';
+    application.status = 'Offered'
     application.offer = {
       madeDate: new Date().toISOString()
-    };
+    }
 
     application.offer.standardConditions = req.session.data['standard-conditions'].map((item) => {
       return {
@@ -100,7 +98,7 @@ module.exports = router => {
     if (req.session.data['condition-4']) {
       conditions.push({ id: uuid(), description: req.session.data['condition-4'], status: 'Pending' })
     }
-    application.offer.conditions = conditions;
+    application.offer.conditions = conditions
 
     application.offer.recommendations = req.session.data.recommendations
     req.flash('success', 'offer-made-to-new-provider')

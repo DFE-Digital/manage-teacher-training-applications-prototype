@@ -1,14 +1,14 @@
 var uuid = require('uuid/v4')
 var organisations = require('./organisations')
 organisations = Object.values(organisations).filter(org => {
-  return org.enabled;
+  return org.enabled
 })
 
 module.exports = {
 
-  "ZX12314": {
-    id: "ZX12314",
-    cycle: "Previous cycle (2019 to 2020)",
+  ZX12314: {
+    id: 'ZX12314',
+    cycle: 'Previous cycle (2019 to 2020)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (3-7) (X121)',
@@ -18,9 +18,9 @@ module.exports = {
     notes: {
       items: [{
         id: uuid(),
-        subject: "Talk to candidate on 15 June",
-        body: "Make sure to prepare this and that ready for a chat",
-        sender: "Laura Tennant",
+        subject: 'Talk to candidate on 15 June',
+        body: 'Make sure to prepare this and that ready for a chat',
+        sender: 'Laura Tennant',
         date: '2019-07-20T19:20:30'
       }]
     },
@@ -98,9 +98,9 @@ module.exports = {
       }
     }
   },
-  "GH12354": {
-    id: "GH12354",
-    cycle: "Current cycle (2020 to 2021)",
+  GH12354: {
+    id: 'GH12354',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (3-7) (X121)',
@@ -110,9 +110,9 @@ module.exports = {
     notes: {
       items: [{
         id: uuid(),
-        subject: "Talk to candidate on 15 June",
-        body: "Make sure to prepare this and that ready for a chat",
-        sender: "Laura Tennant",
+        subject: 'Talk to candidate on 15 June',
+        body: 'Make sure to prepare this and that ready for a chat',
+        sender: 'Laura Tennant',
         date: '2019-07-20T19:20:30'
       }]
     },
@@ -190,9 +190,9 @@ module.exports = {
       }
     }
   },
-  "DD35341": {
-    id: "DD35341",
-    cycle: "Previous cycle (2019 to 2020)",
+  DD35341: {
+    id: 'DD35341',
+    cycle: 'Previous cycle (2019 to 2020)',
     accreditingbody: organisations[0].name,
     provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
@@ -271,9 +271,9 @@ module.exports = {
       }
     }
   },
-  "EW65341": {
-    id: "EW65341",
-    cycle: "Current cycle (2020 to 2021)",
+  EW65341: {
+    id: 'EW65341',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
@@ -352,9 +352,9 @@ module.exports = {
       }
     }
   },
-  "XX63345": {
-    id: "XX63345",
-    cycle: "Current cycle (2020 to 2021)",
+  XX63345: {
+    id: 'XX63345',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
@@ -437,12 +437,12 @@ module.exports = {
       }
     }
   },
-  "EE63341": {
-    id: "EE63341",
+  EE63341: {
+    id: 'EE63341',
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: "Current cycle (2020 to 2021)",
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
@@ -525,12 +525,12 @@ module.exports = {
       }
     }
   },
-  "JY63391": {
-    id: "JY63391",
+  JY63391: {
+    id: 'JY63391',
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: "Current cycle (2020 to 2021)",
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[0].name,
     course: 'Primary (5-11) (X100)',
@@ -613,9 +613,9 @@ module.exports = {
       }
     }
   },
-  "RT88789": {
-    id: "RT88789",
-    cycle: "Current cycle (2020 to 2021)",
+  RT88789: {
+    id: 'RT88789',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (2S8T)',
@@ -625,9 +625,9 @@ module.exports = {
     notes: {
       items: [{
         id: uuid(),
-        subject: "Call Charlie 17 May",
-        body: "Call about their timings for interview. Be conscious that they may be at work at this time.",
-        sender: "Emma Hill-French",
+        subject: 'Call Charlie 17 May',
+        body: 'Call about their timings for interview. Be conscious that they may be at work at this time.',
+        sender: 'Emma Hill-French',
         date: '2019-06-03T09:30:30'
       }]
     },
@@ -703,9 +703,9 @@ module.exports = {
       }
     }
   },
-  "ID540900": {
-    id: "ID540900",
-    cycle: "Current cycle (2020 to 2021)",
+  ID540900: {
+    id: 'ID540900',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (2S8T)',
@@ -784,9 +784,9 @@ module.exports = {
       }
     }
   },
-  "LD198999": {
-    id: "LD198999",
-    cycle: "Current cycle (2020 to 2021)",
+  LD198999: {
+    id: 'LD198999',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (2YQN)',
@@ -851,9 +851,9 @@ module.exports = {
       }
     }
   },
-  "PL098999": {
-    id: "PL098999",
-    cycle: "Previous cycle (2019 to 2020)",
+  PL098999: {
+    id: 'PL098999',
+    cycle: 'Previous cycle (2019 to 2020)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (2YQN)',
@@ -864,11 +864,11 @@ module.exports = {
     rejectedReasons: {
 
       // Candidate actions
-      "actions": "Yes",
-      "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+      actions: 'Yes',
+      'actions-reasons': 'Didn’t reply to our interview offer,Didn’t attend interview',
 
       // Future applications
-      "future-applications": "Yes"
+      'future-applications': 'Yes'
     },
     events: {
       items: [{
@@ -927,9 +927,9 @@ module.exports = {
       }
     }
   },
-  "PL098988": {
-    id: "PL098988",
-    cycle: "Current cycle (2020 to 2021)",
+  PL098988: {
+    id: 'PL098988',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (2YQN)',
@@ -940,11 +940,11 @@ module.exports = {
     rejectedReasons: {
 
       // Candidate actions
-      "actions": "Yes",
-      "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
+      actions: 'Yes',
+      'actions-reasons': 'Didn’t reply to our interview offer,Didn’t attend interview',
 
       // Future applications
-      "future-applications": "Yes"
+      'future-applications': 'Yes'
     },
     events: {
       items: [{
@@ -1003,9 +1003,9 @@ module.exports = {
       }
     }
   },
-  "QW211115": {
-    id: "QW211115",
-    cycle: "Current cycle (2020 to 2021)",
+  QW211115: {
+    id: 'QW211115',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[1].name,
     course: 'Primary (2YQN)',
@@ -1079,9 +1079,9 @@ module.exports = {
       }
     }
   },
-  "KH96344": {
-    id: "KH96344",
-    cycle: "Current cycle (2020 to 2021)",
+  KH96344: {
+    id: 'KH96344',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[2].name,
     course: 'Primary (2RQM)',
@@ -1146,9 +1146,9 @@ module.exports = {
       }
     }
   },
-  "WP010100": {
-    id: "WP010100",
-    cycle: "Current cycle (2020 to 2021)",
+  WP010100: {
+    id: 'WP010100',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[2].name,
     course: 'Primary (2RQM)',
@@ -1161,46 +1161,46 @@ module.exports = {
       withdrawnReasons: {
 
         // Candidate actions
-        "actions": "Yes",
-        "actions-reasons": "Didn’t reply to our interview offer,Didn’t attend interview",
-        "actions-reasons-other": "Another reasons goes here",
+        actions: 'Yes',
+        'actions-reasons': 'Didn’t reply to our interview offer,Didn’t attend interview',
+        'actions-reasons-other': 'Another reasons goes here',
 
         // Course full
-        "course-full": "Yes",
+        'course-full': 'Yes',
 
         // Missing qualifications
-        "missing-qualifications": "Yes",
-        "missing-qualifications-reasons": "No Maths GCSE grade 4 (C) or above, or valid equivalent,No English GCSE grade 4 (C) or above, or valid equivalent, Other",
-        "missing-qualifications-reasons-other": "Another reason goes here",
+        'missing-qualifications': 'Yes',
+        'missing-qualifications-reasons': 'No Maths GCSE grade 4 (C) or above, or valid equivalent,No English GCSE grade 4 (C) or above, or valid equivalent, Other',
+        'missing-qualifications-reasons-other': 'Another reason goes here',
 
         // Application quality
-        "application-quality": "Yes",
-        "application-quality-reasons": "Personal statement, Subject knowledge, Other",
-        "application-quality-reasons-other": "Spelling wasn’t great",
-        "application-quality-reasons-subject-knowledge": "Didn't know enough about maths",
-        "application-quality-reasons-personal-statement": "Lack of passion",
+        'application-quality': 'Yes',
+        'application-quality-reasons': 'Personal statement, Subject knowledge, Other',
+        'application-quality-reasons-other': 'Spelling wasn’t great',
+        'application-quality-reasons-subject-knowledge': "Didn't know enough about maths",
+        'application-quality-reasons-personal-statement': 'Lack of passion',
 
         // Safeguarding
-        "safeguarding": "Yes",
-        "safeguarding-reasons": "Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children",
-        "safeguarding-reasons-false-information": "False information about past",
-        "safeguarding-reasons-plagiarism": "Copied a blog post",
-        "safeguarding-reasons-reference-information": "John had a patchy history",
-        "safeguarding-reasons-disclosed-information": "Information disclosed wasn't truthful",
-        "safeguarding-reasons-vetting-information": "Vetting information explained not suitable",
-        "safeguarding-reasons-other": "Something else regarding safeguarding",
+        safeguarding: 'Yes',
+        'safeguarding-reasons': 'Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children',
+        'safeguarding-reasons-false-information': 'False information about past',
+        'safeguarding-reasons-plagiarism': 'Copied a blog post',
+        'safeguarding-reasons-reference-information': 'John had a patchy history',
+        'safeguarding-reasons-disclosed-information': "Information disclosed wasn't truthful",
+        'safeguarding-reasons-vetting-information': 'Vetting information explained not suitable',
+        'safeguarding-reasons-other': 'Something else regarding safeguarding',
 
         // Another issue
-        "another-issue": "Yes",
-        "another-issue-details": "Another detail here",
+        'another-issue': 'Yes',
+        'another-issue-details': 'Another detail here',
 
         // Other feedback
-        "other-feedback": "Yes",
-        "other-feedback-details": "Other feedback here",
+        'other-feedback': 'Yes',
+        'other-feedback-details': 'Other feedback here',
 
         // Future applications
-        "future-applications": "Yes",
-        "future-applications-details": "Be happy to consider again"
+        'future-applications': 'Yes',
+        'future-applications-details': 'Be happy to consider again'
       },
       standardConditions: [{ id: uuid(), description: 'Fitness to teach check', status: 'Pending' }],
       conditions: [{ id: uuid(), description: 'You need to take English speaking course', status: 'Pending' }]
@@ -1456,9 +1456,9 @@ module.exports = {
     },
     miscellaneous: 'I will be taking a TEFL course in September for one month to gain a professional qualification as a TEFL teacher, which I hope will help me find work running evening classes online or at a language school in the UK this year.'
   },
-  "PW908111": {
-    id: "PW908111",
-    cycle: "Current cycle (2020 to 2021)",
+  PW908111: {
+    id: 'PW908111',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[2].name,
     course: 'Primary (2RQM)',
@@ -1716,9 +1716,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  "AB5499": {
-    id: "AB5499",
-    cycle: "Current cycle (2020 to 2021)",
+  AB5499: {
+    id: 'AB5499',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[4].name,
     course: 'Primary (32VP)',
@@ -1991,9 +1991,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  "CV943651": {
-    id: "CV943651",
-    cycle: "Current cycle (2020 to 2021)",
+  CV943651: {
+    id: 'CV943651',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[4].name,
     course: 'Primary (32VP)',
@@ -2224,9 +2224,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  "RE123123": {
-    id: "RE123123",
-    cycle: "Current cycle (2020 to 2021)",
+  RE123123: {
+    id: 'RE123123',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[4].name,
     course: 'Primary (32VP)',
@@ -2354,7 +2354,7 @@ module.exports = {
         'award-org': 'WBBSE',
         grade: '87',
         year: '2004'
-      },
+      }
     },
     'other-qualifications': {
       1: {
@@ -2419,9 +2419,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  "AS1623": {
-    id: "AS1623",
-    cycle: "Current cycle (2020 to 2021)",
+  AS1623: {
+    id: 'AS1623',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[2].name,
     course: 'Primary (2MKC)',
@@ -2431,9 +2431,9 @@ module.exports = {
     notes: {
       items: [{
         id: uuid(),
-        subject: "Check qualifications",
-        body: "Make sure you review this application paying close attention to their qualifications",
-        sender: "Pepper Potts",
+        subject: 'Check qualifications',
+        body: 'Make sure you review this application paying close attention to their qualifications',
+        sender: 'Pepper Potts',
         date: '2019-07-30T08:32:00'
       }]
     },
@@ -2650,9 +2650,9 @@ module.exports = {
     },
     miscellaneous: ''
   },
-  "JF4978": {
-    id: "JF4978",
-    cycle: "Current cycle (2020 to 2021)",
+  JF4978: {
+    id: 'JF4978',
+    cycle: 'Current cycle (2020 to 2021)',
     accreditingbody: organisations[0].name,
     provider: organisations[0].name,
     course: 'Primary (3-7) (X121)',

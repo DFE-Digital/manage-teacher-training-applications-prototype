@@ -1,10 +1,8 @@
-const utils = require( '../data/application-utils')
+const utils = require('../data/application-utils')
 
 module.exports = router => {
-
   router.get('/application/:applicationId/notes', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
 
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -22,7 +20,6 @@ module.exports = router => {
 
   router.get('/application/:applicationId/notes/first-time', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
 
     res.render('application/notes/first-time', {
       applicationId: applicationId
@@ -30,13 +27,12 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/notes/first-time', (req, res) => {
-    const applicationId = req.params.applicationId;
-    res.redirect(`/application/${applicationId}/notes/new`);
+    const applicationId = req.params.applicationId
+    res.redirect(`/application/${applicationId}/notes/new`)
   })
 
   router.get('/application/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
 
     res.render('application/notes/new', {
       applicationId: applicationId
@@ -44,9 +40,9 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/notes/new', (req, res) => {
-    const applicationId = req.params.applicationId;
-    req.flash('success', 'note-added');
-    res.redirect(`/application/${applicationId}/notes`);
+    const applicationId = req.params.applicationId
+    req.flash('success', 'note-added')
+    res.redirect(`/application/${applicationId}/notes`)
   })
 
   router.get('/application/:applicationId/notes/:noteId', (req, res) => {
@@ -55,8 +51,7 @@ module.exports = router => {
 
     res.render('application/notes/show', {
       applicationId: applicationId,
-      note: application.notes.items.filter(note => note.id == req.params.noteId)[0]
+      note: application.notes.items.filter(note => note.id === req.params.noteId)[0]
     })
   })
-
 }

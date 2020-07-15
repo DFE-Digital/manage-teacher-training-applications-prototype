@@ -1,36 +1,33 @@
-var uuid = require('uuid/v4');
-const utils = require( '../data/application-utils')
+const utils = require('../data/application-utils')
 
 module.exports = router => {
-
   router.get('/application/:applicationId/feedback', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId];
+    const application = req.session.data.applications[applicationId]
     res.render('application/feedback/index', {
       application
     })
   })
 
   router.post('/application/:applicationId/feedback', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/feedback/check`);
+    res.redirect(`/application/${req.params.applicationId}/feedback/check`)
   })
 
   router.get('/application/:applicationId/feedback/check', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId];
+    const application = req.session.data.applications[applicationId]
     res.render('application/feedback/check', {
       application
     })
   })
 
   router.post('/application/:applicationId/feedback/check', (req, res) => {
-    const applicationId = req.params.applicationId;
-    const application = req.session.data.applications[applicationId];
-    application.rejectedDate = new Date().toISOString();
-    application.rejectedReasons = utils.getRejectReasons(req.session.data.rejectionReasons);
-    delete req.session.data.rejectionReasons;
-    req.flash('success', 'feedback-given');
-    res.redirect(`/application/${applicationId}`);
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
+    application.rejectedDate = new Date().toISOString()
+    application.rejectedReasons = utils.getRejectReasons(req.session.data.rejectionReasons)
+    delete req.session.data.rejectionReasons
+    req.flash('success', 'feedback-given')
+    res.redirect(`/application/${applicationId}`)
   })
-
 }
