@@ -16,16 +16,19 @@
       },
       items: [
         {
-          value: "Exclude deferred offers",
-          text: "Exclude deferred offers",
-          checked: checked('settings', 'Exclude deferred offers')
+          value: "Turn on start new cycle",
+          text: "Turn on start new cycle",
+          hint: {
+            text: "Will only show deferred applications in current cycle"
+          },
+          checked: checked('settings', 'Turn on start new cycle')
 
         }
       ]
     }) }}
 
     {{ govukButton({
-      text: "Save and go to application list"
+      text: "Save and continue"
     }) }}
   </form>
 {% endblock %}

@@ -1,23 +1,20 @@
 module.exports = router => {
   router.post('/admin/settings', (req, res) => {
 
-    console.log(req.session.data)
+    if(Array.isArray(req.body.settings) && req.body.settings.includes('Turn on start new cycle')) {
+      var applications = Object.values(req.session.data.applications).filter(app => {
+        if(app.cycle == "Current cycle (2020 to 2021)") {
+          return app.status == "Deferred"
+        } else {
+          return true;
+        }
+      })
 
-    if(Array.isArray(req.body.settings)) {
-      if(req.body.settings.includes('Exclude deferred offers')) {
+      req.session.data.applications = {};
 
-        var applications = Object.values(req.session.data.applications).filter(app => {
-          return app.status != "Deferred"
-        })
-
-        req.session.data.applications = {};
-
-        applications.forEach(app => {
-          req.session.data.applications[app.id] = app;
-        })
-      } else {
-        req.session.data.applications = require('../data/applications')
-      }
+      applications.forEach(app => {
+        req.session.data.applications[app.id] = app;
+      })
     } else {
       req.session.data.applications = require('../data/applications')
     }
