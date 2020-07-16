@@ -21,7 +21,7 @@ require('./routes/notes')(router)
 require('./routes/organisations')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
-
+require('./routes/settings')(router)
 
 // Render other application pages
 router.all('/search-results', (req, res) => {

@@ -303,7 +303,7 @@
   {% endif %}
 
 
-  {% if rejectionReasons['future-applications'] != "Yes" and application.status != "Rejected automatically" %}
+  {% if rejectionReasons['future-applications'] and rejectionReasons['future-applications'] != "Yes" %}
     <div class="app-feedback__panel">
     <h3 class="govuk-heading-s">Future applications</h3>
     <p>The provider would not be interested in future applications from you.</p>

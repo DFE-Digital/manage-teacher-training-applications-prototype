@@ -27,11 +27,11 @@ module.exports = (env) => {
   }
 
   filters.time = (str) => {
-    var m = moment(str);
-    if(m.minutes() > 0) {
-      return m.format('h:mma');
+    var m = moment(str)
+    if (m.minutes() > 0) {
+      return m.format('h:mma')
     } else {
-      return m.format('ha');
+      return m.format('ha')
     }
   }
 
@@ -74,30 +74,28 @@ module.exports = (env) => {
   }
 
   filters.statusClass = (status) => {
-    switch(status) {
-      case "Deferred":
+    switch (status) {
+      case 'Deferred':
         return 'govuk-tag--yellow'
-      case "Offer withdrawn":
+      case 'Offer withdrawn':
         return 'app-tag--orange'
-      case "Application withdrawn":
+      case 'Application withdrawn':
         return 'app-tag--red'
-      case "Declined":
+      case 'Declined':
         return 'app-tag--red'
-      case "Rejected":
+      case 'Rejected':
         return 'app-tag--orange'
-      case "Rejected automatically":
-          return 'app-tag--orange'
-      case "Conditions not met":
+      case 'Conditions not met':
         return 'app-tag--red'
-      case "Accepted":
+      case 'Accepted':
         return 'app-tag--blue'
-      case "Conditions met":
+      case 'Conditions met':
         return 'app-tag--green'
-      case "Offered":
+      case 'Offered':
         return 'app-tag--turquoise'
-      case "Submitted":
+      case 'Submitted':
         return 'app-tag--purple'
-      case "Note added":
+      case 'Note added':
         return 'govuk-tag--pink'
     }
   }
