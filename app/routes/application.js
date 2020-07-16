@@ -32,7 +32,7 @@ module.exports = router => {
     })
 
     res.render('application/index', {
-      applicationId: applicationId,
+      application,
       // timeline: utils.getTimeline(application),
       // conditions: utils.getConditions(application),
       status: req.query.status,

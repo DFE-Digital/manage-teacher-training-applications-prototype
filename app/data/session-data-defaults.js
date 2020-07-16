@@ -1,8 +1,17 @@
 const organisations = require('./organisations')
 const applications = require('./applications')
 
+// Filter out deferred applications
+let filterApplications = {};
+
+Object.values(applications).filter(app => {
+  return app.status != "Deferred";
+}).forEach(app => {
+  filterApplications[app.id] = app;
+});
+
 module.exports = {
-  applications,
+  applications: filterApplications,
   organisations: Object.values(organisations).filter(org => {
     return org.enabled;
   }),
