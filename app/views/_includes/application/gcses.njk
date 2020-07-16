@@ -1,46 +1,32 @@
-{% set rowData = [] %}
-{% for item in application.gcse | toArray %}
-  {% if not item.missing %}
-    {# Only awarding body non-UK qualification #}
-    {% set qualificationHtml %}
-      {{ item.type }} <b>{{ item.subject }}</b>
-      {% if item.provenance == "international" %}
-        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-2">
-          {{ item.country }}
-        </p>
-        {% if item.naric %}
-          <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">
-            Comparable to {{ item.naric.comparable }}<br>
-            NARIC: {{ item.naric.reference }}
+<h2 class="govuk-heading-m govuk-!-margin-bottom-2">GCSEs or equivalent</h2>
+<div class="govuk-grid govuk-!-margin-bottom-8">
+  <div class="govuk-grid-row">
+    {% for item in application.gcse | toArray %}
+    <div class="govuk-grid-column-one-third">
+      <div class="app-card">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.subject }}</h3>
+        {% if not item.missing %}
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            {{ item.type }}
+            {% if item.provenance == "international" %}({{ item.country }}){% endif %}
           </p>
+          <p class="govuk-caption-m govuk-!-font-size-16">
+            <span class="govuk-visually-hidden">Awarded: </span>{{ item.year }}
+          </p>
+          <p class="govuk-body-l govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+            <span class="govuk-visually-hidden">Grade: </span>{{ item.grade }}
+          </p>
+          {% if item.naric %}
+            <p class="govuk-body govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
+            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference: {{ item.naric.reference }} </p>
+          {% endif %}
+        {% else %}
+          <p class="govuk-body govuk-!-margin-bottom-0">Candidate does not have this qualification yet.</p>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Reason given</h4>
+          <p class="govuk-body govuk-!-margin-bottom-0">{{ item.missing }}</p>
         {% endif %}
-      {% endif %}
-    {% endset %}
-    {% set rows = rowData.push([{
-      html: qualificationHtml
-    }, {
-      html: item.year
-    }, {
-      html: item.grade
-    }]) %}
-  {% else %}
-    {% set rows = rowData.push([{
-      html: item.type + " <b>" +  item.subject + "</b>"
-    }, {
-      html: item.missing,
-      colspan: 2
-    }]) %}
-  {% endif %}
-{% endfor %}
-{{ govukTable({
-  head: [{
-    classes: "govuk-!-width-one-half",
-    text: "GCSEs or equivalent"
-  }, {
-    classes: "govuk-!-width-one-quarter",
-    text: "Awarded"
-  }, {
-    text: "Grade"
-  }],
-  rows: rowData
-}) }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
