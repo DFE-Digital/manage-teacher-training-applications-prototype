@@ -1,0 +1,34 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+  <form method="post">
+
+    {{ govukCheckboxes({
+      idPrefix: "settings",
+      name: "settings",
+      fieldset: {
+        legend: {
+          text: "Settings",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      items: [
+        {
+          value: "Turn on start new cycle",
+          text: "Turn on start new cycle",
+          hint: {
+            text: "Will only show deferred applications in current cycle"
+          },
+          checked: checked('settings', 'Turn on start new cycle')
+
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
+{% endblock %}
