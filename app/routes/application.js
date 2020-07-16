@@ -4,6 +4,7 @@ module.exports = router => {
   router.get('/application/:applicationId', (req, res) => {
     const success = req.query.success
     const applicationId = req.params.applicationId
+    const application = req.session.data.applications[applicationId]
 
     var flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
