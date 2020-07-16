@@ -13,8 +13,8 @@
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
-    "@ministryofjustice/frontend": "0.0.17-alpha",
-    "acorn": "^7.1.0",
+    "@ministryofjustice/frontend": "0.0.19-alpha",
+    "acorn": "^7.3.1",
     "ansi-colors": "^4.0.0",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
@@ -22,31 +22,31 @@
     "browser-sync": "^2.26.7",
     "client-sessions": "^0.8.0",
     "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
-    "cross-spawn": "^7.0.1",
+    "cookie-parser": "^1.4.5",
+    "cross-spawn": "^7.0.3",
     "del": "^5.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.0",
+    "express-session": "^1.17.1",
     "express-writer": "^0.0.4",
     "fancy-log": "^1.3.3",
     "govuk-frontend": "^3.7.0",
     "gulp": "^4.0.2",
-    "gulp-nodemon": "^2.1.0",
-    "gulp-sass": "^4.0.1",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "keypather": "^3.1.0",
-    "luxon": "^1.21.2",
-    "marked": "^0.7.0",
-    "moment": "^2.24.0",
-    "notifications-node-client": "^4.7.0",
-    "nunjucks": "^3.1.3",
+    "luxon": "^1.24.1",
+    "marked": "^1.1.1",
+    "moment": "^2.27.0",
+    "notifications-node-client": "^4.8.0",
+    "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
     "prompt": "^1.0.0",
     "require-dir": "^1.0.0",
     "sync-request": "^6.1.0",
     "universal-analytics": "^0.4.16",
-    "uuid": "^3.4.0"
+    "uuid": "^8.2.0"
   },
   "greenkeeper": {
     "ignore": [
@@ -54,8 +54,8 @@
     ]
   },
   "devDependencies": {
-    "jest": "^24.9.0",
-    "standard": "^14.1.0",
+    "jest": "^26.1.0",
+    "standard": "^14.3.4",
     "supertest": "^4.0.0"
   }
 }
