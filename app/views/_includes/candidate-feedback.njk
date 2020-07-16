@@ -3,7 +3,7 @@
 
   <div class="app-feedback__panel">
 
-    {% if rejectionReasons['future-applications'] == "Yes" %}
+    {% if rejectionReasons['future-applications'] == "Yes" and rejectionReasons["other-offer"] != "Yes" %}
       <h2 class="govuk-heading-m">The provider would be interested in future applications from you</p>
       {% if rejectionChangeLinks %}
         <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
@@ -176,9 +176,9 @@
   {% if rejectionReasons['other-offer'] == "Yes" %}
     <div class="app-feedback__panel">
     <h3 class="govuk-heading-s">
-      They offered you something else
+      They offered you a place on another course
     </h3>
-    <p>This provider has offered you a place on one of your other choices. Check your email or application dashboard for details.</p>
+    <p> Details: {{rejectionReasons["other-offer-details"]}}</p>
 
     {% if rejectionChangeLinks %}
       <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject">Change</a></p>

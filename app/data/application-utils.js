@@ -28,6 +28,7 @@ exports.getRejectReasons = (data) => {
 
     // Other offer
     "other-offer": data["other-offer"],
+    "other-offer-details": data["other-offer-details"],
 
     // Honesty
     "honesty": data["honesty"],
