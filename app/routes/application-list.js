@@ -9,8 +9,7 @@ function getCheckboxValues (name, data) {
 
 module.exports = router => {
   router.all('/', (req, res) => {
-    // Clone and turn into an array
-    let apps = Object.values(req.session.data.applications).reverse().filter(app => {
+    let apps = req.session.data.applications.reverse().filter(app => {
       return app.cycle === req.session.data.cycle
     })
     let { status, provider, accreditingbody, keywords, locationname, rbddate, sortby } = req.query
@@ -148,6 +147,7 @@ module.exports = router => {
       }
 
       app.lastEventDate = lastEvent.datetime.timestamp
+
       return app
     })
 

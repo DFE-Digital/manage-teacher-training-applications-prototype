@@ -1,7 +1,7 @@
 module.exports = router => {
   router.get('/activity', (req, res) => {
     // Clone and turn into an array
-    const apps = Object.values(req.session.data.applications).filter(app => {
+    const apps = req.session.data.applications.filter(app => {
       return app.cycle === req.session.data.cycle
     })
 

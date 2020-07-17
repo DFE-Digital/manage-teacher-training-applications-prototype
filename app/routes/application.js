@@ -4,7 +4,7 @@ module.exports = router => {
   router.get('/application/:applicationId', (req, res) => {
     const success = req.query.success
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     var flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -41,7 +41,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/offer', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -74,7 +74,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('application/timeline', {
       applicationId: applicationId,
