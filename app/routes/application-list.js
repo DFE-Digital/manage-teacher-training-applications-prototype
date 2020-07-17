@@ -218,7 +218,7 @@ module.exports = router => {
 
       if (waitingOnApplications.length) {
         applications.push({
-          heading: 'Waiting on the candidate'
+          heading: 'Waiting for candidate action'
         })
         applications = applications.concat(waitingOnApplications)
       }
