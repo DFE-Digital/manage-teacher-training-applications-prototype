@@ -6,179 +6,178 @@
 {% block content %}
   <h1 class="govuk-heading-xl">{{title}}</h1>
 
-  {# <p>This will export all your applications as a CSV file.</p> #}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        {{ govukCheckboxes({
+          idPrefix: 'export_cycle',
+          name: 'export_cycle',
+          fieldset: {
+            legend: {
+              text: 'Select cycles',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              value: "Previous cycle (2019 to 2020)",
+              text: "Previous cycle (2019 to 2020)",
+              checked: checked("export_cycle", "Previous cycle (2019 to 2020)")
+            },
+            {
+              value: "Current cycle (2020 to 2021)",
+              text: "Current cycle (2020 to 2021)",
+              checked: checked("export_cycle", "Current cycle (2020 to 2021)")
+            }
+          ]
+        }) }}
 
-  <form method="post">
-    {{ govukCheckboxes({
-      idPrefix: 'export_cycle',
-      name: 'export_cycle',
-      fieldset: {
-        legend: {
-          text: 'Select cycles',
-          classes: 'govuk-fieldset__legend--m'
-        }
-      },
-      items: [
-        {
-          value: "2020 to 2021 (current cycle)",
-          text: "2020 to 2021 (current cycle)",
-          checked: checked("export_cycle", "2020 to 2021 (current cycle)")
-        },
-        {
-          value: "2019 to 2020 (last cycle)",
-          text: "2019 to 2020 (last cycle)",
-          checked: checked("export_cycle", "2019 to 2020 (last cycle)")
-        },
-        {
-          value: "2018 to 2019",
-          text: "2018 to 2019",
-          checked: checked("export_cycle", "2018 to 2019")
-        }
-      ]
-    }) }}
+        {% set statusHtml %}
+        {{ govukCheckboxes({
+          idPrefix: 'export_status',
+          name: 'export_status',
+          fieldset: {
+            legend: {
+              text: 'Select statuses',
+              classes: 'govuk-fieldset__legend--s'
+            }
+          },
+          items: [
+            {
+              value: 'Submitted',
+              text: 'Submitted',
+              checked: checked("export_status", "Submitted") == 'checked'
+            },
+            {
+              value: 'Offered',
+              text: 'Offered',
+              checked: checked("export_status", "Offered") == 'checked'
+            },
+            {
+              value: 'Accepted',
+              text: 'Accepted',
+              checked: checked("export_status", "Accepted") == 'checked'
+            },
+            {
+              value: 'Conditions met',
+              text: 'Conditions met',
+              checked: checked("export_status", "Conditions met") == 'checked'
+            },
+            {
+              value: 'Deferred',
+              text: 'Deferred',
+              checked: checked("export_status", "Deferred") == 'checked'
+            },
+            {
+              value: 'Declined',
+              text: 'Declined',
+              checked: checked("export_status", "Declined") == 'checked'
+            },
+            {
+              value: 'Rejected',
+              text: 'Rejected',
+              checked: checked("export_status", "Rejected") == 'checked'
+            },
+            {
+              value: 'Rejected automatically',
+              text: 'Rejected automatically',
+              checked: checked("export_status", "Rejected automatically") == 'checked'
+            },
+            {
+              value: 'Application withdrawn',
+              text: 'Application withdrawn',
+              checked: checked("export_status", "Application withdrawn") == 'checked'
+            },
+            {
+              value: 'Offer withdrawn',
+              text: 'Offer withdrawn',
+              checked: checked("export_status", "Offer withdrawn") == 'checked'
+            }
+          ]
+        }) }}
+        {% endset %}
 
-    {% set statusHtml %}
-    {{ govukCheckboxes({
-      idPrefix: 'export_status',
-      name: 'export_status',
-      fieldset: {
-        legend: {
-          text: 'Select statuses',
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: [
-        {
-          value: 'Submitted',
-          text: 'Submitted',
-          checked: checked("export_status", "Submitted") == 'checked'
-        },
-        {
-          value: 'Offered',
-          text: 'Offered',
-          checked: checked("export_status", "Offered") == 'checked'
-        },
-        {
-          value: 'Accepted',
-          text: 'Accepted',
-          checked: checked("export_status", "Accepted") == 'checked'
-        },
-        {
-          value: 'Conditions met',
-          text: 'Conditions met',
-          checked: checked("export_status", "Conditions met") == 'checked'
-        },
-        {
-          value: 'Deferred',
-          text: 'Deferred',
-          checked: checked("export_status", "Deferred") == 'checked'
-        },
-        {
-          value: 'Declined',
-          text: 'Declined',
-          checked: checked("export_status", "Declined") == 'checked'
-        },
-        {
-          value: 'Rejected',
-          text: 'Rejected',
-          checked: checked("export_status", "Rejected") == 'checked'
-        },
-        {
-          value: 'Rejected automatically',
-          text: 'Rejected automatically',
-          checked: checked("export_status", "Rejected automatically") == 'checked'
-        },
-        {
-          value: 'Application withdrawn',
-          text: 'Application withdrawn',
-          checked: checked("export_status", "Application withdrawn") == 'checked'
-        },
-        {
-          value: 'Offer withdrawn',
-          text: 'Offer withdrawn',
-          checked: checked("export_status", "Offer withdrawn") == 'checked'
-        }
-      ]
-    }) }}
-    {% endset %}
+        {{ govukRadios({
+          idPrefix: "status",
+          name: "status",
+          fieldset: {
+            legend: {
+              text: "Select applications",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "All applications",
+              text: "All applications",
+              checked: true
+            },
+            {
+              value: "Applications with a specific status",
+              text: "Applications with a specific status",
+              conditional: {
+                html: statusHtml
+              }
+            }
+          ]
+        }) }}
 
-    {{ govukRadios({
-      idPrefix: "status",
-      name: "status",
-      fieldset: {
-        legend: {
-          text: "Select applications",
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: "All applications",
-          text: "All applications",
-          checked: true
-        },
-        {
-          value: "Applications with a specific status",
-          text: "Applications with a specific status",
-          conditional: {
-            html: statusHtml
-          }
-        }
-      ]
-    }) }}
+        {{ govukCheckboxes({
+          idPrefix: "diversity",
+          name: "diversity",
+          fieldset: {
+            legend: {
+              text: "Select to include diversity information",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Diversity information is only provided for applications with ‘Accepted’ or ‘Conditions met’ statuses"
+          },
+          items: [
+            {
+              value: "Yes – include diversity information",
+              text: "Yes – include diversity information"
+            }
+          ]
+        }) }}
 
-    {{ govukCheckboxes({
-      idPrefix: "diversity",
-      name: "diversity",
-      fieldset: {
-        legend: {
-          text: "Select to include diversity information",
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      hint: {
-        text: "Only provided for applications in the ‘Accepted’ and ‘Conditions met’"
-      },
-      items: [
-        {
-          value: "Yes – include diversity information",
-          text: "Yes – include diversity information"
-        }
-      ]
-    }) }}
-
-    {{ govukCheckboxes({
-      idPrefix: "export_orgs",
-      name: "export_orgs",
-      fieldset: {
-        legend: {
-          text: "Select applications for certain organisations",
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: data.organisations[0].name,
-          text: data.organisations[0].name
-        },
-        {
-          value: data.organisations[1].name,
-          text: data.organisations[1].name
-        },
-        {
-          value: data.organisations[2].name,
-          text: data.organisations[2].name
-        }
-      ]
-    }) }}
+        {{ govukCheckboxes({
+          idPrefix: "export_orgs",
+          name: "export_orgs",
+          fieldset: {
+            legend: {
+              text: "Select applications for certain organisations",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: data.organisations[0].name,
+              text: data.organisations[0].name
+            },
+            {
+              value: data.organisations[1].name,
+              text: data.organisations[1].name
+            },
+            {
+              value: data.organisations[2].name,
+              text: data.organisations[2].name
+            }
+          ]
+        }) }}
 
 
 
 
-    {{ govukButton({
-      text: "Export data"
-    }) }}
+        {{ govukButton({
+          text: "Export data"
+        }) }}
 
-  </form>
+      </form>
+    </div>
+  </div>
+
+
 
 {% endblock %}
