@@ -6,40 +6,45 @@
 {% block content %}
   <h1 class="govuk-heading-xl">{{title}}</h1>
 
-  <p>This will export all your applications as a CSV file.</p>
+  {# <p>This will export all your applications as a CSV file.</p> #}
 
   <form method="post">
-    {# {{ govukCheckboxes({
+    {{ govukCheckboxes({
       idPrefix: 'export_cycle',
       name: 'export_cycle',
       fieldset: {
         legend: {
-          text: 'Which cycles do you want to export applications from?',
+          text: 'Select cycles',
           classes: 'govuk-fieldset__legend--m'
         }
       },
       items: [
         {
-          value: "Previous cycle (2019 to 2020)",
-          text: "Previous cycle (2019 to 2020)",
-          checked: checked("export_cycle", "Previous cycle (2019 to 2020)")
+          value: "2020 to 2021 (current cycle)",
+          text: "2020 to 2021 (current cycle)",
+          checked: checked("export_cycle", "2020 to 2021 (current cycle)")
         },
         {
-          value: "Current cycle (2020 to 2021)",
-          text: "Current cycle (2020 to 2021)",
-          checked: checked("export_cycle", "Current cycle (2020 to 2021)")
+          value: "2019 to 2020 (last cycle)",
+          text: "2019 to 2020 (last cycle)",
+          checked: checked("export_cycle", "2019 to 2020 (last cycle)")
+        },
+        {
+          value: "2018 to 2019",
+          text: "2018 to 2019",
+          checked: checked("export_cycle", "2018 to 2019")
         }
       ]
-    }) }} #}
+    }) }}
 
-    {# {% set statusHtml %}
+    {% set statusHtml %}
     {{ govukCheckboxes({
       idPrefix: 'export_status',
       name: 'export_status',
       fieldset: {
         legend: {
           text: 'Select statuses',
-          classes: 'govuk-fieldset__legend--m'
+          classes: 'govuk-fieldset__legend--s'
         }
       },
       items: [
@@ -98,11 +103,11 @@
     {% endset %}
 
     {{ govukRadios({
-      idPrefix: "legend",
-      name: "legend",
+      idPrefix: "status",
+      name: "status",
       fieldset: {
         legend: {
-          text: "Which applications do you want to export?",
+          text: "Select applications",
           classes: "govuk-fieldset__legend--m"
         }
       },
@@ -120,63 +125,53 @@
           }
         }
       ]
-    }) }} #}
+    }) }}
 
-    {# {% set datesHtml %}
-
-      {{ govukDateInput({
-        id: "export_to_from",
-        namePrefix: "export_date_from",
-        fieldset: {
-          legend: {
-            text: "Export from date",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        }
-      }) }}
-
-      {{ govukDateInput({
-        id: "export_to_from",
-        namePrefix: "export_to_from",
-        fieldset: {
-          legend: {
-            text: "Export to date",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        }
-      }) }}
-    {% endset %} #}
-
-    {# {{ govukRadios({
-      idPrefix: "export_range",
-      name: "export_range",
+    {{ govukCheckboxes({
+      idPrefix: "diversity",
+      name: "diversity",
       fieldset: {
         legend: {
-          text: "Select applications that have changed within a specific timeframe",
+          text: "Select to include diversity information",
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      hint: {
+        text: "Only provided for applications in the ‘Accepted’ and ‘Conditions met’"
+      },
+      items: [
+        {
+          value: "Yes – include diversity information",
+          text: "Yes – include diversity information"
+        }
+      ]
+    }) }}
+
+    {{ govukCheckboxes({
+      idPrefix: "export_orgs",
+      name: "export_orgs",
+      fieldset: {
+        legend: {
+          text: "Limit applications to certain organisations",
           classes: "govuk-fieldset__legend--m"
         }
       },
       items: [
         {
-          value: "Only applications that have changed since I last exported",
-          text: "Only applications that have changed since I last exported"
+          value: data.organisations[0].name,
+          text: data.organisations[0].name
         },
         {
-          value: "Only applications that have changed in the last day",
-          text: "Only applications that have changed in the last day"
+          value: data.organisations[1].name,
+          text: data.organisations[1].name
         },
         {
-          value: "Only applications that have changed in the last week",
-          text: "Only applications that have changed in the last week"
-        },
-        {
-          value: "Only applications that have changed in the last month",
-          text: "Only applications that have changed in the last month"
+          value: data.organisations[2].name,
+          text: data.organisations[2].name
         }
       ]
-    }) }} #}
+    }) }}
+
 
 
 
