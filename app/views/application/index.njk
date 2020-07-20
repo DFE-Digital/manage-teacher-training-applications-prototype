@@ -39,7 +39,7 @@
       {# <h2 class="govuk-heading-l">Personal details</h2> #}
       {% include "_includes/application/details.njk" %}
 
-      <h2 class="govuk-heading-l">Course details</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Course details</h2>
       {{ govukSummaryList({
         rows: [{
           key: {
@@ -229,7 +229,7 @@
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
       <p>{{ application["personal-statement"]["subject-knowledge"] | safe | nl2br or "—" }}</p>
 
-      <h2 class="govuk-heading-l govuk-!-margin-botto-2">References</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">References</h2>
       {% set referencesGuidanceHtml %}
         <h2 class="govuk-heading-m">Choosing referees</h2>
         <p class="govuk-body">Referees should not be family members, partners or friends.</p>
