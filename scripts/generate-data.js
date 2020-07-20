@@ -32,9 +32,13 @@ const generateEvents = require('../app/data/generators/events')
 const generateFakeApplication = () => {
   const cycle = generateCycle(faker)
   const status = generateStatus(faker, cycle)
+  const personalDetails = generatePersonalDetails(faker);
   const offer = generateOffer(faker, status)
   const notes = generateNotes(faker);
-  const events = generateEvents(faker, status);
+  const events = generateEvents(faker, {
+    offer: offer,
+    status: status
+  });
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
@@ -53,7 +57,7 @@ const generateFakeApplication = () => {
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
     notes: notes,
     events: events,
-    'personal-details': generatePersonalDetails(faker),
+    'personal-details': personalDetails,
     'contact-details': generateContactDetails(faker),
     'language-skills': {
       'english-is-main': 'Yes',
