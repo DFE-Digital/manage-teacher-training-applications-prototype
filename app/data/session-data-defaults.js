@@ -11,7 +11,7 @@ Object.values(applications).filter(app => {
 });
 
 module.exports = {
-  applications: filterApplications,
+  applications: applications,
   organisations: Object.values(organisations).filter(org => {
     return org.enabled;
   }),
