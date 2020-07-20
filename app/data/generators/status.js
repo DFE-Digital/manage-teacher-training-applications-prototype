@@ -5,8 +5,7 @@ module.exports = (faker, cycle) => {
       'Offer withdrawn',
       'Rejected',
       'Application withdrawn',
-      'Deferred',
-      'Enrolled'
+      'Deferred'
     ])
   }
 
@@ -21,8 +20,7 @@ module.exports = (faker, cycle) => {
       'Application withdrawn',
       'Conditions not met',
       'Conditions met',
-      'Deferred',
-      'Enrolled'
+      'Deferred'
     ])
   }
 

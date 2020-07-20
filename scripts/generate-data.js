@@ -32,8 +32,7 @@ const generateEvents = require('../app/data/generators/events')
 const generateFakeApplication = () => {
   const cycle = generateCycle(faker)
   const status = generateStatus(faker, cycle)
-
-
+  const offer = generateOffer(faker, status)
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
@@ -44,7 +43,7 @@ const generateFakeApplication = () => {
     locationname: generateTrainingLocation(faker),
     status: status,
     submittedDate: faker.date.past(),
-    offer: status === 'Offered' ? generateOffer(faker) : false,
+    offer: offer,
     previousOffer: status === 'Deferred' ? generateOffer(faker) : false,
     rejectedDate: status === 'Rejected' ? faker.date.past() : false,
     rejectedReasons: status === 'Rejected' ? generateRejection(faker) : false,

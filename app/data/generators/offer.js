@@ -1,4 +1,8 @@
-module.exports = (faker) => {
+module.exports = (faker, status) => {
+  if(!["Offered", "Accepted", "Conditions met", "Declined", "Offer withdrawn", "Conditions not met"].includes(status)) {
+    return null;
+  }
+
   const conditionStatus = faker.helpers.randomize([
     'Pending',
     'Met',
