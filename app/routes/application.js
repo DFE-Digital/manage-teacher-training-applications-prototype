@@ -31,8 +31,6 @@ module.exports = router => {
 
     res.render('application/index', {
       application,
-      // timeline: utils.getTimeline(application),
-      // conditions: utils.getConditions(application),
       status: req.query.status,
       success,
       flash: flashMessage
@@ -77,7 +75,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('application/timeline', {
-      applicationId: applicationId,
+      application,
       timeline: utils.getTimeline(application),
       conditions: utils.getConditions(application)
     })
