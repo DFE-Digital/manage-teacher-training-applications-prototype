@@ -5,23 +5,26 @@
     <div class="govuk-grid-column-one-third">
       <div class="app-card">
         <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.subject }}</h3>
-        {% if not item.missing %}
+        {% if not item.missing != "true" %}
           <p class="govuk-body govuk-!-margin-bottom-0">
             {{ item.type }}
             {% if item.provenance == "international" %}({{ item.country }}){% endif %}
           </p>
-          <p class="govuk-caption-m govuk-!-font-size-16">
-            <span class="govuk-visually-hidden">Awarded:</span> {{ item.year }}
-          </p>
-          <p class="govuk-body govuk-!-margin-bottom-0">
-            <span class="govuk-visually-hidden">Grade:</span> <b>{{ item.grade }}</b>
-          </p>
+          <p class="govuk-caption-m govuk-!-font-size-16">Awarded {{ item.year | date("y") }}</p>
+          <ul class="govuk-list govuk-!-margin-bottom-1">
+            {% for item in item.grade %}
+            <li>
+              <span class="govuk-visually-hidden">Grade:</span> {{ item.grade }}
+              {% if item.exam %}({{ item.exam }}){% endif %}
+            </li>
+            {% endfor %}
+          </ul>
           {% if item.naric %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
-            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference: {{ item.naric.reference }} </p>
+            <p class="govuk-body-s govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
+            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference {{ item.naric.reference }} </p>
           {% endif %}
         {% else %}
-          <p class="govuk-body govuk-!-margin-bottom-0">Candidate does not have this qualification yet.</p>
+          <p class="govuk-body govuk-!-margin-bottom-1">Candidate does not have this qualification yet.</p>
           <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Reason given</h4>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ item.missing }}</p>
         {% endif %}

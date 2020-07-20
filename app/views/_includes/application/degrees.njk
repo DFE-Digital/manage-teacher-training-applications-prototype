@@ -14,14 +14,11 @@
             <spam class="aria-hidden"> - </span>
             <span class="govuk-visually-hidden">Awarded:</span> {{ item.endDate }}
           </p>
-          <p class="govuk-body govuk-!-margin-bottom-0">
-            <span class="govuk-visually-hidden">Grade:</span> <b>{{ item.grade }}</b>
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            <span class="govuk-visually-hidden">Grade:</span> {{ item.grade }} {% if item.predicted %}(Predicted){% endif %}
           </p>
-          {% if item.predicted %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Predicted</p>
-          {% endif %}
           {% if item.naric %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
+            <p class="govuk-body-s govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
             <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference {{ item.naric.reference }} </p>
           {% endif %}
         </div>
