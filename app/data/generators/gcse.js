@@ -77,7 +77,10 @@ module.exports = (faker) => {
     separateEnglish2: 0.2
   })
 
-  const provenance = faker.helpers.randomize(['domestic', 'international'])
+  const provenance = weighted.select({
+    domestic: 0.8,
+    international: 0.2
+  })
   if (provenance === 'domestic') {
     return {
       maths: {

@@ -4,25 +4,31 @@
     {% for item in application.gcse | toArray %}
     <div class="govuk-grid-column-one-third">
       <div class="app-card">
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.subject }}</h3>
-        {% if not item.missing != "true" %}
-          <p class="govuk-body govuk-!-margin-bottom-0">
-            {{ item.type }}
-            {% if item.provenance == "international" %}({{ item.country }}){% endif %}
-          </p>
-          <p class="govuk-caption-m govuk-!-font-size-16">Awarded {{ item.year | date("y") }}</p>
-          <ul class="govuk-list govuk-!-margin-bottom-1">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.subject }}</h3>
+        {% if item.missing == "false" %}
+        <dl class="app-qualification">
+          <dt class="app-qualification__key">Type of qualification</dt>
+          <dd class="app-qualification__value govuk-!-margin-bottom-1">
+            {{ item.type }}{% if item.provenance == "international" %} ({{ item.country }}){% endif %}
+          </dd>
+          <dt class="app-qualification__key">Awarded</dt>
+          <dd class="app-qualification__value app-qualification__value--caption">
+            {{ item.year | date("y") }}
+          </dd>
+          <dt class="app-qualification__key">Grade</dt>
+          <dd class="app-qualification__value">
+            <ul class="govuk-list govuk-!-margin-bottom-0">
             {% for item in item.grade %}
-            <li>
-              <span class="govuk-visually-hidden">Grade:</span> {{ item.grade }}
-              {% if item.exam %}({{ item.exam }}){% endif %}
-            </li>
+              <li>{{ item.grade }}{% if item.exam %} ({{ item.exam }}){% endif %}</li>
             {% endfor %}
-          </ul>
-          {% if item.naric %}
-            <p class="govuk-body-s govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
-            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference {{ item.naric.reference }} </p>
-          {% endif %}
+            </ul>
+          </dd>
+        {% if item.naric %}
+          <dt class="app-qualification__key">Comparablity</dt>
+          <dd class="app-qualification__value govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</dd>
+          <dd class="app-qualification__value app-qualification__value--caption">NARIC reference {{ item.naric.reference }}</dd>
+        {% endif %}
+        </dl>
         {% else %}
           <p class="govuk-body govuk-!-margin-bottom-1">Candidate does not have this qualification yet.</p>
           <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Reason given</h4>

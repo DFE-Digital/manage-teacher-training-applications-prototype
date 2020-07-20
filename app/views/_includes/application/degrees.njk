@@ -5,22 +5,32 @@
     {% for item in degrees %}
       <div class="govuk-grid-column-one-third">
         <div class="app-card">
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.type }} {{ item.subject }}</h3>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
+          <dl class="app-qualification">
           {% if item.provenance == "international" %}
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ [item.org, item.country] | join(", ") }}</p>
+            <dt class="app-qualification__key">Institution</dt>
+            <dd class="app-qualification__value govuk-!-margin-bottom-1">
+              {{ [item.org, item.country] | join(", ") }}
+            </dd>
           {% endif %}
-          <p class="govuk-caption-m govuk-!-font-size-16">
-            <span class="govuk-visually-hidden">Started:</span> {{ item.startDate }}
-            <spam class="aria-hidden"> - </span>
-            <span class="govuk-visually-hidden">Awarded:</span> {{ item.endDate }}
-          </p>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            <span class="govuk-visually-hidden">Grade:</span> {{ item.grade }} {% if item.predicted %}(Predicted){% endif %}
-          </p>
+            <dt class="app-qualification__key">Started and graduated</dt>
+            <dd class="app-qualification__value app-qualification__value--caption">
+              {{ item.startDate }} - {{ item.endDate }}
+            </dd>
+            <dt class="app-qualification__key">Grade</dt>
+            <dd class="app-qualification__value">
+              {{ item.grade }}{% if item.predicted %} (Predicted){% endif %}
+            </dd>
           {% if item.naric %}
-            <p class="govuk-body-s govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
-            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference {{ item.naric.reference }} </p>
+            <dt class="app-qualification__key">Comparablity</dt>
+            <dd class="app-qualification__value govuk-!-margin-bottom-1">
+              Comparable to a {{ item.naric.comparable }}
+            </dd>
+            <dd class="app-qualification__value app-qualification__value--caption">
+              NARIC reference {{ item.naric.reference }}
+            </dd>
           {% endif %}
+          </dl>
         </div>
       </div>
     {% endfor %}

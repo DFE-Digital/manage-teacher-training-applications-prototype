@@ -3,12 +3,15 @@ const degreeData = require('../degree')
 
 module.exports = (faker) => {
   const item = (faker) => {
-    const provenance = faker.helpers.randomize(['domestic', 'international'])
     const subject = faker.helpers.randomize(degreeData().subjects)
     const predicted = faker.random.boolean()
     const startDate = '2017'
     const endDate = '2020'
 
+    const provenance = weighted.select({
+      domestic: 0.8,
+      international: 0.2
+    })
     if (provenance === 'domestic') {
       const type = faker.helpers.randomize(degreeData().types.all)
       const level = type.level
