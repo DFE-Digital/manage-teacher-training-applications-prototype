@@ -2,16 +2,26 @@ module.exports = (faker, params) => {
 
   let events = { items: [] };
 
+  let date = faker.helpers.randomize([
+    "2019-08-12",
+    "2019-08-11",
+    faker.date.past(),
+    faker.date.past(),
+    faker.date.past(),
+    faker.date.past(),
+    faker.date.past()
+  ])
+
   events.items.push({
     title: 'Application submitted',
     user: "Candidate",
-    date: faker.date.past()
+    date: date
   })
 
   events.items.push({
     title: 'Note added',
     user: faker.name.findName(),
-    date: faker.date.past(),
+    date: date,
     meta: {
       noteIndex: 0
     }
@@ -21,7 +31,7 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Application rejected',
       user: faker.name.findName(),
-      date: faker.date.past()
+      date: date
     })
   }
 
@@ -29,7 +39,7 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Application withdrawn',
       user: 'Candidate',
-      date: faker.date.past()
+      date: date
     })
   }
 
@@ -37,7 +47,7 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Offer made',
       user: faker.name.findName(),
-      date: faker.date.past()
+      date: date
     })
   }
 
@@ -45,7 +55,7 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Offer withdrawn',
       user: faker.name.findName(),
-      date: faker.date.past()
+      date: date
     })
   }
 
@@ -53,13 +63,13 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Offer accepted',
       user: 'Candidate',
-      date: faker.date.past()
+      date: date
     })
   } else if(params.status === "Declined") {
     events.items.push({
       title: 'Offer declined',
       user: 'Candidate',
-      date: faker.date.past()
+      date: date
     })
   }
 
@@ -67,7 +77,7 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Conditions met',
       user: faker.name.findName(),
-      date: faker.date.past()
+      date: date
     })
   }
 
@@ -75,7 +85,7 @@ module.exports = (faker, params) => {
     events.items.push({
       title: 'Conditions not met',
       user: faker.name.findName(),
-      date: faker.date.past()
+      date: date
     })
   }
 
