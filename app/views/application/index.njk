@@ -145,8 +145,10 @@
         summaryText: "View candidate guidance",
         html: interviewGuidanceHtml
       }) }}
-      <p class="govuk-body">{{application["personal-statement"].interview | nl2br or "No information shared"}}</p>
+      <p class="govuk-body">{{ application["personal-statement"].interview | nl2br or "No information shared" }}</p>
+    </div>
 
+    <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Qualifications</h2>
       {% set qualificationsGuidanceHtml %}
         <h2 class="govuk-heading-m">Academic and other relevant qualifications</h2>
@@ -161,7 +163,9 @@
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
       {% include "_includes/application/other-qualifications.njk" %}
+    </div>
 
+    <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Work history</h2>
       {% set workHistoryGuidanceHtml %}
         <h2 class="govuk-heading-m">Work history</h2>

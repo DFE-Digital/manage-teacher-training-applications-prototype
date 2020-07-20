@@ -1,9 +1,8 @@
-{% set degrees = application.degree | toArray %}
-<h2 class="govuk-heading-m govuk-!-margin-bottom-2">{{ 'Degrees' if degrees.length > 1 else 'Degree' }}</h2>
+{% set degrees = application.degree %}
+<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Degree{{ 's' if degrees.length > 1 }}</h2>
 <div class="govuk-grid govuk-!-margin-bottom-8">
   <div class="govuk-grid-row">
     {% for item in degrees %}
-      {% set grade = item["grade-predicted"] + " (Predicted)" if item["grade-predicted"] else item.grade %}
       <div class="govuk-grid-column-one-third">
         <div class="app-card">
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.type }} {{ item.subject }}</h3>
@@ -11,14 +10,19 @@
             <p class="govuk-body govuk-!-margin-bottom-0">{{ [item.org, item.country] | join(", ") }}</p>
           {% endif %}
           <p class="govuk-caption-m govuk-!-font-size-16">
-            <span class="govuk-visually-hidden">Started: </span>{{ item['start-date'] }}
+            <span class="govuk-visually-hidden">Started:</span> {{ item.startDate }}
             <spam class="aria-hidden"> - </span>
-            <span class="govuk-visually-hidden">Awarded: </span>{{ item['end-date'] }}
+            <span class="govuk-visually-hidden">Awarded:</span> {{ item.endDate }}
           </p>
-          <p class="govuk-body-l govuk-!-font-weight-bold govuk-!-margin-bottom-0"><span class="govuk-visually-hidden">Grade: </span>{{ grade }}</p>
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            <span class="govuk-visually-hidden">Grade:</span> <b>{{ item.grade }}</b>
+          </p>
+          {% if item.predicted %}
+            <p class="govuk-body govuk-!-margin-bottom-1">Predicted</p>
+          {% endif %}
           {% if item.naric %}
             <p class="govuk-body govuk-!-margin-bottom-1">Comparable to a {{ item.naric.comparable }}</p>
-            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference: {{ item.naric.reference }} </p>
+            <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">NARIC reference {{ item.naric.reference }} </p>
           {% endif %}
         </div>
       </div>
