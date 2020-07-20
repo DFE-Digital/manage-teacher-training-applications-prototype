@@ -29,11 +29,9 @@ const generateNotes = require('../app/data/generators/notes')
 const generateEvents = require('../app/data/generators/events')
 
 // Populate application data object with fake data
-const generateFakeApplication = (params) => {
-  params = params || {}
+const generateFakeApplication = (params = {}) => {
   const cycle = params.cycle || generateCycle(faker)
   const status = params.status || generateStatus(faker, cycle)
-  const personalDetails = generatePersonalDetails(faker)
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
 
   let offer = null
@@ -46,32 +44,27 @@ const generateFakeApplication = (params) => {
   }
 
   const notes = generateNotes(faker)
-  const events = generateEvents(faker, {
-    offer: offer,
-    status: status
-  })
-
-
-
+  const events = generateEvents(faker, { offer, status })
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
-    cycle: cycle,
+    offerCanNotBeReconfirmed,
+    cycle,
     accreditingbody: generateOrganisation(faker).name,
     provider: generateOrganisation(faker).name,
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
-    status: status,
+    status,
     submittedDate: faker.date.past(),
-    offer: offer,
+    offer,
     previousOffer: previousOffer,
     rejectedDate: status === 'Rejected' ? faker.date.past() : null,
     rejectedReasons: status === 'Rejected' ? generateRejection(faker) : null,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
-    notes: notes,
-    events: events,
-    'personal-details': personalDetails,
+    notes,
+    events,
+    'personal-details': generatePersonalDetails(faker),
     'contact-details': generateContactDetails(faker),
     'language-skills': {
       'english-is-main': 'Yes',
@@ -99,38 +92,24 @@ const generateFakeApplications = (count) => {
   const applications = []
 
   applications.push(generateFakeApplication({
-<<<<<<< HEAD
-    status: "Deferred"
-=======
     status: 'Deferred',
     cycle: 'Current cycle (2020 to 2021)'
->>>>>>> c42dcc1... Lint JavaScript
   }))
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
     offerCanNotBeReconfirmed: {
-<<<<<<< HEAD
-      reason: "location"
-    }
-=======
       reason: 'location'
     },
     cycle: 'Current cycle (2020 to 2021)'
->>>>>>> c42dcc1... Lint JavaScript
   }))
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
     offerCanNotBeReconfirmed: {
-<<<<<<< HEAD
-      reason: "course"
-    }
-=======
       reason: 'course'
     },
     cycle: 'Current cycle (2020 to 2021)'
->>>>>>> c42dcc1... Lint JavaScript
   }))
 
   for (var i = 0; i < count; i++) {
