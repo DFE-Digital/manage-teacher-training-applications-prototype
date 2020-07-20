@@ -1,8 +1,4 @@
 module.exports = (faker, status) => {
-  if(!["Offered", "Accepted", "Conditions met", "Declined", "Offer withdrawn", "Conditions not met", "Deferred"].includes(status)) {
-    return null;
-  }
-
   let conditionStatus = "Pending";
   if(status == "Conditions met") {
     conditionStatus = "Met"

@@ -1,9 +1,9 @@
 module.exports = router => {
   router.get('/application/:applicationId/offer/reconfirm', (req, res) => {
     const applicationId = req.params.applicationId
+
     const application = req.session.data.applications.find(app => app.id == applicationId)
     const conditions = application.previousOffer.standardConditions.concat(application.previousOffer.conditions)
-
     if (application.offerCanNotBeReconfirmed) {
       if (application.offerCanNotBeReconfirmed.reason === 'location') {
         res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-location`)
@@ -13,7 +13,7 @@ module.exports = router => {
     } else {
       res.render('offer/reconfirm/check', {
         application,
-        conditions: conditions
+        conditions
       })
     }
   })
