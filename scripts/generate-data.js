@@ -4,65 +4,68 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 
 // Fake data generators: general
-const applicationStatus = require('../app/data/generators/status')
-const course = require('../app/data/generators/course')
-const cycle = require('../app/data/generators/cycle')
-const organisation = require('../app/data/generators/organisation')
-const trainingLocation = require('../app/data/generators/training-location')
+const generateStatus = require('../app/data/generators/status')
+const generateCourse = require('../app/data/generators/course')
+const generateCycle = require('../app/data/generators/cycle')
+const generateOrganisation = require('../app/data/generators/organisation')
+const generateTrainingLocation = require('../app/data/generators/training-location')
 
 // Fake data generators: application
-const personalDetails = require('../app/data/generators/personal-details')
-const contactDetails = require('../app/data/generators/contact-details')
-const degree = require('../app/data/generators/degree')
-const gcse = require('../app/data/generators/gcse')
-const otherQualifications = require('../app/data/generators/other-qualifications')
-const workHistory = require('../app/data/generators/work-history')
-const schoolExperience = require('../app/data/generators/school-experience')
-const personalStatement = require('../app/data/generators/personal-statement')
-const references = require('../app/data/generators/references')
+const generatePersonalDetails = require('../app/data/generators/personal-details')
+const generateContactDetails = require('../app/data/generators/contact-details')
+const generateDegree = require('../app/data/generators/degree')
+const generateGcse = require('../app/data/generators/gcse')
+const generateOtherQualifications = require('../app/data/generators/other-qualifications')
+const generateWorkHistory = require('../app/data/generators/work-history')
+const generateSchoolExperience = require('../app/data/generators/school-experience')
+const generatePersonalStatement = require('../app/data/generators/personal-statement')
+const generateReferences = require('../app/data/generators/references')
 
 // Fake data generators: application management
-const offer = require('../app/data/generators/offer')
-const rejection = require('../app/data/generators/rejection')
-const withdrawal = require('../app/data/generators/withdrawal')
-const notes = require('../app/data/generators/notes')
-const events = require('../app/data/generators/events')
+const generateOffer = require('../app/data/generators/offer')
+const generateRejection = require('../app/data/generators/rejection')
+const generateWithdrawal = require('../app/data/generators/withdrawal')
+const generateNotes = require('../app/data/generators/notes')
+const generateEvents = require('../app/data/generators/events')
 
 // Populate application data object with fake data
-const fakeApplication = () => {
-  const thisCycle = cycle(faker)
+const generateFakeApplication = () => {
+  const cycle = generateCycle(faker)
+  const status = generateStatus(faker, cycle)
+
+
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
-    cycle: thisCycle,
-    accreditingbody: organisation(faker).name,
-    provider: organisation(faker).name,
-    course: course(faker),
-    locationname: trainingLocation(faker),
-    status: applicationStatus(faker, thisCycle),
+    cycle: cycle,
+    accreditingbody: generateOrganisation(faker).name,
+    provider: generateOrganisation(faker).name,
+    course: generateCourse(faker),
+    locationname: generateTrainingLocation(faker),
+    status: status,
     submittedDate: faker.date.past(),
-    offer: applicationStatus === 'Offered' ? offer(faker) : false,
-    previousOffer: applicationStatus === 'Deferred' ? offer(faker) : false,
-    rejectedDate: applicationStatus === 'Rejected' ? faker.date.past() : false,
-    rejectedReasons: applicationStatus === 'Rejected' ? rejection(faker) : false,
-    withdrawnDate: applicationStatus === 'Application withdrawn' ? faker.date.past() : false,
-    withdrawnReasons: applicationStatus === 'Application withdrawn' ? withdrawal(faker) : false,
-    notes: notes(faker),
-    events: events(faker),
-    'personal-details': personalDetails(faker),
-    'contact-details': contactDetails(faker),
+    offer: status === 'Offered' ? generateOffer(faker) : false,
+    previousOffer: status === 'Deferred' ? generateOffer(faker) : false,
+    rejectedDate: status === 'Rejected' ? faker.date.past() : false,
+    rejectedReasons: status === 'Rejected' ? generateRejection(faker) : false,
+    withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : false,
+    withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : false,
+    notes: generateNotes(faker),
+    events: generateEvents(faker),
+    'personal-details': generatePersonalDetails(faker),
+    'contact-details': generateContactDetails(faker),
     'language-skills': {
       'english-is-main': 'Yes',
       other: false,
       'english-qualifications': false
     },
-    'work-history': workHistory(faker),
-    degree: degree(faker),
-    gcse: gcse(faker),
-    'other-qualifications': otherQualifications(faker),
-    'school-experience': schoolExperience(faker),
-    'personal-statement': personalStatement(faker),
-    references: references(faker),
+    'work-history': generateWorkHistory(faker),
+    degree: generateDegree(faker),
+    gcse: generateGcse(faker),
+    'other-qualifications': generateOtherQualifications(faker),
+    'school-experience': generateSchoolExperience(faker),
+    'personal-statement': generatePersonalStatement(faker),
+    references: generateReferences(faker),
     miscellaneous: faker.lorem.paragraph()
   }
 }
@@ -77,7 +80,7 @@ const generateFakeApplications = (count) => {
   const applications = []
 
   for (var i = 0; i < count; i++) {
-    const application = fakeApplication()
+    const application = generateFakeApplication()
     applications.push(application)
   }
 
@@ -107,5 +110,5 @@ const generateFile = (filePath, count) => {
 }
 
 const filePath = path.join(__dirname, '../app/data/applications.json')
-const count = process.argv.slice(-1)[0] || 50
+const count = process.argv.slice(-1)[0] || 80
 generateFile(filePath, count)
