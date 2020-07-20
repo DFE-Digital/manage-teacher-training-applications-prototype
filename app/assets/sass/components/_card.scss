@@ -1,8 +1,8 @@
 .app-card {
-  // background-color: govuk-colour("light-grey");
   border: 1px solid govuk-colour("mid-grey");
   display: block;
   padding: govuk-spacing(2);
+  margin-bottom: govuk-spacing(2);
   text-decoration: none;
 
   @include govuk-media-query($from: desktop) {
