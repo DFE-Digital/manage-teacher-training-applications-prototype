@@ -2,8 +2,6 @@
 
 {% set primaryNavId = 'applications' %}
 
-{% set application = data.applications[applicationId] %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     href: "/application/" + application.id

@@ -1,7 +1,6 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set application = data.applications[applicationId] %}
 {% set subNavId = "timeline" %}
 {% set status = application.status %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
@@ -17,13 +16,11 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-
-
-
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
 
   {% include "_includes/application/respond-prompt.njk" %}
   {% include "_includes/application/defer-prompt.njk" %}
+  {% include "_includes/application/feedback-prompt.njk" %}
 
   {% include "_includes/application/sub-nav.njk" %}
 

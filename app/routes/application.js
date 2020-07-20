@@ -4,7 +4,7 @@ module.exports = router => {
   router.get('/application/:applicationId', (req, res) => {
     const success = req.query.success
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     var flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -31,8 +31,6 @@ module.exports = router => {
 
     res.render('application/index', {
       application,
-      // timeline: utils.getTimeline(application),
-      // conditions: utils.getConditions(application),
       status: req.query.status,
       success,
       flash: flashMessage
@@ -41,7 +39,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/offer', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -66,7 +64,7 @@ module.exports = router => {
     })
 
     res.render('application/offer', {
-      applicationId: applicationId,
+      application,
       conditions: utils.getConditions(application),
       flash: flashMessage
     })
@@ -74,10 +72,10 @@ module.exports = router => {
 
   router.get('/application/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('application/timeline', {
-      applicationId: applicationId,
+      application,
       timeline: utils.getTimeline(application),
       conditions: utils.getConditions(application)
     })
@@ -85,7 +83,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/decision', (req, res) => {
     res.render('application/decision', {
-      applicationId: req.params.applicationId
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
@@ -108,7 +106,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/cycle/edit', (req, res) => {
     res.render('application/cycle/edit/cycle', {
-      applicationId: req.params.applicationId
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
@@ -119,13 +117,13 @@ module.exports = router => {
 
   router.get('/application/:applicationId/cycle/edit/check', (req, res) => {
     res.render('application/cycle/edit/check', {
-      applicationId: req.params.applicationId
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
   router.post('/application/:applicationId/cycle/edit/check', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id === applicationId)
     application.cycle = req.session.data.applicatoncycle
     if (application.cycle === 'Next cycle (2021 to 2022)') {
       application.previousOffer = application.offer

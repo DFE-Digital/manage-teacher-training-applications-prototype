@@ -1,12 +1,11 @@
 {% extends "_layout.njk" %}
 
-{% set application = applications[applicationId] %}
 {% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
 {% set title = "Change location" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id
+    href: "/application/" + application.id + "/offer"
   }) }}
 {% endblock %}
 
@@ -46,7 +45,7 @@
           text: "Continue"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
 {% endblock %}
