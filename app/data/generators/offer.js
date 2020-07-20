@@ -3,11 +3,16 @@ module.exports = (faker, status) => {
     return null;
   }
 
-  const conditionStatus = faker.helpers.randomize([
-    'Pending',
-    'Met',
-    'Not met'
-  ])
+  let conditionStatus = "Pending";
+  if(status == "Conditions met") {
+    conditionStatus = "Met"
+  }
+  if(status == "Conditions not met") {
+    conditionStatus = "Not met"
+  }
+  if(status == "Deferred") {
+    conditionStatus = "Met"
+  }
 
   return {
     madeDate: faker.date.past(),
