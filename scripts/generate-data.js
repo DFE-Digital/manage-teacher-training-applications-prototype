@@ -33,6 +33,8 @@ const generateFakeApplication = () => {
   const cycle = generateCycle(faker)
   const status = generateStatus(faker, cycle)
   const offer = generateOffer(faker, status)
+  const notes = generateNotes(faker);
+  const events = generateEvents(faker, status);
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
@@ -44,18 +46,18 @@ const generateFakeApplication = () => {
     status: status,
     submittedDate: faker.date.past(),
     offer: offer,
-    previousOffer: status === 'Deferred' ? generateOffer(faker) : false,
-    rejectedDate: status === 'Rejected' ? faker.date.past() : false,
-    rejectedReasons: status === 'Rejected' ? generateRejection(faker) : false,
-    withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : false,
-    withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : false,
-    notes: generateNotes(faker),
-    events: generateEvents(faker),
+    previousOffer: status === 'Deferred' ? generateOffer(faker) : null,
+    rejectedDate: status === 'Rejected' ? faker.date.past() : null,
+    rejectedReasons: status === 'Rejected' ? generateRejection(faker) : null,
+    withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
+    withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
+    notes: notes,
+    events: events,
     'personal-details': generatePersonalDetails(faker),
     'contact-details': generateContactDetails(faker),
     'language-skills': {
       'english-is-main': 'Yes',
-      other: false,
+      other: null,
       'english-qualifications': false
     },
     'work-history': generateWorkHistory(faker),
