@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid')
 module.exports = router => {
   router.get('/application/:applicationId/new/change-location', (req, res) => {
     res.render('offer/new/change-location/location', {
-      applicationId: req.params.applicationId
+      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
     })
   })
 
@@ -13,7 +13,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/new/change-location/conditions', (req, res) => {
     res.render('offer/new/change-location/conditions', {
-      applicationId: req.params.applicationId
+      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
     })
   })
 
@@ -44,14 +44,14 @@ module.exports = router => {
     }
 
     res.render('offer/new/change-location/confirm', {
-      applicationId: req.params.applicationId,
+      application: req.session.data.applications.find(app => app.id == req.params.applicationId),
       conditions: standardConditions.concat(furtherConditions)
     })
   })
 
   router.post('/application/:applicationId/new/change-location/confirm', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications[applicationId]
+    const application = req.session.data.applications.find(app => app.id == applicationId)
     application.status = 'Offered'
     application.offer = {
       madeDate: new Date().toISOString()
