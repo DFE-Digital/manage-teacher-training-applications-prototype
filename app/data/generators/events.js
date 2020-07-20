@@ -1,10 +1,9 @@
 module.exports = (faker, params) => {
+  const events = { items: [] }
 
-  let events = { items: [] };
-
-  let date = faker.helpers.randomize([
-    "2019-08-12",
-    "2019-08-11",
+  const date = faker.helpers.randomize([
+    '2019-08-12',
+    '2019-08-11',
     faker.date.past(),
     faker.date.past(),
     faker.date.past(),
@@ -14,7 +13,7 @@ module.exports = (faker, params) => {
 
   events.items.push({
     title: 'Application submitted',
-    user: "Candidate",
+    user: 'Candidate',
     date: date
   })
 
@@ -27,7 +26,7 @@ module.exports = (faker, params) => {
     }
   })
 
-  if(params.status === "Rejected") {
+  if (params.status === 'Rejected') {
     events.items.push({
       title: 'Application rejected',
       user: faker.name.findName(),
@@ -35,7 +34,7 @@ module.exports = (faker, params) => {
     })
   }
 
-  if(params.status === "Application withdrawn") {
+  if (params.status === 'Application withdrawn') {
     events.items.push({
       title: 'Application withdrawn',
       user: 'Candidate',
@@ -43,7 +42,7 @@ module.exports = (faker, params) => {
     })
   }
 
-  if(params.offer) {
+  if (params.offer) {
     events.items.push({
       title: 'Offer made',
       user: faker.name.findName(),
@@ -51,7 +50,7 @@ module.exports = (faker, params) => {
     })
   }
 
-  if(params.status === "Offer withdrawn") {
+  if (params.status === 'Offer withdrawn') {
     events.items.push({
       title: 'Offer withdrawn',
       user: faker.name.findName(),
@@ -59,13 +58,13 @@ module.exports = (faker, params) => {
     })
   }
 
-  if(params.status === "Accepted") {
+  if (params.status === 'Accepted') {
     events.items.push({
       title: 'Offer accepted',
       user: 'Candidate',
       date: date
     })
-  } else if(params.status === "Declined") {
+  } else if (params.status === 'Declined') {
     events.items.push({
       title: 'Offer declined',
       user: 'Candidate',
@@ -73,7 +72,7 @@ module.exports = (faker, params) => {
     })
   }
 
-  if(params.status === "Conditions met") {
+  if (params.status === 'Conditions met') {
     events.items.push({
       title: 'Conditions met',
       user: faker.name.findName(),
@@ -81,7 +80,7 @@ module.exports = (faker, params) => {
     })
   }
 
-  if(params.status === "Conditions not met") {
+  if (params.status === 'Conditions not met') {
     events.items.push({
       title: 'Conditions not met',
       user: faker.name.findName(),
@@ -89,5 +88,5 @@ module.exports = (faker, params) => {
     })
   }
 
-  return events;
+  return events
 }

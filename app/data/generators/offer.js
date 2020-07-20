@@ -1,13 +1,13 @@
 module.exports = (faker, status) => {
-  let conditionStatus = "Pending";
-  if(status == "Conditions met") {
-    conditionStatus = "Met"
+  let conditionStatus = 'Pending'
+  if (status === 'Conditions met') {
+    conditionStatus = 'Met'
   }
-  if(status == "Conditions not met") {
-    conditionStatus = "Not met"
+  if (status === 'Conditions not met') {
+    conditionStatus = 'Not met'
   }
-  if(status == "Deferred") {
-    conditionStatus = "Met"
+  if (status === 'Deferred') {
+    conditionStatus = 'Met'
   }
 
   return {

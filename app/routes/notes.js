@@ -3,8 +3,7 @@ const utils = require('../data/application-utils')
 module.exports = router => {
   router.get('/application/:applicationId/notes', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id == applicationId)
-
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
@@ -22,7 +21,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/notes/first-time', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id == applicationId)
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('application/notes/first-time', {
       application
@@ -36,7 +35,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id == applicationId)
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('application/notes/new', {
       application
@@ -51,7 +50,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/notes/:noteId', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id == applicationId)
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('application/notes/show', {
       application,

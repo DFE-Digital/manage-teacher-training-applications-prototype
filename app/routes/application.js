@@ -83,7 +83,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/decision', (req, res) => {
     res.render('application/decision', {
-      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
@@ -106,7 +106,7 @@ module.exports = router => {
 
   router.get('/application/:applicationId/cycle/edit', (req, res) => {
     res.render('application/cycle/edit/cycle', {
-      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
@@ -117,13 +117,13 @@ module.exports = router => {
 
   router.get('/application/:applicationId/cycle/edit/check', (req, res) => {
     res.render('application/cycle/edit/check', {
-      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
   router.post('/application/:applicationId/cycle/edit/check', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id == applicationId)
+    const application = req.session.data.applications.find(app => app.id === applicationId)
     application.cycle = req.session.data.applicatoncycle
     if (application.cycle === 'Next cycle (2021 to 2022)') {
       application.previousOffer = application.offer

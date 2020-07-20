@@ -29,25 +29,27 @@ const generateNotes = require('../app/data/generators/notes')
 const generateEvents = require('../app/data/generators/events')
 
 // Populate application data object with fake data
-const generateFakeApplication = () => {
-  const cycle = generateCycle(faker)
-  const status = generateStatus(faker, cycle)
-  const personalDetails = generatePersonalDetails(faker);
+const generateFakeApplication = (params) => {
+  params = params || {}
+  const cycle = params.cycle || generateCycle(faker)
+  const status = params.status || generateStatus(faker, cycle)
+  const personalDetails = generatePersonalDetails(faker)
+  const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
 
-  let offer = null;
-  if(["Offered", "Accepted", "Conditions met", "Declined", "Offer withdrawn", "Conditions not met"].includes(status)) {
+  let offer = null
+  if (['Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
     offer = generateOffer(faker, status)
   }
-  let previousOffer = null;
-  if(["Deferred"].includes(status)) {
+  let previousOffer = null
+  if (['Deferred'].includes(status)) {
     previousOffer = generateOffer(faker, status)
   }
 
-  const notes = generateNotes(faker);
+  const notes = generateNotes(faker)
   const events = generateEvents(faker, {
     offer: offer,
     status: status
-  });
+  })
 
 
 
@@ -97,21 +99,38 @@ const generateFakeApplications = (count) => {
   const applications = []
 
   applications.push(generateFakeApplication({
+<<<<<<< HEAD
     status: "Deferred"
+=======
+    status: 'Deferred',
+    cycle: 'Current cycle (2020 to 2021)'
+>>>>>>> c42dcc1... Lint JavaScript
   }))
 
   applications.push(generateFakeApplication({
-    status: "Deferred",
+    status: 'Deferred',
     offerCanNotBeReconfirmed: {
+<<<<<<< HEAD
       reason: "location"
     }
+=======
+      reason: 'location'
+    },
+    cycle: 'Current cycle (2020 to 2021)'
+>>>>>>> c42dcc1... Lint JavaScript
   }))
 
   applications.push(generateFakeApplication({
-    status: "Deferred",
+    status: 'Deferred',
     offerCanNotBeReconfirmed: {
+<<<<<<< HEAD
       reason: "course"
     }
+=======
+      reason: 'course'
+    },
+    cycle: 'Current cycle (2020 to 2021)'
+>>>>>>> c42dcc1... Lint JavaScript
   }))
 
   for (var i = 0; i < count; i++) {

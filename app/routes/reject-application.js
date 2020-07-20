@@ -3,7 +3,7 @@ const utils = require('../data/application-utils')
 module.exports = router => {
   router.get('/application/:applicationId/reject', (req, res) => {
     res.render('application/reject/index', {
-      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
@@ -22,7 +22,7 @@ module.exports = router => {
     var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes'
 
     res.render('application/reject/other-reasons-for-rejection', {
-      application: req.session.data.applications.find(app => app.id == req.params.applicationId),
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
       noReasonsGivenYet: noReasonsGivenYet
     })
   })
@@ -33,13 +33,13 @@ module.exports = router => {
 
   router.get('/application/:applicationId/reject/check', (req, res) => {
     res.render('application/reject/check', {
-      application: req.session.data.applications.find(app => app.id == req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
   router.post('/application/:applicationId/reject/check', (req, res) => {
     const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id == applicationId)
+    const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Rejected'
     application.rejectedDate = new Date().toISOString()
     application.rejectedReasons = utils.getRejectReasons(req.session.data.rejectionReasons)
