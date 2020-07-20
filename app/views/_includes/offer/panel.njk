@@ -10,7 +10,7 @@
     actions: {
       items: [
         {
-          href: "/application/"+applicationId+"/offer/change-provider",
+          href: "/application/"+application.id+"/offer/change-provider",
           text: "Change",
           visuallyHiddenText: ""
         }
@@ -27,7 +27,7 @@
     actions: {
       items: [
         {
-          href: "/application/"+applicationId+"/offer/change-course",
+          href: "/application/"+application.id+"/offer/change-course",
           text: "Change",
           visuallyHiddenText: ""
         }
@@ -44,7 +44,7 @@
     actions: {
       items: [
         {
-          href: "/application/"+applicationId+"/offer/change-location",
+          href: "/application/"+application.id+"/offer/change-location",
           text: "Change",
           visuallyHiddenText: ""
         }
@@ -61,7 +61,7 @@
     actions: {
       items: [
         {
-          href: "/application/"+applicationId+"/offer/change-study-mode",
+          href: "/application/"+application.id+"/offer/change-study-mode",
           text: "Change",
           visuallyHiddenText: ""
         }
@@ -118,7 +118,7 @@
 
 {% if application.status == "Offered" %}
   <p class="govuk-body govuk-!-margin-bottom-0">
-    <a href="/application/{{applicationId}}/withdraw">Withdraw offer</a>
+    <a href="/application/{{application.id}}/withdraw">Withdraw offer</a>
   </p>
 {% endif %}
 
