@@ -49,6 +49,9 @@ const generateFakeApplication = () => {
     status: status
   });
 
+
+
+
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
     cycle: cycle,
@@ -93,6 +96,24 @@ const generateFakeApplication = () => {
 const generateFakeApplications = (count) => {
   const applications = []
 
+  applications.push(generateFakeApplication({
+    status: "Deferred"
+  }))
+
+  applications.push(generateFakeApplication({
+    status: "Deferred",
+    offerCanNotBeReconfirmed: {
+      reason: "location"
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: "Deferred",
+    offerCanNotBeReconfirmed: {
+      reason: "course"
+    }
+  }))
+
   for (var i = 0; i < count; i++) {
     const application = generateFakeApplication()
     applications.push(application)
@@ -124,5 +145,5 @@ const generateFile = (filePath, count) => {
 }
 
 const filePath = path.join(__dirname, '../app/data/applications.json')
-const count = process.argv.slice(-1)[0] || 80
+const count = process.argv.slice(-1)[0] || 50
 generateFile(filePath, count)
