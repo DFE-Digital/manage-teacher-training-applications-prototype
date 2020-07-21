@@ -21,8 +21,7 @@ module.exports = (faker, cycle) => {
       'Rejected',
       'Application withdrawn',
       'Conditions not met',
-      'Conditions met',
-      'Deferred'
+      'Conditions met'
     ])
   }
 
