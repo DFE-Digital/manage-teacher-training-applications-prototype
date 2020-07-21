@@ -4,11 +4,11 @@
     {% for item in application.gcse | toArray %}
     <div class="govuk-grid-column-one-third">
       <div class="app-card">
+        {% if item.missing == "false" %}
         <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">
           <span class="govuk-!-font-weight-bold">{{ item.subject }}</span>
           {{ item.type }}
         </h3>
-        {% if item.missing == "false" %}
         <dl class="app-qualification">
           <dt class="app-qualification__key">Awarded</dt>
           <dd class="app-qualification__value app-qualification__value--caption">
@@ -30,6 +30,7 @@
         {% endif %}
         </dl>
         {% else %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.subject }}</h3>
           <p class="govuk-body govuk-!-margin-bottom-1">Candidate does not have this qualification yet.</p>
           <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Reason given</h4>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ item.missing }}</p>
