@@ -1,0 +1,35 @@
+{% set item = application.englishLanguageQualification %}
+<div class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-m">English as a foreign language</h2>
+  <p class="govuk-body">{{ item.status }}.</p>
+  {% if item.hasQualification == "Yes" %}
+    <div class="govuk-grid">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+          <div class="app-card">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }}</h3>
+            <dl class="app-qualification">
+              <dt class="app-qualification__key">Awarded</dt>
+              <dd class="app-qualification__value app-qualification__value--caption">
+                {{ item.year | date("y") }}
+              </dd>
+              <dt class="app-qualification__key">{{ item.gradeLabel }}</dt>
+              <dd class="app-qualification__value">
+                {{ item.grade }}
+              </dd>
+            {% if item.reference %}
+              <dt class="app-qualification__key">{{ item.referenceLabel }}</dt>
+              <dd class="app-qualification__value app-qualification__value--caption">
+                {{ item.reference }}
+              </dd>
+            {% endif %}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% elif item.missing %}
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Reason given</h3>
+    <p class="govuk-body">{{ item.missing }}</p>
+  {% endif %}
+</div>

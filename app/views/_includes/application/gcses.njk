@@ -1,35 +1,44 @@
-{% set rowData = [] %}
-{% for item in application.gcse | toArray %}
-  {% if not item.missing %}
-    {# Only awarding body non-UK qualification #}
-    {% set institution %}
-      <br><span class="govuk-body-s">{{ [item["award-org"], item.country] | join(", ") if item["award-org"] }}</span>
-    {% endset %}
-    {% set rows = rowData.push([{
-      html: [item.type, item.subject] | join(" – ") + institution
-    }, {
-      html: item.year
-    }, {
-      html: item.grade
-    }]) %}
-  {% else %}
-    {% set rows = rowData.push([{
-      html: [item.type, item.subject] | join(" – ")
-    }, {
-      html: item.missing,
-      colspan: 2
-    }]) %}
-  {% endif %}
-{% endfor %}
-{{ govukTable({
-  head: [{
-    classes: "govuk-!-width-one-half",
-    text: "GCSEs or equivalent"
-  }, {
-    classes: "govuk-!-width-one-quarter",
-    text: "Awarded"
-  }, {
-    text: "Grade"
-  }],
-  rows: rowData
-}) }}
+<h2 class="govuk-heading-m">GCSEs or equivalent</h2>
+<div class="govuk-!-margin-bottom-8">
+  <div class="govuk-grid">
+    <div class="govuk-grid-row app-grid-row--flex">
+      {% for item in application.gcse | toArray %}
+      <div class="govuk-grid-column-one-third">
+        <div class="app-card">
+          {% if item.missing == "false" %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">
+            <span class="govuk-!-font-weight-bold">{{ item.subject }}</span>
+            {{ item.type }}
+          </h3>
+          <dl class="app-qualification">
+            <dt class="app-qualification__key">Awarded</dt>
+            <dd class="app-qualification__value app-qualification__value--caption">
+              {{ item.year | date("y") }}{% if item.country != "United Kingdom" %}, {{ item.country }}{% endif %}
+            </dd>
+            <dt class="app-qualification__key">Grade</dt>
+            <dd class="app-qualification__value">
+              <ul class="govuk-list govuk-!-margin-bottom-0">
+              {% for item in item.grade %}
+                <li>{{ item.grade }}{% if item.exam %} ({{ item.exam }}){% endif %}</li>
+              {% endfor %}
+              </ul>
+            </dd>
+          {% if item.naric %}
+            <dt class="app-qualification__key">Comparablity</dt>
+            <dd class="app-qualification__value govuk-body-s">
+              NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
+            </dd>
+          {% endif %}
+          </dl>
+          {% else %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.subject }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-1">Candidate does not have this qualification yet.</p>
+            <h4 class="govuk-heading-s govuk-!-margin-bottom-0">Reason given</h4>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ item.missing }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

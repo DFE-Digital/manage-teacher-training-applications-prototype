@@ -1,3 +1,10 @@
+{% set nationalityText %}
+  {% set nationalities = application["personal-details"].nationality %}
+  {%- for nationality in nationalities -%}
+    {{ (" and " if loop.last else ", ") if not loop.first }}{{ nationality }}
+  {%- endfor -%}
+{% endset %}
+
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -41,16 +48,9 @@
       text: "Nationality"
     },
     value: {
-      text: application["personal-details"].nationality
+      text: nationalityText
     }
   }, {
-    key: {
-      text: "Second nationality"
-    },
-    value: {
-      text: application["personal-details"]["second-nationality"]
-    }
-  } if application["personal-details"]["second-nationality"], {
     key: {
       text: "Residency status"
     },
