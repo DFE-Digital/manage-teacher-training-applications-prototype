@@ -21,11 +21,14 @@ module.exports = (faker) => {
     'Was the head coach for my athletics club. I’ve known them for 5 years'
   ])
 
-  return {
-    first: {
+  const referee = () => {
+    const firstName = faker.name.firstName()
+    const lastName = faker.name.lastName()
+
+    return {
       type,
-      name: faker.name.findName(),
-      email: faker.internet.email().toLowerCase(),
+      name: `${firstName} ${lastName}`,
+      email: faker.internet.email(firstName, lastName).toLowerCase(),
       tel: faker.phone.phoneNumber(),
       relationship: {
         summary: relationshipSummary,
@@ -37,21 +40,11 @@ module.exports = (faker) => {
         concerns: 'Impatient and intolerant by nature, and therefore not suited to work with children.'
       },
       comments
-    },
-    second: {
-      type,
-      name: faker.name.findName(),
-      email: faker.internet.email().toLowerCase(),
-      tel: faker.phone.phoneNumber(),
-      relationship: {
-        summary: relationshipSummary,
-        validated: faker.random.boolean()
-      },
-      safeguarding: {
-        response: faker.helpers.randomize(['no', 'yes']),
-        concerns: 'Impatient and intolerant by nature, and therefore not suited to work with children.'
-      },
-      comments
     }
+  }
+
+  return {
+    first: referee(),
+    second: referee()
   }
 }

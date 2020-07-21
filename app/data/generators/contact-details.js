@@ -1,6 +1,6 @@
-module.exports = (faker) => ({
+module.exports = (faker, personalDetails) => ({
   tel: faker.phone.phoneNumber(),
-  email: faker.internet.email().toLowerCase(),
+  email: faker.internet.email(personalDetails['given-name'], personalDetails['family-name']).toLowerCase(),
   address: {
     line1: faker.address.streetAddress(),
     line2: '',

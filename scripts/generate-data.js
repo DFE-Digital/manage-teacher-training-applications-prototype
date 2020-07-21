@@ -77,7 +77,7 @@ const generateFakeApplication = (params = {}) => {
     notes,
     events,
     'personal-details': personalDetails,
-    'contact-details': generateContactDetails(faker),
+    'contact-details': generateContactDetails(faker, personalDetails),
     'work-history': generateWorkHistory(faker),
     degree: generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: generateGcse(faker, personalDetails.isInternationalCandidate),
