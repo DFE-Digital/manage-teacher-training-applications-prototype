@@ -46,6 +46,16 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const events = generateEvents(faker, { offer, status })
 
+  let submittedDate = faker.date.past();
+  if(status === "Submitted") {
+    submittedDate = faker.helpers.randomize([
+      '2019-07-05T14:01:00',
+      '2019-07-21T18:59:00',
+      '2019-07-29',
+      '2019-08-10T13:32:00'
+    ])
+  }
+
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
@@ -55,7 +65,7 @@ const generateFakeApplication = (params = {}) => {
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,
-    submittedDate: faker.date.past(),
+    submittedDate,
     offer,
     previousOffer: previousOffer,
     rejectedDate: status === 'Rejected' ? faker.date.past() : null,
