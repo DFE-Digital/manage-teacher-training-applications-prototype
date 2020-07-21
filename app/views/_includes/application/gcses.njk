@@ -9,7 +9,7 @@
         <dl class="app-qualification">
           <dt class="app-qualification__key">Type of qualification</dt>
           <dd class="app-qualification__value govuk-!-margin-bottom-1">
-            {{ item.type }}{% if item.provenance == "international" %} ({{ item.country }}){% endif %}
+            {{ item.type }}{% if item.country != "United Kingdom" %} ({{ item.country }}){% endif %}
           </dd>
           <dt class="app-qualification__key">Awarded</dt>
           <dd class="app-qualification__value app-qualification__value--caption">

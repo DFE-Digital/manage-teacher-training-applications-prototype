@@ -319,10 +319,6 @@ module.exports = () => {
     value: 'Degree equivalent',
     text: 'Degree equivalent',
     type: 'other'
-  }, {
-    value: 'Unknown',
-    text: 'Unknown',
-    type: 'other'
   }]
 
   const subjects = [

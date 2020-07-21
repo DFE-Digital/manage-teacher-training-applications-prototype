@@ -7,7 +7,7 @@
         <div class="app-card">
           <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
           <dl class="app-qualification">
-          {% if item.provenance == "international" %}
+          {% if item.country != "United Kingdom" %}
             <dt class="app-qualification__key">Institution</dt>
             <dd class="app-qualification__value govuk-!-margin-bottom-1">
               {{ [item.org, item.country] | join(", ") }}

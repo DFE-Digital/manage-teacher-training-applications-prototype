@@ -15,6 +15,7 @@ const generatePersonalDetails = require('../app/data/generators/personal-details
 const generateContactDetails = require('../app/data/generators/contact-details')
 const generateDegree = require('../app/data/generators/degree')
 const generateGcse = require('../app/data/generators/gcse')
+const generateEnglishLanguageQualification = require('../app/data/generators/english-language-qualification')
 const generateOtherQualifications = require('../app/data/generators/other-qualifications')
 const generateWorkHistory = require('../app/data/generators/work-history')
 const generateSchoolExperience = require('../app/data/generators/school-experience')
@@ -33,6 +34,7 @@ const generateFakeApplication = (params = {}) => {
   const cycle = params.cycle || generateCycle(faker)
   const status = params.status || generateStatus(faker, cycle)
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
+  const personalDetails = generatePersonalDetails(faker)
 
   let offer = null
   if (['Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
@@ -67,18 +69,19 @@ const generateFakeApplication = (params = {}) => {
     status,
     submittedDate,
     offer,
-    previousOffer: previousOffer,
+    previousOffer,
     rejectedDate: status === 'Rejected' ? faker.date.past() : null,
     rejectedReasons: status === 'Rejected' ? generateRejection(faker) : null,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
     notes,
     events,
-    'personal-details': generatePersonalDetails(faker),
+    'personal-details': personalDetails,
     'contact-details': generateContactDetails(faker),
     'work-history': generateWorkHistory(faker),
-    degree: generateDegree(faker),
-    gcse: generateGcse(faker),
+    degree: generateDegree(faker, personalDetails.isInternationalCandidate),
+    gcse: generateGcse(faker, personalDetails.isInternationalCandidate),
+    englishLanguageQualification: generateEnglishLanguageQualification(faker),
     'other-qualifications': generateOtherQualifications(faker),
     'school-experience': generateSchoolExperience(faker),
     'personal-statement': generatePersonalStatement(faker),

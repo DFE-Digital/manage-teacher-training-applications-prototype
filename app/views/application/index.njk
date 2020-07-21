@@ -117,7 +117,7 @@
 
       {% if application.safeguarding %}
         {% set safeguardingHtml %}
-          <p class="govuk-body">{{application.safeguarding | nl2br }}</p>
+          <p class="govuk-body">{{ application.safeguarding | nl2br }}</p>
         {% endset %}
         <p class="govuk-body">The candidate has disclosed sensitive material related to safeguarding.</p>
         {{ govukDetails({
@@ -162,6 +162,9 @@
       }) }}
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
+      {% if application['personal-details'].isInternationalCandidate %}
+        {% include "_includes/application/english-language-qualification.njk" %}
+      {% endif %}
       {% include "_includes/application/other-qualifications.njk" %}
     </div>
 

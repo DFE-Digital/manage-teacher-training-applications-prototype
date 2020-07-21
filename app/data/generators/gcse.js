@@ -1,7 +1,7 @@
 const weighted = require('weighted')
 const gcseData = require('../gcse')
 
-module.exports = (faker) => {
+module.exports = (faker, isInternationCandidate) => {
   let year = faker.date.between('1970', '2016')
   year = year.getFullYear()
 
@@ -77,11 +77,61 @@ module.exports = (faker) => {
     separateEnglish2: 0.2
   })
 
-  const provenance = weighted.select({
-    domestic: 0.8,
-    international: 0.2
-  })
-  if (provenance === 'domestic') {
+  if (isInternationCandidate) {
+    return {
+      maths: {
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        missing: weighted.select({
+          'I will be taking an equivalency test on 18th August 2020': 0.2,
+          false: 0.8
+        }),
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [{
+          grade: faker.random.number({ min: 10, max: 20 })
+        }],
+        year
+      },
+      english: {
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        missing: weighted.select({
+          'I will be taking an equivalency test on 18th August 2020': 0.2,
+          false: 0.8
+        }),
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [{
+          grade: faker.random.number({ min: 10, max: 20 })
+        }],
+        year
+      },
+      science: {
+        type: 'Baccalauréat Général',
+        subject: 'Science',
+        country: 'France',
+        missing: weighted.select({
+          'I will be taking an equivalency test on 18th August 2020': 0.2,
+          false: 0.8
+        }),
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [{
+          grade: faker.random.number({ min: 10, max: 20 })
+        }],
+        year
+      }
+    }
+  } else {
     return {
       maths: {
         type,
@@ -114,60 +164,6 @@ module.exports = (faker) => {
           false: 0.8
         }),
         grade: scienceGrades[selectedScienceGrade],
-        year
-      }
-    }
-  } else {
-    return {
-      maths: {
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        missing: weighted.select({
-          'I will be taking an equivalency test on 18th August 2020': 0.2,
-          false: 0.8
-        }),
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [{
-          grade: faker.random.number({ min: 10, max: 20 })
-        }],
-        year
-      },
-      english: {
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        missing: weighted.select({
-          'I will be taking an equivalency test on 18th August 2020': 0.2,
-          false: 0.8
-        }),
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [{
-          grade: faker.random.number({ min: 10, max: 20 })
-        }],
-        year
-      },
-      science: {
-        type: 'Baccalauréat Général',
-        subject: 'Science',
-        country: 'France',
-        missing: weighted.select({
-          'I will be taking an equivalency test on 18th August 2020': 0.2,
-          false: 0.8
-        }),
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [{
-          grade: faker.random.number({ min: 10, max: 20 })
-        }],
         year
       }
     }
