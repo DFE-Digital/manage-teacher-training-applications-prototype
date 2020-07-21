@@ -18,16 +18,24 @@ module.exports = (faker) => {
   const nationality = nationalities[selectedNationality]
 
   // Flag international candidate (does not have British/Irish nationality)
-  let isInternationalCandidate = true
-  if (nationality.includes('British') || nationality.includes('Irish')) {
-    isInternationalCandidate = false
-  }
+  const isInternationalCandidate = !nationality.includes('British') || !nationality.includes('Irish')
+  const rightToWorkStudy = faker.helpers.randomize([
+    'Yes',
+    'Not yet',
+    'Do not know'
+  ])
+
+  const residency = isInternationalCandidate ? {
+    rightToWorkStudy,
+    details: (rightToWorkStudy === 'Yes') ? 'I have EU settled status' : false
+  } : false
 
   return {
     'given-name': faker.name.firstName(),
     'family-name': faker.name.lastName(),
     'date-of-birth': faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
+    residency,
     isInternationalCandidate
   }
 }

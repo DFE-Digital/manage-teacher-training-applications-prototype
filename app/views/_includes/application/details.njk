@@ -52,12 +52,19 @@
     }
   }, {
     key: {
-      text: "Residency status"
+      text: "Has the right to work or study in the UK?"
     },
     value: {
-      text: application["personal-details"]["residency-status"]
+      text: application["personal-details"].residency.rightToWorkStudy
     }
-  } if application["personal-details"]["residency-status"], {
+  } if application["personal-details"].residency, {
+    key: {
+      text: "Residency details"
+    },
+    value: {
+      text: application["personal-details"].residency.details
+    }
+  } if application["personal-details"].residency.details, {
     key: {
       text: "Phone number"
     },
