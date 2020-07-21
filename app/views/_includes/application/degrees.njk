@@ -1,35 +1,37 @@
 {% set degrees = application.degree %}
-<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Degree{{ 's' if degrees.length > 1 }}</h2>
-<div class="govuk-grid govuk-!-margin-bottom-8">
-  <div class="govuk-grid-row app-grid-row--flex">
-    {% for item in degrees %}
-      <div class="govuk-grid-column-one-third">
-        <div class="app-card">
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
-          <dl class="app-qualification">
-          {% if item.country != "United Kingdom" %}
-            <dt class="app-qualification__key">Institution</dt>
-            <dd class="app-qualification__value govuk-!-margin-bottom-1">
-              {{ [item.org, item.country] | join(", ") }}
-            </dd>
-          {% endif %}
-            <dt class="app-qualification__key">Started and graduated</dt>
-            <dd class="app-qualification__value app-qualification__value--caption">
-              {{ item.startDate }} to {{ item.endDate }}
-            </dd>
-            <dt class="app-qualification__key">Grade</dt>
-            <dd class="app-qualification__value">
-              {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
-            </dd>
-          {% if item.naric %}
-            <dt class="app-qualification__key">Comparablity</dt>
-            <dd class="app-qualification__value govuk-body-s">
-              NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
-            </dd>
-          {% endif %}
-          </dl>
+<h2 class="govuk-heading-m">Degree{{ 's' if degrees.length > 1 }}</h2>
+<div class="govuk-!-margin-bottom-8">
+  <div class="govuk-grid">
+    <div class="govuk-grid-row app-grid-row--flex">
+      {% for item in degrees %}
+        <div class="govuk-grid-column-one-third">
+          <div class="app-card">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
+            <dl class="app-qualification">
+            {% if item.country != "United Kingdom" %}
+              <dt class="app-qualification__key">Institution</dt>
+              <dd class="app-qualification__value govuk-!-margin-bottom-1">
+                {{ [item.org, item.country] | join(", ") }}
+              </dd>
+            {% endif %}
+              <dt class="app-qualification__key">Started and graduated</dt>
+              <dd class="app-qualification__value app-qualification__value--caption">
+                {{ item.startDate }} to {{ item.endDate }}
+              </dd>
+              <dt class="app-qualification__key">Grade</dt>
+              <dd class="app-qualification__value">
+                {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
+              </dd>
+            {% if item.naric %}
+              <dt class="app-qualification__key">Comparablity</dt>
+              <dd class="app-qualification__value govuk-body-s">
+                NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
+              </dd>
+            {% endif %}
+            </dl>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </div>

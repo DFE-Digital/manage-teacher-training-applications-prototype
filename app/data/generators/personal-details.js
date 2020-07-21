@@ -9,8 +9,8 @@ module.exports = (faker) => {
     multiple: ['British', 'French', 'Swiss']
   }
   const selectedNationality = weighted.select({
-    british: 0.6,
-    irish: 0.1,
+    british: 0.65,
+    irish: 0.05,
     french: 0.1,
     dual: 0.1,
     multiple: 0.1
