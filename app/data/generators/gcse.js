@@ -89,7 +89,7 @@ module.exports = (faker, isInternationCandidate) => {
         }),
         naric: {
           reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
+          comparable: 'GCSE grades A*-C/9-4'
         },
         grade: [{
           grade: faker.random.number({ min: 10, max: 20 })

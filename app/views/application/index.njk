@@ -165,10 +165,11 @@
       {% if application['personal-details'].isInternationalCandidate %}
         {% include "_includes/application/english-language-qualification.njk" %}
       {% endif %}
-      {% include "_includes/application/other-qualifications.njk" %}
     </div>
 
     <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/application/other-qualifications.njk" %}
+
       <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Work history</h2>
       {% set workHistoryGuidanceHtml %}
         <h2 class="govuk-heading-m">Work history</h2>

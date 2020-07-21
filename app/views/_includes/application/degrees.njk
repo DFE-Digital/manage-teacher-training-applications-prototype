@@ -1,7 +1,7 @@
 {% set degrees = application.degree %}
 <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Degree{{ 's' if degrees.length > 1 }}</h2>
 <div class="govuk-grid govuk-!-margin-bottom-8">
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row app-grid-row--flex">
     {% for item in degrees %}
       <div class="govuk-grid-column-one-third">
         <div class="app-card">
@@ -15,19 +15,16 @@
           {% endif %}
             <dt class="app-qualification__key">Started and graduated</dt>
             <dd class="app-qualification__value app-qualification__value--caption">
-              {{ item.startDate }} - {{ item.endDate }}
+              {{ item.startDate }} to {{ item.endDate }}
             </dd>
             <dt class="app-qualification__key">Grade</dt>
             <dd class="app-qualification__value">
-              {{ item.grade }}{% if item.predicted %} (Predicted){% endif %}
+              {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
             </dd>
           {% if item.naric %}
             <dt class="app-qualification__key">Comparablity</dt>
-            <dd class="app-qualification__value govuk-!-margin-bottom-1">
-              Comparable to a {{ item.naric.comparable }}
-            </dd>
-            <dd class="app-qualification__value app-qualification__value--caption">
-              NARIC reference {{ item.naric.reference }}
+            <dd class="app-qualification__value govuk-body-s">
+              NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
             </dd>
           {% endif %}
           </dl>
