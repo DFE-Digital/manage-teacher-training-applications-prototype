@@ -1,7 +1,11 @@
+{% if not whyLabel %}
+  {% set whyLabel = "Why are you rejecting this application?" %}
+{% endif %}
+
 {{ govukCharacterCount({
   maxwords: 200,
   label: {
-    text: "Why are you rejecting this application?",
+    text: whyLabel,
     classes: "govuk-label--m",
     isPageHeading: true
   },
