@@ -1,5 +1,7 @@
 const organisations = require('./organisations')
-const applications = require('./applications.json')
+const applications = require('./applications.json').filter(app => {
+  return app.status != "Deferred";
+})
 
 module.exports = {
   applications,
