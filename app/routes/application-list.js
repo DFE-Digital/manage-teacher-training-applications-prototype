@@ -151,28 +151,37 @@ module.exports = router => {
       return app
     })
 
-    if (sortby === 'last changed') {
-      applications.sort(function (a, b) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.lastEventDate) - new Date(a.lastEventDate)
-      })
-    } else {
-      applications = applications.sort(function (a, b) {
-        return a.daysToRespond - b.daysToRespond
-      })
-      const deferredApplications = applications.filter(app => app.status === 'Deferred')
-      const needsFeedback = applications.filter(app => app.status === 'Rejected' && !app.rejectedReasons)
 
-      const aboutToBeRejectedAutomatically = applications.filter(app => app.status === 'Submitted').filter(app => app.daysToRespond < 5)
+    applications = applications.sort(function (a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
 
-      const applicationsThatNeedResponse = applications.filter(app => app.status === 'Submitted').filter(app => app.daysToRespond >= 5)
+    function getApplicationsByGroup(applications) {
+      const deferred = applications
+        .filter(app => app.status === 'Deferred')
 
-      const waitingOnApplications = applications.filter(app => app.status === 'Offered').concat(applications.filter(app => app.status === 'Accepted'))
+      const rejectedWithoutFeedback = applications
+        .filter(app => app.status === 'Rejected' && !app.rejectedReasons)
 
-      const successfulApplications = applications.filter(app => app.status === 'Conditions met')
+      const aboutToBeRejectedAutomatically = applications
+        .filter(app => app.status === 'Submitted')
+        .filter(app => app.daysToRespond < 5)
 
-      const otherApplications = applications
+      const awaitingDecision = applications
+        .filter(app => app.status === 'Submitted')
+        .filter(app => app.daysToRespond >= 5)
+
+      console.log(awaitingDecision);
+
+      const waitingOn = applications
+        .filter(app => app.status === 'Offered')
+        .concat(applications.filter(app => app.status === 'Accepted'))
+
+      const conditionsMet = applications.filter(app => app.status === 'Conditions met')
+
+      // console.log(conditionsMet);
+
+      let other = applications
         .filter(app => app.status !== 'Submitted')
         .filter(app => app.status !== 'Deferred')
         .filter(app => app.status !== 'Offered')
@@ -185,60 +194,140 @@ module.exports = router => {
           return app.rejectedReasons
         })
 
-      otherApplications.concat(rejectedWithFeedback)
+      other = other.concat(rejectedWithFeedback)
 
-      applications = []
+      return {
+        deferred,
+        rejectedWithoutFeedback,
+        aboutToBeRejectedAutomatically,
+        awaitingDecision,
+        waitingOn,
+        conditionsMet,
+        other
+      }
+    }
+
+    // Whack all the grouped items into an array without headings
+    var grouped = getApplicationsByGroup(applications)
+
+    // console.log(grouped);
+
+    function flattenGroup(grouped) {
+      var array = [];
+
+      // console.log(grouped.rejectedWithoutFeedback);
+
+      array = array.concat(grouped.deferred)
+      array = array.concat(grouped.rejectedWithoutFeedback)
+      array = array.concat(grouped.aboutToBeRejectedAutomatically)
+      // array = array.concat(grouped.awaitingDecision)
+      // array = array.concat(grouped.waitingOn)
+      // array = array.concat(grouped.conditionsMet)
+      // array = array.concat(grouped.other)
+
+      return array;
+
+
+
       if (deferredApplications.length) {
-        applications.push({
-          heading: 'Reconfirm offers'
-        })
+        // applications.push({
+        //   heading: 'Reconfirm offers'
+        // })
         applications = applications.concat(deferredApplications)
       }
 
       if (aboutToBeRejectedAutomatically.length) {
-        applications.push({
-          heading: 'Deadline approaching: respond to the candidate'
-        })
+        // applications.push({
+        //   heading: 'Deadline approaching: respond to the candidate'
+        // })
         applications = applications.concat(aboutToBeRejectedAutomatically)
       }
 
       if (needsFeedback.length) {
-        applications.push({
-          heading: 'Give feedback: you did not respond in time'
-        })
+        // applications.push({
+        //   heading: 'Give feedback: you did not respond in time'
+        // })
         applications = applications.concat(needsFeedback)
       }
 
       if (applicationsThatNeedResponse.length) {
-        applications.push({
-          heading: 'Ready for review'
-        })
+        // applications.push({
+        //   heading: 'Ready for review'
+        // })
         applications = applications.concat(applicationsThatNeedResponse)
       }
 
       if (waitingOnApplications.length) {
-        applications.push({
-          heading: 'Waiting for candidate action'
-        })
+        // applications.push({
+        //   heading: 'Waiting for candidate action'
+        // })
         applications = applications.concat(waitingOnApplications)
       }
 
       if (successfulApplications.length) {
-        applications.push({
-          heading: 'Successful candidates'
-        })
+        // applications.push({
+        //   heading: 'Successful candidates'
+        // })
         applications = applications.concat(successfulApplications)
       }
 
       if (otherApplications.length) {
-        if (deferredApplications.length || needsFeedback.length || aboutToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
-          applications.push({
-            heading: 'No action needed'
-          })
-        }
+        // if (deferredApplications.length || needsFeedback.length || aboutToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
+        //   applications.push({
+        //     heading: 'No action needed'
+        //   })
+        // }
         applications = applications.concat(otherApplications)
       }
     }
+
+    var flatten = flattenGroup(grouped);
+
+    // console.log(flatten[0].status);
+    // console.log(flatten[1].status);
+    // console.log(flatten[2].status);
+    // console.log(flatten[3].status);
+
+    // function getGroupedLenth(grouped) {
+    //   return Object.values(grouped).reduce((accumulator, item) => {
+    //     return accumulator + item.length;
+    //   }, 0)
+    // }
+
+    // var groupedLength = getGroupedLenth(grouped)
+
+    // Get the page worth of items
+    let pageSize = 20;
+    let page = req.query.page || 1
+
+
+
+
+
+
+
+    // Then sort those into groups again
+    // Then inject the headings
+    // Pass that to view
+
+
+
+
+
+
+
+    // var headingCount = applications.filter(app => app.heading).length;
+    // var appCount = (applications.length - headingCount);
+
+
+
+
+    // let viewApps = applications.slice(0, 20);
+
+    // var headingCount = viewApps.filter(app => app.heading).length;
+
+    // applications = applications.slice(0, pageSize + headingCount);
+
 
     res.render('index', {
       applications: applications,
