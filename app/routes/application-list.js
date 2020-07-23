@@ -171,15 +171,11 @@ module.exports = router => {
         .filter(app => app.status === 'Submitted')
         .filter(app => app.daysToRespond >= 5)
 
-      console.log(awaitingDecision);
-
       const waitingOn = applications
         .filter(app => app.status === 'Offered')
         .concat(applications.filter(app => app.status === 'Accepted'))
 
       const conditionsMet = applications.filter(app => app.status === 'Conditions met')
-
-      // console.log(conditionsMet);
 
       let other = applications
         .filter(app => app.status !== 'Submitted')
@@ -210,23 +206,18 @@ module.exports = router => {
     // Whack all the grouped items into an array without headings
     var grouped = getApplicationsByGroup(applications)
 
-    // console.log(grouped);
-
     function flattenGroup(grouped) {
       var array = [];
-
-      // console.log(grouped.rejectedWithoutFeedback);
 
       array = array.concat(grouped.deferred)
       array = array.concat(grouped.rejectedWithoutFeedback)
       array = array.concat(grouped.aboutToBeRejectedAutomatically)
-      // array = array.concat(grouped.awaitingDecision)
-      // array = array.concat(grouped.waitingOn)
-      // array = array.concat(grouped.conditionsMet)
-      // array = array.concat(grouped.other)
+      array = array.concat(grouped.awaitingDecision)
+      array = array.concat(grouped.waitingOn)
+      array = array.concat(grouped.conditionsMet)
+      array = array.concat(grouped.other)
 
       return array;
-
 
 
       if (deferredApplications.length) {
@@ -281,12 +272,60 @@ module.exports = router => {
       }
     }
 
-    var flatten = flattenGroup(grouped);
+    // Put groups into ordered array
+    applications = flattenGroup(grouped);
 
-    // console.log(flatten[0].status);
-    // console.log(flatten[1].status);
-    // console.log(flatten[2].status);
-    // console.log(flatten[3].status);
+    // Get the page worth of items
+    let pageSize = 20;
+    let page = parseInt(req.query.page, 10) || 1
+
+    // to use zero based indexing in code but normal indexing for the url
+    let startIndex = (page - 1) * pageSize;
+    let endIndex = startIndex + 20;
+    let pageCount = Math.ceil(applications.length / pageSize);
+    let totalApplications = applications.length;
+
+    if(endIndex > applications.length) {
+      endIndex = applications.length;
+    }
+
+    applications = applications.splice(startIndex, endIndex);
+
+    var pagination = {
+      from: startIndex + 1,
+      to: endIndex,
+      count: totalApplications,
+      items: []
+    }
+
+    if(page > 1) {
+      pagination.previous = {
+        text: "Previous",
+        href: "?page=" + (page - 1)
+      }
+    }
+
+    if(page !== pageCount) {
+      pagination.next = {
+        text: "Next",
+        href: "?page=" + (page + 1)
+      }
+    }
+
+    for(var i = 1; i < pageCount + 1; i++) {
+      pagination.items.push({
+        text: i,
+        href: "?page=" + i,
+        selected: i == page
+      })
+    }
+
+
+
+
+
+
+
 
     // function getGroupedLenth(grouped) {
     //   return Object.values(grouped).reduce((accumulator, item) => {
@@ -296,9 +335,7 @@ module.exports = router => {
 
     // var groupedLength = getGroupedLenth(grouped)
 
-    // Get the page worth of items
-    let pageSize = 20;
-    let page = req.query.page || 1
+
 
 
 
@@ -310,27 +347,9 @@ module.exports = router => {
     // Then inject the headings
     // Pass that to view
 
-
-
-
-
-
-
-    // var headingCount = applications.filter(app => app.heading).length;
-    // var appCount = (applications.length - headingCount);
-
-
-
-
-    // let viewApps = applications.slice(0, 20);
-
-    // var headingCount = viewApps.filter(app => app.heading).length;
-
-    // applications = applications.slice(0, pageSize + headingCount);
-
-
     res.render('index', {
       applications: applications,
+      pagination,
       selectedFilters: selectedFilters,
       hasFilters: hasFilters
     })
