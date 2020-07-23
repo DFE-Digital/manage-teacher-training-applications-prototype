@@ -128,7 +128,7 @@ function addHeadings(grouped) {
 
 module.exports = router => {
   router.all('/', (req, res) => {
-    let apps = req.session.data.applications.reverse().filter(app => {
+    let apps = req.session.data.applications.map(app => app).reverse().filter(app => {
       return app.cycle === req.session.data.cycle
     })
 
