@@ -7,11 +7,131 @@ function getCheckboxValues (name, data) {
   })) || data
 }
 
+function getApplicationsByGroup(applications) {
+
+
+  const deferred = applications
+    .filter(app => app.status === 'Deferred')
+
+  const rejectedWithoutFeedback = applications
+    .filter(app => app.status === 'Rejected')
+    .filter(app => !app.rejectedReasons)
+
+  const aboutToBeRejectedAutomatically = applications
+    .filter(app => app.status === 'Submitted')
+    .filter(app => app.daysToRespond < 5)
+
+  const awaitingDecision = applications
+    .filter(app => app.status === 'Submitted')
+    .filter(app => app.daysToRespond >= 5)
+
+  const waitingOn = applications
+    .filter(app => app.status === 'Offered')
+    .concat(applications.filter(app => app.status === 'Accepted'))
+
+  const conditionsMet = applications.filter(app => app.status === 'Conditions met')
+
+  let other = applications
+    .filter(app => app.status !== 'Submitted')
+    .filter(app => app.status !== 'Deferred')
+    .filter(app => app.status !== 'Offered')
+    .filter(app => app.status !== 'Accepted')
+    .filter(app => app.status !== 'Conditions met')
+    .filter(app => app.status !== 'Rejected')
+
+  // we have 5 of these
+  const rejectedWithFeedback = applications
+    .filter(app => app.status === 'Rejected')
+    .filter(function (app) {
+      return app.rejectedReasons
+    })
+
+  other = other.concat(rejectedWithFeedback)
+
+  return {
+    deferred,
+    rejectedWithoutFeedback,
+    aboutToBeRejectedAutomatically,
+    awaitingDecision,
+    waitingOn,
+    conditionsMet,
+    other
+  }
+}
+
+function flattenGroup(grouped) {
+  var array = [];
+  array = array.concat(grouped.deferred)
+  array = array.concat(grouped.aboutToBeRejectedAutomatically)
+  array = array.concat(grouped.rejectedWithoutFeedback)
+  array = array.concat(grouped.awaitingDecision)
+  array = array.concat(grouped.waitingOn)
+  array = array.concat(grouped.conditionsMet)
+  array = array.concat(grouped.other)
+  return array;
+}
+
+function addHeadings(grouped) {
+  var array = [];
+  if (grouped.deferred.length) {
+    array.push({
+      heading: 'Reconfirm offers'
+    })
+    array = array.concat(grouped.deferred);
+  }
+
+  if (grouped.aboutToBeRejectedAutomatically.length) {
+    array.push({
+      heading: 'Deadline approaching: respond to the candidate'
+    })
+    array = array.concat(grouped.aboutToBeRejectedAutomatically)
+  }
+
+  if (grouped.rejectedWithoutFeedback.length) {
+    array.push({
+      heading: 'Give feedback: you did not respond in time'
+    })
+    array = array.concat(grouped.rejectedWithoutFeedback)
+  }
+
+  if (grouped.awaitingDecision.length) {
+    array.push({
+      heading: 'Ready for review'
+    })
+    array = array.concat(grouped.awaitingDecision)
+  }
+
+  if (grouped.waitingOn.length) {
+    array.push({
+      heading: 'Waiting for candidate action'
+    })
+    array = array.concat(grouped.waitingOn)
+  }
+
+  if (grouped.conditionsMet.length) {
+    array.push({
+      heading: 'Successful candidates'
+    })
+    array = array.concat(grouped.conditionsMet)
+  }
+
+  if (grouped.other.length) {
+    if (grouped.deferred.length || grouped.aboutToBeRejectedAutomatically.length || grouped.rejectedWithoutFeedback.length || grouped.awaitingDecision.length || grouped.waitingOn.length || grouped.conditionsMet.length) {
+      array.push({
+        heading: 'No action needed'
+      })
+    }
+    array = array.concat(grouped.other)
+  }
+  return array;
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.reverse().filter(app => {
       return app.cycle === req.session.data.cycle
     })
+
     let { status, provider, accreditingbody, keywords, locationname, rbddate, sortby } = req.query
 
     keywords = keywords || req.session.data.keywords
@@ -156,132 +276,21 @@ module.exports = router => {
       return a.daysToRespond - b.daysToRespond
     })
 
-    function getApplicationsByGroup(applications) {
-      const deferred = applications
-        .filter(app => app.status === 'Deferred')
 
-      const rejectedWithoutFeedback = applications
-        .filter(app => app.status === 'Rejected' && !app.rejectedReasons)
-
-      const aboutToBeRejectedAutomatically = applications
-        .filter(app => app.status === 'Submitted')
-        .filter(app => app.daysToRespond < 5)
-
-      const awaitingDecision = applications
-        .filter(app => app.status === 'Submitted')
-        .filter(app => app.daysToRespond >= 5)
-
-      const waitingOn = applications
-        .filter(app => app.status === 'Offered')
-        .concat(applications.filter(app => app.status === 'Accepted'))
-
-      const conditionsMet = applications.filter(app => app.status === 'Conditions met')
-
-      let other = applications
-        .filter(app => app.status !== 'Submitted')
-        .filter(app => app.status !== 'Deferred')
-        .filter(app => app.status !== 'Offered')
-        .filter(app => app.status !== 'Accepted')
-        .filter(app => app.status !== 'Conditions met')
-
-      const rejectedWithFeedback = applications
-        .filter(app => app.status === 'Rejected')
-        .filter(function (app) {
-          return app.rejectedReasons
-        })
-
-      other = other.concat(rejectedWithFeedback)
-
-      return {
-        deferred,
-        rejectedWithoutFeedback,
-        aboutToBeRejectedAutomatically,
-        awaitingDecision,
-        waitingOn,
-        conditionsMet,
-        other
-      }
-    }
 
     // Whack all the grouped items into an array without headings
-    var grouped = getApplicationsByGroup(applications)
-
-    function flattenGroup(grouped) {
-      var array = [];
-
-      array = array.concat(grouped.deferred)
-      array = array.concat(grouped.rejectedWithoutFeedback)
-      array = array.concat(grouped.aboutToBeRejectedAutomatically)
-      array = array.concat(grouped.awaitingDecision)
-      array = array.concat(grouped.waitingOn)
-      array = array.concat(grouped.conditionsMet)
-      array = array.concat(grouped.other)
-
-      return array;
-
-
-      if (deferredApplications.length) {
-        // applications.push({
-        //   heading: 'Reconfirm offers'
-        // })
-        applications = applications.concat(deferredApplications)
-      }
-
-      if (aboutToBeRejectedAutomatically.length) {
-        // applications.push({
-        //   heading: 'Deadline approaching: respond to the candidate'
-        // })
-        applications = applications.concat(aboutToBeRejectedAutomatically)
-      }
-
-      if (needsFeedback.length) {
-        // applications.push({
-        //   heading: 'Give feedback: you did not respond in time'
-        // })
-        applications = applications.concat(needsFeedback)
-      }
-
-      if (applicationsThatNeedResponse.length) {
-        // applications.push({
-        //   heading: 'Ready for review'
-        // })
-        applications = applications.concat(applicationsThatNeedResponse)
-      }
-
-      if (waitingOnApplications.length) {
-        // applications.push({
-        //   heading: 'Waiting for candidate action'
-        // })
-        applications = applications.concat(waitingOnApplications)
-      }
-
-      if (successfulApplications.length) {
-        // applications.push({
-        //   heading: 'Successful candidates'
-        // })
-        applications = applications.concat(successfulApplications)
-      }
-
-      if (otherApplications.length) {
-        // if (deferredApplications.length || needsFeedback.length || aboutToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
-        //   applications.push({
-        //     heading: 'No action needed'
-        //   })
-        // }
-        applications = applications.concat(otherApplications)
-      }
-    }
+    let grouped = getApplicationsByGroup(applications)
 
     // Put groups into ordered array
     applications = flattenGroup(grouped);
 
     // Get the page worth of items
-    let pageSize = 20;
+    let pageSize = 10;
     let page = parseInt(req.query.page, 10) || 1
 
     // to use zero based indexing in code but normal indexing for the url
     let startIndex = (page - 1) * pageSize;
-    let endIndex = startIndex + 20;
+    let endIndex = startIndex + pageSize;
     let pageCount = Math.ceil(applications.length / pageSize);
     let totalApplications = applications.length;
 
@@ -320,32 +329,9 @@ module.exports = router => {
       })
     }
 
-
-
-
-
-
-
-
-    // function getGroupedLenth(grouped) {
-    //   return Object.values(grouped).reduce((accumulator, item) => {
-    //     return accumulator + item.length;
-    //   }, 0)
-    // }
-
-    // var groupedLength = getGroupedLenth(grouped)
-
-
-
-
-
-
-
-
-
-    // Then sort those into groups again
-    // Then inject the headings
-    // Pass that to view
+    // now mixin the headings
+    grouped = getApplicationsByGroup(applications);
+    applications = addHeadings(grouped);
 
     res.render('index', {
       applications: applications,
