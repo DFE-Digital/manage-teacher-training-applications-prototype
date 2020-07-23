@@ -18,7 +18,7 @@ module.exports = (faker) => {
   const nationality = nationalities[selectedNationality]
 
   // Flag international candidate (does not have British/Irish nationality)
-  const isInternationalCandidate = !nationality.includes('British') || !nationality.includes('Irish')
+  const isInternationalCandidate = !(nationality.includes('British') || nationality.includes('Irish'))
   const rightToWorkStudy = faker.helpers.randomize([
     'Yes',
     'Not yet',
