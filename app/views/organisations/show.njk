@@ -27,7 +27,15 @@
       For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[1].name }}
       </h2>
 
+      {% set bannerHtml %}
+        <p>{{ data.organisations[1].name }} have not set up permissions yet – only they can set up permissions. Contact them to do this.</p>
+        <p>Staff at {{ data.organisations[0].name}} can still view applications in the mean time.</p>
+      {% endset %}
       {{appBanner({
+        html: bannerHtml
+      })}}
+
+      {# {{appBanner({
         text: "Contact " + data.organisations[1].name + " to change permissions.",
         classes: "govuk-!-margin-bottom-4"
       })}}
@@ -42,7 +50,7 @@
 
       <ul class="govuk-list">
         <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-      </ul>
+      </ul> #}
 
       <h2 class="govuk-heading-m">
       For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[2].name }}
