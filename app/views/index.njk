@@ -4,97 +4,12 @@
 
 {% block content %}
 
-  {# <h1 class="govuk-heading-xl">New for you</h1>
-
-  {{appNotificationCard({
-    classes: "app-notification-card--first",
-    settings: {
-      href: "/account/notification-settings/edit/application-submitted"
-    },
-    title: "Laura say’s application was rejected automatically",
-    provider: "data.organisations[0].name",
-    dateText: "Today at 8:19pm",
-    link: {
-      href: "#",
-      text: "Give feedback"
-    }
-  })}}
-
-  {{appNotificationCard({
-    classes: "app-notification-card--firs",
-    settings: {
-      href: "/account/notification-settings/edit/application-submitted"
-    },
-    title: "Charlotte Campbel’s application is going to be automatically rejected in 2 days",
-    provider: "data.organisations[0].name",
-    dateText: "Today at 17:12pm",
-    link: {
-      href: "#",
-      text: "Respond to application"
-    }
-  })}}
-
-  {{appNotificationCard({
-    settings: {
-      href: "/account/notification-settings/edit/application-submitted"
-    },
-    title: "Kelly Jane Spears submitted their application",
-    provider: "data.organisations[0].name",
-    dateText: "Today at 1:33pm",
-    link: {
-      href: "#",
-      text: "Respond to application"
-    }
-  })}}
-
-  {{appNotificationCard({
-      classes: "govuk-!-margin-bottom-9",
-      settings: {
-        href: "/account/notification-settings/edit/application-submitted"
-      },
-    title: "Daniel James Jennings’ application was rejected automatically",
-    provider: "data.organisations[0].name",
-    dateText: "14 May 2020 at 7:19pm",
-    link: {
-      href: "#",
-      text: "Give feedback"
-    }
-  })}} #}
-
-  {% if data.tabs %}
-    <div class="govuk-tabs govuk-!-margin-bottom-6">
-      <ul class="govuk-tabs__list">
-        <li class="govuk-tabs__list-item {% if data.cycle == "Previous cycle (2019-2020)" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}" role="presentation">
-          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "Previous cycle (2019-2020)" %} aria-selected="true" {% endif %} href="/?cycle=Previous cycle (2019-2020)"> Previous cycle (2019-2020) </a>
-        </li>
-        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "Current cycle (2020-2021)" %}govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "Current cycle (2020-2021)" %} aria-selected="true" {% endif %} href="/?cycle=Current cycle (2020-2021)">
-            Current cycle (2020-2021) </a>
-        </li>
-        <li class="govuk-tabs__list-item app-tabs__list-item {% if data.cycle == "Next cycle (2021-20222)" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-          <a class="govuk-tabs__tab app-tabs__tab" {% if data.cycle == "Next cycle (2021-20222)" %} aria-selected="true" {% endif %} href="/?cycle=Next cycle (2021-20222)">
-            Next cycle (2021-20222) </a>
-        </li>
-      </ul>
-    </div>
-  {% endif %}
-
-  {% if not data.tabs %}
-    <span class="govuk-caption-xl">
-      {{data.cycle}} <a href="/switch-cycle" class="govuk-link govuk-!-font-size-19">Switch cycle</a>
-    </span>
-  {% endif %}
-  <h1 class="govuk-heading-xl {% if not data.tabs %}govuk-!-margin-bottom-{% endif %}">
+  <span class="govuk-caption-xl">
+    {{data.cycle}} <a href="/switch-cycle" class="govuk-link govuk-!-font-size-19">Switch cycle</a>
+  </span>
+  <h1 class="govuk-heading-xl">
     Applications
   </h1>
-
-  {# {% if not data.tabs %}
-    <p class="govuk-body govuk-!-margin-bottom-9">
-
-    </p>
-  {% endif %} #}
-
-
 
 
     <div class="moj-filter-layout">
@@ -106,24 +21,6 @@
 
         <div class="moj-action-bar">
           <div class="moj-action-bar__filter"></div>
-          <div>
-            {# <form>
-              <div class="govuk-form-group govuk-!-margin-bottom-2">
-                <label class="govuk-label govuk-visually-hidden" for="sortby">Sorted by</label>
-                <select class="govuk-select sortby-selector" name="sortby" id="sortby">
-
-                  <option value="most urgent" {% if data.sortby == 'most urgent' %} selected {% endif%}>Task mode</option>
-
-                  <option value="last changed" {% if data.sortby == 'last changed' %} selected {% endif%}>Activity mode</option>
-                </select>
-                {{ govukButton({
-                  text: "Change view",
-                  classes: 'govuk-buton--secondary govuk-!-margin-bottom-2'
-                }) }}
-              </div>
-            </form> #}
-
-          </div>
         </div>
         <div>
           {% if applications.length %}
@@ -146,25 +43,16 @@
           {% endif %}
         </div>
 
-        {% if applications.length %}
+        {% if pagination %}
           {{ mojPagination({
             results: {
-              from: 1,
-              to: 15,
-              count: 30
+              from: pagination.from,
+              to: pagination.to,
+              count: pagination.count
             },
-              next: {
-              text: 'Next',
-              href: ''
-            },
-              items: [{
-              text: '1',
-              href: '/page=1',
-              selected: true
-            }, {
-              text: '2',
-              href: '/page=2'
-            }]
+            previous: pagination.previous,
+            next: pagination.next,
+            items: pagination.items
           }) }}
         {% endif %}
 

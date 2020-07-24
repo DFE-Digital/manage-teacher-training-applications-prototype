@@ -7,11 +7,131 @@ function getCheckboxValues (name, data) {
   })) || data
 }
 
+function getApplicationsByGroup(applications) {
+
+
+  const deferred = applications
+    .filter(app => app.status === 'Deferred')
+
+  const rejectedWithoutFeedback = applications
+    .filter(app => app.status === 'Rejected')
+    .filter(app => !app.rejectedReasons)
+
+  const aboutToBeRejectedAutomatically = applications
+    .filter(app => app.status === 'Submitted')
+    .filter(app => app.daysToRespond < 5)
+
+  const awaitingDecision = applications
+    .filter(app => app.status === 'Submitted')
+    .filter(app => app.daysToRespond >= 5)
+
+  const waitingOn = applications
+    .filter(app => app.status === 'Offered')
+    .concat(applications.filter(app => app.status === 'Accepted'))
+
+  const conditionsMet = applications.filter(app => app.status === 'Conditions met')
+
+  let other = applications
+    .filter(app => app.status !== 'Submitted')
+    .filter(app => app.status !== 'Deferred')
+    .filter(app => app.status !== 'Offered')
+    .filter(app => app.status !== 'Accepted')
+    .filter(app => app.status !== 'Conditions met')
+    .filter(app => app.status !== 'Rejected')
+
+  // we have 5 of these
+  const rejectedWithFeedback = applications
+    .filter(app => app.status === 'Rejected')
+    .filter(function (app) {
+      return app.rejectedReasons
+    })
+
+  other = other.concat(rejectedWithFeedback)
+
+  return {
+    deferred,
+    rejectedWithoutFeedback,
+    aboutToBeRejectedAutomatically,
+    awaitingDecision,
+    waitingOn,
+    conditionsMet,
+    other
+  }
+}
+
+function flattenGroup(grouped) {
+  var array = [];
+  array = array.concat(grouped.deferred)
+  array = array.concat(grouped.aboutToBeRejectedAutomatically)
+  array = array.concat(grouped.rejectedWithoutFeedback)
+  array = array.concat(grouped.awaitingDecision)
+  array = array.concat(grouped.waitingOn)
+  array = array.concat(grouped.conditionsMet)
+  array = array.concat(grouped.other)
+  return array;
+}
+
+function addHeadings(grouped) {
+  var array = [];
+  if (grouped.deferred.length) {
+    array.push({
+      heading: 'Reconfirm offers'
+    })
+    array = array.concat(grouped.deferred);
+  }
+
+  if (grouped.aboutToBeRejectedAutomatically.length) {
+    array.push({
+      heading: 'Deadline approaching: respond to the candidate'
+    })
+    array = array.concat(grouped.aboutToBeRejectedAutomatically)
+  }
+
+  if (grouped.rejectedWithoutFeedback.length) {
+    array.push({
+      heading: 'Give feedback: you did not respond in time'
+    })
+    array = array.concat(grouped.rejectedWithoutFeedback)
+  }
+
+  if (grouped.awaitingDecision.length) {
+    array.push({
+      heading: 'Ready for review'
+    })
+    array = array.concat(grouped.awaitingDecision)
+  }
+
+  if (grouped.waitingOn.length) {
+    array.push({
+      heading: 'Waiting for candidate action'
+    })
+    array = array.concat(grouped.waitingOn)
+  }
+
+  if (grouped.conditionsMet.length) {
+    array.push({
+      heading: 'Successful candidates'
+    })
+    array = array.concat(grouped.conditionsMet)
+  }
+
+  if (grouped.other.length) {
+    if (grouped.deferred.length || grouped.aboutToBeRejectedAutomatically.length || grouped.rejectedWithoutFeedback.length || grouped.awaitingDecision.length || grouped.waitingOn.length || grouped.conditionsMet.length) {
+      array.push({
+        heading: 'No action needed'
+      })
+    }
+    array = array.concat(grouped.other)
+  }
+  return array;
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
-    let apps = req.session.data.applications.reverse().filter(app => {
+    let apps = req.session.data.applications.map(app => app).reverse().filter(app => {
       return app.cycle === req.session.data.cycle
     })
+
     let { status, provider, accreditingbody, keywords, locationname, rbddate, sortby } = req.query
 
     keywords = keywords || req.session.data.keywords
@@ -151,97 +271,73 @@ module.exports = router => {
       return app
     })
 
-    if (sortby === 'last changed') {
-      applications.sort(function (a, b) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.lastEventDate) - new Date(a.lastEventDate)
-      })
-    } else {
-      applications = applications.sort(function (a, b) {
-        return a.daysToRespond - b.daysToRespond
-      })
-      const deferredApplications = applications.filter(app => app.status === 'Deferred')
-      const needsFeedback = applications.filter(app => app.status === 'Rejected' && !app.rejectedReasons)
 
-      const aboutToBeRejectedAutomatically = applications.filter(app => app.status === 'Submitted').filter(app => app.daysToRespond < 5)
+    applications = applications.sort(function (a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
 
-      const applicationsThatNeedResponse = applications.filter(app => app.status === 'Submitted').filter(app => app.daysToRespond >= 5)
 
-      const waitingOnApplications = applications.filter(app => app.status === 'Offered').concat(applications.filter(app => app.status === 'Accepted'))
 
-      const successfulApplications = applications.filter(app => app.status === 'Conditions met')
+    // Whack all the grouped items into an array without headings
+    let grouped = getApplicationsByGroup(applications)
 
-      const otherApplications = applications
-        .filter(app => app.status !== 'Submitted')
-        .filter(app => app.status !== 'Deferred')
-        .filter(app => app.status !== 'Offered')
-        .filter(app => app.status !== 'Accepted')
-        .filter(app => app.status !== 'Conditions met')
+    // Put groups into ordered array
+    applications = flattenGroup(grouped);
 
-      const rejectedWithFeedback = applications
-        .filter(app => app.status === 'Rejected')
-        .filter(function (app) {
-          return app.rejectedReasons
-        })
+    // Get the page worth of items
+    let pageSize = 20;
+    let page = parseInt(req.query.page, 10) || 1
 
-      otherApplications.concat(rejectedWithFeedback)
+    // to use zero based indexing in code but normal indexing for the url
+    let startIndex = (page - 1) * pageSize;
+    let endIndex = startIndex + pageSize;
+    let pageCount = Math.ceil(applications.length / pageSize);
+    let totalApplications = applications.length;
 
-      applications = []
-      if (deferredApplications.length) {
-        applications.push({
-          heading: 'Reconfirm offers'
-        })
-        applications = applications.concat(deferredApplications)
+    if(endIndex > applications.length) {
+      endIndex = applications.length;
+    }
+
+    applications = applications.splice(startIndex, endIndex);
+
+    if(pageCount > 1) {
+      var pagination = {
+        from: startIndex + 1,
+        to: endIndex,
+        count: totalApplications,
+        items: []
       }
 
-      if (aboutToBeRejectedAutomatically.length) {
-        applications.push({
-          heading: 'Deadline approaching: respond to the candidate'
-        })
-        applications = applications.concat(aboutToBeRejectedAutomatically)
-      }
-
-      if (needsFeedback.length) {
-        applications.push({
-          heading: 'Give feedback: you did not respond in time'
-        })
-        applications = applications.concat(needsFeedback)
-      }
-
-      if (applicationsThatNeedResponse.length) {
-        applications.push({
-          heading: 'Ready for review'
-        })
-        applications = applications.concat(applicationsThatNeedResponse)
-      }
-
-      if (waitingOnApplications.length) {
-        applications.push({
-          heading: 'Waiting for candidate action'
-        })
-        applications = applications.concat(waitingOnApplications)
-      }
-
-      if (successfulApplications.length) {
-        applications.push({
-          heading: 'Successful candidates'
-        })
-        applications = applications.concat(successfulApplications)
-      }
-
-      if (otherApplications.length) {
-        if (deferredApplications.length || needsFeedback.length || aboutToBeRejectedAutomatically.length || applicationsThatNeedResponse.length || waitingOnApplications.length || successfulApplications.length) {
-          applications.push({
-            heading: 'No action needed'
-          })
+      if(page > 1) {
+        pagination.previous = {
+          text: "Previous",
+          href: "?page=" + (page - 1)
         }
-        applications = applications.concat(otherApplications)
+      }
+
+      if(page !== pageCount) {
+        pagination.next = {
+          text: "Next",
+          href: "?page=" + (page + 1)
+        }
+      }
+
+      for(var i = 1; i < pageCount + 1; i++) {
+        pagination.items.push({
+          text: i,
+          href: "?page=" + i,
+          selected: i == page
+        })
       }
     }
 
+    // now mixin the headings
+    grouped = getApplicationsByGroup(applications);
+    applications = addHeadings(grouped);
+
     res.render('index', {
       applications: applications,
+      pagination,
       selectedFilters: selectedFilters,
       hasFilters: hasFilters
     })
