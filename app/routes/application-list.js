@@ -285,7 +285,7 @@ module.exports = router => {
     applications = flattenGroup(grouped);
 
     // Get the page worth of items
-    let pageSize = 10;
+    let pageSize = 20;
     let page = parseInt(req.query.page, 10) || 1
 
     // to use zero based indexing in code but normal indexing for the url
@@ -300,33 +300,35 @@ module.exports = router => {
 
     applications = applications.splice(startIndex, endIndex);
 
-    var pagination = {
-      from: startIndex + 1,
-      to: endIndex,
-      count: totalApplications,
-      items: []
-    }
-
-    if(page > 1) {
-      pagination.previous = {
-        text: "Previous",
-        href: "?page=" + (page - 1)
+    if(pageCount > 1) {
+      var pagination = {
+        from: startIndex + 1,
+        to: endIndex,
+        count: totalApplications,
+        items: []
       }
-    }
 
-    if(page !== pageCount) {
-      pagination.next = {
-        text: "Next",
-        href: "?page=" + (page + 1)
+      if(page > 1) {
+        pagination.previous = {
+          text: "Previous",
+          href: "?page=" + (page - 1)
+        }
       }
-    }
 
-    for(var i = 1; i < pageCount + 1; i++) {
-      pagination.items.push({
-        text: i,
-        href: "?page=" + i,
-        selected: i == page
-      })
+      if(page !== pageCount) {
+        pagination.next = {
+          text: "Next",
+          href: "?page=" + (page + 1)
+        }
+      }
+
+      for(var i = 1; i < pageCount + 1; i++) {
+        pagination.items.push({
+          text: i,
+          href: "?page=" + i,
+          selected: i == page
+        })
+      }
     }
 
     // now mixin the headings
