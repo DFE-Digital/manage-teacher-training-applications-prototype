@@ -77,6 +77,36 @@
         </ul>
       {% endset %}
 
+      {% set diversityInformationHintHtml %}
+        <p class="govuk-!-margin-bottom-1">View diversity information about the candidate</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.organisations[1].name}}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.organisations[2].name}}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.organisations[3].name}}
+            <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.organisations[0].name}}
+          </li>
+        </ul>
+      {% endset %}
+
 
       <form novalidate method="post">
 
@@ -134,6 +164,17 @@
                 },
                 hint: {
                   html: safeguardingInformationHintHtml
+                },
+                checked: true
+              },
+              {
+                value: "See diversity information",
+                text: "Access diversity information",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: diversityInformationHintHtml
                 },
                 checked: true
               }
