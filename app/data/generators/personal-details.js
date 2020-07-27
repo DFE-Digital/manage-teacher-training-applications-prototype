@@ -1,6 +1,6 @@
 const weighted = require('weighted')
 
-module.exports = (faker) => {
+module.exports = (faker, params = {}) => {
   const nationalities = {
     british: ['British'],
     irish: ['Irish'],
@@ -31,8 +31,8 @@ module.exports = (faker) => {
   } : false
 
   return {
-    'given-name': faker.name.firstName(),
-    'family-name': faker.name.lastName(),
+    'given-name': params['given-name'] || faker.name.firstName(),
+    'family-name': params['family-name'] ||faker.name.lastName(),
     'date-of-birth': faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
     residency,
