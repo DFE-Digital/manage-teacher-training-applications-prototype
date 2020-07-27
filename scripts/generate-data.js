@@ -34,6 +34,7 @@ const generateFakeApplication = (params = {}) => {
   const cycle = params.cycle || generateCycle(faker)
   const status = params.status || generateStatus(faker, cycle)
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
+  const submittedDate = params.submittedDate || faker.date.past()
   const personalDetails = generatePersonalDetails(faker)
 
   let offer = null
@@ -47,16 +48,6 @@ const generateFakeApplication = (params = {}) => {
 
   const notes = generateNotes(faker)
   const events = generateEvents(faker, { offer, status })
-
-  let submittedDate = faker.date.past();
-  if(status === "Submitted") {
-    submittedDate = faker.helpers.randomize([
-      '2019-07-05T14:01:00',
-      '2019-07-21T18:59:00',
-      '2019-07-29',
-      '2019-08-10T13:32:00'
-    ])
-  }
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
@@ -118,6 +109,36 @@ const generateFakeApplications = (count) => {
       reason: 'course'
     },
     cycle: 'Current cycle (2020 to 2021)'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-05T14:01:00'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-08T13:01:00'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-21T18:59:00'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-29'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-08-10T13:32:00'
   }))
 
   for (var i = 0; i < count; i++) {

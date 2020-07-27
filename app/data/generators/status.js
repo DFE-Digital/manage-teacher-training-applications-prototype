@@ -13,7 +13,6 @@ module.exports = (faker, cycle) => {
 
   if (cycle.includes('Current')) {
     return faker.helpers.randomize([
-      'Submitted',
       'Offered',
       'Accepted',
       'Declined',
