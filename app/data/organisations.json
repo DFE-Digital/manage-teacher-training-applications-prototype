@@ -1,7 +1,27 @@
 [
   {
-    "id": "d7d3d7fe-db40-451a-8300-e78f785c15f7",
-    "name": "South Erwin SCITT",
+    "id": "cdbafa1d-b20a-45f9-85c7-f267980f65cb",
+    "name": "Port Jayceshire University",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "2b5817a3-9657-4db1-a0b1-bb61e02feb78",
+    "name": "Port Lennieburgh University",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "c39a78a4-7629-4ef8-a2dc-eadd8a3f8c6b",
+    "name": "Keirastad TSA",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -10,18 +30,8 @@
     }
   },
   {
-    "id": "ed967bca-9788-457b-bc4e-e906436d902f",
-    "name": "Ferneville TSA",
-    "enabled": true,
-    "isaccreditedbody": false,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "bc523b88-7431-4bf0-9368-79064eed46e7",
-    "name": "Wardmouth Academy Alliance",
+    "id": "aff6eeef-f2c5-467c-9635-1a3cdc40a587",
+    "name": "South Kennith Academy Alliance",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -30,20 +40,10 @@
     }
   },
   {
-    "id": "e15fa979-956a-4d74-b2f8-f23dbca22c00",
-    "name": "Harryhaven Academy Alliance",
+    "id": "6e822e63-8656-45d3-a2e8-6ac5f0357456",
+    "name": "East Francesca University",
     "enabled": true,
-    "isaccreditedbody": false,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "1a62513b-5c46-4182-9c72-a6d2ec8fbba3",
-    "name": "Larsonhaven TSA",
-    "enabled": true,
-    "isaccreditedbody": false,
+    "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
     "locations": {
       "address": "An address"
