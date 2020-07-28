@@ -71,9 +71,9 @@ const generateFakeApplication = (params = {}) => {
     personalDetails,
     contactDetails: generateContactDetails(faker, personalDetails),
     workHistory: generateWorkHistory(faker),
-    degree: generateDegree(faker, personalDetails.isInternationalCandidate),
-    gcse: generateGcse(faker, personalDetails.isInternationalCandidate),
-    englishLanguageQualification: generateEnglishLanguageQualification(faker),
+    degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
+    gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
+    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
     otherQualifications: generateOtherQualifications(faker),
     schoolExperience: generateSchoolExperience(faker),
     personalStatement: generatePersonalStatement(faker),
@@ -249,6 +249,86 @@ const generateFakeApplications = (count) => {
     personalDetails: {
       givenName: 'Tony',
       familyName: 'Stark'
+    }
+  }))
+
+  // UR for international candidates
+  // Scenario 1: Simple candidate
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-05T14:01:00',
+    personalDetails: {
+      givenName: 'Tiago',
+      familyName: 'Pereyra',
+      nationality: ['Spanish', 'Argentinian'],
+      residency: {
+        rightToWorkStudy: 'Yes',
+        details: 'I have lived in the UK for 10 years.'
+      }
+    },
+    degree: [{
+      type: 'Licenciatura',
+      subject: 'History of Contemporary Art and Visual Culture',
+      org: 'Complutense University of Madrid',
+      country: 'Spain',
+      grade: 'Pass',
+      startDate: '2004',
+      endDate: '2009'
+    }],
+    gcse: {
+      maths: {
+        missing: 'false',
+        type: 'Título de Bachiller',
+        subject: 'Maths',
+        country: 'Spain',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [{
+          grade: 8
+        }],
+        year: '2001'
+      },
+      english: {
+        missing: 'false',
+        type: 'Título de Bachiller',
+        subject: 'English',
+        country: 'Spain',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [{
+          grade: 5
+        }],
+        year: '2001'
+      },
+      science: {
+        missing: 'false',
+        type: 'Título de Bachiller',
+        subject: 'Science',
+        country: 'Spain',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [{
+          grade: 7
+        }],
+        year: '2001'
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Candidate has an English as a foreign language qualification',
+      type: 'IELTS',
+      grade: '5.5',
+      gradeLabel: 'Overall band score',
+      reference: '02GB0674SOOM599A',
+      referenceLabel: 'Test report form (TRF) number',
+      year: 2011
     }
   }))
 
