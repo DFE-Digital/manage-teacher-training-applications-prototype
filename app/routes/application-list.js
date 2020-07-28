@@ -28,9 +28,11 @@ function getApplicationsByGroup(applications) {
   const waitingOn = applications
     .filter(app => app.status === 'Offered')
 
-  const successfulApplications = applications
+  const pendingConditions = applications
     .filter(app => app.status === 'Accepted')
-    .concat(applications.filter(app => app.status === 'Conditions met'))
+
+  const conditionsMet = applications
+    .filter(app => app.status === 'Conditions met')
 
   let other = applications
     .filter(app => app.status !== 'Submitted')
@@ -55,7 +57,8 @@ function getApplicationsByGroup(applications) {
     aboutToBeRejectedAutomatically,
     awaitingDecision,
     waitingOn,
-    successfulApplications,
+    pendingConditions,
+    conditionsMet,
     other
   }
 }
@@ -67,7 +70,8 @@ function flattenGroup(grouped) {
   array = array.concat(grouped.rejectedWithoutFeedback)
   array = array.concat(grouped.awaitingDecision)
   array = array.concat(grouped.waitingOn)
-  array = array.concat(grouped.successfulApplications)
+  array = array.concat(grouped.pendingConditions)
+  array = array.concat(grouped.conditionsMet)
   array = array.concat(grouped.other)
   return array;
 }
@@ -109,15 +113,22 @@ function addHeadings(grouped) {
     array = array.concat(grouped.waitingOn)
   }
 
-  if (grouped.successfulApplications.length) {
+  if (grouped.pendingConditions.length) {
+    array.push({
+      heading: 'Offers pending conditions'
+    })
+    array = array.concat(grouped.pendingConditions)
+  }
+
+  if (grouped.conditionsMet.length) {
     array.push({
       heading: 'Successful candidates'
     })
-    array = array.concat(grouped.successfulApplications)
+    array = array.concat(grouped.conditionsMet)
   }
 
   if (grouped.other.length) {
-    if (grouped.deferred.length || grouped.aboutToBeRejectedAutomatically.length || grouped.rejectedWithoutFeedback.length || grouped.awaitingDecision.length || grouped.waitingOn.length || grouped.successfulApplications.length) {
+    if (grouped.deferred.length || grouped.aboutToBeRejectedAutomatically.length || grouped.rejectedWithoutFeedback.length || grouped.awaitingDecision.length || grouped.waitingOn.length || grouped.pendingConditions.length || grouped.conditionsMet.length) {
       array.push({
         heading: 'No action needed'
       })
