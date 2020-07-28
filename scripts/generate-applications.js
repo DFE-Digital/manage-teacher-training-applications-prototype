@@ -69,7 +69,7 @@ const generateFakeApplication = (params = {}) => {
     notes,
     events,
     personalDetails,
-    contactDetails: generateContactDetails(faker, personalDetails),
+    contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
     workHistory: generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
@@ -329,6 +329,72 @@ const generateFakeApplications = (count) => {
       reference: '02GB0674SOOM599A',
       referenceLabel: 'Test report form (TRF) number',
       year: 2011
+    }
+  }))
+
+  // UR for international candidates
+  // Scenario 2: Slightly difficult candidate
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-05T14:01:00',
+    personalDetails: {
+      givenName: 'Kung',
+      familyName: 'Ha-Sun',
+      nationality: ['South Korean', 'Australian'],
+      residency: {
+        rightToWorkStudy: 'Not yet'
+      }
+    },
+    contactDetails: {
+      tel: '+61 (08) 7225 5825',
+      email: faker.internet.email('Kung', 'Ha-Sun').toLowerCase(),
+      address: {
+        line1: '197 Gover St',
+        line2: '',
+        level2: 'North Adelaide',
+        level1: 'SA',
+        postalCode: '5006',
+        country: 'Australia'
+      }
+    },
+    degree: [{
+      type: 'Degree',
+      subject: 'Applied sociology',
+      org: 'University of Adelaide',
+      country: 'Australia',
+      grade: '81% (Distinction)',
+      startDate: '2014',
+      endDate: '2017'
+    }],
+    gcse: {
+      maths: {
+        missing: '-'
+      },
+      english: {
+        missing: 'false',
+        type: 'General High School Diploma',
+        subject: 'English',
+        country: 'South Korea',
+        grade: [{
+          grade: 'A'
+        }],
+        year: '2012'
+      },
+      science: {
+        missing: 'false',
+        type: 'General High School Diploma',
+        subject: 'Science',
+        country: 'South Korea',
+        grade: [{
+          grade: 'B'
+        }],
+        year: '2012'
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Not needed',
+      status: 'English is not a foreign language to the candidate'
     }
   }))
 

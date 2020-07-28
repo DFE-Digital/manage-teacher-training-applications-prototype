@@ -1,17 +1,7 @@
 [
   {
-    "id": "670e0929-4a44-44bd-99c0-06e85f4a8851",
-    "name": "New Earnestine SCITT",
-    "enabled": true,
-    "isaccreditedbody": false,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "b9cbb29e-8c5f-4620-8c13-ca71e82d6ca9",
-    "name": "Wernershire SCITT",
+    "id": "d7d3d7fe-db40-451a-8300-e78f785c15f7",
+    "name": "South Erwin SCITT",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -20,8 +10,8 @@
     }
   },
   {
-    "id": "9dc10362-5695-42c1-85a2-2c8e1e2c8775",
-    "name": "South Judahland Academy Alliance",
+    "id": "ed967bca-9788-457b-bc4e-e906436d902f",
+    "name": "Ferneville TSA",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -30,8 +20,8 @@
     }
   },
   {
-    "id": "fa98e105-07aa-46cc-a954-5da5bf18d046",
-    "name": "Port Margretfurt School",
+    "id": "bc523b88-7431-4bf0-9368-79064eed46e7",
+    "name": "Wardmouth Academy Alliance",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -40,8 +30,18 @@
     }
   },
   {
-    "id": "491e3763-f597-416c-9a2a-2223be22c6f8",
-    "name": "Port Lavinaview SCITT",
+    "id": "e15fa979-956a-4d74-b2f8-f23dbca22c00",
+    "name": "Harryhaven Academy Alliance",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "1a62513b-5c46-4182-9c72-a6d2ec8fbba3",
+    "name": "Larsonhaven TSA",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
