@@ -1,0 +1,52 @@
+[
+  {
+    "id": "98417476-94ee-4321-a656-d9c8f0d89434",
+    "name": "Dooleystad SCITT",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "700faf81-6aa9-411f-a772-bb117b69ec8f",
+    "name": "Port Juston TSA",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "850fda32-a1ba-4649-b10d-9204412fd5ec",
+    "name": "Port Julianamouth University",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "68914abf-043d-452f-9b64-f9f75048453a",
+    "name": "Port Sharon Academy Alliance",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "26a7ff98-3278-4f5c-8ab8-71a8be791511",
+    "name": "Estelletown SCITT",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  }
+]

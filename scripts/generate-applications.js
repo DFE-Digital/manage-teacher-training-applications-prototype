@@ -31,6 +31,7 @@ const generateEvents = require('../app/data/generators/events')
 
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
+  const organisations = require('../app/data/organisations.json')
   const cycle = params.cycle || generateCycle(faker)
   const status = params.status || generateStatus(faker, cycle)
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
@@ -53,8 +54,8 @@ const generateFakeApplication = (params = {}) => {
     id: faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
     cycle,
-    accreditingbody: generateOrganisation(faker).name,
-    provider: generateOrganisation(faker).name,
+    accreditingbody: faker.helpers.randomize(organisations).name,
+    provider: params.provider || faker.helpers.randomize(organisations).name,
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,
@@ -88,6 +89,7 @@ const generateFakeApplication = (params = {}) => {
  *
  */
 const generateFakeApplications = (count) => {
+  const organisations = require('../app/data/organisations.json')
   const applications = []
 
   applications.push(generateFakeApplication({
@@ -132,6 +134,8 @@ const generateFakeApplications = (count) => {
     'given-name': 'Umar',
     'family-name': 'Smith'
   }))
+
+  var provider =
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
@@ -228,7 +232,7 @@ const generateFakeApplications = (count) => {
  * @param {String} count Number of applications to generate
  *
  */
-const generateFile = (filePath, count) => {
+const generateApplicationsFile = (filePath, count) => {
   const applications = generateFakeApplications(count)
   const filedata = JSON.stringify(applications, null, 2)
   fs.writeFile(
@@ -243,6 +247,4 @@ const generateFile = (filePath, count) => {
   )
 }
 
-const filePath = path.join(__dirname, '../app/data/applications.json')
-const count = process.argv.slice(-1)[0] || 25
-generateFile(filePath, count)
+generateApplicationsFile(path.join(__dirname, '../app/data/applications.json'), 100)
