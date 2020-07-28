@@ -1,6 +1,6 @@
 <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Other qualifications</h2>
 {% set rowData = [] %}
-{% for item in application["other-qualifications"] | toArray %}
+{% for item in application.otherQualifications | toArray %}
   {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
   {% set qualificationHtml %}
       <b>{{ item.subject }}</b> {{ item.type }}

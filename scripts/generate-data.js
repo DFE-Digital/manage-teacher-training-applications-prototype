@@ -73,7 +73,7 @@ const generateFakeApplication = (params = {}) => {
     degree: generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: generateEnglishLanguageQualification(faker),
-    'other-qualifications': generateOtherQualifications(faker),
+    otherQualifications: generateOtherQualifications(faker),
     'school-experience': generateSchoolExperience(faker),
     'personal-statement': generatePersonalStatement(faker),
     references: generateReferences(faker),
