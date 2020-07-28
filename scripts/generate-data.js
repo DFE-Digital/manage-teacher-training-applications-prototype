@@ -35,7 +35,7 @@ const generateFakeApplication = (params = {}) => {
   const status = params.status || generateStatus(faker, cycle)
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
   const submittedDate = params.submittedDate || faker.date.past()
-  const personalDetails = generatePersonalDetails(faker, params)
+  const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
   if (['Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
@@ -93,8 +93,10 @@ const generateFakeApplications = (count) => {
   applications.push(generateFakeApplication({
     status: 'Deferred',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Eloise',
-    familyName: 'Wells'
+    personalDetails: {
+      givenName: 'Eloise',
+      familyName: 'Wells'
+    }
   }))
 
   applications.push(generateFakeApplication({
@@ -103,8 +105,10 @@ const generateFakeApplications = (count) => {
       reason: 'location'
     },
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Becky',
-    familyName: 'Brother'
+    personalDetails: {
+      givenName: 'Becky',
+      familyName: 'Brother'
+    }
   }))
 
   applications.push(generateFakeApplication({
@@ -113,104 +117,132 @@ const generateFakeApplications = (count) => {
       reason: 'course'
     },
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Laura',
-    familyName: 'Say'
+    personalDetails: {
+      givenName: 'Laura',
+      familyName: 'Say'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-05T14:01:00',
-    givenName: 'James',
-    familyName: 'Sully'
+    personalDetails: {
+      givenName: 'James',
+      familyName: 'Sully'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-08T13:01:00',
-    givenName: 'Umar',
-    familyName: 'Smith'
+    personalDetails: {
+      givenName: 'Umar',
+      familyName: 'Smith'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-21T18:59:00',
-    givenName: 'Emma',
-    familyName: 'Hayes'
+    personalDetails: {
+      givenName: 'Emma',
+      familyName: 'Hayes'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-29',
-    givenName: 'Daniel',
-    familyName: 'James'
+    personalDetails: {
+      givenName: 'Daniel',
+      familyName: 'James'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-08-10T13:32:00',
-    givenName: 'Teresa',
-    familyName: 'Mendoza'
+    personalDetails: {
+      givenName: 'Teresa',
+      familyName: 'Mendoza'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Sally',
-    familyName: 'Harvey'
+    personalDetails: {
+      givenName: 'Sally',
+      familyName: 'Harvey'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Rachael',
-    familyName: 'Wayne'
+    personalDetails: {
+      givenName: 'Rachael',
+      familyName: 'Wayne'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Louise',
-    familyName: 'Jenkins'
+    personalDetails: {
+      givenName: 'Louise',
+      familyName: 'Jenkins'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Accepted',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Trent',
-    familyName: 'Skipp'
+    personalDetails: {
+      givenName: 'Trent',
+      familyName: 'Skipp'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Accepted',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Ed',
-    familyName: 'Lloyd'
+    personalDetails: {
+      givenName: 'Ed',
+      familyName: 'Lloyd'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Bill',
-    familyName: 'Jones'
+    personalDetails: {
+      givenName: 'Bill',
+      familyName: 'Jones'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Killian',
-    familyName: 'Black'
+    personalDetails: {
+      givenName: 'Killian',
+      familyName: 'Black'
+    }
   }))
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
-    givenName: 'Tony',
-    familyName: 'Stark'
+    personalDetails: {
+      givenName: 'Tony',
+      familyName: 'Stark'
+    }
   }))
 
   for (var i = 0; i < count; i++) {
