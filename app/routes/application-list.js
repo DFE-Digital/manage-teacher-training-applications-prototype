@@ -7,9 +7,7 @@ function getCheckboxValues (name, data) {
   })) || data
 }
 
-function getApplicationsByGroup(applications) {
-
-
+function getApplicationsByGroup (applications) {
   const deferred = applications
     .filter(app => app.status === 'Deferred')
 
@@ -63,8 +61,8 @@ function getApplicationsByGroup(applications) {
   }
 }
 
-function flattenGroup(grouped) {
-  var array = [];
+function flattenGroup (grouped) {
+  var array = []
   array = array.concat(grouped.deferred)
   array = array.concat(grouped.aboutToBeRejectedAutomatically)
   array = array.concat(grouped.rejectedWithoutFeedback)
@@ -73,16 +71,16 @@ function flattenGroup(grouped) {
   array = array.concat(grouped.pendingConditions)
   array = array.concat(grouped.conditionsMet)
   array = array.concat(grouped.other)
-  return array;
+  return array
 }
 
-function addHeadings(grouped) {
-  var array = [];
+function addHeadings (grouped) {
+  var array = []
   if (grouped.deferred.length) {
     array.push({
       heading: 'Reconfirm offers'
     })
-    array = array.concat(grouped.deferred);
+    array = array.concat(grouped.deferred)
   }
 
   if (grouped.aboutToBeRejectedAutomatically.length) {
@@ -135,7 +133,7 @@ function addHeadings(grouped) {
     }
     array = array.concat(grouped.other)
   }
-  return array;
+  return array
 }
 
 module.exports = router => {
@@ -181,7 +179,7 @@ module.exports = router => {
           accreditingbodyValid = accreditingbodies.includes(app.accreditingbody)
         }
 
-        var candidateName = app['personal-details']['given-name'] + ' ' + app['personal-details']['family-name']
+        var candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
 
         if (keywords) {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
@@ -283,36 +281,33 @@ module.exports = router => {
       return app
     })
 
-
     applications = applications.sort(function (a, b) {
       return a.daysToRespond - b.daysToRespond
     })
-
-
 
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)
 
     // Put groups into ordered array
-    applications = flattenGroup(grouped);
+    applications = flattenGroup(grouped)
 
     // Get the page worth of items
-    let pageSize = 20;
-    let page = parseInt(req.query.page, 10) || 1
+    const pageSize = 20
+    const page = parseInt(req.query.page, 10) || 1
 
     // to use zero based indexing in code but normal indexing for the url
-    let startIndex = (page - 1) * pageSize;
-    let endIndex = startIndex + pageSize;
-    let pageCount = Math.ceil(applications.length / pageSize);
-    let totalApplications = applications.length;
+    const startIndex = (page - 1) * pageSize
+    let endIndex = startIndex + pageSize
+    const pageCount = Math.ceil(applications.length / pageSize)
+    const totalApplications = applications.length
 
-    if(endIndex > applications.length) {
-      endIndex = applications.length;
+    if (endIndex > applications.length) {
+      endIndex = applications.length
     }
 
-    applications = applications.splice(startIndex, endIndex);
+    applications = applications.splice(startIndex, endIndex)
 
-    if(pageCount > 1) {
+    if (pageCount > 1) {
       var pagination = {
         from: startIndex + 1,
         to: endIndex,
@@ -320,32 +315,32 @@ module.exports = router => {
         items: []
       }
 
-      if(page > 1) {
+      if (page > 1) {
         pagination.previous = {
-          text: "Previous",
-          href: "?page=" + (page - 1)
+          text: 'Previous',
+          href: '?page=' + (page - 1)
         }
       }
 
-      if(page !== pageCount) {
+      if (page !== pageCount) {
         pagination.next = {
-          text: "Next",
-          href: "?page=" + (page + 1)
+          text: 'Next',
+          href: '?page=' + (page + 1)
         }
       }
 
-      for(var i = 1; i < pageCount + 1; i++) {
+      for (var i = 1; i < pageCount + 1; i++) {
         pagination.items.push({
           text: i,
-          href: "?page=" + i,
+          href: '?page=' + i,
           selected: i == page
         })
       }
     }
 
     // now mixin the headings
-    grouped = getApplicationsByGroup(applications);
-    applications = addHeadings(grouped);
+    grouped = getApplicationsByGroup(applications)
+    applications = addHeadings(grouped)
 
     res.render('index', {
       applications: applications,

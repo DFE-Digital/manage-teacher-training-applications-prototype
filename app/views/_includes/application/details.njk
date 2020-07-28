@@ -1,5 +1,5 @@
 {% set nationalityText %}
-  {% set nationalities = application["personal-details"].nationality %}
+  {% set nationalities = application.personalDetails.nationality %}
   {%- for nationality in nationalities -%}
     {{ (" and " if loop.last else ", ") if not loop.first }}{{ nationality }}
   {%- endfor -%}
@@ -55,16 +55,16 @@
       text: "Has the right to work or study in the UK?"
     },
     value: {
-      text: application["personal-details"].residency.rightToWorkStudy
+      text: application.personalDetails.residency.rightToWorkStudy
     }
-  } if application["personal-details"].residency, {
+  } if application.personalDetails.residency, {
     key: {
       text: "Residency details"
     },
     value: {
-      text: application["personal-details"].residency.details
+      text: application.personalDetails.residency.details
     }
-  } if application["personal-details"].residency.details, {
+  } if application.personalDetails.residency.details, {
     key: {
       text: "Phone number"
     },

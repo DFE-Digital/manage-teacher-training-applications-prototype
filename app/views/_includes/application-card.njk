@@ -3,7 +3,7 @@
   <div class="app-application-card__primary">
     <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
       <a href="/application/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
-        {{ [a["personal-details"]["given-name"], a["personal-details"]["family-name"]] | join(" ") }}
+        {{ a.personalDetails.givenName }} {{ a.personalDetails.familyName }}
       </a>
     </h3>
     <p class="govuk-!-font-size-16">{{ a.provider }}</p>

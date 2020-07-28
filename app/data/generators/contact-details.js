@@ -7,7 +7,7 @@ module.exports = (faker, personalDetails) => {
 
   return {
     tel: faker.phone.phoneNumber(),
-    email: faker.internet.email(personalDetails['given-name'], personalDetails['family-name']).toLowerCase(),
+    email: faker.internet.email(personalDetails.givenName, personalDetails.familyName).toLowerCase(),
     address: {
       line1: faker.address.streetAddress(),
       line2: '',

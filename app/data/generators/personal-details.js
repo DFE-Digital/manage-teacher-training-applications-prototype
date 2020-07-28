@@ -31,9 +31,9 @@ module.exports = (faker, params = {}) => {
   } : false
 
   return {
-    'given-name': params['given-name'] || faker.name.firstName(),
-    'family-name': params['family-name'] ||faker.name.lastName(),
-    'date-of-birth': faker.date.between('1958-01-01', '1998-01-01'),
+    givenName: params.givenName || faker.name.firstName(),
+    familyName: params.familyName || faker.name.lastName(),
+    dateOfBirth: faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
     residency,
     isInternationalCandidate

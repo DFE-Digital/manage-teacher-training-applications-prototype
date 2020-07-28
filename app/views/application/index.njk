@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "application" %}
 {% set status = application.status %}
-{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 {% set title = name %}
 {% set rbd = application.submittedDate | addDays(40) %}
 {% set remaining = rbd | daysFromNow(rbd) %}
@@ -162,7 +162,7 @@
       }) }}
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
-      {% if application['personal-details'].isInternationalCandidate %}
+      {% if application.personalDetails.isInternationalCandidate %}
         {% include "_includes/application/english-language-qualification.njk" %}
       {% endif %}
     </div>

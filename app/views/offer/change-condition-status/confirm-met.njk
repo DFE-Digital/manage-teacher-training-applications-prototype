@@ -1,6 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName | join(" ") %}
 
 {% set title = "Confirm condition met" %}
 
