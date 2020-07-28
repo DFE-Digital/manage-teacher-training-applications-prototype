@@ -69,21 +69,21 @@
       text: "Phone number"
     },
     value: {
-      html: "<a href=\"tel:" + application["contact-details"].tel | replace(" ", "") + "\">" + application["contact-details"].tel + "</a>"
+      html: "<a href=\"tel:" + application.contactDetails.tel | replace(" ", "") + "\">" + application.contactDetails.tel + "</a>"
     }
   }, {
     key: {
       text: "Email address"
     },
     value: {
-      html: "<a href=\"mailto:" + application["contact-details"].email + "\">" + application["contact-details"].email + "</a>"
+      html: "<a href=\"mailto:" + application.contactDetails.email + "\">" + application.contactDetails.email + "</a>"
     }
   }, {
     key: {
       text: "Address"
     },
     value: {
-      html: application["contact-details"].address | toArray | join("<br>") if application["contact-details"].address else "No information shared"
+      html: application.contactDetails.address | toArray | join("<br>") if application.contactDetails.address else "No information shared"
     }
   }]
 }) }}

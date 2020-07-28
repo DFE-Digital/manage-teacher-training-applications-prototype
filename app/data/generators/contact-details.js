@@ -13,7 +13,7 @@ module.exports = (faker, personalDetails) => {
       line2: '',
       level2: faker.address.city(),
       level1: personalDetails.isInternationalCandidate ? faker.address.state() : faker.address.county(),
-      'postal-code': faker.address.zipCode(),
+      postalCode: faker.address.zipCode(),
       ...(personalDetails.isInternationalCandidate && { country: 'France' })
     }
   }
