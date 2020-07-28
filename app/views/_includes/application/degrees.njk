@@ -9,12 +9,12 @@
             <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
             <dl class="app-qualification">
             {% if item.country != "United Kingdom" %}
-              <dt class="app-qualification__key">Institution</dt>
+              <dt class="app-qualification__key govuk-visually-hidden">Institution</dt>
               <dd class="app-qualification__value govuk-!-margin-bottom-1">
                 {{ [item.org, item.country] | join(", ") }}
               </dd>
             {% endif %}
-              <dt class="app-qualification__key">Started and graduated</dt>
+              <dt class="app-qualification__key govuk-visually-hidden">Started and graduated</dt>
               <dd class="app-qualification__value app-qualification__value--caption">
                 {{ item.startDate }} to {{ item.endDate }}
               </dd>
