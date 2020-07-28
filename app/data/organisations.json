@@ -1,7 +1,7 @@
 [
   {
-    "id": "cdbafa1d-b20a-45f9-85c7-f267980f65cb",
-    "name": "Port Jayceshire University",
+    "id": "9c17e1dc-0c45-472f-a81a-ba5197ec21d1",
+    "name": "Lake Reaganside Academy Alliance",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -10,8 +10,18 @@
     }
   },
   {
-    "id": "2b5817a3-9657-4db1-a0b1-bb61e02feb78",
-    "name": "Port Lennieburgh University",
+    "id": "447bd691-6d18-413a-a6d5-f565d69ff843",
+    "name": "New Zoe SCITT",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "4cdbef5a-a148-4fb8-8c8c-bc97d6dcfa10",
+    "name": "Mullerstad TSA",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -20,8 +30,8 @@
     }
   },
   {
-    "id": "c39a78a4-7629-4ef8-a2dc-eadd8a3f8c6b",
-    "name": "Keirastad TSA",
+    "id": "3ae4eec0-0871-4bc0-94da-b0024bbe5cc0",
+    "name": "New Gordonview TSA",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -30,20 +40,10 @@
     }
   },
   {
-    "id": "aff6eeef-f2c5-467c-9635-1a3cdc40a587",
-    "name": "South Kennith Academy Alliance",
+    "id": "37ca3b64-a0db-417b-b714-90a05f010577",
+    "name": "West Vallieberg TSA",
     "enabled": true,
-    "isaccreditedbody": true,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "6e822e63-8656-45d3-a2e8-6ac5f0357456",
-    "name": "East Francesca University",
-    "enabled": true,
-    "isaccreditedbody": true,
+    "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
     "locations": {
       "address": "An address"

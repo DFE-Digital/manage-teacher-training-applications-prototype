@@ -1,10 +1,11 @@
 .app-qualification {
-  @include govuk-font($size: 19);
+  @include govuk-font($size: 16);
   margin: 0;
 }
 
 .app-qualification__key {
-  @include govuk-visually-hidden($important: true);
+  font-weight: bold;
+  margin-bottom: govuk-spacing(1);
 }
 
 .app-qualification__value {
@@ -17,6 +18,5 @@
 }
 
 .app-qualification__value--caption {
-  @include govuk-font($size: 16);
   color: $govuk-secondary-text-colour;
 }
