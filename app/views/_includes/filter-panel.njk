@@ -1,47 +1,6 @@
 {% set filterOptionsHtml %}
 
-
-    {% if not data.tabs %}
-      {# <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Cycle</h2>
-      <p class="govuk-body govuk-!-margin-bottom-2">
-        {{data.cycle}}
-      </p>
-      <p class="govuk-body govuk-!-margin-bottom-7">
-        <a href="/switch-cycle" class="govuk-link">Change</a>
-      </p> #}
-
-      {# {{ govukRadios({
-        idPrefix: "cycle",
-        name: "cycle",
-        classes: "govuk-radios--small",
-        fieldset: {
-          legend: {
-            text: "Cycle",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-            {
-              value: "Previous cycle (2019 to 2020)",
-              text: "Previous cycle (2019 to 2020)",
-              checked: checked("cycle", "Previous cycle (2019 to 2020)")
-            },
-            {
-              value: "Current cycle (2020 to 2021)",
-              text: "Current cycle (2020 to 2021)",
-              checked: checked("cycle", "Current cycle (2020 to 2021)")
-            },
-            {
-              value: "Next cycle (2021 to 2022)",
-              text: "Next cycle (2021 to 2022)",
-              checked: checked("cycle", "Next cycle (2021 to 2022)")
-            }
-          ]
-      }) }} #}
-    {% endif %}
-
-    {{ govukInput({
+  {{ govukInput({
       id: 'keywords',
       name: 'keywords',
       label: {
@@ -51,59 +10,30 @@
       value: data.keywords
     }) }}
 
-    {# {{ govukRadios({
-      idPrefix: "sortby",
-      name: "sortby",
-      classes: "govuk-radios--small",
+    {{ govukCheckboxes({
+      idPrefix: "cycle",
+      name: "cycle",
+      classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: "Sort by",
+          text: "Cycle",
           isPageHeading: false,
           classes: "govuk-fieldset__legend--m"
         }
       },
       items: [
         {
-          value: "Last changed",
-          text: "Last changed",
-          checked: checked("sortby", "Last changed")
+          value: "Previous cycle (2019 to 2020)",
+          text: "2019 to 2020",
+          checked: checked("cycle", "Previous cycle (2019 to 2020)")
         },
         {
-          value: "Rejected by default date",
-          text: "Rejected by default date",
-          checked: checked("sortby", "Rejected by default date")
+          value: "Current cycle (2020 to 2021)",
+          text: "2020 to 2021 (Current)",
+          checked: checked("cycle", "Current cycle (2020 to 2021)")
         }
       ]
-    }) }} #}
-
-    {# {{ govukCheckboxes({
-      idPrefix: 'rbddate',
-      name: 'rbddate',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Reject by default date',
-          classes: 'govuk-fieldset__legend--m'
-        }
-      },
-      items: [
-        {
-          value: 'Within the next 5 days',
-          text: 'Within the next 5 days',
-          checked: checked("rbddate", "Within the next 5 days") == 'checked'
-        },
-        {
-          value: 'Within the next 10 days',
-          text: 'Within the next 10 days',
-          checked: checked("rbddate", "Within the next 10 days") == 'checked'
-        },
-        {
-          value: 'Within the next 20 days',
-          text: 'Within the next 20 days',
-          checked: checked("rbddate", "Within the next 20 days") == 'checked'
-        }
-      ]
-    }) }} #}
+    }) }}
 
     {{ govukCheckboxes({
       idPrefix: 'status',
