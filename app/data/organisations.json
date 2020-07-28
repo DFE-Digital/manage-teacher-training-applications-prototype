@@ -1,37 +1,7 @@
 [
   {
-    "id": "bb06a71c-8659-487c-8224-6cebf0fc0198",
-    "name": "Lake Giovani TSA",
-    "enabled": true,
-    "isaccreditedbody": false,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "def9df1f-cfb1-47f7-8bab-f156d78674af",
-    "name": "Keiraland TSA",
-    "enabled": true,
-    "isaccreditedbody": false,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "8ad95743-66bc-4127-82fe-c0b8ddb0d8e0",
-    "name": "Joliehaven Academy Alliance",
-    "enabled": true,
-    "isaccreditedbody": false,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "77cd70ca-93d7-4791-a9e2-3bd70792d594",
-    "name": "East Talonstad SCITT",
+    "id": "ebf61d29-937e-4bc8-8592-92a1a446aff7",
+    "name": "Hamillview SCITT",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -40,10 +10,40 @@
     }
   },
   {
-    "id": "bce259c6-63f5-4a62-8879-6d456e2b5e23",
-    "name": "Joannyborough TSA",
+    "id": "d9575d35-3e82-4795-bc65-17b5df1cf6f2",
+    "name": "East Arvilla SCITT",
     "enabled": true,
     "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "2eb9a294-8db9-49b6-9165-5ef1f18b255c",
+    "name": "Darianville SCITT",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "7cf8c8d7-edae-478d-8388-5d310810c034",
+    "name": "East Cletusside School",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "0701c0f0-eb12-4526-ba22-c4700991bea2",
+    "name": "South Cale University",
+    "enabled": true,
+    "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
     "locations": {
       "address": "An address"
