@@ -364,6 +364,7 @@ const generateFakeApplications = (count) => {
     }],
     gcse: {
       maths: {
+        subject: 'Maths',
         missing: '-'
       },
       english: {
@@ -419,6 +420,7 @@ const generateFakeApplications = (count) => {
     }],
     gcse: {
       maths: {
+        subject: 'Maths',
         missing: '-'
       },
       english: {
