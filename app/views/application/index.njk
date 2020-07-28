@@ -145,7 +145,7 @@
         summaryText: "View candidate guidance",
         html: interviewGuidanceHtml
       }) }}
-      <p class="govuk-body">{{ application["personal-statement"].interview | nl2br or "No information shared" }}</p>
+      <p class="govuk-body">{{ application.personalStatement.interview | nl2br or "No information shared" }}</p>
     </div>
 
     <div class="govuk-grid-column-full">
@@ -232,10 +232,10 @@
       }) }}
 
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Vocation</h3>
-      <p>{{ application["personal-statement"].vocation | safe | nl2br or "—" }}</p>
+      <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
 
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
-      <p>{{ application["personal-statement"]["subject-knowledge"] | safe | nl2br or "—" }}</p>
+      <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
 
       <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">References</h2>
       {% set referencesGuidanceHtml %}

@@ -75,7 +75,7 @@ const generateFakeApplication = (params = {}) => {
     englishLanguageQualification: generateEnglishLanguageQualification(faker),
     otherQualifications: generateOtherQualifications(faker),
     schoolExperience: generateSchoolExperience(faker),
-    'personal-statement': generatePersonalStatement(faker),
+    personalStatement: generatePersonalStatement(faker),
     references: generateReferences(faker),
     miscellaneous: faker.lorem.paragraph()
   }
