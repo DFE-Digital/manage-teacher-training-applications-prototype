@@ -250,8 +250,9 @@ const generateFakeApplications = (count) => {
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-05T14:01:00',
+    submittedDate: '2019-07-12T14:01:00',
     personalDetails: {
+      isInternationalCandidate: true,
       givenName: 'Tiago',
       familyName: 'Pereyra',
       nationality: ['Spanish', 'Argentinian'],
@@ -330,8 +331,9 @@ const generateFakeApplications = (count) => {
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-05T14:01:00',
+    submittedDate: '2019-07-11T14:01:00',
     personalDetails: {
+      isInternationalCandidate: true,
       givenName: 'Kung',
       familyName: 'Ha-Sun',
       nationality: ['South Korean', 'Australian'],
@@ -388,6 +390,62 @@ const generateFakeApplications = (count) => {
     englishLanguageQualification: {
       hasQualification: 'Not needed',
       status: 'English is not a foreign language to the candidate'
+    }
+  }))
+
+  // UR for international candidates
+  // Scenario 3: Difficult candidate
+  applications.push(generateFakeApplication({
+    status: 'Submitted',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-10T14:01:00',
+    personalDetails: {
+      isInternationalCandidate: true,
+      givenName: 'Chitprem',
+      familyName: 'Sra',
+      nationality: ['Indian'],
+      residency: {
+        rightToWorkStudy: 'Do not know'
+      }
+    },
+    degree: [{
+      type: 'BCA',
+      subject: 'System Analysis & Design',
+      org: 'Panjab University',
+      country: 'India',
+      grade: 'A',
+      startDate: '2012',
+      endDate: '2016'
+    }],
+    gcse: {
+      maths: {
+        missing: '-'
+      },
+      english: {
+        missing: 'false',
+        type: 'Indian School Certificate',
+        subject: 'English',
+        country: 'India',
+        grade: [{
+          grade: '3'
+        }],
+        year: '2010'
+      },
+      science: {
+        missing: 'false',
+        type: 'Indian School Certificate',
+        subject: 'Science',
+        country: 'India',
+        grade: [{
+          grade: '4'
+        }],
+        year: '2010'
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'No',
+      status: 'English is not a foreign language to the candidate',
+      missing: '-'
     }
   }))
 
