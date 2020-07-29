@@ -140,30 +140,32 @@ function addHeadings(grouped) {
 
 module.exports = router => {
   router.all('/', (req, res) => {
-    let apps = req.session.data.applications.map(app => app).reverse().filter(app => {
-      return app.cycle === req.session.data.cycle
-    })
+    let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { status, provider, accreditingbody, keywords, locationname, rbddate, sortby } = req.query
+    let { cycle, status, provider, accreditingbody, keywords, locationname } = req.query
 
     keywords = keywords || req.session.data.keywords
 
-    // let rbddates = getCheckboxValues(rbddate, req.session.data.rbddate);
+    const cycles = getCheckboxValues(cycle, req.session.data.cycle)
     const statuses = getCheckboxValues(status, req.session.data.status)
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locationnames = getCheckboxValues(locationname, req.session.data.locationname)
     const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
 
-    const hasFilters = !!((statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (keywords))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (keywords))
 
     if (hasFilters) {
       apps = apps.filter((app) => {
+        let cycleValid = true
         let statusValid = true
         let providerValid = true
         let locationnameValid = true
         let accreditingbodyValid = true
         let candidateNameValid = true
-        // let rbdValid = true;
+
+        if (cycles && cycles.length) {
+          cycleValid = cycles.includes(app.cycle)
+        }
 
         if (statuses && statuses.length) {
           statusValid = statuses.includes(app.status)
@@ -187,7 +189,7 @@ module.exports = router => {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
         }
 
-        return statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid
+        return cycleValid && statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid
       })
     }
 
@@ -204,6 +206,18 @@ module.exports = router => {
             text: keywords,
             href: '/remove-keywords-filter'
           }]
+        })
+      }
+
+      if (cycles && cycles.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Cycles' },
+          items: cycles.map((cycle) => {
+            return {
+              text: cycle,
+              href: `/remove-cycle-filter/${cycle}`
+            }
+          })
         })
       }
 
@@ -360,10 +374,10 @@ module.exports = router => {
     res.redirect('/')
   })
 
-  // router.get('/remove-rbddate-filter/:rbddate', (req, res) => {
-  //   req.session.data.rbddate = req.session.data.rbddate.filter(item => item !== req.params.rbddate);
-  //   res.redirect('/');
-  // })
+  router.get('/remove-cycle-filter/:cycle', (req, res) => {
+    req.session.data.cycle = req.session.data.cycle.filter(item => item !== req.params.cycle)
+    res.redirect('/')
+  })
 
   router.get('/remove-status-filter/:status', (req, res) => {
     req.session.data.status = req.session.data.status.filter(item => item !== req.params.status)
@@ -386,7 +400,7 @@ module.exports = router => {
   })
 
   router.get('/remove-all-filters', (req, res) => {
-    // req.session.data.rbddate = null;
+    req.session.data.cycle = null
     req.session.data.status = null
     req.session.data.provider = null
     req.session.data.keywords = null
