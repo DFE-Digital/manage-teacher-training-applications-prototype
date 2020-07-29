@@ -31,6 +31,7 @@ const generateEvents = require('../app/data/generators/events')
 
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
+  const organisations = require('../app/data/organisations.json')
   const cycle = params.cycle || generateCycle(faker)
   const status = params.status || generateStatus(faker, cycle)
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
@@ -53,8 +54,8 @@ const generateFakeApplication = (params = {}) => {
     id: faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
     cycle,
-    accreditingbody: generateOrganisation(faker).name,
-    provider: generateOrganisation(faker).name,
+    accreditingbody: faker.helpers.randomize(organisations).name,
+    provider: params.organisation ? params.organisation.name : faker.helpers.randomize(organisations).name,
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,
@@ -88,6 +89,7 @@ const generateFakeApplication = (params = {}) => {
  *
  */
 const generateFakeApplications = (count) => {
+  const organisations = require('../app/data/organisations.json')
   const applications = []
 
   applications.push(generateFakeApplication({
@@ -133,10 +135,22 @@ const generateFakeApplications = (count) => {
     'family-name': 'Smith'
   }))
 
+  var organisation = organisations[0];
+
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-21T18:59:00',
+    organisation: organisation,
+    'given-name': 'Emma',
+    'family-name': 'Hayes'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    cycle: 'Previous cycle (2019 to 2020)',
+    submittedDate: '2018-07-21T18:59:00',
+    organisation: organisation,
     'given-name': 'Emma',
     'family-name': 'Hayes'
   }))
@@ -228,7 +242,7 @@ const generateFakeApplications = (count) => {
  * @param {String} count Number of applications to generate
  *
  */
-const generateFile = (filePath, count) => {
+const generateApplicationsFile = (filePath, count) => {
   const applications = generateFakeApplications(count)
   const filedata = JSON.stringify(applications, null, 2)
   fs.writeFile(
@@ -243,6 +257,4 @@ const generateFile = (filePath, count) => {
   )
 }
 
-const filePath = path.join(__dirname, '../app/data/applications.json')
-const count = process.argv.slice(-1)[0] || 25
-generateFile(filePath, count)
+generateApplicationsFile(path.join(__dirname, '../app/data/applications.json'), 100)
