@@ -1,11 +1,18 @@
-# ignore tracking usage data config - we want a different one for each user
-usage-data-config.json
-# ignore extension SCSS because it's dynamically generated
-lib/extensions/_extensions.scss
+# Private
 .env
+
+# Ignore tracking usage data config - we want a different one for each user
+usage-data-config.json
+
+# Development
 .sass-cache
 .start.pid
 .port.tmp
-public
-node_modules/*
 package-lock.json
+node_modules/*
+
+# Dynamically generated files
+app/data/applications.json
+app/data/organisations.json
+lib/extensions/_extensions.scss
+public

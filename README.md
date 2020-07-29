@@ -4,16 +4,16 @@ This prototype is based on the [GOV.UK prototype kit](https://github.com/alphago
 
 ## Requirements
 
-- node.js - version 10.x.x
+* node.js - version 10.x.x
 
 ## Install dependencies
 
-```
+```sh
 npm install
 ```
 
-## Start the app
+## Generate data and start the app
 
-```
+```sh
 npm start
 ```
