@@ -1,7 +1,7 @@
 [
   {
-    "id": "9c17e1dc-0c45-472f-a81a-ba5197ec21d1",
-    "name": "Lake Reaganside Academy Alliance",
+    "id": "1a73b4ea-3503-4acb-91fa-4bcd6c38427e",
+    "name": "Marisaside School",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -10,18 +10,8 @@
     }
   },
   {
-    "id": "447bd691-6d18-413a-a6d5-f565d69ff843",
-    "name": "New Zoe SCITT",
-    "enabled": true,
-    "isaccreditedbody": true,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "4cdbef5a-a148-4fb8-8c8c-bc97d6dcfa10",
-    "name": "Mullerstad TSA",
+    "id": "e7b70c5e-2f2b-4b0c-9504-a195705e17bc",
+    "name": "South Enola School",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -30,18 +20,28 @@
     }
   },
   {
-    "id": "3ae4eec0-0871-4bc0-94da-b0024bbe5cc0",
-    "name": "New Gordonview TSA",
+    "id": "44959126-bfde-46e8-9eea-d05c3651b0c3",
+    "name": "West Evaville School",
     "enabled": true,
-    "isaccreditedbody": true,
+    "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
     "locations": {
       "address": "An address"
     }
   },
   {
-    "id": "37ca3b64-a0db-417b-b714-90a05f010577",
-    "name": "West Vallieberg TSA",
+    "id": "2a8214d2-6efb-452e-9768-9862d3f6ceee",
+    "name": "East Johnathanfort Academy Alliance",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "83a93d53-ccc9-45ab-8c25-17d5a11f5afb",
+    "name": "North Mavisbury SCITT",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
