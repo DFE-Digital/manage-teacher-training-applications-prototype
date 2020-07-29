@@ -2,7 +2,7 @@ module.exports = router => {
   router.get('/activity', (req, res) => {
     // Clone and turn into an array
     const apps = req.session.data.applications.filter(app => {
-      return app.cycle === req.session.data.cycle
+      return app.cycle === "Current cycle (2020 to 2021)"
     })
 
     let allEvents = []
