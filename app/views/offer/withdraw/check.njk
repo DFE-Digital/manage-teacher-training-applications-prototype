@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set name = [application.personalDetails.givenName, application.personalDetails.familyName | join(" ") %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 {% set title = "Check your feedback and withdraw offer" %}
 
 {% block pageNavigation %}
