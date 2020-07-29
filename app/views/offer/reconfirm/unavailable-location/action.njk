@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set name = [application["personal-details"]["given-name"], application["personal-details"]["family-name"]] | join(" ") %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 
 {% set title = "This offer was made with a location which is no longer available" %}
 

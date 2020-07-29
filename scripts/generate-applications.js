@@ -68,15 +68,15 @@ const generateFakeApplication = (params = {}) => {
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
     notes,
     events,
-    'personal-details': personalDetails,
-    'contact-details': generateContactDetails(faker, personalDetails),
-    'work-history': generateWorkHistory(faker),
+    personalDetails,
+    contactDetails: generateContactDetails(faker, personalDetails),
+    workHistory: generateWorkHistory(faker),
     degree: generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: generateEnglishLanguageQualification(faker),
-    'other-qualifications': generateOtherQualifications(faker),
-    'school-experience': generateSchoolExperience(faker),
-    'personal-statement': generatePersonalStatement(faker),
+    otherQualifications: generateOtherQualifications(faker),
+    schoolExperience: generateSchoolExperience(faker),
+    personalStatement: generatePersonalStatement(faker),
     references: generateReferences(faker),
     miscellaneous: faker.lorem.paragraph()
   }
@@ -95,8 +95,8 @@ const generateFakeApplications = (count) => {
   applications.push(generateFakeApplication({
     status: 'Deferred',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Eloise',
-    'family-name': 'Wells'
+    givenName: 'Eloise',
+    familyName: 'Wells'
   }))
 
   applications.push(generateFakeApplication({
@@ -105,8 +105,8 @@ const generateFakeApplications = (count) => {
       reason: 'location'
     },
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Becky',
-    'family-name': 'Brother'
+    givenName: 'Becky',
+    familyName: 'Brother'
   }))
 
   applications.push(generateFakeApplication({
@@ -115,24 +115,24 @@ const generateFakeApplications = (count) => {
       reason: 'course'
     },
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Laura',
-    'family-name': 'Say'
+    givenName: 'Laura',
+    familyName: 'Say'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-05T14:01:00',
-    'given-name': 'James',
-    'family-name': 'Sully'
+    givenName: 'James',
+    familyName: 'Sully'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-08T13:01:00',
-    'given-name': 'Umar',
-    'family-name': 'Smith'
+    givenName: 'Umar',
+    familyName: 'Smith'
   }))
 
   var organisation = organisations[0];
@@ -142,8 +142,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-21T18:59:00',
     organisation: organisation,
-    'given-name': 'Emma',
-    'family-name': 'Hayes'
+    givenName: 'Emma',
+    familyName: 'Hayes'
   }))
 
   applications.push(generateFakeApplication({
@@ -151,80 +151,80 @@ const generateFakeApplications = (count) => {
     cycle: 'Previous cycle (2019 to 2020)',
     submittedDate: '2018-07-21T18:59:00',
     organisation: organisation,
-    'given-name': 'Emma',
-    'family-name': 'Hayes'
+    givenName: 'Emma',
+    familyName: 'Hayes'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-29',
-    'given-name': 'Daniel',
-    'family-name': 'James'
+    givenName: 'Daniel',
+    familyName: 'James'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-08-10T13:32:00',
-    'given-name': 'Teresa',
-    'family-name': 'Mendoza'
+    givenName: 'Teresa',
+    familyName: 'Mendoza'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Sally',
-    'family-name': 'Harvey'
+    givenName: 'Sally',
+    familyName: 'Harvey'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Rachael',
-    'family-name': 'Wayne'
+    givenName: 'Rachael',
+    familyName: 'Wayne'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Louise',
-    'family-name': 'Jenkins'
+    givenName: 'Louise',
+    familyName: 'Jenkins'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Accepted',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Trent',
-    'family-name': 'Skipp'
+    givenName: 'Trent',
+    familyName: 'Skipp'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Accepted',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Ed',
-    'family-name': 'Lloyd'
+    givenName: 'Ed',
+    familyName: 'Lloyd'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Bill',
-    'family-name': 'Jones'
+    givenName: 'Bill',
+    familyName: 'Jones'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Killian',
-    'family-name': 'Black'
+    givenName: 'Killian',
+    familyName: 'Black'
   }))
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
-    'given-name': 'Tony',
-    'family-name': 'Stark'
+    givenName: 'Tony',
+    familyName: 'Stark'
   }))
 
   for (var i = 0; i < count; i++) {

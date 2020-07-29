@@ -1,7 +1,7 @@
 <div class="moj-timeline">
         {% for event in events %}
 
-          {% set name = [event.app["personal-details"]["given-name"], event.app["personal-details"]["family-name"]] | join(" ") %}
+          {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
           {% set note = null %}
           {% set offer = null %}
           {% set application = null %}

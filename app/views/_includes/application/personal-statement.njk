@@ -14,14 +14,14 @@
       html: vocationKeyHtml
     },
     value: {
-      html: application["personal-statement"].vocation | nl2br or "—"
+      html: application.personalStatement.vocation | nl2br or "—"
     }
   }, {
     key: {
       html: subjectKnowledgeKeyHtml
     },
     value: {
-      html: application["personal-statement"]["subject-knowledge"] | nl2br or "—"
+      html: application.personalStatement.subjectKnowledge | nl2br or "—"
     }
   }]
 }) }}
