@@ -1,0 +1,52 @@
+[
+  {
+    "id": "699d9b89-d34e-4599-9829-653a5bf993e2",
+    "name": "Port Lelandton University",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "f6de8c38-19dc-4129-9c01-8118770c8838",
+    "name": "O'Harabury Academy Alliance",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "07032d94-3d64-4c0e-a873-c45c748a74b7",
+    "name": "West Elishaview School",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "509699b9-4072-49a8-a108-ae5d00d361d5",
+    "name": "Kianville University",
+    "enabled": true,
+    "isaccreditedbody": true,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "e6f426a0-a385-4a91-93d9-8ec105329381",
+    "name": "Lake Dawson TSA",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  }
+]
