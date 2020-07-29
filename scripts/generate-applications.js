@@ -453,7 +453,7 @@ const generateFakeApplications = (count) => {
     },
     englishLanguageQualification: {
       hasQualification: 'No',
-      status: 'English is not a foreign language to the candidate',
+      status: 'Candidate does not have an English as a foreign language qualification yet',
       missing: '-'
     }
   }))
