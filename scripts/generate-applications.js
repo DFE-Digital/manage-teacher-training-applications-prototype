@@ -55,7 +55,7 @@ const generateFakeApplication = (params = {}) => {
     offerCanNotBeReconfirmed,
     cycle,
     accreditingbody: faker.helpers.randomize(organisations).name,
-    provider: params.provider || faker.helpers.randomize(organisations).name,
+    provider: params.organisation ? params.organisation.name : faker.helpers.randomize(organisations).name,
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,
@@ -135,12 +135,22 @@ const generateFakeApplications = (count) => {
     'family-name': 'Smith'
   }))
 
-  var provider =
+  var organisation = organisations[0];
 
   applications.push(generateFakeApplication({
     status: 'Submitted',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-21T18:59:00',
+    organisation: organisation,
+    'given-name': 'Emma',
+    'family-name': 'Hayes'
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    cycle: 'Previous cycle (2019 to 2020)',
+    submittedDate: '2018-07-21T18:59:00',
+    organisation: organisation,
     'given-name': 'Emma',
     'family-name': 'Hayes'
   }))
