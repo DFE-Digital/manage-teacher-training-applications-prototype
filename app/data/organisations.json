@@ -1,7 +1,7 @@
 [
   {
-    "id": "699d9b89-d34e-4599-9829-653a5bf993e2",
-    "name": "Port Lelandton University",
+    "id": "bb06a71c-8659-487c-8224-6cebf0fc0198",
+    "name": "Lake Giovani TSA",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -10,18 +10,8 @@
     }
   },
   {
-    "id": "f6de8c38-19dc-4129-9c01-8118770c8838",
-    "name": "O'Harabury Academy Alliance",
-    "enabled": true,
-    "isaccreditedbody": true,
-    "ratifiedby": "Teaching Excellence SCITT",
-    "locations": {
-      "address": "An address"
-    }
-  },
-  {
-    "id": "07032d94-3d64-4c0e-a873-c45c748a74b7",
-    "name": "West Elishaview School",
+    "id": "def9df1f-cfb1-47f7-8bab-f156d78674af",
+    "name": "Keiraland TSA",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -30,8 +20,18 @@
     }
   },
   {
-    "id": "509699b9-4072-49a8-a108-ae5d00d361d5",
-    "name": "Kianville University",
+    "id": "8ad95743-66bc-4127-82fe-c0b8ddb0d8e0",
+    "name": "Joliehaven Academy Alliance",
+    "enabled": true,
+    "isaccreditedbody": false,
+    "ratifiedby": "Teaching Excellence SCITT",
+    "locations": {
+      "address": "An address"
+    }
+  },
+  {
+    "id": "77cd70ca-93d7-4791-a9e2-3bd70792d594",
+    "name": "East Talonstad SCITT",
     "enabled": true,
     "isaccreditedbody": true,
     "ratifiedby": "Teaching Excellence SCITT",
@@ -40,8 +40,8 @@
     }
   },
   {
-    "id": "e6f426a0-a385-4a91-93d9-8ec105329381",
-    "name": "Lake Dawson TSA",
+    "id": "bce259c6-63f5-4a62-8879-6d456e2b5e23",
+    "name": "Joannyborough TSA",
     "enabled": true,
     "isaccreditedbody": false,
     "ratifiedby": "Teaching Excellence SCITT",
