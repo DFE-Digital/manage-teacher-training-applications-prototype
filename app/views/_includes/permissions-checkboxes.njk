@@ -3,7 +3,7 @@
   name: "makedecisions",
   fieldset: {
     legend: {
-      text: "Select which organisations can make decisions",
+      text: "Which organisations can make decisions?",
       classes: "govuk-fieldset__legend--m"
     }
   },
@@ -24,7 +24,28 @@
   name: "safeguarding",
   fieldset: {
     legend: {
-      text: "Select which organisations can see safeguarding information",
+      text: "Which organisations can view safeguarding information?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org,
+      text: org
+    },
+    {
+      value: partner,
+      text: partner
+    }
+  ]
+}) }}
+
+{{ govukCheckboxes({
+  idPrefix: "diversity",
+  name: "diversity",
+  fieldset: {
+    legend: {
+      text: "Which organisations can view diversity information?",
       classes: "govuk-fieldset__legend--m"
     }
   },

@@ -45,6 +45,19 @@
           </ul>
         {% endset %}
 
+        {% set diversityInformationHintHtml %}
+          <p class="govuk-!-margin-bottom-1">View diversity information about the candidate</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+            <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.organisations[0].name }}
+          </li>
+        </ul>
+      {% endset %}
+
 
         {{ govukCheckboxes({
             name: "permissions",
@@ -98,6 +111,16 @@
                 },
                 hint: {
                   html: safeguardingInformationHintHtml
+                }
+              },
+              {
+                value: "Access diversity information",
+                text: "Access diversity information",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: diversityInformationHintHtml
                 }
               }
             ]
