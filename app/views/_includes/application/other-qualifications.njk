@@ -1,28 +1,33 @@
-<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Other qualifications</h2>
-{% set rowData = [] %}
-{% for item in application.otherQualifications | toArray %}
-  {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
-  {% set qualificationHtml %}
-      <b>{{ item.subject }}</b> {{ item.type }}
-      {% if item.provenance == "international" %}({{ item.country }}){% endif %}
-    {% endset %}
-  {% set rows = rowData.push([{
-    html: qualificationHtml
-  }, {
-    html: item.year
-  }, {
-    html: item.grade
-  }]) %}
-{% endfor %}
-{{ govukTable({
-  head: [{
-    classes: "govuk-!-width-three-quarters",
-    text: "Qualification"
-  }, {
-    classes: "govuk-!-width-one-quarter",
-    text: "Awarded"
-  }, {
-    text: "Grade"
-  }],
-  rows: rowData
-}) }}
+{% set otherQualifications = application.otherQualifications
+  | toArray
+%}
+{% if otherQualifications.length >= 1 %}
+  <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Other qualifications</h2>
+  {% set rowData = [] %}
+  {% for item in otherQualifications %}
+    {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
+    {% set qualificationHtml %}
+        <b>{{ item.subject }}</b> {{ item.type }}
+        {% if item.provenance == "international" %}({{ item.country }}){% endif %}
+      {% endset %}
+    {% set rows = rowData.push([{
+      html: qualificationHtml
+    }, {
+      html: item.year
+    }, {
+      html: item.grade
+    }]) %}
+  {% endfor %}
+  {{ govukTable({
+    head: [{
+      classes: "govuk-!-width-three-quarters",
+      text: "Qualification"
+    }, {
+      classes: "govuk-!-width-one-quarter",
+      text: "Awarded"
+    }, {
+      text: "Grade"
+    }],
+    rows: rowData
+  }) }}
+{% endif %}
