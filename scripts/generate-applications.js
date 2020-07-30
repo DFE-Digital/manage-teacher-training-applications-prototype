@@ -7,7 +7,6 @@ faker.locale = 'en_GB'
 const generateStatus = require('../app/data/generators/status')
 const generateCourse = require('../app/data/generators/course')
 const generateCycle = require('../app/data/generators/cycle')
-const generateOrganisation = require('../app/data/generators/organisation')
 const generateTrainingLocation = require('../app/data/generators/training-location')
 
 // Fake data generators: application
@@ -266,6 +265,17 @@ const generateFakeApplications = (count) => {
       residency: {
         rightToWorkStudy: 'Yes',
         details: 'I have lived in the UK for 10 years.'
+      }
+    },
+    contactDetails: {
+      tel: '07700 900978',
+      email: faker.internet.email('Tiago', 'Pereyra').toLowerCase(),
+      address: {
+        line1: '161 Portland Road',
+        line2: '',
+        level2: 'Birmingham',
+        level1: 'West Midlands',
+        postalCode: 'B16 6AS'
       }
     },
     degree: [{
