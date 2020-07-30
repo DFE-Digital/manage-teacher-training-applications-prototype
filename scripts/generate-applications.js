@@ -73,7 +73,7 @@ const generateFakeApplication = (params = {}) => {
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
-    otherQualifications: generateOtherQualifications(faker),
+    otherQualifications: params.otherQualifications || generateOtherQualifications(faker),
     schoolExperience: generateSchoolExperience(faker),
     personalStatement: generatePersonalStatement(faker),
     references: generateReferences(faker),
@@ -340,6 +340,32 @@ const generateFakeApplications = (count) => {
       reference: '02GB0674SOOM599A',
       referenceLabel: 'Test report form (TRF) number',
       year: 2011
+    },
+    otherQualifications: {
+      1: {
+        type: 'Título de Bachiller',
+        subject: 'Geography',
+        provenance: 'international',
+        country: 'Spain',
+        grade: '8',
+        year: '2001'
+      },
+      2: {
+        type: 'Título de Bachiller',
+        subject: 'History',
+        provenance: 'international',
+        country: 'Spain',
+        grade: '7',
+        year: '2001'
+      },
+      3: {
+        type: 'Título de Bachiller',
+        subject: 'Information Systems',
+        provenance: 'international',
+        country: 'Spain',
+        grade: '6',
+        year: '2001'
+      }
     }
   }))
 
@@ -408,6 +434,16 @@ const generateFakeApplications = (count) => {
     englishLanguageQualification: {
       hasQualification: 'Not needed',
       status: 'English is not a foreign language to the candidate'
+    },
+    otherQualifications: {
+      1: {
+        type: 'Vocational High School Diploma',
+        subject: '',
+        provenance: 'international',
+        country: 'South Korea',
+        grade: 'A',
+        year: '2014'
+      }
     }
   }))
 
@@ -465,7 +501,8 @@ const generateFakeApplications = (count) => {
       hasQualification: 'No',
       status: 'Candidate does not have an English as a foreign language qualification yet',
       missing: '-'
-    }
+    },
+    otherQualifications: {}
   }))
 
   for (var i = 0; i < count; i++) {
