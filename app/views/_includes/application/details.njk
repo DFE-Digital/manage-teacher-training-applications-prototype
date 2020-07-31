@@ -5,6 +5,21 @@
   {%- endfor -%}
 {% endset %}
 
+
+{% if application.status == "Accepted" or application.status == "Conditions met" %}
+  {% set sexText = application.personalDetails.sex %}
+  {% set ethnicGroupText = application.personalDetails.ethnicGroup %}
+  {% if application.personalDetails.disabled == "Yes, limited a little" or application.personalDetails.disabled == "Yes, limited a lot" %}
+    {% set disabledText = application.personalDetails.disabled + ": " + "Hearing, Mobility" %}
+  {% else %}
+    {% set disabledText = application.personalDetails.disabled %}
+  {% endif %}
+{% else %}
+  {% set sexText = "Only available for candidates that have accepted your offer." %}
+  {% set ethnicGroupText = "Only available for candidates that have accepted your offer." %}
+  {% set disabledText = "Only available for candidates that have accepted your offer." %}
+{% endif %}
+
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -49,6 +64,27 @@
     },
     value: {
       text: nationalityText
+    }
+  }, {
+    key: {
+      text: "Sex"
+    },
+    value: {
+      text: sexText
+    }
+  }, {
+    key: {
+      text: "Ethnic group"
+    },
+    value: {
+      text: ethnicGroupText
+    }
+  }, {
+    key: {
+      text: "Disabled"
+    },
+    value: {
+      text: disabledText
     }
   }, {
     key: {

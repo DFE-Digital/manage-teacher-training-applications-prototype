@@ -30,12 +30,28 @@ module.exports = faker => {
     details: (rightToWorkStudy === 'Yes') ? 'I have EU settled status' : false
   } : false
 
+  const sex = faker.helpers.randomize([0, 1])
+
+  const ethnicGroup = faker.helpers.randomize([
+    "Asian or Asian British",
+    "Black, African, Black British or Caribbean",
+    "Mixed or multiple ethnic groups",
+    "White",
+    "Another ethnic group",
+    "Prefer not to say"
+  ])
+
+  const disabled = faker.helpers.randomize(["Yes, limited a little", "Yes, limited a lot", "No", "Prefer not to say"])
+
   return {
-    givenName: faker.name.firstName(),
-    familyName: faker.name.lastName(),
+    givenName: faker.name.firstName(sex),
+    familyName: faker.name.lastName(sex),
     dateOfBirth: faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
     residency,
-    isInternationalCandidate
+    isInternationalCandidate,
+    sex: { 0: "Male", 1: "Female" }[sex],
+    ethnicGroup,
+    disabled
   }
 }

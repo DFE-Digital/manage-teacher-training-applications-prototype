@@ -96,7 +96,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Eloise',
-      familyName: 'Wells'
+      familyName: 'Wells',
+      sex: 'Female'
     }
   }))
 
@@ -108,7 +109,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Becky',
-      familyName: 'Brother'
+      familyName: 'Brother',
+      sex: 'Female'
     }
   }))
 
@@ -120,7 +122,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Laura',
-      familyName: 'Say'
+      familyName: 'Say',
+      sex: 'Female'
     }
   }))
 
@@ -130,7 +133,8 @@ const generateFakeApplications = (count) => {
     submittedDate: '2019-07-05T14:01:00',
     personalDetails: {
       givenName: 'James',
-      familyName: 'Sully'
+      familyName: 'Sully',
+      sex: 'Male'
     }
   }))
 
@@ -140,7 +144,8 @@ const generateFakeApplications = (count) => {
     submittedDate: '2019-07-08T13:01:00',
     personalDetails: {
       givenName: 'Umar',
-      familyName: 'Smith'
+      familyName: 'Smith',
+      sex: 'Male'
     }
   }))
 
@@ -155,7 +160,8 @@ const generateFakeApplications = (count) => {
     familyName: 'Hayes',
     personalDetails: {
       givenName: 'Emma',
-      familyName: 'Hayes'
+      familyName: 'Hayes',
+      sex: 'Female'
     }
   }))
 
@@ -165,7 +171,8 @@ const generateFakeApplications = (count) => {
     submittedDate: '2019-07-29',
     personalDetails: {
       givenName: 'Daniel',
-      familyName: 'James'
+      familyName: 'James',
+      sex: 'Male'
     }
   }))
 
@@ -175,7 +182,8 @@ const generateFakeApplications = (count) => {
     submittedDate: '2019-08-10T13:32:00',
     personalDetails: {
       givenName: 'Teresa',
-      familyName: 'Mendoza'
+      familyName: 'Mendoza',
+      sex: 'Female'
     }
   }))
 
@@ -184,7 +192,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Sally',
-      familyName: 'Harvey'
+      familyName: 'Harvey',
+      sex: 'Female'
     }
   }))
 
@@ -193,7 +202,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Rachael',
-      familyName: 'Wayne'
+      familyName: 'Wayne',
+      sex: 'Female'
     }
   }))
 
@@ -202,7 +212,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Louise',
-      familyName: 'Jenkins'
+      familyName: 'Jenkins',
+      sex: 'Female'
     }
   }))
 
@@ -211,7 +222,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Trent',
-      familyName: 'Skipp'
+      familyName: 'Skipp',
+      sex: 'Male'
     }
   }))
 
@@ -220,7 +232,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Ed',
-      familyName: 'Lloyd'
+      familyName: 'Lloyd',
+      sex: 'Male'
     }
   }))
 
@@ -229,7 +242,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Bill',
-      familyName: 'Jones'
+      familyName: 'Jones',
+      sex: 'Male'
     }
   }))
 
@@ -238,7 +252,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Killian',
-      familyName: 'Black'
+      familyName: 'Black',
+      sex: 'Male'
     }
   }))
 
@@ -247,7 +262,8 @@ const generateFakeApplications = (count) => {
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
       givenName: 'Tony',
-      familyName: 'Stark'
+      familyName: 'Stark',
+      sex: 'Male'
     }
   }))
 
