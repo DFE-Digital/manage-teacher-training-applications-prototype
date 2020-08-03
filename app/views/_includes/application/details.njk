@@ -9,15 +9,34 @@
 {% if application.status == "Accepted" or application.status == "Conditions met" %}
   {% set sexText = application.personalDetails.sex %}
   {% set ethnicGroupText = application.personalDetails.ethnicGroup %}
-  {% if application.personalDetails.disabled == "Yes, limited a little" or application.personalDetails.disabled == "Yes, limited a lot" %}
+  {% if application.personalDetails.disabled == "Yes" %}
     {% set disabledText = application.personalDetails.disabled + ": " + "Hearing, Mobility" %}
   {% else %}
     {% set disabledText = application.personalDetails.disabled %}
   {% endif %}
 {% else %}
-  {% set sexText = "Only available for candidates that have accepted your offer." %}
-  {% set ethnicGroupText = "Only available for candidates that have accepted your offer." %}
-  {% set disabledText = "Only available for candidates that have accepted your offer." %}
+  {% set sexText = "This is only available when the candidate accepts your offer" %}
+  {% set ethnicGroupText = "This is only available when the candidate accepts your offer" %}
+  {% set disabledText = "This is only available when the candidate accepts your offer" %}
+
+  {% set sexText = "This information is restricted to users with permission to view diversity information." %}
+  {% set ethnicGroupText = "This information is restricted to users with permission to view diversity information." %}
+  {% set disabledText = "This information is restricted to users with permission to view diversity information." %}
+
+  {% set detailsHtml %}
+    This information is restricted to users with permission to view diversity information – it’s only available once the candidate accepts your offer.
+  {% endset %}
+
+  {% set detailsHtml %}
+    This information is only available once the candidate accepts your offer.
+  {% endset %}
+  {% set diversityRestrictionDetailshtml %}
+    {{ govukDetails({
+      summaryText: "Why you cannot see this",
+      html: detailsHtml
+    }) }}
+  {% endset %}
+
 {% endif %}
 
 {{ govukSummaryList({
@@ -70,21 +89,21 @@
       text: "Sex"
     },
     value: {
-      text: sexText
+      html: diversityRestrictionDetailshtml
     }
   }, {
     key: {
       text: "Ethnic group"
     },
     value: {
-      text: ethnicGroupText
+      html: diversityRestrictionDetailshtml
     }
   }, {
     key: {
       text: "Disabled"
     },
     value: {
-      text: disabledText
+      html: diversityRestrictionDetailshtml
     }
   }, {
     key: {

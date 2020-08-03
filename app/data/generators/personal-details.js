@@ -41,7 +41,7 @@ module.exports = faker => {
     "Prefer not to say"
   ])
 
-  const disabled = faker.helpers.randomize(["Yes, limited a little", "Yes, limited a lot", "No", "Prefer not to say"])
+  const disabled = faker.helpers.randomize(["Yes", "No"])
 
   return {
     givenName: faker.name.firstName(sex),
