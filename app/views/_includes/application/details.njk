@@ -15,27 +15,14 @@
     {% set disabledText = application.personalDetails.disabled %}
   {% endif %}
 {% else %}
-  {% set sexText = "This is only available when the candidate accepts your offer" %}
-  {% set ethnicGroupText = "This is only available when the candidate accepts your offer" %}
-  {% set disabledText = "This is only available when the candidate accepts your offer" %}
 
-  {% set sexText = "This information is restricted to users with permission to view diversity information." %}
-  {% set ethnicGroupText = "This information is restricted to users with permission to view diversity information." %}
-  {% set disabledText = "This information is restricted to users with permission to view diversity information." %}
+  {% set sexText = '<p class="govuk-hint">Only available when the candidate accepts your offer</p>' %}
+  {% set ethnicGroupText = '<p class="govuk-hint">Only available when the candidate accepts your offer</p>' %}
+  {% set disabledText = '<p class="govuk-hint">Only available when the candidate accepts your offer</p>' %}
 
-  {% set detailsHtml %}
-    This information is restricted to users with permission to view diversity information – it’s only available once the candidate accepts your offer.
-  {% endset %}
-
-  {% set detailsHtml %}
-    This information is only available once the candidate accepts your offer.
-  {% endset %}
-  {% set diversityRestrictionDetailshtml %}
-    {{ govukDetails({
-      summaryText: "Why you cannot see this",
-      html: detailsHtml
-    }) }}
-  {% endset %}
+  {% set sexText = '<p class="govuk-hint">This is restricted to users with permission to view diversity information – it’s only available once the candidate accepts your offer.</p>' %}
+  {% set ethnicGroupText = '<p class="govuk-hint">This is restricted to users with permission to view diversity information – it’s only available once the candidate accepts your offer.</p>' %}
+  {% set disabledText = '<p class="govuk-hint">This is restricted to users with permission to view diversity information – it’s only available once the candidate accepts your offer.</p>' %}
 
 {% endif %}
 
@@ -89,21 +76,21 @@
       text: "Sex"
     },
     value: {
-      html: diversityRestrictionDetailshtml
+      html: sexText
     }
   }, {
     key: {
       text: "Ethnic group"
     },
     value: {
-      html: diversityRestrictionDetailshtml
+      html: ethnicGroupText
     }
   }, {
     key: {
       text: "Disabled"
     },
     value: {
-      html: diversityRestrictionDetailshtml
+      html: disabledText
     }
   }, {
     key: {
