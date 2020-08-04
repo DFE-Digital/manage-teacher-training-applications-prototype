@@ -306,7 +306,7 @@ module.exports = router => {
     applications = flattenGroup(grouped)
 
     // Get the page worth of items
-    const pageSize = 20
+    const pageSize = 50
     const page = parseInt(req.query.page, 10) || 1
 
     // to use zero based indexing in code but normal indexing for the url
