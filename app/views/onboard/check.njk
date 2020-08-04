@@ -27,25 +27,25 @@
       <form novalidate action="/onboard/confirmation">
 
         <h2 class="govuk-heading-m">
-          For courses run by {{ data.organisations[4].name }} and ratified by {{ data.organisations[0].name }}
+          For courses run by {{ data.organisations[1].name }} and ratified by {{ data.organisations[0].name }}
         </h2>
 
 
 
         {% set makeDecisionsHtml %}
           <ul class="govuk-list">
-            <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+            <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
           </ul>
         {% endset %}
         {% set viewSafeguardingHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
           <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
         </ul>
         {% endset %}
         {% set viewDiversityHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
           <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
         </ul>
         {% endset %}
@@ -122,7 +122,7 @@
         <p>The following organisation(s) can view diversity information:</p>
 
         <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
           <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
         </ul>
 
