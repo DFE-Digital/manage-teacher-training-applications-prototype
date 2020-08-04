@@ -6,6 +6,8 @@ module.exports = (faker, cycle) => {
     ])
   } else {
     return faker.helpers.randomize([
+      'Submitted',
+      'Accepted',
       'Declined',
       'Offer withdrawn',
       'Rejected',
