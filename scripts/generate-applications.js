@@ -95,7 +95,7 @@ const generateFakeApplications = (count) => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: 'Previous cycle (2019 to 2020)',
     personalDetails: {
       givenName: 'Eloise',
       familyName: 'Wells'
@@ -107,7 +107,7 @@ const generateFakeApplications = (count) => {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: 'Previous cycle (2019 to 2020)',
     personalDetails: {
       givenName: 'Becky',
       familyName: 'Brother'
@@ -119,7 +119,7 @@ const generateFakeApplications = (count) => {
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: 'Previous cycle (2019 to 2020)',
     personalDetails: {
       givenName: 'Laura',
       familyName: 'Say'

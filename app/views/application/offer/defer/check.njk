@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/application/" + application.id
+    href: "/application/" + application.id + "/offer"
   }) }}
 {% endblock %}
 
@@ -18,7 +18,7 @@
         {{name}}
       </span>
       <h1 class="govuk-heading-xl">
-        Check and confirm change of cycle
+        Check and confirm offer deferral
       </h1>
 
       <p>The course you have currently offered is not available yet in the next cycle.</p>

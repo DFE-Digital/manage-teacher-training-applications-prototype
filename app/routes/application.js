@@ -23,7 +23,6 @@ module.exports = router => {
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
         'offer-made-to-new-location': 'Offer successfully made',
-        'cycle-changed': 'Cycle successfully changed',
         'feedback-given': 'Feedback successfully sent'
       }
     })
@@ -57,11 +56,12 @@ module.exports = router => {
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
         'offer-made-to-new-location': 'Offer successfully made',
-        'offer-reconfirmed': 'Deferred offer successfully confirmed for current cycle'
+        'offer-reconfirmed': 'Deferred offer successfully confirmed for current cycle',
+        'offer-deferred': 'Offer successfully deferred',
       }
     })
 
-    res.render('application/offer', {
+    res.render('application/offer/index', {
       application,
       conditions: utils.getConditions(application),
       flash: flashMessage
@@ -102,39 +102,28 @@ module.exports = router => {
     }
   })
 
-  router.get('/application/:applicationId/cycle/edit', (req, res) => {
-    res.render('application/cycle/edit/cycle', {
+  router.get('/application/:applicationId/offer/defer/check', (req, res) => {
+    res.render('application/offer/defer/check', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
-  router.post('/application/:applicationId/cycle/edit', (req, res) => {
-    const applicationId = req.params.applicationId
-    res.redirect(`/application/${applicationId}/cycle/edit/check`)
-  })
-
-  router.get('/application/:applicationId/cycle/edit/check', (req, res) => {
-    res.render('application/cycle/edit/check', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/application/:applicationId/cycle/edit/check', (req, res) => {
+  router.post('/application/:applicationId/offer/defer/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    application.cycle = req.session.data.applicatoncycle
-    if (application.cycle === 'Next cycle (2021 to 2022)') {
-      application.previousOffer = application.offer
-      application.previousStatus = application.status
-      application.offer = null
       application.status = 'Deferred'
-    } else {
-      application.offer = application.previousOffer
-      application.previousOffer = null
-      application.status = application.previousStatus
-      application.previousStatus = null
-    }
-    req.flash('success', 'cycle-changed')
-    res.redirect(`/application/${applicationId}`)
+    // if (application.cycle === 'Next cycle (2021 to 2022)') {
+    //   application.previousOffer = application.offer
+    //   application.previousStatus = application.status
+    //   application.offer = null
+    //   application.status = 'Deferred'
+    // } else {
+    //   application.offer = application.previousOffer
+    //   application.previousOffer = null
+    //   application.status = application.previousStatus
+    //   application.previousStatus = null
+    // }
+    req.flash('success', 'offer-deferred')
+    res.redirect(`/application/${applicationId}/offer`)
   })
 }
