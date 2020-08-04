@@ -30,21 +30,92 @@
           For courses run by {{ data.organisations[4].name }} and ratified by {{ data.organisations[0].name }}
         </h2>
 
+
+
+        {% set makeDecisionsHtml %}
+          <ul class="govuk-list">
+            <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          </ul>
+        {% endset %}
+        {% set viewSafeguardingHtml %}
+          <ul class="govuk-list">
+          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+        </ul>
+        {% endset %}
+        {% set viewDiversityHtml %}
+          <ul class="govuk-list">
+          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+        </ul>
+        {% endset %}
+
+         {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which organisations can make decisions?"
+            },
+            value: {
+              html: makeDecisionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/onboard/step3",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which organisations can view safeguarding information?"
+            },
+            value: {
+              html: viewSafeguardingHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/onboard/step3",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which organisations can view diversity information?"
+            },
+            value: {
+              html: viewDiversityHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/onboard/step3",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+{#
         <p>The following organisation(s) can make decisions:</p>
 
-        <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
-        </ul>
 
         <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>
 
 
         <p>The following organisation(s) can view safeguarding information:</p>
 
-        <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
-          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
-        </ul>
+
 
         <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>
 
@@ -55,7 +126,7 @@
           <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
         </ul>
 
-        <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>
+        <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p> #}
 
         {{govukButton({
           text: "Save permissions"

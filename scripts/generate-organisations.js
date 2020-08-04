@@ -6,15 +6,21 @@ faker.locale = 'en_GB'
 const generateOrganisation = require('../app/data/generators/organisation')
 
 const generateFakeOrganisation = (params = {}) => {
-  return generateOrganisation(faker)
+  return generateOrganisation(faker, params)
 }
 
 const generateFakeOrganisations = (count) => {
   const organisations = []
-  for (var i = 0; i < count; i++) {
-    const organisation = generateFakeOrganisation()
-    organisations.push(organisation)
-  }
+
+  organisations.push(generateFakeOrganisation())
+  organisations.push(generateFakeOrganisation())
+
+  organisations.push(generateFakeOrganisation({
+    providerName: "AIM Alliance Schools",
+    isaccreditedbody: false,
+    ratifiedby: "Middlesex University"
+  }))
+
   return organisations
 }
 

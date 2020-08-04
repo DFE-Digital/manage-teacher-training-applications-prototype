@@ -49,12 +49,14 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const events = generateEvents(faker, { offer, status })
 
+  const organisation = params.organisation || faker.helpers.randomize(organisations);
+
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
     cycle,
-    accreditingbody: faker.helpers.randomize(organisations).name,
-    provider: params.organisation ? params.organisation.name : faker.helpers.randomize(organisations).name,
+    provider: organisation.name,
+    accreditingbody: organisation.ratifiedby || faker.helpers.randomize(organisations).name,
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,
