@@ -10,7 +10,11 @@ module.exports = router => {
       })
     } else {
       req.session.data.applications = applications.filter(app => {
-        return app.status !== 'Deferred'
+        if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
+          return false;
+        } else {
+          return true;
+        }
       })
     }
 

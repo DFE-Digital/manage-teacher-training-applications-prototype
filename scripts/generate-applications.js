@@ -38,12 +38,8 @@ const generateFakeApplication = (params = {}) => {
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
-  if (['Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
+  if (['Deferred', 'Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
     offer = generateOffer(faker, status)
-  }
-  let previousOffer = null
-  if (['Deferred'].includes(status)) {
-    previousOffer = generateOffer(faker, status)
   }
 
   const notes = generateNotes(faker)
@@ -62,7 +58,6 @@ const generateFakeApplication = (params = {}) => {
     status,
     submittedDate,
     offer,
-    previousOffer,
     rejectedDate: status === 'Rejected' ? faker.date.past() : null,
     rejectedReasons: status === 'Rejected' ? generateRejection(faker) : null,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
