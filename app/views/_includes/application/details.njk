@@ -17,9 +17,9 @@
     {# <p class="govuk-hint">Available when the candidate accepts your offer</p> #}
 
     {# Possible alternative #}
-    <p class="govuk-body">Only available when {{offerContext}} offer has been accepted.</p>
+    <p class="govuk-body">You will be able to view this when {{offerContext}} offer has been accepted.</p>
   {% else %}
-    <p class="govuk-body">Only available to users with ‘view diversity information’ permission when {{offerContext}} offer has been accepted.</p>
+    <p class="govuk-body">This will become available to users with permission to ‘view diversity information’ when {{offerContext}} offer has been accepted.</p>
   {% endif %}
 {% endset %}
 
@@ -140,7 +140,7 @@
 }) }}
 
 <h2 class="govuk-heading-l">Diversity information</h2>
-<p class="govuk-body">The candidate filled out the equality questionnaire.</p>
+<p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
 {% if not canViewDiversityInformation %}
   {{ diversityInformationPlaceholder | safe }}
 {% endif %}
