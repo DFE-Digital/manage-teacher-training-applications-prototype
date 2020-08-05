@@ -26,6 +26,15 @@ module.exports = (env) => {
     }
   }
 
+  /**
+   * GOV.UK style dates
+   * @type {String} str
+   */
+  filters.govukDate = date => {
+    return filters.date(date, "d LLLL yyyy")
+  }
+
+
   filters.time = (str) => {
     var m = moment(str)
     if (m.minutes() > 0) {
