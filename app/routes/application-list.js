@@ -8,6 +8,11 @@ function getCheckboxValues (name, data) {
 }
 
 function getApplicationsByGroup (applications) {
+
+  const previousCyclePendingConditions = applications
+    .filter(app => app.status === "Accepted")
+    .filter(app => app.cycle === 'Previous cycle (2019 to 2020)')
+
   const deferredOffersPendingReconfirmation = applications
     .filter(app => app.status === 'Deferred')
     .filter(app => app.cycle === 'Previous cycle (2019 to 2020)')
@@ -29,6 +34,7 @@ function getApplicationsByGroup (applications) {
 
   const pendingConditions = applications
     .filter(app => app.status === 'Accepted')
+    .filter(app => app.cycle === 'Current cycle (2020 to 2021)')
 
   const conditionsMet = applications
     .filter(app => app.status === 'Conditions met')
@@ -56,6 +62,7 @@ function getApplicationsByGroup (applications) {
 
   return {
     deferredOffersPendingReconfirmation,
+    previousCyclePendingConditions,
     rejectedWithoutFeedback,
     aboutToBeRejectedAutomatically,
     awaitingDecision,
@@ -70,6 +77,7 @@ function getApplicationsByGroup (applications) {
 function flattenGroup (grouped) {
   var array = []
   array = array.concat(grouped.deferredOffersPendingReconfirmation)
+  array = array.concat(grouped.previousCyclePendingConditions)
   array = array.concat(grouped.aboutToBeRejectedAutomatically)
   array = array.concat(grouped.rejectedWithoutFeedback)
   array = array.concat(grouped.awaitingDecision)
@@ -88,6 +96,13 @@ function addHeadings (grouped) {
       heading: 'Reconfirm offers'
     })
     array = array.concat(grouped.deferredOffersPendingReconfirmation)
+  }
+
+  if (grouped.previousCyclePendingConditions.length) {
+    array.push({
+      heading: 'Offers pending conditions (previous cycle)'
+    })
+    array = array.concat(grouped.previousCyclePendingConditions)
   }
 
   if (grouped.aboutToBeRejectedAutomatically.length) {
@@ -120,7 +135,7 @@ function addHeadings (grouped) {
 
   if (grouped.pendingConditions.length) {
     array.push({
-      heading: 'Offers pending conditions'
+      heading: 'Offers pending conditions (current cycle)'
     })
     array = array.concat(grouped.pendingConditions)
   }
