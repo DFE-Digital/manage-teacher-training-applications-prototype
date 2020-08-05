@@ -17,11 +17,6 @@
         classes: a.status | statusClass,
         text: a.status
       })}}
-      {# <div class="govuk-!-margin-bottom-1"></div>
-      {% if a.lastEventType == "note" %}
-        <div class="app-application-card__note">{{a.notes.items[0].subject}}</div>
-      {% endif %}
-      <div class="govuk-!-margin-bottom-2">&nbsp;</div> #}
     </div>
 
     <div>
@@ -31,7 +26,6 @@
         {% else %}
           <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">{{a.daysToRespond}} days left to respond</p>
         {% endif %}
-
       {% endif %}
     </div>
   </div>
