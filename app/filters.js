@@ -31,7 +31,13 @@ module.exports = (env) => {
    * @type {String} str
    */
   filters.govukDate = date => {
-    return filters.date(date, "d LLLL yyyy")
+    return moment(date).format('D MMMM YYYY')
+  }
+
+  filters.govukDateAtTime = date => {
+    const govukDate = filters.govukDate(date)
+    const time = filters.time(date)
+  return govukDate + " at " + time
   }
 
 
