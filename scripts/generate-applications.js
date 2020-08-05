@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const faker = require('faker')
 faker.locale = 'en_GB'
+const { DateTime } = require('luxon')
 
 // Fake data generators: general
 const generateStatus = require('../app/data/generators/status')
@@ -31,10 +32,10 @@ const generateEvents = require('../app/data/generators/events')
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
   const organisations = require('../app/data/organisations.json')
-  const cycle = params.cycle || generateCycle(faker)
-  const status = params.status || generateStatus(faker, cycle)
+  const status = params.status || generateStatus(faker)
+  const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
-  const submittedDate = params.submittedDate || faker.date.past()
+  const submittedDate = params.submittedDate || DateTime.fromISO('2019-08-15').minus({ days: 20 })
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
