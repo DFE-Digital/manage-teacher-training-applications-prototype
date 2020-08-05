@@ -21,23 +21,13 @@
   {% include "_includes/application/respond-prompt.njk" %}
   {% include "_includes/application/defer-prompt.njk" %}
 
-
   {% include "_includes/application/sub-nav.njk" %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if application.offer %}
-        {% set offer = application.offer %}
-        <h2 class="govuk-heading-l">Offer</h2>
-        {% set controls = true %}
-        {% include "_includes/offer/panel.njk" %}
-      {% endif %}
-
-      {% if application.previousOffer %}
-        {% set offer = application.previousOffer %}
-        <h2 class="govuk-heading-l">Previous cycle offer</h2>
-        {% set controls = false %}
-        {% include "_includes/offer/panel.njk" %}
-      {% endif %}
+      {% set offer = application.offer %}
+      <h2 class="govuk-heading-l">Offer</h2>
+      {% set controls = true %}
+      {% include "_includes/offer/panel.njk" %}
     </div>
   </div>
 {% endblock %}

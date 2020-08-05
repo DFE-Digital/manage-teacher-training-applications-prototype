@@ -8,8 +8,9 @@ function getCheckboxValues (name, data) {
 }
 
 function getApplicationsByGroup (applications) {
-  const deferred = applications
+  const deferredOffersPendingReconfirmation = applications
     .filter(app => app.status === 'Deferred')
+    .filter(app => app.cycle === 'Previous cycle (2019 to 2020)')
 
   const rejectedWithoutFeedback = applications
     .filter(app => app.status === 'Rejected')
@@ -32,6 +33,10 @@ function getApplicationsByGroup (applications) {
   const conditionsMet = applications
     .filter(app => app.status === 'Conditions met')
 
+  const deferredOffers = applications
+    .filter(app => app.status === 'Deferred')
+    .filter(app => app.cycle === 'Current cycle (2020 to 2021)')
+
   let other = applications
     .filter(app => app.status !== 'Submitted')
     .filter(app => app.status !== 'Deferred')
@@ -50,37 +55,39 @@ function getApplicationsByGroup (applications) {
   other = other.concat(rejectedWithFeedback)
 
   return {
-    deferred,
+    deferredOffersPendingReconfirmation,
     rejectedWithoutFeedback,
     aboutToBeRejectedAutomatically,
     awaitingDecision,
     waitingOn,
     pendingConditions,
     conditionsMet,
+    deferredOffers,
     other
   }
 }
 
 function flattenGroup (grouped) {
   var array = []
-  array = array.concat(grouped.deferred)
+  array = array.concat(grouped.deferredOffersPendingReconfirmation)
   array = array.concat(grouped.aboutToBeRejectedAutomatically)
   array = array.concat(grouped.rejectedWithoutFeedback)
   array = array.concat(grouped.awaitingDecision)
   array = array.concat(grouped.waitingOn)
   array = array.concat(grouped.pendingConditions)
   array = array.concat(grouped.conditionsMet)
+  array = array.concat(grouped.deferredOffers)
   array = array.concat(grouped.other)
   return array
 }
 
 function addHeadings (grouped) {
   var array = []
-  if (grouped.deferred.length) {
+  if (grouped.deferredOffersPendingReconfirmation.length) {
     array.push({
       heading: 'Reconfirm offers'
     })
-    array = array.concat(grouped.deferred)
+    array = array.concat(grouped.deferredOffersPendingReconfirmation)
   }
 
   if (grouped.aboutToBeRejectedAutomatically.length) {
@@ -125,8 +132,15 @@ function addHeadings (grouped) {
     array = array.concat(grouped.conditionsMet)
   }
 
+  if (grouped.deferredOffers.length) {
+    array.push({
+      heading: 'Deferred offers'
+    })
+    array = array.concat(grouped.deferredOffers)
+  }
+
   if (grouped.other.length) {
-    if (grouped.deferred.length || grouped.aboutToBeRejectedAutomatically.length || grouped.rejectedWithoutFeedback.length || grouped.awaitingDecision.length || grouped.waitingOn.length || grouped.pendingConditions.length || grouped.conditionsMet.length) {
+    if (grouped.deferredOffersPendingReconfirmation.length || grouped.aboutToBeRejectedAutomatically.length || grouped.rejectedWithoutFeedback.length || grouped.awaitingDecision.length || grouped.waitingOn.length || grouped.pendingConditions.length || grouped.conditionsMet.length) {
       array.push({
         heading: 'No action needed'
       })
@@ -321,8 +335,10 @@ module.exports = router => {
 
     applications = applications.splice(startIndex, endIndex)
 
+    let pagination;
+
     if (pageCount > 1) {
-      var pagination = {
+      pagination = {
         from: startIndex + 1,
         to: endIndex,
         count: totalApplications,

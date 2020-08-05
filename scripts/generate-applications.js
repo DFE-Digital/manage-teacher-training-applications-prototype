@@ -38,12 +38,8 @@ const generateFakeApplication = (params = {}) => {
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
-  if (['Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
+  if (['Deferred', 'Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
     offer = generateOffer(faker, status)
-  }
-  let previousOffer = null
-  if (['Deferred'].includes(status)) {
-    previousOffer = generateOffer(faker, status)
   }
 
   const notes = generateNotes(faker)
@@ -62,7 +58,6 @@ const generateFakeApplication = (params = {}) => {
     status,
     submittedDate,
     offer,
-    previousOffer,
     rejectedDate: status === 'Rejected' ? faker.date.past() : null,
     rejectedReasons: status === 'Rejected' ? generateRejection(faker) : null,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
@@ -95,7 +90,7 @@ const generateFakeApplications = (count) => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: 'Previous cycle (2019 to 2020)',
     personalDetails: {
       givenName: 'Eloise',
       familyName: 'Wells'
@@ -107,7 +102,7 @@ const generateFakeApplications = (count) => {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: 'Previous cycle (2019 to 2020)',
     personalDetails: {
       givenName: 'Becky',
       familyName: 'Brother'
@@ -119,7 +114,7 @@ const generateFakeApplications = (count) => {
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: 'Previous cycle (2019 to 2020)',
     personalDetails: {
       givenName: 'Laura',
       familyName: 'Say'
