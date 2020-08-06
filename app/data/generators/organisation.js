@@ -14,6 +14,7 @@ module.exports = (faker, params = {}) => {
   return {
     id: faker.random.uuid(),
     name,
-    isAccreditedBody
+    isAccreditedBody,
+    partners: params.partners || []
   }
 }

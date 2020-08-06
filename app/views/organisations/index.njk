@@ -14,16 +14,13 @@
     <div class="govuk-grid-column-two-third">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <div class="app-application-card">
-        <div>
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisations/show">{{ data.user.organisations[0].name }}</a></h2>
+      {% for org in data.user.organisations %}
+        <div class="app-application-card">
+          <div>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisations/{{org.id}}">{{ org.name }}</a></h2>
+          </div>
         </div>
-      </div>
-      <div class="app-application-card">
-        <div>
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisations/show3">{{ data.user.organisations[1].name }}</a></h2>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 

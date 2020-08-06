@@ -14,7 +14,21 @@ const generateFakeOrganisations = (count) => {
 
   organisations.push(generateFakeOrganisation({
     name: "Wren Academy",
-    isAccreditedBody: false
+    isAccreditedBody: false,
+    permissions: {
+      makeDecisions: true,
+      safeguarding: false,
+      diversity: true
+    },
+    partners: [{
+      name: 'The Royal Borough Teaching School Alliance',
+      isAccreditedBody: true,
+      permissions: {
+        makeDecisions: true,
+        safeguarding: true,
+        diversity: true
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
