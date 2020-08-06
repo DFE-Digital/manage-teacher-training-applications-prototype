@@ -30,18 +30,32 @@ module.exports = faker => {
     details: (rightToWorkStudy === 'Yes') ? 'I have EU settled status' : false
   } : false
 
+  // Equality and diversity
+  const diversityQuestionnaireAnswered=faker.helpers.randomize([true, false])
+
+  let diversityQuestionnaire
+
   const sex = faker.helpers.randomize([0, 1])
 
-  const ethnicGroup = faker.helpers.randomize([
-    "Asian or Asian British",
-    "Black, African, Black British or Caribbean",
-    "Mixed or multiple ethnic groups",
-    "White",
-    "Another ethnic group",
-    "Prefer not to say"
-  ])
+  if (diversityQuestionnaireAnswered){
+    diversityQuestionnaire = {}
 
-  const disabled = faker.helpers.randomize(["Yes", "No"])
+    diversityQuestionnaire['sex'] = { 0: "Male", 1: "Female" }[sex]
+
+    diversityQuestionnaire['ethnicGroup'] = faker.helpers.randomize([
+      "Asian or Asian British",
+      "Black, African, Black British or Caribbean",
+      "Mixed or multiple ethnic groups",
+      "White",
+      "Another ethnic group",
+      "Prefer not to say"
+    ])
+
+    diversityQuestionnaire['disabled'] = faker.helpers.randomize(["Yes", "No"])
+  }
+
+
+
 
   return {
     givenName: faker.name.firstName(sex),
@@ -50,8 +64,10 @@ module.exports = faker => {
     nationality,
     residency,
     isInternationalCandidate,
-    sex: { 0: "Male", 1: "Female" }[sex],
-    ethnicGroup,
-    disabled
+    diversityQuestionnaire
   }
 }
+
+    // sex: { 0: "Male", 1: "Female" }[sex],
+    // ethnicGroup,
+    // disabled

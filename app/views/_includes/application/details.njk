@@ -5,44 +5,6 @@
   {%- endfor -%}
 {% endset %}
 
-{# Whether viewing user has ‘view diversity information’ permission on their account #}
-{% set userHasViewDiversityInformationPermission = false %}
-
-{# Shown when users are not allowed to see diversity information (sex, ethnicity, disabilities) #}
-{% set offerContext = 'your' if application.status=='Offered' else 'an' %}
-
-{% set diversityInformationPlaceholder %}
-  {% if userHasViewDiversityInformationPermission %}
-    {# Original line #}
-    {# <p class="govuk-hint">Available when the candidate accepts your offer</p> #}
-
-    {# Possible alternative #}
-    <p class="govuk-body">You will be able to view this when {{offerContext}} offer has been accepted.</p>
-  {% else %}
-    <p class="govuk-body">This will become available to users with permission to ‘view diversity information’ when {{offerContext}} offer has been accepted.</p>
-  {% endif %}
-{% endset %}
-
-{% set canViewDiversityInformation = (application.status == "Accepted" or application.status == "Conditions met") %}
-
-{% if canViewDiversityInformation %}
-  {% set sexText = application.personalDetails.sex %}
-  {% set ethnicGroupText = application.personalDetails.ethnicGroup %}
-  {% if application.personalDetails.disabled == "Yes" %}
-    {% set disabilityText = application.personalDetails.disabled + ": " + "hearing, mobility" %}
-  {% else %}
-    {% set disabilityText = application.personalDetails.disabled %}
-  {% endif %}
-{% else %}
-
-  {% set sexText = diversityInformationPlaceholder %}
-  {% set ethnicGroupText = diversityInformationPlaceholder %}
-  {% set disabilityText = diversityInformationPlaceholder %}
-
-{% endif %}
-
-{# <h2 class="govuk-heading-l">Application</h2> #}
-
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -130,36 +92,3 @@
   }]
 }) }}
 
-<h2 class="govuk-heading-l">Diversity information</h2>
-<p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
-{% if not canViewDiversityInformation %}
-  {{ diversityInformationPlaceholder | safe }}
-{% endif %}
-
-{% if canViewDiversityInformation %}
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Sex"
-      },
-      value: {
-        html: sexText
-      }
-    }, {
-      key: {
-        text: "Ethnic group"
-      },
-      value: {
-        html: ethnicGroupText
-      }
-    }, {
-      key: {
-        text: "Disability"
-      },
-      value: {
-        html: disabilityText
-      }
-    }
-    ]
-  }) }}
-{% endif %}

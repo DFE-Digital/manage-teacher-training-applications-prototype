@@ -235,6 +235,16 @@ const generateFakeApplications = () => {
     }
   }))
 
+ applications.push(generateFakeApplication({
+    status: 'Accepted',
+    cycle: 'Current cycle (2020 to 2021)',
+    personalDetails: {
+      givenName: 'Audree',
+      familyName: 'Bowen',
+      sex: 'Female'
+    }
+  }))
+
   applications.push(generateFakeApplication({
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
@@ -249,9 +259,9 @@ const generateFakeApplications = () => {
     status: 'Conditions met',
     cycle: 'Current cycle (2020 to 2021)',
     personalDetails: {
-      givenName: 'Killian',
+      givenName: 'Amy',
       familyName: 'Black',
-      sex: 'Male'
+      sex: 'Female'
     }
   }))
 

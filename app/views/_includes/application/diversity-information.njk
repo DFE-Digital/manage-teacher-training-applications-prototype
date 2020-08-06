@@ -1,0 +1,88 @@
+{# Whether viewing user has ‘view diversity information’ permission on their account #}
+{% set providerHasViewDiversityInformationPermission = true %}
+
+{# Whether candidate has completed diversity questionnaire #}
+{% set diversityQuestionnaireCompleted = application.personalDetails.diversityQuestionnaire %}
+
+{% set applicationAccepted = (application.status == "Accepted" or application.status == "Conditions met") %}
+
+{% set offerContext = 'your' if application.status=='Offered' else 'an' %}
+
+
+{% set diversityInformationSummaryList %}
+<p class="govuk-body">You can view this because you have ‘view diversity information’ permission.</p>
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Sex"
+      },
+      value: {
+        html: application.personalDetails.diversityQuestionnaire.sex
+      }
+    }, {
+      key: {
+        text: "Ethnic group"
+      },
+      value: {
+        html: application.personalDetails.diversityQuestionnaire.ethnicGroup
+      }
+    }, {
+      key: {
+        text: "Disability"
+      },
+      value: {
+        html: application.personalDetails.diversityQuestionnaire.disabled+  ": " + "hearing, mobility"
+      }
+    }
+    ]
+  }) }}
+{% endset %}
+
+{# Candidate guidance #}
+{% set diversityInformationGuidanceHtml %}
+<h2 class="govuk-heading-m">Equality and diversity</h2>
+<p class="govuk-body">
+  The equality and diversity questionnaire is optional and has no impact on the progress of your application.
+</p>
+<p class="govuk-body">
+  We collect this data to reduce discrimination on the basis of sex, disability and ethnicity.
+</p>
+<p class="govuk-body">
+  Your data will only be shared with training providers when you are enrolled on a course.
+</p>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "View candidate guidance",
+  html: diversityInformationGuidanceHtml
+}) }}
+
+
+{% if diversityQuestionnaireCompleted %}
+
+  {% if providerHasViewDiversityInformationPermission %}
+
+    {% if applicationAccepted %}
+      {{ diversityInformationSummaryList | safe}}
+    {% else %}
+      <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
+      <p class="govuk-body">You will be able to view this when {{offerContext}} offer has been accepted.</p>
+    {% endif %}
+
+  {% else %}
+
+     <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
+     {% if applicationAccepted %}
+        <p class="govuk-body">This section is only available to users with permission to ‘view diversity information’.</p>
+      {% else %}
+        <p class="govuk-body">This will become available to users with permission to ‘view diversity information’ when {{offerContext}} offer has been accepted.</p>
+    {% endif %}
+
+  {% endif %}
+
+{% else %}
+  <p class="govuk-body">No information shared</p>
+{% endif %}
+
+
+
