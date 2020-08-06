@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const faker = require('faker')
 faker.locale = 'en_GB'
+const { DateTime } = require('luxon')
 
 // Fake data generators: general
 const generateStatus = require('../app/data/generators/status')
@@ -31,10 +32,10 @@ const generateEvents = require('../app/data/generators/events')
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
   const organisations = require('../app/data/organisations.json')
-  const cycle = params.cycle || generateCycle(faker)
-  const status = params.status || generateStatus(faker, cycle)
+  const status = params.status || generateStatus(faker)
+  const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
-  const submittedDate = params.submittedDate || faker.date.past()
+  const submittedDate = params.submittedDate || DateTime.fromISO('2019-08-15').minus({ days: 20 })
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
@@ -84,7 +85,7 @@ const generateFakeApplication = (params = {}) => {
  * @param {String} count Number of applications to generate
  *
  */
-const generateFakeApplications = (count) => {
+const generateFakeApplications = () => {
   const organisations = require('../app/data/organisations.json')
   const applications = []
 
@@ -502,8 +503,67 @@ const generateFakeApplications = (count) => {
     otherQualifications: {}
   }))
 
-  for (var i = 0; i < count; i++) {
-    const application = generateFakeApplication()
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Submitted'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Offered',
+      cycle: 'Current cycle (2020 to 2021)'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Accepted'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Conditions met'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 2; i++) {
+    const application = generateFakeApplication({
+      status: 'Deferred'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 30; i++) {
+    const application = generateFakeApplication({
+      status: 'Declined'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 30; i++) {
+    const application = generateFakeApplication({
+      status: 'Rejected'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 30; i++) {
+    const application = generateFakeApplication({
+      status: 'Application withdrawn'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 30; i++) {
+    const application = generateFakeApplication({
+      status: 'Offer withdrawn'
+    })
     applications.push(application)
   }
 
@@ -517,8 +577,8 @@ const generateFakeApplications = (count) => {
  * @param {String} count Number of applications to generate
  *
  */
-const generateApplicationsFile = (filePath, count) => {
-  const applications = generateFakeApplications(count)
+const generateApplicationsFile = (filePath) => {
+  const applications = generateFakeApplications()
   const filedata = JSON.stringify(applications, null, 2)
   fs.writeFile(
     filePath,
@@ -532,4 +592,4 @@ const generateApplicationsFile = (filePath, count) => {
   )
 }
 
-generateApplicationsFile(path.join(__dirname, '../app/data/applications.json'), 450)
+generateApplicationsFile(path.join(__dirname, '../app/data/applications.json'))
