@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/application/" + application.id
+    href: "/application/" + application.id + "/offer"
   }) }}
 {% endblock %}
 
@@ -18,18 +18,18 @@
         {{name}}
       </span>
       <h1 class="govuk-heading-xl">
-        Check and confirm change of cycle
+        Check and confirm offer deferral
       </h1>
 
       <p>The course you have currently offered is not available yet in the next cycle.</p>
 
       <p>This application will be marked as deferred. You must reinstate your offer at the start of the next cycle.</p>
 
-      <p>The candidate will be sent a confirmation by email of this action after you confirm the change of cycle.</p>
+      <p>We’ll send an email confirmation to the candidate after you confirm below.</p>
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm change of cycle"
+          text: "Confirm offer deferral"
         }) }}
       </form>
 

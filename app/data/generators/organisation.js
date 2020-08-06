@@ -1,4 +1,4 @@
-module.exports = (faker) => {
+module.exports = (faker, params = {}) => {
   const providerSuffix = faker.helpers.randomize([
     'Academy Alliance',
     'School',
@@ -11,10 +11,10 @@ module.exports = (faker) => {
 
   return {
     id: faker.random.uuid(),
-    name: providerName,
+    name: params.providerName || providerName,
     enabled: true,
-    isaccreditedbody: faker.random.boolean(),
-    ratifiedby: 'Teaching Excellence SCITT',
+    isaccreditedbody: typeof params.isaccreditedbody !== "undefined" ? params.isaccreditedbody : faker.random.boolean(),
+    ratifiedby: params.ratifiedby || 'Teaching Excellence SCITT',
     locations: {
       address: 'An address'
     }

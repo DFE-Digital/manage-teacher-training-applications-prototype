@@ -116,8 +116,12 @@
   <p class="govuk-body">{{offer.recommendations}}</p>
 {% endif %}
 
-{% if controls and application.status == "Offered" or application.status == "Accepted" %}
-  <p class="govuk-body govuk-!-margin-bottom-0">
-    <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
-  </p>
-{% endif %}
+
+<p class="govuk-body govuk-!-margin-bottom-0">
+  <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
+
+  {% if controls and application.status == "Offered" or application.status == "Accepted" %}
+
+  or <a href="/application/{{application.id}}/offer/defer/check">defer offer</a>
+  {% endif %}
+</p>
