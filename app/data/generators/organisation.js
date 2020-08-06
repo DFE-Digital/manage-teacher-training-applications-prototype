@@ -7,16 +7,13 @@ module.exports = (faker, params = {}) => {
     'University'
   ])
 
-  const providerName = `${faker.address.city()} ${providerSuffix}`
+  const isAccreditedBody = typeof params.isAccreditedBody === "boolean" ? params.isAccreditedBody : faker.random.boolean();
+
+  const name = params.name || `${faker.address.city()} ${providerSuffix}`;
 
   return {
     id: faker.random.uuid(),
-    name: params.providerName || providerName,
-    enabled: true,
-    isaccreditedbody: typeof params.isaccreditedbody !== "undefined" ? params.isaccreditedbody : faker.random.boolean(),
-    ratifiedby: params.ratifiedby || 'Teaching Excellence SCITT',
-    locations: {
-      address: 'An address'
-    }
+    name,
+    isAccreditedBody
   }
 }

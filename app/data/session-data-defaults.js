@@ -1,4 +1,11 @@
-const organisations = require('./organisations.json')
+const trainingProviders = require('./organisations.json').filter(org => {
+  return !org.isAccreditedBody
+})
+
+const accreditedBodies = require('./organisations.json').filter(org => {
+  return org.isAccreditedBody
+})
+
 let applications = require('./applications.json')
 
 applications = applications
@@ -18,13 +25,15 @@ applications = applications
   })
 
 module.exports = {
+  user: {
+    givenName: "Adam",
+    familyName: "Silver",
+    emailAddress: "adam.silver@tescitt.co.uk",
+    organisations: [trainingProviders[0], trainingProviders[1]]
+  },
   applications,
-  organisations: organisations.filter(org => {
-    return org.enabled
-  }),
-  accreditedbodies: organisations.filter(org => {
-    return org.isaccreditedbody
-  }),
+  trainingProviders,
+  accreditedBodies,
   bare: process.env.BARE,
   flags: {
     interview_preferences: true

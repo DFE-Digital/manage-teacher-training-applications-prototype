@@ -1,7 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = data.organisations[4].name %}
+{% set trainingProvider = data.user.organisations[1].name %}
+{% set title = trainingProvider %}
 
 {% block content %}
 
@@ -13,7 +14,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{title}}</h1>
+      <h1 class="govuk-heading-xl">{{trainingProvider}}</h1>
 
       {% set tick %}
         {{ appIcon({
@@ -24,28 +25,28 @@
       {% endset %}
 
       <h2 class="govuk-heading-m">
-        For courses run by {{ data.organisations[4].name }} and ratified by {{ data.organisations[0].name }}
+        For courses run by {{ trainingProvider}} and ratified by {{ data.accreditedBodies[0].name }}
       </h2>
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+        <li>{{tick | safe }} {{ trainingProvider}}</li>
       </ul>
 
       <p>The following organisation(s) can view safeguarding information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+        <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can view diversity information:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[4].name }}</li>
+        <li>{{tick | safe }} {{ trainingProvider}}</li>
       </ul>
 
-      <p><a href="/organisations/edit">Change <span class="govuk-visually-hidden">permissions for {{ data.organisations[4].name }}</span></a></p>
+      <p><a href="/organisations/edit">Change <span class="govuk-visually-hidden">permissions for {{ trainingProvider}}</span></a></p>
 
     </div>
   </div>

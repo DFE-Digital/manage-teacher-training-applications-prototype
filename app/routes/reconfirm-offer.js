@@ -93,7 +93,7 @@ module.exports = router => {
 
     application.offer = {
       madeDate: new Date().toISOString(),
-      provider: req.session.data.organisations[0].name,
+      provider: req.session.data.trainingProviders[0].name,
       course: 'Primary (5-11) (X100)',
       locationname: req.session.data.location
     }
@@ -196,7 +196,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     application.offer.madeDate = new Date().toISOString();
-    application.offer.provider =  req.session.data.organisations[0].name;
+    application.offer.provider =  req.session.data.trainingProviders[0].name;
     application.offer.course = 'Primary (5-11) (X100)';
     application.offer.locationname = req.session.data.location;
 

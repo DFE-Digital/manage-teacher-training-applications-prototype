@@ -1,7 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = data.organisations[0].name %}
+{% set trainingProvider = data.user.organisations[0].name %}
+{% set title = trainingProvider %}
 
 {% block content %}
 
@@ -24,44 +25,19 @@
       {% endset %}
 
       <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[1].name }}
+      For courses ratified by {{ data.accreditedBodies[0].name }} and run by {{ trainingProvider }}
       </h2>
 
       {% set bannerHtml %}
-        <p>{{ data.organisations[1].name }} have not set up permissions yet – only they can set up permissions. Contact them to do this.</p>
-        <p>Staff at {{ data.organisations[0].name}} can still view applications in the mean time.</p>
+        <p>{{ trainingProvider }} have not set up permissions yet – only they can set up permissions. Contact them to do this.</p>
+        <p>Staff at {{ data.accreditedBodies[0].name}} can still view applications in the mean time.</p>
       {% endset %}
       {{appBanner({
         html: bannerHtml
       })}}
 
-      {# {{appBanner({
-        text: "Contact " + data.organisations[1].name + " to change permissions.",
-        classes: "govuk-!-margin-bottom-4"
-      })}}
-
-      <p>The following organisation(s) can make decisions:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view safeguarding information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view diversity information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-      </ul>
-
-       #}
-
       <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[2].name }}
+      For courses ratified by {{ data.accreditedBodies[0].name }} and run by {{ data.organisations[2].name }}
       </h2>
 
       {{appBanner({
@@ -72,7 +48,7 @@
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+        <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can view safeguarding information:</p>
@@ -88,7 +64,7 @@
       </ul>
 
       <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[3].name }}
+      For courses ratified by {{ data.accreditedBodies[0].name }} and run by {{ data.organisations[3].name }}
       </h2>
 
       {{appBanner({
@@ -99,7 +75,7 @@
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+        <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can view safeguarding information:</p>
@@ -115,13 +91,13 @@
       </ul>
 
       <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[4].name }}
+      For courses ratified by {{ data.accreditedBodies[0].name }} and run by {{ data.organisations[4].name }}
       </h2>
 
       <p>The following organisation(s) can make decisions:</p>
 
       <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+        <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
       </ul>
 
       <p>The following organisation(s) can view safeguarding information:</p>

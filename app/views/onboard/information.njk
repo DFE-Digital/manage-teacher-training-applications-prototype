@@ -4,7 +4,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/onboard/step1"
+    href: "/onboard"
   }) }}
 {% endblock %}
 
@@ -28,7 +28,7 @@
       <p>To avoid any unconscious bias in the selection process, this information only becomes available to training providers after an offer has been made and accepted.</p>
 
 
-      <form novalidate action="/onboard/step3">
+      <form novalidate action="/onboard/relationship1">
         {{govukButton({
           text: "Continue"
         })}}

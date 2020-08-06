@@ -2,7 +2,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/onboard/step3"
+    href: "/onboard/relationship1"
   }) }}
 {% endblock %}
 
@@ -62,7 +62,7 @@
             actions: {
               items: [
                 {
-                  href: "/onboard/step3",
+                  href: "/onboard/relationship1",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -79,7 +79,7 @@
             actions: {
               items: [
                 {
-                  href: "/onboard/step3",
+                  href: "/onboard/relationship1",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -96,7 +96,7 @@
             actions: {
               items: [
                 {
-                  href: "/onboard/step3",
+                  href: "/onboard/relationship1",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -110,14 +110,14 @@
         <p>The following organisation(s) can make decisions:</p>
 
 
-        <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>
+        <p class="govuk-!-margin-bottom-8"><a href="/onboard/relationship1">Change</a></p>
 
 
         <p>The following organisation(s) can view safeguarding information:</p>
 
 
 
-        <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p>
+        <p class="govuk-!-margin-bottom-8"><a href="/onboard/relationship1">Change</a></p>
 
         <p>The following organisation(s) can view diversity information:</p>
 
@@ -126,7 +126,7 @@
           <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
         </ul>
 
-        <p class="govuk-!-margin-bottom-8"><a href="/onboard/step3">Change</a></p> #}
+        <p class="govuk-!-margin-bottom-8"><a href="/onboard/relationship1">Change</a></p> #}
 
         {{govukButton({
           text: "Save permissions"

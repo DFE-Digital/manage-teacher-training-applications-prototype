@@ -43,19 +43,13 @@
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} {{ data.organisations[1].name }}
+      }) }} {{ data.user.organisations[1].name }}
     </li>
     <li>{{ appIcon({
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} {{ data.organisations[2].name }}
-    </li>
-    <li>{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} {{ data.organisations[3].name }}
+      }) }} {{ data.user.organisations[2].name }}
     </li>
   </ul>
   </div>
@@ -72,19 +66,19 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.organisations[1].name }}
+        }) }} {{ data.user.organisations[1].name }}
       </li>
       <li>{{ appIcon({
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.organisations[2].name }}
+        }) }} {{ data.user.organisations[2].name }}
       </li>
       <li>{{ appIcon({
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.organisations[3].name }}
+        }) }} {{ data.user.organisations[3].name }}
       </li>
     </ul>
     </div>
@@ -115,7 +109,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.organisations[0].name }}
+        }) }} {{ data.user.organisations[0].name }}
       </li>
     </ul>
     </div>
@@ -131,7 +125,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.organisations[0].name }}
+        }) }} {{ data.user.organisations[0].name }}
       </li>
     </ul>
     </div>
@@ -170,12 +164,12 @@
               text: "Organisations this user has access to"
             },
             value: {
-              html: "<p>" + data.organisations[0].name + "</p><p>" + data.organisations[4].name + "</p>"
+              html: "<p>" + data.user.organisations[0].name + "</p><p>" + data.user.organisations[1].name + "</p>"
             }
           },
           {
             key: {
-              text: "Permissions: " + data.organisations[0].name
+              text: "Permissions: " + data.user.organisations[0].name
             },
             value: {
               html: permissionsHtml
@@ -183,7 +177,7 @@
           },
           {
             key: {
-              text: "Permissions: " + data.organisations[4].name
+              text: "Permissions: " + data.user.organisations[4].name
             },
             value: {
               html: permissions2Html
