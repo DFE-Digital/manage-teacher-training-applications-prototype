@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
-{% set org = data.organisations[1].name %}
-{% set partner = data.organisations[0].name %}
+{% set org = data.user.organisations[0].name %}
+{% set partner = data.accreditedBodies[0].name %}
 
 {% block beforeContent %}
   {{ govukBackLink({

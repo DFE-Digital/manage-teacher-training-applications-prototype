@@ -27,26 +27,24 @@
       <form novalidate action="/onboard/confirmation">
 
         <h2 class="govuk-heading-m">
-          For courses run by {{ data.organisations[1].name }} and ratified by {{ data.organisations[0].name }}
+          For courses run by {{ data.user.organisations[0].name }} and ratified by {{ data.accreditedBodies[0].name }}
         </h2>
-
-
 
         {% set makeDecisionsHtml %}
           <ul class="govuk-list">
-            <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
+            <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
           </ul>
         {% endset %}
         {% set viewSafeguardingHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
         </ul>
         {% endset %}
         {% set viewDiversityHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
         </ul>
         {% endset %}
 
@@ -122,8 +120,8 @@
         <p>The following organisation(s) can view diversity information:</p>
 
         <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-          <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
         </ul>
 
         <p class="govuk-!-margin-bottom-8"><a href="/onboard/relationship1">Change</a></p> #}

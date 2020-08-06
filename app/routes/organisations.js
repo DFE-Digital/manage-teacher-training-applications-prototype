@@ -4,8 +4,15 @@ module.exports = router => {
 
   router.get('/organisations/:organisationId', (req, res) => {
 
+    let org = req.session.data.user.organisations.find(org => org.id == req.params.organisationId)
+
+    let relationships = req.session.data.relationships.filter(relationship => {
+      return relationship.org.id == org.id
+    })
+
     res.render('organisations/show', {
-      org: req.session.data.user.organisations.find(org => org.id == req.params.organisationId)
+      org,
+      relationships
     })
   })
 

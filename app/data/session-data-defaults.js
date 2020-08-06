@@ -31,6 +31,46 @@ module.exports = {
     emailAddress: "adam.silver@tescitt.co.uk",
     organisations: [trainingProviders[0], trainingProviders[1]]
   },
+  relationships: [{
+    org: trainingProviders[0],
+    orgPermissions: {
+      makeDecisions: true,
+      safeguarding: true,
+      diversity: true
+    },
+    partner: accreditedBodies[0],
+    partnerPermissions: {
+      makeDecisions: false,
+      safeguarding: true,
+      diversity: false
+    }
+  }, {
+    org: trainingProviders[0],
+    orgPermissions: {
+      makeDecisions: true,
+      safeguarding: true,
+      diversity: true
+    },
+    partner: accreditedBodies[1],
+    partnerPermissions: {
+      makeDecisions: false,
+      safeguarding: true,
+      diversity: false
+    }
+  }, {
+    org: trainingProviders[1],
+    orgPermissions: {
+      makeDecisions: true,
+      safeguarding: true,
+      diversity: true
+    },
+    partner: accreditedBodies[1],
+    partnerPermissions: {
+      makeDecisions: false,
+      safeguarding: true,
+      diversity: false
+    }
+  }],
   applications,
   trainingProviders,
   accreditedBodies,
