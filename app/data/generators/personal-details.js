@@ -53,9 +53,9 @@ module.exports = faker => {
   if (diversityQuestionnaireAnswered){
     diversityQuestionnaire = {}
 
-    diversityQuestionnaire['sex'] = { 0: "Male", 1: "Female" }[sex]
+    diversityQuestionnaire.sex = { 0: "Male", 1: "Female" }[sex]
 
-    diversityQuestionnaire['ethnicGroup'] = faker.helpers.randomize([
+    diversityQuestionnaire.ethnicGroup = faker.helpers.randomize([
       "Asian or Asian British",
       "Black, African, Black British or Caribbean",
       "Mixed or multiple ethnic groups",
@@ -64,7 +64,7 @@ module.exports = faker => {
       "Prefer not to say"
     ])
 
-    diversityQuestionnaire['disabled'] = disabledAnswer
+    diversityQuestionnaire.disabled = disabledAnswer
 
     // Pick up to 3 disabilities
     if (disabledAnswer == 'Yes'){
@@ -76,7 +76,7 @@ module.exports = faker => {
       let selectedDisabilities = shuffledDisabilities.slice(0, disabilityCount);
       selectedDisabilities.sort()
 
-      diversityQuestionnaire['disabilities'] = selectedDisabilities
+      diversityQuestionnaire.disabilities = selectedDisabilities
     }
 
 
