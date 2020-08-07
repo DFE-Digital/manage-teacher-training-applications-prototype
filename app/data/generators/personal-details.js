@@ -31,31 +31,22 @@ module.exports = faker => {
   } : false
 
   // Equality and diversity
-  const diversityQuestionnaireAnswered=faker.helpers.randomize([true, false])
+  const diversityQuestionnaireAnswered=faker.helpers.randomize([true, true, false])
 
   let diversityQuestionnaire
 
-  const sex = faker.helpers.randomize([0, 1])
+  const sexInteger = faker.helpers.randomize([0, 1])
 
-  const disabledAnswer = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
-
-  const disabilities = [
-    "Blind",
-    "Deaf",
-    "Learning difficulty",
-    "Long-standing illness",
-    "Mental health condition",
-    "Physical disability or mobility issue",
-    "Social or communication impairment",
-    "Other"
-  ]
+  let sex
+  let ethnicGroup
+  let disabledAnswer
+  let disabilities
 
   if (diversityQuestionnaireAnswered){
-    diversityQuestionnaire = {}
 
-    diversityQuestionnaire.sex = { 0: "Male", 1: "Female" }[sex]
+    sex = { 0: "Male", 1: "Female" }[sexInteger]
 
-    diversityQuestionnaire.ethnicGroup = faker.helpers.randomize([
+    ethnicGroup = faker.helpers.randomize([
       "Asian or Asian British",
       "Black, African, Black British or Caribbean",
       "Mixed or multiple ethnic groups",
@@ -64,21 +55,25 @@ module.exports = faker => {
       "Prefer not to say"
     ])
 
-    diversityQuestionnaire.disabled = disabledAnswer
+    disabledAnswer = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
 
-    // Pick up to 3 disabilities
-    if (disabledAnswer == 'Yes'){
-      let disabilityCount = faker.random.number(3);
-      // Shuffle array
-      const shuffledDisabilities = disabilities.sort(() => 0.5 - Math.random());
+    disabilityCount = faker.random.number(3); // up to 3 disabilities
 
-      // Get sub-array of first n elements after shuffled
-      let selectedDisabilities = shuffledDisabilities.slice(0, disabilityCount);
-      selectedDisabilities.sort()
+    let disabilityChoices = [
+      "Blind",
+      "Deaf",
+      "Learning difficulty",
+      "Long-standing illness",
+      "Mental health condition",
+      "Physical disability or mobility issue",
+      "Social or communication impairment",
+      "Other"
+    ]
+    let shuffledDisabilities = disabilityChoices.sort(() => 0.5 - Math.random());
 
-      diversityQuestionnaire.disabilities = selectedDisabilities
+    if ((disabledAnswer=="Yes") && disabilityCount){
+      disabilities = shuffledDisabilities.slice(0, disabilityCount).sort();
     }
-
 
   }
 
@@ -86,16 +81,17 @@ module.exports = faker => {
 
 
   return {
-    givenName: faker.name.firstName(sex),
-    familyName: faker.name.lastName(sex),
+    givenName: faker.name.firstName(sexInteger),
+    familyName: faker.name.lastName(sexInteger),
     dateOfBirth: faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
     residency,
     isInternationalCandidate,
-    diversityQuestionnaire
+    diversityQuestionnaireAnswered,
+    sex,
+    ethnicGroup,
+    disabledAnswer,
+    disabilities
+
   }
 }
-
-    // sex: { 0: "Male", 1: "Female" }[sex],
-    // ethnicGroup,
-    // disabled

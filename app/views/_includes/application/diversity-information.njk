@@ -2,7 +2,7 @@
 {% set providerHasViewDiversityInformationPermission = true %}
 
 {# Whether candidate has completed diversity questionnaire #}
-{% set diversityQuestionnaireCompleted = application.personalDetails.diversityQuestionnaire %}
+{% set diversityQuestionnaireCompleted = application.personalDetails.diversityQuestionnaireAnswered %}
 
 {% set applicationAccepted = (application.status == "Accepted" or application.status == "Conditions met") %}
 
@@ -11,11 +11,11 @@
 
 {% set diversityInformationSummaryList %}
 
-  {% set isDisabled = true if application.personalDetails.diversityQuestionnaire.disabled == "Yes" %}
+  {% set isDisabled = true if application.personalDetails.disabledAnswer == "Yes" %}
 
   {% set disabledText %}
     {% if isDisabled %}
-      {% set disabilities =application.personalDetails.diversityQuestionnaire.disabilities %}
+      {% set disabilities =application.personalDetails.disabilities %}
         {# Don't think 0 is possible with current survey questions #}
         {% if (disabilities | length == 0) %}
           No disabilities disclosed
@@ -43,21 +43,21 @@
         text: "Sex"
       },
       value: {
-        html: application.personalDetails.diversityQuestionnaire.sex
+        html: application.personalDetails.sex
       }
     }, {
       key: {
         text: "Ethnic group"
       },
       value: {
-        html: application.personalDetails.diversityQuestionnaire.ethnicGroup
+        html: application.personalDetails.ethnicGroup
       }
     }, {
       key: {
         text: "Disabled"
       },
       value: {
-        html: application.personalDetails.diversityQuestionnaire.disabled
+        html: application.personalDetails.disabledAnswer
       }
     }, {
       key: {
