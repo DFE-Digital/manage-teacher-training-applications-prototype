@@ -16,6 +16,7 @@
   {% set disabledText %}
     {% if isDisabled %}
       {% set disabilities =application.personalDetails.diversityQuestionnaire.disabilities %}
+        {# Don't think 0 is possible with current survey questions #}
         {% if (disabilities | length == 0) %}
           No disabilities disclosed
         {% else %}
