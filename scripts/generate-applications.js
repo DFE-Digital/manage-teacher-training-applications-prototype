@@ -46,14 +46,15 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const events = generateEvents(faker, { offer, status })
 
-  const organisation = params.organisation || faker.helpers.randomize(organisations);
+  const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
+  const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
     cycle,
-    provider: organisation.name,
-    accreditingbody: organisation.ratifiedby || faker.helpers.randomize(organisations).name,
+    provider: provider.name,
+    accreditingbody: accreditedBody.name,
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,

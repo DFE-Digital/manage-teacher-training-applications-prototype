@@ -1,7 +1,15 @@
 const utils = require('../data/application-utils')
 
 module.exports = router => {
-  router.get('/organisations/show3', (req, res) => {
+
+  router.get('/organisations/:organisationId', (req, res) => {
+
+    let org = req.session.data.user.organisations.find(org => org.id == req.params.organisationId)
+
+    let relationships = req.session.data.relationships.filter(relationship => {
+      return relationship.org.id == org.id
+    })
+
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
       overrideValue: req.query.flash,
@@ -10,13 +18,19 @@ module.exports = router => {
       }
     })
 
-    res.render('organisations/show3', {
-      flashMessage: flashMessage
+    res.render('organisations/show', {
+      flashMessage,
+      org,
+      relationships
     })
   })
 
-  router.post('/organisations/edit', (req, res) => {
+  router.get('/organisations/:organisationId/edit', (req, res) => {
+    res.render('organisations/edit')
+  })
+
+  router.post('/organisations/:organisationId/edit', (req, res) => {
     req.flash('success', 'permissions-changed')
-    res.redirect('/organisations/show3')
+    res.redirect(`/organisations/${req.params.organisationId}`)
   })
 }

@@ -14,7 +14,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Claudine Leoni</span>
-        Change permissions: {{data.organisations[4].name}}
+        Change permissions: {{data.user.organisations[1].name}}
       {% endset %}
 
       <form novalidate method="post">
@@ -27,7 +27,7 @@
                 classes: "govuk-!-margin-right-1",
                 icon: "tick",
                 hidden: true
-              }) }} {{data.organisations[0].name}}
+              }) }} {{data.accreditedBodies[0].name}}
             </li>
           </ul>
         {% endset %}
@@ -40,7 +40,7 @@
                 classes: "govuk-!-margin-right-1",
                 icon: "tick",
                 hidden: true
-              }) }} {{data.organisations[0].name}}
+              }) }} {{data.accreditedBodies[0].name}}
             </li>
           </ul>
         {% endset %}
@@ -53,7 +53,7 @@
                 classes: "govuk-!-margin-right-1",
                 icon: "tick",
                 hidden: true
-              }) }} {{data.organisations[0].name}}
+              }) }} {{data.accreditedBodies[0].name}}
             </li>
           </ul>
         {% endset %}

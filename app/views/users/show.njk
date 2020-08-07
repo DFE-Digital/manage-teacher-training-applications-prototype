@@ -34,25 +34,19 @@
               hidden: true
             }) }} Make decisions</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[1].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[2].name }}
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[3].name }}
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
         </ul>
         </div>
@@ -63,25 +57,19 @@
               hidden: true
             }) }} Access safeguarding information</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[1].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[2].name }}
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[3].name }}
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
         </ul>
         </div>
@@ -92,25 +80,19 @@
               hidden: true
             }) }} Access diversity information</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[1].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[2].name }}
-          </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[3].name }}
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
         </ul>
         </div>
@@ -141,7 +123,7 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[0].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
         </ul>
         </div>
@@ -157,7 +139,7 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[0].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
         </ul>
         </div>
@@ -173,7 +155,7 @@
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[0].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
         </ul>
         </div>
@@ -237,7 +219,7 @@
               text: "Organisations this user has access to"
             },
             value: {
-              html: "<p>" + data.organisations[0].name + "</p><p>" + data.organisations[4].name + "</p>"
+              html: "<p>" + data.user.organisations[0].name + "</p><p>" + data.user.organisations[1].name + "</p>"
             },
             actions: {
               items: [
@@ -251,7 +233,7 @@
           },
           {
             key: {
-              text: "Permissions: " + data.organisations[0].name
+              text: "Permissions: " + data.user.organisations[0].name
             },
             value: {
               html: permissionsHtml
@@ -268,7 +250,7 @@
           },
           {
             key: {
-              text: "Permissions: " + data.organisations[4].name
+              text: "Permissions: " + data.user.organisations[1].name
             },
             value: {
               html: permissions2Html

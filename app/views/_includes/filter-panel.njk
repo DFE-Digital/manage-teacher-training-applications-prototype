@@ -5,7 +5,7 @@
       name: 'keywords',
       label: {
         text: "Candidate’s name",
-        classes: 'govuk-label--m'
+        classes: 'govuk-label--s'
       },
       value: data.keywords
     }) }}
@@ -18,7 +18,7 @@
         legend: {
           text: "Cycle",
           isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
+          classes: "govuk-fieldset__legend--s"
         }
       },
       items: [
@@ -42,7 +42,7 @@
       fieldset: {
         legend: {
           text: 'Status',
-          classes: 'govuk-fieldset__legend--m'
+          classes: 'govuk-fieldset__legend--s'
         }
       },
       items: [
@@ -100,49 +100,33 @@
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: 'Your organisations',
-          classes: 'govuk-fieldset__legend--m'
+          text: 'Courses run by',
+          classes: 'govuk-fieldset__legend--s'
         }
       },
       items: [
         {
-          value: data.organisations[1].name,
-          text: data.organisations[1].name,
-          checked: checked("provider", data.organisations[1].name) == 'checked'
+          value: data.user.organisations[0].name,
+          text: data.user.organisations[0].name,
+          checked: checked("provider", data.user.organisations[0].name) == 'checked'
         },
         {
-          value: data.organisations[0].name,
-          text: data.organisations[0].name,
-          checked: checked("provider", data.organisations[0].name) == 'checked'
-        },
-        {
-          value: data.organisations[2].name,
-          text: data.organisations[2].name,
-          checked: checked("provider", data.organisations[2].name) == 'checked'
-        },
-        {
-          value: data.organisations[3].name,
-          text: data.organisations[3].name,
-          checked: checked("provider", data.organisations[3].name) == 'checked'
-        },
-        {
-          value: data.organisations[4].name,
-          text: data.organisations[4].name,
-          checked: checked("provider", data.organisations[4].name) == 'checked'
+          value: data.user.organisations[1].name,
+          text: data.user.organisations[1].name,
+          checked: checked("provider", data.user.organisations[1].name) == 'checked'
         }
       ]
     }) }}
 
-    {% if checked("provider", data.organisations[1].name) %}
-
+    {% if checked("provider", data.user.organisations[0].name) %}
 
       {{ govukCheckboxes({
         name: 'locationname',
         classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
-            text: 'Training locations for ' + data.organisations[1].name,
-            classes: 'govuk-fieldset__legend--m'
+            text: 'Training locations for ' + data.user.organisations[0].name,
+            classes: 'govuk-fieldset__legend--s'
           }
         },
         items: [
@@ -177,14 +161,19 @@
       fieldset: {
         legend: {
           text: 'Courses ratified by',
-          classes: 'govuk-fieldset__legend--m'
+          classes: 'govuk-fieldset__legend--s'
         }
       },
       items: [
         {
-          value: data.accreditedbodies[0].name,
-          text: data.accreditedbodies[0].name,
-          checked: checked("accreditingbody", data.accreditedbodies[0].name) == 'checked'
+          value: data.accreditedBodies[0].name,
+          text: data.accreditedBodies[0].name,
+          checked: checked("accreditingbody", data.accreditedBodies[0].name) == 'checked'
+        },
+        {
+          value: data.accreditedBodies[1].name,
+          text: data.accreditedBodies[1].name,
+          checked: checked("accreditingbody", data.accreditedBodies[1].name) == 'checked'
         }
       ]
     }) }}

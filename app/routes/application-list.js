@@ -262,7 +262,7 @@ module.exports = router => {
 
       if (locationnames && locationnames.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Training locations for ' + req.session.data.organisations[1].name },
+          heading: { text: 'Training locations for ' + req.session.data.trainingProviders[1].name },
           items: locationnames.map((locationname) => {
             return {
               text: locationname,

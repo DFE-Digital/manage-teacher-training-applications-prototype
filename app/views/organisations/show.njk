@@ -1,7 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = data.organisations[0].name %}
+{% set trainingProvider = org.name %}
+{% set title = trainingProvider %}
 
 {% block content %}
 
@@ -23,120 +24,69 @@
         }) }}
       {% endset %}
 
-      <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[1].name }}
-      </h2>
+      {% for relationship in relationships %}
+        <h2 class="govuk-heading-m">
 
-      {% set bannerHtml %}
-        <p>{{ data.organisations[1].name }} have not set up permissions yet – only they can set up permissions. Contact them to do this.</p>
-        <p>Staff at {{ data.organisations[0].name}} can still view applications in the mean time.</p>
-      {% endset %}
-      {{appBanner({
-        html: bannerHtml
-      })}}
+          {% if relationship.org.isAccreditedBody %}
+            For courses ratified by {{ relationship.org.name }} and run by {{ relationship.partner.name }}
+          {% else %}
+            For courses run by {{ relationship.org.name }} and ratified by {{ relationship.partner.name }}
+          {% endif %}
+        </h2>
 
-      {# {{appBanner({
-        text: "Contact " + data.organisations[1].name + " to change permissions.",
-        classes: "govuk-!-margin-bottom-4"
-      })}}
+        {% if relationship.org.isAccreditedBody %}
+          {% if not relationship.orgPermissions %}
+            {% set bannerHtml %}
+              <p>{{ relationship.org }} have not set up permissions yet – only they can set up permissions. Contact them to do this.</p>
+              <p>Staff at {{ relationship.partner.name}} can still view applications in the mean time.</p>
+            {% endset %}
+            {{appBanner({
+              html: bannerHtml
+            })}}
+          {% else %}
+            {{appBanner({
+              text: "Contact " + relationship.partner.name + " to change permissions.",
+              classes: "govuk-!-margin-bottom-4"
+            })}}
+          {% endif %}
+        {% endif %}
 
-      <p>The following organisation(s) can make decisions:</p>
+        <p>The following organisation(s) can make decisions:</p>
 
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
-      </ul>
+        <ul class="govuk-list">
+          {% if relationship.orgPermissions.makeDecisions %}
+            <li>{{tick | safe }} {{ relationship.org.name }}</li>
+          {% endif %}
+          {% if relationship.partnerPermissions.makeDecisions %}
+            <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+          {% endif %}
+        </ul>
 
-      <p>The following organisation(s) can view safeguarding information:</p>
+        <p>The following organisation(s) can view safeguarding information:</p>
 
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-      </ul>
+        <ul class="govuk-list">
+          {% if relationship.orgPermissions.safeguarding %}
+            <li>{{tick | safe }} {{ relationship.org.name }}</li>
+          {% endif %}
+          {% if relationship.partnerPermissions.safeguarding %}
+            <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+          {% endif %}
+        </ul>
 
-      <p>The following organisation(s) can view diversity information:</p>
+        <p>The following organisation(s) can view diversity information:</p>
 
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[1].name }}</li>
-      </ul>
+        <ul class="govuk-list">
+          {% if relationship.orgPermissions.diversity %}
+            <li>{{tick | safe }} {{ relationship.org.name }}</li>
+          {% endif %}
+          {% if relationship.partnerPermissions.diversity %}
+            <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+          {% endif %}
+        </ul>
 
-       #}
+        <p><a href="/organisations/{{org.id}}/edit">Change <span class="govuk-visually-hidden">permissions for {{ org.name}}</span></a></p>
 
-      <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[2].name }}
-      </h2>
-
-      {{appBanner({
-        text: "Contact " + data.organisations[2].name + " to change permissions.",
-        classes: "govuk-!-margin-bottom-4"
-      })}}
-
-      <p>The following organisation(s) can make decisions:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view safeguarding information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[2].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view diversity information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[2].name }}</li>
-      </ul>
-
-      <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[3].name }}
-      </h2>
-
-      {{appBanner({
-        text: "Contact " + data.organisations[3].name + " to change permissions.",
-        classes: "govuk-!-margin-bottom-4"
-      })}}
-
-      <p>The following organisation(s) can make decisions:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view safeguarding information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[3].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view diversity information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[3].name }}</li>
-      </ul>
-
-      <h2 class="govuk-heading-m">
-      For courses ratified by {{ data.organisations[0].name }} and run by {{ data.organisations[4].name }}
-      </h2>
-
-      <p>The following organisation(s) can make decisions:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[0].name }}</li>
-      </ul>
-
-      <p>The following organisation(s) can view safeguarding information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[4].name }} </li>
-      </ul>
-
-      <p>The following organisation(s) can view diversity information:</p>
-
-      <ul class="govuk-list">
-        <li>{{tick | safe }} {{ data.organisations[4].name }} </li>
-      </ul>
-
-      <p>You can also <a href="/organisations/show3">manage permissions for {{ data.organisations[4].name }}</a>.</p>
+      {% endfor %}
 
     </div>
   </div>
