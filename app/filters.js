@@ -1,5 +1,6 @@
 const { DateTime } = require('luxon')
 const moment = require('moment')
+const pluralize = require('pluralize')
 
 module.exports = (env) => {
   /**
@@ -25,6 +26,21 @@ module.exports = (env) => {
       return datetime
     }
   }
+
+  /**
+   * GOV.UK style dates
+   * @type {String} str
+   */
+  filters.govukDate = date => {
+    return moment(date).format('D MMMM YYYY')
+  }
+
+  filters.govukDateAtTime = date => {
+    const govukDate = filters.govukDate(date)
+    const time = filters.time(date)
+  return govukDate + " at " + time
+  }
+
 
   filters.time = (str) => {
     var m = moment(str)
@@ -99,6 +115,37 @@ module.exports = (env) => {
         return 'govuk-tag--pink'
     }
   }
+
+
+  filters.numbersToWords = (number) =>{
+    let numbers = [
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten"
+    ]
+
+    if (number > 10) return number
+    else return numbers[number -1]
+  }
+
+  // Pluralise content
+
+  // Pass in string and count
+  // {{ "carrot" | pluralise(4) }} --> carrots
+
+  // https://www.npmjs.com/package/pluralize
+  filters.pluralise = (content, ...args) => {
+    pluralize.addPluralRule(/correspondence$/i, 'correspondence')
+    return pluralize(content, ...args)
+  }
+
 
   return filters
 }

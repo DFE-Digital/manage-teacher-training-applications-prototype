@@ -20,28 +20,41 @@
     value: {
       text: application.cycle
     }
-  }, {
-    key: {
-      text: "Full name"
-    },
-    value: {
-      text: name
-    }
-  }, {
+  },{
     key: {
       text: "Reference"
     },
     value: {
       text: application.id
     }
-  }, {
+  }]
+}) }}
+
+<h2 class="govuk-heading-l">Applicant details</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Full name"
+    },
+    value: {
+      text: name
+    }
+  },  {
+    key: {
+      text: "Date of birth"
+    },
+    value: {
+      text: application.personalDetails.dateOfBirth | govukDate
+    }
+  },{
     key: {
       text: "Nationality"
     },
     value: {
       text: nationalityText
     }
-  }, {
+  },{
     key: {
       text: "Has the right to work or study in the UK?"
     },
@@ -78,3 +91,4 @@
     }
   }]
 }) }}
+

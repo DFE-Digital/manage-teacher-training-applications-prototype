@@ -9,9 +9,9 @@
             <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
             <dl class="app-qualification">
             {% if item.country != "United Kingdom" %}
-              <dt class="app-qualification__key govuk-visually-hidden">Institution</dt>
+              <dt class="app-qualification__key govuk-visually-hidden">Country</dt>
               <dd class="app-qualification__value govuk-!-margin-bottom-1">
-                {{ [item.org, item.country] | join(", ") }}
+                {{ item.country }}
               </dd>
             {% endif %}
               <dt class="app-qualification__key govuk-visually-hidden">Started and graduated</dt>
@@ -22,6 +22,19 @@
               <dd class="app-qualification__value">
                 {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
               </dd>
+
+            {% if item.country != "United Kingdom" or (application.status == "Accepted" or application.status == "Conditions met") %}
+              <dt class="app-qualification__key">Institution</dt>
+              <dd class="app-qualification__value">
+                {{item.org}}
+              </dd>
+            {% else %}
+              <dt class="app-qualification__key">Institution</dt>
+              <dd class="app-qualification__value app-qualification__value--grey">
+                Only available once an offer has been accepted
+              </dd>
+            {% endif %}
+
             {% if item.naric %}
               <dt class="app-qualification__key">Comparablity</dt>
               <dd class="app-qualification__value govuk-body-s">
