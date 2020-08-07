@@ -116,6 +116,7 @@ module.exports = (env) => {
     }
   }
 
+
   filters.numbersToWords = (number) =>{
     let numbers = [
     "One",
@@ -134,22 +135,10 @@ module.exports = (env) => {
     else return numbers[number -1]
   }
 
-  /*
-    ====================================================================
-    filterName
-    --------------------------------------------------------------------
-    Short description for the filter
-    ====================================================================
+  // Pluralise content
 
-    Usage:
-
-    [Usage here]
-
-    filters.sayHi = (name) => {
-      return 'Hi ' + name + '!'
-    }
-
-  */
+  // Pass in string and count
+  // {{ "carrot" | pluralise(4) }} --> carrots
 
   // https://www.npmjs.com/package/pluralize
   filters.pluralise = (content, ...args) => {
