@@ -37,6 +37,19 @@ module.exports = faker => {
 
   const sex = faker.helpers.randomize([0, 1])
 
+  const disabledAnswer = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
+
+  const disabilities = [
+    "Blind",
+    "Deaf",
+    "Learning difficulty",
+    "Long-standing illness",
+    "Mental health condition",
+    "Physical disability or mobility issue",
+    "Social or communication impairment",
+    "Other"
+  ]
+
   if (diversityQuestionnaireAnswered){
     diversityQuestionnaire = {}
 
@@ -51,7 +64,22 @@ module.exports = faker => {
       "Prefer not to say"
     ])
 
-    diversityQuestionnaire['disabled'] = faker.helpers.randomize(["Yes", "No"])
+    diversityQuestionnaire['disabled'] = disabledAnswer
+
+    // Pick up to 3 disabilities
+    if (disabledAnswer == 'Yes'){
+      let disabilityCount = faker.random.number(3);
+      // Shuffle array
+      const shuffledDisabilities = disabilities.sort(() => 0.5 - Math.random());
+
+      // Get sub-array of first n elements after shuffled
+      let selectedDisabilities = shuffledDisabilities.slice(0, disabilityCount);
+      selectedDisabilities.sort()
+
+      diversityQuestionnaire['disabilities'] = selectedDisabilities
+    }
+
+
   }
 
 
