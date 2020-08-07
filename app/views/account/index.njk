@@ -43,13 +43,13 @@
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} {{ data.user.organisations[1].name }}
+      }) }} {{ data.accreditedBodies[0].name }}
     </li>
     <li>{{ appIcon({
         classes: "govuk-!-margin-right-1",
         icon: "tick",
         hidden: true
-      }) }} {{ data.user.organisations[2].name }}
+      }) }} {{ data.accreditedBodies[1].name }}
     </li>
   </ul>
   </div>
@@ -61,26 +61,20 @@
         }) }} View safeguarding information</p>
     <div class="govuk-!-margin-left-5">
       <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
-    <ul class="govuk-list">
-      <li>{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} {{ data.user.organisations[1].name }}
-      </li>
-      <li>{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} {{ data.user.organisations[2].name }}
-      </li>
-      <li>{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} {{ data.user.organisations[3].name }}
-      </li>
-    </ul>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+            classes: "govuk-!-margin-right-1",
+            icon: "tick",
+            hidden: true
+          }) }} {{ data.accreditedBodies[0].name }}
+        </li>
+        <li>{{ appIcon({
+            classes: "govuk-!-margin-right-1",
+            icon: "tick",
+            hidden: true
+          }) }} {{ data.accreditedBodies[1].name }}
+        </li>
+      </ul>
     </div>
   {% endset %}
 
@@ -109,7 +103,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.user.organisations[0].name }}
+        }) }} {{ data.accreditedBodies[1].name }}
       </li>
     </ul>
     </div>
@@ -125,7 +119,7 @@
           classes: "govuk-!-margin-right-1",
           icon: "tick",
           hidden: true
-        }) }} {{ data.user.organisations[0].name }}
+        }) }} {{ data.accreditedBodies[1].name }}
       </li>
     </ul>
     </div>
@@ -177,7 +171,7 @@
           },
           {
             key: {
-              text: "Permissions: " + data.user.organisations[4].name
+              text: "Permissions: " + data.user.organisations[1].name
             },
             value: {
               html: permissions2Html
