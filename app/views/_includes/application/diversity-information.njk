@@ -10,7 +10,32 @@
 
 
 {% set diversityInformationSummaryList %}
-<p class="govuk-body">You can view this because you have ‘view diversity information’ permission.</p>
+
+  {% set isDisabled = true if application.personalDetails.diversityQuestionnaire.disabled == "Yes" %}
+
+  {% set disabledText %}
+    {% if isDisabled %}
+      {% set disabilities =application.personalDetails.diversityQuestionnaire.disabilities %}
+        {% if (disabilities | length == 0) %}
+          No disabilities disclosed
+        {% else %}
+        <p class="govuk-body">
+          The candidate disclosed the following {{ 'disability' | pluralise(disabilities | length) }}:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          {% for disability in disabilities %}
+            <li>{{disability}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+    {% else %}
+      No
+    {% endif %}
+
+
+  {%  endset %}
+
   {{ govukSummaryList({
     rows: [{
       key: {
@@ -28,28 +53,35 @@
       }
     }, {
       key: {
-        text: "Disability"
+        text: "Disabled"
       },
       value: {
-        html: application.personalDetails.diversityQuestionnaire.disabled+  ": " + "hearing, mobility"
+        html: application.personalDetails.diversityQuestionnaire.disabled
       }
-    }
+    }, {
+      key: {
+        text: "Disabilities"
+      },
+      value: {
+        html: disabledText
+      }
+    } if isDisabled
     ]
   }) }}
 {% endset %}
 
 {# Candidate guidance #}
 {% set diversityInformationGuidanceHtml %}
-<h2 class="govuk-heading-m">Equality and diversity</h2>
-<p class="govuk-body">
-  The equality and diversity questionnaire is optional and has no impact on the progress of your application.
-</p>
-<p class="govuk-body">
-  We collect this data to reduce discrimination on the basis of sex, disability and ethnicity.
-</p>
-<p class="govuk-body">
-  Your data will only be shared with training providers when you are enrolled on a course.
-</p>
+  <h2 class="govuk-heading-m">Equality and diversity</h2>
+  <p class="govuk-body">
+    The equality and diversity questionnaire is optional and has no impact on the progress of your application.
+  </p>
+  <p class="govuk-body">
+    We collect this data to reduce discrimination on the basis of sex, disability and ethnicity.
+  </p>
+  <p class="govuk-body">
+    Your data will only be shared with training providers when you are enrolled on a course.
+  </p>
 {% endset %}
 
 {{ govukDetails({
