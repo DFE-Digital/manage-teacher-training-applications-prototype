@@ -37,7 +37,7 @@
               hidden: true
             }) }} Make decisions</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+         {# <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -62,7 +62,7 @@
               hidden: true
             }) }} {{ data.organisations[3].name }}
           </li>
-        </ul>
+        </ul> #}
         </div>
 
         <p class="govuk-!-font-weight-bold">{{ appIcon({
@@ -71,7 +71,7 @@
           hidden: true
         }) }} Access safeguarding information</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+         {# <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -97,7 +97,7 @@
               hidden: true
             }) }} {{ data.organisations[3].name }}
           </li>
-        </ul>
+        </ul> #}
         </div>
         <p class="govuk-!-font-weight-bold">{{ appIcon({
           classes: "govuk-!-margin-right-1",
@@ -105,7 +105,7 @@
           hidden: true
         }) }} Access diversity information</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+         {# <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -131,7 +131,7 @@
               hidden: true
             }) }} {{ data.organisations[3].name }}
           </li>
-        </ul>
+        </ul> #}
         </div>
       {% endset %}
 
@@ -205,7 +205,7 @@
               text: "First name"
             },
             value: {
-              text: "James"
+              text: data['first-name']
             },
             actions: {
               items: [
@@ -222,7 +222,7 @@
               text: "Last name"
             },
             value: {
-              text: "Allan"
+              text: data['last-name']
             },
             actions: {
               items: [
@@ -239,7 +239,7 @@
               text: "Email address"
             },
             value: {
-              text: "jallan@ytftsa.co.uk"
+              text: data['email-address']
             },
             actions: {
               items: [
@@ -251,26 +251,10 @@
               ]
             }
           },
+
           {
             key: {
-              text: "Organisations this user will have access to"
-            },
-            value: {
-              html: "<p>" + data.organisations[0].name + "</p><p>" + data.organisations[4].name +"</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/providers",
-                  text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Permissions: " + data.organisations[0].name
+              text: "Permissions"
             },
             value: {
               html: permissionsHtml
@@ -279,23 +263,6 @@
               items: [
                 {
                   href: "/users/new/permissions",
-                  text: "Change",
-                  visuallyHiddenText: "contact information"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Permissions: " + data.organisations[4].name
-            },
-            value: {
-              html: permissions2Html
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new/permissions2",
                   text: "Change",
                   visuallyHiddenText: "contact information"
                 }
@@ -316,3 +283,53 @@
   </div>
 
 {% endblock %}
+
+{# {
+            key: {
+              text: "Organisations this user will have access to"
+            },
+            value: {
+              html: "<p>" + data.organisations[0].name + "</p><p>" + data.organisations[4].name +"</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/providers",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+
+
+
+
+
+
+
+
+
+          ,
+          {
+            key: {
+              text: "Permissions: " + data.organisations[4].name
+            },
+            value: {
+              html: permissions2Html
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new/permissions2",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          }
+
+
+
+
+          #}

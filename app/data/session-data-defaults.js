@@ -24,53 +24,63 @@ applications = applications
     }
   })
 
+let relationships = [{
+  org: trainingProviders[0],
+  orgPermissions: {
+    makeDecisions: true,
+    safeguarding: true,
+    diversity: true
+  },
+  partner: accreditedBodies[0],
+  partnerPermissions: {
+    makeDecisions: false,
+    safeguarding: true,
+    diversity: false
+  }
+}, {
+  org: trainingProviders[0],
+  orgPermissions: {
+    makeDecisions: true,
+    safeguarding: true,
+    diversity: true
+  },
+  partner: accreditedBodies[1],
+  partnerPermissions: {
+    makeDecisions: false,
+    safeguarding: true,
+    diversity: false
+  }
+}, {
+  org: trainingProviders[1],
+  orgPermissions: {
+    makeDecisions: true,
+    safeguarding: true,
+    diversity: true
+  },
+  partner: accreditedBodies[1],
+  partnerPermissions: {
+    makeDecisions: false,
+    safeguarding: true,
+    diversity: false
+  }
+}]
+
+relationships = [{
+  org: accreditedBodies[0]
+}];
+
+let userOrgs = [trainingProviders[0], trainingProviders[1]];
+
+userOrgs = [accreditedBodies[0]]
+
 module.exports = {
   user: {
-    givenName: "Adam",
-    familyName: "Silver",
-    emailAddress: "adam.silver@tescitt.co.uk",
-    organisations: [trainingProviders[0], trainingProviders[1]]
+    givenName: "Claudine",
+    familyName: "Adams",
+    emailAddress: "claudine.adams@newzoescitt.co.uk",
+    organisations: userOrgs
   },
-  relationships: [{
-    org: trainingProviders[0],
-    orgPermissions: {
-      makeDecisions: true,
-      safeguarding: true,
-      diversity: true
-    },
-    partner: accreditedBodies[0],
-    partnerPermissions: {
-      makeDecisions: false,
-      safeguarding: true,
-      diversity: false
-    }
-  }, {
-    org: trainingProviders[0],
-    orgPermissions: {
-      makeDecisions: true,
-      safeguarding: true,
-      diversity: true
-    },
-    partner: accreditedBodies[1],
-    partnerPermissions: {
-      makeDecisions: false,
-      safeguarding: true,
-      diversity: false
-    }
-  }, {
-    org: trainingProviders[1],
-    orgPermissions: {
-      makeDecisions: true,
-      safeguarding: true,
-      diversity: true
-    },
-    partner: accreditedBodies[1],
-    partnerPermissions: {
-      makeDecisions: false,
-      safeguarding: true,
-      diversity: false
-    }
-  }],
+  relationships,
   applications,
   trainingProviders,
   accreditedBodies,

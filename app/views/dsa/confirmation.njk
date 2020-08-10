@@ -9,18 +9,46 @@
         titleText: "Thank you for signing up to our data sharing agreement"
       }) }}
 
+      {% if data.user.relationships.length > 0 and data.user.relationships[0].partner %}
+
       <h2 class="govuk-heading-m">
         Next steps
       </h2>
 
       <p class="govuk-body">
-        You'll need to set up permissions for your organisation before you do anything else. We'll guide you through this process.
+        You need to set up permissions for your organisation before you do anything else. We’ll guide you through this process.
       <p>
 
       {{ govukButton({
         text: "Set up permissions",
         href: "/onboard"
       }) }}
+
+      {% else %}
+
+        <h2 class="govuk-heading-m">
+          Inviting users
+        </h2>
+
+        <p class="govuk-body">
+          Select <a href="/users">Users</a> (at the top of every page) to add users and manage their permissions.
+        <p>
+
+        <h2 class="govuk-heading-m">
+          Manage your applications
+        </h2>
+
+        <p class="govuk-body">
+          Continue to your applications.
+        <p>
+
+        {{ govukButton({
+          text: "Continue",
+          href: "/"
+        }) }}
+      {% endif %}
+
+
 
     </div>
   </div>
