@@ -13,7 +13,7 @@ const generateFakeOrganisations = (count) => {
   const organisations = []
 
   let org1 = generateFakeOrganisation({
-    name: "Wandsworth Primary Schools Consortium",
+    name: "New Zoe SCITT",
     isAccreditedBody: true,
   })
 

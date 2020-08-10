@@ -6,9 +6,11 @@ module.exports = router => {
 
     let org = req.session.data.user.organisations.find(org => org.id == req.params.organisationId)
 
-    let relationships = req.session.data.relationships.filter(relationship => {
-      return relationship.org.id == org.id
-    })
+    let relationships = req.session.data.relationships
+      .filter(relationship => {
+        return relationship.org.id == org.id
+      })
+      .filter(relationship => relationship.partner)
 
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
