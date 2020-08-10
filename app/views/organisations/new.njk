@@ -1,7 +1,7 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'organisation' %}
-{% set title = data.organisations[4].name %}
+{% set title = data.user.organisations[1].name %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -128,15 +128,15 @@
           },
           items: [
             {
-              value: data.organisations[0].name,
-              text: data.organisations[0].name,
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name,
               conditional: {
                 html: p1PermissionsHtml
               }
             },
             {
-              value: data.organisations[4].name,
-              text: data.organisations[4].name,
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name,
               conditional: {
                 html: p2PermissionsHtml
               }
