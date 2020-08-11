@@ -37,10 +37,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl">{{title}}</h1>
+      <h1 class="govuk-heading-xl">Review deferred offer</h1>
 
-      <p>{{application.course}} is not available at {{application.provider}} in the current cycle.</p>
-      <p>You can choose a different course to offer this candidate.</p>
+      {% set warningHtml %}
+        {{application.course}} is not available at {{application.provider}} in the current cycle. You can choose a different course to offer this candidate.
+      {% endset %}
+
+      {{ govukWarningText({
+        html: warningHtml,
+        iconFallbackText: "Fallback text"
+      }) }}
 
       <form method="post">
 
