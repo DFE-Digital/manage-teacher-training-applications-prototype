@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 
-{% set title = "This offer was made to a location that’s no longer available" %}
+{% set title = "Review deferred offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -39,9 +39,17 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>For the current cycle, {{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
+      {% set warningHtml %}
+        {{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You can choose another location or course to offer this candidate.
+      {% endset %}
 
-      <p>You can choose another location or course to offer this candidate.</p>
+      {{ govukWarningText({
+        html: warningHtml,
+        iconFallbackText: "Fallback text",
+        classes: "govuk-!-margin-bottom-"
+      }) }}
+
+
 
       <form method="post">
 
