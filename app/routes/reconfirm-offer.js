@@ -119,7 +119,7 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/reconfirm/unavailable-course', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/provider`)
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/course`)
   })
 
   router.get('/application/:applicationId/offer/reconfirm/unavailable-course/provider', (req, res) => {

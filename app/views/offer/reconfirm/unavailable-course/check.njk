@@ -41,7 +41,7 @@
 
       <div class="app-offer-panel">
           <h2 class="govuk-heading-m">
-            Course details
+            Offer details
           </h2>
           {{ govukSummaryList({
               rows: [{
@@ -120,6 +120,7 @@
 
           <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
           {% for condition in conditions %}
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 {{condition.description}}
