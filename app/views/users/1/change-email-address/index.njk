@@ -1,11 +1,15 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Harry Potter" %}
+{% set firstName = data.user.givenName %}
+{% set lastName = data.user.familyName %}
+{% set name = firstName + " " + lastName %}
+{% set emailAddress = data.user.emailAddress %}
+{% set title = "Change email address" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/users/show"
+    href: "/users/1"
   }) }}
 {% endblock %}
 
@@ -15,8 +19,8 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-xl">Harry Potter</span>
-        Change email address
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
       {% endset %}
 
       <form novalidate method="post">
@@ -28,7 +32,7 @@
           },
           id: "new-email-address",
           name: "new-email-address",
-          value: "harry.potter@wizardschool.com"
+          value: emailAddress
         }) }}
         {{ govukButton({
           text: "Save"

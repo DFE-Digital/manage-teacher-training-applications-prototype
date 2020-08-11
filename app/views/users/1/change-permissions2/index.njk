@@ -1,10 +1,14 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
+{% set firstName = data.user.givenName %}
+{% set lastName = data.user.familyName %}
+{% set name = firstName + " " + lastName %}
+{% set title = "Change permissions: " + data.user.organisations[1].name %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/users/show"
+    href: "/users/1"
   }) }}
 {% endblock %}
 
@@ -13,8 +17,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-xl">Claudine Leoni</span>
-        Change permissions: {{data.user.organisations[1].name}}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
       {% endset %}
 
       <form novalidate method="post">
