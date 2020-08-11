@@ -16,7 +16,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/users/show', (req, res) => {
+  router.get('/users/:userId', (req, res) => {
     const flashMessage = utils.getFlashMessage({
       flash: req.flash('success'),
       overrideValue: req.query.flash,
@@ -28,7 +28,7 @@ module.exports = router => {
       }
     })
 
-    res.render('users/show', {
+    res.render(`users/${req.params.userId}/index`, {
       flashMessage: flashMessage
     })
   })
@@ -52,14 +52,14 @@ module.exports = router => {
     res.redirect('/users/')
   })
 
-  router.post('/users/change-name', (req, res) => {
+  router.post('/users/:userId/change-name', (req, res) => {
     req.flash('success', 'user-name-updated')
-    res.redirect('/users/show')
+    res.redirect(`/users/${req.params.userId}`)
   })
 
-  router.post('/users/change-email-address', (req, res) => {
+  router.post('/users/:userId/change-email-address', (req, res) => {
     req.flash('success', 'user-email-address-updated')
-    res.redirect('/users/show')
+    res.redirect(`/users/${req.params.userId}`)
   })
 
   router.post('/users/change-providers', (req, res) => {
@@ -67,18 +67,24 @@ module.exports = router => {
     res.redirect('/users/show')
   })
 
-  router.post('/users/change-permissions', (req, res) => {
+  router.post('/users/:userId/change-permissions', (req, res) => {
     req.flash('success', 'user-permissions-updated')
-    res.redirect('/users/show')
+    res.redirect(`/users/${req.params.userId}`)
   })
 
-  router.post('/users/change-permissions2', (req, res) => {
+  router.post('/users/:userId/change-permissions2', (req, res) => {
     req.flash('success', 'user-permissions-updated')
-    res.redirect('/users/show')
+    res.redirect(`/users/${req.params.userId}`)
   })
 
-  router.post('/users/delete', (req, res) => {
+  router.post('/users/:userId/change-organisations/check', (req, res) => {
+    req.flash('success', 'user-permissions-updated')
+    res.redirect(`/users/${req.params.userId}`)
+  })
+
+  router.post('/users/:userId/delete', (req, res) => {
     req.flash('success', 'user-account-deleted')
     res.redirect('/users')
   })
+
 }

@@ -1,7 +1,10 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Angela Shah" %}
+{% set firstName = data.user.givenName %}
+{% set lastName = data.user.familyName %}
+{% set emailAddress = data.user.emailAddress %}
+{% set title = firstName + " " + lastName %}
 
 {% block content %}
 
@@ -168,12 +171,12 @@
               text: "First name"
             },
             value: {
-              text: "Angela"
+              text: firstName
             },
             actions: {
               items: [
                 {
-                  href: "/users/change-name",
+                  href: "/users/1/change-name",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -185,12 +188,12 @@
               text: "Last name"
             },
             value: {
-              text: "Shah"
+              text: lastName
             },
             actions: {
               items: [
                 {
-                  href: "/users/change-name",
+                  href: "/users/1/change-name",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -202,12 +205,12 @@
               text: "Email address"
             },
             value: {
-              text: "ashah@tescitt.co.uk"
+              text: emailAddress
             },
             actions: {
               items: [
                 {
-                  href: "/users/change-email-address",
+                  href: "/users/1/change-email-address",
                   text: "Change",
                   visuallyHiddenText: "date of birth"
                 }
@@ -224,13 +227,13 @@
             actions: {
               items: [
                 {
-                  href: "/users/change-providers",
+                  href: "/users/1/change-organisations",
                   text: "Change",
                   visuallyHiddenText: "providers"
                 }
               ]
             }
-          },
+          } if data.user.organisations.length > 1,
           {
             key: {
               text: "Permissions: " + data.user.organisations[0].name
@@ -241,7 +244,7 @@
             actions: {
               items: [
                 {
-                  href: "/users/change-permissions",
+                  href: "/users/1/change-permissions",
                   text: "Change",
                   visuallyHiddenText: "contact information"
                 }
@@ -258,7 +261,7 @@
             actions: {
               items: [
                 {
-                  href: "/users/change-permissions2",
+                  href: "/users/1/change-permissions2",
                   text: "Change",
                   visuallyHiddenText: "contact information"
                 }
@@ -272,7 +275,7 @@
       {{ govukButton({
         text: "Delete user",
         classes: "govuk-button--warning",
-        href: "/users/delete"
+        href: "/users/1/delete"
       }) }}
     </div>
   </div>

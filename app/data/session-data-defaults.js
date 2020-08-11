@@ -71,8 +71,6 @@ relationships = [{
 
 let userOrgs = [trainingProviders[0], trainingProviders[1]];
 
-userOrgs = [accreditedBodies[0]]
-
 module.exports = {
   user: {
     givenName: "Claudine",

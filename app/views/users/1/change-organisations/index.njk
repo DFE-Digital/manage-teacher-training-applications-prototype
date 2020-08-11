@@ -1,11 +1,12 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Harry Potter" %}
+{% set title = "Change the organisations this user will have access to" %}
+{% set name = data.user.givenName + " " + data.user.familyName %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/users/show"
+    href: "/users/1"
   }) }}
 {% endblock %}
 
@@ -15,11 +16,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-xl">Harry Potter</span>
-        Change the organisations this user will have access to
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
       {% endset %}
 
-      <form novalidate method="post">
+      <form novalidate action="/users/1/change-organisations/permissions1">
         {{ govukCheckboxes({
           idPrefix: "provider",
           name: "provider",
@@ -33,17 +34,19 @@
 
           items: [
             {
-              value: data.organisations[0].name,
-              text: data.organisations[0].name
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name,
+              checked: true
             },
             {
-              value: data.organisations[4].name,
-              text: data.organisations[4].name
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name,
+              checked: true
             }
           ]
         }) }}
         {{ govukButton({
-          text: "Save"
+          text: "Continue"
         }) }}
       </form>
     </div>
