@@ -1,0 +1,44 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set firstName = 'Duncan' %}
+{% set lastName = 'Brown' %}
+{% set name = firstName + " " + lastName %}
+{% set emailAddress = 'duncan.brown@newzoescitt.co.uk' %}
+{% set title = "Change email address" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/users/1"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
+
+      <form novalidate method="post">
+        {{ govukInput({
+          label: {
+            html: h1,
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          id: "new-email-address",
+          name: "new-email-address",
+          value: emailAddress
+        }) }}
+        {{ govukButton({
+          text: "Save"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

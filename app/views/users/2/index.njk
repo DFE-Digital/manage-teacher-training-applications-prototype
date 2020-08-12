@@ -1,0 +1,291 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set firstName = 'Duncan' %}
+{% set lastName = 'Brown' %}
+{% set emailAddress = 'duncan.brown@newzoescitt.co.uk' %}
+{% set title = firstName + " " + lastName %}
+
+{% block content %}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    type: "success",
+    icon: false
+  }) if flashMessage }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+       {% set permissionsHtml %}
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage organisation</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage users</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Make decisions</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[1].name }}
+          </li>
+        </ul>
+        </div>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Access safeguarding information</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[1].name }}
+          </li>
+        </ul>
+        </div>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Access diversity information</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[1].name }}
+          </li>
+        </ul>
+        </div>
+      {% endset %}
+
+      {% set permissions2Html %}
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage organisation</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Manage users</p>
+
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Make decisions</p>
+             <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+        </ul>
+        </div>
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Access safeguarding information</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+        </ul>
+        </div>
+        <p class="govuk-!-font-weight-bold">{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} Access diversity information</p>
+        <div class="govuk-!-margin-left-5">
+         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+        </ul>
+        </div>
+      {% endset %}
+
+      {% set orgAccessHtml %}
+        {% if checked('organisations', data.user.organisations[1].name) %}
+          {{data.user.organisations[1].name}}
+        {% else %}
+          {{data.user.organisations[0].name}}
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "First name"
+            },
+            value: {
+              text: firstName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/2/change-name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: lastName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/2/change-name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: emailAddress
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/2/change-email-address",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisations this user has access to"
+            },
+            value: {
+              html: orgAccessHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/2/change-organisations",
+                  text: "Change",
+                  visuallyHiddenText: "providers"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Permissions: " + data.user.organisations[0].name
+            },
+            value: {
+              html: permissionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/2/change-permissions",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          } if not checked('organisations', data.user.organisations[1].name),
+          {
+            key: {
+              text: "Permissions: " + data.user.organisations[1].name
+            },
+            value: {
+              html: permissions2Html
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/2/change-permissions2",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          } if checked('organisations', data.user.organisations[1].name)
+        ]
+      }) }}
+
+
+      {{ govukButton({
+        text: "Delete user",
+        classes: "govuk-button--warning",
+        href: "/users/2/delete"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}
