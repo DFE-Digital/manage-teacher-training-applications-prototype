@@ -407,6 +407,11 @@ h1 .govuk-tag {
   p:last-child {
     margin-bottom: 0;
   }
+  .govuk-details__text {
+    border: none;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
 }
 
 .app-conditions-list {
@@ -455,4 +460,17 @@ h1 .govuk-tag {
 
 .app-qualification__value--grey {
   color: govuk-colour('dark-grey');
+}
+
+
+.app-remove-link {
+  color: $govuk-error-colour !important;
+  padding: 8px govuk-spacing(3) govuk-spacing(1); // from https://github.com/alphagov/govuk-frontend/blob/f57d338633ef8d9a5c077eeb4657e60ee741d486/src/govuk/components/checkboxes/_index.scss#L69
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.app-checkbox-with-remove {
+  position: relative;
 }
