@@ -1,0 +1,162 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set firstName = 'Duncan' %}
+{% set lastName = 'Brown' %}
+{% set name = firstName + " " + lastName %}
+{% set title = "Select permissions: " + data.user.organisations[0].name %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/users/1/change-organisations"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
+
+      {% set makeDecisionsHintHtml %}
+        <p class="govuk-!-margin-bottom-1">Make offers, amend offers and reject applications</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.accreditedBodies[0].name}}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.accreditedBodies[1].name}}
+          </li>
+        </ul>
+      {% endset %}
+
+      {% set safeguardingInformationHintHtml %}
+        <p class="govuk-!-margin-bottom-1">View sensitive material about the candidate</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.accreditedBodies[0].name}}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.accreditedBodies[1].name}}
+          </li>
+        </ul>
+      {% endset %}
+
+      {% set diversityInformationHintHtml %}
+        <p class="govuk-!-margin-bottom-1">View diversity information about the candidate</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.accreditedBodies[0].name}}
+          </li>
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "tick",
+              hidden: true
+            }) }} {{data.accreditedBodies[1].name}}
+          </li>
+        </ul>
+      {% endset %}
+
+
+      <form novalidate action="/users/1/change-organisations/permissions2">
+
+        {{ govukCheckboxes({
+            name: "permissions",
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+              text: "The user will still be able to view all applications made to courses at this organisation."
+            },
+            items: [
+              {
+                value: "Manage organisation",
+                text: "Manage organisation",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: "<p>Change permissions between organisations</p>"
+                },
+                checked: true
+              },
+              {
+                value: "Manage users",
+                text: "Manage users",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: "<p>Invite or delete users and set their permissions</p>"
+                },
+                checked: true
+              },
+              {
+                value: "Make decisions",
+                html: "Make decisions",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: makeDecisionsHintHtml
+                },
+                checked: true
+              },
+              {
+                value: "See safeguarding information",
+                text: "Access safeguarding information",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: safeguardingInformationHintHtml
+                },
+                checked: true
+              },
+              {
+                value: "view diversity information",
+                text: "Access diversity information",
+                label: {
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  html: diversityInformationHintHtml
+                },
+                checked: true
+              }
+            ]
+          }) }}
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set firstName = 'Duncan' %}
+{% set lastName = 'Brown' %}
+{% set name = firstName + " " + lastName %}
+{% set title = "Change name" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/users/1"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <form novalidate method="post">
+        {{ govukInput({
+          label: {
+            text: "First name",
+            classes: "govuk-label--m"
+          },
+          id: "first-name",
+          name: "first-name",
+          value: firstName
+        }) }}
+        {{ govukInput({
+          label: {
+            text: "Last name",
+            classes: "govuk-label--m"
+          },
+          id: "last-name",
+          name: "last-name",
+          value: lastName
+        }) }}
+        {{ govukButton({
+          text: "Save"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

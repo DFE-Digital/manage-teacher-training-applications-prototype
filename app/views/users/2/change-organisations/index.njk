@@ -1,0 +1,53 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Change the organisations this user will have access to" %}
+{% set name = 'Duncan' + " " + 'Brown' %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/users/1"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
+
+      <form novalidate action="/users/2/change-organisations/permissions2">
+        {{ govukCheckboxes({
+          idPrefix: "organisations",
+          name: "organisations",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name,
+              checked: true
+            },
+            {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
