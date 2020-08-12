@@ -13,7 +13,7 @@ const generateFakeOrganisations = (count) => {
   const organisations = []
 
   let org1 = generateFakeOrganisation({
-    name: "New Zoe SCITT",
+    name: "Springbank SCITT",
     isAccreditedBody: true,
   })
 
