@@ -1,15 +1,12 @@
-{% set backLinkDestination = "/application/" + application.id %}
+{% extends "_layout.njk" %}
 
-{% include "_includes/offer/change-condition-status/status.njk" %}
-
-{# {% extends "_layout.njk" %}
-
+{% set cancel = cancelLinkDestination or ('/application/' + application.id + "/offer" ) %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 {% set title = "Update status of condition" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id
+    href: backLinkDestination
   }) }}
 {% endblock %}
 
@@ -54,9 +51,7 @@
           text: "Continue"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancel}}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}
-
- #}
