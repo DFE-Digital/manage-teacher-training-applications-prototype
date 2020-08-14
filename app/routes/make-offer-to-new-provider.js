@@ -42,62 +42,66 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/new/change-provider/confirm', (req, res) => {
-    const standardConditions = req.session.data['standard-conditions'].map((item) => {
-      return {
-        description: item
-      }
-    })
+    const data = req.session.data;
+    if (req.session.data['standard-conditions']) {
+      data.standardConditions = req.session.data['standard-conditions'].map((item) => {
+        return {
+          description: item
+        }
+      })
+    }
 
-    const furtherConditions = []
+    data.furtherConditions = []
 
-    if (req.session.data['condition-1']) {
-      furtherConditions.push({ description: req.session.data['condition-1'] })
+    if (data['further-conditions']['condition-1']){
+      data.furtherConditions.push({ description: data['further-conditions']['condition-1'] })
     }
-    if (req.session.data['condition-2']) {
-      furtherConditions.push({ description: req.session.data['condition-2'] })
+    if (data['further-conditions']['condition-2']){
+      data.furtherConditions.push({ description: data['further-conditions']['condition-2'] })
     }
-    if (req.session.data['condition-3']) {
-      furtherConditions.push({ description: req.session.data['condition-3'] })
+    if (data['further-conditions']['condition-3']){
+      data.furtherConditions.push({ description: data['further-conditions']['condition-3'] })
     }
-    if (req.session.data['condition-4']) {
-      furtherConditions.push({ description: req.session.data['condition-4'] })
+    if (data['further-conditions']['condition-4']){
+      data.furtherConditions.push({ description: data['further-conditions']['condition-4'] })
     }
 
     res.render('offer/new/change-provider/confirm', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      conditions: standardConditions.concat(furtherConditions)
+      conditions: data.standardConditions.concat(data.furtherConditions)
     })
   })
 
   router.post('/application/:applicationId/new/change-provider/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const data = req.session.data;
     application.status = 'Offered'
     application.offer = {
       madeDate: new Date().toISOString()
     }
 
-    application.offer.standardConditions = req.session.data['standard-conditions'].map((item) => {
+    application.offer.standardConditions = data.standardConditions.map((item) => {
       return {
         id: uuidv4(),
-        description: item,
+        description: item.description,
         status: 'Pending'
       }
     })
 
     const conditions = []
-    if (req.session.data['condition-1']) {
-      conditions.push({ id: uuidv4(), description: req.session.data['condition-1'], status: 'Pending' })
-    }
-    if (req.session.data['condition-2']) {
-      conditions.push({ id: uuidv4(), description: req.session.data['condition-2'], status: 'Pending' })
-    }
-    if (req.session.data['condition-3']) {
-      conditions.push({ id: uuidv4(), description: req.session.data['condition-3'], status: 'Pending' })
-    }
-    if (req.session.data['condition-4']) {
-      conditions.push({ id: uuidv4(), description: req.session.data['condition-4'], status: 'Pending' })
-    }
+
+    data.furtherConditions.forEach(condition => {
+      conditions.push({ id: uuidv4(), description: condition.description, status: 'Pending' })
+    })
+
+    // Delete form field data
+    delete data['standard-conditions']
+    delete data['further-conditions']
+    // Delete transformed data
+    delete data.furtherConditions
+    delete data.standardConditions
+
     application.offer.conditions = conditions
 
     application.offer.recommendations = req.session.data.recommendations
