@@ -20,6 +20,7 @@ module.exports = router => {
         'change-offer-provider': 'Offer successfully changed ',
         'change-condition-status-to-met': 'Condition successfully updated to met',
         'change-condition-status-to-not-met': 'Condition successfully updated to not met',
+        'change-condition-status-to-pending': 'Condition successfully updated to pending',
         'offer-made-to-new-provider': 'Offer successfully made',
         'offer-made-to-new-course': 'Offer successfully made',
         'offer-made-to-new-location': 'Offer successfully made',
@@ -58,9 +59,12 @@ module.exports = router => {
 
     const data = req.session.data;
     // Clear data from previous journeys
-    delete data['standard-conditions']
     delete data['further-conditions']
 
+    data["standard-conditions"] = [
+      "Fitness to teach check",
+      "Disclosure and barring service check"
+    ]
 
     if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer/new`)
