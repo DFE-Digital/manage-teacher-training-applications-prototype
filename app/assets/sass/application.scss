@@ -407,11 +407,6 @@ h1 .govuk-tag {
   p:last-child {
     margin-bottom: 0;
   }
-  .govuk-details__text {
-    border: none;
-    padding-left: 0;
-    padding-bottom: 0;
-  }
 }
 
 .app-conditions-list {
@@ -473,4 +468,13 @@ h1 .govuk-tag {
 
 .app-checkbox-with-remove {
   position: relative;
+}
+
+
+.app-details--no-border {
+  .govuk-details__text {
+    border: none;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
 }
