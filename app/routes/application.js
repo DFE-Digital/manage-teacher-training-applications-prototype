@@ -56,6 +56,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const { decision } = req.body
 
+    const data = req.session.data;
+    // Clear data from previous journeys
+    delete data['standard-conditions']
+    delete data['further-conditions']
+
+
     if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer/new`)
     } else if (decision === 'different-course') {
@@ -64,9 +70,11 @@ module.exports = router => {
       res.redirect(`/application/${applicationId}/new/change-location`)
     } else if (decision === 'different-provider') {
       res.redirect(`/application/${applicationId}/new/change-provider`)
-    } else {
+    } else if (decision === 'reject') {
       res.redirect(`/application/${applicationId}/reject`)
-    }
+    } else {
+        res.redirect(`/application/${applicationId}/decision`)
+      }
   })
 
 
