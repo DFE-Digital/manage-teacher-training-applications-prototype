@@ -1,5 +1,5 @@
 {% extends "_layout.njk" %}
-
+{% set primaryNavId = 'applications' %}
 {% set cancel = cancelLinkDestination or ('/application/' + application.id + "/offer" ) %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 {% set title = "Update status of condition" %}
