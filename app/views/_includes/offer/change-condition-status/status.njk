@@ -44,8 +44,9 @@
             value: "Not met",
             text: "Not met",
             checked: condition.status == 'Not met'
-          }]
-        }) }}
+          } if application.status != 'Deferred'
+          ]
+        })}}
 
         {{ govukButton({
           text: "Continue"

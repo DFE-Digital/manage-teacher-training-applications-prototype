@@ -139,8 +139,10 @@
               </dd>
               {% if 1 == 1 %}
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">
-                  Change</a>
+                  {# <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">
+                  Change</a> #}
+                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-location/condition/{{condition.id}}/change-status">
+                  Update status</a>
                 </dd>
               {% endif %}
             </div>
