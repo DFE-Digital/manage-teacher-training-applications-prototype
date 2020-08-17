@@ -1,17 +1,17 @@
 const utils = require('../data/application-utils')
 
 module.exports = router => {
-  router.get('/application/:applicationId/offer/reconfirm/condition/:conditionId/change-status', (req, res) => {
+  router.get('/application/:applicationId/offer/reconfirm/unavailable-course/condition/:conditionId/change-status', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     // console.log('hello world')
     const condition = utils.getCondition(application, req.params.conditionId)
-    res.render('offer/reconfirm/change-condition-status/status', {
+    res.render('offer/reconfirm/unavailable-course/change-condition-status/status', {
       application,
       condition
     })
   })
 
-  router.post('/application/:applicationId/offer/reconfirm/condition/:conditionId/change-status', (req, res) => {
+  router.post('/application/:applicationId/offer/reconfirm/unavailable-course/condition/:conditionId/change-status', (req, res) => {
     const data = req.session.data
     let conditionStatus = data.conditionstatus
 
@@ -23,7 +23,7 @@ module.exports = router => {
 
     // Confirm not met as it's dangerous
     if (conditionStatus == "Not met"){
-      res.redirect(`/application/${req.params.applicationId}/reconfirm/condition/${req.params.conditionId}/change-status/confirm-not-met`)
+      res.redirect(`/application/${req.params.applicationId}/reconfirm/unavailable-course/condition/${req.params.conditionId}/change-status/confirm-not-met`)
     }
     else {
 
@@ -38,7 +38,7 @@ module.exports = router => {
       // }
       condition.status = req.session.data.conditionstatus
 
-      res.redirect(`/application/${req.params.applicationId}/offer/reconfirm`)
+      res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/check`)
     }
   })
 
