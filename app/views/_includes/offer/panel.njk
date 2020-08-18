@@ -119,9 +119,9 @@
 {% if controls %}
   <p class="govuk-body govuk-!-margin-bottom-0">
 
-    {% if application.status == "offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred" %}
-    <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
-
+    {% if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred" %}
+      <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
+    {% endif %}
     {% if application.status == "Accepted" or application.status == "Conditions met" %}
       or <a href="/application/{{application.id}}/offer/defer/check">defer offer</a>
     {% endif %}
