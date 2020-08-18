@@ -17,17 +17,18 @@
         classes: a.status | statusClass,
         text: a.status
       })}}
-      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-4">{{a.cycle}}</p>
+      {% if a.status == 'Submitted' %}
+        {% if a.daysToRespond == 0 %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-4">Less than a day to respond</p>
+        {% else %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-4">{{a.daysToRespond}} days left to respond</p>
+        {% endif %}
+      {% endif %}
+
     </div>
 
     <div>
-      {% if a.status == 'Submitted' %}
-        {% if a.daysToRespond == 0 %}
-          <p class="govuk-!-margin-bottom-0 govuk-caption-m govuk-!-font-size-16">Less than a day to respond</p>
-        {% else %}
-          <p class="govuk-!-margin-bottom-0 govuk-!-font-size-16">{{a.daysToRespond}} days left to respond</p>
-        {% endif %}
-      {% endif %}
+      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{a.cycle}}</p>
     </div>
   </div>
 
