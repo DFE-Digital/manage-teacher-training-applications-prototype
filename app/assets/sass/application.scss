@@ -40,6 +40,7 @@ $govuk-grid-widths: (
 @import "components/timeline";
 @import "components/notification-card";
 @import "components/log-card";
+@import "components/sub-navigation";
 
 // Overrides
 .govuk-table__cell--numeric {
@@ -216,23 +217,6 @@ h1 .govuk-tag {
 .app-notes__note {
   border-bottom: 1px solid govuk-colour('mid-grey');
   padding-bottom: 10px;
-}
-
-
-
-.app-tabs {
-  &__tab {
-    font-weight: bold !important;
-    text-align: left !important;
-    text-decoration: none !important;
-  }
-
-  &__list-item--selected {
-    background-color: govuk-colour("white") !important;
-    border-top: govuk-spacing(1) solid $govuk-link-colour !important;
-    color: $govuk-text-colour !important;
-    padding-top: govuk-spacing(2) !important;
-  }
 }
 
 .govuk-header {
