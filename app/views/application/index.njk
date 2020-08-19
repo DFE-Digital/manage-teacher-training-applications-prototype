@@ -25,7 +25,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body"><a href="#" download>Download application (PDF)</a></p>
+
 
       {% if application.rejectedReasons %}
         {% set rejectedDate = application.rejectedDate %}
@@ -147,7 +147,12 @@
       }) }}
       <p class="govuk-body">{{ application.personalStatement.interview | nl2br or "No information shared" }}</p>
     </div>
+    <div class="govuk-grid-column-one-third">
 
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-2">Qualifications</h2>
       {% set qualificationsGuidanceHtml %}
@@ -166,7 +171,9 @@
         {% include "_includes/application/english-language-qualification.njk" %}
       {% endif %}
     </div>
+  </div>
 
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/other-qualifications.njk" %}
 
