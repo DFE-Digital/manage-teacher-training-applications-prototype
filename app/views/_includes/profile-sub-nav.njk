@@ -1,11 +1,12 @@
-<div class="govuk-tabs govuk-!-margin-bottom-6">
-        <ul class="govuk-tabs__list">
-          <li class="govuk-tabs__list-item {% if subNavId == "account" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}" role="presentation">
-            <a class="govuk-tabs__tab app-tabs__tab" {% if subNavId == "account" %} aria-selected="true" {% endif %} href="/account"> Account </a>
-          </li>
-          <li class="govuk-tabs__list-item app-tabs__list-item {% if subNavId == "notification-settings" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-            <a class="govuk-tabs__tab app-tabs__tab" {% if subNavId == "notification-settings" %} aria-selected="true" {% endif %} href="/account/notification-settings">
-              Notification settings </a>
-          </li>
-        </ul>
-      </div>
+{{ appSubNavigation({
+  label: 'Sub navigation',
+  items: [{
+    text: 'Account',
+    href: '/account/',
+    active: (subNavId == "account")
+  }, {
+    text: "Notification settings",
+    href: '/account/notification-settings',
+    active: (subNavId == "notification-settings")
+  }]
+}) }}

@@ -1,21 +1,21 @@
-<div class="govuk-tabs govuk-!-margin-bottom-6">
-  <ul class="govuk-tabs__list">
-    <li class="govuk-tabs__list-item {% if subNavId == "application" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}" role="presentation">
-      <a class="govuk-tabs__tab app-tabs__tab" {% if subNavId == "application" %} aria-selected="true" {% endif %} href="/application/{{application.id}}"> Application </a>
-    </li>
-    {% if application.offer or application.previousOffer %}
-      <li class="govuk-tabs__list-item app-tabs__list-item {% if subNavId == "offer" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-        <a class="govuk-tabs__tab app-tabs__tab" {% if subNavId == "application" %} aria-selected="true" {% endif %} href="/application/{{application.id}}/offer">
-          Offer </a>
-      </li>
-    {% endif %}
-    <li class="govuk-tabs__list-item app-tabs__list-item {% if subNavId == "notes" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-      <a class="govuk-tabs__tab app-tabs__tab" {% if subNavId == "application" %} aria-selected="true" {% endif %} href="/application/{{application.id}}/notes">
-        Notes </a>
-    </li>
-    <li class="govuk-tabs__list-item app-tabs__list-item {% if subNavId == "timeline" %} govuk-tabs__list-item--selected app-tabs__list-item--selected {% endif %}">
-      <a class="govuk-tabs__tab app-tabs__tab" {% if subNavId == "application" %} aria-selected="true" {% endif %} href="/application/{{application.id}}/timeline">
-        Timeline </a>
-    </li>
-  </ul>
-</div>
+
+{{ appSubNavigation({
+  label: 'Sub navigation',
+  items: [{
+    text: 'Application',
+    href: '/application/'+application.id,
+    active: (subNavId == "application")
+  }, {
+    text: 'Offer',
+    href: '/application/'+application.id+'/offer',
+    active: (subNavId == "offer")
+  } if application.offer, {
+    text: 'Notes',
+    href: '/application/'+application.id+'/notes',
+    active: (subNavId == "notes")
+  }, {
+    text: "Timeline",
+    href: '/application/'+application.id+'/timeline',
+    active: (subNavId == "timeline")
+  }]
+}) }}
