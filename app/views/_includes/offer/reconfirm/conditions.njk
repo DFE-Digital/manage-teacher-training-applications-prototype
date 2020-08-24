@@ -1,0 +1,107 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Conditions of offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: backLinkDestination
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {% include "_includes/offer/offer-summary.njk" %}
+
+      <form method="post">
+        {{ govukCheckboxes({
+          idPrefix: "standard-conditions",
+          name: "standard-conditions",
+          fieldset: {
+            legend: {
+              text: "Standard conditions",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "Fitness to teach check",
+            text: "Fitness to teach check",
+            checked: checked("standard-conditions", "Fitness to teach check" )
+          }, {
+            value: "Disclosure and barring service check",
+            text: "Disclosure and barring service check",
+            checked: checked("standard-conditions", "Disclosure and barring service check" )
+          }]
+        }) }}
+
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
+        <p class="govuk-body">Outline any further conditions (for example, studying a subject knowledge enhancement course) and give deadlines for completing them.</p>
+        {{ govukTextarea({
+          id: "condition-1",
+          name: "further-conditions[condition-1]",
+          rows: 3,
+          label: {
+            text: "First condition",
+            classes: "govuk-label--s"
+          },
+          value: furtherConditions[0].description
+        }) }}
+
+        {{ govukTextarea({
+          id: "condition-2",
+          name: "further-conditions[condition-2]",
+          rows: 3,
+          label: {
+            text: "Second condition",
+            classes: "govuk-label--s"
+          },
+          value: furtherConditions[1].description
+        }) }}
+
+        {{ govukTextarea({
+          id: "condition-3",
+          name: "further-conditions[condition-3]",
+          rows: 3,
+          label: {
+            text: "Third condition",
+            classes: "govuk-label--s"
+          },
+          value: furtherConditions[2].description
+        }) }}
+
+        {{ govukTextarea({
+          id: "condition-4",
+          name: "further-conditions[condition-4]",
+          rows: 3,
+          label: {
+            text: "Further conditions",
+            classes: "govuk-label--s"
+          },
+          value: furtherConditions[3].description
+        }) }}
+
+        {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Recommendations (optional)</h2>
+        {{ govukTextarea({
+          id: "recommendations",
+          name: "recommendations",
+          rows: 5,
+          label: {
+            text: "Outline any recommendations (for example, organising school experience)."
+          }
+        }) }} #}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
