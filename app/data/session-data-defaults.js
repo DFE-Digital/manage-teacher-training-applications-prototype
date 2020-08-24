@@ -78,6 +78,10 @@ module.exports = {
     emailAddress: "claudine.adams@newzoescitt.co.uk",
     organisations: userOrgs
   },
+  "standard-conditions" : [
+    "Fitness to teach check",
+    "Disclosure and barring service check"
+  ],
   relationships,
   applications,
   trainingProviders,
