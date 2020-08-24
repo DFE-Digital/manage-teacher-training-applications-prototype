@@ -1,0 +1,64 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Check conditions" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/offer/reconfirm/statuses"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+
+      <div class="moj-add-another">
+        <h1 class="govuk-heading-l moj-add-another__heading">{{title}}</h1>
+
+        <form method="post">
+
+          {% set conditionsHtml %}
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Fitness to teach check</li>
+              <li>Disclosure and barring service check</li>
+            </ul>
+          {% endset %}
+
+          {{ govukInsetText({
+            html: conditionsHtml
+          }) }}
+
+          {{ govukRadios({
+            idPrefix: "add-or-change-conditions",
+            name: "add-or-change-conditions",
+            fieldset: {
+              legend: {
+                text: "Do you want to add or remove conditions?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+      </div>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

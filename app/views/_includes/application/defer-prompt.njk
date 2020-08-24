@@ -1,8 +1,20 @@
 {% if application.status == 'Deferred' and application.cycle == 'Previous cycle (2019 to 2020)' %}
-  <p class="govuk-body">You need to review and confirm the deferred offer.</p>
-  {{ govukButton({
-    text: "Review offer",
-    classes: "govuk-!-margin-bottom-9",
-    href: "/application/" + application.id + "/offer/reconfirm"
-  }) }}
+
+  {% set deferHtml %}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+     Review and confirm the deferred offer
+    </h2>
+    {{ govukButton({
+      text: "Review deferred offer",
+      classes: "govuk-!-margin-bottom-0",
+      href: "/application/" + application.id + "/offer/reconfirm"
+    }) }}
+  {% endset %}
+
+  {{govukInsetText({
+    classes: "app-banner--gre",
+    html: deferHtml,
+    type: 'informatio'
+  })}}
+
   {% endif %}

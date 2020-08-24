@@ -11,11 +11,54 @@ module.exports = router => {
         res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-course`)
       }
     } else {
-      res.render('offer/reconfirm/check', {
-        application,
-        conditions
-      })
+      res.redirect(`/application/${applicationId}/offer/reconfirm/statuses`)
     }
+  })
+
+  router.get('/application/:applicationId/offer/reconfirm/statuses', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
+    res.render('offer/reconfirm/statuses', {
+      application,
+      conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/statuses', (req, res) => {
+    const applicationId = req.params.applicationId
+    res.redirect(`/application/${applicationId}/offer/reconfirm/check`)
+  })
+
+  router.get('/application/:applicationId/offer/reconfirm/check-conditions', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
+    res.render('offer/reconfirm/check-conditions', {
+      application,
+      conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/check-conditions', (req, res) => {
+    const applicationId = req.params.applicationId
+
+    if(req.body['add-or-change-conditions'] == "Yes") {
+      res.redirect(`/application/${applicationId}/offer/reconfirm/conditions`)
+    } else {
+      res.redirect(`/application/${applicationId}/offer/reconfirm/check`)
+    }
+
+  })
+
+  router.get('/application/:applicationId/offer/reconfirm/check', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
+    res.render('offer/reconfirm/check', {
+      application,
+      conditions
+    })
   })
 
   router.post('/application/:applicationId/offer/reconfirm', (req, res) => {
@@ -249,6 +292,6 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm`)
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/check`)
   })
 }

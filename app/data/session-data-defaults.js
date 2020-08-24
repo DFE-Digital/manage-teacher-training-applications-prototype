@@ -9,13 +9,13 @@ const accreditedBodies = require('./organisations.json').filter(org => {
 let applications = require('./applications.json')
 
 applications = applications
-  .filter(app => {
-    if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
-      return false;
-    } else {
-      return true;
-    }
-  })
+  // .filter(app => {
+  //   if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // })
   .filter(app => {
     if (app.status === 'Accepted' && app.cycle === 'Previous cycle (2019 to 2020)') {
       return false;
