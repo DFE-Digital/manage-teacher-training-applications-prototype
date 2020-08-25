@@ -102,7 +102,22 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/reconfirm/unavailable-location/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-location/check`)
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-location/statuses`)
+  })
+
+  router.get('/application/:applicationId/offer/reconfirm/unavailable-location/statuses', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
+    res.render('offer/reconfirm/unavailable-location/statuses', {
+      application,
+      conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/unavailable-location/statuses', (req, res) => {
+    const applicationId = req.params.applicationId
+    res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-location/check`)
   })
 
   router.get('/application/:applicationId/offer/reconfirm/unavailable-location/conditions', (req, res) => {
