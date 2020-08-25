@@ -1,6 +1,6 @@
 {% if application.status == 'Deferred' and application.cycle == 'Previous cycle (2019 to 2020)' %}
 
-  {% set deferHtml %}
+  {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
      Review and confirm the deferred offer
     </h2>
@@ -12,9 +12,7 @@
   {% endset %}
 
   {{govukInsetText({
-    classes: "app-banner--gre",
-    html: deferHtml,
-    type: 'informatio'
+    html: promptHtml
   })}}
 
   {% endif %}

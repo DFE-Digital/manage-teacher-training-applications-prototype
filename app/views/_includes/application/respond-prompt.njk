@@ -1,13 +1,18 @@
 {% if application.status == 'Submitted' %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-m"></h2>
-      <p>You have 22 days to respond to this application. On 19 October 2020 this application will be automatically rejected.</p>
-      {{ govukButton({
-        text: "Respond to application",
-        classes: "govuk-!-margin-bottom-9",
-        href: "/application/" + application.id + "/decision"
-      }) }}
-    </div>
-  </div>
+  {% set promptHtml %}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+     Respond to application
+    </h2>
+    <p>You have 22 days to respond to this application. On 19 October 2020 this application will be automatically rejected.</p>
+    {{ govukButton({
+      text: "Respond to application",
+      classes: "govuk-!-margin-bottom-0",
+      href: "/application/" + application.id + "/decision"
+    }) }}
+  {% endset %}
+
+  {{govukInsetText({
+    html: promptHtml
+  })}}
+
 {% endif %}
