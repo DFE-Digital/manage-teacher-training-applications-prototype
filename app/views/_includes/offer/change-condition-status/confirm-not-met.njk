@@ -1,0 +1,40 @@
+{% extends "_layout.njk" %}
+{% set cancel = cancelLinkDestination or ('/application/' + application.id + "/offer" ) %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+
+{% set title = "Confirm condition not met" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: backLinkDestination
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {{ govukInsetText({
+        text: condition.description
+      }) }}
+
+      {{ govukWarningText({
+        text: "We’ll tell the candidate they’ve failed to meet the conditions of the offer and will not be enrolled onto the course.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm not met",
+          classes: 'govuk-button--warning'
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="{{cancel}}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}

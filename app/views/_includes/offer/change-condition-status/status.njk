@@ -1,0 +1,58 @@
+{% extends "_layout.njk" %}
+{% set primaryNavId = 'applications' %}
+{% set cancel = cancelLinkDestination or ('/application/' + application.id + "/offer" ) %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Update status of condition" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: backLinkDestination
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {{ govukInsetText({
+        text: condition.description
+      }) }}
+
+      <form method="post">
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: "Choose status",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          idPrefix: "conditionstatus",
+          name: "conditionstatus",
+          items: [{
+            value: "Pending",
+            text: "Pending",
+            checked: condition.status == 'Pending'
+          }, {
+            value: "Met",
+            text: "Met",
+            checked: condition.status == 'Met'
+          }, {
+            value: "Not met",
+            text: "Not met",
+            checked: condition.status == 'Not met'
+          } if application.status != 'Deferred'
+          ]
+        })}}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="{{cancel}}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

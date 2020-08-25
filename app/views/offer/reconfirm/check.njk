@@ -36,6 +36,12 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {{ appBanner({
+        html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+        type: "success",
+        icon: false
+      }) if flash }}
+
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
@@ -116,16 +122,16 @@
             Conditions
           </h2>
 
-          <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add condition</a></p>
+          <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add or change conditions</a></p>
 
           <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
           {% for condition in conditions %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 {{condition.description}}
-                {% if application.status == "Accepted" %}
+{#                 {% if application.status == "Accepted" %}
                     <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-                  {% endif %}
+                  {% endif %} #}
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if condition.status == "Pending" %}
@@ -139,8 +145,8 @@
               </dd>
               {% if 1 == 1 %}
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/conditions">
-                  Change</a>
+                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/condition/{{condition.id}}/change-status">
+                  Update status</a>
                 </dd>
               {% endif %}
             </div>

@@ -50,7 +50,7 @@
             text: "First condition",
             classes: "govuk-label--s"
           },
-          value: data["further-conditions"]["condition-1"]
+          value: furtherConditions[0].description
         }) }}
 
         {{ govukTextarea({
@@ -61,7 +61,7 @@
             text: "Second condition",
             classes: "govuk-label--s"
           },
-          value: data["further-conditions"]["condition-2"]
+          value: furtherConditions[1].description
         }) }}
 
         {{ govukTextarea({
@@ -72,7 +72,7 @@
             text: "Third condition",
             classes: "govuk-label--s"
           },
-          value: data["further-conditions"]["condition-3"]
+          value: furtherConditions[2].description
         }) }}
 
         {{ govukTextarea({
@@ -83,7 +83,7 @@
             text: "Further conditions",
             classes: "govuk-label--s"
           },
-          value: data["further-conditions"]["condition-4"]
+          value: furtherConditions[3].description
         }) }}
 
         {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Recommendations (optional)</h2>
