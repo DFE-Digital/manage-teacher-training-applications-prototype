@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@ministryofjustice/frontend": "0.0.19-alpha",
-    "acorn": "^7.3.1",
+    "acorn": "^8.0.1",
     "ansi-colors": "^4.0.0",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
