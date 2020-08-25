@@ -1,3 +1,5 @@
+const utils = require('../data/application-utils')
+
 module.exports = router => {
   router.get('/application/:applicationId/offer/reconfirm', (req, res) => {
     const applicationId = req.params.applicationId
@@ -27,6 +29,12 @@ module.exports = router => {
 
   router.post('/application/:applicationId/offer/reconfirm/statuses', (req, res) => {
     const applicationId = req.params.applicationId
+    const data = req.session.data
+    let newConditionStatuses = data.conditionStatus
+    delete data.conditionStatus
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = utils.getConditions(application)
+    conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
     res.redirect(`/application/${applicationId}/offer/reconfirm/check`)
   })
 

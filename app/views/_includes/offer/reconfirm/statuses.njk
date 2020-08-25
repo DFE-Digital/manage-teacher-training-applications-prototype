@@ -23,110 +23,59 @@
 
 
           <div class="app-offer-panel govuk-!-margin-bottom-7">
-          <table class="govuk-table govuk-!-margin-bottom-1">
-            <tbody class="govuk-table__body">
-              {% for condition in conditions %}
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">
-                    {{condition.description}}
-                    {% if application.status == "Accepted" %}
-                      <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-                    {% endif %}
-                  </td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">
-                    {% if condition.status == "Pending" %}
-                      {% set statusClass = "app-tag--grey" %}
-                    {% elseif condition.status == "Met" %}
-                      {% set statusClass = "app-tag--green" %}
-                    {% elseif condition.status == "Not met" %}
-                      {% set statusClass = "app-tag--red" %}
-                    {% endif %}
-                    {{govukTag({ text: condition.status, classes: statusClass })}}
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+            <table class="govuk-table govuk-!-margin-bottom-1">
+              <tbody class="govuk-table__body">
+                {% for condition in conditions %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                      {{condition.description}}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric app-conditions-list__tag">
+                      {% if condition.status == "Pending" %}
+                        {% set statusClass = "app-tag--grey" %}
+                      {% elseif condition.status == "Met" %}
+                        {% set statusClass = "app-tag--green" %}
+                      {% elseif condition.status == "Not met" %}
+                        {% set statusClass = "app-tag--red" %}
+                      {% endif %}
+                      {{govukTag({ text: condition.status, classes: statusClass })}}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% for condition in conditions %}
+            {% set randomDate = ["4 August", "18 June", "22 August", "7 September"] | random %}
+            {{ govukRadios({
+                idPrefix: "conditionStatus" + loop.index0,
+                name: "conditionStatus["+ loop.index0 + "]",
+                fieldset: {
+                  legend: {
+                    text: "Status of ‘" + condition.description + "’",
+                    classes: "govuk-fieldset__legend--m"
+                  }
+                },
+                hint: {
+                  text: "This condition was marked as met on " + randomDate + " 2020"
+                } if condition.status == 'Met',
+                items: [
+                  {
+                    value: "Pending",
+                    text: "Pending",
+                    checked: condition.status == "Pending"
+                  },
+                  {
+                    value: "Met",
+                    text: "Met",
+                    checked: condition.status == "Met"
+                  }
+                ]
+              }) }}
 
 
-          {{ govukRadios({
-            idPrefix: "status1",
-            name: "status1",
-            fieldset: {
-              legend: {
-                text: "Status of ‘Fitness to teach check’",
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            hint: {
-              text: "This condition was marked as met on 5 September 2020"
-            },
-            items: [
-              {
-                value: "Pending",
-                text: "Pending",
-                checked: true
-              },
-              {
-                value: "Met",
-                text: "Met"
-              }
-            ]
-          }) }}
-
-          {{ govukRadios({
-            idPrefix: "status2",
-            name: "status2",
-            fieldset: {
-              legend: {
-                text: "Status of ‘Disclosure and barring service check’",
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            hint: {
-              text: "This condition was marked as met on 9 September 2020"
-            },
-            items: [
-              {
-                value: "Pending",
-                text: "Pending"
-              },
-              {
-                value: "Met",
-                text: "Met",
-                checked: true
-
-              }
-            ]
-          }) }}
-
-          {{ govukRadios({
-            idPrefix: "status3",
-            name: "status3",
-            fieldset: {
-              legend: {
-                text: "Status of ‘Original Certificates for GCSE Maths and English at level C/4 or above. If you are unable to provide certificates, you will need to complete a 12-week equivalency (higher) course and exam. To provide CV with work history, outlining reasons for any gaps you may have.’",
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            hint: {
-              text: "This condition was marked as met on 9 September 2020"
-            },
-            items: [
-              {
-                value: "Pending",
-                text: "Pending"
-              },
-              {
-                value: "Met",
-                text: "Met",
-                checked: true
-
-              }
-            ]
-          }) }}
-
+          {% endfor %}
 
           {{ govukButton({
             text: "Continue"
