@@ -46,109 +46,106 @@
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <div class="app-offer-panel">
-          <h2 class="govuk-heading-m">
-            Course details
-          </h2>
-          {{ govukSummaryList({
-              rows: [{
-                key: {
-                  text: "Provider"
-                },
-                value: {
-                  html: application.provider
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-provider",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
+        <h2 class="govuk-heading-m">
+          Course details
+        </h2>
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Provider"
+            },
+            value: {
+              html: application.provider
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-provider",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
                 }
-              }, {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  html: application.course
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-course",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
+              ]
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-course",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
                 }
-              }, {
-                key: {
-                  text: "Location"
-                },
-                value: {
-                  html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-location",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
+              ]
+            }
+          }, {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-location",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
                 }
-              }, {
-                key: {
-                  text: "Full time or part time"
-                },
-                value: {
-                  html: "Full time"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/application/" + application.id + "/offer/reconfirm/change-study-mode",
-                      text: "Change",
-                      visuallyHiddenText: "conditions"
-                    }
-                  ]
+              ]
+            }
+          }, {
+            key: {
+              text: "Full time or part time"
+            },
+            value: {
+              html: "Full time"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/offer/reconfirm/change-study-mode",
+                  text: "Change",
+                  visuallyHiddenText: "conditions"
                 }
-              }
-            ]})
-          }}
+              ]
+            }
+          }
+        ]})
+      }}
 
-          <h2 class="govuk-heading-m">
-            Conditions of offer
-          </h2>
+      <h2 class="govuk-heading-m">
+        Conditions of offer
+      </h2>
 
-          <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add or change conditions</a></p>
+      <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add or change conditions</a></p>
 
-          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-          {% for condition in conditions %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                {{condition.description}}
-{#                 {% if application.status == "Accepted" %}
-                    <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-                  {% endif %} #}
-              </dt>
-              <dd class="govuk-summary-list__value app-conditions-list__tag">
-                {% if condition.status == "Pending" %}
-                    {% set statusClass = "app-tag--grey" %}
-                  {% elseif condition.status == "Met" %}
-                    {% set statusClass = "app-tag--green" %}
-                  {% elseif condition.status == "Not met" %}
-                    {% set statusClass = "app-tag--red" %}
-                  {% endif %}
-                  {{govukTag({ text: condition.status, classes: statusClass })}}
-              </dd>
-              {% if 1 == 1 %}
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/condition/{{condition.id}}/change-status">
-                  Update<span class="govuk-visually-hidden"> status of condition ‘{{condition.description}}’</span></a>
-                </dd>
+      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+        {% for condition in conditions %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{condition.description}}
+            </dt>
+            <dd class="govuk-summary-list__value app-conditions-list__tag">
+              {% if condition.status == "Pending" %}
+                  {% set statusClass = "app-tag--grey" %}
+                {% elseif condition.status == "Met" %}
+                  {% set statusClass = "app-tag--green" %}
+                {% elseif condition.status == "Not met" %}
+                  {% set statusClass = "app-tag--red" %}
               {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+            </dd>
+            {% if 1 == 1 %}
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/condition/{{condition.id}}/change-status">
+                Update<span class="govuk-visually-hidden"> status of condition ‘{{condition.description}}’</span></a>
+              </dd>
+            {% endif %}
             </div>
           {% endfor %}
         </dl>

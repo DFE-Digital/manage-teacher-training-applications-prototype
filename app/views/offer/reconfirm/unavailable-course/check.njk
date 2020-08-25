@@ -118,32 +118,28 @@
 
           <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-course/conditions">Add or change conditions</a></p>
 
-          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-          {% for condition in conditions %}
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                {{condition.description}}
-
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if condition.status == "Pending" %}
-                    {% set statusClass = "app-tag--grey" %}
-                  {% elseif condition.status == "Met" %}
-                    {% set statusClass = "app-tag--green" %}
-                  {% elseif condition.status == "Not met" %}
-                    {% set statusClass = "app-tag--red" %}
-                  {% endif %}
-                  {{govukTag({ text: condition.status, classes: statusClass })}}
-              </dd>
-              {% if 1 == 1 %}
-                <dd class="govuk-summary-list__actions">
-                  {# <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-course/conditions">
-                  Change</a> #}
-                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-course/condition/{{condition.id}}/change-status">
-                  Update status</a>
-                </dd>
+                <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+        {% for condition in conditions %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{condition.description}}
+            </dt>
+            <dd class="govuk-summary-list__value app-conditions-list__tag">
+              {% if condition.status == "Pending" %}
+                  {% set statusClass = "app-tag--grey" %}
+                {% elseif condition.status == "Met" %}
+                  {% set statusClass = "app-tag--green" %}
+                {% elseif condition.status == "Not met" %}
+                  {% set statusClass = "app-tag--red" %}
               {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+            </dd>
+            {% if 1 == 1 %}
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-course/condition/{{condition.id}}/change-status">
+                Update<span class="govuk-visually-hidden"> status of condition ‘{{condition.description}}’</span></a>
+              </dd>
+            {% endif %}
             </div>
           {% endfor %}
         </dl>
