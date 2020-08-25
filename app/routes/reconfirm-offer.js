@@ -10,7 +10,6 @@ module.exports = router => {
 
   router.get('/application/:applicationId/offer/reconfirm', (req, res) => {
     const applicationId = req.params.applicationId
-
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
     if (application.offerCanNotBeReconfirmed) {
@@ -20,8 +19,16 @@ module.exports = router => {
         res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-course`)
       }
     } else {
-      res.redirect(`/application/${applicationId}/offer/reconfirm/statuses`)
+      res.render('offer/reconfirm/action', {
+        application,
+        conditions
+      })
     }
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm', (req, res) => {
+    const applicationId = req.params.applicationId
+    res.redirect(`/application/${applicationId}/offer/reconfirm/statuses`)
   })
 
   router.get('/application/:applicationId/offer/reconfirm/statuses', (req, res) => {
@@ -45,27 +52,6 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/offer/reconfirm/check`)
   })
 
-  router.get('/application/:applicationId/offer/reconfirm/check-conditions', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/check-conditions', {
-      application,
-      conditions
-    })
-  })
-
-  router.post('/application/:applicationId/offer/reconfirm/check-conditions', (req, res) => {
-    const applicationId = req.params.applicationId
-
-    if(req.body['add-or-change-conditions'] == "Yes") {
-      res.redirect(`/application/${applicationId}/offer/reconfirm/conditions`)
-    } else {
-      res.redirect(`/application/${applicationId}/offer/reconfirm/check`)
-    }
-
-  })
-
   router.get('/application/:applicationId/offer/reconfirm/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -85,6 +71,22 @@ module.exports = router => {
 
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
+  })
+
+  router.get('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    application.offerAvailable = true
+
+    res.render('offer/reconfirm/conditions', {
+      application: application,
+      standardConditions: application.offer.standardConditions,
+      furtherConditions: application.offer.conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/check`)
   })
 
   /*************************************************************
@@ -283,49 +285,4 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/offer`)
   })
 
-  router.get('/application/:applicationId/offer/reconfirm/provider', (req, res) => {
-    res.render('offer/reconfirm/provider', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/application/:applicationId/offer/reconfirm/provider', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/course`)
-  })
-
-  router.get('/application/:applicationId/offer/reconfirm/course', (req, res) => {
-    res.render('offer/reconfirm/course', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/application/:applicationId/offer/reconfirm/course', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/location`)
-  })
-
-  router.get('/application/:applicationId/offer/reconfirm/location', (req, res) => {
-    res.render('offer/reconfirm/location', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/application/:applicationId/offer/reconfirm/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/conditions`)
-  })
-
-  router.get('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id === applicationId)
-    application.offerAvailable = true
-
-    res.render('offer/reconfirm/conditions', {
-      application: application,
-      standardConditions: application.offer.standardConditions,
-      furtherConditions: application.offer.conditions
-    })
-  })
-
-  router.post('/application/:applicationId/offer/reconfirm/conditions', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/check`)
-  })
 }
