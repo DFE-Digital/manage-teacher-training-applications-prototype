@@ -84,19 +84,14 @@
 {% if offer and conditions %}
 
   <h2 class="govuk-heading-m">Conditions</h2>
-
-  <table class="govuk-table">
-    <tbody class="govuk-table__body">
-      {% for condition in conditions %}
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            {{condition.description}}
-            {% if application.status == "Accepted" %}
-              <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-            {% endif %}
-          </td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% if condition.status == "Pending" %}
+  <dl class="govuk-summary-list app-conditions-list">
+    {% for condition in conditions %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{condition.description}}
+        </dt>
+        <dd class="govuk-summary-list__value app-conditions-list__tag">
+          {% if condition.status == "Pending" %}
               {% set statusClass = "app-tag--grey" %}
             {% elseif condition.status == "Met" %}
               {% set statusClass = "app-tag--green" %}
@@ -104,11 +99,18 @@
               {% set statusClass = "app-tag--red" %}
             {% endif %}
             {{govukTag({ text: condition.status, classes: statusClass })}}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+        </dd>
+        {% if 1 == 1 %}
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
+            Update<span class="govuk-visually-hidden"> status of condition ‘{{condition.description}}’</span></a>
+          </dd>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </dl>
+
+
 {% endif %}
 
 {% if offer and offer.recommendations %}
