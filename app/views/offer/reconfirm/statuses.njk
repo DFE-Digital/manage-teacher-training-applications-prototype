@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer/reconfirm"
+    href: "/application/" + application.id + "/"
   }) }}
 {% endblock %}
 
@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-l moj-add-another__heading">{{title}}</h1>
+      <h1 class="govuk-heading-xl moj-add-another__heading">{{title}}</h1>
 
         {% set courseDetailsOption1 %}
 
@@ -127,9 +127,12 @@
             name: "status1",
             fieldset: {
               legend: {
-                text: "Choose status: Fitness to teach check",
+                text: "Status of ‘Fitness to teach check’",
                 classes: "govuk-fieldset__legend--m"
               }
+            },
+            hint: {
+              text: "This condition was marked as met on 5 September 2020"
             },
             items: [
               {
@@ -149,7 +152,33 @@
             name: "status2",
             fieldset: {
               legend: {
-                text: "Choose status: Disclosure and barring service check",
+                text: "Status of ‘Disclosure and barring service check’",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "This condition was marked as met on 9 September 2020"
+            },
+            items: [
+              {
+                value: "Pending",
+                text: "Pending"
+              },
+              {
+                value: "Met",
+                text: "Met",
+                checked: true
+
+              }
+            ]
+          }) }}
+
+          {{ govukRadios({
+            idPrefix: "status3",
+            name: "status3",
+            fieldset: {
+              legend: {
+                text: "Status of ‘You need to take English speaking course	’",
                 classes: "govuk-fieldset__legend--m"
               }
             },
