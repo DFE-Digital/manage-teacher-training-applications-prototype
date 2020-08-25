@@ -61,14 +61,11 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/reconfirm', (req, res) => {
+  router.post('/application/:applicationId/offer/reconfirm/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    application.offer = {
-      madeDate: new Date().toISOString()
-    }
-
+    application.offer.madeDate = new Date().toISOString()
     application.status = 'Conditions met' // work this out
 
     req.flash('success', 'offer-reconfirmed')
@@ -149,17 +146,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    application.offer = {
-      madeDate: new Date().toISOString(),
-      provider: req.session.data.trainingProviders[0].name,
-      course: 'Primary (5-11) (X100)',
-      locationname: req.session.data.location
-    }
+    application.offer.madeDate = new Date().toISOString()
+    application.offer.provider = req.session.data.trainingProviders[0].name
+    application.offer.course = 'Primary (5-11) (X100)'
+    application.offer.locationname = req.session.data.location
 
     application.status = 'Conditions met' // work this out
-
-    application.offer.standardConditions = application.offer.standardConditions
-    application.offer.conditions = application.offer.conditions
 
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
