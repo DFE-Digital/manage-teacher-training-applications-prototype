@@ -1,4 +1,11 @@
 module.exports = router => {
+
+  /*************************************************************
+   *
+   * Course is available (happy path)
+   *
+   ****************************************************************/
+
   router.get('/application/:applicationId/offer/reconfirm', (req, res) => {
     const applicationId = req.params.applicationId
 
@@ -71,6 +78,12 @@ module.exports = router => {
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
   })
+
+  /*************************************************************
+   *
+   * Unavailable location
+   *
+   ****************************************************************/
 
   router.get('/application/:applicationId/offer/reconfirm/unavailable-location', (req, res) => {
     const applicationId = req.params.applicationId
@@ -156,6 +169,12 @@ module.exports = router => {
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
   })
+
+  /*************************************************************
+   *
+   * Unavailable course
+   *
+   ****************************************************************/
 
   router.get('/application/:applicationId/offer/reconfirm/unavailable-course', (req, res) => {
     const applicationId = req.params.applicationId

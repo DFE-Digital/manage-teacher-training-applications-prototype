@@ -40,42 +40,7 @@
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {% set courseDetails %}
-  <div class="govuk-!-margin-bottom-0">
-    {# {{ govukSummaryList({
-        classes: " govuk-!-margin-bottom-1",
-        rows: [{
-          key: {
-            text: "Provider"
-          },
-          value: {
-            html: application.provider
-          }
-        }, {
-          key: {
-            text: "Course"
-          },
-          value: {
-            html: application.course
-          }
-        } if false, {
-          key: {
-            text: "Location"
-          },
-          value: {
-            html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-          }
-        }, {
-          key: {
-            text: "Full time or part time"
-          },
-          value: {
-            html: "Full time"
-          },
-          classes: "govuk-summary-list__row--no-border"
-        }
-      ]})
-    }} #}
-
+        <div class="govuk-!-margin-bottom-0">
 
           <h2 class="govuk-heading-m">
             Course details
@@ -139,30 +104,18 @@
               </div>
             {% endfor %}
           </dl>
+        </div>
+      {% endset %}
 
-
-
-
-  </div>
-{% endset %}
-
-<div class="app-offer-pane govuk-!-margin-bottom-7">
-  {# {% set warningHtml %} #}
+      <div class="app-offer-pane govuk-!-margin-bottom-7">
         <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p>
-      {# {% endset %} #}
 
-      {# {{ govukWarningText({
-        html: warningHtml,
-        iconFallbackText: "Fallback text",
-        classes: "govuk-!-margin-bottom-"
-      }) }} #}
-
-  {{ govukDetails({
-    summaryText: "Details of deferred offer",
-    html: courseDetails,
-    classes: "govuk-!-margin-bottom-0 app-details--no-boder"
-  }) }}
-</div>
+        {{ govukDetails({
+          summaryText: "Details of deferred offer",
+          html: courseDetails,
+          classes: "govuk-!-margin-bottom-0 app-details--no-boder"
+        }) }}
+      </div>
 
 
 
