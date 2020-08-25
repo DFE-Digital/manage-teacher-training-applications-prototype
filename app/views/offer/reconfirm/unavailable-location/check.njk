@@ -41,7 +41,7 @@
 
       <div class="app-offer-panel">
           <h2 class="govuk-heading-m">
-            Offer details
+            Course details
           </h2>
           {{ govukSummaryList({
               rows: [{
@@ -113,7 +113,7 @@
           }}
 
           <h2 class="govuk-heading-m">
-            Conditions
+            Conditions of offer
           </h2>
 
           <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
@@ -150,7 +150,7 @@
         </dl>
       </div>
 
-      <p class="govuk-body">We’ll notify the candidate their deferred offer has been confirmed for the current cycle (2021 to 2022). We'll also inform them of any changes you have made.</p>
+      <p class="govuk-body">We’ll notify the candidate about their new offer and conditions for the current cycle.</p>
 
       <form method="post">
         {{ govukButton({
