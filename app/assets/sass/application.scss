@@ -395,16 +395,28 @@ h1 .govuk-tag {
 
 .app-conditions-list {
   .govuk-summary-list__key {
-    width: 60%;
+    @include govuk-media-query($from: tablet) {
+      width: 60%;
+    }
     font-weight: normal;
   }
 
   .govuk-summary-list__value {
-    width: 20%;
+    @include govuk-media-query($from: tablet) {
+      width: 25%;
+    }
   }
 
   .govuk-summary-list__actions {
-    width: 20%;
+    @include govuk-media-query($from: tablet) {
+      width: 15%;
+    }
+  }
+
+  .app-conditions-list__tag {
+    @include govuk-media-query($from: tablet) {
+      text-align: right
+    }
   }
 }
 
@@ -463,3 +475,19 @@ h1 .govuk-tag {
   }
 }
 
+.app-\!-width-one-fifth {
+  width: 100% !important;
+
+  @include govuk-media-query($from: tablet) {
+    width: 20% !important;
+  }
+}
+
+
+.app-\!-width-one-sixth {
+  width: 100% !important;
+
+  @include govuk-media-query($from: tablet) {
+    width: 16.66% !important;
+  }
+}

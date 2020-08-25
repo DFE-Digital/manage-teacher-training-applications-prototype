@@ -35,7 +35,7 @@
   {% endset %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
       {{ appBanner({
         html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
         type: "success",
@@ -133,7 +133,7 @@
                     <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
                   {% endif %} #}
               </dt>
-              <dd class="govuk-summary-list__value">
+              <dd class="govuk-summary-list__value app-conditions-list__tag">
                 {% if condition.status == "Pending" %}
                     {% set statusClass = "app-tag--grey" %}
                   {% elseif condition.status == "Met" %}
@@ -146,7 +146,7 @@
               {% if 1 == 1 %}
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/condition/{{condition.id}}/change-status">
-                  Update status</a>
+                  Update<span class="govuk-visually-hidden"> status of condition ‘{{condition.description}}’</span></a>
                 </dd>
               {% endif %}
             </div>
