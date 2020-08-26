@@ -68,6 +68,7 @@ module.exports = router => {
 
     application.offer.madeDate = new Date().toISOString()
     application.status = 'Conditions met' // work this out
+    application.cycle = 'Current cycle (2020 to 2021)'
 
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
@@ -181,6 +182,7 @@ module.exports = router => {
     application.offer.locationname = req.session.data.location
 
     application.status = 'Conditions met' // work this out
+    application.cycle = 'Current cycle (2020 to 2021)'
 
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
@@ -307,6 +309,7 @@ module.exports = router => {
     application.offer.locationname = req.session.data.location;
 
     application.status = 'Conditions met' // work this out
+    application.cycle = 'Current cycle (2020 to 2021)'
 
     req.flash('success', 'offer-reconfirmed')
     res.redirect(`/application/${applicationId}/offer`)
