@@ -1,0 +1,46 @@
+{% set courseDetails %}
+
+  <h2 class="govuk-heading-m">
+    Course details
+  </h2>
+
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Provider"
+      },
+      value: {
+        html: application.provider
+        }
+      }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: application.course
+      }
+      }, {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+      }
+      }, {
+      key: {
+        text: "Full time or part time"
+      },
+      value: {
+        html: "Full time"
+      }
+    }
+    ]})
+  }}
+
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "Details of offer",
+  html: courseDetails,
+  classes: "app-details--no-boder"
+}) }}
