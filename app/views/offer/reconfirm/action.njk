@@ -39,82 +39,13 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set courseDetails %}
-        <div class="govuk-!-margin-bottom-0">
 
-          <h2 class="govuk-heading-m">
-            Course details
-          </h2>
-          {{ govukSummaryList({
-              rows: [{
-                key: {
-                  text: "Provider"
-                },
-                value: {
-                  html: application.provider
-                }
-              }, {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  html: application.course
-                }
-              }, {
-                key: {
-                  text: "Location"
-                },
-                value: {
-                  html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-                }
-              }, {
-                key: {
-                  text: "Full time or part time"
-                },
-                value: {
-                  html: "Full time"
-                }
-              }
-            ]})
-          }}
-
-          <h2 class="govuk-heading-m">
-            Conditions of offer
-          </h2>
-
-          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-            {% for condition in conditions %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  {{condition.description}}
-                  {% if application.status == "Accepted" %}
-                      <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-                    {% endif %}
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {% if condition.status == "Pending" %}
-                      {% set statusClass = "app-tag--grey" %}
-                    {% elseif condition.status == "Met" %}
-                      {% set statusClass = "app-tag--green" %}
-                    {% elseif condition.status == "Not met" %}
-                      {% set statusClass = "app-tag--red" %}
-                    {% endif %}
-                    {{govukTag({ text: condition.status, classes: statusClass })}}
-                </dd>
-              </div>
-            {% endfor %}
-          </dl>
-        </div>
-      {% endset %}
 
       <div class="app-offer-pane govuk-!-margin-bottom-7">
         <p>The course is available in the current cycle. You just need to check the status of the conditions.</p>
 
-        {{ govukDetails({
-          summaryText: "Details of deferred offer",
-          html: courseDetails,
-          classes: "govuk-!-margin-bottom-0 app-details--no-boder"
-        }) }}
+        {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
+
       </div>
 
       <form method="post">
