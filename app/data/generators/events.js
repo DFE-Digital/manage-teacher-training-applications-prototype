@@ -88,7 +88,7 @@ module.exports = (faker, params) => {
     })
   }
 
-  if (params.status === 'Offer deferred') {
+  if (params.status === 'Deferred') {
     events.items.push({
       title: 'Offer deferred',
       user: faker.name.findName(),
