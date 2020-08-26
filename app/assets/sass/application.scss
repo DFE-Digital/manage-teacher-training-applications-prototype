@@ -491,3 +491,7 @@ h1 .govuk-tag {
     width: 16.66% !important;
   }
 }
+
+.govuk-summary-list__row dd:last-of-type {
+  padding-right: 0;
+}

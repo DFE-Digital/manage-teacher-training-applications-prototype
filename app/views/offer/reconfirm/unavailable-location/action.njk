@@ -91,7 +91,7 @@
                       <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
                     {% endif %}
                 </dt>
-                <dd class="govuk-summary-list__value">
+                <dd class="govuk-summary-list__value app-conditions-list__tag">
                   {% if condition.status == "Pending" %}
                       {% set statusClass = "app-tag--grey" %}
                     {% elseif condition.status == "Met" %}
