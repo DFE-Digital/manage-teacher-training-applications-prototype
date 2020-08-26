@@ -137,6 +137,12 @@ module.exports = router => {
 
   router.post('/application/:applicationId/offer/reconfirm/unavailable-location/statuses', (req, res) => {
     const applicationId = req.params.applicationId
+    const data = req.session.data
+    let newConditionStatuses = data.conditionStatus
+    delete data.conditionStatus
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = utils.getConditions(application)
+    conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
     res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-location/check`)
   })
 
@@ -242,7 +248,28 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/reconfirm/unavailable-course/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/check`)
+    res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-course/statuses`)
+  })
+
+  router.get('/application/:applicationId/offer/reconfirm/unavailable-course/statuses', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
+    res.render('offer/reconfirm/unavailable-course/statuses', {
+      application,
+      conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/reconfirm/unavailable-course/statuses', (req, res) => {
+    const applicationId = req.params.applicationId
+    const data = req.session.data
+    let newConditionStatuses = data.conditionStatus
+    delete data.conditionStatus
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const conditions = utils.getConditions(application)
+    conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-course/check`)
   })
 
   router.get('/application/:applicationId/offer/reconfirm/unavailable-course/conditions', (req, res) => {
