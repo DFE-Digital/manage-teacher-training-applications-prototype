@@ -4,6 +4,14 @@
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
      Review and confirm the deferred offer
     </h2>
+
+    {% if application.offerCanNotBeReconfirmed.reason == "course" %}
+      <p>{{application.course}} is no longer available at {{application.provider}}. You need to choose a different course.</p>
+    {% elseif application.offerCanNotBeReconfirmed.reason == "location" %}
+      <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p>
+    {% else %}
+      <p>The course is available in the current cycle. You just need to check the status of the conditions.</p>
+    {% endif %}
     {{ govukButton({
       text: "Review deferred offer",
       classes: "govuk-!-margin-bottom-0",
