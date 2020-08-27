@@ -130,7 +130,7 @@
 
       <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if data.hasCombinedConditions %}app-condition-list--combined{% endif %} ">
         {% for condition in conditions %}
-          <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
             <dt class="govuk-summary-list__key">
               {{condition.description}}
             </dt>
