@@ -396,26 +396,29 @@ h1 .govuk-tag {
 .app-conditions-list {
   .govuk-summary-list__key {
     @include govuk-media-query($from: tablet) {
-      width: 60%;
+      width: 65%;
     }
     font-weight: normal;
   }
 
   .govuk-summary-list__value {
     @include govuk-media-query($from: tablet) {
-      width: 25%;
+      width: 5%;
     }
   }
 
   .govuk-summary-list__actions {
     @include govuk-media-query($from: tablet) {
-      width: 15%;
+      width: 30%;
     }
   }
 
-  .app-conditions-list__tag {
+}
+
+.app-condition-list--combined {
+  .govuk-summary-list__value {
     @include govuk-media-query($from: tablet) {
-      text-align: right
+      width: 7%;
     }
   }
 }

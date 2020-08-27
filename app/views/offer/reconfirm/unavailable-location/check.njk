@@ -122,13 +122,13 @@
           <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
         {% endif %}
 
-        <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+        <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if data.hasCombinedConditions %}app-condition-list--combined{% endif %} ">
           {% for condition in conditions %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 {{condition.description}}
               </dt>
-              <dd class="govuk-summary-list__value app-conditions-list__tag">
+              <dd class="govuk-summary-list__value">
                 {% if condition.status == "Pending" %}
                     {% set statusClass = "app-tag--grey" %}
                   {% elseif condition.status == "Met" %}
