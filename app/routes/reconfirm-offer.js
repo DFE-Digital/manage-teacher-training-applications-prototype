@@ -44,11 +44,19 @@ module.exports = router => {
   router.post('/application/:applicationId/offer/reconfirm/statuses', (req, res) => {
     const applicationId = req.params.applicationId
     const data = req.session.data
-    let newConditionStatuses = data.conditionStatus
-    delete data.conditionStatus
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = utils.getConditions(application)
-    conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    if (data.allConditionsMet){
+      console.log("all conditions is", data.allConditionsMet)
+      let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
+      delete data.allConditionsMet
+      conditions.forEach( (condition, index) => condition.status = (allConditionsMet)? 'Met' : 'Pending')
+    }
+    if (data.conditionStatus){
+      let newConditionStatuses = data.conditionStatus
+      delete data.conditionStatus
+      conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    }
     res.redirect(`/application/${applicationId}/offer/reconfirm/check`)
   })
 
@@ -144,11 +152,19 @@ module.exports = router => {
   router.post('/application/:applicationId/offer/reconfirm/unavailable-location/statuses', (req, res) => {
     const applicationId = req.params.applicationId
     const data = req.session.data
-    let newConditionStatuses = data.conditionStatus
-    delete data.conditionStatus
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = utils.getConditions(application)
-    conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    if (data.allConditionsMet){
+      console.log("all conditions is", data.allConditionsMet)
+      let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
+      delete data.allConditionsMet
+      conditions.forEach( (condition, index) => condition.status = (allConditionsMet)? 'Met' : 'Pending')
+    }
+    if (data.conditionStatus){
+      let newConditionStatuses = data.conditionStatus
+      delete data.conditionStatus
+      conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    }
     res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-location/check`)
   })
 
@@ -276,11 +292,19 @@ module.exports = router => {
   router.post('/application/:applicationId/offer/reconfirm/unavailable-course/statuses', (req, res) => {
     const applicationId = req.params.applicationId
     const data = req.session.data
-    let newConditionStatuses = data.conditionStatus
-    delete data.conditionStatus
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = utils.getConditions(application)
-    conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    if (data.allConditionsMet){
+      console.log("all conditions is", data.allConditionsMet)
+      let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
+      delete data.allConditionsMet
+      conditions.forEach( (condition, index) => condition.status = (allConditionsMet)? 'Met' : 'Pending')
+    }
+    if (data.conditionStatus){
+      let newConditionStatuses = data.conditionStatus
+      delete data.conditionStatus
+      conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
+    }
     res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-course/check`)
   })
 
