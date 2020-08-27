@@ -117,9 +117,9 @@
         </h2>
 
         {% if data.hasCombinedConditions %}
-          <p><a href="/application/{{application.id}}/offer/reconfirm/statuses" class="govuk-!-margin-left-3fe">Update status</a> or <a href="/application/{{application.id}}/offer/reconfirm/conditions">add or change conditions</a></p>
+          <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/statuses">Update status of conditions</a> or <a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">add or change conditions</a></p>
         {% else %}
-          <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add or change conditions</a></p>
+          <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
         {% endif %}
 
         <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
