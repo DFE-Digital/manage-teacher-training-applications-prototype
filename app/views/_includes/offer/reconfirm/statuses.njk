@@ -4,8 +4,6 @@
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 {% set title = "Check status of conditions" %}
 
-{% set hasCombinedConditions = true if (data.hasCombinedConditions == "true") else false %}
-
 {% block pageNavigation %}
   {{ govukBackLink({
     href: backLinkDestination
@@ -48,7 +46,7 @@
             </table>
           </div>
 
-        {% if hasCombinedConditions %}
+        {% if data.hasCombinedConditions %}
           {% set allConditionsMet = true %}
           {% for condition in conditions %}
             {% if condition.status == 'Pending' %}
@@ -61,7 +59,7 @@
             name: "allConditionsMet",
             fieldset: {
               legend: {
-                text: "Has the candidate continued to meet all of the conditions?" if allConditionsMet else "Has the candidate met all of the conditions?",
+                text: "Has the candidate still met all of the conditions?" if allConditionsMet else "Has the candidate met all of the conditions?",
                 isPageHeading: false,
                 classes: "govuk-fieldset__legend--m"
               }

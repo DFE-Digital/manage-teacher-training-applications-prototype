@@ -84,6 +84,9 @@
 {% if offer and conditions %}
 
   <h2 class="govuk-heading-m">Conditions</h2>
+  {% if data.hasCombinedConditions %}
+    <p><a href="#" class="">Update condition status</a></p>
+  {% endif %}
   <dl class="govuk-summary-list app-conditions-list">
     {% for condition in conditions %}
       <div class="govuk-summary-list__row">
@@ -100,7 +103,7 @@
             {% endif %}
             {{govukTag({ text: condition.status, classes: statusClass })}}
         </dd>
-        {% if 1 == 1 %}
+        {% if not data.hasCombinedConditions %}
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
             Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>

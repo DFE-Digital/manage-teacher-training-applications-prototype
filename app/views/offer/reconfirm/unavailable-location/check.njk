@@ -116,7 +116,11 @@
           Conditions of offer
         </h2>
 
-        <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
+        {% if data.hasCombinedConditions %}
+          <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/statuses">Update status of conditions</a> or <a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">add or change conditions</a></p>
+        {% else %}
+          <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
+        {% endif %}
 
         <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
           {% for condition in conditions %}
@@ -134,7 +138,7 @@
                 {% endif %}
                 {{govukTag({ text: condition.status, classes: statusClass })}}
               </dd>
-              {% if 1 == 1 %}
+              {% if not data.hasCombinedConditions %}
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-location/condition/{{condition.id}}/change-status">
                   Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
