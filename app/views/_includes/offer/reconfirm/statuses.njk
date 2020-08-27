@@ -23,27 +23,25 @@
 
 
           <div class="app-offer-panel govuk-!-margin-bottom-7">
-            <table class="govuk-table govuk-!-margin-bottom-1">
-              <tbody class="govuk-table__body">
-                {% for condition in conditions %}
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                      {{condition.description}}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric app-conditions-list__tag">
-                      {% if condition.status == "Pending" %}
+            <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+              {% for condition in conditions %}
+                <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+                  <dt class="govuk-summary-list__key">
+                    {{condition.description}}
+                  </dt>
+                  <dd class="govuk-summary-list__value app-conditions-list__tag">
+                    {% if condition.status == "Pending" %}
                         {% set statusClass = "app-tag--grey" %}
                       {% elseif condition.status == "Met" %}
                         {% set statusClass = "app-tag--green" %}
                       {% elseif condition.status == "Not met" %}
                         {% set statusClass = "app-tag--red" %}
-                      {% endif %}
-                      {{govukTag({ text: condition.status, classes: statusClass })}}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+                    {% endif %}
+                    {{govukTag({ text: condition.status, classes: statusClass })}}
+                  </dd>
+                </div>
+              {% endfor %}
+            </dl>
           </div>
 
         {% if data.hasCombinedConditions %}
