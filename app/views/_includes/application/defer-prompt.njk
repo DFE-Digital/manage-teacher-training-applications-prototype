@@ -10,7 +10,7 @@
     {% elseif application.offerCanNotBeReconfirmed.reason == "location" %}
       <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p>
     {% else %}
-      <p>The course is available in the current cycle. You just need to check the status of the conditions.</p>
+      <p>The course offered in the previous cycle is available in the current cycle. <!--You need to check the status of the conditions.--></p>
     {% endif %}
     {{ govukButton({
       text: "Review deferred offer",
@@ -22,7 +22,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       {{govukInsetText({
-        html: promptHtml
+        html: promptHtml,
+        classes: 'govuk-!-margin-top-0'
       })}}
     </div>
   </div>
