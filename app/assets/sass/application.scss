@@ -396,20 +396,20 @@ h1 .govuk-tag {
 .app-conditions-list {
   .govuk-summary-list__key {
     @include govuk-media-query($from: tablet) {
-      width: 65%;
+      width: 60%;
     }
     font-weight: normal;
   }
 
   .govuk-summary-list__value {
     @include govuk-media-query($from: tablet) {
-      width: 5%;
+      width: 15%;
     }
   }
 
   .govuk-summary-list__actions {
     @include govuk-media-query($from: tablet) {
-      width: 30%;
+      width: 25%;
     }
   }
 
@@ -418,7 +418,7 @@ h1 .govuk-tag {
 .app-condition-list--combined {
   .govuk-summary-list__value {
     @include govuk-media-query($from: tablet) {
-      width: 7%;
+      // width: 7%;
     }
   }
 }
