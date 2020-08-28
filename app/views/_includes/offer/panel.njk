@@ -24,7 +24,7 @@
       text: "Provider"
     },
     value: {
-      html: offer.provider or application.provider
+      html: application.provider
     },
     actions: {
       items: [
@@ -35,13 +35,13 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer,
+  },
   {
     key: {
       text: "Course"
     },
     value: {
-      html: offer.course or application.course
+      html: application.course
     },
     actions: {
       items: [
@@ -52,13 +52,13 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer,
+  },
   {
     key: {
       text: "Location"
     },
     value: {
-      html: offer.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      html: application.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
     },
     actions: {
       items: [
@@ -69,7 +69,7 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer,
+  },
   {
     key: {
       text: "Full time or part time"
@@ -86,10 +86,10 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer
+  }
 ]})}}
 
-{% if offer.withdrawnReasons %}
+{% if application.offer.withdrawnReasons %}
   <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
   {% set rejectedDate = application.rejectedDate %}
   {% set rejectionReasons = application.rejectedReasons %}
@@ -100,7 +100,7 @@
   {% include "_includes/candidate-feedback.njk" %}
 {% endif %}
 
-{% if offer and conditions %}
+{% if application.offer and conditions %}
 
   <h2 class="govuk-heading-m">Conditions</h2>
   {% if data.hasCombinedConditions %}
@@ -135,7 +135,7 @@
 
 {% endif %}
 
-{% if offer and offer.recommendations %}
+{% if application.offer.recommendations %}
   <h2 class="govuk-heading-s">Recommendations</h2>
-  <p class="govuk-body">{{offer.recommendations}}</p>
+  <p class="govuk-body">{{application.offer.recommendations}}</p>
 {% endif %}
