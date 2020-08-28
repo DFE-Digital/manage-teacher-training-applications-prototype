@@ -24,10 +24,11 @@
   {% include "_includes/application/sub-nav.njk" %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% set offer = application.offer %}
-      <h2 class="govuk-heading-l">Offer</h2>
       {% set controls = true %}
       {% include "_includes/offer/panel.njk" %}
+
     </div>
   </div>
 {% endblock %}
