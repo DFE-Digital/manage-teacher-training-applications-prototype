@@ -1,9 +1,4 @@
 {% set courseDetails %}
-
-  <h2 class="govuk-heading-m">
-    Course details
-  </h2>
-
   {{ govukSummaryList({
     rows: [{
       key: {
@@ -40,7 +35,7 @@
 {% endset %}
 
 {{ govukDetails({
-  summaryText: "Details of offer",
+  summaryText: "Course details",
   html: courseDetails,
   classes: "app-details--no-boder"
 }) }}
