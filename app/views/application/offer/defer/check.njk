@@ -4,6 +4,8 @@
 
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 
+{% set title = "Check and confirm offer deferral" %}
+
 {% block beforeContent %}
   {{ govukBackLink({
     href: "/application/" + application.id + "/offer"
@@ -18,14 +20,14 @@
         {{name}}
       </span>
       <h1 class="govuk-heading-xl">
-        Check and confirm offer deferral
+        {{title}}
       </h1>
 
-      <p>The course you have currently offered is not available yet in the next cycle.</p>
+      <p>This application will be marked as deferred.</p>
 
-      <p>This application will be marked as deferred. You must reinstate your offer at the start of the next cycle.</p>
+      <p>You must review and confirm your offer again at the start of the next cycle (2021 to 2022).</p>
 
-      <p>We’ll send an email confirmation to the candidate after you confirm below.</p>
+      <p>We’ll email the candidate notifying them of the deferral after you confirm below.</p>
 
       <form method="post">
         {{ govukButton({
