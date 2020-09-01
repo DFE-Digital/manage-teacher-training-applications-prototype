@@ -104,9 +104,9 @@
 
   <h2 class="govuk-heading-m">Conditions</h2>
   {% if data.hasCombinedConditions %}
-    <p><a href="#" class="">Update status of conditions</a></p>
+    <p><a href="#" class="">Mark all conditions as met</a></p>
   {% endif %}
-  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if data.hasCombinedConditions %}app-condition-list--combined {% endif %}">
     {% for condition in conditions %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">

@@ -416,9 +416,9 @@ h1 .govuk-tag {
 }
 
 .app-condition-list--combined {
-  .govuk-summary-list__value {
+  .govuk-summary-list__row dd:last-of-type {
     @include govuk-media-query($from: tablet) {
-      // width: 7%;
+      text-align: right;
     }
   }
 }
