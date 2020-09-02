@@ -39,13 +39,6 @@ module.exports = router => {
       })
     }
 
-    if (Array.isArray(req.body.settings) && req.body.settings.includes('hasCombinedConditions')) {
-      req.session.data.hasCombinedConditions = true
-    }
-    else {
-      req.session.data.hasCombinedConditions = false
-    }
-
     res.redirect('/')
   })
 }

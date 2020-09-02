@@ -94,13 +94,13 @@
           Conditions of offer
         </h2>
 
-        {% if data.hasCombinedConditions %}
+        {% if checked("settings", "hasCombinedConditions") %}
           <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-course/statuses">Update status of conditions</a> or <a href="/application/{{application.id}}/offer/reconfirm/unavailable-course/conditions">add or change conditions</a></p>
         {% else %}
           <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-course/conditions">Add or change conditions</a></p>
         {% endif %}
 
-        <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if data.hasCombinedConditions %}app-condition-list--combined{% endif %} ">
+        <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
           {% for condition in conditions %}
             <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
               <dt class="govuk-summary-list__key">
@@ -116,7 +116,7 @@
                 {% endif %}
                 {{govukTag({ text: condition.status, classes: statusClass })}}
               </dd>
-              {% if not data.hasCombinedConditions %}
+              {% if not checked("settings", "hasCombinedConditions") %}
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-course/condition/{{condition.id}}/change-status">
                   Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>

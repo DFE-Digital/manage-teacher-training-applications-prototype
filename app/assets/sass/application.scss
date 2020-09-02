@@ -423,6 +423,12 @@ h1 .govuk-tag {
   }
 }
 
+.app-conditions-list__tag {
+  @include govuk-media-query($from: tablet) {
+    text-align: right;
+  }
+}
+
 .app-feedback__panel {
   position: relative;
   padding-right: 70px;
