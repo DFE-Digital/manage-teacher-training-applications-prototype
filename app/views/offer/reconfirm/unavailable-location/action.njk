@@ -40,13 +40,13 @@
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <div class="app-offer-pane govuk-!-margin-bottom-7">
-        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p> #}
+        <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p>
 
-        <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
+        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p> #}
 
         {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
 
-        <p class="govuk-!-margin-top-4">You need to choose another course or location. To do that tell us the following details:</p>
+        {# <p class="govuk-!-margin-top-4">You need to choose another course or location. To do that tell us the following details:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>Provider</li>
@@ -55,12 +55,12 @@
           <li>Whether one or more of the conditions are still pending</li>
         </ul>
 
-        <p>Contact us at <a href="mailto:becoming@digital.education.gov.uk">becoming@digital.education.gov.uk</a>.</p>
+        <p>Contact us at <a href="mailto:becoming@digital.education.gov.uk">becoming@digital.education.gov.uk</a>.</p> #}
       </div>
 
 
 
-      {# <form method="post">
+      <form method="post">
 
         {{ govukRadios({
           idPrefix: "action",
@@ -87,7 +87,7 @@
           text: "Continue"
         }) }}
 
-      </form> #}
+      </form>
 
 
 

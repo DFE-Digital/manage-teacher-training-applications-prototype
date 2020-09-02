@@ -40,21 +40,21 @@
       <h1 class="govuk-heading-xl">Review deferred offer</h1>
 
       <div class="app-offer-pane govuk-!-margin-bottom-7">
-        {# <p>{{application.course}} at {{application.provider}} is no longer available. You need to choose a different course.</p> #}
-        <p>{{application.course}} at {{application.provider}} is no longer available.</p>
+        <p>{{application.course}} at {{application.provider}} is no longer available. You need to choose a different course.</p>
+        {# <p>{{application.course}} at {{application.provider}} is no longer available.</p> #}
 
         {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
 
-        <p class="govuk-!-margin-top-4"> To choose a different course, email us at <a href="mailto:becoming@digital.education.gov.uk">becoming@digital.education.gov.uk</a>.</p>
+        {# <p class="govuk-!-margin-top-4"> To choose a different course, email us at <a href="mailto:becoming@digital.education.gov.uk">becoming@digital.education.gov.uk</a>.</p> #}
       </div>
 
-      {# <form method="post">
+      <form method="post">
 
         {{ govukButton({
           text: "Choose a different course"
         }) }}
 
-      </form> #}
+      </form>
 
     </div>
   </div>
