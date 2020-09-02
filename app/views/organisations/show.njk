@@ -51,8 +51,7 @@
             {% endif %}
           {% endif %}
 
-          <p>The following organisation(s) can make decisions:</p>
-
+        {% set makeDecisionsHtml %}
           <ul class="govuk-list">
             {% if relationship.orgPermissions.makeDecisions %}
               <li>{{tick | safe }} {{ relationship.org.name }}</li>
@@ -61,9 +60,8 @@
               <li>{{tick | safe }} {{ relationship.partner.name }}</li>
             {% endif %}
           </ul>
-
-          <p>The following organisation(s) can view safeguarding information:</p>
-
+        {% endset %}
+        {% set viewSafeguardingHtml %}
           <ul class="govuk-list">
             {% if relationship.orgPermissions.safeguarding %}
               <li>{{tick | safe }} {{ relationship.org.name }}</li>
@@ -72,9 +70,8 @@
               <li>{{tick | safe }} {{ relationship.partner.name }}</li>
             {% endif %}
           </ul>
-
-          <p>The following organisation(s) can view diversity information:</p>
-
+        {% endset %}
+        {% set viewDiversityHtml %}
           <ul class="govuk-list">
             {% if relationship.orgPermissions.diversity %}
               <li>{{tick | safe }} {{ relationship.org.name }}</li>
@@ -83,9 +80,67 @@
               <li>{{tick | safe }} {{ relationship.partner.name }}</li>
             {% endif %}
           </ul>
+        {% endset %}
 
-          <p><a href="/organisations/{{org.id}}/edit">Change <span class="govuk-visually-hidden">permissions for {{ org.name}}</span></a></p>
+        {% set editLink %}
+          /organisations/{{org.id}}/edit
+        {% endset %}
 
+         {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which organisations can make decisions?"
+            },
+            value: {
+              html: makeDecisionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: editLink,
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which organisations can view safeguarding information?"
+            },
+            value: {
+              html: viewSafeguardingHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: editLink,
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which organisations can view diversity information?"
+            },
+            value: {
+              html: viewDiversityHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: editLink,
+                  text: "Change",
+                  visuallyHiddenText: "permissions for " + org.name
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
         {% endfor %}
       {% else %}
         <p>This organisation runs and ratifies its own courses. No permissions to set up.</p>

@@ -65,9 +65,9 @@ let relationships = [{
   }
 }]
 
-relationships = [{
-  org: accreditedBodies[0]
-}];
+// relationships = [{
+//   org: accreditedBodies[0]
+// }];
 
 let userOrgs = [trainingProviders[0], trainingProviders[1]];
 
@@ -76,7 +76,8 @@ module.exports = {
     givenName: "Claudine",
     familyName: "Adams",
     emailAddress: "claudine.adams@newzoescitt.co.uk",
-    organisations: userOrgs
+    organisations: userOrgs,
+    relationships: relationships
   },
   "standard-conditions" : [
     "Fitness to teach check",
