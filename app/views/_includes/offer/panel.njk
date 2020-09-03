@@ -1,3 +1,22 @@
+
+<div class="app-offer-panel">
+
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-3">
+    Offer
+  </h2>
+
+  <p class="govuk-body">
+
+    {% if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred" %}
+      <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
+    {% endif %}
+    {% if application.status == "Accepted" or application.status == "Conditions met" %}
+      or <a href="/application/{{application.id}}/offer/defer/check">defer offer</a>
+    {% endif %}
+  </p>
+
+  <h3 class="govuk-heading-m">Course details</h2>
+
 {{ govukSummaryList({
   rows: [
   {
@@ -5,7 +24,7 @@
       text: "Provider"
     },
     value: {
-      html: offer.provider or application.provider
+      html: application.provider
     },
     actions: {
       items: [
@@ -16,13 +35,13 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer,
+  },
   {
     key: {
       text: "Course"
     },
     value: {
-      html: offer.course or application.course
+      html: application.course
     },
     actions: {
       items: [
@@ -33,13 +52,13 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer,
+  },
   {
     key: {
       text: "Location"
     },
     value: {
-      html: offer.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
+      html: application.locationname or 'Alliance Academy, Edgeware, Road Name, SW1 1AA'
     },
     actions: {
       items: [
@@ -50,7 +69,7 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer,
+  },
   {
     key: {
       text: "Full time or part time"
@@ -67,10 +86,10 @@
         }
       ]
     } if application.status == "Offered"
-  } if offer
+  }
 ]})}}
 
-{% if offer.withdrawnReasons %}
+{% if application.offer.withdrawnReasons %}
   <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
   {% set rejectedDate = application.rejectedDate %}
   {% set rejectionReasons = application.rejectedReasons %}
@@ -81,22 +100,20 @@
   {% include "_includes/candidate-feedback.njk" %}
 {% endif %}
 
-{% if offer and conditions %}
+{% if application.offer and conditions %}
 
   <h2 class="govuk-heading-m">Conditions</h2>
-
-  <table class="govuk-table">
-    <tbody class="govuk-table__body">
-      {% for condition in conditions %}
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            {{condition.description}}
-            {% if application.status == "Accepted" %}
-              <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-            {% endif %}
-          </td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">
-            {% if condition.status == "Pending" %}
+  {% if checked("settings", "hasCombinedConditions") %}
+    <p><a href="#" class="">Mark all conditions as met</a></p>
+  {% endif %}
+  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
+    {% for condition in conditions %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{condition.description}}
+        </dt>
+        <dd class="govuk-summary-list__value app-conditions-list__tag">
+          {% if condition.status == "Pending" %}
               {% set statusClass = "app-tag--grey" %}
             {% elseif condition.status == "Met" %}
               {% set statusClass = "app-tag--green" %}
@@ -104,26 +121,21 @@
               {% set statusClass = "app-tag--red" %}
             {% endif %}
             {{govukTag({ text: condition.status, classes: statusClass })}}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+        </dd>
+        {% if not checked("settings", "hasCombinedConditions") %}
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
+            Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
+          </dd>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </dl>
+
+
 {% endif %}
 
-{% if offer and offer.recommendations %}
+{% if application.offer.recommendations %}
   <h2 class="govuk-heading-s">Recommendations</h2>
-  <p class="govuk-body">{{offer.recommendations}}</p>
-{% endif %}
-
-{% if controls %}
-  <p class="govuk-body govuk-!-margin-bottom-0">
-
-    {% if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred" %}
-      <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a>
-    {% endif %}
-    {% if application.status == "Accepted" or application.status == "Conditions met" %}
-      or <a href="/application/{{application.id}}/offer/defer/check">defer offer</a>
-    {% endif %}
-  </p>
+  <p class="govuk-body">{{application.offer.recommendations}}</p>
 {% endif %}

@@ -13,18 +13,21 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        <span class="govuk-caption-xl">{{name}}</span>
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
         {{title}}
-      {% endset %}
+      </h1>
+
+      <div class="app-offer-pane govuk-!-margin-bottom-4">
+        {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
+      </div>
+
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-visually-hidden"
             }
           },
           idPrefix: "location",

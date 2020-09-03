@@ -1,0 +1,34 @@
+<div class="app-offer-panel">
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Provider"
+      },
+      value: {
+        html: application.provider
+      }
+    }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: application.course
+      }
+    }, {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+      }
+    }, {
+      key: {
+        text: "Full time or part time"
+      },
+      value: {
+        html: "Full time"
+      }
+    }
+    ]})
+  }}
+</div>

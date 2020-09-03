@@ -45,17 +45,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Deferred'
-    // if (application.cycle === 'Next cycle (2021 to 2022)') {
-    //   application.previousOffer = application.offer
-    //   application.previousStatus = application.status
-    //   application.offer = null
-    //   application.status = 'Deferred'
-    // } else {
-    //   application.offer = application.previousOffer
-    //   application.previousOffer = null
-    //   application.status = application.previousStatus
-    //   application.previousStatus = null
-    // }
+    application.events.items.push({
+      date: new Date().toISOString(),
+      user: "Alicia Grenada",
+      title: "Offer deferred"
+    })
+
     req.flash('success', 'offer-deferred')
     res.redirect(`/application/${applicationId}/offer`)
   })

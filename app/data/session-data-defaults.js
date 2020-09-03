@@ -72,6 +72,7 @@ let relationships = [{
 let userOrgs = [trainingProviders[0], trainingProviders[1]];
 
 module.exports = {
+  settings: ["hasCombinedConditions"],
   user: {
     givenName: "Claudine",
     familyName: "Adams",

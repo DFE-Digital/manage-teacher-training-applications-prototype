@@ -7,7 +7,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/reconfirm/unavailable-location/location"
+    href: "/application/" + application.id + "/"
   }) }}
 {% endblock %}
 
@@ -39,15 +39,24 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {% set warningHtml %}
-        {{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You can choose another location or course to offer this candidate.
-      {% endset %}
+      <div class="app-offer-pane govuk-!-margin-bottom-7">
+        <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p>
 
-      {{ govukWarningText({
-        html: warningHtml,
-        iconFallbackText: "Fallback text",
-        classes: "govuk-!-margin-bottom-"
-      }) }}
+        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p> #}
+
+        {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
+
+        {# <p class="govuk-!-margin-top-4">You need to choose another course or location. To do that tell us the following details:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Provider</li>
+          <li>Course</li>
+          <li>Location (if not the main location)</li>
+          <li>Whether one or more of the conditions are still pending</li>
+        </ul>
+
+        <p>Contact us at <a href="mailto:becoming@digital.education.gov.uk">becoming@digital.education.gov.uk</a>.</p> #}
+      </div>
 
 
 
@@ -82,70 +91,7 @@
 
 
 
-        <div class="app-offer-panel">
-          <h2 class="govuk-heading-m">
-            Offer details
-          </h2>
-          {{ govukSummaryList({
-              rows: [{
-                key: {
-                  text: "Provider"
-                },
-                value: {
-                  html: application.provider
-                }
-              }, {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  html: application.course
-                }
-              }, {
-                key: {
-                  text: "Location"
-                },
-                value: {
-                  html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-                }
-              }, {
-                key: {
-                  text: "Full time or part time"
-                },
-                value: {
-                  html: "Full time"
-                }
-              }
-            ]})
-          }}
 
-          <h2 class="govuk-heading-m">
-            Conditions
-          </h2>
-
-          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-          {% for condition in conditions %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                {{condition.description}}
-                {% if application.status == "Accepted" %}
-                    <p class="govuk-body govuk-!-margin-bottom-0"><a href="/application/{{application.id}}/condition/{{condition.id}}/change-status">Update status</a></p>
-                  {% endif %}
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if condition.status == "Pending" %}
-                    {% set statusClass = "app-tag--grey" %}
-                  {% elseif condition.status == "Met" %}
-                    {% set statusClass = "app-tag--green" %}
-                  {% elseif condition.status == "Not met" %}
-                    {% set statusClass = "app-tag--red" %}
-                  {% endif %}
-                  {{govukTag({ text: condition.status, classes: statusClass })}}
-              </dd>
-            </div>
-          {% endfor %}
-        </dl>
-        </div>
 
     </div>
   </div>
