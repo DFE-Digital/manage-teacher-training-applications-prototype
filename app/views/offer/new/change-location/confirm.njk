@@ -10,18 +10,6 @@
   }) }}
 {% endblock %}
 
-{% set conditionsHtml %}
-  {% if conditions.length %}
-    <ul class="govuk-list govuk-list--bullet">
-      {% for condition in conditions %}
-        <li>{{ condition.description }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p class="govuk-body">None specified</p>
-  {% endif %}
-{% endset %}
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -29,6 +17,12 @@
 
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <div class="app-offer-panel">
+
+      <h2 class="govuk-heading-m">
+        Course details
+      </h2>
 
       {{ govukSummaryList({
           rows: [{
@@ -82,8 +76,31 @@
         ]})
       }}
 
-      <p class="govuk-body">By making this offer, you guarantee this candidate a place on their chosen course, if they meet the conditions you have set out.</p>
-      <p class="govuk-body">Once the candidate has accepted, you can only change the conditions of this offer with their permission.</p>
+      <h2 class="govuk-heading-m">
+        Conditions of offer
+      </h2>
+
+      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
+          {% for condition in conditions %}
+            <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+              <dt class="govuk-summary-list__key">
+                {{condition.description}}
+              </dt>
+              <dd class="govuk-summary-list__value app-conditions-list__tag">
+                {# {{govukTag({ text: "Pending", classes: "app-tag--grey" })}} #}
+              </dd>
+              {% if not checked("settings", "hasCombinedConditions") %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/application/{{application.id}}/new/change-location/conditions">
+                  Change<span class="govuk-visually-hidden"> ‘{{condition.description}}’</span></a>
+                </dd>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </dl>
+      </div>
+
+      <p class="govuk-body">When you make this offer you guarantee a place on this course providing the candidate meets the conditions of the offer.</p>
 
       <form method="post">
         {{ govukButton({

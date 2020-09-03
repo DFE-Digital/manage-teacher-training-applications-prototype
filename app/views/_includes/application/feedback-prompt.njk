@@ -1,12 +1,22 @@
 {% if application.status == 'Rejected' and not application.rejectedReasons %}
+  {% set promptHtml %}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+     Give feedback
+    </h2>
+    <p class="govuk-body">You did not respond to the application within 40 days. Tell the candidate why their application was unsuccessful.</p>
+    {{ govukButton({
+      text: "Give feedback",
+      classes: "govuk-!-margin-bottom-0",
+      href: "/application/" + application.id + "/feedback"
+    }) }}
+  {% endset %}
+
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body">You did not respond to the application within 40 days. Tell the candidate why their application was unsuccessful.</p>
-      {{ govukButton({
-        text: "Give feedback",
-        classes: "govuk-!-margin-bottom-9",
-        href: "/application/" + application.id + "/feedback"
-      }) }}
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{govukInsetText({
+        html: promptHtml,
+        classes: 'govuk-!-margin-top-0'
+      })}}
     </div>
   </div>
 {% endif %}

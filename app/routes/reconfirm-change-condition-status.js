@@ -38,7 +38,7 @@ module.exports = router => {
       // }
       condition.status = req.session.data.conditionstatus
 
-      res.redirect(`/application/${req.params.applicationId}/offer/reconfirm`)
+      res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/check`)
     }
   })
 

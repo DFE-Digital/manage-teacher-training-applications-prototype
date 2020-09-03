@@ -1,0 +1,119 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Confirm status of conditions" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: backLinkDestination
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{name}}</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+
+
+        <form method="post">
+
+
+          <div class="app-offer-panel govuk-!-margin-bottom-7">
+            <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
+              {% for condition in conditions %}
+                <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+                  <dt class="govuk-summary-list__key">
+                    {{condition.description}}
+                  </dt>
+                  <dd class="govuk-summary-list__value app-conditions-list__tag">
+                    {% if condition.status == "Pending" %}
+                        {% set statusClass = "app-tag--grey" %}
+                      {% elseif condition.status == "Met" %}
+                        {% set statusClass = "app-tag--green" %}
+                      {% elseif condition.status == "Not met" %}
+                        {% set statusClass = "app-tag--red" %}
+                    {% endif %}
+                    {{govukTag({ text: condition.status, classes: statusClass })}}
+                  </dd>
+                </div>
+              {% endfor %}
+            </dl>
+          </div>
+
+        {% if checked("settings", "hasCombinedConditions") %}
+          {% set allConditionsMet = true %}
+          {% for condition in conditions %}
+            {% if condition.status == 'Pending' %}
+              {% set allConditionsMet = false %}
+            {% endif %}
+          {% endfor %}
+
+          {{ govukRadios({
+            idPrefix: "all-conditions-met",
+            name: "allConditionsMet",
+            fieldset: {
+              legend: {
+                text: "Has the candidate still met all of the conditions?" if allConditionsMet else "Has the candidate met all of the conditions?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "true",
+                text: "Yes, all conditions are still met" if allConditionsMet else "Yes, they’ve met all of the conditions"
+              },
+              {
+                value: "false",
+                text: "No, one or more conditions is pending"if allConditionsMet else "No, one or more conditions is still pending"
+              }
+            ]
+          }) }}
+        {% else %}
+
+          {% for condition in conditions %}
+            {% set randomDate = ["4 August", "18 June", "22 August", "7 September"] | random %}
+            {{ govukRadios({
+                idPrefix: "conditionStatus" + loop.index0,
+                name: "conditionStatus["+ loop.index0 + "]",
+                fieldset: {
+                  legend: {
+                    text: "Status of ‘" + condition.description + "’",
+                    classes: "govuk-fieldset__legend--m"
+                  }
+                },
+                hint: {
+                  text: "This condition was marked as met on " + randomDate + " 2020"
+                } if condition.status == 'Met',
+                items: [
+                  {
+                    value: "Pending",
+                    text: "Pending",
+                    checked: condition.status == "Pending"
+                  },
+                  {
+                    value: "Met",
+                    text: "Met",
+                    checked: condition.status == "Met"
+                  }
+                ]
+              }) }}
+
+
+            {% endfor %}
+
+          {% endif %}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+
+      <p class="govuk-body"><a href="{{ cancelLinkDestination }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

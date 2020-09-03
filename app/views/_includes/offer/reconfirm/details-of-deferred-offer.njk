@@ -1,0 +1,70 @@
+{% set courseDetails %}
+
+  <h2 class="govuk-heading-m">
+    Course details
+  </h2>
+
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Provider"
+      },
+      value: {
+        html: application.provider
+        }
+      }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: application.course
+      }
+      }, {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+      }
+      }, {
+      key: {
+        text: "Full time or part time"
+      },
+      value: {
+        html: "Full time"
+      }
+    }
+    ]})
+  }}
+
+  <h2 class="govuk-heading-m">
+    Conditions of offer
+  </h2>
+
+  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+    {% for condition in conditions %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{condition.description}}
+        </dt>
+        <dd class="govuk-summary-list__value app-conditions-list__tag">
+          {% if condition.status == "Pending" %}
+              {% set statusClass = "app-tag--grey" %}
+            {% elseif condition.status == "Met" %}
+              {% set statusClass = "app-tag--green" %}
+            {% elseif condition.status == "Not met" %}
+              {% set statusClass = "app-tag--red" %}
+            {% endif %}
+            {{govukTag({ text: condition.status, classes: statusClass })}}
+        </dd>
+      </div>
+    {% endfor %}
+  </dl>
+
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "Details of deferred offer",
+  html: courseDetails,
+  classes: "govuk-!-margin-bottom-0 app-details--no-boder"
+}) }}

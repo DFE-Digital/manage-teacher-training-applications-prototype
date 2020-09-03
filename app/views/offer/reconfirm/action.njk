@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 
-{% set title = "This offer was made for a course which is no longer running" %}
+{% set title = "Review deferred offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -37,21 +37,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl">Review deferred offer</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <div class="app-offer-pane govuk-!-margin-bottom-7">
-        <p>{{application.course}} at {{application.provider}} is no longer available. You need to choose a different course.</p>
-        {# <p>{{application.course}} at {{application.provider}} is no longer available.</p> #}
+        <p>The course offered to the candidate in the previous cycle is available in the current cycle. On the next screen, you can change the status of the conditions of the offer.</p>
 
         {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
-
-        {# <p class="govuk-!-margin-top-4"> To choose a different course, email us at <a href="mailto:becoming@digital.education.gov.uk">becoming@digital.education.gov.uk</a>.</p> #}
       </div>
 
       <form method="post">
 
         {{ govukButton({
-          text: "Choose a different course"
+          text: "Continue"
         }) }}
 
       </form>
