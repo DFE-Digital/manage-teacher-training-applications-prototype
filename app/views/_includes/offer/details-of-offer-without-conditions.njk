@@ -1,4 +1,4 @@
-{% set courseDetails %}
+<div class="app-offer-panel">
   {{ govukSummaryList({
     rows: [{
       key: {
@@ -6,22 +6,22 @@
       },
       value: {
         html: application.provider
-        }
-      }, {
+      }
+    }, {
       key: {
         text: "Course"
       },
       value: {
         html: application.course
       }
-      }, {
+    }, {
       key: {
         text: "Location"
       },
       value: {
         html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
       }
-      }, {
+    }, {
       key: {
         text: "Full time or part time"
       },
@@ -31,11 +31,4 @@
     }
     ]})
   }}
-
-{% endset %}
-
-{{ govukDetails({
-  summaryText: "Course details",
-  html: courseDetails,
-  classes: "app-details--no-boder"
-}) }}
+</div>
