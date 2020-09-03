@@ -514,3 +514,11 @@ h1 .govuk-tag {
 .govuk-summary-list__row dd:last-of-type {
   padding-right: 0;
 }
+
+.moj-primary-navigation__link:hover {
+  color: $govuk-link-hover-colour;
+}
+
+.moj-primary-navigation__link[aria-current]:hover:before {
+  background-color: $govuk-link-hover-colour;
+}
