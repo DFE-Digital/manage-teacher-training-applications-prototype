@@ -463,3 +463,12 @@ h1 .govuk-tag {
   }
 }
 
+
+
+.moj-primary-navigation__link:hover {
+  color: $govuk-link-hover-colour;
+}
+
+.moj-primary-navigation__link[aria-current]:hover:before {
+  background-color: $govuk-link-hover-colour;
+}
