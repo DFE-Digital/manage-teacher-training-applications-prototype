@@ -47,7 +47,6 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = utils.getConditions(application)
     if (data.allConditionsMet){
-      console.log("all conditions is", data.allConditionsMet)
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
       conditions.forEach( (condition, index) => condition.status = (allConditionsMet)? 'Met' : 'Pending')
@@ -155,7 +154,6 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = utils.getConditions(application)
     if (data.allConditionsMet){
-      console.log("all conditions is", data.allConditionsMet)
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
       conditions.forEach( (condition, index) => condition.status = (allConditionsMet)? 'Met' : 'Pending')
@@ -295,7 +293,6 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = utils.getConditions(application)
     if (data.allConditionsMet){
-      console.log("all conditions is", data.allConditionsMet)
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
       conditions.forEach( (condition, index) => condition.status = (allConditionsMet)? 'Met' : 'Pending')
