@@ -1,0 +1,23 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="app-callout-card app-inverte app-inverte--card">
+
+        <h1 class="govuk-heading-l app-heading-l--inverte">You can now defer offers</h1>
+
+        <p class="govuk-body">[Something about deferrals]</p>
+
+        {{govukButton({
+          text: "Continue to applications",
+          href: "/",
+          classes: "govuk-!-margin-bottom-0"
+        })}}
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
