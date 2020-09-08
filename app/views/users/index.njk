@@ -3,6 +3,17 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Users" %}
 
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: "Users"
+    }]
+  }) }}
+{% endblock %}
+
 {% block content %}
   {{ appBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",

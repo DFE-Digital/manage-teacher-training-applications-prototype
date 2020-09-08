@@ -3,7 +3,18 @@
 {% set primaryNavId = 'account' %}
 {% set subNavId = 'notification-settings' %}
 
-{% set title = "Notification settings" %}
+{% set title = "Notifications" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: "Notifications"
+    }]
+  }) }}
+{% endblock %}
 
 {% block content %}
   {{ appBanner({
@@ -12,7 +23,7 @@
     icon: false
   }) if flashMessage }}
 
-  {% include "_includes/profile-sub-nav.njk" %}
+  {# {% include "_includes/profile-sub-nav.njk" %} #}
 
   <div class="govuk-grid-ro">
     <div class="govuk-grid-column-two-third">

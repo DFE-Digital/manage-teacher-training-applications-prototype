@@ -6,6 +6,20 @@
 {% set emailAddress = data.user.emailAddress %}
 {% set title = firstName + " " + lastName %}
 
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: "Users",
+      href: "/users"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
 {% block content %}
 
   {{ appBanner({
