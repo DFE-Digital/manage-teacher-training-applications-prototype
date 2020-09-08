@@ -3,21 +3,22 @@
 <div class="app-notification-card {{params.classes}}">
 
   <div class="app-notification-card__primary">
-    <p class="govuk-body govuk-!-margin-bottom-0"> {{params.provider}} </h2>
-    <h2 class="govuk-heading-m govuk-!-padding-top-0 govuk-!-margin-bottom-1"> {{params.title}} </h2>
-    <span class="govuk-caption-m govuk-!-margin-bottom-4">{{params.dateText}}</span>
-    <p class="govuk-!-margin-bottom-0"><a href="{{params.link.href}}">{{params.link.text}}</a>
+    <h2 class="govuk-heading-s govuk-!-padding-top-0 govuk-!-margin-bottom-1"> {{params.title}} </h2>
+    <p class="govuk-body-s govuk-!-margin-bottom-1"> {{params.provider}} </h2>
+    <p class=" govuk-caption-m govuk-!-margin-bottom-1 govuk-!-font-size-16">{{params.dateText}}</p>
+    <p class="govuk-!-margin-bottom-0"><a class="govuk-link--no-visited-state" href="{{params.link.href}}">{{params.link.text}}</a>
   </div>
   <div class="app-notification-card__secondary">
     <div>
       {% if params.new %}
         {{govukTag({
-          text: "New"
+          text: "New",
+          classes: "govuk-tag--blue"
         })}}
       {% endif %}
     </div>
     {% if params.settings %}
-      <p class="govuk-body-s govuk-!-margin-bottom-0"><a href="{{params.settings.href}}">Change settings</a>
+      <p class="govuk-body-s govuk-!-margin-bottom-0"><a class="govuk-link--no-visited-state" href="{{params.settings.href}}">Settings</a>
     {% endif %}
   </div>
 </div>
