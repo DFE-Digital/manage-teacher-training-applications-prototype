@@ -1,7 +1,19 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisations' %}
-{% set title = "Organisations" %}
+{% set title = "Organisational permissions" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: title,
+      href: "/organisations"
+    }]
+  }) }}
+{% endblock %}
 
 {% block content %}
   {{ appBanner({
