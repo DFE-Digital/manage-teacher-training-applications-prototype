@@ -1,11 +1,10 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'notifications' %}
 {% set title = "Notification settings" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/account/notification-settings"
+    href: "/account/notifications"
   }) }}
 {% endblock %}
 
@@ -16,11 +15,11 @@
     icon: false
   }) if flashMessage }}
 
-  <div class="govuk-grid-ro">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-xl">Change settings</span>
+        <span class="govuk-caption-xl">Change notification settings</span>
         Application submitted
       {% endset %}
 
@@ -68,16 +67,17 @@
           },
           items: [
             {
-              value: "Email",
-              html: "<strong>Get email notifications</strong>",
+              value: "By email",
+              html: "<strong>By email</strong>",
               checked: true,
               conditional: {
                 html: applicationSubmittedFrequencyHtml
               }
             },
             {
-              value: "Online notifications",
-              html: "<strong>Get online notifications</strong>",
+              value: "From the notifications at the top of every page",
+              html: "<strong>Notifications area</strong>",
+              hint: { text: "You can access this at the top of every page" },
               checked: true
             }
           ]

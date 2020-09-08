@@ -1,9 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'account' %}
-{% set subNavId = 'notification-settings' %}
 
-{% set title = "Notifications" %}
+{% set title = "Notification settings" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -11,7 +10,7 @@
       text: "Your account",
       href: "/account"
     }, {
-      text: "Notifications"
+      text: "Notification settings"
     }]
   }) }}
 {% endblock %}
@@ -23,15 +22,40 @@
     icon: false
   }) if flashMessage }}
 
-  {# {% include "_includes/profile-sub-nav.njk" %} #}
-
-  <div class="govuk-grid-ro">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <h2 class="govuk-heading-m">
         For courses run by {{ data.user.organisations[1].name }} and ratified by {{ data.accreditedBodies[0].name }}
       </h2>
+
+      {% set emailAndOnline %}
+        <p class="govuk-!-margin-bottom-2">By email – immediately</p>
+        <p class="govuk-!-margin-bottom-0">Notifications area</p>
+      {% endset %}
+
+      {% set emailAndOnline2 %}
+        <p class="govuk-!-margin-bottom-2">By email – once a day at 8am</p>
+        <p class="govuk-!-margin-bottom-0">Notifications area</p>
+      {% endset %}
+
+      {% set noNotifications %}
+        None
+      {% endset %}
+
+      {% set emailOnceADay %}
+        By email – once a day at 8am
+      {% endset %}
+
+      {% set notificationsAreaOnly %}
+        Notifications area
+      {% endset %}
+
+      {% set emailImmediately %}
+        By email – immediately
+      {% endset %}
+
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
@@ -41,12 +65,12 @@
               text: "Application submitted"
             },
             value: {
-              html: "Email (immediately)<br>Online notifications"
+              html: emailAndOnline
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -58,12 +82,12 @@
               text: "Application submitted with safeguarding issue disclosed"
             },
             value: {
-              html: "Email (once a day at 8am)<br>Online notifications"
+              html: emailAndOnline2
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -75,12 +99,12 @@
               text: "Application submitted over 5 days ago, no response sent"
             },
             value: {
-              text: "None"
+              text: noNotifications
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -92,12 +116,12 @@
               text: "Application rejected by default"
             },
             value: {
-              text: "None"
+              text: noNotifications
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -106,11 +130,11 @@
           },
           {
             key: { text: "Application withdrawn" },
-            value: {text: "Email (once a day at 8am)" },
+            value: {text: emailOnceADay },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -119,11 +143,11 @@
           },
           {
             key: { text: "Offer accepted" },
-            value: {text: "Email (once a day at 8am)" },
+            value: {text: emailOnceADay },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -132,11 +156,11 @@
           },
           {
             key: { text: "Offer declined" },
-            value: {text: "Online notifications" },
+            value: {text: notificationsAreaOnly },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -145,11 +169,11 @@
           },
           {
             key: { text: "Offer declined by default" },
-            value: {text: "None" },
+            value: {text: noNotifications },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -158,11 +182,11 @@
           },
           {
             key: { text: "Note added to application" },
-            value: {text: "Email (immediately)" },
+            value: {text: emailImmediately },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -184,12 +208,12 @@
               text: "Application submitted"
             },
             value: {
-              html: "Email (immediately)<br>Online notifications"
+              html: emailAndOnline
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -201,12 +225,12 @@
               text: "Application submitted with safeguarding issue disclosed"
             },
             value: {
-              html: "Email (once a day at 8am)<br>Online notifications"
+              html: emailAndOnline2
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -218,12 +242,12 @@
               text: "Application submitted over 5 days ago, no response sent"
             },
             value: {
-              text: "Email (once a day at 8am)"
+              text: emailOnceADay
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -235,12 +259,12 @@
               text: "Application rejected by default"
             },
             value: {
-              text: "Email (once a day at 8am)"
+              text: emailOnceADay
             },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -249,11 +273,11 @@
           },
           {
             key: { text: "Application withdrawn" },
-            value: {text: "Email (once a day at 8am)" },
+            value: {text: emailOnceADay },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -262,11 +286,11 @@
           },
           {
             key: { text: "Offer accepted" },
-            value: {text: "Email (once a day at 8am)" },
+            value: {text: emailOnceADay },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -275,11 +299,11 @@
           },
           {
             key: { text: "Offer declined" },
-            value: {text: "Online notifications" },
+            value: {text: notificationsAreaOnly },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -288,11 +312,11 @@
           },
           {
             key: { text: "Offer declined by default" },
-            value: {text: "Online notifications" },
+            value: {text: notificationsAreaOnly },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -301,11 +325,11 @@
           },
           {
             key: { text: "Note added to application" },
-            value: {text: "Email (immediately)" },
+            value: {text: emailImmediately },
             actions: {
               items: [
                 {
-                  href: "/account/notification-settings/edit/application-submitted",
+                  href: "/account/notifications/edit/application-submitted",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
