@@ -41,7 +41,9 @@
 
       <div class="app-offer-pane govuk-!-margin-bottom-7">
         {# <p>{{application.course}} at {{application.provider}} is no longer available. You need to choose a different course.</p> #}
-        <p>{{application.course}} at {{application.provider}} is no longer available.</p>
+        {# <p>{{application.course}} at {{application.provider}} is no longer available.</p> #}
+
+        <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p>
 
         {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
 
@@ -53,6 +55,7 @@
           <li>provider</li>
           <li>course</li>
           <li>location</li>
+          <li>whether it’s full time or part time</li>
         </ul>
 
         <p>You should also let us know if any of the conditions of the offer are currently pending.</p>

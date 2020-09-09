@@ -4,6 +4,21 @@
 {% set trainingProvider = data.user.organisations[1].name %}
 {% set title = trainingProvider %}
 
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: "Organisational permissions",
+      href: "/organisations"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
 {% block content %}
 
   {{ appBanner({

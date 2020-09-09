@@ -8,24 +8,11 @@
   containerClasses: "govuk-width-container",
   "navigationClasses": "govuk-header__navigation--end",
   "productName": serviceName,
-  "navigation": [
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    } if 1 == 2, {
-      href: "/organisations",
-      text: "Organisations",
-      active: primaryNavId == 'organisations'
-    }, {
-      href: "/users",
-      text: "Users",
-      active: primaryNavId == 'users'
-    }, {
+  "navigation": [{
       href: "/account",
-      text: "Account",
+      text: "Your account",
       active: primaryNavId == 'account'
-    },  {
+    }, {
       href: "/",
       text: "Sign out"
     }

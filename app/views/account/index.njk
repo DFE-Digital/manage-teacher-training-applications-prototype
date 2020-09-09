@@ -3,7 +3,7 @@
 {% set primaryNavId = 'account' %}
 {% set subNavId = 'account' %}
 
-{% set title = "Account" %}
+{% set title = "Your account" %}
 
 {% block content %}
   {{ appBanner({
@@ -12,173 +12,53 @@
     icon: false
   }) if flashMessage }}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
 
+      <h2 class="govuk-heading-m">
+        <a href="/account/profile">Profile</a>
+      </h2>
 
-  {% include "_includes/profile-sub-nav.njk" %}
-
-  <h1 class="govuk-heading-xl">{{title}}</h1>
-
-  {% set permissionsHtml %}
-  <p class="govuk-!-font-weight-bold">{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} Manage organisation</p>
-
-  <p class="govuk-!-font-weight-bold">{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} Manage users</p>
-
-  <p class="govuk-!-font-weight-bold">{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} Make decisions</p>
-  <div class="govuk-!-margin-left-5">
-    <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
-  <ul class="govuk-list">
-    <li>{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} {{ data.accreditedBodies[0].name }}
-    </li>
-    <li>{{ appIcon({
-        classes: "govuk-!-margin-right-1",
-        icon: "tick",
-        hidden: true
-      }) }} {{ data.accreditedBodies[1].name }}
-    </li>
-  </ul>
-  </div>
-
-    <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} View safeguarding information</p>
-    <div class="govuk-!-margin-left-5">
-      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-            classes: "govuk-!-margin-right-1",
-            icon: "tick",
-            hidden: true
-          }) }} {{ data.accreditedBodies[0].name }}
-        </li>
-        <li>{{ appIcon({
-            classes: "govuk-!-margin-right-1",
-            icon: "tick",
-            hidden: true
-          }) }} {{ data.accreditedBodies[1].name }}
-        </li>
+      <p>Use this section to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>change your name</li>
+        <li>change your email address</li>
+        <li>change your password</li>
+        <li>check your permissions</li>
       </ul>
-    </div>
-  {% endset %}
 
-  {% set permissions2Html %}
-    <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} Manage organisation</p>
+      <h2 class="govuk-heading-m">
+        <a href="/account/notifications">Notification settings</a>
+      </h2>
 
-    <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} Manage users</p>
+      <p>Use this section to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>change which notifications you receive</li>
+        <li>choose when you receive notifications</li>
+        <li>choose how you receive notifications</li>
+      </ul>
 
-    <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} Make decisions</p>
-          <div class="govuk-!-margin-left-5">
-      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-    <ul class="govuk-list">
-      <li>{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} {{ data.accreditedBodies[1].name }}
-      </li>
-    </ul>
-    </div>
-    <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} Access safeguarding information</p>
-    <div class="govuk-!-margin-left-5">
-      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-    <ul class="govuk-list">
-      <li>{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} {{ data.accreditedBodies[1].name }}
-      </li>
-    </ul>
-    </div>
-  {% endset %}
+      <h2 class="govuk-heading-m">
+        <a href="/users">Users</a>
+      </h2>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "First name"
-            },
-            value: {
-              text: "Angela"
-            }
-          },
-          {
-            key: {
-              text: "Last name"
-            },
-            value: {
-              text: "Shah"
-            }
-          },
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: "ashah@tescitt.co.uk"
-            }
-          },
-          {
-            key: {
-              text: "Organisations this user has access to"
-            },
-            value: {
-              html: "<p>" + data.user.organisations[0].name + "</p><p>" + data.user.organisations[1].name + "</p>"
-            }
-          },
-          {
-            key: {
-              text: "Permissions: " + data.user.organisations[0].name
-            },
-            value: {
-              html: permissionsHtml
-            }
-          },
-          {
-            key: {
-              text: "Permissions: " + data.user.organisations[1].name
-            },
-            value: {
-              html: permissions2Html
-            }
-          }
-        ]
-      }) }}
+      <p>Use this section to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>manage users and their permissions</li>
+        <li>invite users</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        <a href="/organisations">Organisational permissions</a>
+      </h2>
+
+      <p>Use this section to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>set permissions between your organisation and partner organisations</li>
+        <li>check permissions between organisations</li>
+      </ul>
+
     </div>
   </div>
 {% endblock %}

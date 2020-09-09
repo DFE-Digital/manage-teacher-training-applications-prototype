@@ -41,6 +41,7 @@ $govuk-grid-widths: (
 @import "components/notification-card";
 @import "components/log-card";
 @import "components/sub-navigation";
+@import "components/summary-card";
 
 // Overrides
 .govuk-table__cell--numeric {
@@ -521,4 +522,9 @@ h1 .govuk-tag {
 
 .moj-primary-navigation__link[aria-current]:hover:before {
   background-color: $govuk-link-hover-colour;
+}
+
+.app-email-settings {
+  // color: govuk-colour('dark-grey');
+  @include govuk-font($size: 16);
 }
