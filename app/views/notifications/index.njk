@@ -10,16 +10,16 @@
     icon: false
   }) if flashMessage }}
 
-  <div class="govuk-grid-ro">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{title}}</h1>
 
-      <p class="govuk-!-margin-bottom-8"><a href="/account/notification-settings">Notification settings</a></p>
+      <p class="govuk-!-margin-bottom-8"><a href="/account/notifications">Change your notification settings</a></p>
 
       {{appNotificationCard({
         classes: "app-notification-card--first",
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Charlotte Campbel’s application is going to be automatically rejected in 2 days",
         provider: data.user.organisations[0].name,
@@ -33,21 +33,7 @@
 
       {{appNotificationCard({
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
-        },
-        title: "Harvey Noel granted you permission to view safeguarding information",
-        provider: data.user.organisations[0].name,
-        dateText: "Today at 17:12pm",
-        link: {
-          href: "#",
-          text: "View account"
-        },
-        new: true
-      })}}
-
-      {{appNotificationCard({
-        settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Mike Ross added a note to Eloise Well’s application",
         provider: data.user.organisations[0].name,
@@ -61,7 +47,7 @@
 
       {{appNotificationCard({
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Kelly Jane Spears submitted their application",
         provider: data.user.organisations[0].name,
@@ -75,7 +61,7 @@
 
       {{appNotificationCard({
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Eloise Well’s accepted your offer",
         provider: data.user.organisations[0].name,
@@ -89,7 +75,7 @@
 
       {{appNotificationCard({
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Esther Fairley withdrew their application",
         provider: data.user.organisations[0].name,
@@ -103,7 +89,7 @@
 
       {{appNotificationCard({
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Elizabeth Rose declined your offer",
         provider: data.user.organisations[0].name,
@@ -118,7 +104,7 @@
        {{appNotificationCard({
 
          settings: {
-           href: "/account/notification-settings/edit/application-submitted"
+           href: "/account/notifications/edit/application-submitted"
          },
         title: "Daniel James Jennings’ application was rejected by default",
         provider: data.user.organisations[0].name,
@@ -130,12 +116,12 @@
         new: true
       })}}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Seen</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-top-8">Already seen</h2>
 
       {{appNotificationCard({
         classes: "app-notification-card--first",
         settings: {
-          href: "/account/notification-settings/edit/application-submitted"
+          href: "/account/notifications/edit/application-submitted"
         },
         title: "Elizabeth Rose declined your offer",
         provider: data.user.organisations[0].name,
@@ -149,7 +135,7 @@
        {{appNotificationCard({
 
          settings: {
-           href: "/account/notification-settings/edit/application-submitted"
+           href: "/account/notifications/edit/application-submitted"
          },
         title: "Daniel James Jennings’ application was rejected by default",
         provider: data.user.organisations[0].name,

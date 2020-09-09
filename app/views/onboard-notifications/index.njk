@@ -1,0 +1,36 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="app-callout-car">
+
+        <h1 class="govuk-heading-xl">You can change your notification settings</h1>
+
+        <p class="govuk-body">You’ll get notifications about your applications.</p>
+
+        <p>For example, we’ll tell you when you receive a new application, or if a candidate accepts or declines an offer.</p>
+
+        <p class="govuk-body">There are 2 ways to access notifications:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>by email</li>
+          <li>in the Notifications section of this service</li>
+        </ul>
+
+        <p>You can set up notifications now or by selecting ‘Your account’ in the header.</p>
+
+        {{govukButton({
+          text: "Set up notifications",
+          href: "/account/notifications"
+        })}}
+
+        <p>Or</p>
+        <p class="govuk-!-margin-bottom-2"><a href="/">Continue to applications</a></p>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
