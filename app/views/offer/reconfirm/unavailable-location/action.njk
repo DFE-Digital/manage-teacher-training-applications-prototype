@@ -42,7 +42,8 @@
       <div class="app-offer-pane govuk-!-margin-bottom-7">
         {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p> #}
 
-        <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p>
+        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p> #}
+        <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p>
 
         {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
 
@@ -54,6 +55,7 @@
           <li>provider</li>
           <li>course</li>
           <li>location</li>
+          <li>full time or part time</li>
         </ul>
 
         <p>You should also let us know if any of the conditions of the offer are currently pending.</p>

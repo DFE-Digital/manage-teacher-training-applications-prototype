@@ -22,9 +22,11 @@
     icon: false
   }) if flashMessage }}
 
-  <div class="govuk-grid">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <p>You can set permissions for the following organisations. These settings will be applied at the organisational level – the organisation itself will then be able to customise them for its own users.</p>
 
       {% for org in data.user.organisations %}
         <div class="app-application-card">
