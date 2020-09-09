@@ -183,7 +183,10 @@
       }, {
         href: "/admin/clear-data",
         text: "Clear data"
-      } if not urStudy]
+      } if not urStudy, {
+        href: "/onboard-notifications",
+        text: "Sign in notification prompt"
+      }]
     }
   }) if not data.bare }}
 {% endblock %}
