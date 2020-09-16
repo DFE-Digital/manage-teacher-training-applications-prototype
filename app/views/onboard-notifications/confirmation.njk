@@ -1,0 +1,27 @@
+{% extends "_layout.njk" %}
+
+{% set title = "Your notification settings have been saved" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: title
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Updating your settings
+      </h2>
+
+      <p class="govuk-body">
+        You can select ‘Your account’ at the top of every page to change your notification settings.
+      <p>
+
+      {{ govukButton({
+        text: "Continue to applications",
+        href: "/"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}
