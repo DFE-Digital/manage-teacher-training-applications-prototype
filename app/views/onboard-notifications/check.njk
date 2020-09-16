@@ -1,0 +1,284 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'account' %}
+
+{% set title = "Check your notification settings" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/onboard-notifications/setup-2"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% set emailOnceADay %}
+    {{appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})}}
+    <span class="app-email-settings">Daily at 8am</span>
+  {% endset %}
+
+  {% set emailImmediately %}
+    {{appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})}}
+    <span class="app-email-settings">Immediately</span>
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+        For applications to courses run by {{ data.user.organisations[1].name }} and ratified by {{ data.accreditedBodies[0].name }}
+      </h2>
+
+      <p><a href="/onboard-notifications/setup-1">Change settings</a></p>
+
+
+      {{ govukTable({
+        head: [
+          {
+            text: "Notification"
+          },
+          {
+            text: "By email",
+            classes: 'govuk-!-width-one-quarter'
+          },
+          {
+            text: "Notification area",
+            classes: 'govuk-!-width-one-quarter'
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Application submitted"
+            },
+            {
+              html: emailImmediately
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Application submitted with safeguarding issue"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              text: "Application submitted over 5 days ago, no response sent"
+            },
+            {
+              html: emailImmediately
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Application rejected by default"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              text: "Application withdrawn"
+            },
+            {
+              html: ""
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              text: "Offer accepted"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Offer declined"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Offer declined by default"
+            },
+            {
+              html: ""
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Note added to application"
+            },
+            {
+              html: emailImmediately
+            },
+            {
+              html: ""
+            }
+          ]
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-9 govuk-!-margin-bottom-3">
+        For applications to courses run by {{ data.user.organisations[1].name }} and ratified by Teaching Brilliance University
+      </h2>
+
+
+    <p><a href="/onboard-notifications/setup-2">Change settings</a></p>
+
+      {{ govukTable({
+        head: [
+          {
+            text: "Notification"
+          },
+          {
+            text: "By email",
+            classes: 'govuk-!-width-one-quarter'
+          },
+          {
+            text: "Notification area",
+            classes: 'govuk-!-width-one-quarter'
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Application submitted"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Application submitted with safeguarding issue"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              text: "Application submitted over 5 days ago, no response sent"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Application rejected by default"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              text: "Application withdrawn"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              text: "Offer accepted"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Offer declined"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Offer declined by default"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})
+            }
+          ],
+          [
+            {
+              text: "Note added to application"
+            },
+            {
+              html: emailOnceADay
+            },
+            {
+              html: ""
+            }
+          ]
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Save notification settings",
+        href: "/onboard-notifications/confirmation"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
