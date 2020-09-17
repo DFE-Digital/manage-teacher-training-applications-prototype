@@ -1,0 +1,136 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Set up an interview" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/interviews"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <span class="govuk-caption-xl"> {{name}} </span>
+  <h1 class="govuk-heading-xl">Set up an interview</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set candidateNotesHtml %}
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">The candidate shared the following interview preferences</h2>
+        <p>Some notes go here</p>
+      {% endset %}
+      {{ govukInsetText({
+        html: candidateNotesHtml
+      }) }}
+
+
+      <form method="post">
+
+        {{ govukDateInput({
+          id: "interview[date]",
+          name: "interview[date]",
+          fieldset: {
+            legend: {
+              text: "Date",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 1980"
+          },
+          items: [{
+            name: "interview[date][day]",
+            label: "Day",
+            classes: "govuk-input--width-2",
+            value: data.interview.date.day
+          }, {
+            name: "interview[date][month]",
+            label: "Month",
+            classes: "govuk-input--width-2",
+            value: data.interview.date.month
+          }, {
+            name: "interview[date][year]",
+            label: "Year",
+            classes: "govuk-input--width-4",
+            value: data.interview.date.year
+          }]
+        }) }}
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="interview[time]">
+            Time
+          </label>
+          <span id="interview[time]-hint" class="govuk-hint">
+            For example 2:30pm or 12am
+          </span>
+          <div class="app-time">
+            <input class="govuk-input govuk-input--width-5" id="interview[time]" name="interview[time]" type="text" aria-describedby="interview[time]-hint" value="{{data.interview.time}}">
+          </div>
+        </div>
+
+        {{ govukTextarea({
+          id: "interview[details]",
+          name: "interview[details]",
+          label: {
+            classes: "govuk-label--s",
+            text: "Additional details"
+          },
+          hint: {
+            text: "Any other details, like a remote meeting link"
+          },
+          value: data.interview.details
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    // accessibleAutocomplete({
+      name: "time",
+      element: document.querySelector('.app-time'),
+      id: 'time',
+      showAllValues: true,
+      displayMenu: 'overlay',
+      source: [
+        '9am',
+        '9:15am',
+        '9:30am',
+        '9:45am',
+        '10am',
+        '10:15am',
+        '10:30am',
+        '10:45am',
+        '11am',
+        '11:15am',
+        '11:30am',
+        '11:45am',
+        '12pm (midday)',
+        '12:15pm',
+        '12:30pm',
+        '12:45pm',
+        '1pm (midday)',
+        '1:15pm',
+        '1:30pm',
+        '1:45pm',
+        '12am (midnight)',
+        '12:15am',
+        '12:30am',
+        '12:45am',
+      ]
+    })
+  </script>
+{% endblock %}

@@ -1,34 +1,34 @@
 <div class="app-application-card">
 
   <div class="app-application-card__primary">
-    <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
       <a href="/application/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
         {{ a.personalDetails.givenName }} {{ a.personalDetails.familyName }}
       </a>
     </h3>
-    <p class="govuk-!-font-size-16">{{ a.provider }}</p>
-    <p class="govuk-!-margin-bottom-0">{{ a.course }} at {{a.locationname}}</p>
-    <p class="govuk-caption-m govuk-!-font-size-16">Ratified by {{a.accreditingbody}}</p>
+    <p class="govuk-!-margin-bottom-0 govuk-!-font-size-16">{{ a.course }} at {{a.locationname}}</p>
+    <p class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }} – ratified by {{a.accreditingbody}}</p>
+    {# <p class="govuk-caption-m govuk-!-font-size-16"></p> #}
   </div>
 
   <div class="app-application-card__secondary">
     <div class="app-application-card__status">
       {{govukTag({
-        classes: a.status | statusClass,
+        classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
         text: a.status
       })}}
       {% if a.status == 'Submitted' %}
         {% if a.daysToRespond == 0 %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-4">Less than a day to respond</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">Less than a day to respond</p>
         {% else %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-4">{{a.daysToRespond}} days left to respond</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">{{a.daysToRespond}} days left to respond</p>
         {% endif %}
       {% endif %}
-
+      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{a.cycle}}</p>
     </div>
 
     <div>
-      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{a.cycle}}</p>
+      {# <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{a.cycle}}</p> #}
     </div>
   </div>
 

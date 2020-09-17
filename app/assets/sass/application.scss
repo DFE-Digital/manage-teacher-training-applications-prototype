@@ -457,7 +457,8 @@ h1 .govuk-tag {
 }
 
 .app-application-cards__heading {
-  margin-top: 40px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .app-application-cards__heading + .app-application-card {
@@ -527,4 +528,12 @@ h1 .govuk-tag {
 .app-email-settings {
   // color: govuk-colour('dark-grey');
   @include govuk-font($size: 16);
+}
+
+
+
+
+
+.app-time {
+  width: 150px;
 }

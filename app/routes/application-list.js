@@ -22,11 +22,11 @@ function getApplicationsByGroup (applications) {
     .filter(app => !app.rejectedReasons)
 
   const aboutToBeRejectedAutomatically = applications
-    .filter(app => app.status === 'Submitted')
+    .filter(app => (app.status === 'Submitted' || app.status === 'Interviewing'))
     .filter(app => app.daysToRespond < 5)
 
   const awaitingDecision = applications
-    .filter(app => app.status === 'Submitted')
+    .filter(app => (app.status === 'Submitted' || app.status === 'Interviewing'))
     .filter(app => app.daysToRespond >= 5)
 
   const waitingOn = applications
@@ -45,6 +45,7 @@ function getApplicationsByGroup (applications) {
 
   let other = applications
     .filter(app => app.status !== 'Submitted')
+    .filter(app => app.status !== 'Interviewing')
     .filter(app => app.status !== 'Deferred')
     .filter(app => app.status !== 'Offered')
     .filter(app => app.status !== 'Accepted')

@@ -1,6 +1,9 @@
 const { DateTime } = require('luxon')
 const moment = require('moment')
 const pluralize = require('pluralize')
+const fs = require('fs')
+const path = require('path')
+const individualFiltersFolder = path.join(__dirname, './filters')
 
 module.exports = (env) => {
   /**
@@ -10,6 +13,21 @@ module.exports = (env) => {
    * @type {Object}
    */
   const filters = {}
+
+  // Import filters from filters folder
+  if (fs.existsSync(individualFiltersFolder)) {
+    var files = fs.readdirSync(individualFiltersFolder)
+    files.forEach(file => {
+      let fileData = require(path.join(individualFiltersFolder, file))
+      // Loop through each exported function in file (likely just one)
+      Object.keys(fileData).forEach((filterGroup) => {
+        // Get each method from the file
+        Object.keys(fileData[filterGroup]).forEach(filterName => {
+          filters[filterName] = fileData[filterGroup][filterName]
+        })
+      })
+    })
+  }
 
   /**
    * Format date string
@@ -31,14 +49,14 @@ module.exports = (env) => {
    * GOV.UK style dates
    * @type {String} str
    */
-  filters.govukDate = date => {
-    return moment(date).format('D MMMM YYYY')
-  }
+  // filters.govukDate = date => {
+  //   return moment(date).format('D MMMM YYYY')
+  // }
 
   filters.govukDateAtTime = date => {
     const govukDate = filters.govukDate(date)
     const time = filters.time(date)
-  return govukDate + " at " + time
+    return govukDate + " at " + time
   }
 
 
@@ -111,6 +129,8 @@ module.exports = (env) => {
         return 'app-tag--turquoise'
       case 'Submitted':
         return 'app-tag--purple'
+      case 'Interviewing':
+        return 'govuk-tag--yellow'
       case 'Note added':
         return 'govuk-tag--pink'
     }
