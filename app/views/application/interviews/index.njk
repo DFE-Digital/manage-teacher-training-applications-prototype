@@ -31,7 +31,7 @@
 
         {% for interview in application.interviews.items %}
           <div class="app-notes__note">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/application/{{application.id}}/notes/{{note.id}}">{{interview.date | govukDate }} at {{interview.time}}</a></h2>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/application/{{application.id}}/interviews/{{interview.id}}">{{interview.date | govukDate }} at {{interview.time}}</a></h2>
             <p class="govuk-!-margin-bottom-1">{{interview.details}}</p>
           </div>
         {% endfor %}

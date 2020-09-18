@@ -1,4 +1,5 @@
 const utils = require('../data/application-utils')
+const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
   router.get('/application/:applicationId/interviews', (req, res) => {
@@ -49,13 +50,25 @@ module.exports = router => {
     application.status = 'Interviewing';
     application.interviews.items = application.interviews.items || [];
 
+    var id = uuidv4();
+
     application.interviews.items.push({
+      id,
       date: new Date(req.session.data.interview.date.year, parseInt(req.session.data.interview.date.month, 10)-1, req.session.data.interview.date.day).toISOString(),
       time: req.session.data.interview.time,
       details: req.session.data.interview.details
     })
 
-    delete req.session.data.interview;
+    application.events.items.push({
+      title: "Interview added",
+      user: "Angela Mode",
+      date: new Date().toISOString(),
+      meta: {
+        interviewId: id
+      }
+    })
+
+    delete req.session.data.interview
 
     req.flash('success', 'interview setup')
     res.redirect(`/application/${applicationId}/interviews`)

@@ -18,6 +18,10 @@
             {% set status = "Deferred" %}
             {% set title = event.event.user + " deferred " + name + "’s offer" %}
             {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+          {% elseif event.event.title == "Interview added" %}
+            {% set status = "Interviewing" %}
+            {% set title = event.event.user + " set up an interview with " + name %}
+            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application submitted" %}
             {% set status = "Submitted" %}
             {% set title = name + " submitted an application "  %}

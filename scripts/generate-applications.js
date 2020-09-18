@@ -45,8 +45,9 @@ const generateFakeApplication = (params = {}) => {
   }
 
   const notes = generateNotes(faker)
-  const events = generateEvents(faker, { offer, status })
   const interviews = generateInterviews(faker, { status })
+
+  const events = generateEvents(faker, { offer, status, interviewId: (interviews.items.length) ? interviews.items[0].id : null })
 
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))

@@ -150,6 +150,10 @@ function getLink (item, application) {
       link.text = 'View note'
       link.href = `/application/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
       break
+    case 'Interview added':
+      link.text = 'View interview'
+      link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      break
   }
   return link
 }
@@ -170,4 +174,8 @@ exports.getTimeline = (application) => {
       link: getLink(item, application)
     }
   }).reverse()
+}
+
+exports.addEvent = (application, event) => {
+  application.events.push(event)
 }
