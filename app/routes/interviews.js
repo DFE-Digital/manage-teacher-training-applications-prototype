@@ -47,10 +47,10 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     application.status = 'Interviewing';
-    application.interviews = application.interviews || [];
+    application.interviews.items = application.interviews.items || [];
 
-    application.interviews.push({
-      date: new Date(req.session.data.interview.date.day, req.session.data.interview.date.month, req.session.data.interview.date.year).toISOString(),
+    application.interviews.items.push({
+      date: new Date(req.session.data.interview.date.year, parseInt(req.session.data.interview.date.month, 10)-1, req.session.data.interview.date.day).toISOString(),
       time: req.session.data.interview.time,
       details: req.session.data.interview.details
     })

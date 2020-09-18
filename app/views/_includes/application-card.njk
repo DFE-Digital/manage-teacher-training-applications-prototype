@@ -6,7 +6,7 @@
         {{ a.personalDetails.givenName }} {{ a.personalDetails.familyName }}
       </a>
     </h3>
-    <p class="govuk-!-margin-bottom-0 govuk-!-font-size-16">{{ a.course }} at {{a.locationname}}</p>
+    <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} at {{a.locationname}}</p>
     <p class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }} – ratified by {{a.accreditingbody}}</p>
     {# <p class="govuk-caption-m govuk-!-font-size-16"></p> #}
   </div>
@@ -17,11 +17,11 @@
         classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
         text: a.status
       })}}
-      {% if a.status == 'Submitted' %}
+      {% if a.status == 'Submitted' or a.status == 'Interviewing' %}
         {% if a.daysToRespond == 0 %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">Less than a day to respond</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Less than a day to respond</p>
         {% else %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">{{a.daysToRespond}} days left to respond</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.daysToRespond}} days left to respond</p>
         {% endif %}
       {% endif %}
       <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{a.cycle}}</p>

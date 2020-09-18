@@ -28,6 +28,7 @@ const generateRejection = require('../app/data/generators/rejection')
 const generateWithdrawal = require('../app/data/generators/withdrawal')
 const generateNotes = require('../app/data/generators/notes')
 const generateEvents = require('../app/data/generators/events')
+const generateInterviews = require('../app/data/generators/interviews')
 
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
@@ -45,6 +46,7 @@ const generateFakeApplication = (params = {}) => {
 
   const notes = generateNotes(faker)
   const events = generateEvents(faker, { offer, status })
+  const interviews = generateInterviews(faker, { status })
 
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
@@ -66,6 +68,7 @@ const generateFakeApplication = (params = {}) => {
     rejectedReasons: status === 'Rejected' ? rejectedReasons : null,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
+    interviews,
     notes,
     events,
     personalDetails,
@@ -135,6 +138,17 @@ const generateFakeApplications = () => {
     personalDetails: {
       givenName: 'James',
       familyName: 'Sully',
+      sex: 'Male'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Interviewing',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-05T14:01:00',
+    personalDetails: {
+      givenName: 'Adam',
+      familyName: 'Gold',
       sex: 'Male'
     }
   }))
@@ -535,6 +549,13 @@ const generateFakeApplications = () => {
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
       status: 'Submitted'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Interviewing'
     })
     applications.push(application)
   }

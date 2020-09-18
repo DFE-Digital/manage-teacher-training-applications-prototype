@@ -316,7 +316,7 @@ module.exports = router => {
         app.daysToRespond = 0
       }
 
-      if (app.status !== 'Submitted') {
+      if (app.status !== 'Submitted' && app.status !== 'Interviewing') {
         app.daysToRespond = 1000
       }
 
