@@ -195,7 +195,7 @@ module.exports = router => {
         }
 
         if (statuses && statuses.length) {
-          statusValid = statuses.includes(app.status)
+          statusValid = statuses.includes(utils.getStatusText(app))
         }
 
         if (locationnames && locationnames.length) {
