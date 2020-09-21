@@ -13,11 +13,12 @@
 
   <div class="app-application-card__secondary">
     <div class="app-application-card__status">
+
       {{govukTag({
-        classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
-        text: a.status
+        classes: a.statusText | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
+        text: a.statusText
       })}}
-      {% if a.status == 'Submitted' or a.status == 'Interviewing' %}
+      {% if a.status == 'Awaiting decision' %}
         {% if a.daysToRespond == 0 %}
           <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Less than a day to respond</p>
         {% else %}

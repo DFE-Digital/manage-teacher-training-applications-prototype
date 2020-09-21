@@ -30,7 +30,7 @@ module.exports = router => {
 
     res.render('application/index', {
       application,
-      status: req.query.status,
+      statusText: utils.getStatusText(application),
       success,
       flash: flashMessage
     })
@@ -42,6 +42,7 @@ module.exports = router => {
 
     res.render('application/timeline', {
       application,
+      statusText: utils.getStatusText(application),
       timeline: utils.getTimeline(application),
       conditions: utils.getConditions(application)
     })

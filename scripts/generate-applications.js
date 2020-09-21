@@ -52,7 +52,7 @@ const generateFakeApplication = (params = {}) => {
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
 
-  const rejectedReasons = faker.helpers.randomize([generateRejection(faker), null])
+  const rejectedReasons = faker.helpers.randomize([generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), null])
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
@@ -133,7 +133,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-05T14:01:00',
     personalDetails: {
@@ -144,7 +144,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Interviewing',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-05T14:01:00',
     personalDetails: {
@@ -155,7 +155,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-08T13:01:00',
     personalDetails: {
@@ -182,7 +182,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-29',
     personalDetails: {
@@ -193,7 +193,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-08-10T13:32:00',
     personalDetails: {
@@ -296,7 +296,7 @@ const generateFakeApplications = () => {
   // UR for international candidates
   // Scenario 1: Simple candidate
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-12T14:01:00',
     personalDetails: {
@@ -414,7 +414,7 @@ const generateFakeApplications = () => {
   // UR for international candidates
   // Scenario 2: Slightly difficult candidate
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-11T14:01:00',
     personalDetails: {
@@ -492,7 +492,7 @@ const generateFakeApplications = () => {
   // UR for international candidates
   // Scenario 3: Difficult candidate
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-10T14:01:00',
     personalDetails: {
@@ -549,14 +549,7 @@ const generateFakeApplications = () => {
 
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
-      status: 'Submitted'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 20; i++) {
-    const application = generateFakeApplication({
-      status: 'Interviewing'
+      status: 'Awaiting decision'
     })
     applications.push(application)
   }
@@ -597,7 +590,7 @@ const generateFakeApplications = () => {
     applications.push(application)
   }
 
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
       status: 'Rejected'
     })

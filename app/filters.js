@@ -127,10 +127,12 @@ module.exports = (env) => {
         return 'app-tag--green'
       case 'Offered':
         return 'app-tag--turquoise'
-      case 'Submitted':
+      case 'Received':
         return 'app-tag--purple'
-      case 'Interviewing':
+      case 'Awaiting interview':
         return 'govuk-tag--yellow'
+      case 'Interviewed':
+        return 'govuk-tag--green'
       case 'Note added':
         return 'govuk-tag--pink'
     }

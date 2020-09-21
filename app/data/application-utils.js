@@ -1,3 +1,5 @@
+const { DateTime } = require('luxon')
+
 exports.getRejectReasons = (data) => {
   return {
     // Candidate actions
@@ -178,4 +180,24 @@ exports.getTimeline = (application) => {
 
 exports.addEvent = (application, event) => {
   application.events.push(event)
+}
+
+exports.getStatusText = (application) => {
+  var status = application.status
+
+  const now = DateTime.fromISO('2019-08-15')
+
+  // has interviews that we need to surface as a status
+  if(application.status === "Awaiting decision" && application.interviews.items.length) {
+    var interviewDate = DateTime.fromISO(application.interviews.items[0].date)
+    if(now < interviewDate) {
+      status = "Awaiting interview"
+    } else {
+      status = "Interviewed"
+    }
+  } else if (application.status === "Awaiting decision") {
+    status = "Received"
+  }
+
+  return status
 }

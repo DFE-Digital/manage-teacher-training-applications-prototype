@@ -13,7 +13,7 @@ module.exports = router => {
         .filter(app => (app.status == 'Accepted'))
 
       let other = applications
-        .filter(app => app.status !== 'Submitted')
+        .filter(app => app.status !== 'Awaiting decision')
         .filter(app => app.status !== 'Deferred')
         .filter(app => app.status !== 'Offered')
         .filter(app => app.status !== 'Accepted')

@@ -22,11 +22,11 @@ function getApplicationsByGroup (applications) {
     .filter(app => !app.rejectedReasons)
 
   const aboutToBeRejectedAutomatically = applications
-    .filter(app => (app.status === 'Submitted' || app.status === 'Interviewing'))
+    .filter(app => (app.status === 'Awaiting decision'))
     .filter(app => app.daysToRespond < 5)
 
   const awaitingDecision = applications
-    .filter(app => (app.status === 'Submitted' || app.status === 'Interviewing'))
+    .filter(app => (app.status === 'Awaiting decision'))
     .filter(app => app.daysToRespond >= 5)
 
   const waitingOn = applications
@@ -44,8 +44,7 @@ function getApplicationsByGroup (applications) {
     .filter(app => app.cycle === 'Current cycle (2020 to 2021)')
 
   let other = applications
-    .filter(app => app.status !== 'Submitted')
-    .filter(app => app.status !== 'Interviewing')
+    .filter(app => app.status !== 'Awaiting decision')
     .filter(app => app.status !== 'Deferred')
     .filter(app => app.status !== 'Offered')
     .filter(app => app.status !== 'Accepted')
@@ -316,11 +315,13 @@ module.exports = router => {
         app.daysToRespond = 0
       }
 
-      if (app.status !== 'Submitted' && app.status !== 'Interviewing') {
+      if (app.status !== 'Awaiting decision') {
         app.daysToRespond = 1000
       }
 
       app.lastEventDate = lastEvent.datetime.timestamp
+
+      app.statusText = utils.getStatusText(app);
 
       return app
     })

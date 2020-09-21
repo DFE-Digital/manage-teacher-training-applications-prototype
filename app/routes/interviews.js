@@ -16,6 +16,7 @@ module.exports = router => {
 
     res.render('application/interviews/index', {
       application,
+      statusText: utils.getStatusText(application),
       flashMessage
     })
   })
@@ -47,7 +48,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    application.status = 'Interviewing';
+    application.status = 'Awaiting interview';
     application.interviews.items = application.interviews.items || [];
 
     var id = uuidv4();
