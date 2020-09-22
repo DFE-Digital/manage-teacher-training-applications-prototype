@@ -1,0 +1,54 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'interviews' %}
+{% set title = "Interviews" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Candidate</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Date and time</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Details</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for interview in interviews %}
+        <tr class="govuk-table__row">
+          <th class="govuk-table__cell">
+            <a href="/application/{{interview.app.id}}/interviews">
+              {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
+            </a>
+          </th>
+          <td class="govuk-table__cell">{{interview.interview.date | govukDate }} at {{interview.interview.time}}</td>
+          <td class="govuk-table__cell">{{interview.interview.details }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {{ mojPagination({
+      results: {
+        from: 1,
+        to: 15,
+        count: 30
+      },
+        next: {
+        text: 'Next',
+        href: ''
+      },
+        items: [{
+        text: '1',
+        href: '/page=1',
+        selected: true
+      }, {
+        text: '2',
+        href: '/page=2'
+      }]
+    }) }}
+
+
+
+{% endblock %}

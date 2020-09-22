@@ -2,6 +2,32 @@ const utils = require('../data/application-utils')
 const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
+  router.get('/interviews', (req, res) => {
+    const apps = req.session.data.applications
+
+    let allInterviews = []
+
+    apps.forEach(app => {
+      const interviews = app.interviews.items.map(item => {
+        return {
+          app: app,
+          interview: item
+        }
+      })
+      allInterviews = allInterviews.concat(interviews)
+    })
+
+    allInterviews.sort((a, b) => {
+      return new Date(b.interview.date) - new Date(a.interview.date)
+    })
+
+
+    res.render('interviews/index', {
+      interviews: allInterviews.slice(0, 50)
+    })
+  })
+
+
   router.get('/application/:applicationId/interviews', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)

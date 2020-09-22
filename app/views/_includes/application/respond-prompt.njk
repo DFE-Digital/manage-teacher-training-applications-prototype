@@ -1,16 +1,16 @@
 {% if application.status == 'Awaiting decision' or application.status == 'Awaiting interview' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview or make a decision</h2>
-    <p>You have 22 days to make a decision. On 19 October 2020 this application will be automatically rejected.</p>
+    <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
     {{ govukButton({
-      text: "Set up an interview",
+      text: "Respond to application",
       classes: "govuk-!-margin-bottom-",
-      href: "/application/" + application.id + "/interviews/new"
+      href: "/application/" + application.id + "/decision"
     }) }}
 
-    <p>Or </p>
+    {# <p>Or </p>
 
-    <a href="/application/{{application.id}}/decision">Make a decision</a>
+    <a href="/application/{{application.id}}/decision">Make a decision</a> #}
 
     {# <p><a href="/application/{{application.id}}/interviews/new">Set up an interview</a> or <a href="/application/{{application.id}}/decision">make a decision</a></p> #}
 

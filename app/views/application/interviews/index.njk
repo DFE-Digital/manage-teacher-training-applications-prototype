@@ -26,7 +26,8 @@
 
         {{ govukButton({
           text: "Set up an interview",
-          href: "/application/" + application.id + "/interviews/new"
+          href: "/application/" + application.id + "/interviews/new",
+          classes: "govuk-button--secondary"
         }) }}
 
         {% for interview in application.interviews.items %}
