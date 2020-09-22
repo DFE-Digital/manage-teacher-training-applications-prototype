@@ -81,29 +81,44 @@ module.exports = router => {
     var id = uuidv4();
 
     var time;
-    var isAm = req.session.data.interview.time.indexOf('am');
+    var hours;
+    var mins;
+    var isAm = req.session.data.interview.time.indexOf('am') > -1;
     if(isAm) {
-      time = req.session.data.interview.time.split('am')[0]
+      time = req.session.data.interview.time.split('am')[0].trim()
+      if(time.indexOf(":") > -1) {
+        hours = time.split(":")[0]
+        mins = time.split(":")[1]
+      } else {
+        hours = time
+        min = "00"
+      }
+
+      // if they selected 12am
+      if(hours == "12") {
+        hours = "00"
+      }
     } else {
-      time = req.session.data.interview.time.split('pm')[0]
+      time = req.session.data.interview.time.split('pm')[0].trim()
+      if(time.indexOf(":") > -1) {
+        hours = time.split(":")[0]
+        mins = time.split(":")[1]
+      } else {
+        hours = time
+        mins = "00"
+      }
 
-      // if time == 12 leave it
-      // if time is not 12, say 1, then make it 13pm
-      // if 2 make it 14pm
-      // if 13 leave it alone
-
+      // convert to 24 hour only if not 12, if it's 12pm it's fine as 12
+      if(hours != "12") {
+        hours = parseInt(hours, 10) + 12;
+      }
     }
 
-
-
-    var date = DateTime.local(req.session.data.interview.date.year, req.session.data.interview.date.month, req.session.data.interview.date.day)
-
-
+    var date = DateTime.local(parseInt(req.session.data.interview.date.year, 10), parseInt(req.session.data.interview.date.month, 10), parseInt(req.session.data.interview.date.day, 10), parseInt(hours, 10), parseInt(mins, 10));
 
     application.interviews.items.push({
       id,
-      date: new Date(req.session.data.interview.date.year, parseInt(req.session.data.interview.date.month, 10)-1, req.session.data.interview.date.day).toISOString(),
-      time: req.session.data.interview.time,
+      date: date.toISO(),
       details: req.session.data.interview.details
     })
 

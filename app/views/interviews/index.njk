@@ -22,7 +22,7 @@
               {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
             </a>
           </th>
-          <td class="govuk-table__cell">{{interview.interview.date | govukDate }} at {{interview.interview.time}}</td>
+          <td class="govuk-table__cell">{{interview.interview.date | govukDateAtTime }}</td>
           <td class="govuk-table__cell">{{interview.interview.details }}</td>
         </tr>
       {% endfor %}
