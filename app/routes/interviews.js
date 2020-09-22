@@ -1,5 +1,6 @@
 const utils = require('../data/application-utils')
 const { v4: uuidv4 } = require('uuid')
+const { DateTime } = require('luxon')
 
 module.exports = router => {
   router.get('/interviews', (req, res) => {
@@ -78,6 +79,26 @@ module.exports = router => {
     application.interviews.items = application.interviews.items || [];
 
     var id = uuidv4();
+
+    var time;
+    var isAm = req.session.data.interview.time.indexOf('am');
+    if(isAm) {
+      time = req.session.data.interview.time.split('am')[0]
+    } else {
+      time = req.session.data.interview.time.split('pm')[0]
+
+      // if time == 12 leave it
+      // if time is not 12, say 1, then make it 13pm
+      // if 2 make it 14pm
+      // if 13 leave it alone
+
+    }
+
+
+
+    var date = DateTime.local(req.session.data.interview.date.year, req.session.data.interview.date.month, req.session.data.interview.date.day)
+
+
 
     application.interviews.items.push({
       id,

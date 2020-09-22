@@ -19,7 +19,9 @@ module.exports = (faker, params) => {
     interview.date = past
   }
 
-  interviews.items.push(interview)
+  if(faker.helpers.randomize(["has interviews", ""]) == "has interviews") {
+    interviews.items.push(interview)
+  }
 
   return interviews
 }
