@@ -197,5 +197,27 @@ module.exports = router => {
 
   })
 
+  router.get('/application/:applicationId/interviews/:interviewId/delete', (req, res) => {
+    const applicationId = req.params.applicationId
+    const interviewId = req.params.interviewId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    res.render('application/interviews/delete/index', {
+      application,
+      interview: application.interviews.items.find(interview => interview.id === interviewId)
+    })
+  })
+
+  router.post('/application/:applicationId/interviews/:interviewId/delete', (req, res) => {
+    const applicationId = req.params.applicationId
+    const interviewId = req.params.interviewId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    application.interviews.items = application.interviews.items.filter(item => item.id !== interviewId)
+
+    req.flash('success', 'interview deleted')
+    res.redirect(`/application/${req.params.applicationId}/interviews/`)
+  })
+
 
 }

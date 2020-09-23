@@ -1,0 +1,38 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Are you sure you want to cancel this interview?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/interviews"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <span class="govuk-caption-xl"> {{name}} </span>
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <p>We’ll email the candidate to let them know this interview has been cancelled.</p>
+
+        {{ govukButton({
+          text: "Yes – cancel the interview",
+          classes: "govuk-button--warning"
+        }) }}
+
+        <p><a href="/application/{{application.id}}/interviews">Cancel</a></p>
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}
