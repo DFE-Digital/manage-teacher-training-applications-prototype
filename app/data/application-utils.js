@@ -1,3 +1,5 @@
+const { DateTime } = require('luxon')
+
 exports.getRejectReasons = (data) => {
   return {
     // Candidate actions
@@ -150,6 +152,14 @@ function getLink (item, application) {
       link.text = 'View note'
       link.href = `/application/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
       break
+    case 'Interview set up':
+      link.text = 'View interview'
+      link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      break
+    case 'Interview changed':
+      link.text = 'View interview'
+      link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      break
   }
   return link
 }
@@ -170,4 +180,28 @@ exports.getTimeline = (application) => {
       link: getLink(item, application)
     }
   }).reverse()
+}
+
+exports.addEvent = (application, event) => {
+  application.events.push(event)
+}
+
+exports.getStatusText = (application) => {
+  var status = application.status
+
+  const now = DateTime.fromISO('2019-08-15')
+
+  // has interviews that we need to surface as a status
+  if(application.status === "Awaiting decision" && application.interviews.items.length) {
+    var interviewDate = DateTime.fromISO(application.interviews.items[0].date)
+    if(now < interviewDate) {
+      status = "Awaiting interview"
+    } else {
+      status = "Interviewed"
+    }
+  } else if (application.status === "Awaiting decision") {
+    status = "Received"
+  }
+
+  return status
 }

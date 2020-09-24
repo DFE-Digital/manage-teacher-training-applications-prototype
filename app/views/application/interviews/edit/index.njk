@@ -1,0 +1,97 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Change interview details" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/interviews"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <span class="govuk-caption-xl"> {{name}} </span>
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set candidateNotesHtml %}
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">The candidate shared the following interview preferences</h2>
+        <p>Some notes go here</p>
+      {% endset %}
+      {{ govukInsetText({
+        html: candidateNotesHtml
+      }) }}
+
+
+      <form method="post">
+
+        {{ govukDateInput({
+          id: "interview[date]",
+          name: "interview[date]",
+          fieldset: {
+            legend: {
+              text: "Date",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 1980"
+          },
+          items: [{
+            name: "interview[date][day]",
+            label: "Day",
+            classes: "govuk-input--width-2",
+            value: (interview.date | toDateArray)[0]
+          }, {
+            name: "interview[date][month]",
+            label: "Month",
+            classes: "govuk-input--width-2",
+            value: (interview.date | toDateArray)[1]
+          }, {
+            name: "interview[date][year]",
+            label: "Year",
+            classes: "govuk-input--width-4",
+            value: (interview.date | toDateArray)[2]
+          }]
+        }) }}
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="interview[time]">
+            Time
+          </label>
+          <span id="interview[time]-hint" class="govuk-hint">
+            For example 2:30pm or 12am
+          </span>
+          <div class="app-time">
+            <input class="govuk-input govuk-input--width-5" id="interview[time]" name="interview[time]" type="text" aria-describedby="interview[time]-hint" value="{{interview.date | time}}">
+          </div>
+        </div>
+
+        {{ govukTextarea({
+          id: "interview[details]",
+          name: "interview[details]",
+          label: {
+            classes: "govuk-label--s",
+            text: "Additional details"
+          },
+          hint: {
+            text: "Any other details, like a remote meeting link"
+          },
+          value: interview.details
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}

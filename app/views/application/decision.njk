@@ -29,9 +29,12 @@
       idPrefix: "status",
       name: "decision",
       items: [{
+        value: "interview",
+        text: "Set up an interview",
+        checked: checked("decision", "interview")
+      }, {
         value: "offer",
         text: "Make an offer",
-
         checked: checked("decision", "offer")
       },
       {
@@ -39,12 +42,12 @@
         text: "Make an offer but change course",
 
         checked: checked("decision", "different-course")
-      },{
+      } if 1 == 2,{
         value: "different-location",
         text: "Make an offer but change main training location",
 
         checked: checked("decision", "different-location")
-      },
+      } if 1 == 2,
       {
         value: "different-provider",
         text: "Make an offer but change training provider",
@@ -53,7 +56,7 @@
                             },
 
         checked: checked("decision", "different-provider")
-      }, {
+      } if 1 == 2, {
         value: "reject",
         text: "Reject application",
         checked: checked("decision", "reject")

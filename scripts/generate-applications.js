@@ -28,6 +28,7 @@ const generateRejection = require('../app/data/generators/rejection')
 const generateWithdrawal = require('../app/data/generators/withdrawal')
 const generateNotes = require('../app/data/generators/notes')
 const generateEvents = require('../app/data/generators/events')
+const generateInterviews = require('../app/data/generators/interviews')
 
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
@@ -44,12 +45,14 @@ const generateFakeApplication = (params = {}) => {
   }
 
   const notes = generateNotes(faker)
-  const events = generateEvents(faker, { offer, status })
+  const interviews = params.interviews || generateInterviews(faker, { status })
+
+  const events = generateEvents(faker, { offer, status, interviewId: (interviews.items.length) ? interviews.items[0].id : null })
 
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
 
-  const rejectedReasons = faker.helpers.randomize([generateRejection(faker), null])
+  const rejectedReasons = faker.helpers.randomize([generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), generateRejection(faker), null])
 
   return {
     id: faker.random.alphaNumeric(7).toUpperCase(),
@@ -66,6 +69,7 @@ const generateFakeApplication = (params = {}) => {
     rejectedReasons: status === 'Rejected' ? rejectedReasons : null,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
+    interviews,
     notes,
     events,
     personalDetails,
@@ -91,6 +95,16 @@ const generateFakeApplication = (params = {}) => {
 const generateFakeApplications = () => {
   const organisations = require('../app/data/organisations.json')
   const applications = []
+  const now = DateTime.fromISO('2019-08-15')
+  const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
+  const past = now.minus({ days: randomNumber }).set({
+    hour: faker.helpers.randomize([9, 10, 11]),
+    minute: faker.helpers.randomize([0, 15, 30, 45])
+  })
+  const future = now.plus({ days: randomNumber }).set({
+    hour: faker.helpers.randomize([9, 10, 11]),
+    minute: faker.helpers.randomize([0, 15, 30, 45])
+  })
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
@@ -129,25 +143,51 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-05T14:01:00',
     personalDetails: {
       givenName: 'James',
       familyName: 'Sully',
       sex: 'Male'
+    },
+    interviews: {
+      items: [{
+        id: faker.random.uuid(),
+        date: past,
+        details: "Some details of the interview go here"
+      }]
     }
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
+    cycle: 'Current cycle (2020 to 2021)',
+    submittedDate: '2019-07-05T14:01:00',
+    personalDetails: {
+      givenName: 'Adam',
+      familyName: 'Gold',
+      sex: 'Male'
+    },
+    interviews: {
+      items: [{
+        id: faker.random.uuid(),
+        date: future,
+        details: "Some details of the interview go here"
+      }]
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-08T13:01:00',
     personalDetails: {
       givenName: 'Umar',
       familyName: 'Smith',
       sex: 'Male'
-    }
+    },
+    interviews: { items: [] }
   }))
 
   var organisation = organisations[0]
@@ -166,27 +206,27 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Submitted',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-29',
-    personalDetails: {
-      givenName: 'Daniel',
-      familyName: 'James',
-      sex: 'Male'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Awaiting decision',
+  //   cycle: 'Current cycle (2020 to 2021)',
+  //   submittedDate: '2019-07-29',
+  //   personalDetails: {
+  //     givenName: 'Daniel',
+  //     familyName: 'James',
+  //     sex: 'Male'
+  //   }
+  // }))
 
-  applications.push(generateFakeApplication({
-    status: 'Submitted',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-08-10T13:32:00',
-    personalDetails: {
-      givenName: 'Teresa',
-      familyName: 'Mendoza',
-      sex: 'Female'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Awaiting decision',
+  //   cycle: 'Current cycle (2020 to 2021)',
+  //   submittedDate: '2019-08-10T13:32:00',
+  //   personalDetails: {
+  //     givenName: 'Teresa',
+  //     familyName: 'Mendoza',
+  //     sex: 'Female'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
@@ -281,7 +321,7 @@ const generateFakeApplications = () => {
   // UR for international candidates
   // Scenario 1: Simple candidate
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-12T14:01:00',
     personalDetails: {
@@ -399,7 +439,7 @@ const generateFakeApplications = () => {
   // UR for international candidates
   // Scenario 2: Slightly difficult candidate
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-11T14:01:00',
     personalDetails: {
@@ -477,7 +517,7 @@ const generateFakeApplications = () => {
   // UR for international candidates
   // Scenario 3: Difficult candidate
   applications.push(generateFakeApplication({
-    status: 'Submitted',
+    status: 'Awaiting decision',
     cycle: 'Current cycle (2020 to 2021)',
     submittedDate: '2019-07-10T14:01:00',
     personalDetails: {
@@ -534,7 +574,7 @@ const generateFakeApplications = () => {
 
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
-      status: 'Submitted'
+      status: 'Awaiting decision'
     })
     applications.push(application)
   }
@@ -575,7 +615,7 @@ const generateFakeApplications = () => {
     applications.push(application)
   }
 
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
       status: 'Rejected'
     })

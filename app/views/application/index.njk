@@ -2,7 +2,6 @@
 
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "application" %}
-{% set status = application.status %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
 {% set title = name %}
 {% set rbd = application.submittedDate | addDays(40) %}
@@ -16,7 +15,7 @@
   }) if flash }}
 
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}}
-  {{ govukTag({ classes: status | statusClass, text: status }) }}</h1>
+  {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}</h1>
 
   {% include "_includes/application/respond-prompt.njk" %}
   {% include "_includes/application/defer-prompt.njk" %}

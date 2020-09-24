@@ -62,31 +62,9 @@
   })}}
   {% endif %}
 
-  {# {{ govukHeader({
-    homepageUrl: "https://www.gov.uk",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container",
-    navigation: ([{
-      href: "/",
-      text: "Applications",
-      active: primaryNavId == 'applications'
-    }, {
-      href: "/users",
-      text: "Users",
-      active: primaryNavId == 'users'
-    }, {
-      href: "/",
-      text: "Sign out (Jane Doe)"
-    }] if isSignedOut != true)
-  }) if not data.bare }} #}
-
   {%- from "moj/components/header/macro.njk" import mojHeader -%}
 
-
-
-
-{% include "_includes/header.njk" %}
+  {% include "_includes/header.njk" %}
 
 <div class="app-phase-banner__wrapper">
 
@@ -132,6 +110,11 @@
       href: "/",
       text: "Applications",
       active: primaryNavId == 'applications'
+    },
+    {
+      href: "/interviews",
+      text: "Interviews",
+      active: primaryNavId == 'interviews'
     },
     {
       href: "/activity",

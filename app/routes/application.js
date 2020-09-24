@@ -30,7 +30,7 @@ module.exports = router => {
 
     res.render('application/index', {
       application,
-      status: req.query.status,
+      statusText: utils.getStatusText(application),
       success,
       flash: flashMessage
     })
@@ -42,6 +42,7 @@ module.exports = router => {
 
     res.render('application/timeline', {
       application,
+      statusText: utils.getStatusText(application),
       timeline: utils.getTimeline(application),
       conditions: utils.getConditions(application)
     })
@@ -68,6 +69,8 @@ module.exports = router => {
 
     if (decision === 'offer') {
       res.redirect(`/application/${applicationId}/offer/new`)
+    } else if (decision === 'interview') {
+      res.redirect(`/application/${applicationId}/interviews/new`)
     } else if (decision === 'different-course') {
       res.redirect(`/application/${applicationId}/new/change-course`)
     } else if (decision === 'different-location') {

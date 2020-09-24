@@ -15,6 +15,7 @@ module.exports = router => {
 
     res.render('application/notes/index', {
       application,
+      statusText: utils.getStatusText(application),
       flashMessage
     })
   })

@@ -1,10 +1,8 @@
 .app-application-card {
   border-bottom: 1px solid govuk-colour('mid-grey');
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  // position: relative;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   @include govuk-media-query($from: tablet) {
-    // overflow: hidden;
     display: flex;
     align-items: stretch;
   }
@@ -12,7 +10,7 @@
 
 .app-application-card:first-of-type {
   border-top: 1px solid govuk-colour('mid-grey');
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 .app-application-card__primary {
@@ -41,6 +39,10 @@
   @include govuk-media-query($from: tablet) {
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  .govuk-tag {
+    padding: 2px 6px 1px 6px;
   }
 }
 

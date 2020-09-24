@@ -10,6 +10,10 @@
     href: '/application/'+application.id+'/offer',
     active: (subNavId == "offer")
   } if application.offer, {
+    text: 'Interviews',
+    href: '/application/'+application.id+'/interviews',
+    active: (subNavId == "interviews")
+  }, {
     text: 'Notes',
     href: '/application/'+application.id+'/notes',
     active: (subNavId == "notes")

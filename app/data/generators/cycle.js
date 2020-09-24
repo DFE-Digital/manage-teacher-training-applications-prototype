@@ -1,6 +1,6 @@
 module.exports = (faker, params = {}) => {
 
-  if(params.status === 'Submitted') {
+  if(params.status === 'Awaiting decision') {
     return 'Current cycle (2020 to 2021)'
   } else {
     return faker.helpers.randomize([

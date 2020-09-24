@@ -22,11 +22,15 @@ function getApplicationsByGroup (applications) {
     .filter(app => !app.rejectedReasons)
 
   const aboutToBeRejectedAutomatically = applications
-    .filter(app => app.status === 'Submitted')
+    .filter(app => (app.status === 'Awaiting decision'))
     .filter(app => app.daysToRespond < 5)
 
   const awaitingDecision = applications
-    .filter(app => app.status === 'Submitted')
+    .filter(app => (utils.getStatusText(app) === 'Received' || utils.getStatusText(app) === 'Interviewed'))
+    .filter(app => app.daysToRespond >= 5)
+
+  const pendingInterview = applications
+    .filter(app => (utils.getStatusText(app) === 'Awaiting interview'))
     .filter(app => app.daysToRespond >= 5)
 
   const waitingOn = applications
@@ -44,7 +48,7 @@ function getApplicationsByGroup (applications) {
     .filter(app => app.cycle === 'Current cycle (2020 to 2021)')
 
   let other = applications
-    .filter(app => app.status !== 'Submitted')
+    .filter(app => app.status !== 'Awaiting decision')
     .filter(app => app.status !== 'Deferred')
     .filter(app => app.status !== 'Offered')
     .filter(app => app.status !== 'Accepted')
@@ -66,6 +70,7 @@ function getApplicationsByGroup (applications) {
     rejectedWithoutFeedback,
     aboutToBeRejectedAutomatically,
     awaitingDecision,
+    pendingInterview,
     waitingOn,
     pendingConditions,
     conditionsMet,
@@ -81,6 +86,7 @@ function flattenGroup (grouped) {
   array = array.concat(grouped.aboutToBeRejectedAutomatically)
   array = array.concat(grouped.rejectedWithoutFeedback)
   array = array.concat(grouped.awaitingDecision)
+  array = array.concat(grouped.pendingInterview)
   array = array.concat(grouped.waitingOn)
   array = array.concat(grouped.pendingConditions)
   array = array.concat(grouped.conditionsMet)
@@ -121,9 +127,16 @@ function addHeadings (grouped) {
 
   if (grouped.awaitingDecision.length) {
     array.push({
-      heading: 'Ready for review'
+      heading: 'Awaiting review or decision'
     })
     array = array.concat(grouped.awaitingDecision)
+  }
+
+  if (grouped.pendingInterview.length) {
+    array.push({
+      heading: 'Awaiting interview'
+    })
+    array = array.concat(grouped.pendingInterview)
   }
 
   if (grouped.waitingOn.length) {
@@ -195,7 +208,7 @@ module.exports = router => {
         }
 
         if (statuses && statuses.length) {
-          statusValid = statuses.includes(app.status)
+          statusValid = statuses.includes(utils.getStatusText(app))
         }
 
         if (locationnames && locationnames.length) {
@@ -315,11 +328,13 @@ module.exports = router => {
         app.daysToRespond = 0
       }
 
-      if (app.status !== 'Submitted') {
+      if (app.status !== 'Awaiting decision') {
         app.daysToRespond = 1000
       }
 
       app.lastEventDate = lastEvent.datetime.timestamp
+
+      app.statusText = utils.getStatusText(app);
 
       return app
     })

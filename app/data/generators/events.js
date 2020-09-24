@@ -18,6 +18,15 @@ module.exports = (faker, params) => {
   })
 
   events.items.push({
+    title: 'Interview set up',
+    user: faker.name.findName(),
+    date: date,
+    meta: {
+      interviewId: params.interviewId
+    }
+  })
+
+  events.items.push({
     title: 'Note added',
     user: faker.name.findName(),
     date: date,

@@ -1,0 +1,96 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set title = "Check and confirm interview" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/interviews/" + interview.id + "/edit"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <span class="govuk-caption-xl"> {{name}} </span>
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Date"
+      },
+      value: {
+        text: [data.interview.date.day, data.interview.date.month, data.interview.date.year] | govukDate
+      },
+      actions: {
+        items: [
+          {
+            href: "/application/" + application.id + "/interviews/" + interview.id + "/edit",
+            text: "Change",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Time"
+      },
+      value: {
+        text: data.interview.time
+      },
+      actions: {
+        items: [
+          {
+            href: "/application/" + application.id + "/interviews/" + interview.id + "/edit",
+            text: "Change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Additional details"
+      },
+      value: {
+        html: data.interview.details
+      },
+      actions: {
+        items: [
+          {
+            href: "/application/" + application.id + "/interviews/" + interview.id + "/edit",
+            text: "Change",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+      {{ govukWarningText({
+        text: "We’ll send an email to the candidate confirming the details of the interview.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
+
+      <form method="post">
+
+        {{ govukButton({
+          text: "Confirm interview"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}
