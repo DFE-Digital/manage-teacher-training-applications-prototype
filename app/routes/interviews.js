@@ -132,7 +132,7 @@ module.exports = router => {
     })
 
     application.events.items.push({
-      title: "Interview added",
+      title: "Interview set up",
       user: "Angela Mode",
       date: new Date().toISOString(),
       meta: {
@@ -188,7 +188,7 @@ module.exports = router => {
     interview.details = req.session.data.interview.details
 
     application.events.items.push({
-      title: "Interview updated",
+      title: "Interview changed",
       user: "Angela Mode",
       date: new Date().toISOString(),
       meta: {
@@ -220,6 +220,12 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     application.interviews.items = application.interviews.items.filter(item => item.id !== interviewId)
+
+    application.events.items.push({
+      title: "Interview cancelled",
+      user: "Angela Mode",
+      date: new Date().toISOString()
+    })
 
     req.flash('success', 'interview cancelled')
     res.redirect(`/application/${req.params.applicationId}/interviews/`)

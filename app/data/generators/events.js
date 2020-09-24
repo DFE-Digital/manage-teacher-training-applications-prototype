@@ -18,7 +18,7 @@ module.exports = (faker, params) => {
   })
 
   events.items.push({
-    title: 'Interview added',
+    title: 'Interview set up',
     user: faker.name.findName(),
     date: date,
     meta: {

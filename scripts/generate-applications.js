@@ -45,7 +45,7 @@ const generateFakeApplication = (params = {}) => {
   }
 
   const notes = generateNotes(faker)
-  const interviews = generateInterviews(faker, { status })
+  const interviews = params.interviews || generateInterviews(faker, { status })
 
   const events = generateEvents(faker, { offer, status, interviewId: (interviews.items.length) ? interviews.items[0].id : null })
 
@@ -95,6 +95,16 @@ const generateFakeApplication = (params = {}) => {
 const generateFakeApplications = () => {
   const organisations = require('../app/data/organisations.json')
   const applications = []
+  const now = DateTime.fromISO('2019-08-15')
+  const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
+  const past = now.minus({ days: randomNumber }).set({
+    hour: faker.helpers.randomize([9, 10, 11]),
+    minute: faker.helpers.randomize([0, 15, 30, 45])
+  })
+  const future = now.plus({ days: randomNumber }).set({
+    hour: faker.helpers.randomize([9, 10, 11]),
+    minute: faker.helpers.randomize([0, 15, 30, 45])
+  })
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
@@ -140,6 +150,13 @@ const generateFakeApplications = () => {
       givenName: 'James',
       familyName: 'Sully',
       sex: 'Male'
+    },
+    interviews: {
+      items: [{
+        id: faker.random.uuid(),
+        date: past,
+        details: "Some details of the interview go here"
+      }]
     }
   }))
 
@@ -151,6 +168,13 @@ const generateFakeApplications = () => {
       givenName: 'Adam',
       familyName: 'Gold',
       sex: 'Male'
+    },
+    interviews: {
+      items: [{
+        id: faker.random.uuid(),
+        date: future,
+        details: "Some details of the interview go here"
+      }]
     }
   }))
 
@@ -162,7 +186,8 @@ const generateFakeApplications = () => {
       givenName: 'Umar',
       familyName: 'Smith',
       sex: 'Male'
-    }
+    },
+    interviews: { items: [] }
   }))
 
   var organisation = organisations[0]
@@ -181,27 +206,27 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-29',
-    personalDetails: {
-      givenName: 'Daniel',
-      familyName: 'James',
-      sex: 'Male'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Awaiting decision',
+  //   cycle: 'Current cycle (2020 to 2021)',
+  //   submittedDate: '2019-07-29',
+  //   personalDetails: {
+  //     givenName: 'Daniel',
+  //     familyName: 'James',
+  //     sex: 'Male'
+  //   }
+  // }))
 
-  applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-08-10T13:32:00',
-    personalDetails: {
-      givenName: 'Teresa',
-      familyName: 'Mendoza',
-      sex: 'Female'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Awaiting decision',
+  //   cycle: 'Current cycle (2020 to 2021)',
+  //   submittedDate: '2019-08-10T13:32:00',
+  //   personalDetails: {
+  //     givenName: 'Teresa',
+  //     familyName: 'Mendoza',
+  //     sex: 'Female'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',

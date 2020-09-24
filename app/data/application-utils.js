@@ -152,7 +152,11 @@ function getLink (item, application) {
       link.text = 'View note'
       link.href = `/application/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
       break
-    case 'Interview added':
+    case 'Interview set up':
+      link.text = 'View interview'
+      link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      break
+    case 'Interview changed':
       link.text = 'View interview'
       link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
       break
