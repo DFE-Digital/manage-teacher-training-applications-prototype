@@ -41,7 +41,9 @@ function getTimeObject(time) {
 
 module.exports = router => {
   router.get('/interviews', (req, res) => {
-    const apps = req.session.data.applications
+    const apps = req.session.data.applications.filter(app => {
+      return utils.getStatusText(app) == "Awaiting interview"
+    })
 
     let allInterviews = []
 
@@ -56,7 +58,7 @@ module.exports = router => {
     })
 
     allInterviews.sort((a, b) => {
-      return new Date(b.interview.date) - new Date(a.interview.date)
+      return new Date(a.interview.date) - new Date(b.interview.date)
     })
 
 

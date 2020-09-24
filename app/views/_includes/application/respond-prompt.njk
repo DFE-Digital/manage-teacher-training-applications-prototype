@@ -1,20 +1,19 @@
-{% if application.status == 'Awaiting decision' or application.status == 'Awaiting interview' %}
+{% if statusText == 'Received' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview or make a decision</h2>
     <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
     {{ govukButton({
-      text: "Respond to application",
-      classes: "govuk-!-margin-bottom-",
+      text: "Set up an interview",
+      classes: "govuk-!-margin-bottom-0",
+      href: "/application/" + application.id + "/interviews/new"
+    }) }} <span class="app-or">or</span> {{ govukButton({
+      text: "Make decision",
+      classes: "govuk-!-margin-bottom-0 govuk-button--secondary",
       href: "/application/" + application.id + "/decision"
     }) }}
 
-    {# <p>Or </p>
-
-    <a href="/application/{{application.id}}/decision">Make a decision</a> #}
-
-    {# <p><a href="/application/{{application.id}}/interviews/new">Set up an interview</a> or <a href="/application/{{application.id}}/decision">make a decision</a></p> #}
-
   {% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       {{govukInsetText({
@@ -24,4 +23,54 @@
     </div>
   </div>
 
+{% elseif statusText == 'Awaiting interview' %}
+  {% set promptHtml %}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Awaiting interview</h2>
+    <p>You can still set up another interview or you can make a decision.</p>
+    <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
+    {{ govukButton({
+      text: "Set up another interview",
+      classes: "govuk-!-margin-bottom-0",
+      href: "/application/" + application.id + "/interviews/new"
+    }) }} <span class="app-or">or</span> {{ govukButton({
+      text: "Make decision",
+      classes: "govuk-!-margin-bottom-0 govuk-button--secondary",
+      href: "/application/" + application.id + "/decision"
+    }) }}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{govukInsetText({
+        html: promptHtml,
+        classes: 'govuk-!-margin-top-0'
+      })}}
+    </div>
+  </div>
+
+{% elseif statusText == 'Interviewed' %}
+  {% set promptHtml %}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
+    <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
+    {{ govukButton({
+      text: "Make decision",
+      classes: "govuk-!-margin-bottom-0 ",
+      href: "/application/" + application.id + "/decision"
+    }) }} <span class="app-or">or</span>  {{ govukButton({
+      text: "Set up another interview",
+      classes: "govuk-!-margin-bottom-0 govuk-button--secondary",
+      href: "/application/" + application.id + "/interviews/new"
+    }) }}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{govukInsetText({
+        html: promptHtml,
+        classes: 'govuk-!-margin-top-0'
+      })}}
+    </div>
+  </div>
 {% endif %}
+
+
