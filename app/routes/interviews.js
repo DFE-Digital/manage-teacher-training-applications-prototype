@@ -7,13 +7,14 @@ function getTimeObject(time) {
   var mins;
   var isAm = time.indexOf('am') > -1;
   if(isAm) {
+
     time = time.split('am')[0].trim()
     if(time.indexOf(":") > -1) {
       hours = time.split(":")[0]
       mins = time.split(":")[1]
     } else {
       hours = time
-      min = "00"
+      mins = "00"
     }
 
     // if they selected 12am
@@ -76,14 +77,16 @@ module.exports = router => {
       flash: req.flash('success'),
       overrideValue: req.query.flash,
       map: {
-        'interview-added': 'Interview successfully set up'
+        'interview setup': 'Interview successfully set up',
+        'interview changed': 'Interview successfully changed',
+        'interview cancelled': 'Interview successfully cancelled'
       }
     })
 
     res.render('application/interviews/index', {
       application,
       statusText: utils.getStatusText(application),
-      flashMessage
+      flash: flashMessage
     })
   })
 
@@ -178,6 +181,7 @@ module.exports = router => {
     const interview = application.interviews.items.find(interview => interview.id === interviewId)
 
     var time = getTimeObject(req.session.data.interview.time);
+
     var date = DateTime.local(parseInt(req.session.data.interview.date.year, 10), parseInt(req.session.data.interview.date.month, 10), parseInt(req.session.data.interview.date.day, 10), parseInt(time.hours, 10), parseInt(time.mins, 10));
 
     interview.date = date.toISO()
@@ -217,7 +221,7 @@ module.exports = router => {
 
     application.interviews.items = application.interviews.items.filter(item => item.id !== interviewId)
 
-    req.flash('success', 'interview deleted')
+    req.flash('success', 'interview cancelled')
     res.redirect(`/application/${req.params.applicationId}/interviews/`)
   })
 

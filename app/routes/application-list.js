@@ -134,7 +134,7 @@ function addHeadings (grouped) {
 
   if (grouped.pendingInterview.length) {
     array.push({
-      heading: 'Candidates pending interview'
+      heading: 'Awaiting interview'
     })
     array = array.concat(grouped.pendingInterview)
   }
