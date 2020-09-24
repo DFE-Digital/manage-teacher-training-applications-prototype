@@ -20,11 +20,11 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Awaiting decision') {
     interview.date = faker.helpers.randomize([past, future])
+    if(faker.helpers.randomize(["has interviews", ""]) == "has interviews") {
+      interviews.items.push(interview)
+    }
   } else {
     interview.date = past
-  }
-
-  if(faker.helpers.randomize(["has interviews", ""]) == "has interviews") {
     interviews.items.push(interview)
   }
 
