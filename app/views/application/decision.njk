@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
-{% set title = "Respond to application" %}
+{% set title = "Make a decision" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -14,7 +14,7 @@
 
   {% set h1 %}
     <span class="govuk-caption-xl">{{name}}</span>
-    Respond to application
+    {{title}}
   {% endset %}
 
   <form action="{{ formaction | default('') }}" method="post">

@@ -10,7 +10,7 @@
           {% set status = null %}
 
           {% if event.event.title == "Conditions met" %}
-            {% set status = "recruited" %}
+            {% set status = "Conditions met" %}
             {% set title = event.event.user + " recruited " + name %}
             {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
 
@@ -18,12 +18,12 @@
             {% set status = "Deferred" %}
             {% set title = event.event.user + " deferred " + name + "’s offer" %}
             {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-          {% elseif event.event.title == "Interview added" %}
+          {% elseif event.event.title == "Interview set up" %}
             {% set status = "Awaiting interview" %}
             {% set title = event.event.user + " set up an interview with " + name %}
             {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application submitted" %}
-            {% set status = "Awaiting decision" %}
+            {% set status = "Received" %}
             {% set title = name + " submitted an application "  %}
             {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application rejected automatically" %}
