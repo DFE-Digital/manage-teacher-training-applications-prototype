@@ -32,7 +32,86 @@
           }) }}
         {% endif %}
 
-        <table class="govuk-table">
+
+        {% for interview in application.interviews.items %}
+
+          {% set interviewSummaryListHtml %}
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Date and time"
+                  },
+                  value: {
+                    text: interview.date | govukDateAtTime
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Details"
+                      }
+                    ]
+                  } if 1 == 2
+                },
+                {
+                  key: {
+                    text: "Organisation"
+                  },
+                  value: {
+                    text: "The Royal Borough Teaching School Alliance"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Details"
+                      }
+                    ]
+                  } if 1 == 2
+                },
+                {
+                  key: {
+                    text: "Details"
+                  },
+                  value: {
+                    text: interview.details
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Details"
+                      }
+                    ]
+                  } if 1 == 2
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {{appSummaryCard({
+            titleText: interview.date | govukDateAtTime,
+            classes: "govuk-!-margin-bottom-6",
+            actions: {
+              items: [{
+                href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
+                text: "Change"
+              }, {
+                href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
+                text: "Cancel"
+              }]
+            },
+            html: interviewSummaryListHtml
+          })}}
+
+        {% endfor %}
+
+
+        {# <table class="govuk-table">
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th scope="col" class="govuk-table__header govuk-!-width-one-quarte">Date and time</th>
@@ -59,7 +138,7 @@
         </tr>
       {% endfor %}
     </tbody>
-  </table>
+  </table> #}
 
       {% else %}
         <p>No interviews have been set up yet.</p>
