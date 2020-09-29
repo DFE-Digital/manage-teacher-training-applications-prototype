@@ -10,8 +10,9 @@
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th scope="col" class="govuk-table__header govuk-!-width-one-third">Candidate</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Date and time</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Details</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-thir">Date and time</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-thir">Details</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-thir">Organisation</th>
       </tr>
     </thead>
     <tbody class="govuk-table__body">
@@ -21,9 +22,13 @@
             <a href="/application/{{interview.app.id}}/interviews">
               {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
             </a>
+            {% if interview.app.interviewNeeds.length %}
+              <p class="govuk-!-margin-top-1 govuk-!-font-size-1">Interview preferences: {{interview.app.interviewNeeds}}</p>
+            {% endif %}
           </th>
           <td class="govuk-table__cell">{{interview.interview.date | govukDateAtTime }}</td>
           <td class="govuk-table__cell">{{interview.interview.details }}</td>
+          <td class="govuk-table__cell">The Royal Borough Teaching School Alliance</td>
         </tr>
       {% endfor %}
     </tbody>
