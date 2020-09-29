@@ -4,7 +4,7 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
-{% set title = "Are you sure you want to cancel this interview?" %}
+{% set title = "Tell the candidate why you’re cancelling the interview" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,19 +14,29 @@
 
 {% block content %}
 
-  <span class="govuk-caption-xl"> {{name}} </span>
-  <h1 class="govuk-heading-xl">{{title}}</h1>
+  {% set h1 %}
+    <span class="govuk-caption-xl"> {{name}} </span>
+    {{title}}
+  {% endset %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
 
-        <p>We’ll email the candidate to let them know this interview has been cancelled.</p>
+        {{ govukTextarea({
+          id: "cancelInterview[reason]",
+          name: "cancelInterview[reason]",
+          label: {
+            html: h1,
+            isPageHeading: true,
+            classes: "govuk-label--xl"
+          },
+          value: data.cancelInterview.reason
+        }) }}
 
         {{ govukButton({
-          text: "Yes – cancel the interview",
-          classes: "govuk-button--warning"
+          text: "Continue"
         }) }}
 
         <p><a href="/application/{{application.id}}/interviews">Cancel</a></p>
