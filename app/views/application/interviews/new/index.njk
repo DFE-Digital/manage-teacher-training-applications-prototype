@@ -22,7 +22,7 @@
 
       {% set candidateNotesHtml %}
         <h2 class="govuk-heading-s govuk-!-margin-bottom-2">The candidate shared the following interview preferences</h2>
-        <p>Some notes go here</p>
+        <p>{{application.interviewNeeds | nl2br}}</p>
       {% endset %}
       {{ govukInsetText({
         html: candidateNotesHtml

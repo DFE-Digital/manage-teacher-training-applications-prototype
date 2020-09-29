@@ -21,6 +21,7 @@ const generateWorkHistory = require('../app/data/generators/work-history')
 const generateSchoolExperience = require('../app/data/generators/school-experience')
 const generatePersonalStatement = require('../app/data/generators/personal-statement')
 const generateReferences = require('../app/data/generators/references')
+const generateInterviewNeeds = require('../app/data/generators/interview-needs')
 
 // Fake data generators: application management
 const generateOffer = require('../app/data/generators/offer')
@@ -74,6 +75,7 @@ const generateFakeApplication = (params = {}) => {
     events,
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
+    interviewNeeds: generateInterviewNeeds(faker),
     workHistory: generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),

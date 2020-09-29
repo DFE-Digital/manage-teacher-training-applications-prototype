@@ -144,7 +144,7 @@
         summaryText: "View guidance given to candidate",
         html: interviewGuidanceHtml
       }) }}
-      <p class="govuk-body">{{ application.personalStatement.interview | nl2br or "No information shared" }}</p>
+      <p class="govuk-body">{{ application.interviewNeeds | nl2br or "No information shared" }}</p>
     </div>
     <div class="govuk-grid-column-one-third">
 
