@@ -174,8 +174,7 @@ const generateFakeApplications = () => {
     interviews: {
       items: [{
         id: faker.random.uuid(),
-        date: future,
-        details: "Some details of the interview go here"
+        date: future
       }]
     }
   }))
