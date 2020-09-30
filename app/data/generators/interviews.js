@@ -16,7 +16,11 @@ module.exports = (faker, params) => {
 
   var interview = {};
   interview.id = faker.random.uuid()
-  interview.details = "Some details of the interview go here"
+  interview.details = faker.helpers.randomize([faker.lorem.sentence(20), ''])
+
+  faker.locale = 'en_GB'
+
+  interview.location = faker.address.streetAddress() + ', ' + faker.address.city() + ', ' + faker.address.zipCode()
 
   if (params.status === 'Awaiting decision') {
     interview.date = faker.helpers.randomize([past, future])

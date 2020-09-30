@@ -86,6 +86,16 @@
           value: data.interview.details
         }) }}
 
+        {{ govukTextarea({
+          id: "interview[location]",
+          name: "interview[location]",
+          label: {
+            classes: "govuk-label--s",
+            text: "Location"
+          },
+          value: data.interview.location
+        }) }}
+
         {{ govukButton({
           text: "Continue"
         }) }}

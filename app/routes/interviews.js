@@ -128,7 +128,8 @@ module.exports = router => {
     application.interviews.items.push({
       id,
       date: date.toISO(),
-      details: req.session.data.interview.details
+      details: req.session.data.interview.details,
+      location: req.session.data.interview.location
     })
 
     application.events.items.push({
@@ -186,6 +187,7 @@ module.exports = router => {
 
     interview.date = date.toISO()
     interview.details = req.session.data.interview.details
+    interview.location = req.session.data.interview.location
 
     application.events.items.push({
       title: "Interview changed",
