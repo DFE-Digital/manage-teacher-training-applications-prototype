@@ -14,98 +14,78 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        {# Select permissions: {{ data.user.organisations[0].name }} #}
-        Select permissions
+        Select permissions: {{ data.user.organisations[0].name }}
+        {# Select permissions #}
       {% endset %}
 
       {% set makeDecisionsHintHtml %}
         <p class="govuk-!-margin-bottom-1">Make offers, amend offers and reject applications</p>
-        {# <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[1].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+        <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
-              icon: "tick",
+              icon: "cross",
               hidden: true
-            }) }} {{ data.organisations[2].name }}
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[3].name }}
-            <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[0].name }}
-          </li>
-        </ul> #}
+        </ul>
       {% endset %}
 
       {% set safeguardingInformationHintHtml %}
         <p class="govuk-!-margin-bottom-1">View sensitive material about the candidate</p>
-        {# <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[1].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+        <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
-              icon: "tick",
+              icon: "cross",
               hidden: true
-            }) }} {{ data.organisations[2].name }}
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[3].name }}
-            <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[0].name }}
-          </li>
-        </ul> #}
+        </ul>
       {% endset %}
 
       {% set diversityInformationHintHtml %}
         <p class="govuk-!-margin-bottom-1">View diversity information about the candidate</p>
-        {# <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
-            }) }} {{ data.organisations[1].name }}
+            }) }} {{ data.accreditedBodies[0].name }}
           </li>
+        </ul>
+
+        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+        <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
-              icon: "tick",
+              icon: "cross",
               hidden: true
-            }) }} {{ data.organisations[2].name }}
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[3].name }}
-            <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[0].name }}
-          </li>
-        </ul> #}
+        </ul>
       {% endset %}
 
 
@@ -126,8 +106,8 @@
             },
             items: [
               {
-                value: "Manage organisation",
-                text: "Manage organisation",
+                value: "Manage organisational permissions",
+                text: "Manage organisational permissions",
                 label: {
                   classes: "govuk-label--s"
                 },

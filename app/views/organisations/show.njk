@@ -44,9 +44,9 @@
 
           {% set title %}
             {% if relationship.org.isAccreditedBody %}
-              For courses ratified by {{ relationship.org.name }} and run by {{ relationship.partner.name }}
+              For courses run by {{ relationship.partner.name }}
             {% else %}
-              For courses run by {{ relationship.org.name }} and ratified by {{ relationship.partner.name }}
+              For courses ratified by {{ relationship.partner.name }}
             {% endif %}
           {% endset %}
 
