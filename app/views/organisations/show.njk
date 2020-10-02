@@ -118,8 +118,13 @@
           {% set cardHtml %}
 
             {% if relationship.org.isAccreditedBody %}
+
+              {% set text %}
+                <p>Only {{relationship.partner.name}} can change permissions. Contact them to do this.</p>
+              {% endset %}
+
               {{govukWarningText({
-                text: "Only " + relationship.partner.name + " can change permissions. Contact them to do this.",
+                html: text,
                 classes: "govuk-!-margin-bottom-4"
               })}}
             {% endif %}
