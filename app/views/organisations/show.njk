@@ -28,6 +28,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">Organisational permisions</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {% set tick %}
@@ -40,124 +41,160 @@
 
       {% if relationships.length %}
         {% for relationship in relationships %}
-          <h2 class="govuk-heading-m">
+
+          {% set title %}
             {% if relationship.org.isAccreditedBody %}
               For courses ratified by {{ relationship.org.name }} and run by {{ relationship.partner.name }}
             {% else %}
               For courses run by {{ relationship.org.name }} and ratified by {{ relationship.partner.name }}
             {% endif %}
-          </h2>
+          {% endset %}
 
-          {% if relationship.org.isAccreditedBody %}
-            {% if not relationship.orgPermissions %}
-              {% set bannerHtml %}
-                <p>{{ relationship.org }} have not set up permissions yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Staff at {{ relationship.partner.name}} can still view applications in the mean time.</p>
-              {% endset %}
-              {{appBanner({
-                html: bannerHtml
-              })}}
+          {% set makeDecisionsHtml %}
+            {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.makeDecisions %}
+                  <li>{{tick | safe }} {{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.makeDecisions %}
+                  <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
             {% else %}
-              {{appBanner({
-                text: "Contact " + relationship.partner.name + " to change permissions.",
+              {% if relationship.org.isAccreditedBody %}
+                <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
+                <p>Staff at {{ relationship.org.name}} can still view applications in the meantime.</p>
+              {% else %}
+                <p>You have not set up permissions for this yet. This means nobody has this permission.</p>
+                <p>Staff at {{ relationship.partner.name}} can still view applications in the meantime.</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+          {% set viewSafeguardingHtml %}
+            {% if relationship.orgPermissions.safeguarding or relationship.partnerPermissions.safeguarding %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.safeguarding %}
+                  <li>{{tick | safe }} {{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.safeguarding %}
+                  <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
+                <p>Staff at {{ relationship.org.name}} can still view applications in the meantime.</p>
+              {% else %}
+                <p>You have not set up permissions for this yet. This means nobody has this permission.</p>
+                <p>Staff at {{ relationship.partner.name}} can still view applications in the meantime.</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+          {% set viewDiversityHtml %}
+            {% if relationship.orgPermissions.diversity or relationship.partnerPermissions.diversity %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.diversity %}
+                  <li>{{tick | safe }} {{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.diversity %}
+                  <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
+                <p>Staff at {{ relationship.org.name}} can still view applications in the meantime.</p>
+              {% else %}
+                <p>You have not set up permissions for this yet. This means nobody has this permission.</p>
+                <p>Staff at {{ relationship.partner.name}} can still view applications in the meantime.</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+
+          {% set editLink %}
+            /organisations/{{org.id}}/edit
+          {% endset %}
+
+          {% set cardHtml %}
+
+            {% if relationship.org.isAccreditedBody %}
+              {{govukWarningText({
+                text: "Only " + relationship.partner.name + " can change permissions. Contact them to do this.",
                 classes: "govuk-!-margin-bottom-4"
               })}}
             {% endif %}
-          {% endif %}
 
-        {% set makeDecisionsHtml %}
-          <ul class="govuk-list">
-            {% if relationship.orgPermissions.makeDecisions %}
-              <li>{{tick | safe }} {{ relationship.org.name }}</li>
-            {% endif %}
-            {% if relationship.partnerPermissions.makeDecisions %}
-              <li>{{tick | safe }} {{ relationship.partner.name }}</li>
-            {% endif %}
-          </ul>
-        {% endset %}
-        {% set viewSafeguardingHtml %}
-          <ul class="govuk-list">
-            {% if relationship.orgPermissions.safeguarding %}
-              <li>{{tick | safe }} {{ relationship.org.name }}</li>
-            {% endif %}
-            {% if relationship.partnerPermissions.safeguarding %}
-              <li>{{tick | safe }} {{ relationship.partner.name }}</li>
-            {% endif %}
-          </ul>
-        {% endset %}
-        {% set viewDiversityHtml %}
-          <ul class="govuk-list">
-            {% if relationship.orgPermissions.diversity %}
-              <li>{{tick | safe }} {{ relationship.org.name }}</li>
-            {% endif %}
-            {% if relationship.partnerPermissions.diversity %}
-              <li>{{tick | safe }} {{ relationship.partner.name }}</li>
-            {% endif %}
-          </ul>
-        {% endset %}
-
-        {% set editLink %}
-          /organisations/{{org.id}}/edit
-        {% endset %}
-
-         {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Which organisations can make decisions?"
-            },
-            value: {
-              html: makeDecisionsHtml
-            },
-            actions: {
-              items: [
+            {{ govukSummaryList({
+              rows: [
                 {
-                  href: editLink,
-                  text: "Change",
-                  visuallyHiddenText: "name"
+                  key: {
+                    text: "Which organisations can make decisions?"
+                  },
+                  value: {
+                    html: makeDecisionsHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "name"
+                      }
+                    ]
+                  } if 1 == 2
+                },
+                {
+                  key: {
+                    text: "Which organisations can view safeguarding information?"
+                  },
+                  value: {
+                    html: viewSafeguardingHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "name"
+                      }
+                    ]
+                  } if 1 == 2
+                },
+                {
+                  key: {
+                    text: "Which organisations can view diversity information?"
+                  },
+                  value: {
+                    html: viewDiversityHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "permissions for " + org.name
+                      }
+                    ]
+                  } if 1 == 2
                 }
               ]
-            }
-          },
-          {
-            key: {
-              text: "Which organisations can view safeguarding information?"
-            },
-            value: {
-              html: viewSafeguardingHtml
-            },
+            }) }}
+          {% endset %}
+
+          {{appSummaryCard({
+            titleText: title,
+            classes: "govuk-!-margin-bottom-6",
             actions: {
-              items: [
-                {
-                  href: editLink,
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Which organisations can view diversity information?"
-            },
-            value: {
-              html: viewDiversityHtml
-            },
-            actions: {
-              items: [
-                {
-                  href: editLink,
-                  text: "Change",
-                  visuallyHiddenText: "permissions for " + org.name
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+              items: [{
+                href: editLink,
+                text: "Change"
+              }]
+            } if not relationship.org.isAccreditedBody,
+            html: cardHtml
+          })}}
         {% endfor %}
       {% else %}
-        <p>This organisation runs and ratifies its own courses. No permissions to set up.</p>
+        <p class="govuk-!-margin-bottom-0">This organisation runs and ratifies its own courses. No permissions to set up.</p>
       {% endif %}
 
     </div>

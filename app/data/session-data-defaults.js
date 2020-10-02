@@ -65,11 +65,36 @@ let relationships = [{
   }
 }]
 
-// relationships = [{
-//   org: accreditedBodies[0]
-// }];
+relationships = [{
+  org: accreditedBodies[0],
+  orgPermissions: {
+    makeDecisions: true,
+    safeguarding: false,
+    diversity: true
+  },
+  partner: trainingProviders[1],
+  partnerPermissions: {
+    makeDecisions: false,
+    safeguarding: false,
+    diversity: false
+  }
+}, {
+  org: trainingProviders[0],
+  orgPermissions: {
+    safeguarding: true,
+    diversity: true
+  },
+  partner: accreditedBodies[0],
+  partnerPermissions: {
+    safeguarding: true,
+    diversity: false
+  }
+}, {
+  org: accreditedBodies[1],
+  partner: trainingProviders[1],
+}];
 
-let userOrgs = [trainingProviders[0], trainingProviders[1]];
+let userOrgs = [accreditedBodies[0], trainingProviders[0], accreditedBodies[1]];
 
 module.exports = {
   settings: ["hasCombinedConditions"],
