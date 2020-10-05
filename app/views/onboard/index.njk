@@ -21,19 +21,23 @@
 
       <h2 class="govuk-heading-m">The organisations you need to set up</h2>
 
-      {% for item in items%}
-        <div class="app-application-card {% if loop.last %} govuk-!-margin-bottom-7 {% endif %}">
-          <div>
-            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.org.name }}</h2>
+      {% for item in items %}
 
-            <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-1">Organisations that ratify your courses:</p>
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for p in item.partners %}
-                <li>{{ p.name }}</li>
-              {% endfor %}
-            </ul>
+        {% if not item.org.isAccreditedBody %}
+
+          <div class="app-application-card {% if loop.last or loop.first %} govuk-!-margin-bottom-7 {% endif %}">
+            <div>
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.org.name }}</h2>
+
+              <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-1">Organisations that ratify your courses:</p>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                {% for p in item.partners %}
+                  <li>{{ p.name }}</li>
+                {% endfor %}
+              </ul>
+            </div>
           </div>
-        </div>
+        {% endif %}
       {% endfor %}
 
       <form novalidate action="/onboard/information">
