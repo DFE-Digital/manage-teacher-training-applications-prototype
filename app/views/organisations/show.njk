@@ -61,13 +61,15 @@
                 {% endif %}
               </ul>
             {% else %}
+
               {% if relationship.org.isAccreditedBody %}
                 <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Staff at {{ relationship.org.name}} can still view applications in the meantime.</p>
+                <p>Users can still view applications in the meantime.</p>
               {% else %}
-                <p>You have not set up permissions for this yet. This means nobody has this permission.</p>
-                <p>Staff at {{ relationship.partner.name}} can still view applications in the meantime.</p>
+                <p class="govuk-!-margin-bottom-0">Users at {{ org.name}} and {{ relationship.partner.name }} cannot make decisions because you’ve not set this up yet – they can still view applications in the meantime.</p>
               {% endif %}
+
+
             {% endif %}
           {% endset %}
           {% set viewSafeguardingHtml %}
@@ -83,10 +85,9 @@
             {% else %}
               {% if relationship.org.isAccreditedBody %}
                 <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Staff at {{ relationship.org.name}} can still view applications in the meantime.</p>
+                <p>Users can still view applications in the meantime.</p>
               {% else %}
-                <p>You have not set up permissions for this yet. This means nobody has this permission.</p>
-                <p>Staff at {{ relationship.partner.name}} can still view applications in the meantime.</p>
+                <p class="govuk-!-margin-bottom-0">Users at {{ org.name}} and {{ relationship.partner.name }} cannot see safeguarding information because you’ve not set this up yet – they can still view applications in the meantime.</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -103,10 +104,9 @@
             {% else %}
               {% if relationship.org.isAccreditedBody %}
                 <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Staff at {{ relationship.org.name}} can still view applications in the meantime.</p>
+                <p>Users can still view applications in the meantime.</p>
               {% else %}
-                <p>You have not set up permissions for this yet. This means nobody has this permission.</p>
-                <p>Staff at {{ relationship.partner.name}} can still view applications in the meantime.</p>
+                <p class="govuk-!-margin-bottom-0">Users at {{ org.name}} and {{ relationship.partner.name }} cannot see diversity information because you’ve not set this up yet – they can still view applications in the meantime.</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -119,14 +119,8 @@
 
             {% if relationship.org.isAccreditedBody %}
 
-              {% set text %}
-                <p>Only {{relationship.partner.name}} can change permissions. Contact them to do this.</p>
-              {% endset %}
+              <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they’re the training provider. Contact them to do this.</p>
 
-              {{govukWarningText({
-                html: text,
-                classes: "govuk-!-margin-bottom-4"
-              })}}
             {% endif %}
 
             {{ govukSummaryList({
