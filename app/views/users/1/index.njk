@@ -134,13 +134,22 @@
               hidden: true
             }) }} Make decisions</p>
              <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
               icon: "tick",
               hidden: true
             }) }} {{ data.accreditedBodies[0].name }}
+          </li>
+        </ul>
+        <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+        <ul class="govuk-list">
+          <li>{{ appIcon({
+              classes: "govuk-!-margin-right-1",
+              icon: "cross",
+              hidden: true
+            }) }} {{ data.accreditedBodies[1].name }}
           </li>
         </ul>
         </div>
@@ -150,7 +159,7 @@
               hidden: true
             }) }} Access safeguarding information</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -159,7 +168,7 @@
             }) }} {{ data.accreditedBodies[0].name }}
           </li>
         </ul>
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+        <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -175,7 +184,7 @@
               hidden: true
             }) }} Access diversity information</p>
         <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+         <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",
@@ -184,7 +193,7 @@
             }) }} {{ data.accreditedBodies[0].name }}
           </li>
         </ul>
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+        <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
         <ul class="govuk-list">
           <li>{{ appIcon({
               classes: "govuk-!-margin-right-1",

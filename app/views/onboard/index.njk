@@ -1,44 +1,42 @@
 {% extends "_content-wide.njk" %}
 
-{% set title = "Set up permissions for your organisation" %}
-
-{% block pageNavigation %}
-  {# {{ govukBackLink({
-    href: "/users/"
-  }) }} #}
-{% endblock %}
+{% set title = "Set up permissions between your own organisations and your partner organisations" %}
 
 {% block primary %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <p>You can control which organisations can see sensitive information, and those who can make decisions about applications.</p>
 
-      <p>You can control who has access to sensitive information, and who can make decisions about applications.</p>
-      <p>We’ll ask you to set up the permissions between you and the organisations that ratify your courses.</p>
-      <p>You’ll then be able to choose permissions for any individual users you add to your organisation.</p>
+      <p>These permissions govern what individual users are able to do within their own organisations.</p>
 
-      <p>You can change these settings at any time.</p>
+      <p>For example, if your organisation can make decisions and your partner organisation cannot make decisions, then their users will not be able to make decisions on those particular applications.</p>
 
-      <h2 class="govuk-heading-m">The organisations you need to set up</h2>
+      <p>You need to set up permissions for the following partnerships:</p>
 
-      {% for item in items %}
-
-        {% if not item.org.isAccreditedBody %}
-
-          <div class="app-application-card {% if loop.last or loop.first %} govuk-!-margin-bottom-7 {% endif %}">
-            <div>
-              <h2 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.org.name }}</h2>
-
-              <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-1">Organisations that ratify your courses:</p>
-              <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-                {% for p in item.partners %}
-                  <li>{{ p.name }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-        {% endif %}
-      {% endfor %}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Your organisations</th>
+            <th scope="col" class="govuk-table__header">Partner organisations</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+         {% for item in items %}
+          {% if not item.org.isAccreditedBody %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">{{ item.org.name }}</th>
+              <td class="govuk-table__cell"><ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                  {% for p in item.partners %}
+                    <li>{{ p.name }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+      </table>
 
       <form novalidate action="/onboard/information">
         {{govukButton({

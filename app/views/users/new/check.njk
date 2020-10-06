@@ -228,10 +228,26 @@
               ]
             }
           },
-
           {
             key: {
-              text: "Permissions"
+              text: "Do you want to give this user extra permissions?"
+            },
+            value: {
+              text: "No, I just  want to give this user the ability to view applications"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/users/new",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Extra permissions"
             },
             value: {
               html: permissionsHtml
@@ -245,7 +261,7 @@
                 }
               ]
             }
-          }
+          } if 1 == 2
         ]
       }) }}
 

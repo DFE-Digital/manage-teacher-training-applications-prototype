@@ -13,13 +13,15 @@
 {% endset %}
 
 {% set bannerHtml %}
-  <p>All users at your organisation and ratifying organisation(s) will be able to view applications to these courses. You don't need to set permissions for this.</p>
+  <p>All users at your organisation and partner organisations can view applications. You do not need to set permissions for this.</p>
   {{ govukDetails({
     summaryText: "More about permissions",
     html: guidanceHtml
   }) }}
 {% endset %}
 
-{{ appBanner({
+{# {{ appBanner({
   html: bannerHtml
-})}}
+})}} #}
+
+<p>All users at your organisation and partner organisation can view applications. You do not need to set permissions for this.</p>

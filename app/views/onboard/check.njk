@@ -26,11 +26,8 @@
 
       <form novalidate action="/onboard/confirmation">
 
-
-
-
         <h2 class="govuk-heading-m">
-          {{ data.user.organisations[0].name }} and partners
+          {{ data.user.organisations[0].name }}
         </h2>
 
         {% set makeDecisionsHtml %}
@@ -84,7 +81,7 @@
           {% endset %}
 
           {% set title %}
-            For courses ratified by {{ data.accreditedBodies[0].name }}
+            {{ data.user.organisations[0].name }} and {{ data.accreditedBodies[0].name }}
           {% endset %}
           {{appSummaryCard({
             titleText: title,

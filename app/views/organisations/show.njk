@@ -43,13 +43,11 @@
         {% for relationship in relationships %}
 
           {% set title %}
-            {% if relationship.org.isAccreditedBody %}
-              For courses run by {{ relationship.partner.name }}
-            {% else %}
-              For courses ratified by {{ relationship.partner.name }}
-            {% endif %}
+            {{relationship.org.name}} and {{ relationship.partner.name }}
           {% endset %}
-
+          {% set viewApplicationsHtml %}
+            <p>All users at your organisation and partner organisations can view applications. You do not need to set permissions for this.</p>
+          {% endset %}
           {% set makeDecisionsHtml %}
             {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
               <ul class="govuk-list">
@@ -61,15 +59,11 @@
                 {% endif %}
               </ul>
             {% else %}
-
               {% if relationship.org.isAccreditedBody %}
-                <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Users can still view applications in the meantime.</p>
+                <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Users at {{ org.name}} and {{ relationship.partner.name }} cannot make decisions because you’ve not set this up yet – they can still view applications in the meantime.</p>
+                <p class="govuk-!-margin-bottom-0">No users can make decisions, because you have not set this up yet.</p>
               {% endif %}
-
-
             {% endif %}
           {% endset %}
           {% set viewSafeguardingHtml %}
@@ -84,10 +78,9 @@
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Users can still view applications in the meantime.</p>
+                <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Users at {{ org.name}} and {{ relationship.partner.name }} cannot see safeguarding information because you’ve not set this up yet – they can still view applications in the meantime.</p>
+                <p class="govuk-!-margin-bottom-0">No users can see safeguarding information because you have not set this up yet.</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -103,10 +96,9 @@
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>{{ relationship.partner.name }} have not set up permissions for this yet – only they can set up permissions. Contact them to do this.</p>
-                <p>Users can still view applications in the meantime.</p>
+                <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Users at {{ org.name}} and {{ relationship.partner.name }} cannot see diversity information because you’ve not set this up yet – they can still view applications in the meantime.</p>
+                <p class="govuk-!-margin-bottom-0">No users can see diversity information because you have not set this up yet.</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -119,12 +111,30 @@
 
             {% if relationship.org.isAccreditedBody %}
 
-              <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to do this.</p>
+              <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to change these settings.</p>
 
             {% endif %}
 
             {{ govukSummaryList({
+              classes: "app-summary-list--border-top" if relationship.org.isAccreditedBody,
               rows: [
+                {
+                  key: {
+                    text: "Which organisations can view applications?"
+                  },
+                  value: {
+                    html: viewApplicationsHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "name"
+                      }
+                    ]
+                  } if 1 == 2
+                },
                 {
                   key: {
                     text: "Which organisations can make decisions?"
