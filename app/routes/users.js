@@ -16,22 +16,22 @@ module.exports = router => {
     })
   })
 
-  router.get('/users/:userId', (req, res) => {
-    const flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'user-name-updated': 'User’s name successfully updated',
-        'user-email-address-updated': 'User’s email address successfully updated',
-        'user-providers-updated': 'User’s access successfully updated',
-        'user-permissions-updated': 'User’s permissions successfully updated'
-      }
-    })
+  // router.get('/users/:userId', (req, res) => {
+  //   const flashMessage = utils.getFlashMessage({
+  //     flash: req.flash('success'),
+  //     overrideValue: req.query.flash,
+  //     map: {
+  //       'user-name-updated': 'User’s name successfully updated',
+  //       'user-email-address-updated': 'User’s email address successfully updated',
+  //       'user-providers-updated': 'User’s access successfully updated',
+  //       'user-permissions-updated': 'User’s permissions successfully updated'
+  //     }
+  //   })
 
-    res.render(`users/${req.params.userId}/index`, {
-      flashMessage: flashMessage
-    })
-  })
+  //   res.render(`users/${req.params.userId}/index`, {
+  //     flashMessage: flashMessage
+  //   })
+  // })
 
   router.post('/users/new', (req, res) => {
     // res.redirect('/users/new/providers')
@@ -86,5 +86,47 @@ module.exports = router => {
     req.flash('success', 'user-account-deleted')
     res.redirect('/users')
   })
+
+
+  function mixinRelatedOrgPermissions(org, relationships, permissionType) {
+    relationships.forEach(relationship => {
+      // find/match the org
+      if(relationship.org.id == org.org.id) {
+        // if has permissions
+        if(relationship.orgPermissions && relationship.orgPermissions[permissionType]) {
+          if(!org.permissions.applicableOrgs[permissionType]) {
+            org.permissions.applicableOrgs[permissionType] = []
+          }
+          org.permissions.applicableOrgs[permissionType].push(relationship.partner)
+        } else {
+          if(!org.permissions.nonApplicableOrgs[permissionType]) {
+            org.permissions.nonApplicableOrgs[permissionType] = []
+          }
+          org.permissions.nonApplicableOrgs[permissionType].push(relationship.partner)
+        }
+      }
+    })
+  }
+
+
+  router.get('/users/:userId', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+
+    // mixin org permissions into user object
+    user.organisations.forEach(org => {
+      org.permissions.applicableOrgs = {};
+      org.permissions.nonApplicableOrgs = {};
+
+      // make decisions
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+
+
+    })
+
+    res.render('users/show', { user })
+  })
+
 
 }

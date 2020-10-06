@@ -28,7 +28,17 @@
         text: 'Invite user',
         href: '/users/new'
       })}}
-      <div class="app-application-card">
+
+      {% for user in data.users %}
+        <div class="app-application-card">
+          <div>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
+            <p class="govuk-!-margin-bottom-1">{{ user.emailAddress }}</p>
+            <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ user.organisations[0].org.name }}</p>
+          </div>
+        </div>
+      {% endfor %}
+      {# <div class="app-application-card">
         <div>
           <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/1">{{ data.user.givenName }} {{ data.user.familyName }}</a></h2>
           <p class="govuk-!-margin-bottom-1">{{ data.user.emailAddress }}</p>
@@ -41,8 +51,8 @@
           <p class="govuk-!-margin-bottom-1">duncan.brown@newzoescitt.co.uk</p>
           <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ data.user.organisations[0].name }}</p>
         </div>
-      </div>
-      {% if flashMessage %}
+      </div> #}
+      {# {% if flashMessage %}
         <div class="app-application-card">
           <div>
             <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/show">{{data['first-name']}} {{data['last-name']}}</a></h2>
@@ -50,7 +60,7 @@
             <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ data.user.organisations[0].name }}</p>
           <div>
         </div>
-      {% endif %}
+      {% endif %} #}
     </div>
   </div>
 

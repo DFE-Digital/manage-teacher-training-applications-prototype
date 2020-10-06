@@ -8,6 +8,8 @@ const accreditedBodies = require('./organisations.json').filter(org => {
 
 let applications = require('./applications.json')
 
+let users = require('./users.json')
+
 applications = applications
   .filter(app => {
     if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
@@ -105,6 +107,19 @@ relationships = [{
 }, {
   org: accreditedBodies[1],
   partner: trainingProviders[1],
+}, {
+  org: accreditedBodies[1],
+  orgPermissions: {
+    makeDecisions: true,
+    safeguarding: false,
+    diversity: true
+  },
+  partner: trainingProviders[0],
+  partnerPermissions: {
+    makeDecisions: false,
+    safeguarding: false,
+    diversity: false
+  }
 }];
 
 let userOrgs = [trainingProviders[0], accreditedBodies[0], accreditedBodies[1]];
@@ -126,6 +141,7 @@ module.exports = {
   applications,
   trainingProviders,
   accreditedBodies,
+  users,
   bare: process.env.BARE,
   flags: {
     interview_preferences: true

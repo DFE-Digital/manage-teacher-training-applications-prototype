@@ -1,0 +1,38 @@
+[
+  {
+    "id": "763b0a55-e84d-48d8-a7dd-5753acfe9cfa",
+    "firstName": "Claudine",
+    "lastName": "Adams",
+    "emailAddress": "claudine.adams@newzoescitt.co.uk",
+    "organisations": [
+      {
+        "org": {
+          "id": "8e13f9b5-99d6-47e9-a257-cf420cebd1dd",
+          "name": "Wren Academy",
+          "isAccreditedBody": false
+        },
+        "permissions": {
+          "manageOrganisation": true,
+          "manageUsers": true,
+          "makeDecisions": true,
+          "viewSafeguardingInformation": true,
+          "viewDiversityInformation": true
+        }
+      },
+      {
+        "org": {
+          "id": "f4a0162e-3391-4b50-bf5b-195797ec6d23",
+          "name": "Kingston University",
+          "isAccreditedBody": true
+        },
+        "permissions": {
+          "manageOrganisation": true,
+          "manageUsers": true,
+          "makeDecisions": true,
+          "viewSafeguardingInformation": true,
+          "viewDiversityInformation": true
+        }
+      }
+    ]
+  }
+]
