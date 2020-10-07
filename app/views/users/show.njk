@@ -117,7 +117,6 @@
                   Make decisions
                 </p>
 
-
                 {% if org.permissions.applicableOrgs.makeDecisions %}
                   <div class="govuk-!-margin-left-5">
                     {% if org.org.isAccreditedBody %}
@@ -149,7 +148,7 @@
                       {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
                         <li>{{ appIcon({
                             classes: "govuk-!-margin-right-1",
-                            icon: "tick",
+                            icon: "cross",
                             hidden: true
                           }) }} {{ item.name }}
                         </li>
@@ -195,7 +194,7 @@
                       {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
                         <li>{{ appIcon({
                             classes: "govuk-!-margin-right-1",
-                            icon: "tick",
+                            icon: "cross",
                             hidden: true
                           }) }} {{ item.name }}
                         </li>
@@ -204,6 +203,7 @@
                   </div>
                 {% endif %}
               {% endif %}
+
               {% if org.permissions.viewDiversityInformation %}
                 <p class="govuk-!-font-weight-bold">
                   {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
@@ -236,7 +236,7 @@
                       {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
                         <li>{{ appIcon({
                             classes: "govuk-!-margin-right-1",
-                            icon: "tick",
+                            icon: "cross",
                             hidden: true
                           }) }} {{ item.name }}
                         </li>

@@ -26,99 +26,34 @@ applications = applications
     }
   })
 
-let relationships = [{
-  org: trainingProviders[0],
-  orgPermissions: {
-    makeDecisions: true,
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[0],
-  partnerPermissions: {
-    makeDecisions: false,
-    safeguarding: true,
-    diversity: false
-  }
-}, {
-  org: trainingProviders[0],
-  orgPermissions: {
-    makeDecisions: true,
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[1],
-  partnerPermissions: {
-    makeDecisions: false,
-    safeguarding: true,
-    diversity: false
-  }
-}, {
-  org: trainingProviders[1],
-  orgPermissions: {
-    makeDecisions: true,
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[1],
-  partnerPermissions: {
-    makeDecisions: false,
-    safeguarding: true,
-    diversity: false
-  }
-}]
+console.log(trainingProviders[0])
+console.log(accreditedBodies[0])
 
-relationships = [{
-  org: trainingProviders[0],
-  orgPermissions: {
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[0],
-  partnerPermissions: {
-    safeguarding: true,
-    diversity: false
-  }
-}, {
-  org: trainingProviders[0],
-  orgPermissions: {
-    makeDecisions: true,
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[1],
-  partnerPermissions: {
-    makeDecisions: true,
-    safeguarding: true,
-    diversity: false
-  }
-}, {
-  org: accreditedBodies[0],
-  orgPermissions: {
-    makeDecisions: true,
-    safeguarding: false,
-    diversity: true
-  },
-  partner: trainingProviders[1],
-  partnerPermissions: {
+let relationships = [{
+  org1: trainingProviders[0],
+  org1Permissions: {
     makeDecisions: false,
-    safeguarding: false,
-    diversity: false
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: accreditedBodies[0],
+  org2Permissions: {
+    makeDecisions: false,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: false
   }
 }, {
-  org: accreditedBodies[1],
-  partner: trainingProviders[1],
-}, {
-  org: accreditedBodies[1],
-  orgPermissions: {
+  org1: trainingProviders[0],
+  org1Permissions: {
     makeDecisions: true,
-    safeguarding: false,
-    diversity: true
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
   },
-  partner: trainingProviders[0],
-  partnerPermissions: {
-    makeDecisions: false,
-    safeguarding: false,
-    diversity: false
+  org2: accreditedBodies[1],
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: false
   }
 }];
 

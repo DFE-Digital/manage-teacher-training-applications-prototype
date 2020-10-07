@@ -67,12 +67,12 @@
             {% endif %}
           {% endset %}
           {% set viewSafeguardingHtml %}
-            {% if relationship.orgPermissions.safeguarding or relationship.partnerPermissions.safeguarding %}
+            {% if relationship.orgPermissions.viewSafeguardingInformation or relationship.partnerPermissions.viewSafeguardingInformation %}
               <ul class="govuk-list">
-                {% if relationship.orgPermissions.safeguarding %}
+                {% if relationship.orgPermissions.viewSafeguardingInformation %}
                   <li>{{tick | safe }} {{ relationship.org.name }}</li>
                 {% endif %}
-                {% if relationship.partnerPermissions.safeguarding %}
+                {% if relationship.partnerPermissions.viewSafeguardingInformation %}
                   <li>{{tick | safe }} {{ relationship.partner.name }}</li>
                 {% endif %}
               </ul>
@@ -85,12 +85,12 @@
             {% endif %}
           {% endset %}
           {% set viewDiversityHtml %}
-            {% if relationship.orgPermissions.diversity or relationship.partnerPermissions.diversity %}
+            {% if relationship.orgPermissions.viewDiversityInformation or relationship.partnerPermissions.viewDiversityInformation %}
               <ul class="govuk-list">
-                {% if relationship.orgPermissions.diversity %}
+                {% if relationship.orgPermissions.viewDiversityInformation %}
                   <li>{{tick | safe }} {{ relationship.org.name }}</li>
                 {% endif %}
-                {% if relationship.partnerPermissions.diversity %}
+                {% if relationship.partnerPermissions.viewDiversityInformation %}
                   <li>{{tick | safe }} {{ relationship.partner.name }}</li>
                 {% endif %}
               </ul>

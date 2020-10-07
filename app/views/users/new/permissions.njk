@@ -4,7 +4,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/users/new/providers"
+    href: "/users/new/organisations"
   }) }}
 {% endblock %}
 
@@ -14,77 +14,137 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-xl">Invite user</span>
-        Do you want to give this user extra permissions for {{ data.user.organisations[0].name }}?
+        Select permissions: {{ org.org.name }}
       {% endset %}
 
       {% set makeDecisionsHintHtml %}
         <p class="govuk-!-margin-bottom-1">Make offers, amend offers and reject applications</p>
 
-        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.accreditedBodies[0].name }}
-          </li>
-        </ul>
+        {% if org.permissions.applicableOrgs.makeDecisions %}
+          <div class="govuk-!-margin-left-5">
+            {% if org.org.isAccreditedBody %}
+              <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+            {% endif %}
+            <ul class="govuk-list">
+              {% for item in org.permissions.applicableOrgs.makeDecisions %}
+                <li>{{ appIcon({
+                    classes: "govuk-!-margin-right-1",
+                    icon: "tick",
+                    hidden: true
+                  }) }} {{ item.name }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
 
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "cross",
-              hidden: true
-            }) }} {{ data.accreditedBodies[1].name }}
-          </li>
-        </ul>
+        {% if org.permissions.nonApplicableOrgs.makeDecisions %}
+          <div class="govuk-!-margin-left-5">
+            {% if org.org.isAccreditedBody %}
+              <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+            {% endif %}
+            <ul class="govuk-list">
+              {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
+                <li>{{ appIcon({
+                    classes: "govuk-!-margin-right-1",
+                    icon: "cross",
+                    hidden: true
+                  }) }} {{ item.name }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
       {% endset %}
 
       {% set safeguardingInformationHintHtml %}
         <p class="govuk-!-margin-bottom-1">View sensitive material about the candidate</p>
-        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.accreditedBodies[0].name }}
-          </li>
-        </ul>
+        {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
+          <div class="govuk-!-margin-left-5">
+            {% if org.org.isAccreditedBody %}
+              <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+            {% endif %}
+            <ul class="govuk-list">
+              {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
+                <li>{{ appIcon({
+                    classes: "govuk-!-margin-right-1",
+                    icon: "tick",
+                    hidden: true
+                  }) }} {{ item.name }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
 
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "cross",
-              hidden: true
-            }) }} {{ data.accreditedBodies[1].name }}
-          </li>
-        </ul>
+        {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+          <div class="govuk-!-margin-left-5">
+            {% if org.org.isAccreditedBody %}
+              <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+            {% endif %}
+            <ul class="govuk-list">
+              {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
+                <li>{{ appIcon({
+                    classes: "govuk-!-margin-right-1",
+                    icon: "cross",
+                    hidden: true
+                  }) }} {{ item.name }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
       {% endset %}
 
       {% set diversityInformationHintHtml %}
         <p class="govuk-!-margin-bottom-1">View diversity information about the candidate</p>
-        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.accreditedBodies[0].name }}
-          </li>
-        </ul>
+        {% if org.permissions.applicableOrgs.viewDiversityInformation %}
+          <div class="govuk-!-margin-left-5">
+            {% if org.org.isAccreditedBody %}
+              <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+            {% endif %}
+            <ul class="govuk-list">
+              {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
+                <li>{{ appIcon({
+                    classes: "govuk-!-margin-right-1",
+                    icon: "tick",
+                    hidden: true
+                  }) }} {{ item.name }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
 
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "cross",
-              hidden: true
-            }) }} {{ data.accreditedBodies[1].name }}
-          </li>
-        </ul>
+        {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+          <div class="govuk-!-margin-left-5">
+            {% if org.org.isAccreditedBody %}
+              <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+            {% endif %}
+            <ul class="govuk-list">
+              {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+                <li>{{ appIcon({
+                    classes: "govuk-!-margin-right-1",
+                    icon: "cross",
+                    hidden: true
+                  }) }} {{ item.name }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
       {% endset %}
 
 
@@ -94,10 +154,10 @@
         {% set permissionsHtml %}
 
           {{ govukCheckboxes({
-              name: "permissions",
+              name: "newuser[permissions]["+ org.id+"]",
               fieldset: {
                 legend: {
-                  html: "Select permissions",
+                  html: "Select additional permissions",
                   classes: "govuk-fieldset__legend--m"
                 }
               },
@@ -157,8 +217,8 @@
         {% endset %}
 
         {{ govukRadios({
-          idPrefix: "extrapermissions",
-          name: "extrapermissions",
+          idPrefix: "newuser-access",
+          name: "newuser[access][orgId]",
           fieldset: {
             legend: {
               html: h1,
@@ -168,15 +228,18 @@
           },
           items: [
             {
-              value: "Yes, I want to give this user extra permissions",
-              text: "Yes, I want to give this user extra permissions",
+              value: "View applications only",
+              text: "View applications only"
+            },
+            {
+              value: "Additional permissions",
+              text: "Additional permissions",
+              hint: {
+                text: "Like being able to make offers and view safeguarding information"
+              },
               conditional: {
                 html: permissionsHtml
               }
-            },
-            {
-              value: "No, this user can only view applications",
-              text: "No, this user can only view applications"
             }
           ]
         }) }}
