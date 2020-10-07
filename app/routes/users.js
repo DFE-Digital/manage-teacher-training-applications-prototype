@@ -124,6 +124,45 @@ module.exports = router => {
     })
   })
 
+  router.post('/users/new/permissions/:orgId', (req, res) => {
+
+    var index = req.session.data.newuser.organisations.indexOf(req.params.orgId)
+    if(req.session.data.newuser.organisations[index+1]) {
+      res.redirect(`/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
+    } else {
+      res.redirect(`/users/new/check`)
+    }
+
+  })
+
+  router.get('/users/new/check', (req, res) => {
+    var orgs = req.session.data.newuser.organisations.map(orgId => {
+      return {
+        org: req.session.data.organisations.find(org => org.id == orgId),
+        permissions: {
+          manageOrganisations: req.session.data.newuser.permissions[orgId].indexOf('manageOrganisations') > -1,
+          manageUsers: req.session.data.newuser.permissions[orgId].indexOf('manageUsers') > -1,
+          makeDecisions: req.session.data.newuser.permissions[orgId].indexOf('makeDecisions') > -1,
+          viewSafeguardingInformation: req.session.data.newuser.permissions[orgId].indexOf('viewSafeguardingInformation') > -1,
+          viewDiversityInformation: req.session.data.newuser.permissions[orgId].indexOf('viewDiversityInformation') > -1
+        }
+      }
+    })
+
+    // mixin org permissions
+    orgs.forEach(org => {
+      org.permissions.applicableOrgs = {};
+      org.permissions.nonApplicableOrgs = {};
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+    })
+
+    res.render('users/new/check', {
+      orgs
+    })
+  })
+
 
   router.post('/users/new/check', (req, res) => {
     req.flash('success', 'user-invited')

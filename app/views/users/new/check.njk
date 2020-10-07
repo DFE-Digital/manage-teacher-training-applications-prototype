@@ -10,260 +10,234 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <span class="govuk-caption-xl">Invite user</span>
-        <h1 class="govuk-heading-xl">{{title}}</h1>
+      <span class="govuk-caption-xl">Invite user</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
 
-
-      {% set permissionsHtml %}
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Manage organisation</p>
-
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Manage users</p>
-
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Make decisions</p>
-        <div class="govuk-!-margin-left-5">
-        <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.accreditedBodies[0].name }}
-          </li>
-        </ul>
-
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "cross",
-              hidden: true
-            }) }} {{ data.accreditedBodies[1].name }}
-          </li>
-        </ul>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data.newuser['first-name']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/users/new">
+              Change<span class="govuk-visually-hidden"> </span>
+            </a>
+          </dd>
         </div>
 
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} Access safeguarding information</p>
-        <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.accreditedBodies[0].name }}
-          </li>
-        </ul>
-
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "cross",
-              hidden: true
-            }) }} {{ data.accreditedBodies[1].name }}
-          </li>
-        </ul>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data.newuser['last-name']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/users/new">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
         </div>
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
-          icon: "tick",
-          hidden: true
-        }) }} Access diversity information</p>
-        <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.accreditedBodies[0].name }}
-          </li>
-        </ul>
 
-        <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "cross",
-              hidden: true
-            }) }} {{ data.accreditedBodies[1].name }}
-          </li>
-        </ul>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data.newuser['email-address']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/users/{{user.id}}/email-address/edit">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
         </div>
-      {% endset %}
 
-      {% set permissions2Html %}
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Manage organisation</p>
+        {% if user.organisations.length > 1 %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Organisations this user has access to
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% for organisation in user.organisations %}
+                <p>{{organisation.org.name}}</p>
+              {% endfor %}
+            </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/users/{{user.id}}/organisations/edit">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+          </div>
+        {% endif %}
 
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Manage users</p>
+        {% for org in orgs %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Permissions: {{org.org.name}}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if org.permissions.manageOrganisations %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  Manage organisational permissions
+                </p>
+              {% endif %}
+              {% if org.permissions.manageUsers %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  Manage users
+                </p>
+              {% endif %}
+              {% if org.permissions.makeDecisions %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  Make decisions
+                </p>
 
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Make decisions</p>
-             <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[0].name }}
-          </li>
-        </ul>
-        </div>
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Access safeguarding information</p>
-        <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[0].name }}
-          </li>
-        </ul>
-        </div>
-        <p class="govuk-!-font-weight-bold">{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} Access diversity information</p>
-        <div class="govuk-!-margin-left-5">
-         <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-        <ul class="govuk-list">
-          <li>{{ appIcon({
-              classes: "govuk-!-margin-right-1",
-              icon: "tick",
-              hidden: true
-            }) }} {{ data.organisations[0].name }}
-          </li>
-        </ul>
-        </div>
-      {% endset %}
+                {% if org.permissions.applicableOrgs.makeDecisions %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.applicableOrgs.makeDecisions %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "tick",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "First name"
-            },
-            value: {
-              text: data['first-name']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Last name"
-            },
-            value: {
-              text: data['last-name']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: data['email-address']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new",
-                  text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Do you want to give this user extra permissions?"
-            },
-            value: {
-              text: "No, I just  want to give this user the ability to view applications"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new",
-                  text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Extra permissions"
-            },
-            value: {
-              html: permissionsHtml
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new/permissions",
-                  text: "Change",
-                  visuallyHiddenText: "contact information"
-                }
-              ]
-            }
-          } if 1 == 2
-        ]
-      }) }}
+                {% if org.permissions.nonApplicableOrgs.makeDecisions %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "cross",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+              {% endif %}
+              {% if org.permissions.viewSafeguardingInformation %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  View safeguarding information
+                </p>
+                {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "tick",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "cross",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              {% endif %}
+
+              {% if org.permissions.viewDiversityInformation %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  View diversity information
+                </p>
+                {% if org.permissions.applicableOrgs.viewDiversityInformation %}
+                  <div class="govuk-!-margin-left-5">
+                  <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+                  <ul class="govuk-list">
+                    {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
+                      <li>{{ appIcon({
+                          classes: "govuk-!-margin-right-1",
+                          icon: "tick",
+                          hidden: true
+                        }) }} {{ item.name }}
+                      </li>
+                    {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+                  <div class="govuk-!-margin-left-5">
+                  {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "cross",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/users/new/permissions/{{org.org.id}}">
+                Change<span class="govuk-visually-hidden"></span>
+              </a>
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
 
       <p>We'll send the user an email guiding them through DfE Sign-In and giving them access to their account.</p>
 
@@ -276,53 +250,3 @@
   </div>
 
 {% endblock %}
-
-{# {
-            key: {
-              text: "Organisations this user will have access to"
-            },
-            value: {
-              html: "<p>" + data.organisations[0].name + "</p><p>" + data.organisations[4].name +"</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/providers",
-                  text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-
-
-
-
-
-
-
-
-
-          ,
-          {
-            key: {
-              text: "Permissions: " + data.organisations[4].name
-            },
-            value: {
-              html: permissions2Html
-            },
-            actions: {
-              items: [
-                {
-                  href: "/users/new/permissions2",
-                  text: "Change",
-                  visuallyHiddenText: "contact information"
-                }
-              ]
-            }
-          }
-
-
-
-
-          #}

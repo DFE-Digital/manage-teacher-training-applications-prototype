@@ -22,13 +22,14 @@
             text: "Email address",
             classes: "govuk-label--m"
           },
-          id: "email-address",
-          name: "email-address",
+          id: "newuser[email-address]",
+          name: "newuser[email-address]",
           type: "email",
           autocomplete: "email",
           attributes: {
             spellcheck: "false"
-          }
+          },
+          value: data.newuser['email-address']
         }) }}
 
         {{ govukInput({
@@ -36,12 +37,13 @@
             text: "First name",
             classes: "govuk-label--m"
           },
-          id: "first-name",
-          name: "first-name",
+          id: "newuser[first-name]",
+          name: "newuser[first-name]",
           type: "text",
           attributes: {
             spellcheck: "false"
-          }
+          },
+          value: data.newuser['first-name']
         }) }}
 
         {{ govukInput({
@@ -49,12 +51,13 @@
             text: "Last name",
             classes: "govuk-label--m"
           },
-          id: "last-name",
-          name: "last-name",
+          id: "newuser[last-name]",
+          name: "newuser[last-name]",
           type: "text",
           attributes: {
             spellcheck: "false"
-          }
+          },
+          value: data.newuser['last-name']
         }) }}
 
          {{ govukWarningText({

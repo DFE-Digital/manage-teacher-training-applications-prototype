@@ -26,9 +26,6 @@ applications = applications
     }
   })
 
-console.log(trainingProviders[0])
-console.log(accreditedBodies[0])
-
 let relationships = [{
   org1: trainingProviders[0],
   org1Permissions: {
@@ -76,6 +73,7 @@ module.exports = {
   applications,
   trainingProviders,
   accreditedBodies,
+  organisations: require('./organisations.json'),
   users,
   bare: process.env.BARE,
   flags: {

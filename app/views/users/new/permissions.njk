@@ -148,13 +148,12 @@
       {% endset %}
 
 
-      {# <form novalidate method="get" action="/users/new/permissions2"> #}
-      <form novalidate method="get" action="/users/new/check">
+      <form novalidate method="post" >
 
         {% set permissionsHtml %}
 
           {{ govukCheckboxes({
-              name: "newuser[permissions]["+ org.id+"]",
+              name: "newuser[permissions]["+ org.org.id +"]",
               fieldset: {
                 legend: {
                   html: "Select additional permissions",
@@ -163,7 +162,7 @@
               },
               items: [
                 {
-                  value: "Manage organisational permissions",
+                  value: "manageOrganisations",
                   text: "Manage organisational permissions",
                   label: {
                     classes: "govuk-label--s"
@@ -173,7 +172,7 @@
                   }
                 },
                 {
-                  value: "Manage users",
+                  value: "manageUsers",
                   text: "Manage users",
                   label: {
                     classes: "govuk-label--s"
@@ -183,7 +182,7 @@
                   }
                 },
                 {
-                  value: "Make decisions",
+                  value: "makeDecisions",
                   html: "Make decisions",
                   label: {
                     classes: "govuk-label--s"
@@ -193,7 +192,7 @@
                   }
                 },
                 {
-                  value: "See safeguarding information",
+                  value: "viewSafeguardingInformation",
                   text: "Access safeguarding information",
                   label: {
                     classes: "govuk-label--s"
@@ -203,7 +202,7 @@
                   }
                 },
                 {
-                  value: "Access diversity information",
+                  value: "viewDiversityInformation",
                   text: "Access diversity information",
                   label: {
                     classes: "govuk-label--s"
