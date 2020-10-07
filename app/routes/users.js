@@ -44,16 +44,7 @@ module.exports = router => {
 
 
   // router.get('/users/:userId', (req, res) => {
-  //   const flashMessage = utils.getFlashMessage({
-  //     flash: req.flash('success'),
-  //     overrideValue: req.query.flash,
-  //     map: {
-  //       'user-name-updated': 'User’s name successfully updated',
-  //       'user-email-address-updated': 'User’s email address successfully updated',
-  //       'user-providers-updated': 'User’s access successfully updated',
-  //       'user-permissions-updated': 'User’s permissions successfully updated'
-  //     }
-  //   })
+
 
   //   res.render(`users/${req.params.userId}/index`, {
   //     flashMessage: flashMessage
@@ -77,7 +68,18 @@ module.exports = router => {
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     })
 
-    res.render('users/show', { user })
+    const flashMessage = utils.getFlashMessage({
+      flash: req.flash('success'),
+      overrideValue: req.query.flash,
+      map: {
+        'user-name-updated': 'User’s name successfully updated',
+        'user-email-address-updated': 'User’s email address successfully updated',
+        'user-providers-updated': 'User’s access successfully updated',
+        'user-permissions-updated': 'User’s permissions successfully updated'
+      }
+    })
+
+    res.render('users/show', { user, flashMessage })
   })
 
   router.post('/users/new', (req, res) => {
@@ -169,39 +171,69 @@ module.exports = router => {
     res.redirect('/users/')
   })
 
-  router.post('/users/new-check', (req, res) => {
-    req.flash('success', 'user-invited')
-    res.redirect('/users/')
+  // Edit name
+
+  router.get('/users/:userId/name/edit', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+    res.render('users/change-name', {
+      user
+    })
   })
 
-  router.post('/users/:userId/change-name', (req, res) => {
+  router.post('/users/:userId/name/edit', (req, res) => {
     req.flash('success', 'user-name-updated')
     res.redirect(`/users/${req.params.userId}`)
   })
 
-  router.post('/users/:userId/change-email-address', (req, res) => {
+  // Edit email
+
+  router.get('/users/:userId/email-address/edit', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+    res.render('users/change-email-address', {
+      user
+    })
+  })
+
+  router.post('/users/:userId/email-address/edit', (req, res) => {
     req.flash('success', 'user-email-address-updated')
     res.redirect(`/users/${req.params.userId}`)
   })
 
-  router.post('/users/change-providers', (req, res) => {
-    req.flash('success', 'user-providers-updated')
-    res.redirect('/users/show')
+  // Edit permissions
+
+  router.get('/users/:userId/permissions/:orgId/edit', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+    var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
+
+    // hurrendous but don't worry peeps
+    org = {
+      org: org,
+      permissions: {
+        applicableOrgs: {},
+        nonApplicableOrgs: {}
+      }
+    }
+
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+    res.render('users/change-permissions', {
+      user,
+      org
+    })
   })
 
-  router.post('/users/:userId/change-permissions', (req, res) => {
+
+  router.post('/users/:userId/permissions/:orgId/edit', (req, res) => {
     req.flash('success', 'user-permissions-updated')
     res.redirect(`/users/${req.params.userId}`)
   })
 
-  router.post('/users/:userId/change-permissions2', (req, res) => {
-    req.flash('success', 'user-permissions-updated')
-    res.redirect(`/users/${req.params.userId}`)
-  })
+  // Delete user
 
-  router.post('/users/:userId/change-organisations/check', (req, res) => {
-    req.flash('success', 'user-permissions-updated')
-    res.redirect(`/users/${req.params.userId}`)
+  router.get('/users/:userId/delete', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+    res.render('users/delete', { user })
   })
 
   router.post('/users/:userId/delete', (req, res) => {

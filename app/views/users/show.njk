@@ -41,7 +41,7 @@
             {{firstName}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/users/{{user.id}}/first-name/edit">
+            <a class="govuk-link" href="/users/{{user.id}}/name/edit">
               Change<span class="govuk-visually-hidden"> </span>
             </a>
           </dd>
@@ -55,7 +55,7 @@
             {{lastName}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/users/{{user.id}}/last-name/edit">
+            <a class="govuk-link" href="/users/{{user.id}}/name/edit">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -258,7 +258,7 @@
       {{ govukButton({
         text: "Delete user",
         classes: "govuk-button--warning",
-        href: "/users/1/delete"
+        href: "/users/"+ user.id + "/delete"
       }) }}
     </div>
   </div>

@@ -1,10 +1,14 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
+{% set firstName = user.firstName %}
+{% set lastName = user.lastName %}
+{% set name = firstName + " " + lastName %}
+{% set title = "Change permissions: " + data.user.organisations[0].name %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/users/new/organisations"
+    href: "/users/" + user.id
   }) }}
 {% endblock %}
 
@@ -13,8 +17,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-xl">Invite user</span>
-        Set permissions: {{ org.org.name }}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
       {% endset %}
 
       {% set makeDecisionsHintHtml %}
@@ -148,12 +152,12 @@
       {% endset %}
 
 
-      <form novalidate method="post" >
+      <form novalidate method="post">
 
         {% set permissionsHtml %}
 
           {{ govukCheckboxes({
-              name: "newuser[permissions]["+ org.org.id +"]",
+              name: "changepermissions["+ org.org.id +"]",
               fieldset: {
                 legend: {
                   html: "Select permissions",
@@ -247,7 +251,7 @@
         }) }}
 
         {{govukButton({
-          text: "Continue"
+          text: "Save"
         })}}
       </form>
     </div>

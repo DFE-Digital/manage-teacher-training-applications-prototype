@@ -1,24 +1,30 @@
 {% extends "_content-wide.njk" %}
 
-{% set title = "Set up permissions between your own organisations and your partner organisations" %}
+{% set title = "Set organisational permissions" %}
 
 {% block primary %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p>You can control which organisations can see sensitive information, and those who can make decisions about applications.</p>
+      <p>Choose which organisations can:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions about applications</li>
+        <li>access sensitive candidate information</li>
+      </ul>
 
-      <p>These permissions govern what individual users are able to do within their own organisations.</p>
+      <p>You’ll need to do this for:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your own organisations</li>
+        <li>any accredited bodies you work with</li>
+      </ul>
 
-      <p>For example, if your organisation can make decisions and your partner organisation cannot make decisions, then their users will not be able to make decisions on those particular applications.</p>
-
-      <p>You need to set up permissions for the following partnerships:</p>
+      <p>You can set permissions for individual users separately.</p>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Your organisations</th>
-            <th scope="col" class="govuk-table__header">Partner organisations</th>
+            <th scope="col" class="govuk-table__header">Accredited bodies</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -38,7 +44,7 @@
       </tbody>
       </table>
 
-      <form novalidate action="/onboard/information">
+      <form novalidate action="/onboard/relationship1">
         {{govukButton({
           text: "Continue"
         })}}
