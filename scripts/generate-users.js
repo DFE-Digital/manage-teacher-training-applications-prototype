@@ -40,6 +40,24 @@ const generateFakeUsers = (count) => {
 
   users.push(user1)
 
+  let user2 = generateFakeUser({
+    firstName: 'Duncan',
+    lastName: 'Patricks',
+    emailAddress: 'duncan.patricks@newzoescitt.co.uk',
+    organisations: [{
+      org: organisations[2],
+      permissions: {
+        manageOrganisation: true,
+        manageUsers: true,
+        makeDecisions: true,
+        viewSafeguardingInformation: true,
+        viewDiversityInformation: true
+      }
+    }]
+  })
+
+  users.push(user2)
+
   return users
 }
 

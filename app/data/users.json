@@ -1,13 +1,13 @@
 [
   {
-    "id": "763b0a55-e84d-48d8-a7dd-5753acfe9cfa",
+    "id": "9e31bdef-1388-4d83-80e4-df10606b15c1",
     "firstName": "Claudine",
     "lastName": "Adams",
     "emailAddress": "claudine.adams@newzoescitt.co.uk",
     "organisations": [
       {
         "org": {
-          "id": "8e13f9b5-99d6-47e9-a257-cf420cebd1dd",
+          "id": "8ea4ff38-a1a4-49ba-b8f4-9967f57749d4",
           "name": "Wren Academy",
           "isAccreditedBody": false
         },
@@ -21,9 +21,31 @@
       },
       {
         "org": {
-          "id": "f4a0162e-3391-4b50-bf5b-195797ec6d23",
+          "id": "36114c25-6efa-46dd-93ee-24efd6275d4b",
           "name": "Kingston University",
           "isAccreditedBody": true
+        },
+        "permissions": {
+          "manageOrganisation": true,
+          "manageUsers": true,
+          "makeDecisions": true,
+          "viewSafeguardingInformation": true,
+          "viewDiversityInformation": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "2752d168-d8c3-4427-8260-5c6ddeb91069",
+    "firstName": "Duncan",
+    "lastName": "Patricks",
+    "emailAddress": "duncan.patricks@newzoescitt.co.uk",
+    "organisations": [
+      {
+        "org": {
+          "id": "8ea4ff38-a1a4-49ba-b8f4-9967f57749d4",
+          "name": "Wren Academy",
+          "isAccreditedBody": false
         },
         "permissions": {
           "manageOrganisation": true,
