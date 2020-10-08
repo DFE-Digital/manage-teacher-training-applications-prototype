@@ -30,6 +30,18 @@
           {{ data.user.organisations[0].name }}
         </h2>
 
+        {% set viewApplicationsHtml %}
+          <ul class="govuk-list">
+          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
+          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }} (can only see courses they ratify)</li>
+        </ul>
+
+          {{ govukDetails({
+            summaryText: "Why can’t this be changed?",
+            text: "All users at both organisations can view applications – you do not need to set permissions for this."
+          }) }}
+
+        {% endset %}
         {% set makeDecisionsHtml %}
           <ul class="govuk-list">
             <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
@@ -54,26 +66,52 @@
         rows: [
           {
             key: {
-              text: "Which organisations can make decisions?"
+              text: "Who can view applications?"
+            },
+            value: {
+              html: viewApplicationsHtml
+            }
+          },
+          {
+            key: {
+              text: "Who can make decisions?"
             },
             value: {
               html: makeDecisionsHtml
+            },
+            actions: {
+              items: [{
+                href: "/onboard/relationship1",
+                text: "Change"
+              }]
             }
           },
           {
             key: {
-              text: "Which organisations can view safeguarding information?"
+              text: "Who can view safeguarding information?"
             },
             value: {
               html: viewSafeguardingHtml
+            },
+            actions: {
+              items: [{
+                href: "/onboard/relationship1",
+                text: "Change"
+              }]
             }
           },
           {
             key: {
-              text: "Which organisations can view diversity information?"
+              text: "Who can view diversity information?"
             },
             value: {
               html: viewDiversityHtml
+            },
+            actions: {
+              items: [{
+                href: "/onboard/relationship1",
+                text: "Change"
+              }]
             }
           }
         ]
@@ -86,12 +124,6 @@
           {{appSummaryCard({
             titleText: title,
             classes: "govuk-!-margin-bottom-6",
-            actions: {
-              items: [{
-                href: "/onboard/relationship1",
-                text: "Change"
-              }]
-            } if not relationship.org.isAccreditedBody,
             html: cardHtml
           })}}
 

@@ -46,7 +46,16 @@
             {{relationship.org.name}} and {{ relationship.partner.name }}
           {% endset %}
           {% set viewApplicationsHtml %}
-            <p>All users at your organisation and partner organisations can view applications. You do not need to set permissions for this.</p>
+            <ul class="govuk-list">
+              <li>{{tick | safe }} {{ relationship.org.name }}</li>
+              <li>{{tick | safe }} {{ relationship.partner.name }} {% if not relationship.org.isAccreditedBody %}(can only see courses they ratify) {% endif %}</li>
+            </ul>
+            {% if not relationship.org.isAccreditedBody %}
+            {{ govukDetails({
+              summaryText: "Why can’t this be changed?",
+              text: "All users at both organisations can view applications – you do not need to set permissions for this."
+            }) }}
+            {% endif %}
           {% endset %}
           {% set makeDecisionsHtml %}
             {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
@@ -120,24 +129,15 @@
               rows: [
                 {
                   key: {
-                    text: "Which organisations can view applications?"
+                    text: "Who can view applications?"
                   },
                   value: {
                     html: viewApplicationsHtml
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: editLink,
-                        text: "Change",
-                        visuallyHiddenText: "name"
-                      }
-                    ]
-                  } if 1 == 2
+                  }
                 },
                 {
                   key: {
-                    text: "Which organisations can make decisions?"
+                    text: "Who can make decisions?"
                   },
                   value: {
                     html: makeDecisionsHtml
@@ -150,11 +150,11 @@
                         visuallyHiddenText: "name"
                       }
                     ]
-                  } if 1 == 2
+                  } if not relationship.org.isAccreditedBody
                 },
                 {
                   key: {
-                    text: "Which organisations can view safeguarding information?"
+                    text: "Who can view safeguarding information?"
                   },
                   value: {
                     html: viewSafeguardingHtml
@@ -167,11 +167,11 @@
                         visuallyHiddenText: "name"
                       }
                     ]
-                  } if 1 == 2
+                  } if not relationship.org.isAccreditedBody
                 },
                 {
                   key: {
-                    text: "Which organisations can view diversity information?"
+                    text: "Who can view diversity information?"
                   },
                   value: {
                     html: viewDiversityHtml
@@ -184,7 +184,7 @@
                         visuallyHiddenText: "permissions for " + org.name
                       }
                     ]
-                  } if 1 == 2
+                  } if not relationship.org.isAccreditedBody
                 }
               ]
             }) }}
@@ -193,17 +193,11 @@
           {{appSummaryCard({
             titleText: title,
             classes: "govuk-!-margin-bottom-6",
-            actions: {
-              items: [{
-                href: editLink,
-                text: "Change"
-              }]
-            } if not relationship.org.isAccreditedBody,
             html: cardHtml
           })}}
         {% endfor %}
       {% else %}
-        <p class="govuk-!-margin-bottom-0">This organisation runs and ratifies its own courses. No permissions to set up.</p>
+        <p class="govuk-!-margin-bottom-0">This organisation runs and ratifies its own courses. You do not need to set permissions for this.</p>
       {% endif %}
 
     </div>
