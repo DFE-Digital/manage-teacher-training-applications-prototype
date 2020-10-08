@@ -212,6 +212,29 @@ module.exports = router => {
     res.redirect(`/users/${req.params.userId}`)
   })
 
+  // Edit organisations
+
+  router.get('/users/:userId/organisations/edit', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+
+    var items = req.session.data.user.organisations.map(org => {
+      return {
+        value: org.id,
+        text: org.name
+      }
+    })
+
+    res.render('users/change-organisations', {
+      user,
+      items
+    })
+  })
+
+  router.post('/users/:userId/organisations/edit', (req, res) => {
+    req.flash('success', 'user-organisations-updated')
+    res.redirect(`/users/${req.params.userId}`)
+  })
+
   // Edit permissions
 
   router.get('/users/:userId/permissions/:orgId/edit', (req, res) => {

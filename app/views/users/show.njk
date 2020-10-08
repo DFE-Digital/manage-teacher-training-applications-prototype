@@ -75,7 +75,6 @@
           </dd>
         </div>
 
-        {% if user.organisations.length > 1 %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Organisations this user has access to
@@ -91,7 +90,6 @@
                 </a>
               </dd>
           </div>
-        {% endif %}
 
         {% for org in user.organisations %}
           <div class="govuk-summary-list__row">
