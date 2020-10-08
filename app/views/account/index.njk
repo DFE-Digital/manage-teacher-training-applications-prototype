@@ -6,15 +6,13 @@
 {% set title = "Your account" %}
 
 {% block content %}
-  {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
-    type: "success",
-    icon: false
-  }) if flashMessage }}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{title}}</h1>
+    <h1 class="govuk-heading-xl">
+      Your account
+    </h1>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
 
       <h2 class="govuk-heading-m">
         <a href="/account/profile">Profile</a>
@@ -38,6 +36,8 @@
         <li>choose when you receive notifications</li>
         <li>choose how you receive notifications</li>
       </ul>
+    </div>
+    <div class="govuk-grid-column-one-half">
 
       <h2 class="govuk-heading-m">
         <a href="/users">Users</a>
