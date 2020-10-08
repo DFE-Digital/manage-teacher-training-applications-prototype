@@ -87,20 +87,6 @@ exports.hasOnlyOneConditionNotMet = (application) => {
   return this.getConditions(application).filter(condition => condition.status === 'Pending').length === 1
 }
 
-exports.getFlashMessage = (options) => {
-  if (options.overrideValue) {
-    return options.overrideValue
-  }
-
-  if (options.flash && options.map) {
-    for (const key in options.map) {
-      if (Object.prototype.hasOwnProperty.call(options.map, key) && options.flash[0] === key) {
-        return options.map[key]
-      }
-    }
-  }
-}
-
 function getLink (item, application) {
   var link = {}
   switch (item.title) {

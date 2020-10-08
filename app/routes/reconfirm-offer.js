@@ -82,7 +82,7 @@ module.exports = router => {
       title: "Offer reconfirmed"
     })
 
-    req.flash('success', 'offer-reconfirmed')
+    req.flash('success', 'Deferred offer successfully confirmed for current cycle')
     res.redirect(`/application/${applicationId}/offer`)
   })
 
@@ -208,7 +208,7 @@ module.exports = router => {
       title: "Offer reconfirmed"
     })
 
-    req.flash('success', 'offer-reconfirmed')
+    req.flash('success', 'Deferred offer successfully confirmed for current cycle')
     res.redirect(`/application/${applicationId}/offer`)
   })
 
@@ -347,7 +347,7 @@ module.exports = router => {
       title: "Offer reconfirmed"
     })
 
-    req.flash('success', 'offer-reconfirmed')
+    req.flash('success', 'Deferred offer successfully confirmed for current cycle')
     res.redirect(`/application/${applicationId}/offer`)
   })
 

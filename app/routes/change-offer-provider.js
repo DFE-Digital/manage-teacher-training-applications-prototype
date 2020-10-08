@@ -38,7 +38,7 @@ module.exports = router => {
   router.post('/application/:applicationId/offer/change-provider/confirm', (req, res) => {
     const applicationId = req.params.applicationId
     // const application = req.session.data.applications.find(app => app.id == applicationId)
-    req.flash('success', 'change-offer-provider')
+    req.flash('success', 'Offer successfully changed')
     res.redirect(`/application/${applicationId}/offer`)
   })
 }

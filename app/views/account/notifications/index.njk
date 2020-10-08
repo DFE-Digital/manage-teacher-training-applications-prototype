@@ -16,11 +16,6 @@
 {% endblock %}
 
 {% block content %}
-  {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
-    type: "success",
-    icon: false
-  }) if flashMessage }}
 
   {% set emailOnceADay %}
     {{appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true})}}

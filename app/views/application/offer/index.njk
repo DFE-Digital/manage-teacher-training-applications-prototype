@@ -11,7 +11,7 @@
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
-  }) if flash }}
+  }) if flash | falsify }}
 
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}

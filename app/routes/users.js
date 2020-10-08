@@ -26,30 +26,10 @@ function mixinRelatedOrgPermissions(org, relationships, permissionType) {
   }
 
 module.exports = router => {
+
   router.get('/users', (req, res) => {
-    const flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'user-invited': 'User successfully invited',
-        'user-account-deleted': 'User’s account successfully deleted'
-      }
-    })
-
-    res.render('users/index', {
-      flashMessage: flashMessage
-    })
+    res.render('users/index')
   })
-
-
-
-  // router.get('/users/:userId', (req, res) => {
-
-
-  //   res.render(`users/${req.params.userId}/index`, {
-  //     flashMessage: flashMessage
-  //   })
-  // })
 
   router.get('/users/new', (req, res) => {
     res.render('users/new/index')
@@ -72,18 +52,7 @@ module.exports = router => {
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     })
 
-    const flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'user-name-updated': 'User’s name successfully updated',
-        'user-email-address-updated': 'User’s email address successfully updated',
-        'user-providers-updated': 'User’s access successfully updated',
-        'user-permissions-updated': 'User’s permissions successfully updated'
-      }
-    })
-
-    res.render('users/show', { user, flashMessage })
+    res.render('users/show', { user })
   })
 
   router.post('/users/new', (req, res) => {
@@ -180,7 +149,7 @@ module.exports = router => {
 
 
   router.post('/users/new/check', (req, res) => {
-    req.flash('success', 'user-invited')
+    req.flash('success', 'User successfully invited')
     res.redirect('/users/')
   })
 
@@ -194,7 +163,7 @@ module.exports = router => {
   })
 
   router.post('/users/:userId/name/edit', (req, res) => {
-    req.flash('success', 'user-name-updated')
+    req.flash('success', 'User’s name successfully updated')
     res.redirect(`/users/${req.params.userId}`)
   })
 
@@ -208,7 +177,7 @@ module.exports = router => {
   })
 
   router.post('/users/:userId/email-address/edit', (req, res) => {
-    req.flash('success', 'user-email-address-updated')
+    req.flash('success', 'User’s email address successfully updated')
     res.redirect(`/users/${req.params.userId}`)
   })
 
@@ -261,7 +230,7 @@ module.exports = router => {
 
 
   router.post('/users/:userId/permissions/:orgId/edit', (req, res) => {
-    req.flash('success', 'user-permissions-updated')
+    req.flash('success', 'User’s permissions successfully updated')
     res.redirect(`/users/${req.params.userId}`)
   })
 
@@ -273,7 +242,7 @@ module.exports = router => {
   })
 
   router.post('/users/:userId/delete', (req, res) => {
-    req.flash('success', 'user-account-deleted')
+    req.flash('success', 'User’s account successfully deleted')
     res.redirect('/users')
   })
 
