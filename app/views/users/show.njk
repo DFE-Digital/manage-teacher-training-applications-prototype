@@ -23,10 +23,10 @@
 {% block content %}
 
   {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
-  }) if flashMessage }}
+  }) if flash | falsify }}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

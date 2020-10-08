@@ -2,37 +2,12 @@ const utils = require('../data/application-utils')
 
 module.exports = router => {
   router.get('/application/:applicationId', (req, res) => {
-    const success = req.query.success
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    var flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'offer-withdrawn': 'Offer successfully withdrawn',
-        'conditions-met': 'Conditions successfully marked as met',
-        'conditions-not-met': 'Conditions successfully marked as not met',
-        offered: 'Offer successfully made',
-        rejected: 'Application successfully rejected',
-        'change-offer-location': 'Offer successfully changed ',
-        'change-offer-course': 'Offer successfully changed ',
-        'change-offer-provider': 'Offer successfully changed ',
-        'change-condition-status-to-met': 'Condition successfully updated to met',
-        'change-condition-status-to-not-met': 'Condition successfully updated to not met',
-        'change-condition-status-to-pending': 'Condition successfully updated to pending',
-        'offer-made-to-new-provider': 'Offer successfully made',
-        'offer-made-to-new-course': 'Offer successfully made',
-        'offer-made-to-new-location': 'Offer successfully made',
-        'feedback-given': 'Feedback successfully sent'
-      }
-    })
-
     res.render('application/index', {
       application,
-      statusText: utils.getStatusText(application),
-      success,
-      flash: flashMessage
+      statusText: utils.getStatusText(application)
     })
   })
 

@@ -60,7 +60,7 @@ module.exports = router => {
 
     application.status = 'Conditions not met'
 
-    req.flash('success', 'change-condition-status-to-not-met')
+    req.flash('success', 'Condition successfully updated to not met')
     res.redirect(`/application/${req.params.applicationId}/offer`)
   })
 }

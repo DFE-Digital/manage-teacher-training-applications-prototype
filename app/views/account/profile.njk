@@ -15,11 +15,6 @@
 {% endblock %}
 
 {% block content %}
-  {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
-    type: "success",
-    icon: false
-  }) if flashMessage }}
 
   <h1 class="govuk-heading-xl">{{title}}</h1>
 

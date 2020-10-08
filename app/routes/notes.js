@@ -5,18 +5,9 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    const flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'note-added': 'Note successfully added'
-      }
-    })
-
     res.render('application/notes/index', {
       application,
-      statusText: utils.getStatusText(application),
-      flashMessage
+      statusText: utils.getStatusText(application)
     })
   })
 
@@ -45,7 +36,7 @@ module.exports = router => {
 
   router.post('/application/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
-    req.flash('success', 'note-added')
+    req.flash('success', 'Note successfully added')
     res.redirect(`/application/${applicationId}/notes`)
   })
 
