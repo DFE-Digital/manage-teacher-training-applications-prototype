@@ -9,8 +9,7 @@
       text: "Your account",
       href: "/account"
     }, {
-      text: title,
-      href: "/organisations"
+      text: title
     }]
   }) }}
 {% endblock %}
@@ -26,7 +25,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      <p>You can set permissions for the following organisations. These settings will be applied at the organisational level – the organisation itself will then be able to customise them for its own users.</p>
+      <p>Use this section to change permissions between your own organisations and your partner organisations.</p>
 
       {% for org in data.user.organisations %}
         <div class="app-application-card">

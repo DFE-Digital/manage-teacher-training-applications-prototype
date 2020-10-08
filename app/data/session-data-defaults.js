@@ -8,6 +8,8 @@ const accreditedBodies = require('./organisations.json').filter(org => {
 
 let applications = require('./applications.json')
 
+let users = require('./users.json')
+
 applications = applications
   .filter(app => {
     if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
@@ -25,51 +27,34 @@ applications = applications
   })
 
 let relationships = [{
-  org: trainingProviders[0],
-  orgPermissions: {
-    makeDecisions: true,
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[0],
-  partnerPermissions: {
+  org1: trainingProviders[0],
+  org1Permissions: {
     makeDecisions: false,
-    safeguarding: true,
-    diversity: false
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: accreditedBodies[0],
+  org2Permissions: {
+    makeDecisions: false,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: false
   }
 }, {
-  org: trainingProviders[0],
-  orgPermissions: {
+  org1: trainingProviders[0],
+  org1Permissions: {
     makeDecisions: true,
-    safeguarding: true,
-    diversity: true
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
   },
-  partner: accreditedBodies[1],
-  partnerPermissions: {
-    makeDecisions: false,
-    safeguarding: true,
-    diversity: false
-  }
-}, {
-  org: trainingProviders[1],
-  orgPermissions: {
+  org2: accreditedBodies[1],
+  org2Permissions: {
     makeDecisions: true,
-    safeguarding: true,
-    diversity: true
-  },
-  partner: accreditedBodies[1],
-  partnerPermissions: {
-    makeDecisions: false,
-    safeguarding: true,
-    diversity: false
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: false
   }
-}]
+}];
 
-// relationships = [{
-//   org: accreditedBodies[0]
-// }];
-
-let userOrgs = [trainingProviders[0], trainingProviders[1]];
+let userOrgs = [trainingProviders[0], accreditedBodies[0], accreditedBodies[1]];
 
 module.exports = {
   settings: ["hasCombinedConditions"],
@@ -88,6 +73,8 @@ module.exports = {
   applications,
   trainingProviders,
   accreditedBodies,
+  organisations: require('./organisations.json'),
+  users,
   bare: process.env.BARE,
   flags: {
     interview_preferences: true

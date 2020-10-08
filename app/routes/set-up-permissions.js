@@ -9,9 +9,9 @@ module.exports = router => {
       var item = { org: org, partners: [] };
 
       let relationships = req.session.data.relationships.filter(relationship => {
-        return relationship.org.id == org.id
+        return relationship.org1.id == org.id
       }).forEach(relationship => {
-        item.partners.push(relationship.partner)
+        item.partners.push(relationship.org2)
       })
 
       items.push(item);

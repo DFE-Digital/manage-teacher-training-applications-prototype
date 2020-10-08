@@ -16,6 +16,8 @@
       <span class="govuk-caption-xl">Change permissions</span>
       <h1 class="govuk-heading-xl">For courses run by {{ data.user.organisations[1].name }} and ratified by {{ data.user.organisations[0].name }}</h1>
 
+      <h2 class="govuk-heading-m">Which organisations view applications?</h2>
+
       {% include "_includes/permissions-guidance.njk" %}
 
       <form novalidate method="post">

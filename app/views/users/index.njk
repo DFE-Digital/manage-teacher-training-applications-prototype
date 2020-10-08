@@ -28,29 +28,16 @@
         text: 'Invite user',
         href: '/users/new'
       })}}
-      <div class="app-application-card">
-        <div>
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/1">{{ data.user.givenName }} {{ data.user.familyName }}</a></h2>
-          <p class="govuk-!-margin-bottom-1">{{ data.user.emailAddress }}</p>
-          <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ data.user.organisations[0].name }}</p>
-        </div>
-      </div>
-      <div class="app-application-card">
-        <div>
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/2">Duncan Brown</a></h2>
-          <p class="govuk-!-margin-bottom-1">duncan.brown@newzoescitt.co.uk</p>
-          <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ data.user.organisations[0].name }}</p>
-        </div>
-      </div>
-      {% if flashMessage %}
+
+      {% for user in data.users %}
         <div class="app-application-card">
           <div>
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/show">{{data['first-name']}} {{data['last-name']}}</a></h2>
-            <p class="govuk-!-margin-bottom-1">{{data['email-address']}}</p>
-            <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ data.user.organisations[0].name }}</p>
-          <div>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
+            <p class="govuk-!-margin-bottom-1">{{ user.emailAddress }}</p>
+            <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ user.organisations[0].org.name }} {% if user.organisations.length > 1 %} and {{user.organisations.length-1}} more {% endif %}</p>
+          </div>
         </div>
-      {% endif %}
+      {% endfor %}
     </div>
   </div>
 

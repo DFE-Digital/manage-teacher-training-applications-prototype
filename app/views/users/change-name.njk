@@ -1,14 +1,14 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set firstName = data.user.givenName %}
-{% set lastName = data.user.familyName %}
+{% set firstName = user.firstName %}
+{% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
 {% set title = "Change name" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/users/1"
+    href: "/users/" + user.id
   }) }}
 {% endblock %}
 

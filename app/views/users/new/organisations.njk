@@ -16,10 +16,8 @@
         Select organisations this user will have access to
       {% endset %}
 
-      <form novalidate action="/users/new/permissions">
+      <form novalidate method="post">
         {{ govukCheckboxes({
-          idPrefix: "provider",
-          name: "provider",
           fieldset: {
             legend: {
               html: h1,
@@ -28,17 +26,8 @@
             }
           },
 
-          items: [
-            {
-              value: data.organisations[0].name,
-              text: data.organisations[0].name
-            },
-            {
-              value: data.organisations[4].name,
-              text: data.organisations[4].name
-            }
-          ]
-        }) }}
+          items: items
+        } | decorateAttributes(data, 'data.newuser.organisations') ) }}
 
         {{govukButton({
           text: "Continue"

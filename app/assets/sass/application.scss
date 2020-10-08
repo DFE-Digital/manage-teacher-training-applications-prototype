@@ -544,3 +544,7 @@ h1 .govuk-tag {
   margin-right: 10px;
   margin-top: 7px;
 }
+
+.app-summary-list--border-top {
+  border-top: 1px solid $govuk-border-colour;
+}
