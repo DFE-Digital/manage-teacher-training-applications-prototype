@@ -73,20 +73,9 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    const flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'interview setup': 'Interview successfully set up',
-        'interview changed': 'Interview successfully changed',
-        'interview cancelled': 'Interview successfully cancelled'
-      }
-    })
-
     res.render('application/interviews/index', {
       application,
-      statusText: utils.getStatusText(application),
-      flash: flashMessage
+      statusText: utils.getStatusText(application)
     })
   })
 
@@ -143,7 +132,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'interview setup')
+    req.flash('success', 'Interview successfully set up')
     res.redirect(`/application/${applicationId}/interviews`)
 
   })
@@ -200,7 +189,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'interview changed')
+    req.flash('success', 'Interview successfully changed')
     res.redirect(`/application/${applicationId}/interviews`)
 
   })
@@ -244,7 +233,7 @@ module.exports = router => {
       date: new Date().toISOString()
     })
 
-    req.flash('success', 'interview cancelled')
+    req.flash('success', 'Interview successfully cancelled')
     res.redirect(`/application/${req.params.applicationId}/interviews/`)
   })
 

@@ -29,16 +29,7 @@ module.exports = router => {
         }
       })
 
-    const flashMessage = utils.getFlashMessage({
-      flash: req.flash('success'),
-      overrideValue: req.query.flash,
-      map: {
-        'permissions-changed': 'Permissions successfully changed'
-      }
-    })
-
     res.render('organisations/show', {
-      flashMessage,
       org,
       relationships
     })
@@ -49,7 +40,7 @@ module.exports = router => {
   })
 
   router.post('/organisations/:organisationId/edit', (req, res) => {
-    req.flash('success', 'permissions-changed')
+    req.flash('success', 'Permissions successfully changed')
     res.redirect(`/organisations/${req.params.organisationId}`)
   })
 }

@@ -105,7 +105,7 @@ module.exports = router => {
     application.offer.conditions = conditions
 
     application.offer.recommendations = req.session.data.recommendations
-    req.flash('success', 'offer-made-to-new-provider')
+    req.flash('success', 'Offer successfully made')
     res.redirect(`/application/${req.params.applicationId}/offer`)
   })
 }

@@ -5,11 +5,6 @@
 {% set title = "Application settings" %}
 
 {% block content %}
-  {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flashMessage+"</h2>",
-    type: "success",
-    icon: false
-  }) if flashMessage }}
 
   {% include "_includes/profile-sub-nav.njk" %}
 

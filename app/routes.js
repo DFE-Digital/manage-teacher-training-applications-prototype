@@ -1,6 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
+router.all('*', function(req, res, next){
+  const referrer = req.query.referrer
+  res.locals.referrer = referrer
+  res.locals.query = req.query
+  res.locals.flash = req.flash('success') // pass through 'success' messages only
+  next()
+})
+
 require('./routes/application-list')(router)
 require('./routes/activity-log')(router)
 require('./routes/set-up-permissions')(router)
