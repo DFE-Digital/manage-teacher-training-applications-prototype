@@ -1,6 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set name = application.personalDetails.name %}
 {% set title = "Select training provider" %}
 
 {% block pageNavigation %}

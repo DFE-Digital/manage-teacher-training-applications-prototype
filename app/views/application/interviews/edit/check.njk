@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
-{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set name = application.personalDetails.name %}
 {% set title = "Check and confirm interview" %}
 
 {% block beforeContent %}

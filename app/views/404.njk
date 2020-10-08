@@ -1,9 +1,11 @@
-{% extends "_content.njk" %}
+{% extends "_layout.njk" %}
 
 {% set title = "Page not found" %}
-{% set isSignedOut = true %}
 
-{% block primary %}
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{title}}
+  </h1>
   <p class="govuk-body">If you entered a web address please check it was correct.</p>
   <p class="govuk-body"><a class="govuk-link" href="mailto:becomingateacher@digital.education.gov.uk">Contact the Becoming a Teacher team</a> if you believe you are seeing this message in error.</p>
 {% endblock %}

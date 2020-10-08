@@ -10,6 +10,16 @@ let applications = require('./applications.json')
 
 let users = require('./users.json')
 
+applications = applications.map(application => {
+  Object.defineProperty(application.personalDetails, 'name', {
+    get() {
+      return this.givenName + ' ' + this.familyName
+    },
+    enumerable: true
+  })
+  return application
+})
+
 applications = applications
   .filter(app => {
     if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {

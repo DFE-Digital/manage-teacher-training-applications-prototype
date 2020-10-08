@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 
-{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
+{% set name = application.personalDetails.name %}
 
 {% set title = "Check and confirm offer deferral" %}
 
