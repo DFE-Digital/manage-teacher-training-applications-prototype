@@ -59,23 +59,21 @@
           </dd>
         </div>
 
-        {% if user.organisations.length > 1 %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisations this user has access to
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% for organisation in user.organisations %}
-                <p>{{organisation.org.name}}</p>
-              {% endfor %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Organisations this user has access to
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% for org in orgs %}
+              <p>{{org.org.name}}</p>
+            {% endfor %}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/users/new/organisations">
+                Change<span class="govuk-visually-hidden"></span>
+              </a>
             </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/users/{{user.id}}/organisations/edit">
-                  Change<span class="govuk-visually-hidden"></span>
-                </a>
-              </dd>
-          </div>
-        {% endif %}
+        </div>
 
         {% for org in orgs %}
           <div class="govuk-summary-list__row">
@@ -83,6 +81,11 @@
               Permissions: {{org.org.name}}
             </dt>
             <dd class="govuk-summary-list__value">
+              {% if not org.permissions %}
+                <p>
+                  The user will only be able to view applications
+                </p>
+              {% endif %}
               {% if org.permissions.manageOrganisations %}
                 <p class="govuk-!-font-weight-bold">
                   {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
@@ -239,7 +242,9 @@
         {% endfor %}
       </dl>
 
-      <p>We'll send the user an email guiding them through DfE Sign-In and giving them access to their account.</p>
+      {{ govukWarningText({
+        text: "We'll email the user to help them set up their account."
+      }) }}
 
       <form novalidate method="post">
         {{govukButton({

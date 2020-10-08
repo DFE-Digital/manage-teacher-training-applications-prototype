@@ -18,8 +18,6 @@
 
       <form novalidate method="post">
         {{ govukCheckboxes({
-          idPrefix: "newuser[organisations]",
-          name: "newuser[organisations]",
           fieldset: {
             legend: {
               html: h1,
@@ -29,7 +27,7 @@
           },
 
           items: items
-        }) }}
+        } | decorateAttributes(data, 'data.newuser.organisations') ) }}
 
         {{govukButton({
           text: "Continue"

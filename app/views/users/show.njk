@@ -99,6 +99,13 @@
               Permissions: {{org.org.name}}
             </dt>
             <dd class="govuk-summary-list__value">
+              {% if not org.permissions %}
+                <p>
+                  The user can only view applications
+                </p>
+              {% endif %}
+
+
               {% if org.permissions.manageOrganisation %}
                 <p class="govuk-!-font-weight-bold">
                   {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}

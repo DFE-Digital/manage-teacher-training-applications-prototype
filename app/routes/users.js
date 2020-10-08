@@ -59,7 +59,11 @@ module.exports = router => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
 
     // mixin org permissions into user object
+
     user.organisations.forEach(org => {
+
+      if(!org.permissions) return;
+
       org.permissions.applicableOrgs = {};
       org.permissions.nonApplicableOrgs = {};
 
@@ -139,20 +143,29 @@ module.exports = router => {
 
   router.get('/users/new/check', (req, res) => {
     var orgs = req.session.data.newuser.organisations.map(orgId => {
-      return {
-        org: req.session.data.organisations.find(org => org.id == orgId),
-        permissions: {
-          manageOrganisations: req.session.data.newuser.permissions[orgId].indexOf('manageOrganisations') > -1,
-          manageUsers: req.session.data.newuser.permissions[orgId].indexOf('manageUsers') > -1,
-          makeDecisions: req.session.data.newuser.permissions[orgId].indexOf('makeDecisions') > -1,
-          viewSafeguardingInformation: req.session.data.newuser.permissions[orgId].indexOf('viewSafeguardingInformation') > -1,
-          viewDiversityInformation: req.session.data.newuser.permissions[orgId].indexOf('viewDiversityInformation') > -1
-        }
+      var returnValue = {
+        org: req.session.data.organisations.find(org => org.id == orgId)
       }
+
+      if(req.session.data.newuser.access[orgId] == "Extra permissions") {
+        returnValue.permissions = {
+            manageOrganisations: req.session.data.newuser.permissions[orgId].indexOf('manageOrganisations') > -1,
+            manageUsers: req.session.data.newuser.permissions[orgId].indexOf('manageUsers') > -1,
+            makeDecisions: req.session.data.newuser.permissions[orgId].indexOf('makeDecisions') > -1,
+            viewSafeguardingInformation: req.session.data.newuser.permissions[orgId].indexOf('viewSafeguardingInformation') > -1,
+            viewDiversityInformation: req.session.data.newuser.permissions[orgId].indexOf('viewDiversityInformation') > -1
+          }
+      }
+
+      return returnValue
     })
+
 
     // mixin org permissions
     orgs.forEach(org => {
+
+      if(!org.permissions) return;
+
       org.permissions.applicableOrgs = {};
       org.permissions.nonApplicableOrgs = {};
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
