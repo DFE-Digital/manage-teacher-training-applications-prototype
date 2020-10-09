@@ -1,8 +1,11 @@
-{% extends "_content.njk" %}
+{% extends "_layout.njk" %}
 
 {% set title = "Data cleared" %}
 
-{% block primary %}
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{title}}
+  </h1>
   <p>The session data has been cleared.</p>
   <p><a href="/">Prototype home page</a></p>
 {% endblock %}

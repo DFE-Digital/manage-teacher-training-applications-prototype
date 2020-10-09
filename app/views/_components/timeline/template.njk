@@ -11,7 +11,7 @@
         <p class="app-timeline__byline">
           {{ item.byline.html | safe if item.byline.html else item.byline.text -}}{% if item.datetime %}, {% endif %}
           <time datetime="{{ item.datetime.timestamp }}">
-            {{- item.datetime.timestamp | date("d LLL yyyy") }} at {{item.datetime.timestamp | time }}
+            {{- item.datetime.timestamp | govukDateAtTime }}
           </time>
         </p>
 

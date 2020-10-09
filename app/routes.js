@@ -36,11 +36,4 @@ require('./routes/users')(router)
 require('./routes/email')(router)
 require('./routes/settings')(router)
 
-// Render other application pages
-router.all('/search-results', (req, res) => {
-  res.render('search-results', {
-    q: req.query.q
-  })
-})
-
 module.exports = router

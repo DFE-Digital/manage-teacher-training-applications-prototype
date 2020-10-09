@@ -27,15 +27,6 @@ module.exports = router => {
     }
     else {
 
-      // Flash messages not built yet
-      // if (statusChanged){
-      //   if (conditionStatus == "Pending"){
-      //     req.flash('success', 'change-condition-status-to-pending')
-      //   }
-      //   if (conditionStatus == "Met"){
-      //     req.flash('success', 'change-condition-status-to-met')
-      //   }
-      // }
       condition.status = req.session.data.conditionstatus
 
       res.redirect(`/application/${req.params.applicationId}/offer/reconfirm/unavailable-location/check`)

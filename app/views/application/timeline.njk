@@ -2,20 +2,14 @@
 
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "timeline" %}
-{% set name = [application.personalDetails.givenName, application.personalDetails.familyName] | join(" ") %}
-{% set title = name %}
+{% set title = application.personalDetails.name %}
 
 {% block content %}
-  {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
-    type: "success",
-    icon: false
-  }) if flash }}
 
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{name}}
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{title}}
   {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}</h1>
 
   {% include "_includes/application/respond-prompt.njk" %}
