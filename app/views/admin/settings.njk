@@ -2,42 +2,50 @@
 
 {% block content %}
 
-  <form method="post">
+  <h1 class="govuk-heading-xl">
+    Settings
+  </h1>
 
-    {{ govukCheckboxes({
-      idPrefix: "settings",
-      name: "settings",
-      fieldset: {
-        legend: {
-          text: "Settings",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--xl"
-        }
-      },
-      items: [
-        {
-          value: "Turn on start new cycle",
-          text: "Turn on start new cycle",
-          hint: {
-            text: "Will show deferred offers that need confirming, pending conditions from previous cycle and the rest."
-          },
-          checked: checked('settings', 'Turn on start new cycle')
+  <form method="post" action="/admin/settings/new-cycle">
 
-        },
-        {
-          value: "hasCombinedConditions",
-          text: "Group conditions together",
-          hint: {
-            text: "Will ask if all conditions have been met rather than each one individually"
-          },
-          checked: checked('settings', 'hasCombinedConditions')
+    <h2 class="govuk-heading-m">
+      Turn on start of new cycle
+    </h2>
 
-        }
-      ]
-    }) }}
+    <p>Will show deferred offers that need confirming, pending conditions from previous cycle and the rest.</p>
 
-    {{ govukButton({
-      text: "Save and continue"
-    }) }}
+    {% if checked('settings', 'new-cycle') %}
+      {{ govukButton({
+        text: "Turn off"
+      }) }}
+    {% else %}
+      {{ govukButton({
+        text: "Turn on"
+      }) }}
+    {% endif %}
+
   </form>
+
+  <form method="post" action="/admin/settings/combine-conditions">
+
+    <h2 class="govuk-heading-m">
+      Track conditions in bulk
+    </h2>
+
+    <p>Will show deferred offers that need confirming, pending conditions from previous cycle and the rest.</p>
+
+    {% if checked('settings', 'hasCombinedConditions') %}
+      {{ govukButton({
+        text: "Turn off"
+      }) }}
+    {% else %}
+      {{ govukButton({
+        text: "Turn on"
+      }) }}
+    {% endif %}
+
+  </form>
+
+
+
 {% endblock %}

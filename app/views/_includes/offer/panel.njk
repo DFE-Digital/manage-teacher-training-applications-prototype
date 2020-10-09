@@ -104,7 +104,9 @@
 
   <h2 class="govuk-heading-m">Conditions</h2>
   {% if checked("settings", "hasCombinedConditions") %}
-    <p><a href="#" class="">Mark all conditions as met</a></p>
+    <p><a href="#">Update status of conditions</a></p>
+  {% else %}
+    <p><a href="#">Add or change conditions</a></p>
   {% endif %}
   <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
     {% for condition in conditions %}
