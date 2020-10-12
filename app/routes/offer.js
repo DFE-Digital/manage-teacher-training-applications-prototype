@@ -1,4 +1,5 @@
 const utils = require('../data/application-utils')
+const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
 
@@ -54,12 +55,79 @@ module.exports = router => {
   router.get('/application/:applicationId/offer/edit-conditions/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
+    var conditions = []
+
+    if(req.session.data['edit-conditions']['standard-conditions'].length) {
+      conditions = conditions.concat(req.session.data['edit-conditions']['standard-conditions'])
+    }
+
+    if (req.session.data['edit-conditions']['condition-1']){
+      conditions.push(req.session.data['edit-conditions']['condition-1'])
+    }
+    if (req.session.data['edit-conditions']['condition-2']){
+      conditions.push(req.session.data['edit-conditions']['condition-2'])
+    }
+    if (req.session.data['edit-conditions']['condition-3']){
+      conditions.push(req.session.data['edit-conditions']['condition-3'])
+    }
+    if (req.session.data['edit-conditions']['condition-4']){
+      conditions.push(req.session.data['edit-conditions']['condition-4'])
+    }
+
     res.render('application/offer/edit-conditions/check', {
-      application
+      application,
+      conditions
     })
   })
 
+  router.post('/application/:applicationId/offer/edit-conditions/check', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
+    // save standard conditions
+    application.offer.standardConditions = [];
+    if(req.session.data['edit-conditions']['standard-conditions'].length) {
+      req.session.data['edit-conditions']['standard-conditions'].forEach(condition => {
+        application.offer.standardConditions.push({
+          id: uuidv4(),
+          description: condition,
+          status: "Pending"
+        })
+      });
+    }
 
+    // save further conditions
+    application.offer.conditions = [];
+    if (req.session.data['edit-conditions']['condition-1']){
+      application.offer.conditions.push({
+        id: uuidv4(),
+        description: req.session.data['edit-conditions']['condition-1'],
+        status: "Pending"
+      })
+    }
+    if (req.session.data['edit-conditions']['condition-2']){
+      application.offer.conditions.push({
+        id: uuidv4(),
+        description: req.session.data['edit-conditions']['condition-2'],
+        status: "Pending"
+      })
+    }
+    if (req.session.data['edit-conditions']['condition-3']){
+      application.offer.conditions.push({
+        id: uuidv4(),
+        description: req.session.data['edit-conditions']['condition-3'],
+        status: "Pending"
+      })
+    }
+    if (req.session.data['edit-conditions']['condition-4']){
+      application.offer.conditions.push({
+        id: uuidv4(),
+        description: req.session.data['edit-conditions']['condition-4'],
+        status: "Pending"
+      })
+    }
+
+    req.flash('success', 'Conditions updated successfully')
+    res.redirect(`/application/${req.params.applicationId}/offer`)
+  })
 
 }

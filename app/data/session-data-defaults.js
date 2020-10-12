@@ -13,7 +13,7 @@ let users = require('./users.json')
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {
     get() {
-      return this.givenName + ' ' + this.familyName
+      return `${this.givenName} ${this.familyName}`
     },
     enumerable: true
   })

@@ -124,7 +124,7 @@
             {% endif %}
             {{govukTag({ text: condition.status, classes: statusClass })}}
         </dd>
-        {% if not checked(data.settings, "hasCombinedConditions") %}
+        {% if not checked(data.settings, "hasCombinedConditions") and (application.status == "Accepted" or application.status == "Conditions met") %}
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
             Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
@@ -134,10 +134,4 @@
     {% endfor %}
   </dl>
 
-
-{% endif %}
-
-{% if application.offer.recommendations %}
-  <h2 class="govuk-heading-s">Recommendations</h2>
-  <p class="govuk-body">{{application.offer.recommendations}}</p>
 {% endif %}
