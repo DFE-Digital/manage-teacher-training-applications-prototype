@@ -22,12 +22,12 @@
             {
               value: "Previous cycle (2019 to 2020)",
               text: "Previous cycle (2019 to 2020)",
-              checked: checked("export_cycle", "Previous cycle (2019 to 2020)")
+              checked: checked(data['export_cycle'], "Previous cycle (2019 to 2020)")
             },
             {
               value: "Current cycle (2020 to 2021)",
               text: "Current cycle (2020 to 2021)",
-              checked: checked("export_cycle", "Current cycle (2020 to 2021)")
+              checked: checked(data['export_cycle'], "Current cycle (2020 to 2021)")
             }
           ]
         }) }}
@@ -46,52 +46,52 @@
             {
               value: 'Awaiting decision',
               text: 'Awaiting decision',
-              checked: checked("export_status", "Awaiting decision") == 'checked'
+              checked: checked(data['export_status'], "Awaiting decision") == 'checked'
             },
             {
               value: 'Offered',
               text: 'Offered',
-              checked: checked("export_status", "Offered") == 'checked'
+              checked: checked(data['export_status'], "Offered") == 'checked'
             },
             {
               value: 'Accepted',
               text: 'Accepted',
-              checked: checked("export_status", "Accepted") == 'checked'
+              checked: checked(data['export_status'], "Accepted") == 'checked'
             },
             {
               value: 'Conditions met',
               text: 'Conditions met',
-              checked: checked("export_status", "Conditions met") == 'checked'
+              checked: checked(data['export_status'], "Conditions met") == 'checked'
             },
             {
               value: 'Deferred',
               text: 'Deferred',
-              checked: checked("export_status", "Deferred") == 'checked'
+              checked: checked(data['export_status'], "Deferred") == 'checked'
             },
             {
               value: 'Declined',
               text: 'Declined',
-              checked: checked("export_status", "Declined") == 'checked'
+              checked: checked(data['export_status'], "Declined") == 'checked'
             },
             {
               value: 'Rejected',
               text: 'Rejected',
-              checked: checked("export_status", "Rejected") == 'checked'
+              checked: checked(data['export_status'], "Rejected") == 'checked'
             },
             {
               value: 'Rejected automatically',
               text: 'Rejected automatically',
-              checked: checked("export_status", "Rejected automatically") == 'checked'
+              checked: checked(data['export_status'], "Rejected automatically") == 'checked'
             },
             {
               value: 'Application withdrawn',
               text: 'Application withdrawn',
-              checked: checked("export_status", "Application withdrawn") == 'checked'
+              checked: checked(data['export_status'], "Application withdrawn") == 'checked'
             },
             {
               value: 'Offer withdrawn',
               text: 'Offer withdrawn',
-              checked: checked("export_status", "Offer withdrawn") == 'checked'
+              checked: checked(data['export_status'], "Offer withdrawn") == 'checked'
             }
           ]
         }) }}

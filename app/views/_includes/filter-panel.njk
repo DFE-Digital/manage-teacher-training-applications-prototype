@@ -25,12 +25,12 @@
         {
           value: "Current cycle (2020 to 2021)",
           text: "2020 to 2021 (Current)",
-          checked: checked("cycle", "Current cycle (2020 to 2021)")
+          checked: checked(data.cycle, "Current cycle (2020 to 2021)")
         },
         {
           value: "Previous cycle (2019 to 2020)",
           text: "2019 to 2020",
-          checked: checked("cycle", "Previous cycle (2019 to 2020)")
+          checked: checked(data.cycle, "Previous cycle (2019 to 2020)")
         }
       ]
     }) }}
@@ -49,57 +49,57 @@
         {
           value: 'Received',
           text: 'Received',
-          checked: checked("status", "Received") == 'checked'
+          checked: checked(data.status, "Received") == 'checked'
         },
         {
           value: 'Awaiting interview',
           text: 'Awaiting interview',
-          checked: checked("status", "Awaiting interview") == 'checked'
+          checked: checked(data.status, "Awaiting interview") == 'checked'
         },
         {
           value: 'Interviewed',
           text: 'Interviewed',
-          checked: checked("status", "Interviewed") == 'checked'
+          checked: checked(data.status, "Interviewed") == 'checked'
         },
         {
           value: 'Offered',
           text: 'Offered',
-          checked: checked("status", "Offered") == 'checked'
+          checked: checked(data.status, "Offered") == 'checked'
         },
         {
           value: 'Accepted',
           text: 'Accepted',
-          checked: checked("status", "Accepted") == 'checked'
+          checked: checked(data.status, "Accepted") == 'checked'
         },
         {
           value: 'Conditions met',
           text: 'Conditions met',
-          checked: checked("status", "Conditions met") == 'checked'
+          checked: checked(data.status, "Conditions met") == 'checked'
         },
         {
           value: 'Deferred',
           text: 'Deferred',
-          checked: checked("status", "Deferred") == 'checked'
+          checked: checked(data.status, "Deferred") == 'checked'
         },
         {
           value: 'Declined',
           text: 'Declined',
-          checked: checked("status", "Declined") == 'checked'
+          checked: checked(data.status, "Declined") == 'checked'
         },
         {
           value: 'Rejected',
           text: 'Rejected',
-          checked: checked("status", "Rejected") == 'checked'
+          checked: checked(data.status, "Rejected") == 'checked'
         },
         {
           value: 'Application withdrawn',
           text: 'Application withdrawn',
-          checked: checked("status", "Application withdrawn") == 'checked'
+          checked: checked(data.status, "Application withdrawn") == 'checked'
         },
         {
           value: 'Offer withdrawn',
           text: 'Offer withdrawn',
-          checked: checked("status", "Offer withdrawn") == 'checked'
+          checked: checked(data.status, "Offer withdrawn") == 'checked'
         }
       ]
     }) }}
@@ -118,17 +118,17 @@
         {
           value: data.user.organisations[0].name,
           text: data.user.organisations[0].name,
-          checked: checked("provider", data.user.organisations[0].name) == 'checked'
+          checked: checked(data.provider, data.user.organisations[0].name) == 'checked'
         },
         {
           value: data.user.organisations[1].name,
           text: data.user.organisations[1].name,
-          checked: checked("provider", data.user.organisations[1].name) == 'checked'
+          checked: checked(data.provider, data.user.organisations[1].name) == 'checked'
         }
       ]
     }) }}
 
-    {% if checked("provider", data.user.organisations[0].name) %}
+    {% if checked(data.provider, data.user.organisations[0].name) %}
 
       {{ govukCheckboxes({
         name: 'locationname',
@@ -143,22 +143,22 @@
           {
             value: 'Main site',
             text: 'Main site',
-            checked: checked("locationname", "Main site") == 'checked'
+            checked: checked(data.locationname, "Main site") == 'checked'
           },
           {
             value: 'Camberley - training location',
             text: 'Camberley - training location',
-            checked: checked("locationname", "Camberley - training location") == 'checked'
+            checked: checked(data.locationname, "Camberley - training location") == 'checked'
           },
           {
             value: 'Epsom Grinstead - training location',
             text: 'Epsom Grinstead - training location',
-            checked: checked("locationname", "Epsom Grinstead - training location") == 'checked'
+            checked: checked(data.locationname, "Epsom Grinstead - training location") == 'checked'
           },
           {
             value: 'Lingfield - training location',
             text: 'Lingfield - training location',
-            checked: checked("locationname", "Lingfield - training location") == 'checked'
+            checked: checked(data.locationname, "Lingfield - training location") == 'checked'
           }
         ]
       }) }}
@@ -178,12 +178,12 @@
         {
           value: data.accreditedBodies[0].name,
           text: data.accreditedBodies[0].name,
-          checked: checked("accreditingbody", data.accreditedBodies[0].name) == 'checked'
+          checked: checked(data.accreditingbody, data.accreditedBodies[0].name) == 'checked'
         },
         {
           value: data.accreditedBodies[1].name,
           text: data.accreditedBodies[1].name,
-          checked: checked("accreditingbody", data.accreditedBodies[1].name) == 'checked'
+          checked: checked(data.accreditingbody, data.accreditedBodies[1].name) == 'checked'
         }
       ]
     }) }}

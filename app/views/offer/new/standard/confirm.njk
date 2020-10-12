@@ -67,14 +67,14 @@
         Conditions of offer
       </h2>
 
-      {% if checked("settings", "hasCombinedConditions") %}
+      {% if checked(data.settings, "hasCombinedConditions") %}
         <p><a href="/application/{{application.id}}/offer/reconfirm/statuses">Update status of conditions</a> or <a href="/application/{{application.id}}/offer/reconfirm/conditions">add or change conditions</a></p>
       {% else %}
         <p><a href="/application/{{application.id}}/offer/reconfirm/conditions">Add or change conditions</a></p>
       {% endif %}
 
 
-      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
+      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
           {% for condition in conditions %}
             <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
               <dt class="govuk-summary-list__key">

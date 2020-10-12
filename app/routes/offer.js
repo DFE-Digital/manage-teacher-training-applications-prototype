@@ -32,6 +32,33 @@ module.exports = router => {
     res.redirect(`/application/${applicationId}/offer`)
   })
 
+  router.get('/application/:applicationId/offer/edit-conditions', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    if(!req.session.data['edit-conditions'] || !req.session.data['edit-conditions']['standard-conditions']) {
+      var standardConditions = application.offer.standardConditions.map(condition => {
+        return condition.description
+      })
+    }
+
+    res.render('application/offer/edit-conditions/index', {
+      application,
+      standardConditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/edit-conditions', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/edit-conditions/check`)
+  })
+
+  router.get('/application/:applicationId/offer/edit-conditions/check', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    res.render('application/offer/edit-conditions/check', {
+      application
+    })
+  })
+
 
 
 

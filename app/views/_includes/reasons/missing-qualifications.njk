@@ -25,27 +25,27 @@
     items: [{
       value: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
       html: "No Maths GCSE grade 4 (C) or above, or valid equivalent",
-      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No Maths GCSE grade 4 (C) or above, or valid equivalent")
+      checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No Maths GCSE grade 4 (C) or above, or valid equivalent")
     }, {
       value: "No English GCSE grade 4 (C) or above, or valid equivalent",
       text: "No English GCSE grade 4 (C) or above, or valid equivalent",
-      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No English GCSE grade 4 (C) or above, or valid equivalent")
+      checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No English GCSE grade 4 (C) or above, or valid equivalent")
     }, {
       value: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
       text: "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)",
-      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)")
+      checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)")
     }, {
       value: "No degree",
       text: "No degree",
-      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "No degree")
+      checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No degree")
     }, {
       value: "Degree doesn’t meet course requirements",
       text: "Degree doesn’t meet course requirements",
-      checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "Degree doesn’t meet course requirements")
+      checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "Degree doesn’t meet course requirements")
     }, {
         value: "Other",
         text: "Other",
-        checked: checked("['rejectionReasons']['missing-qualifications-reasons']", "Other"),
+        checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "Other"),
         conditional: {
           html: missingQualificationsReasonsOtherHtml
         }
@@ -67,7 +67,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['missing-qualifications']", "Yes"),
+    checked: checked(data['rejectionReasons']['missing-qualifications'], "Yes"),
     conditional: {
       html: missingQualificationsReasonsHtml
     }
@@ -75,6 +75,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['missing-qualifications']", "No")
+    checked: checked(data['rejectionReasons']['missing-qualifications'], "No")
   }]
 }) }}

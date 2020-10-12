@@ -24,7 +24,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['interview-performance']", "Yes"),
+    checked: checked(data['rejectionReasons']['interview-performance'], "Yes"),
     conditional: {
       html: interviewPerformanceAdviceHtml
     }
@@ -32,6 +32,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['interview-performance']", "No")
+    checked: checked(data['rejectionReasons']['interview-performance'], "No")
   }]
 }) }}

@@ -67,28 +67,28 @@
     items: [{
       value: "Information given on application form false or inaccurate",
       html: "Information given on application form false or inaccurate",
-      checked: checked("['rejectionReasons']['honesty-reasons']", 'Information given on application form false or inaccurate'),
+      checked: checked(data['rejectionReasons']['honesty-reasons'], 'Information given on application form false or inaccurate'),
       conditional: {
         html: honestyFalseInformationHtml
       }
     }, {
       value: "Evidence of plagiarism in personal statement or elsewhere",
       text: "Evidence of plagiarism in personal statement or elsewhere",
-      checked: checked("['rejectionReasons']['honesty-reasons']", 'Evidence of plagiarism in personal statement or elsewhere'),
+      checked: checked(data['rejectionReasons']['honesty-reasons'], 'Evidence of plagiarism in personal statement or elsewhere'),
       conditional: {
         html: honestyPlagiarismHtml
       }
     }, {
       value: "References didn’t support application",
       text: "References didn’t support application",
-      checked: checked("['rejectionReasons']['honesty-reasons']", 'References didn’t support application'),
+      checked: checked(data['rejectionReasons']['honesty-reasons'], 'References didn’t support application'),
       conditional: {
         html: honestyReferenceInformationHtml
       }
     }, {
         value: "Other",
         text: "Other",
-        checked: checked("['rejectionReasons']['honesty-reasons']", 'Other'),
+        checked: checked(data['rejectionReasons']['honesty-reasons'], 'Other'),
         conditional: {
           html: honestyOtherHtml
         }
@@ -110,7 +110,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['honesty']", "Yes"),
+    checked: checked(data['rejectionReasons']['honesty'], "Yes"),
     conditional: {
       html: honestyReasonsHtml
     }
@@ -118,6 +118,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['honesty']", "No")
+    checked: checked(data['rejectionReasons']['honesty'], "No")
   }]
 }) }}
