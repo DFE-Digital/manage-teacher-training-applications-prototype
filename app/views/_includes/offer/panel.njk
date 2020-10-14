@@ -106,32 +106,44 @@
   {% if checked(data.settings, "hasCombinedConditions") %}
     <p><a href="#">Update status of conditions</a></p>
   {% else %}
-    <p><a href="/application/{{application.id}}/offer/edit-conditions">Add or change conditions</a></p>
+
+    {% if application.status == "Offered" %}
+      <p><a href="/application/{{application.id}}/offer/edit-conditions">Add or change conditions</a></p>
+    {% endif %}
   {% endif %}
-  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
-    {% for condition in conditions %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          {{condition.description}}
-        </dt>
-        <dd class="govuk-summary-list__value app-conditions-list__tag">
-          {% if condition.status == "Pending" %}
-              {% set statusClass = "app-tag--grey" %}
-            {% elseif condition.status == "Met" %}
-              {% set statusClass = "app-tag--green" %}
-            {% elseif condition.status == "Not met" %}
-              {% set statusClass = "app-tag--red" %}
+
+
+  {% if conditions.length %}
+
+    <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
+      {% for condition in conditions %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{condition.description}}
+            {% if not checked(data.settings, "hasCombinedConditions") and (application.status == "Accepted" or application.status == "Conditions met") %}
+              <br>
+              <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
+                Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
+                or
+                <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/delete">
+                delete condition<span class="govuk-visually-hidden"> ‘{{condition.description}}’</span></a>
             {% endif %}
-            {{govukTag({ text: condition.status, classes: statusClass })}}
-        </dd>
-        {% if not checked(data.settings, "hasCombinedConditions") and (application.status == "Accepted" or application.status == "Conditions met") %}
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
-            Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
+          </dt>
+          <dd class="govuk-summary-list__value app-conditions-list__tag">
+            {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
           </dd>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </dl>
+        </div>
+      {% endfor %}
+    </dl>
+  {% else %}
+    <p>No conditions have been set for this offer.</p>
+  {% endif %}
 
 {% endif %}

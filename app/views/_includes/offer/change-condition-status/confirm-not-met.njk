@@ -2,7 +2,7 @@
 {% set cancel = cancelLinkDestination or ('/application/' + application.id + "/offer" ) %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "Confirm condition not met" %}
+{% set title = "Confirm condition not met and withdraw offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,9 +18,9 @@
       <span class="govuk-caption-xl">{{name}}</span>
       <h1 class="govuk-heading-xl">{{title}}</h1>
 
-      {{ govukInsetText({
-        text: condition.description
-      }) }}
+      <div class="app-offer-panel">
+        <p class="govuk-!-margin-bottom-0">Condition: {{condition.description}}</p>
+      </div>
 
       {{ govukWarningText({
         text: "We’ll tell the candidate they’ve failed to meet the conditions of the offer and will not be enrolled onto the course.",
@@ -29,7 +29,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm not met",
+          text: "Confirm condition not met and withdraw offer",
           classes: 'govuk-button--warning'
         }) }}
       </form>

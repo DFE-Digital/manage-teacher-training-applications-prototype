@@ -124,10 +124,44 @@ module.exports = router => {
         description: req.session.data['edit-conditions']['condition-4'],
         status: "Pending"
       })
+  }
+
+    req.flash('success', 'Offer updated successfully')
+    res.redirect(`/application/${req.params.applicationId}/offer`)
+  })
+
+
+  // delete a condition
+  router.get('/application/:applicationId/condition/:conditionId/delete', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    const condition = utils.getCondition(application, req.params.conditionId)
+    const remainingConditions = utils.getConditions(application).filter(c => c.id !== condition.id)
+    let hasRemainingConditions = remainingConditions.length;
+    let allRemainingConditionsComplete = false;
+    if(remainingConditions.length) {
+      allRemainingConditionsComplete = remainingConditions.every(condition => condition.status == "Met")
     }
 
-    req.flash('success', 'Conditions updated successfully')
+    res.render('application/offer/delete-condition/index', {
+      application,
+      condition,
+      hasRemainingConditions,
+      allRemainingConditionsComplete
+    })
+  })
+
+  router.post('/application/:applicationId/condition/:conditionId/delete', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    utils.deleteCondition(application, req.params.conditionId)
+
+    if(utils.getConditions(application).length == 0) {
+      application.status = "Conditions met";
+    }
+
+    req.flash('success', 'Condition deleted successfully')
     res.redirect(`/application/${req.params.applicationId}/offer`)
+
   })
 
 }

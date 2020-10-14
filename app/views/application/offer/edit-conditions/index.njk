@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{title}}</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
 
       {% include "_includes/offer/details-of-offer-without-conditions.njk" %}
 
@@ -36,12 +36,15 @@
           }, {
             value: "Disclosure and barring service check",
             text: "Disclosure and barring service check",
+            hint: {
+              text: "We’ll email the candidate to tell them that they’ll need to provide ID"
+            },
             checked: checked(data['edit-conditions']['standard-conditions'], "Disclosure and barring service check") or checked(standardConditions,"Disclosure and barring service check")
           }]
         }) }}
 
         <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
-        <p class="govuk-body">Outline any further conditions (for example, studying a subject knowledge enhancement course) and give deadlines for completing them.</p>
+        <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
         {{ govukTextarea({
           id: "condition-1",
           name: "[edit-conditions][condition-1]",

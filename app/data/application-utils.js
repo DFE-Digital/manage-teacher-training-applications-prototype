@@ -87,6 +87,16 @@ exports.hasOnlyOneConditionNotMet = (application) => {
   return this.getConditions(application).filter(condition => condition.status === 'Pending').length === 1
 }
 
+exports.deleteCondition = (application, conditionId) => {
+  if(application.offer.standardConditions) {
+    application.offer.standardConditions = application.offer.standardConditions.filter(c => c.id != conditionId)
+    console.log(application.offer.standardConditions)
+  }
+  if(application.offer.conditions) {
+    application.offer.conditions = application.offer.conditions.filter(c => c.id != conditionId)
+  }
+}
+
 function getLink (item, application) {
   var link = {}
   switch (item.title) {

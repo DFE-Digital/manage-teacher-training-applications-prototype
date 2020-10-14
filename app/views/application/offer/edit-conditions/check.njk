@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and confirm conditions" %}
+{% set title = "Check and update offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{title}}</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
 
       <div class="app-offer-panel">
         <h2 class="govuk-heading-m">
@@ -102,7 +102,7 @@
             <dt class="govuk-summary-list__key">
               {{condition}}
             </dt>
-            <dd class="govuk-summary-list__value">
+            <dd class="govuk-summary-list__value app-conditions-list__tag">
               {{govukTag({ text: "Pending", classes: "app-tag--grey" })}}
             </dd>
             </div>
@@ -111,12 +111,12 @@
       </div>
 
       {{ govukWarningText({
-        text: "We’ll email the candidate to confirm their new offer and the conditions for it"
+        text: "We’ll email the candidate to confirm the amended details of their offer."
       }) }}
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm conditions"
+          text: "Update offer"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>

@@ -2,7 +2,7 @@
 {% set primaryNavId = 'applications' %}
 {% set cancel = cancelLinkDestination or ('/application/' + application.id + "/offer" ) %}
 {% set name = application.personalDetails.name %}
-{% set title = "Update status of condition" %}
+{% set title = "Update status of ‘"+condition.description+"’" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -14,20 +14,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-xl">{{name}}</span>
-      <h1 class="govuk-heading-xl">{{title}}</h1>
-
-      {{ govukInsetText({
-        text: condition.description
-      }) }}
+      {% set h1 %}
+        <span class="govuk-caption-xl">{{name}}</span>
+        {{title}}
+      {% endset %}
 
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              html: "Choose status",
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
             }
           },
           idPrefix: "conditionstatus",
@@ -36,11 +35,11 @@
             value: "Pending",
             text: "Pending",
             checked: condition.status == 'Pending'
-          }, {
+          } if condition.status != 'Pending' and application.status != 'Deferred', {
             value: "Met",
             text: "Met",
             checked: condition.status == 'Met'
-          }, {
+          } if condition.status != 'Met' and application.status != 'Deferred', {
             value: "Not met",
             text: "Not met",
             checked: condition.status == 'Not met'
