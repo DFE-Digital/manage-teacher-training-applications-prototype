@@ -75,6 +75,10 @@ exports.getConditions = (application) => {
   return conditions
 }
 
+exports.hasPendingConditions = (application) => {
+  return this.getConditions(application).some(c => c.status == "Pending")
+}
+
 exports.getCondition = (application, conditionId) => {
   return this.getConditions(application).find(condition => condition.id === conditionId)
 }
@@ -90,7 +94,6 @@ exports.hasOnlyOneConditionNotMet = (application) => {
 exports.deleteCondition = (application, conditionId) => {
   if(application.offer.standardConditions) {
     application.offer.standardConditions = application.offer.standardConditions.filter(c => c.id != conditionId)
-    console.log(application.offer.standardConditions)
   }
   if(application.offer.conditions) {
     application.offer.conditions = application.offer.conditions.filter(c => c.id != conditionId)
