@@ -1,5 +1,6 @@
 const utils = require('../data/application-utils')
 const { v4: uuidv4 } = require('uuid')
+const _ = require('lodash');
 
 module.exports = router => {
 
@@ -163,5 +164,56 @@ module.exports = router => {
     res.redirect(`/application/${req.params.applicationId}/offer`)
 
   })
+
+
+  // Edit condition statuses (in bulk)
+  router.get('/application/:applicationId/offer/edit-condition-statuses', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    const conditions = utils.getConditions(application)
+
+    if(req.session.data['edit-condition-statuses']) {
+      console.log(req.session.data['edit-condition-statuses']['conditions'])
+    }
+
+    res.render('application/offer/edit-condition-statuses/index', {
+      application,
+      conditions
+    })
+  })
+
+  router.post('/application/:applicationId/offer/edit-condition-statuses', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    res.redirect(`/application/${req.params.applicationId}/offer/edit-condition-statuses/check`)
+  })
+
+  router.get('/application/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    // mixin new data statuses with conditions
+    let conditions = utils.getConditions(application).map(condition => {
+      return {
+        id: condition.id,
+        description: condition.description,
+        status: req.session.data['edit-condition-statuses']['conditions'][condition.id]
+      }
+    })
+
+    let hasNotMetConditions = _.some(conditions, (condition) => {
+      return condition.status === "Not met"
+    })
+
+    let allConditionsMet = _.every(conditions, (condition) => {
+      return condition.status === "Met"
+    })
+
+    res.render('application/offer/edit-condition-statuses/check', {
+      application,
+      conditions,
+      hasNotMetConditions,
+      allConditionsMet
+    })
+  })
+
 
 }
