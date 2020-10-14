@@ -60,21 +60,21 @@
     items: [{
       value: "Personal statement",
       html: "Personal statement",
-      checked: checked("['rejectionReasons']['application-quality-reasons']", "Personal statement"),
+      checked: checked(data['rejectionReasons']['application-quality-reasons'], "Personal statement"),
       conditional: {
         html: applicationQualityReasonsPersonalStatementHtml
       }
     }, {
       value: "Subject knowledge",
       text: "Subject knowledge",
-      checked: checked("['rejectionReasons']['application-quality-reasons']", "Subject knowledge"),
+      checked: checked(data['rejectionReasons']['application-quality-reasons'], "Subject knowledge"),
       conditional: {
         html: applicationQualityReasonsSubjectKnowledgeHtml
       }
     }, {
         value: "Other",
         text: "Other",
-        checked: checked("['rejectionReasons']['application-quality-reasons']", "Other"),
+        checked: checked(data['rejectionReasons']['application-quality-reasons'], "Other"),
         conditional: {
           html: applicationQualityReasonsOtherHtml
         }
@@ -96,7 +96,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['application-quality']", "Yes"),
+    checked: checked(data['rejectionReasons']['application-quality'], "Yes"),
     conditional: {
       html: applicationQualityReasonsHtml
     }
@@ -104,6 +104,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['application-quality']", "No")
+    checked: checked(data['rejectionReasons']['application-quality'], "No")
   }]
 }) }}

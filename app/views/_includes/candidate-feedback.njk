@@ -26,17 +26,17 @@
     <ul class="govuk-list govuk-list--bulle app-list--spaced">
 
       {% set checkboxValue = "Didn’t reply to our interview offer" %}
-      {% if checked("actions-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
         <li>{{checkboxValue}}</li>
       {% endif %}
 
       {% set checkboxValue = "Didn’t attend interview" %}
-      {% if checked("actions-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
         <li>{{checkboxValue}}</li>
       {% endif %}
 
       {% set checkboxValue = "Other" %}
-      {% if checked("actions-reasons", "Other", rejectionReasons) %}
+      {% if checked(rejectionReasons["actions-reasons"], "Other") %}
         <li>
           {{rejectionReasons['actions-reasons-other']}}
 
@@ -64,7 +64,7 @@
       {% set fieldName = "application-quality-reasons" %}
       {% set checkboxValue = "Personal statement" %}
       {% set textBoxName = "application-quality-reasons-personal-statement" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           Your personal statement could be improved.
           <p>Details: {{rejectionReasons[textBoxName]}}</p>
@@ -73,7 +73,7 @@
 
       {% set checkboxValue = "Subject knowledge" %}
       {% set textBoxName = "application-quality-reasons-subject-knowledge" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           Your subject knowledge could be improved.
           <p>Details: {{rejectionReasons[textBoxName]}}</p>
@@ -81,7 +81,7 @@
       {% endif %}
 
       {% set checkboxValue = "Other" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           {{rejectionReasons["application-quality-reasons-other"]}}
           <p>Advice: {{rejectionReasons["application-quality-reasons-other-improve"]}}</p>
@@ -106,32 +106,32 @@
     <ul class="govuk-list govuk-list--bulle app-list--spaced">
 
       {% set checkboxValue = "No Maths GCSE grade 4 (C) or above, or valid equivalent" %}
-      {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
         <li>No Maths GCSE grade 4 (C) or above, or valid equivalent.</li>
       {% endif %}
 
       {% set checkboxValue = "No English GCSE grade 4 (C) or above, or valid equivalent" %}
-      {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
         <li>No English GCSE grade 4 (C) or above, or valid equivalent.</li>
       {% endif %}
 
       {% set checkboxValue = "No Science GCSE grade 4 (C) or above, or valid equivalent (for primary applicants)" %}
-      {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
         <li>No Science GCSE grade 4 (C) or above, or valid equivalent.</li>
       {% endif %}
 
       {% set checkboxValue = "No degree" %}
-      {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
         <li>No degree.</li>
       {% endif %}
 
       {% set checkboxValue = "Degree doesn’t meet course requirements" %}
-      {% if checked("missing-qualifications-reasons", checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
         <li>Your degree does not meet the course requirements.</li>
       {% endif %}
 
       {% set checkboxValue = "Other" %}
-      {% if checked("missing-qualifications-reasons", "Other") %}
+      {% if checked(rejectionReasons["missing-qualifications-reasons"], "Other") %}
         <li>{{rejectionReasons['missing-qualifications-reasons-other']}}</p>
       {% endif %}
 
@@ -198,7 +198,7 @@
       {% set fieldName = "honesty-reasons" %}
       {% set checkboxValue = "Information given on application form false or inaccurate" %}
       {% set textBoxName = "honesty-reasons-false-information" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           Information given on application form false or inaccurate
           <p> Details: {{rejectionReasons[textBoxName]}}</p>
@@ -207,7 +207,7 @@
 
       {% set checkboxValue = "Evidence of plagiarism in personal statement or elsewhere" %}
       {% set textBoxName = "honesty-reasons-plagiarism" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           The provider found evidence of plagiarism in your personal statement or elsewhere in your application.
           <p>Details: {{rejectionReasons["honesty-reasons-plagiarism"]}}</p>
@@ -216,7 +216,7 @@
 
       {% set checkboxValue = "References didn’t support application" %}
       {% set textBoxName = "honesty-reasons-references" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           Your references didn’t support your application.
           <p>Details: {{rejectionReasons["honesty-reasons-reference-information"]}}</p>
@@ -226,7 +226,7 @@
 
       {% set checkboxValue = "Other" %}
       {% set textBoxName = "honesty-reasons-other" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>{{rejectionReasons["honesty-reasons-other"]}}</li>
       {% endif %}
 
@@ -250,7 +250,7 @@
 
       {% set checkboxValue = "Information disclosed by candidate makes them unsuitable to work with children" %}
       {% set textBoxName = "safeguarding-reasons-disclosed-information" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           You disclosed information in your application which makes you unsuitable to work with children.
           <p>Details: {{rejectionReasons["safeguarding-reasons-disclosed-information"]}}</p>
@@ -259,7 +259,7 @@
 
       {% set checkboxValue = "Information revealed by our vetting process makes the candidate unsuitable to work with children" %}
       {% set textBoxName = "safeguarding-reasons-vetting-information" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>
           The provider’s vetting process found information which makes you unsuitable to work with children.
           <p>Details: {{rejectionReasons["safeguarding-reasons-vetting-information"]}}</p>
@@ -268,7 +268,7 @@
 
       {% set checkboxValue = "Other" %}
       {% set textBoxName = "safeguarding-reasons-other" %}
-      {% if checked(fieldName, checkboxValue, rejectionReasons) %}
+      {% if checked(rejectionReasons[fieldName], checkboxValue) %}
         <li>{{rejectionReasons["safeguarding-reasons-other"]}}</li>
       {% endif %}
 

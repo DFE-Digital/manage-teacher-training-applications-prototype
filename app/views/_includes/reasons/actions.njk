@@ -34,15 +34,15 @@
     items: [{
       value: "Didn’t reply to our interview offer",
       html: "Didn’t reply to our interview offer",
-      checked: checked("['rejectionReasons']['actions-reasons']", "Didn’t reply to our interview offer")
+      checked: checked(data['rejectionReasons']['actions-reasons'], "Didn’t reply to our interview offer")
     }, {
       value: "Didn’t attend interview",
       text: "Didn’t attend interview",
-      checked: checked("['rejectionReasons']['actions-reasons']", "Didn’t attend interview")
+      checked: checked(data['rejectionReasons']['actions-reasons'], "Didn’t attend interview")
     }, {
         value: "Other",
         text: "Other",
-        checked: checked("['rejectionReasons']['actions-reasons']", "Other"),
+        checked: checked(data['rejectionReasons']['actions-reasons'], "Other"),
         conditional: {
           html: candidateActionsReasonsOtherHtml
         }
@@ -64,7 +64,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['actions']", "Yes"),
+    checked: checked(data['rejectionReasons']['actions'], "Yes"),
     conditional: {
       html: candidateActionsReasonsHtml
     }
@@ -72,6 +72,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['actions']", "No")
+    checked: checked(data['rejectionReasons']['actions'], "No")
   }]
 }) }}

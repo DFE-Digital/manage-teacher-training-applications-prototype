@@ -13,7 +13,7 @@ let users = require('./users.json')
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {
     get() {
-      return this.givenName + ' ' + this.familyName
+      return `${this.givenName} ${this.familyName}`
     },
     enumerable: true
   })
@@ -67,7 +67,6 @@ let relationships = [{
 let userOrgs = [trainingProviders[0], accreditedBodies[0], accreditedBodies[1]];
 
 module.exports = {
-  settings: ["hasCombinedConditions"],
   user: {
     givenName: "Claudine",
     familyName: "Adams",

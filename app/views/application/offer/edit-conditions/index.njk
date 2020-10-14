@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: backLinkDestination
+    href: '/application/' + application.id + '/offer'
   }) }}
 {% endblock %}
 
@@ -21,8 +21,8 @@
 
       <form method="post">
         {{ govukCheckboxes({
-          idPrefix: "standard-conditions",
-          name: "standard-conditions",
+          idPrefix: "[edit-conditions][standard-conditions]",
+          name: "[edit-conditions][standard-conditions]",
           fieldset: {
             legend: {
               text: "Standard conditions",
@@ -32,70 +32,62 @@
           items: [{
             value: "Fitness to teach check",
             text: "Fitness to teach check",
-            checked: checked(data['standard-conditions'], "Fitness to teach check" )
+            checked: checked(data['edit-conditions']['standard-conditions'], "Fitness to teach check") or checked(standardConditions,"Fitness to teach check")
           }, {
             value: "Disclosure and barring service check",
             text: "Disclosure and barring service check",
-            checked: checked(data['standard-conditions'], "Disclosure and barring service check" )
+            hint: {
+              text: "We’ll email the candidate to tell them that they’ll need to provide ID"
+            },
+            checked: checked(data['edit-conditions']['standard-conditions'], "Disclosure and barring service check") or checked(standardConditions,"Disclosure and barring service check")
           }]
         }) }}
 
         <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
-        <p class="govuk-body">Outline any further conditions (for example, studying a subject knowledge enhancement course) and give deadlines for completing them.</p>
+        <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
         {{ govukTextarea({
           id: "condition-1",
-          name: "further-conditions[condition-1]",
+          name: "[edit-conditions][condition-1]",
           rows: 3,
           label: {
             text: "First condition",
             classes: "govuk-label--s"
           },
-          value: furtherConditions[0].description
+          value: data["edit-conditions"]["condition-1"] or application.offer.conditions[0].description
         }) }}
 
         {{ govukTextarea({
           id: "condition-2",
-          name: "further-conditions[condition-2]",
+          name: "[edit-conditions][condition-2]",
           rows: 3,
           label: {
             text: "Second condition",
             classes: "govuk-label--s"
           },
-          value: furtherConditions[1].description
+          value: data["edit-conditions"]["condition-2"] or application.offer.conditions[1].description
         }) }}
 
         {{ govukTextarea({
           id: "condition-3",
-          name: "further-conditions[condition-3]",
+          name: "[edit-conditions][condition-3]",
           rows: 3,
           label: {
             text: "Third condition",
             classes: "govuk-label--s"
           },
-          value: furtherConditions[2].description
+          value: data["edit-conditions"]["condition-3"] or application.offer.conditions[2].description
         }) }}
 
         {{ govukTextarea({
           id: "condition-4",
-          name: "further-conditions[condition-4]",
+          name: "[edit-conditions][condition-4]",
           rows: 3,
           label: {
             text: "Further conditions",
             classes: "govuk-label--s"
           },
-          value: furtherConditions[3].description
+          value: data["edit-conditions"]["condition-4"] or application.offer.conditions[3].description
         }) }}
-
-        {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Recommendations (optional)</h2>
-        {{ govukTextarea({
-          id: "recommendations",
-          name: "recommendations",
-          rows: 5,
-          label: {
-            text: "Outline any recommendations (for example, organising school experience)."
-          }
-        }) }} #}
-
 
         {{ govukButton({
           text: "Continue"

@@ -1,29 +1,29 @@
 const utils = require('../data/application-utils')
 
 function mixinRelatedOrgPermissions(org, relationships, permissionType) {
-    relationships.forEach(relationship => {
-      // org not in relationship at all
-      if(relationship.org1.id != org.org.id && relationship.org2.id != org.org.id ) {
-        return;
+  relationships.forEach(relationship => {
+    // org not in relationship at all
+    if(relationship.org1.id != org.org.id && relationship.org2.id != org.org.id ) {
+      return;
+    }
+
+    var partnerKeyName = relationship.org1.id == org.org.id ? 'org2' : 'org1';
+    var orgKeyPermissions = relationship.org1.id == org.org.id ? 'org1Permissions' : 'org2Permissions';
+
+    if(relationship[orgKeyPermissions] && relationship[orgKeyPermissions][permissionType]) {
+      if(!org.permissions.applicableOrgs[permissionType]) {
+        org.permissions.applicableOrgs[permissionType] = []
       }
-
-      var partnerKeyName = relationship.org1.id == org.org.id ? 'org2' : 'org1';
-      var orgKeyPermissions = relationship.org1.id == org.org.id ? 'org1Permissions' : 'org2Permissions';
-
-      if(relationship[orgKeyPermissions] && relationship[orgKeyPermissions][permissionType]) {
-        if(!org.permissions.applicableOrgs[permissionType]) {
-          org.permissions.applicableOrgs[permissionType] = []
-        }
-        org.permissions.applicableOrgs[permissionType].push(relationship[partnerKeyName])
-      } else {
-        if(!org.permissions.nonApplicableOrgs[permissionType]) {
-          org.permissions.nonApplicableOrgs[permissionType] = []
-        }
-        org.permissions.nonApplicableOrgs[permissionType].push(relationship[partnerKeyName])
+      org.permissions.applicableOrgs[permissionType].push(relationship[partnerKeyName])
+    } else {
+      if(!org.permissions.nonApplicableOrgs[permissionType]) {
+        org.permissions.nonApplicableOrgs[permissionType] = []
       }
+      org.permissions.nonApplicableOrgs[permissionType].push(relationship[partnerKeyName])
+    }
 
-    })
-  }
+  })
+}
 
 module.exports = router => {
 

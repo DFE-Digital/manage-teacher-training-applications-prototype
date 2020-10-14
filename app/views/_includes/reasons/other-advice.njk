@@ -24,7 +24,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['other-feedback']", "Yes"),
+    checked: checked(data['rejectionReasons']['other-feedback'], "Yes"),
     conditional: {
       html: otherFeedbackDetailsHtml
     }
@@ -32,6 +32,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['other-feedback']", "No")
+    checked: checked(data['rejectionReasons']['other-feedback'], "No")
   }]
 }) }}

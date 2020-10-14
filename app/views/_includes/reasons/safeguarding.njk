@@ -51,21 +51,21 @@
     items: [{
       value: "Information disclosed by candidate makes them unsuitable to work with children",
       text: "Information disclosed by candidate makes them unsuitable to work with children",
-      checked: checked("['rejectionReasons']['safeguarding-reasons']", 'Information disclosed by candidate makes them unsuitable to work with children'),
+      checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'Information disclosed by candidate makes them unsuitable to work with children'),
       conditional: {
         html: safeguardingDisclosedInformationHtml
       }
     }, {
       value: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
       text: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
-      checked: checked("['rejectionReasons']['safeguarding-reasons']", 'Information revealed by our vetting process makes the candidate unsuitable to work with children'),
+      checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'Information revealed by our vetting process makes the candidate unsuitable to work with children'),
       conditional: {
         html: safeguardingVettingInformationHtml
       }
     }, {
         value: "Other",
         text: "Other",
-        checked: checked("['rejectionReasons']['safeguarding-reasons']", 'Other'),
+        checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'Other'),
         conditional: {
           html: safeguardingOtherHtml
         }
@@ -87,7 +87,7 @@
   items: [{
     value: "Yes",
     text: "Yes",
-    checked: checked("['rejectionReasons']['safeguarding']", "Yes"),
+    checked: checked(data['rejectionReasons']['safeguarding'], "Yes"),
     conditional: {
       html: safeguardingReasonsHtml
     }
@@ -95,6 +95,6 @@
   {
     value: "No",
     text: "No",
-    checked: checked("['rejectionReasons']['safeguarding']", "No")
+    checked: checked(data['rejectionReasons']['safeguarding'], "No")
   }]
 }) }}

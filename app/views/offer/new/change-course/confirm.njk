@@ -72,7 +72,7 @@
         Conditions of offer
       </h2>
 
-      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked("settings", "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
+      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
           {% for condition in conditions %}
             <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
               <dt class="govuk-summary-list__key">
@@ -81,7 +81,7 @@
               <dd class="govuk-summary-list__value app-conditions-list__tag">
                 {# {{govukTag({ text: "Pending", classes: "app-tag--grey" })}} #}
               </dd>
-              {% if not checked("settings", "hasCombinedConditions") %}
+              {% if not checked(data.settings, "hasCombinedConditions") %}
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="/application/{{application.id}}/new/change-course/conditions">
                   Change<span class="govuk-visually-hidden"> ‘{{condition.description}}’</span></a>

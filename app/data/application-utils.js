@@ -75,6 +75,10 @@ exports.getConditions = (application) => {
   return conditions
 }
 
+exports.hasPendingConditions = (application) => {
+  return this.getConditions(application).some(c => c.status == "Pending")
+}
+
 exports.getCondition = (application, conditionId) => {
   return this.getConditions(application).find(condition => condition.id === conditionId)
 }
@@ -85,6 +89,15 @@ exports.hasMetAllConditions = (application) => {
 
 exports.hasOnlyOneConditionNotMet = (application) => {
   return this.getConditions(application).filter(condition => condition.status === 'Pending').length === 1
+}
+
+exports.deleteCondition = (application, conditionId) => {
+  if(application.offer.standardConditions) {
+    application.offer.standardConditions = application.offer.standardConditions.filter(c => c.id != conditionId)
+  }
+  if(application.offer.conditions) {
+    application.offer.conditions = application.offer.conditions.filter(c => c.id != conditionId)
+  }
 }
 
 function getLink (item, application) {
