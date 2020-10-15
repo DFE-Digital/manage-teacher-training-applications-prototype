@@ -15,7 +15,7 @@
 {% block content %}
 
   {% set h1 %}
-    <span class="govuk-caption-xl"> {{name}} </span>
+    <span class="govuk-caption-l"> {{name}} </span>
     {{title}}
   {% endset %}
 
@@ -30,7 +30,7 @@
           label: {
             html: h1,
             isPageHeading: true,
-            classes: "govuk-label--xl"
+            classes: "govuk-label--l"
           },
           value: data.cancelInterview.reason
         }) }}

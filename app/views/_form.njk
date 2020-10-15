@@ -7,13 +7,13 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="{{ formaction | default('#') }}" method="post">
       {% set legendHtml %}
-        {% if parent %}<span class="govuk-caption-xl">{{ parent }}</span>{% endif %}
+        {% if parent %}<span class="govuk-caption-l">{{ parent }}</span>{% endif %}
         {{ title | safe }}
       {% endset %}
       {% call govukFieldset({
         legend: {
           html: legendHtml,
-          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-8",
+          classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-8",
           isPageHeading: true
         }
       }) %}
