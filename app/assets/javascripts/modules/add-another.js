@@ -43,9 +43,14 @@ MOJFrontend.AddAnother.prototype.getNewItem = function () {
 
 MOJFrontend.AddAnother.prototype.updateAttributes = function (index, item) {
   item.find('[data-name]').each(function (i, el) {
-    el.name = $(el).attr('data-name').replace(/%index%/, index)
+    el.name = $(el).attr('data-name').replace(/%index%/, index);
     el.id = $(el).attr('data-id').replace(/%index%/, index);
-    ($(el).siblings('label')[0] || $(el).parents('label')[0]).htmlFor = el.id
+    ($(el).siblings('label')[0] || $(el).parents('label')[0]).htmlFor = el.id;
+
+    if($(el).attr('data-label')) {
+      ($(el).siblings('label')[0] || $(el).parents('label')[0]).innerHTML = $(el).attr('data-label').replace(/%index%/, index+1);
+    }
+
   })
 }
 
@@ -74,9 +79,12 @@ MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function (e) {
     if (items.length === 1) {
       items.find('.moj-add-another__remove-button').remove()
     }
-    items.each($.proxy(function (index, el) {
+
+    // get items again as for some reason after removing it's still included in array
+    this.getItems().each($.proxy(function (index, el) {
       this.updateAttributes(index, $(el))
     }, this))
+
   }
 
   this.focusHeading()
