@@ -103,21 +103,14 @@
 {% if application.offer and conditions %}
 
   <h2 class="govuk-heading-m">Conditions</h2>
-  {% if checked(data.settings, "hasCombinedConditions") %}
-    <p><a href="#">Update status of conditions</a></p>
-  {% else %}
+  {% if application.status == "Offered" %}
+    <p><a href="/application/{{application.id}}/offer/edit-conditions">Add or change conditions</a></p>
+  {% endif %}
 
-    {% if application.status == "Offered" %}
-      <p><a href="/application/{{application.id}}/offer/edit-conditions">Add or change conditions</a></p>
-    {% endif %}
-
-    {% if application.status == "Accepted" %}
-      <p>
-        <a href="/application/{{application.id}}/offer/edit-condition-statuses">Update status of conditions</a>
-        or
-        <a href="/application/{{application.id}}/offer/delete-conditions">delete conditions</a>
-      </p>
-    {% endif %}
+  {% if application.status == "Accepted" %}
+    <p>
+      <a href="/application/{{application.id}}/offer/edit-condition-statuses">Update status of conditions</a>
+    </p>
   {% endif %}
 
   {% if conditions.length %}
@@ -127,14 +120,14 @@
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             {{condition.description}}
-            {% if not checked(data.settings, "hasCombinedConditions") and (application.status == "Accepted" or application.status == "Conditions met") %}
+            {# {% if not checked(data.settings, "hasCombinedConditions") and (application.status == "Accepted" or application.status == "Conditions met") %} #}
               {# <br>
               <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/change-status">
                 Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
                 or
                 <a class="govuk-link" href="/application/{{application.id}}/condition/{{condition.id}}/delete">
                 delete condition<span class="govuk-visually-hidden"> ‘{{condition.description}}’</span></a> #}
-            {% endif %}
+            {# {% endif %} #}
           </dt>
           <dd class="govuk-summary-list__value app-conditions-list__tag">
             {% if condition.status == "Pending" %}

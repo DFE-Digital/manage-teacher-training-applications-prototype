@@ -96,10 +96,17 @@
       {% endif %}
 
       <form method="post">
-        {{ govukButton({
-          text: "Update status of conditions",
-          classes: "govuk-button--warning" if hasNotMetConditions
-        }) }}
+
+        {% if hasNotMetConditions %}
+          {{ govukButton({
+            text: "Update conditions and withdraw offer",
+            classes: "govuk-button--warning"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Update conditions"
+          }) }}
+        {% endif %}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
     </div>
