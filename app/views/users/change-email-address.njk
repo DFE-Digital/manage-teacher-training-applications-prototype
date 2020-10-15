@@ -19,7 +19,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-xl">{{name}}</span>
+        <span class="govuk-caption-l">{{name}}</span>
         {{title}}
       {% endset %}
 
@@ -27,7 +27,7 @@
         {{ govukInput({
           label: {
             html: h1,
-            classes: "govuk-label--xl",
+            classes: "govuk-label--l",
             isPageHeading: true
           },
           id: "new-email-address",
