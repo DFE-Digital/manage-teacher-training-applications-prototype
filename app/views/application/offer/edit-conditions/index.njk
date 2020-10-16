@@ -48,32 +48,9 @@
           <h2 class="govuk-heading-m govuk-!-margin-bottom-1 moj-add-another__heading">Further conditions</h2>
           <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
 
-          {% if data['edit-conditions']['conditions'].length %}
-            {% for condition in data['edit-conditions']['conditions'] %}
+          {% if conditions.length %}
+            {% for condition in conditions %}
 
-              <div class="moj-add-another__item">
-                town
-                {{ govukTextarea({
-                  id: "[edit-conditions][conditions]["+loop.index0+"]",
-                  name: "[edit-conditions][conditions]["+loop.index0+"]",
-                  rows: 3,
-                  label: {
-                    text: "Condition " + loop.index,
-                    classes: "govuk-label--s"
-                  },
-                  value: data['edit-conditions']['conditions'][loop.index0],
-                  attributes: {
-                    'data-name': '[edit-conditions][conditions][%index%]',
-                    'data-id': '[edit-conditions][conditions][%index%]',
-                    'data-label': 'Condition %index%'
-                  }
-                }) }}
-                <button type="button" class="govuk-button govuk-button--secondary moj-add-another__remove-button">Remove</button>
-
-              </div>
-            {% endfor %}
-          {% elseif application.offer.conditions and not data['edit-conditions']['conditions']  %}
-            {% for condition in application.offer.conditions %}
               <div class="moj-add-another__item">
                 {{ govukTextarea({
                   id: "[edit-conditions][conditions]["+loop.index0+"]",
@@ -83,7 +60,7 @@
                     text: "Condition " + loop.index,
                     classes: "govuk-label--s"
                   },
-                  value: application.offer.conditions[loop.index0].description,
+                  value: condition,
                   attributes: {
                     'data-name': '[edit-conditions][conditions][%index%]',
                     'data-id': '[edit-conditions][conditions][%index%]',
@@ -94,7 +71,6 @@
               </div>
             {% endfor %}
           {% else %}
-
             <div class="moj-add-another__item govuk-!-display-none">
               {{ govukTextarea({
                 id: "[edit-conditions][conditions][0]",
@@ -107,7 +83,7 @@
                 attributes: {
                   'data-name': '[edit-conditions][conditions][%index%]',
                   'data-id': '[edit-conditions][conditions][%index%]',
-                  'data-label': 'Condition [%index%]'
+                  'data-label': 'Condition %index%'
                 }
               }) }}
             </div>

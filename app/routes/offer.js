@@ -36,9 +36,11 @@ module.exports = router => {
 
   router.get('/application/:applicationId/offer/edit-conditions', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    let standardConditions;
+    let conditions;
 
     if(!req.session.data['edit-conditions'] || !req.session.data['edit-conditions']['standard-conditions']) {
-      var standardConditions = application.offer.standardConditions.map(condition => {
+      standardConditions = application.offer.standardConditions.map(condition => {
         return condition.description
       })
     }
@@ -48,10 +50,19 @@ module.exports = router => {
       req.session.data['edit-conditions']['conditions'] = req.session.data['edit-conditions']['conditions'].filter(c => c != '')
     }
 
+    // if the form has been used in some way
+    if(req.session.data['edit-conditions']) {
+      conditions = req.session.data['edit-conditions']['conditions']
+    } else {
+      conditions = application.offer.conditions.map(c => {
+        return c.description
+      })
+    }
 
     res.render('application/offer/edit-conditions/index', {
       application,
-      standardConditions
+      standardConditions,
+      conditions
     })
   })
 

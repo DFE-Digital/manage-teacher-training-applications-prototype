@@ -5,6 +5,7 @@ MOJFrontend.AddAnother = function (options) {
   this.container.on('click', '.moj-add-another__remove-button', $.proxy(this, 'onRemoveButtonClick'))
   this.container.on('click', '.moj-add-another__add-button', $.proxy(this, 'onAddButtonClick'))
   this.container.find('.moj-add-another__add-button, moj-add-another__remove-button').prop('type', 'button')
+  this.container.find('.moj-add-another__heading').attr('tabindex', '-1')
 }
 
 MOJFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
@@ -74,6 +75,7 @@ MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function (e) {
   if (this.options.allowNoFields && items.length === 1) {
     $(e.currentTarget).parents('.moj-add-another__item').addClass('govuk-!-display-none')
     this.resetItem($(e.currentTarget).parents('.moj-add-another__item'))
+    $(e.currentTarget).parents('.moj-add-another__item').find('.moj-add-another__remove-button').remove()
   } else {
     $(e.currentTarget).parents('.moj-add-another__item').remove()
     if (items.length === 1) {
