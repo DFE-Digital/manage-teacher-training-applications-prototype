@@ -34,25 +34,6 @@
         checked: checked(data.decision, "offer")
       },
       {
-        value: "different-course",
-        text: "Make an offer but change course",
-
-        checked: checked(data.decision, "different-course")
-      } if 1 == 2,{
-        value: "different-location",
-        text: "Make an offer but change main training location",
-
-        checked: checked(data.decision, "different-location")
-      } if 1 == 2,
-      {
-        value: "different-provider",
-        text: "Make an offer but change training provider",
-        hint: {
-                                text: "For example, to another organisation with courses you run or ratify"
-                            },
-
-        checked: checked(data.decision, "different-provider")
-      } if 1 == 2, {
         value: "reject",
         text: "Reject application",
         checked: checked(data.decision, "reject")

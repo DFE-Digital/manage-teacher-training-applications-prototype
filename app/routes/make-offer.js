@@ -74,4 +74,40 @@ module.exports = router => {
     req.flash('success', 'Offer successfully made')
     res.redirect(`/application/${req.params.applicationId}/offer`)
   })
+
+
+  router.get('/application/:applicationId/offer/new/provider', (req, res) => {
+
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    res.render('application/offer/new/provider', {
+      application
+    })
+  })
+
+  router.post('/application/:applicationId/offer/new/provider', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/new/course`)
+  })
+
+  router.get('/application/:applicationId/offer/new/course', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    res.render('application/offer/new/course', {
+      application
+    })
+  })
+
+  router.post('/application/:applicationId/offer/new/course', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/new/location`)
+  })
+
+  router.get('/application/:applicationId/offer/new/location', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    res.render('application/offer/new/location', {
+      application
+    })
+  })
+
+  router.post('/application/:applicationId/offer/new/location', (req, res) => {
+    res.redirect(`/application/${req.params.applicationId}/offer/new/check`)
+  })
+
 }

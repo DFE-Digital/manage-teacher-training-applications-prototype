@@ -13,6 +13,7 @@ MOJFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
   if (this.options.allowNoFields && firstItem.hasClass('govuk-!-display-none')) {
     firstItem.removeClass('govuk-!-display-none')
     this.createRemoveButton(firstItem)
+    firstItem.find('input, textarea, select').first().focus()
     return
   }
 

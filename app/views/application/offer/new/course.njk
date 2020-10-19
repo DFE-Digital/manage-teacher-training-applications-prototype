@@ -1,0 +1,65 @@
+{% extends "_layout.njk" %}
+
+{% set name = application.personalDetails.name %}
+{% set title = "Select course" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/application/" + application.id + "/offer/new/provider"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-l">{{name}}</span>
+        {{title}}
+      {% endset %}
+      <form method="post">
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          idPrefix: "course",
+          name: "course",
+          items: [{
+            value: "Primary (X100)",
+            text: "Primary (X100)",
+            checked: checked(data.course, "Primary (X100)")
+          }, {
+            value: "Primary (X121)",
+            text: "Primary (X121)",
+            checked: checked(data.course, "Primary (X121)")
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete({
+      name: "course",
+      element: document.querySelector('#course-autocomplete-container'),
+      id: 'course',
+      showAllValues: true,
+      source: [
+        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
+      ]
+    })
+  </script>
+{% endblock %}

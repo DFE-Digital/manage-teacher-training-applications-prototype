@@ -2,11 +2,11 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and update offer" %}
+{% set title = "Check and make offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: '/application/' + application.id + '/offer/edit-conditions'
+    href: '/application/' + application.id + '/offer/new'
   }) }}
 {% endblock %}
 
@@ -32,7 +32,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/" + application.id + "/offer/edit-conditions/change-provider",
+                  href: "/application/" + application.id + "/offer/new/provider",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
@@ -48,7 +48,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/" + application.id + "/offer/edit-conditions/change-course",
+                  href: "/application/" + application.id + "/offer/new/course",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
@@ -59,12 +59,12 @@
               text: "Location"
             },
             value: {
-              html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+              html: data['new-offer']['location'] or "Alliance Academy, Edgeware, Road Name, SW1 1AA"
             },
             actions: {
               items: [
                 {
-                  href: "/application/" + application.id + "/offer/edit-conditions/change-location",
+                  href: "/application/" + application.id + "/offer/new/location?referrer=/application/" + application.id + "/offer/new/",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
@@ -80,7 +80,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/" + application.id + "/offer/edit-conditions/change-study-mode",
+                  href: "/application/" + application.id + "/offer/new/study-mode",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
