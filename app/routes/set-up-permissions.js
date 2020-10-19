@@ -2,24 +2,26 @@ module.exports = router => {
 
   router.get('/onboard', (req, res) => {
 
-    var items = [];
+      var orgs = req.session.data.user.organisations;
 
-    req.session.data.user.organisations.forEach(org => {
+      var trainingProviders = orgs.filter(org => !org.isAccreditedBody).map(org => {
 
-      var item = { org: org, partners: [] };
+        var item = { org: org, partners: [] };
 
-      let relationships = req.session.data.relationships.filter(relationship => {
-        return relationship.org1.id == org.id
-      }).forEach(relationship => {
-        item.partners.push(relationship.org2)
+        req.session.data.relationships.filter(relationship => {
+          return relationship.org1.id == org.id
+        }).forEach(relationship => {
+          item.partners.push(relationship.org2)
+        })
+
+        return item
+
       })
 
-      items.push(item);
-
-    })
 
     res.render('onboard/index', {
-      items
+      orgs,
+      trainingProviders
     })
   })
 
