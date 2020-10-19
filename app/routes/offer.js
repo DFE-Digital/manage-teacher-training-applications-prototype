@@ -208,12 +208,18 @@ module.exports = router => {
     })
 
     if (utils.hasMetAllConditions(application)) {
-      application.status = 'Conditions met'
+      application.status = 'Conditions met';
     }
 
     if(utils.getConditions(application).some(c => c.status == "Not met")) {
-      application.status = 'Conditions not met'
+      application.status = 'Conditions not met';
     }
+
+    utils.addEvent(application, {
+      "title": "Status of conditions updated",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
+    })
 
     req.flash('success', 'Status of conditions updated successfully')
     res.redirect(`/application/${req.params.applicationId}/offer`)
