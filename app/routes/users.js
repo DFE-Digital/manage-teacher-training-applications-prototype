@@ -64,14 +64,15 @@ module.exports = router => {
   })
 
   router.get('/account/users/new/organisations', (req, res) => {
-    var items = req.session.data.user.organisations.map(org => {
+
+    var organisationItems = req.session.data.user.organisations.map(org => {
       return {
         value: org.id,
         text: org.name
       }
     })
 
-    res.render('account/users/new/organisations', { items })
+    res.render('account/users/new/organisations', { organisationItems })
   })
 
   router.post('/account/users/new/organisations', (req, res) => {
