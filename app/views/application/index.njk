@@ -35,7 +35,7 @@
 
       {% include "_includes/application/details.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Course details</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Course details</h2>
       {{ govukSummaryList({
         rows: [{
           key: {
@@ -68,9 +68,9 @@
         }]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Disability, access and other needs</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability, access and other needs</h2>
       {% set disabilityGuidanceHtml %}
-        <h2 class="govuk-heading-m">Asking for support if you have a disability or other needs</h2>
+        <h2 class="govuk-heading-m ">Asking for support if you have a disability or other needs</h2>
         <p class="govuk-body">You might benefit from extra support if you’re disabled, have a mental health condition or educational needs.</p>
         <p class="govuk-body">If you choose to tell us you need support, we’ll let your training provider know. They can then make adjustments so you can attend an interview or do the training.</p>
         <p class="govuk-body">Examples of support could be:</p>
@@ -93,7 +93,7 @@
       }) }}
       <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Criminal convictions and professional misconduct</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Criminal convictions and professional misconduct</h2>
       {% set safeguardingGuidanceHtml %}
         <h2 class="govuk-heading-m">Declaring any safeguarding issues</h2>
         <p class="govuk-body">Teacher training providers need to check that it’s safe for you to work with children and young people.</p>
@@ -124,7 +124,7 @@
         <p class="govuk-body">No information shared</p>
       {% endif %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Interview</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview</h2>
       {% set interviewGuidanceHtml %}
         <h2 class="govuk-heading-m">Interview needs</h2>
         <p class="govuk-body">Interviews usually take place over the course of a day. You'll need to attend in person.</p>
@@ -150,7 +150,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Qualifications</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Qualifications</h2>
       {% set qualificationsGuidanceHtml %}
         <h2 class="govuk-heading-m">Academic and other relevant qualifications</h2>
         <p class="govuk-body">Your undergraduate degree confirms your eligibility to teach. Enter the details of your degree as they appear on your certificate, translating them into English if necessary.</p>
@@ -173,7 +173,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Work history</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Work history</h2>
       {% set workHistoryGuidanceHtml %}
         <h2 class="govuk-heading-m">Work history</h2>
         <p class="govuk-body">Training providers need a complete picture of the last 5 years of of your work history, including time out of the workplace, to safeguard children.</p>
@@ -185,7 +185,7 @@
       }) }}
       {% include "_includes/application/work-history.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Unpaid experience and volunteering</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Unpaid experience and volunteering</h2>
       {% set volunteeringGuidanceHtml %}
         <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
         <p class="govuk-body">Tell us about any unpaid experience you have working with children or in a school. For example:</p>
@@ -202,7 +202,7 @@
       }) }}
       {% include "_includes/application/school-experience.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Personal statement</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Personal statement</h2>
       {% set personalStatementGuidanceHtml %}
         <h2 class="govuk-heading-m">Why do you want to be a teacher?</h2>
         <p class="govuk-body">Use this section to showcase your motivation, commitment and teaching potential, backing up your answer with specific examples.</p>
@@ -240,7 +240,7 @@
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Subject knowledge</h3>
       <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">References</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">References</h2>
       {% set referencesGuidanceHtml %}
         <h2 class="govuk-heading-m">Choosing referees</h2>
         <p class="govuk-body">Referees should not be family members, partners or friends.</p>
@@ -257,11 +257,11 @@
         summaryText: "View guidance given to candidate",
         html: referencesGuidanceHtml
       }) }}
-      <h3 class="govuk-heading-s govuk-!-margin-bottom-2">First referee</h2>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
       {% include "_includes/application/reference.njk" %}
 
-      <h3 class="govuk-heading-s govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+      <h3 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
       {% include "_includes/application/reference.njk" %}
 
