@@ -11,7 +11,7 @@
       href: "/account"
     }, {
       text: "Organisational permissions",
-      href: "/organisations"
+      href: "/account/organisational-permissions"
     }, {
       text: title
     }]
@@ -113,7 +113,7 @@
           {% endset %}
 
           {% set editLink %}
-            /organisations/{{org.id}}/edit
+            /account/organisational-permissions/{{org.id}}/edit
           {% endset %}
 
           {% set cardHtml %}

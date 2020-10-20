@@ -2,7 +2,7 @@ const utils = require('../data/application-utils')
 
 module.exports = router => {
 
-  router.get('/organisations/:organisationId', (req, res) => {
+  router.get('/account/organisational-permissions/:organisationId', (req, res) => {
 
     let org = req.session.data.user.organisations.find(org => org.id == req.params.organisationId)
 
@@ -29,18 +29,20 @@ module.exports = router => {
         }
       })
 
-    res.render('organisations/show', {
+    res.render('account/organisational-permissions/show', {
       org,
       relationships
     })
   })
 
-  router.get('/organisations/:organisationId/edit', (req, res) => {
-    res.render('organisations/edit')
+  router.get('/account/organisational-permissions/:organisationId/edit', (req, res) => {
+    res.render('account/organisational-permissions/edit', {
+      organisationId: req.params.organisationId
+    })
   })
 
-  router.post('/organisations/:organisationId/edit', (req, res) => {
+  router.post('/account/organisational-permissions/:organisationId/edit', (req, res) => {
     req.flash('success', 'Permissions successfully changed')
-    res.redirect(`/organisations/${req.params.organisationId}`)
+    res.redirect(`/account/organisational-permissions/${req.params.organisationId}`)
   })
 }

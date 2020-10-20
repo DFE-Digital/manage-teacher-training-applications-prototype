@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/users/1"
+    href: "/account/users/1"
   }) }}
 {% endblock %}
 
@@ -20,7 +20,7 @@
         {{title}}
       {% endset %}
 
-      <form novalidate action="/users/1/change-organisations/permissions1">
+      <form novalidate action="/account/users/1/change-organisations/permissions1">
         {{ govukCheckboxes({
           idPrefix: "provider",
           name: "provider",

@@ -1,14 +1,15 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
 {% set primaryNavId = 'users' %}
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Change organisations this user will have access to" %}
+{% set emailAddress = user.emailAddress %}
+{% set title = "Change email address" %}
 
-{% block beforeContent %}
+{% block pageNavigation %}
   {{ govukBackLink({
-    href: "/users/" + user.id
+    href: "/account/users/" + user.id
   }) }}
 {% endblock %}
 
@@ -16,27 +17,26 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
         {{title}}
       {% endset %}
 
       <form novalidate method="post">
-        {{ govukCheckboxes({
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+        {{ govukInput({
+          label: {
+            html: h1,
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
-
-          items: items
-        } ) }}
-
-        {{govukButton({
-          text: "Continue"
-        })}}
+          id: "new-email-address",
+          name: "new-email-address",
+          value: emailAddress
+        }) }}
+        {{ govukButton({
+          text: "Save"
+        }) }}
       </form>
     </div>
   </div>

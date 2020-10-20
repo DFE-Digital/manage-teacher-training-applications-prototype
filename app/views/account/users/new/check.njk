@@ -1,35 +1,19 @@
-{% extends "_layout.njk" %}
+{% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set firstName = user.firstName %}
-{% set lastName = user.lastName %}
-{% set emailAddress = user.emailAddress %}
-{% set title = firstName + " " + lastName %}
+{% set title = "Check permissions before you invite user" %}
 
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Your account",
-      href: "/account"
-    }, {
-      text: "Users",
-      href: "/users"
-    }, {
-      text: title
-    }]
+  {{ govukBackLink({
+    href: "/account/users/new"
   }) }}
 {% endblock %}
 
 {% block content %}
-
-  {{ appBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
-    type: "success",
-    icon: false
-  }) if flash | falsify }}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Invite user</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       <dl class="govuk-summary-list">
@@ -38,10 +22,10 @@
             First name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{firstName}}
+            {{data.newuser['first-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/users/{{user.id}}/name/edit">
+            <a class="govuk-link" href="/account/users/new">
               Change<span class="govuk-visually-hidden"> </span>
             </a>
           </dd>
@@ -52,10 +36,10 @@
             Last name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{lastName}}
+            {{data.newuser['last-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/users/{{user.id}}/name/edit">
+            <a class="govuk-link" href="/account/users/new">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -66,32 +50,32 @@
             Email address
           </dt>
           <dd class="govuk-summary-list__value">
-            {{user.emailAddress}}
+            {{data.newuser['email-address']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/users/{{user.id}}/email-address/edit">
+            <a class="govuk-link" href="/account/users/{{user.id}}/email-address/edit">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
         </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisations this user has access to
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% for organisation in user.organisations %}
-                <p>{{organisation.org.name}}</p>
-              {% endfor %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Organisations this user has access to
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% for org in orgs %}
+              <p>{{org.org.name}}</p>
+            {% endfor %}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/account/users/new/organisations">
+                Change<span class="govuk-visually-hidden"></span>
+              </a>
             </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/users/{{user.id}}/organisations/edit">
-                  Change<span class="govuk-visually-hidden"></span>
-                </a>
-              </dd>
-          </div>
+        </div>
 
-        {% for org in user.organisations %}
+        {% for org in orgs %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Permissions: {{org.org.name}}
@@ -99,12 +83,10 @@
             <dd class="govuk-summary-list__value">
               {% if not org.permissions %}
                 <p>
-                  The user can only view applications
+                  The user will only be able to view applications
                 </p>
               {% endif %}
-
-
-              {% if org.permissions.manageOrganisation %}
+              {% if org.permissions.manageOrganisations %}
                 <p class="govuk-!-font-weight-bold">
                   {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
                   Manage organisational permissions
@@ -252,7 +234,7 @@
               {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/users/{{user.id}}/permissions/{{org.org.id}}/edit">
+              <a class="govuk-link" href="/account/users/new/permissions/{{org.org.id}}">
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
@@ -260,11 +242,15 @@
         {% endfor %}
       </dl>
 
-      {{ govukButton({
-        text: "Delete user",
-        classes: "govuk-button--warning",
-        href: "/users/"+ user.id + "/delete"
+      {{ govukWarningText({
+        text: "We'll email the user to help them set up their account."
       }) }}
+
+      <form novalidate method="post">
+        {{govukButton({
+          text: "Invite user"
+        })}}
+      </form>
     </div>
   </div>
 
