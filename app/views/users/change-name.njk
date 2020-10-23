@@ -4,7 +4,7 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Change name" %}
+{% set title = "Change name - " + name %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -17,8 +17,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{name}}</span>
+        {{title}}
+      </h1>
 
       <form novalidate method="post">
         {{ govukInput({

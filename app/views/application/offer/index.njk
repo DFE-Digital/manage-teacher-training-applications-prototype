@@ -4,7 +4,7 @@
 {% set subNavId = "offer" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set title = name %}
+{% set title = 'Offer - ' + name %}
 
 {% block content %}
   {{ appBanner({
@@ -16,7 +16,11 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{title}} {{ govukTag({ classes: status | statusClass, text: status })}}</h1>
+  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+    {{name}}
+    <span class="govuk-visually-hidden">Offer</span>
+    {{ govukTag({ classes: status | statusClass, text: status })}}
+  </h1>
 
   {% include "_includes/application/respond-prompt.njk" %}
   {% include "_includes/application/defer-prompt.njk" %}
