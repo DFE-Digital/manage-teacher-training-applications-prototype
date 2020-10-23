@@ -11,11 +11,11 @@
       text: "Submitted"
     },
     value: {
-      text: application.submittedDate | date("d LLLL yyyy") + " at " + note.date | time
+      text: application.submittedDate | govukDateAtTime
     }
   }, {
     key: {
-      text: "Cycle"
+      text: "Course starts"
     },
     value: {
       text: application.cycle

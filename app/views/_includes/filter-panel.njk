@@ -21,16 +21,19 @@
           classes: "govuk-fieldset__legend--s"
         }
       },
+      hint: {
+        text: 'This is the academic year the course starts'
+      },
       items: [
         {
-          value: "Current cycle (2020 to 2021)",
-          text: "2020 to 2021 (Current)",
-          checked: checked(data.cycle, "Current cycle (2020 to 2021)")
+          value: "2020 to 2021",
+          text: "2020 to 2021" | cycleText,
+          checked: checked(data.cycle, "2020 to 2021")
         },
         {
-          value: "Previous cycle (2019 to 2020)",
-          text: "2019 to 2020",
-          checked: checked(data.cycle, "Previous cycle (2019 to 2020)")
+          value: "2019 to 2020",
+          text: "2019 to 2020" | cycleText,
+          checked: checked(data.cycle, "2019 to 2020")
         }
       ]
     }) }}
