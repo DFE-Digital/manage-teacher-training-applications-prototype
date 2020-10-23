@@ -19,8 +19,10 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-        <span class="govuk-caption-l">Change notification settings</span>
-        <h1 class="govuk-heading-l">For applications to courses run by {{ data.user.organisations[1].name }} and ratified by {{ data.accreditedBodies[0].name }}</h1>
+        <h1 class="govuk-heading-l">
+          <span class="govuk-caption-l">Change notification settings</span>
+          For applications to courses run by {{ data.user.organisations[1].name }} and ratified by {{ data.accreditedBodies[0].name }}
+        </h1>
 
       {% macro notificationField(params) %}
         {% set applicationSubmittedFrequencyHtml %}

@@ -4,7 +4,7 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Change organisations this user will have access to" %}
+{% set title = "Change organisations this user will have access to - " + name %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -18,7 +18,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
+        Change organisations this user will have access to
       {% endset %}
 
       <form novalidate method="post">

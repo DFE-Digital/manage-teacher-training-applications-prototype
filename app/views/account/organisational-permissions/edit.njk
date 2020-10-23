@@ -3,6 +3,8 @@
 {% set org = data.user.organisations[0].name %}
 {% set partner = data.accreditedBodies[0].name %}
 
+{% set title = 'Change permissions - ' + org + ' and ' + partner %}
+
 {% block beforeContent %}
   {{ govukBackLink({
     href: "/account/organisational-permissions/" + organisationId

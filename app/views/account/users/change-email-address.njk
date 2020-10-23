@@ -5,7 +5,7 @@
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
 {% set emailAddress = user.emailAddress %}
-{% set title = "Change email address" %}
+{% set title = "Change email address - " + name %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -20,7 +20,7 @@
 
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
+        Change email address
       {% endset %}
 
       <form novalidate method="post">
