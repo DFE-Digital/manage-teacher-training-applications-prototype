@@ -123,26 +123,6 @@
         }) }}
 
         {{ govukCheckboxes({
-          idPrefix: "diversity",
-          name: "diversity",
-          fieldset: {
-            legend: {
-              text: "Select to include diversity information",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          hint: {
-            text: "Diversity information is only provided for applications with ‘Accepted’ or ‘Conditions met’ statuses"
-          },
-          items: [
-            {
-              value: "Yes – include diversity information",
-              text: "Yes – include diversity information"
-            }
-          ]
-        }) }}
-
-        {{ govukCheckboxes({
           idPrefix: "export_orgs",
           name: "export_orgs",
           fieldset: {
@@ -164,7 +144,7 @@
         }) }}
 
 
-
+        {# <p>Diversity information is only provided for applications with ‘Accepted’ or ‘Conditions met’ statuses</p> #}
 
         {{ govukButton({
           text: "Export data"
