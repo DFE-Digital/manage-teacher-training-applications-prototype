@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'organisations' %}
 {% set trainingProvider = org.name %}
-{% set title = trainingProvider %}
+{% set title = trainingProvider + " - Organisational permissions" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -13,7 +13,7 @@
       text: "Organisational permissions",
       href: "/organisations"
     }, {
-      text: title
+      text: trainingProvider
     }]
   }) }}
 {% endblock %}
@@ -28,8 +28,10 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Organisational permissions</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Organisational permissions</span>
+        {{trainingProvider}}
+      </h1>
 
       {% set tick %}
         {{ appIcon({

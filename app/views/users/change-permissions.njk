@@ -4,7 +4,7 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Change permissions: " + data.user.organisations[0].name %}
+{% set title = "Change permissions: " + data.user.organisations[0].name + ' - ' + name %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -18,7 +18,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
+        Change permissions: {{data.user.organisations[0].name}}
       {% endset %}
 
       {% set makeDecisionsHintHtml %}
