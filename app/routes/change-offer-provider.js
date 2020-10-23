@@ -1,6 +1,6 @@
 module.exports = router => {
   router.get('/application/:applicationId/offer/change-provider', (req, res) => {
-    res.render('offer/change-provider/provider', {
+    res.render('application/offer/edit-provider/provider', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -10,7 +10,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/offer/change-provider/course', (req, res) => {
-    res.render('offer/change-provider/course', {
+    res.render('application/offer/edit-provider/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -20,7 +20,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/offer/change-provider/location', (req, res) => {
-    res.render('offer/change-provider/location', {
+    res.render('application/offer/edit-provider/location', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -30,7 +30,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/offer/change-provider/confirm', (req, res) => {
-    res.render('offer/change-provider/confirm', {
+    res.render('application/offer/edit-provider/confirm', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })

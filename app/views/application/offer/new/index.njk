@@ -21,8 +21,8 @@
 
       <form method="post">
         {{ govukCheckboxes({
-          idPrefix: "[edit-conditions][standard-conditions]",
-          name: "[edit-conditions][standard-conditions]",
+          idPrefix: "[new-offer][standard-conditions]",
+          name: "[new-offer][standard-conditions]",
           fieldset: {
             legend: {
               text: "Standard conditions",
@@ -32,14 +32,14 @@
           items: [{
             value: "Fitness to teach check",
             text: "Fitness to teach check",
-            checked: checked(data['edit-conditions']['standard-conditions'], "Fitness to teach check") or checked(standardConditions,"Fitness to teach check")
+            checked: checked(data['new-offer']['standard-conditions'], "Fitness to teach check")
           }, {
             value: "Disclosure and barring service check",
             text: "Disclosure and barring service check",
             hint: {
               text: "We’ll email the candidate to tell them that they’ll need to provide ID"
             },
-            checked: checked(data['edit-conditions']['standard-conditions'], "Disclosure and barring service check") or checked(standardConditions,"Disclosure and barring service check")
+            checked: checked(data['new-offer']['standard-conditions'], "Disclosure and barring service check")
           }]
         }) }}
 
@@ -53,8 +53,8 @@
 
               <div class="moj-add-another__item">
                 {{ govukTextarea({
-                  id: "[edit-conditions][conditions]["+loop.index0+"]",
-                  name: "[edit-conditions][conditions]["+loop.index0+"]",
+                  id: "[new-offer][conditions]["+loop.index0+"]",
+                  name: "[new-offer][conditions]["+loop.index0+"]",
                   rows: 3,
                   label: {
                     text: "Condition " + loop.index,
@@ -62,8 +62,8 @@
                   },
                   value: condition,
                   attributes: {
-                    'data-name': '[edit-conditions][conditions][%index%]',
-                    'data-id': '[edit-conditions][conditions][%index%]',
+                    'data-name': '[new-offer][conditions][%index%]',
+                    'data-id': '[new-offer][conditions][%index%]',
                     'data-label': 'Condition %index%'
                   }
                 }) }}
@@ -73,16 +73,16 @@
           {% else %}
             <div class="moj-add-another__item govuk-!-display-none">
               {{ govukTextarea({
-                id: "[edit-conditions][conditions][0]",
-                name: "[edit-conditions][conditions][0]",
+                id: "[new-offer][conditions][0]",
+                name: "[new-offer][conditions][0]",
                 rows: 3,
                 label: {
                   text: "Condition " + 1,
                   classes: "govuk-label--s"
                 },
                 attributes: {
-                  'data-name': '[edit-conditions][conditions][%index%]',
-                  'data-id': '[edit-conditions][conditions][%index%]',
+                  'data-name': '[new-offer][conditions][%index%]',
+                  'data-id': '[new-offer][conditions][%index%]',
                   'data-label': 'Condition %index%'
                 }
               }) }}
@@ -101,7 +101,7 @@
           text: "Continue"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

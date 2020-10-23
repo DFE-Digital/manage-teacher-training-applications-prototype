@@ -14,7 +14,7 @@
 
     <p>Will show deferred offers that need confirming, pending conditions from previous cycle and the rest.</p>
 
-    {% if checked('settings', 'new-cycle') %}
+    {% if checked(data.settings, 'new-cycle') %}
       {{ govukButton({
         text: "Turn off"
       }) }}
@@ -34,7 +34,7 @@
 
     <p>Will show deferred offers that need confirming, pending conditions from previous cycle and the rest.</p>
 
-    {% if checked('settings', 'hasCombinedConditions') %}
+    {% if checked(data.settings, 'hasCombinedConditions') %}
       {{ govukButton({
         text: "Turn off"
       }) }}

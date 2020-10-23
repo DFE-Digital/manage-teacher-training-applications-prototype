@@ -67,6 +67,7 @@ let relationships = [{
 let userOrgs = [trainingProviders[0], accreditedBodies[0], accreditedBodies[1]];
 
 module.exports = {
+  settings: [],
   user: {
     givenName: "Claudine",
     familyName: "Adams",
@@ -78,6 +79,12 @@ module.exports = {
     "Fitness to teach check",
     "Disclosure and barring service check"
   ],
+  'new-offer': {
+    'standard-conditions': [
+      "Fitness to teach check",
+      "Disclosure and barring service check"
+    ]
+  },
   relationships,
   applications,
   trainingProviders,

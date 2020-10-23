@@ -19,7 +19,7 @@ module.exports = router => {
         res.redirect(`/application/${applicationId}/offer/reconfirm/unavailable-course`)
       }
     } else {
-      res.render('offer/reconfirm/action', {
+      res.render('application/offer/reconfirm/action', {
         application,
         conditions
       })
@@ -35,7 +35,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/statuses', {
+    res.render('application/offer/reconfirm/statuses', {
       application,
       conditions
     })
@@ -63,7 +63,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/check', {
+    res.render('application/offer/reconfirm/check', {
       application,
       conditions
     })
@@ -91,7 +91,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.offerAvailable = true
 
-    res.render('offer/reconfirm/conditions', {
+    res.render('application/offer/reconfirm/conditions', {
       application: application,
       standardConditions: application.offer.standardConditions,
       furtherConditions: application.offer.conditions
@@ -113,7 +113,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
 
-    res.render('offer/reconfirm/unavailable-location/action', {
+    res.render('application/offer/reconfirm/unavailable-location/action', {
       application,
       conditions: conditions
     })
@@ -128,7 +128,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
 
-    res.render('offer/reconfirm/unavailable-location/location', {
+    res.render('application/offer/reconfirm/unavailable-location/location', {
       application: application,
       conditions: conditions
     })
@@ -142,7 +142,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/unavailable-location/statuses', {
+    res.render('application/offer/reconfirm/unavailable-location/statuses', {
       application,
       conditions
     })
@@ -170,7 +170,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('offer/reconfirm/unavailable-location/conditions', {
+    res.render('application/offer/reconfirm/unavailable-location/conditions', {
       application: application,
       standardConditions: application.offer.standardConditions,
       furtherConditions: application.offer.conditions
@@ -185,7 +185,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/unavailable-location/check', {
+    res.render('application/offer/reconfirm/unavailable-location/check', {
       application: application,
       conditions: conditions
     })
@@ -223,7 +223,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
 
-    res.render('offer/reconfirm/unavailable-course/action', {
+    res.render('application/offer/reconfirm/unavailable-course/action', {
       application,
       conditions: conditions
     })
@@ -238,7 +238,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
 
-    res.render('offer/reconfirm/unavailable-course/provider', {
+    res.render('application/offer/reconfirm/unavailable-course/provider', {
       application: application,
       conditions: conditions
     })
@@ -252,7 +252,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/unavailable-course/course', {
+    res.render('application/offer/reconfirm/unavailable-course/course', {
       application: application,
       conditions: conditions
     })
@@ -267,7 +267,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
 
-    res.render('offer/reconfirm/unavailable-course/location', {
+    res.render('application/offer/reconfirm/unavailable-course/location', {
       application: application,
       conditions: conditions
     })
@@ -281,7 +281,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/unavailable-course/statuses', {
+    res.render('application/offer/reconfirm/unavailable-course/statuses', {
       application,
       conditions
     })
@@ -309,7 +309,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('offer/reconfirm/unavailable-course/conditions', {
+    res.render('application/offer/reconfirm/unavailable-course/conditions', {
       application: application,
       standardConditions: application.offer.standardConditions,
       furtherConditions: application.offer.conditions
@@ -324,7 +324,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
-    res.render('offer/reconfirm/unavailable-course/check', {
+    res.render('application/offer/reconfirm/unavailable-course/check', {
       application: application,
       conditions: conditions
     })

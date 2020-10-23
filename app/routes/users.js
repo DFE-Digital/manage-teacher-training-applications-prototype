@@ -27,15 +27,15 @@ function mixinRelatedOrgPermissions(org, relationships, permissionType) {
 
 module.exports = router => {
 
-  router.get('/users', (req, res) => {
-    res.render('users/index')
+  router.get('/account/users', (req, res) => {
+    res.render('account/users/index')
   })
 
-  router.get('/users/new', (req, res) => {
-    res.render('users/new/index')
+  router.get('/account/users/new', (req, res) => {
+    res.render('account/users/new/index')
   })
 
-  router.get('/users/:userId', (req, res) => {
+  router.get('/account/users/:userId', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
 
     // mixin org permissions into user object
@@ -52,18 +52,19 @@ module.exports = router => {
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     })
 
-    res.render('users/show', { user })
+    res.render('account/users/show', { user })
   })
 
-  router.post('/users/new', (req, res) => {
+  router.post('/account/users/new', (req, res) => {
     if(req.session.data.user.organisations.length > 1) {
-      res.redirect('/users/new/organisations')
+      res.redirect('/account/users/new/organisations')
     } else {
-      res.redirect(`/users/new/permissions/${req.session.data.user.organisations[0].id}`)
+      res.redirect(`/account/users/new/permissions/${req.session.data.user.organisations[0].id}`)
     }
   })
 
-  router.get('/users/new/organisations', (req, res) => {
+  router.get('/account/users/new/organisations', (req, res) => {
+
     var organisationItems = req.session.data.user.organisations.map(org => {
       return {
         value: org.id,
@@ -71,14 +72,14 @@ module.exports = router => {
       }
     })
 
-    res.render('users/new/organisations', { organisationItems })
+    res.render('account/users/new/organisations', { organisationItems })
   })
 
-  router.post('/users/new/organisations', (req, res) => {
-    res.redirect(`/users/new/permissions/${req.session.data.newuser.organisations[0]}`)
+  router.post('/account/users/new/organisations', (req, res) => {
+    res.redirect(`/account/users/new/permissions/${req.session.data.newuser.organisations[0]}`)
   })
 
-  router.get('/users/new/permissions/:orgId', (req, res) => {
+  router.get('/account/users/new/permissions/:orgId', (req, res) => {
     var org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
 
     // hurrendous but don't worry peeps
@@ -94,23 +95,23 @@ module.exports = router => {
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
 
-    res.render('users/new/permissions', {
+    res.render('account/users/new/permissions', {
       org
     })
   })
 
-  router.post('/users/new/permissions/:orgId', (req, res) => {
+  router.post('/account/users/new/permissions/:orgId', (req, res) => {
 
     var index = req.session.data.newuser.organisations.indexOf(req.params.orgId)
     if(req.session.data.newuser.organisations[index+1]) {
-      res.redirect(`/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
+      res.redirect(`/account/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
     } else {
-      res.redirect(`/users/new/check`)
+      res.redirect(`/account/users/new/check`)
     }
 
   })
 
-  router.get('/users/new/check', (req, res) => {
+  router.get('/account/users/new/check', (req, res) => {
     var orgs = req.session.data.newuser.organisations.map(orgId => {
       var returnValue = {
         org: req.session.data.organisations.find(org => org.id == orgId)
@@ -142,48 +143,48 @@ module.exports = router => {
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     })
 
-    res.render('users/new/check', {
+    res.render('account/users/new/check', {
       orgs
     })
   })
 
 
-  router.post('/users/new/check', (req, res) => {
+  router.post('/account/users/new/check', (req, res) => {
     req.flash('success', 'User successfully invited')
-    res.redirect('/users/')
+    res.redirect('/account/users/')
   })
 
   // Edit name
 
-  router.get('/users/:userId/name/edit', (req, res) => {
+  router.get('/account/users/:userId/name/edit', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
-    res.render('users/change-name', {
+    res.render('account/users/change-name', {
       user
     })
   })
 
-  router.post('/users/:userId/name/edit', (req, res) => {
+  router.post('/account/users/:userId/name/edit', (req, res) => {
     req.flash('success', 'User’s name successfully updated')
-    res.redirect(`/users/${req.params.userId}`)
+    res.redirect(`/account/users/${req.params.userId}`)
   })
 
   // Edit email
 
-  router.get('/users/:userId/email-address/edit', (req, res) => {
+  router.get('/account/users/:userId/email-address/edit', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
-    res.render('users/change-email-address', {
+    res.render('account/users/change-email-address', {
       user
     })
   })
 
-  router.post('/users/:userId/email-address/edit', (req, res) => {
+  router.post('/account/users/:userId/email-address/edit', (req, res) => {
     req.flash('success', 'User’s email address successfully updated')
-    res.redirect(`/users/${req.params.userId}`)
+    res.redirect(`/account/users/${req.params.userId}`)
   })
 
   // Edit organisations
 
-  router.get('/users/:userId/organisations/edit', (req, res) => {
+  router.get('/account/users/:userId/organisations/edit', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
 
     var items = req.session.data.user.organisations.map(org => {
@@ -193,20 +194,20 @@ module.exports = router => {
       }
     })
 
-    res.render('users/change-organisations', {
+    res.render('account/users/change-organisations', {
       user,
       items
     })
   })
 
-  router.post('/users/:userId/organisations/edit', (req, res) => {
-    req.flash('success', 'user-organisations-updated')
-    res.redirect(`/users/${req.params.userId}`)
+  router.post('/account/users/:userId/organisations/edit', (req, res) => {
+    req.flash('success', 'User’s organisations updated')
+    res.redirect(`/account/users/${req.params.userId}`)
   })
 
   // Edit permissions
 
-  router.get('/users/:userId/permissions/:orgId/edit', (req, res) => {
+  router.get('/account/users/:userId/permissions/:orgId/edit', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
     var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
 
@@ -222,28 +223,28 @@ module.exports = router => {
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
-    res.render('users/change-permissions', {
+    res.render('account/users/change-permissions', {
       user,
       org
     })
   })
 
 
-  router.post('/users/:userId/permissions/:orgId/edit', (req, res) => {
+  router.post('/account/users/:userId/permissions/:orgId/edit', (req, res) => {
     req.flash('success', 'User’s permissions successfully updated')
-    res.redirect(`/users/${req.params.userId}`)
+    res.redirect(`/account/users/${req.params.userId}`)
   })
 
   // Delete user
 
-  router.get('/users/:userId/delete', (req, res) => {
+  router.get('/account/users/:userId/delete', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
-    res.render('users/delete', { user })
+    res.render('account/users/delete', { user  })
   })
 
-  router.post('/users/:userId/delete', (req, res) => {
+  router.post('/account/users/:userId/delete', (req, res) => {
     req.flash('success', 'User’s account successfully deleted')
-    res.redirect('/users')
+    res.redirect('/account/users')
   })
 
 }

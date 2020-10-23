@@ -8,7 +8,7 @@
   <p class="govuk-body">
 
     {% if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred" %}
-      {# <a href="/application/{{application.id}}/withdraw" class="app-withdraw-link">Withdraw offer</a> #}
+      {# <a href="/application/{{application.id}}/offer/withdraw" class="app-withdraw-link">Withdraw offer</a> #}
     {% endif %}
     {% if application.status == "Accepted" or application.status == "Conditions met" %}
       {# or  #}

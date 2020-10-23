@@ -1,6 +1,6 @@
 module.exports = router => {
   router.get('/application/:applicationId/offer/change-location', (req, res) => {
-    res.render('offer/change-location/location', {
+    res.render('application/offer/edit-location/location', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -10,7 +10,7 @@ module.exports = router => {
   })
 
   router.get('/application/:applicationId/offer/change-location/confirm', (req, res) => {
-    res.render('offer/change-location/confirm', {
+    res.render('application/offer/edit-location/confirm', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })

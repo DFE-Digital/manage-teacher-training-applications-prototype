@@ -36,16 +36,33 @@ module.exports = router => {
 
   router.get('/application/:applicationId/offer/edit-conditions', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    let standardConditions;
+    let conditions;
 
     if(!req.session.data['edit-conditions'] || !req.session.data['edit-conditions']['standard-conditions']) {
-      var standardConditions = application.offer.standardConditions.map(condition => {
+      standardConditions = application.offer.standardConditions.map(condition => {
         return condition.description
+      })
+    }
+
+    // cleanse data gah
+    if(req.session.data['edit-conditions'] && req.session.data['edit-conditions']['conditions']) {
+      req.session.data['edit-conditions']['conditions'] = req.session.data['edit-conditions']['conditions'].filter(c => c != '')
+    }
+
+    // if the form has been used in some way
+    if(req.session.data['edit-conditions']) {
+      conditions = req.session.data['edit-conditions']['conditions']
+    } else {
+      conditions = application.offer.conditions.map(c => {
+        return c.description
       })
     }
 
     res.render('application/offer/edit-conditions/index', {
       application,
-      standardConditions
+      standardConditions,
+      conditions
     })
   })
 
@@ -62,18 +79,9 @@ module.exports = router => {
       conditions = conditions.concat(req.session.data['edit-conditions']['standard-conditions'])
     }
 
-    if (req.session.data['edit-conditions']['condition-1']){
-      conditions.push(req.session.data['edit-conditions']['condition-1'])
-    }
-    if (req.session.data['edit-conditions']['condition-2']){
-      conditions.push(req.session.data['edit-conditions']['condition-2'])
-    }
-    if (req.session.data['edit-conditions']['condition-3']){
-      conditions.push(req.session.data['edit-conditions']['condition-3'])
-    }
-    if (req.session.data['edit-conditions']['condition-4']){
-      conditions.push(req.session.data['edit-conditions']['condition-4'])
-    }
+    req.session.data['edit-conditions']['conditions'].filter(c => c != '').forEach(c => {
+      conditions.push(c)
+    })
 
     res.render('application/offer/edit-conditions/check', {
       application,
@@ -98,34 +106,14 @@ module.exports = router => {
 
     // save further conditions
     application.offer.conditions = [];
-    if (req.session.data['edit-conditions']['condition-1']){
+
+    req.session.data['edit-conditions']['conditions'].filter(c => c != '').forEach(c => {
       application.offer.conditions.push({
         id: uuidv4(),
-        description: req.session.data['edit-conditions']['condition-1'],
+        description: c,
         status: "Pending"
       })
-    }
-    if (req.session.data['edit-conditions']['condition-2']){
-      application.offer.conditions.push({
-        id: uuidv4(),
-        description: req.session.data['edit-conditions']['condition-2'],
-        status: "Pending"
-      })
-    }
-    if (req.session.data['edit-conditions']['condition-3']){
-      application.offer.conditions.push({
-        id: uuidv4(),
-        description: req.session.data['edit-conditions']['condition-3'],
-        status: "Pending"
-      })
-    }
-    if (req.session.data['edit-conditions']['condition-4']){
-      application.offer.conditions.push({
-        id: uuidv4(),
-        description: req.session.data['edit-conditions']['condition-4'],
-        status: "Pending"
-      })
-  }
+    })
 
     req.flash('success', 'Offer updated successfully')
     res.redirect(`/application/${req.params.applicationId}/offer`)
@@ -220,12 +208,18 @@ module.exports = router => {
     })
 
     if (utils.hasMetAllConditions(application)) {
-      application.status = 'Conditions met'
+      application.status = 'Conditions met';
     }
 
     if(utils.getConditions(application).some(c => c.status == "Not met")) {
-      application.status = 'Conditions not met'
+      application.status = 'Conditions not met';
     }
+
+    utils.addEvent(application, {
+      "title": "Status of conditions updated",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
+    })
 
     req.flash('success', 'Status of conditions updated successfully')
     res.redirect(`/application/${req.params.applicationId}/offer`)

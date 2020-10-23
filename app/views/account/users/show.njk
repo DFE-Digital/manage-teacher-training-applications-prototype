@@ -1,0 +1,271 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set firstName = user.firstName %}
+{% set lastName = user.lastName %}
+{% set emailAddress = user.emailAddress %}
+{% set title = firstName + " " + lastName %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: "Users",
+      href: "/account/users"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{firstName}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
+              Change<span class="govuk-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{lastName}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{user.emailAddress}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/account/users/{{user.id}}/email-address/edit">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Organisations this user has access to
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% for organisation in user.organisations %}
+                <p>{{organisation.org.name}}</p>
+              {% endfor %}
+            </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/account/users/{{user.id}}/organisations/edit">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+          </div>
+
+        {% for org in user.organisations %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Permissions: {{org.org.name}}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if not org.permissions %}
+                <p>
+                  The user can only view applications
+                </p>
+              {% endif %}
+
+
+              {% if org.permissions.manageOrganisation %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  Manage organisational permissions
+                </p>
+              {% endif %}
+              {% if org.permissions.manageUsers %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  Manage users
+                </p>
+              {% endif %}
+              {% if org.permissions.makeDecisions %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  Make decisions
+                </p>
+
+                {% if org.permissions.applicableOrgs.makeDecisions %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.applicableOrgs.makeDecisions %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "tick",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% if org.permissions.nonApplicableOrgs.makeDecisions %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "cross",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+              {% endif %}
+              {% if org.permissions.viewSafeguardingInformation %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  View safeguarding information
+                </p>
+                {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "tick",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+                  <div class="govuk-!-margin-left-5">
+                    {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "cross",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              {% endif %}
+
+              {% if org.permissions.viewDiversityInformation %}
+                <p class="govuk-!-font-weight-bold">
+                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  View diversity information
+                </p>
+                {% if org.permissions.applicableOrgs.viewDiversityInformation %}
+                  <div class="govuk-!-margin-left-5">
+                  <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
+                  <ul class="govuk-list">
+                    {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
+                      <li>{{ appIcon({
+                          classes: "govuk-!-margin-right-1",
+                          icon: "tick",
+                          hidden: true
+                        }) }} {{ item.name }}
+                      </li>
+                    {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+                  <div class="govuk-!-margin-left-5">
+                  {% if org.org.isAccreditedBody %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+                    {% endif %}
+                    <ul class="govuk-list">
+                      {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+                        <li>{{ appIcon({
+                            classes: "govuk-!-margin-right-1",
+                            icon: "cross",
+                            hidden: true
+                          }) }} {{ item.name }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/account/users/{{user.id}}/permissions/{{org.org.id}}/edit">
+                Change<span class="govuk-visually-hidden"></span>
+              </a>
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+
+      {{ govukButton({
+        text: "Delete user",
+        classes: "govuk-button--warning",
+        href: "/account/users/"+ user.id + "/delete"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

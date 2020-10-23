@@ -1,0 +1,44 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Users" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: "Users"
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ appBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  <div class="govuk-grid">
+    <div class="govuk-grid-column-two-third">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{govukButton({
+        text: 'Invite user',
+        href: '/account/users/new'
+      })}}
+
+      {% for user in data.users %}
+        <div class="app-application-card">
+          <div>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/account/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
+            <p class="govuk-!-margin-bottom-1">{{ user.emailAddress }}</p>
+            <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">{{ user.organisations[0].org.name }} {% if user.organisations.length > 1 %} and {{user.organisations.length-1}} more {% endif %}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}
