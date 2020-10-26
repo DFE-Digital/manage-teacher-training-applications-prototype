@@ -167,9 +167,9 @@ const generateFakeApplications = () => {
     cycle: '2020 to 2021',
     submittedDate: '2020-07-05T14:01:00',
     personalDetails: {
-      givenName: 'Adam',
-      familyName: 'Gold',
-      sex: 'Male'
+      givenName: 'Sarah',
+      familyName: 'Fisher',
+      sex: 'Female'
     },
     interviews: {
       items: [{

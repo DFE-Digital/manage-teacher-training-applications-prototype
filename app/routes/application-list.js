@@ -251,7 +251,7 @@ module.exports = router => {
 
       if (cycles && cycles.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Cycles' },
+          heading: { text: 'Year received' },
           items: cycles.map((cycle) => {
             return {
               text: cycle,

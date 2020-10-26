@@ -16,23 +16,23 @@
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: "Recruitment cycle",
+          text: "Year received",
           isPageHeading: false,
           classes: "govuk-fieldset__legend--s"
         }
       },
       hint: {
-        text: 'This is the academic year the applications were received in'
+        text: 'This is the academic year the applications were received in' if 1 == 2
       },
       items: [
         {
           value: "2020 to 2021",
-          text: "2020 to 2021" | cycleText,
+          text: "2020 to 2021",
           checked: checked(data.cycle, "2020 to 2021")
         },
         {
           value: "2019 to 2020",
-          text: "2019 to 2020" | cycleText,
+          text: "2019 to 2020",
           checked: checked(data.cycle, "2019 to 2020")
         }
       ]
