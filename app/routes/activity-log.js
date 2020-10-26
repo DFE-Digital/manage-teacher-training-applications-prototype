@@ -2,7 +2,7 @@ module.exports = router => {
   router.get('/activity', (req, res) => {
     // Clone and turn into an array
     const apps = req.session.data.applications.filter(app => {
-      return app.cycle === "Current cycle (2020 to 2021)"
+      return app.cycle === "2020 to 2021"
     })
 
     let allEvents = []
@@ -22,15 +22,15 @@ module.exports = router => {
     })
 
     const todayEvents = allEvents.filter(event => {
-      return event.event.date.indexOf('2019-08-12') >= 0
+      return event.event.date.indexOf('2020-08-12') >= 0
     })
 
     const yesterdayEvents = allEvents.filter(event => {
-      return event.event.date.indexOf('2019-08-11') >= 0
+      return event.event.date.indexOf('2020-08-11') >= 0
     })
 
     const allOtherEvents = allEvents.filter(event => {
-      return event.event.date.indexOf('2019-08-11') === -1 && event.event.date.indexOf('2019-08-12') === -1
+      return event.event.date.indexOf('2020-08-11') === -1 && event.event.date.indexOf('2020-08-12') === -1
     })
 
     res.render('activity/index', { todayEvents, yesterdayEvents, allOtherEvents })

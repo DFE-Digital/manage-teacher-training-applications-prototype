@@ -192,7 +192,7 @@ exports.addEvent = (application, event) => {
 exports.getStatusText = (application) => {
   var status = application.status
 
-  const now = DateTime.fromISO('2019-08-15')
+  const now = DateTime.fromISO('2020-08-15')
 
   // has interviews that we need to surface as a status
   if(application.status === "Awaiting decision" && application.interviews.items.length) {
