@@ -251,7 +251,7 @@ module.exports = router => {
 
       if (cycles && cycles.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Cycles' },
+          heading: { text: 'Year received' },
           items: cycles.map((cycle) => {
             return {
               text: cycle,
@@ -319,7 +319,7 @@ module.exports = router => {
         app.lastEventType = 'status'
       }
 
-      var now = DateTime.fromISO('2019-08-15')
+      var now = DateTime.fromISO('2020-08-15')
       var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
       var diff = rbd.diff(now, 'days').toObject().days
 
