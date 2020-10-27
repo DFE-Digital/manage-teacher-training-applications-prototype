@@ -95,23 +95,26 @@
       </h2>
 
       <p><a href="/application/{{application.id}}/offer/edit-conditions">Add or change conditions</a></p>
-
-      <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-        {% for condition in conditions %}
-          <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
-            <dt class="govuk-summary-list__key">
-              {{condition}}
-            </dt>
-            <dd class="govuk-summary-list__value app-conditions-list__tag">
-              {{govukTag({ text: "Pending", classes: "app-tag--grey" })}}
-            </dd>
-            </div>
-          {% endfor %}
-        </dl>
+      {% if conditions.length %}
+        <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+          {% for condition in conditions %}
+            <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+              <dt class="govuk-summary-list__key">
+                {{condition}}
+              </dt>
+              <dd class="govuk-summary-list__value app-conditions-list__tag">
+                {{govukTag({ text: "Pending", classes: "app-tag--grey" })}}
+              </dd>
+              </div>
+            {% endfor %}
+          </dl>
+        {% else %}
+          <p>No conditions have been set for this offer.</p>
+        {% endif %}
       </div>
 
       {{ govukWarningText({
-        text: "We’ll email the candidate to confirm the amended details of their offer."
+        text: "By making this offer, you guarantee a place on this course as long as the candidate meets the conditions of the offer. We’ll email the candidate with the details of this offer."
       }) }}
 
       <form method="post">

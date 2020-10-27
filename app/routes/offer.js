@@ -75,7 +75,7 @@ module.exports = router => {
 
     var conditions = []
 
-    if(req.session.data['edit-conditions']['standard-conditions'].length) {
+    if(req.session.data['edit-conditions']['standard-conditions'] && req.session.data['edit-conditions']['standard-conditions'].length) {
       conditions = conditions.concat(req.session.data['edit-conditions']['standard-conditions'])
     }
 
