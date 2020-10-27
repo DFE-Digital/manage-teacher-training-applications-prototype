@@ -110,9 +110,9 @@ module.exports = (env) => {
 
   filters.cycleText = (cycle) => {
     if(cycle == "2020 to 2021") {
-      return "2020 to 2021 (Current)"
+      return "2020 to 2021 (starts 2021)"
     } else {
-      return "2019 to 2020"
+      return "2019 to 2020 (starts 2020)"
     }
   }
 
