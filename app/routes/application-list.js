@@ -38,14 +38,14 @@ function getApplicationsByGroup (applications) {
 
   const pendingConditions = applications
     .filter(app => app.status === 'Accepted')
-    .filter(app => app.cycle === 'Current cycle (2020 to 2021)')
+    .filter(app => app.cycle === '2020 to 2021')
 
   const conditionsMet = applications
     .filter(app => app.status === 'Conditions met')
 
   const deferredOffers = applications
     .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === 'Current cycle (2020 to 2021)')
+    .filter(app => app.cycle === '2020 to 2021')
 
   let other = applications
     .filter(app => app.status !== 'Awaiting decision')
