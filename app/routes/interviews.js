@@ -43,7 +43,7 @@ function getTimeObject(time) {
 module.exports = router => {
   router.get('/interviews', (req, res) => {
     const apps = req.session.data.applications.filter(app => {
-      return utils.getStatusText(app) == "Awaiting interview"
+      return utils.getStatusText(app) == "Interviewing"
     })
 
     let allInterviews = []
