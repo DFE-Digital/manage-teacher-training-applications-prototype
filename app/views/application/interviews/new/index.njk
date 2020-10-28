@@ -33,7 +33,6 @@
         }) }}
       {% endif %}
 
-
       <form method="post">
 
         {{ govukDateInput({
@@ -79,6 +78,19 @@
         </div>
 
         {{ govukTextarea({
+          id: "interview[location]",
+          name: "interview[location]",
+          label: {
+            classes: "govuk-label--s",
+            text: "Location"
+          },
+          hint: {
+            text: "Provide directions if useful"
+          },
+          value: data.interview.location
+        }) }}
+
+        {{ govukTextarea({
           id: "interview[details]",
           name: "interview[details]",
           label: {
@@ -89,16 +101,6 @@
             text: "Any other details, like a remote meeting link"
           },
           value: data.interview.details
-        }) }}
-
-        {{ govukTextarea({
-          id: "interview[location]",
-          name: "interview[location]",
-          label: {
-            classes: "govuk-label--s",
-            text: "Location"
-          },
-          value: data.interview.location
         }) }}
 
         {{ govukButton({

@@ -27,14 +27,13 @@
 
       {% if application.interviews.items.length > 0 %}
 
-        {% if statusText == "Received" or statusText == "Awaiting interview" or statusText == "Interviewed" %}
+        {% if statusText == "Received" or statusText == "Interviewing" %}
           {{ govukButton({
             text: "Set up an interview",
             href: "/application/" + application.id + "/interviews/new",
             classes: "govuk-button--secondary"
           }) }}
         {% endif %}
-
 
         {% for interview in application.interviews.items %}
 
@@ -137,10 +136,10 @@
               items: [{
                 href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
                 text: "Change"
-              }, {
+              } if statusText == "Received" or statusText == "Interviewing", {
                 href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
                 text: "Cancel"
-              }]
+              } if statusText == "Received" or statusText == "Interviewing"]
             },
             html: interviewSummaryListHtml
           })}}
