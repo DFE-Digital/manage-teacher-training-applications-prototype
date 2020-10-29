@@ -4,6 +4,11 @@ module.exports = (faker) => {
     'I’ll be travelling a long way to get to the interview',
     'I use a wheelchair',
     '',
+    '',
+    '',
+    '',
+    '',
+    '',
     ''
   ])
 }

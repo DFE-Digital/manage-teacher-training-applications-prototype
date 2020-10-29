@@ -43,10 +43,11 @@ function getTimeObject(time) {
 module.exports = router => {
   router.get('/interviews', (req, res) => {
     const apps = req.session.data.applications.filter(app => {
-      return utils.getStatusText(app) == "Awaiting interview"
+      return utils.getStatusText(app) == "Interviewing"
     })
 
     let allInterviews = []
+    let pastInterviews;
 
     apps.forEach(app => {
       const interviews = app.interviews.items.map(item => {
@@ -62,9 +63,9 @@ module.exports = router => {
       return new Date(a.interview.date) - new Date(b.interview.date)
     })
 
-
     res.render('interviews/index', {
-      interviews: allInterviews.slice(0, 50)
+      pastInterviews: allInterviews.slice(0, 6).reverse(),
+      futureInterviews: allInterviews.slice(6, allInterviews.length)
     })
   })
 

@@ -26,11 +26,11 @@ function getApplicationsByGroup (applications) {
     .filter(app => app.daysToRespond < 5)
 
   const awaitingDecision = applications
-    .filter(app => (utils.getStatusText(app) === 'Received' || utils.getStatusText(app) === 'Interviewed'))
+    .filter(app => (utils.getStatusText(app) === 'Received'))
     .filter(app => app.daysToRespond >= 5)
 
   const pendingInterview = applications
-    .filter(app => (utils.getStatusText(app) === 'Awaiting interview'))
+    .filter(app => (utils.getStatusText(app) === 'Interviewing'))
     .filter(app => app.daysToRespond >= 5)
 
   const waitingOn = applications
@@ -127,14 +127,14 @@ function addHeadings (grouped) {
 
   if (grouped.awaitingDecision.length) {
     array.push({
-      heading: 'Awaiting review or decision'
+      heading: 'Awaiting review'
     })
     array = array.concat(grouped.awaitingDecision)
   }
 
   if (grouped.pendingInterview.length) {
     array.push({
-      heading: 'Awaiting interview'
+      heading: 'Interviewing'
     })
     array = array.concat(grouped.pendingInterview)
   }
