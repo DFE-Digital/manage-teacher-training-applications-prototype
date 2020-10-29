@@ -19,18 +19,20 @@
       </tr>
     </thead>
     <tbody class="govuk-table__body">
-      {% for interview in interviews %}
+      {% for interview in futureInterviews %}
         <tr class="govuk-table__row">
           <th class="govuk-table__cell">
             <a href="/application/{{interview.app.id}}/interviews">
               {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
             </a>
             {% if interview.app.interviewNeeds.length %}
-              <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1">{{ appIcon({
+              <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1">
+              {{ appIcon({
                 classes: "govuk-!-margin-right-1",
                 icon: "tick",
                 hidden: true
-              }) }} Interview preferences</p>
+              }) }}
+              Has interview preferences</p>
             {% endif %}
           </th>
           <td class="govuk-table__cell">
@@ -58,7 +60,7 @@
       </tr>
     </thead>
     <tbody class="govuk-table__body">
-      {% for interview in interviews %}
+      {% for interview in pastInterviews %}
         <tr class="govuk-table__row">
           <th class="govuk-table__cell">
             <a href="/application/{{interview.app.id}}/interviews">

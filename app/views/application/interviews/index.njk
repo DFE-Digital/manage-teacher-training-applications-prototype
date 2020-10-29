@@ -18,6 +18,7 @@
     {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
   </h1>
 
+  {% include "_includes/application/interview-prompt.njk" %}
   {% include "_includes/application/respond-prompt.njk" %}
   {% include "_includes/application/defer-prompt.njk" %}
 
