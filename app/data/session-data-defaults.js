@@ -22,14 +22,14 @@ applications = applications.map(application => {
 
 applications = applications
   .filter(app => {
-    if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
+    if (app.status === 'Deferred' && app.cycle === '2019 to 2020') {
       return false;
     } else {
       return true;
     }
   })
   .filter(app => {
-    if (app.status === 'Accepted' && app.cycle === 'Previous cycle (2019 to 2020)') {
+    if (app.status === 'Accepted' && app.cycle === '2019 to 2020') {
       return false;
     } else {
       return true;

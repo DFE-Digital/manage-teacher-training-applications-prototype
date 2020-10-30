@@ -22,6 +22,8 @@ module.exports = (faker, params) => {
 
   interview.location = faker.address.streetAddress() + ', ' + faker.address.city() + ', ' + faker.address.zipCode()
 
+  interview.organisation = faker.helpers.randomize(["The Royal Borough Teaching School Alliance", "Kingston University"])
+
   if (params.status === 'Awaiting decision') {
     interview.date = faker.helpers.randomize([past, future])
     if(faker.helpers.randomize(["has interviews", ""]) == "has interviews") {
