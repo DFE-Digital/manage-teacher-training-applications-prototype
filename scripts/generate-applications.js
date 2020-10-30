@@ -37,7 +37,7 @@ const generateFakeApplication = (params = {}) => {
   const status = params.status || generateStatus(faker)
   const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
-  const submittedDate = params.submittedDate || DateTime.fromISO('2019-08-15').minus({ days: 20 })
+  const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 })
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
@@ -97,7 +97,7 @@ const generateFakeApplication = (params = {}) => {
 const generateFakeApplications = () => {
   const organisations = require('../app/data/organisations.json')
   const applications = []
-  const now = DateTime.fromISO('2019-08-15')
+  const now = DateTime.fromISO('2020-08-15')
   const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
@@ -110,7 +110,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    cycle: 'Previous cycle (2019 to 2020)',
+    cycle: '2019 to 2020',
     personalDetails: {
       givenName: 'Eloise',
       familyName: 'Wells',
@@ -123,7 +123,7 @@ const generateFakeApplications = () => {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: 'Previous cycle (2019 to 2020)',
+    cycle: '2019 to 2020',
     personalDetails: {
       givenName: 'Becky',
       familyName: 'Brother',
@@ -136,7 +136,7 @@ const generateFakeApplications = () => {
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: 'Previous cycle (2019 to 2020)',
+    cycle: '2019 to 2020',
     personalDetails: {
       givenName: 'Laura',
       familyName: 'Say',
@@ -146,8 +146,8 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-05T14:01:00',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-05T14:01:00',
     personalDetails: {
       givenName: 'James',
       familyName: 'Sully',
@@ -164,12 +164,12 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-05T14:01:00',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-05T14:01:00',
     personalDetails: {
-      givenName: 'Adam',
-      familyName: 'Gold',
-      sex: 'Male'
+      givenName: 'Sarah',
+      familyName: 'Fisher',
+      sex: 'Female'
     },
     interviews: {
       items: [{
@@ -181,8 +181,8 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-08T13:01:00',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-08T13:01:00',
     personalDetails: {
       givenName: 'Umar',
       familyName: 'Smith',
@@ -195,7 +195,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Rejected',
-    cycle: 'Previous cycle (2019 to 2020)',
+    cycle: '2019 to 2020',
     submittedDate: '2018-07-21T18:59:00',
     organisation: organisation,
     givenName: 'Emma',
@@ -207,31 +207,9 @@ const generateFakeApplications = () => {
     }
   }))
 
-  // applications.push(generateFakeApplication({
-  //   status: 'Awaiting decision',
-  //   cycle: 'Current cycle (2020 to 2021)',
-  //   submittedDate: '2019-07-29',
-  //   personalDetails: {
-  //     givenName: 'Daniel',
-  //     familyName: 'James',
-  //     sex: 'Male'
-  //   }
-  // }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Awaiting decision',
-  //   cycle: 'Current cycle (2020 to 2021)',
-  //   submittedDate: '2019-08-10T13:32:00',
-  //   personalDetails: {
-  //     givenName: 'Teresa',
-  //     familyName: 'Mendoza',
-  //     sex: 'Female'
-  //   }
-  // }))
-
   applications.push(generateFakeApplication({
     status: 'Offered',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Sally',
       familyName: 'Harvey',
@@ -241,7 +219,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Offered',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Rachael',
       familyName: 'Wayne',
@@ -251,7 +229,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Offered',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Louise',
       familyName: 'Jenkins',
@@ -261,7 +239,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Accepted',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Trent',
       familyName: 'Skipp',
@@ -271,7 +249,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Accepted',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Ed',
       familyName: 'Lloyd',
@@ -281,7 +259,7 @@ const generateFakeApplications = () => {
 
  applications.push(generateFakeApplication({
     status: 'Accepted',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Audree',
       familyName: 'Bowen',
@@ -291,7 +269,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Bill',
       familyName: 'Jones',
@@ -301,7 +279,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Amy',
       familyName: 'Black',
@@ -311,7 +289,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Conditions met',
-    cycle: 'Current cycle (2020 to 2021)',
+    cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Tony',
       familyName: 'Stark',
@@ -323,8 +301,8 @@ const generateFakeApplications = () => {
   // Scenario 1: Simple candidate
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-12T14:01:00',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-12T14:01:00',
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Tiago',
@@ -441,8 +419,8 @@ const generateFakeApplications = () => {
   // Scenario 2: Slightly difficult candidate
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-11T14:01:00',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-11T14:01:00',
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Kung',
@@ -519,8 +497,8 @@ const generateFakeApplications = () => {
   // Scenario 3: Difficult candidate
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
-    cycle: 'Current cycle (2020 to 2021)',
-    submittedDate: '2019-07-10T14:01:00',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-10T14:01:00',
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Chitprem',
@@ -583,7 +561,7 @@ const generateFakeApplications = () => {
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
       status: 'Offered',
-      cycle: 'Current cycle (2020 to 2021)'
+      cycle: '2020 to 2021'
     })
     applications.push(application)
   }

@@ -5,6 +5,7 @@ MOJFrontend.AddAnother = function (options) {
   this.container.on('click', '.moj-add-another__remove-button', $.proxy(this, 'onRemoveButtonClick'))
   this.container.on('click', '.moj-add-another__add-button', $.proxy(this, 'onAddButtonClick'))
   this.container.find('.moj-add-another__add-button, moj-add-another__remove-button').prop('type', 'button')
+  this.container.find('.moj-add-another__heading').attr('tabindex', '-1')
 }
 
 MOJFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
@@ -12,6 +13,7 @@ MOJFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
   if (this.options.allowNoFields && firstItem.hasClass('govuk-!-display-none')) {
     firstItem.removeClass('govuk-!-display-none')
     this.createRemoveButton(firstItem)
+    firstItem.find('input, textarea, select').first().focus()
     return
   }
 
@@ -43,9 +45,14 @@ MOJFrontend.AddAnother.prototype.getNewItem = function () {
 
 MOJFrontend.AddAnother.prototype.updateAttributes = function (index, item) {
   item.find('[data-name]').each(function (i, el) {
-    el.name = $(el).attr('data-name').replace(/%index%/, index)
+    el.name = $(el).attr('data-name').replace(/%index%/, index);
     el.id = $(el).attr('data-id').replace(/%index%/, index);
-    ($(el).siblings('label')[0] || $(el).parents('label')[0]).htmlFor = el.id
+    ($(el).siblings('label')[0] || $(el).parents('label')[0]).htmlFor = el.id;
+
+    if($(el).attr('data-label')) {
+      ($(el).siblings('label')[0] || $(el).parents('label')[0]).innerHTML = $(el).attr('data-label').replace(/%index%/, index+1);
+    }
+
   })
 }
 
@@ -69,14 +76,18 @@ MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function (e) {
   if (this.options.allowNoFields && items.length === 1) {
     $(e.currentTarget).parents('.moj-add-another__item').addClass('govuk-!-display-none')
     this.resetItem($(e.currentTarget).parents('.moj-add-another__item'))
+    $(e.currentTarget).parents('.moj-add-another__item').find('.moj-add-another__remove-button').remove()
   } else {
     $(e.currentTarget).parents('.moj-add-another__item').remove()
     if (items.length === 1) {
       items.find('.moj-add-another__remove-button').remove()
     }
-    items.each($.proxy(function (index, el) {
+
+    // get items again as for some reason after removing it's still included in array
+    this.getItems().each($.proxy(function (index, el) {
       this.updateAttributes(index, $(el))
     }, this))
+
   }
 
   this.focusHeading()

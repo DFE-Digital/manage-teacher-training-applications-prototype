@@ -43,57 +43,74 @@
           }]
         }) }}
 
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Further conditions (optional)</h2>
-        <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
-        {{ govukTextarea({
-          id: "condition-1",
-          name: "[edit-conditions][condition-1]",
-          rows: 3,
-          label: {
-            text: "First condition",
-            classes: "govuk-label--s"
-          },
-          value: data["edit-conditions"]["condition-1"] or application.offer.conditions[0].description
-        }) }}
+        <div class="moj-add-another">
 
-        {{ govukTextarea({
-          id: "condition-2",
-          name: "[edit-conditions][condition-2]",
-          rows: 3,
-          label: {
-            text: "Second condition",
-            classes: "govuk-label--s"
-          },
-          value: data["edit-conditions"]["condition-2"] or application.offer.conditions[1].description
-        }) }}
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1 moj-add-another__heading">Further conditions</h2>
+          <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
 
-        {{ govukTextarea({
-          id: "condition-3",
-          name: "[edit-conditions][condition-3]",
-          rows: 3,
-          label: {
-            text: "Third condition",
-            classes: "govuk-label--s"
-          },
-          value: data["edit-conditions"]["condition-3"] or application.offer.conditions[2].description
-        }) }}
+          {% if conditions.length %}
+            {% for condition in conditions %}
 
-        {{ govukTextarea({
-          id: "condition-4",
-          name: "[edit-conditions][condition-4]",
-          rows: 3,
-          label: {
-            text: "Further conditions",
-            classes: "govuk-label--s"
-          },
-          value: data["edit-conditions"]["condition-4"] or application.offer.conditions[3].description
-        }) }}
+              <div class="moj-add-another__item">
+                {{ govukTextarea({
+                  id: "[edit-conditions][conditions]["+loop.index0+"]",
+                  name: "[edit-conditions][conditions]["+loop.index0+"]",
+                  rows: 3,
+                  label: {
+                    text: "Condition " + loop.index,
+                    classes: "govuk-label--s"
+                  },
+                  value: condition,
+                  attributes: {
+                    'data-name': '[edit-conditions][conditions][%index%]',
+                    'data-id': '[edit-conditions][conditions][%index%]',
+                    'data-label': 'Condition %index%'
+                  }
+                }) }}
+                <button type="button" class="govuk-button govuk-button--secondary moj-add-another__remove-button">Remove</button>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="moj-add-another__item govuk-!-display-none">
+              {{ govukTextarea({
+                id: "[edit-conditions][conditions][0]",
+                name: "[edit-conditions][conditions][0]",
+                rows: 3,
+                label: {
+                  text: "Condition " + 1,
+                  classes: "govuk-label--s"
+                },
+                attributes: {
+                  'data-name': '[edit-conditions][conditions][%index%]',
+                  'data-id': '[edit-conditions][conditions][%index%]',
+                  'data-label': 'Condition %index%'
+                }
+              }) }}
+            </div>
+          {% endif %}
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another condition',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+        </div>
 
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new MOJFrontend.AddAnother({
+      container: $('.moj-add-another'),
+      allowNoFields: true
+    });
+  </script>
 {% endblock %}

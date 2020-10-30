@@ -2,8 +2,8 @@ module.exports = (faker, params) => {
   const events = { items: [] }
 
   const date = faker.helpers.randomize([
-    '2019-08-12',
-    '2019-08-11',
+    '2020-08-12',
+    '2020-08-11',
     faker.date.past(),
     faker.date.past(),
     faker.date.past(),

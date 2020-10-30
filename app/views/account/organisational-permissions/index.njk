@@ -1,0 +1,35 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'organisations' %}
+{% set title = "Organisational permissions" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>Use this section to change permissions between your own organisations and your partner organisations.</p>
+
+      {% for org in data.user.organisations %}
+        <div class="app-application-card">
+          <div>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/account/organisational-permissions/{{org.id}}">{{ org.name }}</a></h2>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

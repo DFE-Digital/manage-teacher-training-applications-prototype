@@ -159,6 +159,10 @@ function getLink (item, application) {
       link.text = 'View interview'
       link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
       break
+    case 'Status of conditions updated':
+      link.text = 'View offer'
+      link.href = `/application/${application.id}/offer`
+      break
   }
   return link
 }
@@ -182,13 +186,13 @@ exports.getTimeline = (application) => {
 }
 
 exports.addEvent = (application, event) => {
-  application.events.push(event)
+  application.events.items.push(event)
 }
 
 exports.getStatusText = (application) => {
   var status = application.status
 
-  const now = DateTime.fromISO('2019-08-15')
+  const now = DateTime.fromISO('2020-08-15')
 
   // has interviews that we need to surface as a status
   if(application.status === "Awaiting decision" && application.interviews.items.length) {

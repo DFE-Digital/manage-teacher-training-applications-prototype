@@ -1,0 +1,116 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Conditions of offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: '/application/' + application.id + '/offer'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% include "_includes/offer/details-of-offer-without-conditions.njk" %}
+
+      <form method="post">
+        {{ govukCheckboxes({
+          idPrefix: "[new-offer][standard-conditions]",
+          name: "[new-offer][standard-conditions]",
+          fieldset: {
+            legend: {
+              text: "Standard conditions",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "Fitness to teach check",
+            text: "Fitness to teach check",
+            checked: checked(data['new-offer']['standard-conditions'], "Fitness to teach check")
+          }, {
+            value: "Disclosure and barring service check",
+            text: "Disclosure and barring service check",
+            hint: {
+              text: "We’ll email the candidate to tell them that they’ll need to provide ID"
+            },
+            checked: checked(data['new-offer']['standard-conditions'], "Disclosure and barring service check")
+          }]
+        }) }}
+
+        <div class="moj-add-another">
+
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1 moj-add-another__heading">Further conditions</h2>
+          <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
+
+          {% if conditions.length %}
+            {% for condition in conditions %}
+
+              <div class="moj-add-another__item">
+                {{ govukTextarea({
+                  id: "[new-offer][conditions]["+loop.index0+"]",
+                  name: "[new-offer][conditions]["+loop.index0+"]",
+                  rows: 3,
+                  label: {
+                    text: "Condition " + loop.index,
+                    classes: "govuk-label--s"
+                  },
+                  value: condition,
+                  attributes: {
+                    'data-name': '[new-offer][conditions][%index%]',
+                    'data-id': '[new-offer][conditions][%index%]',
+                    'data-label': 'Condition %index%'
+                  }
+                }) }}
+                <button type="button" class="govuk-button govuk-button--secondary moj-add-another__remove-button">Remove</button>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="moj-add-another__item govuk-!-display-none">
+              {{ govukTextarea({
+                id: "[new-offer][conditions][0]",
+                name: "[new-offer][conditions][0]",
+                rows: 3,
+                label: {
+                  text: "Condition " + 1,
+                  classes: "govuk-label--s"
+                },
+                attributes: {
+                  'data-name': '[new-offer][conditions][%index%]',
+                  'data-id': '[new-offer][conditions][%index%]',
+                  'data-label': 'Condition %index%'
+                }
+              }) }}
+            </div>
+          {% endif %}
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another condition',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new MOJFrontend.AddAnother({
+      container: $('.moj-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}
