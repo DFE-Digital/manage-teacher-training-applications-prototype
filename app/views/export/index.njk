@@ -143,9 +143,9 @@
           ]
         }) }}
 
-
-        {# <p>Diversity information is only provided for applications with ‘Accepted’ or ‘Conditions met’ statuses</p> #}
-        <p>Diversity information can only be viewed after a candidate has accepted an offer. This information relates to the candidate's sex, ethnicity and disability status.</p>
+        {{ govukInsetText({
+          text: "Diversity information will be marked confidential, if you do not have permission to view it or if the candidate has not accepted your offer."
+        }) }}
 
         {{ govukButton({
           text: "Export data"
