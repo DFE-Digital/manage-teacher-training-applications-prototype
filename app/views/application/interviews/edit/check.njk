@@ -89,6 +89,23 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Which organisation are you interviewing for?"
+            },
+            value: {
+              html: data.interview.organisation
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/" + application.id + "/interviews/" + interview.id + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
           }
         ]
       }) }}

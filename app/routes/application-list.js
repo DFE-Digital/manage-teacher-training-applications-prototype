@@ -11,11 +11,11 @@ function getApplicationsByGroup (applications) {
 
   const previousCyclePendingConditions = applications
     .filter(app => app.status === "Accepted")
-    .filter(app => app.cycle === 'Previous cycle (2019 to 2020)')
+    .filter(app => app.cycle === '2019 to 2020')
 
   const deferredOffersPendingReconfirmation = applications
     .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === 'Previous cycle (2019 to 2020)')
+    .filter(app => app.cycle === '2019 to 2020')
 
   const rejectedWithoutFeedback = applications
     .filter(app => app.status === 'Rejected')

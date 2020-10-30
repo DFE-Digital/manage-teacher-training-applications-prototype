@@ -63,7 +63,7 @@
                     text: "Organisation"
                   },
                   value: {
-                    text: "The Royal Borough Teaching School Alliance"
+                    text: interview.organisation
                   },
                   actions: {
                     items: [
@@ -146,40 +146,8 @@
           })}}
 
         {% endfor %}
-
-
-        {# <table class="govuk-table">
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarte">Date and time</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarte">Details</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarte">Organisation</th>
-
-        {% if statusText == "Awaiting interview" or statusText == "Interviewed" %}
-          <th scope="col" class="govuk-table__header">Actions</th>
-        {% endif %}
-      </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-      {% for interview in application.interviews.items %}
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{interview.date | govukDateAtTime }}</td>
-          <td class="govuk-table__cell">{{interview.details }}</td>
-          <td class="govuk-table__cell">The Royal Borough Teaching School Alliance</td>
-
-          {% if statusText == "Awaiting interview" or statusText == "Interviewed" %}
-
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="/application/{{application.id}}/interviews/{{interview.id}}/edit">Change</a> or <a class="govuk-link govuk-link--no-visited-state" href="/application/{{application.id}}/interviews/{{interview.id}}/delete">cancel</a></td>
-
-          {% endif %}
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table> #}
-
       {% else %}
         <p>No interviews have been set up yet.</p>
-
         {{ govukButton({
           text: "Set up an interview",
           href: "/application/" + application.id + "/interviews/new",

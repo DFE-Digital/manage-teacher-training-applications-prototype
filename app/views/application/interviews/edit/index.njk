@@ -21,16 +21,20 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set candidateNotesHtml %}
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">The candidate shared the following interview preferences</h2>
-        <p>Some notes go here</p>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Candidate interview preferences</h2>
+        <p>{{application.interviewNeeds | nl2br}}</p>
       {% endset %}
 
       {% if application.interviewNeeds %}
-        {{ govukInsetText({
-          html: candidateNotesHtml
-        }) }}
-      {% endif %}
 
+        <div class="app-offer-panel">
+          {{candidateNotesHtml | safe}}
+        </div>
+
+        {# {{ govukWarningText({
+          html: candidateNotesHtml
+        }) }} #}
+      {% endif %}
 
       <form method="post">
 
@@ -40,7 +44,7 @@
           fieldset: {
             legend: {
               text: "Date",
-              classes: "govuk-fieldset__legend--s"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
@@ -65,7 +69,7 @@
         }) }}
 
         <div class="govuk-form-group">
-          <label class="govuk-label govuk-label--s" for="interview[time]">
+          <label class="govuk-label govuk-label--m" for="interview[time]">
             Time
           </label>
           <span id="interview[time]-hint" class="govuk-hint">
@@ -80,7 +84,7 @@
           id: "interview[location]",
           name: "interview[location]",
           label: {
-            classes: "govuk-label--s",
+            classes: "govuk-label--m",
             text: "Location"
           },
           hint: {
@@ -93,13 +97,36 @@
           id: "interview[details]",
           name: "interview[details]",
           label: {
-            classes: "govuk-label--s",
+            classes: "govuk-label--m",
             text: "Additional details"
           },
           hint: {
             text: "Any other details, like a remote meeting link"
           },
           value: interview.details
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "interview[organisation]",
+          name: "interview[organisation]",
+          fieldset: {
+            legend: {
+              text: "Which organisation are you interviewing for?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "The Royal Borough Teaching School Alliance",
+              text: "The Royal Borough Teaching School Alliance",
+              checked: checked(interview.organisation, "The Royal Borough Teaching School Alliance")
+            },
+            {
+              value: "Kingston University",
+              text: "Kingston University",
+              checked: checked(interview.organisation, "Kingston University")
+            }
+          ]
         }) }}
 
         {{ govukButton({

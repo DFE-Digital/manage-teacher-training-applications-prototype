@@ -8,14 +8,14 @@ module.exports = router => {
 
     if(settings.includes('new-cycle')) {
       req.session.data.applications = applications.filter(app => {
-        if (app.status === 'Deferred' && app.cycle === 'Previous cycle (2019 to 2020)') {
+        if (app.status === 'Deferred' && app.cycle === '2019 to 2020') {
           return false;
         } else {
           return true;
         }
       })
       .filter(app => {
-        if (app.status === 'Accepted' && app.cycle === 'Previous cycle (2019 to 2020)') {
+        if (app.status === 'Accepted' && app.cycle === '2019 to 2020') {
           return false;
         } else {
           return true;
@@ -24,11 +24,11 @@ module.exports = router => {
       _.remove(settings, function(item) { return item == 'new-cycle' })
     } else {
       let deferredPast = applications
-        .filter(app => app.cycle == "Previous cycle (2019 to 2020)")
+        .filter(app => app.cycle == "2019 to 2020")
         .filter(app => (app.status == 'Deferred'))
 
       let acceptedPast = applications
-        .filter(app => app.cycle == "Previous cycle (2019 to 2020)")
+        .filter(app => app.cycle == "2019 to 2020")
         .filter(app => (app.status == 'Accepted'))
 
       let other = applications
