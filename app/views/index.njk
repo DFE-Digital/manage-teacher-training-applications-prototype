@@ -9,15 +9,15 @@
   </h1>
 
 
-    <div class="moj-filter-layout">
-      <div class="moj-filter-layout__filter">
+    <div class="app-filter-layout">
+      <div class="app-filter-layout__filter">
         {% include "_includes/filter-panel.njk" %}
       </div>
 
-      <div class="moj-filter-layout__content">
+      <div class="app-filter-layout__content">
 
-        <div class="moj-action-bar">
-          <div class="moj-action-bar__filter"></div>
+        <div class="app-action-bar">
+          <div class="app-action-bar__filter"></div>
         </div>
         <div>
           {% if applications.length %}
@@ -66,21 +66,21 @@
 {% block pageScripts %}
   <script>
     new MOJFrontend.FilterToggleButton({
-    bigModeMediaQuery: '(min-width: 48.063em)',
-    startHidden: false,
-    toggleButton: {
-      container: $('.moj-action-bar__filter'),
-      showText: 'Show filter',
-      hideText: 'Hide filter',
-      classes: 'govuk-button--secondary govuk-!-margin-bottom-0'
-    },
-    closeButton: {
-      container: $('.moj-filter__header-action'),
-      text: 'Close'
-    },
-    filter: {
-      container: $('.moj-filter')
-    }
-  });
+      bigModeMediaQuery: '(min-width: 48.063em)',
+      startHidden: false,
+      toggleButton: {
+        container: $('.app-action-bar__filter'),
+        showText: 'Show filter',
+        hideText: 'Hide filter',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+      },
+      closeButton: {
+        container: $('.app-filter__header-action'),
+        text: 'Close'
+      },
+      filter: {
+        container: $('.app-filter-layout__filter')
+      }
+    });
   </script>
 {% endblock %}
