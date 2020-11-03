@@ -82,6 +82,27 @@
           </div>
         </div>
 
+        {{ govukRadios({
+          idPrefix: "interview[organisation]",
+          name: "interview[organisation]",
+          fieldset: {
+            legend: {
+              text: "Organisation",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "The Royal Borough Teaching School Alliance",
+              text: "The Royal Borough Teaching School Alliance"
+            },
+            {
+              value: "Kingston University",
+              text: "Kingston University"
+            }
+          ]
+        }) }}
+
         {{ govukTextarea({
           id: "interview[location]",
           name: "interview[location]",
@@ -108,26 +129,7 @@
           value: data.interview.details
         }) }}
 
-        {{ govukRadios({
-          idPrefix: "interview[organisation]",
-          name: "interview[organisation]",
-          fieldset: {
-            legend: {
-              text: "Which organisation are you interviewing for?",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "The Royal Borough Teaching School Alliance",
-              text: "The Royal Borough Teaching School Alliance"
-            },
-            {
-              value: "Kingston University",
-              text: "Kingston University"
-            }
-          ]
-        }) }}
+
 
         {{ govukButton({
           text: "Continue"

@@ -80,6 +80,29 @@
           </div>
         </div>
 
+        {{ govukRadios({
+          idPrefix: "interview[organisation]",
+          name: "interview[organisation]",
+          fieldset: {
+            legend: {
+              text: "Organisation",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "The Royal Borough Teaching School Alliance",
+              text: "The Royal Borough Teaching School Alliance",
+              checked: checked(interview.organisation, "The Royal Borough Teaching School Alliance")
+            },
+            {
+              value: "Kingston University",
+              text: "Kingston University",
+              checked: checked(interview.organisation, "Kingston University")
+            }
+          ]
+        }) }}
+
         {{ govukTextarea({
           id: "interview[location]",
           name: "interview[location]",
@@ -104,29 +127,6 @@
             text: "Any other details, like a remote meeting link"
           },
           value: interview.details
-        }) }}
-
-        {{ govukRadios({
-          idPrefix: "interview[organisation]",
-          name: "interview[organisation]",
-          fieldset: {
-            legend: {
-              text: "Which organisation are you interviewing for?",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "The Royal Borough Teaching School Alliance",
-              text: "The Royal Borough Teaching School Alliance",
-              checked: checked(interview.organisation, "The Royal Borough Teaching School Alliance")
-            },
-            {
-              value: "Kingston University",
-              text: "Kingston University",
-              checked: checked(interview.organisation, "Kingston University")
-            }
-          ]
         }) }}
 
         {{ govukButton({
