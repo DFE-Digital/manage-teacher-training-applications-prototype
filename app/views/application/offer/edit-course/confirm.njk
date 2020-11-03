@@ -66,9 +66,13 @@
         }
       ]}) }}
 
+      {{ govukWarningText({
+        text: "By making this offer, you guarantee a place on this course as long as the candidates meets the conditions. We’ll email the candidate with the details of this offer."
+      }) }}
+
       <form method="post">
         {{ govukButton({
-          text: "Change offer"
+          text: "Confirm new offer"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>

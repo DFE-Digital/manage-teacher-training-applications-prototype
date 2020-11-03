@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and make offer" %}
+{% set title = "Check and confirm offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -116,12 +116,12 @@
       </div>
 
       {{ govukWarningText({
-        text: "By making this offer, you guarantee a place on this course as long as the candidate meets the conditions of the offer. We’ll email the candidate with the details of this offer."
+        text: "By making this offer, you guarantee a place on this course as long as the candidates meets the conditions. We’ll email the candidate with the details of this offer."
       }) }}
 
       <form method="post">
         {{ govukButton({
-          text: "Make offer"
+          text: "Confirm offer"
         }) }}
       </form>
       <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
