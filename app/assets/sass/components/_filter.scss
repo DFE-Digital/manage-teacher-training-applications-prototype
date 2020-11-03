@@ -16,7 +16,10 @@
     font-size: 0; // Hide whitespace between elements
     padding: govuk-spacing(2) govuk-spacing(3);
     text-align: justify; // Trick to remove the need for floats
-
+    position: sticky;
+    top: 0;
+    background-color: govuk-colour('white');
+    z-index: 9;
     &:after {
       content: '';
       display: inline-block;
@@ -25,6 +28,10 @@
 
     [class^=govuk-heading-] {
       margin-bottom: 0;
+    }
+
+    @include govuk-media-query($from: desktop) {
+      position: static;
     }
 
   }
