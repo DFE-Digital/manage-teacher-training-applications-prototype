@@ -1,0 +1,17 @@
+.app-action-bar {
+  font-size: 0; // Removes white space
+  @include govuk-clearfix;
+}
+
+.app-action-bar__filter {
+  display: inline-block;
+  position: relative;
+
+  @include govuk-media-query($until: desktop) {
+    float: right;
+  }
+
+  @include govuk-media-query($from: desktop) {
+    display: none;
+  }
+}

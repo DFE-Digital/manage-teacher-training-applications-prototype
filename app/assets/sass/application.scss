@@ -19,6 +19,7 @@ $govuk-grid-widths: (
 @import "node_modules/@ministryofjustice/frontend/moj/all";
 
 // Components that aren't in Frontend
+@import "components/action-bar";
 @import "components/autocomplete";
 @import "components/application-card";
 @import "components/banner";
@@ -26,6 +27,8 @@ $govuk-grid-widths: (
 @import "components/card-list";
 @import "components/cookie-banner";
 @import "components/definition-list";
+@import "components/filter";
+@import "components/filter-layout";
 @import "components/flex-grid";
 @import "components/footer";
 @import "components/hidden-link";
@@ -86,49 +89,11 @@ $govuk-grid-widths: (
   }
 }
 
-.moj-action-bar {
-  overflow: hidden;
-}
-
-.moj-action-bar__filter:after {
-  background: none;
-}
-
-.moj-filter-layout__filter {
-  max-width: 310px;
-  margin-right: 30px;
-}
-
-.moj-filter__header {
-  background: govuk-colour('white');
-  box-shadow: none;
-  border: 1px solid #b1b4b6;
-  border-bottom: 0;
-  padding-top: govuk-spacing(3);
-  padding-bottom: govuk-spacing(3);
-  padding: 0 15px;
-}
-
-.moj-filter__selected {
-  box-shadow: none;
-  border: 1px solid #b1b4b6;
-  border-top: 0;
-  border-bottom: 0;
-  padding-top: govuk-spacing(5);
-  padding-bottom: govuk-spacing(5);
-}
-
-.moj-filter__options {
-  box-shadow: none;
-  padding: 20px 15px;
-}
-
 .moj-pagination {
   overflow: hidden;
   width: 100%;
   padding-left: 3px;
 }
-
 
 .app-experience__item {
   margin-bottom: govuk-spacing(4);
@@ -137,7 +102,6 @@ $govuk-grid-widths: (
 
 .app-list {
   clear: both;
-  // border-top: 1px solid govuk-colour('mid-grey');
   padding-top: govuk-spacing(5);
 }
 
@@ -193,19 +157,6 @@ $govuk-grid-widths: (
   // border-top: 1px solid govuk-colour('mid-grey');
   border-left: 5px solid govuk-colour('mid-grey');
   padding-left: 15px;
-}
-
-.moj-filter__header {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-
-
-.moj-action-bar__filter {
-  @include govuk-media-query($from: desktop) {
-    display: none;
-  }
 }
 
 h1 .govuk-tag {
