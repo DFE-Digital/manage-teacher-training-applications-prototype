@@ -1,12 +1,12 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
+
 {% set title = "Check and confirm changes to offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: '/application/' + application.id + '/offer/edit-conditions'
+    href: "/application/" + application.id + '/offer/edit-provider/location'
   }) }}
 {% endblock %}
 
@@ -48,7 +48,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/application/" + application.id + "/offer/edit-provider",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
@@ -64,7 +64,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/application/" + application.id + "/offer/edit-provider/location",
                   text: "Change",
                   visuallyHiddenText: "conditions"
                 }
@@ -100,7 +100,7 @@
           {% for condition in conditions %}
             <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
               <dt class="govuk-summary-list__key">
-                {{condition}}
+                {{condition.description}}
               </dt>
               <dd class="govuk-summary-list__value app-conditions-list__tag">
                 {{govukTag({ text: "Pending", classes: "app-tag--grey" })}}
@@ -125,4 +125,5 @@
       <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
+
 {% endblock %}
