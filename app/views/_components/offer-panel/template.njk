@@ -1,0 +1,144 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+
+<div class="app-offer-panel">
+  {% if params.withdraw or params.defer %}
+    <p class="govuk-body">
+      {% if params.withdraw %}
+        {# <a href="{{params.withdraw.href}}">Withdraw offer</a> #}
+      {% endif %}
+      {% if params.defer %}
+        {# or #}
+        <a href="{{params.defer.href}}">Defer offer</a>
+      {% endif %}
+    </p>
+  {% endif %}
+
+  <h2 class="govuk-heading-m">
+    Course details
+  </h2>
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Provider"
+      },
+      value: {
+        html: params.provider.value
+      },
+      actions: {
+        items: [
+          {
+            href: params.provider.href or "#",
+            text: "Change",
+            visuallyHiddenText: "training provider"
+          }
+        ]
+      } if params.provider.href
+    }, {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: params.course.value
+      },
+      actions: {
+        items: [
+          {
+            href: params.course.href or "#",
+            text: "Change",
+            visuallyHiddenText: "course"
+          }
+        ]
+      } if params.course.href
+    }, {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: params.location.value or "Alliance Academy, Edgeware, Road Name, SW1 1AA"
+      },
+      actions: {
+        items: [
+          {
+            href: params.location.href or "#",
+            text: "Change",
+            visuallyHiddenText: "location"
+          }
+        ]
+      } if params.location.href
+    }, {
+      key: {
+        text: "Full time or part time"
+      },
+      value: {
+        html: params.studyMode.value or "Full time"
+      },
+      actions: {
+        items: [
+          {
+            href: params.studyMode.href or "#",
+            text: "Change",
+            visuallyHiddenText: "mode of study"
+          }
+        ]
+      } if params.studyMode.href
+    }
+  ]})}}
+
+  <h2 class="govuk-heading-m">
+    Conditions of offer
+  </h2>
+
+  {% if params.changeStatus or params.changeConditions %}
+    <p>
+      {% if params.changeStatus %}
+        <a href="{{params.changeStatus.href}}">Update status of conditions</a>
+      {% endif %}
+
+      {% if params.changeConditions and not params.changeStatus %}
+        <a href="{{params.changeConditions.href}}">Add or change conditions</a>
+      {% endif %}
+
+      {% if params.changeConditions and params.changeStatus %}
+        or
+        <a href="{{params.changeConditions.href}}">add or change conditions</a>
+      {% endif %}
+    </p>
+  {% endif %}
+
+  {% if params.conditions.items.length %}
+    <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+      {% for condition in params.conditions.items %}
+        <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+          <dt class="govuk-summary-list__key">
+            {{condition.description}}
+          </dt>
+          <dd class="govuk-summary-list__value app-conditions-list__tag">
+            {% if condition.status == "Met" %}
+              {% set statusClass = "app-tag--green" %}
+            {% elseif condition.status == "Not met" %}
+              {% set statusClass = "app-tag--red" %}
+            {% else %}
+              {% set statusClass = "app-tag--grey" %}
+            {% endif %}
+            {{govukTag({ text: condition.status, classes: statusClass})}}
+          </dd>
+        </div>
+      {% endfor %}
+    </dl>
+  {% else %}
+    <p>No conditions have been set for this offer.</p>
+  {% endif %}
+</div>
+
+{#
+{% if application.withdrawnReasons %}
+  <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
+  {% set rejectedDate = application.withdrawnDate %}
+  {% set rejectionReasons = application.withdrawnReasons %}
+  {% set showRejectedDate = true %}
+
+  <p>You sent the following feedback to the candidate on {{rejectedDate | date("d LLL yyyy")}}.</p>
+
+  {% include "_includes/candidate-feedback.njk" %}
+{% endif %} #}

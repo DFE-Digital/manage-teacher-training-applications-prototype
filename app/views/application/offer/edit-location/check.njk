@@ -1,12 +1,12 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
+
 {% set title = "Check and confirm changes to offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: '/application/' + application.id + '/offer/edit-conditions'
+    href: "/application/" + application.id + '/offer/edit-location'
   }) }}
 {% endblock %}
 
@@ -19,16 +19,14 @@
 
       {{appOfferPanel({
         provider: {
-          value: application.provider,
-          href: "#"
+          value: application.provider
         },
         course: {
-          value: application.course,
-          href: "#"
+          value: application.course
         },
         location: {
           value: application.location,
-          href: "#"
+          href: "/application/" + application.id + "/offer/edit-location"
         },
         studyMode: {
           value: "Full time",
@@ -38,7 +36,7 @@
           items: conditions
         },
         changeConditions: {
-          href: "/application/" + application.id + "/offer/edit-conditions"
+          href: "#"
         }
       })}}
 
@@ -54,4 +52,5 @@
       <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
+
 {% endblock %}
