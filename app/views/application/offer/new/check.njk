@@ -17,103 +17,30 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <div class="app-offer-panel">
-        <h2 class="govuk-heading-m">
-          Course details
-        </h2>
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Provider"
-            },
-            value: {
-              html: application.provider
-            },
-            actions: {
-              items: [
-                {
-                  href: "/application/" + application.id + "/offer/new/provider",
-                  text: "Change",
-                  visuallyHiddenText: "conditions"
-                }
-              ]
-            }
-          }, {
-            key: {
-              text: "Course"
-            },
-            value: {
-              html: application.course
-            },
-            actions: {
-              items: [
-                {
-                  href: "/application/" + application.id + "/offer/new/course",
-                  text: "Change",
-                  visuallyHiddenText: "conditions"
-                }
-              ]
-            }
-          }, {
-            key: {
-              text: "Location"
-            },
-            value: {
-              html: data['new-offer']['location'] or "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/application/" + application.id + "/offer/new/location?referrer=/application/" + application.id + "/offer/new/",
-                  text: "Change",
-                  visuallyHiddenText: "conditions"
-                }
-              ]
-            }
-          }, {
-            key: {
-              text: "Full time or part time"
-            },
-            value: {
-              html: "Full time"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/application/" + application.id + "/offer/new/study-mode",
-                  text: "Change",
-                  visuallyHiddenText: "conditions"
-                }
-              ]
-            }
-          }
-        ]})
-      }}
-
-      <h2 class="govuk-heading-m">
-        Conditions of offer
-      </h2>
-
-
-      {% if conditions.length  %}
-
-        <p><a href="/application/{{application.id}}/offer/new">Add or change conditions</a></p>
-        <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-          {% for condition in conditions %}
-            <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
-              <dt class="govuk-summary-list__key">
-                {{condition}}
-              </dt>
-              <dd class="govuk-summary-list__value app-conditions-list__tag">
-                {{govukTag({ text: "Pending", classes: "app-tag--grey" })}}
-              </dd>
-              </div>
-            {% endfor %}
-          </dl>
-        {% else %}
-          <p>No conditions have been set for this offer. <a href="/application/{{application.id}}/offer/new">Add a condition</a> </p>
-        {% endif %}
-      </div>
+      {{appOfferPanel({
+        provider: {
+          value: application.provider,
+          href: "/application/" + application.id + "/offer/new/provider"
+        },
+        course: {
+          value: application.course,
+          href: "/application/" + application.id + "/offer/new/course"
+        },
+        location: {
+          value: data['new-offer']['location'],
+          href: "/application/" + application.id + "/offer/new/location?referrer=/application/" + application.id + "/offer/new/"
+        },
+        studyMode: {
+          value: "Full time",
+          href: "/application/" + application.id + "/offer/new/study-mode"
+        },
+        conditions: {
+          items: conditions
+        },
+        changeConditions: {
+          href: "/application/" + application.id + "/offer/new"
+        }
+      })}}
 
       {{ govukWarningText({
         text: "By making this offer, you guarantee a place on this course as long as the candidates meets the conditions. We’ll email the candidate with the details of this offer."

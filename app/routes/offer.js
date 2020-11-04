@@ -83,6 +83,13 @@ module.exports = router => {
       conditions.push(c)
     })
 
+    conditions = conditions.map(c => {
+      return {
+        description: c,
+        status: "Pending"
+      }
+    })
+
     res.render('application/offer/edit-conditions/check', {
       application,
       conditions

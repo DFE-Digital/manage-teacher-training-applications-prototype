@@ -26,14 +26,9 @@
       {% endset %}
 
       {% if application.interviewNeeds %}
-
         <div class="app-offer-panel">
           {{candidateNotesHtml | safe}}
         </div>
-
-        {# {{ govukWarningText({
-          html: candidateNotesHtml
-        }) }} #}
       {% endif %}
 
       <form method="post">

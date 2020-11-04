@@ -17,32 +17,28 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-
-
-        <form method="post">
-
-
-          <div class="app-offer-panel govuk-!-margin-bottom-7">
-            <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
-              {% for condition in conditions %}
-                <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
-                  <dt class="govuk-summary-list__key">
-                    {{condition.description}}
-                  </dt>
-                  <dd class="govuk-summary-list__value app-conditions-list__tag">
-                    {% if condition.status == "Pending" %}
-                        {% set statusClass = "app-tag--grey" %}
-                      {% elseif condition.status == "Met" %}
-                        {% set statusClass = "app-tag--green" %}
-                      {% elseif condition.status == "Not met" %}
-                        {% set statusClass = "app-tag--red" %}
-                    {% endif %}
-                    {{govukTag({ text: condition.status, classes: statusClass })}}
-                  </dd>
-                </div>
-              {% endfor %}
-            </dl>
-          </div>
+      <form method="post">
+        <div class="app-offer-panel govuk-!-margin-bottom-7">
+          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
+            {% for condition in conditions %}
+              <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+                <dt class="govuk-summary-list__key">
+                  {{condition.description}}
+                </dt>
+                <dd class="govuk-summary-list__value app-conditions-list__tag">
+                  {% if condition.status == "Pending" %}
+                      {% set statusClass = "app-tag--grey" %}
+                    {% elseif condition.status == "Met" %}
+                      {% set statusClass = "app-tag--green" %}
+                    {% elseif condition.status == "Not met" %}
+                      {% set statusClass = "app-tag--red" %}
+                  {% endif %}
+                  {{govukTag({ text: condition.status, classes: statusClass })}}
+                </dd>
+              </div>
+            {% endfor %}
+          </dl>
+        </div>
 
         {% if checked(data.settings, "hasCombinedConditions") %}
           {% set allConditionsMet = true %}
