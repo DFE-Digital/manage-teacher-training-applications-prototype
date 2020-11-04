@@ -18,7 +18,7 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       <form method="post">
-        <div class="app-offer-panel govuk-!-margin-bottom-7">
+        <div class="app-box govuk-!-margin-bottom-7">
           <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
             {% for condition in conditions %}
               <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
