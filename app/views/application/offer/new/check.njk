@@ -19,20 +19,20 @@
 
       {{appOfferPanel({
         provider: {
-          value: application.provider,
+          value: data["new-offer"].provider or application.provider,
           href: "/application/" + application.id + "/offer/new/provider"
         },
         course: {
-          value: application.course,
+          value: data["new-offer"].course or application.course,
           href: "/application/" + application.id + "/offer/new/course"
         },
         location: {
-          value: data['new-offer']['location'],
-          href: "/application/" + application.id + "/offer/new/location?referrer=/application/" + application.id + "/offer/new/"
+          value: data['new-offer'].location or application.location,
+          href: "/application/" + application.id + "/offer/new/location"
         },
         studyMode: {
           value: "Full time",
-          href: "/application/" + application.id + "/offer/new/study-mode"
+          href: "#"
         },
         conditions: {
           items: conditions

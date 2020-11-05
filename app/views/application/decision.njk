@@ -11,41 +11,49 @@
 {% endblock %}
 
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{name}}</span>
+        {{title}}
+      </h1>
 
-  {% set h1 %}
-    <span class="govuk-caption-l">{{name}}</span>
-    {{title}}
-  {% endset %}
+      {% include "_includes/offer/details-of-offer-without-conditions.njk" %}
 
-  <form action="{{ formaction | default('') }}" method="post">
-    {{ govukRadios({
-      fieldset: {
-        legend: {
-          html: h1,
-          classes: "govuk-fieldset__legend--l",
-          isPageHeading: true
-        }
-      },
-      idPrefix: "status",
-      name: "decision",
-      items: [{
-        value: "offer",
-        text: "Make an offer",
-        hint: {
-          text: "You can change the course after you specify the conditions"
-        },
-        checked: checked(data.decision, "offer")
-      },
-      {
-        value: "reject",
-        text: "Reject application",
-        checked: checked(data.decision, "reject")
-      }]
-    }) }}
+      <form method="post">
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              text: "Choose your decision",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          idPrefix: "decision",
+          name: "decision",
+          items: [{
+            value: "1",
+            text: "Make an offer to this course",
+            checked: checked(data.decision, "1")
+          },
+          {
+            value: "2",
+            text: "Make an offer but change certain course details",
+            checked: checked(data.decision, "2")
+          },
+          {
+            value: "3",
+            text: "Reject application",
+            checked: checked(data.decision, "3")
+          }]
+        }) }}
 
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-  </form>
-  <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+
+    </div>
+  </div>
+
 {% endblock %}

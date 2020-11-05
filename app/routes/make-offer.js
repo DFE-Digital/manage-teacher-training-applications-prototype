@@ -78,6 +78,9 @@ module.exports = router => {
       }
     })
 
+    delete req.session.data['new-offer']
+    delete req.session.data.decision
+
     req.flash('success', 'Offer successfully made')
     res.redirect(`/application/${req.params.applicationId}/offer`)
   })
@@ -114,7 +117,11 @@ module.exports = router => {
   })
 
   router.post('/application/:applicationId/offer/new/location', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/new/check`)
+    if(!req.session.data['new-offer']['standard-conditions'] || !req.session.data['new-offer'].conditions) {
+      res.redirect(`/application/${req.params.applicationId}/offer/new`)
+    } else {
+      res.redirect(`/application/${req.params.applicationId}/offer/new/check`)
+    }
   })
 
 }

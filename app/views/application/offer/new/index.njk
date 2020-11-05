@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: '/application/' + application.id + '/offer'
+    href: '/application/' + application.id + '/decision'
   }) }}
 {% endblock %}
 
@@ -17,7 +17,7 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% include "_includes/offer/details-of-offer-without-conditions.njk" %}
+      {# {% include "_includes/offer/details-of-offer-without-conditions.njk" %} #}
 
       <form method="post">
         {{ govukCheckboxes({

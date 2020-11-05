@@ -31,7 +31,7 @@ module.exports = router => {
 
   router.post('/application/:applicationId/decision', (req, res) => {
     const applicationId = req.params.applicationId
-    const { decision } = req.body
+    const { decision, option } = req.body
 
     const data = req.session.data;
     // Clear data from previous journeys
@@ -42,12 +42,12 @@ module.exports = router => {
       "Disclosure and barring service check"
     ]
 
-    if (decision === 'offer') {
+    if (decision === '1') {
       res.redirect(`/application/${applicationId}/offer/new`)
-    } else if (decision === 'reject') {
-      res.redirect(`/application/${applicationId}/reject`)
+    } else if (decision === '2') {
+      res.redirect(`/application/${applicationId}/offer/new/provider`)
     } else {
-      res.redirect(`/application/${applicationId}/decision`)
+      res.redirect(`/application/${applicationId}/reject`)
     }
   })
 
