@@ -27,18 +27,14 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          idPrefix: "course",
-          name: "course",
           items: [{
             value: "Primary (X100)",
-            text: "Primary (X100)",
-            checked: checked(data.course, "Primary (X100)")
+            text: "Primary (X100)"
           }, {
             value: "Primary (X121)",
-            text: "Primary (X121)",
-            checked: checked(data.course, "Primary (X121)")
+            text: "Primary (X121)"
           }]
-        }) }}
+        } | decorateAttributes(data, 'data["new-offer"]["course"]')) }}
 
         {{ govukButton({
           text: "Continue"
