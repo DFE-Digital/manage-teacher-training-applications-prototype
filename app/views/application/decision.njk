@@ -24,7 +24,7 @@
         {{ govukRadios({
           fieldset: {
             legend: {
-              text: "Choose your decision",
+              text: "Select decision",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -37,7 +37,7 @@
           },
           {
             value: "2",
-            text: "Make an offer but change certain course details",
+            text: "Change course details and make an offer",
             checked: checked(data.decision, "2")
           },
           {
