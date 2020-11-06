@@ -17,8 +17,6 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% include "_includes/offer/details-of-offer-without-conditions.njk" %}
-
       <form method="post">
         {{ govukCheckboxes({
           idPrefix: "standard-conditions",
