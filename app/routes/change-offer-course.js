@@ -32,7 +32,7 @@ module.exports = router => {
 
   router.post('/application/:applicationId/offer/edit-course/check', (req, res) => {
     const applicationId = req.params.applicationId
-    req.flash('success', 'Offer successfully changed')
+    req.flash('success', 'New offer sent')
     res.redirect(`/application/${applicationId}/offer`)
   })
 }
