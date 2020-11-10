@@ -122,7 +122,7 @@ module.exports = router => {
       })
     })
 
-    req.flash('success', 'Offer updated successfully')
+    req.flash('success', 'New offer sent')
     res.redirect(`/application/${req.params.applicationId}/offer`)
   })
 
