@@ -4,27 +4,35 @@
 {% set title = "Interviews" %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">{{title}}</h1>
 
-  <h2 class="govuk-heading-m govuk-!-font-size-27">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
     Upcoming interviews
   </h2>
 
   <table class="govuk-table">
-    <thead class="govuk-table__head">
+    <thead class="govuk-table__head govuk-visually-hidden">
       <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Candidate</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date and time</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Location</th>
+        <th scope="col" class="govuk-table__header ">Candidate</th>
+        <th scope="col" class="govuk-table__header" >Date and time</th>
+        <th scope="col" class="govuk-table__header ">Location</th>
       </tr>
     </thead>
     <tbody class="govuk-table__body">
       {% for interview in futureInterviews %}
         <tr class="govuk-table__row">
-          <th class="govuk-table__cell">
-            <a href="/application/{{interview.app.id}}/interviews">
-              {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
-            </a>
+          <td class="govuk-table__cell" style="width: 250px !important">
+            <a href="/application/{{interview.app.id}}/interviews" class="govuk-link--no-visited-state">{{interview.interview.date | govukDateAtTime }}</a>
+          </td>
+          <td class="govuk-table__cell" style="width: 160px !important" >
+            {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
+          </td>
+
+          <td class="govuk-table__cell">
+            {{interview.app.provider}}
             {% if interview.app.interviewNeeds.length %}
               <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1">
               {{ appIcon({
@@ -34,53 +42,49 @@
               }) }}
               Has interview preferences</p>
             {% endif %}
-          </th>
-          <td class="govuk-table__cell">
-            {{interview.interview.date | govukDateAtTime }}
-          </td>
-          <td class="govuk-table__cell">
-            {# {{interview.interview.details }}<br><br> #}
-            The Royal Borough Teaching School Alliance, {{interview.interview.location}}
           </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8">
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">
     Past interviews
   </h2>
 
   <table class="govuk-table">
-    <thead class="govuk-table__head">
+    <thead class="govuk-table__head govuk-visually-hidden">
       <tr class="govuk-table__row">
         <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Candidate</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date and time</th>
+        {# <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date and time</th> #}
         <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Location</th>
       </tr>
     </thead>
     <tbody class="govuk-table__body">
       {% for interview in pastInterviews %}
         <tr class="govuk-table__row">
-          <th class="govuk-table__cell">
-            <a href="/application/{{interview.app.id}}/interviews">
-              {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}
-            </a>
+          <td class="govuk-table__cell" style="width: 250px !important">
+            <a href="/application/{{interview.app.id}}/interviews" class="govuk-!-font-size-16 govuk-link--no-visited-state">{{interview.interview.date | govukDateAtTime }}</a>
+            <p class=" govuk-!-margin-top-1 govuk-!-font-size-16 govuk-!-margin-bottom-0">{{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</p>
+          </td govuk-!-margin-top-1 >
+          {# <td class="govuk-table__cell" style="width: 160px !important" >
+
+
+
+          </td> #}
+
+          <td class="govuk-table__cell">
+            <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ interview.app.course }} </p>
+            {# <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ interview.app.provider }} – ratified by {{interview.app.accreditingbody}}</p> #}
             {% if interview.app.interviewNeeds.length %}
-              <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1">{{ appIcon({
-                classes: "govuk-!-margin-right-1",
+              <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+              {{ appIcon({
+                classes: "govuk-!-margin-right-1 =",
                 icon: "tick",
                 hidden: true
-              }) }} Interview preferences</p>
+              }) }}
+              Has interview preferences</p>
             {% endif %}
-          </th>
-          <td class="govuk-table__cell">
-            {{interview.interview.date | govukDateAtTime }}
-          </td>
-          <td class="govuk-table__cell">
-            {# {{interview.interview.details }}<br><br> #}
-            The Royal Borough Teaching School Alliance, {{interview.interview.location}}
-
           </td>
         </tr>
       {% endfor %}
@@ -106,6 +110,11 @@
         href: '/page=2'
       }]
     }) }}
+    </div>
+
+  </div>
+
+
 
 
 
