@@ -41,15 +41,15 @@
           }]
         }) }}
 
-        <div class="moj-add-another">
+        <div class="app-add-another">
 
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-1 moj-add-another__heading">Further conditions</h2>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1 app-add-another__heading">Further conditions</h2>
           <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
 
           {% if conditions.length %}
             {% for condition in conditions %}
 
-              <div class="moj-add-another__item">
+              <div class="app-add-another__item">
                 {{ govukTextarea({
                   id: "[new-offer][conditions]["+loop.index0+"]",
                   name: "[new-offer][conditions]["+loop.index0+"]",
@@ -65,11 +65,11 @@
                     'data-label': 'Condition %index%'
                   }
                 }) }}
-                <button type="button" class="govuk-button govuk-button--secondary moj-add-another__remove-button">Remove</button>
+                <button type="button" class="govuk-button govuk-button--secondary app-add-another__remove-button">Remove</button>
               </div>
             {% endfor %}
           {% else %}
-            <div class="moj-add-another__item govuk-!-display-none">
+            <div class="app-add-another__item govuk-!-display-none">
               {{ govukTextarea({
                 id: "[new-offer][conditions][0]",
                 name: "[new-offer][conditions][0]",
@@ -87,10 +87,10 @@
             </div>
           {% endif %}
 
-          <div class="moj-button-action">
+          <div class="app-button-action">
             {{ govukButton({
               text: 'Add another condition',
-              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+              classes: 'govuk-button--secondary app-add-another__add-button govuk-!-margin-bottom-4'
             }) }}
           </div>
         </div>
@@ -106,8 +106,8 @@
 
 {% block pageScripts %}
   <script>
-    new MOJFrontend.AddAnother({
-      container: $('.moj-add-another'),
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
       allowNoFields: true
     });
   </script>

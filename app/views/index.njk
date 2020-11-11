@@ -41,7 +41,7 @@
         </div>
 
         {% if pagination %}
-          {{ mojPagination({
+          {{ appPagination({
             results: {
               from: pagination.from,
               to: pagination.to,
@@ -64,8 +64,9 @@
 {% endblock %}
 
 {% block pageScripts %}
+  <script src="/public/javascripts/modules/filter-toggle-button.js"></script>
   <script>
-    new MOJFrontend.FilterToggleButton({
+    new AppFrontend.FilterToggleButton({
       bigModeMediaQuery: '(min-width: 48.063em)',
       startHidden: false,
       toggleButton: {
