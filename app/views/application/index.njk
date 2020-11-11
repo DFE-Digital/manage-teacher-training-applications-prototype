@@ -34,7 +34,9 @@
         {% set rejectedDate = application.rejectedDate %}
         {% set rejectionReasons = application.rejectedReasons %}
         {% set showRejectedDate = true %}
-        <p>You sent the following feedback to the candidate on {{ rejectedDate | date("d LLL yyyy") }}.</p>
+        {# <p>This application was automatically rejected on {{ rejectedDate | govukDate }}. Feedback was sent on {{ rejectedDate | govukDate }}.</p> #}
+
+        <p>Feedback for this application was sent on {{ rejectedDate | govukDate }}.</p>
         {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 
