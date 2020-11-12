@@ -47,16 +47,7 @@
                   },
                   value: {
                     text: interview.date | govukDateAtTime
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Details"
-                      }
-                    ]
-                  } if 1 == 2
+                  }
                 },
                 {
                   key: {
@@ -64,50 +55,23 @@
                   },
                   value: {
                     text: interview.organisation
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Details"
-                      }
-                    ]
-                  } if 1 == 2
+                  }
                 },
                 {
                   key: {
                     text: "Location"
                   },
                   value: {
-                    text: interview.location
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Details"
-                      }
-                    ]
-                  } if 1 == 2
+                    text: interview.location | nl2br
+                  }
                 },
                 {
                   key: {
                     text: "Details"
                   },
                   value: {
-                    text: interview.details or 'Not set'
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Details"
-                      }
-                    ]
-                  } if 1 == 2
+                    text: interview.details | nl2br or 'None'
+                  }
                 },
                 {
                   key: {
@@ -115,16 +79,7 @@
                   },
                   value: {
                     text: application.interviewNeeds
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Details"
-                      }
-                    ]
-                  } if 1 == 2
+                  }
                 } if application.interviewNeeds
               ]
             }) }}
