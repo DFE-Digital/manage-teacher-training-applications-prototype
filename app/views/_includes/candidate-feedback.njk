@@ -287,8 +287,9 @@
       Reasons why your application was unsuccessful
     </h3>
     <p>{{rejectionReasons['why']}}</p>
-
-    <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+    {% if rejectionChangeLinks %}
+      <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+    {% endif %}
     </div>
   {% endif %}
 

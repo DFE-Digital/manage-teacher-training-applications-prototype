@@ -29,12 +29,68 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
       {% if application.rejectedReasons %}
         {% set rejectedDate = application.rejectedDate %}
         {% set rejectionReasons = application.rejectedReasons %}
         {% set showRejectedDate = true %}
-        <p>You sent the following feedback to the candidate on {{ rejectedDate | date("d LLL yyyy") }}.</p>
+
+
+
+        {# <h2 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-font-size-27">Rejection details</h2> #}
+
+        {# {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Automatically rejected"
+            },
+            value: {
+              text: rejectedDate | govukDate
+            }
+          },
+          {
+            key: {
+              text: "Feedback sent"
+            },
+            value: {
+              text: rejectedDate | govukDate
+            }
+          },
+          {
+            key: {
+              text: "Feedback for candidate"
+            },
+            value: {
+              text: rejectionReasons['why']
+            }
+          }
+        ]
+      }) }} #}
+
+      {# {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Rejected"
+            },
+            value: {
+              text: rejectedDate | govukDate
+            }
+          },
+          {
+            key: {
+              text: "Feedback for candidate"
+            },
+            value: {
+              text: rejectionReasons['why']
+            }
+          }
+        ]
+      }) }} #}
+
+        {# <p>This application was automatically rejected on {{ rejectedDate | govukDate }}. Feedback was sent on {{ rejectedDate | govukDate }}.</p> #}
+
+        <p>Feedback for this application was sent on {{ rejectedDate | govukDate }}.</p>
         {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 
