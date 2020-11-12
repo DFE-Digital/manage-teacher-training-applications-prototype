@@ -1,4 +1,4 @@
-<div class="moj-timeline">
+<div class="app-timeline">
         {% for event in events %}
 
           {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
@@ -73,7 +73,7 @@
           {% endif %}
 
 
-          <div class="moj-timeline__item">
+          <div class="app-timeline__item">
             <div class="app-timeline__header">
               <h2 class="app-timeline__title">{{govukTag({
                 classes: status | statusClass,
