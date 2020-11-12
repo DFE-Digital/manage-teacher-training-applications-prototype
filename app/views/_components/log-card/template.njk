@@ -1,7 +1,11 @@
 <div class="app-log-card {{params.classes}}">
-  {# <h2 class="govuk-heading-s govuk-!-padding-top-0 govuk-!-margin-bottom-3"> {{params.title}}
-  <span class="govuk-!-font-weight-regular"> on {{params.dateText | date("d LLL yyyy")}} at {{params.dateText | time }}</span>
-  </h2> #}
+  {% if params.interview %}
+    <div class="app-log-card__note">
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.interview.date | govukDateAtTime }}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">{{params.interview.location | nl2br}}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/interviews">View interview</a></p>
+    </div>
+  {% endif %}
 
   {% if params.application %}
     <div class="app-log-card__note">

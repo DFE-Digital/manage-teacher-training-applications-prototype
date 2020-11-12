@@ -3,6 +3,7 @@
 
           {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
           {% set note = null %}
+          {% set interview = null %}
           {% set offer = null %}
           {% set application = null %}
           {% set id = event.app.id %}
@@ -21,7 +22,7 @@
           {% elseif event.event.title == "Interview set up" %}
             {% set status = "Interviewing" %}
             {% set title = event.event.user + " set up an interview with " + name %}
-            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+            {% set interview = event.app.interviews.items[0] %}
           {% elseif event.event.title == "Application submitted" %}
             {% set status = "Received" %}
             {% set title = name + " submitted an application "  %}
@@ -44,7 +45,6 @@
             {% set status = "Note added" %}
             {% set title = event.event.user + " add a note to " + name +"’s application" %}
             {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
-
           {% elseif event.event.title == "Offer declined" %}
             {% set status = "Declined" %}
             {% set title = name + " declined an offer " %}
@@ -91,6 +91,7 @@
                 dateText: event.event.date | date,
                 note: note if note,
                 offer: offer if offer,
+                interview: interview if interview,
                 application: application if application,
                 id: id if id
               })}}

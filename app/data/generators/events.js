@@ -17,14 +17,16 @@ module.exports = (faker, params) => {
     date: date
   })
 
-  events.items.push({
-    title: 'Interview set up',
-    user: faker.name.findName(),
-    date: date,
-    meta: {
-      interviewId: params.interviewId
-    }
-  })
+  if (params.interviewId) {
+    events.items.push({
+      title: 'Interview set up',
+      user: faker.name.findName(),
+      date: date,
+      meta: {
+        interviewId: params.interviewId
+      }
+    })
+  }
 
   events.items.push({
     title: 'Note added',
