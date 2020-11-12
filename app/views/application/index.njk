@@ -90,7 +90,9 @@
 
         {# <p>This application was automatically rejected on {{ rejectedDate | govukDate }}. Feedback was sent on {{ rejectedDate | govukDate }}.</p> #}
 
-        <p>Feedback for this application was sent on {{ rejectedDate | govukDate }}.</p>
+        <h2 class="govuk-heading-m govuk-!-font-size-27">Rejected on {{ rejectedDate | govukDate }}</h2>
+
+        <p>The following feedback was sent to the candidate.</p>
         {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 
