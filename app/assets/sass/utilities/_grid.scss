@@ -1,12 +1,3 @@
-.app-\!-width-one-fifth {
-  width: 100% !important;
-
-  @include govuk-media-query($from: tablet) {
-    width: 20% !important;
-  }
-}
-
-
 .app-\!-width-one-sixth {
   width: 100% !important;
 
