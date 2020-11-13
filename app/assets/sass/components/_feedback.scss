@@ -1,0 +1,14 @@
+
+.app-feedback {
+  position: relative;
+  padding-right: 70px;
+  margin-bottom: 20px;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.app-feedback:last-of-type {
+  // margin-bottom: 10px;
+}

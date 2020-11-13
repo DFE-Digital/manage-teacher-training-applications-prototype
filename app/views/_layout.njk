@@ -29,10 +29,6 @@
 {% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
 {% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
 
-{%- from "moj/components/filter/macro.njk" import mojFilter -%}
-{%- from "moj/components/button-menu/macro.njk" import mojButtonMenu -%}
-{%- from "moj/components/pagination/macro.njk" import mojPagination -%}
-
 {% from "_components/autocomplete/macro.njk" import appAutocomplete %}
 {% from "_components/banner/macro.njk" import appBanner %}
 {% from "_components/card-list/macro.njk" import appCardList %}
@@ -40,14 +36,16 @@
 {% from "_components/filter/macro.njk" import appFilter %}
 {% from "_components/footer/macro.njk" import appFooter %}
 {% from "_components/icon/macro.njk" import appIcon %}
-{% from "_components/search/macro.njk" import appSearch %}
-{% from "_components/task-list/macro.njk" import appTaskList %}
-{% from "_components/timeline/macro.njk" import appTimeline %}
-{% from "_components/notification-card/macro.njk" import appNotificationCard %}
 {% from "_components/log-card/macro.njk" import appLogCard %}
+{% from "_components/notification-card/macro.njk" import appNotificationCard %}
+{% from "_components/offer-panel/macro.njk" import appOfferPanel %}
+{% from "_components/pagination/macro.njk" import appPagination %}
+{% from "_components/primary-navigation/macro.njk" import appPrimaryNavigation %}
+{% from "_components/search/macro.njk" import appSearch %}
 {% from "_components/sub-navigation/macro.njk" import appSubNavigation %}
 {% from "_components/summary-card/macro.njk" import appSummaryCard %}
-{% from "_components/offer-panel/macro.njk" import appOfferPanel %}
+{% from "_components/task-list/macro.njk" import appTaskList %}
+{% from "_components/timeline/macro.njk" import appTimeline %}
 
 {% block head %}
   {% include "_includes/head.njk" %}
@@ -64,33 +62,28 @@
   })}}
   {% endif %}
 
-  {%- from "moj/components/header/macro.njk" import mojHeader -%}
-
   {% include "_includes/header.njk" %}
 
 <div class="app-phase-banner__wrapper">
 
-    <div class="govuk-phase-banner app-phase-banner govuk-width-container">
-  <p class="govuk-phase-banner__content">
-    <strong class="govuk-tag govuk-phase-banner__content__tag">
-      beta
-    </strong>
-    <span class="govuk-phase-banner__text">
-      This is a new service – your <a class="govuk-link" href="/get-in-touch">feedback</a> will help us to improve it.
-    </span>
-  </p>
+  <div class="govuk-phase-banner app-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="/get-in-touch">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
 </div>
-
-
-</div>
-
-{%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
 
 {% set rightHandSideNavHtml %}
-  <nav class="moj-primary-navigation">
-    <ul class="moj-primary-navigation__list">
-      <li class="moj-primary-navigation__item">
-        <a class="moj-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'export' }} href="/export">
+  <nav class="app-primary-navigation">
+    <ul class="app-primary-navigation__list">
+      <li class="app-primary-navigation__item">
+        <a class="app-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'export' }} href="/export">
           Export data
         </a>
       </li>
@@ -105,7 +98,7 @@
   </span>
 {% endset %}
 
-{{ mojPrimaryNavigation({
+{{ appPrimaryNavigation({
   label: 'Primary navigation',
   items: [
     {

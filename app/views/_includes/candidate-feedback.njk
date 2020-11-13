@@ -1,29 +1,18 @@
-<div class="app-feedback">
-
-
-  <div class="app-feedback__panel">
-
-    {% if rejectionReasons['future-applications'] == "Yes" and rejectionReasons["other-offer"] != "Yes" %}
-      <h2 class="govuk-heading-m">The provider would be interested in future applications from you</p>
-      {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
-      {% endif %}
-    {% else %}
-      <h2 class="govuk-heading-m">
-        Training provider feedback
-      </h2>
-    {% endif %}
+{% set previewHtml %}
+  <div class="app-feedback">
+    <h2 class="govuk-heading-m">
+      Training provider feedback
+    </h2>
+    <p>These are the reasons why your application was unsuccessful.</p>
   </div>
 
-  <p>Here’s why your application was unsuccessful.</p>
-
   {% if rejectionReasons['actions'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Something you did
     </h3>
 
-    <ul class="govuk-list govuk-list--bulle app-list--spaced">
+    <ul class="govuk-list app-list--spaced">
 
       {% set checkboxValue = "Didn’t reply to our interview offer" %}
       {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
@@ -54,12 +43,12 @@
 
 
   {% if rejectionReasons['application-quality'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Quality of application
     </h3>
 
-    <ul class="govuk-list govuk-list--bulle app-list--spaced">
+    <ul class="govuk-list app-list--spaced">
 
       {% set fieldName = "application-quality-reasons" %}
       {% set checkboxValue = "Personal statement" %}
@@ -98,12 +87,12 @@
 
 
   {% if rejectionReasons['missing-qualifications'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Qualifications
     </h3>
 
-    <ul class="govuk-list govuk-list--bulle app-list--spaced">
+    <ul class="govuk-list app-list--spaced">
 
       {% set checkboxValue = "No Maths GCSE grade 4 (C) or above, or valid equivalent" %}
       {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
@@ -146,7 +135,7 @@
 
 
   {% if rejectionReasons['interview-performance'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Performance at interview
     </h3>
@@ -160,7 +149,7 @@
   {% endif %}
 
   {% if rejectionReasons['course-full'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Course full
     </h3>
@@ -174,7 +163,7 @@
 
 
   {% if rejectionReasons['other-offer'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       They offered you a place on another course
     </h3>
@@ -188,12 +177,12 @@
 
 
 {% if rejectionReasons['honesty'] == "Yes" %}
-  <div class="app-feedback__panel">
+  <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Honesty and professionalism
     </h3>
 
-    <ul class="govuk-list govuk-list--bulle app-list--spaced  ">
+    <ul class="govuk-list app-list--spaced  ">
 
       {% set fieldName = "honesty-reasons" %}
       {% set checkboxValue = "Information given on application form false or inaccurate" %}
@@ -239,12 +228,12 @@
 
 
   {% if rejectionReasons['safeguarding'] == "Yes" %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Safeguarding issues
     </h3>
 
-    <ul class="govuk-list govuk-list--bulle app-list--spaced  ">
+    <ul class="govuk-list app-list--spaced  ">
 
       {% set fieldName = "safeguarding-reasons" %}
 
@@ -282,35 +271,49 @@
 
 
   {% if rejectionReasons['why'] %}
-    <div class="app-feedback__panel">
+    <div class="app-feedback">
     <h3 class="govuk-heading-s">
       Reasons why your application was unsuccessful
     </h3>
     <p>{{rejectionReasons['why']}}</p>
-
-    <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
-    </div>
-  {% endif %}
-
-  {% if rejectionReasons['other-feedback'] == "Yes" %}
-    <div class="app-feedback__panel">
-    <h3 class="govuk-heading-s">
-      Additional advice
-    </h3>
-    <p>{{rejectionReasons['other-feedback-details']}}</p>
-    <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
-    </div>
-  {% endif %}
-
-
-  {% if rejectionReasons['future-applications'] and rejectionReasons['future-applications'] != "Yes" %}
-    <div class="app-feedback__panel">
-    <h3 class="govuk-heading-s">Future applications</h3>
-    <p>The provider would not be interested in future applications from you.</p>
     {% if rejectionChangeLinks %}
       <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
 
-</div>
+  {% if rejectionReasons['other-feedback'] == "Yes" %}
+    <div class="app-feedback">
+    <h3 class="govuk-heading-s">
+      Additional advice
+    </h3>
+    <p>{{rejectionReasons['other-feedback-details']}}</p>
+    {% if rejectionChangeLinks %}
+      <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  {% if rejectionReasons["other-offer"] != "Yes" %}
+    <div class="app-feedback">
+      <h3 class="govuk-heading-s">Future applications</h3>
+
+      {% if rejectionReasons['future-applications'] == "Yes" %}
+        <p>The provider would be interested in future applications from you.</p>
+      {% else %}
+        <p>The provider would not be interested in future applications from you.</p>
+      {% endif %}
+
+      {% if rejectionChangeLinks %}
+        <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+
+{% endset %}
+
+{{ govukInsetText({
+  html: previewHtml,
+  classes: "app-inset-text"
+}) }}

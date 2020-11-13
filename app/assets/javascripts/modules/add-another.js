@@ -1,14 +1,14 @@
-/* globals MOJFrontend $ */
-MOJFrontend.AddAnother = function (options) {
+/* globals AppFrontend $ */
+AppFrontend.AddAnother = function (options) {
   this.options = options
   this.container = $(options.container)
-  this.container.on('click', '.moj-add-another__remove-button', $.proxy(this, 'onRemoveButtonClick'))
-  this.container.on('click', '.moj-add-another__add-button', $.proxy(this, 'onAddButtonClick'))
-  this.container.find('.moj-add-another__add-button, moj-add-another__remove-button').prop('type', 'button')
-  this.container.find('.moj-add-another__heading').attr('tabindex', '-1')
+  this.container.on('click', '.app-add-another__remove-button', $.proxy(this, 'onRemoveButtonClick'))
+  this.container.on('click', '.app-add-another__add-button', $.proxy(this, 'onAddButtonClick'))
+  this.container.find('.app-add-another__add-button, app-add-another__remove-button').prop('type', 'button')
+  this.container.find('.app-add-another__heading').attr('tabindex', '-1')
 }
 
-MOJFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
+AppFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
   var firstItem = this.getItems().first()
   if (this.options.allowNoFields && firstItem.hasClass('govuk-!-display-none')) {
     firstItem.removeClass('govuk-!-display-none')
@@ -27,15 +27,15 @@ MOJFrontend.AddAnother.prototype.onAddButtonClick = function (e) {
   item.find('input, textarea, select').first().focus()
 }
 
-MOJFrontend.AddAnother.prototype.hasRemoveButton = function (item) {
-  return item.find('.moj-add-another__remove-button').length
+AppFrontend.AddAnother.prototype.hasRemoveButton = function (item) {
+  return item.find('.app-add-another__remove-button').length
 }
 
-MOJFrontend.AddAnother.prototype.getItems = function () {
-  return this.container.find('.moj-add-another__item')
+AppFrontend.AddAnother.prototype.getItems = function () {
+  return this.container.find('.app-add-another__item')
 }
 
-MOJFrontend.AddAnother.prototype.getNewItem = function () {
+AppFrontend.AddAnother.prototype.getNewItem = function () {
   var item = this.getItems().first().clone()
   if (!this.hasRemoveButton(item)) {
     this.createRemoveButton(item)
@@ -43,7 +43,7 @@ MOJFrontend.AddAnother.prototype.getNewItem = function () {
   return item
 }
 
-MOJFrontend.AddAnother.prototype.updateAttributes = function (index, item) {
+AppFrontend.AddAnother.prototype.updateAttributes = function (index, item) {
   item.find('[data-name]').each(function (i, el) {
     el.name = $(el).attr('data-name').replace(/%index%/, index);
     el.id = $(el).attr('data-id').replace(/%index%/, index);
@@ -56,11 +56,11 @@ MOJFrontend.AddAnother.prototype.updateAttributes = function (index, item) {
   })
 }
 
-MOJFrontend.AddAnother.prototype.createRemoveButton = function (item) {
-  item.append('<button type="button" class="govuk-button govuk-button--secondary moj-add-another__remove-button">Remove</button>')
+AppFrontend.AddAnother.prototype.createRemoveButton = function (item) {
+  item.append('<button type="button" class="govuk-button govuk-button--secondary app-add-another__remove-button">Remove</button>')
 }
 
-MOJFrontend.AddAnother.prototype.resetItem = function (item) {
+AppFrontend.AddAnother.prototype.resetItem = function (item) {
   item.find('[data-name], [data-id]').each(function (index, el) {
     if (el.type === 'checkbox' || el.type === 'radio') {
       el.checked = false
@@ -70,17 +70,17 @@ MOJFrontend.AddAnother.prototype.resetItem = function (item) {
   })
 }
 
-MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function (e) {
+AppFrontend.AddAnother.prototype.onRemoveButtonClick = function (e) {
   var items = this.getItems()
 
   if (this.options.allowNoFields && items.length === 1) {
-    $(e.currentTarget).parents('.moj-add-another__item').addClass('govuk-!-display-none')
-    this.resetItem($(e.currentTarget).parents('.moj-add-another__item'))
-    $(e.currentTarget).parents('.moj-add-another__item').find('.moj-add-another__remove-button').remove()
+    $(e.currentTarget).parents('.app-add-another__item').addClass('govuk-!-display-none')
+    this.resetItem($(e.currentTarget).parents('.app-add-another__item'))
+    $(e.currentTarget).parents('.app-add-another__item').find('.app-add-another__remove-button').remove()
   } else {
-    $(e.currentTarget).parents('.moj-add-another__item').remove()
+    $(e.currentTarget).parents('.app-add-another__item').remove()
     if (items.length === 1) {
-      items.find('.moj-add-another__remove-button').remove()
+      items.find('.app-add-another__remove-button').remove()
     }
 
     // get items again as for some reason after removing it's still included in array
@@ -93,6 +93,6 @@ MOJFrontend.AddAnother.prototype.onRemoveButtonClick = function (e) {
   this.focusHeading()
 }
 
-MOJFrontend.AddAnother.prototype.focusHeading = function () {
-  this.container.find('.moj-add-another__heading').focus()
+AppFrontend.AddAnother.prototype.focusHeading = function () {
+  this.container.find('.app-add-another__heading').focus()
 }

@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and send your feedback" %}
+{% set title = "Check and send feedback" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -16,21 +16,27 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>The candidate will see your feedback in the format below.</p>
-
-      <div class="app-feedback">
-        <h2 class="govuk-heading-m">
-        Training provider feedback
-      </h2>
-        <div class="app-feedback__panel">
-          <h3 class="govuk-heading-s">
-            Reasons why your application was unsuccessful
-          </h3>
-          <p>{{data['rejectionReasons']['why']}}</p>
-
-          <p class="app-rejection-change-link"><a class="govuk-link" href="/application/{{application.id}}/feedback">Change</a></p>
-        </div>
-      </div>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Feedback for candidate"
+            },
+            value: {
+              text: data['rejectionReasons']['why']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/application/"+ application.id +"/feedback",
+                  text: "Change",
+                  visuallyHiddenText: "Feedback for candidate"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
       <form method="post">
         {{ govukButton({
