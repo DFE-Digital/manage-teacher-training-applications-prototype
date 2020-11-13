@@ -23,6 +23,7 @@
             {% set status = "Interviewing" %}
             {% set title = event.event.user + " set up an interview with " + name %}
             {% set interview = event.app.interviews.items[0] %}
+            {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application submitted" %}
             {% set status = "Received" %}
             {% set title = name + " submitted an application "  %}
@@ -73,7 +74,7 @@
           {% endif %}
 
 
-          <div class="app-timeline__item">
+          <div class="app-timeline__item govuk-!-margin-bottom-6">
             <div class="app-timeline__header">
               <h2 class="app-timeline__title">{{govukTag({
                 classes: status | statusClass,
@@ -85,7 +86,7 @@
                   </time>
                 </p>
             </div>
-            <div class="app-timeline__description">
+            <div class="app-timeline__description govuk-!-margin-top-0">
               {{appLogCard({
                 title: title,
                 dateText: event.event.date | date,

@@ -1,44 +1,37 @@
-<div class="app-log-card {{params.classes}}">
-  {% if params.interview %}
-    <div class="app-log-card__note">
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.interview.date | govukDateAtTime }}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">{{params.interview.location | nl2br}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/interviews">View interview</a></p>
-    </div>
-  {% endif %}
+{% from "govuk/components/inset-text/macro.njk"       import govukInsetText %}
+{% if params.interview %}
+  {% set panelHtml %}
+    <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">{{params.interview.date | govukDateAtTime }}</p>
+    <p class="govuk-!-margin-bottom-1">{{params.application.course}} at {{params.application.location}}</p>
+    <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ params.application.provider }} – ratified by {{params.application.accreditedBody}}</p>
+    <p class="govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/interviews">View interview</a></p>
+  {% endset %}
+{% elseif params.application %}
+  {% set panelHtml %}
+    <p class="govuk-!-margin-bottom-1">{{params.application.course}} at {{params.application.location}}</p>
+    <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ params.application.provider }} – ratified by {{params.application.accreditedBody}}</p>
 
-  {% if params.application %}
-    <div class="app-log-card__note">
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.application.provider}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.application.course}} at {{params.application.location}}</p>
-      <p class="govuk-!-font-size-14 govuk-!-margin-bottom-1">Ratified by {{params.application.accreditedBody}}</p>
+    {% if params.application.rejectedReasons %}
+      <p class="govuk-!-margin-bottom-0"><a href="/application/{{params.id}}">View feedback</a></p>
+    {% else %}
+      <p class="govuk-!-margin-bottom-0"><a href="/application/{{params.id}}">View application</a></p>
+    {% endif %}
+  {% endset %}
+{% elseif params.offer %}
+  {% set panelHtml %}
+    <p class="govuk-!-margin-bottom-1">{{params.offer.course}} at {{params.offer.location}}</p>
+    <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ params.offer.provider }} – ratified by {{params.offer.accreditedBody}}</p>
+    <p class="govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/offer">View offer</a></p>
+  {% endset %}
+{% elseif params.note %}
+  {% set panelHtml %}
+    <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">{{params.note.subject}}</p>
+    <p class="govuk-!-margin-bottom-1">{{params.note.body}}</p>
+    <p class="govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/notes">View note</a>
+  {% endset %}
+{% endif %}
 
-      {% if params.application.rejectedReasons %}
-        {% set rejectedReasons = params.application.rejectedReasons %}
-        {% include "_includes/candidate-feedback.njk" %}
-      {% endif %}
-
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}">View application</a></p>
-
-
-    </div>
-  {% endif %}
-
-  {% if params.offer %}
-    <div class="app-log-card__note">
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">{{params.offer.provider}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{params.offer.course}} at {{params.offer.location}}</p>
-      <p class="govuk-!-font-size-14 govuk-!-margin-bottom-1">Ratified by {{params.offer.accreditedBody}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/offer">View offer</a></p>
-    </div>
-  {% endif %}
-
-  {% if params.note %}
-    <div class="app-log-card__note">
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-font-weight-bold">{{params.note.subject}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">{{params.note.body}}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/notes">View note</a>
-    </div>
-  {% endif %}
-
-</div>
+{{ govukInsetText({
+  html: panelHtml,
+  classes: "govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+}) }}
