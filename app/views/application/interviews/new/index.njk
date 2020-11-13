@@ -75,7 +75,7 @@
             Time
           </label>
           <span id="interview[time]-hint" class="govuk-hint">
-            For example 2:30pm or 12am
+            For example, 9am, 12pm or 2:30pm
           </span>
           <div class="app-time">
             <input class="govuk-input govuk-input--width-5" id="interview[time]" name="interview[time]" type="text" aria-describedby="interview[time]-hint" value="{{data.interview.time}}">
@@ -87,7 +87,7 @@
           name: "interview[organisation]",
           fieldset: {
             legend: {
-              text: "Organisation",
+              text: "Organisation carrying out interview",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -108,10 +108,7 @@
           name: "interview[location]",
           label: {
             classes: "govuk-label--m",
-            text: "Location"
-          },
-          hint: {
-            text: "Provide directions if useful"
+            text: "Address or online meeting link"
           },
           value: data.interview.location
         }) }}
@@ -121,10 +118,7 @@
           name: "interview[details]",
           label: {
             classes: "govuk-label--m",
-            text: "Additional details"
-          },
-          hint: {
-            text: "Any other details, like a remote meeting link"
+            text: "Additional details (optional)"
           },
           value: data.interview.details
         }) }}
