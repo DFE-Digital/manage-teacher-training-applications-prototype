@@ -15,7 +15,7 @@
 {% block content %}
 
   <span class="govuk-caption-l"> {{name}} </span>
-  <h1 class="govuk-heading-l">Check and confirm interview</h1>
+  <h1 class="govuk-heading-l">Check and send interview details</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -58,7 +58,7 @@
           },
           {
             key: {
-              text: "Organisation"
+              text: "Organisation carrying out interview"
             },
             value: {
               html: data.interview.organisation
@@ -75,7 +75,7 @@
           },
           {
             key: {
-              text: "Location"
+              text: "Address or online meeting link"
             },
             value: {
               html: data.interview.location | nl2br
@@ -110,14 +110,14 @@
         ]
       }) }}
 
-      {{ govukWarningText({
+      {# {{ govukWarningText({
         text: "We’ll send an email to the candidate confirming the details of the interview.",
         iconFallbackText: "Fallback text"
-      }) }}
+      }) }} #}
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm interview"
+          text: "Send interview details"
         }) }}
       </form>
 

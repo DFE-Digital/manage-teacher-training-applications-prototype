@@ -80,7 +80,7 @@
           name: "interview[organisation]",
           fieldset: {
             legend: {
-              text: "Organisation",
+              text: "Organisation carrying out interview",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -103,10 +103,7 @@
           name: "interview[location]",
           label: {
             classes: "govuk-label--m",
-            text: "Location"
-          },
-          hint: {
-            text: "Provide directions if useful"
+            text: "Address or online meeting link"
           },
           value: interview.location
         }) }}
@@ -116,10 +113,7 @@
           name: "interview[details]",
           label: {
             classes: "govuk-label--m",
-            text: "Additional details"
-          },
-          hint: {
-            text: "Any other details, like a remote meeting link"
+            text: "Additional details (optional)"
           },
           value: interview.details
         }) }}

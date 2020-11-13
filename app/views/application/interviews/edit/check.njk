@@ -4,7 +4,7 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and confirm interview" %}
+{% set title = "Check and send new interview details" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -58,7 +58,7 @@
           },
           {
             key: {
-              text: "Organisation"
+              text: "Organisation carrying out interview"
             },
             value: {
               html: data.interview.organisation
@@ -75,7 +75,7 @@
           },
           {
             key: {
-              text: "Location"
+              text: "Address or online meeting link"
             },
             value: {
               html: data.interview.location | nl2br
@@ -110,15 +110,15 @@
         ]
       }) }}
 
-      {{ govukWarningText({
+      {# {{ govukWarningText({
         text: "We’ll send an email to the candidate confirming the details of the interview.",
         iconFallbackText: "Fallback text"
-      }) }}
+      }) }} #}
 
       <form method="post">
 
         {{ govukButton({
-          text: "Confirm interview"
+          text: "Send new interview details"
         }) }}
       </form>
 
