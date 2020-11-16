@@ -20,18 +20,15 @@ $govuk-grid-widths: (
 @import "app/views/_components/all.scss";
 
 // Styles that aren't in the GOV.UK Frontend or local components
-@import "components/definition-list";
-@import "components/feedback";
-@import "components/filter-layout";
-@import "components/flex-grid";
-@import "components/hidden-link";
-@import "components/inverted";
-@import "components/list";
-@import "components/note";
-@import "components/qualification";
-@import "components/status";
-@import "components/table";
-@import "components/tag";
+@import "core/definition-list";
+@import "core/filter-layout";
+@import "core/flex-grid";
+@import "core/hidden-link";
+@import "core/inverted";
+@import "core/list";
+@import "core/status";
+@import "core/table";
+@import "core/tag";
 
 // Utilities
 @import "utilities/grid";
@@ -89,49 +86,11 @@ h1 .govuk-tag {
   margin-right: 0.5em;
 }
 
-
-
 .app-callout-card {
   // background-color: govuk-tint(govuk-colour('light-grey'), 0%);
   border: 1px solid govuk-colour('blue');
   border-left-width: 7px;
   @include govuk-responsive-padding(7);
-}
-
-.app-conditions-list {
-  .govuk-summary-list__key {
-    @include govuk-media-query($from: tablet) {
-      width: 60%;
-    }
-    font-weight: normal;
-  }
-
-  .govuk-summary-list__value {
-    @include govuk-media-query($from: tablet) {
-      width: 15%;
-    }
-  }
-
-  .govuk-summary-list__actions {
-    @include govuk-media-query($from: tablet) {
-      width: 25%;
-    }
-  }
-
-}
-
-.app-condition-list--combined {
-  .govuk-summary-list__row dd:last-of-type {
-    @include govuk-media-query($from: tablet) {
-      text-align: right;
-    }
-  }
-}
-
-.app-conditions-list__tag {
-  @include govuk-media-query($from: tablet) {
-    text-align: right;
-  }
 }
 
 .app-rejection-change-link {
@@ -163,7 +122,6 @@ h1 .govuk-tag {
   color: govuk-colour('dark-grey');
 }
 
-
 .app-remove-link {
   color: $govuk-error-colour !important;
   padding: 8px govuk-spacing(3) govuk-spacing(1); // from https://github.com/alphagov/govuk-frontend/blob/f57d338633ef8d9a5c077eeb4657e60ee741d486/src/govuk/components/checkboxes/_index.scss#L69
@@ -184,8 +142,6 @@ h1 .govuk-tag {
     padding-bottom: 0;
   }
 }
-
-
 
 .app-email-settings {
   // color: govuk-colour('dark-grey');
