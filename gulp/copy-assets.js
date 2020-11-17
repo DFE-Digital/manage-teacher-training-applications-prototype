@@ -13,3 +13,8 @@ gulp.task('copy-assets', function () {
     config.paths.assets + '/**'])
     .pipe(gulp.dest(config.paths.public))
 })
+
+gulp.task('copy-component-assets', function () {
+  return gulp.src([config.paths.components + '/**/*.js'])
+    .pipe(gulp.dest(config.paths.public + 'javascripts/components'))
+})
