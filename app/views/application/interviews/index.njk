@@ -23,14 +23,14 @@
   {% include "_includes/application/defer-prompt.njk" %}
 
   {% include "_includes/application/sub-nav.njk" %}
-  <div class="govuk-grid-ro">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       {% if application.interviews.items.length > 0 %}
 
         {% if statusText == "Received" or statusText == "Interviewing" %}
           {{ govukButton({
-            text: "Set up an interview",
+            text: "Set up new interview",
             href: "/application/" + application.id + "/interviews/new",
             classes: "govuk-button--secondary"
           }) }}
@@ -104,7 +104,7 @@
       {% else %}
         <p>No interviews have been set up yet.</p>
         {{ govukButton({
-          text: "Set up an interview",
+          text: "Set up new interview",
           href: "/application/" + application.id + "/interviews/new",
           classes: "govuk-button--secondary"
         }) }}
