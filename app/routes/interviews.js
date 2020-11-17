@@ -47,7 +47,6 @@ module.exports = router => {
     })
 
     let allInterviews = []
-    let pastInterviews;
 
     apps.forEach(app => {
       const interviews = app.interviews.items.map(item => {
@@ -63,9 +62,23 @@ module.exports = router => {
       return new Date(a.interview.date) - new Date(b.interview.date)
     })
 
+    let pastInterviews = allInterviews.slice(0, 6).reverse()
+    let futureInterviews = allInterviews.slice(6, allInterviews.length)
+
+    // get first item which becomes ‘today’
+    let todaysDate = DateTime.fromISO(futureInterviews[0].interview.date)
+    let todayInterviews = futureInterviews.filter(item => {
+      let dt = DateTime.fromISO(item.interview.date)
+      // if date matches year, month, day (not time)
+      return dt.hasSame(todaysDate, 'year') && dt.hasSame(todaysDate, 'month') && dt.hasSame(todaysDate, 'day')
+    })
+
+    let laterInterviews = futureInterviews.filter(item => {
+      return !todayInterviews.includes(item)
+    })
+
     res.render('interviews/index', {
-      pastInterviews: allInterviews.slice(0, 6).reverse(),
-      futureInterviews: allInterviews.slice(6, allInterviews.length)
+      futureInterviews
     })
   })
 
