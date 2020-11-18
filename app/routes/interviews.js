@@ -1,6 +1,7 @@
 const utils = require('../data/application-utils')
 const { v4: uuidv4 } = require('uuid')
 const { DateTime } = require('luxon')
+const _ = require('lodash');
 
 function getTimeObject(time) {
   var hours;
@@ -46,6 +47,7 @@ function getInterviews(applications) {
     return utils.getStatusText(app) == "Interviewing"
   })
 
+  // update this to use FLATMAP
   applications.forEach(app => {
     const ints = app.interviews.items.map(item => {
       return {
@@ -66,9 +68,7 @@ function getInterviews(applications) {
 
 module.exports = router => {
   router.get('/interviews', (req, res) => {
-
-    let interviews = getInterviews(req.session.data.applications);
-
+    let interviews = getInterviews(req.session.data.applications)
     let futureInterviews = interviews.slice(9, interviews.length)
 
     res.render('interviews/index', {
@@ -77,13 +77,23 @@ module.exports = router => {
   })
 
   router.get('/interviews/past', (req, res) => {
+    let interviews = getInterviews(req.session.data.applications)
+    interviews = interviews.slice(0, 9).reverse()
 
-    let interviews = getInterviews(req.session.data.applications);
+    var blah = _.groupBy(interviews, (interview) => {
+      var interviewDate = DateTime.fromISO(interview.interview.date);
+      var groupDate = DateTime.fromObject({
+        day: interviewDate.day,
+        month: interviewDate.month,
+        year: interviewDate.year,
+      })
+      return groupDate.toString();
+    })
 
-    let pastInterviews = interviews.slice(0, 9).reverse()
+    console.log(blah)
 
     res.render('interviews/past', {
-      pastInterviews
+      interviews
     })
   })
 

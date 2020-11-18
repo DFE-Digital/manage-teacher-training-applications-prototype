@@ -31,7 +31,7 @@
         </thead>
         <tbody class="govuk-table__body">
           {% set lastDate = null %}
-          {% for interview in pastInterviews %}
+          {% for interview in interviews %}
             {# The date of this interview is the same as the last date so do not create a TR #}
             {% if interview.interview.date | govukDate != lastDate %}
               <tr class="govuk-table__row">
