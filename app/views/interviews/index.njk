@@ -28,8 +28,7 @@
             {% if interview.app.interviewNeeds.length %}
               <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1">
               {{ appIcon({
-                classes: "govuk-!-margin-right-1",
-                icon: "tick",
+                icon: "alert",
                 hidden: true
               }) }}
               Has interview preferences</p>
@@ -68,8 +67,7 @@
             </a>
             {% if interview.app.interviewNeeds.length %}
               <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-top-1">{{ appIcon({
-                classes: "govuk-!-margin-right-1",
-                icon: "tick",
+                icon: "alert",
                 hidden: true
               }) }} Interview preferences</p>
             {% endif %}
