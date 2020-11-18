@@ -15,7 +15,6 @@
       <p class="govuk-body">{{ item.timeCommitment or "—" }}</p>
       {%- if item.workedWithChildren == "Yes" %}
         <p class="govuk-body govuk-!-font-size-16">{{ appIcon({
-          classes: "govuk-!-margin-right-1",
           icon: "check",
           hidden: true
         }) }} Worked with children</p>
