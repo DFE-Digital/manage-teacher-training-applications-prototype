@@ -40,45 +40,50 @@ function getTimeObject(time) {
   return {hours, mins}
 }
 
+function getInterviews(applications) {
+  let interviews = []
+  applications = applications.filter(app => {
+    return utils.getStatusText(app) == "Interviewing"
+  })
+
+  applications.forEach(app => {
+    const ints = app.interviews.items.map(item => {
+      return {
+        app: app,
+        interview: item
+      }
+    })
+    interviews = interviews.concat(ints)
+  })
+
+  interviews.sort((a, b) => {
+    return new Date(a.interview.date) - new Date(b.interview.date)
+  })
+
+  return interviews
+}
+
+
 module.exports = router => {
   router.get('/interviews', (req, res) => {
-    const apps = req.session.data.applications.filter(app => {
-      return utils.getStatusText(app) == "Interviewing"
-    })
 
-    let allInterviews = []
+    let interviews = getInterviews(req.session.data.applications);
 
-    apps.forEach(app => {
-      const interviews = app.interviews.items.map(item => {
-        return {
-          app: app,
-          interview: item
-        }
-      })
-      allInterviews = allInterviews.concat(interviews)
-    })
-
-    allInterviews.sort((a, b) => {
-      return new Date(a.interview.date) - new Date(b.interview.date)
-    })
-
-    let pastInterviews = allInterviews.slice(0, 6).reverse()
-    let futureInterviews = allInterviews.slice(6, allInterviews.length)
-
-    // get first item which becomes ‘today’
-    let todaysDate = DateTime.fromISO(futureInterviews[0].interview.date)
-    let todayInterviews = futureInterviews.filter(item => {
-      let dt = DateTime.fromISO(item.interview.date)
-      // if date matches year, month, day (not time)
-      return dt.hasSame(todaysDate, 'year') && dt.hasSame(todaysDate, 'month') && dt.hasSame(todaysDate, 'day')
-    })
-
-    let laterInterviews = futureInterviews.filter(item => {
-      return !todayInterviews.includes(item)
-    })
+    let futureInterviews = interviews.slice(9, interviews.length)
 
     res.render('interviews/index', {
       futureInterviews
+    })
+  })
+
+  router.get('/interviews/past', (req, res) => {
+
+    let interviews = getInterviews(req.session.data.applications);
+
+    let pastInterviews = interviews.slice(0, 9).reverse()
+
+    res.render('interviews/past', {
+      pastInterviews
     })
   })
 

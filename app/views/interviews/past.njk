@@ -13,14 +13,13 @@
         label: 'Sub navigation',
         items: [{
           text: 'Upcoming interviews',
-          href: '/interviews',
-          active: true
+          href: '/interviews'
         }, {
           text: 'Previous interviews',
-          href: '/interviews/past'
+          href: '/application/past',
+          active: true
         }]
       }) }}
-
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -28,18 +27,11 @@
             <th scope="col" class="govuk-table__header">Date and time</th>
             <th scope="col" class="govuk-table__header">Candidate name</th>
             <th scope="col" class="govuk-table__header">Course</th>
-            {# <th scope="col" class="govuk-table__header">Has interview preferences</th> #}
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% set now = futureInterviews[0].interview.date %}
-          {% set lastDate = now | govukDate %}
-          {% for interview in futureInterviews %}
-            {% if loop.first %}
-              <tr class="govuk-table__row">
-                <th colspan="4" class="govuk-table__header govuk-!-font-weight-regula">Today</th>
-              </tr>
-            {% endif %}
+          {% set lastDate = null %}
+          {% for interview in pastInterviews %}
             {# The date of this interview is the same as the last date so do not create a TR #}
             {% if interview.interview.date | govukDate != lastDate %}
               <tr class="govuk-table__row">
@@ -65,15 +57,14 @@
               <td class="govuk-table__cell">
                 <p class="govuk-!-margin-bottom-1">{{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</p>
                 {% if interview.app.interviewNeeds.length %}
-                  {# {{ govukTag({
-                    text: "Interview preferences",
-                    classes: "govuk-tag--yellow"
-                  }) }} #}
-                  <p class="govuk-!-margin-bottom-0 govuk-!-font-weight-bold">{{ appIcon({
-                        classes: "govuk-!-margin-right-1",
-                        icon: "tick",
-                        hidden: true
-                      }) }} Has interview preferences</p>
+                  <p class="govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+                    {{ appIcon({
+                      classes: "govuk-!-margin-right-1",
+                      icon: "tick",
+                      hidden: true
+                    }) }}
+                    Has interview preferences
+                  </p>
                 {% endif %}
               </td>
             </tr>
