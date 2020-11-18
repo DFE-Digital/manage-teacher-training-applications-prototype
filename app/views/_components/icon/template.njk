@@ -1,7 +1,11 @@
-<svg class="app-icon{%- if params.classes %} {{ params.classes }}{% endif %}" xmlns="http://www.w3.org/2000/svg" width="{{ params.size | default(16) }}" height="{{ params.size | default(16) }}" viewBox="0 0 200 200" focusable="false" fill="currentColor"{%- if params.label %} aria-label="{{ params.label }}"{% endif %}{%- if params.hidden %} aria-hidden="true"{% endif %}>
+<svg class="app-icon{%- if params.classes %} {{ params.classes }}{% endif %}" xmlns="http://www.w3.org/2000/svg" width="{{ params.size | default(16) }}" height="{{ params.size | default(16) }}" viewBox="0 0 228 200" focusable="false" fill="currentColor"{%- if params.label %} aria-label="{{ params.label }}"{% endif %}{%- if params.hidden %} aria-hidden="true"{% endif %}>
 {% if params.icon == "tick" %}
   <path d="M100 200a100 100 0 1 1 0-200 100 100 0 0 1 0 200zm-60-85l40 40 80-80-20-20-60 60-20-20-20 20z"/>
 {% elif params.icon == "cross" %}
   <path d="M100 0a100 100 0 110 200 100 100 0 010-200zm30 50l-30 30-30-30-20 20 30 30-30 30 20 20 30-30 30 30 20-20-30-30 30-30-20-20z"/>
+{% elif params.icon == "info" %}
+  <path d="M100 0a100 100 0 110 200 100 100 0 010-200zm16 90H88v72h28V90zm-14-52a16 16 0 100 32 16 16 0 000-32z"/>
+{% elif params.icon == "alert" %}
+  <path d="M109.1 2.3A16 16 0 01131 8.5l93 167.7a16 16 0 01-14 23.8H18.8A16 16 0 015 176L103 8.1a16 16 0 016.1-5.9zM114 146a16 16 0 100 32 16 16 0 000-32zm13-90h-26l2 72h22l2-72z"/>
 {% endif %}
 </svg>
