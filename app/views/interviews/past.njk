@@ -30,44 +30,37 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% set lastDate = null %}
-          {% for interview in interviews %}
-            {# The date of this interview is the same as the last date so do not create a TR #}
-            {% if interview.interview.date | govukDate != lastDate %}
-              <tr class="govuk-table__row">
-                <th colspan="4" class="govuk-table__header govuk-!-font-weight-regula govuk-!-padding-top-6">
-                  {% if interview.interview.date | daysFromDate(now) == 1 %}
-                    Tomorrow
-                  {% else %}
-                    {{interview.interview.date | govukDate  }}
-                  {% endif %}
-                </th>
-              </tr>
-            {% endif %}
-            {% set lastDate = interview.interview.date | govukDate %}
-
-            <tr class="govuk-table__row app-table__row--inden">
-              <td class="govuk-table__cell">
-                <a href="/application/{{interview.app.id}}/interviews" class="govuk-link--no-visited-state">{{interview.interview.date | time }}</a>
-              </td>
-              <td class="govuk-table__cell">
-                <p class="govuk-!-margin-bottom-1">{{ interview.app.course }} </p>
-                <p class="govuk-caption-m govuk-!-margin-bottom-0">{{ interview.app.provider }}</p>
-              </td>
-              <td class="govuk-table__cell">
-                <p class="govuk-!-margin-bottom-1">{{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</p>
-                {% if interview.app.interviewNeeds.length %}
-                  <p class="govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
-                    {{ appIcon({
-                      classes: "govuk-!-margin-right-1",
-                      icon: "tick",
-                      hidden: true
-                    }) }}
-                    Has interview preferences
-                  </p>
-                {% endif %}
-              </td>
+          {% for day, interviews in interviews %}
+            <tr class="govuk-table__row">
+              <th colspan="4" class="govuk-table__header govuk-!-font-weight-regula govuk-!-padding-top-6">
+                {{day | govukDate  }}
+              </th>
             </tr>
+
+            {% for interview in interviews %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  <a href="/application/{{interview.app.id}}/interviews" class="govuk-link--no-visited-state">{{interview.interview.date | time }}</a>
+                </td>
+                <td class="govuk-table__cell">
+                  <p class="govuk-!-margin-bottom-1">{{ interview.app.course }} </p>
+                  <p class="govuk-caption-m govuk-!-margin-bottom-0">{{ interview.app.provider }}</p>
+                </td>
+                <td class="govuk-table__cell">
+                  <p class="govuk-!-margin-bottom-1">{{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</p>
+                  {% if interview.app.interviewNeeds.length %}
+                    <p class="govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+                      {{ appIcon({
+                        classes: "govuk-!-margin-right-1",
+                        icon: "tick",
+                        hidden: true
+                      }) }}
+                      Has interview preferences
+                    </p>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
           {% endfor %}
         </tbody>
       </table>

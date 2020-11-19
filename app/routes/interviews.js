@@ -65,33 +65,36 @@ function getInterviews(applications) {
   return interviews
 }
 
+function groupInterviewsByDate(interviews) {
+  return _.groupBy(interviews, (interview) => {
+    var interviewDate = DateTime.fromISO(interview.interview.date);
+    var groupDate = DateTime.fromObject({
+      day: interviewDate.day,
+      month: interviewDate.month,
+      year: interviewDate.year,
+    })
+    return groupDate.toString();
+  })
+}
 
 module.exports = router => {
   router.get('/interviews', (req, res) => {
     let interviews = getInterviews(req.session.data.applications)
-    let futureInterviews = interviews.slice(9, interviews.length)
+    interviews = interviews.slice(9, interviews.length)
 
+    let now = interviews[0].interview.date
+
+    interviews = groupInterviewsByDate(interviews)
     res.render('interviews/index', {
-      futureInterviews
+      now,
+      interviews
     })
   })
 
   router.get('/interviews/past', (req, res) => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(0, 9).reverse()
-
-    var blah = _.groupBy(interviews, (interview) => {
-      var interviewDate = DateTime.fromISO(interview.interview.date);
-      var groupDate = DateTime.fromObject({
-        day: interviewDate.day,
-        month: interviewDate.month,
-        year: interviewDate.year,
-      })
-      return groupDate.toString();
-    })
-
-    console.log(blah)
-
+    interviews = groupInterviewsByDate(interviews)
     res.render('interviews/past', {
       interviews
     })
