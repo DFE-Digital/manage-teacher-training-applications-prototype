@@ -36,7 +36,14 @@
         {% for interview in interviews %}
           <div class="app-interview-card">
             <div class="app-interview-card__time">
-              <p class="govuk-!-margin-bottom-1"><a href="/application/{{interview.app.id}}/interviews" class="govuk-link--no-visited-state">{{interview.interview.date | time }}</a></p>
+              <p class="govuk-!-margin-bottom-1">
+                <a href="/application/{{interview.app.id}}/interviews" class="govuk-link--no-visited-state">
+                <time datetime="{{ interview.interview.date }}">
+                  {{interview.interview.date | time }}
+                </time>
+                <span class="govuk-visually-hidden"> on {{ day | govukDate }} with {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</span>
+                </a>
+              </p>
             </div>
             <div class="app-interview-card__course">
               <p class="govuk-!-margin-bottom-1">{{ interview.app.course }} </p>
