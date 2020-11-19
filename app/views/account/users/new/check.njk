@@ -90,19 +90,19 @@
               {% endif %}
               {% if org.permissions.manageOrganisations %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  {{ appIcon({ icon: "check", hidden: true }) }}
                   Manage organisational permissions
                 </p>
               {% endif %}
               {% if org.permissions.manageUsers %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  {{ appIcon({ icon: "check", hidden: true }) }}
                   Manage users
                 </p>
               {% endif %}
               {% if org.permissions.makeDecisions %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  {{ appIcon({ icon: "check", hidden: true }) }}
                   Make decisions
                 </p>
 
@@ -117,7 +117,7 @@
                       {% for item in org.permissions.applicableOrgs.makeDecisions %}
                         <li>{{ appIcon({
                             classes: "govuk-!-margin-right-1",
-                            icon: "tick",
+                            icon: "check",
                             hidden: true
                           }) }} {{ item.name }}
                         </li>
@@ -149,7 +149,7 @@
               {% endif %}
               {% if org.permissions.viewSafeguardingInformation %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  {{ appIcon({ icon: "check", hidden: true }) }}
                   View safeguarding information
                 </p>
                 {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
@@ -163,7 +163,7 @@
                       {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
                         <li>{{ appIcon({
                             classes: "govuk-!-margin-right-1",
-                            icon: "tick",
+                            icon: "check",
                             hidden: true
                           }) }} {{ item.name }}
                         </li>
@@ -195,7 +195,7 @@
 
               {% if org.permissions.viewDiversityInformation %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ classes: "govuk-!-margin-right-1", icon: "tick", hidden: true }) }}
+                  {{ appIcon({ icon: "check", hidden: true }) }}
                   View diversity information
                 </p>
                 {% if org.permissions.applicableOrgs.viewDiversityInformation %}
@@ -204,8 +204,7 @@
                   <ul class="govuk-list">
                     {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
                       <li>{{ appIcon({
-                          classes: "govuk-!-margin-right-1",
-                          icon: "tick",
+                          icon: "check",
                           hidden: true
                         }) }} {{ item.name }}
                       </li>
@@ -224,7 +223,6 @@
                     <ul class="govuk-list">
                       {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
                         <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
                             icon: "cross",
                             hidden: true
                           }) }} {{ item.name }}
