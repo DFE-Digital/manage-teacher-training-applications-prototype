@@ -34,35 +34,14 @@
         </h2>
 
         {% for interview in interviews %}
-          <div class="app-interview-card">
-            <div class="app-interview-card__time">
-              <p class="govuk-!-margin-bottom-1">
-                <a href="/application/{{interview.app.id}}/interviews" class="govuk-link--no-visited-state">
-                <time datetime="{{ interview.interview.date }}">
-                  {{interview.interview.date | time }}
-                </time>
-                <span class="govuk-visually-hidden"> on {{ day | govukDate }} with {{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</span>
-                </a>
-              </p>
-            </div>
-            <div class="app-interview-card__course">
-              <p class="govuk-!-margin-bottom-1">{{ interview.app.course }} </p>
-              <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ interview.app.provider }}</p>
-            </div>
-            <div class="app-interview-card__candidate">
-              <p class="govuk-!-margin-bottom-1">{{interview.app.personalDetails.givenName}} {{interview.app.personalDetails.familyName}}</p>
-              {% if interview.app.interviewNeeds.length %}
-                <p class="govuk-!-margin-bottom-0 govuk-!-font-weight-bold govuk-!-font-size-1">
-                  {{ appIcon({
-                    classes: "govuk-!-margin-right-0",
-                    icon: "info",
-                    hidden: true
-                  }) }}
-                  Has interview preferences
-                </p>
-              {% endif %}
-            </div>
-          </div>
+          {{appInterviewCard({
+            link: '/application/'+interview.app.id+'/interviews',
+            date: interview.interview.date,
+            name: interview.app.personalDetails.givenName + ' ' + interview.app.personalDetails.familyName,
+            course: interview.app.course,
+            provider: interview.app.provider,
+            hasInterviewPreferences: interview.app.interviewNeeds.length
+          })}}
         {% endfor %}
       {% endfor %}
     </div>
