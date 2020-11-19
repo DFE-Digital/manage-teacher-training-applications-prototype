@@ -16,39 +16,19 @@ $govuk-grid-widths: (
 // Import GOV.UK Frontend and any extension styles if configured
 @import "lib/extensions/extensions";
 
-// Components that aren't in Frontend
-@import "components/action-bar";
-@import "components/add-another";
-@import "components/application-card";
-@import "components/autocomplete";
-@import "components/banner";
-@import "components/card";
-@import "components/card-list";
-@import "components/cookie-banner";
-@import "components/definition-list";
-@import "components/feedback";
-@import "components/filter";
-@import "components/filter-layout";
-@import "components/flex-grid";
-@import "components/footer";
-@import "components/hidden-link";
-@import "components/icon";
-@import "components/inverted";
-@import "components/list";
-@import "components/log-card";
-@import "components/note";
-@import "components/notification-card";
-@import "components/pagination";
-@import "components/primary-navigation";
-@import "components/qualification";
-@import "components/search";
-@import "components/status";
-@import "components/sub-navigation";
-@import "components/summary-card";
-@import "components/table";
-@import "components/tag";
-@import "components/task-list";
-@import "components/timeline";
+// Import local component styles
+@import "app/views/_components/all.scss";
+
+// Styles that aren't in the GOV.UK Frontend or local components
+@import "core/definition-list";
+@import "core/filter-layout";
+@import "core/flex-grid";
+@import "core/hidden-link";
+@import "core/inverted";
+@import "core/list";
+@import "core/status";
+@import "core/table";
+@import "core/tag";
 
 // Utilities
 @import "utilities/grid";
@@ -106,70 +86,11 @@ h1 .govuk-tag {
   margin-right: 0.5em;
 }
 
-
-
 .app-callout-card {
   // background-color: govuk-tint(govuk-colour('light-grey'), 0%);
   border: 1px solid govuk-colour('blue');
   border-left-width: 7px;
   @include govuk-responsive-padding(7);
-}
-
-
-.app-offer-panel {
-  // background-color: govuk-colour('light-grey');
-  border: 5px solid govuk-colour('mid-grey');
-  padding: govuk-spacing(4);
-  margin-bottom: govuk-spacing(4);
-  p:last-child {
-    margin-bottom: 0;
-  }
-
-  .govuk-summary-list:last-child {
-    margin-bottom: 0;
-  }
-
-  .govuk-summary-list__row:last-child .govuk-summary-list__key,
-  .govuk-summary-list__row:last-child .govuk-summary-list__value,
-  .govuk-summary-list__row:last-child .govuk-summary-list__actions {
-    border-bottom: none;
-  }
-}
-
-.app-conditions-list {
-  .govuk-summary-list__key {
-    @include govuk-media-query($from: tablet) {
-      width: 60%;
-    }
-    font-weight: normal;
-  }
-
-  .govuk-summary-list__value {
-    @include govuk-media-query($from: tablet) {
-      width: 15%;
-    }
-  }
-
-  .govuk-summary-list__actions {
-    @include govuk-media-query($from: tablet) {
-      width: 25%;
-    }
-  }
-
-}
-
-.app-condition-list--combined {
-  .govuk-summary-list__row dd:last-of-type {
-    @include govuk-media-query($from: tablet) {
-      text-align: right;
-    }
-  }
-}
-
-.app-conditions-list__tag {
-  @include govuk-media-query($from: tablet) {
-    text-align: right;
-  }
 }
 
 .app-rejection-change-link {
@@ -201,7 +122,6 @@ h1 .govuk-tag {
   color: govuk-colour('dark-grey');
 }
 
-
 .app-remove-link {
   color: $govuk-error-colour !important;
   padding: 8px govuk-spacing(3) govuk-spacing(1); // from https://github.com/alphagov/govuk-frontend/blob/f57d338633ef8d9a5c077eeb4657e60ee741d486/src/govuk/components/checkboxes/_index.scss#L69
@@ -222,8 +142,6 @@ h1 .govuk-tag {
     padding-bottom: 0;
   }
 }
-
-
 
 .app-email-settings {
   // color: govuk-colour('dark-grey');
@@ -267,4 +185,33 @@ h1 .govuk-tag {
 
 .app-table__row--indent > td {
   padding-left: govuk-spacing(3);
+}
+
+.app-interview-card {
+  padding-bottom: govuk-spacing(2);
+  padding-top: govuk-spacing(2);
+  border-bottom: 1px solid govuk-colour('mid-grey');
+
+  display: flex;
+}
+
+h2 + .app-interview-card {
+  border-top: 1px solid govuk-colour('mid-grey');
+}
+
+.app-interview-card__time {
+  box-sizing: border-box;
+  padding-right: govuk-spacing(2);
+  width: 15%;
+}
+
+.app-interview-card__course {
+  box-sizing: border-box;
+  padding-right: govuk-spacing(2);
+  width: 45%;
+}
+
+.app-interview-card__course {
+  width: 40%;
+  box-sizing: border-box;
 }
