@@ -16,7 +16,7 @@ module.exports = (faker) => {
   const behaviour = {
     actions: 'Yes',
     'actions-reasons': [
-      'Didn’t reply to our interview offer',
+      'Did not reply to interview request',
       'Other'
     ],
     'actions-reasons-other': 'Another reason goes here',
@@ -39,8 +39,8 @@ module.exports = (faker) => {
   const qualifications = {
     'missing-qualifications': 'Yes',
     'missing-qualifications-reasons': [
-      'No Maths GCSE grade 4 (C) or above, or valid equivalent',
-      'No English GCSE grade 4 (C) or above, or valid equivalent',
+      'No maths GCSE grade 4 (C) or above, or accepted equivalent',
+      'No English GCSE grade 4 (C) or above, or accepted equivalent',
       'Other'
     ],
     'missing-qualifications-reasons-other': 'Another reason goes here'
@@ -63,9 +63,9 @@ module.exports = (faker) => {
   const honesty = {
     honesty: 'Yes',
     'honesty-reasons': [
-      'Information given on application form false or inaccurate',
-      'Evidence of plagiarism in personal statement or elsewhere',
-      'References didn’t support application',
+      'Inaccurate or false information in the application',
+      'Evidence of plagiarism in the application',
+      'References did not support the application',
       'Other'
     ],
     'honesty-reasons-false-information': 'False information detail goes here',
@@ -77,7 +77,7 @@ module.exports = (faker) => {
   const safeguarding = {
     safeguarding: 'Yes',
     'safeguarding-reasons': [
-      'Information revealed by our vetting process makes the candidate unsuitable to work with children'
+      'The vetting process found information which makes the candidate unsuitable to work with children'
     ],
     'safeguarding-reasons-vetting-information': 'Reasons the candidate unsuitable to work with children'
   }
