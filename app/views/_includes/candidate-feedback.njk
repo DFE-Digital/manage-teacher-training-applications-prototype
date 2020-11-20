@@ -2,7 +2,7 @@
 
   {% if rejectionReasons['actions'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Something you did
     </h2>
 
@@ -38,7 +38,7 @@
 
   {% if rejectionReasons['application-quality'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Quality of application
     </h2>
 
@@ -82,7 +82,7 @@
 
   {% if rejectionReasons['missing-qualifications'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Qualifications
     </h2>
 
@@ -130,7 +130,7 @@
 
   {% if rejectionReasons['interview-performance'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Performance at interview
     </h2>
 
@@ -144,7 +144,7 @@
 
   {% if rejectionReasons['course-full'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Course full
     </h2>
     <p>The course you applied to was full.</p>
@@ -158,7 +158,7 @@
 
   {% if rejectionReasons['other-offer'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       {{application["provider"]}} offered you a place on another course
     </h2>
     <p>{{rejectionReasons["other-offer-details"]}}</p>
@@ -172,7 +172,7 @@
 
 {% if rejectionReasons['honesty'] == "Yes" %}
   <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Honesty and professionalism
     </h2>
 
@@ -223,7 +223,7 @@
 
   {% if rejectionReasons['safeguarding'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Safeguarding issues
     </h2>
 
@@ -266,7 +266,7 @@
 
   {% if rejectionReasons['why'] %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Why your application was unsuccessful
     </h2>
     <p>{{rejectionReasons['why']}}</p>
@@ -278,7 +278,7 @@
 
   {% if rejectionReasons['other-feedback'] == "Yes" %}
     <div class="app-feedback">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-s">
       Additional feedback
     </h2>
     <p>{{rejectionReasons['other-feedback-details']}}</p>
@@ -290,7 +290,7 @@
 
   {% if rejectionReasons["other-offer"] != "Yes" %}
     <div class="app-feedback">
-      <h2 class="govuk-heading-m">
+      <h2 class="govuk-heading-s">
         Future applications
       </h2>
 
