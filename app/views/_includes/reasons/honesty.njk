@@ -2,7 +2,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "honesty-reasons-false-information",
     name: "rejectionReasons[honesty-reasons-false-information]",
@@ -15,7 +15,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "honesty-reasons-plagiarism",
     name: "rejectionReasons[honesty-reasons-plagiarism]",
@@ -28,7 +28,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     hint: {
       text: "If there are details you cannot provide for legal reasons, you should explain this to the candidate"
@@ -44,7 +44,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "honesty-reasons-other",
     name: "rejectionReasons[honesty-reasons-other]",
@@ -64,23 +64,23 @@
       }
     },
     items: [{
-      value: "Information given on application form false or inaccurate",
-      html: "Information given on application form false or inaccurate",
-      checked: checked(data['rejectionReasons']['honesty-reasons'], 'Information given on application form false or inaccurate'),
+      value: "Inaccurate or false information in the application",
+      html: "Inaccurate or false information in the application",
+      checked: checked(data['rejectionReasons']['honesty-reasons'], 'Inaccurate or false information in the application'),
       conditional: {
         html: honestyFalseInformationHtml
       }
     }, {
-      value: "Evidence of plagiarism in personal statement or elsewhere",
-      text: "Evidence of plagiarism in personal statement or elsewhere",
-      checked: checked(data['rejectionReasons']['honesty-reasons'], 'Evidence of plagiarism in personal statement or elsewhere'),
+      value: "Evidence of plagiarism in the application",
+      text: "Evidence of plagiarism in the application",
+      checked: checked(data['rejectionReasons']['honesty-reasons'], 'Evidence of plagiarism in the application'),
       conditional: {
         html: honestyPlagiarismHtml
       }
     }, {
-      value: "References didn’t support application",
-      text: "References didn’t support application",
-      checked: checked(data['rejectionReasons']['honesty-reasons'], 'References didn’t support application'),
+      value: "References did not support the application",
+      text: "References did not support the application",
+      checked: checked(data['rejectionReasons']['honesty-reasons'], 'References did not support the application'),
       conditional: {
         html: honestyReferenceInformationHtml
       }
