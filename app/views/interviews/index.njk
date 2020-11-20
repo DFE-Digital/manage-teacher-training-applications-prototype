@@ -16,34 +16,59 @@
           href: '/interviews',
           active: true
         }, {
-          text: 'Previous interviews',
+          text: 'Past interviews',
           href: '/interviews/past'
         }]
       }) }}
 
-      {% for day, interviews in interviews %}
+      {% if not interviews %}
+        <p>No upcoming interviews.</p>
+      {% else %}
+        <div class="app-interviews">
+          {% for day, interviews in interviews %}
 
-        <h2 class="govuk-heading-s govuk-!-margin-top-7 govuk-!-margin-bottom-3">
-          {% if day | daysFromDate(now) == 0 %}
-            Today
-          {% elseif day | daysFromDate(now) == 1 %}
-            Tomorrow
-          {% else %}
-            {{ day | govukDate }}
-          {% endif %}
-        </h2>
+            <h2 class="govuk-heading-s govuk-!-margin-top-7 govuk-!-margin-bottom-3">
+              {% if day | daysFromDate(now) == 0 %}
+                Today
+              {% elseif day | daysFromDate(now) == 1 %}
+                Tomorrow
+              {% else %}
+                {{ day | govukDate }}
+              {% endif %}
+            </h2>
 
-        {% for interview in interviews %}
-          {{appInterviewCard({
-            link: '/application/'+interview.app.id+'/interviews',
-            date: interview.interview.date,
-            name: interview.app.personalDetails.givenName + ' ' + interview.app.personalDetails.familyName,
-            course: interview.app.course,
-            provider: interview.app.provider,
-            hasInterviewPreferences: interview.app.interviewNeeds.length
-          })}}
-        {% endfor %}
-      {% endfor %}
+            {% for interview in interviews %}
+              {{appInterviewCard({
+                link: '/application/'+interview.app.id+'/interviews',
+                date: interview.interview.date,
+                name: interview.app.personalDetails.givenName + ' ' + interview.app.personalDetails.familyName,
+                course: interview.app.course,
+                provider: interview.app.provider,
+                hasInterviewPreferences: interview.app.interviewNeeds.length
+              })}}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        {{ appPagination({
+          results: {
+            from: 1,
+            to: 50,
+            count: 100
+          },
+            next: {
+            text: 'Next',
+            href: ''
+          },
+            items: [{
+            text: '1',
+            href: '/page=1',
+            selected: true
+          }, {
+            text: '2',
+            href: '/page=2'
+          }]
+        }) }}
+      {% endif %}
     </div>
   </div>
 

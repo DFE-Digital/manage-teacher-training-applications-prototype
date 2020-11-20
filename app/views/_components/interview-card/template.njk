@@ -1,4 +1,5 @@
 {% from "_components/icon/macro.njk" import appIcon %}
+{% from "govuk/components/tag/macro.njk"              import govukTag %}
 
 <div class="app-interview-card">
   <div class="app-interview-card__time">
@@ -16,15 +17,6 @@
     <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ params.provider }}</p>
   </div>
   <div class="app-interview-card__candidate">
-    <p class="govuk-!-margin-bottom-1">{{params.name}}</p>
-    {% if params.hasInterviewPreferences %}
-      <p class="govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
-        {{ appIcon({
-          icon: "info",
-          hidden: true
-        }) }}
-        Has interview preferences
-      </p>
-    {% endif %}
+    <p class="govuk-!-margin-bottom-1">{{params.name}} {% if params.hasInterviewPreferences %} - has interview preferences{% endif %}</p>
   </div>
 </div>
