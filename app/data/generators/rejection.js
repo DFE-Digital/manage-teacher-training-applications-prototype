@@ -32,7 +32,7 @@ module.exports = (faker) => {
     ],
     'application-quality-reasons-personal-statement': 'Lack of passion',
     'application-quality-reasons-subject-knowledge': 'Didn’t know enough about maths',
-    'application-quality-reasons-other-improve': 'Ways to improve goes here'
+    'application-quality-reasons-other-improve': 'Ways to improve goes here',
     'application-quality-reasons-other': 'Spelling wasn’t great'
   }
 
