@@ -30,7 +30,7 @@
 
         {% if statusText == "Received" or statusText == "Interviewing" %}
           {{ govukButton({
-            text: "Set up new interview",
+            text: "Set up interview",
             href: "/application/" + application.id + "/interviews/new",
             classes: "govuk-button--secondary"
           }) }}
@@ -48,7 +48,7 @@
                   value: {
                     text: interview.date | govukDateAtTime
                   }
-                },
+                } if 1 == 2,
                 {
                   key: {
                     text: "Organisation carrying out interview"
@@ -91,10 +91,10 @@
             actions: {
               items: [{
                 href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
-                text: "Change"
+                text: "Change details"
               } if statusText == "Received" or statusText == "Interviewing", {
                 href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
-                text: "Cancel"
+                text: "Cancel interview"
               } if statusText == "Received" or statusText == "Interviewing"]
             },
             html: interviewSummaryListHtml

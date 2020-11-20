@@ -25,13 +25,17 @@
   {% endset %}
 {% elseif params.note %}
   {% set panelHtml %}
-    <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">{{params.note.subject}}</p>
-    <p class="govuk-!-margin-bottom-1">{{params.note.body}}</p>
+    <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bol">{{params.note.subject}}</p>
+    <p class="govuk-caption-m govuk-!-margin-bottom-1">{{params.note.body}}</p>
     <p class="govuk-!-margin-bottom-0"><a href="/application/{{params.id}}/notes">View note</a>
   {% endset %}
 {% endif %}
 
-{{ govukInsetText({
+<div class="govuk-!-margin-top-4">
+  {{panelHtml | safe }}
+</div>
+
+{# {{ govukInsetText({
   html: panelHtml,
   classes: "govuk-!-margin-top-1 govuk-!-margin-bottom-2"
-}) }}
+}) }} #}

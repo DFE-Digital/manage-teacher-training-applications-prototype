@@ -76,10 +76,13 @@
 
           <div class="app-timeline__item govuk-!-margin-bottom-6">
             <div class="app-timeline__header">
-              <h2 class="app-timeline__title">{{govukTag({
-                classes: status | statusClass,
-                text: status
-              })}} &nbsp;{{title}} </h2>
+              <h2 class="app-timeline__title">
+                {# {{govukTag({
+                  classes: status | statusClass,
+                  text: status
+                })}} #}
+                {{title}}
+                </h2>
 
                 <p class="app-timeline__byline">
                   <time datetime="2019-08-12T09:01:00">{{event.event.date | govukDateAtTime }}
