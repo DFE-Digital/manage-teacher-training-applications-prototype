@@ -19,21 +19,18 @@ module.exports = (faker) => {
       'Did not reply to interview request',
       'Other'
     ],
-    'actions-reasons-other': 'Another reason goes here',
-    'actions-reasons-other-improve': 'Ways to improve goes here'
+    'actions-reasons-other': faker.lorem.paragraph(),
+    'actions-reasons-other-improve': faker.lorem.paragraph()
   }
 
   const quality = {
     'application-quality': 'Yes',
     'application-quality-reasons': [
       'Personal statement',
-      'Subject knowledge',
-      'Other'
+      'Subject knowledge'
     ],
-    'application-quality-reasons-personal-statement': 'Lack of passion',
-    'application-quality-reasons-subject-knowledge': 'Didn’t know enough about maths',
-    'application-quality-reasons-other-improve': 'Ways to improve goes here',
-    'application-quality-reasons-other': 'Spelling wasn’t great'
+    'application-quality-reasons-personal-statement': faker.lorem.paragraph(),
+    'application-quality-reasons-subject-knowledge': faker.lorem.paragraph()
   }
 
   const qualifications = {
@@ -43,12 +40,12 @@ module.exports = (faker) => {
       'No English GCSE grade 4 (C) or above, or accepted equivalent',
       'Other'
     ],
-    'missing-qualifications-reasons-other': 'Another reason goes here'
+    'missing-qualifications-reasons-other': faker.lorem.paragraph(1)
   }
 
   const interviewPerformance = {
     'interview-performance': 'Yes',
-    'interview-performance-advice': 'Advice goes here'
+    'interview-performance-advice': faker.lorem.paragraph()
   }
 
   const course = {
@@ -57,7 +54,7 @@ module.exports = (faker) => {
 
   const offeredOther = {
     'other-offer': 'Yes',
-    'other-offer-details': 'Other course details go here'
+    'other-offer-details': faker.lorem.paragraph()
   }
 
   const honesty = {
@@ -65,13 +62,11 @@ module.exports = (faker) => {
     'honesty-reasons': [
       'Inaccurate or false information in the application',
       'Evidence of plagiarism in the application',
-      'References did not support the application',
       'Other'
     ],
-    'honesty-reasons-false-information': 'False information detail goes here',
-    'honesty-reasons-plagiarism': 'Plagiarism detail goes here',
-    'honesty-reasons-reference-information': 'Reference information goes here',
-    'honesty-reasons-other': 'Another reason goes here'
+    'honesty-reasons-false-information': faker.lorem.paragraph(1),
+    'honesty-reasons-plagiarism': faker.lorem.paragraph(1),
+    'honesty-reasons-other': faker.lorem.paragraph(2)
   }
 
   const safeguarding = {
@@ -79,17 +74,16 @@ module.exports = (faker) => {
     'safeguarding-reasons': [
       'The vetting process found information which makes the candidate unsuitable to work with children'
     ],
-    'safeguarding-reasons-vetting-information': 'Reasons the candidate unsuitable to work with children'
+    'safeguarding-reasons-vetting-information': faker.lorem.paragraph()
   }
 
   const additionalFeedback = {
     'other-feedback': 'Yes',
-    'other-feedback-details': 'Additional feedback goes here'
+    'other-feedback-details': faker.lorem.paragraph(5)
   }
 
   const futureApplications = {
-    'future-applications': 'Yes',
-    'future-applications-details': 'Be happy to consider again'
+    'future-applications': 'Yes'
   }
 
   // Rejection scenarios
