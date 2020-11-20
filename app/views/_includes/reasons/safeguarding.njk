@@ -2,7 +2,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "safeguarding-reasons-disclosed-information",
     name: "rejectionReasons[safeguarding-reasons-disclosed-information]",
@@ -15,7 +15,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "safeguarding-reasons-vetting-information",
     name: "rejectionReasons[safeguarding-reasons-vetting-information]",
@@ -28,7 +28,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "safeguarding-reasons-other",
     name: "rejectionReasons[safeguarding-reasons-other]",
@@ -43,21 +43,21 @@
     name: "rejectionReasons[safeguarding-reasons]",
     fieldset: {
       legend: {
-        text: "Which safeguarding issues in particular?",
+        text: "What are the safeguarding issues?",
         classes: "govuk-fieldset__legend--s"
       }
     },
     items: [{
-      value: "Information disclosed by candidate makes them unsuitable to work with children",
-      text: "Information disclosed by candidate makes them unsuitable to work with children",
-      checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'Information disclosed by candidate makes them unsuitable to work with children'),
+      value: "The candidate disclosed information which makes them unsuitable to work with children",
+      text: "The candidate disclosed information which makes them unsuitable to work with children",
+      checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'The candidate disclosed information which makes them unsuitable to work with children'),
       conditional: {
         html: safeguardingDisclosedInformationHtml
       }
     }, {
-      value: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
-      text: "Information revealed by our vetting process makes the candidate unsuitable to work with children",
-      checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'Information revealed by our vetting process makes the candidate unsuitable to work with children'),
+      value: "The vetting process found information which makes the candidate unsuitable to work with children",
+      text: "The vetting process found information which makes the candidate unsuitable to work with children",
+      checked: checked(data['rejectionReasons']['safeguarding-reasons'], 'The vetting process found information which makes the candidate unsuitable to work with children'),
       conditional: {
         html: safeguardingVettingInformationHtml
       }

@@ -34,8 +34,7 @@
             <ul class="govuk-list">
               {% for item in org.permissions.applicableOrgs.makeDecisions %}
                 <li>{{ appIcon({
-                    classes: "govuk-!-margin-right-1",
-                    icon: "tick",
+                    icon: "check",
                     hidden: true
                   }) }} {{ item.name }}
                 </li>
@@ -54,7 +53,6 @@
             <ul class="govuk-list">
               {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
                 <li>{{ appIcon({
-                    classes: "govuk-!-margin-right-1",
                     icon: "cross",
                     hidden: true
                   }) }} {{ item.name }}
@@ -77,8 +75,7 @@
             <ul class="govuk-list">
               {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
                 <li>{{ appIcon({
-                    classes: "govuk-!-margin-right-1",
-                    icon: "tick",
+                    icon: "check",
                     hidden: true
                   }) }} {{ item.name }}
                 </li>
@@ -97,7 +94,6 @@
             <ul class="govuk-list">
               {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
                 <li>{{ appIcon({
-                    classes: "govuk-!-margin-right-1",
                     icon: "cross",
                     hidden: true
                   }) }} {{ item.name }}
@@ -120,8 +116,7 @@
             <ul class="govuk-list">
               {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
                 <li>{{ appIcon({
-                    classes: "govuk-!-margin-right-1",
-                    icon: "tick",
+                    icon: "check",
                     hidden: true
                   }) }} {{ item.name }}
                 </li>
@@ -140,7 +135,6 @@
             <ul class="govuk-list">
               {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
                 <li>{{ appIcon({
-                    classes: "govuk-!-margin-right-1",
                     icon: "cross",
                     hidden: true
                   }) }} {{ item.name }}
