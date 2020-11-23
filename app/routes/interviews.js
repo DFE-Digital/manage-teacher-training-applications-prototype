@@ -192,7 +192,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'Interview successfully set up')
+    req.flash('success', 'Interview set up')
     res.redirect(`/application/${applicationId}/interviews`)
 
   })
@@ -250,7 +250,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'Interview successfully changed')
+    req.flash('success', 'Interview changed')
     res.redirect(`/application/${applicationId}/interviews`)
 
   })
@@ -294,7 +294,7 @@ module.exports = router => {
       date: new Date().toISOString()
     })
 
-    req.flash('success', 'Interview successfully cancelled')
+    req.flash('success', 'Interview cancelled')
     res.redirect(`/application/${req.params.applicationId}/interviews/`)
   })
 

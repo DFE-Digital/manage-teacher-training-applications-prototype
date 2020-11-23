@@ -26,168 +26,158 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if pastInterviews.length > 0 or upcomingInterviews.length > 0 %}
-
-        {% if statusText == "Received" or statusText == "Interviewing" %}
-          {{ govukButton({
-            text: "Set up interview",
-            href: "/application/" + application.id + "/interviews/new",
-            classes: "govuk-button--secondary"
-          }) }}
-        {% endif %}
-
-
-        {% if upcomingInterviews.length > 0 %}
-          <h2 class="govuk-heading-m">
-            Upcoming interviews
-          </h2>
-        {% endif %}
-
-        {% for interview in upcomingInterviews %}
-
-          {% set interviewSummaryListHtml %}
-            {{ govukSummaryList({
-              rows: [
-                {
-                  key: {
-                    text: "Course"
-                  },
-                  value: {
-                    text: application.course
-                  }
-                },
-                {
-                  key: {
-                    text: "Organisation carrying out interview"
-                  },
-                  value: {
-                    text: interview.organisation
-                  }
-                },
-                {
-                  key: {
-                    text: "Address or online meeting link"
-                  },
-                  value: {
-                    text: interview.location | nl2br
-                  }
-                },
-                {
-                  key: {
-                    text: "Additional details"
-                  },
-                  value: {
-                    text: interview.details | nl2br or 'None'
-                  }
-                },
-                {
-                  key: {
-                    text: "Interview preferences"
-                  },
-                  value: {
-                    text: application.interviewNeeds
-                  }
-                } if application.interviewNeeds
-              ]
-            }) }}
-          {% endset %}
-
-          {{appSummaryCard({
-            titleText: interview.date | govukDateAtTime,
-            classes: "govuk-!-margin-bottom-6",
-            actions: {
-              items: [{
-                href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
-                text: "Change details"
-              } if statusText == "Received" or statusText == "Interviewing", {
-                href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
-                text: "Cancel interview"
-              } if statusText == "Received" or statusText == "Interviewing"]
-            },
-            html: interviewSummaryListHtml
-          })}}
-
-        {% endfor %}
-
-        {% if pastInterviews.length > 0 %}
-          <h2 class="govuk-heading-m">
-            Past interviews
-          </h2>
-        {% endif %}
-
-        {% for interview in pastInterviews %}
-
-          {% set interviewSummaryListHtml %}
-            {{ govukSummaryList({
-              rows: [
-                {
-                  key: {
-                    text: "Course"
-                  },
-                  value: {
-                    text: application.course
-                  }
-                },
-                {
-                  key: {
-                    text: "Organisation carrying out interview"
-                  },
-                  value: {
-                    text: interview.organisation
-                  }
-                },
-                {
-                  key: {
-                    text: "Address or online meeting link"
-                  },
-                  value: {
-                    text: interview.location | nl2br
-                  }
-                },
-                {
-                  key: {
-                    text: "Additional details"
-                  },
-                  value: {
-                    text: interview.details | nl2br or 'None'
-                  }
-                },
-                {
-                  key: {
-                    text: "Interview preferences"
-                  },
-                  value: {
-                    text: application.interviewNeeds
-                  }
-                } if application.interviewNeeds
-              ]
-            }) }}
-          {% endset %}
-
-          {{appSummaryCard({
-            titleText: interview.date | govukDateAtTime,
-            classes: "govuk-!-margin-bottom-6",
-            actions: {
-              items: [{
-                href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
-                text: "Change details"
-              } if statusText == "Received" or statusText == "Interviewing", {
-                href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
-                text: "Cancel interview"
-              } if statusText == "Received" or statusText == "Interviewing"]
-            },
-            html: interviewSummaryListHtml
-          })}}
-
-        {% endfor %}
-      {% else %}
-        <p>No interviews have been set up yet.</p>
+      {% if statusText == "Interviewing" %}
         {{ govukButton({
-          text: "Set up new interview",
+          text: "Set up interview",
           href: "/application/" + application.id + "/interviews/new",
           classes: "govuk-button--secondary"
         }) }}
       {% endif %}
+
+
+      {% if upcomingInterviews.length > 0 %}
+        <h2 class="govuk-heading-m">
+          Upcoming interviews
+        </h2>
+      {% endif %}
+
+      {% for interview in upcomingInterviews %}
+
+        {% set interviewSummaryListHtml %}
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: application.course
+                }
+              },
+              {
+                key: {
+                  text: "Organisation carrying out interview"
+                },
+                value: {
+                  text: interview.organisation
+                }
+              },
+              {
+                key: {
+                  text: "Address or online meeting link"
+                },
+                value: {
+                  text: interview.location | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Additional details"
+                },
+                value: {
+                  text: interview.details | nl2br or 'None'
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds
+                }
+              } if application.interviewNeeds
+            ]
+          }) }}
+        {% endset %}
+
+        {{appSummaryCard({
+          titleText: interview.date | govukDateAtTime,
+          classes: "govuk-!-margin-bottom-6",
+          actions: {
+            items: [{
+              href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
+              text: "Change details"
+            } if statusText == "Received" or statusText == "Interviewing", {
+              href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
+              text: "Cancel interview"
+            } if statusText == "Received" or statusText == "Interviewing"]
+          },
+          html: interviewSummaryListHtml
+        })}}
+
+      {% endfor %}
+
+      {% if pastInterviews.length > 0 %}
+        <h2 class="govuk-heading-m">
+          Past interviews
+        </h2>
+      {% endif %}
+
+      {% for interview in pastInterviews %}
+
+        {% set interviewSummaryListHtml %}
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: application.course
+                }
+              },
+              {
+                key: {
+                  text: "Organisation carrying out interview"
+                },
+                value: {
+                  text: interview.organisation
+                }
+              },
+              {
+                key: {
+                  text: "Address or online meeting link"
+                },
+                value: {
+                  text: interview.location | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Additional details"
+                },
+                value: {
+                  text: interview.details | nl2br or 'None'
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds
+                }
+              } if application.interviewNeeds
+            ]
+          }) }}
+        {% endset %}
+
+        {{appSummaryCard({
+          titleText: interview.date | govukDateAtTime,
+          classes: "govuk-!-margin-bottom-6",
+          actions: {
+            items: [{
+              href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
+              text: "Change details"
+            } if statusText == "Received" or statusText == "Interviewing", {
+              href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
+              text: "Cancel interview"
+            } if statusText == "Received" or statusText == "Interviewing"]
+          },
+          html: interviewSummaryListHtml
+        })}}
+
+      {% endfor %}
 
     </div>
   </div>

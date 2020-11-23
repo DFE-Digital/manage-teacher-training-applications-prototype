@@ -13,7 +13,7 @@
     text: 'Interviews',
     href: '/application/'+application.id+'/interviews',
     active: (subNavId == "interviews")
-  }, {
+  } if application.interviews.items.length, {
     text: 'Notes',
     href: '/application/'+application.id+'/notes',
     active: (subNavId == "notes")

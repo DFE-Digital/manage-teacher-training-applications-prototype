@@ -6,9 +6,16 @@
 {% set name = application.personalDetails.name %}
 {% set title = "Set up an interview" %}
 
+{% set backUrl %}/application/{{application.id}}{% endset %}
+{% if application.interviews.items > 0 %}
+{% set backUrl %}/application/{{application.id}}/interviews{% endset %}
+{% endif %}
+
+{% set cancelUrl %}{{backUrl}}{% endset %}
+
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/interviews"
+    href: backUrl
   }) }}
 {% endblock %}
 
@@ -123,13 +130,12 @@
           value: data.interview.details
         }) }}
 
-
-
         {{ govukButton({
           text: "Continue"
         }) }}
-      </form>
 
+        <p class="govuk-body"><a href="{{cancelUrl}}">Cancel</a></p>
+      </form>
 
     </div>
   </div>

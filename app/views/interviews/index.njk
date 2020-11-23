@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'interviews' %}
-{% set title = "Interviews" %}
+{% set title = "Interview schedule" %}
 
 {% block content %}
 
@@ -29,9 +29,9 @@
 
             <h2 class="govuk-heading-s govuk-!-margin-top-7 govuk-!-margin-bottom-3">
               {% if day | daysFromDate(now) == 0 %}
-                Today
+                Today ({{ day | govukDate }})
               {% elseif day | daysFromDate(now) == 1 %}
-                Tomorrow
+                Tomorrow ({{ day | govukDate }})
               {% else %}
                 {{ day | govukDate }}
               {% endif %}
