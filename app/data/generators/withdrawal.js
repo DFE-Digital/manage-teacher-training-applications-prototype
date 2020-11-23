@@ -1,43 +1,106 @@
-module.exports = (faker) => ({
-  // Candidate actions
-  actions: 'Yes',
-  'actions-reasons': 'Didn’t reply to our interview offer,Didn’t attend interview',
-  'actions-reasons-other': 'Another reasons goes here',
+module.exports = (faker) => {
 
-  // Course full
-  'course-full': 'Yes',
+  const defaults = {
+    actions: 'No',
+    'application-quality': 'No',
+    'missing-qualifications': 'No',
+    'interview-performance': 'No',
+    'course-full': 'No',
+    'other-offer': 'No',
+    honesty: 'No',
+    safeguarding: 'No',
+    why: '',
+    'other-feedback': 'No',
+    'future-applications': 'No'
+  }
 
-  // Missing qualifications
-  'missing-qualifications': 'Yes',
-  'missing-qualifications-reasons': 'No Maths GCSE grade 4 (C) or above, or valid equivalent,No English GCSE grade 4 (C) or above, or valid equivalent, Other',
-  'missing-qualifications-reasons-other': 'Another reason goes here',
+  const behaviour = {
+    actions: 'Yes',
+    'actions-reasons': [
+      'Did not attend interview',
+      'Other'
+    ],
+    'actions-reasons-other': faker.lorem.paragraph(),
+    'actions-reasons-other-improve': faker.lorem.paragraph()
+  }
 
-  // Application quality
-  'application-quality': 'Yes',
-  'application-quality-reasons': 'Personal statement, Subject knowledge, Other',
-  'application-quality-reasons-other': 'Spelling wasn’t great',
-  'application-quality-reasons-subject-knowledge': "Didn't know enough about maths",
-  'application-quality-reasons-personal-statement': 'Lack of passion',
+  const quality = {
+    'application-quality': 'Yes',
+    'application-quality-reasons': [
+      'Subject knowledge'
+    ],
+    'application-quality-reasons-subject-knowledge': faker.lorem.paragraph()
+  }
 
-  // Safeguarding
-  safeguarding: 'Yes',
-  'safeguarding-reasons': 'Information given on application form false or inaccurate,Evidence of plagiarism in personal statement or elsewhere, References unsatisfactory, Information disclosed by candidate makes them unsuitable to work with children, Information revealed by our vetting process makes the candidate unsuitable to work with children',
-  'safeguarding-reasons-false-information': 'False information about past',
-  'safeguarding-reasons-plagiarism': 'Copied a blog post',
-  'safeguarding-reasons-reference-information': 'John had a patchy history',
-  'safeguarding-reasons-disclosed-information': "Information disclosed wasn't truthful",
-  'safeguarding-reasons-vetting-information': 'Vetting information explained not suitable',
-  'safeguarding-reasons-other': 'Something else regarding safeguarding',
+  const qualifications = {
+    'missing-qualifications': 'Yes',
+    'missing-qualifications-reasons': [
+      'No maths GCSE grade 4 (C) or above, or accepted equivalent',
+      'No English GCSE grade 4 (C) or above, or accepted equivalent',
+      'Other'
+    ],
+    'missing-qualifications-reasons-other': faker.lorem.paragraph(1)
+  }
 
-  // Another issue
-  'another-issue': 'Yes',
-  'another-issue-details': 'Another detail here',
+  const interviewPerformance = {
+    'interview-performance': 'Yes',
+    'interview-performance-advice': faker.lorem.paragraph()
+  }
 
-  // Other feedback
-  'other-feedback': 'Yes',
-  'other-feedback-details': 'Other feedback here',
+  const course = {
+    'course-full': 'Yes'
+  }
 
-  // Future applications
-  'future-applications': 'Yes',
-  'future-applications-details': 'Be happy to consider again'
-})
+  const offeredOther = {
+    'other-offer': 'Yes',
+    'other-offer-details': faker.lorem.paragraph()
+  }
+
+  const honesty = {
+    honesty: 'Yes',
+    'honesty-reasons': [
+      'Inaccurate or false information in the application',
+      'References did not support the application',
+      'Evidence of plagiarism in the application',
+      'Other'
+    ],
+    'honesty-reasons-false-information': faker.lorem.paragraph(1),
+    'honesty-reasons-reference-information': faker.lorem.paragraph(1),
+    'honesty-reasons-plagiarism': faker.lorem.paragraph(1),
+    'honesty-reasons-other': faker.lorem.paragraph(2)
+  }
+
+  const safeguarding = {
+    safeguarding: 'Yes',
+    'safeguarding-reasons': [
+      'The vetting process found information which makes the candidate unsuitable to work with children'
+    ],
+    'safeguarding-reasons-vetting-information': faker.lorem.paragraph()
+  }
+
+  const why = {
+    why: faker.lorem.paragraph(5)
+  }
+
+  const additionalFeedback = {
+    'other-feedback': 'Yes',
+    'other-feedback-details': faker.lorem.paragraph(5)
+  }
+
+  const futureApplications = {
+    'future-applications': 'Yes'
+  }
+
+  // Rejection scenarios
+  const scenario1 = {...defaults, ...behaviour, ...quality, ...qualifications, interviewPerformance, ...course, ...offeredOther, ...honesty, ...safeguarding, ...why}
+  const scenario2 = {...defaults, ...behaviour}
+  const scenario3 = {...defaults, ...safeguarding}
+  const scenario4 = {...defaults, ...quality, ...additionalFeedback}
+  const scenario5 = {...defaults, ...interviewPerformance}
+  const scenario6 = {...defaults, ...course}
+  const scenario7 = {...defaults, ...additionalFeedback, ...futureApplications}
+  const scenario8 = {...defaults, ...futureApplications}
+  const scenario9 = {...defaults, ...why}
+
+  return faker.helpers.randomize([scenario1, scenario2, scenario3, scenario4, scenario5, scenario6, scenario7, scenario8, scenario9])
+}
