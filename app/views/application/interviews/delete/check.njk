@@ -4,7 +4,7 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and send interview cancellation" %}
+{% set title = "Check and send interview cancellation to candidate" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -26,7 +26,7 @@
           rows: [
             {
               key: {
-                text: "Reason for interview cancellation"
+                text: "Reason for cancelling interview"
               },
               value: {
                 text: data.cancelInterview.reason
@@ -45,7 +45,7 @@
         }) }}
 
         {{ govukButton({
-          text: "Send interview cancellation"
+          text: "Send cancellation"
         }) }}
 
         <p><a href="/application/{{application.id}}/interviews">Cancel</a></p>

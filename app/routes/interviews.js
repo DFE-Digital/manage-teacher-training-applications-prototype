@@ -105,8 +105,35 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    const statusText = utils.getStatusText(application)
+
+    // make 6 Aug 2020 = today
+    var now = DateTime.fromObject({
+      day: 6,
+      month: 8,
+      year: 2020
+    })
+
+    let upcomingInterviews = [];
+    let pastInterviews = [];
+
+    if(statusText == "Received" || statusText == "Interviewing") {
+      upcomingInterviews = application.interviews.items.filter(interview => {
+        return DateTime.fromISO(interview.date) >= now;
+      })
+
+      pastInterviews = application.interviews.items.filter(interview => {
+        return DateTime.fromISO(interview.date) < now;
+      })
+
+    } else {
+      pastInterviews = application.interviews.items;
+    }
+
     res.render('application/interviews/index', {
       application,
+      upcomingInterviews,
+      pastInterviews,
       statusText: utils.getStatusText(application)
     })
   })
