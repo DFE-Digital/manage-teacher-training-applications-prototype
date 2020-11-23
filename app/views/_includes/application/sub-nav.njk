@@ -2,23 +2,23 @@
 {{ appSubNavigation({
   label: 'Sub navigation',
   items: [{
-    text: 'Application',
+    html: 'Application' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/application/'+application.id,
     active: (subNavId == "application")
   }, {
-    text: 'Offer',
+    html: 'Offer' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/application/'+application.id+'/offer',
     active: (subNavId == "offer")
   } if application.offer, {
-    text: 'Interviews',
+    html: 'Interviews' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/application/'+application.id+'/interviews',
     active: (subNavId == "interviews")
   } if application.interviews.items.length, {
-    text: 'Notes',
+    html: 'Notes' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/application/'+application.id+'/notes',
     active: (subNavId == "notes")
   }, {
-    text: "Timeline",
+    html: 'Timeline' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/application/'+application.id+'/timeline',
     active: (subNavId == "timeline")
   }]
