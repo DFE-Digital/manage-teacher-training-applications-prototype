@@ -2,7 +2,7 @@
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
-      text: "Please give details"
+      text: "Give details"
     },
     id: "rejection-actions-reasons-other",
     name: "rejectionReasons[actions-reasons-other]",
@@ -31,13 +31,13 @@
       }
     },
     items: [{
-      value: "Didn’t reply to our interview offer",
-      html: "Didn’t reply to our interview offer",
-      checked: checked(data['rejectionReasons']['actions-reasons'], "Didn’t reply to our interview offer")
+      value: "Did not reply to interview request",
+      html: "Did not reply to interview request",
+      checked: checked(data['rejectionReasons']['actions-reasons'], "Did not reply to interview request")
     }, {
-      value: "Didn’t attend interview",
-      text: "Didn’t attend interview",
-      checked: checked(data['rejectionReasons']['actions-reasons'], "Didn’t attend interview")
+      value: "Did not attend interview",
+      text: "Did not attend interview",
+      checked: checked(data['rejectionReasons']['actions-reasons'], "Did not attend interview")
     }, {
         value: "Other",
         text: "Other",
