@@ -4,7 +4,10 @@
 {% set title = "Activity log" %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set events = todayEvents %}
 
@@ -46,5 +49,9 @@
             href: '/page=2'
           }]
         }) }}
+
+    </div>
+  </div>
+
 
 {% endblock %}

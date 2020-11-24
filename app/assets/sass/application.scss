@@ -182,3 +182,7 @@ h1 .govuk-tag {
     border-bottom: none;
   }
 }
+
+.app-table__row--indent > td {
+  padding-left: govuk-spacing(3);
+}

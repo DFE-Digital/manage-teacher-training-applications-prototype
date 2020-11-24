@@ -3,6 +3,7 @@
 
           {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
           {% set note = null %}
+          {% set interview = null %}
           {% set offer = null %}
           {% set application = null %}
           {% set id = event.app.id %}
@@ -21,6 +22,7 @@
           {% elseif event.event.title == "Interview set up" %}
             {% set status = "Interviewing" %}
             {% set title = event.event.user + " set up an interview with " + name %}
+            {% set interview = event.app.interviews.items[0] %}
             {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
           {% elseif event.event.title == "Application submitted" %}
             {% set status = "Received" %}
@@ -44,7 +46,6 @@
             {% set status = "Note added" %}
             {% set title = event.event.user + " add a note to " + name +"’s application" %}
             {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
-
           {% elseif event.event.title == "Offer declined" %}
             {% set status = "Declined" %}
             {% set title = name + " declined an offer " %}
@@ -73,24 +74,28 @@
           {% endif %}
 
 
-          <div class="app-timeline__item">
+          <div class="app-timeline__item govuk-!-margin-bottom-6">
             <div class="app-timeline__header">
-              <h2 class="app-timeline__title">{{govukTag({
-                classes: status | statusClass,
-                text: status
-              })}} &nbsp;{{title}} </h2>
+              <h2 class="app-timeline__title">
+                {# {{govukTag({
+                  classes: status | statusClass,
+                  text: status
+                })}} #}
+                {{title}}
+                </h2>
 
                 <p class="app-timeline__byline">
                   <time datetime="2019-08-12T09:01:00">{{event.event.date | govukDateAtTime }}
                   </time>
                 </p>
             </div>
-            <div class="app-timeline__description">
+            <div class="app-timeline__description govuk-!-margin-top-0">
               {{appLogCard({
                 title: title,
                 dateText: event.event.date | date,
                 note: note if note,
                 offer: offer if offer,
+                interview: interview if interview,
                 application: application if application,
                 id: id if id
               })}}

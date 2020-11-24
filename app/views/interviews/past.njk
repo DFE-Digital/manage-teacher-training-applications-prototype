@@ -13,28 +13,22 @@
         label: 'Sub navigation',
         items: [{
           text: 'Upcoming interviews',
-          href: '/interviews',
-          active: true
+          href: '/interviews'
         }, {
           text: 'Past interviews',
-          href: '/interviews/past'
+          href: '/application/past',
+          active: true
         }]
       }) }}
 
       {% if not interviews %}
-        <p>No upcoming interviews.</p>
+        <p>No past interviews.</p>
       {% else %}
         <div class="app-interviews">
           {% for day, interviews in interviews %}
 
             <h2 class="govuk-heading-s govuk-!-margin-top-7 govuk-!-margin-bottom-3">
-              {% if day | daysFromDate(now) == 0 %}
-                Today ({{ day | govukDate }})
-              {% elseif day | daysFromDate(now) == 1 %}
-                Tomorrow ({{ day | govukDate }})
-              {% else %}
-                {{ day | govukDate }}
-              {% endif %}
+              {{ day | govukDate }}
             </h2>
 
             {% for interview in interviews %}

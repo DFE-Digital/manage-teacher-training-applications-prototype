@@ -36,7 +36,7 @@ module.exports = router => {
 
   router.post('/application/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
-    req.flash('success', 'Note successfully added')
+    req.flash('success', 'Note added')
     res.redirect(`/application/${applicationId}/notes`)
   })
 
