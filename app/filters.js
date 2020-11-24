@@ -91,6 +91,17 @@ module.exports = (env) => {
   }
 
   /**
+   * Get number of days from today’s date
+   * @type {String} str
+   */
+  filters.daysFromDate = (end, date) => {
+    const a = DateTime.fromISO(date)
+    const b = DateTime.fromISO(end)
+    const diff = b.diff(a, 'days').toObject()
+    return Math.round(diff.days)
+  }
+
+  /**
    * Convert object to array
    * @type {Object} obj
    */

@@ -6,45 +6,68 @@
 {% block content %}
   <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% set events = todayEvents %}
+  {% for day, events in activity %}
 
-      <h2 class="govuk-heading-m">
-        Today
-      </h2>
-      {% include "_includes/activity-log/events-timeline.njk" %}
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      {%- if day | daysFromDate(now) == 0 %}
+        Today ({{- day | govukDate -}})
+      {% elseif day | daysFromDate(now) == 1 %}
+        Tomorrow ({{- day | govukDate -}})
+      {% else %}
+        {{- day | govukDate -}}
+      {% endif -%}
+    </h2>
 
-      {% set events = yesterdayEvents %}
+    {% include "_includes/activity-log/events-timeline.njk" %}
 
-      <h2 class="govuk-heading-m">
-        Yesterday
-      </h2>
-      {% include "_includes/activity-log/events-timeline.njk" %}
+  {% endfor %}
 
-      {% set events = allOtherEvents %}
+  {{ appPreviousNextNavigation({
+    previous: {
+      href: './activity?page=' + (pageNumber - 1),
+      title: {
+        text: 'Previous page'
+      },
+      label: {
+        text: (pageNumber-1) + ' of ' + pageCount
+      }
+    } if pageNumber >= 2,
+    next: {
+      href: './activity?page=' + (pageNumber + 1),
+      title: {
+        text: 'Next page'
+      },
+      label: {
+        text: ((pageNumber+1) + ' of ' + pageCount) if pageNumber else ('1 of ' + pageCount)
+      }
+    } if not (pageNumber == pageCount)
+  }) }}
 
-      <h2 class="govuk-heading-m">
-        Older
-      </h2>
-      {% include "_includes/activity-log/events-timeline.njk" %}
+  {#{ appPagination({
+    classes: "govuk-!-margin-top-7",
+    results: {
+      from: startItem,
+      to: endItem,
+      count: totalCount
+    },
+    next: {
+      text: 'Next',
+      href: './activity?page=' + (pageNumber + 1)
+    } if pageNumber < pageCount,
+    previous: {
+      text: 'Previous',
+      href: './activity?page=' + (pageNumber - 1)
+    } if pageNumber > 1
+  }) }#}
 
-      {{ appPagination({
-          results: {
-            from: 1,
-            to: 15,
-            count: 30
-          },
-            next: {
-            text: 'Next',
-            href: ''
-          },
-            items: [{
-            text: '1',
-            href: '/page=1',
-            selected: true
-          }, {
-            text: '2',
-            href: '/page=2'
-          }]
-        }) }}
+    <!-- ,
+    items: [{
+      text: '1',
+      href: '/page=1',
+      selected: true
+    }, {
+      text: '2',
+      href: '/page=2'
+    }] -->
 
 {% endblock %}
