@@ -1,0 +1,44 @@
+<nav class="app-previous-next {{- ' ' + params.classes if params.classes }}" role="{{ params.role | default('navigation') }}"{% for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+  <ul class="app-previous-next__list">
+    {%- if params.previous %}
+      <li class="app-previous-next__item app-previous-next__item--previous {{- ' ' + params.previous.classes if params.previous.classes }}"{% for attribute, value in params.previous.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+        <a href="{{ params.previous.href }}" class="app-previous-next__link" rel="{{ params.previous.rel | default('previous') }}">
+          <span class="app-previous-next__link-title">
+            <svg class="app-previous-next__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+              <path fill="currentColor" d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"/>
+            </svg>
+            <span class="app-previous-next__link-text">
+              {{- params.previous.title.html | safe if params.previous.title.html else params.previous.title.text -}}
+            </span>
+          </span>
+          {%- if params.previous.label %}
+            <span class="app-previous-next__link-divider govuk-visually-hidden">:</span>
+            <span class="app-previous-next__link-label">
+              {{- params.previous.label.html | safe if params.previous.label.html else params.previous.label.text -}}
+            </span>
+          {% endif -%}
+        </a>
+      </li>
+    {% endif -%}
+    {%- if params.next %}
+      <li class="app-previous-next__item app-previous-next__item--next {{- ' ' + params.next.classes if params.next.classes }}"{% for attribute, value in params.next.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+        <a href="{{ params.next.href }}" class="app-previous-next__link" rel="{{ params.next.rel | default('next') }}">
+          <span class="app-previous-next__link-title">
+            <svg class="app-previous-next__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+              <path fill="currentColor" d="m10.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"/>
+            </svg>
+            <span class="app-previous-next__link-text">
+              {{- params.next.title.html | safe if params.next.title.html else params.next.title.text -}}
+            </span>
+          </span>
+          {%- if params.next.label %}
+            <span class="app-previous-next__link-divider govuk-visually-hidden">:</span>
+            <span class="app-previous-next__link-label">
+              {{- params.next.label.html | safe if params.next.label.html else params.next.label.text -}}
+            </span>
+          {% endif -%}
+        </a>
+      </li>
+    {% endif -%}
+  </ul>
+</nav>
