@@ -78,7 +78,7 @@
               text: "Address or online meeting link"
             },
             value: {
-              html: data.interview.location
+              html: data.interview.location | nl2br
             },
             actions: {
               items: [
@@ -95,7 +95,7 @@
               text: "Additional details"
             },
             value: {
-              html: data.interview.details
+              html: data.interview.details | nl2br or "None"
             },
             actions: {
               items: [
@@ -120,6 +120,7 @@
         {{ govukButton({
           text: "Send new interview details"
         }) }}
+        <p class="govuk-body"><a href="/application/{{ application.id }}/interviews">Cancel</a></p>
       </form>
 
 

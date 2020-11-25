@@ -1,6 +1,7 @@
 const utils = require('../data/application-utils')
 const { v4: uuidv4 } = require('uuid')
 const { DateTime } = require('luxon')
+const _ = require('lodash');
 
 function getTimeObject(time) {
   var hours;
@@ -40,32 +41,62 @@ function getTimeObject(time) {
   return {hours, mins}
 }
 
+function getInterviews(applications) {
+  let interviews = []
+  applications = applications.filter(app => {
+    return utils.getStatusText(app) == "Interviewing"
+  })
+
+  // update this to use FLATMAP
+  applications.forEach(app => {
+    const ints = app.interviews.items.map(item => {
+      return {
+        app: app,
+        interview: item
+      }
+    })
+    interviews = interviews.concat(ints)
+  })
+
+  interviews.sort((a, b) => {
+    return new Date(a.interview.date) - new Date(b.interview.date)
+  })
+
+  return interviews
+}
+
+function groupInterviewsByDate(interviews) {
+  return _.groupBy(interviews, (interview) => {
+    var interviewDate = DateTime.fromISO(interview.interview.date);
+    var groupDate = DateTime.fromObject({
+      day: interviewDate.day,
+      month: interviewDate.month,
+      year: interviewDate.year,
+    })
+    return groupDate.toString();
+  })
+}
+
 module.exports = router => {
   router.get('/interviews', (req, res) => {
-    const apps = req.session.data.applications.filter(app => {
-      return utils.getStatusText(app) == "Interviewing"
-    })
+    let interviews = getInterviews(req.session.data.applications)
+    interviews = interviews.slice(9, interviews.length)
 
-    let allInterviews = []
-    let pastInterviews;
+    let now = interviews[0].interview.date
 
-    apps.forEach(app => {
-      const interviews = app.interviews.items.map(item => {
-        return {
-          app: app,
-          interview: item
-        }
-      })
-      allInterviews = allInterviews.concat(interviews)
-    })
-
-    allInterviews.sort((a, b) => {
-      return new Date(a.interview.date) - new Date(b.interview.date)
-    })
-
+    interviews = groupInterviewsByDate(interviews)
     res.render('interviews/index', {
-      pastInterviews: allInterviews.slice(0, 6).reverse(),
-      futureInterviews: allInterviews.slice(6, allInterviews.length)
+      now,
+      interviews
+    })
+  })
+
+  router.get('/interviews/past', (req, res) => {
+    let interviews = getInterviews(req.session.data.applications)
+    interviews = interviews.slice(0, 9).reverse()
+    interviews = groupInterviewsByDate(interviews)
+    res.render('interviews/past', {
+      interviews
     })
   })
 
@@ -74,8 +105,35 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    const statusText = utils.getStatusText(application)
+
+    // make 6 Aug 2020 = today
+    var now = DateTime.fromObject({
+      day: 6,
+      month: 8,
+      year: 2020
+    })
+
+    let upcomingInterviews = [];
+    let pastInterviews = [];
+
+    if(statusText == "Received" || statusText == "Interviewing") {
+      upcomingInterviews = application.interviews.items.filter(interview => {
+        return DateTime.fromISO(interview.date) >= now;
+      })
+
+      pastInterviews = application.interviews.items.filter(interview => {
+        return DateTime.fromISO(interview.date) < now;
+      })
+
+    } else {
+      pastInterviews = application.interviews.items;
+    }
+
     res.render('application/interviews/index', {
       application,
+      upcomingInterviews,
+      pastInterviews,
       statusText: utils.getStatusText(application)
     })
   })
@@ -134,7 +192,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'Interview successfully set up')
+    req.flash('success', 'Interview set up')
     res.redirect(`/application/${applicationId}/interviews`)
 
   })
@@ -192,7 +250,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'Interview successfully changed')
+    req.flash('success', 'Interview changed')
     res.redirect(`/application/${applicationId}/interviews`)
 
   })
@@ -236,7 +294,7 @@ module.exports = router => {
       date: new Date().toISOString()
     })
 
-    req.flash('success', 'Interview successfully cancelled')
+    req.flash('success', 'Interview cancelled')
     res.redirect(`/application/${req.params.applicationId}/interviews/`)
   })
 

@@ -84,7 +84,6 @@ module.exports = (env) => {
    */
   filters.daysFromNow = (start) => {
     start = DateTime.fromISO(start)
-
     const diff = start.diffNow('days').toObject()
 
     return Math.round(diff.days)

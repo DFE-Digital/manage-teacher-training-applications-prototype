@@ -7,7 +7,7 @@
 {% set title = 'Offer - ' + name %}
 
 {% block content %}
-  {{ appBanner({
+  {{ govukNotificationBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false

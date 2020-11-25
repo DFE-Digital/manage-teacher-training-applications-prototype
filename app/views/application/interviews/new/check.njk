@@ -6,6 +6,11 @@
 {% set name = application.personalDetails.name %}
 {% set title = "Set up an interview" %}
 
+{% set cancelUrl %}/application/{{application.id}}{% endset %}
+{% if application.interviews.items > 0 %}
+{% set cancelUrl %}/application/{{application.id}}/interviews{% endset %}
+{% endif %}
+
 {% block beforeContent %}
   {{ govukBackLink({
     href: "/application/" + application.id + "/interviews/new"
@@ -78,7 +83,7 @@
               text: "Address or online meeting link"
             },
             value: {
-              html: data.interview.location
+              html: data.interview.location | nl2br
             },
             actions: {
               items: [
@@ -95,7 +100,7 @@
               text: "Additional details"
             },
             value: {
-              html: data.interview.details
+              html: data.interview.details | nl2br or "None"
             },
             actions: {
               items: [
@@ -119,6 +124,8 @@
         {{ govukButton({
           text: "Send interview details"
         }) }}
+
+        <p class="govuk-body"><a href="{{cancelUrl}}">Cancel</a></p>
       </form>
 
     </div>

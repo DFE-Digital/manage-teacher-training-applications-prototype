@@ -1,6 +1,5 @@
 <div class="app-timeline">
   {%- for event in events %}
-    <!-- {{event.event|dump|safe}} -->
     {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
     {% set note = null %}
     {% set offer = null %}
@@ -76,7 +75,6 @@
     {% else %}
       {% set title = event.event.title %}
     {% endif -%}
-
 
     <div class="app-timeline__item">
       <div class="app-timeline__header">

@@ -3,10 +3,12 @@
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview or make a decision</h2>
     <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
     {{ govukButton({
-      text: "Set up an interview",
-      classes: "govuk-!-margin-bottom-0",
+      text: "Set up interview",
+      classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2",
       href: "/application/" + application.id + "/interviews/new"
-    }) }} <span class="app-or">or</span> {{ govukButton({
+    }) }}
+    {# <span class="app-or">or</span>  #}
+    {{ govukButton({
       text: "Make decision",
       classes: "govuk-!-margin-bottom-0 govuk-button--secondary",
       href: "/application/" + application.id + "/decision"

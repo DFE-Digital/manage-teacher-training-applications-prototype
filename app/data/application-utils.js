@@ -153,11 +153,12 @@ function getLink (item, application) {
       break
     case 'Interview set up':
       link.text = 'View interview'
-      link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      link.href = `/application/${application.id}/interviews/`
       break
     case 'Interview changed':
       link.text = 'View interview'
-      link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      // link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
+      link.href = `/application/${application.id}/interviews/`
       break
     case 'Status of conditions updated':
       link.text = 'View offer'

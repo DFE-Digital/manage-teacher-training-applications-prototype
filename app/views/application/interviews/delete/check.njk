@@ -4,7 +4,7 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and confirm interview cancellation" %}
+{% set title = "Check and send interview cancellation" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -26,7 +26,7 @@
           rows: [
             {
               key: {
-                text: "Tell the candidate why you’re cancelling the interview"
+                text: "Reason for cancelling interview"
               },
               value: {
                 text: data.cancelInterview.reason
@@ -34,7 +34,7 @@
               actions: {
                 items: [
                   {
-                    href: "Item URL",
+                    href: "/application/" + application.id + "/interviews/" + interview.id + "/delete",
                     text: "Change",
                     visuallyHiddenText: "Reason for cancellation"
                   }
@@ -44,10 +44,8 @@
           ]
         }) }}
 
-        <p>We’ll email the candidate to let them know their interview has been cancelled.</p>
-
         {{ govukButton({
-          text: "Confirm cancellation"
+          text: "Send cancellation"
         }) }}
 
         <p><a href="/application/{{application.id}}/interviews">Cancel</a></p>
