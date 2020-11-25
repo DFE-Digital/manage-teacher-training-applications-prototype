@@ -4,14 +4,32 @@
 }
 
 .app-log-card:last-of-type {
-  margin-bottom: govuk-spacing(5);
-  margin-bottom: 0;
+  margin-bottom: govuk-spacing(1);
 }
 
 .app-log-card__note {
-  display: inline-block;
-  width: 70%;
+  // display: inline-block;
+  // width: 70%;
   margin-bottom: govuk-spacing(2);
+
+  &--course,
+  &--subject {
+    margin-bottom: govuk-spacing(1);
+  }
+
+  &--provider {
+    color: govuk-colour('dark-grey');
+    margin-bottom: 0;
+  }
+
+  &--ratified,
+  &--content {
+    color: govuk-colour('dark-grey');
+  }
+
+  &--link {
+    margin-bottom: 0;
+  }
 }
 
 .app-log-card__note-heading {

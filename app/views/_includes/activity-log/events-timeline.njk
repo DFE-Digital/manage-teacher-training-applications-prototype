@@ -1,6 +1,6 @@
 <div class="app-timeline">
   {%- for event in events %}
-
+    <!-- {{event.event|dump|safe}} -->
     {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
     {% set note = null %}
     {% set offer = null %}
@@ -89,7 +89,7 @@
         </h2>
         <p class="app-timeline__byline">
           <time datetime="{{ event.event.date | formatDate }}">
-            {{- event.event.date | formatDate('h:mm a') -}}
+            {{- event.event.date | govukDateAtTime -}}
           </time>
         </p>
       </div>
@@ -100,7 +100,7 @@
           note: note if note,
           offer: offer if offer,
           application: application if application,
-          id: id if id
+          id: event.app.id if event.app.id
         }) -}}
       </div>
     </div>

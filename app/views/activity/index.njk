@@ -4,44 +4,52 @@
 {% set title = "Activity log" %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">{{title}}</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
 
-  {% for day, events in activity %}
+      {% for day, events in activity %}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-9">
-      {%- if day | daysFromDate(now) == 0 %}
-        Today ({{- day | govukDate -}})
-      {% elseif day | daysFromDate(now) == 1 %}
-        Tomorrow ({{- day | govukDate -}})
-      {% else %}
-        {{- day | govukDate -}}
-      {% endif -%}
-    </h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+          {%- if day | daysFromDate(now) == 0 %}
+            Today ({{- day | govukDate -}})
+          {% elseif day | daysFromDate(now) == 1 %}
+            Tomorrow ({{- day | govukDate -}})
+          {% else %}
+            {{- day | govukDate -}}
+          {% endif -%}
+        </h2>
 
-    {% include "_includes/activity-log/events-timeline.njk" %}
+        {% include "_includes/activity-log/events-timeline.njk" %}
 
-  {% endfor %}
+      {% endfor %}
 
-  {{ appPreviousNextNavigation({
-    previous: {
-      href: './activity?page=' + (pageNumber - 1),
-      title: {
-        text: 'Previous page'
-      },
-      label: {
-        text: (pageNumber-1) + ' of ' + pageCount
-      }
-    } if pageNumber >= 2,
-    next: {
-      href: './activity?page=' + (pageNumber + 1),
-      title: {
-        text: 'Next page'
-      },
-      label: {
-        text: ((pageNumber+1) + ' of ' + pageCount) if pageNumber else ('1 of ' + pageCount)
-      }
-    } if not (pageNumber == pageCount)
-  }) }}
+      {{ appPreviousNextNavigation({
+        previous: {
+          href: './activity?page=' + (pageNumber - 1),
+          title: {
+            text: 'Previous page'
+          },
+          label: {
+            text: (pageNumber-1) + ' of ' + pageCount
+          }
+        } if pageNumber >= 2,
+        next: {
+          href: './activity?page=' + (pageNumber + 1),
+          title: {
+            text: 'Next page'
+          },
+          label: {
+            text: ((pageNumber+1) + ' of ' + pageCount) if pageNumber else ('1 of ' + pageCount)
+          }
+        } if not (pageNumber == pageCount)
+      }) }}
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
 
   {#{ appPagination({
     classes: "govuk-!-margin-top-7",
