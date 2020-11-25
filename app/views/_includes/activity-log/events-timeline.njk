@@ -81,17 +81,19 @@
     <div class="app-timeline__item">
       <div class="app-timeline__header">
         <h2 class="app-timeline__title">
-          {{- title }}&nbsp;
-          {{ govukTag({
-            classes: status | statusClass,
-            text: status
-          }) -}}
+
+          {{ title }}
         </h2>
         <p class="app-timeline__byline">
           <time datetime="{{ event.event.date | formatDate }}">
             {{- event.event.date | govukDateAtTime -}}
           </time>
         </p>
+        <br>
+        {{ govukTag({
+          classes: status | statusClass,
+          text: status
+        }) }}
       </div>
       <div class="app-timeline__description">
         {{- appLogCard({
