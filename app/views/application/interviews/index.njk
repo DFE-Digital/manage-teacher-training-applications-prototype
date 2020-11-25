@@ -91,6 +91,9 @@
         {% endset %}
 
         {{appSummaryCard({
+          attributes: {
+            id: "interview-" + interview.id
+          },
           titleText: interview.date | govukDateAtTime,
           classes: "govuk-!-margin-bottom-6",
           actions: {
@@ -163,6 +166,9 @@
         {% endset %}
 
         {{appSummaryCard({
+          attributes: {
+            id: "interview-" + interview.id
+          },
           titleText: interview.date | govukDateAtTime,
           classes: "govuk-!-margin-bottom-6",
           actions: {

@@ -28,21 +28,11 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      {% set candidateNotesHtml %}
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Candidate interview preferences</h2>
-        <p>{{application.interviewNeeds | nl2br}}</p>
-      {% endset %}
-
       {% if application.interviewNeeds %}
-
         <div class="app-box">
-          {{candidateNotesHtml | safe}}
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Candidate interview preferences</h2>
+          <p>{{application.interviewNeeds | nl2br}}</p>
         </div>
-
-        {# {{ govukWarningText({
-          html: candidateNotesHtml
-        }) }} #}
       {% endif %}
 
       <form method="post">
