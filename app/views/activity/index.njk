@@ -24,58 +24,29 @@
 
       {% endfor %}
 
-      {{ appPreviousNextNavigation({
-        previous: {
-          href: './activity?page=' + (pageNumber - 1),
-          title: {
-            text: 'Previous page'
-          },
-          label: {
-            text: (pageNumber-1) + ' of ' + pageCount
-          }
-        } if pageNumber >= 2,
-        next: {
-          href: './activity?page=' + (pageNumber + 1),
-          title: {
-            text: 'Next page'
-          },
-          label: {
-            text: ((pageNumber+1) + ' of ' + pageCount) if pageNumber else ('1 of ' + pageCount)
-          }
-        } if not (pageNumber == pageCount)
-      }) }}
-
-    </div>
-    <div class="govuk-grid-column-one-third">
-
     </div>
   </div>
 
-  {#{ appPagination({
-    classes: "govuk-!-margin-top-7",
-    results: {
-      from: startItem,
-      to: endItem,
-      count: totalCount
-    },
-    next: {
-      text: 'Next',
-      href: './activity?page=' + (pageNumber + 1)
-    } if pageNumber < pageCount,
-    previous: {
-      text: 'Previous',
-      href: './activity?page=' + (pageNumber - 1)
-    } if pageNumber > 1
-  }) }#}
-
-    <!-- ,
-    items: [{
-      text: '1',
-      href: '/page=1',
-      selected: true
-    }, {
-      text: '2',
-      href: '/page=2'
-    }] -->
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ appPagination({
+        classes: "govuk-!-margin-top-7",
+        results: {
+          from: startItem,
+          to: endItem,
+          count: totalCount
+        },
+        next: {
+          text: 'Next',
+          href: '?page=' + (pageNumber + 1)
+        } if pageNumber < pageCount,
+        previous: {
+          text: 'Previous',
+          href: '?page=' + (pageNumber - 1)
+        } if pageNumber > 1,
+        items: pageItems if pageItems
+      }) }}
+    </div>
+  </div>
 
 {% endblock %}

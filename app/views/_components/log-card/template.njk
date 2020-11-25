@@ -3,9 +3,8 @@
 
   {%- if params.application %}
     <div class="app-log-card__note">
-      <p class="app-log-card__note--course">{{ params.application.course }} at {{ params.application.location }}</p>
-      <p class="app-log-card__note--provider">{{ params.application.provider }}</p>
-      <p class="app-log-card__note--ratified">Ratified by {{ params.application.accreditedBody }}</p>
+      <p class="app-log-card__note--title">{{ params.application.course }} at {{ params.application.location }}</p>
+      <p class="app-log-card__note--content">{{ params.application.provider }} – ratified by {{ params.application.accreditedBody }}</p>
 
       {%- if params.application.rejectedReasons %}
         {%- set rejectedReasons = params.application.rejectedReasons -%}
@@ -20,9 +19,8 @@
 
   {%- if params.offer %}
     <div class="app-log-card__note">
-      <p class="app-log-card__note--course">{{ params.offer.course }} at {{ params.offer.location }}</p>
-      <p class="app-log-card__note--provider">{{ params.offer.provider }}</p>
-      <p class="app-log-card__note--ratified">Ratified by {{ params.offer.accreditedBody }}</p>
+      <p class="app-log-card__note--title">{{ params.offer.course }} at {{ params.offer.location }}</p>
+      <p class="app-log-card__note--content">{{ params.offer.provider }} – ratified by {{ params.offer.accreditedBody }}</p>
       <p class="app-log-card__note--link">
         <a class="govuk-link" href="/application/{{ params.id }}/offer">View offer</a>
       </p>
@@ -31,7 +29,7 @@
 
   {%- if params.note %}
     <div class="app-log-card__note">
-      <p class="app-log-card__note--subject">{{ params.note.subject }}</p>
+      <p class="app-log-card__note--title">{{ params.note.subject }}</p>
       <p class="app-log-card__note--content">{{ params.note.body }}</p>
       <p class="app-log-card__note--link">
         <a class="govuk-link" href="/application/{{ params.id }}/notes">View note</a>

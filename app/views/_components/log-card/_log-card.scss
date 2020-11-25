@@ -8,21 +8,12 @@
 }
 
 .app-log-card__note {
-  // display: inline-block;
-  // width: 70%;
   margin-bottom: govuk-spacing(2);
 
-  &--course,
-  &--subject {
+  &--title {
     margin-bottom: govuk-spacing(1);
   }
 
-  &--provider {
-    color: govuk-colour('dark-grey');
-    margin-bottom: 0;
-  }
-
-  &--ratified,
   &--content {
     color: govuk-colour('dark-grey');
   }
@@ -33,7 +24,6 @@
 }
 
 .app-log-card__note-heading {
-  // text-transform: uppercase;
   color: govuk-colour('dark-grey');
   margin-bottom: govuk-spacing(1);
 }

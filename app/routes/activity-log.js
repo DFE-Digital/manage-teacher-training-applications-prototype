@@ -38,6 +38,40 @@ function slice(array, pageSize, pageNumber) {
   return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize)
 }
 
+function getPaginationItems(page, pageCount) {
+  let startItem = 1;
+  let endItem = 5;
+
+  // First five pages
+  if (page > 3) {
+    startItem = page - 2;
+    endItem = page + 2;
+  }
+
+  // Last five pages
+  if (page > (pageCount - 3)) {
+    startItem = pageCount - 4;
+    endItem = pageCount;
+  }
+
+  // items: [{
+  //   text: '1',
+  //   href: '?page=1',
+  //   selected: true
+  // }]
+
+  const itemArray = []
+  for (let i = startItem; i <= endItem; i++) {
+    let item = {}
+    item.text = i
+    item.href = '?page=' + i
+    item.selected = true ? parseInt(page) === i : false
+    itemArray.push(item)
+  }
+
+  return itemArray
+}
+
 module.exports = router => {
   router.get('/activity', (req, res) => {
     // Clone and turn into an array
@@ -80,6 +114,7 @@ module.exports = router => {
       pageSize: limit,
       pageCount: pageCount,
       pageNumber: page,
+      pageItems: getPaginationItems(page, pageCount),
       startItem: startItem,
       endItem: endItem
     })
