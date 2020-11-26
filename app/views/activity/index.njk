@@ -9,49 +9,45 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% set events = todayEvents %}
+      {% for day, events in activity %}
 
-      <h2 class="govuk-heading-m">
-        Today
-      </h2>
-      {% include "_includes/activity-log/events-timeline.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+          {%- if day | daysFromDate(now) == 0 %}
+            Today ({{- day | govukDate -}})
+          {% elseif day | daysFromDate(now) == 1 %}
+            Tomorrow ({{- day | govukDate -}})
+          {% else %}
+            {{- day | govukDate -}}
+          {% endif -%}
+        </h2>
 
-      {% set events = yesterdayEvents %}
+        {% include "_includes/activity-log/events-timeline.njk" %}
 
-      <h2 class="govuk-heading-m">
-        Yesterday
-      </h2>
-      {% include "_includes/activity-log/events-timeline.njk" %}
-
-      {% set events = allOtherEvents %}
-
-      <h2 class="govuk-heading-m">
-        Older
-      </h2>
-      {% include "_includes/activity-log/events-timeline.njk" %}
-
-      {{ appPagination({
-          results: {
-            from: 1,
-            to: 15,
-            count: 30
-          },
-            next: {
-            text: 'Next',
-            href: ''
-          },
-            items: [{
-            text: '1',
-            href: '/page=1',
-            selected: true
-          }, {
-            text: '2',
-            href: '/page=2'
-          }]
-        }) }}
+      {% endfor %}
 
     </div>
   </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ appPagination({
+        classes: "govuk-!-margin-top-7",
+        results: {
+          from: startItem,
+          to: endItem,
+          count: totalCount
+        },
+        next: {
+          text: 'Next',
+          href: '?page=' + (pageNumber + 1)
+        } if pageNumber < pageCount,
+        previous: {
+          text: 'Previous',
+          href: '?page=' + (pageNumber - 1)
+        } if pageNumber > 1,
+        items: pageItems if pageItems
+      }) }}
+    </div>
+  </div>
 
 {% endblock %}
