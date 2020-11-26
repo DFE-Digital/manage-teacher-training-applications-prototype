@@ -33,9 +33,9 @@ function groupByDate(data) {
   })
 }
 
-function slice(array, pageSize, pageNumber) {
+function getDataByPage(data, pageNumber, pageSize = 50) {
   --pageNumber // because pages logically start with 1, but technically with 0
-  return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize)
+  return data.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize)
 }
 
 function getPaginationItems(page, pageCount) {
@@ -104,7 +104,7 @@ module.exports = router => {
     let startItem = (page == 1) ? page : ((page * limit) - limit) + 1;
     let endItem = (page == 1) ? (page * limit) : ((startItem + limit) - 1);
 
-    activity = slice(activity, limit, page)
+    activity = getDataByPage(activity, page, limit)
 
     activity = groupByDate(activity)
 
