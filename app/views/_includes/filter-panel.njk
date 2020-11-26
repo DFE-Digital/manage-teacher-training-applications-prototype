@@ -190,6 +190,30 @@
         }
       ]
     }) }}
+
+    {{ govukCheckboxes({
+      idPrefix: 'studyMode',
+      name: 'studyMode',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Study mode',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: [
+        {
+          value: 'Full time',
+          text: 'Full time',
+          checked: checked(data.studyMode, 'Full time') == 'checked'
+        },
+        {
+          value: 'Part time',
+          text: 'Part time',
+          checked: checked(data.studyMode, 'Part time') == 'checked'
+        }
+      ]
+    }) }}
   {% endset %}
 
   <div class="app-filter">

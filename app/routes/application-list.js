@@ -182,7 +182,7 @@ module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { cycle, status, provider, accreditingbody, keywords, locationname } = req.query
+    let { cycle, status, provider, accreditingbody, keywords, locationname, studyMode } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -191,8 +191,9 @@ module.exports = router => {
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locationnames = getCheckboxValues(locationname, req.session.data.locationname)
     const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
+    const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (keywords))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (keywords))
 
     if (hasFilters) {
       apps = apps.filter((app) => {
@@ -202,6 +203,7 @@ module.exports = router => {
         let locationnameValid = true
         let accreditingbodyValid = true
         let candidateNameValid = true
+        let studyModeValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -223,13 +225,17 @@ module.exports = router => {
           accreditingbodyValid = accreditingbodies.includes(app.accreditingbody)
         }
 
+        if (studyModes && studyModes.length) {
+          studyModeValid = studyModes.includes(app.studyMode)
+        }
+
         var candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
 
         if (keywords) {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
         }
 
-        return cycleValid && statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid
+        return cycleValid && statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid && studyModeValid
       })
     }
 
@@ -304,6 +310,18 @@ module.exports = router => {
             return {
               text: accreditingbody,
               href: `/remove-accreditingbody-filter/${accreditingbody}`
+            }
+          })
+        })
+      }
+
+      if (studyModes && studyModes.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Study modes' },
+          items: studyModes.map((studyMode) => {
+            return {
+              text: studyMode,
+              href: `/remove-studyMode-filter/${studyMode}`
             }
           })
         })
@@ -440,6 +458,11 @@ module.exports = router => {
     res.redirect('/')
   })
 
+  router.get('/remove-studyMode-filter/:studyMode', (req, res) => {
+    req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
+    res.redirect('/')
+  })
+
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.status = null
@@ -447,6 +470,7 @@ module.exports = router => {
     req.session.data.keywords = null
     req.session.data.accreditingbody = null
     req.session.data.locationname = null
+    req.session.data.studyMode = null
     res.redirect('/')
   })
 
