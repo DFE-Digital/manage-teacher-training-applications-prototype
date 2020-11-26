@@ -20,13 +20,13 @@ h2 + .app-interview-card {
   width: 15%;
 }
 
-.app-interview-card__course {
+.app-interview-card__candidate {
   box-sizing: border-box;
   padding-right: govuk-spacing(2);
-  width: 45%;
+  width: 40%;
 }
 
 .app-interview-card__course {
-  width: 40%;
+  width: 45%;
   box-sizing: border-box;
 }
