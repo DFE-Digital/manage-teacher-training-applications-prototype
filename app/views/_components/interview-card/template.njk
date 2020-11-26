@@ -13,7 +13,8 @@
     </p>
   </div>
   <div class="app-interview-card__candidate">
-    <p class="govuk-!-margin-bottom-1">{{params.name}} {% if params.hasInterviewPreferences %} - has interview preferences{% endif %}</p>
+    <p class="govuk-!-margin-bottom-1">{{params.name}}</p>
+    {% if params.hasInterviewPreferences %}<p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Has interview preferences</p>{% endif %}
   </div>
   <div class="app-interview-card__course">
     <p class="govuk-!-margin-bottom-1">{{ params.course }} </p>

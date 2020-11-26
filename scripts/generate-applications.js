@@ -59,6 +59,8 @@ const generateFakeApplication = (params = {}) => {
     cycle,
     provider: provider.name,
     accreditingbody: accreditedBody.name,
+    studyMode: faker.helpers.randomize(['Full time', 'Part time']),
+    fundingType: faker.helpers.randomize(['Salaried', 'Fee paying']),
     course: generateCourse(faker),
     locationname: generateTrainingLocation(faker),
     status,
