@@ -56,6 +56,22 @@
               },
               {
                 key: {
+                  text: "Funding type"
+                },
+                value: {
+                  text: application.fundingType
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds
+                }
+              } if application.interviewNeeds,
+              {
+                key: {
                   text: "Organisation carrying out interview"
                 },
                 value: {
@@ -64,7 +80,7 @@
               },
               {
                 key: {
-                  text: "Address or online meeting link"
+                  text: "Address or online meeting details"
                 },
                 value: {
                   text: interview.location | nl2br
@@ -77,15 +93,7 @@
                 value: {
                   text: interview.details | nl2br or 'None'
                 }
-              },
-              {
-                key: {
-                  text: "Interview preferences"
-                },
-                value: {
-                  text: application.interviewNeeds
-                }
-              } if application.interviewNeeds
+              }
             ]
           }) }}
         {% endset %}
@@ -131,6 +139,22 @@
               },
               {
                 key: {
+                  text: "Funding type"
+                },
+                value: {
+                  text: application.fundingType
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds
+                }
+              } if application.interviewNeeds,
+              {
+                key: {
                   text: "Organisation carrying out interview"
                 },
                 value: {
@@ -139,7 +163,7 @@
               },
               {
                 key: {
-                  text: "Address or online meeting link"
+                  text: "Address or online meeting details"
                 },
                 value: {
                   text: interview.location | nl2br
@@ -152,15 +176,7 @@
                 value: {
                   text: interview.details | nl2br or 'None'
                 }
-              },
-              {
-                key: {
-                  text: "Interview preferences"
-                },
-                value: {
-                  text: application.interviewNeeds
-                }
-              } if application.interviewNeeds
+              }
             ]
           }) }}
         {% endset %}

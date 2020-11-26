@@ -23,7 +23,7 @@
 
   <h1 class="govuk-heading-l">
     <span class="govuk-caption-l">{{name}}</span>
-    Set up an interview
+    {{title}}
   </h1>
 
   <div class="govuk-grid-row">
@@ -105,7 +105,7 @@
           name: "interview[location]",
           label: {
             classes: "govuk-label--m",
-            text: "Address or online meeting link"
+            text: "Address or online meeting details"
           },
           value: data.interview.location
         }) }}
