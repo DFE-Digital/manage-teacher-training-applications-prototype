@@ -45,9 +45,9 @@ module.exports = router => {
     let activity = getActivity(apps)
 
     // Get the pagination data
-    let pagination = utils.getPagination(data = activity, pageNumber = req.query.page, pageSize = req.query.limit)
+    let pagination = utils.getPagination(activity, req.query.page, req.query.limit)
 
-    activity = utils.getDataByPage(activity, pagination.pageNumber)
+    activity = utils.getDataByPage(activity, req.query.page, req.query.limit)
 
     activity = groupByDate(activity)
 
