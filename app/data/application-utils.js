@@ -203,12 +203,12 @@ exports.getStatusText = (application) => {
   return status
 }
 
-exports.getDataByPage = (data, pageNumber, pageSize = 50) => {
+exports.getDataByPage = (data, pageNumber = 1, pageSize = 50) => {
   --pageNumber // because pages logically start with 1, but technically with 0
   return data.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize)
 }
 
-exports.getPaginationItems = (pageNumber, pageCount) => {
+exports.getPaginationItems = (pageNumber, pageCount, pageSize = 50) => {
   let startItem = 1
   let endItem = (pageCount < 5) ? pageCount : 5
 
@@ -219,7 +219,7 @@ exports.getPaginationItems = (pageNumber, pageCount) => {
   }
 
   // Last five pages
-  if (pageNumber > (pageCount - 3)) {
+  if (pageCount > 4 && pageNumber > (pageCount - 3)) {
     startItem = (pageCount - 4) ? pageCount - 4 : startItem
     endItem = pageCount
   }
@@ -228,7 +228,7 @@ exports.getPaginationItems = (pageNumber, pageCount) => {
   for (let i = startItem; i <= endItem; i++) {
     let item = {}
     item.text = i
-    item.href = '?page=' + i
+    item.href = '?page=' + i + '&limit=' + pageSize
     item.selected = true ? parseInt(pageNumber) === i : false
     itemArray.push(item)
   }
@@ -265,5 +265,5 @@ exports.getPagination = (data, pageNumber = 1, pageSize = 50) => {
   // We don't want the end item number shown to go beyond the total count
   endItem = (endItem > totalCount) ? totalCount : endItem
 
-  return { totalCount, pageSize, pageNumber, pageCount, prevPage, nextPage, startItem, endItem, pageItems: this.getPaginationItems(pageNumber, pageCount) }
+  return { totalCount, pageSize, pageNumber, pageCount, prevPage, nextPage, startItem, endItem, pageItems: this.getPaginationItems(pageNumber, pageCount, pageSize) }
 }
