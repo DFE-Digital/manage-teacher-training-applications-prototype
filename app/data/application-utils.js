@@ -152,13 +152,18 @@ function getLink (item, application) {
       link.href = `/application/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
       break
     case 'Interview set up':
-      link.text = 'View interview'
-      link.href = `/application/${application.id}/interviews/`
+      if(application.interviews.items.find(interview => interview.id === item.meta.interviewId)) {
+        link.text = 'View interview'
+        link.href = `/application/${application.id}/interviews/#interview-${item.meta.interviewId}`
+      }
       break
     case 'Interview changed':
-      link.text = 'View interview'
-      // link.href = `/application/${application.id}/interviews/${item.meta.interviewId}`
-      link.href = `/application/${application.id}/interviews/`
+      if(application.interviews.items.find(interview => interview.id === item.meta.interviewId)) {
+        link.text = 'View interview'
+        link.href = `/application/${application.id}/interviews/#interview-${item.meta.interviewId}`
+      }
+      break
+    case 'Interview cancelled':
       break
     case 'Status of conditions updated':
       link.text = 'View offer'

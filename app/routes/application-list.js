@@ -311,14 +311,6 @@ module.exports = router => {
     }
 
     var applications = apps.map(app => {
-      // coz it's in reverse chron
-      var lastEvent = utils.getTimeline(app)[0]
-      if (lastEvent.label.text === 'Note added') {
-        app.lastEventType = 'note'
-      } else {
-        app.lastEventType = 'status'
-      }
-
       var now = DateTime.fromISO('2020-08-15')
       var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
       var diff = rbd.diff(now, 'days').toObject().days
@@ -331,8 +323,6 @@ module.exports = router => {
       if (app.status !== 'Awaiting decision') {
         app.daysToRespond = 1000
       }
-
-      app.lastEventDate = lastEvent.datetime.timestamp
 
       app.statusText = utils.getStatusText(app);
 
