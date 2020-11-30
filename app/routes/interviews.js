@@ -82,21 +82,30 @@ module.exports = router => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(9, interviews.length)
 
+    // Get the pagination data
+    let pagination = utils.getPagination(interviews, req.query.page, req.query.limit)
+
     let now = interviews[0].interview.date
 
+    interviews = utils.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
+
     res.render('interviews/index', {
       now,
-      interviews
+      interviews,
+      pagination
     })
   })
 
   router.get('/interviews/past', (req, res) => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(0, 9).reverse()
+    let pagination = utils.getPagination(interviews, req.query.page, req.query.limit)
+    interviews = utils.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
     res.render('interviews/past', {
-      interviews
+      interviews,
+      pagination
     })
   })
 
