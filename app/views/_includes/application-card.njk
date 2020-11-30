@@ -5,7 +5,7 @@
         {{ a.personalDetails.givenName }} {{ a.personalDetails.familyName }}
       </a>
     </h3>
-    <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} at {{a.locationname}}</p>
+    <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{a.studyMode | lower}} at {{a.locationname | replace(' - training location','')}}</p>
     <p class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }} – ratified by {{a.accreditingbody}}</p>
   </div>
   <div class="app-application-card__secondary">
