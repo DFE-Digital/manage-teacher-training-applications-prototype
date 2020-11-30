@@ -580,6 +580,13 @@ const generateFakeApplications = () => {
     applications.push(application)
   }
 
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Conditions not met'
+    })
+    applications.push(application)
+  }
+
   for (var i = 0; i < 2; i++) {
     const application = generateFakeApplication({
       status: 'Deferred'
