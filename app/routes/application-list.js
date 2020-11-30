@@ -317,7 +317,7 @@ module.exports = router => {
 
       if (studyModes && studyModes.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Study modes' },
+          heading: { text: 'Full time or part time' },
           items: studyModes.map((studyMode) => {
             return {
               text: studyMode,
