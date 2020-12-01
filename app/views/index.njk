@@ -8,57 +8,43 @@
     Applications
   </h1>
 
-
-    <div class="app-filter-layout">
-      <div class="app-filter-layout__filter">
-        {% include "_includes/filter-panel.njk" %}
-      </div>
-
-      <div class="app-filter-layout__content">
-
-        <div class="app-action-bar">
-          <div class="app-action-bar__filter"></div>
-        </div>
-        <div>
-          {% if applications.length %}
-
-              <div class="app-application-cards">
-                {% for a in applications %}
-                  {% set rbd = a.status.submitted.date | addDays(40) %}
-                  {% set remaining = rbd | daysFromNow(rbd) %}
-                  {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
-
-                  {% if a.heading %}
-                    <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
-                  {% else %}
-                    {% include "_includes/application-card.njk" %}
-                  {% endif %}
-                {% endfor %}
-              </div>
-
-          {% endif %}
-        </div>
-
-        {% if pagination %}
-          {{ appPagination({
-            results: {
-              from: pagination.from,
-              to: pagination.to,
-              count: pagination.count
-            },
-            previous: pagination.previous,
-            next: pagination.next,
-            items: pagination.items
-          }) }}
-        {% endif %}
-
-        {% if not applications.length %}
-          <p>No applications for this cycle.</p>
-        {% endif %}
-      </div>
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "_includes/filter-panel.njk" %}
     </div>
 
+    <div class="app-filter-layout__content">
 
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+      <div>
+        {%- if applications.length %}
+
+          <div class="app-application-cards">
+            {%- for a in applications %}
+
+              {% if a.heading %}
+                <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
+              {% else %}
+                {% include "_includes/application-card.njk" %}
+              {% endif %}
+
+            {% endfor -%}
+          </div>
+
+        {% endif -%}
+      </div>
+
+      {% if pagination %}
+        {% include "_includes/pagination.njk" %}
+      {% endif %}
+
+      {% if not applications.length %}
+        <p class="govuk-body">No applications for this cycle.</p>
+      {% endif %}
+    </div>
+  </div>
 
 {% endblock %}
 

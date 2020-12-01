@@ -1,0 +1,17 @@
+{{ appPagination({
+  classes: "govuk-!-margin-top-7",
+  results: {
+    from: pagination.startItem,
+    to: pagination.endItem,
+    count: pagination.totalCount
+  },
+  next: {
+    text: 'Next',
+    href: '?page=' + (pagination.pageNumber + 1) + '&limit=' + pagination.pageSize
+  } if pagination.pageNumber < pagination.pageCount,
+  previous: {
+    text: 'Previous',
+    href: '?page=' + (pagination.pageNumber - 1) + '&limit=' + pagination.pageSize
+  } if pagination.pageNumber > 1,
+  items: pagination.pageItems if pagination.pageItems | length > 1
+}) }}

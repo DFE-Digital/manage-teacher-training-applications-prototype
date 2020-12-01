@@ -16,7 +16,7 @@
           href: '/interviews'
         }, {
           text: 'Past interviews',
-          href: '/application/past',
+          href: '/interviews/past',
           active: true
         }]
       }) }}
@@ -43,25 +43,7 @@
             {% endfor %}
           {% endfor %}
         </div>
-        {{ appPagination({
-          results: {
-            from: 1,
-            to: 50,
-            count: 100
-          },
-            next: {
-            text: 'Next',
-            href: ''
-          },
-            items: [{
-            text: '1',
-            href: '/page=1',
-            selected: true
-          }, {
-            text: '2',
-            href: '/page=2'
-          }]
-        }) }}
+        {% include "_includes/pagination.njk" %}
       {% endif %}
     </div>
   </div>
