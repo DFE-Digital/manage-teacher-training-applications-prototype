@@ -5,5 +5,5 @@ module.exports = (faker) => {
     'Primary (5-11)'
   ])
   const courseCode = faker.random.alphaNumeric(4).toUpperCase()
-  return `${courseName} ${courseCode}`
+  return `${courseName} (${courseCode})`
 }
