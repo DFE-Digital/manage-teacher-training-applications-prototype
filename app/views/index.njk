@@ -23,9 +23,6 @@
 
           <div class="app-application-cards">
             {%- for a in applications %}
-              {% set rbd = a.status.submitted.date | addDays(40) %}
-              {% set remaining = rbd | daysFromNow(rbd) %}
-              {% set updated = a.rejectedDate or a.offer.declinedDate or a.offer.acceptedDate or a.offer.madeDate or a.submittedDate %}
 
               {% if a.heading %}
                 <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
