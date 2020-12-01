@@ -1,3 +1,4 @@
+const Pagination = require('../data/pagination-utils')
 const utils = require('../data/application-utils')
 const { DateTime } = require('luxon')
 
@@ -344,10 +345,10 @@ module.exports = router => {
     })
 
     // Get the pagination data
-    let pagination = utils.getPagination(applications, req.query.page)
+    let pagination = Pagination.getPagination(applications, req.query.page)
 
     // Get a slice of the data to display
-    applications = utils.getDataByPage(applications, pagination.pageNumber)
+    applications = Pagination.getDataByPage(applications, pagination.pageNumber)
 
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)
