@@ -5,7 +5,6 @@ faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 
 // Fake data generators: general
-const generateStatus = require('../app/data/generators/status')
 const generateCourse = require('../app/data/generators/course')
 const generateCycle = require('../app/data/generators/cycle')
 const generateTrainingLocation = require('../app/data/generators/training-location')
@@ -33,8 +32,12 @@ const generateInterviews = require('../app/data/generators/interviews')
 
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
+  if (!params.status.length) {
+    return null
+  }
+
   const organisations = require('../app/data/organisations.json')
-  const status = params.status || generateStatus(faker)
+  const status = params.status
   const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
   const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 })
@@ -576,6 +579,13 @@ const generateFakeApplications = () => {
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
       status: 'Conditions met'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 20; i++) {
+    const application = generateFakeApplication({
+      status: 'Conditions not met'
     })
     applications.push(application)
   }

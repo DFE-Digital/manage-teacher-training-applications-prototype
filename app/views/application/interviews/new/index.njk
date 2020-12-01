@@ -7,7 +7,7 @@
 {% set title = "Set up an interview" %}
 
 {% set backUrl %}/application/{{application.id}}{% endset %}
-{% if application.interviews.items > 0 %}
+{% if application.interviews.items.length > 0 %}
 {% set backUrl %}/application/{{application.id}}/interviews{% endset %}
 {% endif %}
 
@@ -67,17 +67,19 @@
           }]
         }) }}
 
-        <div class="govuk-form-group">
-          <label class="govuk-label govuk-label--m" for="interview[time]">
-            Time
-          </label>
-          <span id="interview[time]-hint" class="govuk-hint">
-            For example, 9am or 2:30pm - enter 12pm for midday
-          </span>
-          <div class="app-time">
-            <input class="govuk-input govuk-input--width-5" id="interview[time]" name="interview[time]" type="text" aria-describedby="interview[time]-hint" value="{{data.interview.time}}">
-          </div>
-        </div>
+        {{ govukInput({
+          id: "interview[time]",
+          name: "interview[time]",
+          label: {
+            text: "Time",
+            classes: 'govuk-label--m'
+          },
+          classes: 'govuk-input--width-5',
+          hint: {
+            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+          },
+          value: data.interview.time
+        }) }}
 
         {{ govukRadios({
           idPrefix: "interview[organisation]",
