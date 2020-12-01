@@ -295,7 +295,13 @@ module.exports = router => {
     })
 
     req.flash('success', 'Interview cancelled')
-    res.redirect(`/application/${req.params.applicationId}/interviews/`)
+
+    if(application.interviews.items.length) {
+      res.redirect(`/application/${req.params.applicationId}/interviews/`)
+    } else {
+      res.redirect(`/application/${req.params.applicationId}`)
+    }
+
   })
 
 
