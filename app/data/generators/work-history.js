@@ -14,7 +14,7 @@ module.exports = (faker) => {
       }
     } else {
       return {
-        description: 'I attended a semester exchange programme, allowing me to study abroad at the University of Strasbourg.',
+        description: 'I volunteered with a marine conservation charity in the Seychelles as part of a career break.',
         category: 'break',
         duration: `${faker.random.number({ min: 1, max: 12 })} months`,
         startDate: faker.date.past(),
