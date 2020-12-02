@@ -21,6 +21,7 @@ const generateSchoolExperience = require('../app/data/generators/school-experien
 const generatePersonalStatement = require('../app/data/generators/personal-statement')
 const generateReferences = require('../app/data/generators/references')
 const generateInterviewNeeds = require('../app/data/generators/interview-needs')
+const generateSafeguarding = require('../app/data/generators/safeguarding')
 
 // Fake data generators: application management
 const generateOffer = require('../app/data/generators/offer')
@@ -87,7 +88,8 @@ const generateFakeApplication = (params = {}) => {
     schoolExperience: generateSchoolExperience(faker),
     personalStatement: generatePersonalStatement(faker),
     references: generateReferences(faker),
-    miscellaneous: faker.lorem.paragraph()
+    miscellaneous: faker.lorem.paragraph(),
+    safeguarding: generateSafeguarding(faker)
   }
 }
 

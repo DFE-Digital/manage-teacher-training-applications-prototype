@@ -161,7 +161,8 @@
         summaryText: "View guidance given to candidate",
         html: disabilityGuidanceHtml
       }) }}
-      <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or "No information shared"}}</p>
+
+      <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or appNoInformationShared()}}</p>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Criminal convictions and professional misconduct</h2>
       {% set safeguardingGuidanceHtml %}
@@ -191,7 +192,7 @@
           html: safeguardingHtml
         }) }}
       {% else %}
-        <p class="govuk-body">No information shared</p>
+        <p class="govuk-body">{{appNoInformationShared()}}</p>
       {% endif %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview</h2>
@@ -211,10 +212,7 @@
         summaryText: "View guidance given to candidate",
         html: interviewGuidanceHtml
       }) }}
-      <p class="govuk-body">{{ application.interviewNeeds | nl2br or "No information shared" }}</p>
-    </div>
-    <div class="govuk-grid-column-one-third">
-
+      <p class="govuk-body">{{ application.interviewNeeds | nl2br or appNoInformationShared() }}</p>
     </div>
   </div>
 
