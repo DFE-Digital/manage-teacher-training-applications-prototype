@@ -306,21 +306,28 @@
       {% set referenceId = "second" %}
       {% include "_includes/application/reference.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Work history</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
 
-      {{ govukInsetText({
-        text: "On 1 January 2021 we stopped asking candidates for their relevant skills and experience for each job."
-      }) }}
+      {% if application.workHistoryAnswer == "yes" %}
 
-      {% set workHistoryGuidanceHtml %}
-        <p class="govuk-body">Training providers need a complete picture of your work history (outside of full time education), including time out of the workplace, to safeguard children.</p>
-        <p class="govuk-body">Breaks in work history will not impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: workHistoryGuidanceHtml
-      }) }}
-      {% include "_includes/application/work-history.njk" %}
+        {{ govukInsetText({
+          text: "On 1 January 2021 we stopped asking candidates for their relevant skills and experience for each job."
+        }) }}
+
+        {% set workHistoryGuidanceHtml %}
+          <p class="govuk-body">Training providers need a complete picture of your work history (outside of full time education), including time out of the workplace, to safeguard children.</p>
+          <p class="govuk-body">Breaks in work history will not impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
+        {% endset %}
+        {{ govukDetails({
+          summaryText: "View guidance given to candidate",
+          html: workHistoryGuidanceHtml
+        }) }}
+        {% include "_includes/application/work-history.njk" %}
+      {% elseif application.workHistoryAnswer == "full-time-education" %}
+        <p class="govuk-body">The candidate has no work history as they have always been in full time education.</p>
+      {% else %}
+        <p class="govuk-body">{{ application.workHistoryMissing }}</p>
+      {% endif %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
       {% include "_includes/application/diversity-information.njk" %}
