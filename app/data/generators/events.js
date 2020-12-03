@@ -1,9 +1,17 @@
+const { DateTime } = require('luxon')
+
+function getDate(faker, date = new Date, min = 1, max = 20) {
+  let dt = DateTime.fromJSDate(date)
+  const num = faker.random.number({ 'min': min, 'max': max })
+  return dt.plus({ days: num }).toJSDate()
+}
+
 module.exports = (faker, params) => {
   const events = { items: [] }
 
-  const date = faker.helpers.randomize([
-    '2020-08-12',
-    '2020-08-11',
+  let date = faker.helpers.randomize([
+    // '2020-08-12T09:22:13.211Z',
+    // '2020-08-11T18:49:30.132Z',
     faker.date.past(),
     faker.date.past(),
     faker.date.past(),
@@ -18,6 +26,9 @@ module.exports = (faker, params) => {
   })
 
   if (params.interviewId) {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Interview set up',
       user: faker.name.findName(),
@@ -27,6 +38,9 @@ module.exports = (faker, params) => {
       }
     })
   }
+
+  // generate a new date for the next event in the series
+  date = getDate(faker, date)
 
   events.items.push({
     title: 'Note added',
@@ -38,6 +52,9 @@ module.exports = (faker, params) => {
   })
 
   if (params.status === 'Rejected') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Application rejected',
       user: faker.name.findName(),
@@ -46,6 +63,9 @@ module.exports = (faker, params) => {
   }
 
   if (params.status === 'Application withdrawn') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Application withdrawn',
       user: 'Candidate',
@@ -54,6 +74,9 @@ module.exports = (faker, params) => {
   }
 
   if (params.offer) {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Offer made',
       user: faker.name.findName(),
@@ -62,6 +85,9 @@ module.exports = (faker, params) => {
   }
 
   if (params.status === 'Offer withdrawn') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Offer withdrawn',
       user: faker.name.findName(),
@@ -70,12 +96,18 @@ module.exports = (faker, params) => {
   }
 
   if (params.status === 'Accepted') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Offer accepted',
       user: 'Candidate',
       date: date
     })
   } else if (params.status === 'Declined') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Offer declined',
       user: 'Candidate',
@@ -84,6 +116,9 @@ module.exports = (faker, params) => {
   }
 
   if (params.status === 'Conditions met') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Conditions met',
       user: faker.name.findName(),
@@ -92,6 +127,9 @@ module.exports = (faker, params) => {
   }
 
   if (params.status === 'Conditions not met') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Conditions not met',
       user: faker.name.findName(),
@@ -100,6 +138,9 @@ module.exports = (faker, params) => {
   }
 
   if (params.status === 'Deferred') {
+    // generate a new date for the next event in the series
+    date = getDate(faker, date)
+
     events.items.push({
       title: 'Offer deferred',
       user: faker.name.findName(),
