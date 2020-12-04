@@ -152,7 +152,7 @@
           },
           {
             key: {
-              text: "Details"
+              text: "Give any relevant information"
             },
             value: {
               html: application.disability.details
@@ -161,38 +161,21 @@
         ]
       }) }}
 
-      <!--
-,
-          {
-            key: {
-              text: "Do you have any interview needs?"
-            },
-            value: {
-              text: "Yes"
-            }
-          },
-          {
-            key: {
-              text: "Interview needs"
-            },
-            value: {
-              text: "I need lots of sweets to get me through this ordeal"
-            }
-          }
-      -->
-
-
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding</h2>
 
       {% set safeguardingValueHtml %}
         {% if application.safeguarding.response %}
-          {% set safeguardingDetailsHtml %}
-            <p class="govuk-body">{{ application.safeguarding | nl2br }}</p>
-          {% endset %}
-          {{ govukDetails({
-            summaryText: "View information disclosed by the candidate",
-            html: safeguardingDetailsHtml
-          }) }}
+          {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
+            {% set safeguardingDetailsHtml %}
+              <p class="govuk-body">{{ application.safeguarding.details | nl2br }}</p>
+            {% endset %}
+            {{ govukDetails({
+              summaryText: "View information",
+              html: safeguardingDetailsHtml
+            }) }}
+          {% else %}
+            <p>You cannot safeguarding information. This is because you and/or your organisation does not have this permission.</p>
+          {% endif %}
         {% endif %}
       {% endset %}
 
@@ -203,96 +186,43 @@
               text: "Do you want to share any safeguarding issues?"
             },
             value: {
-              text: "Yes" if application.safeguarding.response else appNoInformationShared()
+              text: "Yes" if application.safeguarding.response else "No"
             }
           },
           {
             key: {
-              text: "Safeguarding issues"
+              text: "Give any relevant information"
             },
             value: {
               html: safeguardingValueHtml
             }
-          } if application.safeguarding.response
+          } if application.safeguarding.details
         ]
       }) }}
 
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
 
-      {# <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability, access and other needs</h2>
-      {% set disabilityGuidanceHtml %}
-        <h2 class="govuk-heading-m ">Asking for support if you have a disability or other needs</h2>
-        <p class="govuk-body">You might benefit from extra support if you’re disabled, have a mental health condition or educational needs.</p>
-        <p class="govuk-body">If you choose to tell us you need support, we’ll let your training provider know. They can then make adjustments so you can attend an interview or do the training.</p>
-        <p class="govuk-body">Examples of support could be:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>organising equipment like a hearing loop or an adapted keyboard</li>
-          <li>putting you in touch with support staff if you have a mental health condition</li>
-          <li>making sure classrooms are wheelchair accessible</li>
-        </ul>
-        <p class="govuk-body">If the help you need is not covered by your provider making adjustments, you might also be able to get support from <a href="https://www.gov.uk/access-to-work">Access to Work</a>. This could include a grant to help cover the costs of practical support in the workplace.</p>
-        <h2 class="govuk-heading-m">It’s against the law to discriminate</h2>
-        <p class="govuk-body">If you’re disabled, <a href="/getintoteaching/train-to-teach-with-a-disability">it’s against the law to discriminate against you</a>. Training providers must not:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>ask disability or health questions if they’re not relevant to your ability to become a teacher</li>
-          <li>reject your application because you’re disabled</li>
-        </ul>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: disabilityGuidanceHtml
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Do you have any interview needs?"
+            },
+            value: {
+              text: "Yes" if application.interviewNeeds.response else "No"
+            }
+          },
+          {
+            key: {
+              text: "What are your interview needs?"
+            },
+            value: {
+              html: application.interviewNeeds.details
+            }
+          } if application.interviewNeeds.details
+        ]
       }) }}
 
-      <p class="govuk-body">{{application["reasonable-adjustments"] | nl2br or appNoInformationShared()}}</p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Criminal convictions and professional misconduct</h2>
-      {% set safeguardingGuidanceHtml %}
-        <h2 class="govuk-heading-m">Declaring any safeguarding issues</h2>
-        <p class="govuk-body">Teacher training providers need to check that it’s safe for you to work with children and young people.</p>
-        <p class="govuk-body">As well as confirming your identity and your right to work in the UK, providers will check:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>your criminal record in the UK (they'll do an enhanced <a href="https://www.gov.uk/government/organisations/disclosure-and-barring-service/about#dbs-checks">DBS check)</a> and abroad where relevant</li>
-          <li>whether you’ve been banned from teaching or working with children</li>
-          <li>your professional behaviour, such as whether you’ve been removed from teacher training and what your referees say about you</li>
-        </ul>
-        <p class="govuk-body">Tell your provider about any potential safeguarding issues, such as offences, cautions, reprimands and final warnings. They can give advice about whether this will affect your application.</p>
-        <p class="govuk-body">It won’t necessarily stop you becoming a teacher.</p>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: safeguardingGuidanceHtml
-      }) }} #}
-
-      {# {% if application.safeguarding %}
-        {% set safeguardingHtml %}
-          <p class="govuk-body">{{ application.safeguarding | nl2br }}</p>
-        {% endset %}
-        <p class="govuk-body">The candidate has disclosed sensitive material related to safeguarding.</p>
-        {{ govukDetails({
-          summaryText: "View information disclosed by the candidate",
-          html: safeguardingHtml
-        }) }}
-      {% else %}
-        <p class="govuk-body">{{appNoInformationShared()}}</p>
-      {% endif %} #}
-
-      {# <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
-      {% set interviewGuidanceHtml %}
-        <h2 class="govuk-heading-m">Interview needs</h2>
-        <p class="govuk-body">Interviews usually take place over the course of a day. You'll need to attend in person.</p>
-        <p class="govuk-body">Training providers might not have much flexibility when setting a date and time for interview.</p>
-        <p class="govuk-body">If there's a reason why you need some flexibility you can tell us about it here.</p>
-        <p class="govuk-body">For example:</p>
-        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
-          <li>you have commitments such as employment or caring responsibilities</li>
-          <li>you'll be travelling a long way to get to the interview</li>
-          <li>you'll need some adjustments because you're disabled</li>
-        </ul>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: interviewGuidanceHtml
-      }) }}
-      <p class="govuk-body">{{ application.interviewNeeds | nl2br or appNoInformationShared() }}</p> #}
     </div>
   </div>
 
@@ -311,9 +241,9 @@
       }) }} #}
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
-      {# {% if application.personalDetails.isInternationalCandidate %} #}
+      {% if application.personalDetails.isInternationalCandidate %}
         {% include "_includes/application/english-language-qualification.njk" %}
-      {# {% endif %} #}
+      {% endif %}
     </div>
   </div>
 

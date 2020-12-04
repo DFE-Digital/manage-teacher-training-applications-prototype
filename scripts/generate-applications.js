@@ -80,7 +80,7 @@ const generateFakeApplication = (params = {}) => {
     events,
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
-    interviewNeeds: generateInterviewNeeds(faker),
+    interviewNeeds: generateInterviewNeeds(),
     workHistory: params.workHistory || generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
