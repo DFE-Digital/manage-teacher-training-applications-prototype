@@ -138,7 +138,7 @@
         }]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Support for a disability</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -147,7 +147,7 @@
               text: "Do you want to ask for help to become a teacher?"
             },
             value: {
-              text: "Yes" if application.disability.response
+            text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
             }
           },
           {
@@ -161,20 +161,20 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
 
       {% set safeguardingValueHtml %}
         {% if application.safeguarding.response %}
           {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
-            {% set safeguardingDetailsHtml %}
-              <p class="govuk-body">{{ application.safeguarding.details | nl2br }}</p>
-            {% endset %}
+            {# {% set safeguardingDetailsHtml %} #}
+              <p>{{ application.safeguarding.details | nl2br }}</p>
+            {# {% endset %}
             {{ govukDetails({
               summaryText: "View information",
               html: safeguardingDetailsHtml
-            }) }}
+            }) }} #}
           {% else %}
-            <p>You cannot safeguarding information. This is because you and/or your organisation does not have this permission.</p>
+            <p>You cannot view safeguarding information. You and your organisation would need to have this permission to view it.</p>
           {% endif %}
         {% endif %}
       {% endset %}
