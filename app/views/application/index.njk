@@ -138,7 +138,7 @@
         }]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Adjustments</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Support for a disability</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -147,9 +147,22 @@
               text: "Do you want to ask for help to become a teacher?"
             },
             value: {
-              text: "No"
+              text: "Yes" if application.disability.response
             }
           },
+          {
+            key: {
+              text: "Details"
+            },
+            value: {
+              html: application.disability.details
+            }
+          } if application.disability.details
+        ]
+      }) }}
+
+      <!--
+,
           {
             key: {
               text: "Do you have any interview needs?"
@@ -166,23 +179,20 @@
               text: "I need lots of sweets to get me through this ordeal"
             }
           }
-        ]
-      }) }}
+      -->
+
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding</h2>
 
-      {% set safeguardingBoomHtml %}
-        {% if application.safeguarding %}
-          {% set safeguardingHtml %}
+      {% set safeguardingValueHtml %}
+        {% if application.safeguarding.response %}
+          {% set safeguardingDetailsHtml %}
             <p class="govuk-body">{{ application.safeguarding | nl2br }}</p>
           {% endset %}
-          {# <p class="govuk-body">The candidate has disclosed sensitive material related to safeguarding.</p> #}
           {{ govukDetails({
             summaryText: "View information disclosed by the candidate",
-            html: safeguardingHtml
+            html: safeguardingDetailsHtml
           }) }}
-        {% else %}
-          <p class="govuk-body">{{appNoInformationShared()}}</p>
         {% endif %}
       {% endset %}
 
@@ -193,22 +203,22 @@
               text: "Do you want to share any safeguarding issues?"
             },
             value: {
-              text: "Yes"
+              text: "Yes" if application.safeguarding.response else appNoInformationShared()
             }
           },
           {
             key: {
-              text: "Safeguarding isues"
+              text: "Safeguarding issues"
             },
             value: {
-              html: safeguardingBoomHtml
+              html: safeguardingValueHtml
             }
-          }
+          } if application.safeguarding.response
         ]
       }) }}
 
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability, access and other needs</h2>
+      {# <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability, access and other needs</h2>
       {% set disabilityGuidanceHtml %}
         <h2 class="govuk-heading-m ">Asking for support if you have a disability or other needs</h2>
         <p class="govuk-body">You might benefit from extra support if you’re disabled, have a mental health condition or educational needs.</p>
@@ -250,9 +260,9 @@
       {{ govukDetails({
         summaryText: "View guidance given to candidate",
         html: safeguardingGuidanceHtml
-      }) }}
+      }) }} #}
 
-      {% if application.safeguarding %}
+      {# {% if application.safeguarding %}
         {% set safeguardingHtml %}
           <p class="govuk-body">{{ application.safeguarding | nl2br }}</p>
         {% endset %}
@@ -263,9 +273,9 @@
         }) }}
       {% else %}
         <p class="govuk-body">{{appNoInformationShared()}}</p>
-      {% endif %}
+      {% endif %} #}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
+      {# <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
       {% set interviewGuidanceHtml %}
         <h2 class="govuk-heading-m">Interview needs</h2>
         <p class="govuk-body">Interviews usually take place over the course of a day. You'll need to attend in person.</p>
@@ -282,7 +292,7 @@
         summaryText: "View guidance given to candidate",
         html: interviewGuidanceHtml
       }) }}
-      <p class="govuk-body">{{ application.interviewNeeds | nl2br or appNoInformationShared() }}</p>
+      <p class="govuk-body">{{ application.interviewNeeds | nl2br or appNoInformationShared() }}</p> #}
     </div>
   </div>
 
@@ -295,15 +305,15 @@
         <p class="govuk-body">You should also include any postgraduate degrees.</p>
         <p class="govuk-body">Enter your other qualifications as completely as you can, including all your GCSEs and A levels (or equivalents), and any other qualifications where you showed skills that might help you as a teacher.</p>
       {% endset %}
-      {{ govukDetails({
+      {# {{ govukDetails({
         summaryText: "View guidance given to candidate",
         html: qualificationsGuidanceHtml
-      }) }}
+      }) }} #}
       {% include "_includes/application/degrees.njk" %}
       {% include "_includes/application/gcses.njk" %}
-      {% if application.personalDetails.isInternationalCandidate %}
+      {# {% if application.personalDetails.isInternationalCandidate %} #}
         {% include "_includes/application/english-language-qualification.njk" %}
-      {% endif %}
+      {# {% endif %} #}
     </div>
   </div>
 

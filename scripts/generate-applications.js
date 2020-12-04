@@ -22,6 +22,7 @@ const generatePersonalStatement = require('../app/data/generators/personal-state
 const generateReferences = require('../app/data/generators/references')
 const generateInterviewNeeds = require('../app/data/generators/interview-needs')
 const generateSafeguarding = require('../app/data/generators/safeguarding')
+const generateDisability = require('../app/data/generators/disability')
 
 // Fake data generators: application management
 const generateOffer = require('../app/data/generators/offer')
@@ -80,7 +81,7 @@ const generateFakeApplication = (params = {}) => {
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
     interviewNeeds: generateInterviewNeeds(faker),
-    workHistory: generateWorkHistory(faker),
+    workHistory: params.workHistory || generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
@@ -89,7 +90,8 @@ const generateFakeApplication = (params = {}) => {
     personalStatement: generatePersonalStatement(faker),
     references: generateReferences(faker),
     miscellaneous: faker.lorem.paragraph(),
-    safeguarding: generateSafeguarding(faker)
+    safeguarding: generateSafeguarding(faker),
+    disability: generateDisability(faker)
   }
 }
 
@@ -209,7 +211,8 @@ const generateFakeApplications = () => {
       givenName: 'Emma',
       familyName: 'Hayes',
       sex: 'Female'
-    }
+    },
+    workHistory: []
   }))
 
   applications.push(generateFakeApplication({
