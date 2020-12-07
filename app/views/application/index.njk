@@ -174,7 +174,7 @@
               html: safeguardingDetailsHtml
             }) }} #}
           {% else %}
-            <p>You cannot view safeguarding information. You and your organisation would need to have this permission to view it.</p>
+            <p>You and your organisation both need to have permission to view safeguarding information.</p>
           {% endif %}
         {% endif %}
       {% endset %}
@@ -186,7 +186,7 @@
               text: "Do you want to share any safeguarding issues?"
             },
             value: {
-              text: "Yes" if application.safeguarding.response else "No"
+              text: "Yes, I want to share something" if application.safeguarding.response else "No"
             }
           },
           {
