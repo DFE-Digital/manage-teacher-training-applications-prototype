@@ -79,7 +79,6 @@
     <div class="app-timeline__item">
       <div class="app-timeline__header">
         <h2 class="app-timeline__title">
-
           {{ title }}
         </h2>
         <p class="app-timeline__byline">
@@ -87,9 +86,9 @@
             {{- event.event.date | govukDateAtTime -}}
           </time>
         </p>
-        <br>
+
         {{ govukTag({
-          classes: status | statusClass,
+          classes: "govuk-!-margin-top-2 " + (status | statusClass),
           text: status
         }) }}
       </div>

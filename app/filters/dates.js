@@ -1,11 +1,11 @@
 // -------------------------------------------------------------------
 // Imports and setup
 // -------------------------------------------------------------------
-const moment = require("moment");
-var _ = require('lodash');
+const _ = require('lodash')
+const { DateTime, Info } = require("luxon")
 
 // Leave this filters line
-var filters = {}
+const filters = {}
 
 /*
   ====================================================================
@@ -26,12 +26,12 @@ filters.arrayToDateObject = (array) => {
   return new Date(array[2], array[1] -1, array[0])
 }
 
-// Output date array - for use in design system macros macros
+// Output date array - for use in design system macros
 filters.toDateArray = (date) => {
   if (!date) return []
   if (_.isArray(date)) return date
   else {
-    return [moment(date).date(), moment(date).month() + 1, moment(date).year()]
+    return [DateTime.fromISO(date).day, DateTime.fromISO(date).month, DateTime.fromISO(date).year]
   }
 }
 /*
@@ -69,7 +69,7 @@ filters.today = () => {
 */
 
 filters.todayGovuk = () => {
-  return moment().format('D MMMM YYYY')
+  return DateTime.local().toFormat('d MMMM yyyy')
 }
 
 /*
@@ -88,20 +88,21 @@ filters.todayGovuk = () => {
 */
 
 filters.dateToGovukDate = (date) => {
-  if (date){
-    let theDate = moment(date)
-    if (theDate.isValid()){
-      return theDate.format('D MMMM YYYY')
+  if (date) {
+    let theDate = DateTime.fromISO(date)
+    if (theDate.isValid) {
+      return theDate.toFormat('d MMMM yyyy')
     }
   }
   return ''
 }
 
 filters.govukDate = (date) => {
-  if (_.isArray(date)){
+  if (_.isArray(date)) {
     return filters.arrayToGovukDate(date)
+  } else {
+    return filters.dateToGovukDate(date)
   }
-  else return filters.dateToGovukDate(date)
 }
 
 
@@ -143,10 +144,11 @@ filters.arrayToGovukDate = (array) => {
 */
 
 filters.prettyMonth = (monthNumber) => {
-  if (monthNumber){
-    return moment().month(monthNumber - 1).format("MMMM");
+  if (monthNumber) {
+    return Info.months()[(monthNumber-1)]
+  } else {
+    return null
   }
-  else return ''
 }
 
 /*
@@ -162,113 +164,89 @@ filters.prettyMonth = (monthNumber) => {
 
 //
 filters.sortDateArrays = (arr, reversed, attr) => {
+  let array = _.map(arr, v => v)
 
-    let array = _.map(arr, v => v)
+  array.sort((a, b) => {
+    let x = (attr) ? a[attr] : a
+    let y = (attr) ? b[attr] : b
 
+    // Convert arrays of 3 to date objects
+    x = (_.isArray(x) && (x.length == 3)) ? filters.arrayToDateObject(x) : x
+    y = (_.isArray(y) && (y.length == 3)) ? filters.arrayToDateObject(y) : y
 
-    array.sort((a, b) => {
-      let x = (attr) ? a[attr] : a
-      let y = (attr) ? b[attr] : b
+    if (x < y) {
+      return reversed ? 1 : -1
+    } else if (x > y) {
+      return reversed ? -1 : 1
+    } else {
+      return 0
+    }
+  })
 
-      // Convert arrays of 3 to date objects
-      x = (_.isArray(x) && (x.length == 3)) ? filters.arrayToDateObject(x) : x
-      y = (_.isArray(y) && (y.length == 3)) ? filters.arrayToDateObject(y) : y
-
-      // console.log({x}, {attr})
-      // if (!caseSens && _.isString(x) && _.isString(y)) {
-      //   x = x.toLowerCase()
-      //   y = y.toLowerCase()
-      // }
-
-      if (x < y) {
-        return reversed ? 1 : -1
-      } else if (x > y) {
-        return reversed ? -1 : 1
-      } else {
-        return 0
-      }
-    })
-
-    return array
-  }
+  return array
+}
 
 // https://momentjs.com/docs/#/displaying/format/
 filters.formatDate = (date, format, dateFormat) => {
 
-  var returnDate;
+  let returnDate
   // No date provided.
-  if (!date){
-    // console.log('error for', date, 'format', format);
-    return ''
-    // throw "Error in formatDate: no date provided";
+  if (!date) {
+    // console.log('error for', date, 'format', format)
+    return null
+    // throw "Error in formatDate: no date provided"
   }
   // Check for valid date
-  else if (dateFormat && moment(date, dateFormat).isValid()){
-    returnDate = moment(date, dateFormat);
+  else if (_.isString(dateFormat) && DateTime.fromISO(date).isValid) {
+    // returnDate = moment(date, dateFormat)
+    returnDate = DateTime.fromISO(date).toFormat(dateFormat)
   }
-  else if ( moment(date).isValid() ){
-    returnDate = moment(date);
+  else if ( DateTime.fromISO(date).isValid ) {
+    returnDate = DateTime.fromISO(date)
   }
   // Invalid date
   else {
-    throw "Error in formatDate: invalid date";
-  };
+    throw "Error in formatDate: invalid date"
+  }
 
-  switch (true)
-    {
-      // 2018-03-21
-      case (format == 'dashDate'):
-        return returnDate.format('YYYY-MM-DD');
+  switch (true) {
+    // 2018-03-21
+    case (format == 'dashDate'):
+      return returnDate.toFormat('yyyy-MM-dd')
 
-      // 2018/03/21
-      case (format == 'slashDate'):
-        return returnDate.format('YYYY/MM/DD');
+    // 2018/03/21
+    case (format == 'slashDate'):
+      return returnDate.toFormat('yyyy/MM/dd')
 
-      // 2018/03
-      case (format == 'yearMonth'):
-        return returnDate.format('YYYY/MM');
+    // 2018/03
+    case (format == 'yearMonth'):
+      return returnDate.toFormat('yyyy/MM')
 
-      // 2018-03-21T00:00:00.000Z
-      case (format == 'iso8601'):
-        return returnDate.toISOString();
+    // 2018-03-21T00:00:00.000Z
+    case (format == 'iso8601'):
+      return returnDate.toISODate()
 
-      // a year ago
-      case (format == 'relative'):
-        return moment(returnDate).fromNow()
-        // return timeAgoInDays(returnDate)
+    // a year ago
+    case (format == 'relative'):
+      return returnDate.toRelative()
+      // return timeAgoInDays(returnDate)
 
-      // 21st March 2018
-      case (format == 'pretty'):
-        return returnDate.format('Do MMMM YYYY');
+    // 21st March 2018
+    case (format == 'pretty'):
+      return returnDate.toFormat('d MMMM yyyy')
 
-      // March 21st 2018, 12:00:00 am
-      case (format == 'full'):
-        return returnDate.format('MMMM Do YYYY, h:mm:ss a');
+    // March 21st 2018, 12:00:00 am
+    case (format == 'full'):
+      return returnDate.toFormat('MMMM d yyyy, h:mm:ss a')
 
-      // pass format through to moment
-      case _.isString(format):
-        return returnDate.format(format);
+    // pass format through to moment
+    case _.isString(format):
+      return returnDate.toFormat(format)
 
-      // Default
-      default:
-        return returnDate.format();
-    }
-}
-
-filters.isInLast = (date, count, units) => {
-  let compareDate = moment().subtract(count, units)
-  return moment(date).isAfter(compareDate)
-}
-
-// Expose moment as a filter
-/* Usage:
-
-{{ date | moment('subtract', 1, "week") }} // return the date 1 week ago
-
-*/
-
-filters.moment = (date, name, ...args) => {
-  return moment(date)[name](...args)
+    // Default
+    default:
+      return returnDate.toString()
+  }
 }
 
 // -------------------------------------------------------------------

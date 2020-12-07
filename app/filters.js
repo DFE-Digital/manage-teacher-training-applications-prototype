@@ -1,9 +1,8 @@
-const { DateTime } = require('luxon')
-var _ = require('lodash');
-const moment = require('moment')
-const pluralize = require('pluralize')
+const _ = require('lodash');
 const fs = require('fs')
 const path = require('path')
+const pluralize = require('pluralize')
+const { DateTime } = require('luxon')
 const individualFiltersFolder = path.join(__dirname, './filters')
 
 module.exports = (env) => {
@@ -57,16 +56,16 @@ module.exports = (env) => {
   filters.govukDateAtTime = date => {
     const govukDate = filters.govukDate(date)
     const time = filters.time(date)
-    return govukDate + " at " + time
+    return govukDate + " at " + (time).toLowerCase()
   }
 
 
   filters.time = (str) => {
-    var m = moment(str)
-    if (m.minutes() > 0) {
-      return m.format('h:mma')
+    const dt = DateTime.fromISO(str)
+    if (dt.minute > 0) {
+      return dt.toFormat('h:mma')
     } else {
-      return m.format('ha')
+      return dt.toFormat('ha')
     }
   }
 

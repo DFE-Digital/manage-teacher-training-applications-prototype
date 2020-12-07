@@ -39,7 +39,6 @@
     "keypather": "^3.1.0",
     "luxon": "^1.24.1",
     "marked": "^1.1.1",
-    "moment": "^2.27.0",
     "notifications-node-client": "^5.0.0",
     "nunjucks": "^3.2.1",
     "pluralize": "^8.0.0",
