@@ -47,26 +47,28 @@ module.exports = (env) => {
 
   /**
    * GOV.UK style dates
-   * @type {String} str
+   * @type {Date} date
    */
-  // filters.govukDate = date => {
-  //   return moment(date).format('D MMMM YYYY')
-  // }
 
   filters.govukDateAtTime = date => {
     const govukDate = filters.govukDate(date)
     const time = filters.time(date)
-    return govukDate + " at " + (time).toLowerCase()
+    return govukDate + " at " + time
   }
 
+  /**
+   * GOV.UK style times
+   * @type {Date} date
+   */
 
-  filters.time = (str) => {
-    const dt = DateTime.fromISO(str)
+  filters.time = date => {
+    let dt = DateTime.fromISO(date)
     if (dt.minute > 0) {
-      return dt.toFormat('h:mma')
+      dt = dt.toFormat('h:mma')
     } else {
-      return dt.toFormat('ha')
+      dt = dt.toFormat('ha')
     }
+    return dt.toLowerCase()
   }
 
   /**

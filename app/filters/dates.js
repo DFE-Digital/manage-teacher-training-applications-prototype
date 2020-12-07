@@ -209,44 +209,40 @@ filters.formatDate = (date, format, dateFormat) => {
     throw "Error in formatDate: invalid date"
   }
 
-  switch (true) {
+  switch (format) {
     // 2018-03-21
-    case (format == 'dashDate'):
+    case 'dashDate':
       return returnDate.toFormat('yyyy-MM-dd')
 
     // 2018/03/21
-    case (format == 'slashDate'):
+    case 'slashDate':
       return returnDate.toFormat('yyyy/MM/dd')
 
     // 2018/03
-    case (format == 'yearMonth'):
+    case 'yearMonth':
       return returnDate.toFormat('yyyy/MM')
 
     // 2018-03-21T00:00:00.000Z
-    case (format == 'iso8601'):
+    case 'iso8601':
       return returnDate.toISODate()
 
-    // a year ago
-    case (format == 'relative'):
+    // 2 days ago, in 1 day
+    case 'relative':
       return returnDate.toRelative()
-      // return timeAgoInDays(returnDate)
 
-    // 21st March 2018
-    case (format == 'pretty'):
+    // 21 March 2018
+    case 'pretty':
       return returnDate.toFormat('d MMMM yyyy')
 
-    // March 21st 2018, 12:00:00 am
-    case (format == 'full'):
-      return returnDate.toFormat('MMMM d yyyy, h:mm:ss a')
-
-    // pass format through to moment
-    case _.isString(format):
-      return returnDate.toFormat(format)
+    // 21 March 2018 at 12:00am
+    case 'full':
+      return returnDate.toFormat("d MMMM yyyy 'at' h:mma")
 
     // Default
     default:
-      return returnDate.toString()
+      return _.isString(format) ? returnDate.toFormat(format) : returnDate.toString()
   }
+
 }
 
 // -------------------------------------------------------------------
