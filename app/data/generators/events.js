@@ -1,22 +1,25 @@
 const { DateTime } = require('luxon')
+const faker = require('faker')
+faker.locale = 'en_GB'
 
-function getDate(faker, date = new Date, min = 1, max = 20) {
+function getRandomDate(date, min = 1, max = 20) {
   let dt = DateTime.fromJSDate(date)
   const num = faker.random.number({ 'min': min, 'max': max })
   return dt.plus({ days: num }).toJSDate()
 }
 
-module.exports = (faker, params) => {
+module.exports = (params) => {
   const events = { items: [] }
+  const now = new Date(2020, 8, 12)
 
   let date = faker.helpers.randomize([
-    // '2020-08-12T09:22:13.211Z',
-    // '2020-08-11T18:49:30.132Z',
-    faker.date.past(),
-    faker.date.past(),
-    faker.date.past(),
-    faker.date.past(),
-    faker.date.past()
+    '2020-08-12T09:22:13.211Z',
+    '2020-08-11T18:49:30.132Z',
+    faker.date.past(faker.helpers.randomize([1,2]), now),
+    faker.date.past(faker.helpers.randomize([1,2]), now),
+    faker.date.past(faker.helpers.randomize([1,2]), now),
+    faker.date.past(faker.helpers.randomize([1,2]), now),
+    faker.date.past(faker.helpers.randomize([1,2]), now)
   ])
 
   events.items.push({
@@ -27,7 +30,7 @@ module.exports = (faker, params) => {
 
   if (params.interviewId) {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Interview set up',
@@ -40,7 +43,7 @@ module.exports = (faker, params) => {
   }
 
   // generate a new date for the next event in the series
-  date = getDate(faker, date)
+  date = getRandomDate(date)
 
   events.items.push({
     title: 'Note added',
@@ -53,7 +56,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Rejected') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Application rejected',
@@ -64,7 +67,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Application withdrawn') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Application withdrawn',
@@ -75,7 +78,7 @@ module.exports = (faker, params) => {
 
   if (params.offer) {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Offer made',
@@ -86,7 +89,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Offer withdrawn') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Offer withdrawn',
@@ -97,7 +100,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Accepted') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Offer accepted',
@@ -106,7 +109,7 @@ module.exports = (faker, params) => {
     })
   } else if (params.status === 'Declined') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Offer declined',
@@ -117,7 +120,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Conditions met') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Conditions met',
@@ -128,7 +131,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Conditions not met') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Conditions not met',
@@ -139,7 +142,7 @@ module.exports = (faker, params) => {
 
   if (params.status === 'Deferred') {
     // generate a new date for the next event in the series
-    date = getDate(faker, date)
+    date = getRandomDate(date)
 
     events.items.push({
       title: 'Offer deferred',
