@@ -1,0 +1,39 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'export' %}
+{% set title = "Export data for Higher Education Statistics Agency (HESA)" %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        href: "/export",
+        text: "Export data"
+      },
+      {
+        text: title
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <p>The data will include all candidates who have accepted an offer from any of your organisations.</p>
+
+      <!-- they dont have permission to see diversity information for one of their orgs -->
+      <p>Diversity information will be marked confidential if you do not have permission to view it.</p>
+
+
+      {{ govukButton({
+        text: "Export data for HESA"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -6,8 +6,11 @@
 {% block content %}
   <h1 class="govuk-heading-l">{{title}}</h1>
 
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <p>Choose which data to export or <a href="/export/hesa">export only the data needed by the Higher Education Statistics Agency (HESA)</a>.</p>
       <form method="post">
         {{ govukCheckboxes({
           idPrefix: 'export_cycle',
