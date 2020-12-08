@@ -228,13 +228,13 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Qualifications</h2>
-      {% set qualificationsGuidanceHtml %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-6  govuk-!-font-size-27">Qualifications</h2>
+      {# {% set qualificationsGuidanceHtml %}
         <h2 class="govuk-heading-m">Academic and other relevant qualifications</h2>
         <p class="govuk-body">Your undergraduate degree confirms your eligibility to teach. Enter the details of your degree as they appear on your certificate, translating them into English if necessary.</p>
         <p class="govuk-body">You should also include any postgraduate degrees.</p>
         <p class="govuk-body">Enter your other qualifications as completely as you can, including all your GCSEs and A levels (or equivalents), and any other qualifications where you showed skills that might help you as a teacher.</p>
-      {% endset %}
+      {% endset %} #}
       {# {{ govukDetails({
         summaryText: "View guidance given to candidate",
         html: qualificationsGuidanceHtml
@@ -251,8 +251,8 @@
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Work history</h2>
-      {% set workHistoryGuidanceHtml %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
+      {# {% set workHistoryGuidanceHtml %}
         <h2 class="govuk-heading-m">Work history</h2>
         <p class="govuk-body">Training providers need a complete picture of the last 5 years of of your work history, including time out of the workplace, to safeguard children.</p>
         <p class="govuk-body">Breaks in work history won’t impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
@@ -260,11 +260,11 @@
       {{ govukDetails({
         summaryText: "View guidance given to candidate",
         html: workHistoryGuidanceHtml
-      }) }}
+      }) }} #}
       {% include "_includes/application/work-history.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Unpaid experience and volunteering</h2>
-      {% set volunteeringGuidanceHtml %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
+      {# {% set volunteeringGuidanceHtml %}
         <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
         <p class="govuk-body">Tell us about any unpaid experience you have working with children or in a school. For example:</p>
         <ul class="govuk-list govuk-list--bullet">
@@ -277,7 +277,7 @@
       {{ govukDetails({
         summaryText: "View guidance given to candidate",
         html: volunteeringGuidanceHtml
-      }) }}
+      }) }} #}
       {% include "_includes/application/school-experience.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Personal statement</h2>
