@@ -1,3 +1,4 @@
+const Pagination = require('../data/pagination-utils')
 const utils = require('../data/application-utils')
 const { DateTime } = require('luxon')
 
@@ -329,14 +330,6 @@ module.exports = router => {
     }
 
     var applications = apps.map(app => {
-      // coz it's in reverse chron
-      var lastEvent = utils.getTimeline(app)[0]
-      if (lastEvent.label.text === 'Note added') {
-        app.lastEventType = 'note'
-      } else {
-        app.lastEventType = 'status'
-      }
-
       var now = DateTime.fromISO('2020-08-15')
       var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
       var diff = rbd.diff(now, 'days').toObject().days
@@ -350,8 +343,6 @@ module.exports = router => {
         app.daysToRespond = 1000
       }
 
-      app.lastEventDate = lastEvent.datetime.timestamp
-
       app.statusText = utils.getStatusText(app);
 
       return app
@@ -361,60 +352,17 @@ module.exports = router => {
       return a.daysToRespond - b.daysToRespond
     })
 
+    // Get the pagination data
+    let pagination = Pagination.getPagination(applications, req.query.page)
+
+    // Get a slice of the data to display
+    applications = Pagination.getDataByPage(applications, pagination.pageNumber)
+
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)
 
     // Put groups into ordered array
     applications = flattenGroup(grouped)
-
-    // Get the page worth of items
-    const pageSize = 50
-    const page = parseInt(req.query.page, 10) || 1
-
-    // to use zero based indexing in code but normal indexing for the url
-    const startIndex = (page - 1) * pageSize
-    let endIndex = startIndex + pageSize
-    const pageCount = Math.ceil(applications.length / pageSize)
-    const totalApplications = applications.length
-
-    if (endIndex > applications.length) {
-      endIndex = applications.length
-    }
-
-    applications = applications.splice(startIndex, endIndex)
-
-    let pagination;
-
-    if (pageCount > 1) {
-      pagination = {
-        from: startIndex + 1,
-        to: endIndex,
-        count: totalApplications,
-        items: []
-      }
-
-      if (page > 1) {
-        pagination.previous = {
-          text: 'Previous',
-          href: '?page=' + (page - 1)
-        }
-      }
-
-      if (page !== pageCount) {
-        pagination.next = {
-          text: 'Next',
-          href: '?page=' + (page + 1)
-        }
-      }
-
-      for (var i = 1; i < pageCount + 1; i++) {
-        pagination.items.push({
-          text: i,
-          href: '?page=' + i,
-          selected: i == page
-        })
-      }
-    }
 
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)
@@ -422,7 +370,7 @@ module.exports = router => {
 
     res.render('index', {
       applications: applications,
-      pagination,
+      pagination: pagination,
       selectedFilters: selectedFilters,
       hasFilters: hasFilters
     })

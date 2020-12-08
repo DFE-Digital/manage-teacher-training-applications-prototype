@@ -1,7 +1,8 @@
+const Pagination = require('../data/pagination-utils')
 const utils = require('../data/application-utils')
-const { v4: uuidv4 } = require('uuid')
-const { DateTime } = require('luxon')
 const _ = require('lodash');
+const { DateTime } = require('luxon')
+const { v4: uuidv4 } = require('uuid')
 
 function getTimeObject(time) {
   var hours;
@@ -82,21 +83,30 @@ module.exports = router => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(9, interviews.length)
 
+    // Get the pagination data
+    let pagination = Pagination.getPagination(interviews, req.query.page, req.query.limit)
+
     let now = interviews[0].interview.date
 
+    interviews = Pagination.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
+
     res.render('interviews/index', {
       now,
-      interviews
+      interviews,
+      pagination
     })
   })
 
   router.get('/interviews/past', (req, res) => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(0, 9).reverse()
+    let pagination = Pagination.getPagination(interviews, req.query.page, req.query.limit)
+    interviews = Pagination.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
     res.render('interviews/past', {
-      interviews
+      interviews,
+      pagination
     })
   })
 
@@ -295,7 +305,13 @@ module.exports = router => {
     })
 
     req.flash('success', 'Interview cancelled')
-    res.redirect(`/application/${req.params.applicationId}/interviews/`)
+
+    if(application.interviews.items.length) {
+      res.redirect(`/application/${req.params.applicationId}/interviews/`)
+    } else {
+      res.redirect(`/application/${req.params.applicationId}`)
+    }
+
   })
 
 
