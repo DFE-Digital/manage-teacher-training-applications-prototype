@@ -1,6 +1,30 @@
 {% set item = application.englishLanguageQualification %}
 <div class="govuk-!-margin-bottom-8">
   <h2 class="govuk-heading-m">English as a foreign language</h2>
+
+{# {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Do you have an English as a foreign language qualification?"
+      },
+      value: {
+        text: item.hasQualification
+      }
+    },
+    {
+      key: {
+        text: "Do you have an English as a foreign language qualification?"
+      },
+      value: {
+        text: item.type
+      }
+    } if application.englishLanguageQualification.hasQualification == "Yes"
+  ]
+}) }} #}
+
+
+
   <p class="govuk-body">{{ item.status }}.</p>
   {% if item.hasQualification == "Yes" %}
     <div class="govuk-grid">

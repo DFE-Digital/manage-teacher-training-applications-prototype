@@ -1,5 +1,4 @@
-{# Whether viewing user has ‘view diversity information’ permission on their account #}
-{% set providerHasViewDiversityInformationPermission = true %}
+{% set providerHasViewDiversityInformationPermission = [true, false] | random %}
 
 {# Whether candidate has completed diversity questionnaire #}
 {% set diversityQuestionnaireCompleted = application.personalDetails.diversityQuestionnaireAnswered %}
@@ -71,8 +70,7 @@
   }) }}
 {% endset %}
 
-{# Candidate guidance #}
-{% set diversityInformationGuidanceHtml %}
+{# {% set diversityInformationGuidanceHtml %}
   <h2 class="govuk-heading-m">Equality and diversity</h2>
   <p class="govuk-body">
     The equality and diversity questionnaire is optional and has no impact on the progress of your application.
@@ -88,7 +86,7 @@
 {{ govukDetails({
   summaryText: "View guidance given to candidate",
   html: diversityInformationGuidanceHtml
-}) }}
+}) }} #}
 
 
 {% if diversityQuestionnaireCompleted %}
@@ -99,7 +97,7 @@
       {{ diversityInformationSummaryList | safe}}
     {% else %}
       <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
-      <p class="govuk-body">You will be able to view this when {{offerContext}} offer has been accepted.</p>
+      <p class="govuk-body">You’ll be able to view this when {{offerContext}} offer has been accepted.</p>
     {% endif %}
 
   {% else %}
@@ -114,7 +112,7 @@
   {% endif %}
 
 {% else %}
-  <p class="govuk-body">No information shared</p>
+  <p class="govuk-body">{{appNoInformationShared()}}</p>
 {% endif %}
 
 
