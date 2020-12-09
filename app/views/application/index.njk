@@ -174,9 +174,7 @@
               html: safeguardingDetailsHtml
             }) }} #}
           {% else %}
-            <div style="color:#505A5F">
-            Unavailable: you and your organisation both need permission to view these safeguarding issues.
-            </div>
+            <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
           {% endif %}
         {% endif %}
       {% endset %}

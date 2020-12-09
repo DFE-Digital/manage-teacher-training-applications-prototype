@@ -186,3 +186,7 @@ h1 .govuk-tag {
 .app-table__row--indent > td {
   padding-left: govuk-spacing(3);
 }
+
+.app-permission-text {
+  color: govuk-colour("dark-grey");
+}
