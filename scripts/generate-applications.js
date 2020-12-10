@@ -81,7 +81,7 @@ const generateFakeApplication = (params = {}) => {
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
     interviewNeeds: generateInterviewNeeds(faker),
-    workHistoryAnswer: faker.helpers.randomize(['yes', 'no', 'full-time-education']),
+    workHistoryAnswer: faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education']),
     workHistoryMissing: "I was unemployed",
     workHistory: params.workHistory || generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
