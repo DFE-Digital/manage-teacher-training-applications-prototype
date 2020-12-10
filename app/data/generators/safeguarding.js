@@ -7,11 +7,7 @@ module.exports = () => {
   let details;
 
   if(response) {
-    details = faker.helpers.randomize([
-      'I have employment commitments',
-      'I’ll be travelling a long way to get to the interview',
-      'I use a wheelchair'
-    ])
+    details = "I have an offence from a job I held in 2002."
   }
 
   return { response, details }

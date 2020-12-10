@@ -21,6 +21,8 @@ const generateSchoolExperience = require('../app/data/generators/school-experien
 const generatePersonalStatement = require('../app/data/generators/personal-statement')
 const generateReferences = require('../app/data/generators/references')
 const generateInterviewNeeds = require('../app/data/generators/interview-needs')
+const generateSafeguarding = require('../app/data/generators/safeguarding')
+const generateDisability = require('../app/data/generators/disability')
 
 // Fake data generators: application management
 const generateOffer = require('../app/data/generators/offer')
@@ -51,7 +53,7 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const interviews = params.interviews || generateInterviews(faker, { status })
 
-  const events = generateEvents(faker, { offer, status, interviewId: (interviews.items.length) ? interviews.items[0].id : null })
+  const events = generateEvents({ offer, status, interviewId: (interviews.items.length) ? interviews.items[0].id : null })
 
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
@@ -81,7 +83,7 @@ const generateFakeApplication = (params = {}) => {
     interviewNeeds: generateInterviewNeeds(faker),
     workHistoryAnswer: faker.helpers.randomize(['yes', 'no', 'full-time-education']),
     workHistoryMissing: "I was unemployed",
-    workHistory: generateWorkHistory(faker),
+    workHistory: params.workHistory || generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
@@ -89,7 +91,9 @@ const generateFakeApplication = (params = {}) => {
     schoolExperience: generateSchoolExperience(faker),
     personalStatement: generatePersonalStatement(faker),
     references: generateReferences(faker),
-    miscellaneous: faker.lorem.paragraph()
+    miscellaneous: faker.lorem.paragraph(),
+    safeguarding: generateSafeguarding(faker),
+    disability: generateDisability(faker)
   }
 }
 
@@ -209,7 +213,8 @@ const generateFakeApplications = () => {
       givenName: 'Emma',
       familyName: 'Hayes',
       sex: 'Female'
-    }
+    },
+    workHistory: []
   }))
 
   applications.push(generateFakeApplication({

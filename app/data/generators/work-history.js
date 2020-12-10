@@ -23,7 +23,7 @@ module.exports = (faker) => {
     }
   }
 
-  const count = faker.random.number({ min: 1, max: 8 })
+  const count = faker.random.number({ min: 0, max: 8 })
   const items = []
   for (var i = 0; i < count; i++) {
     items.push(item(faker))
