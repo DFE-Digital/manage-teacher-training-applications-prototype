@@ -6,9 +6,9 @@
 {% set name = application.personalDetails.name %}
 {% set title = "Set up an interview" %}
 
-{% set cancelUrl %}/application/{{application.id}}{% endset %}
+{% set cancelUrl %}/applications/{{application.id}}{% endset %}
 {% if application.interviews.items > 0 %}
-{% set cancelUrl %}/application/{{application.id}}/interviews{% endset %}
+{% set cancelUrl %}/applications/{{application.id}}/interviews{% endset %}
 {% endif %}
 
 {% block beforeContent %}

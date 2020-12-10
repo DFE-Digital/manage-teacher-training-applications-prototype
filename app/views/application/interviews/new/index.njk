@@ -6,9 +6,9 @@
 {% set name = application.personalDetails.name %}
 {% set title = "Set up an interview" %}
 
-{% set backUrl %}/application/{{application.id}}{% endset %}
+{% set backUrl %}/applications/{{application.id}}{% endset %}
 {% if application.interviews.items.length > 0 %}
-{% set backUrl %}/application/{{application.id}}/interviews{% endset %}
+{% set backUrl %}/applications/{{application.id}}/interviews{% endset %}
 {% endif %}
 
 {% set cancelUrl %}{{backUrl}}{% endset %}
