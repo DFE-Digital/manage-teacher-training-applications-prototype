@@ -251,21 +251,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Personal statement</h2>
-      {% set personalStatementGuidanceHtml %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
-      {# {% set workHistoryGuidanceHtml %}
-        <h2 class="govuk-heading-m">Work history</h2>
-        <p class="govuk-body">Training providers need a complete picture of the last 5 years of of your work history, including time out of the workplace, to safeguard children.</p>
-        <p class="govuk-body">Breaks in work history won’t impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: workHistoryGuidanceHtml
-      }) }} #}
-      {% include "_includes/application/work-history.njk" %}
-
+      <!--
       <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
       {# {% set volunteeringGuidanceHtml %}
         <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
@@ -282,14 +268,46 @@
         html: volunteeringGuidanceHtml
       }) }} #}
       {% include "_includes/application/school-experience.njk" %}
+      -->
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Personal statement</h2>
+      {# {% set personalStatementGuidanceHtml %}
+         <h2 class="govuk-heading-m">Why do you want to be a teacher?</h2>
+         <p class="govuk-body">Use this section to showcase your motivation, commitment and teaching potential, backing up your answer with specific examples.</p>
+         <p class="govuk-body">Give providers an insight into your personality by writing honestly and thoughtfully. Avoid cliché and write in clear, correct, concise English.</p>
+         <p class="govuk-body">You can ask your training provider for examples written by successful applicants, or register with <a href="https://getintoteaching.education.gov.uk/">Get into Teaching</a> for help from a teacher training adviser.</p>
+         <p class="govuk-body govuk-!-font-weight-bold">Suggested topics to cover include:</p>
+         <ul class="govuk-list govuk-list--bullet">
+           <li>why you want to be a teacher</li>
+           <li>your passion for your subject and the age group you’ve chosen to teach</li>
+           <li>the welfare and education of children and/or young people</li>
+           <li>the demands and rewards of the profession</li>
+           <li>personal qualities that will make you a good teacher</li>
+           <li>your contribution to the life of the school outside the classroom – for example, running extra-curricular activities and clubs</li>
+           <li>if you have school experience or have worked as a volunteer with children or young people, give details of what this has taught you</li>
+         </ul>
+         <h2 class="govuk-heading-m">What do you know about the subject you want to teach?</h2>
+         <p class="govuk-body">Give us detailed evidence for the knowledge and interest you bring to your course choice.</p>
+         <p class="govuk-body">Evidence can include:</p>
+         <ul class="govuk-list govuk-list--bullet">
+           <li>the subject of your undergraduate degree</li>
+           <li>modules you studied as part of your degree</li>
+           <li>postgraduate degrees (for example, a Masters or PhD)</li>
+           <li>your A level subjects</li>
+           <li>expertise you’ve gained at work</li>
+         </ul>
+       {% endset %}
+       {{ govukDetails({
+         summaryText: "View guidance given to candidate",
+         html: personalStatementGuidanceHtml
+       }) }} #}
 
       <h3 class="govuk-heading-s govuk-!-margin-top-6">Why do you want to become a teacher?</h3>
       <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
 
       <h3 class="govuk-heading-s govuk-!-margin-top-6">What do you know about the subject you want to teach?</h3>
       <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
+
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">References</h2>
       {# {% set referencesGuidanceHtml %}
@@ -319,6 +337,7 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
 
       {% if application.workHistoryAnswer == "yes" %}
+        <!--
 
         {{ govukInsetText({
           text: "On 1 January 2021 we stopped asking candidates for their relevant skills and experience for each job."
@@ -332,11 +351,44 @@
           summaryText: "View guidance given to candidate",
           html: workHistoryGuidanceHtml
         }) }}
+        -->
         {% include "_includes/application/work-history.njk" %}
+
       {% elseif application.workHistoryAnswer == "full-time-education" %}
-        <p class="govuk-body">The candidate has no work history as they have always been in full time education.</p>
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Do you have any work history?"
+            },
+            value: {
+              html: "No, I have always been in full time education"
+            }
+          }]
+          }) }}
+
       {% else %}
-        <p class="govuk-body">{{ application.workHistoryMissing }}</p>
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Do you have any work history?"
+            },
+            value: {
+              html: "No, I do not have any work history"
+            }
+          },
+          {
+            key: {
+              text: "Tell us why you’ve been out of the workplace"
+            },
+            value: {
+              html: application.workHistoryMissing
+            }
+          }
+
+          ]
+          }) }}
       {% endif %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
