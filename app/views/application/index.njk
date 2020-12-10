@@ -270,8 +270,8 @@
       {% include "_includes/application/school-experience.njk" %}
       -->
 
-       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Personal statement</h2>
-       {# {% set personalStatementGuidanceHtml %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
+      {# {% set personalStatementGuidanceHtml %}
         <h2 class="govuk-heading-m">Why do you want to be a teacher?</h2>
         <p class="govuk-body">Use this section to showcase your motivation, commitment and teaching potential, backing up your answer with specific examples.</p>
         <p class="govuk-body">Give providers an insight into your personality by writing honestly and thoughtfully. Avoid cliché and write in clear, correct, concise English.</p>
@@ -298,8 +298,8 @@
         </ul>
       {% endset %}
       {{ govukDetails({
-       summaryText: "View guidance given to candidate",
-       html: personalStatementGuidanceHtml
+        summaryText: "View guidance given to candidate",
+        html: personalStatementGuidanceHtml
       }) }} #}
 
       <h3 class="govuk-heading-s govuk-!-margin-top-6">Why do you want to become a teacher?</h3>
@@ -307,7 +307,6 @@
 
       <h3 class="govuk-heading-s govuk-!-margin-top-6">What do you know about the subject you want to teach?</h3>
       <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
-
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">References</h2>
       {# {% set referencesGuidanceHtml %}
