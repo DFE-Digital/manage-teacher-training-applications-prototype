@@ -1,7 +1,7 @@
 const utils = require('../data/application-utils')
 
 module.exports = router => {
-  router.get('/application/:applicationId/notes', (req, res) => {
+  router.get('/applications/:applicationId/notes', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -11,7 +11,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/application/:applicationId/notes/first-time', (req, res) => {
+  router.get('/applications/:applicationId/notes/first-time', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -20,12 +20,12 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/notes/first-time', (req, res) => {
+  router.post('/applications/:applicationId/notes/first-time', (req, res) => {
     const applicationId = req.params.applicationId
-    res.redirect(`/application/${applicationId}/notes/new`)
+    res.redirect(`/applications/${applicationId}/notes/new`)
   })
 
-  router.get('/application/:applicationId/notes/new', (req, res) => {
+  router.get('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -34,13 +34,13 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/notes/new', (req, res) => {
+  router.post('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
     req.flash('success', 'Note added')
-    res.redirect(`/application/${applicationId}/notes`)
+    res.redirect(`/applications/${applicationId}/notes`)
   })
 
-  router.get('/application/:applicationId/notes/:noteId', (req, res) => {
+  router.get('/applications/:applicationId/notes/:noteId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 

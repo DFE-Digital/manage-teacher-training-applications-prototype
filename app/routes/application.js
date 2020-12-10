@@ -1,7 +1,7 @@
 const utils = require('../data/application-utils')
 
 module.exports = router => {
-  router.get('/application/:applicationId', (req, res) => {
+  router.get('/applications/:applicationId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -11,7 +11,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/application/:applicationId/timeline', (req, res) => {
+  router.get('/applications/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -23,13 +23,13 @@ module.exports = router => {
     })
   })
 
-  router.get('/application/:applicationId/decision', (req, res) => {
+  router.get('/applications/:applicationId/decision', (req, res) => {
     res.render('application/decision', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
-  router.post('/application/:applicationId/decision', (req, res) => {
+  router.post('/applications/:applicationId/decision', (req, res) => {
     const applicationId = req.params.applicationId
     const { decision, option } = req.body
 
@@ -43,11 +43,11 @@ module.exports = router => {
     ]
 
     if (decision === '1') {
-      res.redirect(`/application/${applicationId}/offer/new`)
+      res.redirect(`/applications/${applicationId}/offer/new`)
     } else if (decision === '2') {
-      res.redirect(`/application/${applicationId}/offer/new/provider`)
+      res.redirect(`/applications/${applicationId}/offer/new/provider`)
     } else {
-      res.redirect(`/application/${applicationId}/reject`)
+      res.redirect(`/applications/${applicationId}/reject`)
     }
   })
 

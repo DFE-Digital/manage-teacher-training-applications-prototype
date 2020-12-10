@@ -5,13 +5,13 @@
     {{ govukButton({
       text: "Set up interview",
       classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2",
-      href: "/application/" + application.id + "/interviews/new"
+      href: "/applications/" + application.id + "/interviews/new"
     }) }}
     {# <span class="app-or">or</span>  #}
     {{ govukButton({
       text: "Make decision",
       classes: "govuk-!-margin-bottom-0 govuk-button--secondary",
-      href: "/application/" + application.id + "/decision"
+      href: "/applications/" + application.id + "/decision"
     }) }}
 
   {% endset %}

@@ -111,7 +111,7 @@ module.exports = router => {
   })
 
 
-  router.get('/application/:applicationId/interviews', (req, res) => {
+  router.get('/applications/:applicationId/interviews', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -148,7 +148,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/application/:applicationId/interviews/new', (req, res) => {
+  router.get('/applications/:applicationId/interviews/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -157,11 +157,11 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/interviews/new', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/interviews/new/check`)
+  router.post('/applications/:applicationId/interviews/new', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/interviews/new/check`)
   })
 
-  router.get('/application/:applicationId/interviews/new/check', (req, res) => {
+  router.get('/applications/:applicationId/interviews/new/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -170,7 +170,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/interviews/new/check', (req, res) => {
+  router.post('/applications/:applicationId/interviews/new/check', (req, res) => {
 
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -203,11 +203,11 @@ module.exports = router => {
     delete req.session.data.interview
 
     req.flash('success', 'Interview set up')
-    res.redirect(`/application/${applicationId}/interviews`)
+    res.redirect(`/applications/${applicationId}/interviews`)
 
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/edit', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/edit', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -218,11 +218,11 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/edit', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/interviews/${req.params.interviewId}/edit/check`)
+  router.post('/applications/:applicationId/interviews/:interviewId/edit', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/interviews/${req.params.interviewId}/edit/check`)
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const interviewId = req.params.interviewId
@@ -233,7 +233,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
+  router.post('/applications/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
 
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
@@ -261,11 +261,11 @@ module.exports = router => {
     delete req.session.data.interview
 
     req.flash('success', 'Interview changed')
-    res.redirect(`/application/${applicationId}/interviews`)
+    res.redirect(`/applications/${applicationId}/interviews`)
 
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/delete', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/delete', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -276,11 +276,11 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/delete', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/interviews/${req.params.interviewId}/delete/check`)
+  router.post('/applications/:applicationId/interviews/:interviewId/delete', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/interviews/${req.params.interviewId}/delete/check`)
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -291,7 +291,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
+  router.post('/applications/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -307,9 +307,9 @@ module.exports = router => {
     req.flash('success', 'Interview cancelled')
 
     if(application.interviews.items.length) {
-      res.redirect(`/application/${req.params.applicationId}/interviews/`)
+      res.redirect(`/applications/${req.params.applicationId}/interviews/`)
     } else {
-      res.redirect(`/application/${req.params.applicationId}`)
+      res.redirect(`/applications/${req.params.applicationId}`)
     }
 
   })

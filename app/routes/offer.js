@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 module.exports = router => {
 
-  router.get('/application/:applicationId/offer', (req, res) => {
+  router.get('/applications/:applicationId/offer', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -14,13 +14,13 @@ module.exports = router => {
     })
   })
 
-  router.get('/application/:applicationId/offer/defer/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/defer/check', (req, res) => {
     res.render('application/offer/defer/check', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
-  router.post('/application/:applicationId/offer/defer/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/defer/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Deferred'
@@ -31,10 +31,10 @@ module.exports = router => {
     })
 
     req.flash('success', 'Offer successfully deferred')
-    res.redirect(`/application/${applicationId}/offer`)
+    res.redirect(`/applications/${applicationId}/offer`)
   })
 
-  router.get('/application/:applicationId/offer/edit-conditions', (req, res) => {
+  router.get('/applications/:applicationId/offer/edit-conditions', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let standardConditions;
     let conditions;
@@ -66,11 +66,11 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/edit-conditions', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/edit-conditions/check`)
+  router.post('/applications/:applicationId/offer/edit-conditions', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/offer/edit-conditions/check`)
   })
 
-  router.get('/application/:applicationId/offer/edit-conditions/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/edit-conditions/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     var conditions = []
@@ -96,7 +96,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/edit-conditions/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/edit-conditions/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // save standard conditions
@@ -123,12 +123,12 @@ module.exports = router => {
     })
 
     req.flash('success', 'New offer sent')
-    res.redirect(`/application/${req.params.applicationId}/offer`)
+    res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 
 
   // delete a condition
-  router.get('/application/:applicationId/condition/:conditionId/delete', (req, res) => {
+  router.get('/applications/:applicationId/condition/:conditionId/delete', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     const condition = utils.getCondition(application, req.params.conditionId)
     const remainingConditions = utils.getConditions(application).filter(c => c.id !== condition.id)
@@ -146,7 +146,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/condition/:conditionId/delete', (req, res) => {
+  router.post('/applications/:applicationId/condition/:conditionId/delete', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     utils.deleteCondition(application, req.params.conditionId)
@@ -156,13 +156,13 @@ module.exports = router => {
     }
 
     req.flash('success', 'Condition deleted successfully')
-    res.redirect(`/application/${req.params.applicationId}/offer`)
+    res.redirect(`/applications/${req.params.applicationId}/offer`)
 
   })
 
 
   // Edit condition statuses (in bulk)
-  router.get('/application/:applicationId/offer/edit-condition-statuses', (req, res) => {
+  router.get('/applications/:applicationId/offer/edit-condition-statuses', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     const conditions = utils.getConditions(application)
 
@@ -172,13 +172,13 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/edit-condition-statuses', (req, res) => {
+  router.post('/applications/:applicationId/offer/edit-condition-statuses', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
-    res.redirect(`/application/${req.params.applicationId}/offer/edit-condition-statuses/check`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/edit-condition-statuses/check`)
   })
 
-  router.get('/application/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // mixin new data statuses with conditions
@@ -206,7 +206,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     let conditions = utils.getConditions(application).forEach(c => {
@@ -229,12 +229,12 @@ module.exports = router => {
     })
 
     req.flash('success', 'Status of conditions updated successfully')
-    res.redirect(`/application/${req.params.applicationId}/offer`)
+    res.redirect(`/applications/${req.params.applicationId}/offer`)
 
   })
 
   // delete conditions (in bulk)
-  router.get('/application/:applicationId/offer/delete-conditions', (req, res) => {
+  router.get('/applications/:applicationId/offer/delete-conditions', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     const conditionItems = utils.getConditions(application).map(c => {
       return {
@@ -249,12 +249,12 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/delete-conditions', (req, res) => {
+  router.post('/applications/:applicationId/offer/delete-conditions', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.redirect(`/application/${req.params.applicationId}/offer/delete-conditions/check`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/delete-conditions/check`)
   })
 
-  router.get('/application/:applicationId/offer/delete-conditions/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/delete-conditions/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     const remainingConditions = utils.getConditions(application)
       .filter(c => !req.session.data['delete-conditions'].conditions.includes(c.description))
@@ -272,7 +272,7 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/delete-conditions/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/delete-conditions/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // delete conditions
@@ -287,7 +287,7 @@ module.exports = router => {
     }
 
     req.flash('success', 'Conditions successfully deleted')
-    res.redirect(`/application/${req.params.applicationId}/offer`)
+    res.redirect(`/applications/${req.params.applicationId}/offer`)
 
   })
 }

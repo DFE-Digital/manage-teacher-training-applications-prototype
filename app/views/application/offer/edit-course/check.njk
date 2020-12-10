@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + '/offer/edit-course/location'
+    href: "/applications/" + application.id + '/offer/edit-course/location'
   }) }}
 {% endblock %}
 
@@ -24,11 +24,11 @@
         },
         course: {
           value: application.course,
-          href: "/application/" + application.id + "/offer/edit-course"
+          href: "/applications/" + application.id + "/offer/edit-course"
         },
         location: {
           value: application.location,
-          href: "/application/" + application.id + "/offer/edit-course/location"
+          href: "/applications/" + application.id + "/offer/edit-course/location"
         },
         studyMode: {
           value: "Full time",
@@ -51,7 +51,7 @@
           text: "Send new offer"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
 

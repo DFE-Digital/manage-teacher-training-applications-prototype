@@ -29,7 +29,7 @@
       {% if statusText == "Interviewing" %}
         {{ govukButton({
           text: "Set up interview",
-          href: "/application/" + application.id + "/interviews/new",
+          href: "/applications/" + application.id + "/interviews/new",
           classes: "govuk-button--secondary"
         }) }}
       {% endif %}
@@ -106,10 +106,10 @@
           classes: "govuk-!-margin-bottom-6",
           actions: {
             items: [{
-              href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
               text: "Change details"
             } if statusText == "Received" or statusText == "Interviewing", {
-              href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
               text: "Cancel interview"
             } if statusText == "Received" or statusText == "Interviewing"]
           },
@@ -189,10 +189,10 @@
           classes: "govuk-!-margin-bottom-6",
           actions: {
             items: [{
-              href: "/application/"+application.id+"/interviews/"+interview.id+"/edit",
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
               text: "Change details"
             } if statusText == "Received" or statusText == "Interviewing", {
-              href: "/application/"+application.id+"/interviews/"+interview.id+"/delete",
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
               text: "Cancel interview"
             } if statusText == "Received" or statusText == "Interviewing"]
           },

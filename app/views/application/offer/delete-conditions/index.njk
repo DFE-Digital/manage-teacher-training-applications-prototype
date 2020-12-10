@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: '/application/' + application.id + '/offer'
+    href: '/applications/' + application.id + '/offer'
   }) }}
 {% endblock %}
 
@@ -36,7 +36,7 @@
           text: "Continue"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

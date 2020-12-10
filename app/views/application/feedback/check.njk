@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/reject/other-reasons-for-rejection/"
+    href: "/applications/" + application.id + "/reject/other-reasons-for-rejection/"
   }) }}
 {% endblock %}
 
@@ -28,7 +28,7 @@
             actions: {
               items: [
                 {
-                  href: "/application/"+ application.id +"/feedback",
+                  href: "/applications/"+ application.id +"/feedback",
                   text: "Change",
                   visuallyHiddenText: "Feedback for candidate"
                 }
@@ -43,7 +43,7 @@
           text: "Send feedback"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

@@ -8,7 +8,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/interviews/" + interview.id + "/delete"
+    href: "/applications/" + application.id + "/interviews/" + interview.id + "/delete"
   }) }}
 {% endblock %}
 
@@ -34,7 +34,7 @@
               actions: {
                 items: [
                   {
-                    href: "/application/" + application.id + "/interviews/" + interview.id + "/delete",
+                    href: "/applications/" + application.id + "/interviews/" + interview.id + "/delete",
                     text: "Change",
                     visuallyHiddenText: "Reason for cancellation"
                   }
@@ -48,7 +48,7 @@
           text: "Send cancellation"
         }) }}
 
-        <p><a href="/application/{{application.id}}/interviews">Cancel</a></p>
+        <p><a href="/applications/{{application.id}}/interviews">Cancel</a></p>
       </form>
 
 

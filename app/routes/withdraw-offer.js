@@ -2,22 +2,22 @@ const utils = require('../data/application-utils')
 
 module.exports = router => {
 
-  router.get('/application/:applicationId/offer/withdraw', (req, res) => {
+  router.get('/applications/:applicationId/offer/withdraw', (req, res) => {
     res.render('application/offer/withdraw/index', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
-  router.post('/application/:applicationId/offer/withdraw', (req, res) => {
+  router.post('/applications/:applicationId/offer/withdraw', (req, res) => {
     // skip last page if safeguarding, honesty or other offer given
     if (req.session.data.rejectionReasons.honesty === 'Yes' || req.session.data.rejectionReasons.safeguarding === 'Yes') {
-      res.redirect(`/application/${req.params.applicationId}/offer/withdraw/check`)
+      res.redirect(`/applications/${req.params.applicationId}/offer/withdraw/check`)
     } else {
-      res.redirect(`/application/${req.params.applicationId}/offer/withdraw/other-reasons-for-rejection`)
+      res.redirect(`/applications/${req.params.applicationId}/offer/withdraw/other-reasons-for-rejection`)
     }
   })
 
-  router.get('/application/:applicationId/offer/withdraw/other-reasons-for-rejection', (req, res) => {
+  router.get('/applications/:applicationId/offer/withdraw/other-reasons-for-rejection', (req, res) => {
     var data = req.session.data.rejectionReasons
 
     var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes'
@@ -28,17 +28,17 @@ module.exports = router => {
     })
   })
 
-  router.post('/application/:applicationId/offer/withdraw/other-reasons-for-rejection', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/withdraw/check`)
+  router.post('/applications/:applicationId/offer/withdraw/other-reasons-for-rejection', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/offer/withdraw/check`)
   })
 
-  router.get('/application/:applicationId/offer/withdraw/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/withdraw/check', (req, res) => {
     res.render('application/offer/withdraw/check', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
-  router.post('/application/:applicationId/offer/withdraw/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/withdraw/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Offer withdrawn'
@@ -47,6 +47,6 @@ module.exports = router => {
     delete req.session.data.rejectionReasons
 
     req.flash('success', 'Offer successfully withdrawn')
-    res.redirect(`/application/${applicationId}/offer`)
+    res.redirect(`/applications/${applicationId}/offer`)
   })
 }

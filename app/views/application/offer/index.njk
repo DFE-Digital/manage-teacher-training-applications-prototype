@@ -31,30 +31,30 @@
 
       {{appOfferPanel({
         withdrawx: {
-          href: "/application/" + application.id + "/offer/withdraw"
+          href: "/applications/" + application.id + "/offer/withdraw"
         } if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred",
         defer: {
-          href: "/application/" + application.id + "/offer/defer/check"
+          href: "/applications/" + application.id + "/offer/defer/check"
         } if application.status == "Accepted" or application.status == "Conditions met",
         provider: {
           value: application.provider,
-          href: "/application/"+application.id+"/offer/edit-provider" if application.status == "Offered"
+          href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered"
         },
         course: {
           value: application.course,
-          href: "/application/"+application.id+"/offer/edit-course" if application.status == "Offered"
+          href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered"
         },
         location: {
           value: application.location,
-          href: "/application/"+application.id+"/offer/edit-location" if application.status == "Offered"
+          href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered"
         },
 
         changeConditions: {
-          href: "/application/" + application.id + "/offer/edit-conditions"
+          href: "/applications/" + application.id + "/offer/edit-conditions"
         } if application.status == "Offered",
 
         changeStatus: {
-          href: "/application/" + application.id + "/offer/edit-condition-statuses"
+          href: "/applications/" + application.id + "/offer/edit-condition-statuses"
         } if application.status == "Accepted",
 
         conditions: {

@@ -7,7 +7,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/offer/reconfirm/unavailable-location/statuses"
+    href: "/applications/" + application.id + "/offer/reconfirm/unavailable-location/statuses"
   }) }}
 {% endblock %}
 
@@ -54,7 +54,7 @@
               actions: {
                 items: [
                   {
-                    href: "/application/" + application.id + "/offer/reconfirm/change-provider",
+                    href: "/applications/" + application.id + "/offer/reconfirm/change-provider",
                     text: "Change",
                     visuallyHiddenText: "conditions"
                   }
@@ -70,7 +70,7 @@
               actions: {
                 items: [
                   {
-                    href: "/application/" + application.id + "/offer/reconfirm/change-course",
+                    href: "/applications/" + application.id + "/offer/reconfirm/change-course",
                     text: "Change",
                     visuallyHiddenText: "conditions"
                   }
@@ -86,7 +86,7 @@
               actions: {
                 items: [
                   {
-                    href: "/application/" + application.id + "/offer/reconfirm/change-location",
+                    href: "/applications/" + application.id + "/offer/reconfirm/change-location",
                     text: "Change",
                     visuallyHiddenText: "conditions"
                   }
@@ -102,7 +102,7 @@
               actions: {
                 items: [
                   {
-                    href: "/application/" + application.id + "/offer/reconfirm/change-study-mode",
+                    href: "/applications/" + application.id + "/offer/reconfirm/change-study-mode",
                     text: "Change",
                     visuallyHiddenText: "conditions"
                   }
@@ -117,9 +117,9 @@
         </h2>
 
         {% if checked(data.settings, "hasCombinedConditions") %}
-          <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/statuses">Update status of conditions</a> or <a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">add or change conditions</a></p>
+          <p><a href="/applications/{{application.id}}/offer/reconfirm/unavailable-location/statuses">Update status of conditions</a> or <a href="/applications/{{application.id}}/offer/reconfirm/unavailable-location/conditions">add or change conditions</a></p>
         {% else %}
-          <p><a href="/application/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
+          <p><a href="/applications/{{application.id}}/offer/reconfirm/unavailable-location/conditions">Add or change conditions</a></p>
         {% endif %}
 
         <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined{% endif %} ">
@@ -140,7 +140,7 @@
               </dd>
               {% if not checked(data.settings, "hasCombinedConditions") %}
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/application/{{application.id}}/offer/reconfirm/unavailable-location/condition/{{condition.id}}/change-status">
+                  <a class="govuk-link" href="/applications/{{application.id}}/offer/reconfirm/unavailable-location/condition/{{condition.id}}/change-status">
                   Update status<span class="govuk-visually-hidden"> of condition ‘{{condition.description}}’</span></a>
                 </dd>
               {% endif %}
@@ -156,7 +156,7 @@
           text: "Confirm offer"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

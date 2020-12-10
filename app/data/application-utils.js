@@ -105,69 +105,69 @@ function getLink (item, application) {
   switch (item.title) {
     case 'Application submitted':
       link.text = 'View application'
-      link.href = `/application/${application.id}`
+      link.href = `/applications/${application.id}`
       break
     case 'Offer made':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Offer accepted':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Conditions met':
       link.text = 'View conditions'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Conditions not met':
       link.text = 'View conditions'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Offer declined':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Application rejected':
       link.text = 'View feedback'
-      link.href = `/application/${application.id}`
+      link.href = `/applications/${application.id}`
       break
     case 'Application withdrawn':
       link.text = 'View application'
-      link.href = `/application/${application.id}`
+      link.href = `/applications/${application.id}`
       break
     case 'Offer withdrawn':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Offer reconfirmed':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Offer deferred':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
     case 'Note added':
       link.text = 'View note'
-      link.href = `/application/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
+      link.href = `/applications/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
       break
     case 'Interview set up':
       if(application.interviews.items.find(interview => interview.id === item.meta.interviewId)) {
         link.text = 'View interview'
-        link.href = `/application/${application.id}/interviews/#interview-${item.meta.interviewId}`
+        link.href = `/applications/${application.id}/interviews/#interview-${item.meta.interviewId}`
       }
       break
     case 'Interview changed':
       if(application.interviews.items.find(interview => interview.id === item.meta.interviewId)) {
         link.text = 'View interview'
-        link.href = `/application/${application.id}/interviews/#interview-${item.meta.interviewId}`
+        link.href = `/applications/${application.id}/interviews/#interview-${item.meta.interviewId}`
       }
       break
     case 'Interview cancelled':
       break
     case 'Status of conditions updated':
       link.text = 'View offer'
-      link.href = `/application/${application.id}/offer`
+      link.href = `/applications/${application.id}/offer`
       break
   }
   return link

@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: '/application/' + application.id + '/offer/edit-conditions'
+    href: '/applications/' + application.id + '/offer/edit-conditions'
   }) }}
 {% endblock %}
 
@@ -38,7 +38,7 @@
           items: conditions
         },
         changeConditions: {
-          href: "/application/" + application.id + "/offer/edit-conditions"
+          href: "/applications/" + application.id + "/offer/edit-conditions"
         }
       })}}
 
@@ -51,7 +51,7 @@
           text: "Send new offer"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/application/{{ application.id }}/offer">Cancel</a></p>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

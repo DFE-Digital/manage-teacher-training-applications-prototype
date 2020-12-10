@@ -8,7 +8,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/application/" + application.id + "/interviews"
+    href: "/applications/" + application.id + "/interviews"
   }) }}
 {% endblock %}
 
@@ -39,7 +39,7 @@
           text: "Continue"
         }) }}
 
-        <p><a href="/application/{{application.id}}/interviews">Cancel</a></p>
+        <p><a href="/applications/{{application.id}}/interviews">Cancel</a></p>
       </form>
 
 
