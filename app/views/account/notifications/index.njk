@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'account' %}
 
-{% set title = "Notification settings" %}
+{% set title = "Email settings" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -10,14 +10,84 @@
       text: "Your account",
       href: "/account"
     }, {
-      text: "Notification settings"
+      text: title
     }]
   }) }}
 {% endblock %}
 
 {% block content %}
 
-  {% set emailOnceADay %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form>
+        {{ govukCheckboxes({
+          idPrefix: "settings",
+          name: "settings",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Includes when an application is received or withdrawn and when offers are accepted or declined"
+          } if 11 == 1,
+          items: [
+            {
+              value: "Receive email notifications about applications",
+              text: "Receive email notifications about applications - blah and blah and blah",
+              checked: true
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save settings"
+        }) }}
+
+        {# <h1 class="govuk-heading-l">
+          Email settings
+        </h1>
+
+        <p>You are currently receiving email notifications.</p>
+
+        {{ govukButton({
+          text: "Disable notifications"
+        }) }} #}
+
+        {# {{ govukRadios({
+          idPrefix: "blah",
+          name: "blah",
+          fieldset: {
+            legend: {
+              text: "Do you want to receive email notifications?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save"
+        }) }} #}
+
+      </form>
+    </div>
+  </div>
+
+  {# {% set emailOnceADay %}
     {{appIcon({ icon: "check", hidden: true})}}
     <span class="app-email-settings">Daily at 8am</span>
   {% endset %}
@@ -284,6 +354,6 @@
             }
           ]
         ]
-      }) }}
+      }) }} #}
 
 {% endblock %}
