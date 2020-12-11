@@ -28,8 +28,8 @@
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
         {{ govukCheckboxes({
-          idPrefix: "settings",
-          name: "settings",
+          idPrefix: "emailsettings",
+          name: "emailsettings",
           fieldset: {
             legend: {
               text: title,
@@ -39,12 +39,12 @@
           },
           items: [
             {
-              value: "Receive email notifications about applications",
-              text: "Receive email notifications",
+              value: 'Receive email notifications',
+              text: 'Receive email notifications',
               hint: {
             text: "These are sent when an application is submitted, withdrawn, automatically rejected, accepted or declined"
                     },
-              checked: true
+              checked: checked(data.emailsettings, 'Receive email notifications')
             }
           ]
         }) }}
