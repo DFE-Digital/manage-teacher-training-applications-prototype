@@ -5,7 +5,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('applications/index', {
+    res.render('applications/show', {
       application,
       statusText: ApplicationHelper.getStatusText(application)
     })
@@ -15,7 +15,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('applications/timeline', {
+    res.render('applications/timeline/show', {
       application,
       statusText: ApplicationHelper.getStatusText(application),
       timeline: ApplicationHelper.getTimeline(application),
