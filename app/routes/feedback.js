@@ -1,4 +1,4 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 
 module.exports = router => {
   router.get('/applications/:applicationId/feedback', (req, res) => {
@@ -25,7 +25,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.rejectedDate = new Date().toISOString()
-    application.rejectedReasons = utils.getRejectReasons(req.session.data.rejectionReasons)
+    application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
     delete req.session.data.rejectionReasons
     req.flash('success', 'Feedback sent')
     res.redirect(`/applications/${applicationId}`)

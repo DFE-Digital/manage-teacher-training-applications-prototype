@@ -1,5 +1,5 @@
-const Pagination = require('../data/pagination-utils')
-const utils = require('../data/application-utils')
+const PaginationHelper = require('../data/helpers/pagination')
+const ApplicationHelper = require('../data/helpers/application')
 const _ = require('lodash');
 const { DateTime } = require('luxon')
 const { v4: uuidv4 } = require('uuid')
@@ -45,7 +45,7 @@ function getTimeObject(time) {
 function getInterviews(applications) {
   let interviews = []
   applications = applications.filter(app => {
-    return utils.getStatusText(app) == "Interviewing"
+    return ApplicationHelper.getStatusText(app) == "Interviewing"
   })
 
   // update this to use FLATMAP
@@ -84,11 +84,11 @@ module.exports = router => {
     interviews = interviews.slice(9, interviews.length)
 
     // Get the pagination data
-    let pagination = Pagination.getPagination(interviews, req.query.page, req.query.limit)
+    let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
 
     let now = interviews[0].interview.date
 
-    interviews = Pagination.getDataByPage(interviews, req.query.page, req.query.limit)
+    interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
 
     res.render('interviews/index', {
@@ -101,8 +101,8 @@ module.exports = router => {
   router.get('/interviews/past', (req, res) => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(0, 9).reverse()
-    let pagination = Pagination.getPagination(interviews, req.query.page, req.query.limit)
-    interviews = Pagination.getDataByPage(interviews, req.query.page, req.query.limit)
+    let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
+    interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
     res.render('interviews/past', {
       interviews,
@@ -115,7 +115,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    const statusText = utils.getStatusText(application)
+    const statusText = ApplicationHelper.getStatusText(application)
 
     // make 6 Aug 2020 = today
     var now = DateTime.fromObject({
@@ -144,7 +144,7 @@ module.exports = router => {
       application,
       upcomingInterviews,
       pastInterviews,
-      statusText: utils.getStatusText(application)
+      statusText: ApplicationHelper.getStatusText(application)
     })
   })
 

@@ -1,4 +1,4 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 
 module.exports = router => {
 
@@ -45,7 +45,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = utils.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application)
     if (data.allConditionsMet){
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
@@ -152,7 +152,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = utils.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application)
     if (data.allConditionsMet){
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
@@ -291,7 +291,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = utils.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application)
     if (data.allConditionsMet){
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet

@@ -1,4 +1,4 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 
 module.exports = router => {
   router.get('/applications/:applicationId/notes', (req, res) => {
@@ -7,7 +7,7 @@ module.exports = router => {
 
     res.render('applications/notes/index', {
       application,
-      statusText: utils.getStatusText(application)
+      statusText: ApplicationHelper.getStatusText(application)
     })
   })
 

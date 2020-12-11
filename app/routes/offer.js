@@ -1,4 +1,4 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 const { v4: uuidv4 } = require('uuid')
 const _ = require('lodash');
 
@@ -10,7 +10,7 @@ module.exports = router => {
 
     res.render('applications/offer/index', {
       application,
-      conditions: utils.getConditions(application)
+      conditions: ApplicationHelper.getConditions(application)
     })
   })
 
@@ -130,8 +130,8 @@ module.exports = router => {
   // delete a condition
   router.get('/applications/:applicationId/condition/:conditionId/delete', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const condition = utils.getCondition(application, req.params.conditionId)
-    const remainingConditions = utils.getConditions(application).filter(c => c.id !== condition.id)
+    const condition = ApplicationHelper.getCondition(application, req.params.conditionId)
+    const remainingConditions = ApplicationHelper.getConditions(application).filter(c => c.id !== condition.id)
     let hasRemainingConditions = remainingConditions.length;
     let allRemainingConditionsComplete = false;
     if(remainingConditions.length) {
@@ -149,9 +149,9 @@ module.exports = router => {
   router.post('/applications/:applicationId/condition/:conditionId/delete', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
-    utils.deleteCondition(application, req.params.conditionId)
+    ApplicationHelper.deleteCondition(application, req.params.conditionId)
 
-    if(utils.getConditions(application).length == 0) {
+    if(Application.getConditions(application).length == 0) {
       application.status = "Conditions met";
     }
 
@@ -164,7 +164,7 @@ module.exports = router => {
   // Edit condition statuses (in bulk)
   router.get('/applications/:applicationId/offer/edit-condition-statuses', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const conditions = utils.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application)
 
     res.render('applications/offer/edit-condition-statuses/index', {
       application,
@@ -182,7 +182,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // mixin new data statuses with conditions
-    let conditions = utils.getConditions(application).map(condition => {
+    let conditions = ApplicationHelper.getConditions(application).map(condition => {
       return {
         id: condition.id,
         description: condition.description,
@@ -209,20 +209,20 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
-    let conditions = utils.getConditions(application).forEach(c => {
-      let condition = utils.getCondition(application, c.id)
+    let conditions = ApplicationHelper.getConditions(application).forEach(c => {
+      let condition = ApplicationHelper.getCondition(application, c.id)
       condition.status = req.session.data['edit-condition-statuses']['conditions'][condition.id]
     })
 
-    if (utils.hasMetAllConditions(application)) {
+    if (Application.hasMetAllConditions(application)) {
       application.status = 'Conditions met';
     }
 
-    if(utils.getConditions(application).some(c => c.status == "Not met")) {
+    if(Application.getConditions(application).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
     }
 
-    utils.addEvent(application, {
+    ApplicationHelper.addEvent(application, {
       "title": "Status of conditions updated",
       "user": "Ben Brown",
       "date": new Date().toISOString()
@@ -236,7 +236,7 @@ module.exports = router => {
   // delete conditions (in bulk)
   router.get('/applications/:applicationId/offer/delete-conditions', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const conditionItems = utils.getConditions(application).map(c => {
+    const conditionItems = ApplicationHelper.getConditions(application).map(c => {
       return {
         value: c.description,
         text: c.description
@@ -256,7 +256,7 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/delete-conditions/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const remainingConditions = utils.getConditions(application)
+    const remainingConditions = ApplicationHelper.getConditions(application)
       .filter(c => !req.session.data['delete-conditions'].conditions.includes(c.description))
 
     const hasRemainingConditions = remainingConditions.length
@@ -276,13 +276,13 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // delete conditions
-    utils.getConditions(application)
+    ApplicationHelper.getConditions(application)
       .filter(c => req.session.data['delete-conditions'].conditions.includes(c.description))
       .forEach(c => {
-        utils.deleteCondition(application, c.id)
+        ApplicationHelper.deleteCondition(application, c.id)
       })
 
-    if(utils.getConditions(application).length == 0 || !utils.hasPendingConditions(application)) {
+    if(Application.getConditions(application).length == 0 || !Application.hasPendingConditions(application)) {
       application.status = "Conditions met";
     }
 

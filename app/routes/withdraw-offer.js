@@ -1,4 +1,4 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 
 module.exports = router => {
 
@@ -43,7 +43,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Offer withdrawn'
     application.withdrawnDate = new Date().toISOString()
-    application.withdrawnReasons = utils.getRejectReasons(req.session.data.rejectionReasons)
+    application.withdrawnReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
     delete req.session.data.rejectionReasons
 
     req.flash('success', 'Offer successfully withdrawn')
