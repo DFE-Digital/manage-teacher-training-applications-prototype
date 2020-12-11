@@ -1,0 +1,49 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Check and send feedback" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/reject/other-reasons-for-rejection/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Feedback for candidate"
+            },
+            value: {
+              text: data['rejectionReasons']['why']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/applications/"+ application.id +"/feedback",
+                  text: "Change",
+                  visuallyHiddenText: "Feedback for candidate"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Send feedback"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

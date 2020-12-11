@@ -1,4 +1,4 @@
-const Pagination = require('../data/pagination-utils')
+const PaginationHelper = require('../data/helpers/pagination')
 const _ = require("lodash")
 const { DateTime } = require('luxon')
 
@@ -45,9 +45,9 @@ module.exports = router => {
     let activity = getActivity(apps)
 
     // Get the pagination data
-    let pagination = Pagination.getPagination(activity, req.query.page, req.query.limit)
+    let pagination = PaginationHelper.getPagination(activity, req.query.page, req.query.limit)
 
-    activity = Pagination.getDataByPage(activity, req.query.page, req.query.limit)
+    activity = PaginationHelper.getDataByPage(activity, req.query.page, req.query.limit)
 
     activity = groupByDate(activity)
 

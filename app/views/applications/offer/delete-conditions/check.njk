@@ -1,0 +1,70 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Check and delete conditions" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: '/applications/' + application.id + '/offer/delete-conditions'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set conditionsHtml %}
+        {% for item in data['delete-conditions'].conditions %}
+          <p>{{item}}</p>
+        {% endfor %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Select which conditions to delete"
+            },
+            value: {
+              html: conditionsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: '/applications/' + application.id + '/offer/delete-conditions',
+                  text: "Change",
+                  visuallyHiddenText: "Select which conditions to delete"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% if not hasRemainingConditions %}
+        {{ govukWarningText({
+          text: "You’re about to delete all of the conditions. We’ll email the candidate to let them know they no longer have conditions to meet. The application status will be changed to ‘Conditions met’."
+        }) }}
+      {% elseif allRemainingConditionsComplete %}
+        {{ govukWarningText({
+          text: "All the remaining conditions have been met. We’ll email the candidate to let them know they no longer have conditions to meet. The application status will be changed to ‘Conditions met’."
+        }) }}
+      {% else %}
+        {{ govukWarningText({
+          text: "We’ll email the candidate to let them know they no longer have to meet these conditions."
+        }) }}
+      {% endif %}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Delete conditions"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

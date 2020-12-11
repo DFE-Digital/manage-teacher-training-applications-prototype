@@ -1,0 +1,60 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = 'Add note - ' + name %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{name}}</span>
+        Add note
+      </h1>
+
+      <form method="post">
+        {{ govukCharacterCount({
+          label: {
+            text: "Subject",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "This appears on your application list by the relevant candidate"
+          },
+          rows: 1,
+          maxlength: 40,
+          id: "subject",
+          name: "subject",
+          type: "text"
+        }) }}
+
+
+        {{ govukCharacterCount({
+          label: {
+            text: "Note",
+            classes: "govuk-label--m"
+          },
+          maxlength: 500,
+          id: "body",
+          name: "body",
+          type: "text"
+        }) }}
+
+        {{govukButton({
+          text: "Save note"
+        })}}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

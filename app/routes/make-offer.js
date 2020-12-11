@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
 
-  router.get('/application/:applicationId/offer/new', (req, res) => {
+  router.get('/applications/:applicationId/offer/new', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let conditions;
 
@@ -13,18 +13,18 @@ module.exports = router => {
 
     conditions = req.session.data['new-offer']['conditions']
 
-    res.render('application/offer/new/index', {
+    res.render('applications/offer/new/index', {
       application,
       conditions
     })
   })
 
-  router.post('/application/:applicationId/offer/new', (req, res) => {
+  router.post('/applications/:applicationId/offer/new', (req, res) => {
     const applicationId = req.params.applicationId
-    res.redirect(`/application/${applicationId}/offer/new/check`)
+    res.redirect(`/applications/${applicationId}/offer/new/check`)
   })
 
-  router.get('/application/:applicationId/offer/new/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/new/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     var conditions = []
 
@@ -43,13 +43,13 @@ module.exports = router => {
       }
     })
 
-    res.render('application/offer/new/check', {
+    res.render('applications/offer/new/check', {
       application,
       conditions
     })
   })
 
-  router.post('/application/:applicationId/offer/new/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/new/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -82,45 +82,45 @@ module.exports = router => {
     delete req.session.data.decision
 
     req.flash('success', 'Offer successfully made')
-    res.redirect(`/application/${req.params.applicationId}/offer`)
+    res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 
 
-  router.get('/application/:applicationId/offer/new/provider', (req, res) => {
+  router.get('/applications/:applicationId/offer/new/provider', (req, res) => {
 
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.render('application/offer/new/provider', {
+    res.render('applications/offer/new/provider', {
       application
     })
   })
 
-  router.post('/application/:applicationId/offer/new/provider', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/new/course`)
+  router.post('/applications/:applicationId/offer/new/provider', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/offer/new/course`)
   })
 
-  router.get('/application/:applicationId/offer/new/course', (req, res) => {
+  router.get('/applications/:applicationId/offer/new/course', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.render('application/offer/new/course', {
+    res.render('applications/offer/new/course', {
       application
     })
   })
 
-  router.post('/application/:applicationId/offer/new/course', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/offer/new/location`)
+  router.post('/applications/:applicationId/offer/new/course', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/offer/new/location`)
   })
 
-  router.get('/application/:applicationId/offer/new/location', (req, res) => {
+  router.get('/applications/:applicationId/offer/new/location', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.render('application/offer/new/location', {
+    res.render('applications/offer/new/location', {
       application
     })
   })
 
-  router.post('/application/:applicationId/offer/new/location', (req, res) => {
+  router.post('/applications/:applicationId/offer/new/location', (req, res) => {
     if(!req.session.data['new-offer']['standard-conditions'] || !req.session.data['new-offer'].conditions) {
-      res.redirect(`/application/${req.params.applicationId}/offer/new`)
+      res.redirect(`/applications/${req.params.applicationId}/offer/new`)
     } else {
-      res.redirect(`/application/${req.params.applicationId}/offer/new/check`)
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
     }
   })
 

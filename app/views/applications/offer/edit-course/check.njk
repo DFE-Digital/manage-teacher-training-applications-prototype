@@ -1,0 +1,58 @@
+{% extends "_layout.njk" %}
+
+{% set name = application.personalDetails.name %}
+
+{% set title = "Check and send new offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + '/offer/edit-course/location'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{appOfferPanel({
+        provider: {
+          value: application.provider,
+          href: "#"
+        },
+        course: {
+          value: application.course,
+          href: "/applications/" + application.id + "/offer/edit-course"
+        },
+        location: {
+          value: application.location,
+          href: "/applications/" + application.id + "/offer/edit-course/location"
+        },
+        studyMode: {
+          value: "Full time",
+          href: "#"
+        },
+        conditions: {
+          items: conditions
+        },
+        changeConditions: {
+          href: "#"
+        }
+      })}}
+
+      {{ govukWarningText({
+        text: "When you send this offer, you guarantee a place on this course as long as the candidate meets the conditions."
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Send new offer"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}

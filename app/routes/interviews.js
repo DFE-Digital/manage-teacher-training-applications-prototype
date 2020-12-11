@@ -1,5 +1,5 @@
-const Pagination = require('../data/pagination-utils')
-const utils = require('../data/application-utils')
+const PaginationHelper = require('../data/helpers/pagination')
+const ApplicationHelper = require('../data/helpers/application')
 const _ = require('lodash');
 const { DateTime } = require('luxon')
 const { v4: uuidv4 } = require('uuid')
@@ -45,7 +45,7 @@ function getTimeObject(time) {
 function getInterviews(applications) {
   let interviews = []
   applications = applications.filter(app => {
-    return utils.getStatusText(app) == "Interviewing"
+    return ApplicationHelper.getStatusText(app) == "Interviewing"
   })
 
   // update this to use FLATMAP
@@ -84,11 +84,11 @@ module.exports = router => {
     interviews = interviews.slice(9, interviews.length)
 
     // Get the pagination data
-    let pagination = Pagination.getPagination(interviews, req.query.page, req.query.limit)
+    let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
 
     let now = interviews[0].interview.date
 
-    interviews = Pagination.getDataByPage(interviews, req.query.page, req.query.limit)
+    interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
 
     res.render('interviews/index', {
@@ -101,8 +101,8 @@ module.exports = router => {
   router.get('/interviews/past', (req, res) => {
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(0, 9).reverse()
-    let pagination = Pagination.getPagination(interviews, req.query.page, req.query.limit)
-    interviews = Pagination.getDataByPage(interviews, req.query.page, req.query.limit)
+    let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
+    interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
     res.render('interviews/past', {
       interviews,
@@ -111,11 +111,11 @@ module.exports = router => {
   })
 
 
-  router.get('/application/:applicationId/interviews', (req, res) => {
+  router.get('/applications/:applicationId/interviews', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    const statusText = utils.getStatusText(application)
+    const statusText = ApplicationHelper.getStatusText(application)
 
     // make 6 Aug 2020 = today
     var now = DateTime.fromObject({
@@ -140,37 +140,37 @@ module.exports = router => {
       pastInterviews = application.interviews.items;
     }
 
-    res.render('application/interviews/index', {
+    res.render('applications/interviews/index', {
       application,
       upcomingInterviews,
       pastInterviews,
-      statusText: utils.getStatusText(application)
+      statusText: ApplicationHelper.getStatusText(application)
     })
   })
 
-  router.get('/application/:applicationId/interviews/new', (req, res) => {
+  router.get('/applications/:applicationId/interviews/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/new/index', {
+    res.render('applications/interviews/new/index', {
       application
     })
   })
 
-  router.post('/application/:applicationId/interviews/new', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/interviews/new/check`)
+  router.post('/applications/:applicationId/interviews/new', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/interviews/new/check`)
   })
 
-  router.get('/application/:applicationId/interviews/new/check', (req, res) => {
+  router.get('/applications/:applicationId/interviews/new/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/new/check', {
+    res.render('applications/interviews/new/check', {
       application
     })
   })
 
-  router.post('/application/:applicationId/interviews/new/check', (req, res) => {
+  router.post('/applications/:applicationId/interviews/new/check', (req, res) => {
 
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -203,37 +203,37 @@ module.exports = router => {
     delete req.session.data.interview
 
     req.flash('success', 'Interview set up')
-    res.redirect(`/application/${applicationId}/interviews`)
+    res.redirect(`/applications/${applicationId}/interviews`)
 
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/edit', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/edit', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/edit/index', {
+    res.render('applications/interviews/edit/index', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/edit', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/interviews/${req.params.interviewId}/edit/check`)
+  router.post('/applications/:applicationId/interviews/:interviewId/edit', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/interviews/${req.params.interviewId}/edit/check`)
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const interviewId = req.params.interviewId
 
-    res.render('application/interviews/edit/check', {
+    res.render('applications/interviews/edit/check', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
+  router.post('/applications/:applicationId/interviews/:interviewId/edit/check', (req, res) => {
 
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
@@ -261,37 +261,37 @@ module.exports = router => {
     delete req.session.data.interview
 
     req.flash('success', 'Interview changed')
-    res.redirect(`/application/${applicationId}/interviews`)
+    res.redirect(`/applications/${applicationId}/interviews`)
 
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/delete', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/delete', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/delete/index', {
+    res.render('applications/interviews/delete/index', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/delete', (req, res) => {
-    res.redirect(`/application/${req.params.applicationId}/interviews/${req.params.interviewId}/delete/check`)
+  router.post('/applications/:applicationId/interviews/:interviewId/delete', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/interviews/${req.params.interviewId}/delete/check`)
   })
 
-  router.get('/application/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
+  router.get('/applications/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/delete/check', {
+    res.render('applications/interviews/delete/check', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
 
-  router.post('/application/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
+  router.post('/applications/:applicationId/interviews/:interviewId/delete/check', (req, res) => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -307,9 +307,9 @@ module.exports = router => {
     req.flash('success', 'Interview cancelled')
 
     if(application.interviews.items.length) {
-      res.redirect(`/application/${req.params.applicationId}/interviews/`)
+      res.redirect(`/applications/${req.params.applicationId}/interviews/`)
     } else {
-      res.redirect(`/application/${req.params.applicationId}`)
+      res.redirect(`/applications/${req.params.applicationId}`)
     }
 
   })

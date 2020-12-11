@@ -1,5 +1,5 @@
-const Pagination = require('../data/pagination-utils')
-const utils = require('../data/application-utils')
+const PaginationHelper = require('../data/helpers/pagination')
+const ApplicationHelper = require('../data/helpers/application')
 const { DateTime } = require('luxon')
 
 function getCheckboxValues (name, data) {
@@ -27,11 +27,11 @@ function getApplicationsByGroup (applications) {
     .filter(app => app.daysToRespond < 5)
 
   const awaitingDecision = applications
-    .filter(app => (utils.getStatusText(app) === 'Received'))
+    .filter(app => (ApplicationHelper.getStatusText(app) === 'Received'))
     .filter(app => app.daysToRespond >= 5)
 
   const pendingInterview = applications
-    .filter(app => (utils.getStatusText(app) === 'Interviewing'))
+    .filter(app => (ApplicationHelper.getStatusText(app) === 'Interviewing'))
     .filter(app => app.daysToRespond >= 5)
 
   const waitingOn = applications
@@ -211,7 +211,7 @@ module.exports = router => {
         }
 
         if (statuses && statuses.length) {
-          statusValid = statuses.includes(utils.getStatusText(app))
+          statusValid = statuses.includes(ApplicationHelper.getStatusText(app))
         }
 
         if (locationnames && locationnames.length) {
@@ -343,7 +343,7 @@ module.exports = router => {
         app.daysToRespond = 1000
       }
 
-      app.statusText = utils.getStatusText(app);
+      app.statusText = ApplicationHelper.getStatusText(app);
 
       return app
     })
@@ -353,10 +353,10 @@ module.exports = router => {
     })
 
     // Get the pagination data
-    let pagination = Pagination.getPagination(applications, req.query.page)
+    let pagination = PaginationHelper.getPagination(applications, req.query.page)
 
     // Get a slice of the data to display
-    applications = Pagination.getDataByPage(applications, pagination.pageNumber)
+    applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)

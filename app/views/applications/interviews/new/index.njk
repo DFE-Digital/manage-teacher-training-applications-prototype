@@ -1,0 +1,173 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = "Set up an interview" %}
+
+{% set backUrl %}/applications/{{application.id}}{% endset %}
+{% if application.interviews.items.length > 0 %}
+{% set backUrl %}/applications/{{application.id}}/interviews{% endset %}
+{% endif %}
+
+{% set cancelUrl %}{{backUrl}}{% endset %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">
+    <span class="govuk-caption-l">{{name}}</span>
+    {{title}}
+  </h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if application.interviewNeeds.details %}
+        <div class="app-box">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Candidate interview preferences</h2>
+          <p>{{application.interviewNeeds.details | nl2br}}</p>
+        </div>
+      {% endif %}
+
+      <form method="post">
+
+        {{ govukDateInput({
+          id: "interview[date]",
+          name: "interview[date]",
+          fieldset: {
+            legend: {
+              text: "Date",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2021"
+          },
+          items: [{
+            name: "interview[date][day]",
+            label: "Day",
+            classes: "govuk-input--width-2",
+            value: data.interview.date.day
+          }, {
+            name: "interview[date][month]",
+            label: "Month",
+            classes: "govuk-input--width-2",
+            value: data.interview.date.month
+          }, {
+            name: "interview[date][year]",
+            label: "Year",
+            classes: "govuk-input--width-4",
+            value: data.interview.date.year
+          }]
+        }) }}
+
+        {{ govukInput({
+          id: "interview[time]",
+          name: "interview[time]",
+          label: {
+            text: "Time",
+            classes: 'govuk-label--m'
+          },
+          classes: 'govuk-input--width-5',
+          hint: {
+            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+          },
+          value: data.interview.time
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "interview[organisation]",
+          name: "interview[organisation]",
+          fieldset: {
+            legend: {
+              text: "Organisation carrying out interview",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "The Royal Borough Teaching School Alliance",
+              text: "The Royal Borough Teaching School Alliance"
+            },
+            {
+              value: "Kingston University",
+              text: "Kingston University"
+            }
+          ]
+        }) }}
+
+        {{ govukTextarea({
+          id: "interview[location]",
+          name: "interview[location]",
+          label: {
+            classes: "govuk-label--m",
+            text: "Address or online meeting details"
+          },
+          value: data.interview.location
+        }) }}
+
+        {{ govukTextarea({
+          id: "interview[details]",
+          name: "interview[details]",
+          label: {
+            classes: "govuk-label--m",
+            text: "Additional details (optional)"
+          },
+          value: data.interview.details
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <p class="govuk-body"><a href="{{cancelUrl}}">Cancel</a></p>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    // accessibleAutocomplete({
+      name: "time",
+      element: document.querySelector('.app-time'),
+      id: 'time',
+      showAllValues: true,
+      displayMenu: 'overlay',
+      source: [
+        '9am',
+        '9:15am',
+        '9:30am',
+        '9:45am',
+        '10am',
+        '10:15am',
+        '10:30am',
+        '10:45am',
+        '11am',
+        '11:15am',
+        '11:30am',
+        '11:45am',
+        '12pm (midday)',
+        '12:15pm',
+        '12:30pm',
+        '12:45pm',
+        '1pm (midday)',
+        '1:15pm',
+        '1:30pm',
+        '1:45pm',
+        '12am (midnight)',
+        '12:15am',
+        '12:30am',
+        '12:45am',
+      ]
+    })
+  </script>
+{% endblock %}

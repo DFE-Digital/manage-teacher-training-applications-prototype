@@ -1,0 +1,71 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Check and update status of conditions" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: '/applications/' + application.id + '/offer/edit-condition-statuses'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{appOfferPanel({
+        provider: {
+          value: application.provider
+        },
+        course: {
+          value: application.course
+        },
+        location: {
+          value: application.location
+        },
+        studyMode: {
+          value: "Full time"
+        },
+        conditions: {
+          items: conditions
+        },
+        changeStatus: {
+          href: "/applications/" + application.id + "/offer/edit-condition-statuses"
+        }
+      })}}
+
+      {% if hasNotMetConditions %}
+        {{ govukWarningText({
+          text: "We’ll tell the candidate that their offer will be withdrawn because they have not met the conditions of the offer"
+        }) }}
+      {% elseif allConditionsMet %}
+        {{ govukWarningText({
+          text: "We’ll tell the candidate that they have met all of their conditions."
+        }) }}
+      {% else %}
+        {{ govukWarningText({
+          text: "We’ll tell the candidate the updated status of their conditions."
+        }) }}
+      {% endif %}
+
+      <form method="post">
+
+        {% if hasNotMetConditions %}
+          {{ govukButton({
+            text: "Update conditions and withdraw offer",
+            classes: "govuk-button--warning"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Update conditions"
+          }) }}
+        {% endif %}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

@@ -12,7 +12,7 @@ router.all('*', function(req, res, next){
 require('./routes/application-list')(router)
 require('./routes/activity-log')(router)
 require('./routes/set-up-permissions')(router)
-require('./routes/application')(router)
+require('./routes/applications')(router)
 require('./routes/reject-application')(router)
 require('./routes/feedback')(router)
 require('./routes/offer')(router)

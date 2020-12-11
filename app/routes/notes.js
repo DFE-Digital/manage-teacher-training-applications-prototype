@@ -1,50 +1,50 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 
 module.exports = router => {
-  router.get('/application/:applicationId/notes', (req, res) => {
+  router.get('/applications/:applicationId/notes', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/index', {
+    res.render('applications/notes/index', {
       application,
-      statusText: utils.getStatusText(application)
+      statusText: ApplicationHelper.getStatusText(application)
     })
   })
 
-  router.get('/application/:applicationId/notes/first-time', (req, res) => {
+  router.get('/applications/:applicationId/notes/first-time', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/first-time', {
+    res.render('applications/notes/first-time', {
       application
     })
   })
 
-  router.post('/application/:applicationId/notes/first-time', (req, res) => {
+  router.post('/applications/:applicationId/notes/first-time', (req, res) => {
     const applicationId = req.params.applicationId
-    res.redirect(`/application/${applicationId}/notes/new`)
+    res.redirect(`/applications/${applicationId}/notes/new`)
   })
 
-  router.get('/application/:applicationId/notes/new', (req, res) => {
+  router.get('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/new', {
+    res.render('applications/notes/new', {
       application
     })
   })
 
-  router.post('/application/:applicationId/notes/new', (req, res) => {
+  router.post('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
     req.flash('success', 'Note added')
-    res.redirect(`/application/${applicationId}/notes`)
+    res.redirect(`/applications/${applicationId}/notes`)
   })
 
-  router.get('/application/:applicationId/notes/:noteId', (req, res) => {
+  router.get('/applications/:applicationId/notes/:noteId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/show', {
+    res.render('applications/notes/show', {
       application,
       note: application.notes.items.filter(note => note.id === req.params.noteId)[0]
     })

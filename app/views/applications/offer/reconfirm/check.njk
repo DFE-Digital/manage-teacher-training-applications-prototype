@@ -1,0 +1,83 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set title = "Review offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer/reconfirm/statuses"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% set conditionsHtml %}
+    {% if conditions.length %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for condition in conditions %}
+          <li>
+            {{ condition.description }}
+            {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="govuk-body">None specified</p>
+    {% endif %}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{appOfferPanel({
+        provider: {
+          value: application.provider,
+          href: "#"
+        },
+        course: {
+          value: application.course,
+          href: "#"
+        },
+        location: {
+          value: application.location,
+          href: "#"
+        },
+        studyMode: {
+          value: "Full time",
+          href: "#"
+        },
+        conditions: {
+          items: conditions
+        },
+        changeConditions: {
+          href: "/applications/" + application.id + "/offer/reconfirm/conditions"
+        },
+        changeStatus: {
+          href: "/applications/" + application.id + "/offer/reconfirm/statuses"
+        }
+      })}}
+
+      {{govukWarningText({
+        text: "We’ll email the candidate to confirm their new offer and remind them of the conditions for it."
+      })}}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm offer"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

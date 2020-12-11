@@ -1,0 +1,101 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set title = "Review deferred offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% set conditionsHtml %}
+    {% if conditions.length %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for condition in conditions %}
+          <li>
+            {{ condition.description }}
+            {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="govuk-body">None specified</p>
+    {% endif %}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <div class="app-offer-pane govuk-!-margin-bottom-7">
+        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p> #}
+
+        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA.</p> #}
+        <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p>
+
+        {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
+
+        <p class="govuk-!-margin-top-4">To change the details of this offer, contact us at <a href="mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.</p>
+
+        <p>Tell us which of the following details you’d like to change:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>provider</li>
+          <li>course</li>
+          <li>location</li>
+          <li>whether it’s full time or part time</li>
+        </ul>
+
+        <p>You should also let us know if any of the conditions of the offer are currently pending.</p>
+
+        <p>We’ll contact you within one working day to confirm that the offer has been updated. We’ll also contact the candidate confirming the new details.</p>
+      </div>
+
+      {# <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "action",
+          name: "action",
+          fieldset: {
+            legend: {
+              text: "What do you want to do?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Choose a different location",
+              text: "Choose a different location"
+            },
+            {
+              value: "Choose a different course",
+              text: "Choose a different course"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form> #}
+
+
+
+
+
+    </div>
+  </div>
+{% endblock %}

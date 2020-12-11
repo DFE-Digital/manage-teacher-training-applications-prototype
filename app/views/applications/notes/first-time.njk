@@ -1,0 +1,61 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = name %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="app-callout-card app-inverte app-inverte--card">
+
+        <h1 class="govuk-heading-l app-heading-l--inverte">Using notes</h1>
+
+        <p class="govuk-body app-body--inverte">
+          When you add a note to an application, it will only be visible to you and colleagues with access to applications for this course.<p>
+
+            <p class="govuk-body app-body--inverte">
+              The note will not be visible to the candidate.<p>
+
+
+        <form method="post">
+
+
+          {{ govukCheckboxes({
+            idPrefix: "hide-tip",
+            name: "hide-tip",
+            classes: "app-inverte-checkbox",
+            fieldset: {
+              legend: {
+                text: "Do you want to hide this tip again in future?",
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "Do not show this tip again",
+                text: "Do not show this information again"
+              }
+            ]
+          }) }}
+
+          {{govukButton({
+            text: "Continue",
+            classes: "app-button--inverte govuk-!-margin-bottom-0"
+          })}}
+        </form>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

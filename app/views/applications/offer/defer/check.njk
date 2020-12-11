@@ -1,0 +1,41 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+
+{% set name = application.personalDetails.name %}
+
+{% set title = "Check and confirm offer deferral" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        {{name}}
+      </span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      <p>This application will be marked as deferred.</p>
+
+      <p>You must review and confirm your offer again at the start of the next cycle (2021 to 2022).</p>
+
+      <p>We’ll email the candidate notifying them of the deferral after you confirm below.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm offer deferral"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

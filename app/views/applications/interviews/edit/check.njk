@@ -1,0 +1,129 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = "Check and send new interview details" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/interviews/" + interview.id + "/edit"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <span class="govuk-caption-l"> {{name}} </span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date"
+            },
+            value: {
+              text: [data.interview.date.day, data.interview.date.month, data.interview.date.year] | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/applications/" + application.id + "/interviews/" + interview.id + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Time"
+            },
+            value: {
+              text: data.interview.time
+            },
+            actions: {
+              items: [
+                {
+                  href: "/applications/" + application.id + "/interviews/" + interview.id + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation carrying out interview"
+            },
+            value: {
+              html: data.interview.organisation
+            },
+            actions: {
+              items: [
+                {
+                  href: "/applications/" + application.id + "/interviews/" + interview.id + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address or online meeting details"
+            },
+            value: {
+              html: data.interview.location | nl2br
+            },
+            actions: {
+              items: [
+                {
+                  href: "/applications/" + application.id + "/interviews/new",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Additional details"
+            },
+            value: {
+              html: data.interview.details | nl2br or "None"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/applications/" + application.id + "/interviews/" + interview.id + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "contact information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {# {{ govukWarningText({
+        text: "We’ll send an email to the candidate confirming the details of the interview.",
+        iconFallbackText: "Fallback text"
+      }) }} #}
+
+      <form method="post">
+
+        {{ govukButton({
+          text: "Send new interview details"
+        }) }}
+        <p class="govuk-body"><a href="/applications/{{ application.id }}/interviews">Cancel</a></p>
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}
