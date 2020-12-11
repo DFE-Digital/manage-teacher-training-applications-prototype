@@ -251,18 +251,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/application/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
-      {# {% set workHistoryGuidanceHtml %}
-        <h2 class="govuk-heading-m">Work history</h2>
-        <p class="govuk-body">Training providers need a complete picture of the last 5 years of of your work history, including time out of the workplace, to safeguard children.</p>
-        <p class="govuk-body">Breaks in work history won’t impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: workHistoryGuidanceHtml
-      }) }} #}
-      {% include "_includes/application/work-history.njk" %}
-
+      <!--
       <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
       {# {% set volunteeringGuidanceHtml %}
         <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
@@ -279,6 +268,7 @@
         html: volunteeringGuidanceHtml
       }) }} #}
       {% include "_includes/application/school-experience.njk" %}
+      -->
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
       {# {% set personalStatementGuidanceHtml %}
@@ -342,6 +332,63 @@
       <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
       {% include "_includes/application/reference.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
+
+      {% if application.workHistoryAnswer == "yes" %}
+        <!--
+
+        {{ govukInsetText({
+          text: "On 1 January 2021 we stopped asking candidates for their relevant skills and experience for each job."
+        }) }}
+
+        {% set workHistoryGuidanceHtml %}
+          <p class="govuk-body">Training providers need a complete picture of your work history (outside of full time education), including time out of the workplace, to safeguard children.</p>
+          <p class="govuk-body">Breaks in work history will not impact your application if you have a reasonable explanation for them (for example, parenting responsibilities, redundancy, illness or personal reasons such as study or travel).</p>
+        {% endset %}
+        {{ govukDetails({
+          summaryText: "View guidance given to candidate",
+          html: workHistoryGuidanceHtml
+        }) }}
+        -->
+        {% include "_includes/application/work-history.njk" %}
+
+      {% elseif application.workHistoryAnswer == "no--in-full-time-education" %}
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Do you have any work history?"
+            },
+            value: {
+              html: "No, I have always been in full time education"
+            }
+          }]
+          }) }}
+
+      {% else %}
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Do you have any work history?"
+            },
+            value: {
+              html: "No, I do not have any work history"
+            }
+          },
+          {
+            key: {
+              text: "Tell us why you’ve been out of the workplace"
+            },
+            value: {
+              html: application.workHistoryMissing
+            }
+          }
+
+          ]
+          }) }}
+      {% endif %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
       {% include "_includes/application/diversity-information.njk" %}

@@ -13,7 +13,7 @@
       <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.role + " – " + item.type if item.category == "job" else "Break (" + item.duration + ")" }}</h3>
       <p class="govuk-body govuk-!-margin-bottom-1">{{org}}</p>
       <p class="govuk-caption-m govuk-!-font-size-16">{{[startDate, endDate] | join(" - ")}}</p>
-      <p class="govuk-body">{{ item.description }}</p>
+      {% if item.category != "job" %}<p class="govuk-body">{{ item.description }}</p>{% endif %}
       {%- if item.workedWithChildren == "Yes" %}
         <p class="govuk-body govuk-!-font-size-16">{{ appIcon({
           icon: "check",
@@ -22,6 +22,4 @@
       {%- endif %}
     </div>
   {% endfor %}
-{% else %}
-  <p class="govuk-body">Candidate has no work history.</p>
 {% endif %}
