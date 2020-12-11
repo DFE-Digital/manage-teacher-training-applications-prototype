@@ -17,9 +17,16 @@
 
 {% block content %}
 
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form>
+      <form method="post">
         {{ govukCheckboxes({
           idPrefix: "settings",
           name: "settings",
@@ -45,43 +52,6 @@
         {{ govukButton({
           text: "Save settings"
         }) }}
-
-        {# <h1 class="govuk-heading-l">
-          Email settings
-        </h1>
-
-        <p>You are currently receiving email notifications.</p>
-
-        {{ govukButton({
-          text: "Disable notifications"
-        }) }} #}
-
-        {# {{ govukRadios({
-          idPrefix: "blah",
-          name: "blah",
-          fieldset: {
-            legend: {
-              text: "Do you want to receive email notifications?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes",
-              checked: checked
-            },
-            {
-              value: "No",
-              text: "No"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Save"
-        }) }} #}
 
       </form>
     </div>
