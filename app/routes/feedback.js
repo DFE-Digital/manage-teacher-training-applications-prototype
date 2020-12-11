@@ -4,7 +4,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/feedback', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    res.render('application/feedback/index', {
+    res.render('applications/feedback/index', {
       application
     })
   })
@@ -16,7 +16,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/feedback/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    res.render('application/feedback/check', {
+    res.render('applications/feedback/check', {
       application
     })
   })

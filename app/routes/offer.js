@@ -8,14 +8,14 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/offer/index', {
+    res.render('applications/offer/index', {
       application,
       conditions: utils.getConditions(application)
     })
   })
 
   router.get('/applications/:applicationId/offer/defer/check', (req, res) => {
-    res.render('application/offer/defer/check', {
+    res.render('applications/offer/defer/check', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -59,7 +59,7 @@ module.exports = router => {
       })
     }
 
-    res.render('application/offer/edit-conditions/index', {
+    res.render('applications/offer/edit-conditions/index', {
       application,
       standardConditions,
       conditions
@@ -90,7 +90,7 @@ module.exports = router => {
       }
     })
 
-    res.render('application/offer/edit-conditions/check', {
+    res.render('applications/offer/edit-conditions/check', {
       application,
       conditions
     })
@@ -138,7 +138,7 @@ module.exports = router => {
       allRemainingConditionsComplete = remainingConditions.every(condition => condition.status == "Met")
     }
 
-    res.render('application/offer/delete-condition/index', {
+    res.render('applications/offer/delete-condition/index', {
       application,
       condition,
       hasRemainingConditions,
@@ -166,7 +166,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     const conditions = utils.getConditions(application)
 
-    res.render('application/offer/edit-condition-statuses/index', {
+    res.render('applications/offer/edit-condition-statuses/index', {
       application,
       conditions
     })
@@ -198,7 +198,7 @@ module.exports = router => {
       return condition.status === "Met"
     })
 
-    res.render('application/offer/edit-condition-statuses/check', {
+    res.render('applications/offer/edit-condition-statuses/check', {
       application,
       conditions,
       hasNotMetConditions,
@@ -243,7 +243,7 @@ module.exports = router => {
       }
     })
 
-    res.render('application/offer/delete-conditions/index', {
+    res.render('applications/offer/delete-conditions/index', {
       application,
       conditionItems
     })
@@ -265,7 +265,7 @@ module.exports = router => {
       allRemainingConditionsComplete = remainingConditions.every(condition => condition.status == "Met")
     }
 
-    res.render('application/offer/delete-conditions/check', {
+    res.render('applications/offer/delete-conditions/check', {
       application,
       hasRemainingConditions,
       allRemainingConditionsComplete

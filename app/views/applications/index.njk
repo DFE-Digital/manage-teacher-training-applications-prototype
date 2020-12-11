@@ -20,11 +20,11 @@
     {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
   </h1>
 
-  {% include "_includes/application/interview-prompt.njk" %}
-  {% include "_includes/application/respond-prompt.njk" %}
-  {% include "_includes/application/defer-prompt.njk" %}
-  {% include "_includes/application/feedback-prompt.njk" %}
-  {% include "_includes/application/sub-nav.njk" %}
+  {% include "_includes/applications/interview-prompt.njk" %}
+  {% include "_includes/applications/respond-prompt.njk" %}
+  {% include "_includes/applications/defer-prompt.njk" %}
+  {% include "_includes/applications/feedback-prompt.njk" %}
+  {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -96,7 +96,7 @@
         {% include "_includes/candidate-feedback.njk" %}
       {% endif %}
 
-      {% include "_includes/application/details.njk" %}
+      {% include "_includes/applications/details.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Course details</h2>
       {{ govukSummaryList({
@@ -239,17 +239,17 @@
         summaryText: "View guidance given to candidate",
         html: qualificationsGuidanceHtml
       }) }} #}
-      {% include "_includes/application/degrees.njk" %}
-      {% include "_includes/application/gcses.njk" %}
+      {% include "_includes/applications/degrees.njk" %}
+      {% include "_includes/applications/gcses.njk" %}
       {% if application.personalDetails.isInternationalCandidate %}
-        {% include "_includes/application/english-language-qualification.njk" %}
+        {% include "_includes/applications/english-language-qualification.njk" %}
       {% endif %}
     </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/application/other-qualifications.njk" %}
+      {% include "_includes/applications/other-qualifications.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
       {# {% set workHistoryGuidanceHtml %}
@@ -261,7 +261,7 @@
         summaryText: "View guidance given to candidate",
         html: workHistoryGuidanceHtml
       }) }} #}
-      {% include "_includes/application/work-history.njk" %}
+      {% include "_includes/applications/work-history.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
       {# {% set volunteeringGuidanceHtml %}
@@ -278,7 +278,7 @@
         summaryText: "View guidance given to candidate",
         html: volunteeringGuidanceHtml
       }) }} #}
-      {% include "_includes/application/school-experience.njk" %}
+      {% include "_includes/applications/school-experience.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
       {# {% set personalStatementGuidanceHtml %}
@@ -337,14 +337,14 @@
       }) }} #}
       <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
-      {% include "_includes/application/reference.njk" %}
+      {% include "_includes/applications/reference.njk" %}
 
       <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
-      {% include "_includes/application/reference.njk" %}
+      {% include "_includes/applications/reference.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
-      {% include "_includes/application/diversity-information.njk" %}
+      {% include "_includes/applications/diversity-information.njk" %}
     </div>
   </div>
 {% endblock %}

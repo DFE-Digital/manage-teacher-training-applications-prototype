@@ -2,7 +2,7 @@ const utils = require('../data/application-utils')
 
 module.exports = router => {
   router.get('/applications/:applicationId/offer/edit-location', (req, res) => {
-    res.render('application/offer/edit-location/index', {
+    res.render('applications/offer/edit-location/index', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -15,7 +15,7 @@ module.exports = router => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let conditions = utils.getConditions(application)
 
-    res.render('application/offer/edit-location/check', {
+    res.render('applications/offer/edit-location/check', {
       application,
       conditions
     })

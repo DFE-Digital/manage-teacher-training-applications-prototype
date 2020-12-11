@@ -2,7 +2,7 @@ const utils = require('../data/application-utils')
 
 module.exports = router => {
   router.get('/applications/:applicationId/reject', (req, res) => {
-    res.render('application/reject/index', {
+    res.render('applications/reject/index', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
@@ -21,7 +21,7 @@ module.exports = router => {
 
     var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes'
 
-    res.render('application/reject/other-reasons-for-rejection', {
+    res.render('applications/reject/other-reasons-for-rejection', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
       noReasonsGivenYet: noReasonsGivenYet
     })
@@ -32,7 +32,7 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/reject/check', (req, res) => {
-    res.render('application/reject/check', {
+    res.render('applications/reject/check', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })

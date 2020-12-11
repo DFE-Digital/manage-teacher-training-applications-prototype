@@ -5,7 +5,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/index', {
+    res.render('applications/notes/index', {
       application,
       statusText: utils.getStatusText(application)
     })
@@ -15,7 +15,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/first-time', {
+    res.render('applications/notes/first-time', {
       application
     })
   })
@@ -29,7 +29,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/new', {
+    res.render('applications/notes/new', {
       application
     })
   })
@@ -44,7 +44,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/notes/show', {
+    res.render('applications/notes/show', {
       application,
       note: application.notes.items.filter(note => note.id === req.params.noteId)[0]
     })

@@ -140,7 +140,7 @@ module.exports = router => {
       pastInterviews = application.interviews.items;
     }
 
-    res.render('application/interviews/index', {
+    res.render('applications/interviews/index', {
       application,
       upcomingInterviews,
       pastInterviews,
@@ -152,7 +152,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/new/index', {
+    res.render('applications/interviews/new/index', {
       application
     })
   })
@@ -165,7 +165,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/new/check', {
+    res.render('applications/interviews/new/check', {
       application
     })
   })
@@ -212,7 +212,7 @@ module.exports = router => {
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/edit/index', {
+    res.render('applications/interviews/edit/index', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
@@ -227,7 +227,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const interviewId = req.params.interviewId
 
-    res.render('application/interviews/edit/check', {
+    res.render('applications/interviews/edit/check', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
@@ -270,7 +270,7 @@ module.exports = router => {
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/delete/index', {
+    res.render('applications/interviews/delete/index', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
@@ -285,7 +285,7 @@ module.exports = router => {
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('application/interviews/delete/check', {
+    res.render('applications/interviews/delete/check', {
       application,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })

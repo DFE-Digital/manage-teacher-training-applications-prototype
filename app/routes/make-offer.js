@@ -13,7 +13,7 @@ module.exports = router => {
 
     conditions = req.session.data['new-offer']['conditions']
 
-    res.render('application/offer/new/index', {
+    res.render('applications/offer/new/index', {
       application,
       conditions
     })
@@ -43,7 +43,7 @@ module.exports = router => {
       }
     })
 
-    res.render('application/offer/new/check', {
+    res.render('applications/offer/new/check', {
       application,
       conditions
     })
@@ -89,7 +89,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/offer/new/provider', (req, res) => {
 
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.render('application/offer/new/provider', {
+    res.render('applications/offer/new/provider', {
       application
     })
   })
@@ -100,7 +100,7 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/new/course', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.render('application/offer/new/course', {
+    res.render('applications/offer/new/course', {
       application
     })
   })
@@ -111,7 +111,7 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/new/location', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    res.render('application/offer/new/location', {
+    res.render('applications/offer/new/location', {
       application
     })
   })
