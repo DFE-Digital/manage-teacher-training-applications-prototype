@@ -28,5 +28,6 @@ require('./routes/organisations')(router)
 require('./routes/users')(router)
 require('./routes/email')(router)
 require('./routes/settings')(router)
+require('./routes/notifications')(router)
 
 module.exports = router
