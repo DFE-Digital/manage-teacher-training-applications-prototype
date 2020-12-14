@@ -251,25 +251,6 @@
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/applications/other-qualifications.njk" %}
 
-      <!--
-      <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
-      {# {% set volunteeringGuidanceHtml %}
-        <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
-        <p class="govuk-body">Tell us about any unpaid experience you have working with children or in a school. For example:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>one-off observations in a school</li>
-          <li>volunteering at a children's club</li>
-          <li>being a governor</li>
-        </ul>
-        <p class="govuk-body">You can also tell us about any other volunteering you’ve done, and how this supports your application to become a teacher.</p>
-      {% endset %}
-      {{ govukDetails({
-        summaryText: "View guidance given to candidate",
-        html: volunteeringGuidanceHtml
-      }) }} #}
-      {% include "_includes/applications/school-experience.njk" %}
-      -->
-
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
       {# {% set personalStatementGuidanceHtml %}
         <h2 class="govuk-heading-m">Why do you want to be a teacher?</h2>
@@ -351,7 +332,7 @@
           html: workHistoryGuidanceHtml
         }) }}
         -->
-        {% include "_includes/application/work-history.njk" %}
+        {% include "_includes/applications/work-history.njk" %}
 
       {% elseif application.workHistoryAnswer == "no--in-full-time-education" %}
 
@@ -389,6 +370,24 @@
           ]
           }) }}
       {% endif %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
+      {# {% set volunteeringGuidanceHtml %}
+        <h2 class="govuk-heading-m">Unpaid experience working with children and other volunteering</h2>
+        <p class="govuk-body">Tell us about any unpaid experience you have working with children or in a school. For example:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>one-off observations in a school</li>
+          <li>volunteering at a children's club</li>
+          <li>being a governor</li>
+        </ul>
+        <p class="govuk-body">You can also tell us about any other volunteering you’ve done, and how this supports your application to become a teacher.</p>
+      {% endset %}
+      {{ govukDetails({
+        summaryText: "View guidance given to candidate",
+        html: volunteeringGuidanceHtml
+      }) }} #}
+      {% include "_includes/applications/school-experience.njk" %}
+
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
       {% include "_includes/applications/diversity-information.njk" %}

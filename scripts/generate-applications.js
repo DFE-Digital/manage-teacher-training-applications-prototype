@@ -59,7 +59,7 @@ const generateFakeApplication = (params = {}) => {
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
 
   return {
-    id: faker.random.alphaNumeric(7).toUpperCase(),
+    id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
     cycle,
     provider: provider.name,
@@ -81,8 +81,8 @@ const generateFakeApplication = (params = {}) => {
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
     interviewNeeds: generateInterviewNeeds(faker),
-    workHistoryAnswer: faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education']),
-    workHistoryMissing: "I was unemployed",
+    workHistoryAnswer: params.workHistoryAnswer || faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education']),
+    workHistoryMissing: params.workHistoryMissing || "I was unemployed",
     workHistory: params.workHistory || generateWorkHistory(faker),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
@@ -116,6 +116,196 @@ const generateFakeApplications = () => {
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])
   })
+
+  /* Applications for Work History research */
+  applications.push(generateFakeApplication({
+    id: 'PBNF7WM',
+    status: 'Awaiting decision',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-05T14:02:00',
+    personalDetails: {
+      givenName: 'Tricia',
+      familyName: 'Jones',
+      sex: 'Female'
+    },
+    workHistoryAnswer: 'yes',
+    workHistory: [
+      {
+        category: 'job',
+        role: 'Bar tender',
+        org: 'Various pubs around town',
+        type: 'Part time',
+        workedWithChildren: 'No',
+        startDate: '1983-01-01',
+        endDate: '1983-12-01'
+      },
+      {
+        category: 'job',
+        role: 'Cleaner',
+        org: 'Office Heroes',
+        type: 'Part time',
+        workedWithChildren: 'No',
+        startDate: '1984-02-01',
+        endDate: '1984-07-01'
+      },
+      {
+        category: 'job',
+        role: 'Retail assistant',
+        org: 'Shop (can’t remember name)',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '1984-08-01',
+        endDate: '1985-08-01'
+      },
+      {
+        category: 'break',
+        description: 'Travelling across Thailand and Malaysia',
+        duration: '3 months',
+        startDate: '1985-08-01',
+        endDate: '1985-10-01'
+      },
+      {
+        category: 'job',
+        role: 'Seasonal mail sorter',
+        org: 'Royal Mail',
+        type: 'Part time',
+        workedWithChildren: 'No',
+        startDate: '1985-11-01',
+        endDate: '1985-12-01'
+      },
+      {
+        category: 'break',
+        description: 'Unemployed',
+        duration: '2 months',
+        startDate: '1986-01-01',
+        endDate: '1986-02-01'
+      },
+      {
+        category: 'job',
+        role: 'Retail assistant',
+        org: 'Jones’s Stores',
+        type: 'Part time',
+        workedWithChildren: 'No',
+        startDate: '1986-03-01',
+        endDate: '1986-05-01'
+      },
+      {
+        category: 'job',
+        role: 'Retail assistant',
+        org: 'Jones’s Stores',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '1986-05-01',
+        endDate: '1986-08-01'
+      },
+      {
+        category: 'job',
+        role: 'Deputy Manager',
+        org: 'Jones’s Stores',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '1986-08-01',
+        endDate: '1987-04-01'
+      },
+      {
+        category: 'job',
+        role: 'Manager',
+        org: 'YFW Ltd',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '1987-04-01',
+        endDate: '1988-02-01'
+      },
+      {
+        category: 'job',
+        role: 'Manager of clothing department',
+        org: 'Arnolds department store',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '1988-03-01',
+        endDate: '1991-11-01'
+      },
+      {
+        category: 'job',
+        role: 'Deputy store manager',
+        org: 'Arnolds department store',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '1991-11-01',
+        endDate: '1996-05-01'
+      },
+      {
+        category: 'break',
+        description: 'Bringing up my 4 children',
+        duration: '10 years, 3 months',
+        startDate: '1996-05-01',
+        endDate: '2006-08-01'
+      },
+      {
+        category: 'job',
+        role: 'Buyer',
+        org: 'Fergursons Homeware',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '2006-08-01',
+        endDate: '2011-02-01'
+      },
+      {
+        category: 'job',
+        role: 'Buyer',
+        org: 'Janes Furnishings',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '2011-02-01',
+        endDate: '2015-09-01'
+      },
+      {
+        category: 'job',
+        role: 'Senior Buyer',
+        org: 'R & T Ltd',
+        type: 'Full time',
+        workedWithChildren: 'No',
+        startDate: '2015-09-01',
+        endDate: '2017-06-01'
+      },
+      {
+        category: 'break',
+        description: 'Degree course',
+        duration: '2 years and 10 months',
+        startDate: '2017-09-01',
+        endDate: '2020-07-01'
+      }
+    ]
+  }))
+
+
+  applications.push(generateFakeApplication({
+    id: 'YD3TMD2L',
+    status: 'Awaiting decision',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-05T14:02:00',
+    personalDetails: {
+      givenName: 'Alex',
+      familyName: 'Roberts',
+      sex: 'Female'
+    },
+    workHistoryAnswer: 'no--in-full-time-education',
+  }))
+
+  applications.push(generateFakeApplication({
+    id: 'ABC15F25',
+    status: 'Awaiting decision',
+    cycle: '2020 to 2021',
+    submittedDate: '2020-07-05T14:02:00',
+    personalDetails: {
+      givenName: 'Barbara',
+      familyName: 'Kite',
+      sex: 'Female'
+    },
+    workHistoryAnswer: 'no',
+    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.'
+  }))
+
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
