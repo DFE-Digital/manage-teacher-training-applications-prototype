@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'account' %}
 
-{% set title = "Notification settings" %}
+{% set title = "Email notifications" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -10,14 +10,62 @@
       text: "Your account",
       href: "/account"
     }, {
-      text: "Notification settings"
+      text: title
     }]
   }) }}
 {% endblock %}
 
 {% block content %}
 
-  {% set emailOnceADay %}
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "emailsettings",
+          name: "emailsettings",
+          classes: "govuk-radios--inline",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "These are sent when an application is submitted, withdrawn, automatically rejected, accepted or declined"
+          },
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked(data.emailsettings, 'On')
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked(data.emailsettings, 'Off')
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Save settings"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+  {# {% set emailOnceADay %}
     {{appIcon({ icon: "check", hidden: true})}}
     <span class="app-email-settings">Daily at 8am</span>
   {% endset %}
@@ -284,6 +332,6 @@
             }
           ]
         ]
-      }) }}
+      }) }} #}
 
 {% endblock %}

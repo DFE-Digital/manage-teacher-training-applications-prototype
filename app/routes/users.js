@@ -1,4 +1,4 @@
-const utils = require('../data/application-utils')
+const ApplicationHelper = require('../data/helpers/application')
 
 function mixinRelatedOrgPermissions(org, relationships, permissionType) {
   relationships.forEach(relationship => {

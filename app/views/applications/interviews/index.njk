@@ -1,0 +1,206 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set name = application.personalDetails.name %}
+{% set title = 'Interviews - ' + name %}
+
+{% block content %}
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+    {{name}}
+    <span class="govuk-visually-hidden">Interviews</span>
+    {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+  </h1>
+
+  {% include "_includes/applications/interview-prompt.njk" %}
+  {% include "_includes/applications/respond-prompt.njk" %}
+  {% include "_includes/applications/defer-prompt.njk" %}
+
+  {% include "_includes/applications/sub-nav.njk" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if statusText == "Interviewing" %}
+        {{ govukButton({
+          text: "Set up interview",
+          href: "/applications/" + application.id + "/interviews/new",
+          classes: "govuk-button--secondary"
+        }) }}
+      {% endif %}
+
+
+      {% if upcomingInterviews.length > 0 %}
+        <h2 class="govuk-heading-m">
+          Upcoming interviews
+        </h2>
+      {% endif %}
+
+      {% for interview in upcomingInterviews %}
+
+        {% set interviewSummaryListHtml %}
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: application.course
+                }
+              },
+              {
+                key: {
+                  text: "Funding type"
+                },
+                value: {
+                  text: application.fundingType
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds.details
+                }
+              } if application.interviewNeeds.details,
+              {
+                key: {
+                  text: "Organisation carrying out interview"
+                },
+                value: {
+                  text: interview.organisation
+                }
+              },
+              {
+                key: {
+                  text: "Address or online meeting details"
+                },
+                value: {
+                  text: interview.location | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Additional details"
+                },
+                value: {
+                  text: interview.details | nl2br or 'None'
+                }
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {{appSummaryCard({
+          attributes: {
+            id: "interview-" + interview.id
+          },
+          titleText: interview.date | govukDateAtTime,
+          classes: "govuk-!-margin-bottom-6",
+          actions: {
+            items: [{
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
+              text: "Change details"
+            } if statusText == "Received" or statusText == "Interviewing", {
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
+              text: "Cancel interview"
+            } if statusText == "Received" or statusText == "Interviewing"]
+          },
+          html: interviewSummaryListHtml
+        })}}
+
+      {% endfor %}
+
+      {% if pastInterviews.length > 0 %}
+        <h2 class="govuk-heading-m">
+          Past interviews
+        </h2>
+      {% endif %}
+
+      {% for interview in pastInterviews %}
+
+        {% set interviewSummaryListHtml %}
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: application.course
+                }
+              },
+              {
+                key: {
+                  text: "Funding type"
+                },
+                value: {
+                  text: application.fundingType
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds.details
+                }
+              } if application.interviewNeeds.details,
+              {
+                key: {
+                  text: "Organisation carrying out interview"
+                },
+                value: {
+                  text: interview.organisation
+                }
+              },
+              {
+                key: {
+                  text: "Address or online meeting details"
+                },
+                value: {
+                  text: interview.location | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Additional details"
+                },
+                value: {
+                  text: interview.details | nl2br or 'None'
+                }
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {{appSummaryCard({
+          attributes: {
+            id: "interview-" + interview.id
+          },
+          titleText: interview.date | govukDateAtTime,
+          classes: "govuk-!-margin-bottom-6",
+          actions: {
+            items: [{
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
+              text: "Change details"
+            } if statusText == "Received" or statusText == "Interviewing", {
+              href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
+              text: "Cancel interview"
+            } if statusText == "Received" or statusText == "Interviewing"]
+          },
+          html: interviewSummaryListHtml
+        })}}
+
+      {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}

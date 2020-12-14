@@ -1,0 +1,48 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = "Reason for cancelling interview" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/interviews"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {% set h1 %}
+    <span class="govuk-caption-l"> {{name}} </span>
+    {{title}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukTextarea({
+          id: "cancelInterview[reason]",
+          name: "cancelInterview[reason]",
+          label: {
+            html: h1,
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.cancelInterview.reason
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <p><a href="/applications/{{application.id}}/interviews">Cancel</a></p>
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}

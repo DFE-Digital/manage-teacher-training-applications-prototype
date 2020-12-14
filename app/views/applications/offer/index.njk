@@ -1,0 +1,67 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "offer" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = 'Offer - ' + name %}
+
+{% block content %}
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  {% set rbd = application.submittedDate | addDays(40) %}
+  {% set remaining = rbd | daysFromNow(rbd) %}
+
+  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+    {{name}}
+    <span class="govuk-visually-hidden">Offer</span>
+    {{ govukTag({ classes: status | statusClass, text: status })}}
+  </h1>
+
+  {% include "_includes/applications/defer-prompt.njk" %}
+  {% include "_includes/applications/interview-prompt.njk" %}
+
+  {% include "_includes/applications/sub-nav.njk" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{appOfferPanel({
+        withdrawx: {
+          href: "/applications/" + application.id + "/offer/withdraw"
+        } if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred",
+        defer: {
+          href: "/applications/" + application.id + "/offer/defer/check"
+        } if application.status == "Accepted" or application.status == "Conditions met",
+        provider: {
+          value: application.provider,
+          href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered"
+        },
+        course: {
+          value: application.course,
+          href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered"
+        },
+        location: {
+          value: application.location,
+          href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered"
+        },
+
+        changeConditions: {
+          href: "/applications/" + application.id + "/offer/edit-conditions"
+        } if application.status == "Offered",
+
+        changeStatus: {
+          href: "/applications/" + application.id + "/offer/edit-condition-statuses"
+        } if application.status == "Accepted",
+
+        conditions: {
+          items: conditions
+        }
+      })}}
+
+    </div>
+  </div>
+{% endblock %}

@@ -39,7 +39,7 @@
 
             {% for interview in interviews %}
               {{appInterviewCard({
-                link: '/application/'+interview.app.id+'/interviews#interview-'+interview.interview.id,
+                link: '/applications/'+interview.app.id+'/interviews#interview-'+interview.interview.id,
                 date: interview.interview.date,
                 name: interview.app.personalDetails.givenName + ' ' + interview.app.personalDetails.familyName,
                 course: interview.app.course,

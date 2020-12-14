@@ -1,0 +1,26 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set title = name %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/applications/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-5">{{note.subject}}</h1>
+        <p>{{note.body}}</p>
+        <p class="govuk-hint govuk-!-font-size-16 govuk-!-margin-bottom-0">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
+      </div>
+    </div>
+
+{% endblock %}
