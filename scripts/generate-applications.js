@@ -133,11 +133,11 @@ const generateFakeApplications = () => {
       {
         category: 'job',
         role: 'Bar tender',
-        org: 'Red Lion',
+        org: 'Various pubs around town',
         type: 'Part time',
         workedWithChildren: 'No',
-        startDate: '1984-01-01',
-        endDate: '1984-04-01'
+        startDate: '1983-01-01',
+        endDate: '1983-12-01'
       },
       {
         category: 'job',
