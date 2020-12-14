@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'account' %}
 
-{% set title = "Email settings" %}
+{% set title = "Email notifications" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -27,9 +27,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
-        {{ govukCheckboxes({
+
+        {{ govukRadios({
           idPrefix: "emailsettings",
           name: "emailsettings",
+          classes: "govuk-radios--inline",
           fieldset: {
             legend: {
               text: title,
@@ -37,17 +39,23 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "These are sent when an application is submitted, withdrawn, automatically rejected, accepted or declined"
+          },
           items: [
             {
-              value: 'Receive email notifications',
-              text: 'Receive email notifications',
-              hint: {
-            text: "These are sent when an application is submitted, withdrawn, automatically rejected, accepted or declined"
-                    },
-              checked: checked(data.emailsettings, 'Receive email notifications')
+              value: "On",
+              text: "On",
+              checked: checked(data.emailsettings, 'On')
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked(data.emailsettings, 'Off')
             }
           ]
         }) }}
+
 
         {{ govukButton({
           text: "Save settings"

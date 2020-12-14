@@ -67,7 +67,7 @@ let relationships = [{
 let userOrgs = [trainingProviders[0], accreditedBodies[0], accreditedBodies[1]];
 
 module.exports = {
-  emailsettings: ['Receive email notifications'],
+  emailsettings: 'On',
   settings: [],
   user: {
     givenName: "Claudine",
