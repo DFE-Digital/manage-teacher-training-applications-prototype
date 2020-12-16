@@ -29,6 +29,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <p><a href="/applications/{{application.id}}/close-application" class="govuk-link">Withdraw or reject application</a></p>
+
       {% if application.rejectedReasons %}
         {% set rejectedDate = application.rejectedDate %}
         {% set rejectionReasons = application.rejectedReasons %}
