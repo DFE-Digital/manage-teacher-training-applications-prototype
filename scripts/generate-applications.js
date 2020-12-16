@@ -397,6 +397,9 @@ const generateFakeApplications = () => {
       sex: 'Female',
       dateOfBirth: "1999-04-05"
     },
+    safeguarding: {
+      "response": false
+    },
     workHistoryAnswer: 'no--in-full-time-education',
     schoolExperience: [
       {
@@ -420,6 +423,9 @@ const generateFakeApplications = () => {
       familyName: 'Kite',
       sex: 'Female',
       dateOfBirth: '1991-05-01'
+    },
+    safeguarding: {
+      "response": false
     },
     workHistoryAnswer: 'no',
     workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
