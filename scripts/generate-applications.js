@@ -64,10 +64,10 @@ const generateFakeApplication = (params = {}) => {
     cycle,
     provider: provider.name,
     accreditingbody: accreditedBody.name,
-    studyMode: faker.helpers.randomize(['Full time', 'Part time']),
-    fundingType: faker.helpers.randomize(['Salaried', 'Fee paying']),
-    course: generateCourse(faker),
-    locationname: generateTrainingLocation(faker),
+    studyMode: params.studyMode || faker.helpers.randomize(['Full time', 'Part time']),
+    fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
+    course: params.course || generateCourse(faker),
+    locationname: params.locationname || generateTrainingLocation(faker),
     status,
     submittedDate,
     offer,
@@ -80,7 +80,7 @@ const generateFakeApplication = (params = {}) => {
     events,
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
-    interviewNeeds: generateInterviewNeeds(faker),
+    interviewNeeds: params.interviewNeeds || generateInterviewNeeds(faker),
     workHistoryAnswer: params.workHistoryAnswer || faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education']),
     workHistoryMissing: params.workHistoryMissing || "I was unemployed",
     workHistory: params.workHistory || generateWorkHistory(faker),
@@ -88,12 +88,12 @@ const generateFakeApplication = (params = {}) => {
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
     otherQualifications: params.otherQualifications || generateOtherQualifications(faker),
-    schoolExperience: generateSchoolExperience(faker),
-    personalStatement: generatePersonalStatement(faker),
-    references: generateReferences(faker),
-    miscellaneous: faker.lorem.paragraph(),
-    safeguarding: generateSafeguarding(faker),
-    disability: generateDisability(faker)
+    schoolExperience:  params.schoolExperience || generateSchoolExperience(faker),
+    personalStatement: params.personalStatement || generatePersonalStatement(faker),
+    references: params.references || generateReferences(faker),
+    miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
+    safeguarding: params.safeguarding || generateSafeguarding(faker),
+    disability: params.disability || generateDisability(faker)
   }
 }
 
@@ -126,9 +126,116 @@ const generateFakeApplications = () => {
     personalDetails: {
       givenName: 'Tricia',
       familyName: 'Jones',
-      sex: 'Female'
+      sex: 'Female',
+      dateOfBirth: '1965-03-05',
+      isInternationalCandidate: false
     },
     workHistoryAnswer: 'yes',
+    degree: [
+      {
+        "type": "BA",
+        "subject": "History",
+        "org": "Aston University",
+        "country": "United Kingdom",
+        "grade": "Distinction",
+        "predicted": true,
+        "startDate": "2017",
+        "endDate": "2020"
+      }
+    ],
+    gcse: {
+      "maths": {
+        "type": "O level",
+        "subject": "Maths",
+        "country": "United Kingdom",
+        "missing": "false",
+        "grade": [
+          {
+            "grade": "C"
+          }
+        ],
+        "year": 1982
+      },
+      "english": {
+        "type": "O level",
+        "subject": "English",
+        "country": "United Kingdom",
+        "missing": "false",
+        "grade": [
+          {
+            "exam": "English",
+            "grade": "B"
+          }
+        ],
+        "year": 1982
+      },
+      "science": {
+        "type": "O level",
+        "subject": "Science",
+        "country": "United Kingdom",
+        "missing": "false",
+        "grade": [
+          {
+            "exam": "Science",
+            "grade": "B"
+          }
+        ],
+        "year": 1982
+      }
+    },
+    otherQualifications:
+      [
+    ],
+    englishLanguageQualification: {
+      hasQualification: "Not needed",
+      status: "English is not a foreign language to the candidate"
+    },
+    schoolExperience: [
+      {
+        "role": "Holiday club staff",
+        "org": "Heathcote Primary School",
+        "workedWithChildren": "Yes",
+        "startDate": "2019-07-01T23:14:28.205Z",
+        "endDate": "2019-08-30T05:13:38.382Z",
+        "timeCommitment": "3 afternoons a week over the summer"
+      }
+    ],
+    "references": {
+      "first": {
+        "type": "Professional",
+        "name": "Braeden Schultz",
+        "email": "braeden.schultz@gmail.com",
+        "tel": "01189 388018",
+        "relationship": {
+          "summary": "Deputy head at the school where I currently volunteer",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "A charismatic talented and able person."
+      },
+      "second": {
+        "type": "Professional",
+        "name": "Yolanda Ferry",
+        "email": "yolanda.ferry@yahoo.com",
+        "tel": "0800 435003",
+        "relationship": {
+          "summary": "Manager at R & T Ltd where I worked for 3 years.",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "Tricia is great, and will be a good teacher."
+      }
+    },
+    "safeguarding": {
+      "response": false
+    },
+    "disability": {
+      "response": false
+    },
     workHistory: [
       {
         category: 'job',
@@ -287,9 +394,20 @@ const generateFakeApplications = () => {
     personalDetails: {
       givenName: 'Alex',
       familyName: 'Roberts',
-      sex: 'Female'
+      sex: 'Female',
+      dateOfBirth: "1999-04-05"
     },
     workHistoryAnswer: 'no--in-full-time-education',
+    schoolExperience: [
+      {
+        "role": "Volunteer",
+        "org": "Local nature reserve",
+        "workedWithChildren": "No",
+        "startDate": "2019-08-01T23:14:28.205Z",
+        "endDate": "2019-08-09T05:13:38.382Z",
+        "timeCommitment": "1 week"
+      }
+    ]
   }))
 
   applications.push(generateFakeApplication({
@@ -300,10 +418,22 @@ const generateFakeApplications = () => {
     personalDetails: {
       givenName: 'Barbara',
       familyName: 'Kite',
-      sex: 'Female'
+      sex: 'Female',
+      dateOfBirth: '1991-05-01'
     },
     workHistoryAnswer: 'no',
-    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.'
+    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
+    schoolExperience: [
+      {
+        "role": "Peer support",
+        "org": "Bradshaw mental health charity",
+        "workedWithChildren": "No",
+        "startDate": "2017-08-01T23:14:28.205Z",
+        "endDate": "2018-08-09T05:13:38.382Z",
+        "timeCommitment": "1 evening a week"
+      }
+
+    ]
   }))
 
 
