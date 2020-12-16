@@ -70,3 +70,8 @@
   left: 0;
   top: 6px;
 }
+
+.app-application-card__caption {
+  color: govuk-colour('dark-grey');
+  @include govuk-font(16);
+}

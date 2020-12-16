@@ -1,0 +1,20 @@
+{{ appSearch({
+  label: {
+    text: 'Search by candidate name or reference',
+    classes: 'govuk-label--m'
+  },
+  input: {
+    id: 'keywords',
+    name: 'keywords',
+    value: data.keywords
+  },
+  buttons: [{
+    text: 'Search',
+    classes: 'app-search__button'
+  },{
+    text: 'Clear',
+    href: '/remove-keywords-search',
+    classes: 'app-search__button govuk-button--secondary'
+  }],
+  classes: 'govuk-!-margin-bottom-7'
+}) }}
