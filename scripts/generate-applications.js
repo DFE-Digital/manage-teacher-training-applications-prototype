@@ -394,9 +394,20 @@ const generateFakeApplications = () => {
     personalDetails: {
       givenName: 'Alex',
       familyName: 'Roberts',
-      sex: 'Female'
+      sex: 'Female',
+      dateOfBirth: "1999-04-05"
     },
     workHistoryAnswer: 'no--in-full-time-education',
+    schoolExperience: [
+      {
+        "role": "Volunteer",
+        "org": "Local nature reserve",
+        "workedWithChildren": "No",
+        "startDate": "2019-08-01T23:14:28.205Z",
+        "endDate": "2019-08-09T05:13:38.382Z",
+        "timeCommitment": "1 week"
+      }
+    ]
   }))
 
   applications.push(generateFakeApplication({
@@ -407,10 +418,22 @@ const generateFakeApplications = () => {
     personalDetails: {
       givenName: 'Barbara',
       familyName: 'Kite',
-      sex: 'Female'
+      sex: 'Female',
+      dateOfBirth: '1991-05-01'
     },
     workHistoryAnswer: 'no',
-    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.'
+    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
+    schoolExperience: [
+      {
+        "role": "Peer support",
+        "org": "Bradshaw mental health charity",
+        "workedWithChildren": "No",
+        "startDate": "2017-08-01T23:14:28.205Z",
+        "endDate": "2018-08-09T05:13:38.382Z",
+        "timeCommitment": "1 evening a week"
+      }
+
+    ]
   }))
 
 
