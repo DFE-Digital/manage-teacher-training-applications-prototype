@@ -23,37 +23,13 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>The data will include:</p> 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>all candidates who have accepted an offer</li>
-        <li>from any of your organisations</li>
-        <li>13 October 2020</li>
-      </ul>
+      <p>The data will include all candidates who have accepted an offer from any of your organisations since 13 October 2020.</p>
 
-      <!-- they dont have permission to see diversity information for one of their orgs -->
-      <p>Diversity information will be marked confidential if you do not have permission to view it.</p>
-
+      <p>Diversity information will be marked confidential if you or your organisation do not have permission to view it.</p>
 
       {{ govukButton({
         text: "Export data for HESA"
       }) }}
-
-      {{ govukDetails({
-       summaryText: "What do abbreviations in the ?",
-       html: '
-        <ul class="govuk-list">
-          <li>SBJCA</li>	
-          <li>QLAIM</li>	
-          <li>FIRSTDEG</li>	
-          <li>DEGTYPE</li>	
-          <li>DEGSBJ</li>	
-          <li>DEGCLSS</li>
-          <li>DEGSTDT</li>	
-          <li>DEGENDDT</li>
-        </ul>
-        '
-      }) }}
-
 
     </div>
   </div>

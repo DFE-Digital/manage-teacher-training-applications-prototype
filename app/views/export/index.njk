@@ -17,7 +17,7 @@
           name: 'export_cycle',
           fieldset: {
             legend: {
-              text: 'Select year',
+              text: 'Years',
               classes: 'govuk-fieldset__legend--m'
             }
           },
@@ -41,7 +41,7 @@
           name: 'export_status',
           fieldset: {
             legend: {
-              text: 'Select statuses',
+              text: 'Statuses',
               classes: 'govuk-fieldset__legend--s'
             }
           },
@@ -105,19 +105,19 @@
           name: "status",
           fieldset: {
             legend: {
-              text: "Select applications",
+              text: "Statuses",
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "All applications",
-              text: "All applications",
+              value: "All statuses",
+              text: "All statuses",
               checked: true
             },
             {
-              value: "Applications with a specific status",
-              text: "Applications with a specific status",
+              value: "Specific statuses",
+              text: "Specific statuses",
               conditional: {
                 html: statusHtml
               }
@@ -130,7 +130,7 @@
           name: "export_orgs",
           fieldset: {
             legend: {
-              text: "Select applications for certain organisations",
+              text: "Organisations",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -147,7 +147,7 @@
         }) }}
 
         {{ govukInsetText({
-          text: "Diversity information will be marked confidential if you do not have permission to view it, or the candidate has not accepted your offer."
+          text: "Diversity information will be marked confidential if you or your organisation do not have permission to view it, or the candidate has not accepted your offer."
         }) }}
 
         {{ govukButton({
