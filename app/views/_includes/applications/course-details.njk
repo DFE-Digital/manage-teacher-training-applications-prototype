@@ -1,0 +1,39 @@
+<h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Course details</h2>
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Provider"
+          },
+          value: {
+            text: application["provider"]
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            text: application["course"]
+          }
+        }, {
+          key: {
+            text: "Training location"
+          },
+          value: {
+            html: application["locationname"] + '<br> SCIL, Dillington House, Ilminster, Somerset, TA19 9DT '
+          }
+        }, {
+          key: {
+            text: "Full time or part time"
+          },
+          value: {
+            text: application.studyMode
+          }
+        }, {
+          key: {
+            text: "Funding type"
+          },
+          value: {
+            text: application.fundingType
+          }
+        }]
+      }) }}

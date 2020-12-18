@@ -5,35 +5,6 @@
   {%- endfor -%}
 {% endset %}
 
-<h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-font-size-27">Application details</h2>
-
-{{ govukSummaryList({
-  rows: [{
-    key: {
-      text: "Submitted"
-    },
-    value: {
-      text: application.submittedDate | govukDateAtTime
-    }
-  }, {
-    key: {
-      text: "Year received"
-    },
-    value: {
-      text: application.cycle | cycleText
-    }
-  },{
-    key: {
-      text: "Reference"
-    },
-    value: {
-      text: application.id
-    }
-  }]
-}) }}
-
-<p class="govuk-body"><a href="#" download>Download application (PDF)</a></p>
-
 <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-font-size-27">Personal details</h2>
 
 {{ govukSummaryList({

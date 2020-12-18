@@ -1,0 +1,37 @@
+{% set reasonHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "What reason did they give (if any)"
+    },
+    id: "rejection-asked-reasons",
+    name: "rejectionReasons[asked-reasons]",
+    value: data['rejectionReasons']["asked-reasons"]
+  }) }}
+{% endset %}
+
+
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it because the candidate asked you to withdraw their application?",
+      classes: "govuk-fieldset__legend--m",
+      isPageHeading: true
+    }
+  },
+  idPrefix: "rejection-asked",
+  name: "rejectionReasons[asked]",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked(data['rejectionReasons']['asked'], "Yes"),
+    conditional: {
+      html: reasonHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked(data['rejectionReasons']['asked'], "No")
+  }]
+}) }}
