@@ -12,9 +12,9 @@
     <p>{{application.cycle | cycleText}}</p>
 
     {% if application.status == "Awaiting decision" %}
-      <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/reject" class="govuk-link">Withdraw or reject application</a></p>
+      <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p>
     {% elseif application.status == "Deferred" or application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" %}
-      <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/withdraw" class="govuk-link">Withdraw application</a></p>
+      <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p>
     {% endif %}
 
   </div>
