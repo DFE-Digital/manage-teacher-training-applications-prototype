@@ -1,18 +1,14 @@
 {%- from "govuk/components/input/macro.njk" import govukInput %}
 {%- from "govuk/components/button/macro.njk" import govukButton %}
 
-<div class="app-search{%- if params.classes %} {{ params.classes }}{% endif %}">
+<div class="app-search {{- ' ' + params.classes if params.classes }}">
   {%- if params.hint %}
     {% set hintClasses = "app-search__hint " + (params.hint.classes if params.hint.classes) %}
     {% set hintText = params.hint.text %}
     {% set hint = { classes: hintClasses, text: hintText } %}
   {% endif -%}
 
-  {%- if params.method %}
-    {% set method = params.method %}
-  {% endif -%}
-
-  <form action="{{ params.action }}" method="{{ params.method | default('get') }}">
+  <form action="{{ params.action | default('/') }}" method="{{ params.method | default('get') }}" novalidate>
     {{ govukInput({
       classes: "app-search__input " + (params.input.classes if params.input.classes),
       label: {
@@ -26,9 +22,8 @@
       type: "search"
     }) }}
 
-    {{ govukButton({
-      classes: "app-search__button " + (params.button.classes if params.button.classes),
-      text: params.button.text
-    }) }}
+    {% for button in params.buttons %}
+      {{ govukButton(button) }}
+    {% endfor %}
   </form>
 </div>

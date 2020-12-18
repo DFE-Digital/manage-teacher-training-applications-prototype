@@ -36,6 +36,9 @@ function groupByDate(data) {
 
 module.exports = router => {
   router.get('/activity', (req, res) => {
+    // remove the search keywords if present to reset the search
+    delete req.session.data.keywords
+
     // Clone and turn into an array
     const apps = req.session.data.applications.filter(app => {
       return app.cycle === "2020 to 2021"

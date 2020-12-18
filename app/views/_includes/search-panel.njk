@@ -1,0 +1,22 @@
+{{ appSearch({
+  label: {
+    text: 'Search by candidate name or reference',
+    classes: 'govuk-label--m'
+  },
+  input: {
+    id: 'keywords',
+    name: 'keywords',
+    value: data.keywords
+  },
+  buttons: [{
+    text: 'Search',
+    classes: 'app-search__button'
+  }],
+  classes: 'govuk-!-margin-bottom-7' if not data.keywords
+}) }}
+
+{% if data.keywords %}
+  <p class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-7">
+    <a class="govuk-link govuk-link--no-visited-state" href="/remove-keywords-search">Clear search</a>
+  </p>
+{% endif %}
