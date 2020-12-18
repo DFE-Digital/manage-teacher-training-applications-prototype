@@ -360,10 +360,10 @@ module.exports = router => {
       }
     }
 
-    var applications = apps.map(app => {
-      var now = DateTime.fromISO('2020-08-15')
-      var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
-      var diff = rbd.diff(now, 'days').toObject().days
+    let applications = apps.map(app => {
+      const now = DateTime.fromISO('2020-08-15')
+      const rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
+      const diff = rbd.diff(now, 'days').toObject().days
 
       app.daysToRespond = Math.round(diff)
       if (diff < 1) {

@@ -80,6 +80,9 @@ function groupInterviewsByDate(interviews) {
 
 module.exports = router => {
   router.get('/interviews', (req, res) => {
+    // remove the search keywords if present to reset the search
+    delete req.session.data.keywords
+
     let interviews = getInterviews(req.session.data.applications)
     interviews = interviews.slice(9, interviews.length)
 
