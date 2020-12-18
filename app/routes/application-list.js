@@ -253,39 +253,11 @@ module.exports = router => {
       })
     }
 
-    // let searchTerms = null
-    // if (hasSearch) {
-    //
-    //   searchTerms = {
-    //     categories: []
-    //   }
-    //
-    //   if (keywords) {
-    //     searchTerms.categories.push({
-    //       heading: { text: "Search term" },
-    //       items: [{
-    //         text: keywords,
-    //         href: '/remove-keywords-search'
-    //       }]
-    //     })
-    //   }
-    // }
-
     let selectedFilters = null
     if (hasFilters) {
       selectedFilters = {
         categories: []
       }
-
-      // if (keywords) {
-      //   selectedFilters.categories.push({
-      //     heading: { text: "Search term" },
-      //     items: [{
-      //       text: keywords,
-      //       href: '/remove-keywords-filter'
-      //     }]
-      //   })
-      // }
 
       if (cycles && cycles.length) {
         selectedFilters.categories.push({
@@ -403,7 +375,6 @@ module.exports = router => {
       applications: applications,
       pagination: pagination,
       selectedFilters: selectedFilters,
-      // searchTerms: searchTerms,
       hasFilters: hasFilters
     })
   })
@@ -447,7 +418,6 @@ module.exports = router => {
     req.session.data.cycle = null
     req.session.data.status = null
     req.session.data.provider = null
-    // req.session.data.keywords = null
     req.session.data.accreditingbody = null
     req.session.data.locationname = null
     req.session.data.studyMode = null
