@@ -11,9 +11,17 @@ module.exports = router => {
     // skip last page if safeguarding, honesty or other offer given
     if (req.session.data.rejectionReasons.honesty === 'Yes' || req.session.data.rejectionReasons.safeguarding === 'Yes') {
       res.redirect(`/applications/${req.params.applicationId}/reject/check`)
+    } else if(req.session.data.rejectionReasons.conditions === 'Yes') {
+      res.redirect(`/applications/${req.params.applicationId}/reject/conditions`)
     } else {
       res.redirect(`/applications/${req.params.applicationId}/reject/other-reasons-for-rejection`)
     }
+  })
+
+  router.get('/applications/:applicationId/reject/conditions', (req, res) => {
+    res.render('applications/reject/conditions', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
   })
 
   router.get('/applications/:applicationId/reject/other-reasons-for-rejection', (req, res) => {
