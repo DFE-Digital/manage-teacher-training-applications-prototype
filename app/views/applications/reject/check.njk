@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check your feedback and reject application" %}
+{% set title = "Check your feedback and close application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -24,10 +24,10 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Reject application"
+          text: "Close application"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}
