@@ -96,5 +96,5 @@ module.exports = (faker) => {
   const scenario7 = {...defaults, ...additionalFeedback, ...futureApplications}
   const scenario8 = {...defaults, ...futureApplications}
 
-  return faker.helpers.randomize([scenario1, scenario2, scenario3, scenario4, scenario5, scenario6, scenario7, scenario8])
+  return faker.helpers.randomize([scenario1, scenario2, scenario3, scenario4, scenario5, scenario6, scenario7, scenario8, null])
 }

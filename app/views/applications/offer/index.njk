@@ -19,7 +19,7 @@
   <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
     {{name}}
     <span class="govuk-visually-hidden">Offer</span>
-    {{ govukTag({ classes: status | statusClass, text: status })}}
+    {{ govukTag({ classes: status | statusClass, text: statusText })}}
   </h1>
 
   {% include "_includes/applications/defer-prompt.njk" %}
