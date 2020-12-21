@@ -105,4 +105,4 @@
     text: "No",
     checked: checked(data['rejectionReasons']['application-quality'], "No")
   }]
-}) }}
+}) if application.status == 'Awaiting decision' }}

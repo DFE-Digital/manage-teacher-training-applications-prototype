@@ -76,4 +76,4 @@
     text: "No",
     checked: checked(data['rejectionReasons']['missing-qualifications'], "No")
   }]
-}) }}
+}) if application.status == 'Awaiting decision'}}

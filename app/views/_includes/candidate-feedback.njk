@@ -19,6 +19,11 @@
         <li>{{checkboxValue}}.</li>
       {% endif %}
 
+      {% set checkboxValue = "Did not respond" %}
+      {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
+        <li>{{checkboxValue}}.</li>
+      {% endif %}
+
       {% set checkboxValue = "Other" %}
       {% if checked(rejectionReasons["actions-reasons"], "Other") %}
         <li>
@@ -256,6 +261,19 @@
       {% endif %}
 
     </ul>
+    {% if rejectionChangeLinks %}
+      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  {% if rejectionReasons['asked'] == "Yes" %}
+    <div class="app-feedback">
+    <h2 class="govuk-heading-s">
+      You asked to close your application
+    </h2>
+    <p>{{rejectionReasons["asked-reasons"]}}</p>
+
     {% if rejectionChangeLinks %}
       <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
