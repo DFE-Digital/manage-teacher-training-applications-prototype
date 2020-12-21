@@ -18,6 +18,9 @@
       <div class="app-action-bar">
         <div class="app-action-bar__filter"></div>
       </div>
+
+      {% include "_includes/search-panel.njk" %}
+
       <div>
         {%- if applications.length %}
 
@@ -36,12 +39,14 @@
         {% endif -%}
       </div>
 
-      {% if pagination %}
+      {% if applications.length and pagination %}
         {% include "_includes/pagination.njk" %}
       {% endif %}
 
       {% if not applications.length %}
-        <p class="govuk-body">No applications for this cycle.</p>
+
+        <p class="govuk-body">No applications found.</p>
+
       {% endif %}
     </div>
   </div>

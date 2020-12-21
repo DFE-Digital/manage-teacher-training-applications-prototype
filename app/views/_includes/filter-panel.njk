@@ -1,261 +1,249 @@
 {% set filterOptionsHtml %}
 
-  {{ govukInput({
-      id: 'keywords',
-      name: 'keywords',
-      label: {
-        text: "Candidate’s name",
-        classes: 'govuk-label--s'
+  {{ govukCheckboxes({
+    idPrefix: "cycle",
+    name: "cycle",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Year received",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "2020 to 2021",
+        text: "2020 to 2021" | cycleText,
+        checked: checked(data.cycle, "2020 to 2021")
       },
-      value: data.keywords
-    }) }}
+      {
+        value: "2019 to 2020",
+        text: "2019 to 2020" | cycleText,
+        checked: checked(data.cycle, "2019 to 2020")
+      }
+    ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'status',
+    name: 'status',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Status',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [
+      {
+        value: 'Received',
+        text: 'Received',
+        checked: checked(data.status, "Received") == 'checked'
+      },
+      {
+        value: 'Interviewing',
+        text: 'Interviewing',
+        checked: checked(data.status, "Interviewing") == 'checked'
+      },
+      {
+        value: 'Offered',
+        text: 'Offered',
+        checked: checked(data.status, "Offered") == 'checked'
+      },
+      {
+        value: 'Accepted',
+        text: 'Accepted',
+        checked: checked(data.status, "Accepted") == 'checked'
+      },
+      {
+        value: 'Conditions met',
+        text: 'Conditions met',
+        checked: checked(data.status, "Conditions met") == 'checked'
+      },
+      {
+        value: 'Conditions not met',
+        text: 'Conditions not met',
+        checked: checked(data.status, "Conditions not met") == 'checked'
+      } if 1==2,
+      {
+        value: 'Deferred',
+        text: 'Deferred',
+        checked: checked(data.status, "Deferred") == 'checked'
+      },
+      {
+        value: 'Declined',
+        text: 'Declined',
+        checked: checked(data.status, "Declined") == 'checked'
+      } if 1==2,
+      {
+        value: 'Rejected',
+        text: 'Rejected',
+        checked: checked(data.status, "Rejected") == 'checked'
+      } if 1==2,
+      {
+        value: 'Application withdrawn',
+        text: 'Application withdrawn',
+        checked: checked(data.status, "Application withdrawn") == 'checked'
+      } if 1==2,
+      {
+        value: 'Offer withdrawn',
+        text: 'Offer withdrawn',
+        checked: checked(data.status, "Offer withdrawn") == 'checked'
+      } if 1==2,
+      {
+        value: 'Closed',
+        text: 'Closed',
+        checked: checked(data.status, "Closed") == 'checked'
+      }
+    ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'provider',
+    name: 'provider',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Courses run by',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [
+      {
+        value: data.user.organisations[0].name,
+        text: data.user.organisations[0].name,
+        checked: checked(data.provider, data.user.organisations[0].name) == 'checked'
+      },
+      {
+        value: data.user.organisations[1].name,
+        text: data.user.organisations[1].name,
+        checked: checked(data.provider, data.user.organisations[1].name) == 'checked'
+      }
+    ]
+  }) }}
+
+  {% if checked(data.provider, data.user.organisations[0].name) %}
 
     {{ govukCheckboxes({
-      idPrefix: "cycle",
-      name: "cycle",
+      name: 'locationname',
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: "Year received",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--s"
-        }
-      },
-      items: [
-        {
-          value: "2020 to 2021",
-          text: "2020 to 2021" | cycleText,
-          checked: checked(data.cycle, "2020 to 2021")
-        },
-        {
-          value: "2019 to 2020",
-          text: "2019 to 2020" | cycleText,
-          checked: checked(data.cycle, "2019 to 2020")
-        }
-      ]
-    }) }}
-
-    {{ govukCheckboxes({
-      idPrefix: 'status',
-      name: 'status',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Status',
+          text: 'Training locations for ' + data.user.organisations[0].name,
           classes: 'govuk-fieldset__legend--s'
         }
       },
       items: [
         {
-          value: 'Received',
-          text: 'Received',
-          checked: checked(data.status, "Received") == 'checked'
+          value: 'Main site',
+          text: 'Main site',
+          checked: checked(data.locationname, "Main site") == 'checked'
         },
         {
-          value: 'Interviewing',
-          text: 'Interviewing',
-          checked: checked(data.status, "Interviewing") == 'checked'
+          value: 'Camberley - training location',
+          text: 'Camberley - training location',
+          checked: checked(data.locationname, "Camberley - training location") == 'checked'
         },
         {
-          value: 'Offered',
-          text: 'Offered',
-          checked: checked(data.status, "Offered") == 'checked'
+          value: 'Epsom Grinstead - training location',
+          text: 'Epsom Grinstead - training location',
+          checked: checked(data.locationname, "Epsom Grinstead - training location") == 'checked'
         },
         {
-          value: 'Accepted',
-          text: 'Accepted',
-          checked: checked(data.status, "Accepted") == 'checked'
-        },
-        {
-          value: 'Conditions met',
-          text: 'Conditions met',
-          checked: checked(data.status, "Conditions met") == 'checked'
-        },
-        {
-          value: 'Conditions not met',
-          text: 'Conditions not met',
-          checked: checked(data.status, "Conditions not met") == 'checked'
-        } if 1 == 2,
-        {
-          value: 'Deferred',
-          text: 'Deferred',
-          checked: checked(data.status, "Deferred") == 'checked'
-        },
-        {
-          value: 'Declined',
-          text: 'Declined',
-          checked: checked(data.status, "Declined") == 'checked'
-        },
-        {
-          value: 'Closed',
-          text: 'Closed',
-          checked: checked(data.status, "Closed") == 'checked'
-        },
-        {
-          value: 'Rejected',
-          text: 'Rejected',
-          checked: checked(data.status, "Rejected") == 'checked'
-        } if 1 ==2,
-        {
-          value: 'Application withdrawn',
-          text: 'Application withdrawn',
-          checked: checked(data.status, "Application withdrawn") == 'checked'
-        } if 1 ==2,
-        {
-          value: 'Offer withdrawn',
-          text: 'Offer withdrawn',
-          checked: checked(data.status, "Offer withdrawn") == 'checked'
-        } if 1 ==2
+          value: 'Lingfield - training location',
+          text: 'Lingfield - training location',
+          checked: checked(data.locationname, "Lingfield - training location") == 'checked'
+        }
       ]
     }) }}
+  {% endif %}
 
-    {{ govukCheckboxes({
-      idPrefix: 'provider',
-      name: 'provider',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Courses run by',
-          classes: 'govuk-fieldset__legend--s'
-        }
+  {{ govukCheckboxes({
+    idPrefix: 'accreditingbody',
+    name: 'accreditingbody',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Courses ratified by',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [
+      {
+        value: data.accreditedBodies[0].name,
+        text: data.accreditedBodies[0].name,
+        checked: checked(data.accreditingbody, data.accreditedBodies[0].name) == 'checked'
       },
-      items: [
-        {
-          value: data.user.organisations[0].name,
-          text: data.user.organisations[0].name,
-          checked: checked(data.provider, data.user.organisations[0].name) == 'checked'
-        },
-        {
-          value: data.user.organisations[1].name,
-          text: data.user.organisations[1].name,
-          checked: checked(data.provider, data.user.organisations[1].name) == 'checked'
-        }
-      ]
-    }) }}
+      {
+        value: data.accreditedBodies[1].name,
+        text: data.accreditedBodies[1].name,
+        checked: checked(data.accreditingbody, data.accreditedBodies[1].name) == 'checked'
+      }
+    ]
+  }) }}
 
-    {% if checked(data.provider, data.user.organisations[0].name) %}
-
-      {{ govukCheckboxes({
-        name: 'locationname',
-        classes: "govuk-checkboxes--small",
-        fieldset: {
-          legend: {
-            text: 'Training locations for ' + data.user.organisations[0].name,
-            classes: 'govuk-fieldset__legend--s'
-          }
-        },
-        items: [
-          {
-            value: 'Main site',
-            text: 'Main site',
-            checked: checked(data.locationname, "Main site") == 'checked'
-          },
-          {
-            value: 'Camberley - training location',
-            text: 'Camberley - training location',
-            checked: checked(data.locationname, "Camberley - training location") == 'checked'
-          },
-          {
-            value: 'Epsom Grinstead - training location',
-            text: 'Epsom Grinstead - training location',
-            checked: checked(data.locationname, "Epsom Grinstead - training location") == 'checked'
-          },
-          {
-            value: 'Lingfield - training location',
-            text: 'Lingfield - training location',
-            checked: checked(data.locationname, "Lingfield - training location") == 'checked'
-          }
-        ]
-      }) }}
-    {% endif %}
-
-    {{ govukCheckboxes({
-      idPrefix: 'accreditingbody',
-      name: 'accreditingbody',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Courses ratified by',
-          classes: 'govuk-fieldset__legend--s'
-        }
+  {{ govukCheckboxes({
+    idPrefix: 'studyMode',
+    name: 'studyMode',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Full time or part time',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [
+      {
+        value: 'Full time',
+        text: 'Full time',
+        checked: checked(data.studyMode, 'Full time') == 'checked'
       },
-      items: [
-        {
-          value: data.accreditedBodies[0].name,
-          text: data.accreditedBodies[0].name,
-          checked: checked(data.accreditingbody, data.accreditedBodies[0].name) == 'checked'
-        },
-        {
-          value: data.accreditedBodies[1].name,
-          text: data.accreditedBodies[1].name,
-          checked: checked(data.accreditingbody, data.accreditedBodies[1].name) == 'checked'
-        }
-      ]
-    }) }}
+      {
+        value: 'Part time',
+        text: 'Part time',
+        checked: checked(data.studyMode, 'Part time') == 'checked'
+      }
+    ]
+  }) }}
+{% endset %}
 
-    {{ govukCheckboxes({
-      idPrefix: 'studyMode',
-      name: 'studyMode',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Full time or part time',
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: [
-        {
-          value: 'Full time',
-          text: 'Full time',
-          checked: checked(data.studyMode, 'Full time') == 'checked'
-        },
-        {
-          value: 'Part time',
-          text: 'Part time',
-          checked: checked(data.studyMode, 'Part time') == 'checked'
-        }
-      ]
-    }) }}
-  {% endset %}
-
-  <div class="app-filter">
-    <div class="app-filter__header">
-      <div class="app-filter__header-title">
-        <h2 class="govuk-heading-m">Filter</h2>
-      </div>
-      <div class="app-filter__header-action">
-
-      </div>
+<div class="app-filter">
+  <div class="app-filter__header">
+    <div class="app-filter__header-title">
+      <h2 class="govuk-heading-m">Filter</h2>
     </div>
-    <div class="app-filter__content">
-      {% if selectedFilters %}
-        <div class="app-filter__selected">
-          <div class="app-filter__selected-heading">
-            <div class="app-filter__heading-title">
-              <h2 class="govuk-heading-m">Selected filters</h2>
-            </div>
-            <div class="app-filter__heading-action">
-              <p><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear</a></p>
-            </div>
-          </div>
+    <div class="app-filter__header-action">
 
-          {% for category in selectedFilters.categories %}
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
-            <ul class="app-filter-tags">
-              {% for item in category.items %}
-                <li><a class="app-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
-              {% endfor %}
-            </ul>
-          {% endfor %}
-        </div>
-      {% endif %}
-      <div class="app-filter__options">
-        <form method="get" action="/">
-          <button class="govuk-button" data-module="govuk-button">
-            Apply filters
-          </button>
-          {{filterOptionsHtml | safe}}
-        </form>
-      </div>
     </div>
   </div>
+  <div class="app-filter__content">
+    {% if selectedFilters %}
+      <div class="app-filter__selected">
+        <div class="app-filter__selected-heading">
+          <div class="app-filter__heading-title">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
+            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear filters</a></p>
+          </div>
+        </div>
+
+        {% for category in selectedFilters.categories %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
+          <ul class="app-filter-tags">
+            {% for item in category.items %}
+              <li><a class="app-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="app-filter__options">
+      <form method="get" action="/" novalidate>
+        <button class="govuk-button" data-module="govuk-button">
+          Apply filters
+        </button>
+        {{filterOptionsHtml | safe}}
+      </form>
+    </div>
+  </div>
+</div>

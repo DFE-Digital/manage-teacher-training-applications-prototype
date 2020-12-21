@@ -194,7 +194,27 @@ module.exports = router => {
     const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (keywords))
+    const hasSearch = !!((keywords))
+
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0))
+
+    if (hasSearch) {
+      apps = apps.filter((app) => {
+
+        let candidateNameValid = true
+        let candidatIdValid = true
+
+        const candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
+        const candidateId = app.id
+
+        if (keywords) {
+          candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
+          candidateIdValid = candidateId.toLowerCase().includes(keywords.toLowerCase())
+        }
+
+        return candidateNameValid || candidateIdValid
+      })
+    }
 
     if (hasFilters) {
       apps = apps.filter((app) => {
@@ -203,7 +223,6 @@ module.exports = router => {
         let providerValid = true
         let locationnameValid = true
         let accreditingbodyValid = true
-        let candidateNameValid = true
         let studyModeValid = true
 
         if (cycles && cycles.length) {
@@ -230,13 +249,7 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        var candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
-
-        if (keywords) {
-          candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
-        }
-
-        return cycleValid && statusValid && locationnameValid && providerValid && candidateNameValid && accreditingbodyValid && studyModeValid
+        return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid
       })
     }
 
@@ -244,16 +257,6 @@ module.exports = router => {
     if (hasFilters) {
       selectedFilters = {
         categories: []
-      }
-
-      if (keywords) {
-        selectedFilters.categories.push({
-          heading: { text: "Candidate's name" },
-          items: [{
-            text: keywords,
-            href: '/remove-keywords-filter'
-          }]
-        })
       }
 
       if (cycles && cycles.length) {
@@ -329,10 +332,10 @@ module.exports = router => {
       }
     }
 
-    var applications = apps.map(app => {
-      var now = DateTime.fromISO('2020-08-15')
-      var rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
-      var diff = rbd.diff(now, 'days').toObject().days
+    let applications = apps.map(app => {
+      const now = DateTime.fromISO('2020-08-15')
+      const rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
+      const diff = rbd.diff(now, 'days').toObject().days
 
       app.daysToRespond = Math.round(diff)
       if (diff < 1) {
@@ -376,7 +379,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/remove-keywords-filter', (req, res) => {
+  router.get('/remove-keywords-search', (req, res) => {
     req.session.data.keywords = ''
     res.redirect('/')
   })
@@ -415,7 +418,6 @@ module.exports = router => {
     req.session.data.cycle = null
     req.session.data.status = null
     req.session.data.provider = null
-    req.session.data.keywords = null
     req.session.data.accreditingbody = null
     req.session.data.locationname = null
     req.session.data.studyMode = null
