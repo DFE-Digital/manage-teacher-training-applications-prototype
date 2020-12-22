@@ -1,6 +1,7 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
 const { DateTime } = require('luxon')
+const _ = require('lodash');
 
 function getCheckboxValues (name, data) {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
@@ -355,17 +356,17 @@ module.exports = router => {
       return a.daysToRespond - b.daysToRespond
     })
 
-    // Get the pagination data
-    let pagination = PaginationHelper.getPagination(applications, req.query.page)
-
-    // Get a slice of the data to display
-    applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
-
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)
 
     // Put groups into ordered array
     applications = flattenGroup(grouped)
+
+    // Get the pagination data
+    let pagination = PaginationHelper.getPagination(applications, req.query.page)
+
+    // Get a slice of the data to display
+    applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)
