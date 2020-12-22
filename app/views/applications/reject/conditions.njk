@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Update the status of conditions" %}
+{% set title = "Conditions not met" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -16,7 +16,7 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>To mark a condition as not met, select ‘Continue’.</p>
+      <p>You need to indicate the conditions which the candidate did not meet.</p>
 
       {{ govukButton({
         text: "Continue",

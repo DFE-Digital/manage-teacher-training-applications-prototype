@@ -1,6 +1,6 @@
 {% set candidateActionReasonsHtml %}
   {% set fieldName = "actions-reasons" %}
-  {% set checkboxValue = "Did not reply to interview request" %}
+  {% set checkboxValue = "Did not reply to messages" %}
   {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
     <p>{{checkboxValue}}</p>
   {% endif %}
