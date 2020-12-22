@@ -937,7 +937,7 @@ const generateFakeApplications = () => {
     applications.push(application)
   }
 
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 30; i++) {
     const application = generateFakeApplication({
       status: 'Rejected'
     })
