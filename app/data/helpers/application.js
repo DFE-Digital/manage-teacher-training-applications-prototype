@@ -55,7 +55,10 @@ exports.getRejectReasons = (data) => {
     'other-feedback-details': data['other-feedback-details'],
 
     // Future applications
-    'future-applications': data['future-applications']
+    'future-applications': data['future-applications'],
+
+    'asked': data.asked,
+    'asked-reasons': data['asked-reasons']
   }
 }
 

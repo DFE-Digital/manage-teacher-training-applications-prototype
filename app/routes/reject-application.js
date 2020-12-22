@@ -51,6 +51,8 @@ module.exports = router => {
     application.status = 'Rejected'
     application.rejectedDate = new Date().toISOString()
     application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+
+    console.log(application.rejectedReasons)
     delete req.session.data.rejectionReasons
 
     req.flash('success', 'Application closed')

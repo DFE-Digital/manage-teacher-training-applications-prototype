@@ -1,16 +1,4 @@
-{% if application.statusText == "Closed" and application.status != "Offer withdrawn" %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-font-size-27">Why this application was closed</h2>
-{% endif %}
-
-{% if application.status == "Application withdrawn" %}
-  <p>The candidate withdrew their application.</p>
-{% elseif application.status == "Offer withdrawn" %}
-  {# <p>We withdrew their application.</p> #}
-{% elseif application.status == "Conditions not met" %}
-  <p>The candidate failed to meet one or more conditions.</p>
-{% elseif application.status == "Declined" %}
-  <p>The candidate declined your offer.</p>
-{% elseif application.rejectedReasons %}
+{% if application.status == "Rejected" and application.rejectedReasons %}
   {% set rejectedDate = application.rejectedDate %}
   {% set rejectionReasons = application.rejectedReasons %}
   {% set showRejectedDate = true %}
@@ -69,7 +57,7 @@
   {# <p>This application was automatically rejected on {{ rejectedDate | govukDate }}. Feedback was sent on {{ rejectedDate | govukDate }}.</p> #}
 
 
-
+  <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-font-size-27">Why this application was closed</h2>
   <p>This application was closed on  {{ rejectedDate | govukDate }}. The following feedback was sent to the candidate.</p>
   {% include "_includes/candidate-feedback.njk" %}
 {% endif %}
