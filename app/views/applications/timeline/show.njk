@@ -16,10 +16,11 @@
     {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
   </h1>
 
-  {% include "_includes/applications/interview-prompt.njk" %}
   {% include "_includes/applications/respond-prompt.njk" %}
+  {% include "_includes/applications/interview-prompt.njk" %}
   {% include "_includes/applications/defer-prompt.njk" %}
   {% include "_includes/applications/feedback-prompt.njk" %}
+  {% include "_includes/applications/close-option.njk" %}
 
   {% include "_includes/applications/sub-nav.njk" %}
 

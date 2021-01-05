@@ -1,20 +1,32 @@
-  <div class="app-box govuk-!-padding-4 govuk-!-margin-top-4 govuk-!-margin-bottom-4">
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-2"> Application details </h2>
-    <p><a href="#" download>Download application (PDF)</a></p>
+<h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2 govuk-!-font-size-27">Application details</h2>
 
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-0"> Reference </h3>
-    <p>{{application.id}}</p>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Reference"
+      },
+      value: {
+        text: application.id
+      }
+    },
+    {
+      key: {
+        text: "Submitted"
+      },
+      value: {
+        text: application.submittedDate | govukDateAtTime
+      }
+    },
+    {
+      key: {
+        text: "Year received"
+      },
+      value: {
+        text: application.cycle | cycleText
+      }
+    }
+  ]
+}) }}
 
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-0"> Submitted </h3>
-    <p>{{application.submittedDate | govukDateAtTime}}</p>
-
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-0"> Year received </h3>
-    <p>{{application.cycle | cycleText}}</p>
-
-    {% if application.status == "Awaiting decision" %}
-      <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p>
-    {% elseif application.status == "Deferred" or application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" %}
-      <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p>
-    {% endif %}
-
-  </div>
+<p><a href="#" download>Download application (PDF)</a></p>

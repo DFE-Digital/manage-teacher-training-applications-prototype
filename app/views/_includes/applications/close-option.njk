@@ -1,0 +1,5 @@
+{% if application.status == "Awaiting decision" %}
+  {# <p class="govuk-!-margin-bottom-0"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p> #}
+{% elseif application.status == "Deferred" or application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" %}
+  <p class="govuk-!-margin-bottom-6" style="margin-top: -20px;"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p>
+{% endif %}

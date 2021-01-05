@@ -24,10 +24,15 @@
   {% include "_includes/applications/interview-prompt.njk" %}
   {% include "_includes/applications/defer-prompt.njk" %}
   {% include "_includes/applications/feedback-prompt.njk" %}
+  {% include "_includes/applications/close-option.njk" %}
+
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/applications/application-details.njk" %}
+
 
       {% include "_includes/applications/rejection-details.njk" %}
       {% include "_includes/applications/personal-details.njk" %}
@@ -114,7 +119,7 @@
 
     </div>
     <div class="govuk-grid-column-one-third">
-      {% include "_includes/applications/application-details.njk" %}
+
     </div>
   </div>
 
