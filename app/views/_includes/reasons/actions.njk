@@ -31,18 +31,14 @@
       }
     },
     items: [{
-      value: "Did not reply to interview request",
-      html: "Did not reply to interview request",
-      checked: checked(data['rejectionReasons']['actions-reasons'], "Did not reply to interview request")
+      value: "Did not reply to messages",
+      html: "Did not reply to messages",
+      checked: checked(data['rejectionReasons']['actions-reasons'], "Did not reply to messages")
     } if application.status == 'Awaiting decision', {
       value: "Did not attend interview",
       text: "Did not attend interview",
       checked: checked(data['rejectionReasons']['actions-reasons'], "Did not attend interview")
     } if application.status == 'Awaiting decision', {
-      value: "Did not respond",
-      text: "Did not respond",
-      checked: checked(data['rejectionReasons']['actions-reasons'], "Did not respond")
-    }, {
         value: "Other",
         text: "Other",
         checked: checked(data['rejectionReasons']['actions-reasons'], "Other"),
@@ -57,7 +53,7 @@
 {{ govukRadios({
   fieldset: {
     legend: {
-      html: "Was it related to candidate behaviour?",
+      html: "Was it related to the candidate’s behaviour?",
       classes: "govuk-fieldset__legend--m",
       isPageHeading: true
     }

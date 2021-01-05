@@ -16,7 +16,7 @@ module.exports = (faker) => {
   const behaviour = {
     actions: 'Yes',
     'actions-reasons': [
-      'Did not reply to interview request',
+      'Did not reply to messages',
       'Other'
     ],
     'actions-reasons-other': faker.lorem.paragraph(),

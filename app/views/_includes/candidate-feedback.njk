@@ -9,7 +9,7 @@
 
     <ul class="govuk-list app-list--spaced">
 
-      {% set checkboxValue = "Did not reply to interview request" %}
+      {% set checkboxValue = "Did not reply to messages" %}
       {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
         <li>{{checkboxValue}}.</li>
       {% endif %}
