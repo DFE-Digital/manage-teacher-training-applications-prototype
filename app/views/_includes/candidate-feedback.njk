@@ -9,12 +9,17 @@
 
     <ul class="govuk-list app-list--spaced">
 
-      {% set checkboxValue = "Did not reply to interview request" %}
+      {% set checkboxValue = "Did not reply to messages" %}
       {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
         <li>{{checkboxValue}}.</li>
       {% endif %}
 
       {% set checkboxValue = "Did not attend interview" %}
+      {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
+        <li>{{checkboxValue}}.</li>
+      {% endif %}
+
+      {% set checkboxValue = "Did not respond" %}
       {% if checked(rejectionReasons["actions-reasons"], checkboxValue) %}
         <li>{{checkboxValue}}.</li>
       {% endif %}
@@ -29,7 +34,7 @@
     </ul>
 
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -73,7 +78,7 @@
     </ul>
 
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -121,7 +126,7 @@
     </ul>
 
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -137,7 +142,7 @@
     <p>{{rejectionReasons['interview-performance-advice']}}</p>
 
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -150,7 +155,7 @@
     <p>The course you applied to was full.</p>
 
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -164,7 +169,7 @@
     <p>{{rejectionReasons["other-offer-details"]}}</p>
 
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -215,7 +220,7 @@
 
     </ul>
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -257,7 +262,20 @@
 
     </ul>
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  {% if rejectionReasons['asked'] == "Yes" %}
+    <div class="app-feedback">
+    <h2 class="govuk-heading-s">
+      You asked to close your application
+    </h2>
+    <p>{{rejectionReasons["asked-reasons"]}}</p>
+
+    {% if rejectionChangeLinks %}
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -271,7 +289,7 @@
     </h2>
     <p>{{rejectionReasons['why']}}</p>
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -283,7 +301,7 @@
     </h2>
     <p>{{rejectionReasons['other-feedback-details']}}</p>
     {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
     {% endif %}
     </div>
   {% endif %}
@@ -301,7 +319,7 @@
       {% endif %}
 
       {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link" href="/applications/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
+        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/reject/other-reasons-for-rejection/">Change</a></p>
       {% endif %}
     </div>
   {% endif %}

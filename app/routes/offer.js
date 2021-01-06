@@ -10,7 +10,8 @@ module.exports = router => {
 
     res.render('applications/offer/index', {
       application,
-      conditions: ApplicationHelper.getConditions(application)
+      conditions: ApplicationHelper.getConditions(application),
+      statusText: ApplicationHelper.getStatusText(application)
     })
   })
 
@@ -214,11 +215,11 @@ module.exports = router => {
       condition.status = req.session.data['edit-condition-statuses']['conditions'][condition.id]
     })
 
-    if (Application.hasMetAllConditions(application)) {
+    if (ApplicationHelper.hasMetAllConditions(application)) {
       application.status = 'Conditions met';
     }
 
-    if(Application.getConditions(application).some(c => c.status == "Not met")) {
+    if(ApplicationHelper.getConditions(application).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
     }
 

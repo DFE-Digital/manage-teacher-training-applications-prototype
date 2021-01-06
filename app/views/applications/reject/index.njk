@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Reasons for rejection" %}
+{% set title = "Reasons for closing this application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -16,17 +16,26 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>The candidate will see this feedback.</p>
+      <p>The candidate will be sent this feedback.</p>
 
       <form method="post">
-        {% include "_includes/reject-form-fields-1.njk" %}
-        {% include "_includes/reject-form-fields-2.njk" %}
+        {% include "_includes/reasons/conditions.njk" %}
+        {% include "_includes/reasons/actions.njk" %}
+        {% include "_includes/reasons/application-quality.njk" %}
+        {% include "_includes/reasons/missing-qualifications.njk" %}
+        {% include "_includes/reasons/interview-performance.njk" %}
+        {% include "_includes/reasons/honesty.njk" %}
+        {% include "_includes/reasons/safeguarding.njk" %}
+        {% include "_includes/reasons/other-offer.njk" %}
+        {% include "_includes/reasons/course-full.njk" %}
+        {% include "_includes/reasons/asked.njk" %}
+
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
 
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

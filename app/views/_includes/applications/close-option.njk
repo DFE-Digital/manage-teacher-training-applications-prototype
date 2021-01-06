@@ -1,0 +1,3 @@
+{% if application.statusText != "Closed" %}
+  <p class="govuk-!-margin-bottom-6" style="margin-top: -20px;"><a href="/applications/{{application.id}}/reject" class="govuk-link govuk-link--no-visited-state">Close application</a></p>
+{% endif %}

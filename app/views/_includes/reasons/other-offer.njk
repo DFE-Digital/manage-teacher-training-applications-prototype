@@ -16,8 +16,7 @@
   fieldset: {
     legend: {
       html: "Was it because you offered them a place on another course?",
-      classes: "govuk-fieldset__legend--m",
-      isPageHeading: true
+      classes: "govuk-fieldset__legend--m"
     }
   },
   idPrefix: "rejection-other-offer",
@@ -35,4 +34,4 @@
     text: "No",
     checked: checked(data['rejectionReasons']['other-offer'], "No")
   }]
-})}}
+}) if application.status == 'Awaiting decision'}}

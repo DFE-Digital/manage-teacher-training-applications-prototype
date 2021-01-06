@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Other reasons for rejection" %}
+{% set title = "Other reasons for closing this application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,13 +18,23 @@
       <p>The candidate will see this feedback.</p>
 
       <form method="post">
-        {% include "_includes/reject-form-fields-3.njk" %}
+        {% if noReasonsGivenYet %}
+          {% include "_includes/reasons/why.njk" %}
+        {% endif %}
+
+        {% if data.safeguarding != "Yes" %}
+          {% include "_includes/reasons/other-advice.njk" %}
+
+          {% if data['other-offer'] != "Yes" %}
+            {% include "_includes/reasons/future-applications.njk" %}
+          {% endif %}
+        {% endif %}
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
 
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}
