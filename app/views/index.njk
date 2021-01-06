@@ -45,7 +45,15 @@
 
       {% if not applications.length %}
 
-        <p class="govuk-body">No applications found.</p>
+        <!-- {#%- if hasFilters %#} -->
+
+          <p class="govuk-body">No applications found for ‘{{ data.keywords }}’ {%- if hasFilters %} and the selected filters{% endif %}.</p>
+
+        <!-- {#% else %}
+
+          <p class="govuk-body">No applications found.</p>
+
+        {% endif -%#} -->
 
       {% endif %}
     </div>
