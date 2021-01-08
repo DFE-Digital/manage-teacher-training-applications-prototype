@@ -27,8 +27,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% include "_includes/applications/application-details.njk" %}
+      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
 
+      <p>{% if application.status == "Awaiting decision" %}
+        <a href="/applications/{{application.id}}/reject">Reject or withdraw application</a>
+      {% else %}
+        <a href="/applications/{{application.id}}/reject">Withdraw application</a>
+      {% endif %}
+      <a class="govuk-!-margin-left-2" href="#" download>Download application (PDF)</a></p>
+
+      {% include "_includes/applications/application-details.njk" %}
 
       {% include "_includes/applications/rejection-details.njk" %}
       {% include "_includes/applications/personal-details.njk" %}
@@ -115,7 +123,7 @@
 
     </div>
     <div class="govuk-grid-column-one-third">
-
+      {# {% include "_includes/applications/application-details--sidebar.njk" %} #}
     </div>
   </div>
 
