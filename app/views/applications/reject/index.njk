@@ -3,11 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% if application.status == "Awaiting decision "%}
-  {% set title = "Reasons for rejecting or withdrawing this application" %}
-{% else %}
-  {% set title = "Reasons for rejecting or withdrawing this application" %}
-{% endif %}
+{% set title = "Reasons for closing this application" %}
+
 {% block pageNavigation %}
   {{ govukBackLink({
     href: "/applications/" + application.id + "/decision"

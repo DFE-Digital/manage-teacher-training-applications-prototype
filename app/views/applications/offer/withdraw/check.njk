@@ -20,11 +20,12 @@
 
       {% set rejectionReasons = data.rejectionReasons %}
       {% set rejectionChangeLinks = true %}
+      {% set whyHeading = "Why the offer was withdrawn" %}
       {% include "_includes/candidate-feedback.njk" %}
 
       <form method="post">
         {{ govukButton({
-          text: "Withdraw offer"
+          text: "Withdraw offer and close application"
         }) }}
       </form>
       <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>

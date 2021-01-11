@@ -215,12 +215,14 @@ module.exports = router => {
       condition.status = req.session.data['edit-condition-statuses']['conditions'][condition.id]
     })
 
+    var flash = "Status of conditions updated"
+
     if (ApplicationHelper.hasMetAllConditions(application)) {
       application.status = 'Conditions met';
-    }
-
-    if(ApplicationHelper.getConditions(application).some(c => c.status == "Not met")) {
+      flash = "Conditions marked as met"
+    } else if(ApplicationHelper.getConditions(application).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
+      flash = "Offer withdrawn and application closed"
     }
 
     ApplicationHelper.addEvent(application, {
@@ -229,7 +231,7 @@ module.exports = router => {
       "date": new Date().toISOString()
     })
 
-    req.flash('success', 'Status of conditions updated successfully')
+    req.flash('success', flash)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
 
   })

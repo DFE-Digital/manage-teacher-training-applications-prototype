@@ -54,7 +54,7 @@ module.exports = router => {
     application.withdrawnReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
     delete req.session.data.rejectionReasons
 
-    req.flash('success', 'Offer withdrawn')
+    req.flash('success', 'Offer withdrawn and application closed')
     res.redirect(`/applications/${applicationId}/offer`)
   })
 }

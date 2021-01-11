@@ -2,7 +2,16 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check and update status of conditions" %}
+
+{% if hasNotMetConditions %}
+  {% set title = "Check status of conditions and withdraw offer" %}
+{% elseif allConditionsMet %}
+  {% set title = "Check status of conditions and mark conditions as met" %}
+{% else %}
+  {% set title = "Check and update status of conditions" %}
+{% endif %}
+
+
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -38,30 +47,19 @@
         }
       })}}
 
-      {% if hasNotMetConditions %}
-        {{ govukWarningText({
-          text: "We’ll tell the candidate that their offer will be withdrawn because they have not met the conditions of the offer"
-        }) }}
-      {% elseif allConditionsMet %}
-        {{ govukWarningText({
-          text: "We’ll tell the candidate that they have met all of their conditions."
-        }) }}
-      {% else %}
-        {{ govukWarningText({
-          text: "We’ll tell the candidate the updated status of their conditions."
-        }) }}
-      {% endif %}
-
       <form method="post">
 
         {% if hasNotMetConditions %}
           {{ govukButton({
-            text: "Update conditions and withdraw offer",
-            classes: "govuk-button--warning"
+            text: "Withdraw offer and close application"
+          }) }}
+        {% elseif allConditionsMet %}
+          {{ govukButton({
+            text: "Mark conditions as met and tell candidate"
           }) }}
         {% else %}
           {{ govukButton({
-            text: "Update conditions"
+            text: "Update status and tell candidate"
           }) }}
         {% endif %}
       </form>

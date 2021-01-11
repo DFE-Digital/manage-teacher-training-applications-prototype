@@ -285,7 +285,10 @@
   {% if rejectionReasons['why'] %}
     <div class="app-feedback">
     <h2 class="govuk-heading-s">
-      Why your application was unsuccessful
+      {% if not whyHeading %}
+        {% set whyHeading = "Why your application was closed" %}
+      {% endif %}
+      {{whyHeading}}
     </h2>
     <p>{{rejectionReasons['why']}}</p>
     {% if rejectionChangeLinks %}
