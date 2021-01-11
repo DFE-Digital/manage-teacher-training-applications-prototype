@@ -47,47 +47,47 @@
 
         <p class="govuk-body">
 
-          {%- if data.keywords %}
+          {%- if data.keywords -%}
 
-            {%- if hasFilters %}
+            {%- if hasFilters -%}
 
-              {%- if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 %}
+              {%- if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 -%}
 
                 There are no results for ‘{{ data.keywords }}’ and the selected filters.
 
-              {% else %}
+              {%- else -%}
 
                 There are no results for ‘{{ data.keywords }}’ and the selected filter.
 
-              {% endif -%}
+              {%- endif -%}
 
-            {% else %}
+            {%- else -%}
 
               There are no results for ‘{{ data.keywords }}’.
 
-            {% endif %}
+            {%- endif -%}
 
-          {% else %}
+          {%- else -%}
 
-            {%- if hasFilters %}
+            {%- if hasFilters -%}
 
-              {%- if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 %}
+              {%- if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 -%}
 
                 There are no results for the selected filters.
 
-              {% else %}
+              {%- else -%}
 
                 There are no results for the selected filter.
 
-              {% endif -%}
+              {%- endif -%}
 
-            {% else %}
+            {%- else -%}
 
               There are no results
 
-            {% endif -%}
+            {%- endif -%}
 
-          {% endif -%}
+          {%- endif -%}
 
         </p>
 
