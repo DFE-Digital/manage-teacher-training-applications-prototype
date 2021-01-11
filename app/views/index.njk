@@ -43,11 +43,55 @@
         {% include "_includes/pagination.njk" %}
       {% endif %}
 
-      {% if not applications.length %}
+      {%- if not applications.length %}
 
-        <p class="govuk-body">There are no results for ‘{{ data.keywords }}’ {%- if hasFilters %} and the selected filter{% if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 %}s{% endif %}{% endif %}.</p>
+        <p class="govuk-body">
 
-      {% endif %}
+          {%- if data.keywords -%}
+
+            {%- if hasFilters -%}
+
+              {%- if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 -%}
+
+                There are no results for ‘{{ data.keywords }}’ and the selected filters.
+
+              {%- else -%}
+
+                There are no results for ‘{{ data.keywords }}’ and the selected filter.
+
+              {%- endif -%}
+
+            {%- else -%}
+
+              There are no results for ‘{{ data.keywords }}’.
+
+            {%- endif -%}
+
+          {%- else -%}
+
+            {%- if hasFilters -%}
+
+              {%- if selectedFilters.categories.length > 1 or selectedFilters.categories[0].items.length > 1 -%}
+
+                There are no results for the selected filters.
+
+              {%- else -%}
+
+                There are no results for the selected filter.
+
+              {%- endif -%}
+
+            {%- else -%}
+
+              There are no results
+
+            {%- endif -%}
+
+          {%- endif -%}
+
+        </p>
+
+      {% endif -%}
     </div>
   </div>
 
