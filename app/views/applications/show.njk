@@ -29,10 +29,13 @@
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
 
-      <p>{% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" %}
-        <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/reject">Reject or withdraw application</a>
-      {% endif %}
-      <a href="#" download>Download application (PDF)</a></p>
+      <p>
+        {# {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" %} #}
+        {% if application.status == "Awaiting decision" %}
+          <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/reject">Reject or withdraw application</a>
+        {% endif %}
+        <a href="#" download>Download application (PDF)</a>
+      </p>
 
       {% include "_includes/applications/application-details.njk" %}
 
