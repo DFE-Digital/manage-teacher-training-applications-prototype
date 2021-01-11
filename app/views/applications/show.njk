@@ -31,9 +31,9 @@
 
       <p>
         {# {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" %} #}
-        {# {% if application.status == "Awaiting decision" %}
+        {% if application.status == "Awaiting decision" %}
           <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/reject">Close application</a>
-        {% endif %} #}
+        {% endif %}
         <a href="#" download>Download application (PDF)</a>
       </p>
 
