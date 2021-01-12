@@ -2,7 +2,14 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check your feedback and close application" %}
+
+{% if data.rejectionReasons['other-offer'] == "Yes" or data.rejectionReasons['asked'] == "Yes" %}
+  {% set title = "Check your feedback and withdraw application" %}
+  {% set buttonText = "Send feedback and withdraw application" %}
+{% else %}
+  {% set title = "Check your feedback and close application" %}
+  {% set buttonText = "Send feedback and close application" %}
+{% endif %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -24,7 +31,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Close application"
+          text: buttonText
         }) }}
       </form>
       <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>

@@ -48,13 +48,21 @@ module.exports = router => {
   router.post('/applications/:applicationId/reject/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    application.status = 'Rejected'
-    application.rejectedDate = new Date().toISOString()
-    application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+
+    if(req.session.data.rejectionReasons['other-offer'] == "Yes" || req.session.data.rejectionReasons['asked'] == "Yes") {
+      application.status = 'Application withdrawn'
+      application.withdrawnDate = new Date().toISOString()
+      application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+      req.flash('success', 'Application closed')
+    } else {
+      application.status = 'Rejected'
+      application.rejectedDate = new Date().toISOString()
+      application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+      req.flash('success', 'Application closed')
+    }
 
     delete req.session.data.rejectionReasons
 
-    req.flash('success', 'Application closed')
     res.redirect(`/applications/${applicationId}`)
   })
 }
