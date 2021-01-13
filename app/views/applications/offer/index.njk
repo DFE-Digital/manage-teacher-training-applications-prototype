@@ -34,7 +34,7 @@
         {{appOfferPanel({
           withdraw: {
             href: "/applications/" + application.id + "/offer/withdraw"
-          } if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred",
+          } if application.status == "Offered" or application.status == "Deferred",
           defer: {
             href: "/applications/" + application.id + "/offer/defer/check"
           } if application.status == "Accepted" or application.status == "Conditions met",

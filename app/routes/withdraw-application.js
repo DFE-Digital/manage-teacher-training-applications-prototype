@@ -32,8 +32,14 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Application withdrawn'
     application.withdrawnDate = new Date().toISOString()
-    req.flash('success', 'Application closed')
+    req.flash('success', 'Application withdrawn')
     delete req.session.data.rejectionReasons
+
+    ApplicationHelper.addEvent(application, {
+      "title": "Application withdrawn",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
+    })
     res.redirect(`/applications/${applicationId}`)
   })
 }

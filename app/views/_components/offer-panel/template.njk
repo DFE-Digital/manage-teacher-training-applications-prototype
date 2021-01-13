@@ -5,10 +5,10 @@
   {% if params.withdraw or params.defer %}
     <p class="govuk-body">
       {% if params.withdraw %}
-        <a href="{{params.withdraw.href}}">Withdraw offer</a>
+        <a class="govuk-!-margin-right-2" href="{{params.withdraw.href}}">Withdraw offer</a>
       {% endif %}
       {% if params.defer %}
-        <a class="govuk-!-margin-left-2" href="{{params.defer.href}}">Defer offer</a>
+        <a href="{{params.defer.href}}">Defer offer</a>
       {% endif %}
     </p>
   {% endif %}

@@ -18,16 +18,8 @@
       <p>This feedback will be sent to the candidate.</p>
 
       <form method="post">
-        {% include "_includes/reasons/conditions.njk" %}
         {% include "_includes/reasons/actions.njk" %}
-        {% include "_includes/reasons/application-quality.njk" %}
-        {% include "_includes/reasons/missing-qualifications.njk" %}
-        {% include "_includes/reasons/interview-performance.njk" %}
-        {% include "_includes/reasons/honesty.njk" %}
-        {% include "_includes/reasons/safeguarding.njk" %}
-        {% include "_includes/reasons/other-offer.njk" %}
         {% include "_includes/reasons/course-full.njk" %}
-        {# {% include "_includes/reasons/asked.njk" %} #}
         {{ govukButton({
           text: "Continue"
         }) }}
