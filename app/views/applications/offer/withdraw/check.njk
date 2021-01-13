@@ -4,13 +4,9 @@
 {% set name = application.personalDetails.name %}
 {% set title = "Check your feedback and withdraw offer" %}
 
-{% if data.rejectionReasons['other-offer'] == "Yes" or data.rejectionReasons['asked'] == "Yes" %}
-  {% set title = "Check your feedback and withdraw offer" %}
-  {% set buttonText = "Withdraw offer and close application" %}
-{% else %}
-  {% set title = "Check your feedback and withdraw offer" %}
-  {% set buttonText = "Withdraw offer and close application" %}
-{% endif %}
+
+{% set title = "Check your feedback and withdraw offer" %}
+{% set buttonText = "Send feedback and withdraw offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({

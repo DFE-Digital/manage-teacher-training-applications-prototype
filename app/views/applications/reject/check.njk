@@ -3,13 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% if data.rejectionReasons['other-offer'] == "Yes" or data.rejectionReasons['asked'] == "Yes" %}
-  {% set title = "Check your feedback and withdraw application" %}
-  {% set buttonText = "Send feedback and withdraw application" %}
-{% else %}
-  {% set title = "Check your feedback and close application" %}
-  {% set buttonText = "Send feedback and close application" %}
-{% endif %}
+{% set title = "Check your feedback and reject application" %}
+{% set buttonText = "Send feedback and reject application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({

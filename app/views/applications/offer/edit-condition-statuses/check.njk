@@ -49,7 +49,7 @@
 
         {% if hasNotMetConditions %}
           {{ govukButton({
-            text: "Withdraw offer and close application"
+            text: "Mark condition as not met and withdraw offer"
           }) }}
         {% elseif allConditionsMet %}
           {{ govukButton({
