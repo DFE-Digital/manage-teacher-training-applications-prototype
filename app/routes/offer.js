@@ -227,7 +227,7 @@ module.exports = router => {
       })
     } else if(ApplicationHelper.getConditions(application).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
-      flash = "Conditons marked as not met";
+      flash = "Conditions marked as not met";
       ApplicationHelper.addEvent(application, {
         "title": "Conditions marked as not met",
         "user": "Ben Brown",

@@ -3,7 +3,7 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "What reason did the candidate give for withdrawing their application (if any)" %}
+{% set title = "Reason candidate is withdrawing (if they told you)" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -26,6 +26,9 @@
             html: h1,
             isPageHeading: true,
             classes: "govuk-label--l"
+          },
+          hint: {
+            text: "The candidate will see this."
           },
           id: "rejection-asked-reasons",
           name: "rejectionReasons[asked-reasons]",

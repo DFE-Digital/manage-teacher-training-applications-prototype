@@ -4,9 +4,9 @@
 {% set name = application.personalDetails.name %}
 
 {% if hasNotMetConditions %}
-  {% set title = "Check status and mark conditions as not met" %}
+  {% set title = "Check your changes and mark conditions as not met" %}
 {% elseif allConditionsMet %}
-  {% set title = "Check status and mark conditions as met" %}
+  {% set title = "Check your changes and mark conditions as met" %}
 {% else %}
   {% set title = "Check and update status of conditions" %}
 {% endif %}
@@ -48,8 +48,12 @@
       <form method="post">
 
         {% if hasNotMetConditions %}
+
+          <p>The candidate will be told that their application was unsuccessful.</p>
+
           {{ govukButton({
-            text: "Mark condition as not met and tell candidate"
+            text: "Mark conditions as not met",
+            classes: "govuk-button--warning"
           }) }}
         {% elseif allConditionsMet %}
           {{ govukButton({
