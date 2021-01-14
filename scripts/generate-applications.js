@@ -58,6 +58,19 @@ const generateFakeApplication = (params = {}) => {
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
 
+
+  let rejectedDate
+  let rejectedFeedbackDate
+  let rejectedReasons
+  if(status === 'Rejected') {
+    rejectedDate = faker.date.past()
+    rejectedReasons = generateRejection(faker)
+    // might be null to singal automatic rejection
+    if(rejectedReasons) {
+      rejectedFeedbackDate = rejectedDate
+    }
+  }
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
@@ -71,8 +84,9 @@ const generateFakeApplication = (params = {}) => {
     status,
     submittedDate,
     offer,
-    rejectedDate: status === 'Rejected' ? faker.date.past() : null,
-    rejectedReasons: status === 'Rejected' ? generateRejection(faker) : null,
+    rejectedDate: rejectedDate,
+    rejectedReasons: rejectedReasons,
+    rejectedFeedbackDate: rejectedFeedbackDate,
     withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
     withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
     interviews,
