@@ -51,10 +51,15 @@ module.exports = router => {
     application.status = 'Rejected'
     application.rejectedDate = new Date().toISOString()
     application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
-
+    req.flash('success', 'Application rejected')
     delete req.session.data.rejectionReasons
 
-    req.flash('success', 'Application closed')
+    ApplicationHelper.addEvent(application, {
+      "title": "Rejected",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
+    })
+
     res.redirect(`/applications/${applicationId}`)
   })
 }

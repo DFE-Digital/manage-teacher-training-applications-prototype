@@ -206,8 +206,6 @@ exports.getStatusText = (application) => {
     status = "Interviewing"
   } else if (application.status === "Awaiting decision") {
     status = "Received"
-  } else if (application.status === "Declined" || application.status === "Rejected" || application.status === "Offer withdrawn" || application.status == "Application withdrawn" || application.status == "Conditions not met" ) {
-    status = "Closed"
   }
 
   return status

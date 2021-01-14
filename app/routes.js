@@ -29,5 +29,6 @@ require('./routes/users')(router)
 require('./routes/email')(router)
 require('./routes/settings')(router)
 require('./routes/notifications')(router)
+require('./routes/withdraw-application')(router)
 
 module.exports = router

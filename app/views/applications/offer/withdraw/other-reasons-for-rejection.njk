@@ -15,12 +15,21 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>When giving details or advice, bear in mind the candidate will see this feedback. </p>
+      <p>This feedback will be sent to the candidate.</p>
 
       <form method="post">
         {% set whyLabel = "Why are you withdrawing your offer?" %}
+        {% if noReasonsGivenYet %}
+          {% include "_includes/reasons/why.njk" %}
+        {% endif %}
 
-        {% include "_includes/reject-form-fields-3.njk" %}
+        {% if data.safeguarding != "Yes" %}
+          {% include "_includes/reasons/other-advice.njk" %}
+
+          {% if data['other-offer'] != "Yes" %}
+            {% include "_includes/reasons/future-applications.njk" %}
+          {% endif %}
+        {% endif %}
         {{ govukButton({
           text: "Continue"
         }) }}

@@ -2,13 +2,11 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-
-{% set title = "Check your feedback and reject application" %}
-{% set buttonText = "Send feedback and reject application" %}
+{% set title = "Conditions not met" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/reject/other-reasons-for-rejection/"
+    href: "/applications/" + application.id + "/reject"
   }) }}
 {% endblock %}
 
@@ -18,17 +16,13 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>Your feedback will be given to the candidate in the format below.</p>
+      <p>You need to indicate the conditions which the candidate did not meet.</p>
 
-      {% set rejectionReasons = data.rejectionReasons %}
-      {% set rejectionChangeLinks = true %}
-      {% include "_includes/candidate-feedback.njk" %}
+      {{ govukButton({
+        text: "Continue",
+        href: '/applications/'+application.id+'/offer/edit-condition-statuses'
+      }) }}
 
-      <form method="post">
-        {{ govukButton({
-          text: buttonText
-        }) }}
-      </form>
       <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>

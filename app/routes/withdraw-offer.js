@@ -12,15 +12,23 @@ module.exports = router => {
     // skip last page if safeguarding, honesty or other offer given
     if (req.session.data.rejectionReasons.honesty === 'Yes' || req.session.data.rejectionReasons.safeguarding === 'Yes') {
       res.redirect(`/applications/${req.params.applicationId}/offer/withdraw/check`)
+    } else if(req.session.data.rejectionReasons.conditions === 'Yes') {
+      res.redirect(`/applications/${req.params.applicationId}/offer/withdraw/conditions`)
     } else {
       res.redirect(`/applications/${req.params.applicationId}/offer/withdraw/other-reasons-for-rejection`)
     }
   })
 
+  router.get('/applications/:applicationId/offer/withdraw/conditions', (req, res) => {
+    res.render('applications/offer/withdraw/conditions', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
   router.get('/applications/:applicationId/offer/withdraw/other-reasons-for-rejection', (req, res) => {
     var data = req.session.data.rejectionReasons
 
-    var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes'
+    var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes' && data.asked !== 'Yes'
 
     res.render('applications/offer/withdraw/other-reasons-for-rejection', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
@@ -44,9 +52,15 @@ module.exports = router => {
     application.status = 'Offer withdrawn'
     application.withdrawnDate = new Date().toISOString()
     application.withdrawnReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
-    delete req.session.data.rejectionReasons
+    req.flash('success', 'Offer withdrawn')
 
-    req.flash('success', 'Offer successfully withdrawn')
+    ApplicationHelper.addEvent(application, {
+      "title": "Offer withdrawn",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
+    })
+
+    delete req.session.data.rejectionReasons
     res.redirect(`/applications/${applicationId}/offer`)
   })
 }
