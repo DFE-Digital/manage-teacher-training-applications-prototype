@@ -71,6 +71,6 @@ module.exports = router => {
     }
 
     delete req.session.data.rejectionReasons
-    res.redirect(`/applications/${applicationId}`)
+    res.redirect(`/applications/${applicationId}/feedback`)
   })
 }
