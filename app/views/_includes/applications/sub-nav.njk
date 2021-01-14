@@ -21,5 +21,9 @@
     html: 'Timeline' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/applications/'+application.id+'/timeline',
     active: (subNavId == "timeline")
-  }]
+  }, {
+    html: 'Feedack' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
+    href: '/applications/'+application.id+'/feedback',
+    active: (subNavId == "feedback")
+  } if application.status == "Rejected" and application.rejectedReasons]
 }) }}

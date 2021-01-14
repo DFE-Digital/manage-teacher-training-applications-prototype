@@ -1,0 +1,32 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "feedback" %}
+{% set name = application.personalDetails.name %}
+{% set title = 'Feedback - ' + application.personalDetails.name %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+    {{name}}
+    <span class="govuk-visually-hidden">Feedback</span>
+    {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+  </h1>
+
+  {% include "_includes/applications/header.njk" %}
+  {% include "_includes/applications/sub-nav.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Feedback</h2>
+      {% if application.rejectedDate == application.rejectedFeedbackDate %}
+        <p>This application was rejected on  {{ application.rejectedDate | govukDate }}. The following feedback was sent to the candidate.</p>
+      {% else %}
+        <p>This application was automatically rejected on {{ application.rejectedDate | govukDate }}. Feedback was sent on {{ application.rejectedFeedbackDate | govukDate }}.</p>
+      {% endif %}
+      {% set rejectionReasons = application.rejectedReasons %}
+      {% include "_includes/candidate-feedback.njk" %}
+    </div>
+  </div>
+{% endblock %}
