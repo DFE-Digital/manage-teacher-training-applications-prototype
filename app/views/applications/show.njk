@@ -30,9 +30,8 @@
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
 
       <p>
-        {# {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" %} #}
-        {% if statusText != "Closed" %}
-          <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
+        {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" and application.status != "Conditions not met" %}
+           <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
         {% endif %}
         <a href="#" download>Download application (PDF)</a>
       </p>
