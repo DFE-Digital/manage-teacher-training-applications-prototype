@@ -2,7 +2,8 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Feedback for candidate" %}
+
+{% set title = "Reason candidate is withdrawing (if they told you)" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,28 +19,30 @@
         <span class="govuk-caption-l">{{name}}</span>
         {{title}}
       {% endset %}
-
       <form method="post">
-
         {{ govukCharacterCount({
-          maxwords: 200,
-         label: {
+          maxwords: 100,
+          label: {
             html: h1,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            isPageHeading: true,
+            classes: "govuk-label--l"
           },
-          id: "rejection-why",
-          name: "rejectionReasons[why]",
-          value: data['rejectionReasons']['why']
+          hint: {
+            text: "The candidate will see this."
+          },
+          id: "rejection-asked-reasons",
+          name: "rejectionReasons[asked-reasons]",
+          value: data['rejectionReasons']["asked-reasons"]
         }) }}
 
+        <input type="hidden" name="rejectionReasons[asked]" value="Yes">
 
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
 
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

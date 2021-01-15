@@ -1,0 +1,29 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Conditions not met" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/reject"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>You need to indicate the conditions which the candidate did not meet.</p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: '/applications/'+application.id+'/offer/edit-condition-statuses'
+      }) }}
+
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

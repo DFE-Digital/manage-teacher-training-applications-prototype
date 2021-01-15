@@ -1,0 +1,19 @@
+<div class="app-box govuk-!-margin-top-4">
+
+  <h2 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-font-size-27">Application details</h2>
+
+  <p><a href="#" download>Download application (PDF)</a></p>
+
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Reference</h3>
+  <p>{{application.id}}</p>
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Submitted</h3>
+  <p>{{application.submittedDate | govukDateAtTime}}</p>
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Year received</h3>
+  <p>{{application.cycle | cycleText}}</p>
+
+  {% if application.status == "Awaiting decision" %}
+    <p><a href="/applications/{{application.id}}/reject">Reject or withdraw application</a></p>
+  {% else %}
+    <p><a href="/applications/{{application.id}}/reject">Withdraw application</a></p>
+  {% endif %}
+</div>

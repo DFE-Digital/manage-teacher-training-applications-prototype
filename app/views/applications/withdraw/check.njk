@@ -2,15 +2,13 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check your feedback and withdraw offer" %}
 
-
-{% set title = "Check your feedback and withdraw offer" %}
-{% set buttonText = "Send feedback and withdraw offer" %}
+{% set title = "Check your feedback and withdraw application" %}
+{% set buttonText = "Send feedback and withdraw application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/withdraw/other-reasons-for-rejection/"
+    href: "/applications/" + application.id + "/withdraw/other-reasons-for-rejection/"
   }) }}
 {% endblock %}
 
@@ -24,8 +22,6 @@
 
       {% set rejectionReasons = data.rejectionReasons %}
       {% set rejectionChangeLinks = true %}
-      {% set whyHeading = "Why the offer was withdrawn" %}
-      {% set baseUrl = "/applications/" + application.id + "/offer/withdraw" %}
       {% include "_includes/candidate-feedback.njk" %}
 
       <form method="post">
@@ -33,7 +29,7 @@
           text: buttonText
         }) }}
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

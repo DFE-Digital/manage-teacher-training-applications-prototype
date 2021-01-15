@@ -27,7 +27,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/reject/other-reasons-for-rejection', (req, res) => {
     var data = req.session.data.rejectionReasons
 
-    var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes' && data.asked !== 'Yes'
+    var noReasonsGivenYet = data.actions !== 'Yes' && data['missing-qualifications'] !== 'Yes' && data['application-quality'] !== 'Yes' && data['interview-performance'] !== 'Yes' && data['course-full'] !== 'Yes' && data['other-offer'] !== 'Yes' && data.honesty !== 'Yes' && data.safeguarding !== 'Yes'
 
     res.render('applications/reject/other-reasons-for-rejection', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
@@ -48,13 +48,29 @@ module.exports = router => {
   router.post('/applications/:applicationId/reject/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    application.status = 'Rejected'
-    application.rejectedDate = new Date().toISOString()
-    application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+
+    if(application.status == "Rejected") {
+      application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+      application.rejectedFeedbackDate = new Date().toISOString()
+      req.flash('success', 'Feedback sent')
+      ApplicationHelper.addEvent(application, {
+        "title": "Feedback sent",
+        "user": "Ben Brown",
+        "date": new Date().toISOString()
+      })
+    } else {
+      application.status = 'Rejected'
+      application.rejectedDate = new Date().toISOString()
+      application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+      req.flash('success', 'Application rejected')
+      ApplicationHelper.addEvent(application, {
+        "title": "Rejected",
+        "user": "Ben Brown",
+        "date": new Date().toISOString()
+      })
+    }
 
     delete req.session.data.rejectionReasons
-
-    req.flash('success', 'Application closed')
-    res.redirect(`/applications/${applicationId}`)
+    res.redirect(`/applications/${applicationId}/feedback`)
   })
 }

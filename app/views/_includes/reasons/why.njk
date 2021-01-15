@@ -1,5 +1,9 @@
 {% if not whyLabel %}
-  {% set whyLabel = "Why are you closing this application?" %}
+  {% set whyLabel = "Why are you rejecting this application?" %}
+
+  {% if application.status == "Rejected" %}
+    {% set whyLabel = "Why did you rejecting this application?" %}
+  {% endif %}
 {% endif %}
 
 {{ govukCharacterCount({

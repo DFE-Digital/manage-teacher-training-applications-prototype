@@ -2,11 +2,17 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Reasons for closing this application" %}
+
+{% set title = "Reasons for rejecting this application" %}
 
 {% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id + "/decision" %}
+  {% if application.status == "Rejected" %}
+    {% set backUrl = "/applications/" + application.id %}
+  {% endif %}
+
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/decision"
+    href: backUrl
   }) }}
 {% endblock %}
 
@@ -16,7 +22,7 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>The candidate will be sent this feedback.</p>
+      <p>This feedback will be sent to the candidate.</p>
 
       <form method="post">
         {% include "_includes/reasons/conditions.njk" %}
@@ -28,7 +34,6 @@
         {% include "_includes/reasons/safeguarding.njk" %}
         {% include "_includes/reasons/other-offer.njk" %}
         {% include "_includes/reasons/course-full.njk" %}
-        {% include "_includes/reasons/asked.njk" %}
 
         {{ govukButton({
           text: "Continue"

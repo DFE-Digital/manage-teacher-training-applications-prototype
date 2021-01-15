@@ -21,16 +21,23 @@
   </h1>
 
   {% include "_includes/applications/header.njk" %}
+  {% include "_includes/applications/rejection-details.njk" %}
 
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
+
+      <p>
+        {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" and application.status != "Conditions not met" %}
+           <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
+        {% endif %}
+        <a href="#" download>Download application (PDF)</a>
+      </p>
+
       {% include "_includes/applications/application-details.njk" %}
-
-
-      {% include "_includes/applications/rejection-details.njk" %}
       {% include "_includes/applications/personal-details.njk" %}
       {% include "_includes/applications/course-details.njk" %}
 
@@ -115,7 +122,7 @@
 
     </div>
     <div class="govuk-grid-column-one-third">
-
+      {# {% include "_includes/applications/application-details--sidebar.njk" %} #}
     </div>
   </div>
 

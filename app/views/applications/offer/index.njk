@@ -28,39 +28,51 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{appOfferPanel({
-        withdrawx: {
-          href: "/applications/" + application.id + "/offer/withdraw"
-        } if application.status == "Offered" or application.status == "Accepted" or application.status == "Conditions met" or application.status == "Deferred",
-        defer: {
-          href: "/applications/" + application.id + "/offer/defer/check"
-        } if application.status == "Accepted" or application.status == "Conditions met",
-        provider: {
-          value: application.provider,
-          href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered"
-        },
-        course: {
-          value: application.course,
-          href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered"
-        },
-        location: {
-          value: application.location,
-          href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered"
-        },
+      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Offer</h2>
 
-        changeConditions: {
-          href: "/applications/" + application.id + "/offer/edit-conditions"
-        } if application.status == "Offered",
+      <div class="app-temp-offer-wrapper">
+        {{appOfferPanel({
+          withdraw: {
+            href: "/applications/" + application.id + "/offer/withdraw"
+          } if application.status == "Offered" or application.status == "Deferred",
+          defer: {
+            href: "/applications/" + application.id + "/offer/defer/check"
+          } if application.status == "Accepted" or application.status == "Conditions met",
+          provider: {
+            value: application.provider,
+            href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered"
+          },
+          course: {
+            value: application.course,
+            href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered"
+          },
+          location: {
+            value: application.location,
+            href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered"
+          },
 
-        changeStatus: {
-          href: "/applications/" + application.id + "/offer/edit-condition-statuses"
-        } if application.status == "Accepted",
+          changeConditions: {
+            href: "/applications/" + application.id + "/offer/edit-conditions"
+          } if application.status == "Offered",
 
-        conditions: {
-          items: conditions
-        }
-      })}}
+          changeStatus: {
+            href: "/applications/" + application.id + "/offer/edit-condition-statuses"
+          } if application.status == "Accepted",
 
+          conditions: {
+            items: conditions
+          }
+        })}}
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {# <div class="app-box">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Offer details</h2>
+        <p><a href="/applications/{{application.id}}/offer/withdraw">Withdraw offer</a></p>
+        <p><a href="/applications/{{application.id}}/offer/defer">Defer offer</a></p>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Offer date</h3>
+        <p>{{application.offer.madeDate | govukDate}}</p>
+      </div> #}
     </div>
   </div>
 {% endblock %}
