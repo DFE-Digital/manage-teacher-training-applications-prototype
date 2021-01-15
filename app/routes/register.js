@@ -109,7 +109,6 @@ module.exports = router => {
 
   router.get('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
 
-
     res.render('register/agreement', {
       actions: {
         save: ``,
@@ -129,22 +128,27 @@ module.exports = router => {
 
   router.get('/register/:organisationId/check-your-answers', checkHasAnswers, (req, res) => {
 
+    // set invitation count for use in showing content
+    const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
 
     res.render('register/check-your-answers', {
       actions: {
         next: `/register/${req.params.organisationId}/done`,
         back: `/register/${req.params.organisationId}/agreement`
       },
-      registration: req.session.data.registration
+      registration: req.session.data.registration,
+      trainingProviderInviteCount
     })
 
   })
 
   router.get('/register/:organisationId/done', checkHasAnswers, (req, res) => {
 
+    // set invitation count for use in pluralising content
+    const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
 
     res.render('register/done', {
-
+      trainingProviderInviteCount
     })
 
   })

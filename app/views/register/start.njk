@@ -6,10 +6,10 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
-        Set up users for your School Directs
+        Set up users for your training providers
       </h1>
 
-      <p class="govuk-body">You belong to the {{ accreditingBody.name }} who ratify courses at:</p>
+      <p class="govuk-body">You belong to the {{ accreditingBody.name }} who ratify courses run by::</p>
 
       <ul class="govuk-list govuk-list--bullet">
         {% for provider in trainingProviders %}
@@ -19,14 +19,14 @@
         {% endfor %}
       </ul>
 
-      <p class="govuk-body">To create your account, you need to tell us:</p>
+      <p class="govuk-body">To create your account, you must tell us:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         <li>
-          whether each school direct’s courses should be open on ‘Apply for teacher training’
+          whether each training provider’s courses should be open on ‘Apply for teacher training’
         </li>
         <li>
-          the email address of the user who works at each School Direct
+          the email address of the user who works at each training provider
         </li>
       </ul>
 
