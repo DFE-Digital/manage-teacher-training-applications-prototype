@@ -1,0 +1,518 @@
+[
+  {
+    "id": "B20",
+    "name": "Bath Spa University",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "B25",
+    "name": "Birmingham City University",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "B22",
+    "name": "University of Bedfordshire",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "S90",
+    "name": "University of Sussex",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "Y50",
+    "name": "University of York",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "1UW",
+    "name": "The Bath and Mendip Partnership Teaching School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B20"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "18M",
+    "name": "North Dorset Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B20"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2BO",
+    "name": "Excalibur TSA",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B20"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2FY",
+    "name": "West Wilts Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B20"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "26A",
+    "name": "RSA Academies’ Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1K1",
+    "name": "The Lion Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "241",
+    "name": "Kenilworth Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "19Q",
+    "name": "Colmore Partnership Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "13B",
+    "name": "Boldmere Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1QN",
+    "name": "Arthur Terry School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1K2",
+    "name": "Bishop Challoner Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1XO",
+    "name": "Ashlawn Teaching School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "18E",
+    "name": "Hales VAley Teaching School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "19R",
+    "name": "Greenholm Primary School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2HU",
+    "name": "Bromsgrove Primary Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1Y6",
+    "name": "South Worcestershire and ITT Consortium",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "13A",
+    "name": "Shireland Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2J9",
+    "name": "Uttoxeter Learning Trust Teaching School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1RH",
+    "name": "Waverly School Direct",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "27U",
+    "name": "ConnectEd Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B25"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2DR",
+    "name": "Biddenham Upper School and Sports College",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1JG",
+    "name": "Luton Futures",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2CZ",
+    "name": "ATT Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "29R",
+    "name": "Castle Newnham Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2DM",
+    "name": "Goldington Academy",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1XY",
+    "name": "Fenland Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1R7",
+    "name": "Redborne Upper School and Community College",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2GE",
+    "name": "Nene and Ramnoth",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1C2",
+    "name": "Middlefield Primary Academy",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2KL",
+    "name": "Cromwell Community College: An Active Learning Trust School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2LV",
+    "name": "Thorndown Primary School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "B22"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1KN",
+    "name": "BHSSA",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "14H",
+    "name": "Westlands Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "3F2",
+    "name": "Surrey Downs Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1BK",
+    "name": "The Millals Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1DP",
+    "name": "TESLA Bohunt School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2CC",
+    "name": "Kent Oaks Consortium",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1CU",
+    "name": "Valley Invicta Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1KY",
+    "name": "Inspire and Bosco Sussex",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1PE",
+    "name": "Bishops Luffa",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1K5",
+    "name": "Challey School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "13T",
+    "name": "St Marks’s Teaching School Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1DR",
+    "name": "Portsmouth Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "24X",
+    "name": "i2i Teaching Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1J5",
+    "name": "Eastbourne Area School Direct Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "171",
+    "name": "The Warwick Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1L9",
+    "name": "Rother Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1Z2",
+    "name": "Wealden Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2FP",
+    "name": "Queen Elizabeth II Silver Jubilee School, Horsham",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2FH",
+    "name": "Benfield Primary School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "S90"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "2KH",
+    "name": "All Saints RC School",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "Y50"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1VU",
+    "name": "The Pathfinder Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "Y50"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "V2G",
+    "name": "Teach North: North Yorkshire",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "Y50"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "15X",
+    "name": "Yorkshire Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "Y50"
+    ],
+    "isRegistered": false
+  }
+]

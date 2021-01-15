@@ -1,0 +1,51 @@
+{% extends "_layout.njk" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Check you answers</h1>
+      <dl class="govuk-summary-list">
+        {%- for trainingProvider in registration.trainingProviders %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{- trainingProvider.name -}}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {%- if trainingProvider.onboard == 'yes' %}
+                <ul class="govuk-list">
+                  <li>
+                    {{- trainingProvider.contactName -}}
+                  </li>
+                  <li>
+                    {{- trainingProvider.email -}}
+                  </li>
+                </ul>
+              {% else %}
+                Do not onboard School Direct
+              {% endif -%}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/providers/{{ registration.accreditingBody.id }}/providers/{{ trainingProvider.id }}?referrer=check-your-answers">
+              Change<span class="govuk-visually-hidden"> {{ trainingProvider.name }}</span>
+              </a>
+            </dd>
+          </div>
+        {% endfor -%}
+      </dl>
+
+      {{ govukButton({
+        text: "Set up account",
+        href: actions.next
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

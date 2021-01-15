@@ -1,0 +1,76 @@
+{% extends "_layout.njk" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ trainingProvider.name }}</h1>
+
+      <form action="{{ actions.save }}" method="post" novalidate>
+
+        {% set contactHtml %}
+
+          {{ govukInput({
+            id: "name",
+            name: "registration[onboarding][contactName]",
+            label: {
+              text: "Name",
+              classes: "govuk-label--s"
+            }
+          }) }}
+
+          {{ govukInput({
+            id: "email",
+            name: "registration[onboarding][email]",
+            label: {
+              text: "Email address",
+              classes: "govuk-label--s"
+            }
+          }) }}
+
+        {% endset %}
+
+
+        {{ govukRadios({
+          idPrefix: "onboard",
+          name: "registration[onboarding][onboard]",
+          fieldset: {
+            legend: {
+              text: "Do you want to open courses at " + trainingProvider.name + "?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "This user will be set up on Manage teacher training applications and they’ll be able to change permissions on courses they run and you ratify"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: contactHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

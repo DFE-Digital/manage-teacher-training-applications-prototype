@@ -1,0 +1,40 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
+        Set up users for your School Directs
+      </h1>
+
+      <p class="govuk-body">You belong to the {{ accreditingBody.name }} who ratify courses at:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        {% for provider in trainingProviders %}
+          <li>
+            {{ provider.name }}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p class="govuk-body">To create your account, you need to tell us:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          whether each school direct’s courses should be open on ‘Apply for teacher training’
+        </li>
+        <li>
+          the email address of the user who works at each School Direct
+        </li>
+      </ul>
+
+      {{ govukButton({
+        text: "Continue",
+        href: actions.next
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}
