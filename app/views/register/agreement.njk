@@ -248,13 +248,13 @@
         </ul>
         <p>In the event of a significant security breach or other serious breach of the terms of this DSA by either participant, the DSA will be terminated or suspended immediately without notice.</p>
 
-        <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-        <form action="{{ actions.next }}" method="post" novalidate>
+        <form action="{{ actions.save }}" method="post" novalidate>
 
           {{ govukCheckboxes({
-            idPrefix: "providerAgreement[acceptAgreement]",
-            name: "providerAgreement[acceptAgreement]",
+            idPrefix: "agreement",
+            name: "registration[acceptAgreement]",
             items: [
               {
                 value: "true",

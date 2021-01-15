@@ -12,6 +12,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">Check training provider users and send invites</h1>
+
       <dl class="govuk-summary-list">
         {%- for trainingProvider in registration.trainingProviders %}
           <div class="govuk-summary-list__row">
@@ -45,6 +46,8 @@
         text: "Send invites",
         href: actions.next
       }) }}
+
+      <!-- {{data.registration|dump|safe}} -->
 
     </div>
   </div>

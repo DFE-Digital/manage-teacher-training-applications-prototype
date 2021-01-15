@@ -63,10 +63,11 @@ module.exports = router => {
 
     const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
 
-    // TODO: fix back link to go to correct provider page
+    // TODO: fix back link to go to correct provider page (use array position?)
+    // TODO: fix back button for check your answers referrer
     let back = `/register/${req.params.organisationId}/start`
     if (req.session.data.registration.trainingProviderPosition > 0) {
-      const previousProviderId = 0
+      const previousProviderId = req.session.data.registration.previousProviderId
       back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
     }
 
@@ -91,10 +92,16 @@ module.exports = router => {
     // if we've reached the last provider, move to the next step, else next continue with the providers
     if (req.session.data.registration.trainingProviderPosition == (req.session.data.registration.trainingProviderCount-1)) {
 
+      // set the last provider id for use in the back link
+      req.session.data.registration.lastProviderId = req.params.providerId
+
       // redirect to the data sharing agreement
       res.redirect(`/register/${req.params.organisationId}/agreement`)
 
     } else {
+
+      // set the previous provider id for use in the back link
+      req.session.data.registration.previousProviderId = req.params.providerId
 
       // increment the trainingProviderPosition to get the next position
       req.session.data.registration.trainingProviderPosition += 1
@@ -109,10 +116,12 @@ module.exports = router => {
 
   router.get('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
 
+    const lastProviderId = req.session.data.registration.lastProviderId
+
     res.render('register/agreement', {
       actions: {
-        save: ``,
-        back: ``
+        save: `/register/${req.params.organisationId}/agreement`,
+        back: `/register/${req.params.organisationId}/providers/${lastProviderId}`
       },
       accreditingBody: req.session.data.registration.accreditingBody
     })
@@ -120,7 +129,6 @@ module.exports = router => {
   })
 
   router.post('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
-
 
     res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
 
