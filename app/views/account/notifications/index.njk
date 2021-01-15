@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'account' %}
 
-{% set title = "Email notifications" %}
+{% set title = "Email notification settings" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -28,10 +28,9 @@
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
 
-        {{ govukRadios({
+        {{ govukCheckboxes({
           idPrefix: "emailsettings",
           name: "emailsettings",
-          classes: "govuk-radios--inline",
           fieldset: {
             legend: {
               text: title,
@@ -39,19 +38,36 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "These are sent when an application is submitted, withdrawn, automatically rejected, accepted or declined"
-          },
           items: [
             {
-              value: "On",
-              text: "On",
-              checked: checked(data.emailsettings, 'On')
+              value: "Application submitted",
+              text: "Application submitted",
+              checked: checked(data.emailsettings, 'Application submitted')
             },
             {
-              value: "Off",
-              text: "Off",
-              checked: checked(data.emailsettings, 'Off')
+              value: "Application withdrawn",
+              text: "Application withdrawn",
+              checked: checked(data.emailsettings, 'Application withdrawn')
+            },
+            {
+              value: "Application automatically rejected",
+              text: "Application automatically rejected",
+              checked: checked(data.emailsettings, 'Application automatically rejected')
+            },
+            {
+              value: "Offer accepted",
+              text: "Offer accepted",
+              checked: checked(data.emailsettings, 'Offer accepted')
+            },
+            {
+              value: "Offer declined automatically",
+              text: "Offer declined automatically",
+              checked: checked(data.emailsettings, 'Offer declined automatically')
+            },
+            {
+              value: "Offer declined",
+              text: "Offer declined",
+              checked: checked(data.emailsettings, 'Offer declined')
             }
           ]
         }) }}
