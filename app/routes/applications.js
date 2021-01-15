@@ -26,6 +26,16 @@ module.exports = router => {
     })
   })
 
+  router.get('/applications/:applicationId/feedback', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    res.render('applications/feedback/show', {
+      application,
+      statusText: ApplicationHelper.getStatusText(application)
+    })
+  })
+
   router.get('/applications/:applicationId/decision', (req, res) => {
     res.render('applications/decision', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)

@@ -6,8 +6,13 @@
 {% set title = "Reasons for rejecting this application" %}
 
 {% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id + "/decision" %}
+  {% if application.status == "Rejected" %}
+    {% set backUrl = "/applications/" + application.id %}
+  {% endif %}
+
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/decision"
+    href: backUrl
   }) }}
 {% endblock %}
 

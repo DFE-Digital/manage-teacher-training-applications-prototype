@@ -1,8 +1,3 @@
-{% if application.status == "Rejected" and application.rejectedReasons %}
-  {% set rejectedDate = application.rejectedDate %}
-  {% set rejectionReasons = application.rejectedReasons %}
-  {% set showRejectedDate = true %}
-
   {# <h2 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-font-size-27">Rejection details</h2> #}
 
   {# {{ govukSummaryList({
@@ -53,11 +48,3 @@
       }
     ]
   }) }} #}
-
-  {# <p>This application was automatically rejected on {{ rejectedDate | govukDate }}. Feedback was sent on {{ rejectedDate | govukDate }}.</p> #}
-
-
-  <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-font-size-27">Why this application was unsuccessful</h2>
-  <p>This application was rejected on  {{ rejectedDate | govukDate }}. The following feedback was sent to the candidate.</p>
-  {% include "_includes/candidate-feedback.njk" %}
-{% endif %}

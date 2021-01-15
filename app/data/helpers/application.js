@@ -131,8 +131,14 @@ function getLink (item, application) {
       link.href = `/applications/${application.id}/offer`
       break
     case 'Application rejected':
+      if(application.rejectedDate == application.rejectedFeedbackDate) {
+        link.text = 'View feedback'
+        link.href = `/applications/${application.id}/feedback`
+      }
+      break
+    case 'Feedback sent':
       link.text = 'View feedback'
-      link.href = `/applications/${application.id}`
+      link.href = `/applications/${application.id}/feedback`
       break
     case 'Application withdrawn':
       link.text = 'View application'
