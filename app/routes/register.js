@@ -2,6 +2,7 @@ const organisations = require('../data/registrations.json').filter(org => !org.i
 const providers = require('../data/registrations.json').filter(org => !org.isAccreditedBody)
 
 function checkHasAnswers (req, res, next) {
+  console.log(req.session.data.registration)
   if (req.session.data.registration === undefined) {
     res.redirect('/register')
   } else {
@@ -72,17 +73,16 @@ module.exports = router => {
     // TODO: fix back button for check your answers referrer
     // set the back button default to the start page
     let back = `/register/${req.params.organisationId}/start`
+
+    // get the position of the current provider id
+    const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
+
     // if we're no on the first provider, we need to change the back button
-    if (req.session.data.registration.trainingProviderPosition > 0) {
-      // get the position of the current provider id
-      const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
-      // if the current position isn't the first item
-      if (position) {
-        // get the previous provider id from the array
-        const previousProviderId = req.session.data.registration.trainingProvidersIds[position-1]
-        // set the back link
-        back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
-      }
+    if (position > 0) {
+      // get the previous provider id from the array
+      const previousProviderId = req.session.data.registration.trainingProvidersIds[position-1]
+      // set the back link
+      back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
     }
 
     res.render('register/provider', {
@@ -95,16 +95,23 @@ module.exports = router => {
   })
 
   router.post('/register/:organisationId/providers/:providerId', checkHasAnswers, (req, res) => {
-    // TODO: fix session data storage
+    // get the position of the current provider id
+    const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
+
+    // delete unnecessary fields from the data
+    if (req.session.data.registration.onboarding == 'no') {
+      delete req.session.data.registration.onboarding.contactName
+      delete req.session.data.registration.onboarding.contactEmail
+    }
 
     // combine the provider form details with the associated training provider object
-    req.session.data.registration.trainingProviders[req.session.data.registration.trainingProviderPosition] = {...req.session.data.registration.trainingProviders[req.session.data.registration.trainingProviderPosition], ...req.session.data.registration.onboarding}
+    req.session.data.registration.trainingProviders[position] = {...req.session.data.registration.trainingProviders[position], ...req.session.data.registration.onboarding}
 
-    // clear out the onboarding form data since we no longer need it
+    // clear out the onboarding form data since we no longer need it, ready for the next provider
     delete req.session.data.registration.onboarding
 
     // if we've reached the last provider, move to the next step, else next continue with the providers
-    if (req.session.data.registration.trainingProviderPosition == (req.session.data.registration.trainingProviderCount-1)) {
+    if (position == (req.session.data.registration.trainingProviderCount-1)) {
       // set the last provider id for use in the back link
       req.session.data.registration.lastProviderId = req.params.providerId
 
@@ -112,14 +119,8 @@ module.exports = router => {
       res.redirect(`/register/${req.params.organisationId}/agreement`)
 
     } else {
-      // set the previous provider id for use in the back link
-      req.session.data.registration.previousProviderId = req.params.providerId
-
-      // increment the trainingProviderPosition to get the next position
-      req.session.data.registration.trainingProviderPosition += 1
-
       // set the next training provider id
-      const nextTrainingProviderId = req.session.data.registration.trainingProviders[req.session.data.registration.trainingProviderPosition].id
+      const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position+1]
 
       res.redirect(`/register/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
     }
