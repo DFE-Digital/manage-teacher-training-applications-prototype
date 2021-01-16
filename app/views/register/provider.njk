@@ -21,16 +21,18 @@
             label: {
               text: "Name",
               classes: "govuk-label--s"
-            }
+            },
+            value: trainingProvider.contactName
           }) }}
 
           {{ govukInput({
             id: "email",
-            name: "registration[onboarding][email]",
+            name: "registration[onboarding][contactEmail]",
             label: {
               text: "Email address",
               classes: "govuk-label--s"
-            }
+            },
+            value: trainingProvider.contactEmail
           }) }}
 
         {% endset %}
@@ -54,11 +56,13 @@
               text: "Yes",
               conditional: {
                 html: contactHtml
-              }
+              },
+              checked: checked(trainingProvider.onboard, "yes")
             },
             {
               value: "no",
-              text: "No"
+              text: "No",
+              checked: checked(trainingProvider.onboard, "no")
             }
           ]
         }) }}
