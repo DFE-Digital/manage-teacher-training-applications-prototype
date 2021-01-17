@@ -31,7 +31,9 @@ module.exports = router => {
 
   router.get('/register/:organisationId/start', (req, res) => {
     // set up the structure into which we'll put the onboarding data
-    req.session.data.registration = {}
+    if (req.session.data.registration === undefined) {
+      req.session.data.registration = {}
+    }
 
     // get the accrediting body (HEI) information
     const accreditingBody = organisations.filter(org => org.id == req.params.organisationId)[0]
@@ -48,14 +50,8 @@ module.exports = router => {
     // put the training provider ids into an array so we can use them to work out back routing
     req.session.data.registration.trainingProvidersIds = getTrainingProvidersIds(trainingProviders)
 
-    // get the number of training providers. We'll use this to iterate through the list of providers
-    req.session.data.registration.trainingProviderCount = trainingProviders.length
-
-    // set the training provider position. We'll use this to iterate through the list of providers
-    req.session.data.registration.trainingProviderPosition = 0
-
     // set the first training provider id
-    const trainingProviderId = req.session.data.registration.trainingProviders[req.session.data.registration.trainingProviderPosition].id
+    const trainingProviderId = req.session.data.registration.trainingProvidersIds[0]
 
     res.render('register/start', {
       actions: {
@@ -89,7 +85,7 @@ module.exports = router => {
       // if we're no on the first provider, we need to change the back button
       if (position > 0) {
         // get the previous provider id from the array
-        const previousProviderId = req.session.data.registration.trainingProvidersIds[position-1]
+        const previousProviderId = req.session.data.registration.trainingProvidersIds[position - 1]
         // set the back link
         back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
       }
@@ -125,7 +121,7 @@ module.exports = router => {
       res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
     } else {
       // if we've reached the last provider, move to the next step, else next continue with the providers
-      if (position == (req.session.data.registration.trainingProviderCount-1)) {
+      if (position == (req.session.data.registration.trainingProviders.length - 1)) {
         // set the last provider id for use in the back link
         req.session.data.registration.lastProviderId = req.params.providerId
 
@@ -134,7 +130,7 @@ module.exports = router => {
 
       } else {
         // set the next training provider id
-        const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position+1]
+        const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
 
         res.redirect(`/register/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
       }
