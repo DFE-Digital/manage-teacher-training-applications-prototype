@@ -70,24 +70,34 @@ module.exports = router => {
   router.get('/register/:organisationId/providers/:providerId', checkHasAnswers, (req, res) => {
     const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
 
-    // TODO: fix back button for check your answers referrer
-    // set the back button default to the start page
-    let back = `/register/${req.params.organisationId}/start`
-
     // get the position of the current provider id
     const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
 
-    // if we're no on the first provider, we need to change the back button
-    if (position > 0) {
-      // get the previous provider id from the array
-      const previousProviderId = req.session.data.registration.trainingProvidersIds[position-1]
-      // set the back link
-      back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
+    // set the save route for new or change flow
+    let save = `/register/${req.params.organisationId}/providers/${req.params.providerId}`
+    if (req.headers.referer.includes('check-your-answers')) {
+      save = save + '?referer=check-your-answers'
+    }
+
+    // set the back button default to the start page
+    let back = `/register/${req.params.organisationId}/start`
+
+    // set the back button to the check your answers page if that's where the user came from
+    if (req.query.referer == 'check-your-answers') {
+      back = `/register/${req.params.organisationId}/check-your-answers`
+    } else {
+      // if we're no on the first provider, we need to change the back button
+      if (position > 0) {
+        // get the previous provider id from the array
+        const previousProviderId = req.session.data.registration.trainingProvidersIds[position-1]
+        // set the back link
+        back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
+      }
     }
 
     res.render('register/provider', {
       actions: {
-        save: `/register/${req.params.organisationId}/providers/${req.params.providerId}`,
+        save: save,
         back: back
       },
       trainingProvider
@@ -110,19 +120,24 @@ module.exports = router => {
     // clear out the onboarding form data since we no longer need it, ready for the next provider
     delete req.session.data.registration.onboarding
 
-    // if we've reached the last provider, move to the next step, else next continue with the providers
-    if (position == (req.session.data.registration.trainingProviderCount-1)) {
-      // set the last provider id for use in the back link
-      req.session.data.registration.lastProviderId = req.params.providerId
-
+    if (req.query.referer == 'check-your-answers') {
       // redirect to the data sharing agreement
-      res.redirect(`/register/${req.params.organisationId}/agreement`)
-
+      res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
     } else {
-      // set the next training provider id
-      const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position+1]
+      // if we've reached the last provider, move to the next step, else next continue with the providers
+      if (position == (req.session.data.registration.trainingProviderCount-1)) {
+        // set the last provider id for use in the back link
+        req.session.data.registration.lastProviderId = req.params.providerId
 
-      res.redirect(`/register/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+        // redirect to the data sharing agreement
+        res.redirect(`/register/${req.params.organisationId}/agreement`)
+
+      } else {
+        // set the next training provider id
+        const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position+1]
+
+        res.redirect(`/register/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+      }
     }
   })
 
