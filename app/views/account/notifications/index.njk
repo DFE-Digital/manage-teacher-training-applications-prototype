@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'account' %}
 
-{% set title = "Email notification settings" %}
+{% set title = "Email notifications" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -23,19 +23,139 @@
     icon: false
   }) if flash | falsify }}
 
+  <h1 class="govuk-heading-l">
+    {{title}}
+  </h1>
+
+  <p>Choose which email notifications you want to receive.</p>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
 
-        {{ govukCheckboxes({
+        {{ govukRadios({
+          idPrefix: "blah",
+          name: "blah",
+          fieldset: {
+            legend: {
+              text: "Application received",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "blah2",
+          name: "blah2",
+          fieldset: {
+            legend: {
+              text: "Application withdrawn by candidate",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "blah3",
+          name: "blah3",
+          fieldset: {
+            legend: {
+              text: "Application automatically rejected",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "blah4",
+          name: "blah4",
+          fieldset: {
+            legend: {
+              text: "Offer accepted",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "blah5",
+          name: "blah5",
+          fieldset: {
+            legend: {
+              text: "Offer declined",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+        {# {{ govukCheckboxes({
           idPrefix: "emailsettings",
           name: "emailsettings",
           fieldset: {
             legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Which notificatons do you want to receive?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
@@ -70,7 +190,7 @@
               checked: checked(data.emailsettings, 'Offer declined')
             }
           ]
-        }) }}
+        }) }} #}
 
 
         {{ govukButton({
