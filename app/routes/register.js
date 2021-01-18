@@ -33,22 +33,22 @@ module.exports = router => {
     // set up the structure into which we'll put the onboarding data
     if (req.session.data.registration === undefined) {
       req.session.data.registration = {}
+
+      // get the accrediting body (HEI) information
+      const accreditingBody = organisations.filter(org => org.id == req.params.organisationId)[0]
+
+      // put the accrediting body into the session for convenience
+      req.session.data.registration.accreditingBody = accreditingBody
+
+      // get the training providers for the accrediting body
+      const trainingProviders = providers.filter(org => org.accreditingBodies.includes(req.params.organisationId))
+
+      // put the training prviders into the session for convenience
+      req.session.data.registration.trainingProviders = trainingProviders
+
+      // put the training provider ids into an array so we can use them to work out back routing
+      req.session.data.registration.trainingProvidersIds = getTrainingProvidersIds(trainingProviders)
     }
-
-    // get the accrediting body (HEI) information
-    const accreditingBody = organisations.filter(org => org.id == req.params.organisationId)[0]
-
-    // put the accrediting body into the session for convenience
-    req.session.data.registration.accreditingBody = accreditingBody
-
-    // get the training providers for the accrediting body
-    const trainingProviders = providers.filter(org => org.accreditingBodies.includes(req.params.organisationId))
-
-    // put the training prviders into the session for convenience
-    req.session.data.registration.trainingProviders = trainingProviders
-
-    // put the training provider ids into an array so we can use them to work out back routing
-    req.session.data.registration.trainingProvidersIds = getTrainingProvidersIds(trainingProviders)
 
     // set the first training provider id
     const trainingProviderId = req.session.data.registration.trainingProvidersIds[0]
@@ -57,8 +57,8 @@ module.exports = router => {
       actions: {
         next: `/register/${req.params.organisationId}/providers/${trainingProviderId}`
       },
-      accreditingBody,
-      trainingProviders
+      accreditingBody: req.session.data.registration.accreditingBody,
+      trainingProviders: req.session.data.registration.trainingProviders
     })
   })
 
@@ -155,16 +155,12 @@ module.exports = router => {
   })
 
   router.get('/register/:organisationId/check-your-answers', checkHasAnswers, (req, res) => {
-    // set invitation count for use in showing content
-    const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
-
     res.render('register/check-your-answers', {
       actions: {
         next: `/register/${req.params.organisationId}/done`,
         back: `/register/${req.params.organisationId}/agreement`
       },
-      registration: req.session.data.registration,
-      trainingProviderInviteCount
+      registration: req.session.data.registration
     })
   })
 

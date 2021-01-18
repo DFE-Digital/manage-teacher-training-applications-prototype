@@ -11,7 +11,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Check training provider users and send invites</h1>
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ registration.accreditingBody.name }}</span>
+        Check training provider users and send invites
+      </h1>
 
       <dl class="govuk-summary-list">
         {%- for trainingProvider in registration.trainingProviders %}
@@ -41,6 +44,12 @@
           </div>
         {% endfor -%}
       </dl>
+
+      {%- if registration.acceptAgreement[0] == 'yes' %}
+        <p class="govuk-body">
+          Bath Spa University agrees to comply with the data sharing practices outlined in the data sharing agreement.
+        </p>
+      {% endif -%}
 
       {{ govukButton({
         text: "Send invites",
