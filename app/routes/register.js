@@ -147,11 +147,33 @@ module.exports = router => {
       },
       accreditingBody: req.session.data.registration.accreditingBody
     })
-
   })
 
   router.post('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
-    res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
+    const errors = []
+
+    if (req.session.data.registration.acceptAgreement === undefined) {
+      const error = {}
+      error.fieldName = 'acceptAgreement'
+      error.href = '#acceptAgreement'
+      error.text = 'You must accept the data sharing agreement before continuing'
+      errors.push(error)
+    }
+
+    if (errors.length) {
+      const lastProviderId = req.session.data.registration.lastProviderId
+
+      res.render('register/agreement', {
+        actions: {
+          save: `/register/${req.params.organisationId}/agreement`,
+          back: `/register/${req.params.organisationId}/providers/${lastProviderId}`
+        },
+        accreditingBody: req.session.data.registration.accreditingBody,
+        errors: errors
+      })
+    } else {
+      res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
+    }
   })
 
   router.get('/register/:organisationId/check-your-answers', checkHasAnswers, (req, res) => {

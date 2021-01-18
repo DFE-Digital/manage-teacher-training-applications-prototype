@@ -11,8 +11,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errors
+      }) if errors | length }}
+
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">{{ data.registration.accreditingBody.name }}</span>
+        <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
         Data sharing agreement
       </h1>
 
@@ -256,7 +261,7 @@
         <form action="{{ actions.save }}" method="post" novalidate>
 
           {{ govukCheckboxes({
-            idPrefix: "agreement",
+            idPrefix: "acceptAgreement",
             name: "registration[acceptAgreement]",
             items: [
               {
@@ -264,7 +269,8 @@
                 text: accreditingBody.name + " agrees to comply with the data sharing practices outlined in this agreement",
                 checked: checked(data.registration.acceptAgreement, "yes")
               }
-            ]
+            ],
+            errorMessage: errors | getErrorMessage("acceptAgreement")
           }) }}
 
           {{ govukButton({
