@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "Set up users for your training providers" %}
+{% set title = "Set up your account to " + serviceName | lower  %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -11,11 +11,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
+        <!-- <span class="govuk-caption-l">{{ accreditingBody.name }}</span> -->
         {{ title }}
       </h1>
 
-      <p class="govuk-body">You belong to the {{ accreditingBody.name }} who ratify courses run by::</p>
+      <p class="govuk-body">{{ accreditingBody.name }} ratifies courses run by:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         {% for provider in trainingProviders %}
@@ -38,7 +38,8 @@
 
       {{ govukButton({
         text: "Continue",
-        href: actions.next
+        href: actions.next,
+        classes: "govuk-!-margin-top-5"
       }) }}
 
     </div>

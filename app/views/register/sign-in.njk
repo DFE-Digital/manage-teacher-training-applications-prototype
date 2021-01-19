@@ -1,0 +1,66 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Department for Education sign-in"  %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Department for Education Sign-in
+      </h1>
+
+      <p class="govuk-body">DfE Sign-in allows you to access several important services in the education sector, such as COLLECT.</p>
+
+      <form action="{{ actions.next }}" method="post" novalidate>
+
+        {% call govukFieldset({
+          legend: {
+            text: "Sign-in",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            id: "email",
+            name: "email",
+            label: {
+              text: "Email address"
+            }
+          }) }}
+
+          {{ govukInput({
+            id: "password",
+            name: "password",
+            label: {
+              text: "password"
+            }
+          }) }}
+
+          <p class="govuk-body govuk-!-margin-top-0"><a class="govuk-link" href="">Forgotten your password?</a></p>
+
+        {% endcall %}
+
+        {{ govukInsetText({
+          html: '<p class="govuk-body">By continuing you accept the <a class="govuk-link" href="/terms">terms and conditions</a>.</p>'
+        }) }}
+
+        {{ govukButton({
+          text: "Sign in"
+        }) }}
+
+        {{ govukButton({
+          text: "Create account",
+          classes: "govuk-button--secondary"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

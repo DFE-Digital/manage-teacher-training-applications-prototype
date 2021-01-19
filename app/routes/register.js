@@ -2,7 +2,7 @@ const organisations = require('../data/registrations.json').filter(org => !org.i
 const providers = require('../data/registrations.json').filter(org => !org.isAccreditedBody)
 
 function checkHasAnswers (req, res, next) {
-  console.log(req.session.data.registration)
+  // console.log(req.session.data.registration)
   if (req.session.data.registration === undefined) {
     res.redirect('/register')
   } else {
@@ -29,9 +29,25 @@ module.exports = router => {
     })
   })
 
+  // ============================================
+  // TODO: add sign in / register dummy screens
+  // ============================================
+
+  // router.get('/sign-in', (req, res) => {
+  //
+  //   res.render('register/sign-in', {
+  //
+  //   })
+  // })
+
+  // ============================================
+  //
+  // ============================================
+
+
   router.get('/register/:organisationId/start', (req, res) => {
     // set up the structure into which we'll put the onboarding data
-    if (req.session.data.registration === undefined) {
+    if (req.session.data.registration === undefined || req.session.data.registration.accreditingBody.id !== req.params.organisationId) {
       req.session.data.registration = {}
 
       // get the accrediting body (HEI) information
@@ -41,7 +57,9 @@ module.exports = router => {
       req.session.data.registration.accreditingBody = accreditingBody
 
       // get the training providers for the accrediting body
-      const trainingProviders = providers.filter(org => org.accreditingBodies.includes(req.params.organisationId))
+      const trainingProviders = providers
+                                  .filter(org => org.accreditingBodies.includes(req.params.organisationId))
+                                  .sort((a, b) => a.name.localeCompare(b.name))
 
       // put the training prviders into the session for convenience
       req.session.data.registration.trainingProviders = trainingProviders
@@ -96,6 +114,7 @@ module.exports = router => {
         save: save,
         back: back
       },
+      accreditingBody: req.session.data.registration.accreditingBody,
       trainingProvider
     })
   })
@@ -156,7 +175,7 @@ module.exports = router => {
       const error = {}
       error.fieldName = 'acceptAgreement'
       error.href = '#acceptAgreement'
-      error.text = 'You must accept the data sharing agreement before continuing'
+      error.text = 'You must agree to these terms to use this service'
       errors.push(error)
     }
 
