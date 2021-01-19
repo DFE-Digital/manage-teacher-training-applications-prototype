@@ -1,11 +1,17 @@
 {% extends "_layout-register.njk" %}
 
+{% set title = "You have successfully submitted your application form" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {{ govukPanel({
-        titleText: "You have successfully submitted your application form"
+        titleText: title
       }) }}
 
       <h2 class="govuk-heading-m">What happens next</h2>

@@ -1,12 +1,18 @@
 {% extends "_layout-register.njk" %}
 
+{% set title = "Set up users for your training providers" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
-        Set up users for your training providers
+        {{ title }}
       </h1>
 
       <p class="govuk-body">You belong to the {{ accreditingBody.name }} who ratify courses run by::</p>

@@ -1,5 +1,11 @@
 {% extends "_layout-register.njk" %}
 
+{% set title = "Do you want to open courses at " + trainingProvider.name + "?" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
 {% block beforeContent %}
 {{ govukBackLink({
   text: "Back",
@@ -44,7 +50,7 @@
           name: "registration[onboarding][onboard]",
           fieldset: {
             legend: {
-              text: "Do you want to open courses at " + trainingProvider.name + "?",
+              text: title,
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

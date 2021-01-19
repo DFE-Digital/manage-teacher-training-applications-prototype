@@ -1,5 +1,11 @@
 {% extends "_layout-register.njk" %}
 
+{% set title = "Data sharing agreement" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
 {% block beforeContent %}
 {{ govukBackLink({
   text: "Back",
@@ -18,7 +24,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
-        Data sharing agreement
+        {{ title }}
       </h1>
 
       <p class="govuk-body-l">This agreement applies to personal data shared between the Department for Education (DfE) and {{ accreditingBody.name }}, ‘the providers’, as part of Apply for teacher training.</p>
