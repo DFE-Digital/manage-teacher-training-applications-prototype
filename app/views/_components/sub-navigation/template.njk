@@ -1,4 +1,6 @@
-<nav class="app-sub-navigation {{- ' ' + params.classes if params.classes}}" {%- if (params.label) %} aria-label="{{ params.label }}"{% endif %} {%- for attribute, value in params.attributes -%} {{ attribute }}="{{ value }}"{% endfor %}>
+{% set navigationLabel = params.navigationLabel | default('sub menu') %}
+
+<nav class="app-sub-navigation {{- ' ' + params.classes if params.classes}}" aria-label="{{ navigationLabel }}" {%- for attribute, value in params.attributes -%} {{ attribute }}="{{ value }}"{% endfor %}>
 
   <ul class="app-sub-navigation__list">
 
