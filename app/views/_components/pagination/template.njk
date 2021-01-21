@@ -1,7 +1,4 @@
-{% set navigationLabel = 'pagination' %}
-{% if params.navigationLabel %}
-  {% set navigationLabel = params.navigationLabel %}
-{% endif %}
+{% set navigationLabel = params.navigationLabel | default('pagination') %}
 
 <nav class="app-pagination {{- ' ' + params.classes if params.classes}}" aria-label="{{navigationLabel}}">
 

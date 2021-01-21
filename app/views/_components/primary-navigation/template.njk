@@ -1,7 +1,4 @@
-{% set navigationLabel = 'main menu' %}
-{% if params.navigationLabel %}
-  {% set navigationLabel = params.navigationLabel %}
-{% endif %}
+{% set navigationLabel = params.navigationLabel | default('main menu') %}
 
 <div class="app-primary-navigation {{- ' ' + params.containerClasses if params.containerClasses}}">
 
