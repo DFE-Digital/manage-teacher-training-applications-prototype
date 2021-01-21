@@ -2,10 +2,14 @@
 
 {% set primaryNavId = 'applications' %}
 
+{% set title %}
+  Applications ({{applications.length}})
+{% endset %}
+
 {% block content %}
 
   <h1 class="govuk-heading-l">
-    Applications
+    Applications ({{applications.length}})
   </h1>
 
   <div class="app-filter-layout">
