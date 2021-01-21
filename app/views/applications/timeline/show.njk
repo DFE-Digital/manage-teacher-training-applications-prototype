@@ -24,7 +24,62 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Timeline</h2>
-      {{ appTimeline({items: timeline}) }}
+
+      <div class="app-timeline">
+        {%- for event in events | reverse %}
+          <div class="app-timeline__item">
+            <div class="app-timeline__header">
+              <h2 class="app-timeline__title">
+                {{ event.title }}
+              </h2>
+              <p class="app-timeline__byline">
+                {{event.user}},
+                <time datetime="{{ event.date | formatDate }}">
+                  {{- event.date | govukDateAtTime -}}
+                </time>
+              </p>
+            </div>
+            <div class="app-timeline__description">
+              {% if event.title == "Application submitted" %}
+                <a href="/applications/{{application.id}}">View application</a>
+              {% elseif event.title == "Interview set up" and event.meta.interview %}
+                <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
+              {% elseif event.title == "Interview changed" and event.meta.interview %}
+                <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
+              {% elseif event.title == "Offer made" %}
+                <a href="/applications/{{application.id}}/offer">View offer</a>
+              {% elseif event.title == "Offer accepted" %}
+                <a href="/applications/{{application.id}}/offer">View offer</a>
+              {% elseif event.title == "Offer declined" %}
+                <a href="/applications/{{application.id}}/offer">View offer</a>
+              {% elseif event.title == "Offer withdrawn" %}
+                <a href="/applications/{{application.id}}/feedback">View feedback</a>
+              {% elseif event.title == "Offer deferred" %}
+                <a href="/applications/{{application.id}}/offer">View offer</a>
+              {% elseif event.title == "Offer reconfirmed" %}
+                <a href="/applications/{{application.id}}/offer">View offer</a>
+              {% elseif event.title == "Conditions met" %}
+                <a href="/applications/{{application.id}}/offer">View conditions</a>
+              {% elseif event.title == "Conditions not met" %}
+                <a href="/applications/{{application.id}}/offer">View conditions</a>
+              {% elseif event.title == "Application rejected" and application.rejectedDate == application.rejectedFeedbackDate %}
+                <a href="/applications/{{application.id}}/feedback">View feedback</a>
+              {% elseif event.title == "Feedback sent" %}
+                <a href="/applications/{{application.id}}/feedback">View feedback</a>
+              {% elseif event.title == "Application withdrawn" %}
+                <a href="/applications/{{application.id}}/feedback">View feedback</a>
+              {% elseif event.title == "Status of conditions updated" %}
+                <a href="/applications/{{application.id}}/offer">View conditions</a>
+              {% elseif event.title == "Note added" and event.meta.note %}
+                <a href="/applications/{{application.id}}/notes/{{event.meta.note.id}}">View note <span class="govuk-visually-hidden">{{event.meta.note.date | govukDateAtTime}}</span></a>
+              {% endif %}
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
     </div>
   </div>
 {% endblock %}
+

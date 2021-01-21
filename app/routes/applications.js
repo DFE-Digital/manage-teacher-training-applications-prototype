@@ -17,11 +17,32 @@ module.exports = router => {
   router.get('/applications/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const events = application.events.items.map(item => {
+
+      // interview
+      if(item.meta && item.meta.interviewId) {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
+        item.meta ={
+          interview
+        }
+      }
+
+      // note
+      if(item.meta && typeof item.meta.noteIndex === 'number') {
+        var note = application.notes.items[item.meta.noteIndex]
+        item.meta = {
+          note
+        }
+      }
+
+      return item;
+    })
+
 
     res.render('applications/timeline/show', {
       application,
       statusText: ApplicationHelper.getStatusText(application),
-      timeline: ApplicationHelper.getTimeline(application),
+      events: events,
       conditions: ApplicationHelper.getConditions(application)
     })
   })
