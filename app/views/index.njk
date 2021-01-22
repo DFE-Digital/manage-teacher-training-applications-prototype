@@ -2,14 +2,12 @@
 
 {% set primaryNavId = 'applications' %}
 
-{% set title %}
-  Applications ({{applications.length}})
-{% endset %}
+{% set title = "Applications (" + applications.length + ")" %}
 
 {% block content %}
 
   <h1 class="govuk-heading-l">
-    Applications ({{applications.length}})
+    {{title}}
   </h1>
 
   <div class="app-filter-layout">
