@@ -30,5 +30,6 @@ require('./routes/settings')(router)
 require('./routes/notifications')(router)
 require('./routes/withdraw-application')(router)
 require('./routes/register')(router)
+require('./routes/register2')(router)
 
 module.exports = router

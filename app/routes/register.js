@@ -24,7 +24,7 @@ module.exports = router => {
     // delete any previous onboarding data
     delete req.session.data.registration
 
-    res.render('register/index', {
+    res.render('register/v1/index', {
       organisations
     })
   })
@@ -35,7 +35,7 @@ module.exports = router => {
 
   // router.get('/sign-in', (req, res) => {
   //
-  //   res.render('register/sign-in', {
+  //   res.render('register/v1/sign-in', {
   //
   //   })
   // })
@@ -71,7 +71,7 @@ module.exports = router => {
     // set the first training provider id
     const trainingProviderId = req.session.data.registration.trainingProvidersIds[0]
 
-    res.render('register/start', {
+    res.render('register/v1/start', {
       actions: {
         next: `/register/${req.params.organisationId}/providers/${trainingProviderId}`
       },
@@ -109,7 +109,7 @@ module.exports = router => {
       }
     }
 
-    res.render('register/provider', {
+    res.render('register/v1/provider', {
       actions: {
         save: save,
         back: back
@@ -124,7 +124,7 @@ module.exports = router => {
     const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
 
     // delete unnecessary fields from the data
-    if (req.session.data.registration.onboarding == 'no') {
+    if (req.session.data.registration.onboarding.onboard == 'no') {
       delete req.session.data.registration.onboarding.contactName
       delete req.session.data.registration.onboarding.contactEmail
     }
@@ -142,7 +142,7 @@ module.exports = router => {
       // if we've reached the last provider, move to the next step, else next continue with the providers
       if (position == (req.session.data.registration.trainingProviders.length - 1)) {
         // set the last provider id for use in the back link
-        req.session.data.registration.lastProviderId = req.params.providerId
+        req.session.data.registration.lastTrainingProviderId = req.params.providerId
 
         // redirect to the data sharing agreement
         res.redirect(`/register/${req.params.organisationId}/agreement`)
@@ -157,12 +157,12 @@ module.exports = router => {
   })
 
   router.get('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
-    const lastProviderId = req.session.data.registration.lastProviderId
+    const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
 
-    res.render('register/agreement', {
+    res.render('register/v1/agreement', {
       actions: {
         save: `/register/${req.params.organisationId}/agreement`,
-        back: `/register/${req.params.organisationId}/providers/${lastProviderId}`
+        back: `/register/${req.params.organisationId}/providers/${lastTrainingProviderId}`
       },
       accreditingBody: req.session.data.registration.accreditingBody
     })
@@ -180,12 +180,12 @@ module.exports = router => {
     }
 
     if (errors.length) {
-      const lastProviderId = req.session.data.registration.lastProviderId
+      const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
 
-      res.render('register/agreement', {
+      res.render('register/v1/agreement', {
         actions: {
           save: `/register/${req.params.organisationId}/agreement`,
-          back: `/register/${req.params.organisationId}/providers/${lastProviderId}`
+          back: `/register/${req.params.organisationId}/providers/${lastTrainingProviderId}`
         },
         accreditingBody: req.session.data.registration.accreditingBody,
         errors: errors
@@ -196,7 +196,7 @@ module.exports = router => {
   })
 
   router.get('/register/:organisationId/check-your-answers', checkHasAnswers, (req, res) => {
-    res.render('register/check-your-answers', {
+    res.render('register/v1/check-your-answers', {
       actions: {
         next: `/register/${req.params.organisationId}/done`,
         back: `/register/${req.params.organisationId}/agreement`
@@ -209,7 +209,7 @@ module.exports = router => {
     // set invitation count for use in pluralising content
     const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
 
-    res.render('register/done', {
+    res.render('register/v1/done', {
       trainingProviderInviteCount
     })
   })

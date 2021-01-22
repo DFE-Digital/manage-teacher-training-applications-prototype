@@ -1,0 +1,136 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "[Placeholder] Choose who to invite"  %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{ actions.save }}" method="post" novalidate>
+
+        {% set contactHtml %}
+
+          {{ govukInput({
+            id: "name",
+            name: "registration[onboarding][contact][name]",
+            label: {
+              text: "Name",
+              classes: "govuk-label--s"
+            },
+            value: trainingProvider.contact.name if trainingProvider.contact.choice == 'other'
+          }) }}
+
+          {{ govukInput({
+            id: "email",
+            name: "registration[onboarding][contact][email]",
+            label: {
+              text: "Email address",
+              classes: "govuk-label--s"
+            },
+            value: trainingProvider.contact.email if trainingProvider.contact.choice == 'other'
+          }) }}
+
+        {% endset %}
+
+        {{ govukRadios({
+          idPrefix: "onboard",
+          name: "registration[contact][choice]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This user will be set up on Manage teacher training applications and they’ll be able to change permissions on courses they run and you ratify"
+          },
+          items: [
+            {
+              value: "0",
+              text: trainingProvider.users[0].name,
+              hint: {
+                text: trainingProvider.users[0].email
+              },
+              checked: checked(trainingProvider.contact.choice, "0")
+            } if trainingProvider.users[0] | length,
+            {
+              value: "1",
+              text: trainingProvider.users[1].name,
+              hint: {
+                text: trainingProvider.users[1].email
+              },
+              checked: checked(trainingProvider.contact.choice, "1")
+            } if trainingProvider.users[1] | length,
+            {
+              value: "2",
+              text: trainingProvider.users[2].name,
+              hint: {
+                text: trainingProvider.users[2].email
+              },
+              checked: checked(trainingProvider.contact.choice, "2")
+            } if trainingProvider.users[2] | length,
+            {
+              value: "3",
+              text: trainingProvider.users[3].name,
+              hint: {
+                text: trainingProvider.users[3].email
+              },
+              checked: checked(trainingProvider.contact.choice, "3")
+            } if trainingProvider.users[3] | length,
+            {
+              value: "4",
+              text: trainingProvider.users[4].name,
+              hint: {
+                text: trainingProvider.users[4].email
+              },
+              checked: checked(trainingProvider.contact.choice, "4")
+            } if trainingProvider.users[4] | length,
+            {
+              value: "5",
+              text: trainingProvider.users[5].name,
+              hint: {
+                text: trainingProvider.users[5].email
+              },
+              checked: checked(trainingProvider.contact.choice, "5")
+            } if trainingProvider.users[5] | length,
+            {
+              value: "other",
+              text: "Other",
+              conditional: {
+                html: contactHtml
+              },
+              checked: checked(trainingProvider.contact.choice, "other")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          name: "submit",
+          value: "continue",
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          name: "save",
+          value: "save",
+          text: "Save",
+          classes: "govuk-button--secondary govuk-!-margin-left-2"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
