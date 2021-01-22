@@ -83,19 +83,6 @@
 
 </div>
 
-{% set rightHandSideNavHtml %}
-  <nav class="app-primary-navigation">
-    <ul class="app-primary-navigation__list">
-      <li class="app-primary-navigation__item">
-        <a class="app-primary-navigation__link" {{ 'aria-current="page"' | safe if primaryNavId == 'export' }} href="/export">
-          Export data
-        </a>
-      </li>
-    </ul>
-
-  </nav>
-{% endset %}
-
 {% set alertsLinkHtml %}
   <span class="app-notification-link">
     <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
@@ -120,12 +107,17 @@
       active: primaryNavId == 'activity'
     },
     {
+      href: "/export",
+      text: "Export data",
+      active: primaryNavId == 'export',
+      classes: "app-primary-navigation__item--align-right"
+    },
+    {
       href: "/notifications",
       html: alertsLinkHtml,
       active: primaryNavId == 'notifications'
     } if 1 == 2
-  ],
-  searchHtml: rightHandSideNavHtml
+  ]
 }) }}
 
   {% block afterHeader %}
