@@ -425,7 +425,4 @@ module.exports = router => {
     res.redirect('/')
   })
 
-  router.post('/switch-cycle', (req, res) => {
-    res.redirect('/')
-  })
 }
