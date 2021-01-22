@@ -10,10 +10,17 @@
 {{ govukSummaryList({
   rows: [{
     key: {
-      text: "Full name"
+      text: "First name"
     },
     value: {
-      text: name
+      text: application.personalDetails.givenName
+    }
+  }, {
+    key: {
+      text: "Last name"
+    },
+    value: {
+      text: application.personalDetails.familyName
     }
   },  {
     key: {
