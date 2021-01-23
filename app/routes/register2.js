@@ -23,6 +23,7 @@ module.exports = router => {
   router.get('/register2', (req, res) => {
     // delete any previous onboarding data
     delete req.session.data.registration
+    delete req.session.data.referer
 
     res.render('register/v2/index', {
       organisations
@@ -78,6 +79,7 @@ module.exports = router => {
         courses: `/register2/${req.params.organisationId}/providers/`,
         users: `/register2/${req.params.organisationId}/providers/`,
         agreement: `/register2/${req.params.organisationId}/agreement`,
+        check: `/register2/${req.params.organisationId}/check-your-answers`,
         back: `/register2/${req.params.organisationId}/start`
       },
       accreditingBody: req.session.data.registration.accreditingBody,
@@ -135,11 +137,16 @@ module.exports = router => {
 
     if (req.session.data.registration.onboard == 'yes') {
 
-      // redirect based on whether the user has clicked continue or save
+      // redirect based on whether the user has clicked save or continue
       if (req.session.data.button.submit == 'save') {
-        res.redirect(`/register2/${req.params.organisationId}/providers/`)
+        res.redirect(`/register2/${req.params.organisationId}/providers`)
       } else {
-        res.redirect(`/register2/${req.params.organisationId}/providers/${req.params.providerId}/users`)
+        // carry through the check your answers query param if that's the journey
+        if (req.query.referer == 'check-your-answers') {
+          res.redirect(`/register2/${req.params.organisationId}/providers/${req.params.providerId}/users?referer=check-your-answers`)
+        } else {
+          res.redirect(`/register2/${req.params.organisationId}/providers/${req.params.providerId}/users`)
+        }
       }
 
     } else {
@@ -159,8 +166,9 @@ module.exports = router => {
           // set the last provider id for use in the back link
           req.session.data.registration.previousTrainingProviderId = req.params.providerId
 
-          // redirect based on whether the user has clicked continue or save
+          // redirect based on whether the user has clicked save or continue
           if (req.session.data.button.submit == 'save') {
+            // redirect the user back to the task list
             res.redirect(`/register2/${req.params.organisationId}/providers`)
           } else {
             // redirect to the data sharing agreement
@@ -169,13 +177,14 @@ module.exports = router => {
 
         } else {
 
-          // redirect based on whether the user has clicked continue or save
+          // redirect based on whether the user has clicked save or continue
           if (req.session.data.button.submit == 'save') {
+            // redirect the user back to the task list
             res.redirect(`/register2/${req.params.organisationId}/providers`)
           } else {
             // set the next training provider id
             const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
-
+            // redirect the user to the next training provider in the sequence
             res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
           }
 
@@ -192,7 +201,7 @@ module.exports = router => {
 
     // set the save route for new or change flow
     let save = `/register2/${req.params.organisationId}/providers/${req.params.providerId}/users`
-    if (req.headers.referer.includes('check-your-answers')) {
+    if (req.headers.referer.includes('check-your-answers') || req.query.referer == 'check-your-answers') {
       save = save + '?referer=check-your-answers'
     }
 
@@ -241,29 +250,39 @@ module.exports = router => {
     delete req.session.data.registration.onboarding
     delete req.session.data.registration.contact
 
-    // if we've reached the last provider, move to the next step, else next continue with the providers
-    if (position == (req.session.data.registration.trainingProviders.length - 1)) {
-      // set the last provider id for use in the back link
-      req.session.data.registration.previousTrainingProviderId = req.params.providerId
+    if (req.query.referer == 'check-your-answers') {
 
-      // redirect based on whether the user has clicked continue or save
-      if (req.session.data.button.submit == 'save') {
-        res.redirect(`/register2/${req.params.organisationId}/providers`)
-      } else {
-        // redirect to the data sharing agreement
-        res.redirect(`/register2/${req.params.organisationId}/agreement`)
-      }
+      res.redirect(`/register2/${req.params.organisationId}/check-your-answers`)
 
     } else {
 
-      // redirect based on whether the user has clicked continue or save
-      if (req.session.data.button.submit == 'save') {
-        res.redirect(`/register2/${req.params.organisationId}/providers`)
-      } else {
-        // set the next training provider id
-        const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
+      // if we've reached the last provider, move to the next step, else next continue with the providers
+      if (position == (req.session.data.registration.trainingProviders.length - 1)) {
+        // set the last provider id for use in the back link
+        req.session.data.registration.previousTrainingProviderId = req.params.providerId
 
-        res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+        // redirect based on whether the user has clicked save or continue
+        if (req.session.data.button.submit == 'save') {
+          // redirect the user back to the task list
+          res.redirect(`/register2/${req.params.organisationId}/providers`)
+        } else {
+          // redirect to the data sharing agreement
+          res.redirect(`/register2/${req.params.organisationId}/agreement`)
+        }
+
+      } else {
+
+        // redirect based on whether the user has clicked save or continue
+        if (req.session.data.button.submit == 'save') {
+          // redirect the user back to the task list
+          res.redirect(`/register2/${req.params.organisationId}/providers`)
+        } else {
+          // set the next training provider id
+          const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
+          // redirect the user to the next training provider in the sequence
+          res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+        }
+
       }
 
     }
@@ -313,6 +332,10 @@ module.exports = router => {
   })
 
   router.get('/register2/:organisationId/check-your-answers', checkHasAnswers, (req, res) => {
+    if (req.session.data.referer !== undefined) {
+      delete req.session.data.referer
+    }
+
     res.render('register/v2/check-your-answers', {
       actions: {
         next: `/register2/${req.params.organisationId}/done`,
