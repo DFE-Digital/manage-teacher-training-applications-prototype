@@ -2,7 +2,7 @@ const organisations = require('../data/registrations.json').filter(org => !org.i
 const providers = require('../data/registrations.json').filter(org => !org.isAccreditedBody)
 
 function checkHasAnswers (req, res, next) {
-  console.log(req.session.data.registration)
+  // console.log(req.session.data.registration)
   if (req.session.data.registration === undefined) {
     res.redirect('/register2')
   } else {
@@ -69,6 +69,10 @@ module.exports = router => {
   })
 
   router.get('/register2/:organisationId/providers', (req, res) => {
+    if (req.session.data.button !== undefined) {
+      delete req.session.data.button
+    }
+
     res.render('register/v2/providers', {
       actions: {
         courses: `/register2/${req.params.organisationId}/providers/`,
@@ -131,10 +135,16 @@ module.exports = router => {
 
     if (req.session.data.registration.onboard == 'yes') {
 
-      res.redirect(`/register2/${req.params.organisationId}/providers/${req.params.providerId}/users`)
+      // redirect based on whether the user has clicked continue or save
+      if (req.session.data.button.submit == 'save') {
+        res.redirect(`/register2/${req.params.organisationId}/providers/`)
+      } else {
+        res.redirect(`/register2/${req.params.organisationId}/providers/${req.params.providerId}/users`)
+      }
 
     } else {
 
+      // TODO: increment based on data held, not each submit
       // increment the sections completed count
       req.session.data.registration.sectionsCompletedCount += 1
 
@@ -149,14 +159,26 @@ module.exports = router => {
           // set the last provider id for use in the back link
           req.session.data.registration.previousTrainingProviderId = req.params.providerId
 
-          // redirect to the data sharing agreement
-          res.redirect(`/register2/${req.params.organisationId}/agreement`)
+          // redirect based on whether the user has clicked continue or save
+          if (req.session.data.button.submit == 'save') {
+            res.redirect(`/register2/${req.params.organisationId}/providers`)
+          } else {
+            // redirect to the data sharing agreement
+            res.redirect(`/register2/${req.params.organisationId}/agreement`)
+          }
 
         } else {
-          // set the next training provider id
-          const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
 
-          res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+          // redirect based on whether the user has clicked continue or save
+          if (req.session.data.button.submit == 'save') {
+            res.redirect(`/register2/${req.params.organisationId}/providers`)
+          } else {
+            // set the next training provider id
+            const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
+
+            res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+          }
+
         }
 
       }
@@ -194,6 +216,7 @@ module.exports = router => {
   router.post('/register2/:organisationId/providers/:providerId/users', checkHasAnswers, (req, res) => {
     const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
 
+    // TODO: increment based on data held, not each submit
     // increment the sections completed count
     req.session.data.registration.sectionsCompletedCount += 1
 
@@ -223,14 +246,26 @@ module.exports = router => {
       // set the last provider id for use in the back link
       req.session.data.registration.previousTrainingProviderId = req.params.providerId
 
-      // redirect to the data sharing agreement
-      res.redirect(`/register2/${req.params.organisationId}/agreement`)
+      // redirect based on whether the user has clicked continue or save
+      if (req.session.data.button.submit == 'save') {
+        res.redirect(`/register2/${req.params.organisationId}/providers`)
+      } else {
+        // redirect to the data sharing agreement
+        res.redirect(`/register2/${req.params.organisationId}/agreement`)
+      }
 
     } else {
-      // set the next training provider id
-      const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
 
-      res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+      // redirect based on whether the user has clicked continue or save
+      if (req.session.data.button.submit == 'save') {
+        res.redirect(`/register2/${req.params.organisationId}/providers`)
+      } else {
+        // set the next training provider id
+        const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
+
+        res.redirect(`/register2/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
+      }
+
     }
 
   })
