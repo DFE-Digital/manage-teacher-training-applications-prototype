@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "[Placeholder] Choose who to invite"  %}
+{% set title = "Who should be invited to set up an account?"  %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -53,9 +53,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "This user will be set up on Manage teacher training applications and they’ll be able to change permissions on courses they run and you ratify"
-          },
           items: [
             {
               value: "0",
@@ -107,7 +104,7 @@
             } if trainingProvider.users[5] | length,
             {
               value: "other",
-              text: "Other",
+              text: "Someone else at " + trainingProvider.name,
               conditional: {
                 html: contactHtml
               },

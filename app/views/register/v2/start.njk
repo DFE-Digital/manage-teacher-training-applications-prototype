@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "Set up your account to " + serviceName | lower  %}
+{% set title = "Make the courses you ratify available through GOV.UK" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -25,16 +25,18 @@
         {% endfor %}
       </ul>
 
-      <p class="govuk-body">To create your account, you must tell us:</p>
+      <p class="govuk-body">For each provider, you’ll need to confirm:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         <li>
-          whether each training provider’s courses should be open on ‘Apply for teacher training’
+          whether the courses you ratify should be available through GOV.UK
         </li>
         <li>
-          the name and email address of the user who works at each training provider
+          who should be invited to set up an account for a provider which does not already have one - you may need to give a name and email address
         </li>
       </ul>
+
+      <p class="govuk-body">You’ll also need to accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</p>
 
       {{ govukButton({
         text: "Continue",

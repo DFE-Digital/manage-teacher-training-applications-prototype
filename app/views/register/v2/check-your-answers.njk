@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "Check training provider users and send invites" %}
+{% set title = "Check contact details and invite providers to set up accounts" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -39,7 +39,7 @@
                   </li>
                 </ul>
               {% else %}
-                Do not onboard training provider
+                Do not make courses available
               {% endif -%}
             </dd>
             <dd class="govuk-summary-list__actions">
@@ -58,7 +58,7 @@
       {% endif -%}
 
       {{ govukButton({
-        text: "Send invites",
+        text: "Send invitations",
         href: actions.next
       }) }}
 
