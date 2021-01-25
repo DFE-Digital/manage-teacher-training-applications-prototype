@@ -10,7 +10,7 @@
   {% set rbd = application.submittedDate | addDays(40) %}
   {% set remaining = rbd | daysFromNow(rbd) %}
 
-  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
     {{name}}
     <span class="govuk-visually-hidden">Timeline</span>
     {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}

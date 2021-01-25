@@ -87,7 +87,6 @@ const generateFakeApplication = (params = {}) => {
     rejectedDate: rejectedDate,
     rejectedReasons: rejectedReasons,
     rejectedFeedbackDate: rejectedFeedbackDate,
-    withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
     interviews,
     notes,
     events,
