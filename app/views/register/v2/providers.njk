@@ -82,7 +82,7 @@
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
-              {% if sectionsCompletedCount == (sectionsCount - 1) %}
+              {% if sectionsCompletedCount == sectionsCount %}
 
                 <a class="app-task-list__task-name" href="{{ actions.agreement }}">
                   Agree to the data sharing agreement
@@ -109,13 +109,17 @@
         </li>
       </ol>
 
-      <h2 class="govuk-heading-m">Review and submit</h2>
+      {% if sectionsCompletedCount == sectionsCount %}
 
-      {{ govukButton({
-        text: "Review and submit",
-        href: actions.check,
-        classes: "govuk-!-margin-top-5"
-      }) }}
+        <h2 class="govuk-heading-m">Review and submit</h2>
+
+        {{ govukButton({
+          text: "Review and submit",
+          href: actions.check,
+          classes: "govuk-!-margin-top-5"
+        }) }}
+
+      {% endif %}
 
     </div>
   </div>

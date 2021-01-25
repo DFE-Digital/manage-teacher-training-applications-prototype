@@ -2,7 +2,7 @@ const organisations = require('../data/registrations.json').filter(org => !org.i
 const providers = require('../data/registrations.json').filter(org => !org.isAccreditedBody)
 
 function checkHasAnswers (req, res, next) {
-  // console.log(req.session.data.registration)
+  console.log(req.session.data.registration)
   if (req.session.data.registration === undefined) {
     res.redirect('/register2')
   } else {
@@ -16,6 +16,20 @@ function getTrainingProvidersIds (data) {
     array.push(data[i].id)
   }
   return array
+}
+
+function getSectionsCompletedCount (data) {
+  let count = 0
+
+  count += data.trainingProviders.filter(org => org.onboard == 'no').length
+
+  count += data.trainingProviders.filter(org => org.onboard == 'yes' && (org.contact.email.length || org.contact.name.length)).length
+
+  if (data.acceptAgreement !== undefined && data.acceptAgreement[0] == 'yes') {
+    count += 1
+  }
+
+  return count
 }
 
 module.exports = router => {
@@ -103,7 +117,7 @@ module.exports = router => {
     }
 
     // set the back button default to the start page
-    let back = `/register/${req.params.organisationId}/start`
+    let back = `/register2/${req.params.organisationId}/start`
 
     // set the back button to the check your answers page if that's where the user came from
     if (req.query.referer == 'check-your-answers') {
@@ -151,9 +165,8 @@ module.exports = router => {
 
     } else {
 
-      // TODO: increment based on data held, not each submit
       // increment the sections completed count
-      req.session.data.registration.sectionsCompletedCount += 1
+      req.session.data.registration.sectionsCompletedCount = getSectionsCompletedCount(req.session.data.registration)
 
       if (req.query.referer == 'check-your-answers') {
 
@@ -225,10 +238,6 @@ module.exports = router => {
   router.post('/register2/:organisationId/providers/:providerId/users', checkHasAnswers, (req, res) => {
     const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
 
-    // TODO: increment based on data held, not each submit
-    // increment the sections completed count
-    req.session.data.registration.sectionsCompletedCount += 1
-
     // get the training provider user and populate the contact object
     if (req.session.data.registration.contact.choice != 'other') {
       const choice = req.session.data.registration.contact.choice
@@ -245,6 +254,9 @@ module.exports = router => {
 
     // combine the provider form details with the associated training provider object
     req.session.data.registration.trainingProviders[position] = {...req.session.data.registration.trainingProviders[position], ...req.session.data.registration.onboarding}
+
+    // increment the sections completed count
+    req.session.data.registration.sectionsCompletedCount = getSectionsCompletedCount(req.session.data.registration)
 
     // clear out the form data since we no longer need it, ready for the next provider
     delete req.session.data.registration.onboarding
@@ -325,7 +337,7 @@ module.exports = router => {
     } else {
 
       // increment the sections completed count
-      req.session.data.registration.sectionsCompletedCount += 1
+      req.session.data.registration.sectionsCompletedCount = getSectionsCompletedCount(req.session.data.registration)
 
       res.redirect(`/register2/${req.params.organisationId}/check-your-answers`)
     }
