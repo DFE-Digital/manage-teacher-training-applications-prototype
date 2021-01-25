@@ -302,7 +302,7 @@ module.exports = router => {
   })
 
   router.get('/register2/:organisationId/agreement', checkHasAnswers, (req, res) => {
-    const previousTrainingProviderId = req.session.data.registration.previousTrainingProviderI
+    const previousTrainingProviderId = req.session.data.registration.previousTrainingProviderId
 
     res.render('register/v2/agreement', {
       actions: {
