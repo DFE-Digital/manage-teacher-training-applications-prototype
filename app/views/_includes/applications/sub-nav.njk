@@ -25,5 +25,5 @@
     html: 'Feedback' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/applications/'+application.id+'/feedback',
     active: (subNavId == "feedback")
-  } if application.status == "Rejected" and application.rejectedReasons]
+  } if (application.status == "Rejected" and application.rejectedReasons) or (application.status == "Offer withdrawn") ]
 }) }}

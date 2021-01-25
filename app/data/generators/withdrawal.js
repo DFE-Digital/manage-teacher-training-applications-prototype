@@ -1,14 +1,11 @@
-module.exports = (faker) => {
+const faker = require('faker')
+faker.locale = 'en_GB'
+
+module.exports = () => {
 
   const defaults = {
     actions: 'No',
-    'application-quality': 'No',
-    'missing-qualifications': 'No',
-    'interview-performance': 'No',
     'course-full': 'No',
-    'other-offer': 'No',
-    honesty: 'No',
-    safeguarding: 'No',
     why: '',
     'other-feedback': 'No',
     'future-applications': 'No'
@@ -17,65 +14,15 @@ module.exports = (faker) => {
   const behaviour = {
     actions: 'Yes',
     'actions-reasons': [
-      'Did not attend interview',
+      'Did not reply to messages',
       'Other'
     ],
     'actions-reasons-other': faker.lorem.paragraph(),
     'actions-reasons-other-improve': faker.lorem.paragraph()
   }
 
-  const quality = {
-    'application-quality': 'Yes',
-    'application-quality-reasons': [
-      'Subject knowledge'
-    ],
-    'application-quality-reasons-subject-knowledge': faker.lorem.paragraph()
-  }
-
-  const qualifications = {
-    'missing-qualifications': 'Yes',
-    'missing-qualifications-reasons': [
-      'No maths GCSE grade 4 (C) or above, or accepted equivalent',
-      'No English GCSE grade 4 (C) or above, or accepted equivalent',
-      'Other'
-    ],
-    'missing-qualifications-reasons-other': faker.lorem.paragraph(1)
-  }
-
-  const interviewPerformance = {
-    'interview-performance': 'Yes',
-    'interview-performance-advice': faker.lorem.paragraph()
-  }
-
   const course = {
     'course-full': 'Yes'
-  }
-
-  const offeredOther = {
-    'other-offer': 'Yes',
-    'other-offer-details': faker.lorem.paragraph()
-  }
-
-  const honesty = {
-    honesty: 'Yes',
-    'honesty-reasons': [
-      'Inaccurate or false information in the application',
-      'References did not support the application',
-      'Evidence of plagiarism in the application',
-      'Other'
-    ],
-    'honesty-reasons-false-information': faker.lorem.paragraph(1),
-    'honesty-reasons-reference-information': faker.lorem.paragraph(1),
-    'honesty-reasons-plagiarism': faker.lorem.paragraph(1),
-    'honesty-reasons-other': faker.lorem.paragraph(2)
-  }
-
-  const safeguarding = {
-    safeguarding: 'Yes',
-    'safeguarding-reasons': [
-      'The vetting process found information which makes the candidate unsuitable to work with children'
-    ],
-    'safeguarding-reasons-vetting-information': faker.lorem.paragraph()
   }
 
   const why = {
@@ -91,16 +38,10 @@ module.exports = (faker) => {
     'future-applications': 'Yes'
   }
 
-  // Rejection scenarios
-  const scenario1 = {...defaults, ...behaviour, ...quality, ...qualifications, interviewPerformance, ...course, ...offeredOther, ...honesty, ...safeguarding, ...why}
-  const scenario2 = {...defaults, ...behaviour}
-  const scenario3 = {...defaults, ...safeguarding}
-  const scenario4 = {...defaults, ...quality, ...additionalFeedback}
-  const scenario5 = {...defaults, ...interviewPerformance}
-  const scenario6 = {...defaults, ...course}
-  const scenario7 = {...defaults, ...additionalFeedback, ...futureApplications}
-  const scenario8 = {...defaults, ...futureApplications}
-  const scenario9 = {...defaults, ...why}
+  // Withdrawal scenarios
+  const scenario1 = {...behaviour, ...additionalFeedback, ...futureApplications}
+  const scenario2 = {...course, ...additionalFeedback, ...futureApplications}
+  const scenario3 = {...why, ...additionalFeedback, ...futureApplications}
 
-  return faker.helpers.randomize([scenario1, scenario2, scenario3, scenario4, scenario5, scenario6, scenario7, scenario8, scenario9])
+  return faker.helpers.randomize([scenario1, scenario2, scenario3])
 }
