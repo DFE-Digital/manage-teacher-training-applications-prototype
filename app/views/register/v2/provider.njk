@@ -49,12 +49,16 @@
           text: "Save and continue"
         }) }}
 
-        {{ govukButton({
-          name: "button[submit]",
-          value: "save",
-          text: "Save",
-          classes: "govuk-button--secondary govuk-!-margin-left-2"
-        }) }}
+        {% if not (data.referer == 'check-your-answers') %}
+
+          {{ govukButton({
+            name: "button[submit]",
+            value: "save",
+            text: "Save",
+            classes: "govuk-button--secondary govuk-!-margin-left-2"
+          }) }}
+
+        {% endif %}
 
       </form>
 

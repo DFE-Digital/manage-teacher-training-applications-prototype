@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "Make the courses you ratify available through GOV.UK"  %}
+{% set title = "Make the courses you ratify available through GOV.UK" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -22,10 +22,9 @@
         {{ title }}
       </h1>
 
-      <h2 class="govuk-heading-m">Decisions incomplete</h2>
+      <h2 class="govuk-heading-m">Decisions {{ 'incomplete' if sectionsCompletedCount < sectionsCount else 'complete' }}</h2>
 
-      <p>You have completed {{ sectionsCompletedCount }} of {{ sectionsCount }} sections.</p>
-
+      <p class="govuk-body">You have completed {{ sectionsCompletedCount }} of {{ sectionsCount }} sections.</p>
 
       <ol class="app-task-list">
         {% for provider in trainingProviders %}
@@ -115,8 +114,7 @@
 
         {{ govukButton({
           text: "Review and submit",
-          href: actions.check,
-          classes: "govuk-!-margin-top-5"
+          href: actions.check
         }) }}
 
       {% endif %}
