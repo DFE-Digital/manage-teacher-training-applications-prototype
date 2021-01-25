@@ -239,27 +239,30 @@ module.exports = router => {
     const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
 
     // get the training provider user and populate the contact object
-    if (req.session.data.registration.contact.choice != 'other') {
+    if (req.session.data.registration.contact.choice !== undefined && req.session.data.registration.contact.choice != 'other') {
       const choice = req.session.data.registration.contact.choice
       const contact = trainingProvider.users[choice]
       contact.choice = choice
 
-      req.session.data.registration.onboarding.contact = contact
+      console.log(contact)
+
+      req.session.data.registration.contact = contact
     } else {
-      req.session.data.registration.onboarding.contact.choice = 'other'
+      req.session.data.registration.contact.choice = 'other'
     }
 
     // get the position of the current provider id
     const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
 
+    console.log(req.session.data.registration.trainingProviders[position]);
+
     // combine the provider form details with the associated training provider object
-    req.session.data.registration.trainingProviders[position] = {...req.session.data.registration.trainingProviders[position], ...req.session.data.registration.onboarding}
+    req.session.data.registration.trainingProviders[position].contact = req.session.data.registration.contact
 
     // increment the sections completed count
     req.session.data.registration.sectionsCompletedCount = getSectionsCompletedCount(req.session.data.registration)
 
     // clear out the form data since we no longer need it, ready for the next provider
-    delete req.session.data.registration.onboarding
     delete req.session.data.registration.contact
 
     if (req.query.referer == 'check-your-answers') {

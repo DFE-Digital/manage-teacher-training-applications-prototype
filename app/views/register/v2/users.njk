@@ -17,13 +17,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">{{ trainingProvider.name }}</span>
+
       <form action="{{ actions.save }}" method="post" novalidate>
 
         {% set contactHtml %}
 
           {{ govukInput({
             id: "name",
-            name: "registration[onboarding][contact][name]",
+            name: "registration[contact][name]",
             label: {
               text: "Name",
               classes: "govuk-label--s"
@@ -33,7 +35,7 @@
 
           {{ govukInput({
             id: "email",
-            name: "registration[onboarding][contact][email]",
+            name: "registration[contact][email]",
             label: {
               text: "Email address",
               classes: "govuk-label--s"
@@ -43,75 +45,93 @@
 
         {% endset %}
 
-        {{ govukRadios({
-          idPrefix: "onboard",
-          name: "registration[contact][choice]",
-          fieldset: {
+        {% if trainingProvider.users | length %}
+
+          {{ govukRadios({
+            idPrefix: "onboard",
+            name: "registration[contact][choice]",
+            fieldset: {
+              legend: {
+                text: title,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "0",
+                text: trainingProvider.users[0].name,
+                hint: {
+                  text: trainingProvider.users[0].email
+                },
+                checked: checked(trainingProvider.contact.choice, "0")
+              } if trainingProvider.users[0] | length,
+              {
+                value: "1",
+                text: trainingProvider.users[1].name,
+                hint: {
+                  text: trainingProvider.users[1].email
+                },
+                checked: checked(trainingProvider.contact.choice, "1")
+              } if trainingProvider.users[1] | length,
+              {
+                value: "2",
+                text: trainingProvider.users[2].name,
+                hint: {
+                  text: trainingProvider.users[2].email
+                },
+                checked: checked(trainingProvider.contact.choice, "2")
+              } if trainingProvider.users[2] | length,
+              {
+                value: "3",
+                text: trainingProvider.users[3].name,
+                hint: {
+                  text: trainingProvider.users[3].email
+                },
+                checked: checked(trainingProvider.contact.choice, "3")
+              } if trainingProvider.users[3] | length,
+              {
+                value: "4",
+                text: trainingProvider.users[4].name,
+                hint: {
+                  text: trainingProvider.users[4].email
+                },
+                checked: checked(trainingProvider.contact.choice, "4")
+              } if trainingProvider.users[4] | length,
+              {
+                value: "5",
+                text: trainingProvider.users[5].name,
+                hint: {
+                  text: trainingProvider.users[5].email
+                },
+                checked: checked(trainingProvider.contact.choice, "5")
+              } if trainingProvider.users[5] | length,
+              {
+                value: "other",
+                text: "Someone else at " + trainingProvider.name,
+                conditional: {
+                  html: contactHtml
+                },
+                checked: checked(trainingProvider.contact.choice, "other")
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+          {% call govukFieldset({
             legend: {
               text: title,
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          items: [
-            {
-              value: "0",
-              text: trainingProvider.users[0].name,
-              hint: {
-                text: trainingProvider.users[0].email
-              },
-              checked: checked(trainingProvider.contact.choice, "0")
-            } if trainingProvider.users[0] | length,
-            {
-              value: "1",
-              text: trainingProvider.users[1].name,
-              hint: {
-                text: trainingProvider.users[1].email
-              },
-              checked: checked(trainingProvider.contact.choice, "1")
-            } if trainingProvider.users[1] | length,
-            {
-              value: "2",
-              text: trainingProvider.users[2].name,
-              hint: {
-                text: trainingProvider.users[2].email
-              },
-              checked: checked(trainingProvider.contact.choice, "2")
-            } if trainingProvider.users[2] | length,
-            {
-              value: "3",
-              text: trainingProvider.users[3].name,
-              hint: {
-                text: trainingProvider.users[3].email
-              },
-              checked: checked(trainingProvider.contact.choice, "3")
-            } if trainingProvider.users[3] | length,
-            {
-              value: "4",
-              text: trainingProvider.users[4].name,
-              hint: {
-                text: trainingProvider.users[4].email
-              },
-              checked: checked(trainingProvider.contact.choice, "4")
-            } if trainingProvider.users[4] | length,
-            {
-              value: "5",
-              text: trainingProvider.users[5].name,
-              hint: {
-                text: trainingProvider.users[5].email
-              },
-              checked: checked(trainingProvider.contact.choice, "5")
-            } if trainingProvider.users[5] | length,
-            {
-              value: "other",
-              text: "Someone else at " + trainingProvider.name,
-              conditional: {
-                html: contactHtml
-              },
-              checked: checked(trainingProvider.contact.choice, "other")
-            }
-          ]
-        }) }}
+          }) %}
+
+            {{ contactHtml | safe }}
+
+          {% endcall %}
+
+        {% endif %}
 
         {{ govukButton({
           name: "button[submit]",
@@ -124,7 +144,7 @@
           {{ govukButton({
             name: "button[submit]",
             value: "save",
-            text: "Save",
+            text: "Save and finish later",
             classes: "govuk-button--secondary govuk-!-margin-left-2"
           }) }}
 
