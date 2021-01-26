@@ -1,0 +1,27 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "You have successfully submitted your application form" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: title
+      }) }}
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p class="govuk-body">We’ll send you an email that will help you finish setting up your account.</p>
+
+      <p class="govuk-body">We’ll send users at the training provider {{- 's' if trainingProviderInviteCount > 1 }} an email to help them finish setting up their account.</p>
+
+      <p class="govuk-body">Courses at the training provider {{- 's' if trainingProviderInviteCount > 1 }} will be opened once their users sign the data sharing agreement. We’ll let them know they need to do this.</p>
+
+    </div>
+  </div>
+{% endblock %}
