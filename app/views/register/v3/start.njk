@@ -14,8 +14,6 @@
         {{ title }}
       </h1>
 
-      <!-- <p class="govuk-body">{{ accreditingBody.name }} ratifies courses run by:</p> -->
-
       {% if trainingProvidersNotOnboarded | length %}
 
         <p class="govuk-body">You need to decide who should receive an invitation email at:</p>
@@ -33,7 +31,7 @@
         <!-- there's nothing for the HEI to do -->
 
       {% endif %}
-      
+
       {% if trainingProvidersOnboarded | length %}
 
         <p class="govuk-body">These providers are already managing applications online and do not need to be invited:</p>

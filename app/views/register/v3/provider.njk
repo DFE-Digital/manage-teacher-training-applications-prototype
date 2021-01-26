@@ -17,10 +17,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <!-- <span class="govuk-caption-l">{{ accreditingBody.name }}</span> -->
-
-      {{trainingProvider.contact|dump|safe}}
-
       <form action="{{ actions.save }}" method="post" novalidate>
 
         {% set contactHtml %}
