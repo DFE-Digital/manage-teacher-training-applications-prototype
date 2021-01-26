@@ -243,9 +243,6 @@ module.exports = router => {
       const choice = req.session.data.registration.contact.choice
       const contact = trainingProvider.users[choice]
       contact.choice = choice
-
-      console.log(contact)
-
       req.session.data.registration.contact = contact
     } else {
       req.session.data.registration.contact.choice = 'other'
@@ -253,8 +250,6 @@ module.exports = router => {
 
     // get the position of the current provider id
     const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
-
-    console.log(req.session.data.registration.trainingProviders[position]);
 
     // combine the provider form details with the associated training provider object
     req.session.data.registration.trainingProviders[position].contact = req.session.data.registration.contact
