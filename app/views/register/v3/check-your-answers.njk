@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "Check training provider users and send invites" %}
+{% set title = "Check contact details and send invitations" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -18,7 +18,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
+        {# <span class="govuk-caption-l">{{ accreditingBody.name }}</span> #}
         {{ title }}
       </h1>
 
@@ -58,7 +58,7 @@
       {% endif -%}
 
       {{ govukButton({
-        text: "Send invites",
+        text: "Send invitations",
         href: actions.next
       }) }}
 

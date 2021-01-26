@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "You have successfully submitted your application form" %}
+{% set title = "You have sent invitations to training providers" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -16,11 +16,9 @@
 
       <h2 class="govuk-heading-m">What happens next</h2>
 
-      <p class="govuk-body">We’ll send you an email that will help you finish setting up your account.</p>
+      <p class="govuk-body">Once the training provider {{- 's' if trainingProviderInviteCount > 1 }} have set up an account, their courses will be available through GOV.UK.</p>
 
-      <p class="govuk-body">We’ll send users at the training provider {{- 's' if trainingProviderInviteCount > 1 }} an email to help them finish setting up their account.</p>
-
-      <p class="govuk-body">Courses at the training provider {{- 's' if trainingProviderInviteCount > 1 }} will be opened once their users sign the data sharing agreement. We’ll let them know they need to do this.</p>
+      <p class="govuk-body">We’ll send you an email to help you finish setting up your account.</p>
 
     </div>
   </div>
