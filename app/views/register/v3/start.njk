@@ -11,38 +11,46 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        <!-- <span class="govuk-caption-l">{{ accreditingBody.name }}</span> -->
         {{ title }}
       </h1>
 
       <!-- <p class="govuk-body">{{ accreditingBody.name }} ratifies courses run by:</p> -->
 
-      <p class="govuk-body">[placeholder - not onboarded]</p>
+      {% if trainingProvidersNotOnboarded | length %}
 
-      <ul class="govuk-list govuk-list--bullet">
-        {% for provider in trainingProvidersNotOnboarded %}
-          <li>
-            {{ provider.name }}
-          </li>
-        {% endfor %}
-      </ul>
+        <p class="govuk-body">[placeholder - not onboarded]</p>
 
-      <p class="govuk-body">[placeholder - already onboarded]</p>
+        <ul class="govuk-list govuk-list--bullet">
+          {% for provider in trainingProvidersNotOnboarded %}
+            <li>
+              {{ provider.name }}
+            </li>
+          {% endfor %}
+        </ul>
 
-      <ul class="govuk-list govuk-list--bullet">
-        {% for provider in trainingProvidersOnboarded %}
-          <li>
-            {{ provider.name }}
-          </li>
-        {% endfor %}
-      </ul>
+      {% else %}
+
+        <!-- there's nothing for the HEI to do -->
+
+      {% endif %}
+
+      {% if trainingProvidersOnboarded | length %}
+
+        <p class="govuk-body">[placeholder - already onboarded]</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          {% for provider in trainingProvidersOnboarded %}
+            <li>
+              {{ provider.name }}
+            </li>
+          {% endfor %}
+        </ul>
+
+      {% endif %}
 
       <p class="govuk-body">For each provider, you’ll need to confirm:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <!-- <li>
-          whether the courses you ratify should be available through GOV.UK
-        </li> -->
         <li>
           who should be invited to set up an account for a provider which does not already have one - you may need to give a name and email address
         </li>
