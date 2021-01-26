@@ -79,7 +79,7 @@ module.exports = router => {
 
 
   router.get('/register3/:organisationId/providers/:providerId', checkHasAnswers, (req, res) => {
-    const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
+    const trainingProvider = req.session.data.registration.trainingProvidersNotOnboarded.filter(org => org.id === req.params.providerId)[0]
 
     // get the position of the current provider id
     const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
@@ -210,10 +210,10 @@ module.exports = router => {
 
   router.get('/register3/:organisationId/done', checkHasAnswers, (req, res) => {
     // set invitation count for use in pluralising content
-    const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
+    // const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
 
     res.render('register/v3/done', {
-      trainingProviderInviteCount
+      // trainingProviderInviteCount
     })
   })
 

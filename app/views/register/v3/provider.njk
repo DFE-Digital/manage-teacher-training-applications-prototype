@@ -19,6 +19,8 @@
 
       <!-- <span class="govuk-caption-l">{{ accreditingBody.name }}</span> -->
 
+      {{trainingProvider.contact|dump|safe}}
+
       <form action="{{ actions.save }}" method="post" novalidate>
 
         {% set contactHtml %}
@@ -127,7 +129,7 @@
             }
           }) %}
 
-            <!-- <p class="govuk-hint">[placeholder]</p> -->
+            <input type="hidden" name="registration[contact][choice]" value="other">
 
             {{ contactHtml | safe }}
 

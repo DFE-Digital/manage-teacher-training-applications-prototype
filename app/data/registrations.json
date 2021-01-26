@@ -52,7 +52,7 @@
       "B20",
       "M84"
     ],
-    "isRegistered": false,
+    "isRegistered": true,
     "users": [
       {
         "name": "Margie Reddy",
@@ -90,13 +90,7 @@
     "accreditingBodies": [
       "B20"
     ],
-    "isRegistered": false,
-    "users": [
-      {
-        "name": "Arlinda Calabro",
-        "email": "arlinda.calabro@example.com"
-      }
-    ]
+    "isRegistered": false
   },
   {
     "id": "26A",

@@ -18,7 +18,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        {# <span class="govuk-caption-l">{{ accreditingBody.name }}</span> #}
+        <!-- {# <span class="govuk-caption-l">{{ accreditingBody.name }}</span> #} -->
         {{ title }}
       </h1>
 
@@ -51,11 +51,11 @@
         {% endfor -%}
       </dl>
 
-      {%- if acceptAgreement == 'yes' %}
+      <!-- {#%- if acceptAgreement == 'yes' %}
         <p class="govuk-body">
           Bath Spa University agrees to comply with the data sharing practices outlined in the data sharing agreement.
         </p>
-      {% endif -%}
+      {% endif -%#} -->
 
       {{ govukButton({
         text: "Send invitations",
