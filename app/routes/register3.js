@@ -1,4 +1,6 @@
-const organisations = require('../data/registrations.json').filter(org => !org.isRegistered && org.isAccreditedBody)
+const organisations = require('../data/registrations.json')
+                        .filter(org => !org.isRegistered && org.isAccreditedBody)
+                        .sort((a, b) => a.name.localeCompare(b.name))
 const providers = require('../data/registrations.json').filter(org => !org.isAccreditedBody)
 
 function checkHasAnswers (req, res, next) {

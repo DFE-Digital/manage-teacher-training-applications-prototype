@@ -1149,5 +1149,249 @@
         "email": "alesha.corns@example.com"
       }
     ]
+  },
+  {
+    "id": "E84",
+    "name": "University of Exeter",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "1M2",
+    "name": "Cornerstone Academy Trust",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84",
+      "P63"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Arlinda Calabro",
+        "email": "arlinda.calabro@example.com"
+      },
+      {
+        "name": "Brunilda Mcguire",
+        "email": "brunilda.mcguire@example.com"
+      },
+      {
+        "name": "Renita Tweed",
+        "email": "renita.tweed@example.com"
+      },
+      {
+        "name": "Tristan Brewton",
+        "email": "tristan.brewton@example.com"
+      }
+    ]
+  },
+  {
+    "id": "2BT",
+    "name": "Dartmoor Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Corinna Newbill",
+        "email": "corinna.newbill@example.com"
+      },
+      {
+        "name": "Glenn Pratte",
+        "email": "glenn.pratte@example.com"
+      },
+      {
+        "name": "Winnifred Pinion",
+        "email": "winnifred.pinion@example.com"
+      },
+      {
+        "name": "Delia Anstine",
+        "email": "delia.anstine@example.com"
+      }
+    ]
+  },
+  {
+    "id": "172",
+    "name": "Jurassic Coast Teaching Schools’s Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "21J",
+    "name": "Kernow Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84",
+      "P63"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "17H",
+    "name": "North Devon Teaching School Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84"
+    ],
+    "isRegistered": true,
+    "users": [
+      {
+        "name": "Kenyetta Hausman",
+        "email": "kenyetta.hausman@example.com"
+      },
+      {
+        "name": "Kathe Carnahan",
+        "email": "kathe.carnahan@example.com"
+      },
+      {
+        "name": "Bruce Skalski",
+        "email": "bruce.skalski@example.com"
+      }
+    ]
+  },
+  {
+    "id": "1QX",
+    "name": "Exeter Consortium",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84",
+      "S66"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Jinny Yoshimoto",
+        "email": "jinny.yoshimoto@example.com"
+      },
+      {
+        "name": "Karin Percy",
+        "email": "karin.percy@example.com"
+      }
+    ]
+  },
+  {
+    "id": "16U",
+    "name": "Teach South West (SWTSA)",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84"
+    ],
+    "isRegistered": true,
+    "users": [
+      {
+        "name": "Magda Kroeker",
+        "email": "magda.kroeker@example.com"
+      },
+      {
+        "name": "Leeann Kaye",
+        "email": "leeann.kaye@example.com"
+      }
+    ]
+  },
+  {
+    "id": "28Y",
+    "name": "Yeovil Area Teacher Training Alliance",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "E84"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Dorotha Kresge",
+        "email": "dorotha.kresge@example.com"
+      }
+    ]
+  },
+  {
+    "id": "G56",
+    "name": "Goldsmiths, University of London",
+    "isAccreditedBody": true,
+    "isRegistered": false
+  },
+  {
+    "id": "2GT",
+    "name": "Inspire Partnership",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "G56"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Cheree Durrance",
+        "email": "cheree.durrance@example.com"
+      },
+      {
+        "name": "Garnett Muma",
+        "email": "garnett.muma@example.com"
+      }
+    ]
+  },
+  {
+    "id": "2CH",
+    "name": "Academies Enterprise Trust: London",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "G56",
+      "C85",
+      "E69",
+      "U80"
+    ],
+    "isRegistered": false
+  },
+  {
+    "id": "1A9",
+    "name": "United Teaching National SCITT",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "G56",
+      "25A"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Melvin Ono",
+        "email": "melvin.ono@example.com"
+      },
+      {
+        "name": "Everett Laurich",
+        "email": "everett.laurich@example.com"
+      },
+      {
+        "name": "Carlene Rector",
+        "email": "carlene.rector@example.com"
+      },
+      {
+        "name": "Rosella Kotter",
+        "email": "rosella.kotter@example.com"
+      },
+      {
+        "name": "Ardelia Chill",
+        "email": "ardelia.chill@example.com"
+      }
+    ]
+  },
+  {
+    "id": "134",
+    "name": "Catholic Teaching Alliance (South East London)",
+    "isAccreditedBody": false,
+    "accreditingBodies": [
+      "G56",
+      "K60",
+      "S64",
+      "U80"
+    ],
+    "isRegistered": false,
+    "users": [
+      {
+        "name": "Magdalena Risner",
+        "email": "magdalena.risner@example.com"
+      }
+    ]
   }
 ]
