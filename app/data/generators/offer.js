@@ -1,4 +1,8 @@
-module.exports = (faker, status) => {
+const faker = require('faker')
+faker.locale = 'en_GB'
+let generateWithdrawal = require('./withdrawal')
+
+module.exports = (status) => {
   let conditionStatus = 'Pending'
   if (status === 'Conditions met') {
     conditionStatus = 'Met'
@@ -8,6 +12,13 @@ module.exports = (faker, status) => {
   }
   if (status === 'Deferred') {
     conditionStatus = 'Met'
+  }
+
+  let withdrawalDate = null;
+  let withdrawalReasons = null;
+  if(status === 'Offer withdrawn') {
+    withdrawalDate = faker.date.past()
+    withdrawalReasons = generateWithdrawal()
   }
 
   return {
@@ -26,6 +37,8 @@ module.exports = (faker, status) => {
       id: faker.random.uuid(),
       description: 'You need to take English speaking course',
       status: conditionStatus
-    }]
+    }],
+    withdrawalDate,
+    withdrawalReasons
   }
 }

@@ -12,7 +12,7 @@
     icon: false
   }) if flash | falsify }}
 
-  <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
     {{name}}
     <span class="govuk-visually-hidden">Feedback</span>
     {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
@@ -25,13 +25,21 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Feedback</h2>
-      {% if application.rejectedDate == application.rejectedFeedbackDate %}
-        <p>This application was rejected on  {{ application.rejectedDate | govukDate }}. The following feedback was sent to the candidate.</p>
-      {% else %}
-        <p>This application was automatically rejected on {{ application.rejectedDate | govukDate }}. Feedback was sent on {{ application.rejectedFeedbackDate | govukDate }}.</p>
-      {% endif %}
-      {% set rejectionReasons = application.rejectedReasons %}
-      {% include "_includes/candidate-feedback.njk" %}
+
+      {% if application.status == "Rejected" %}
+        {% if application.rejectedDate == application.rejectedFeedbackDate %}
+          <p>This application was rejected on  {{ application.rejectedDate | govukDate }}. The following feedback was sent to the candidate.</p>
+        {% else %}
+          <p>This application was automatically rejected on {{ application.rejectedDate | govukDate }}. Feedback was sent on {{ application.rejectedFeedbackDate | govukDate }}.</p>
+        {% endif %}
+        {% set rejectionReasons = application.rejectedReasons %}
+        {% include "_includes/candidate-feedback.njk" %}
+      {% elseif application.status == "Offer withdrawn" %}
+        <p>The offer was withdrawn on {{application.offer.withdrawalDate | govukDate}}. The following feedback was sent to the candidate.</p>
+        {% set rejectionReasons = application.offer.withdrawalReasons %}
+        {% set whyHeading = "Why your offer was withdrawn" %}
+        {% include "_includes/candidate-feedback.njk" %}
+      {% endif%}
     </div>
   </div>
 {% endblock %}

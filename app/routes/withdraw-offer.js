@@ -50,8 +50,8 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Offer withdrawn'
-    application.withdrawnDate = new Date().toISOString()
-    application.withdrawnReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
+    application.offer.withdrawalDate = new Date().toISOString()
+    application.offer.withdrawalReasons = ApplicationHelper.getRejectReasons(req.session.data.rejectionReasons)
     req.flash('success', 'Offer withdrawn')
 
     ApplicationHelper.addEvent(application, {
@@ -61,6 +61,6 @@ module.exports = router => {
     })
 
     delete req.session.data.rejectionReasons
-    res.redirect(`/applications/${applicationId}/offer`)
+    res.redirect(`/applications/${applicationId}/feedback`)
   })
 }

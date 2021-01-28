@@ -47,7 +47,7 @@ const generateFakeApplication = (params = {}) => {
 
   let offer = null
   if (['Deferred', 'Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
-    offer = generateOffer(faker, status)
+    offer = generateOffer(status)
   }
 
   const notes = generateNotes(faker)
@@ -64,7 +64,7 @@ const generateFakeApplication = (params = {}) => {
   let rejectedReasons
   if(status === 'Rejected') {
     rejectedDate = faker.date.past()
-    rejectedReasons = generateRejection(faker)
+    rejectedReasons = generateRejection(status)
     // might be null to singal automatic rejection
     if(rejectedReasons) {
       rejectedFeedbackDate = rejectedDate
@@ -87,8 +87,6 @@ const generateFakeApplication = (params = {}) => {
     rejectedDate: rejectedDate,
     rejectedReasons: rejectedReasons,
     rejectedFeedbackDate: rejectedFeedbackDate,
-    withdrawnDate: status === 'Application withdrawn' ? faker.date.past() : null,
-    withdrawnReasons: status === 'Application withdrawn' ? generateWithdrawal(faker) : null,
     interviews,
     notes,
     events,
