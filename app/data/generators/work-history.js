@@ -6,11 +6,12 @@ module.exports = (faker) => {
         role: faker.name.jobTitle(),
         org: faker.company.companyName(),
         type: faker.helpers.randomize(['Full time', 'Part time']),
-        description: faker.lorem.paragraphs(2),
-        workedWithChildren: faker.helpers.randomize(['Yes', 'No']),
+        relevantToTeaching: faker.helpers.randomize(['Yes', 'No']),
         category: 'job',
         startDate: faker.date.past(),
-        endDate: false
+        isStartDateApproximate: faker.helpers.randomize([true, false, false, false]),
+        endDate: false,
+        isEndDateApproximate: false
       }
     } else {
       return {
