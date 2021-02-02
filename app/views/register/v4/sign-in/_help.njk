@@ -1,0 +1,8 @@
+{% set helpHtml %}
+  <p class="govuk-body">If you are having problems using the DfE Sign-in service, follow <a class="govuk-link govuk-link--no-visited-state" href="#">DfE Sign-in Help</a>. You will be able to request further assistance if required.</p>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "Having problems?",
+  html: helpHtml
+}) }}

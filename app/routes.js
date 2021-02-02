@@ -32,6 +32,6 @@ require('./routes/withdraw-application')(router)
 require('./routes/register')(router)
 require('./routes/register2')(router)
 require('./routes/register3')(router)
-// require('./routes/register4')(router)
+require('./routes/register4')(router)
 
 module.exports = router

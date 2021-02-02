@@ -66,7 +66,20 @@
   }) }}
   {% endif %}
 
-  {% include "_includes/header.njk" %}
+  {{ govukHeader({
+    containerClasses: "govuk-width-container",
+    "navigationClasses": "govuk-header__navigation--end",
+    "productName": serviceName,
+    "navigation": [{
+        href: "/account",
+        text: "Your account",
+        active: primaryNavId == 'account'
+      }, {
+        href: "/",
+        text: "Sign out"
+      }
+    ] if data.hasAccount == "true"
+  }) }}
 
   {{ govukPhaseBanner({
     tag: {
@@ -107,9 +120,12 @@
       }, {
         href: "/register2",
         text: "Register (v2)"
-      },  {
+      }, {
         href: "/register3",
         text: "Register (v3)"
+      }, {
+        href: "/register4",
+        text: "Register (v4)"
       }, {
         href: "/admin/clear-data",
         text: "Clear data"
@@ -117,10 +133,6 @@
     }
   }) if not data.bare }}
 
-  <!-- {
-    href: "/register4",
-    text: "Task list (v2)"
-  },  -->
 {% endblock %}
 
 {% block bodyEnd %}
