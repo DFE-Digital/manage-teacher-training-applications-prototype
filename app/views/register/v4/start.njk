@@ -17,8 +17,7 @@
      <p class="govuk-body">To set up your account you need to:</p>
 
         <ol class="govuk-list govuk-list--number">
-            <li>Create a DfE Sign-in account - if you have not done this already.</li>
-            <li>Sign in using DfE Sign-in.</li>
+            <li>Sign in using DfE Sign-in - you’ll need to create an account if you do not have one already.</li>
             <li>Accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</li>
             {% if trainingProvidersNotOnboarded | length %}
             <li>Invite training providers to set up their own accounts.</li>
@@ -60,7 +59,7 @@
       {% endif %}
 
       {{ govukButton({
-        text: "Create an account or sign in" if not data.isAuthenticated else "Continue",
+        text: "Sign in using DfE Sign-in" if not data.isAuthenticated else "Continue",
         href: actions.next,
         classes: "govuk-!-margin-top-5"
       }) }}
