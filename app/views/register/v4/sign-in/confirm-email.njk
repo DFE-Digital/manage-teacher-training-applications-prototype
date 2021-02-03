@@ -17,6 +17,8 @@
 
   {% include "./_notification-banner.njk" %}
 
+  {% include "./_error-summary.njk" %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -37,6 +39,7 @@
               text: "Verification code",
               classes: "govuk-label--s"
             },
+            errorMessage: errors | getErrorMessage("code"),
             classes: "govuk-!-width-one-quarter"
           }) }}
 

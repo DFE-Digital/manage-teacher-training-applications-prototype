@@ -107,8 +107,6 @@ module.exports = router => {
     }
 
     if (errors.length) {
-      // const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
-
       res.render('register/v4/agreement', {
         actions: {
           save: `/register4/${req.params.organisationId}/agreement`,
@@ -255,6 +253,10 @@ module.exports = router => {
   router.post('/register4/:organisationId/sign-in', (req, res) => {
     const errors = []
 
+    req.session.data.routes = {
+      signout: `/register4/${req.params.organisationId}/sign-out`,
+      account: `/register4/${req.params.organisationId}/account`
+    }
     req.session.data.isAuthenticated = true
     res.redirect(`/register4/${req.params.organisationId}/agreement`)
   })
@@ -294,7 +296,26 @@ module.exports = router => {
   router.post('/register4/:organisationId/confirm-email', (req, res) => {
     const errors = []
 
-    res.redirect(`/register4/${req.params.organisationId}/sign-in`)
+    if (!req.session.data.code.length) {
+      const error = {}
+      error.fieldName = 'code'
+      error.href = '#code'
+      error.text = 'Enter your verification code'
+      errors.push(error)
+    }
+
+    if (errors.length) {
+      res.render('register/v4/sign-in/confirm-email', {
+        actions: {
+          save: `/register4/${req.params.organisationId}/confirm-email`,
+          back: `/register4/${req.params.organisationId}/register`,
+          resend: `/register4/${req.params.organisationId}/resend-code`
+        },
+        errors
+      })
+    } else {
+      res.redirect(`/register4/${req.params.organisationId}/sign-in`)
+    }
   })
 
   router.get('/register4/:organisationId/resend-code', (req, res) => {
@@ -344,7 +365,25 @@ module.exports = router => {
   router.post('/register4/:organisationId/verification-code', (req, res) => {
     const errors = []
 
-    res.redirect(`/register4/${req.params.organisationId}/create-password`)
+    if (!req.session.data.code.length) {
+      const error = {}
+      error.fieldName = 'code'
+      error.href = '#code'
+      error.text = 'Enter your verification code'
+      errors.push(error)
+    }
+
+    if (errors.length) {
+      res.render('register/v4/sign-in/verification-code', {
+        actions: {
+          save: `/register4/${req.params.organisationId}/verification-code`,
+          back: `/register4/${req.params.organisationId}/sign-in`
+        },
+        errors
+      })
+    } else {
+      res.redirect(`/register4/${req.params.organisationId}/create-password`)
+    }
   })
 
   router.get('/register4/:organisationId/create-password', (req, res) => {
@@ -376,6 +415,13 @@ module.exports = router => {
         back: req.headers.referer
       }
     })
+  })
+
+  router.get('/register4/:organisationId/sign-out', (req, res) => {
+    delete req.session.data.isAuthenticated
+    delete req.session.data.routes
+    req.flash('success','You have successfully signed out')
+    res.redirect(`/register4/${req.params.organisationId}/start`)
   })
 
 }

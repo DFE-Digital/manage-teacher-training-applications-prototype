@@ -71,14 +71,15 @@
     "navigationClasses": "govuk-header__navigation--end",
     "productName": serviceName,
     "navigation": [{
-        href: "/account",
+        href: data.routes.account,
         text: "Your account",
         active: primaryNavId == 'account'
-      }, {
-        href: "/",
+      } if data.routes.account | length,
+      {
+        href: data.routes.signout,
         text: "Sign out"
-      }
-    ] if data.hasAccount == "true"
+      } if data.routes.signout | length
+    ] if data.isAuthenticated
   }) }}
 
   {{ govukPhaseBanner({
