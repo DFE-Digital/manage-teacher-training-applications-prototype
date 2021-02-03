@@ -25,139 +25,10 @@ module.exports = router => {
   router.get('/register4', (req, res) => {
     // delete any previous onboarding data
     delete req.session.data.registration
+    delete req.session.data.isAuthenticated
 
     res.render('register/v4/index', {
       organisations
-    })
-  })
-
-  router.get('/register4/sign-in', (req, res) => {
-    res.render('register/v4/sign-in/sign-in', {
-      actions: {
-        save: `/register4/sign-in`,
-        create: `/register4/register`,
-        terms: `/register4/terms`,
-        forgotten: `/register4/forgotten-password`
-      }
-    })
-  })
-
-  router.post('/register4/sign-in', (req, res) => {
-
-    res.redirect('')
-  })
-
-  router.get('/register4/register', (req, res) => {
-    res.render('register/v4/sign-in/register', {
-      actions: {
-        save: `/register4/register`,
-        back: `/register4/sign-in`,
-        signin: `/register4/sign-in`,
-        terms: `/register4/terms`
-      }
-    })
-  })
-
-  router.post('/register4/register', (req, res) => {
-
-    req.flash('success', {
-      title: 'Verification email sent',
-      description: 'A verification email has been sent to ' + req.session.data.email
-    })
-
-    res.redirect('/register4/confirm-email')
-  })
-
-  router.get('/register4/confirm-email', (req, res) => {
-    res.render('register/v4/sign-in/confirm-email', {
-      actions: {
-        save: `/register4/confirm-email`,
-        back: `/register4/register`,
-        resend: `/register4/resend`
-      }
-    })
-  })
-
-  router.post('/register4/confirm-email', (req, res) => {
-
-    res.redirect('')
-  })
-
-  router.get('/register4/resend', (req, res) => {
-    res.render('register/v4/sign-in/resend-code', {
-      actions: {
-        save: `/register4/resend`,
-        back: `/register4/confirm-email`
-      }
-    })
-  })
-
-  router.post('/register4/resend', (req, res) => {
-
-    // TODO: next step
-    res.redirect('/register4/')
-  })
-
-  router.get('/register4/forgotten-password', (req, res) => {
-    res.render('register/v4/sign-in/forgotten-password', {
-      actions: {
-        save: `/register4/forgotten-password`,
-        back: `/register4/sign-in`
-      }
-    })
-  })
-
-  router.post('/register4/forgotten-password', (req, res) => {
-
-    req.flash('success', {
-      title: 'Verification email sent',
-      description: 'A verification email has been sent to ' + req.session.data.email
-    })
-
-    res.redirect('/register4/verification-code')
-  })
-
-  router.get('/register4/verification-code', (req, res) => {
-    res.render('register/v4/sign-in/verification-code', {
-      actions: {
-        save: `/register4/verification-code`,
-        back: `/register4/sign-in`
-      }
-    })
-  })
-
-  router.post('/register4/verification-code', (req, res) => {
-
-    res.redirect('/register4/create-password')
-  })
-
-  router.get('/register4/create-password', (req, res) => {
-    res.render('register/v4/sign-in/create-password', {
-      actions: {
-        save: `/register4/create-password`,
-        back: `/register4/sign-in`
-      }
-    })
-  })
-
-  router.post('/register4/create-password', (req, res) => {
-
-    res.redirect('/register4/password-reset')
-  })
-
-  router.get('/register4/password-reset', (req, res) => {
-    res.render('register/v4/sign-in/password-reset', {
-      actions: {
-        next: `/register4/sign-in`
-      }
-    })
-  })
-
-  router.get('/register4/terms', (req, res) => {
-    res.render('register/v4/sign-in/terms', {
-      actions: {
-        back: req.headers.referer
-      }
     })
   })
 
@@ -196,12 +67,15 @@ module.exports = router => {
       req.session.data.registration.trainingProvidersIds = getTrainingProvidersIds(trainingProvidersNotOnboarded)
     }
 
-    // set the first training provider id
-    const firstTrainingProviderId = req.session.data.registration.trainingProvidersIds[0]
+    // if signed in, next is the agreement, else sign-in
+    let next = `/register4/${req.params.organisationId}/sign-in`
+    if (req.session.data.isAuthenticated === true) {
+      next = `/register4/${req.params.organisationId}/agreement`
+    }
 
     res.render('register/v4/start', {
       actions: {
-        next: `/register4/${req.params.organisationId}/providers/${firstTrainingProviderId}`
+        next: next
       },
       accreditingBody: req.session.data.registration.accreditingBody,
       trainingProvidersOnboarded: req.session.data.registration.trainingProvidersOnboarded,
@@ -209,6 +83,59 @@ module.exports = router => {
     })
   })
 
+  router.get('/register4/:organisationId/agreement', checkHasAnswers, (req, res) => {
+    const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
+
+    res.render('register/v4/agreement', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/agreement`,
+        back: `/register4/${req.params.organisationId}/start`
+      },
+      accreditingBody: req.session.data.registration.accreditingBody
+    })
+  })
+
+  router.post('/register4/:organisationId/agreement', checkHasAnswers, (req, res) => {
+    const errors = []
+
+    if (req.session.data.registration.acceptAgreement === undefined) {
+      const error = {}
+      error.fieldName = 'acceptAgreement'
+      error.href = '#acceptAgreement'
+      error.text = 'You must agree to these terms to use this service'
+      errors.push(error)
+    }
+
+    if (errors.length) {
+      // const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
+
+      res.render('register/v4/agreement', {
+        actions: {
+          save: `/register4/${req.params.organisationId}/agreement`,
+          back: `/register4/${req.params.organisationId}/start`
+        },
+        accreditingBody: req.session.data.registration.accreditingBody,
+        errors: errors
+      })
+    } else {
+      res.redirect(`/register4/${req.params.organisationId}/next`)
+    }
+  })
+
+  router.get('/register4/:organisationId/next', checkHasAnswers, (req, res) => {
+    // set the first training provider id
+    const firstTrainingProviderId = req.session.data.registration.trainingProvidersIds[0]
+
+    res.render('register/v4/next', {
+      actions: {
+        next: `/register4/${req.params.organisationId}/providers/${firstTrainingProviderId}`,
+        back: `/register4/${req.params.organisationId}/agreement`
+      },
+      accreditingBody: req.session.data.registration.accreditingBody,
+      trainingProvidersOnboarded: req.session.data.registration.trainingProvidersOnboarded,
+      trainingProvidersNotOnboarded: req.session.data.registration.trainingProvidersNotOnboarded
+    })
+  })
 
   router.get('/register4/:organisationId/providers/:providerId', checkHasAnswers, (req, res) => {
     const trainingProvider = req.session.data.registration.trainingProvidersNotOnboarded.filter(org => org.id === req.params.providerId)[0]
@@ -223,7 +150,7 @@ module.exports = router => {
     }
 
     // set the back button default to the start page
-    let back = `/register4/${req.params.organisationId}/start`
+    let back = `/register4/${req.params.organisationId}/next`
 
     // set the back button to the check your answers page if that's where the user came from
     if (req.query.referer == 'check-your-answers') {
@@ -278,7 +205,7 @@ module.exports = router => {
         req.session.data.registration.lastTrainingProviderId = req.params.providerId
 
         // redirect to the data sharing agreement
-        res.redirect(`/register4/${req.params.organisationId}/agreement`)
+        res.redirect(`/register4/${req.params.organisationId}/check-your-answers`)
 
       } else {
         // set the next training provider id
@@ -286,45 +213,6 @@ module.exports = router => {
 
         res.redirect(`/register4/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
       }
-    }
-  })
-
-  router.get('/register4/:organisationId/agreement', checkHasAnswers, (req, res) => {
-    const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
-
-    res.render('register/v4/agreement', {
-      actions: {
-        save: `/register4/${req.params.organisationId}/agreement`,
-        back: `/register4/${req.params.organisationId}/providers/${lastTrainingProviderId}`
-      },
-      accreditingBody: req.session.data.registration.accreditingBody
-    })
-  })
-
-  router.post('/register4/:organisationId/agreement', checkHasAnswers, (req, res) => {
-    const errors = []
-
-    if (req.session.data.registration.acceptAgreement === undefined) {
-      const error = {}
-      error.fieldName = 'acceptAgreement'
-      error.href = '#acceptAgreement'
-      error.text = 'You must agree to these terms to use this service'
-      errors.push(error)
-    }
-
-    if (errors.length) {
-      const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
-
-      res.render('register/v4/agreement', {
-        actions: {
-          save: `/register4/${req.params.organisationId}/agreement`,
-          back: `/register4/${req.params.organisationId}/providers/${lastTrainingProviderId}`
-        },
-        accreditingBody: req.session.data.registration.accreditingBody,
-        errors: errors
-      })
-    } else {
-      res.redirect(`/register4/${req.params.organisationId}/check-your-answers`)
     }
   })
 
@@ -346,6 +234,147 @@ module.exports = router => {
 
     res.render('register/v4/done', {
       // trainingProviderInviteCount
+    })
+  })
+
+  // ===========================================================================
+  // Sign in / register
+  // ===========================================================================
+
+  router.get('/register4/:organisationId/sign-in', (req, res) => {
+    res.render('register/v4/sign-in/sign-in', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/sign-in`,
+        create: `/register4/${req.params.organisationId}/register`,
+        terms: `/register4/${req.params.organisationId}/terms`,
+        forgotten: `/register4/${req.params.organisationId}/forgotten-password`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/sign-in', (req, res) => {
+    const errors = []
+
+    req.session.data.isAuthenticated = true
+    res.redirect(`/register4/${req.params.organisationId}/agreement`)
+  })
+
+  router.get('/register4/:organisationId/register', (req, res) => {
+    res.render('register/v4/sign-in/register', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/register`,
+        back: `/register4/${req.params.organisationId}/sign-in`,
+        signin: `/register4/${req.params.organisationId}/sign-in`,
+        terms: `/register4/${req.params.organisationId}/terms`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/register', (req, res) => {
+    const errors = []
+
+    req.flash('success', {
+      title: 'Verification email sent',
+      description: 'A verification email has been sent to ' + req.session.data.email
+    })
+
+    res.redirect(`/register4/${req.params.organisationId}/confirm-email`)
+  })
+
+  router.get('/register4/:organisationId/confirm-email', (req, res) => {
+    res.render('register/v4/sign-in/confirm-email', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/confirm-email`,
+        back: `/register4/${req.params.organisationId}/register`,
+        resend: `/register4/${req.params.organisationId}/resend-code`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/confirm-email', (req, res) => {
+    const errors = []
+
+    res.redirect(`/register4/${req.params.organisationId}/sign-in`)
+  })
+
+  router.get('/register4/:organisationId/resend-code', (req, res) => {
+    res.render('register/v4/sign-in/resend-code', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/resend-code`,
+        back: `/register4/${req.params.organisationId}/confirm-email`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/resend-code', (req, res) => {
+    const errors = []
+
+    res.redirect(`/register4/${req.params.organisationId}/confirm-email`)
+  })
+
+  router.get('/register4/:organisationId/forgotten-password', (req, res) => {
+    res.render('register/v4/sign-in/forgotten-password', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/forgotten-password`,
+        back: `/register4/${req.params.organisationId}/sign-in`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/forgotten-password', (req, res) => {
+    const errors = []
+
+    req.flash('success', {
+      title: 'Verification email sent',
+      description: 'A verification email has been sent to ' + req.session.data.email
+    })
+
+    res.redirect(`/register4/${req.params.organisationId}/verification-code`)
+  })
+
+  router.get('/register4/:organisationId/verification-code', (req, res) => {
+    res.render('register/v4/sign-in/verification-code', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/verification-code`,
+        back: `/register4/${req.params.organisationId}/sign-in`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/verification-code', (req, res) => {
+    const errors = []
+
+    res.redirect(`/register4/${req.params.organisationId}/create-password`)
+  })
+
+  router.get('/register4/:organisationId/create-password', (req, res) => {
+    res.render('register/v4/sign-in/create-password', {
+      actions: {
+        save: `/register4/${req.params.organisationId}/create-password`,
+        back: `/register4/${req.params.organisationId}/sign-in`
+      }
+    })
+  })
+
+  router.post('/register4/:organisationId/create-password', (req, res) => {
+    const errors = []
+
+    res.redirect(`/register4/${req.params.organisationId}/password-reset`)
+  })
+
+  router.get('/register4/:organisationId/password-reset', (req, res) => {
+    res.render('register/v4/sign-in/password-reset', {
+      actions: {
+        next: `/register4/${req.params.organisationId}/sign-in`
+      }
+    })
+  })
+
+  router.get('/register4/:organisationId/terms', (req, res) => {
+    res.render('register/v4/sign-in/terms', {
+      actions: {
+        back: req.headers.referer
+      }
     })
   })
 

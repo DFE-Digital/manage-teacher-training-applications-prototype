@@ -46,10 +46,8 @@
 
       {% endif %}
 
-      <p class="govuk-body">You also need to accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</p>
-
       {{ govukButton({
-        text: "Sign in" if not data.isAuthenticated else "Continue",
+        text: "Continue",
         href: actions.next,
         classes: "govuk-!-margin-top-5"
       }) }}
