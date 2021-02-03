@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "Invite training providers to " + serviceName | lower  %}
+{% set title = "Set up your account to " + serviceName | lower  %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -14,9 +14,20 @@
         {{ title }}
       </h1>
 
+     <p class="govuk-body">To set up your account you need to:</p>
+
+        <ol class="govuk-list govuk-list--number">
+            <li>Create a DfE Sign-in account - if you have not done this already.</li>
+            <li>Sign in using DfE Sign-in.</li>
+            <li>Accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</li>
+            {% if trainingProvidersNotOnboarded | length %}
+            <li>Invite training providers to set up their own accounts.</li>
+            {% endif %}
+        </ol>     
+
       {% if trainingProvidersNotOnboarded | length %}
 
-        <p class="govuk-body">You need to decide who should receive an invitation email at:</p>
+        <p class="govuk-body">To invite training providers, you'll need to tell us who should receive an invitation email at:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           {% for provider in trainingProvidersNotOnboarded %}
@@ -26,15 +37,11 @@
           {% endfor %}
         </ul>
 
-      {% else %}
-
-        <!-- there's nothing for the HEI to do -->
-
-      {% endif %}
+        <!-- Assumption: if all providers have accounts, we don't need to show their names -->
 
       {% if trainingProvidersOnboarded | length %}
 
-        <p class="govuk-body">These providers are already managing applications online and do not need to be invited:</p>
+        <p class="govuk-body">You do not need to invite providers which already have accounts:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           {% for provider in trainingProvidersOnboarded %}
@@ -46,10 +53,14 @@
 
       {% endif %}
 
-      <p class="govuk-body">You also need to accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</p>
+      {% else %}
+
+        <!-- HEI does not need to invite anyone -->
+
+      {% endif %}
 
       {{ govukButton({
-        text: "Sign in using DfE Sign-in" if not data.isAuthenticated else "Continue",
+        text: "Create an account or sign in" if not data.isAuthenticated else "Continue",
         href: actions.next,
         classes: "govuk-!-margin-top-5"
       }) }}
