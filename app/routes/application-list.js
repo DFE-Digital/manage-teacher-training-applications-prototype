@@ -352,6 +352,8 @@ module.exports = router => {
       return app
     })
 
+    let allApplications = applications;
+
     applications = applications.sort(function (a, b) {
       return a.daysToRespond - b.daysToRespond
     })
@@ -373,10 +375,11 @@ module.exports = router => {
     applications = addHeadings(grouped)
 
     res.render('index', {
-      applications: applications,
-      pagination: pagination,
-      selectedFilters: selectedFilters,
-      hasFilters: hasFilters
+      allApplications,
+      applications,
+      pagination,
+      selectedFilters,
+      hasFilters
     })
   })
 
