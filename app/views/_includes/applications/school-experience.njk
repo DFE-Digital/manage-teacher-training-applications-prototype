@@ -2,6 +2,7 @@
   | toArray
   | sort(attribute="startDate") | reverse
 %}
+
 {% if schoolExperience.length >= 1 %}
   {% set rowData = [] %}
   {% for item in schoolExperience %}
@@ -22,5 +23,14 @@
     </div>
   {% endfor %}
 {% else %}
-  <p class="govuk-body">{{appNoInformationShared()}}</p>
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Do you have any experience to add?"
+      },
+      value: {
+        html: "No"
+      }
+    }]
+  }) }}
 {% endif %}
