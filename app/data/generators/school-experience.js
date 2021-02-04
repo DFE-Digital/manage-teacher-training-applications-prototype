@@ -2,7 +2,7 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 
 module.exports = () => {
-  var hasExperience = faker.helpers.randomize([true, false])
+  const hasExperience = faker.helpers.randomize([true, false])
   if(hasExperience) {
     const count = faker.random.number({ min: 1, max: 4 })
     const items = []
