@@ -102,45 +102,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
-
-      {% if application.workHistoryAnswer == "yes" %}
-        {% include "_includes/applications/work-history.njk" %}
-      {% elseif application.workHistoryAnswer == "no--in-full-time-education" %}
-
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Do you have any work history?"
-            },
-            value: {
-              html: "No, I have always been in full time education"
-            }
-          }]
-          }) }}
-
-      {% else %}
-
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Do you have any work history?"
-            },
-            value: {
-              html: "No, I do not have any work history"
-            }
-          },
-          {
-            key: {
-              text: "Tell us why you’ve been out of the workplace"
-            },
-            value: {
-              html: application.workHistoryMissing
-            }
-          }
-
-          ]
-          }) }}
-      {% endif %}
+      {% include "_includes/applications/work-history.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
       {% include "_includes/applications/school-experience.njk" %}

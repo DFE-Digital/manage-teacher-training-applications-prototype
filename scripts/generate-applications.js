@@ -93,14 +93,12 @@ const generateFakeApplication = (params = {}) => {
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
     interviewNeeds: params.interviewNeeds || generateInterviewNeeds(faker),
-    workHistoryAnswer: params.workHistoryAnswer || faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education']),
-    workHistoryMissing: params.workHistoryMissing || "I was unemployed",
-    workHistory: params.workHistory || generateWorkHistory(faker),
+    workHistory: params.workHistory || generateWorkHistory(),
+    schoolExperience:  params.schoolExperience || generateSchoolExperience(),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
     otherQualifications: params.otherQualifications || generateOtherQualifications(faker),
-    schoolExperience:  params.schoolExperience || generateSchoolExperience(faker),
     personalStatement: params.personalStatement || generatePersonalStatement(faker),
     references: params.references || generateReferences(faker),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
@@ -142,7 +140,6 @@ const generateFakeApplications = () => {
       dateOfBirth: '1965-03-05',
       isInternationalCandidate: false
     },
-    workHistoryAnswer: 'yes',
     degree: [
       {
         "type": "BA",
@@ -248,7 +245,9 @@ const generateFakeApplications = () => {
     "disability": {
       "response": false
     },
-    workHistory: [
+    workHistory: {
+      answer: 'yes',
+      items: [
       {
         category: 'job',
         role: 'Camp assistant',
@@ -420,6 +419,7 @@ const generateFakeApplications = () => {
         endDate: '2020-07-01'
       }
     ]
+    }
   }))
 
 
@@ -437,7 +437,9 @@ const generateFakeApplications = () => {
     safeguarding: {
       "response": false
     },
-    workHistoryAnswer: 'no--in-full-time-education',
+    workHistory: {
+      answer: 'no--in-full-time-education'
+    },
     schoolExperience: [
       {
         "role": "Volunteer",
@@ -464,8 +466,10 @@ const generateFakeApplications = () => {
     safeguarding: {
       "response": false
     },
-    workHistoryAnswer: 'no',
-    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
+    workHistory: {
+      answer: 'no',
+      reason: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.'
+    },
     schoolExperience: [
       {
         "role": "Peer support",
@@ -576,8 +580,7 @@ const generateFakeApplications = () => {
       givenName: 'Emma',
       familyName: 'Hayes',
       sex: 'Female'
-    },
-    workHistory: []
+    }
   }))
 
   applications.push(generateFakeApplication({

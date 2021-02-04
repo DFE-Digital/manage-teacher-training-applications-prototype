@@ -1,8 +1,7 @@
-{% set workHistory = application.workHistory
-  | toArray
+{% set workHistory = application.workHistory.items
   | sort(attribute="startDate") | reverse
 %}
-{% if workHistory.length >= 1 %}
+{% if workHistory.items.length >= 1 %}
   {% set rowData = [] %}
   {% for item in workHistory %}
     {% set org = item.org if item.category == "job" %}
@@ -50,4 +49,32 @@
 
     </div>
   {% endfor %}
+{% else %}
+
+  {% set answer %}
+    {% if application.workHistory.answer == 'no--in-full-time-education' %}
+      No, I have always been in full time education
+    {% else %}
+      No, I do not have any work history
+    {% endif %}
+  {% endset %}
+
+
+  {{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Do you have any work history?"
+      },
+      value: {
+        html: answer
+      }
+    }, {
+      key: {
+        text: "Tell us why you’ve been out of the workplace"
+      },
+      value: {
+        html: workHistory.reason
+      }
+    } if workHistory.reason]
+    }) }}
 {% endif %}
