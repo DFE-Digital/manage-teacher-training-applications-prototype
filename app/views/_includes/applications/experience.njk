@@ -1,0 +1,57 @@
+{% set workHistory = experience %}
+{% if workHistory.length >= 1 %}
+  {% set rowData = [] %}
+  {% for item in workHistory %}
+    {% set org = item.org if item.category != "break" %}
+    <div class="app-experience__item">
+      {% if item.category == "break" %}
+        <div class="govuk-inset-text govuk-!-margin-bottom-0 govuk-!-margin-top-0 govuk-!-padding-bottom-0 govuk-!-padding-top-0">
+      {% endif %}
+      {% if item.category == "job" %}
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">
+          {{ item.role }}
+          {% if item.type == "Part time" %}
+            (part time)
+          {% endif %}
+        </h3>
+      {% elseif item.category == "break" %}
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Break ({{item.duration}})</h3>
+      {% else %}
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">{{item.role}}</h3>
+      {% endif %}
+      <p class="govuk-body govuk-!-margin-bottom-0">{{org}}</p>
+      <p class="govuk-caption-m govuk-!-margin-bottom-0">
+        {{item.startDate | date("LLLL yyyy")}}
+        {% if item.isStartDateApproximate and not item.isEndDateApproximate %}
+          (approximate)
+        {% endif %}
+        to
+        {% if item.endDate  %}
+          {{item.endDate | date("LLLL yyyy")}}
+          {% if item.isStartDateApproximate and item.isEndDateApproximate %}
+            (approximate)
+          {% endif %}
+        {% else %}
+          Present
+        {% endif %}
+      </p>
+      {% if item.category == "break" %}
+        <p class="govuk-body govuk-!-margin-bottom-0 govuk-!-margin-top-2">{{ item.description }}</p>
+      {% endif %}
+      {% if item.timeCommitment %}
+        <p class="govuk-body govuk-!-margin-bottom-0 govuk-!-margin-top-1">{{ item.timeCommitment }}</p>
+      {% endif %}
+      {%- if item.relevantToTeaching == "Yes" %}
+        <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-2">{{ appIcon({
+          icon: "check",
+          hidden: true
+        }) }} This role used skills relevant to teaching</p>
+      {%- endif %}
+
+      {% if item.category == "break" %}
+        </div>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+{% endif %}

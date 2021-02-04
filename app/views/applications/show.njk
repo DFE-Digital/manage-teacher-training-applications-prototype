@@ -101,7 +101,13 @@
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work experience and volunteering</h2>
+
+      <p>The candidate doesn’t have any work experience. But they do have blah:</p>
+
+      {% include "_includes/applications/experience.njk" %}
+
+      {# <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
 
       {% if application.workHistoryAnswer == "yes" %}
         {% include "_includes/applications/work-history.njk" %}
@@ -143,7 +149,7 @@
       {% endif %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
-      {% include "_includes/applications/school-experience.njk" %}
+      {% include "_includes/applications/school-experience.njk" %} #}
     </div>
   </div>
 
