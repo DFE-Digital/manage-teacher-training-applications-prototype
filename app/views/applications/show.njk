@@ -86,29 +86,6 @@
       {% set referenceId = "second" %}
       {% include "_includes/applications/reference.njk" %}
 
-<h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you want to ask for help to become a teacher?"
-            },
-            value: {
-            text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
-            }
-          },
-          {
-            key: {
-              text: "Give any relevant information"
-            },
-            value: {
-              html: application.disability.details
-            }
-          } if application.disability.details
-        ]
-      }) }}
-
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
 
       {% set safeguardingValueHtml %}
@@ -139,6 +116,29 @@
               html: safeguardingValueHtml
             }
           } if application.safeguarding.details
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Do you want to ask for help to become a teacher?"
+            },
+            value: {
+            text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
+            }
+          },
+          {
+            key: {
+              text: "Give any relevant information"
+            },
+            value: {
+              html: application.disability.details
+            }
+          } if application.disability.details
         ]
       }) }}
 
