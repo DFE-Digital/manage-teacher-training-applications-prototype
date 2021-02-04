@@ -41,10 +41,10 @@
       {% include "_includes/applications/personal-details.njk" %}
       {% include "_includes/applications/course-details.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-6 govuk-!-margin-bottom-2">Work history</h2>
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history</h2>
       {% include "_includes/applications/work-history.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-6 govuk-!-margin-bottom-2">Unpaid experience and volunteering</h2>
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Unpaid experience and volunteering</h2>
       {% include "_includes/applications/school-experience.njk" %}
 
     </div>
@@ -64,15 +64,15 @@
     <div class="govuk-grid-column-two-thirds">
       {% include "_includes/applications/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-2 govuk-!-margin-bottom-2">Personal statement</h2>
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-3 govuk-!-margin-bottom-2">Personal statement</h2>
 
-      <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2">Why do you want to become a teacher?</h3>
+      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">Why do you want to become a teacher?</h3>
       <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
 
-      <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2">What do you know about the subject you want to teach?</h3>
+      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">What do you know about the subject you want to teach?</h3>
       <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
 
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-6">References</h2>
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7">References</h2>
 
       <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
       {% set referenceId = "first" %}
@@ -82,7 +82,7 @@
       {% set referenceId = "second" %}
       {% include "_includes/applications/reference.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
 
       {% set safeguardingValueHtml %}
         {% if application.safeguarding.response %}
@@ -115,7 +115,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -138,7 +138,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -161,7 +161,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">Diversity information</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Diversity information</h2>
       {% include "_includes/applications/diversity-information.njk" %}
     </div>
   </div>

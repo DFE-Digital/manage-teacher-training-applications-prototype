@@ -43,7 +43,7 @@ $govuk-grid-widths: (
 }
 
 .app-experience__item--last {
-  @include govuk-responsive-margin($responsive-spacing-point: 4, $direction: 'bottom');
+  @include govuk-responsive-margin($responsive-spacing-point: 6, $direction: 'bottom');
 }
 
 h1 .govuk-tag {

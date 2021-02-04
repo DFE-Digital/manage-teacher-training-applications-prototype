@@ -7,7 +7,7 @@
   {% for item in workHistoryItems %}
     {% set org = item.org if item.category == "job" %}
 
-    <div class="app-experience__item">
+    <div class="app-experience__item {% if loop.last %}app-experience__item--last{% endif%}">
       {% if item.category == 'break' %}
         <div class="govuk-inset-text govuk-!-margin-bottom-0 govuk-!-margin-top-0 govuk-!-padding-bottom-0 govuk-!-padding-top-0">
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Break ({{item.duration}})</h3>

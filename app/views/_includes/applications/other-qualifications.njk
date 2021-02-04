@@ -2,7 +2,7 @@
   | toArray
 %}
 {% if otherQualifications.length >= 1 %}
-  <h3 class="govuk-heading-m govuk-!-margin-top-2 govuk-!-margin-bottom-2">Other qualifications</h3>
+  <h3 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-2">Other qualifications</h3>
   {% set rowData = [] %}
   {% for item in otherQualifications %}
     {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
