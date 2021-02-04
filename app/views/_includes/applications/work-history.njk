@@ -1,9 +1,10 @@
-{% set workHistory = application.workHistory.items
+{% set workHistoryItems = application.workHistory.items
   | sort(attribute="startDate") | reverse
 %}
-{% if workHistory.items.length >= 1 %}
+
+{% if workHistoryItems.length >= 1 %}
   {% set rowData = [] %}
-  {% for item in workHistory %}
+  {% for item in workHistoryItems %}
     {% set org = item.org if item.category == "job" %}
     <div class="app-experience__item">
       {% if item.category == "break" %}
