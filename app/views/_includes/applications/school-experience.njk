@@ -11,7 +11,7 @@
     <div class="app-experience__item">
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.role }}</h3>
       <p class="govuk-body govuk-!-margin-bottom-0">{{item.org}}</p>
-      <p class="govuk-caption-m govuk-!-margin-bottom-0 govuk-!-font-size-16">{{[startDate, endDate] | join(" to ")}}</p>
+      <p class="govuk-caption-m govuk-!-margin-bottom-0">{{[startDate, endDate] | join(" to ")}}</p>
       <p class="govuk-body govuk-!-margin-bottom-0 govuk-!-margin-top-1">{{ item.timeCommitment or "—" }}</p>
       {%- if item.workedWithChildren == "Yes" %}
         <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-2">{{ appIcon({

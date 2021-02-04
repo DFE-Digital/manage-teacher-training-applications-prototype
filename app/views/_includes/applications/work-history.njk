@@ -23,13 +23,13 @@
       <p class="govuk-body govuk-!-margin-bottom-0">{{org}}</p>
       <p class="govuk-caption-m govuk-!-margin-bottom-0">
         {{item.startDate | date("LLLL yyyy")}}
-        {% if item.isStartDateApproximate and not item.isEndDateApproximate %}
+        {% if item.isStartDateApproximate and item.category != "break" %}
           (approximate)
         {% endif %}
         to
         {% if item.endDate  %}
           {{item.endDate | date("LLLL yyyy")}}
-          {% if item.isStartDateApproximate and item.isEndDateApproximate %}
+          {% if item.isEndDateApproximate and item.category != "break" %}
             (approximate)
           {% endif %}
         {% else %}
