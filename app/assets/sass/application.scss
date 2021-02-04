@@ -42,6 +42,10 @@ $govuk-grid-widths: (
   border-bottom: 1px solid govuk-colour('mid-grey');
 }
 
+.app-experience__item--last {
+  @include govuk-responsive-margin($responsive-spacing-point: 6, $direction: 'bottom');
+}
+
 h1 .govuk-tag {
   position: relative;
   top: -7px;

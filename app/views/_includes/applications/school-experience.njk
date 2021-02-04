@@ -9,7 +9,7 @@
     {% set startDate = item.startDate | date("LLLL yyyy") %}
     {% set endDate = item.endDate | date("LLLL yyyy") if item.endDate else "Present" %}
 
-    <div class="app-experience__item">
+    <div class="app-experience__item {% if loop.last %}app-experience__item--last{% endif%}">
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.role }}</h3>
       <p class="govuk-body govuk-!-margin-bottom-0">{{item.org}}</p>
       <p class="govuk-caption-m govuk-!-margin-bottom-0">{{[startDate, endDate] | join(" to ")}}</p>
