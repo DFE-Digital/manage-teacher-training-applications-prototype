@@ -93,14 +93,12 @@ const generateFakeApplication = (params = {}) => {
     personalDetails,
     contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
     interviewNeeds: params.interviewNeeds || generateInterviewNeeds(faker),
-    workHistoryAnswer: params.workHistoryAnswer || faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education']),
-    workHistoryMissing: params.workHistoryMissing || "I was unemployed",
-    workHistory: params.workHistory || generateWorkHistory(faker),
+    workHistory: params.workHistory || generateWorkHistory(),
+    schoolExperience:  params.schoolExperience || generateSchoolExperience(),
     degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
     otherQualifications: params.otherQualifications || generateOtherQualifications(faker),
-    schoolExperience:  params.schoolExperience || generateSchoolExperience(faker),
     personalStatement: params.personalStatement || generatePersonalStatement(faker),
     references: params.references || generateReferences(faker),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
@@ -142,7 +140,6 @@ const generateFakeApplications = () => {
       dateOfBirth: '1965-03-05',
       isInternationalCandidate: false
     },
-    workHistoryAnswer: 'yes',
     degree: [
       {
         "type": "BA",
@@ -248,124 +245,151 @@ const generateFakeApplications = () => {
     "disability": {
       "response": false
     },
-    workHistory: [
+    workHistory: {
+      answer: 'yes',
+      items: [
       {
         category: 'job',
-        role: 'Bar tender',
-        org: 'Various pubs around town',
+        role: 'Camp assistant',
+        org: 'XYZ Summer Camps Ltd',
         type: 'Part time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'Yes',
         startDate: '1983-01-01',
-        endDate: '1983-12-01'
+        endDate: '1983-12-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Cleaner',
         org: 'Office Heroes',
         type: 'Part time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1984-02-01',
-        endDate: '1984-07-01'
+        endDate: '1984-07-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Retail assistant',
         org: 'Shop (can’t remember name)',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1984-08-01',
-        endDate: '1985-08-01'
+        endDate: '1985-08-01',
+        isStartDateApproximate: true,
       },
       {
         category: 'break',
         description: 'Travelling across Thailand and Malaysia',
         duration: '3 months',
         startDate: '1985-08-01',
-        endDate: '1985-10-01'
+        endDate: '1985-10-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Seasonal mail sorter',
         org: 'Royal Mail',
         type: 'Part time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1985-11-01',
-        endDate: '1985-12-01'
+        endDate: '1985-12-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'break',
         description: 'Unemployed',
         duration: '2 months',
         startDate: '1986-01-01',
-        endDate: '1986-02-01'
+        endDate: '1986-02-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Retail assistant',
         org: 'Jones’s Stores',
         type: 'Part time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1986-03-01',
-        endDate: '1986-05-01'
+        endDate: '1986-05-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Retail assistant',
         org: 'Jones’s Stores',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1986-05-01',
-        endDate: '1986-08-01'
+        endDate: '1986-08-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Deputy Manager',
         org: 'Jones’s Stores',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1986-08-01',
-        endDate: '1987-04-01'
+        endDate: '1987-04-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Manager',
         org: 'YFW Ltd',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1987-04-01',
-        endDate: '1988-02-01'
+        endDate: '1988-02-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Manager of clothing department',
         org: 'Arnolds department store',
         type: 'Full time',
-        workedWithChildren: 'No',
+        workedWirelevantToTeachingthChildren: 'No',
         startDate: '1988-03-01',
-        endDate: '1991-11-01'
+        endDate: '1991-11-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'job',
         role: 'Deputy store manager',
         org: 'Arnolds department store',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '1991-11-01',
-        endDate: '1996-05-01'
+        endDate: '1996-05-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: true
       },
       {
         category: 'break',
         description: 'Bringing up my 4 children',
-        duration: '10 years, 3 months',
+        duration: '10 years and 3 months',
         startDate: '1996-05-01',
-        endDate: '2006-08-01'
+        endDate: '2006-08-01',
+        isStartDateApproximate: true,
+        isEndDateApproximate: false
       },
       {
         category: 'job',
         role: 'Buyer',
         org: 'Fergursons Homeware',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '2006-08-01',
         endDate: '2011-02-01'
       },
@@ -374,7 +398,7 @@ const generateFakeApplications = () => {
         role: 'Buyer',
         org: 'Janes Furnishings',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '2011-02-01',
         endDate: '2015-09-01'
       },
@@ -383,7 +407,7 @@ const generateFakeApplications = () => {
         role: 'Senior Buyer',
         org: 'R & T Ltd',
         type: 'Full time',
-        workedWithChildren: 'No',
+        relevantToTeaching: 'No',
         startDate: '2015-09-01',
         endDate: '2017-06-01'
       },
@@ -395,6 +419,7 @@ const generateFakeApplications = () => {
         endDate: '2020-07-01'
       }
     ]
+    }
   }))
 
 
@@ -412,7 +437,9 @@ const generateFakeApplications = () => {
     safeguarding: {
       "response": false
     },
-    workHistoryAnswer: 'no--in-full-time-education',
+    workHistory: {
+      answer: 'no--in-full-time-education'
+    },
     schoolExperience: [
       {
         "role": "Volunteer",
@@ -439,8 +466,10 @@ const generateFakeApplications = () => {
     safeguarding: {
       "response": false
     },
-    workHistoryAnswer: 'no',
-    workHistoryMissing: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
+    workHistory: {
+      answer: 'no',
+      reason: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.'
+    },
     schoolExperience: [
       {
         "role": "Peer support",
@@ -551,8 +580,7 @@ const generateFakeApplications = () => {
       givenName: 'Emma',
       familyName: 'Hayes',
       sex: 'Female'
-    },
-    workHistory: []
+    }
   }))
 
   applications.push(generateFakeApplication({

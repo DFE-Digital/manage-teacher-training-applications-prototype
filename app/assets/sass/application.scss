@@ -37,7 +37,8 @@ $govuk-grid-widths: (
 
 // App-specific styles
 .app-experience__item {
-  margin-bottom: govuk-spacing(4);
+  padding-bottom: govuk-spacing(3);
+  padding-top: govuk-spacing(3);
   border-bottom: 1px solid govuk-colour('mid-grey');
 }
 

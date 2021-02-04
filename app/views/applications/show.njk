@@ -41,7 +41,52 @@
       {% include "_includes/applications/personal-details.njk" %}
       {% include "_includes/applications/course-details.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
+      {% include "_includes/applications/work-history.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
+      {% include "_includes/applications/school-experience.njk" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m govuk-!-margin-top-6  govuk-!-font-size-27">Qualifications</h2>
+      {% include "_includes/applications/degrees.njk" %}
+      {% include "_includes/applications/gcses.njk" %}
+      {% if application.personalDetails.isInternationalCandidate %}
+        {% include "_includes/applications/english-language-qualification.njk" %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/applications/other-qualifications.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-0 govuk-!-font-size-27">Personal statement</h2>
+
+      <h3 class="govuk-heading-s govuk-!-margin-top-6">Why do you want to become a teacher?</h3>
+      <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
+
+      <h3 class="govuk-heading-s govuk-!-margin-top-6">What do you know about the subject you want to teach?</h3>
+      <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">References</h2>
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">First referee</h2>
+      {% set referenceId = "first" %}
+      {% include "_includes/applications/reference.njk" %}
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
+      {% set referenceId = "second" %}
+      {% include "_includes/applications/reference.njk" %}
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -119,89 +164,6 @@
           } if application.interviewNeeds.details
         ]
       }) }}
-
-    </div>
-    <div class="govuk-grid-column-one-third">
-      {# {% include "_includes/applications/application-details--sidebar.njk" %} #}
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-top-6  govuk-!-font-size-27">Qualifications</h2>
-      {% include "_includes/applications/degrees.njk" %}
-      {% include "_includes/applications/gcses.njk" %}
-      {% if application.personalDetails.isInternationalCandidate %}
-        {% include "_includes/applications/english-language-qualification.njk" %}
-      {% endif %}
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/applications/other-qualifications.njk" %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
-
-      <h3 class="govuk-heading-s govuk-!-margin-top-6">Why do you want to become a teacher?</h3>
-      <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
-
-      <h3 class="govuk-heading-s govuk-!-margin-top-6">What do you know about the subject you want to teach?</h3>
-      <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">References</h2>
-
-      <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">First referee</h2>
-      {% set referenceId = "first" %}
-      {% include "_includes/applications/reference.njk" %}
-
-      <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
-      {% set referenceId = "second" %}
-      {% include "_includes/applications/reference.njk" %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
-
-      {% if application.workHistoryAnswer == "yes" %}
-        {% include "_includes/applications/work-history.njk" %}
-      {% elseif application.workHistoryAnswer == "no--in-full-time-education" %}
-
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Do you have any work history?"
-            },
-            value: {
-              html: "No, I have always been in full time education"
-            }
-          }]
-          }) }}
-
-      {% else %}
-
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Do you have any work history?"
-            },
-            value: {
-              html: "No, I do not have any work history"
-            }
-          },
-          {
-            key: {
-              text: "Tell us why you’ve been out of the workplace"
-            },
-            value: {
-              html: application.workHistoryMissing
-            }
-          }
-
-          ]
-          }) }}
-      {% endif %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
-      {% include "_includes/applications/school-experience.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
       {% include "_includes/applications/diversity-information.njk" %}
