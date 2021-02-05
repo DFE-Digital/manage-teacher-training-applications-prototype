@@ -41,30 +41,51 @@
       {% include "_includes/applications/personal-details.njk" %}
       {% include "_includes/applications/course-details.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history and unpaid experience</h2>
+      {% include "_includes/applications/experience.njk" %}
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you want to ask for help to become a teacher?"
-            },
-            value: {
-            text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
-            }
-          },
-          {
-            key: {
-              text: "Give any relevant information"
-            },
-            value: {
-              html: application.disability.details
-            }
-          } if application.disability.details
-        ]
-      }) }}
+      {# <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history</h2>
+      {% include "_includes/applications/work-history.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Unpaid experience and volunteering</h2>
+      {% include "_includes/applications/school-experience.njk" %} #}
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m govuk-!-margin-top-2 govuk-!-font-size-27">Qualifications</h2>
+      {% include "_includes/applications/degrees.njk" %}
+      {% include "_includes/applications/gcses.njk" %}
+      {% if application.personalDetails.isInternationalCandidate %}
+        {% include "_includes/applications/english-language-qualification.njk" %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/applications/other-qualifications.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-3 govuk-!-margin-bottom-2">Personal statement</h2>
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">Why do you want to become a teacher?</h3>
+      <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">What do you know about the subject you want to teach?</h3>
+      <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
+
+      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7">References</h2>
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
+      {% set referenceId = "first" %}
+      {% include "_includes/applications/reference.njk" %}
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
+      {% set referenceId = "second" %}
+      {% include "_includes/applications/reference.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
 
       {% set safeguardingValueHtml %}
         {% if application.safeguarding.response %}
@@ -97,96 +118,30 @@
         ]
       }) }}
 
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work experience and volunteering</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
-      <p>The candidate doesn’t have any work experience. But they do have blah:</p>
-
-      {% include "_includes/applications/experience.njk" %}
-
-      {# <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Work history</h2>
-
-      {% if application.workHistoryAnswer == "yes" %}
-        {% include "_includes/applications/work-history.njk" %}
-      {% elseif application.workHistoryAnswer == "no--in-full-time-education" %}
-
-        {{ govukSummaryList({
-          rows: [{
+      {{ govukSummaryList({
+        rows: [
+          {
             key: {
-              text: "Do you have any work history?"
+              text: "Do you want to ask for help to become a teacher?"
             },
             value: {
-              html: "No, I have always been in full time education"
-            }
-          }]
-          }) }}
-
-      {% else %}
-
-        {{ govukSummaryList({
-          rows: [{
-            key: {
-              text: "Do you have any work history?"
-            },
-            value: {
-              html: "No, I do not have any work history"
+            text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
             }
           },
           {
             key: {
-              text: "Tell us why you’ve been out of the workplace"
+              text: "Give any relevant information"
             },
             value: {
-              html: application.workHistoryMissing
+              html: application.disability.details
             }
-          }
+          } if application.disability.details
+        ]
+      }) }}
 
-          ]
-          }) }}
-      {% endif %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8  govuk-!-font-size-27">Unpaid experience and volunteering</h2>
-      {% include "_includes/applications/school-experience.njk" %} #}
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-top-6  govuk-!-font-size-27">Qualifications</h2>
-      {% include "_includes/applications/degrees.njk" %}
-      {% include "_includes/applications/gcses.njk" %}
-      {% if application.personalDetails.isInternationalCandidate %}
-        {% include "_includes/applications/english-language-qualification.njk" %}
-      {% endif %}
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/applications/other-qualifications.njk" %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">Personal statement</h2>
-
-      <h3 class="govuk-heading-s govuk-!-margin-top-6">Why do you want to become a teacher?</h3>
-      <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
-
-      <h3 class="govuk-heading-s govuk-!-margin-top-6">What do you know about the subject you want to teach?</h3>
-      <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-font-size-27">References</h2>
-
-      <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">First referee</h2>
-      {% set referenceId = "first" %}
-      {% include "_includes/applications/reference.njk" %}
-
-      <h3 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-top-8 govuk-!-margin-bottom-2">Second referee</h2>
-      {% set referenceId = "second" %}
-      {% include "_includes/applications/reference.njk" %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -209,7 +164,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-2">Diversity information</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Diversity information</h2>
       {% include "_includes/applications/diversity-information.njk" %}
     </div>
   </div>
