@@ -17,3 +17,9 @@ npm install
 ```sh
 npm start
 ```
+
+## Generate new data
+
+```sh
+npm run generate-data
+```
