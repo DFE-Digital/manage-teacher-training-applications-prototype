@@ -8,7 +8,13 @@ module.exports = router => {
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
 
+    // combine work history and school experience
+    let experience = application.workHistory.items.concat(application.schoolExperience).sort((a, b) => {
+      return new Date(b.startDate) - new Date(a.startDate);
+    })
+
     res.render('applications/show', {
+      experience,
       application,
       statusText: ApplicationHelper.getStatusText(application)
     })

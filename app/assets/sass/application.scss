@@ -40,6 +40,13 @@ $govuk-grid-widths: (
   padding-bottom: govuk-spacing(3);
   padding-top: govuk-spacing(3);
   border-bottom: 1px solid govuk-colour('mid-grey');
+  // border-right: 1px solid govuk-colour('mid-grey');
+  // border-left: 1px solid govuk-colour('mid-grey');
+  // @include govuk-responsive-padding($responsive-spacing-point: 2);
+}
+
+.app-experience__item--first {
+  // border-top: 1px solid govuk-colour('mid-grey');
 }
 
 .app-experience__item--last {
@@ -186,6 +193,10 @@ h1 .govuk-tag {
   .govuk-summary-list__row:last-child .govuk-summary-list__actions {
     border-bottom: none;
   }
+}
+
+.app-box--thin {
+  border-width: 1px;
 }
 
 .app-table__row--indent > td {

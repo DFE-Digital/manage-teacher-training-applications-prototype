@@ -438,7 +438,8 @@ const generateFakeApplications = () => {
       "response": false
     },
     workHistory: {
-      answer: 'no--in-full-time-education'
+      answer: 'no--in-full-time-education',
+      items: []
     },
     schoolExperience: [
       {
@@ -468,7 +469,8 @@ const generateFakeApplications = () => {
     },
     workHistory: {
       answer: 'no',
-      reason: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.'
+      reason: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
+      items: []
     },
     schoolExperience: [
       {
