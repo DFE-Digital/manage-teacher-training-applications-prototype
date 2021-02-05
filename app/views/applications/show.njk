@@ -41,6 +41,40 @@
       {% include "_includes/applications/personal-details.njk" %}
       {% include "_includes/applications/course-details.njk" %}
 
+      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
+
+      {% set safeguardingValueHtml %}
+        {% if application.safeguarding.response %}
+          {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
+            <p>{{ application.safeguarding.details | nl2br }}</p>
+          {% else %}
+            <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
+          {% endif %}
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Do you want to share any safeguarding issues?"
+            },
+            value: {
+              text: "Yes, I want to share something" if application.safeguarding.response else "No"
+            }
+          },
+          {
+            key: {
+              text: "Give any relevant information"
+            },
+            value: {
+              html: safeguardingValueHtml
+            }
+          } if application.safeguarding.details
+        ]
+      }) }}
+
+
       <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history and unpaid experience</h2>
       {% include "_includes/applications/experience.njk" %}
 
@@ -84,39 +118,6 @@
       <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
       {% set referenceId = "second" %}
       {% include "_includes/applications/reference.njk" %}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Safeguarding issues</h2>
-
-      {% set safeguardingValueHtml %}
-        {% if application.safeguarding.response %}
-          {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
-            <p>{{ application.safeguarding.details | nl2br }}</p>
-          {% else %}
-            <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
-          {% endif %}
-        {% endif %}
-      {% endset %}
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you want to share any safeguarding issues?"
-            },
-            value: {
-              text: "Yes, I want to share something" if application.safeguarding.response else "No"
-            }
-          },
-          {
-            key: {
-              text: "Give any relevant information"
-            },
-            value: {
-              html: safeguardingValueHtml
-            }
-          } if application.safeguarding.details
-        ]
-      }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
