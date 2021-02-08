@@ -42,12 +42,12 @@ const generateFakeApplication = (params = {}) => {
   const status = params.status
   const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
-  const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 })
+  const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 }).toISO()
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
   if (['Deferred', 'Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
-    offer = generateOffer(status)
+    offer = generateOffer({ status, submittedDate })
   }
 
   const notes = generateNotes(faker)

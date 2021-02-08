@@ -1,7 +1,11 @@
 {% if statusText == 'Received' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview or make a decision</h2>
-    <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
+    {% if a.daysToRespond == 0 %}
+      <p>You have less than a day to make a decision - this application will be automatically rejected on {{application.respondByDate | govukDate }}.</p>
+    {% else %}
+      <p>You have {{application.daysToRespond}} days to make a decision – this application will be automatically rejected on {{application.respondByDate | govukDate }}.</p>
+    {% endif %}
     {{ govukButton({
       text: "Set up interview",
       classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2",

@@ -8,7 +8,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('applications/offer/index', {
+    res.render('applications/offer/show', {
       application,
       conditions: ApplicationHelper.getConditions(application),
       statusText: ApplicationHelper.getStatusText(application)

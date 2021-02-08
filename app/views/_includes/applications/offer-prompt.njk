@@ -1,0 +1,21 @@
+{% if statusText == 'Offered' %}
+  {% set promptHtml %}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Waiting on candidate</h2>
+    {% if application.offer.daysToDecline == 0 %}
+      <p>The candidate has less than a day to accept your offer - this offer will be automatically declined on {{application.offer.declineByDate | govukDate }}.</p>
+    {% else %}
+      <p>The candidate has {{application.offer.daysToDecline}} days to accept your offer – this offer will be automatically declined on {{application.offer.declineByDate | govukDate }}.</p>
+    {% endif %}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{govukInsetText({
+        html: promptHtml,
+        classes: 'govuk-!-margin-top-0'
+      })}}
+    </div>
+  </div>
+{% endif %}
+
+
