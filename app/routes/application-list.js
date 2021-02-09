@@ -127,7 +127,7 @@ function addHeadings (grouped) {
 
   if (grouped.aboutToBeRejectedAutomatically.length) {
     array.push({
-      heading: 'Deadline approaching: respond to the candidate'
+      heading: 'Deadline approaching: make decision about application'
     })
     array = array.concat(grouped.aboutToBeRejectedAutomatically)
   }

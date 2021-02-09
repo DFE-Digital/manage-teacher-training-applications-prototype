@@ -2,9 +2,9 @@
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% if application.daysToRespond == 0 %}
-      <p>You have less than a day to make a decision - this application will be automatically rejected on {{application.respondByDate | govukDate }}.</p>
+      <p>This application will be automatically rejected tonight at 11:59pm.</p>
     {% else %}
-      <p>You have {{application.daysToRespond}} days to make a decision – this application will be automatically rejected on {{application.respondByDate | govukDate }}.</p>
+      <p>You have {{application.daysToRespond}} days to make a decision. This application will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm.</p>
     {% endif %}
     {{ govukButton({
       text: "Make decision",

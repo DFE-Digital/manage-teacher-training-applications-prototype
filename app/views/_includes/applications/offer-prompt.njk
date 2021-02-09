@@ -1,10 +1,10 @@
 {% if statusText == 'Offered' %}
   {% set promptHtml %}
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Waiting on candidate’s decision</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Waiting for candidate’s response</h2>
     {% if application.offer.daysToDecline == 0 %}
-      <p>{{application.personalDetails.name}} has less than a day to make a decision - this offer will be automatically declined on {{application.offer.declineByDate | govukDateAtTime }}.</p>
+      <p>This offer will be automatically declined tonight at 11:59pm.</p>
     {% else %}
-      <p>{{application.personalDetails.name}} has {{application.offer.daysToDecline}} day{{'s' if application.offer.daysToDecline > 1}} to make a decision – this offer will be automatically declined on {{application.offer.declineByDate | govukDateAtTime }}.</p>
+      <p>{{application.personalDetails.name}} has {{application.offer.daysToDecline}} day{{'s' if application.offer.daysToDecline > 1}} to respond. This offer will be automatically declined on {{application.offer.declineByDate | govukDate }} at 11:59pm.</p>
     {% endif %}
   {% endset %}
 
