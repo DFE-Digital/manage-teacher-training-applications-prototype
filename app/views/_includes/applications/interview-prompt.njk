@@ -4,7 +4,7 @@
     {% if application.daysToRespond == 0 %}
       <p>This application will be automatically rejected tonight at 11:59pm.</p>
     {% else %}
-      <p>You have {{application.daysToRespond}} days to make a decision. This application will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm.</p>
+      <p>You have {{application.daysToRespond}} day{{'s' if application.daysToRespond > 1}} to make a decision. This application will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm.</p>
     {% endif %}
     {{ govukButton({
       text: "Make decision",

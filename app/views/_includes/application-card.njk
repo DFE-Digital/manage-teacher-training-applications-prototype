@@ -19,16 +19,14 @@
         {% if a.daysToRespond == 0 %}
           <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day to make decision</p>
         {% else %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{ a.daysToRespond }} days to make decision</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}} to make decision</p>
         {% endif %}
       {% endif %}
       {% if a.status == 'Offered' %}
         {% if a.offer.daysToDecline == 0 %}
           <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day for candidate to respond</p>
-        {% elseif a.offer.daysToDecline == 1 %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">1 day for candidate to respond</p>
         {% else %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.offer.daysToDecline}} days for candidate to respond</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.offer.daysToDecline}} day{{'s' if a.offer.daysToDecline > 1}} for candidate to respond</p>
         {% endif %}
       {% endif %}
       <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ a.cycle | cycleText }}</p>

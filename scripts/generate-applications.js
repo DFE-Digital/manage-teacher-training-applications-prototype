@@ -132,7 +132,7 @@ const generateFakeApplications = () => {
     id: 'PBNF7WM',
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-05T14:02:00',
+    submittedDate: '2020-07-06T14:02:00',
     personalDetails: {
       givenName: 'Tricia',
       familyName: 'Jones',
