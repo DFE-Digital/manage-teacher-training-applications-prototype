@@ -30,7 +30,7 @@ applications = applications.map(application => {
 
   Object.defineProperty(application, 'respondByDate', {
     get() {
-      return DateTime.fromISO(application.submittedDate).plus({ days: 40 })
+      return DateTime.fromISO(application.submittedDate).plus({ days: 40 }).toISO()
     },
     enumerable: true
   })
@@ -41,7 +41,7 @@ applications = applications.map(application => {
         return null;
       }
       const now = DateTime.fromISO('2020-08-15')
-      let diff = application.respondByDate.diff(now, 'days').toObject().days
+      let diff = DateTime.fromISO(application.respondByDate).diff(now, 'days').toObject().days
       diff = Math.round(diff)
       if (diff < 1) {
         diff = 0
@@ -54,7 +54,7 @@ applications = applications.map(application => {
   if(application.offer) {
     Object.defineProperty(application.offer, 'declineByDate', {
       get() {
-        return DateTime.fromISO(application.offer.madeDate).plus({ days: 10 })
+        return DateTime.fromISO(application.offer.madeDate).plus({ days: 10 }).toISO()
       },
       enumerable: true
     })
@@ -65,7 +65,7 @@ applications = applications.map(application => {
           return null;
         }
         const now = DateTime.fromISO('2020-08-15')
-        let diff = application.offer.declineByDate.diff(now, 'days').toObject().days
+        let diff = DateTime.fromISO(application.offer.declineByDate).diff(now, 'days').toObject().days
         diff = Math.round(diff)
         if (diff < 1) {
           diff = 0
