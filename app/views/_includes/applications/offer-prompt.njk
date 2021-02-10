@@ -3,8 +3,10 @@
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Waiting for candidate’s response</h2>
     {% if application.offer.daysToDecline == 0 %}
       <p>This offer will be automatically declined tonight at 11:59pm.</p>
+    {% elseif application.offer.daysToDecline == 1 %}
+      <p>This offer will be automatically declined tomorrow night at 11:59pm.</p>
     {% else %}
-      <p>{{application.personalDetails.name}} has {{application.offer.daysToDecline}} day{{'s' if application.offer.daysToDecline > 1}} to respond. This offer will be automatically declined on {{application.offer.declineByDate | govukDate }} at 11:59pm.</p>
+      <p>{{application.personalDetails.name}} has {{application.offer.daysToDecline}} days to respond. This offer will be automatically declined on {{application.offer.declineByDate | govukDate }} at 11:59pm.</p>
     {% endif %}
   {% endset %}
 

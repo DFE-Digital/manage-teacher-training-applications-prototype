@@ -155,7 +155,7 @@ function addHeadings (grouped) {
 
   if (grouped.waitingOn.length) {
     array.push({
-      heading: 'Waiting for candidate decision'
+      heading: 'Waiting for candidate response'
     })
     array = array.concat(grouped.waitingOn)
   }
