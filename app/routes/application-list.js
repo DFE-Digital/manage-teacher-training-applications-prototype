@@ -134,7 +134,7 @@ function addHeadings (grouped) {
 
   if (grouped.rejectedWithoutFeedback.length) {
     array.push({
-      heading: 'Give feedback: you did not respond in time'
+      heading: 'Give feedback: you did not make a decision in time'
     })
     array = array.concat(grouped.rejectedWithoutFeedback)
   }
