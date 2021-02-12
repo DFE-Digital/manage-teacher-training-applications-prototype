@@ -1,7 +1,13 @@
 {% if statusText == 'Interviewing' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
-    <p>You have 22 days to make a decision – this application will be automatically rejected on 19 October 2020.</p>
+    {% if application.daysToRespond == 0 %}
+      <p>This application will be automatically rejected at the end of today ({{application.respondByDate | govukDate }} at 11:59pm) if you do not make a decision.</p>
+    {% elseif application.daysToRespond == 1 %}
+      <p>This application will be automatically rejected at the end of tomorrow ({{application.respondByDate | govukDate }} at 11:59pm) if you do not make a decision.</p>
+    {% else %}
+      <p>This application will be automatically rejected in {{application.daysToRespond}} days ({{application.respondByDate | govukDate }} at 11:59pm) if you do not make a decision.</p>
+    {% endif %}
     {{ govukButton({
       text: "Make decision",
       classes: "govuk-!-margin-bottom-0 ",

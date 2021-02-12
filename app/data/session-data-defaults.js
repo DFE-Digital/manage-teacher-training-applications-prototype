@@ -1,3 +1,6 @@
+const ApplicationHelper = require('../data/helpers/application')
+const { DateTime } = require('luxon')
+
 const trainingProviders = require('./organisations.json').filter(org => {
   return !org.isAccreditedBody
 })
@@ -11,12 +14,68 @@ let applications = require('./applications.json')
 let users = require('./users.json')
 
 applications = applications.map(application => {
+  Object.defineProperty(application, 'statusText', {
+    get() {
+      return ApplicationHelper.getStatusText(application);
+    },
+    enumerable: true
+  })
+
   Object.defineProperty(application.personalDetails, 'name', {
     get() {
       return `${this.givenName} ${this.familyName}`
     },
     enumerable: true
   })
+
+  Object.defineProperty(application, 'respondByDate', {
+    get() {
+      return DateTime.fromISO(application.submittedDate).plus({ days: 40 }).toISO()
+    },
+    enumerable: true
+  })
+
+  Object.defineProperty(application, 'daysToRespond', {
+    get() {
+      if(application.status != 'Awaiting decision') {
+        return null;
+      }
+      const now = DateTime.fromISO('2020-08-15')
+      let diff = DateTime.fromISO(application.respondByDate).diff(now, 'days').toObject().days
+      diff = Math.round(diff)
+      if (diff < 1) {
+        diff = 0
+      }
+      return diff;
+    },
+    enumerable: true
+  })
+
+  if(application.offer) {
+    Object.defineProperty(application.offer, 'declineByDate', {
+      get() {
+        return DateTime.fromISO(application.offer.madeDate).plus({ days: 10 }).toISO()
+      },
+      enumerable: true
+    })
+
+    Object.defineProperty(application.offer, 'daysToDecline', {
+      get() {
+        if(application.status != 'Offered') {
+          return null;
+        }
+        const now = DateTime.fromISO('2020-08-15')
+        let diff = DateTime.fromISO(application.offer.declineByDate).diff(now, 'days').toObject().days
+        diff = Math.round(diff)
+        if (diff < 1) {
+          diff = 0
+        }
+        return diff;
+      },
+      enumerable: true
+    })
+  }
+
   return application
 })
 

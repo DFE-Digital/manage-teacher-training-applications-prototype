@@ -26,17 +26,29 @@ function getApplicationsByGroup (applications) {
   const aboutToBeRejectedAutomatically = applications
     .filter(app => (app.status === 'Awaiting decision'))
     .filter(app => app.daysToRespond < 5)
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
 
   const awaitingDecision = applications
     .filter(app => (ApplicationHelper.getStatusText(app) === 'Received'))
     .filter(app => app.daysToRespond >= 5)
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
 
   const pendingInterview = applications
     .filter(app => (ApplicationHelper.getStatusText(app) === 'Interviewing'))
     .filter(app => app.daysToRespond >= 5)
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
 
   const waitingOn = applications
     .filter(app => app.status === 'Offered')
+    .sort(function(a, b) {
+      return a.offer.daysToDecline - b.offer.daysToDecline
+    })
 
   const pendingConditions = applications
     .filter(app => app.status === 'Accepted')
@@ -115,14 +127,14 @@ function addHeadings (grouped) {
 
   if (grouped.aboutToBeRejectedAutomatically.length) {
     array.push({
-      heading: 'Deadline approaching: respond to the candidate'
+      heading: 'Deadline approaching: make decision about application'
     })
     array = array.concat(grouped.aboutToBeRejectedAutomatically)
   }
 
   if (grouped.rejectedWithoutFeedback.length) {
     array.push({
-      heading: 'Give feedback: you did not respond in time'
+      heading: 'Give feedback: you did not make a decision in time'
     })
     array = array.concat(grouped.rejectedWithoutFeedback)
   }
@@ -143,7 +155,7 @@ function addHeadings (grouped) {
 
   if (grouped.waitingOn.length) {
     array.push({
-      heading: 'Waiting for candidate action'
+      heading: 'Waiting for candidate to respond to offer'
     })
     array = array.concat(grouped.waitingOn)
   }
@@ -333,30 +345,14 @@ module.exports = router => {
       }
     }
 
-    let applications = apps.map(app => {
-      const now = DateTime.fromISO('2020-08-15')
-      const rbd = DateTime.fromISO(app.submittedDate).plus({ days: 40 })
-      const diff = rbd.diff(now, 'days').toObject().days
-
-      app.daysToRespond = Math.round(diff)
-      if (diff < 1) {
-        app.daysToRespond = 0
-      }
-
-      if (app.status !== 'Awaiting decision') {
-        app.daysToRespond = 1000
-      }
-
-      app.statusText = ApplicationHelper.getStatusText(app);
-
-      return app
-    })
+    // TODO: clean up
+    let applications = apps;
 
     let allApplications = applications;
 
-    applications = applications.sort(function (a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
+    // applications = applications.sort(function (a, b) {
+    //   return a.daysToRespond - b.daysToRespond
+    // })
 
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)
