@@ -255,78 +255,17 @@ const generateFakeApplications = () => {
         type: 'Part time',
         relevantToTeaching: 'Yes',
         startDate: '1983-01-01',
-        endDate: '1983-12-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Cleaner',
-        org: 'Office Heroes',
-        type: 'Part time',
-        relevantToTeaching: 'No',
-        startDate: '1984-02-01',
-        endDate: '1984-07-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Retail assistant',
-        org: 'Shop (can’t remember name)',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '1984-08-01',
-        endDate: '1985-08-01',
-        isStartDateApproximate: true,
-      },
-      {
-        category: 'break',
-        description: 'Travelling across Thailand and Malaysia',
-        duration: '3 months',
-        startDate: '1985-08-01',
         endDate: '1985-10-01',
         isStartDateApproximate: true,
         isEndDateApproximate: true
       },
       {
         category: 'job',
-        role: 'Seasonal mail sorter',
-        org: 'Royal Mail',
+        role: 'Retail assistant',
+        org: 'Jones’s Stores',
         type: 'Part time',
         relevantToTeaching: 'No',
         startDate: '1985-11-01',
-        endDate: '1985-12-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'break',
-        description: 'Unemployed',
-        duration: '2 months',
-        startDate: '1986-01-01',
-        endDate: '1986-02-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Retail assistant',
-        org: 'Jones’s Stores',
-        type: 'Part time',
-        relevantToTeaching: 'No',
-        startDate: '1986-03-01',
-        endDate: '1986-05-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Retail assistant',
-        org: 'Jones’s Stores',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '1986-05-01',
         endDate: '1986-08-01',
         isStartDateApproximate: true,
         isEndDateApproximate: true
@@ -338,28 +277,6 @@ const generateFakeApplications = () => {
         type: 'Full time',
         relevantToTeaching: 'No',
         startDate: '1986-08-01',
-        endDate: '1987-04-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Manager',
-        org: 'YFW Ltd',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '1987-04-01',
-        endDate: '1988-02-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Manager of clothing department',
-        org: 'Arnolds department store',
-        type: 'Full time',
-        workedWirelevantToTeachingthChildren: 'No',
-        startDate: '1988-03-01',
         endDate: '1991-11-01',
         isStartDateApproximate: true,
         isEndDateApproximate: true
@@ -387,28 +304,10 @@ const generateFakeApplications = () => {
       {
         category: 'job',
         role: 'Buyer',
-        org: 'Fergursons Homeware',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '2006-08-01',
-        endDate: '2011-02-01'
-      },
-      {
-        category: 'job',
-        role: 'Buyer',
-        org: 'Janes Furnishings',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '2011-02-01',
-        endDate: '2015-09-01'
-      },
-      {
-        category: 'job',
-        role: 'Senior Buyer',
         org: 'R & T Ltd',
         type: 'Full time',
         relevantToTeaching: 'No',
-        startDate: '2015-09-01',
+        startDate: '2006-08-01',
         endDate: '2017-06-01'
       },
       {
