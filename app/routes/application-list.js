@@ -196,7 +196,7 @@ module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { cycle, status, provider, accreditingbody, keywords, locationname, studyMode } = req.query
+    let { cycle, status, provider, accreditingbody, keywords, locationname, studyMode, subject } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -206,10 +206,11 @@ module.exports = router => {
     const locationnames = getCheckboxValues(locationname, req.session.data.locationname)
     const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
+    const subjects = getCheckboxValues(subject, req.session.data.subject)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -237,6 +238,7 @@ module.exports = router => {
         let locationnameValid = true
         let accreditingbodyValid = true
         let studyModeValid = true
+        let subjectValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -262,7 +264,11 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid
+        if (subjects && subjects.length) {
+          subjectValid = subjects.includes(app.subject)
+        }
+
+        return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid && subjectValid
       })
     }
 
@@ -343,6 +349,18 @@ module.exports = router => {
           })
         })
       }
+
+      if (subjects && subjects.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Subjects' },
+          items: subjects.map((subject) => {
+            return {
+              text: subject,
+              href: `/remove-subject-filter/${subject}`
+            }
+          })
+        })
+      }
     }
 
     // TODO: clean up
@@ -414,6 +432,11 @@ module.exports = router => {
     res.redirect('/')
   })
 
+  router.get('/remove-subject-filter/:subject', (req, res) => {
+    req.session.data.subject = req.session.data.subject.filter(item => item !== req.params.subject)
+    res.redirect('/')
+  })
+
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.status = null
@@ -421,6 +444,7 @@ module.exports = router => {
     req.session.data.accreditingbody = null
     req.session.data.locationname = null
     req.session.data.studyMode = null
+    req.session.data.subject = null
     res.redirect('/')
   })
 

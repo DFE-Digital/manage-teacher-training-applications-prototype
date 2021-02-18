@@ -1,0 +1,42 @@
+{%- from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{#- If an id 'prefix' is not passed, fall back to using the name attribute
+   instead. We need this for error messages and hints as well -#}
+{%- set idPrefix = params.idPrefix if params.idPrefix else params.name -%}
+
+{%- if params.filter %}
+{%- set filter %}
+<label for="{{ idPrefix + '-option-select__filter-input' }}" class="govuk-label govuk-visually-hidden">
+  {{- params.filter.html | safe if params.filter.html else params.filter.text -}}
+</label>
+<input name="option-select-filter" id="{{ idPrefix + '-option-select__filter-input' }}" class="app-option-select__filter-input govuk-input" type="text" aria-describedby="{{ idPrefix + '-checkboxes-count' }}" aria-controls="{{ idPrefix + '-checkboxes' }}">
+{% endset -%}
+{#- This is a little bit of a hack. Surely the `escape` filter should work -#}
+{%- set filter = filter | replace('<','&lt;') | replace('>','&gt;') | replace('"','&quot;') -%}
+{% endif -%}
+
+<div id="{{ idPrefix }}" class="app-option-select {{- ' ' + params.classes if params.classes }}" data-module="option-select" {%- if params.filter %} data-filter-element="{{ filter }}"{% endif %} {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}> <!-- data-open-on-load="{{ params.showOnLoad | default('false') }}" -->
+
+  <h2 class="app-option-select__heading js-container-heading">
+    <span class="app-option-select__title js-container-button" id="{{ idPrefix + '-option-select-title' }}">
+      {{- params.heading.html | safe if params.heading.html else params.heading.text -}}
+    </span>
+  </h2>
+
+  <div role="group" aria-labelledby="{{ idPrefix + '-option-select-title' }}" class="app-option-select__container js-options-container" id="{{ idPrefix + '-list-of-options' }}" tabindex="-1">
+    <div class="app-option-select__container-inner js-auto-height-inner">
+
+      {{ govukCheckboxes({
+        idPrefix: params.idPrefix,
+        name: params.name,
+        fieldset: params.fieldset,
+        hint: params.hint,
+        errorMessage: params.errorMessage,
+        items: params.items,
+        classes: "govuk-checkboxes--small"
+      }) }}
+
+    </div>
+  </div>
+
+</div>
