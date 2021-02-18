@@ -107,10 +107,10 @@
           actions: {
             items: [{
               href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
-              text: "Change details"
+              html: 'Change details <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
             } if statusText == "Received" or statusText == "Interviewing", {
-              href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
-              text: "Cancel interview"
+              href: '/applications/"+application.id+"/interviews/"+interview.id+"/delete',
+              html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
             } if statusText == "Received" or statusText == "Interviewing"]
           },
           html: interviewSummaryListHtml
@@ -190,10 +190,10 @@
           actions: {
             items: [{
               href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
-              text: "Change details"
+              html: 'Change details <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
             } if statusText == "Received" or statusText == "Interviewing", {
               href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
-              text: "Cancel interview"
+              html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
             } if statusText == "Received" or statusText == "Interviewing"]
           },
           html: interviewSummaryListHtml
