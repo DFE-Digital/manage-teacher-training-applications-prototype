@@ -1,7 +1,9 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
 const { DateTime } = require('luxon')
-const _ = require('lodash');
+const _ = require('lodash')
+
+const subjects = require('../data/subjects')
 
 function getCheckboxValues (name, data) {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
@@ -190,6 +192,27 @@ function addHeadings (grouped) {
     array = array.concat(grouped.other)
   }
   return array
+}
+
+function getSubjectItems (answerValues) {
+  const items = []
+
+  subjects.forEach((item) => {
+    const subject = {}
+    subject.text = item.name
+    subject.value = item.name
+    subject.id = item.code
+
+    if (answerValues !== undefined && answerValues.includes(item.name)) {
+      subject.checked = true
+    } else {
+      subject.checked = false
+    }
+
+    items.push(subject)
+  })
+
+  return items
 }
 
 module.exports = router => {
@@ -384,6 +407,8 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
+    const subjectItems = getSubjectItems(req.session.data.subject)
+
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)
     applications = addHeadings(grouped)
@@ -393,7 +418,8 @@ module.exports = router => {
       applications,
       pagination,
       selectedFilters,
-      hasFilters
+      hasFilters,
+      subjectItems
     })
   })
 

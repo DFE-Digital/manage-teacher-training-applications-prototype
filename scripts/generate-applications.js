@@ -5,7 +5,7 @@ faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 
 // Fake data generators: general
-const generateCourse = require('../app/data/generators/course')
+const generateSubject = require('../app/data/generators/subject')
 const generateCycle = require('../app/data/generators/cycle')
 const generateTrainingLocation = require('../app/data/generators/training-location')
 
@@ -58,6 +58,9 @@ const generateFakeApplication = (params = {}) => {
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
 
+  const subject = generateSubject(faker)
+  const courseCode = faker.random.alphaNumeric(4).toUpperCase()
+  const course = `${subject.name} (${courseCode})`
 
   let rejectedDate
   let rejectedFeedbackDate
@@ -79,7 +82,8 @@ const generateFakeApplication = (params = {}) => {
     accreditingbody: accreditedBody.name,
     studyMode: params.studyMode || faker.helpers.randomize(['Full time', 'Part time']),
     fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
-    course: params.course || generateCourse(faker),
+    subject: params.subject || subject.name,
+    course: params.course || course,
     locationname: params.locationname || generateTrainingLocation(faker),
     status,
     submittedDate,
