@@ -9,7 +9,7 @@
 <label for="{{ idPrefix + '-option-select__filter-input' }}" class="govuk-label govuk-visually-hidden">
   {{- params.filter.html | safe if params.filter.html else params.filter.text -}}
 </label>
-<input name="option-select-filter" id="{{ idPrefix + '-option-select__filter-input' }}" class="app-option-select__filter-input govuk-input" type="text" aria-describedby="{{ idPrefix + '-checkboxes-status' }}" aria-controls="{{ idPrefix + '-checkboxes' }}">
+<input name="option-select-filter" id="{{ idPrefix + '-option-select__filter-input' }}" class="app-option-select__filter-input govuk-input" type="text" aria-describedby="{{ idPrefix + '-checkboxes-status' }}" aria-controls="{{ idPrefix + '-checkboxes' }}" autocomplete="off" spellcheck="false">
 {% endset -%}
 {#- This is a little bit of a hack. Surely the `escape` filter should work -#}
 {%- set filter = filter | replace('<','&lt;') | replace('>','&gt;') | replace('"','&quot;') -%}
