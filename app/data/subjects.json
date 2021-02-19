@@ -1,0 +1,202 @@
+[
+  {
+    "code": "W1",
+    "name": "Art and design",
+    "level": "secondary"
+  },
+  {
+    "code": "C1",
+    "name": "Biology",
+    "level": "secondary"
+  },
+  {
+    "code": "08",
+    "name": "Business studies",
+    "level": "secondary"
+  },
+  {
+    "code": "F1",
+    "name": "Chemistry",
+    "level": "secondary"
+  },
+  {
+    "code": "09",
+    "name": "Citizenship",
+    "level": "secondary"
+  },
+  {
+    "code": "Q8",
+    "name": "Classics",
+    "level": "secondary"
+  },
+  {
+    "code": "P3",
+    "name": "Communications and media studies",
+    "level": "secondary"
+  },
+  {
+    "code": "11",
+    "name": "Computer science",
+    "level": "secondary"
+  },
+  {
+    "code": "12",
+    "name": "Dance",
+    "level": "secondary"
+  },
+  {
+    "code": "DT",
+    "name": "Design and technology",
+    "level": "secondary"
+  },
+  {
+    "code": "Q3",
+    "name": "Drama",
+    "level": "secondary"
+  },
+  {
+    "code": "L1",
+    "name": "Economics",
+    "level": "secondary"
+  },
+  {
+    "code": "13",
+    "name": "English",
+    "level": "secondary"
+  },
+  {
+    "code": "16",
+    "name": "English as a second or other language",
+    "level": "secondary"
+  },
+  {
+    "code": "15",
+    "name": "French",
+    "level": "secondary"
+  },
+  {
+    "code": "F8",
+    "name": "Geography",
+    "level": "secondary"
+  },
+  {
+    "code": "17",
+    "name": "German",
+    "level": "secondary"
+  },
+  {
+    "code": "L5",
+    "name": "Health and social care",
+    "level": "secondary"
+  },
+  {
+    "code": "V1",
+    "name": "History",
+    "level": "secondary"
+  },
+  {
+    "code": "18",
+    "name": "Italian",
+    "level": "secondary"
+  },
+  {
+    "code": "19",
+    "name": "Japanese",
+    "level": "secondary"
+  },
+  {
+    "code": "20",
+    "name": "Mandarin",
+    "level": "secondary"
+  },
+  {
+    "code": "G1",
+    "name": "Mathematics",
+    "level": "secondary"
+  },
+  {
+    "code": "24",
+    "name": "Modern languages (other)",
+    "level": "secondary"
+  },
+  {
+    "code": "W3",
+    "name": "Music",
+    "level": "secondary"
+  },
+  {
+    "code": "C6",
+    "name": "Physical education",
+    "level": "secondary"
+  },
+  {
+    "code": "F3",
+    "name": "Physics",
+    "level": "secondary"
+  },
+  {
+    "code": "00",
+    "name": "Primary",
+    "level": "primary"
+  },
+  {
+    "code": "01",
+    "name": "Primary with English",
+    "level": "primary"
+  },
+  {
+    "code": "02",
+    "name": "Primary with geography and history",
+    "level": "primary"
+  },
+  {
+    "code": "03",
+    "name": "Primary with mathematics",
+    "level": "primary"
+  },
+  {
+    "code": "04",
+    "name": "Primary with modern languages",
+    "level": "primary"
+  },
+  {
+    "code": "06",
+    "name": "Primary with physical education",
+    "level": "primary"
+  },
+  {
+    "code": "07",
+    "name": "Primary with science",
+    "level": "primary"
+  },
+  {
+    "code": "C8",
+    "name": "Psychology",
+    "level": "secondary"
+  },
+  {
+    "code": "V6",
+    "name": "Religious education",
+    "level": "secondary"
+  },
+  {
+    "code": "21",
+    "name": "Russian",
+    "level": "secondary"
+  },
+  {
+    "code": "F0",
+    "name": "Science",
+    "level": "secondary"
+  },
+  {
+    "code": "14",
+    "name": "Social sciences",
+    "level": "secondary"
+  },
+  {
+    "code": "22",
+    "name": "Spanish",
+    "level": "secondary"
+  }
+]

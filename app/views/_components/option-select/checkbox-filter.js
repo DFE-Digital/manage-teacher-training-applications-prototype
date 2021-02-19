@@ -38,7 +38,7 @@ AppFrontend.CheckboxFilter = function(params) {
 }
 
 AppFrontend.CheckboxFilter.prototype.setupStatusBox = function() {
-  this.statusBox = $('<div class="govuk-visually-hidde" role="status" id="'+this.container[0].id+'-checkboxes-status"></div>')
+  this.statusBox = $('<div class="govuk-visually-hidden" role="status" id="'+this.container[0].id+'-checkboxes-status"></div>')
   this.updateStatusBox({
     foundCount: this.getCheckboxesCount(),
     checkedCount: this.getCheckedCheckboxesCount()
