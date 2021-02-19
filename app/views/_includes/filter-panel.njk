@@ -181,9 +181,16 @@
   {{ appOptionSelect({
     idPrefix: 'subject',
     name: 'subject',
-    filter: true,
+    filter: {
+      text: 'Subject'
+    },
     heading: {
       text: 'Subject'
+    },
+    attributes: {
+      'data-single': "subject",
+      'data-multiple': "subjects",
+      'data-selected': "selected subjects"
     },
     items: [
       {
