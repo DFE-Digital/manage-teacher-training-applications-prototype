@@ -203,7 +203,7 @@ function getSubjectItems (answerValues) {
     subject.value = item.name
     subject.id = item.code
 
-    if (answerValues !== undefined && answerValues.includes(item.name)) {
+    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
       subject.checked = true
     } else {
       subject.checked = false
