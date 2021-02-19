@@ -3,7 +3,7 @@
 AppFrontend.CheckboxFilter = function(params) {
   this.container = $(params.container)
   this.$options = this.container.find("input[type='checkbox']")
-  this.$optionsContainer = this.container.find('.app-option-select__container')
+  this.$optionsContainer = this.container.find('.app-checkbox-filter__container')
   this.$optionList = this.$optionsContainer.children('.js-auto-height-inner')
   this.$allCheckboxes = this.$optionsContainer.find('.govuk-checkboxes__item')
 
@@ -14,11 +14,11 @@ AppFrontend.CheckboxFilter = function(params) {
   var filterEl = document.createElement('div')
   filterEl.innerHTML = this.filterInputHtml
 
-  $('<div class="app-option-select__filter"/>')
+  $('<div class="app-checkbox-filter__filter"/>')
     .html(filterEl.childNodes[0].nodeValue)
     .insertBefore(this.$optionsContainer)
 
-  this.$filter = this.container.find('input[name="option-select-filter"]')
+  this.$filter = this.container.find('input[name="checkbox-filter-filter"]')
   this.$filterCount = $('#' + this.$filter.attr('aria-describedby'))
   this.checkboxLabels = []
 
