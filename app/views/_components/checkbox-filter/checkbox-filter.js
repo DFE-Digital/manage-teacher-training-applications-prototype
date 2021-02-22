@@ -114,7 +114,7 @@ AppFrontend.CheckboxFilter.prototype.getVisibleCheckboxes = function() {
 
 AppFrontend.CheckboxFilter.prototype.setupHeight = function() {
   var initialOptionContainerHeight = this.checkboxesContainer.height()
-  var height = this.checkboxesInnerContainer.outerHeight(true)
+  var height = this.checkboxesInnerContainer.innerHeight(true)
 
   // check whether this is hidden by progressive disclosure,
   // because height calculations won't work
