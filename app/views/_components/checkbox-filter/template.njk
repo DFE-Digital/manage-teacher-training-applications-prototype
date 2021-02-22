@@ -10,7 +10,7 @@
 <label for="{{ idPrefix + '-checkbox-filter__filter-input' }}" class="govuk-label govuk-visually-hidden">
   {{- params.filter.html | safe if params.filter.html else params.filter.text -}}
 </label>
-<input id="{{ idPrefix + '-checkbox-filter__filter-input' }}" class="app-checkbox-filter__filter-input govuk-input" type="text" name="checkbox-filter-filter" aria-describedby="{{ idPrefix + '-checkboxes-status' }}" aria-controls="{{ idPrefix + '-checkboxes' }}" autocomplete="off" spellcheck="false">
+<input id="{{ idPrefix + '-checkbox-filter__filter-input' }}" class="app-checkbox-filter__filter-input govuk-input" type="text" name="search-filter" aria-describedby="{{ idPrefix + '-checkboxes-status' }}" aria-controls="{{ idPrefix + '-checkboxes' }}" autocomplete="off" spellcheck="false">
 {% endset -%}
 {#- This is a little bit of a hack. Surely the `escape` filter should work -#}
 {%- set filter = filter | replace('<','&lt;') | replace('>','&gt;') | replace('"','&quot;') -%}
@@ -38,7 +38,7 @@
         {%- for item in params.items %}
 
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="{{ idPrefix }}-{{ item.id }}" name="{{ params.name }}" type="checkbox" value="{{ item.value }}">
+            <input class="govuk-checkboxes__input" id="{{ idPrefix }}-{{ item.id }}" name="{{ params.name }}" type="checkbox" value="{{ item.value }}" {{ 'checked' if item.checked }}>
             <label class="govuk-label govuk-checkboxes__label" for="{{ idPrefix }}-{{ item.id }}">
               {{- item.text -}}
             </label>

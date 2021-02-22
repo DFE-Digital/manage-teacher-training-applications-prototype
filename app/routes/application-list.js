@@ -283,12 +283,12 @@ module.exports = router => {
           accreditingbodyValid = accreditingbodies.includes(app.accreditingbody)
         }
 
-        if (studyModes && studyModes.length) {
-          studyModeValid = studyModes.includes(app.studyMode)
-        }
-
         if (subjects && subjects.length) {
           subjectValid = subjects.includes(app.subject)
+        }
+
+        if (studyModes && studyModes.length) {
+          studyModeValid = studyModes.includes(app.studyMode)
         }
 
         return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid && subjectValid
@@ -361,18 +361,6 @@ module.exports = router => {
         })
       }
 
-      if (studyModes && studyModes.length) {
-        selectedFilters.categories.push({
-          heading: { text: 'Full time or part time' },
-          items: studyModes.map((studyMode) => {
-            return {
-              text: studyMode,
-              href: `/remove-studyMode-filter/${studyMode}`
-            }
-          })
-        })
-      }
-
       if (subjects && subjects.length) {
         selectedFilters.categories.push({
           heading: { text: 'Subjects' },
@@ -380,6 +368,18 @@ module.exports = router => {
             return {
               text: subject,
               href: `/remove-subject-filter/${subject}`
+            }
+          })
+        })
+      }
+
+      if (studyModes && studyModes.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Full time or part time' },
+          items: studyModes.map((studyMode) => {
+            return {
+              text: studyMode,
+              href: `/remove-studyMode-filter/${studyMode}`
             }
           })
         })
@@ -453,13 +453,13 @@ module.exports = router => {
     res.redirect('/')
   })
 
-  router.get('/remove-studyMode-filter/:studyMode', (req, res) => {
-    req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
+  router.get('/remove-subject-filter/:subject', (req, res) => {
+    req.session.data.subject = req.session.data.subject.filter(item => item !== req.params.subject)
     res.redirect('/')
   })
 
-  router.get('/remove-subject-filter/:subject', (req, res) => {
-    req.session.data.subject = req.session.data.subject.filter(item => item !== req.params.subject)
+  router.get('/remove-studyMode-filter/:studyMode', (req, res) => {
+    req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
     res.redirect('/')
   })
 
@@ -469,8 +469,8 @@ module.exports = router => {
     req.session.data.provider = null
     req.session.data.accreditingbody = null
     req.session.data.locationname = null
-    req.session.data.studyMode = null
     req.session.data.subject = null
+    req.session.data.studyMode = null
     res.redirect('/')
   })
 

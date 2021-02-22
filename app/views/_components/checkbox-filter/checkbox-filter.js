@@ -19,7 +19,7 @@ AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
     .html(textBoxElement.childNodes[0].nodeValue)
     .insertBefore(this.checkboxesContainer)
 
-  this.textBox = this.container.find('input[name="checkbox-filter-filter"]')
+  this.textBox = this.container.find('input[name="search-filter"]')
   this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'))
 }
 
