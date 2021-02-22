@@ -1,30 +1,26 @@
-/* eslint-env jquery */
-
 AppFrontend.CheckboxFilter = function(params) {
   this.container = $(params.container)
-  this.$options = this.container.find("input[type='checkbox']")
-  this.$optionsContainer = this.container.find('.app-checkbox-filter__container')
-  this.$optionList = this.$optionsContainer.children('.js-auto-height-inner')
-  this.$allCheckboxes = this.$optionsContainer.find('.govuk-checkboxes__item')
+  this.checkboxes = this.container.find("input[type='checkbox']")
+  this.checkboxesContainer = this.container.find('.app-checkbox-filter__container')
+  this.checkboxesInnerContainer = this.checkboxesContainer.children('.app-checkbox-filter__container-inner')
 
   // to do - inject HTML here, not from Nunjucks?
-  this.filterInputHtml = this.container.data('filter-element')
-  this.checkedCheckboxes = []
+  this.setupStatusBox()
+  this.setupTextBox()
+  this.setupHeight()
+}
 
-  var filterEl = document.createElement('div')
-  filterEl.innerHTML = this.filterInputHtml
+AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
+  this.textBoxHtml = this.container.data('filter-element')
+  var textBoxElement = document.createElement('div')
+  textBoxElement.innerHTML = this.textBoxHtml
 
   $('<div class="app-checkbox-filter__filter"/>')
-    .html(filterEl.childNodes[0].nodeValue)
-    .insertBefore(this.$optionsContainer)
+    .html(textBoxElement.childNodes[0].nodeValue)
+    .insertBefore(this.checkboxesContainer)
 
   this.textBox = this.container.find('input[name="checkbox-filter-filter"]')
   this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'))
-
-  this.setupHeight()
-
-  // inject status
-  this.setupStatusBox();
 }
 
 AppFrontend.CheckboxFilter.prototype.setupStatusBox = function() {
@@ -43,7 +39,7 @@ AppFrontend.CheckboxFilter.prototype.updateStatusBox = function(params) {
   this.statusBox.html(status);
 }
 
-AppFrontend.CheckboxFilter.prototype.onTextBoxKeyUp = function onTextBoxKeyUp(e) {
+AppFrontend.CheckboxFilter.prototype.onTextBoxKeyUp = function(e) {
   var ENTER_KEY = 13
   if (e.keyCode === ENTER_KEY) {
     e.preventDefault();
@@ -52,25 +48,14 @@ AppFrontend.CheckboxFilter.prototype.onTextBoxKeyUp = function onTextBoxKeyUp(e)
   }
 }
 
-AppFrontend.CheckboxFilter.prototype.cleanString = function cleanString (text) {
+AppFrontend.CheckboxFilter.prototype.cleanString = function(text) {
   text = text.replace(/&/g, 'and')
   text = text.replace(/[’',:–-]/g, '') // remove punctuation characters
   text = text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // escape special characters
   return text.trim().replace(/\s\s+/g, ' ').toLowerCase() // replace multiple spaces with one
 }
 
-AppFrontend.CheckboxFilter.prototype.getAllCheckedCheckboxes = function getAllCheckedCheckboxes () {
-  this.checkedCheckboxes = []
-  var that = this
-
-  this.$allCheckboxes.each(function (i) {
-    if ($(this).find('input[type=checkbox]').is(':checked')) {
-      that.checkedCheckboxes.push(i)
-    }
-  })
-}
-
-AppFrontend.CheckboxFilter.prototype.filterCheckboxes = function filterCheckboxes() {
+AppFrontend.CheckboxFilter.prototype.filterCheckboxes = function() {
   var textValue = this.cleanString(this.textBox.val())
 
   var allCheckboxes = this.getAllCheckboxes()
@@ -91,7 +76,7 @@ AppFrontend.CheckboxFilter.prototype.filterCheckboxes = function filterCheckboxe
 }
 
 AppFrontend.CheckboxFilter.prototype.getAllCheckboxes = function() {
-  return this.$optionsContainer.find('.govuk-checkboxes__item')
+  return this.checkboxesContainer.find('.govuk-checkboxes__item')
 }
 
 AppFrontend.CheckboxFilter.prototype.getAllVisibleCheckboxes = function() {
@@ -106,34 +91,34 @@ AppFrontend.CheckboxFilter.prototype.getAllVisibleCheckedCheckboxes = function()
   })
 }
 
-AppFrontend.CheckboxFilter.prototype.setContainerHeight = function setContainerHeight (height) {
-  this.$optionsContainer.css({
+AppFrontend.CheckboxFilter.prototype.setContainerHeight = function(height) {
+  this.checkboxesContainer.css({
     height: height
   })
 }
 
-AppFrontend.CheckboxFilter.prototype.isCheckboxInView = function isCheckboxInView (index, option) {
+AppFrontend.CheckboxFilter.prototype.isCheckboxInView = function(index, option) {
   var $checkbox = $(option)
-  var initialOptionContainerHeight = this.$optionsContainer.height()
-  var optionListOffsetTop = this.$optionList.offset().top
+  var initialOptionContainerHeight = this.checkboxesContainer.height()
+  var optionListOffsetTop = this.checkboxesInnerContainer.offset().top
   var distanceFromTopOfContainer = $checkbox.offset().top - optionListOffsetTop
   return distanceFromTopOfContainer < initialOptionContainerHeight
 }
 
-AppFrontend.CheckboxFilter.prototype.getVisibleCheckboxes = function getVisibleCheckboxes () {
-  var visibleCheckboxes = this.$options.filter(this.isCheckboxInView.bind(this))
+AppFrontend.CheckboxFilter.prototype.getVisibleCheckboxes = function() {
+  var visibleCheckboxes = this.checkboxes.filter(this.isCheckboxInView.bind(this))
   // add an extra checkbox, if the label of the first is too long it collapses onto itself
-  visibleCheckboxes = visibleCheckboxes.add(this.$options[visibleCheckboxes.length])
+  visibleCheckboxes = visibleCheckboxes.add(this.checkboxes[visibleCheckboxes.length])
   return visibleCheckboxes
 }
 
-AppFrontend.CheckboxFilter.prototype.setupHeight = function setupHeight () {
-  var initialOptionContainerHeight = this.$optionsContainer.height()
-  var height = this.$optionList.outerHeight(true)
+AppFrontend.CheckboxFilter.prototype.setupHeight = function() {
+  var initialOptionContainerHeight = this.checkboxesContainer.height()
+  var height = this.checkboxesInnerContainer.outerHeight(true)
 
   // check whether this is hidden by progressive disclosure,
   // because height calculations won't work
-  if (this.$optionsContainer[0].offsetParent === null) {
+  if (this.checkboxesContainer[0].offsetParent === null) {
     initialOptionContainerHeight = 200
     height = 200
   }
