@@ -11,9 +11,9 @@ AppFrontend.CheckboxFilter = function(params) {
 }
 
 AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
-  this.textBoxHtml = this.container.data('filter-element')
+  var textBoxHtml = this.container.data('filter-element')
   var textBoxElement = document.createElement('div')
-  textBoxElement.innerHTML = this.textBoxHtml
+  textBoxElement.innerHTML = textBoxHtml
 
   $('<div class="app-checkbox-filter__filter"/>')
     .html(textBoxElement.childNodes[0].nodeValue)
