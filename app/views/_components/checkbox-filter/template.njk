@@ -1,34 +1,16 @@
-{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
 {#- If an id 'prefix' is not passed, fall back to using the name attribute
    instead. We need this for error messages and hints as well -#}
 {%- set idPrefix = params.idPrefix if params.idPrefix else params.name -%}
 
-{%- if params.filter %}
-{%- set filter %}
-<label for="{{ idPrefix + '-checkbox-filter__filter-input' }}" class="govuk-label govuk-visually-hidden">
-  {{- params.filter.html | safe if params.filter.html else params.filter.text -}}
-</label>
-<input id="{{ idPrefix + '-checkbox-filter__filter-input' }}" class="app-checkbox-filter__filter-input govuk-input" type="text" name="search-filter" aria-describedby="{{ idPrefix + '-checkboxes-status' }}" aria-controls="{{ idPrefix + '-checkboxes' }}" autocomplete="off" spellcheck="false">
-{% endset -%}
-{#- This is a little bit of a hack. Surely the `escape` filter should work -#}
-{%- set filter = filter | replace('<','&lt;') | replace('>','&gt;') | replace('"','&quot;') -%}
-{% endif -%}
-
-<div id="{{ idPrefix }}" class="app-checkbox-filter {{- ' ' + params.classes if params.classes }}" {%- if params.filter %} data-filter-element="{{ filter }}"{% endif %} {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
-
-  <p class="app-checkbox-filter__title" aria-hidden="true">
-    {{- params.heading.text -}}
-  </p>
+<div id="{{ idPrefix }}" class="app-checkbox-filter {{- ' ' + params.classes if params.classes }}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
 
   <div class="govuk-form-group">
 
     {%- call govukFieldset({
       legend: {
-        text: params.heading.text,
-        classes: "govuk-visually-hidden",
-        isPageHeading: false
+        text: params.heading.text
       }
     }) %}
 

@@ -3,39 +3,27 @@ AppFrontend.CheckboxFilter = function(params) {
   this.checkboxes = this.container.find("input[type='checkbox']")
   this.checkboxesContainer = this.container.find('.app-checkbox-filter__container')
   this.checkboxesInnerContainer = this.checkboxesContainer.children('.app-checkbox-filter__container-inner')
-
-  // to do - inject HTML here, not from Nunjucks?
+  this.legend = this.container.find('legend')
+  this.legend.addClass('govuk-visually-hidden')
   this.setupStatusBox()
   this.setupTextBox()
   this.setupHeight()
 }
 
 AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
-  // Add p tag with aria-hidden and label that is the legend text
-
-  // Add visually hidden class to legend
-
-  // inject textBox HTML in the right place
-
-
-  var textBoxHtml = this.container.data('filter-element')
-  var textBoxElement = document.createElement('div')
-  textBoxElement.innerHTML = textBoxHtml
-
-  $('<div class="app-checkbox-filter__filter"/>')
-    .html(textBoxElement.childNodes[0].nodeValue)
-    .insertBefore(this.checkboxesContainer)
-
-  this.textBox = this.container.find('input[name="search-filter"]')
+  this.container.prepend(this.getTextBoxHtml());
+  this.textBox = this.container.find('.app-checkbox-filter__filter-input')
   this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'))
 }
 
 AppFrontend.CheckboxFilter.prototype.getTextBoxHtml = function() {
-  var textBoxHtml = ''
-  // this.container[0].id to make unique
-  textBoxHtml += ''
-
-  return textBoxHtml
+  var legendText = this.legend.text()
+  var id = this.container[0].id
+  var html = ''
+  html += '<p class="app-checkbox-filter__title" aria-hidden="true">' + legendText + '</p>'
+  html += '<label for="' + id + '-checkbox-filter__filter-input" class="govuk-label govuk-visually-hidden">' + legendText + '</label>'
+  html += '<input id="' + id + '-checkbox-filter__filter-input" class="app-checkbox-filter__filter-input govuk-input" type="text" aria-describedby="' + id + '-checkboxes-status" aria-controls="' + id + '-checkboxes" autocomplete="off" spellcheck="false">'
+  return html
 }
 
 AppFrontend.CheckboxFilter.prototype.setupStatusBox = function() {
