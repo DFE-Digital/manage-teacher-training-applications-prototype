@@ -1,4 +1,5 @@
 AppFrontend.CheckboxFilter = function(params) {
+  this.params = params
   this.container = $(params.container)
   this.checkboxes = this.container.find("input[type='checkbox']")
   this.checkboxesContainer = this.container.find('.app-checkbox-filter__container')
@@ -21,25 +22,25 @@ AppFrontend.CheckboxFilter.prototype.getTextBoxHtml = function() {
   var id = this.container[0].id
   var html = ''
   html += '<p class="app-checkbox-filter__title" aria-hidden="true">' + legendText + '</p>'
-  html += '<label for="' + id + '-checkbox-filter__filter-input" class="govuk-label govuk-visually-hidden">' + legendText + '</label>'
+  html += '<label for="' + id + '-checkbox-filter__filter-input" class="govuk-label govuk-visually-hidden">' + this.params.textBox.label + '</label>'
   html += '<input id="' + id + '-checkbox-filter__filter-input" class="app-checkbox-filter__filter-input govuk-input" type="text" aria-describedby="' + id + '-checkboxes-status" aria-controls="' + id + '-checkboxes" autocomplete="off" spellcheck="false">'
   return html
 }
 
 AppFrontend.CheckboxFilter.prototype.setupStatusBox = function() {
-  this.statusBox = $('<div class="govuk-visually-hidden" role="status" id="'+this.container[0].id+'-checkboxes-status"></div>')
+  this.statusBox = $('<div class="govuk-visually-hidden" role="status" id="' + this.container[0].id + '-checkboxes-status"></div>')
   this.updateStatusBox({
     foundCount: this.getAllVisibleCheckboxes().length,
     checkedCount: this.getAllVisibleCheckedCheckboxes().length
   })
-  this.container.append(this.statusBox);
+  this.container.append(this.statusBox)
 }
 
 AppFrontend.CheckboxFilter.prototype.updateStatusBox = function(params) {
-  var status = '%found% options found, %selected% selected';
-  status = status.replace(/%found%/, params.foundCount);
-  status = status.replace(/%selected%/, params.checkedCount);
-  this.statusBox.html(status);
+  var status = '%found% options found, %selected% selected'
+  status = status.replace(/%found%/, params.foundCount)
+  status = status.replace(/%selected%/, params.checkedCount)
+  this.statusBox.html(status)
 }
 
 AppFrontend.CheckboxFilter.prototype.onTextBoxKeyUp = function(e) {
@@ -63,12 +64,12 @@ AppFrontend.CheckboxFilter.prototype.filterCheckboxes = function() {
 
   var allCheckboxes = this.getAllCheckboxes()
   // hide all checkboxes
-  allCheckboxes.hide();
+  allCheckboxes.hide()
 
   for(var i = 0; i < allCheckboxes.length; i++ ) {
     var labelValue = this.cleanString($(allCheckboxes[i]).find('.govuk-checkboxes__label').text())
     if(labelValue.search(textValue) !== -1) {
-      $(allCheckboxes[i]).show();
+      $(allCheckboxes[i]).show()
     }
   }
 
