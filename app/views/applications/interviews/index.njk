@@ -106,11 +106,11 @@
           classes: "govuk-!-margin-bottom-6",
           actions: {
             items: [{
-              href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
-              html: 'Change details <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
+              href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
+              html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
             } if statusText == "Received" or statusText == "Interviewing", {
-              href: '/applications/"+application.id+"/interviews/"+interview.id+"/delete',
-              html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
+              href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
+              html: 'Cancel interview <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
             } if statusText == "Received" or statusText == "Interviewing"]
           },
           html: interviewSummaryListHtml
@@ -189,10 +189,10 @@
           classes: "govuk-!-margin-bottom-6",
           actions: {
             items: [{
-              href: "/applications/"+application.id+"/interviews/"+interview.id+"/edit",
-              html: 'Change details <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
+              href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
+              html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
             } if statusText == "Received" or statusText == "Interviewing", {
-              href: "/applications/"+application.id+"/interviews/"+interview.id+"/delete",
+              href: '/applications/' + application.id + '/interviews/'+ interview.id + '/delete',
               html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
             } if statusText == "Received" or statusText == "Interviewing"]
           },
