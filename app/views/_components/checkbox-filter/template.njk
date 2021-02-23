@@ -1,7 +1,6 @@
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{%- from "govuk/components/fieldset/macro.njk" import govukFieldset -%}
 
-{#- If an id 'prefix' is not passed, fall back to using the name attribute
-   instead. We need this for error messages and hints as well -#}
+{#- If an id 'prefix' is not passed, fall back to using the name attribute -#}
 {%- set idPrefix = params.idPrefix if params.idPrefix else params.name -%}
 
 <div id="{{ idPrefix }}" class="app-checkbox-filter {{- ' ' + params.classes if params.classes }}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
@@ -10,15 +9,16 @@
 
     {%- call govukFieldset({
       legend: {
-        text: params.heading.text
+        text: params.legend.text,
+        classes: params.legend.classes | default('govuk-fieldset__legend--s')
       }
-    }) %}
+    }) -%}
 
       <div class="app-checkbox-filter__container">
 
         <div class="govuk-checkboxes govuk-checkboxes--small app-checkbox-filter__container-inner">
 
-          {%- for item in params.items %}
+          {%- for item in params.items -%}
 
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="{{ idPrefix }}-{{ item.id }}" name="{{ params.name }}" type="checkbox" value="{{ item.value }}" {{ 'checked' if item.checked }}>
@@ -27,13 +27,13 @@
               </label>
             </div>
 
-          {% endfor -%}
+          {%- endfor -%}
 
         </div>
 
       </div>
 
-    {% endcall -%}
+    {%- endcall -%}
 
   </div>
 
