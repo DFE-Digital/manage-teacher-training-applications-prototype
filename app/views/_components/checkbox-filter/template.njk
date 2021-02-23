@@ -29,22 +29,25 @@
         text: params.heading.text,
         classes: "govuk-visually-hidden",
         isPageHeading: false
-      },
-      classes: "app-checkbox-filter__container"
+      }
     }) %}
 
-      <div class="govuk-checkboxes govuk-checkboxes--small app-checkbox-filter__container-inner">
+      <div class="app-checkbox-filter__container">
 
-        {%- for item in params.items %}
+        <div class="govuk-checkboxes govuk-checkboxes--small app-checkbox-filter__container-inner">
 
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="{{ idPrefix }}-{{ item.id }}" name="{{ params.name }}" type="checkbox" value="{{ item.value }}" {{ 'checked' if item.checked }}>
-            <label class="govuk-label govuk-checkboxes__label" for="{{ idPrefix }}-{{ item.id }}">
-              {{- item.text -}}
-            </label>
-          </div>
+          {%- for item in params.items %}
 
-        {% endfor -%}
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="{{ idPrefix }}-{{ item.id }}" name="{{ params.name }}" type="checkbox" value="{{ item.value }}" {{ 'checked' if item.checked }}>
+              <label class="govuk-label govuk-checkboxes__label" for="{{ idPrefix }}-{{ item.id }}">
+                {{- item.text -}}
+              </label>
+            </div>
+
+          {% endfor -%}
+
+        </div>
 
       </div>
 

@@ -11,6 +11,13 @@ AppFrontend.CheckboxFilter = function(params) {
 }
 
 AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
+  // Add p tag with aria-hidden and label that is the legend text
+
+  // Add visually hidden class to legend
+
+  // inject textBox HTML in the right place
+
+
   var textBoxHtml = this.container.data('filter-element')
   var textBoxElement = document.createElement('div')
   textBoxElement.innerHTML = textBoxHtml
@@ -21,6 +28,14 @@ AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
 
   this.textBox = this.container.find('input[name="search-filter"]')
   this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'))
+}
+
+AppFrontend.CheckboxFilter.prototype.getTextBoxHtml = function() {
+  var textBoxHtml = ''
+  // this.container[0].id to make unique
+  textBoxHtml += ''
+
+  return textBoxHtml
 }
 
 AppFrontend.CheckboxFilter.prototype.setupStatusBox = function() {
@@ -114,7 +129,7 @@ AppFrontend.CheckboxFilter.prototype.getVisibleCheckboxes = function() {
 
 AppFrontend.CheckboxFilter.prototype.setupHeight = function() {
   var initialOptionContainerHeight = this.checkboxesContainer.height()
-  var height = this.checkboxesInnerContainer.innerHeight(true)
+  var height = this.checkboxesInnerContainer.outerHeight(true)
 
   // check whether this is hidden by progressive disclosure,
   // because height calculations won't work
