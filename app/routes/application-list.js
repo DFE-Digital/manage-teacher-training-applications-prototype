@@ -419,7 +419,8 @@ module.exports = router => {
       pagination,
       selectedFilters,
       hasFilters,
-      subjectItems
+      subjectItems,
+      subjectItemsDisplayLimit: 15
     })
   })
 
