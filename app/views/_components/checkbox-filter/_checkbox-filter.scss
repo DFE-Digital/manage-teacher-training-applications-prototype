@@ -56,3 +56,72 @@
   padding-left: 33px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='40' height='40'%3E%3Cpath d='M25.7 24.8L21.9 21c.7-1 1.1-2.2 1.1-3.5 0-3.6-2.9-6.5-6.5-6.5S10 13.9 10 17.5s2.9 6.5 6.5 6.5c1.6 0 3-.6 4.1-1.5l3.7 3.7 1.4-1.4zM12 17.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z' fill='currentColor'%3E%3C/path%3E%3C/svg%3E") govuk-colour("white") no-repeat -5px -3px;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Tags
+////////////////////////////////////////////////////////////////////////////////
+
+.app-checkbox-filter__selected {
+  background-color: govuk-colour("light-grey");
+  padding: govuk-spacing(2) govuk-spacing(3);
+  margin: 0 (- govuk-spacing(3));
+
+  ul:last-of-type {
+    margin-bottom: 0; // IE9 +
+  }
+
+}
+
+.app-checkbox-filter__tags {
+  font-size: 0;
+  margin-bottom: govuk-spacing(4); // Needs to adjust to 15px on mobile
+  padding-left: 0;
+
+  li {
+    display: inline-block;
+    margin-right: govuk-spacing(1);
+  }
+
+}
+
+.app-checkbox-filter__tag {
+  @include govuk-font(16);
+  background-color: govuk-colour("white");
+  border: 1px solid govuk-colour("black");
+  color: govuk-colour("black");
+  display: inline-block;
+  margin-top: govuk-spacing(1);
+  padding: govuk-spacing(1);
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: govuk-colour("black");
+  }
+
+  &:focus {
+    color: $govuk-focus-text-colour;
+    background-color: $govuk-focus-colour;
+  }
+
+  &:hover {
+    background-color: govuk-colour("black");
+    color: govuk-colour("white");
+  }
+
+  &:after {
+    background-image: url("/public/images/icon-tag-remove-cross.svg");
+    content: '';
+    display: inline-block;
+    font-weight: bold;
+    height: 10px;
+    margin-left: govuk-spacing(1);
+    vertical-align: middle;
+    width: 10px;
+  }
+
+  &:hover:after {
+    background-image: url("/public/images/icon-tag-remove-cross-white.svg");
+  }
+
+}

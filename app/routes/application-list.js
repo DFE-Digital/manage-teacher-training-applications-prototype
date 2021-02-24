@@ -408,6 +408,9 @@ module.exports = router => {
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
     const subjectItems = getSubjectItems(req.session.data.subject)
+    const selectedSubjects = subjectItems.filter(subject => subject.checked === true)
+
+    console.log(selectedSubjects);
 
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)
@@ -420,7 +423,8 @@ module.exports = router => {
       selectedFilters,
       hasFilters,
       subjectItems,
-      subjectItemsDisplayLimit: 15
+      subjectItemsDisplayLimit: 15,
+      selectedSubjects
     })
   })
 
