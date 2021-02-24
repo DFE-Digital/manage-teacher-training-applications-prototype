@@ -215,6 +215,20 @@ function getSubjectItems (answerValues) {
   return items
 }
 
+function getSelectedSubjectItems (selectedItems) {
+  const items = []
+
+  selectedItems.forEach((item) => {
+    const subject = {}
+    subject.text = item.text
+    subject.href = `/remove-subject-filter/${item.text}`
+
+    items.push(subject)
+  })
+
+  return items
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
@@ -408,9 +422,7 @@ module.exports = router => {
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
     const subjectItems = getSubjectItems(req.session.data.subject)
-    const selectedSubjects = subjectItems.filter(subject => subject.checked === true)
-
-    console.log(selectedSubjects);
+    const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === true))
 
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)

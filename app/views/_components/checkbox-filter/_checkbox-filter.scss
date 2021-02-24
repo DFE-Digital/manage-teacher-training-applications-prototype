@@ -72,6 +72,11 @@
 
 }
 
+.app-checkbox-filter__heading {
+  @include govuk-font($size: 19, $weight: bold);
+  margin: 0;
+}
+
 .app-checkbox-filter__tags {
   font-size: 0;
   margin-bottom: govuk-spacing(4); // Needs to adjust to 15px on mobile

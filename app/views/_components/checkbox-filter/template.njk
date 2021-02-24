@@ -14,22 +14,27 @@
       }
     }) -%}
 
-      {% if params.selectedItems.length %}
+      {%- if params.selectedItems.length -%}
         <div class="app-checkbox-filter__selected">
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0 {{- ' ' + params.selectedItemsHeading.classes if params.selectedItemsHeading.classes }}">
-            {{ params.selectedItemsHeading.text }}
-          </h3>
+
+          {%- if params.selectedItemsHeading %}
+            <h{{ params.selectedItemsHeading.headingLevel | default(3) }} class="app-checkbox-filter__heading {{- ' ' + params.selectedItemsHeading.classes if params.selectedItemsHeading.classes }}">
+              {{- params.selectedItemsHeading.text -}}
+            </h{{ params.selectedItemsHeading.headingLevel | default(3) }}>
+          {% endif -%}
+
           <ul class="app-checkbox-filter__tags">
             {%- for item in params.selectedItems -%}
               <li>
-                <a class="app-filter__tag" href="{{ params.selectedItemsHref }}/{{ item.text }}">
+                <a class="app-filter__tag" href="{{ item.href }}">
                   <span class="govuk-visually-hidden">Remove this filter</span> {{ item.text }}
                 </a>
               </li>
             {%- endfor -%}
           </ul>
+
         </div>
-      {% endif %}
+      {%- endif -%}
 
       <div class="app-checkbox-filter__container">
 
