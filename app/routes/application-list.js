@@ -1,7 +1,9 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
 const { DateTime } = require('luxon')
-const _ = require('lodash');
+const _ = require('lodash')
+
+const subjects = require('../data/subjects')
 
 function getCheckboxValues (name, data) {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
@@ -192,11 +194,32 @@ function addHeadings (grouped) {
   return array
 }
 
+function getSubjectItems (answerValues) {
+  const items = []
+
+  subjects.forEach((item) => {
+    const subject = {}
+    subject.text = item.name
+    subject.value = item.name
+    subject.id = item.code
+
+    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
+      subject.checked = true
+    } else {
+      subject.checked = false
+    }
+
+    items.push(subject)
+  })
+
+  return items
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { cycle, status, provider, accreditingbody, keywords, locationname, studyMode } = req.query
+    let { cycle, status, provider, accreditingbody, keywords, locationname, studyMode, subject } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -206,10 +229,11 @@ module.exports = router => {
     const locationnames = getCheckboxValues(locationname, req.session.data.locationname)
     const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
+    const subjects = getCheckboxValues(subject, req.session.data.subject)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -237,6 +261,7 @@ module.exports = router => {
         let locationnameValid = true
         let accreditingbodyValid = true
         let studyModeValid = true
+        let subjectValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -258,11 +283,15 @@ module.exports = router => {
           accreditingbodyValid = accreditingbodies.includes(app.accreditingbody)
         }
 
+        if (subjects && subjects.length) {
+          subjectValid = subjects.includes(app.subject)
+        }
+
         if (studyModes && studyModes.length) {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid
+        return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid && subjectValid
       })
     }
 
@@ -332,6 +361,18 @@ module.exports = router => {
         })
       }
 
+      if (subjects && subjects.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Subjects' },
+          items: subjects.map((subject) => {
+            return {
+              text: subject,
+              href: `/remove-subject-filter/${subject}`
+            }
+          })
+        })
+      }
+
       if (studyModes && studyModes.length) {
         selectedFilters.categories.push({
           heading: { text: 'Full time or part time' },
@@ -366,6 +407,11 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
+    const subjectItems = getSubjectItems(req.session.data.subject)
+    const selectedSubjects = subjectItems.filter(subject => subject.checked === true)
+
+    console.log(selectedSubjects);
+
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)
     applications = addHeadings(grouped)
@@ -375,7 +421,10 @@ module.exports = router => {
       applications,
       pagination,
       selectedFilters,
-      hasFilters
+      hasFilters,
+      subjectItems,
+      subjectItemsDisplayLimit: 15,
+      selectedSubjects
     })
   })
 
@@ -409,6 +458,11 @@ module.exports = router => {
     res.redirect('/')
   })
 
+  router.get('/remove-subject-filter/:subject', (req, res) => {
+    req.session.data.subject = req.session.data.subject.filter(item => item !== req.params.subject)
+    res.redirect('/')
+  })
+
   router.get('/remove-studyMode-filter/:studyMode', (req, res) => {
     req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
     res.redirect('/')
@@ -420,6 +474,7 @@ module.exports = router => {
     req.session.data.provider = null
     req.session.data.accreditingbody = null
     req.session.data.locationname = null
+    req.session.data.subject = null
     req.session.data.studyMode = null
     res.redirect('/')
   })

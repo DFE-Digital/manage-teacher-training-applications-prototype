@@ -104,7 +104,6 @@
   padding: 0;
   -webkit-appearance: none;
 
-
   &:focus {
     background-color: $govuk-focus-colour;
     color: $govuk-focus-text-colour;
@@ -120,7 +119,7 @@
 
   &::before {
     background-image: url("/public/images/icon-close-cross-black.svg");
-    content: "";
+    content: '';
     display: inline-block;
     height: 14px;
     margin-right: govuk-spacing(1);
@@ -137,18 +136,15 @@
   @include govuk-font(19);
 }
 
-
 .app-filter__selected {
   background-color: govuk-colour("light-grey");
   padding: govuk-spacing(4) govuk-spacing(3);
-
 
   ul:last-of-type {
     margin-bottom: 0; // IE9 +
   }
 
 }
-
 
 .app-filter__selected-heading {
   font-size: 0; // Hide whitespace between elements
@@ -161,7 +157,6 @@
   }
 
 }
-
 
 .app-filter__heading-title,
 .app-filter__heading-action {
@@ -178,11 +173,10 @@
 
   li {
     display: inline-block;
-    margin-right: govuk-spacing(2);
+    margin-right: govuk-spacing(1);
   }
 
 }
-
 
 .app-filter__tag {
   @include govuk-font(16);
@@ -211,7 +205,7 @@
 
   &:after {
     background-image: url("/public/images/icon-tag-remove-cross.svg");
-    content: "";
+    content: '';
     display: inline-block;
     font-weight: bold;
     height: 10px;
