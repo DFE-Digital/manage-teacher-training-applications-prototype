@@ -93,7 +93,7 @@
 {{ appPrimaryNavigation({
   items: [
     {
-      href: "/",
+      href: "/" + ('?keywords=' if data.keywords.length),
       text: "Applications",
       active: primaryNavId == 'applications'
     },
