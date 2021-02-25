@@ -72,7 +72,7 @@
               {% if relationship.org.isAccreditedBody %}
                 <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">No users can make decisions, because you have not set this up yet.</p>
+                <p class="govuk-!-margin-bottom-0">No users can make decisions and set up interviews, because you have not set this up yet.</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -138,7 +138,7 @@
                 },
                 {
                   key: {
-                    text: "Who can make decisions?"
+                    text: "Who can make decisions and set up interviews?"
                   },
                   value: {
                     html: makeDecisionsHtml
