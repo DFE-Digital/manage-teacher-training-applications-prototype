@@ -1,27 +1,38 @@
 AppFrontend.CheckboxFilter = function(params) {
   this.params = params
   this.container = $(params.container)
+  this.container.addClass('app-checkbox-filter--enhanced')
   this.checkboxes = this.container.find("input[type='checkbox']")
   this.checkboxesContainer = this.container.find('.app-checkbox-filter__container')
   this.checkboxesInnerContainer = this.checkboxesContainer.children('.app-checkbox-filter__container-inner')
   this.legend = this.container.find('legend')
   this.legend.addClass('govuk-visually-hidden')
   this.setupStatusBox()
+  this.setupHeading();
   this.setupTextBox()
   this.setupHeight()
 }
 
+AppFrontend.CheckboxFilter.prototype.setupHeading = function() {
+  this.heading = $('<p class="app-checkbox-filter__title" aria-hidden="true">' + this.legend.text() + '</p>')
+  this.container.prepend(this.heading);
+}
+
 AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
-  this.container.prepend(this.getTextBoxHtml());
+  var tagContainer = this.container.find('.app-checkbox-filter__selected')
+  if(tagContainer[0]) {
+    tagContainer.after(this.getTextBoxHtml())
+  } else {
+    this.heading.after(this.getTextBoxHtml())
+  }
+
   this.textBox = this.container.find('.app-checkbox-filter__filter-input')
   this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'))
 }
 
 AppFrontend.CheckboxFilter.prototype.getTextBoxHtml = function() {
-  var legendText = this.legend.text()
   var id = this.container[0].id
   var html = ''
-  html += '<p class="app-checkbox-filter__title" aria-hidden="true">' + legendText + '</p>'
   html += '<label for="' + id + '-checkbox-filter__filter-input" class="govuk-label govuk-visually-hidden">' + this.params.textBox.label + '</label>'
   html += '<input id="' + id + '-checkbox-filter__filter-input" class="app-checkbox-filter__filter-input govuk-input" type="text" aria-describedby="' + id + '-checkboxes-status" aria-controls="' + id + '-checkboxes" autocomplete="off" spellcheck="false">'
   return html

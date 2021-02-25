@@ -87,6 +87,15 @@
 
 }
 
+.app-checkbox-filter--enhanced .app-checkbox-filter__selected {
+  margin-top: - govuk-spacing(3);
+  margin-bottom: govuk-spacing(3);
+}
+
+// .app-checkbox-filter__title + .govuk-form-group {
+//   margin-top: -20px;
+// }
+
 .app-checkbox-filter__tag {
   @include govuk-font(16);
   background-color: govuk-colour("white");
