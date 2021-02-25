@@ -62,14 +62,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .app-checkbox-filter__selected {
-  background-color: govuk-colour("light-grey");
-  padding: govuk-spacing(2) govuk-spacing(3);
-  margin: 0 (- govuk-spacing(3));
-
+  margin-top: - govuk-spacing(1);
+  margin-bottom: govuk-spacing(2);
   ul:last-of-type {
     margin-bottom: 0; // IE9 +
   }
 
+}
+
+.app-checkbox-filter__heading {
+  @include govuk-font($size: 19, $weight: bold);
+  margin: 0;
 }
 
 .app-checkbox-filter__tags {
@@ -82,6 +85,11 @@
     margin-right: govuk-spacing(1);
   }
 
+}
+
+.app-checkbox-filter--enhanced .app-checkbox-filter__selected {
+  margin-top: - govuk-spacing(3);
+  margin-bottom: govuk-spacing(3);
 }
 
 .app-checkbox-filter__tag {
