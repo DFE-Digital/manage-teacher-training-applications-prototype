@@ -17,12 +17,6 @@
       {%- if params.selectedItems.length -%}
         <div class="app-checkbox-filter__selected">
 
-          {%- if params.selectedItemsHeading %}
-            <h{{ params.selectedItemsHeading.headingLevel | default(3) }} class="app-checkbox-filter__heading {{- ' ' + params.selectedItemsHeading.classes if params.selectedItemsHeading.classes }}">
-              {{- params.selectedItemsHeading.text -}}
-            </h{{ params.selectedItemsHeading.headingLevel | default(3) }}>
-          {% endif -%}
-
           <ul class="app-checkbox-filter__tags">
             {%- for item in params.selectedItems -%}
               <li>
