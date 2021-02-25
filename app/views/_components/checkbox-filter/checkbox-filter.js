@@ -8,14 +8,14 @@ AppFrontend.CheckboxFilter = function(params) {
   this.legend = this.container.find('legend')
   this.legend.addClass('govuk-visually-hidden')
   this.setupStatusBox()
-  this.setupHeading();
+  this.setupHeading()
   this.setupTextBox()
   this.setupHeight()
 }
 
 AppFrontend.CheckboxFilter.prototype.setupHeading = function() {
   this.heading = $('<p class="app-checkbox-filter__title" aria-hidden="true">' + this.legend.text() + '</p>')
-  this.container.prepend(this.heading);
+  this.container.prepend(this.heading)
 }
 
 AppFrontend.CheckboxFilter.prototype.setupTextBox = function() {
@@ -57,7 +57,7 @@ AppFrontend.CheckboxFilter.prototype.updateStatusBox = function(params) {
 AppFrontend.CheckboxFilter.prototype.onTextBoxKeyUp = function(e) {
   var ENTER_KEY = 13
   if (e.keyCode === ENTER_KEY) {
-    e.preventDefault();
+    e.preventDefault()
   } else {
     this.filterCheckboxes()
   }
