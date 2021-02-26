@@ -38,34 +38,6 @@ module.exports = (params) => {
         interview: params.interviews.items[0]
       }
     })
-
-    if (faker.helpers.randomize([true])) {
-      date = DateHelper.getFutureDate(date)
-
-      events.items.push({
-        title: 'Interview changed',
-        user: faker.name.findName(),
-        date: date,
-        meta: {
-          interview: params.interviews.items[0]
-        }
-      })
-
-    }
-
-    if (faker.helpers.randomize([true])) {
-      date = DateHelper.getFutureDate(date)
-
-      events.items.push({
-        title: 'Interview cancelled',
-        user: faker.name.findName(),
-        date: date,
-        meta: {
-          interview: params.interviews.items[0],
-          cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
-        }
-      })
-    }
   }
 
   if (params.interviews && params.interviews.items[1]) {
@@ -79,6 +51,34 @@ module.exports = (params) => {
         interview: params.interviews.items[1]
       }
     })
+
+    if (faker.helpers.randomize([true])) {
+      date = DateHelper.getFutureDate(date)
+
+      events.items.push({
+        title: 'Interview changed',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          interview: params.interviews.items[1]
+        }
+      })
+
+    }
+
+    if (faker.helpers.randomize([true])) {
+      date = DateHelper.getFutureDate(date)
+
+      events.items.push({
+        title: 'Interview cancelled',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          interview: params.interviews.items[1],
+          cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
+        }
+      })
+    }
   }
 
   // generate a new date for the next event in the series

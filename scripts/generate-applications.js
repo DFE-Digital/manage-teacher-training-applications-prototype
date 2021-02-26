@@ -466,7 +466,14 @@ const generateFakeApplications = () => {
     interviews: {
       items: [{
         id: faker.random.uuid(),
-        date: future
+        date: future,
+        organisation: 'The Royal Borough Teaching School Alliance',
+        location: 'https://zoom.us/12345/'
+      }, {
+        id: faker.random.uuid(),
+        date: future,
+        organisation: 'Kingston University',
+        location: 'https://zoom.us/z1234/'
       }]
     }
   }))
