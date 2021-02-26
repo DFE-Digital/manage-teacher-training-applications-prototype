@@ -455,6 +455,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
+    id: 'P6RGOZC',
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
     submittedDate: '2020-07-05T14:01:00',

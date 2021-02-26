@@ -1,6 +1,7 @@
 const DateHelper = require('../helpers/dates');
 const faker = require('faker')
 faker.locale = 'en_GB'
+const _ = require('lodash')
 
 module.exports = (params) => {
   const events = { items: [] }
@@ -55,14 +56,15 @@ module.exports = (params) => {
     if (faker.helpers.randomize([true])) {
       date = DateHelper.getFutureDate(date)
 
-      params.interviews.items[1].details = 'https://zoom.us/boom/town'
+      var interview = _.clone(params.interviews.items[1])
+      interview.location = 'https://zoom.us/boom/town'
 
       events.items.push({
         title: 'Interview changed',
         user: faker.name.findName(),
         date: date,
         meta: {
-          interview: params.interviews.items[1]
+          interview: interview
         }
       })
 
@@ -76,7 +78,7 @@ module.exports = (params) => {
         user: faker.name.findName(),
         date: date,
         meta: {
-          interview: params.interviews.items[1],
+          interview: interview,
           cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
         }
       })

@@ -109,16 +109,16 @@
       active: primaryNavId == 'activity'
     },
     {
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
+    } if 1 == 2,
+    {
       href: "/export",
       text: "Export data",
       active: primaryNavId == 'export',
       classes: "app-primary-navigation__item--align-right"
-    },
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    } if 1 == 2
+    }
   ]
 }) }}
 
