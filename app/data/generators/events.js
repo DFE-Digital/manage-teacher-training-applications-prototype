@@ -55,6 +55,8 @@ module.exports = (params) => {
     if (faker.helpers.randomize([true])) {
       date = DateHelper.getFutureDate(date)
 
+      params.interviews.items[1].details = 'https://zoom.us/boom/town'
+
       events.items.push({
         title: 'Interview changed',
         user: faker.name.findName(),

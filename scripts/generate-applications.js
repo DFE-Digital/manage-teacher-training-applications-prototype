@@ -471,7 +471,9 @@ const generateFakeApplications = () => {
         location: 'https://zoom.us/12345/'
       }, {
         id: faker.random.uuid(),
-        date: future,
+        date: future.plus({
+          days: 1
+        }),
         organisation: 'Kingston University',
         location: 'https://zoom.us/z1234/'
       }]
