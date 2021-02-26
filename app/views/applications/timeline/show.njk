@@ -43,16 +43,24 @@
               {% if event.title == "Application submitted" %}
                 <a href="/applications/{{application.id}}">View application</a>
               {% elseif event.title == "Interview set up" %}
-                <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
+
+                {{appEventInterview({ interview: event.meta.interview })}}
+
+
+                {% if event.meta.interview.exists %}
+                  <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
+                {% endif %}
               {% elseif event.title == "Interview changed" %}
+
                 {{appEventInterview({ interview: event.meta.interview })}}
 
                 {% if event.meta.interview.exists %}
                   <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
                 {% endif %}
               {% elseif event.title == "Interview cancelled" %}
-                {{appEventInterview({ interview: event.meta.interview })}}
-                <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
+
+                {{appEventInterview({ interview: event.meta.interview, cancellationReason: event.meta.cancellationReason })}}
+                {# <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a> #}
               {% elseif event.title == "Offer made" %}
                 <a href="/applications/{{application.id}}/offer">View offer</a>
               {% elseif event.title == "Offer accepted" %}

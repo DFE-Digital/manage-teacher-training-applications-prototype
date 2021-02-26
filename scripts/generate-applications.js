@@ -3,6 +3,7 @@ const path = require('path')
 const faker = require('faker')
 faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
+const _ = require('lodash')
 
 // Fake data generators: general
 const generateSubject = require('../app/data/generators/subject')
@@ -53,7 +54,17 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const interviews = params.interviews || generateInterviews(faker, { status })
 
-  const events = generateEvents({ offer, status, interview: (interviews.items.length) ? interviews.items[0] : null })
+  const events = generateEvents({ offer, status, interviews })
+
+  // delete any interviews that have been cancelled
+  var cancelledInterviewEvents = events.items
+    .filter(event => event.title == 'Interview cancelled')
+
+  cancelledInterviewEvents.forEach(event => {
+    _.remove(interviews.items, function(interview) {
+      return interview.id == event.meta.interview.id
+    })
+  })
 
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))

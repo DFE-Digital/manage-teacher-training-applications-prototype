@@ -33,6 +33,14 @@ module.exports = router => {
         }
       }
 
+      // interview
+      if(item.title == 'Interview changed') {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        if(interview) {
+          item.meta.interview.exists = true
+        }
+      }
+
       // note
       if(item.meta && typeof item.meta.noteIndex === 'number') {
         var note = application.notes.items[item.meta.noteIndex]

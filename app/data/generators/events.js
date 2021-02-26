@@ -22,7 +22,11 @@ module.exports = (params) => {
     date: date
   })
 
-  if (params.interview) {
+  // we know there are currently 2 interviews set up
+
+
+
+  if (params.interviews && params.interviews.items[0]) {
     // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
@@ -31,7 +35,7 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interview: params.interview
+        interview: params.interviews.items[0]
       }
     })
 
@@ -43,7 +47,7 @@ module.exports = (params) => {
         user: faker.name.findName(),
         date: date,
         meta: {
-          interview: params.interview
+          interview: params.interviews.items[0]
         }
       })
 
@@ -57,16 +61,24 @@ module.exports = (params) => {
         user: faker.name.findName(),
         date: date,
         meta: {
-          interview: params.interview,
+          interview: params.interviews.items[0],
           cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
         }
       })
-
-      delete params.interview
-
     }
+  }
 
+  if (params.interviews && params.interviews.items[1]) {
+    date = DateHelper.getFutureDate(date)
 
+    events.items.push({
+      title: 'Interview set up',
+      user: faker.name.findName(),
+      date: date,
+      meta: {
+        interview: params.interviews.items[1]
+      }
+    })
   }
 
   // generate a new date for the next event in the series

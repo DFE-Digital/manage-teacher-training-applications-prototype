@@ -41,6 +41,14 @@
       value: {
         text: params.interview.details | nl2br or "None"
       }
-    }
+    },
+    {
+      key: {
+        text: "Reason for cancellation"
+      },
+      value: {
+        text: params.cancellationReason | nl2br
+      }
+    } if params.cancellationReason
   ]
 }) }}
