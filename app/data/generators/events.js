@@ -22,7 +22,7 @@ module.exports = (params) => {
     date: date
   })
 
-  if (params.interviewId) {
+  if (params.interview) {
     // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
@@ -31,9 +31,42 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interviewId: params.interviewId
+        interview: params.interview
       }
     })
+
+    if (faker.helpers.randomize([true])) {
+      date = DateHelper.getFutureDate(date)
+
+      events.items.push({
+        title: 'Interview changed',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          interview: params.interview
+        }
+      })
+
+    }
+
+    if (faker.helpers.randomize([true])) {
+      date = DateHelper.getFutureDate(date)
+
+      events.items.push({
+        title: 'Interview cancelled',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          interview: params.interview,
+          cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
+        }
+      })
+
+      delete params.interview
+
+    }
+
+
   }
 
   // generate a new date for the next event in the series

@@ -26,10 +26,10 @@ module.exports = router => {
     const events = application.events.items.map(item => {
 
       // interview
-      if(item.meta && item.meta.interviewId) {
-        var interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
-        item.meta ={
-          interview
+      if(item.title == 'Interview set up') {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        if(interview) {
+          item.meta.interview.exists = true
         }
       }
 
