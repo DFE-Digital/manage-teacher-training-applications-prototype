@@ -1,68 +1,66 @@
 <div class="app-timeline">
   {%- for event in events %}
-    {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
+    {% set name = [event.application.personalDetails.givenName, event.application.personalDetails.familyName] | join(" ") %}
     {% set note = null %}
     {% set offer = null %}
     {% set application = null %}
-    {% set id = event.app.id %}
+    {% set id = event.application.id %}
     {% set link = null %}
     {% set status = null %}
 
     {% if event.event.title == "Conditions met" %}
       {% set status = "Conditions met" %}
       {% set title = event.event.user + " recruited " + name %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set offer = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Moved to next cycle" %}
       {% set status = "Deferred" %}
       {% set title = event.event.user + " deferred " + name + "’s offer" %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set offer = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Interview set up" %}
       {% set status = "Interviewing" %}
       {% set title = event.event.user + " set up an interview with " + name %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set application = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Application submitted" %}
       {% set status = "Received" %}
       {% set title = name + " submitted an application "  %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set application = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Application rejected automatically" %}
       {% set status = "Rejected" %}
       {% set title = name + "’s application was rejected automatically" %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set application = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Application rejected" %}
       {% set status = "Rejected" %}
       {% set title = event.event.user + " rejected " + name + "’s application"%}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody, rejectedReasons: event.app.rejectedReasons } %}
+      {% set application = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody, rejectedReasons: event.application.rejectedReasons } %}
 
     {% elseif event.event.title == "Offer accepted" %}
       {% set status = "Accepted" %}
       {% set title = name + " accepted an offer"  %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set offer = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
       {% set link = { href: "#", text: "View offer" } %}
 
     {% elseif event.event.title == "Note added" %}
       {% set status = "Note added" %}
       {% set title = event.event.user + " add a note to " + name +"’s application" %}
-      {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
-
     {% elseif event.event.title == "Offer declined" %}
       {% set status = "Declined" %}
       {% set title = name + " declined an offer " %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set offer = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Offer made" %}
       {% set status = "Offered" %}
       {% set title = event.event.user + " made an offer to " + name  %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set offer = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Application withdrawn" %}
       {% set status = "Application withdrawn" %}
       {% set title = name + " withdrew their application" %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
+      {% set application = { course: event.application.course, location: event.application.locationname, provider: event.application.provider, accreditedBody: event.application.accreditingbody } %}
 
     {% elseif event.event.title == "Conditions not met" %}
       {% set status = "Conditions not met" %}
@@ -93,13 +91,15 @@
         }) }}
       </div>
       <div class="app-timeline__description">
+
         {{- appLogCard({
           title: title,
           dateText: event.event.date | date,
-          note: note if note,
+          note: event.event.meta.note,
+          interview: event.event.meta.interview,
           offer: offer if offer,
           application: application if application,
-          id: event.app.id if event.app.id
+          id: event.application.id if event.application.id
         }) -}}
       </div>
     </div>

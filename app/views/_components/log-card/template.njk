@@ -26,9 +26,8 @@
   {% endset %}
 {% elseif params.note %}
   {% set panelHtml %}
-    <p class="app-log-card__note--title">{{params.note.subject}}</p>
-    <p class="app-log-card__note--content">{{params.note.body}}</p>
-    <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ params.id }}/notes">View note</a>
+    <p class="app-log-card__note--content">{{params.note.message}}</p>
+    <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ params.id }}/notes/{{params.note.id}}">View note</a>
   {% endset %}
 {% endif -%}
 

@@ -49,14 +49,6 @@ module.exports = router => {
         }
       }
 
-      // note
-      if(item.meta && typeof item.meta.noteIndex === 'number') {
-        var note = application.notes.items[item.meta.noteIndex]
-        item.meta = {
-          note
-        }
-      }
-
       return item;
     })
 
