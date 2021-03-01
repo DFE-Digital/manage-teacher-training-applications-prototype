@@ -211,3 +211,33 @@ h1 .govuk-tag {
   border: 0;
   padding: 0;
 }
+
+.app-activity-log {
+  border-top: 1px solid govuk-colour("mid-grey");
+}
+
+.app-activity-log__item {
+  border-bottom: 1px solid govuk-colour("mid-grey");
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.app-activity-log__box {
+  // border-left: 10px solid govuk-colour("mid-grey");
+  padding: 15px 20px 10px 20px;
+  margin-bottom: 15px;
+  background-color: #eeefef;
+}
+
+.app-activity-log__description .govuk-summary-list {
+  margin-bottom: 0;
+}
+
+.app-activity-log__description .govuk-summary-list .govuk-summary-list__row:last-child .govuk-summary-list__key,
+.app-activity-log__description .govuk-summary-list .govuk-summary-list__row:last-child .govuk-summary-list__value {
+  border-bottom: 0;
+}
+
+.app-log-card__note--link {
+  margin-bottom: 0;
+}

@@ -5,11 +5,38 @@ const { DateTime } = require('luxon')
 function getActivity(applications) {
   let activity = []
 
-  applications.forEach(app => {
-    const events = app.events.items.map(item => {
+  applications.forEach(application => {
+    const events = application.events.items.map(item => {
+
+      // interview
+      if(item.title == 'Interview set up') {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        if(interview) {
+          item.meta.interview.exists = true
+        }
+      }
+
+      // interview
+      if(item.title == 'Interview changed') {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        if(interview) {
+          item.meta.interview.exists = true
+        }
+      }
+
+      // note
+      if(item.title == 'Note added') {
+        var note = application.notes.items.find(note => note.id === item.meta.note.id)
+        if(note) {
+          item.meta.note.exists = true
+        }
+      }
+
+      return item;
+    }).map(event => {
       return {
-        app: app,
-        event: item
+        application,
+        event
       }
     })
     activity = activity.concat(events)

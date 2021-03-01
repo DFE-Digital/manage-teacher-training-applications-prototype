@@ -1,6 +1,7 @@
 const DateHelper = require('../helpers/dates');
 const faker = require('faker')
 faker.locale = 'en_GB'
+const _ = require('lodash')
 
 module.exports = (params) => {
   const events = { items: [] }
@@ -22,7 +23,11 @@ module.exports = (params) => {
     date: date
   })
 
-  if (params.interviewId) {
+  // we know there are currently 2 interviews set up
+
+
+
+  if (params.interviews && params.interviews.items[0]) {
     // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
@@ -31,9 +36,53 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interviewId: params.interviewId
+        interview: params.interviews.items[0]
       }
     })
+  }
+
+  if (params.interviews && params.interviews.items[1]) {
+    date = DateHelper.getFutureDate(date)
+
+    events.items.push({
+      title: 'Interview set up',
+      user: faker.name.findName(),
+      date: date,
+      meta: {
+        interview: params.interviews.items[1]
+      }
+    })
+
+    if (faker.helpers.randomize([true])) {
+      date = DateHelper.getFutureDate(date)
+
+      var interview = _.clone(params.interviews.items[1])
+      interview.location = 'https://zoom.us/boom/town'
+
+      events.items.push({
+        title: 'Interview changed',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          interview: interview
+        }
+      })
+
+    }
+
+    if (faker.helpers.randomize([true])) {
+      date = DateHelper.getFutureDate(date)
+
+      events.items.push({
+        title: 'Interview cancelled',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          interview: interview,
+          cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
+        }
+      })
+    }
   }
 
   // generate a new date for the next event in the series
@@ -44,7 +93,7 @@ module.exports = (params) => {
     user: faker.name.findName(),
     date: date,
     meta: {
-      noteIndex: 0
+      note: params.notes.items[0]
     }
   })
 

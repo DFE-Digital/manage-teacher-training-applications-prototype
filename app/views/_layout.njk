@@ -39,7 +39,6 @@
 {% from "_components/footer/macro.njk" import appFooter %}
 {% from "_components/icon/macro.njk" import appIcon %}
 {% from "_components/interview-card/macro.njk" import appInterviewCard %}
-{% from "_components/log-card/macro.njk" import appLogCard %}
 {% from "_components/no-information-shared/macro.njk" import appNoInformationShared %}
 {% from "_components/notification-card/macro.njk" import appNotificationCard %}
 {% from "_components/offer-panel/macro.njk" import appOfferPanel %}
@@ -51,6 +50,10 @@
 {% from "_components/summary-card/macro.njk" import appSummaryCard %}
 {% from "_components/task-list/macro.njk" import appTaskList %}
 {% from "_components/timeline/macro.njk" import appTimeline %}
+{% from "_components/event-interview/macro.njk" import appEventInterview %}
+{% from "_components/event-note/macro.njk" import appEventNote %}
+{% from "_components/event-application/macro.njk" import appEventApplication %}
+{% from "_components/event-offer/macro.njk" import appEventOffer %}
 
 {% block head %}
   {% include "_includes/head.njk" %}
@@ -108,16 +111,16 @@
       active: primaryNavId == 'activity'
     },
     {
+      href: "/notifications",
+      html: alertsLinkHtml,
+      active: primaryNavId == 'notifications'
+    } if 1 == 2,
+    {
       href: "/export",
       text: "Export data",
       active: primaryNavId == 'export',
       classes: "app-primary-navigation__item--align-right"
-    },
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    } if 1 == 2
+    }
   ]
 }) }}
 

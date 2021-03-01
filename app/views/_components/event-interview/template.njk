@@ -1,0 +1,54 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Date"
+      },
+      value: {
+        text: params.interview.date | govukDate
+      }
+    },
+    {
+      key: {
+        text: "Time"
+      },
+      value: {
+        text: params.interview.date | time
+      }
+    },
+    {
+      key: {
+        text: "Organisation carrying out interview"
+      },
+      value: {
+        text: params.interview.organisation
+      }
+    },
+    {
+      key: {
+        text: "Address or online meeting details"
+      },
+      value: {
+        text: params.interview.location | nl2br
+      }
+    },
+    {
+      key: {
+        text: "Additional details"
+      },
+      value: {
+        text: params.interview.details | nl2br or "None"
+      }
+    },
+    {
+      key: {
+        text: "Reason for cancellation"
+      },
+      value: {
+        text: params.cancellationReason | nl2br
+      }
+    } if params.cancellationReason
+  ]
+}) }}

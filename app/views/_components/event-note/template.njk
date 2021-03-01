@@ -1,0 +1,22 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Sender"
+      },
+      value: {
+        text: params.note.sender
+      }
+    },
+    {
+      key: {
+        text: "Message"
+      },
+      value: {
+        text: params.note.message | nl2br
+      }
+    }
+  ]
+}) }}

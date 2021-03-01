@@ -1,106 +1,255 @@
-<div class="app-timeline">
+<div class="app-activity-log">
   {%- for event in events %}
-    {% set name = [event.app.personalDetails.givenName, event.app.personalDetails.familyName] | join(" ") %}
-    {% set note = null %}
-    {% set offer = null %}
-    {% set application = null %}
-    {% set id = event.app.id %}
-    {% set link = null %}
-    {% set status = null %}
+    {% set name = event.application.personalDetails.name %}
 
     {% if event.event.title == "Conditions met" %}
-      {% set status = "Conditions met" %}
-      {% set title = event.event.user + " recruited " + name %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
+      {% set title = event.event.user + " marked " + name + "’s conditions as met"  %}
     {% elseif event.event.title == "Moved to next cycle" %}
-      {% set status = "Deferred" %}
       {% set title = event.event.user + " deferred " + name + "’s offer" %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
     {% elseif event.event.title == "Interview set up" %}
-      {% set status = "Interviewing" %}
       {% set title = event.event.user + " set up an interview with " + name %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
+    {% elseif event.event.title == "Interview cancelled" %}
+      {% set title = event.event.user + " cancelled the interview with " + name %}
+    {% elseif event.event.title == "Interview changed" %}
+      {% set title = event.event.user + " changed the interview details for " + name %}
     {% elseif event.event.title == "Application submitted" %}
-      {% set status = "Received" %}
       {% set title = name + " submitted an application "  %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
     {% elseif event.event.title == "Application rejected automatically" %}
-      {% set status = "Rejected" %}
       {% set title = name + "’s application was rejected automatically" %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
     {% elseif event.event.title == "Application rejected" %}
-      {% set status = "Rejected" %}
       {% set title = event.event.user + " rejected " + name + "’s application"%}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody, rejectedReasons: event.app.rejectedReasons } %}
-
     {% elseif event.event.title == "Offer accepted" %}
-      {% set status = "Accepted" %}
       {% set title = name + " accepted an offer"  %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-      {% set link = { href: "#", text: "View offer" } %}
-
     {% elseif event.event.title == "Note added" %}
-      {% set status = "Note added" %}
-      {% set title = event.event.user + " add a note to " + name +"’s application" %}
-      {% set note = event.app.notes.items[event.event.meta.noteIndex] %}
-
+      {% set title = event.event.user + " added a note to " + name +"’s application" %}
     {% elseif event.event.title == "Offer declined" %}
-      {% set status = "Declined" %}
       {% set title = name + " declined an offer " %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
     {% elseif event.event.title == "Offer made" %}
-      {% set status = "Offered" %}
       {% set title = event.event.user + " made an offer to " + name  %}
-      {% set offer = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
     {% elseif event.event.title == "Application withdrawn" %}
-      {% set status = "Application withdrawn" %}
       {% set title = name + " withdrew their application" %}
-      {% set application = { course: event.app.course, location: event.app.locationname, provider: event.app.provider, accreditedBody: event.app.accreditingbody } %}
-
     {% elseif event.event.title == "Conditions not met" %}
-      {% set status = "Conditions not met" %}
       {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
-
     {% elseif event.event.title == "Offer withdrawn" %}
-      {% set status = "Offer withdrawn" %}
       {% set title = event.event.user + " withdrew " + name + "’s offer"  %}
-
     {% else %}
       {% set title = event.event.title %}
     {% endif -%}
 
-    <div class="app-timeline__item">
-      <div class="app-timeline__header">
-        <h2 class="app-timeline__title">
+    <div class="app-activity-log__item">
+      <div class="app-activity-log__header">
+        <h2 class="app-activity-log__title govuk-heading-s govuk-!-margin-bottom-1">
           {{ title }}
         </h2>
-        <p class="app-timeline__byline">
+        <p class="app-activity-log__byline govuk-body-">
           <time datetime="{{ event.event.date | formatDate }}">
             {{- event.event.date | govukDateAtTime -}}
           </time>
         </p>
-
-        {{ govukTag({
-          classes: "govuk-!-margin-top-2 " + (status | statusClass),
-          text: status
-        }) }}
       </div>
-      <div class="app-timeline__description">
-        {{- appLogCard({
-          title: title,
-          dateText: event.event.date | date,
-          note: note if note,
-          offer: offer if offer,
-          application: application if application,
-          id: event.app.id if event.app.id
-        }) -}}
+      <div class="app-activity-log__description">
+
+         {% if event.event.title == 'Note added' %}
+
+          <div class="app-activity-log__box">
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Training provider"
+                },
+                value: {
+                  text: event.application.provider
+                }
+              },
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: event.application.course
+                }
+              },
+              {
+                key: {
+                  text: "Message"
+                },
+                value: {
+                  text: event.event.meta.note.message | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Sender"
+                },
+                value: {
+                  text: event.event.meta.note.sender
+                }
+              }
+            ]
+          }) }}
+          </div>
+
+          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/notes/{{event.event.meta.note.id}}">View note</a></p>
+
+        {% endif %}
+
+
+        {% if event.event.title == 'Interview cancelled' or event.event.title == 'Interview changed' or event.event.title == 'Interview set up' %}
+
+          <div class="app-activity-log__box">
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Date"
+                },
+                value: {
+                  text: event.event.meta.interview.date | govukDate
+                }
+              },
+              {
+                key: {
+                  text: "Time"
+                },
+                value: {
+                  text: event.event.meta.interview.date | time
+                }
+              },
+              {
+                key: {
+                  text: "Organisation carrying out interview"
+                },
+                value: {
+                  text: event.event.meta.interview.organisation
+                }
+              },
+              {
+                key: {
+                  text: "Address or online meeting details"
+                },
+                value: {
+                  text: event.event.meta.interview.location | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Additional details"
+                },
+                value: {
+                  text: event.event.meta.interview.details | nl2br or "None"
+                }
+              },
+              {
+                key: {
+                  text: "Reason for cancellation"
+                },
+                value: {
+                  text: event.event.meta.cancellationReason | nl2br
+                }
+              } if event.event.meta.cancellationReason
+            ]
+          }) }}
+          </div>
+
+        {% endif %}
+
+        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" %}
+
+          <div class="app-activity-log__box">
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Training provider"
+                },
+                value: {
+                  text: event.application.provider
+                }
+              },
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: event.application.course
+                }
+              },
+              {
+                key: {
+                  text: "Location"
+                },
+                value: {
+                  text: event.application.locationname
+                }
+              },
+              {
+                key: {
+                  text: "Accredited body"
+                },
+                value: {
+                  text: event.application.accreditingbody
+                }
+              }
+            ]
+          }) }}
+          </div>
+
+           {% if event.event.title == "Offer withdrawn" %}
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">View feedback</a></p>
+          {% else %}
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/offer">View offer</a></p>
+          {% endif %}
+
+        {% endif %}
+
+        {% if event.event.title == "Application submitted" or event.event.title == "Application withdrawn" or event.event.title == "Application rejected" %}
+
+          <div class="app-activity-log__box">
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Training provider"
+                },
+                value: {
+                  text: event.application.provider
+                }
+              },
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: event.application.course
+                }
+              },
+              {
+                key: {
+                  text: "Location"
+                },
+                value: {
+                  text: event.application.locationname
+                }
+              },
+              {
+                key: {
+                  text: "Accredited body"
+                },
+                value: {
+                  text: event.application.accreditingbody
+                }
+              }
+            ]
+          }) }}
+          </div>
+
+          {% if event.application.rejectedReasons %}
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">View feedback</a></p>
+          {% else %}
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}">View application</a></p>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
 

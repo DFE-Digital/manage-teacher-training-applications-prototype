@@ -26,18 +26,26 @@ module.exports = router => {
     const events = application.events.items.map(item => {
 
       // interview
-      if(item.meta && item.meta.interviewId) {
-        var interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
-        item.meta ={
-          interview
+      if(item.title == 'Interview set up') {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        if(interview) {
+          item.meta.interview.exists = true
+        }
+      }
+
+      // interview
+      if(item.title == 'Interview changed') {
+        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        if(interview) {
+          item.meta.interview.exists = true
         }
       }
 
       // note
-      if(item.meta && typeof item.meta.noteIndex === 'number') {
-        var note = application.notes.items[item.meta.noteIndex]
-        item.meta = {
-          note
+      if(item.title == 'Note added') {
+        var note = application.notes.items.find(note => note.id === item.meta.note.id)
+        if(note) {
+          item.meta.note.exists = true
         }
       }
 

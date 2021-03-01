@@ -3,6 +3,7 @@ const path = require('path')
 const faker = require('faker')
 faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
+const _ = require('lodash')
 
 // Fake data generators: general
 const generateSubject = require('../app/data/generators/subject')
@@ -53,7 +54,17 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const interviews = params.interviews || generateInterviews(faker, { status })
 
-  const events = generateEvents({ offer, status, interviewId: (interviews.items.length) ? interviews.items[0].id : null })
+  const events = generateEvents({ offer, status, interviews, notes })
+
+  // delete any interviews that have been cancelled
+  var cancelledInterviewEvents = events.items
+    .filter(event => event.title == 'Interview cancelled')
+
+  cancelledInterviewEvents.forEach(event => {
+    _.remove(interviews.items, function(interview) {
+      return interview.id == event.meta.interview.id
+    })
+  })
 
   const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
@@ -444,6 +455,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
+    id: 'P6RGOZC',
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
     submittedDate: '2020-07-05T14:01:00',
@@ -455,7 +467,16 @@ const generateFakeApplications = () => {
     interviews: {
       items: [{
         id: faker.random.uuid(),
-        date: future
+        date: future,
+        organisation: 'The Royal Borough Teaching School Alliance',
+        location: 'https://zoom.us/12345/'
+      }, {
+        id: faker.random.uuid(),
+        date: future.plus({
+          days: 1
+        }),
+        organisation: 'Kingston University',
+        location: 'https://zoom.us/z1234/'
       }]
     }
   }))
