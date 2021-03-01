@@ -42,6 +42,14 @@ module.exports = router => {
       }
 
       // note
+      if(item.title == 'Note added') {
+        var note = application.notes.items.find(note => note.id === item.meta.note.id)
+        if(note) {
+          item.meta.note.exists = true
+        }
+      }
+
+      // note
       if(item.meta && typeof item.meta.noteIndex === 'number') {
         var note = application.notes.items[item.meta.noteIndex]
         item.meta = {

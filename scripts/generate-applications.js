@@ -54,7 +54,7 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const interviews = params.interviews || generateInterviews(faker, { status })
 
-  const events = generateEvents({ offer, status, interviews })
+  const events = generateEvents({ offer, status, interviews, notes })
 
   // delete any interviews that have been cancelled
   var cancelledInterviewEvents = events.items

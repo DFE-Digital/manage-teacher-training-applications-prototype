@@ -58,9 +58,7 @@
                   <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a>
                 {% endif %}
               {% elseif event.title == "Interview cancelled" %}
-
                 {{appEventInterview({ interview: event.meta.interview, cancellationReason: event.meta.cancellationReason })}}
-                {# <a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a> #}
               {% elseif event.title == "Offer made" %}
                 <a href="/applications/{{application.id}}/offer">View offer</a>
               {% elseif event.title == "Offer accepted" %}
@@ -86,7 +84,13 @@
               {% elseif event.title == "Status of conditions updated" %}
                 <a href="/applications/{{application.id}}/offer">View conditions</a>
               {% elseif event.title == "Note added" and event.meta.note %}
-                <a href="/applications/{{application.id}}/notes/{{event.meta.note.id}}">View note <span class="govuk-visually-hidden">{{event.meta.note.date | govukDateAtTime}}</span></a>
+
+                {{appEventNote({ note: event.meta.note })}}
+
+                {% if event.meta.note.exists %}
+                  <a href="/applications/{{application.id}}/notes/{{event.meta.note.id}}">View note <span class="govuk-visually-hidden">{{event.meta.note.date | govukDateAtTime}}</span></a>
+                {% endif %}
+
               {% endif %}
 
             </div>

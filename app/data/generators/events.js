@@ -93,7 +93,7 @@ module.exports = (params) => {
     user: faker.name.findName(),
     date: date,
     meta: {
-      noteIndex: 0
+      note: params.notes.items[0]
     }
   })
 
