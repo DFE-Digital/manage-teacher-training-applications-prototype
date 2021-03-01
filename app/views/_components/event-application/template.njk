@@ -1,0 +1,38 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Training provider"
+      },
+      value: {
+        text: params.application.provider
+      }
+    },
+    {
+      key: {
+        text: "Course"
+      },
+      value: {
+        text: params.application.course
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+        text: params.application.locationname
+      }
+    },
+    {
+      key: {
+        text: "Accredited body"
+      },
+      value: {
+        text: params.application.accreditingbody
+      }
+    }
+  ]
+}) }}
