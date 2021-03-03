@@ -9,21 +9,20 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {%- for day, events in activity %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-9">
-          {%- if day | daysFromDate(now) == 0 %}
-            Today ({{- day | govukDate -}})
-          {% elseif day | daysFromDate(now) == 1 %}
-            Tomorrow ({{- day | govukDate -}})
-          {% else %}
-            {{- day | govukDate -}}
-          {% endif -%}
-        </h2>
-
-        {% include "_includes/activity-log/events-timeline.njk" %}
-
-      {% endfor -%}
+      <div class="app-activity-log">
+        {%- for day, events in activity %}
+          <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">
+            {%- if day | daysFromDate(now) == 0 %}
+              Today ({{- day | govukDate -}})
+            {% elseif day | daysFromDate(now) == 1 %}
+              Tomorrow ({{- day | govukDate -}})
+            {% else %}
+              {{- day | govukDate -}}
+            {% endif -%}
+          </h2>
+          {% include "_includes/activity-log/events-timeline.njk" %}
+        {% endfor -%}
+      </div>
 
     </div>
   </div>

@@ -1,4 +1,4 @@
-<div class="app-activity-log">
+<div class="app-activity-log__group">
   {%- for event in events %}
     {% set name = event.application.personalDetails.name %}
 
@@ -90,7 +90,15 @@
           }) }}
           </div>
 
-          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/notes/{{event.event.meta.note.id}}">View note</a></p>
+          <p class="app-log-card__note--link">
+            <a class="govuk-link" href="/applications/{{event.application.id}}/notes/{{event.event.meta.note.id}}">
+              View note
+              <span class="govuk-visually-hidden">
+                Candidate {{event.application.personalDetails.name}}
+                Event date {{event.event.date | govukDateAtTime}}
+              </span>
+            </a>
+          </p>
 
         {% endif %}
 
@@ -196,9 +204,21 @@
           </div>
 
            {% if event.event.title == "Offer withdrawn" %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">View feedback</a></p>
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">
+              View feedback
+              <span class="govuk-visually-hidden">
+                Candidate {{event.application.personalDetails.name}}
+                Event date {{event.event.date | govukDateAtTime}}
+              </span>
+            </a></p>
           {% else %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/offer">View offer</a></p>
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/offer">
+              View offer
+              <span class="govuk-visually-hidden">
+                Candidate {{event.application.personalDetails.name}}
+                Event date {{event.event.date | govukDateAtTime}}
+              </span>
+            </a></p>
           {% endif %}
 
         {% endif %}
@@ -245,9 +265,21 @@
           </div>
 
           {% if event.application.rejectedReasons %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">View feedback</a></p>
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">
+              View feedback
+              <span class="govuk-visually-hidden">
+                Candidate {{event.application.personalDetails.name}}
+                Event date {{event.event.date | govukDateAtTime}}
+              </span>
+            </a></p>
           {% else %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}">View application</a></p>
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}">
+              View application
+              <span class="govuk-visually-hidden">
+                Candidate {{event.application.personalDetails.name}}
+                Event date {{event.event.date | govukDateAtTime}}
+              </span>
+            </a></p>
           {% endif %}
         {% endif %}
       </div>
