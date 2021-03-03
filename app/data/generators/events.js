@@ -88,6 +88,9 @@ module.exports = (params) => {
   // generate a new date for the next event in the series
   date = DateHelper.getFutureDate(date)
 
+  // to align dates
+  params.notes.items[0].date = date
+
   events.items.push({
     title: 'Note added',
     user: faker.name.findName(),
