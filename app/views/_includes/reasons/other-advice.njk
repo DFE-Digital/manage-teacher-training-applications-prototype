@@ -10,12 +10,24 @@
   }) }}
 {% endset %}
 
+{% set legendHtml %}
+  {% if isOtherAdviceAnH1 %}
+    <span class="govuk-caption-l">
+      {{name}}
+    </span>
+    Is there any other advice or feedback you’d like to give {{name}}?
+  {% else %}
+    Is there any other advice or feedback you’d like to give {{name}}?
+  {% endif %}
+{% endset %}
+
 
 {{ govukRadios({
   fieldset: {
     legend: {
-      html: "Is there any other advice or feedback you’d like to give " + name + "?",
-      classes: "govuk-fieldset__legend--m"
+      html: legendHtml,
+      isPageHeading: isOtherAdviceAnH1,
+      classes: "govuk-fieldset__legend--l" if isOtherAdviceAnH1 else "govuk-fieldset__legend--m"
     }
   },
   idPrefix: "rejection-other-feedback",

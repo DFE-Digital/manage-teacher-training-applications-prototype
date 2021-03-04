@@ -13,18 +13,22 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>The candidate will see this feedback.</p>
-
       <form method="post">
         {% if noReasonsGivenYet %}
+          <span class="govuk-caption-l">{{name}}</span>
+          <h1 class="govuk-heading-l">{{title}}</h1>
+          <p>The candidate will see this feedback.</p>
+
           {% include "_includes/reasons/why.njk" %}
+          {% include "_includes/reasons/other-advice.njk" %}
+        {% else %}
+
+          {% set isOtherAdviceAnH1 = true %}
+          {% include "_includes/reasons/other-advice.njk" %}
+
         {% endif %}
 
-        {% if data.safeguarding != "Yes" %}
-          {% include "_includes/reasons/other-advice.njk" %}
-        {% endif %}
+
         {{ govukButton({
           text: "Continue"
         }) }}
