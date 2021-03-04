@@ -311,26 +311,6 @@
     {% endif %}
     </div>
   {% endif %}
-
-  {% if rejectionReasons["other-offer"] != "Yes" %}
-    <div class="app-feedback">
-      <h2 class="govuk-heading-s">
-        Future applications
-      </h2>
-
-      {% if rejectionReasons['future-applications'] == "Yes" %}
-        <p>{{application["provider"]}} would be interested in future applications from you.</p>
-      {% else %}
-        <p>{{application["provider"]}} would not be interested in future applications from you.</p>
-      {% endif %}
-
-      {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}/other-reasons-for-rejection/">Change</a></p>
-      {% endif %}
-    </div>
-  {% endif %}
-
-
 {% endset %}
 
 {{ govukInsetText({

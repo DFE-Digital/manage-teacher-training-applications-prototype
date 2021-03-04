@@ -24,10 +24,6 @@
 
         {% if data.safeguarding != "Yes" %}
           {% include "_includes/reasons/other-advice.njk" %}
-
-          {% if data['other-offer'] != "Yes" %}
-            {% include "_includes/reasons/future-applications.njk" %}
-          {% endif %}
         {% endif %}
         {{ govukButton({
           text: "Continue"

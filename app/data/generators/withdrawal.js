@@ -7,8 +7,7 @@ module.exports = () => {
     actions: 'No',
     'course-full': 'No',
     why: '',
-    'other-feedback': 'No',
-    'future-applications': 'No'
+    'other-feedback': 'No'
   }
 
   const behaviour = {
@@ -34,14 +33,10 @@ module.exports = () => {
     'other-feedback-details': faker.lorem.paragraph(5)
   }
 
-  const futureApplications = {
-    'future-applications': 'Yes'
-  }
-
   // Withdrawal scenarios
-  const scenario1 = {...behaviour, ...additionalFeedback, ...futureApplications}
-  const scenario2 = {...course, ...additionalFeedback, ...futureApplications}
-  const scenario3 = {...why, ...additionalFeedback, ...futureApplications}
+  const scenario1 = {...behaviour, ...additionalFeedback}
+  const scenario2 = {...course, ...additionalFeedback}
+  const scenario3 = {...why, ...additionalFeedback}
 
   return faker.helpers.randomize([scenario1, scenario2, scenario3])
 }
