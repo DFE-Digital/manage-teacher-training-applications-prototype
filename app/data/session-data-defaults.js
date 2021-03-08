@@ -14,13 +14,6 @@ let applications = require('./applications.json')
 let users = require('./users.json')
 
 applications = applications.map(application => {
-  Object.defineProperty(application, 'statusText', {
-    get() {
-      return ApplicationHelper.getStatusText(application);
-    },
-    enumerable: true
-  })
-
   Object.defineProperty(application.personalDetails, 'name', {
     get() {
       return `${this.givenName} ${this.familyName}`
@@ -52,28 +45,8 @@ applications = applications.map(application => {
   })
 
   if(application.offer) {
-    Object.defineProperty(application.offer, 'declineByDate', {
-      get() {
-        return DateTime.fromISO(application.offer.madeDate).plus({ days: 10 }).toISO()
-      },
-      enumerable: true
-    })
-
-    Object.defineProperty(application.offer, 'daysToDecline', {
-      get() {
-        if(application.status != 'Offered') {
-          return null;
-        }
-        const now = DateTime.fromISO('2020-08-15')
-        let diff = DateTime.fromISO(application.offer.declineByDate).diff(now, 'days').toObject().days
-        diff = Math.round(diff)
-        if (diff < 1) {
-          diff = 0
-        }
-        return diff;
-      },
-      enumerable: true
-    })
+    application.offer.declineByDate = ApplicationHelper.calculateDeclineDate(application)
+    application.offer.daysToDecline = ApplicationHelper.calculateDaysToDecline(application)
   }
 
   return application

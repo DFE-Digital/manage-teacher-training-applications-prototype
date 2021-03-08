@@ -405,9 +405,10 @@ module.exports = router => {
 
     let allApplications = applications;
 
-    // applications = applications.sort(function (a, b) {
-    //   return a.daysToRespond - b.daysToRespond
-    // })
+    applications = applications.map((application) => {
+      application.statusText = ApplicationHelper.getStatusText(application)
+      return application
+    })
 
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)

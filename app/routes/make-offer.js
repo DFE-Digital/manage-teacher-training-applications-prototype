@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
+const ApplicationHelper = require('../data/helpers/application')
 
 module.exports = router => {
 
@@ -27,8 +28,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/offer/new/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     var conditions = []
-
-    if(req.session.data['new-offer']['standard-conditions'].length) {
+    if(req.session.data['new-offer'] && req.session.data['new-offer']['standard-conditions'] && req.session.data['new-offer']['standard-conditions'].length) {
       conditions = conditions.concat(req.session.data['new-offer']['standard-conditions'])
     }
 
@@ -42,7 +42,6 @@ module.exports = router => {
         status: "Pending"
       }
     })
-
     res.render('applications/offer/new/check', {
       application,
       conditions
@@ -58,8 +57,11 @@ module.exports = router => {
       madeDate: new Date().toISOString()
     }
 
+    application.offer.declineByDate = ApplicationHelper.calculateDeclineDate(application)
+    application.offer.daysToDecline = ApplicationHelper.calculateDaysToDecline(application)
+
     // save standard conditions
-    if(req.session.data['new-offer']['standard-conditions'].length) {
+    if(req.session.data['new-offer'] && req.session.data['new-offer']['standard-conditions'] && req.session.data['new-offer']['standard-conditions'].length) {
       application.offer.standardConditions = req.session.data['new-offer']['standard-conditions'].map(c => {
         return {
           id: uuidv4(),
