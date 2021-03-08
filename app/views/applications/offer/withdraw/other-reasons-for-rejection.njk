@@ -13,27 +13,26 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>This feedback will be sent to the candidate.</p>
-
       <form method="post">
-        {% set whyLabel = "Why are you withdrawing your offer?" %}
         {% if noReasonsGivenYet %}
+          <span class="govuk-caption-l">{{name}}</span>
+          <h1 class="govuk-heading-l">{{title}}</h1>
+          <p>This feedback will be sent to the candidate.</p>
+
+          {% set whyLabel = "Why are you withdrawing your offer?" %}
           {% include "_includes/reasons/why.njk" %}
-        {% endif %}
-
-        {% if data.safeguarding != "Yes" %}
           {% include "_includes/reasons/other-advice.njk" %}
-
-          {% if data['other-offer'] != "Yes" %}
-            {% include "_includes/reasons/future-applications.njk" %}
-          {% endif %}
+        {% else %}
+          {% set isOtherAdviceAnH1 = true %}
+          {% include "_includes/reasons/other-advice.njk" %}
         {% endif %}
+
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
+
+
 
       <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
     </div>

@@ -140,14 +140,3 @@
     <p>Other details: {{rejectedReasons[textBoxName]}}</p>
   {% endif %}
 {% endset %}
-
-{% set futureApplicationsHtml %}
-  {% set fieldName = "future-applications" %}
-  <p>{{rejectedReasons[fieldName]}}</p>
-
-  {% set checkboxValue = "Yes" %}
-  {% set textBoxName = "future-applications-details" %}
-  {% if rejectedReasons[fieldName] and rejectedReasons[fieldName].indexOf(checkboxValue) > -1 %}
-    <p>Other details: {{rejectedReasons[textBoxName]}}</p>
-  {% endif %}
-{% endset %}

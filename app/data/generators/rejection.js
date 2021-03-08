@@ -12,8 +12,7 @@ module.exports = () => {
     'other-offer': 'No',
     honesty: 'No',
     safeguarding: 'No',
-    'other-feedback': 'No',
-    'future-applications': 'No'
+    'other-feedback': 'No'
   }
 
   const behaviour = {
@@ -85,10 +84,6 @@ module.exports = () => {
     'other-feedback-details': faker.lorem.paragraph(5)
   }
 
-  const futureApplications = {
-    'future-applications': 'Yes'
-  }
-
   // Rejection scenarios
   const scenario1 = {...defaults, ...behaviour, ...quality, ...qualifications, interviewPerformance, ...course, ...offeredOther, ...honesty, ...safeguarding}
   const scenario2 = {...defaults, ...behaviour}
@@ -96,8 +91,8 @@ module.exports = () => {
   const scenario4 = {...defaults, ...quality, ...additionalFeedback}
   const scenario5 = {...defaults, ...interviewPerformance}
   const scenario6 = {...defaults, ...course}
-  const scenario7 = {...defaults, ...additionalFeedback, ...futureApplications}
-  const scenario8 = {...defaults, ...futureApplications}
+  const scenario7 = {...defaults, ...additionalFeedback}
+  const scenario8 = {...defaults}
 
   return faker.helpers.randomize([scenario1, scenario2, scenario3, scenario4, scenario5, scenario6, scenario7, scenario8, null])
 }
