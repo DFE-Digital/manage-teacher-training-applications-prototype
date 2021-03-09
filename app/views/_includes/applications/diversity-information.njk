@@ -3,7 +3,7 @@
 {# Whether candidate has completed diversity questionnaire #}
 {% set diversityQuestionnaireCompleted = application.personalDetails.diversityQuestionnaireAnswered %}
 
-{% set applicationAccepted = (application.status == "Accepted" or application.status == "Conditions met") %}
+{% set applicationAccepted = (application.status == "Awaiting conditions" or application.status == "Conditions met") %}
 
 {% set offerContext = 'your' if application.status=='Offered' else 'an' %}
 

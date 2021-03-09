@@ -153,7 +153,7 @@ module.exports = router => {
     ApplicationHelper.deleteCondition(application, req.params.conditionId)
 
     if(Application.getConditions(application).length == 0) {
-      application.status = "Conditions met";
+      application.status = "Ready to enroll";
     }
 
     req.flash('success', 'Condition deleted successfully')
@@ -218,7 +218,7 @@ module.exports = router => {
     var flash = "Status of conditions updated"
 
     if (ApplicationHelper.hasMetAllConditions(application)) {
-      application.status = 'Conditions met';
+      application.status = 'Ready to enroll';
       flash = "Conditions marked as met";
       ApplicationHelper.addEvent(application, {
         "title": "Conditions marked as met",
@@ -298,7 +298,7 @@ module.exports = router => {
       })
 
     if(Application.getConditions(application).length == 0 || !Application.hasPendingConditions(application)) {
-      application.status = "Conditions met";
+      application.status = "Ready to enroll";
     }
 
     req.flash('success', 'Conditions successfully deleted')

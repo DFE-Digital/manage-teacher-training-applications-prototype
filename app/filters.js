@@ -141,9 +141,9 @@ module.exports = (env) => {
         return 'app-tag--orange'
       case 'Conditions not met':
         return 'app-tag--red'
-      case 'Accepted':
+      case 'Awaiting conditions':
         return 'app-tag--blue'
-      case 'Conditions met':
+      case 'Ready to enroll':
         return 'app-tag--green'
       case 'Offered':
         return 'app-tag--turquoise'
