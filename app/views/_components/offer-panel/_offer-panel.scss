@@ -16,4 +16,8 @@
   .govuk-summary-list__row:last-child .govuk-summary-list__actions {
     border-bottom: none;
   }
+
+  > h2:first-child {
+    margin-top: 0 !important;
+  }
 }
