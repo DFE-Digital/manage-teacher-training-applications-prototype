@@ -47,7 +47,7 @@ const generateFakeApplication = (params = {}) => {
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   let offer = null
-  if (['Deferred', 'Offered', 'Accepted', 'Conditions met', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
+  if (['Deferred', 'Offered', 'Awaiting conditions', 'Ready to enroll', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
     offer = generateOffer({ status, submittedDate })
   }
 
@@ -540,7 +540,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Accepted',
+    status: 'Awaiting conditions',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Trent',
@@ -550,7 +550,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Accepted',
+    status: 'Awaiting conditions',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Ed',
@@ -560,7 +560,7 @@ const generateFakeApplications = () => {
   }))
 
  applications.push(generateFakeApplication({
-    status: 'Accepted',
+    status: 'Awaiting conditions',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Audree',
@@ -570,7 +570,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Conditions met',
+    status: 'Ready to enroll',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Bill',
@@ -580,7 +580,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Conditions met',
+    status: 'Ready to enroll',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Amy',
@@ -590,7 +590,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Conditions met',
+    status: 'Ready to enroll',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Tony',
@@ -870,14 +870,14 @@ const generateFakeApplications = () => {
 
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
-      status: 'Accepted'
+      status: 'Awaiting conditions'
     })
     applications.push(application)
   }
 
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
-      status: 'Conditions met'
+      status: 'Ready to enroll'
     })
     applications.push(application)
   }

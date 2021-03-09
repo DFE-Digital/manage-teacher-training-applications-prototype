@@ -14,7 +14,7 @@ function getCheckboxValues (name, data) {
 function getApplicationsByGroup (applications) {
 
   const previousCyclePendingConditions = applications
-    .filter(app => app.status === "Accepted")
+    .filter(app => app.status === "Awaiting conditions")
     .filter(app => app.cycle === '2019 to 2020')
 
   const deferredOffersPendingReconfirmation = applications
@@ -53,11 +53,11 @@ function getApplicationsByGroup (applications) {
     })
 
   const pendingConditions = applications
-    .filter(app => app.status === 'Accepted')
+    .filter(app => app.status === 'Awaiting conditions')
     .filter(app => app.cycle === '2020 to 2021')
 
   const conditionsMet = applications
-    .filter(app => app.status === 'Conditions met')
+    .filter(app => app.status === 'Ready to enroll')
 
   const deferredOffers = applications
     .filter(app => app.status === 'Deferred')
@@ -67,8 +67,8 @@ function getApplicationsByGroup (applications) {
     .filter(app => app.status !== 'Awaiting decision')
     .filter(app => app.status !== 'Deferred')
     .filter(app => app.status !== 'Offered')
-    .filter(app => app.status !== 'Accepted')
-    .filter(app => app.status !== 'Conditions met')
+    .filter(app => app.status !== 'Awaiting conditions')
+    .filter(app => app.status !== 'Ready to enroll')
     .filter(app => app.status !== 'Rejected')
 
   // we have 5 of these

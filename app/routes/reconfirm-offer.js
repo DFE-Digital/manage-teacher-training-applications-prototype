@@ -74,7 +74,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     application.offer.madeDate = new Date().toISOString()
-    application.status = 'Accepted' // work this out
+    application.status = 'Awaiting conditions' // work this out
     application.cycle = '2020 to 2021'
     application.events.items.push({
       date: new Date().toISOString(),

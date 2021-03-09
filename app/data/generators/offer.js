@@ -9,7 +9,7 @@ module.exports = (params) => {
   let madeDate = DateTime.fromISO(submittedDate).plus({ days: faker.random.number({ min: 3, max: 19 }) }).toISO()
 
   let conditionStatus = 'Pending'
-  if (status === 'Conditions met') {
+  if (status === 'Ready to enroll') {
     conditionStatus = 'Met'
   }
   if (status === 'Conditions not met') {
@@ -27,7 +27,7 @@ module.exports = (params) => {
   }
 
   let acceptedDate = null
-  if(status === 'Accepted' || status === 'Conditions met' || status === 'Conditions not met' || status === 'Deferred') {
+  if(status === 'Awaiting conditions' || status === 'Ready to enroll' || status === 'Conditions not met' || status === 'Deferred') {
     acceptedDate = DateTime.fromISO(madeDate).plus({ days: faker.random.number({ min: 1, max: 3 })}).toISO()
   }
 

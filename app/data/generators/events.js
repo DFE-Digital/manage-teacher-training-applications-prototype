@@ -144,7 +144,7 @@ module.exports = (params) => {
     })
   }
 
-  if (params.status === 'Accepted') {
+  if (params.status === 'Awaiting conditions') {
     // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
