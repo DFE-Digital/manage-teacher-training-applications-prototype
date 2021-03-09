@@ -164,7 +164,7 @@ module.exports = (params) => {
     })
   }
 
-  if (params.status === 'Conditions met') {
+  if (params.status === 'Ready to enroll') {
     // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 

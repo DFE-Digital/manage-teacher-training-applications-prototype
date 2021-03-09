@@ -339,7 +339,7 @@ module.exports = router => {
     application.offer.course = 'Primary (5-11) (X100)';
     application.offer.locationname = req.session.data.location;
 
-    application.status = 'Conditions met' // work this out
+    application.status = 'Ready to enroll' // work this out
     application.cycle = 'Current cycle (2020 to 2021)'
     application.events.items.push({
       date: new Date().toISOString(),
