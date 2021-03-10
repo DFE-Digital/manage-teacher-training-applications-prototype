@@ -46,24 +46,27 @@ const generateFakeApplication = (params = {}) => {
   const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 }).toISO()
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
+  const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
+  const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
+  const subject = generateSubject(faker)
+  const courseCode = faker.random.alphaNumeric(4).toUpperCase()
+  const course = `${subject.name} (${courseCode})`
+  const location = generateTrainingLocation(faker)
+
   let offer = null
   if (['Deferred', 'Offered', 'Awaiting conditions', 'Ready to enroll', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
-    offer = generateOffer({ status, submittedDate })
+    offer = generateOffer({
+      status,
+      submittedDate,
+      accreditedBody: accreditedBody.name,
+      provider: provider.name,
+      course,
+      location
+    })
   }
 
   const notes = generateNotes(faker)
   const interviews = params.interviews || generateInterviews(faker, { status })
-
-
-
-  const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
-  const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
-
-  const subject = generateSubject(faker)
-  const courseCode = faker.random.alphaNumeric(4).toUpperCase()
-  const course = `${subject.name} (${courseCode})`
-
-  const location = generateTrainingLocation(faker)
 
   const events = generateEvents({
     offer,

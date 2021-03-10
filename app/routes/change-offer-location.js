@@ -24,6 +24,7 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/edit-location/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+
     ApplicationHelper.addEvent(application, {
       title: "Offer changed",
       user: "Ben Brown",
