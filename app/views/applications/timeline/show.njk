@@ -69,7 +69,12 @@
                 </div>
               {% elseif event.title == "Offer made" %}
                 <div class="app-activity-log__box">
-                {{appEventOffer({ application: application })}}
+                {{appEventOffer({ offer: event.meta.offer })}}
+                </div>
+                <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
+              {% elseif event.title == "Offer changed" %}
+                <div class="app-activity-log__box">
+                  {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Offer accepted" %}

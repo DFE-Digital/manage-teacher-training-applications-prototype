@@ -129,7 +129,17 @@ module.exports = (params) => {
     events.items.push({
       title: 'Offer made',
       user: faker.name.findName(),
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   }
 

@@ -30,7 +30,12 @@ module.exports = router => {
       date: new Date().toISOString(),
       meta: {
         offer: {
-
+          provider: application.offer.provider,
+          course: application.offer.course,
+          location: req.session.data['change-offer'].location,
+          accreditedBody: application.offer.accreditedBody,
+          standardConditions: application.offer.standardConditions,
+          conditions: application.offer.conditions
         }
       }
     })

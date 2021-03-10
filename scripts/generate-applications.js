@@ -54,7 +54,27 @@ const generateFakeApplication = (params = {}) => {
   const notes = generateNotes(faker)
   const interviews = params.interviews || generateInterviews(faker, { status })
 
-  const events = generateEvents({ offer, status, interviews, notes })
+
+
+  const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
+  const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
+
+  const subject = generateSubject(faker)
+  const courseCode = faker.random.alphaNumeric(4).toUpperCase()
+  const course = `${subject.name} (${courseCode})`
+
+  const location = generateTrainingLocation(faker)
+
+  const events = generateEvents({
+    offer,
+    status,
+    interviews,
+    notes,
+    provider: provider.name,
+    course,
+    location,
+    accreditedBody: accreditedBody.name
+  })
 
   // delete any interviews that have been cancelled
   var cancelledInterviewEvents = events.items
@@ -66,12 +86,6 @@ const generateFakeApplication = (params = {}) => {
     })
   })
 
-  const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
-  const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
-
-  const subject = generateSubject(faker)
-  const courseCode = faker.random.alphaNumeric(4).toUpperCase()
-  const course = `${subject.name} (${courseCode})`
 
   let rejectedDate
   let rejectedFeedbackDate
@@ -90,12 +104,12 @@ const generateFakeApplication = (params = {}) => {
     offerCanNotBeReconfirmed,
     cycle,
     provider: provider.name,
-    accreditingbody: accreditedBody.name,
+    accreditedBody: accreditedBody.name,
     studyMode: params.studyMode || faker.helpers.randomize(['Full time', 'Part time']),
     fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
     subject: params.subject || subject.name,
     course: params.course || course,
-    location: params.location || generateTrainingLocation(faker),
+    location: params.location || location,
     status,
     submittedDate,
     offer,

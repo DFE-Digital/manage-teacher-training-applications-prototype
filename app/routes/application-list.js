@@ -233,7 +233,7 @@ module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { cycle, status, provider, accreditingbody, keywords, location, studyMode, subject } = req.query
+    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -241,13 +241,13 @@ module.exports = router => {
     const statuses = getCheckboxValues(status, req.session.data.status)
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locations = getCheckboxValues(location, req.session.data.location)
-    const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
+    const accreditedBodies = getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
     const subjects = getCheckboxValues(subject, req.session.data.subject)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -273,7 +273,7 @@ module.exports = router => {
         let statusValid = true
         let providerValid = true
         let locationValid = true
-        let accreditingbodyValid = true
+        let accreditedBodyValid = true
         let studyModeValid = true
         let subjectValid = true
 
@@ -293,8 +293,8 @@ module.exports = router => {
           providerValid = providers.includes(app.provider)
         }
 
-        if (accreditingbodies && accreditingbodies.length) {
-          accreditingbodyValid = accreditingbodies.includes(app.accreditingbody)
+        if (accreditedBodies && accreditedBodies.length) {
+          accreditedBodyValid = accreditedBodies.includes(app.accreditedBody)
         }
 
         if (subjects && subjects.length) {
@@ -305,7 +305,7 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationValid && providerValid && accreditingbodyValid && studyModeValid && subjectValid
+        return cycleValid && statusValid && locationValid && providerValid && accreditedBodyValid && studyModeValid && subjectValid
       })
     }
 
@@ -363,13 +363,13 @@ module.exports = router => {
         })
       }
 
-      if (accreditingbodies && accreditingbodies.length) {
+      if (accreditedBodies && accreditedBodies.length) {
         selectedFilters.categories.push({
           heading: { text: 'Courses ratified by' },
-          items: accreditingbodies.map((accreditingbody) => {
+          items: accreditedBodies.map((accreditedBody) => {
             return {
-              text: accreditingbody,
-              href: `/remove-accreditingbody-filter/${accreditingbody}`
+              text: accreditedBody,
+              href: `/remove-accreditedBody-filter/${accreditedBody}`
             }
           })
         })
@@ -466,8 +466,8 @@ module.exports = router => {
     res.redirect('/')
   })
 
-  router.get('/remove-accreditingbody-filter/:accreditingbody', (req, res) => {
-    req.session.data.accreditingbody = req.session.data.accreditingbody.filter(item => item !== req.params.accreditingbody)
+  router.get('/remove-accreditedBody-filter/:accreditedBody', (req, res) => {
+    req.session.data.accreditedBody = req.session.data.accreditedBody.filter(item => item !== req.params.accreditedBody)
     res.redirect('/')
   })
 
@@ -485,7 +485,7 @@ module.exports = router => {
     req.session.data.cycle = null
     req.session.data.status = null
     req.session.data.provider = null
-    req.session.data.accreditingbody = null
+    req.session.data.accreditedBody = null
     req.session.data.location = null
     req.session.data.subject = null
     req.session.data.studyMode = null

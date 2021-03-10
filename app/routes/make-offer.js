@@ -92,6 +92,7 @@ module.exports = router => {
           provider: application.offer.provider,
           course: application.offer.course,
           location: application.offer.location,
+          accreditedBody: application.offer.accreditedBody,
           standardConditions: application.offer.standardConditions,
           conditions: application.offer.conditions
         }

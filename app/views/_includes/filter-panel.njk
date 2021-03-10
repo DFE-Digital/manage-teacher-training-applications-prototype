@@ -155,8 +155,8 @@
   {% endif %}
 
   {{ govukCheckboxes({
-    idPrefix: 'accreditingbody',
-    name: 'accreditingbody',
+    idPrefix: 'accreditedBody',
+    name: 'accreditedBody',
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
@@ -168,12 +168,12 @@
       {
         value: data.accreditedBodies[0].name,
         text: data.accreditedBodies[0].name,
-        checked: checked(data.accreditingbody, data.accreditedBodies[0].name) == 'checked'
+        checked: checked(data.accreditedBody, data.accreditedBodies[0].name) == 'checked'
       },
       {
         value: data.accreditedBodies[1].name,
         text: data.accreditedBodies[1].name,
-        checked: checked(data.accreditingbody, data.accreditedBodies[1].name) == 'checked'
+        checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == 'checked'
       }
     ]
   }) }}
