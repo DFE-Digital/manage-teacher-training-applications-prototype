@@ -95,7 +95,7 @@ const generateFakeApplication = (params = {}) => {
     fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
     subject: params.subject || subject.name,
     course: params.course || course,
-    locationname: params.locationname || generateTrainingLocation(faker),
+    location: params.location || generateTrainingLocation(faker),
     status,
     submittedDate,
     offer,

@@ -198,7 +198,7 @@ module.exports = router => {
     application.offer.madeDate = new Date().toISOString()
     application.offer.provider = req.session.data.trainingProviders[0].name
     application.offer.course = 'Primary (5-11) (X100)'
-    application.offer.locationname = req.session.data.location
+    application.offer.location = req.session.data.location
 
     application.status = 'Ready to enroll' // work this out
     application.cycle = 'Current cycle (2020 to 2021)'
@@ -337,7 +337,7 @@ module.exports = router => {
     application.offer.madeDate = new Date().toISOString();
     application.offer.provider =  req.session.data.trainingProviders[0].name;
     application.offer.course = 'Primary (5-11) (X100)';
-    application.offer.locationname = req.session.data.location;
+    application.offer.location = req.session.data.location;
 
     application.status = 'Ready to enroll' // work this out
     application.cycle = 'Current cycle (2020 to 2021)'

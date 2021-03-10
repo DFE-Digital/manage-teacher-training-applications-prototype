@@ -233,21 +233,21 @@ module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { cycle, status, provider, accreditingbody, keywords, locationname, studyMode, subject } = req.query
+    let { cycle, status, provider, accreditingbody, keywords, location, studyMode, subject } = req.query
 
     keywords = keywords || req.session.data.keywords
 
     const cycles = getCheckboxValues(cycle, req.session.data.cycle)
     const statuses = getCheckboxValues(status, req.session.data.status)
     const providers = getCheckboxValues(provider, req.session.data.provider)
-    const locationnames = getCheckboxValues(locationname, req.session.data.locationname)
+    const locations = getCheckboxValues(location, req.session.data.location)
     const accreditingbodies = getCheckboxValues(accreditingbody, req.session.data.accreditingbody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
     const subjects = getCheckboxValues(subject, req.session.data.subject)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locationnames && locationnames.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditingbodies && accreditingbodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -272,7 +272,7 @@ module.exports = router => {
         let cycleValid = true
         let statusValid = true
         let providerValid = true
-        let locationnameValid = true
+        let locationValid = true
         let accreditingbodyValid = true
         let studyModeValid = true
         let subjectValid = true
@@ -285,8 +285,8 @@ module.exports = router => {
           statusValid = statuses.includes(ApplicationHelper.getStatusText(app))
         }
 
-        if (locationnames && locationnames.length) {
-          locationnameValid = locationnames.includes(app.locationname)
+        if (locations && locations.length) {
+          locationValid = locations.includes(app.location)
         }
 
         if (providers && providers.length) {
@@ -305,7 +305,7 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationnameValid && providerValid && accreditingbodyValid && studyModeValid && subjectValid
+        return cycleValid && statusValid && locationValid && providerValid && accreditingbodyValid && studyModeValid && subjectValid
       })
     }
 
@@ -339,13 +339,13 @@ module.exports = router => {
         })
       }
 
-      if (locationnames && locationnames.length) {
+      if (locations && locations.length) {
         selectedFilters.categories.push({
           heading: { text: 'Training locations for ' + req.session.data.trainingProviders[1].name },
-          items: locationnames.map((locationname) => {
+          items: locations.map((location) => {
             return {
-              text: locationname,
-              href: `/remove-locationname-filter/${locationname}`
+              text: location,
+              href: `/remove-location-filter/${location}`
             }
           })
         })
@@ -461,8 +461,8 @@ module.exports = router => {
     res.redirect('/')
   })
 
-  router.get('/remove-locationname-filter/:locationname', (req, res) => {
-    req.session.data.locationname = req.session.data.locationname.filter(item => item !== req.params.locationname)
+  router.get('/remove-location-filter/:location', (req, res) => {
+    req.session.data.location = req.session.data.location.filter(item => item !== req.params.location)
     res.redirect('/')
   })
 
@@ -486,7 +486,7 @@ module.exports = router => {
     req.session.data.status = null
     req.session.data.provider = null
     req.session.data.accreditingbody = null
-    req.session.data.locationname = null
+    req.session.data.location = null
     req.session.data.subject = null
     req.session.data.studyMode = null
     res.redirect('/')
