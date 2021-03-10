@@ -4,7 +4,7 @@
 
     {% if event.event.title == "Conditions met" %}
       {% set title = event.event.user + " marked " + name + "’s conditions as met"  %}
-    {% elseif event.event.title == "Moved to next cycle" %}
+    {% elseif event.event.title == "Offer deferred" %}
       {% set title = event.event.user + " deferred " + name + "’s offer" %}
     {% elseif event.event.title == "Interview set up" %}
       {% set title = event.event.user + " set up an interview with " + name %}
@@ -26,6 +26,8 @@
       {% set title = name + " declined an offer " %}
     {% elseif event.event.title == "Offer made" %}
       {% set title = event.event.user + " made an offer to " + name  %}
+    {% elseif event.event.title == "Offer changed" %}
+      {% set title = event.event.user + " changed the offer for " + name +"’s application" %}
     {% elseif event.event.title == "Application withdrawn" %}
       {% set title = name + " withdrew their application" %}
     {% elseif event.event.title == "Conditions not met" %}
@@ -162,7 +164,7 @@
 
         {% endif %}
 
-        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" %}
+        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" %}
 
           <div class="app-activity-log__box">
           {{ govukSummaryList({
@@ -172,7 +174,7 @@
                   text: "Training provider"
                 },
                 value: {
-                  text: event.application.provider
+                  text: event.application.offer.provider
                 }
               },
               {
@@ -180,7 +182,7 @@
                   text: "Course"
                 },
                 value: {
-                  text: event.application.course
+                  text: event.application.offer.course
                 }
               },
               {
@@ -188,7 +190,7 @@
                   text: "Location"
                 },
                 value: {
-                  text: event.application.location
+                  text: event.application.offer.location
                 }
               },
               {
@@ -196,7 +198,7 @@
                   text: "Accredited body"
                 },
                 value: {
-                  text: event.application.accreditedBody
+                  text: event.application.offer.accreditedBody
                 }
               }
             ]
