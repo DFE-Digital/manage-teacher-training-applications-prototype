@@ -39,15 +39,15 @@
             href: "/applications/" + application.id + "/offer/defer/check"
           } if application.status == "Awaiting conditions" or application.status == "Ready to enroll",
           provider: {
-            value: application.provider,
+            value: application.offer.provider,
             href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered"
           },
           course: {
-            value: application.course,
+            value: application.offer.course,
             href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered"
           },
           location: {
-            value: application.location,
+            value: application.offer.location,
             href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered"
           },
 

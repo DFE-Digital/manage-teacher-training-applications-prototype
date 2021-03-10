@@ -25,6 +25,8 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    application.offer.location = req.session.data['change-offer'].location
+
     ApplicationHelper.addEvent(application, {
       title: "Offer changed",
       user: "Ben Brown",
@@ -33,7 +35,7 @@ module.exports = router => {
         offer: {
           provider: application.offer.provider,
           course: application.offer.course,
-          location: req.session.data['change-offer'].location,
+          location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
           standardConditions: application.offer.standardConditions,
           conditions: application.offer.conditions
