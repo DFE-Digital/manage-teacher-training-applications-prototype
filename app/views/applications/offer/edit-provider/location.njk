@@ -27,20 +27,16 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          idPrefix: "location",
-          name: "location",
           items: [{
             value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
             text: "Alliance Academy",
-            hint: { text: 'Edgeware, Road Name, SW1 1AA' },
-            checked: checked(data.location, "Alliance Academy, Edgeware, Road Name, SW1 1AA")
+            hint: { text: 'Edgeware, Road Name, SW1 1AA' }
           }, {
             value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
             text: "Bruntcliffe Academy",
-            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' },
-            checked: checked(data.location, "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ")
+            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' }
           }]
-        }) }}
+        } | decorateAttributes(data, 'data["change-offer"]["location"]') ) }}
 
         {{ govukButton({
           text: "Continue"

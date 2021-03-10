@@ -26,8 +26,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          idPrefix: "trainingprovider",
-          name: "trainingprovider",
           items: [{
             value: data.user.organisations[0].name,
             text: data.user.organisations[0].name,
@@ -37,7 +35,7 @@
             text: data.user.organisations[1].name,
             checked: checked(data.trainingprovider, data.user.organisations[1].name)
           }]
-        }) }}
+        } | decorateAttributes(data, 'data["change-offer"]["provider"]') ) }}
 
         {{ govukButton({
           text: "Continue"
