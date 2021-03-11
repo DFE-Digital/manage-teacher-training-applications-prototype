@@ -13,9 +13,6 @@
     icon: false
   }) if flash | falsify }}
 
-  {% set rbd = application.submittedDate | addDays(40) %}
-  {% set remaining = rbd | daysFromNow(rbd) %}
-
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
     {{name}}
     <span class="govuk-visually-hidden">Offer</span>

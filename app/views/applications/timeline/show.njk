@@ -7,8 +7,9 @@
 
 {% block content %}
 
-  {% set rbd = application.submittedDate | addDays(40) %}
-  {% set remaining = rbd | daysFromNow(rbd) %}
+  {# {{ govukNotificationBanner({
+    text: 'You no longer own this application. It’s moved to a different provider.'
+  })}} #}
 
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
     {{name}}

@@ -4,8 +4,6 @@
 {% set subNavId = "application" %}
 {% set name = application.personalDetails.name %}
 {% set title = 'Application - ' + name %}
-{% set rbd = application.submittedDate | addDays(40) %}
-{% set remaining = rbd | daysFromNow(rbd) %}
 
 {% block content %}
   {{ govukNotificationBanner({
