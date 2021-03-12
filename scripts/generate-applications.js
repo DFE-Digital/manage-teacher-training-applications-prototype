@@ -629,7 +629,7 @@ const generateFakeApplications = () => {
       nationality: ['Spanish', 'Argentinian'],
       residency: {
         rightToWorkStudy: 'Yes',
-        details: 'I have lived in the UK for 10 years.'
+        rightToWorkStudyDetails: 'I have lived in the UK for 10 years.'
       }
     },
     contactDetails: {
@@ -746,7 +746,8 @@ const generateFakeApplications = () => {
       familyName: 'Ha-Sun',
       nationality: ['South Korean', 'Australian'],
       residency: {
-        rightToWorkStudy: 'Not yet'
+        rightToWorkStudy: 'Not yet',
+        rightToWorkStudyDetails: ''
       }
     },
     contactDetails: {
@@ -824,7 +825,8 @@ const generateFakeApplications = () => {
       familyName: 'Sra',
       nationality: ['Indian'],
       residency: {
-        rightToWorkStudy: 'Do not know'
+        rightToWorkStudy: 'Do not know',
+        rightToWorkStudyDetails: ''
       }
     },
     degree: [{

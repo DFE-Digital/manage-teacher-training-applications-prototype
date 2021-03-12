@@ -25,7 +25,6 @@ module.exports = faker => {
     'Do not know'
   ])
 
-
   const residency = {}
   if (isInternationalCandidate) {
     residency.rightToWorkStudy = rightToWorkStudy
@@ -45,7 +44,8 @@ module.exports = faker => {
     }
   } else {
     residency.rightToWorkStudy = 'Yes'
-    residency.rightToWorkStudyDetails = 'I am a ' + nationality[0] + ' citizen'
+    residency.rightToWorkStudyDetails = nationality[0] === 'Irish' ? 'I am an ' : 'I am a '
+    residency.rightToWorkStudyDetails += nationality[0] + ' citizen'
   }
 
   // Equality and diversity
