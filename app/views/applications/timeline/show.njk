@@ -82,17 +82,17 @@
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Offer accepted" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Offer declined" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Offer withdrawn" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Offer deferred" %}
