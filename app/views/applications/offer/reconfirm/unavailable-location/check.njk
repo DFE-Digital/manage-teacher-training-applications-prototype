@@ -46,10 +46,10 @@
         {{ govukSummaryList({
             rows: [{
               key: {
-                text: "Provider"
+                text: "Training provider"
               },
               value: {
-                html: application.provider
+                html: application.offer.provider
               },
               actions: {
                 items: [
@@ -65,7 +65,7 @@
                 text: "Course"
               },
               value: {
-                html: application.course
+                html: application.offer.course
               },
               actions: {
                 items: [

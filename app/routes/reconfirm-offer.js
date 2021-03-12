@@ -76,10 +76,21 @@ module.exports = router => {
     application.offer.madeDate = new Date().toISOString()
     application.status = 'Awaiting conditions' // work this out
     application.cycle = '2020 to 2021'
-    application.events.items.push({
+
+    ApplicationHelper.addEvent(application, {
       date: new Date().toISOString(),
       user: "Alicia Grenada",
-      title: "Offer reconfirmed"
+      title: "Offer reconfirmed",
+      meta: {
+        offer: {
+          provider: application.offer.provider,
+          course: application.offer.course,
+          location: application.offer.location,
+          accreditedBody: application.offer.accreditedBody,
+          standardConditions: application.offer.standardConditions,
+          conditions: application.offer.conditions
+        }
+      }
     })
 
     req.flash('success', 'Deferred offer successfully confirmed for current cycle')
@@ -201,7 +212,7 @@ module.exports = router => {
     application.offer.location = req.session.data.location
 
     application.status = 'Ready to enroll' // work this out
-    application.cycle = 'Current cycle (2020 to 2021)'
+    application.cycle = '2020 to 2021'
     application.events.items.push({
       date: new Date().toISOString(),
       user: "Alicia Grenada",
@@ -340,7 +351,7 @@ module.exports = router => {
     application.offer.location = req.session.data.location;
 
     application.status = 'Ready to enroll' // work this out
-    application.cycle = 'Current cycle (2020 to 2021)'
+    application.cycle = '2020 to 2021'
     application.events.items.push({
       date: new Date().toISOString(),
       user: "Alicia Grenada",

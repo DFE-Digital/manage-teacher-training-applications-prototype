@@ -7,17 +7,19 @@
 
 {% block content %}
 
-  {# {{ govukNotificationBanner({
-    text: 'You no longer own this application. It’s moved to a different provider.'
-  })}} #}
-
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-    {{name}}
-    <span class="govuk-visually-hidden">Timeline</span>
-    {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
-  </h1>
-
-  {% include "_includes/applications/header.njk" %}
+  {% if not query.transferred %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {{name}}
+      <span class="govuk-visually-hidden">Timeline</span>
+      {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+    </h1>
+    {% include "_includes/applications/prompts.njk" %}
+  {% else %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {{name}} – transferred to an organisation you do not belong to
+      <span class="govuk-visually-hidden">Timeline</span>
+    </h1>
+  {% endif %}
 
   {% include "_includes/applications/sub-nav.njk" %}
 
@@ -49,7 +51,7 @@
               {% elseif event.title == "Interview set up" %}
 
                 <div class="app-activity-log__box">
-                {{appEventInterview({ interview: event.meta.interview })}}
+                  {{appEventInterview({ interview: event.meta.interview })}}
                 </div>
 
                 {% if event.meta.interview.exists %}
@@ -58,7 +60,7 @@
               {% elseif event.title == "Interview changed" %}
 
                 <div class="app-activity-log__box">
-                {{appEventInterview({ interview: event.meta.interview })}}
+                  {{appEventInterview({ interview: event.meta.interview })}}
                 </div>
 
                 {% if event.meta.interview.exists %}
@@ -66,7 +68,7 @@
                 {% endif %}
               {% elseif event.title == "Interview cancelled" %}
                 <div class="app-activity-log__box">
-                {{appEventInterview({ interview: event.meta.interview, cancellationReason: event.meta.cancellationReason })}}
+                  {{appEventInterview({ interview: event.meta.interview, cancellationReason: event.meta.cancellationReason })}}
                 </div>
               {% elseif event.title == "Offer made" %}
                 <div class="app-activity-log__box">
@@ -95,12 +97,12 @@
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Offer deferred" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Offer reconfirmed" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Conditions met" %}

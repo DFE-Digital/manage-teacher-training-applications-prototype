@@ -1,13 +1,13 @@
 <div class="app-box govuk-!-margin-bottom-7">
 
   <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
-    Course details
+    Course applied for
   </h2>
 
   {{ govukSummaryList({
     rows: [{
       key: {
-        text: "Provider"
+        text: "Training provider"
       },
       value: {
         html: application.provider
@@ -21,17 +21,24 @@
       }
     }, {
       key: {
-        text: "Location"
-      },
-      value: {
-        html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-      }
-    }, {
-      key: {
         text: "Full time or part time"
       },
       value: {
         html: application.studyMode
+      }
+    }, {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: application.location
+      }
+    },{
+      key: {
+        text: "Accredited body"
+      },
+      value: {
+        html: application.accreditedBody
       }
     }
     ]})

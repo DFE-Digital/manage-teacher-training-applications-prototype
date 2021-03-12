@@ -7,31 +7,38 @@
   {{ govukSummaryList({
     rows: [{
       key: {
-        text: "Provider"
+        text: "Training provider"
       },
       value: {
-        html: application.provider
+        html: application.offer.provider
         }
       }, {
-      key: {
-        text: "Course"
-      },
-      value: {
-        html: application.course
-      }
-      }, {
-      key: {
-        text: "Location"
-      },
-      value: {
-        html: "Alliance Academy, Edgeware, Road Name, SW1 1AA"
-      }
+        key: {
+          text: "Course"
+        },
+        value: {
+          html: application.offer.course
+        }
       }, {
       key: {
         text: "Full time or part time"
       },
       value: {
         html: "Full time"
+      }
+    }, {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: application.offer.location
+      }
+    },{
+      key: {
+        text: "Accredited body"
+      },
+      value: {
+        html: application.offer.accreditedBody
       }
     }
     ]})

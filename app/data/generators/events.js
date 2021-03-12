@@ -25,10 +25,7 @@ module.exports = (params) => {
 
   // we know there are currently 2 interviews set up
 
-
-
   if (params.interviews && params.interviews.items[0]) {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
@@ -85,7 +82,6 @@ module.exports = (params) => {
     }
   }
 
-  // generate a new date for the next event in the series
   date = DateHelper.getFutureDate(date)
 
   // to align dates
@@ -101,7 +97,6 @@ module.exports = (params) => {
   })
 
   if (params.status === 'Rejected') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
@@ -112,7 +107,6 @@ module.exports = (params) => {
   }
 
   if (params.status === 'Application withdrawn') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
@@ -123,7 +117,6 @@ module.exports = (params) => {
   }
 
   if (params.offer) {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
@@ -144,66 +137,120 @@ module.exports = (params) => {
   }
 
   if (params.status === 'Offer withdrawn') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Offer withdrawn',
       user: faker.name.findName(),
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   }
 
   if (params.status === 'Awaiting conditions') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Offer accepted',
       user: 'Candidate',
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   } else if (params.status === 'Declined') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Offer declined',
       user: 'Candidate',
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   }
 
   if (params.status === 'Ready to enroll') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Conditions met',
       user: faker.name.findName(),
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   }
 
   if (params.status === 'Conditions not met') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Conditions not met',
       user: faker.name.findName(),
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   }
 
   if (params.status === 'Deferred') {
-    // generate a new date for the next event in the series
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Offer deferred',
       user: faker.name.findName(),
-      date: date
+      date: date,
+      meta: {
+        offer: {
+          provider: params.provider,
+          course: params.course,
+          location: params.location,
+          accreditedBody: params.accreditedBody,
+          standardConditions: params.offer.standardConditions,
+          conditions: params.offer.conditions
+        }
+      }
     })
   }
 

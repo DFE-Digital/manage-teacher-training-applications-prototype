@@ -57,7 +57,8 @@ module.exports = router => {
       madeDate: new Date().toISOString(),
       provider: req.session.data['new-offer'].provider || application.provider,
       course: req.session.data['new-offer'].course || application.course,
-      location: req.session.data['new-offer'].location || application.location
+      location: req.session.data['new-offer'].location || application.location,
+      accreditedBody: application.accreditedBody
     }
 
     application.offer.declineByDate = ApplicationHelper.calculateDeclineDate(application)
