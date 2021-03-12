@@ -6,6 +6,8 @@
       {% set title = event.event.user + " marked " + name + "’s conditions as met"  %}
     {% elseif event.event.title == "Offer deferred" %}
       {% set title = event.event.user + " deferred " + name + "’s offer" %}
+    {% elseif event.event.title == "Offer reconfirmed" %}
+      {% set title = event.event.user + " reconfirmed " + name + "’s offer" %}
     {% elseif event.event.title == "Interview set up" %}
       {% set title = event.event.user + " set up an interview with " + name %}
     {% elseif event.event.title == "Interview cancelled" %}
@@ -124,7 +126,7 @@
 
         {% endif %}
 
-        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" %}
+        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" or event.event.title == "Offer reconfirmed" %}
 
           <div class="app-activity-log__box">
             {{appEventOffer({ offer: event.event.meta.offer })}}
