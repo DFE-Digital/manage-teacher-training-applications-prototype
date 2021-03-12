@@ -25,10 +25,28 @@ module.exports = faker => {
     'Do not know'
   ])
 
-  const residency = isInternationalCandidate ? {
-    rightToWorkStudy,
-    details: (rightToWorkStudy === 'Yes') ? 'I have EU settled status' : false
-  } : false
+
+  const residency = {}
+  if (isInternationalCandidate) {
+    residency.rightToWorkStudy = rightToWorkStudy
+    if (rightToWorkStudy === 'Yes') {
+      residency.rightToWorkStudyDetails = faker.helpers.randomize([
+        'I have settled status',
+        'I have pre-settled status',
+        'I have a permanent residence card',
+        'I have a spousal visa',
+        'I have a student visa'
+      ])
+    } else {
+      residency.rightToWorkStudyDetails = faker.helpers.randomize([
+        'I have applied for settled status',
+        'I have applied for pre-settled status'
+      ])
+    }
+  } else {
+    residency.rightToWorkStudy = 'Yes'
+    residency.rightToWorkStudyDetails = 'I am a ' + nationality[0] + ' citizen'
+  }
 
   // Equality and diversity
   const diversityQuestionnaireAnswered=faker.helpers.randomize([true, true, false])
@@ -77,9 +95,6 @@ module.exports = faker => {
 
   }
 
-
-
-
   return {
     givenName: faker.name.firstName(sexInteger),
     familyName: faker.name.lastName(sexInteger),
@@ -92,6 +107,5 @@ module.exports = faker => {
     ethnicGroup,
     disabledAnswer,
     disabilities
-
   }
 }
