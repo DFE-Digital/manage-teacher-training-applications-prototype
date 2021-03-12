@@ -2,7 +2,7 @@
   {%- for event in events %}
     {% set name = event.application.personalDetails.name %}
 
-    {% if event.event.title == "Conditions met" %}
+    {% if event.event.title == "Conditions marked as met" %}
       {% set title = event.event.user + " marked " + name + "’s conditions as met"  %}
     {% elseif event.event.title == "Offer deferred" %}
       {% set title = event.event.user + " deferred " + name + "’s offer" %}
@@ -32,8 +32,10 @@
       {% set title = event.event.user + " changed the offer for " + name +"’s application" %}
     {% elseif event.event.title == "Application withdrawn" %}
       {% set title = name + " withdrew their application" %}
-    {% elseif event.event.title == "Conditions not met" %}
+    {% elseif event.event.title == "Conditions marked as not met" %}
       {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
+    {% elseif event.event.title == "Status of conditions updated" %}
+      {% set title = event.event.user + " updated the status of " + name + "’s conditions"  %}
     {% elseif event.event.title == "Offer withdrawn" %}
       {% set title = event.event.user + " withdrew " + name + "’s offer"  %}
     {% else %}
@@ -126,7 +128,23 @@
 
         {% endif %}
 
-        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" or event.event.title == "Offer reconfirmed" %}
+        {% if event.event.title == "Conditions marked as met" or event.event.title == "Conditions marked as not met" or event.event.title == "Status of conditions updated"  %}
+          <div class="app-activity-log__box">
+            {{appConditionsPanel({
+              conditions: event.event.meta.offer.conditions
+            })}}
+          </div>
+          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/offer">
+              View offer
+              <span class="govuk-visually-hidden">
+                Candidate {{event.application.personalDetails.name}}
+                Event date {{event.event.date | govukDateAtTime}}
+              </span>
+            </a></p>
+        {% endif %}
+
+
+        {% if event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" or event.event.title == "Offer reconfirmed" %}
 
           <div class="app-activity-log__box">
             {{appEventOffer({ offer: event.event.meta.offer })}}

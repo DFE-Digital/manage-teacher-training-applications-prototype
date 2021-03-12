@@ -129,8 +129,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
@@ -149,8 +148,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
@@ -169,8 +167,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
@@ -187,8 +184,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
@@ -198,7 +194,7 @@ module.exports = (params) => {
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
-      title: 'Conditions met',
+      title: 'Conditions marked as met',
       user: faker.name.findName(),
       date: date,
       meta: {
@@ -207,8 +203,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
@@ -218,7 +213,7 @@ module.exports = (params) => {
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
-      title: 'Conditions not met',
+      title: 'Conditions marked as not met',
       user: faker.name.findName(),
       date: date,
       meta: {
@@ -227,8 +222,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
@@ -247,8 +241,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions: params.offer.standardConditions.concat(params.offer.conditions)
         }
       }
     })
