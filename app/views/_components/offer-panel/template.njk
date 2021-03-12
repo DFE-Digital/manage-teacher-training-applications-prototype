@@ -1,5 +1,6 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "_components/conditions-panel/macro.njk" import appConditionsPanel %}
 
 <div class="app-offer-panel">
   {% if params.withdraw or params.defer %}
@@ -113,25 +114,9 @@
   {% endif %}
 
   {% if params.conditions.items.length %}
-    <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-      {% for condition in params.conditions.items %}
-        <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
-          <dt class="govuk-summary-list__key">
-            {{condition.description}}
-          </dt>
-          <dd class="govuk-summary-list__value app-conditions-list__tag">
-            {% if condition.status == "Met" %}
-              {% set statusClass = "app-tag--green" %}
-            {% elseif condition.status == "Not met" %}
-              {% set statusClass = "app-tag--red" %}
-            {% else %}
-              {% set statusClass = "app-tag--grey" %}
-            {% endif %}
-            {{govukTag({ text: condition.status, classes: statusClass})}}
-          </dd>
-        </div>
-      {% endfor %}
-    </dl>
+    {{appConditionsPanel({
+      conditions: params.conditions.items
+    })}}
   {% else %}
     <p>No conditions have been set for this offer.</p>
   {% endif %}

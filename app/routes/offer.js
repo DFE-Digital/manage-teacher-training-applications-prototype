@@ -215,37 +215,62 @@ module.exports = router => {
       condition.status = req.session.data['edit-condition-statuses']['conditions'][condition.id]
     })
 
-    var flash = "Status of conditions updated"
+    var flash
 
     if (ApplicationHelper.hasMetAllConditions(application)) {
       application.status = 'Ready to enroll';
       flash = "Conditions marked as met";
       ApplicationHelper.addEvent(application, {
-        "title": "Conditions marked as met",
-        "user": "Ben Brown",
-        "date": new Date().toISOString()
+        title: "Conditions marked as met",
+        user: "Ben Brown",
+        date: new Date().toISOString(),
+        meta: {
+          offer: {
+            provider: application.offer.provider,
+            course: application.offer.course,
+            location: application.offer.location,
+            accreditedBody: application.offer.accreditedBody,
+            conditions: ApplicationHelper.getConditions(application)
+          }
+        }
       })
     } else if(ApplicationHelper.getConditions(application).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
       flash = "Conditions marked as not met";
       ApplicationHelper.addEvent(application, {
-        "title": "Conditions marked as not met",
-        "user": "Ben Brown",
-        "date": new Date().toISOString()
+        title: "Conditions marked as not met",
+        user: "Ben Brown",
+        date: new Date().toISOString(),
+        meta: {
+          offer: {
+            provider: application.offer.provider,
+            course: application.offer.course,
+            location: application.offer.location,
+            accreditedBody: application.offer.accreditedBody,
+            conditions: ApplicationHelper.getConditions(application)
+          }
+        }
       })
     } else {
+      flash = "Status of conditions updated"
       ApplicationHelper.addEvent(application, {
-        "title": "Status of conditions updated",
-        "user": "Ben Brown",
-        "date": new Date().toISOString()
+        title: "Status of conditions updated",
+        user: "Ben Brown",
+        date: new Date().toISOString(),
+        meta: {
+          offer: {
+            provider: application.offer.provider,
+            course: application.offer.course,
+            location: application.offer.location,
+            accreditedBody: application.offer.accreditedBody,
+            conditions: ApplicationHelper.getConditions(application)
+          }
+        }
       })
     }
 
-
-
     req.flash('success', flash)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
-
   })
 
   // delete conditions (in bulk)

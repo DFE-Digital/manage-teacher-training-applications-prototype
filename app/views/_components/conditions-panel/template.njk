@@ -1,0 +1,21 @@
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+
+<dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+  {% for condition in params.conditions %}
+    <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+      <dt class="govuk-summary-list__key">
+        {{condition.description}}
+      </dt>
+      <dd class="govuk-summary-list__value app-conditions-list__tag">
+        {% if condition.status == "Met" %}
+          {% set statusClass = "app-tag--green" %}
+        {% elseif condition.status == "Not met" %}
+          {% set statusClass = "app-tag--red" %}
+        {% else %}
+          {% set statusClass = "app-tag--grey" %}
+        {% endif %}
+        {{govukTag({ text: condition.status, classes: statusClass})}}
+      </dd>
+    </div>
+  {% endfor %}
+</dl>
