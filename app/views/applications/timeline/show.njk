@@ -105,14 +105,18 @@
                   {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
-              {% elseif event.title == "Conditions met" %}
+              {% elseif event.title == "Conditions marked as met" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appConditionsPanel({
+                    conditions: event.meta.offer.conditions
+                  })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View conditions</a></p>
-              {% elseif event.title == "Conditions not met" %}
+              {% elseif event.title == "Conditions marked as not met" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appConditionsPanel({
+                    conditions: event.meta.offer.conditions
+                  })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View conditions</a></p>
               {% elseif event.title == "Application rejected" and application.rejectedDate == application.rejectedFeedbackDate %}
@@ -133,7 +137,7 @@
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View conditions</a></p>
               {% elseif event.title == "Note added" and event.meta.note %}
                 <div class="app-activity-log__box">
-                {{appEventNote({ note: event.meta.note })}}
+                  {{appEventNote({ note: event.meta.note })}}
                 </div>
                 {% if event.meta.note.exists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/notes/{{event.meta.note.id}}">View note <span class="govuk-visually-hidden">{{event.meta.note.date | govukDateAtTime}}</span></a></p>
