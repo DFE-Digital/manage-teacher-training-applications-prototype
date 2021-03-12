@@ -4,7 +4,7 @@
 
     {% if event.event.title == "Conditions met" %}
       {% set title = event.event.user + " marked " + name + "’s conditions as met"  %}
-    {% elseif event.event.title == "Moved to next cycle" %}
+    {% elseif event.event.title == "Offer deferred" %}
       {% set title = event.event.user + " deferred " + name + "’s offer" %}
     {% elseif event.event.title == "Interview set up" %}
       {% set title = event.event.user + " set up an interview with " + name %}
@@ -26,6 +26,8 @@
       {% set title = name + " declined an offer " %}
     {% elseif event.event.title == "Offer made" %}
       {% set title = event.event.user + " made an offer to " + name  %}
+    {% elseif event.event.title == "Offer changed" %}
+      {% set title = event.event.user + " changed the offer for " + name +"’s application" %}
     {% elseif event.event.title == "Application withdrawn" %}
       {% set title = name + " withdrew their application" %}
     {% elseif event.event.title == "Conditions not met" %}
@@ -102,108 +104,33 @@
 
         {% endif %}
 
-
-        {% if event.event.title == 'Interview cancelled' or event.event.title == 'Interview changed' or event.event.title == 'Interview set up' %}
+        {% if event.event.title == 'Interview cancelled' %}
 
           <div class="app-activity-log__box">
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Date"
-                },
-                value: {
-                  text: event.event.meta.interview.date | govukDate
-                }
-              },
-              {
-                key: {
-                  text: "Time"
-                },
-                value: {
-                  text: event.event.meta.interview.date | time
-                }
-              },
-              {
-                key: {
-                  text: "Organisation carrying out interview"
-                },
-                value: {
-                  text: event.event.meta.interview.organisation
-                }
-              },
-              {
-                key: {
-                  text: "Address or online meeting details"
-                },
-                value: {
-                  text: event.event.meta.interview.location | nl2br
-                }
-              },
-              {
-                key: {
-                  text: "Additional details"
-                },
-                value: {
-                  text: event.event.meta.interview.details | nl2br or "None"
-                }
-              },
-              {
-                key: {
-                  text: "Reason for cancellation"
-                },
-                value: {
-                  text: event.event.meta.cancellationReason | nl2br
-                }
-              } if event.event.meta.cancellationReason
-            ]
-          }) }}
+            {{appEventInterview({
+              interview: event.event.meta.interview,
+              cancellationReason: event.event.meta.cancellationReason
+            })}}
           </div>
 
         {% endif %}
 
-        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" %}
+
+        {% if event.event.title == 'Interview changed' or event.event.title == 'Interview set up' %}
 
           <div class="app-activity-log__box">
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Training provider"
-                },
-                value: {
-                  text: event.application.provider
-                }
-              },
-              {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  text: event.application.course
-                }
-              },
-              {
-                key: {
-                  text: "Location"
-                },
-                value: {
-                  text: event.application.locationname
-                }
-              },
-              {
-                key: {
-                  text: "Accredited body"
-                },
-                value: {
-                  text: event.application.accreditingbody
-                }
-              }
-            ]
-          }) }}
+            {{appEventInterview({ interview: event.event.meta.interview })}}
           </div>
 
-           {% if event.event.title == "Offer withdrawn" %}
+        {% endif %}
+
+        {% if event.event.title == "Conditions met" or event.event.title == "Conditions not met" or event.event.title == "Moved to next cycle" or event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" %}
+
+          <div class="app-activity-log__box">
+            {{appEventOffer({ offer: event.event.meta.offer })}}
+          </div>
+
+          {% if event.event.title == "Offer withdrawn" %}
             <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">
               View feedback
               <span class="govuk-visually-hidden">
@@ -249,7 +176,7 @@
                   text: "Location"
                 },
                 value: {
-                  text: event.application.locationname
+                  text: event.application.location
                 }
               },
               {
@@ -257,7 +184,7 @@
                   text: "Accredited body"
                 },
                 value: {
-                  text: event.application.accreditingbody
+                  text: event.application.accreditedBody
                 }
               }
             ]

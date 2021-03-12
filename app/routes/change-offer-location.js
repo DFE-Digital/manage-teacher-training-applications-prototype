@@ -23,6 +23,25 @@ module.exports = router => {
 
   router.post('/applications/:applicationId/offer/edit-location/check', (req, res) => {
     const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    application.offer.location = req.session.data['change-offer'].location
+
+    ApplicationHelper.addEvent(application, {
+      title: "Offer changed",
+      user: "Ben Brown",
+      date: new Date().toISOString(),
+      meta: {
+        offer: {
+          provider: application.offer.provider,
+          course: application.offer.course,
+          location: application.offer.location,
+          accreditedBody: application.offer.accreditedBody,
+          standardConditions: application.offer.standardConditions,
+          conditions: application.offer.conditions
+        }
+      }
+    })
     req.flash('success', 'New offer sent')
     res.redirect(`/applications/${applicationId}/offer`)
   })

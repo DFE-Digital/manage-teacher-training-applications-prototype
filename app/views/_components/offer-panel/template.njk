@@ -19,7 +19,7 @@
   {{ govukSummaryList({
     rows: [{
       key: {
-        text: "Provider"
+        text: "Training provider"
       },
       value: {
         html: params.provider.value
@@ -51,6 +51,22 @@
       } if params.course.href
     }, {
       key: {
+        text: "Full time or part time"
+      },
+      value: {
+        html: params.studyMode.value or "Full time"
+      },
+      actions: {
+        items: [
+          {
+            href: params.studyMode.href or "#",
+            text: "Change",
+            visuallyHiddenText: "mode of study"
+          }
+        ]
+      } if params.studyMode.href
+    }, {
+      key: {
         text: "Location"
       },
       value: {
@@ -67,21 +83,12 @@
       } if params.location.href
     }, {
       key: {
-        text: "Full time or part time"
+        text: "Accredited body"
       },
       value: {
-        html: params.studyMode.value or "Full time"
-      },
-      actions: {
-        items: [
-          {
-            href: params.studyMode.href or "#",
-            text: "Change",
-            visuallyHiddenText: "mode of study"
-          }
-        ]
-      } if params.studyMode.href
-    }
+        html: params.accreditedBody.value
+      }
+    } if params.accreditedBody.value != params.provider.value
   ]})}}
 
   <h2 class="govuk-heading-m">

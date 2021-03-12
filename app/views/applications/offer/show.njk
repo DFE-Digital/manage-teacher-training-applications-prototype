@@ -13,18 +13,22 @@
     icon: false
   }) if flash | falsify }}
 
-  {% set rbd = application.submittedDate | addDays(40) %}
-  {% set remaining = rbd | daysFromNow(rbd) %}
-
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-    {{name}}
-    <span class="govuk-visually-hidden">Offer</span>
-    {{ govukTag({ classes: status | statusClass, text: statusText })}}
-  </h1>
-
-  {% include "_includes/applications/header.njk" %}
+  {% if not query.transferred %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {{name}}
+      <span class="govuk-visually-hidden">Offer</span>
+      {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+    </h1>
+    {% include "_includes/applications/prompts.njk" %}
+  {% else %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {{name}} – transferred to an organisation you do not belong to
+      <span class="govuk-visually-hidden">Timeline</span>
+    </h1>
+  {% endif %}
 
   {% include "_includes/applications/sub-nav.njk" %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -39,16 +43,19 @@
             href: "/applications/" + application.id + "/offer/defer/check"
           } if application.status == "Awaiting conditions" or application.status == "Ready to enroll",
           provider: {
-            value: application.provider,
+            value: application.offer.provider,
             href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered"
           },
           course: {
-            value: application.course,
+            value: application.offer.course,
             href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered"
           },
           location: {
-            value: application.location,
+            value: application.offer.location,
             href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered"
+          },
+          accreditedBody: {
+            value: application.offer.accreditedBody
           },
 
           changeConditions: {

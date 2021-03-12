@@ -32,6 +32,10 @@ module.exports = (params) => {
   }
 
   return {
+    provider: params.provider,
+    course: params.course,
+    location: params.location,
+    accreditedBody: params.accreditedBody,
     madeDate,
     acceptedDate,
     standardConditions: [{

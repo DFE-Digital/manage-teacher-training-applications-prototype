@@ -2,7 +2,7 @@
       {{ govukSummaryList({
         rows: [{
           key: {
-            text: "Provider"
+            text: "Training provider"
           },
           value: {
             text: application["provider"]
@@ -16,19 +16,26 @@
           }
         }, {
           key: {
-            text: "Training location"
-          },
-          value: {
-            html: application["locationname"] + '<br> SCIL, Dillington House, Ilminster, Somerset, TA19 9DT '
-          }
-        }, {
-          key: {
             text: "Full time or part time"
           },
           value: {
             text: application.studyMode
           }
         }, {
+          key: {
+            text: "Location"
+          },
+          value: {
+            html: application.location + '<br> SCIL, Dillington House, Ilminster, Somerset, TA19 9DT '
+          }
+        }, {
+          key: {
+            text: "Accredited body"
+          },
+          value: {
+            html: application.accreditedBody
+          }
+        } if application.accreditedBody != application.provider, {
           key: {
             text: "Funding type"
           },

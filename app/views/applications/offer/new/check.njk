@@ -30,6 +30,9 @@
           value: data['new-offer'].location or application.location,
           href: "/applications/" + application.id + "/offer/new/location"
         },
+        accreditedBody: {
+          value: application.accreditedBody
+        },
         studyMode: {
           value: "Full time",
           href: "#"

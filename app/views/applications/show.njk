@@ -4,8 +4,6 @@
 {% set subNavId = "application" %}
 {% set name = application.personalDetails.name %}
 {% set title = 'Application - ' + name %}
-{% set rbd = application.submittedDate | addDays(40) %}
-{% set remaining = rbd | daysFromNow(rbd) %}
 
 {% block content %}
   {{ govukNotificationBanner({
@@ -14,15 +12,19 @@
     icon: false
   }) if flash | falsify }}
 
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-    {{name}}
-    <span class="govuk-visually-hidden">Application</span>
-    {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
-  </h1>
-
-  {% include "_includes/applications/header.njk" %}
-  {% include "_includes/applications/rejection-details.njk" %}
-
+  {% if not query.transferred %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {{name}}
+      <span class="govuk-visually-hidden">Application</span>
+      {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+    </h1>
+    {% include "_includes/applications/prompts.njk" %}
+  {% else %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {{name}} – transferred to an organisation you do not belong to
+      <span class="govuk-visually-hidden">Timeline</span>
+    </h1>
+  {% endif %}
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">

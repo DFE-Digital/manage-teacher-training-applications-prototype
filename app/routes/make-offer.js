@@ -54,7 +54,11 @@ module.exports = router => {
 
     application.status = 'Offered'
     application.offer = {
-      madeDate: new Date().toISOString()
+      madeDate: new Date().toISOString(),
+      provider: req.session.data['new-offer'].provider || application.provider,
+      course: req.session.data['new-offer'].course || application.course,
+      location: req.session.data['new-offer'].location || application.location,
+      accreditedBody: application.accreditedBody
     }
 
     application.offer.declineByDate = ApplicationHelper.calculateDeclineDate(application)
@@ -77,6 +81,22 @@ module.exports = router => {
         id: uuidv4(),
         description: c,
         status: "Pending"
+      }
+    })
+
+    ApplicationHelper.addEvent(application, {
+      title: 'Offer made',
+      user: 'Adam Davids',
+      date: application.offer.madeDate,
+      meta: {
+        offer: {
+          provider: application.offer.provider,
+          course: application.offer.course,
+          location: application.offer.location,
+          accreditedBody: application.offer.accreditedBody,
+          standardConditions: application.offer.standardConditions,
+          conditions: application.offer.conditions
+        }
       }
     })
 
