@@ -10,7 +10,7 @@ module.exports = router => {
 
     res.render('applications/offer/show', {
       application,
-      conditions: ApplicationHelper.getConditions(application),
+      conditions: ApplicationHelper.getConditions(application.offer),
       statusText: ApplicationHelper.getStatusText(application)
     })
   })
@@ -139,7 +139,7 @@ module.exports = router => {
           course: application.offer.course,
           location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
-          conditions: ApplicationHelper.getConditions(application)
+          conditions: ApplicationHelper.getConditions(application.offer)
         }
       }
     })
@@ -152,8 +152,8 @@ module.exports = router => {
   // delete a condition
   router.get('/applications/:applicationId/condition/:conditionId/delete', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const condition = ApplicationHelper.getCondition(application, req.params.conditionId)
-    const remainingConditions = ApplicationHelper.getConditions(application).filter(c => c.id !== condition.id)
+    const condition = ApplicationHelper.getCondition(application.offer, req.params.conditionId)
+    const remainingConditions = ApplicationHelper.getConditions(application.offer).filter(c => c.id !== condition.id)
     let hasRemainingConditions = remainingConditions.length;
     let allRemainingConditionsComplete = false;
     if(remainingConditions.length) {
@@ -173,7 +173,7 @@ module.exports = router => {
 
     ApplicationHelper.deleteCondition(application, req.params.conditionId)
 
-    if(Application.getConditions(application).length == 0) {
+    if(Application.getConditions(application.offer).length == 0) {
       application.status = "Ready to enroll";
     }
 
@@ -186,7 +186,7 @@ module.exports = router => {
   // Edit condition statuses (in bulk)
   router.get('/applications/:applicationId/offer/edit-condition-statuses', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const conditions = ApplicationHelper.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application.offer)
 
     res.render('applications/offer/edit-condition-statuses/index', {
       application,
@@ -204,7 +204,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // mixin new data statuses with conditions
-    let conditions = ApplicationHelper.getConditions(application).map(condition => {
+    let conditions = ApplicationHelper.getConditions(application.offer).map(condition => {
       return {
         id: condition.id,
         description: condition.description,
@@ -231,14 +231,14 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/edit-condition-statuses/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
-    let conditions = ApplicationHelper.getConditions(application).forEach(c => {
-      let condition = ApplicationHelper.getCondition(application, c.id)
+    let conditions = ApplicationHelper.getConditions(application.offer).forEach(c => {
+      let condition = ApplicationHelper.getCondition(application.offer, c.id)
       condition.status = req.session.data['edit-condition-statuses']['conditions'][condition.id]
     })
 
     var flash
 
-    if (ApplicationHelper.hasMetAllConditions(application)) {
+    if (ApplicationHelper.hasMetAllConditions(application.offer)) {
       application.status = 'Ready to enroll';
       flash = "Conditions marked as met";
       ApplicationHelper.addEvent(application, {
@@ -251,11 +251,11 @@ module.exports = router => {
             course: application.offer.course,
             location: application.offer.location,
             accreditedBody: application.offer.accreditedBody,
-            conditions: ApplicationHelper.getConditions(application)
+            conditions: ApplicationHelper.getConditions(application.offer)
           }
         }
       })
-    } else if(ApplicationHelper.getConditions(application).some(c => c.status == "Not met")) {
+    } else if(ApplicationHelper.getConditions(application.offer).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
       flash = "Conditions marked as not met";
       ApplicationHelper.addEvent(application, {
@@ -268,7 +268,7 @@ module.exports = router => {
             course: application.offer.course,
             location: application.offer.location,
             accreditedBody: application.offer.accreditedBody,
-            conditions: ApplicationHelper.getConditions(application)
+            conditions: ApplicationHelper.getConditions(application.offer)
           }
         }
       })
@@ -284,7 +284,7 @@ module.exports = router => {
             course: application.offer.course,
             location: application.offer.location,
             accreditedBody: application.offer.accreditedBody,
-            conditions: ApplicationHelper.getConditions(application)
+            conditions: ApplicationHelper.getConditions(application.offer)
           }
         }
       })
@@ -297,7 +297,7 @@ module.exports = router => {
   // delete conditions (in bulk)
   router.get('/applications/:applicationId/offer/delete-conditions', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const conditionItems = ApplicationHelper.getConditions(application).map(c => {
+    const conditionItems = ApplicationHelper.getConditions(application.offer).map(c => {
       return {
         value: c.description,
         text: c.description
@@ -317,7 +317,7 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/delete-conditions/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const remainingConditions = ApplicationHelper.getConditions(application)
+    const remainingConditions = ApplicationHelper.getConditions(application.offer)
       .filter(c => !req.session.data['delete-conditions'].conditions.includes(c.description))
 
     const hasRemainingConditions = remainingConditions.length
@@ -337,13 +337,13 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     // delete conditions
-    ApplicationHelper.getConditions(application)
+    ApplicationHelper.getConditions(application.offer)
       .filter(c => req.session.data['delete-conditions'].conditions.includes(c.description))
       .forEach(c => {
         ApplicationHelper.deleteCondition(application, c.id)
       })
 
-    if(Application.getConditions(application).length == 0 || !Application.hasPendingConditions(application)) {
+    if(Application.getConditions(application.offer).length == 0 || !Application.hasPendingConditions(application.offer)) {
       application.status = "Ready to enroll";
     }
 

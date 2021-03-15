@@ -57,7 +57,7 @@ module.exports = router => {
       application,
       statusText: ApplicationHelper.getStatusText(application),
       events: events,
-      conditions: ApplicationHelper.getConditions(application)
+      conditions: ApplicationHelper.getConditions(application.offer)
     })
   })
 

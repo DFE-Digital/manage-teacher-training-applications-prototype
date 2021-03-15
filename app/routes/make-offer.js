@@ -98,7 +98,7 @@ module.exports = router => {
           course: application.offer.course,
           location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
-          conditions: ApplicationHelper.getConditions(application)
+          conditions: ApplicationHelper.getConditions(application.offer)
         }
       }
     })

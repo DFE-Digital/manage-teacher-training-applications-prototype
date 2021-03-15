@@ -13,7 +13,7 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/edit-location/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    let conditions = ApplicationHelper.getConditions(application)
+    let conditions = ApplicationHelper.getConditions(application.offer)
 
     res.render('applications/offer/edit-location/check', {
       application,
@@ -37,7 +37,7 @@ module.exports = router => {
           course: application.offer.course,
           location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
-          conditions: ApplicationHelper.getConditions(application)
+          conditions: ApplicationHelper.getConditions(application.offer)
         }
       }
     })
