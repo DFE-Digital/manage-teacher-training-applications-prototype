@@ -47,7 +47,7 @@ module.exports = router => {
           course: application.offer.course,
           location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
-          conditions: application.offer.standardConditions.concat(application.offer.conditions)
+          conditions: ApplicationHelper.getConditions(application)
         }
       }
     })

@@ -41,9 +41,13 @@ module.exports = router => {
     let conditions;
 
     if(!req.session.data['edit-conditions'] || !req.session.data['edit-conditions']['standard-conditions']) {
-      standardConditions = application.offer.standardConditions.map(condition => {
-        return condition.description
-      })
+
+      if(application.offer.standardConditions) {
+        standardConditions = application.offer.standardConditions.map(condition => {
+          return condition.description
+        })
+      }
+
     }
 
     // cleanse data gah
@@ -55,9 +59,11 @@ module.exports = router => {
     if(req.session.data['edit-conditions']) {
       conditions = req.session.data['edit-conditions']['conditions']
     } else {
-      conditions = application.offer.conditions.map(c => {
-        return c.description
-      })
+      if(application.offer.conditions) {
+        conditions = application.offer.conditions.map(c => {
+          return c.description
+        })
+      }
     }
 
     res.render('applications/offer/edit-conditions/index', {
@@ -121,6 +127,21 @@ module.exports = router => {
         description: c,
         status: "Pending"
       })
+    })
+
+    ApplicationHelper.addEvent(application, {
+      title: "Offer changed",
+      user: "Ben Brown",
+      date: new Date().toISOString(),
+      meta: {
+        offer: {
+          provider: application.offer.provider,
+          course: application.offer.course,
+          location: application.offer.location,
+          accreditedBody: application.offer.accreditedBody,
+          conditions: ApplicationHelper.getConditions(application)
+        }
+      }
     })
 
     req.flash('success', 'New offer sent')

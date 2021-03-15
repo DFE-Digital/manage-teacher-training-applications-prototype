@@ -116,6 +116,19 @@ module.exports = (params) => {
     })
   }
 
+  // set conditions
+  const conditions = [];
+  if (params.offer && params.offer.standardConditions) {
+    params.offer.standardConditions.forEach((item) => {
+      conditions.push(item)
+    })
+  }
+  if (params.offer && params.offer.conditions) {
+    params.offer.conditions.forEach((item) => {
+      conditions.push(item)
+    })
+  }
+
   if (params.offer) {
     date = DateHelper.getFutureDate(date)
 
@@ -129,7 +142,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })
@@ -148,7 +161,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })
@@ -167,7 +180,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })
@@ -184,7 +197,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })
@@ -203,7 +216,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })
@@ -222,7 +235,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })
@@ -241,7 +254,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          conditions: params.offer.standardConditions.concat(params.offer.conditions)
+          conditions
         }
       }
     })

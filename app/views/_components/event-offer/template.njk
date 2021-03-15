@@ -2,7 +2,7 @@
 
 {% set conditionsHtml %}
 
-  {% if params.offer.conditions %}
+  {% if params.offer.conditions.length %}
     <ul class="govuk-list govuk-list--bullet">
       {% for condition in params.offer.conditions %}
         <li>
@@ -10,6 +10,8 @@
         </li>
       {% endfor %}
     </ul>
+  {% else %}
+    <p>No conditions have been set for this offer.</p>
   {% endif %}
 {% endset %}
 
