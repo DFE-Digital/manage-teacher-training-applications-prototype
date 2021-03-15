@@ -71,5 +71,12 @@
     value: {
       html: application.contactDetails.address | toArray | join("<br>")
     }
-  }]
+  }, {
+    key: {
+      text: "Provisional fee status"
+    },
+    value: {
+      html: application.personalDetails.feeStatus
+    }
+  } if application.personalDetails.feeStatus]
 }) }}

@@ -102,6 +102,13 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
+  personalDetails.feeStatus = 'Provisionally eligible'
+  if (personalDetails.isInternationalCandidate) {
+    if (!(personalDetails.rightToWorkStudy === 'Yes') || contactDetails.addressType === 'international') {
+      personalDetails.feeStatus = 'Not eligible for funding'
+    }
+  }
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
@@ -630,7 +637,8 @@ const generateFakeApplications = () => {
       residency: {
         rightToWorkStudy: 'Yes',
         rightToWorkStudyDetails: 'I have lived in the UK for 10 years.'
-      }
+      },
+      feeStatus: 'Provisionally eligible'
     },
     contactDetails: {
       tel: '07700 900978',
@@ -748,7 +756,8 @@ const generateFakeApplications = () => {
       residency: {
         rightToWorkStudy: 'Not yet',
         rightToWorkStudyDetails: ''
-      }
+      },
+      feeStatus: 'Unknown'
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -827,7 +836,8 @@ const generateFakeApplications = () => {
       residency: {
         rightToWorkStudy: 'Do not know',
         rightToWorkStudyDetails: ''
-      }
+      },
+      feeStatus: 'Unknown'
     },
     degree: [{
       type: 'BCA',

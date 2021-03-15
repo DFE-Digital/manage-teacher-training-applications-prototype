@@ -21,9 +21,10 @@ module.exports = faker => {
   const isInternationalCandidate = !(nationality.includes('British') || nationality.includes('Irish'))
   const rightToWorkStudy = faker.helpers.randomize([
     'Yes',
-    'Not yet',
-    'Do not know'
+    'Not yet, or not sure'
   ])
+  // 'Not yet',
+  // 'Do not know'
 
   const residency = {}
   if (isInternationalCandidate) {
@@ -37,10 +38,11 @@ module.exports = faker => {
         'I have a student visa'
       ])
     } else {
-      residency.rightToWorkStudyDetails = faker.helpers.randomize([
-        'I have applied for settled status',
-        'I have applied for pre-settled status'
-      ])
+      residency.rightToWorkStudyDetails = 'Candidate needs to apply for permission to work and study in the UK'
+      // faker.helpers.randomize([
+      //   'I have applied for settled status',
+      //   'I have applied for pre-settled status'
+      // ])
     }
   } else {
     residency.rightToWorkStudy = 'Yes'
