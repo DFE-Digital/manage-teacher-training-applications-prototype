@@ -1,4 +1,5 @@
 const DateHelper = require('../helpers/dates');
+const ApplicationHelper = require('../helpers/application');
 const faker = require('faker')
 faker.locale = 'en_GB'
 const _ = require('lodash')
@@ -116,18 +117,7 @@ module.exports = (params) => {
     })
   }
 
-  // set conditions
-  const conditions = [];
-  if (params.offer && params.offer.standardConditions) {
-    params.offer.standardConditions.forEach((item) => {
-      conditions.push(item)
-    })
-  }
-  if (params.offer && params.offer.conditions) {
-    params.offer.conditions.forEach((item) => {
-      conditions.push(item)
-    })
-  }
+  const conditions = ApplicationHelper.getConditions(params.offer)
 
   if (params.offer) {
     date = DateHelper.getFutureDate(date)
