@@ -108,7 +108,7 @@ module.exports = router => {
 
     // save standard conditions
     application.offer.standardConditions = [];
-    if(req.session.data['edit-conditions']['standard-conditions'].length) {
+    if(req.session.data['edit-conditions']['standard-conditions'] && req.session.data['edit-conditions']['standard-conditions'].length) {
       req.session.data['edit-conditions']['standard-conditions'].forEach(condition => {
         application.offer.standardConditions.push({
           id: uuidv4(),
