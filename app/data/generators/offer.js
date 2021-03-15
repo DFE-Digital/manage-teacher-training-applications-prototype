@@ -33,7 +33,8 @@ module.exports = (params) => {
 
   let standardConditions
   let conditions
-  if(faker.helpers.randomize([true, false])) {
+
+  if(params.status == 'Awaiting conditions' || faker.helpers.randomize([true, false])) {
     standardConditions = [{
       id: faker.random.uuid(),
       description: 'Fitness to teach check',

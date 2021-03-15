@@ -204,25 +204,58 @@ module.exports = (params) => {
   }
 
   if (params.status === 'Ready to enroll') {
-    date = DateHelper.getFutureDate(date)
-
-    events.items.push({
-      title: 'Conditions marked as met',
-      user: faker.name.findName(),
-      date: date,
-      meta: {
-        offer: {
-          provider: params.provider,
-          course: params.course,
-          location: params.location,
-          accreditedBody: params.accreditedBody,
-          conditions
+    if(conditions.length) {
+      date = DateHelper.getFutureDate(date)
+      events.items.push({
+        title: 'Offer accepted',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            accreditedBody: params.accreditedBody,
+            conditions
+          }
         }
-      }
-    })
+      })
+      date = DateHelper.getFutureDate(date)
+      events.items.push({
+        title: 'Conditions marked as met',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            accreditedBody: params.accreditedBody,
+            conditions
+          }
+        }
+      })
+    } else {
+      date = DateHelper.getFutureDate(date)
+      events.items.push({
+        title: 'Offer accepted',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            accreditedBody: params.accreditedBody
+          }
+        }
+      })
+    }
+
+
   }
 
-  if (params.status === 'Conditions not met') {
+  if (params.status === 'Conditions not met' && conditions.length) {
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
