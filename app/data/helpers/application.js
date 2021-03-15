@@ -59,9 +59,8 @@ exports.getRejectReasons = (data) => {
   }
 }
 
-exports.getConditions = (application) => {
+exports.getConditions = (offer) => {
   const conditions = []
-  var offer = application.offer || application.previousOffer
   if (offer && offer.standardConditions) {
     offer.standardConditions.forEach((item) => {
       conditions.push(item)
@@ -75,20 +74,16 @@ exports.getConditions = (application) => {
   return conditions
 }
 
-exports.hasPendingConditions = (application) => {
-  return this.getConditions(application).some(c => c.status == "Pending")
+exports.hasPendingConditions = (offer) => {
+  return this.getConditions(offer).some(c => c.status == "Pending")
 }
 
-exports.getCondition = (application, conditionId) => {
-  return this.getConditions(application).find(condition => condition.id === conditionId)
+exports.getCondition = (offer, conditionId) => {
+  return this.getConditions(offer).find(condition => condition.id === conditionId)
 }
 
-exports.hasMetAllConditions = (application) => {
-  return this.getConditions(application).filter(condition => condition.status === 'Pending').length === 0
-}
-
-exports.hasOnlyOneConditionNotMet = (application) => {
-  return this.getConditions(application).filter(condition => condition.status === 'Pending').length === 1
+exports.hasMetAllConditions = (offer) => {
+  return this.getConditions(offer).filter(condition => condition.status === 'Pending').length === 0
 }
 
 exports.deleteCondition = (application, conditionId) => {
@@ -98,103 +93,6 @@ exports.deleteCondition = (application, conditionId) => {
   if(application.offer.conditions) {
     application.offer.conditions = application.offer.conditions.filter(c => c.id != conditionId)
   }
-}
-
-function getLink (item, application) {
-  var link = {}
-  switch (item.title) {
-    case 'Application submitted':
-      link.text = 'View application'
-      link.href = `/applications/${application.id}`
-      break
-    case 'Offer made':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Offer accepted':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Conditions met':
-      link.text = 'View conditions'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Conditions not met':
-      link.text = 'View conditions'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Offer declined':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Application rejected':
-      if(application.rejectedDate == application.rejectedFeedbackDate) {
-        link.text = 'View feedback'
-        link.href = `/applications/${application.id}/feedback`
-      }
-      break
-    case 'Feedback sent':
-      link.text = 'View feedback'
-      link.href = `/applications/${application.id}/feedback`
-      break
-    case 'Application withdrawn':
-      link.text = 'View application'
-      link.href = `/applications/${application.id}`
-      break
-    case 'Offer withdrawn':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Offer reconfirmed':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Offer deferred':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-    case 'Note added':
-      link.text = 'View note'
-      link.href = `/applications/${application.id}/notes/${application.notes.items[item.meta.noteIndex].id}`
-      break
-    case 'Interview set up':
-      if(application.interviews.items.find(interview => interview.id === item.meta.interviewId)) {
-        link.text = 'View interview'
-        link.href = `/applications/${application.id}/interviews/#interview-${item.meta.interviewId}`
-      }
-      break
-    case 'Interview changed':
-      if(application.interviews.items.find(interview => interview.id === item.meta.interviewId)) {
-        link.text = 'View interview'
-        link.href = `/applications/${application.id}/interviews/#interview-${item.meta.interviewId}`
-      }
-      break
-    case 'Interview cancelled':
-      break
-    case 'Status of conditions updated':
-      link.text = 'View offer'
-      link.href = `/applications/${application.id}/offer`
-      break
-  }
-  return link
-}
-
-exports.getTimeline = (application) => {
-  return application.events.items.map(item => {
-    return {
-      label: {
-        text: item.title
-      },
-      datetime: {
-        timestamp: item.date,
-        type: 'datetime'
-      },
-      byline: {
-        text: item.user
-      },
-      link: getLink(item, application)
-    }
-  }).reverse()
 }
 
 exports.addEvent = (application, event) => {

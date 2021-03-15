@@ -1,4 +1,5 @@
 const DateHelper = require('../helpers/dates');
+const ApplicationHelper = require('../helpers/application');
 const faker = require('faker')
 faker.locale = 'en_GB'
 const _ = require('lodash')
@@ -116,6 +117,8 @@ module.exports = (params) => {
     })
   }
 
+  const conditions = ApplicationHelper.getConditions(params.offer)
+
   if (params.offer) {
     date = DateHelper.getFutureDate(date)
 
@@ -129,8 +132,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions
         }
       }
     })
@@ -149,8 +151,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions
         }
       }
     })
@@ -169,8 +170,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions
         }
       }
     })
@@ -187,38 +187,69 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions
         }
       }
     })
   }
 
   if (params.status === 'Ready to enroll') {
-    date = DateHelper.getFutureDate(date)
-
-    events.items.push({
-      title: 'Conditions met',
-      user: faker.name.findName(),
-      date: date,
-      meta: {
-        offer: {
-          provider: params.provider,
-          course: params.course,
-          location: params.location,
-          accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+    if(conditions.length) {
+      date = DateHelper.getFutureDate(date)
+      events.items.push({
+        title: 'Offer accepted',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            accreditedBody: params.accreditedBody,
+            conditions
+          }
         }
-      }
-    })
+      })
+      date = DateHelper.getFutureDate(date)
+      events.items.push({
+        title: 'Conditions marked as met',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            accreditedBody: params.accreditedBody,
+            conditions
+          }
+        }
+      })
+    } else {
+      date = DateHelper.getFutureDate(date)
+      events.items.push({
+        title: 'Offer accepted',
+        user: faker.name.findName(),
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            accreditedBody: params.accreditedBody
+          }
+        }
+      })
+    }
+
+
   }
 
-  if (params.status === 'Conditions not met') {
+  if (params.status === 'Conditions not met' && conditions.length) {
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
-      title: 'Conditions not met',
+      title: 'Conditions marked as not met',
       user: faker.name.findName(),
       date: date,
       meta: {
@@ -227,8 +258,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions
         }
       }
     })
@@ -247,8 +277,7 @@ module.exports = (params) => {
           course: params.course,
           location: params.location,
           accreditedBody: params.accreditedBody,
-          standardConditions: params.offer.standardConditions,
-          conditions: params.offer.conditions
+          conditions
         }
       }
     })

@@ -31,14 +31,11 @@ module.exports = (params) => {
     acceptedDate = DateTime.fromISO(madeDate).plus({ days: faker.random.number({ min: 1, max: 3 })}).toISO()
   }
 
-  return {
-    provider: params.provider,
-    course: params.course,
-    location: params.location,
-    accreditedBody: params.accreditedBody,
-    madeDate,
-    acceptedDate,
-    standardConditions: [{
+  let standardConditions
+  let conditions
+
+  if(params.status == 'Awaiting conditions' || faker.helpers.randomize([true, false])) {
+    standardConditions = [{
       id: faker.random.uuid(),
       description: 'Fitness to teach check',
       status: conditionStatus
@@ -46,12 +43,24 @@ module.exports = (params) => {
       id: faker.random.uuid(),
       description: 'Disclosure and barring service check',
       status: conditionStatus
-    }],
-    conditions: [{
+    }]
+
+    conditions =  [{
       id: faker.random.uuid(),
       description: 'You need to take English speaking course',
       status: conditionStatus
-    }],
+    }]
+  }
+
+  return {
+    provider: params.provider,
+    course: params.course,
+    location: params.location,
+    accreditedBody: params.accreditedBody,
+    madeDate,
+    acceptedDate,
+    standardConditions,
+    conditions,
     withdrawalDate,
     withdrawalReasons
   }

@@ -76,13 +76,17 @@ module.exports = router => {
     }
 
     // save further conditions
-    application.offer.conditions = req.session.data['new-offer']['conditions'].filter(c => c != '').map(c => {
+    let furtherConditions = req.session.data['new-offer'].conditions.filter(c => c != '').map(c => {
       return {
         id: uuidv4(),
         description: c,
         status: "Pending"
       }
     })
+
+    if(furtherConditions.length) {
+      application.offer.conditions = furtherConditions
+    }
 
     ApplicationHelper.addEvent(application, {
       title: 'Offer made',
@@ -94,8 +98,7 @@ module.exports = router => {
           course: application.offer.course,
           location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
-          standardConditions: application.offer.standardConditions,
-          conditions: application.offer.conditions
+          conditions: ApplicationHelper.getConditions(application.offer)
         }
       }
     })

@@ -45,7 +45,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = ApplicationHelper.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application.offer)
     if (data.allConditionsMet){
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
@@ -87,8 +87,7 @@ module.exports = router => {
           course: application.offer.course,
           location: application.offer.location,
           accreditedBody: application.offer.accreditedBody,
-          standardConditions: application.offer.standardConditions,
-          conditions: application.offer.conditions
+          conditions: application.offer.standardConditions.concat(application.offer.conditions)
         }
       }
     })
@@ -163,7 +162,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = ApplicationHelper.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application.offer)
     if (data.allConditionsMet){
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet
@@ -302,7 +301,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = ApplicationHelper.getConditions(application)
+    const conditions = ApplicationHelper.getConditions(application.offer)
     if (data.allConditionsMet){
       let allConditionsMet = (data.allConditionsMet == 'true') ? true : false
       delete data.allConditionsMet

@@ -1,5 +1,20 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+{% set conditionsHtml %}
+
+  {% if params.offer.conditions.length %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for condition in params.offer.conditions %}
+        <li>
+          {{condition.description}}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No conditions have been set for this offer.</p>
+  {% endif %}
+{% endset %}
+
 {{ govukSummaryList({
   rows: [
     {
@@ -32,6 +47,14 @@
       },
       value: {
         text: params.offer.accreditedBody
+      }
+    },
+    {
+      key: {
+        text: "Conditions"
+      },
+      value: {
+        html: conditionsHtml
       }
     }
   ]
