@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "application" %}
 {% set name = application.personalDetails.name %}
-{% set title = 'Application - ' + name %}
+{% set pageName = 'Application' %}
+{% set title = pageName + ' - ' + application.personalDetails.name %}
 
 {% block content %}
   {{ govukNotificationBanner({
@@ -12,19 +13,7 @@
     icon: false
   }) if flash | falsify }}
 
-  {% if not query.transferred %}
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-      {{name}}
-      <span class="govuk-visually-hidden">Application</span>
-      {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
-    </h1>
-    {% include "_includes/applications/prompts.njk" %}
-  {% else %}
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-      {{name}} – transferred to an organisation you do not belong to
-      <span class="govuk-visually-hidden">Timeline</span>
-    </h1>
-  {% endif %}
+  {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
@@ -32,143 +21,145 @@
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
 
-      <p>
-        {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" and application.status != "Conditions not met" %}
-           <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
-        {% endif %}
-        <a href="#" download>Download application (PDF)</a>
-      </p>
+      {% if not query.transferred %}
+        <p>
+          {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" and application.status != "Conditions not met" %}
+            <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
+          {% endif %}
+          <a href="#" download>Download application (PDF)</a>
+        </p>
+      {% endif %}
 
       {% include "_includes/applications/application-details.njk" %}
-      {% include "_includes/applications/personal-details.njk" %}
+      {% if not query.transferred %}
+        {% include "_includes/applications/personal-details.njk" %}
+      {% endif %}
       {% include "_includes/applications/course-details.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Criminal record and professional misconduct</h2>
+      {% if not query.transferred %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Criminal record and professional misconduct</h2>
 
-      {% set safeguardingValueHtml %}
-        {% if application.safeguarding.response %}
-          {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
-            <p>{{ application.safeguarding.details | nl2br }}</p>
-          {% else %}
-            <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
+        {% set safeguardingValueHtml %}
+          {% if application.safeguarding.response %}
+            {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
+              <p>{{ application.safeguarding.details | nl2br }}</p>
+            {% else %}
+              <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
+            {% endif %}
           {% endif %}
-        {% endif %}
-      {% endset %}
+        {% endset %}
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you want to share any safeguarding issues?"
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Do you want to share any safeguarding issues?"
+              },
+              value: {
+                text: "Yes, I want to share something" if application.safeguarding.response else "No"
+              }
             },
-            value: {
-              text: "Yes, I want to share something" if application.safeguarding.response else "No"
-            }
-          },
-          {
-            key: {
-              text: "Give any relevant information"
-            },
-            value: {
-              html: safeguardingValueHtml
-            }
-          } if application.safeguarding.details
-        ]
-      }) }}
+            {
+              key: {
+                text: "Give any relevant information"
+              },
+              value: {
+                html: safeguardingValueHtml
+              }
+            } if application.safeguarding.details
+          ]
+        }) }}
 
-
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history and unpaid experience</h2>
-      {% include "_includes/applications/experience.njk" %}
-
-      {# <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history</h2>
-      {% include "_includes/applications/work-history.njk" %}
-
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Unpaid experience and volunteering</h2>
-      {% include "_includes/applications/school-experience.njk" %} #}
-
+        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history and unpaid experience</h2>
+        {% include "_includes/applications/experience.njk" %}
+      {% endif %}
     </div>
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-top-2 govuk-!-font-size-27">Qualifications</h2>
-      {% include "_includes/applications/degrees.njk" %}
-      {% include "_includes/applications/gcses.njk" %}
-      {% if application.personalDetails.isInternationalCandidate %}
-        {% include "_includes/applications/english-language-qualification.njk" %}
+      {% if not query.transferred %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-2 govuk-!-font-size-27">Qualifications</h2>
+        {% include "_includes/applications/degrees.njk" %}
+        {% include "_includes/applications/gcses.njk" %}
+        {% if application.personalDetails.isInternationalCandidate %}
+          {% include "_includes/applications/english-language-qualification.njk" %}
+        {% endif %}
       {% endif %}
     </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "_includes/applications/other-qualifications.njk" %}
+      {% if not query.transferred %}
+        {% include "_includes/applications/other-qualifications.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-3 govuk-!-margin-bottom-2">Personal statement</h2>
+        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-3 govuk-!-margin-bottom-2">Personal statement</h2>
 
-      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">Why do you want to become a teacher?</h3>
-      <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
+        <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">Why do you want to become a teacher?</h3>
+        <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
 
-      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">What do you know about the subject you want to teach?</h3>
-      <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
+        <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">What do you know about the subject you want to teach?</h3>
+        <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
 
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7">References</h2>
+        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7">References</h2>
 
-      <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
-      {% set referenceId = "first" %}
-      {% include "_includes/applications/reference.njk" %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
+        {% set referenceId = "first" %}
+        {% include "_includes/applications/reference.njk" %}
 
-      <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
-      {% set referenceId = "second" %}
-      {% include "_includes/applications/reference.njk" %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
+        {% set referenceId = "second" %}
+        {% include "_includes/applications/reference.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you want to ask for help to become a teacher?"
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Do you want to ask for help to become a teacher?"
+              },
+              value: {
+              text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
+              }
             },
-            value: {
-            text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
-            }
-          },
-          {
-            key: {
-              text: "Give any relevant information"
-            },
-            value: {
-              html: application.disability.details
-            }
-          } if application.disability.details
-        ]
-      }) }}
+            {
+              key: {
+                text: "Give any relevant information"
+              },
+              value: {
+                html: application.disability.details
+              }
+            } if application.disability.details
+          ]
+        }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you have any interview needs?"
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Do you have any interview needs?"
+              },
+              value: {
+                text: "Yes" if application.interviewNeeds.response else "No"
+              }
             },
-            value: {
-              text: "Yes" if application.interviewNeeds.response else "No"
-            }
-          },
-          {
-            key: {
-              text: "What are your interview needs?"
-            },
-            value: {
-              html: application.interviewNeeds.details
-            }
-          } if application.interviewNeeds.details
-        ]
-      }) }}
+            {
+              key: {
+                text: "What are your interview needs?"
+              },
+              value: {
+                html: application.interviewNeeds.details
+              }
+            } if application.interviewNeeds.details
+          ]
+        }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Diversity information</h2>
-      {% include "_includes/applications/diversity-information.njk" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Diversity information</h2>
+        {% include "_includes/applications/diversity-information.njk" %}
+      {% endif %}
     </div>
   </div>
 {% endblock %}

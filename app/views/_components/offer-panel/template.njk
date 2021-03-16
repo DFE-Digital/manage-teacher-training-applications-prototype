@@ -3,15 +3,17 @@
 {% from "_components/conditions-panel/macro.njk" import appConditionsPanel %}
 
 <div class="app-offer-panel">
-  {% if params.withdraw or params.defer %}
-    <p class="govuk-body">
-      {% if params.withdraw %}
-        <a class="govuk-!-margin-right-2" href="{{params.withdraw.href}}">Withdraw offer</a>
-      {% endif %}
-      {% if params.defer %}
-        <a href="{{params.defer.href}}">Defer offer</a>
-      {% endif %}
-    </p>
+  {% if not params.transferred %}
+    {% if params.withdraw or params.defer %}
+      <p class="govuk-body">
+        {% if params.withdraw %}
+          <a class="govuk-!-margin-right-2" href="{{params.withdraw.href}}">Withdraw offer</a>
+        {% endif %}
+        {% if params.defer %}
+          <a href="{{params.defer.href}}">Defer offer</a>
+        {% endif %}
+      </p>
+    {% endif %}
   {% endif %}
 
   <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">
@@ -95,22 +97,23 @@
   <h2 class="govuk-heading-m">
     Conditions of offer
   </h2>
+  {% if not params.transferred %}
+    {% if params.changeStatus or params.changeConditions %}
+      <p>
+        {% if params.changeStatus %}
+          <a href="{{params.changeStatus.href}}">Update status of conditions</a>
+        {% endif %}
 
-  {% if params.changeStatus or params.changeConditions %}
-    <p>
-      {% if params.changeStatus %}
-        <a href="{{params.changeStatus.href}}">Update status of conditions</a>
-      {% endif %}
+        {% if params.changeConditions and not params.changeStatus %}
+          <a href="{{params.changeConditions.href}}">Add or change conditions</a>
+        {% endif %}
 
-      {% if params.changeConditions and not params.changeStatus %}
-        <a href="{{params.changeConditions.href}}">Add or change conditions</a>
-      {% endif %}
-
-      {% if params.changeConditions and params.changeStatus %}
-        or
-        <a href="{{params.changeConditions.href}}">add or change conditions</a>
-      {% endif %}
-    </p>
+        {% if params.changeConditions and params.changeStatus %}
+          or
+          <a href="{{params.changeConditions.href}}">add or change conditions</a>
+        {% endif %}
+      </p>
+    {% endif %}
   {% endif %}
 
   {% if params.conditions.items.length %}

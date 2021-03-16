@@ -1,0 +1,17 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if not query.transferred %}
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+        {{name}}
+        <span class="govuk-visually-hidden">{{pageName}}</span>
+        {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+      </h1>
+      {% include "_includes/applications/prompts.njk" %}
+    {% else %}
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+        {{name}} - no longer applying to your organisation
+        <span class="govuk-visually-hidden">{{pageName}}</span>
+      </h1>
+    {% endif %}
+  </div>
+</div>
