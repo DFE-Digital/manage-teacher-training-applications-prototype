@@ -1,6 +1,7 @@
 {% extends "_layout-register.njk" %}
 
 {% set title = "Register (v3)" %}
+{% set href = "/register3" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -17,7 +18,7 @@
       <ul class="govuk-list">
         {% for organisation in organisations %}
           <li>
-            <a class="govuk-link govuk-link--no-visited-state" href="/register3/{{ organisation.id }}/start">
+            <a class="govuk-link govuk-link--no-visited-state" href="{{ href }}/{{ organisation.id }}/start">
               {{- organisation.name -}}
             </a>
           </li>
