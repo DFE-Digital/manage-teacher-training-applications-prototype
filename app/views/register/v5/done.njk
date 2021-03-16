@@ -1,0 +1,40 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "You’ve successfully signed the data sharing agreement" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: title
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Inviting users
+      </h2>
+
+      <p class="govuk-body">
+        Select <a href="/account/users">Users</a> under your account to add users and manage their permissions.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Manage your applications
+      </h2>
+
+      <p class="govuk-body">
+        Continue to your applications.
+      </p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}
