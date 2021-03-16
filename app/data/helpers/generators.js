@@ -17,7 +17,14 @@ exports.firstName = (sex) => {
       'Harry',
       'Luke',
       'Victor',
-      'Samuel'
+      'Samuel',
+      'Bruce',
+      'Wade',
+      'Harold',
+      'Peter',
+      'James',
+      'Taneleer',
+      'Herman'
     ])
   } else {
     return faker.helpers.randomize([
@@ -32,41 +39,43 @@ exports.firstName = (sex) => {
       'Barbara',
       'Bonita',
       'Susan',
-      'Julia'
+      'Julia',
+      'Virgina',
+      'Kara Lynn',
+      'Hela'
     ])
   }
 }
 
-exports.lastName = (sex) => {
-  if(sex === 'Male') {
-    return faker.helpers.randomize([
-      'Stark',
-      'Odinson',
-      'Pym',
-      'Banner',
-      'Rogers',
-      'Barton',
-      'Pietro',
-      'Maximoff',
-      'Cleese',
-      'Charles',
-      'Shade',
-      'Wilson'
-    ])
-  } else {
-    return faker.helpers.randomize([
-      'van Dyne',
-      'Maximoff',
-      'Romanoff',
-      'Douglas',
-      'Walker',
-      'Danvers',
-      'Walters',
-      'Rambeau',
-      'Morse',
-      'Juárez',
-      'Richards',
-      'Carpenter'
-    ])
-  }
+exports.lastName = () => {
+  return faker.helpers.randomize([
+    'Stark',
+    'Odinson',
+    'Pym',
+    'Banner',
+    'Rogers',
+    'Barton',
+    'Pietro',
+    'Cleese',
+    'Charles',
+    'Shade',
+    'Wilson',
+    'van Dyne',
+    'Maximoff',
+    'Romanoff',
+    'Douglas',
+    'Walker',
+    'Danvers',
+    'Walters',
+    'Rambeau',
+    'Morse',
+    'Juárez',
+    'Richards',
+    'Carpenter',
+    'Hogan',
+    'Octavius',
+    'Quill',
+    'Schultz',
+    'Tivan'
+  ])
 }

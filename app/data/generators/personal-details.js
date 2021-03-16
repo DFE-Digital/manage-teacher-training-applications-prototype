@@ -80,7 +80,7 @@ module.exports = faker => {
 
   return {
     givenName: generatorHelpers.firstName(sex),
-    familyName: generatorHelpers.lastName(sex),
+    familyName: generatorHelpers.lastName(),
     dateOfBirth: faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
     residency,
