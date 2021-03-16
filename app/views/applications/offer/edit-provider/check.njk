@@ -42,9 +42,16 @@
         }
       })}}
 
-      {{ govukWarningText({
+      {# {{ govukWarningText({
         text: "When you send this offer, you guarantee a place on this course as long as the candidate meets the conditions."
-      }) }}
+      }) }} #}
+
+      <p>When you send the candidate this offer:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li> you guarantee a place on this course as long as the candidate meets the conditions </li>
+        <li> users at {{application.offer.provider}} will be notified that this offer has been changed to a course at {{data['change-offer']['provider']}} </li>
+      </ul>
 
       <form method="post">
         {{ govukButton({
