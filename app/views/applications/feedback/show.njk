@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "feedback" %}
 {% set name = application.personalDetails.name %}
-{% set title = 'Feedback - ' + application.personalDetails.name %}
+{% set pageName = 'Feedback' %}
+{% set title = pageName + ' - ' + application.personalDetails.name %}
 
 {% block content %}
   {{ govukNotificationBanner({
@@ -12,13 +13,7 @@
     icon: false
   }) if flash | falsify }}
 
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-    {{name}}
-    <span class="govuk-visually-hidden">Feedback</span>
-    {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
-  </h1>
-
-  {% include "_includes/applications/prompts.njk" %}
+  {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
