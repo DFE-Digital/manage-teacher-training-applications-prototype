@@ -102,10 +102,10 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
-  personalDetails.feeStatus = 'Provisionally eligible for funding'
+  personalDetails.feeStatus = 'Provisionally eligible for home funding'
   if (personalDetails.isInternationalCandidate) {
     if (!(personalDetails.rightToWorkStudy === 'Yes') || contactDetails.addressType === 'international') {
-      personalDetails.feeStatus = 'Not eligible for funding'
+      personalDetails.feeStatus = 'Not eligible for home funding'
     }
   }
 
@@ -638,7 +638,7 @@ const generateFakeApplications = () => {
         rightToWorkStudy: 'Yes',
         rightToWorkStudyDetails: 'I have settled status'
       },
-      feeStatus: 'Provisionally eligible for funding'
+      feeStatus: 'Provisionally eligible for home funding'
     },
     contactDetails: {
       tel: '07700 900978',
@@ -757,7 +757,7 @@ const generateFakeApplications = () => {
         rightToWorkStudy: 'Not yet, or not sure',
         rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
       },
-      feeStatus: 'Not eligible for funding'
+      feeStatus: 'Not eligible for home funding'
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -837,7 +837,7 @@ const generateFakeApplications = () => {
         rightToWorkStudy: 'Not yet, or not sure',
         rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
       },
-      feeStatus: 'Not eligible for funding'
+      feeStatus: 'Not eligible for home funding'
     },
     degree: [{
       type: 'BCA',

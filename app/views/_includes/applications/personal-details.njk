@@ -43,14 +43,14 @@
     value: {
       text: application.personalDetails.residency.rightToWorkStudy
     }
-  } if application.personalDetails.residency.rightToWorkStudy !== 'Yes', {
+  } if application.personalDetails.isInternationalCandidate, {
     key: {
-      text: "Residency details"
+      text: "Immigration status"
     },
     value: {
       text: application.personalDetails.residency.rightToWorkStudyDetails
     }
-  } if application.personalDetails.residency.rightToWorkStudy !== 'Yes', {
+  } if application.personalDetails.isInternationalCandidate, {
     key: {
       text: "Phone number"
     },
