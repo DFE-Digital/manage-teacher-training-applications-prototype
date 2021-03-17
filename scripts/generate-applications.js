@@ -102,7 +102,7 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
-  personalDetails.feeStatus = 'Provisionally eligible'
+  personalDetails.feeStatus = 'Provisionally eligible for funding'
   if (personalDetails.isInternationalCandidate) {
     if (!(personalDetails.rightToWorkStudy === 'Yes') || contactDetails.addressType === 'international') {
       personalDetails.feeStatus = 'Not eligible for funding'
@@ -636,9 +636,9 @@ const generateFakeApplications = () => {
       nationality: ['Spanish', 'Argentinian'],
       residency: {
         rightToWorkStudy: 'Yes',
-        rightToWorkStudyDetails: 'I have lived in the UK for 10 years.'
+        rightToWorkStudyDetails: 'I have settled status'
       },
-      feeStatus: 'Provisionally eligible'
+      feeStatus: 'Provisionally eligible for funding'
     },
     contactDetails: {
       tel: '07700 900978',
@@ -754,10 +754,10 @@ const generateFakeApplications = () => {
       familyName: 'Ha-Sun',
       nationality: ['South Korean', 'Australian'],
       residency: {
-        rightToWorkStudy: 'Not yet',
-        rightToWorkStudyDetails: ''
+        rightToWorkStudy: 'Not yet, or not sure',
+        rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
       },
-      feeStatus: 'Unknown'
+      feeStatus: 'Not eligible for funding'
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -834,10 +834,10 @@ const generateFakeApplications = () => {
       familyName: 'Sra',
       nationality: ['Indian'],
       residency: {
-        rightToWorkStudy: 'Do not know',
-        rightToWorkStudyDetails: ''
+        rightToWorkStudy: 'Not yet, or not sure',
+        rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
       },
-      feeStatus: 'Unknown'
+      feeStatus: 'Not eligible for funding'
     },
     degree: [{
       type: 'BCA',
