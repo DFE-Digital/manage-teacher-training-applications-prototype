@@ -42,14 +42,30 @@
         }
       })}}
 
-      {# {{ govukWarningText({
-        text: "When you send this offer, you guarantee a place on this course as long as the candidate meets the conditions."
-      }) }} #}
+{% if conditions.length %}
 
-      <p>When you send this offer, you guarantee a place on the course as long as the candidate meets the conditions.</p>
+        <p>When you send this offer, you guarantee a place on the course as long as the candidate meets the conditions.</p>
+     
+      {% else %}
+     
+        <p>When you send this offer, you guarantee a place on the course once the candidate accepts the offer.</p>
+     
+      {% endif %}
+     
+      <p>Notifications will be sent to:</p>
 
-      <p>Users at {{application.offer.provider}} will be told by email that the candidate has been offered a course at {{data['change-offer']['provider']}}.</p>
-
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          users at {{application.offer.provider}} to tell them that they can no longer view the application
+        </li>
+        <li>
+          users at {{data['change-offer']['provider']}} to tell them that they have a new application
+        </li>
+        <li>
+          the candidate to tell them that their offer has changed
+        </li>
+      </ul>
+      
       <form method="post">
         {{ govukButton({
           text: "Send new offer"
