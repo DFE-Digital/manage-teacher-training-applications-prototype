@@ -1,4 +1,5 @@
 const weighted = require('weighted')
+const generatorHelpers = require('../helpers/generators')
 
 module.exports = faker => {
   const nationalities = {
@@ -77,12 +78,9 @@ module.exports = faker => {
 
   }
 
-
-
-
   return {
-    givenName: faker.name.firstName(sexInteger),
-    familyName: faker.name.lastName(sexInteger),
+    givenName: generatorHelpers.firstName(sex),
+    familyName: generatorHelpers.lastName(),
     dateOfBirth: faker.date.between('1958-01-01', '1998-01-01'),
     nationality,
     residency,
