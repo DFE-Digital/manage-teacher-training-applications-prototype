@@ -25,6 +25,14 @@
       value: {
         text: application.cycle | cycleText
       }
-    }
+    },
+    {
+      key: {
+        text: "Fee status"
+      },
+      value: {
+        text: application.personalDetails.feeStatus
+      }
+    } if application.personalDetails.feeStatus
   ]
 }) }}

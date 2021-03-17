@@ -43,14 +43,14 @@
     value: {
       text: application.personalDetails.residency.rightToWorkStudy
     }
-  } if application.personalDetails.residency, {
+  } if application.personalDetails.residency.rightToWorkStudy !== 'Yes', {
     key: {
       text: "Residency details"
     },
     value: {
       text: application.personalDetails.residency.rightToWorkStudyDetails
     }
-  } if application.personalDetails.residency.rightToWorkStudyDetails, {
+  } if application.personalDetails.residency.rightToWorkStudy !== 'Yes', {
     key: {
       text: "Phone number"
     },
@@ -71,12 +71,5 @@
     value: {
       html: application.contactDetails.address | toArray | join("<br>")
     }
-  }, {
-    key: {
-      text: "Provisional fee status"
-    },
-    value: {
-      html: application.personalDetails.feeStatus
-    }
-  } if application.personalDetails.feeStatus]
+  }]
 }) }}
