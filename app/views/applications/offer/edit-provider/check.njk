@@ -45,16 +45,12 @@
         }
       })}}
 
-{% if conditions.length %}
-
+      {% if conditions.length %}
         <p>When you send this offer, you guarantee a place on the course as long as the candidate meets the conditions.</p>
-     
       {% else %}
-     
         <p>When you send this offer, you guarantee a place on the course once the candidate accepts the offer.</p>
-     
       {% endif %}
-     
+
       <p>Notifications will be sent to:</p>
 
       <ul class="govuk-list govuk-list--bullet">
@@ -68,7 +64,7 @@
           the candidate to tell them that their offer has changed
         </li>
       </ul>
-      
+
       <form method="post">
         {{ govukButton({
           text: "Send new offer"
