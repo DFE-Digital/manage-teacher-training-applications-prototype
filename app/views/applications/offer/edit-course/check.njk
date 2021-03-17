@@ -19,7 +19,7 @@
 
       {{appOfferPanel({
         provider: {
-          value: application.provider,
+          value: application.offer.provider,
           href: "#"
         },
         course: {
@@ -33,6 +33,9 @@
         studyMode: {
           value: "Full time",
           href: "#"
+        },
+        accreditedBody: {
+          value: application.offer.accreditedBody
         },
         conditions: {
           items: conditions

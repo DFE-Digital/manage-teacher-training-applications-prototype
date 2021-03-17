@@ -21,13 +21,9 @@
     }) }}
   {% endset %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      {{govukInsetText({
-        html: promptHtml,
-        classes: 'govuk-!-margin-top-0'
-      })}}
-    </div>
-  </div>
+  {{govukInsetText({
+    html: promptHtml,
+    classes: 'govuk-!-margin-top-0'
+  })}}
 
-  {% endif %}
+{% endif %}
