@@ -51,19 +51,24 @@
         <p>When you send this offer, you guarantee a place on the course once the candidate accepts the offer.</p>
       {% endif %}
 
-      <p>Notifications will be sent to:</p>
+      {% if application.offer.provider != data['change-offer']['provider'] %}
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          users at {{application.offer.provider}} to tell them that they can no longer view the application
-        </li>
-        <li>
-          users at {{data['change-offer']['provider']}} to tell them that they have a new application
-        </li>
-        <li>
-          the candidate to tell them that their offer has changed
-        </li>
-      </ul>
+        <p>Notifications will be sent to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            users at {{application.offer.provider}} to tell them that they can no longer view the application
+          </li>
+          <li>
+            users at {{data['change-offer']['provider']}} to tell them that they have a new application
+          </li>
+          <li>
+            the candidate to tell them that their offer has changed
+          </li>
+        </ul>
+      {% else %}
+        <p>A notification will be sent to the candidate to tell them their offer has changed.</p>
+      {% endif %}
 
       <form method="post">
         {{ govukButton({
