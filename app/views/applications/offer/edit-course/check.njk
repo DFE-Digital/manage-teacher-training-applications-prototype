@@ -46,7 +46,7 @@
       })}}
 
       {% set currentProvider = application.offer.provider %}
-      {% set newProvider = data['change-offer']['provider'] or currentProvider %}
+      {% set newProvider = data['change-offer']['provider'] %}
       {% include "_includes/offer/check-answers-content.njk" %}
 
       <form method="post">

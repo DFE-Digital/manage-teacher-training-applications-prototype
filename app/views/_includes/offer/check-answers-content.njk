@@ -5,7 +5,7 @@
   <p>When you send this offer, you guarantee a place on the course once the candidate accepts the offer.</p>
 {% endif %}
 
-{% if currentProvider != newProvider %}
+{% if newProvider and currentProvider != newProvider %}
   <p>Notifications will be sent to:</p>
   <ul class="govuk-list govuk-list--bullet">
     <li>users at {{currentProvider}} to tell them that they can no longer view the application</li>
