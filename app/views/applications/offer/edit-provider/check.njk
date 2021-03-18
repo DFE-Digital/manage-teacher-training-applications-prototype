@@ -45,30 +45,9 @@
         }
       })}}
 
-      {% if conditions.length %}
-        <p>When you send this offer, you guarantee a place on the course as long as the candidate meets the conditions.</p>
-      {% else %}
-        <p>When you send this offer, you guarantee a place on the course once the candidate accepts the offer.</p>
-      {% endif %}
-
-      {% if application.offer.provider != data['change-offer']['provider'] %}
-
-        <p>Notifications will be sent to:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            users at {{application.offer.provider}} to tell them that they can no longer view the application
-          </li>
-          <li>
-            users at {{data['change-offer']['provider']}} to tell them that they have a new application
-          </li>
-          <li>
-            the candidate to tell them that their offer has changed
-          </li>
-        </ul>
-      {% else %}
-        <p>A notification will be sent to the candidate to tell them their offer has changed.</p>
-      {% endif %}
+      {% set currentProvider = application.offer.provider %}
+      {% set newProvider = data['change-offer']['provider'] %}
+      {% include "_includes/offer/check-answers-content.njk" %}
 
       <form method="post">
         {{ govukButton({
