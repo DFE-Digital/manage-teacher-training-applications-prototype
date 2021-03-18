@@ -20,15 +20,15 @@
       {{appOfferPanel({
         provider: {
           value: data["new-offer"].provider or application.provider,
-          href: "/applications/" + application.id + "/offer/new/provider"
+          href: "/applications/" + application.id + "/offer/new/provider?referrer=/check"
         },
         course: {
           value: data["new-offer"].course or application.course,
-          href: "/applications/" + application.id + "/offer/new/course"
+          href: "/applications/" + application.id + "/offer/new/course?referrer=/check"
         },
         location: {
           value: data['new-offer'].location or application.location,
-          href: "/applications/" + application.id + "/offer/new/location"
+          href: "/applications/" + application.id + "/offer/new/location?referrer=/check"
         },
         accreditedBody: {
           value: application.accreditedBody
@@ -41,15 +41,13 @@
           items: conditions
         },
         changeConditions: {
-          href: "/applications/" + application.id + "/offer/new"
+          href: "/applications/" + application.id + "/offer/new?referrer=/check"
         }
       })}}
 
-      {% if conditions.length %}
-        <p>By sending this offer, you’re guaranteeing the candidate a place on this course as long as they meet the conditions.</p>
-      {% else %}
-        <p>By sending this offer, you’re guaranteeing the candidate a place on this course.</p>
-      {% endif %}
+      {% set currentProvider = application.provider %}
+      {% set newProvider = data['new-offer']['provider'] %}
+      {% include "_includes/offer/check-answers-content.njk" %}
 
       <form method="post">
         {{ govukButton({

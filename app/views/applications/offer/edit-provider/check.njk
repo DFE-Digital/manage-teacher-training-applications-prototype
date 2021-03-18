@@ -34,6 +34,9 @@
           value: "Full time",
           href: "#"
         },
+        accreditedBody: {
+          value: application.offer.accreditedBody
+        },
         conditions: {
           items: conditions
         },
@@ -42,11 +45,9 @@
         }
       })}}
 
-      {% if conditions.length %}
-        <p>By sending this offer, you’re guaranteeing the candidate a place on this course as long as they meet the conditions.</p>
-      {% else %}
-        <p>By sending this offer, you’re guaranteeing the candidate a place on this course.</p>
-      {% endif %}
+      {% set currentProvider = application.offer.provider %}
+      {% set newProvider = data['change-offer']['provider'] %}
+      {% include "_includes/offer/check-answers-content.njk" %}
 
       <form method="post">
         {{ govukButton({
