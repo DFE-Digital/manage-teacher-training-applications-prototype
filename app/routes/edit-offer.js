@@ -55,7 +55,7 @@ module.exports = router => {
     }
 
     // if the form has been used in some way
-    if(req.session.data['edit-offer']) {
+    if(req.session.data['edit-offer'] && req.session.data['edit-offer']['conditions'] && req.session.data['edit-offer']['conditions'].length) {
       conditions = req.session.data['edit-offer']['conditions']
     } else {
       if(application.offer.conditions) {
@@ -85,9 +85,11 @@ module.exports = router => {
       conditions = conditions.concat(req.session.data['edit-offer']['standard-conditions'])
     }
 
-    req.session.data['edit-offer']['conditions'].filter(c => c != '').forEach(c => {
-      conditions.push(c)
-    })
+    if(req.session.data['edit-offer']['conditions'] && req.session.data['edit-offer']['conditions'].length) {
+      req.session.data['edit-offer']['conditions'].filter(c => c != '').forEach(c => {
+        conditions.push(c)
+      })
+    }
 
     conditions = conditions.map(c => {
       return {

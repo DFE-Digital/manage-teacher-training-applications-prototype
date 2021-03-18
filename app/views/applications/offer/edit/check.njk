@@ -20,15 +20,15 @@
       {{appOfferPanel({
         provider: {
           value: data['edit-offer']['provider'],
-          href: "/applications/" + application.id + "/offer/edit-provider"
+          href: "/applications/" + application.id + "/offer/edit/provider?referrer=/check"
         },
         course: {
           value: data['edit-offer']['course'],
-          href: "/applications/" + application.id + "/offer/edit-provider/course"
+          href: "/applications/" + application.id + "/offer/edit/course?referrer=/check"
         },
         location: {
           value: data['edit-offer']['location'],
-          href: "/applications/" + application.id + "/offer/edit-provider/location"
+          href: "/applications/" + application.id + "/offer/edit/location?referrer=/check"
         },
         studyMode: {
           value: "Full time",
@@ -41,7 +41,7 @@
           items: conditions
         },
         changeConditions: {
-          href: "#"
+          href: "/applications/" + application.id + "/offer/edit/conditions?referrer=/check"
         }
       })}}
 
