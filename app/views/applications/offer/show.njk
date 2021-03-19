@@ -33,22 +33,22 @@
           } if application.status == "Awaiting conditions" or application.status == "Ready to enroll",
           provider: {
             value: application.offer.provider,
-            href: "/applications/"+application.id+"/offer/edit-provider" if application.status == "Offered" and not query.transferred
+            href: "/applications/"+application.id+"/offer/edit/provider?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           course: {
             value: application.offer.course,
-            href: "/applications/"+application.id+"/offer/edit-course" if application.status == "Offered" and not query.transferred
+            href: "/applications/"+application.id+"/offer/edit/course?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           location: {
             value: application.offer.location,
-            href: "/applications/"+application.id+"/offer/edit-location" if application.status == "Offered" and not query.transferred
+            href: "/applications/"+application.id+"/offer/edit/location?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           accreditedBody: {
             value: application.offer.accreditedBody
           },
 
           changeConditions: {
-            href: "/applications/" + application.id + "/offer/edit-conditions"
+            href: "/applications/"+application.id+"/offer/edit/conditions?referrer=offer"
           } if application.status == "Offered",
 
           changeStatus: {

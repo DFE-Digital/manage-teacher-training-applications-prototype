@@ -4,12 +4,23 @@
 {% set title = "Select location" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/change-course"
-  }) }}
+  {% if referrer == 'check' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/check'
+    }) }}
+  {% elseif referrer == 'offer' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/course'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
@@ -35,7 +46,7 @@
             text: "Bruntcliffe Academy",
             hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' }
           }]
-        } | decorateAttributes(data, 'data["change-offer"]["location"]') ) }}
+        } | decorateAttributes(data, 'data["edit-offer"]["location"]') ) }}
 
         {{ govukButton({
           text: "Continue"
@@ -44,4 +55,19 @@
       <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete({
+      name: "course",
+      element: document.querySelector('#course-autocomplete-container'),
+      id: 'course',
+      showAllValues: true,
+      source: [
+        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
+      ]
+    })
+  </script>
 {% endblock %}

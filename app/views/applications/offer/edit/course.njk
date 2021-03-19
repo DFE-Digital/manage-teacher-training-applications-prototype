@@ -4,25 +4,38 @@
 {% set title = "Select course" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer"
-  }) }}
+  {% if referrer == 'check' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/check'
+    }) }}
+  {% elseif referrer == 'offer' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/provider'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+
+  {{referrer}}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
         {{title}}
       {% endset %}
+
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
               html: h1,
-              isPageheading: true,
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
@@ -30,16 +43,18 @@
             value: "Primary (X100)",
             text: "Primary (X100)",
             hint: {
-              text: 'PGCE with QTS full time, ratified by Kingston'
-            }
+              text: 'PGCE with QTS full time'
+            },
+            checked: checked(data.course, "Primary (X100)")
           }, {
             value: "Primary (X121)",
             text: "Primary (X121)",
             hint: {
-              text: 'QTS full time, ratified by Kingston'
-            }
+              text: 'QTS full time'
+            },
+            checked: checked(data.course, "Primary (X121)")
           }]
-        } | decorateAttributes(data, 'data["change-offer"]["course"]') ) }}
+        } | decorateAttributes(data, 'data["edit-offer"]["course"]') ) }}
 
         {{ govukButton({
           text: "Continue"

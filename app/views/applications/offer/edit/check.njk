@@ -5,13 +5,18 @@
 {% set title = "Check and send new offer" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + '/offer/edit-location'
-  }) }}
+  {% if referrer == 'location' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/location'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/conditions'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{name}}</span>
@@ -19,16 +24,16 @@
 
       {{appOfferPanel({
         provider: {
-          value: application.provider,
-          href: "#"
+          value: data['edit-offer']['provider'] or application.offer.provider,
+          href: "/applications/" + application.id + "/offer/edit/provider?referrer=check"
         },
         course: {
-          value: application.course,
-          href: "#"
+          value: data['edit-offer']['course'] or application.offer.course,
+          href: "/applications/" + application.id + "/offer/edit/course?referrer=check"
         },
         location: {
-          value: data["change-offer"]["location"],
-          href: "/applications/" + application.id + "/offer/edit-location"
+          value: data['edit-offer']['location'] or application.offer.location,
+          href: "/applications/" + application.id + "/offer/edit/location?referrer=check"
         },
         studyMode: {
           value: "Full time",
@@ -41,12 +46,12 @@
           items: conditions
         },
         changeConditions: {
-          href: "#"
+          href: "/applications/" + application.id + "/offer/edit/conditions?referrer=check"
         }
       })}}
 
       {% set currentProvider = application.offer.provider %}
-      {% set newProvider = data['change-offer']['provider'] %}
+      {% set newProvider = data['edit-offer']['provider'] %}
       {% include "_includes/offer/check-answers-content.njk" %}
 
       <form method="post">
