@@ -107,14 +107,9 @@ const generateFakeApplication = (params = {}) => {
 
   // International student eligibility depends on right to work/study and address
   if (personalDetails.isInternationalCandidate) {
-    if (personalDetails.rightToWorkStudy === 'Yes') {
-      if (contactDetails.addressType === 'uk') {
-        personalDetails.feeStatus = 'Eligible for home student funding'
-      } else {
-        personalDetails.feeStatus = 'Not eligible for home student funding'
-      }
-    } else {
-      personalDetails.feeStatus = 'Not eligible for home student funding'
+    personalDetails.feeStatus = 'Not eligible for home student funding'
+    if (personalDetails.rightToWorkStudy === 'Yes' && contactDetails.addressType === 'uk') {
+      personalDetails.feeStatus = 'Eligible for home student funding'
     }
   }
 
