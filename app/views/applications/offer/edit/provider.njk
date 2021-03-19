@@ -23,25 +23,47 @@
         {{title}}
       {% endset %}
       <form method="post">
+        <input type="hidden" name="[edit-offer][submitted-provider-page]" value="true">
 
-        {{ govukRadios({
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [{
-            value: data.user.organisations[0].name,
-            text: data.user.organisations[0].name,
-            checked: checked(data.trainingprovider, data.user.organisations[0].name)
-          }, {
-            value: data.user.organisations[1].name,
-            text: data.user.organisations[1].name,
-            checked: checked(data.trainingprovider, data.user.organisations[1].name)
-          }]
-        } | decorateAttributes(data, 'data["edit-offer"]["provider"]') ) }}
+        {% if data['edit-offer']['submitted-provider-page'] == 'true' %}
+
+          {{ govukRadios({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [{
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name
+            }, {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }]
+          } | decorateAttributes(data, 'data["edit-offer"]["provider"]')
+          ) }}
+        {% else %}
+          {{ govukRadios({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            name: '[edit-offer][provider]',
+            items: [{
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name
+            }, {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }]
+          } | decorateAttributes(application, 'application.offer.provider')
+          ) }}
+        {% endif %}
 
         {{ govukButton({
           text: "Continue"
