@@ -5,13 +5,18 @@
 {% set title = "Check and send new offer" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + '/offer/edit-provider/location'
-  }) }}
+  {% if referrer == 'location' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/location'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/conditions'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{name}}</span>
@@ -20,15 +25,15 @@
       {{appOfferPanel({
         provider: {
           value: data['edit-offer']['provider'] or application.offer.provider,
-          href: "/applications/" + application.id + "/offer/edit/provider?referrer=/check"
+          href: "/applications/" + application.id + "/offer/edit/provider?referrer=check"
         },
         course: {
           value: data['edit-offer']['course'] or application.offer.course,
-          href: "/applications/" + application.id + "/offer/edit/course?referrer=/check"
+          href: "/applications/" + application.id + "/offer/edit/course?referrer=check"
         },
         location: {
           value: data['edit-offer']['location'] or application.offer.location,
-          href: "/applications/" + application.id + "/offer/edit/location?referrer=/check"
+          href: "/applications/" + application.id + "/offer/edit/location?referrer=check"
         },
         studyMode: {
           value: "Full time",
@@ -41,7 +46,7 @@
           items: conditions
         },
         changeConditions: {
-          href: "/applications/" + application.id + "/offer/edit/conditions?referrer=/check"
+          href: "/applications/" + application.id + "/offer/edit/conditions?referrer=check"
         }
       })}}
 

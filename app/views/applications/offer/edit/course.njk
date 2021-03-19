@@ -4,9 +4,13 @@
 {% set title = "Select course" %}
 
 {% block pageNavigation %}
-  {% if query.referrer == '/check' %}
+  {% if referrer == 'check' %}
     {{ govukBackLink({
       href: '/applications/' + application.id + '/offer/edit/check'
+    }) }}
+  {% elseif referrer == 'offer' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer'
     }) }}
   {% else %}
     {{ govukBackLink({
@@ -16,6 +20,8 @@
 {% endblock %}
 
 {% block content %}
+
+  {{referrer}}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}

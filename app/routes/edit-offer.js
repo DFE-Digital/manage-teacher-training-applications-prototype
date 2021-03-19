@@ -31,7 +31,7 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/offer/edit/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/edit/check`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/edit/check?referrer=location`)
   })
 
   router.get('/applications/:applicationId/offer/edit/conditions', (req, res) => {

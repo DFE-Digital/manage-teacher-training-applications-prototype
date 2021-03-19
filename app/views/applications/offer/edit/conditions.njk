@@ -5,7 +5,7 @@
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
-  {% if query.referrer == '/check' %}
+  {% if referrer == 'check' %}
     {{ govukBackLink({
       href: '/applications/' + application.id + '/offer/edit/check'
     }) }}
