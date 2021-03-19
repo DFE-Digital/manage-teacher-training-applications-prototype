@@ -1,0 +1,47 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Set up your account to " + serviceName | lower  %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <!-- <span class="govuk-caption-l">{{ accreditingBody.name }}</span> -->
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body">{{ accreditingBody.name }} ratifies courses run by:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        {% for provider in trainingProviders %}
+          <li>
+            {{ provider.name }}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p class="govuk-body">To create your account, you must tell us:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          whether each training provider’s courses should be open on ‘Apply for teacher training’
+        </li>
+        <li>
+          the name and email address of the user who works at each training provider
+        </li>
+      </ul>
+
+      {{ govukButton({
+        text: "Continue",
+        href: actions.next,
+        classes: "govuk-!-margin-top-5"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

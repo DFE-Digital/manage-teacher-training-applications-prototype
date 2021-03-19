@@ -1,0 +1,83 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Create a DfE Sign-in account"  %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body">If you already have a DfE Sign-in account <a class="govuk-link govuk-link--no-visited-state" href="{{ actions.signin }}">sign in</a>.</p>
+
+      <form action="{{ actions.save }}" method="post" novalidate>
+
+        {% call govukFieldset({}) %}
+
+          {{ govukInput({
+            id: "firstname",
+            name: "firstname",
+            label: {
+              text: "First name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+
+          {{ govukInput({
+            id: "lastname",
+            name: "lastname",
+            label: {
+              text: "Last name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+
+          {{ govukInput({
+            id: "email",
+            name: "email",
+            label: {
+              text: "Email address",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "You will receive an email to verify this address"
+            },
+            classes: "govuk-!-width-two-thirds",
+            inputmode: "email",
+            spellcheck: false
+          }) }}
+
+        {% endcall %}
+
+        {% set termsConditionsHtml %}
+          By continuing you accept the <a class="govuk-link govuk-link--no-visited-state" href="{{ actions.terms }}">terms and conditions</a>.
+        {% endset %}
+
+        {{ govukInsetText({
+          html: termsConditionsHtml
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

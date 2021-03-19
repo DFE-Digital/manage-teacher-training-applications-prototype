@@ -1,0 +1,32 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Set up your account to " + serviceName | lower  %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+     <p class="govuk-body">To set up your account you need to:</p>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>Sign in using DfE Sign-in - you’ll need to create an account if you do not have one already.</li>
+        <li>Accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</li>
+      </ol>
+
+      {{ govukButton({
+        text: "Sign in using DfE Sign-in" if not data.isAuthenticated else "Continue",
+        href: actions.next,
+        classes: "govuk-!-margin-top-5"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

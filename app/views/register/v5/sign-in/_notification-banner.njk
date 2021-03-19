@@ -1,0 +1,5 @@
+{{ govukNotificationBanner({
+  type: "success",
+  titleText: flash[0].title,
+  text: flash[0].description
+}) if flash | falsify }}

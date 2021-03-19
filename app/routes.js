@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.all('*', function(req, res, next){
+router.all('*', (req, res, next) => {
   const referrer = req.query.referrer
   res.locals.referrer = referrer
   res.locals.query = req.query
@@ -29,5 +29,12 @@ require('./routes/email')(router)
 require('./routes/settings')(router)
 require('./routes/notifications')(router)
 require('./routes/withdraw-application')(router)
+
+// TODO: clean up registration flows when onboarding work finished
+require('./routes/register1')(router)
+require('./routes/register2')(router)
+require('./routes/register3')(router)
+require('./routes/register4')(router)
+require('./routes/register')(router)
 
 module.exports = router

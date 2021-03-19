@@ -1,0 +1,49 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Make the courses you ratify available through GOV.UK" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <!-- <span class="govuk-caption-l">{{ accreditingBody.name }}</span> -->
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body">{{ accreditingBody.name }} ratifies courses run by:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        {% for provider in trainingProviders %}
+          <li>
+            {{ provider.name }}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p class="govuk-body">For each provider, you’ll need to confirm:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          whether the courses you ratify should be available through GOV.UK
+        </li>
+        <li>
+          who should be invited to set up an account for a provider which does not already have one - you may need to give a name and email address
+        </li>
+      </ul>
+
+      <p class="govuk-body">You’ll also need to accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: actions.next,
+        classes: "govuk-!-margin-top-5"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

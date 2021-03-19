@@ -1,0 +1,81 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Department for Education Sign-in"  %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body">DfE Sign-in allows you to access several important services in the education sector, such as COLLECT.</p>
+
+      <form action="{{ actions.save }}" method="post" novalidate>
+
+        {% call govukFieldset({
+          legend: {
+            text: "Sign-in",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            id: "email",
+            name: "email",
+            label: {
+              text: "Email address"
+            },
+            classes: "govuk-!-width-two-thirds",
+            inputmode: "email",
+            spellcheck: false
+          }) }}
+
+          {{ govukInput({
+            id: "password",
+            name: "password",
+            label: {
+              text: "Password"
+            },
+            type: "password",
+            classes: "govuk-!-width-two-thirds",
+            formGroup: {
+              classes: "govuk-!-margin-bottom-1"
+            }
+          }) }}
+
+          <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="{{ actions.forgotten }}">Forgotten your password?</a></p>
+
+        {% endcall %}
+
+        {% set termsConditionsHtml %}
+          By continuing you accept the <a class="govuk-link govuk-link--no-visited-state" href="{{ actions.terms }}">terms and conditions</a>.
+        {% endset %}
+
+        {{ govukInsetText({
+          html: termsConditionsHtml
+        }) }}
+
+        {{ govukButton({
+          text: "Sign in"
+        }) }}
+
+        {{ govukButton({
+          text: "Create account",
+          href: actions.create,
+          classes: "govuk-button--secondary"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">Need help? <a class="govuk-link govuk-link--no-visited-state" href="#">See our DfE Sign-in help guides</a>.</p>
+
+    </div>
+  </div>
+{% endblock %}

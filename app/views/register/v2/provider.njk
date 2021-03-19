@@ -1,0 +1,67 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Make " + trainingProvider.name + "’s courses available?" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{ actions.save }}" method="post" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "onboard",
+          name: "registration[onboard]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked(trainingProvider.onboard, "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked(trainingProvider.onboard, "no")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          name: "button[submit]",
+          value: "continue",
+          text: "Save and continue"
+        }) }}
+
+        {% if not (data.referer == 'check-your-answers') %}
+
+          {{ govukButton({
+            name: "button[submit]",
+            value: "save",
+            text: "Save and finish later",
+            classes: "govuk-button--secondary govuk-!-margin-left-2"
+          }) }}
+
+        {% endif %}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

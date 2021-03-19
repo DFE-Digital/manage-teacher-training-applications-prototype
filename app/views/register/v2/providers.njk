@@ -1,0 +1,124 @@
+{% extends "_layout-register.njk" %}
+
+{% set title = "Make the courses you ratify available through GOV.UK" %}
+
+{% block pageTitle %}
+{{ title }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ accreditingBody.name }}</span>
+        {{ title }}
+      </h1>
+
+      <h2 class="govuk-heading-m">Decisions {{ 'incomplete' if sectionsCompletedCount < sectionsCount else 'complete' }}</h2>
+
+      <p class="govuk-body">You have completed {{ sectionsCompletedCount }} of {{ sectionsCount }} sections.</p>
+
+      <ol class="app-task-list">
+        {% for provider in trainingProviders %}
+          <li>
+            <h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">{{ loop.index }}.&nbsp;</span>
+              {{ provider.name }}
+            </h2>
+            <ul class="app-task-list__items">
+              <li class="app-task-list__item">
+
+                <a class="app-task-list__task-name" href="{{ actions.courses }}{{ provider.id }}">
+                  Decide whether to make courses available
+                </a>
+
+                {{ govukTag({
+                  text: "Complete" if provider.onboard else "Not started",
+                  classes: "app-task-list__task-tag" + (" govuk-tag--blue" if provider.onboard else " govuk-tag--grey")
+                }) }}
+
+              </li>
+              {% if not provider.onboard or provider.onboard == 'yes' %}
+                <li class="app-task-list__item">
+                  {% if provider.onboard == 'yes' %}
+
+                    <a class="app-task-list__task-name" href="{{ actions.users }}{{ provider.id }}/users">
+                      Decide who to invite
+                    </a>
+
+                    {{ govukTag({
+                      text: "Complete" if provider.contact else "Not started",
+                      classes: "app-task-list__task-tag" + (" govuk-tag--blue" if provider.contact else " govuk-tag--grey")
+                    }) }}
+
+                  {% else %}
+
+                    Decide who to invite
+
+                    {{ govukTag({
+                      text: "Cannot start yet",
+                      classes: "app-task-list__task-tag govuk-tag--grey"
+                    }) }}
+
+                  {% endif %}
+                </li>
+              {% endif %}
+            </ul>
+          </li>
+        {% endfor %}
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">{{ trainingProviders.length + 1 }}.&nbsp;</span>
+            Data sharing agreement
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              {% if sectionsCompletedCount == sectionsCount %}
+
+                <a class="app-task-list__task-name" href="{{ actions.agreement }}">
+                  Agree to the data sharing agreement
+                </a>
+
+                {{ govukTag({
+                  text: "Complete" if data.registration.acceptAgreement == 'yes' else "Not started",
+                  classes: "app-task-list__task-tag" + (" govuk-tag--blue" if data.registration.acceptAgreement == 'yes' else " govuk-tag--grey")
+                }) }}
+
+              {% else %}
+
+                Agree to the data sharing agreement
+
+                {{ govukTag({
+                  text: "Cannot start yet",
+                  classes: "app-task-list__task-tag govuk-tag--grey"
+                }) }}
+
+              {% endif %}
+
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+      {% if sectionsCompletedCount == sectionsCount %}
+
+        <h2 class="govuk-heading-m">Check contact details and invite providers to set up accounts</h2>
+
+        {{ govukButton({
+          text: "Review and submit",
+          href: actions.check
+        }) }}
+
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
