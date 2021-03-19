@@ -102,10 +102,19 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
-  personalDetails.feeStatus = 'Provisionally eligible for home funding'
+  // British and Irish students are always eligible
+  personalDetails.feeStatus = 'Eligible for home student funding'
+
+  // International student eligibility depends on right to work/study and address
   if (personalDetails.isInternationalCandidate) {
-    if (!(personalDetails.rightToWorkStudy === 'Yes') || contactDetails.addressType === 'international') {
-      personalDetails.feeStatus = 'Not eligible for home funding'
+    if (personalDetails.rightToWorkStudy === 'Yes') {
+      if (contactDetails.addressType === 'uk') {
+        personalDetails.feeStatus = 'Eligible for home student funding'
+      } else {
+        personalDetails.feeStatus = 'Not eligible for home student funding'
+      }
+    } else {
+      personalDetails.feeStatus = 'Not eligible for home student funding'
     }
   }
 
@@ -638,7 +647,7 @@ const generateFakeApplications = () => {
         rightToWorkStudy: 'Yes',
         rightToWorkStudyDetails: 'I have settled status'
       },
-      feeStatus: 'Provisionally eligible for home funding'
+      feeStatus: 'Eligible for home student funding'
     },
     contactDetails: {
       tel: '07700 900978',
@@ -757,7 +766,7 @@ const generateFakeApplications = () => {
         rightToWorkStudy: 'Not yet, or not sure',
         rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
       },
-      feeStatus: 'Not eligible for home funding'
+      feeStatus: 'Not eligible for home student funding'
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -837,7 +846,7 @@ const generateFakeApplications = () => {
         rightToWorkStudy: 'Not yet, or not sure',
         rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
       },
-      feeStatus: 'Not eligible for home funding'
+      feeStatus: 'Not eligible for home student funding'
     },
     degree: [{
       type: 'BCA',
