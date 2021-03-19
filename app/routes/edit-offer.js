@@ -121,19 +121,21 @@ module.exports = router => {
     application.offer.course = req.session.data['edit-offer'].course || application.offer.course
     application.offer.location = req.session.data['edit-offer'].location || application.offer.location
 
-    // save standard conditions
-    application.offer.standardConditions = [];
-    if(req.session.data['edit-offer']['standard-conditions'] && req.session.data['edit-offer']['standard-conditions'].length) {
-      req.session.data['edit-offer']['standard-conditions'].forEach(condition => {
-        application.offer.standardConditions.push({
-          id: uuidv4(),
-          description: condition,
-          status: "Pending"
-        })
-      });
-    }
+    // if it's been submitted then save conditions from data
+    if(req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {
+      // save standard conditions
+      application.offer.standardConditions = [];
+      if(req.session.data['edit-offer']['standard-conditions'] && req.session.data['edit-offer']['standard-conditions'].length) {
+        req.session.data['edit-offer']['standard-conditions'].forEach(condition => {
+          application.offer.standardConditions.push({
+            id: uuidv4(),
+            description: condition,
+            status: "Pending"
+          })
+        });
+      }
 
-    // save further conditions
+      // save further conditions
     application.offer.conditions = [];
 
     req.session.data['edit-offer']['conditions'].filter(c => c != '').forEach(c => {
@@ -143,6 +145,9 @@ module.exports = router => {
         status: "Pending"
       })
     })
+    }
+
+
 
     ApplicationHelper.addEvent(application, {
       title: "Offer changed",
@@ -158,6 +163,9 @@ module.exports = router => {
         }
       }
     })
+
+    delete req.session.data['edit-offer']
+
     req.flash('success', 'New offer sent')
     res.redirect(`/applications/${applicationId}/offer`)
   })
