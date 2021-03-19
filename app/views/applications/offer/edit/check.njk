@@ -19,15 +19,15 @@
 
       {{appOfferPanel({
         provider: {
-          value: data['edit-offer']['provider'],
+          value: data['edit-offer']['provider'] or application.offer.provider,
           href: "/applications/" + application.id + "/offer/edit/provider?referrer=/check"
         },
         course: {
-          value: data['edit-offer']['course'],
+          value: data['edit-offer']['course'] or application.offer.course,
           href: "/applications/" + application.id + "/offer/edit/course?referrer=/check"
         },
         location: {
-          value: data['edit-offer']['location'],
+          value: data['edit-offer']['location'] or application.offer.location,
           href: "/applications/" + application.id + "/offer/edit/location?referrer=/check"
         },
         studyMode: {

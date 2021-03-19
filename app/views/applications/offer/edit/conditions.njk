@@ -5,19 +5,34 @@
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: '/applications/' + application.id + '/offer'
-  }) }}
+  {% if query.referrer == '/check' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/check'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      {% if data['edit-offer']['submitted-conditions-page'] == 'true' %}
+        {% set fitnessChecked = checked(data['edit-offer']['standard-conditions'], "Fitness to teach check") %}
+        {% set dbsChecked = checked(data['edit-offer']['standard-conditions'], "Disclosure and barring service check") %}
+      {% else %}
+        {% set fitnessChecked = checked(standardConditions,"Fitness to teach check") %}
+        {% set dbsChecked = checked(standardConditions,"Disclosure and barring service check") %}
+      {% endif %}
+
       <form method="post">
+        <input type="hidden" name="[edit-offer][submitted-conditions-page]" value="true">
+
         {{ govukCheckboxes({
           idPrefix: "[edit-offer][standard-conditions]",
           name: "[edit-offer][standard-conditions]",
@@ -30,14 +45,14 @@
           items: [{
             value: "Fitness to teach check",
             text: "Fitness to teach check",
-            checked: checked(data['edit-offer']['standard-conditions'], "Fitness to teach check") or checked(standardConditions,"Fitness to teach check")
+            checked: fitnessChecked
           }, {
             value: "Disclosure and barring service check",
             text: "Disclosure and barring service check",
             hint: {
               text: "We’ll email the candidate to tell them that they’ll need to provide ID"
             },
-            checked: checked(data['edit-offer']['standard-conditions'], "Disclosure and barring service check") or checked(standardConditions,"Disclosure and barring service check")
+            checked: dbsChecked
           }]
         }) }}
 

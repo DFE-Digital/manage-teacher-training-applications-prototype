@@ -55,7 +55,7 @@ module.exports = router => {
     }
 
     // if the form has been used in some way
-    if(req.session.data['edit-offer'] && req.session.data['edit-offer']['conditions'] && req.session.data['edit-offer']['conditions'].length) {
+    if(req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {
       conditions = req.session.data['edit-offer']['conditions']
     } else {
       if(application.offer.conditions) {
@@ -81,24 +81,29 @@ module.exports = router => {
 
     var conditions = []
 
-    if(req.session.data['edit-offer']['standard-conditions'] && req.session.data['edit-offer']['standard-conditions'].length) {
-      conditions = conditions.concat(req.session.data['edit-offer']['standard-conditions'])
-    }
+    // if it's been submitted then build conditions from data
+    if(req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {
 
-    if(req.session.data['edit-offer']['conditions'] && req.session.data['edit-offer']['conditions'].length) {
-      req.session.data['edit-offer']['conditions'].filter(c => c != '').forEach(c => {
-        conditions.push(c)
-      })
-    }
-
-    conditions = conditions.map(c => {
-      return {
-        description: c,
-        status: "Pending"
+      // standard conditions
+      if(req.session.data['edit-offer']['standard-conditions'] && req.session.data['edit-offer']['standard-conditions'].length) {
+        conditions = conditions.concat(req.session.data['edit-offer']['standard-conditions'])
       }
-    })
 
-    if(!conditions.length) {
+      if(req.session.data['edit-offer']['conditions'] && req.session.data['edit-offer']['conditions'].length) {
+        req.session.data['edit-offer']['conditions'].filter(c => c != '').forEach(c => {
+          conditions.push(c)
+        })
+      }
+
+      conditions = conditions.map(c => {
+        return {
+          description: c,
+          status: "Pending"
+        }
+      })
+
+    // not submitted, build from application.offer object
+    } else {
       conditions = ApplicationHelper.getConditions(application.offer)
     }
 
