@@ -4,9 +4,15 @@
 {% set title = "Select course" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/edit-provider/"
-  }) }}
+  {% if query.referrer == '/check' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/edit/check'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/provider'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
