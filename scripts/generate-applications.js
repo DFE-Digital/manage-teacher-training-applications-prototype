@@ -103,13 +103,13 @@ const generateFakeApplication = (params = {}) => {
   }
 
   // British and Irish students are always eligible
-  personalDetails.feeStatus = 'Eligible for home student funding'
+  personalDetails.feeStatus = 'Eligible for home tuition fee funding (automated assessment - check details with candidate)'
 
   // International student eligibility depends on right to work/study and address
   if (personalDetails.isInternationalCandidate) {
-    personalDetails.feeStatus = 'Not eligible for home student funding'
+    personalDetails.feeStatus = 'Not eligible for home tuition fee funding (automated assessment - check details with candidate)'
     if (personalDetails.rightToWorkStudy === 'Yes' && contactDetails.addressType === 'uk') {
-      personalDetails.feeStatus = 'Eligible for home student funding'
+      personalDetails.feeStatus = 'Eligible for home tuition fee funding (automated assessment - check details with candidate)'
     }
   }
 
