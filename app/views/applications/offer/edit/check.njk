@@ -59,16 +59,12 @@
       {% endif %}
 
       {% if newProvider and currentProvider != newProvider %}
-        <p>Notifications will be sent to:</p>
+        <p>Notifications will also be sent to users at:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>users at {{currentProvider}} to tell them that they can no longer view the application</li>
-          <li>users at {{newProvider}} to tell them that they have a new application</li>
-          <li>the candidate to tell them that their offer has changed</li>
+          <li>{{currentProvider}} to tell them that they can no longer view the application</li>
+          <li>{{newProvider}} to tell them that they have a new application</li>
         </ul>
-      {% else %}
-        <p>A notification will be sent to the candidate to tell them their offer has changed.</p>
       {% endif %}
-
 
       <form method="post">
         {{ govukButton({
