@@ -9,7 +9,13 @@
       {% include "_includes/applications/prompts.njk" %}
     {% else %}
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-        {{name}} - no longer applying to your organisation
+        {{name}} -
+        this application has been transferred to another organisation
+        {# this application is no longer being made to {{application.offer.provider}} #}
+        {# this application is no longer being made to your organisation #}
+        {# this application is no longer being made to a course provided by your organisation #}
+        {# no longer applying to your organisation #}
+        {# you can no longer see all of the details of this application because it’s been transferred to another organisation #}
         <span class="govuk-visually-hidden">{{pageName}}</span>
       </h1>
     {% endif %}

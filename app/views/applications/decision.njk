@@ -18,7 +18,51 @@
         {{title}}
       </h1>
 
-      {% include "_includes/offer/course-details.njk" %}
+      <div class="app-box govuk-!-margin-bottom-7">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+          Course applied for
+        </h2>
+
+        {{ govukSummaryList({
+          rows: [{
+            key: {
+              text: "Training provider"
+            },
+            value: {
+              html: application.provider
+            }
+          }, {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: application.course
+            }
+          }, {
+            key: {
+              text: "Full time or part time"
+            },
+            value: {
+              html: application.studyMode
+            }
+          }, {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: application.location
+            }
+          },{
+            key: {
+              text: "Accredited body"
+            },
+            value: {
+              html: application.accreditedBody
+            }
+          }
+          ]})
+        }}
+      </div>
 
       <form method="post">
         {{ govukRadios({
