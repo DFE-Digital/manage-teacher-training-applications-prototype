@@ -23,6 +23,7 @@
             <div class="app-activity-log__header">
               <h2 class="app-activity-log__title govuk-heading-s govuk-!-font-size-24 govuk-!-margin-bottom-1">
                 {{ event.title }}
+                <span class="govuk-visually-hidden">{{- event.date | govukDateAtTime -}}</span>
               </h2>
               <p class="app-activity-log__byline">
                 {{event.user}},
