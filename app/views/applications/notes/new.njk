@@ -17,32 +17,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
+      {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
         Add note
-      </h1>
-
+      {% endset %}
       <form method="post">
         {{ govukCharacterCount({
           label: {
-            text: "Subject",
-            classes: "govuk-label--m"
-          },
-          hint: {
-            text: "This appears on your application list by the relevant candidate"
-          },
-          rows: 1,
-          maxlength: 40,
-          id: "subject",
-          name: "subject",
-          type: "text"
-        }) }}
-
-
-        {{ govukCharacterCount({
-          label: {
-            text: "Note",
-            classes: "govuk-label--m"
+            html: h1,
+            classes: "govuk-label--l",
+            isPageheading: true
           },
           maxlength: 500,
           id: "body",
