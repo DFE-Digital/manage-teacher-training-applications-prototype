@@ -1,23 +1,9 @@
-const organisations = require('../data/registrations.json')
-                        .filter(org => !org.isRegistered && org.isAccreditedBody)
-                        .sort((a, b) => a.name.localeCompare(b.name))
-const providers = require('../data/registrations.json').filter(org => !org.isAccreditedBody)
-
 function checkHasAnswers (req, res, next) {
-  // console.log(req.session.data.registration)
   if (req.session.data.registration === undefined) {
     res.redirect('/register')
   } else {
     next()
   }
-}
-
-function getTrainingProvidersIds (data) {
-  const array = []
-  for (let i = 0; i < data.length; i++) {
-    array.push(data[i].id)
-  }
-  return array
 }
 
 module.exports = router => {
@@ -27,75 +13,40 @@ module.exports = router => {
     delete req.session.data.registration
     delete req.session.data.isAuthenticated
 
-    res.render('register/v5/index', {
-      organisations
-    })
+    res.redirect(`/register/start`)
   })
 
-  router.get('/register/:organisationId/start', (req, res) => {
-    // set up the structure into which we'll put the onboarding data
-    if (req.session.data.registration === undefined || req.session.data.registration.accreditingBody.id !== req.params.organisationId) {
-      req.session.data.registration = {}
-
-      // get the accrediting body (HEI) information
-      const accreditingBody = organisations.filter(org => org.id == req.params.organisationId)[0]
-
-      // put the accrediting body into the session for convenience
-      req.session.data.registration.accreditingBody = accreditingBody
-
-      // get the training providers for the accrediting body
-      const trainingProviders = providers
-                                  .filter(org => org.accreditingBodies.includes(req.params.organisationId))
-                                  .sort((a, b) => a.name.localeCompare(b.name))
-
-      // put the training providers into the session for convenience
-      req.session.data.registration.trainingProviders = trainingProviders
-
-      // get the training providers already onboarded
-      const trainingProvidersOnboarded = trainingProviders.filter(org => org.isRegistered === true)
-
-      // put the training providers into the session for convenience
-      req.session.data.registration.trainingProvidersOnboarded = trainingProvidersOnboarded
-
-      // get the training providers not already onboarded
-      const trainingProvidersNotOnboarded = trainingProviders.filter(org => org.isRegistered === false)
-
-      // put the training providers into the session for convenience
-      req.session.data.registration.trainingProvidersNotOnboarded = trainingProvidersNotOnboarded
-
-      // put the training provider ids into an array so we can use them to work out back routing
-      req.session.data.registration.trainingProvidersIds = getTrainingProvidersIds(trainingProvidersNotOnboarded)
-    }
-
+  router.get('/register/start', (req, res) => {
     // if signed in, next is the agreement, else sign-in
-    let next = `/register/${req.params.organisationId}/sign-in`
+    let next = `/register/sign-in`
     if (req.session.data.isAuthenticated === true) {
-      next = `/register/${req.params.organisationId}/agreement`
+      next = `/register/agreement`
     }
 
     res.render('register/v5/start', {
       actions: {
         next: next
       },
-      accreditingBody: req.session.data.registration.accreditingBody,
-      trainingProvidersOnboarded: req.session.data.registration.trainingProvidersOnboarded,
-      trainingProvidersNotOnboarded: req.session.data.registration.trainingProvidersNotOnboarded
+      accreditingBody:  {
+        name: 'Wren Academy'
+      }
     })
   })
 
-  router.get('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
-    const lastTrainingProviderId = req.session.data.registration.lastTrainingProviderId
+  router.get('/register/agreement', (req, res) => {
 
     res.render('register/v5/agreement', {
       actions: {
-        save: `/register/${req.params.organisationId}/agreement`,
-        back: `/register/${req.params.organisationId}/start`
+        save: `/register/agreement`,
+        back: `/register/start`
       },
-      accreditingBody: req.session.data.registration.accreditingBody
+      accreditingBody: {
+        name: 'Wren Academy'
+      }
     })
   })
 
-  router.post('/register/:organisationId/agreement', checkHasAnswers, (req, res) => {
+  router.post('/register/agreement', checkHasAnswers, (req, res) => {
     const errors = []
 
     if (req.session.data.registration.acceptAgreement === undefined) {
@@ -109,170 +60,61 @@ module.exports = router => {
     if (errors.length) {
       res.render('register/v5/agreement', {
         actions: {
-          save: `/register/${req.params.organisationId}/agreement`,
-          back: `/register/${req.params.organisationId}/start`
+          save: `/register/agreement`,
+          back: `/register/start`
         },
-        accreditingBody: req.session.data.registration.accreditingBody,
+        accreditingBody:  {
+          name: 'Wren Academy'
+        },
         errors: errors
       })
     } else {
-      res.redirect(`/register/${req.params.organisationId}/done`)
+      res.redirect(`/register/done`)
     }
   })
 
-  // router.get('/register/:organisationId/next', checkHasAnswers, (req, res) => {
-  //   // set the first training provider id
-  //   const firstTrainingProviderId = req.session.data.registration.trainingProvidersIds[0]
-  //
-  //   res.render('register/v5/next', {
-  //     actions: {
-  //       next: `/register/${req.params.organisationId}/providers/${firstTrainingProviderId}`,
-  //       back: `/register/${req.params.organisationId}/agreement`
-  //     },
-  //     accreditingBody: req.session.data.registration.accreditingBody,
-  //     trainingProvidersOnboarded: req.session.data.registration.trainingProvidersOnboarded,
-  //     trainingProvidersNotOnboarded: req.session.data.registration.trainingProvidersNotOnboarded
-  //   })
-  // })
-
-  // router.get('/register/:organisationId/providers/:providerId', checkHasAnswers, (req, res) => {
-  //   const trainingProvider = req.session.data.registration.trainingProvidersNotOnboarded.filter(org => org.id === req.params.providerId)[0]
-  //
-  //   // get the position of the current provider id
-  //   const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
-  //
-  //   // set the save route for new or change flow
-  //   let save = `/register/${req.params.organisationId}/providers/${req.params.providerId}`
-  //   if (req.headers.referer.includes('check-your-answers')) {
-  //     save = save + '?referer=check-your-answers'
-  //   }
-  //
-  //   // set the back button default to the start page
-  //   let back = `/register/${req.params.organisationId}/next`
-  //
-  //   // set the back button to the check your answers page if that's where the user came from
-  //   if (req.query.referer == 'check-your-answers') {
-  //     back = `/register/${req.params.organisationId}/check-your-answers`
-  //   } else {
-  //     // if we're no on the first provider, we need to change the back button
-  //     if (position > 0) {
-  //       // get the previous provider id from the array
-  //       const previousProviderId = req.session.data.registration.trainingProvidersIds[position - 1]
-  //       // set the back link
-  //       back = `/register/${req.params.organisationId}/providers/${previousProviderId}`
-  //     }
-  //   }
-  //
-  //   res.render('register/v5/provider', {
-  //     actions: {
-  //       save: save,
-  //       back: back
-  //     },
-  //     accreditingBody: req.session.data.registration.accreditingBody,
-  //     trainingProvider
-  //   })
-  // })
-
-  // router.post('/register/:organisationId/providers/:providerId', checkHasAnswers, (req, res) => {
-  //   const trainingProvider = req.session.data.registration.trainingProviders.filter(org => org.id === req.params.providerId)[0]
-  //
-  //   // get the training provider user and populate the contact object
-  //   if (req.session.data.registration.contact.choice !== undefined && req.session.data.registration.contact.choice != 'other') {
-  //     const choice = req.session.data.registration.contact.choice
-  //     const contact = trainingProvider.users[choice]
-  //     contact.choice = choice
-  //     req.session.data.registration.contact = contact
-  //   }
-  //
-  //   // get the position of the current provider id
-  //   const position = req.session.data.registration.trainingProvidersIds.indexOf(req.params.providerId)
-  //
-  //   // combine the provider form details with the associated training provider object
-  //   req.session.data.registration.trainingProvidersNotOnboarded[position].contact = req.session.data.registration.contact
-  //
-  //   // clear out the form data since we no longer need it, ready for the next provider
-  //   delete req.session.data.registration.contact
-  //
-  //   if (req.query.referer == 'check-your-answers') {
-  //     // redirect to the data sharing agreement
-  //     res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
-  //   } else {
-  //     // if we've reached the last provider, move to the next step, else next continue with the providers
-  //     if (position == (req.session.data.registration.trainingProvidersNotOnboarded.length - 1)) {
-  //       // set the last provider id for use in the back link
-  //       req.session.data.registration.lastTrainingProviderId = req.params.providerId
-  //
-  //       // redirect to the data sharing agreement
-  //       res.redirect(`/register/${req.params.organisationId}/check-your-answers`)
-  //
-  //     } else {
-  //       // set the next training provider id
-  //       const nextTrainingProviderId = req.session.data.registration.trainingProvidersIds[position + 1]
-  //
-  //       res.redirect(`/register/${req.params.organisationId}/providers/${nextTrainingProviderId}`)
-  //     }
-  //   }
-  // })
-
-  // router.get('/register/:organisationId/check-your-answers', checkHasAnswers, (req, res) => {
-  //   res.render('register/v5/check-your-answers', {
-  //     actions: {
-  //       next: `/register/${req.params.organisationId}/done`,
-  //       back: `/register/${req.params.organisationId}/agreement`
-  //     },
-  //     accreditingBody: req.session.data.registration.accreditingBody,
-  //     trainingProviders: req.session.data.registration.trainingProvidersNotOnboarded,
-  //     acceptAgreement: req.session.data.registration.acceptAgreement
-  //   })
-  // })
-
-  router.get('/register/:organisationId/done', checkHasAnswers, (req, res) => {
-    // set invitation count for use in pluralising content
-    // const trainingProviderInviteCount = req.session.data.registration.trainingProviders.filter(org => org.onboard == 'yes').length
-
-    res.render('register/v5/done', {
-      // trainingProviderInviteCount
-    })
+  router.get('/register/done', checkHasAnswers, (req, res) => {
+    res.render('register/v5/done', {})
   })
 
   // ===========================================================================
   // Sign in / register
   // ===========================================================================
 
-  router.get('/register/:organisationId/sign-in', (req, res) => {
+  router.get('/register/sign-in', (req, res) => {
     res.render('register/v5/sign-in/sign-in', {
       actions: {
-        save: `/register/${req.params.organisationId}/sign-in`,
-        create: `/register/${req.params.organisationId}/register`,
-        terms: `/register/${req.params.organisationId}/terms`,
-        forgotten: `/register/${req.params.organisationId}/forgotten-password`
+        save: `/register/sign-in`,
+        create: `/register/register`,
+        terms: `/register/terms`,
+        forgotten: `/register/forgotten-password`
       }
     })
   })
 
-  router.post('/register/:organisationId/sign-in', (req, res) => {
+  router.post('/register/sign-in', (req, res) => {
     const errors = []
 
     req.session.data.routes = {
-      signout: `/register/${req.params.organisationId}/sign-out`,
-      account: `/register/${req.params.organisationId}/account`
+      signout: `/register/sign-out`,
+      account: `/register/account`
     }
     req.session.data.isAuthenticated = true
-    res.redirect(`/register/${req.params.organisationId}/agreement`)
+    res.redirect(`/register/agreement`)
   })
 
-  router.get('/register/:organisationId/register', (req, res) => {
+  router.get('/register/register', (req, res) => {
     res.render('register/v5/sign-in/register', {
       actions: {
-        save: `/register/${req.params.organisationId}/register`,
-        back: `/register/${req.params.organisationId}/sign-in`,
-        signin: `/register/${req.params.organisationId}/sign-in`,
-        terms: `/register/${req.params.organisationId}/terms`
+        save: `/register/register`,
+        back: `/register/sign-in`,
+        signin: `/register/sign-in`,
+        terms: `/register/terms`
       }
     })
   })
 
-  router.post('/register/:organisationId/register', (req, res) => {
+  router.post('/register/register', (req, res) => {
     const errors = []
 
     req.flash('success', {
@@ -280,20 +122,20 @@ module.exports = router => {
       description: 'A verification email has been sent to ' + req.session.data.email
     })
 
-    res.redirect(`/register/${req.params.organisationId}/confirm-email`)
+    res.redirect(`/register/confirm-email`)
   })
 
-  router.get('/register/:organisationId/confirm-email', (req, res) => {
+  router.get('/register/confirm-email', (req, res) => {
     res.render('register/v5/sign-in/confirm-email', {
       actions: {
-        save: `/register/${req.params.organisationId}/confirm-email`,
-        back: `/register/${req.params.organisationId}/register`,
-        resend: `/register/${req.params.organisationId}/resend-code`
+        save: `/register/confirm-email`,
+        back: `/register/register`,
+        resend: `/register/resend-code`
       }
     })
   })
 
-  router.post('/register/:organisationId/confirm-email', (req, res) => {
+  router.post('/register/confirm-email', (req, res) => {
     const errors = []
 
     if (!req.session.data.code.length) {
@@ -307,42 +149,42 @@ module.exports = router => {
     if (errors.length) {
       res.render('register/v5/sign-in/confirm-email', {
         actions: {
-          save: `/register/${req.params.organisationId}/confirm-email`,
-          back: `/register/${req.params.organisationId}/register`,
-          resend: `/register/${req.params.organisationId}/resend-code`
+          save: `/register/confirm-email`,
+          back: `/register/register`,
+          resend: `/register/resend-code`
         },
         errors
       })
     } else {
-      res.redirect(`/register/${req.params.organisationId}/sign-in`)
+      res.redirect(`/register/sign-in`)
     }
   })
 
-  router.get('/register/:organisationId/resend-code', (req, res) => {
+  router.get('/register/resend-code', (req, res) => {
     res.render('register/v5/sign-in/resend-code', {
       actions: {
-        save: `/register/${req.params.organisationId}/resend-code`,
-        back: `/register/${req.params.organisationId}/confirm-email`
+        save: `/register/resend-code`,
+        back: `/register/confirm-email`
       }
     })
   })
 
-  router.post('/register/:organisationId/resend-code', (req, res) => {
+  router.post('/register/resend-code', (req, res) => {
     const errors = []
 
-    res.redirect(`/register/${req.params.organisationId}/confirm-email`)
+    res.redirect(`/register/confirm-email`)
   })
 
-  router.get('/register/:organisationId/forgotten-password', (req, res) => {
+  router.get('/register/forgotten-password', (req, res) => {
     res.render('register/v5/sign-in/forgotten-password', {
       actions: {
-        save: `/register/${req.params.organisationId}/forgotten-password`,
-        back: `/register/${req.params.organisationId}/sign-in`
+        save: `/register/forgotten-password`,
+        back: `/register/sign-in`
       }
     })
   })
 
-  router.post('/register/:organisationId/forgotten-password', (req, res) => {
+  router.post('/register/forgotten-password', (req, res) => {
     const errors = []
 
     req.flash('success', {
@@ -350,19 +192,19 @@ module.exports = router => {
       description: 'A verification email has been sent to ' + req.session.data.email
     })
 
-    res.redirect(`/register/${req.params.organisationId}/verification-code`)
+    res.redirect(`/register/verification-code`)
   })
 
-  router.get('/register/:organisationId/verification-code', (req, res) => {
+  router.get('/register/verification-code', (req, res) => {
     res.render('register/v5/sign-in/verification-code', {
       actions: {
-        save: `/register/${req.params.organisationId}/verification-code`,
-        back: `/register/${req.params.organisationId}/sign-in`
+        save: `/register/verification-code`,
+        back: `/register/sign-in`
       }
     })
   })
 
-  router.post('/register/:organisationId/verification-code', (req, res) => {
+  router.post('/register/verification-code', (req, res) => {
     const errors = []
 
     if (!req.session.data.code.length) {
@@ -376,40 +218,40 @@ module.exports = router => {
     if (errors.length) {
       res.render('register/v5/sign-in/verification-code', {
         actions: {
-          save: `/register/${req.params.organisationId}/verification-code`,
-          back: `/register/${req.params.organisationId}/sign-in`
+          save: `/register/verification-code`,
+          back: `/register/sign-in`
         },
         errors
       })
     } else {
-      res.redirect(`/register/${req.params.organisationId}/create-password`)
+      res.redirect(`/register/create-password`)
     }
   })
 
-  router.get('/register/:organisationId/create-password', (req, res) => {
+  router.get('/register/create-password', (req, res) => {
     res.render('register/v5/sign-in/create-password', {
       actions: {
-        save: `/register/${req.params.organisationId}/create-password`,
-        back: `/register/${req.params.organisationId}/sign-in`
+        save: `/register/create-password`,
+        back: `/register/sign-in`
       }
     })
   })
 
-  router.post('/register/:organisationId/create-password', (req, res) => {
+  router.post('/register/create-password', (req, res) => {
     const errors = []
 
-    res.redirect(`/register/${req.params.organisationId}/password-reset`)
+    res.redirect(`/register/password-reset`)
   })
 
-  router.get('/register/:organisationId/password-reset', (req, res) => {
+  router.get('/register/password-reset', (req, res) => {
     res.render('register/v5/sign-in/password-reset', {
       actions: {
-        next: `/register/${req.params.organisationId}/sign-in`
+        next: `/register/sign-in`
       }
     })
   })
 
-  router.get('/register/:organisationId/terms', (req, res) => {
+  router.get('/register/terms', (req, res) => {
     res.render('register/v5/sign-in/terms', {
       actions: {
         back: req.headers.referer
@@ -417,11 +259,11 @@ module.exports = router => {
     })
   })
 
-  router.get('/register/:organisationId/sign-out', (req, res) => {
+  router.get('/register/sign-out', (req, res) => {
     delete req.session.data.isAuthenticated
     delete req.session.data.routes
     req.flash('success','You have successfully signed out')
-    res.redirect(`/register/${req.params.organisationId}/start`)
+    res.redirect(`/register/start`)
   })
 
 }

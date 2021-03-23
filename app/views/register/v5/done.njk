@@ -1,6 +1,6 @@
 {% extends "_layout-register.njk" %}
 
-{% set title = "You’ve successfully signed the data sharing agreement" %}
+{% set title = "You’ve accepted the data sharing agreement" %}
 
 {% block pageTitle %}
 {{ title }} – {{ serviceName }} – GOV.UK
@@ -15,6 +15,19 @@
       }) }}
 
       <h2 class="govuk-heading-m">
+        Next steps
+      </h2>
+
+      <p class="govuk-body">
+        You need to set up permissions before you can start managing teacher training applications. 
+      </p>
+
+      {{ govukButton({
+        text: "Set up permissions",
+        href: "/onboard"
+      }) }}
+
+      <!-- <h2 class="govuk-heading-m">
         Inviting users
       </h2>
 
@@ -28,12 +41,12 @@
 
       <p class="govuk-body">
         Continue to your applications.
-      </p>
+      </p> -->
 
-      {{ govukButton({
+      <!-- {#{ govukButton({
         text: "Continue",
         href: "/"
-      }) }}
+      }) }#} -->
 
     </div>
   </div>
