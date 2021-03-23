@@ -23,7 +23,7 @@ module.exports = router => {
       next = `/register/agreement`
     }
 
-    res.render('register/v4/start', {
+    res.render('register/v5/start', {
       actions: {
         next: next
       },

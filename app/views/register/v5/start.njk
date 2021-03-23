@@ -13,16 +13,17 @@
       <h1 class="govuk-heading-l">
         {{ title }}
       </h1>
-
-     <p class="govuk-body">To set up your account you need to:</p>
+     
+     <p class="govuk-body">To make your courses available through the new ‘Apply for teacher training’ service on GOV.​UK, you need to:</p>
 
       <ol class="govuk-list govuk-list--number">
-        <li>Sign in using DfE Sign-in - you’ll need to create an account if you do not have one already.</li>
+        <li>Sign in using Department for Education (DfE) Sign-in. You can create an account if you do not already have one.</li>
         <li>Accept a data sharing agreement on behalf of {{ accreditingBody.name }}.</li>
+        <li>Set up ‘organisational permissions’, deciding what access {{ accreditingBody.name }} and Kingston University will have to candidates’ applications.</li>
       </ol>
 
       {{ govukButton({
-        text: "Sign in using DfE Sign-in" if not data.isAuthenticated else "Continue",
+        text: "Sign in using DfE Sign-in",
         href: actions.next,
         classes: "govuk-!-margin-top-5"
       }) }}
