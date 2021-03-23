@@ -58,6 +58,7 @@ module.exports = router => {
       provider: req.session.data['new-offer'].provider || application.provider,
       course: req.session.data['new-offer'].course || application.course,
       location: req.session.data['new-offer'].location || application.location,
+      studyMode: req.session.data['new-offer'].studyMode || application.studyMode,
       accreditedBody: application.accreditedBody
     }
 
@@ -97,6 +98,7 @@ module.exports = router => {
           provider: application.offer.provider,
           course: application.offer.course,
           location: application.offer.location,
+          studyMode: application.offer.studyMode,
           accreditedBody: application.offer.accreditedBody,
           conditions: ApplicationHelper.getConditions(application.offer)
         }

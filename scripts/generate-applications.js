@@ -52,6 +52,7 @@ const generateFakeApplication = (params = {}) => {
   const courseCode = faker.random.alphaNumeric(4).toUpperCase()
   const course = `${subject.name} (${courseCode})`
   const location = generateTrainingLocation(faker)
+  const studyMode = faker.helpers.randomize(['Full time', 'Part time'])
 
   let offer = null
   if (['Deferred', 'Offered', 'Awaiting conditions', 'Ready to enroll', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
@@ -61,7 +62,8 @@ const generateFakeApplication = (params = {}) => {
       accreditedBody: accreditedBody.name,
       provider: provider.name,
       course,
-      location
+      location,
+      studyMode
     })
   }
 
@@ -76,6 +78,7 @@ const generateFakeApplication = (params = {}) => {
     provider: provider.name,
     course,
     location,
+    studyMode,
     accreditedBody: accreditedBody.name
   })
 
@@ -108,7 +111,7 @@ const generateFakeApplication = (params = {}) => {
     cycle,
     provider: provider.name,
     accreditedBody: accreditedBody.name,
-    studyMode: params.studyMode || faker.helpers.randomize(['Full time', 'Part time']),
+    studyMode: params.studyMode || studyMode,
     fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
     subject: params.subject || subject.name,
     course: params.course || course,

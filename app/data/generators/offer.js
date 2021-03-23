@@ -56,6 +56,7 @@ module.exports = (params) => {
     provider: params.provider,
     course: params.course,
     location: params.location,
+    studyMode: params.studyMode,
     accreditedBody: params.accreditedBody,
     madeDate,
     acceptedDate,
