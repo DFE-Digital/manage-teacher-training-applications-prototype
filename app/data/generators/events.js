@@ -90,7 +90,7 @@ module.exports = (params) => {
 
   events.items.push({
     title: 'Note added',
-    user: faker.name.findName(),
+    user: params.notes.items[0].sender,
     date: date,
     meta: {
       note: params.notes.items[0]
