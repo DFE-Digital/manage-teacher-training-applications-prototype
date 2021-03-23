@@ -20,34 +20,9 @@
          {% if event.event.title == 'Note added' %}
 
           <div class="app-activity-log__box">
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Training provider"
-                },
-                value: {
-                  text: event.application.provider
-                }
-              },
-              {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  text: event.application.course
-                }
-              },
-              {
-                key: {
-                  text: "Message"
-                },
-                value: {
-                  text: event.event.meta.note.message | nl2br
-                }
-              }
-            ]
-          }) }}
+            {{appEventNote({
+              note: event.event.meta.note
+            })}}
           </div>
 
           <p class="app-log-card__note--link">
