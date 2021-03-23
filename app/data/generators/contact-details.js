@@ -15,6 +15,7 @@ module.exports = (faker, personalDetails) => {
       level1: personalDetails.isInternationalCandidate ? faker.address.state() : faker.address.county(),
       postcode: faker.address.zipCode(),
       ...(personalDetails.isInternationalCandidate && { country: 'France' })
-    }
+    },
+    addressType: personalDetails.isInternationalCandidate ? 'international' : 'uk'
   }
 }

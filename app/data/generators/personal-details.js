@@ -20,16 +20,36 @@ module.exports = faker => {
 
   // Flag international candidate (does not have British/Irish nationality)
   const isInternationalCandidate = !(nationality.includes('British') || nationality.includes('Irish'))
-  const rightToWorkStudy = faker.helpers.randomize([
-    'Yes',
-    'Not yet',
-    'Do not know'
-  ])
 
-  const residency = isInternationalCandidate ? {
-    rightToWorkStudy,
-    details: (rightToWorkStudy === 'Yes') ? 'I have EU settled status' : false
-  } : false
+  const rightToWorkStudyOptions = {
+    yes: 'Yes',
+    unsure: 'Not yet, or not sure'
+  }
+  const selectedRightToWorkStudy = weighted.select({
+    yes: 0.6,
+    unsure: 0.4
+  })
+  const rightToWorkStudy = rightToWorkStudyOptions[selectedRightToWorkStudy]
+
+  const residency = {}
+  if (isInternationalCandidate) {
+    residency.rightToWorkStudy = rightToWorkStudy
+    if (rightToWorkStudy === 'Yes') {
+      residency.rightToWorkStudyDetails = faker.helpers.randomize([
+        'I have settled status',
+        'I have pre-settled status',
+        'I have a permanent residence card',
+        'I have a spousal visa',
+        'I have a student visa'
+      ])
+    } else {
+      residency.rightToWorkStudyDetails = 'Candidate needs to apply for permission to work and study in the UK'
+    }
+  } else {
+    residency.rightToWorkStudy = 'Yes'
+    residency.rightToWorkStudyDetails = nationality[0] === 'Irish' ? 'I am an ' : 'I am a '
+    residency.rightToWorkStudyDetails += nationality[0] + ' citizen'
+  }
 
   // Equality and diversity
   const diversityQuestionnaireAnswered=faker.helpers.randomize([true, true, false])
@@ -90,6 +110,5 @@ module.exports = faker => {
     ethnicGroup,
     disabledAnswer,
     disabilities
-
   }
 }

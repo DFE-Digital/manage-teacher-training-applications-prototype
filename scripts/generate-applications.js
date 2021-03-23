@@ -102,6 +102,17 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
+  // British and Irish students are always eligible
+  personalDetails.feeStatus = 'Eligible for home tuition fee funding (automated assessment - check details with candidate)'
+
+  // International student eligibility depends on right to work/study and address
+  if (personalDetails.isInternationalCandidate) {
+    personalDetails.feeStatus = 'Not eligible for home tuition fee funding (automated assessment - check details with candidate)'
+    if (personalDetails.rightToWorkStudy === 'Yes' && contactDetails.addressType === 'uk') {
+      personalDetails.feeStatus = 'Eligible for home tuition fee funding (automated assessment - check details with candidate)'
+    }
+  }
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     offerCanNotBeReconfirmed,
@@ -629,8 +640,9 @@ const generateFakeApplications = () => {
       nationality: ['Spanish', 'Argentinian'],
       residency: {
         rightToWorkStudy: 'Yes',
-        details: 'I have lived in the UK for 10 years.'
-      }
+        rightToWorkStudyDetails: 'I have settled status'
+      },
+      feeStatus: 'Eligible for home student funding'
     },
     contactDetails: {
       tel: '07700 900978',
@@ -746,8 +758,10 @@ const generateFakeApplications = () => {
       familyName: 'Ha-Sun',
       nationality: ['South Korean', 'Australian'],
       residency: {
-        rightToWorkStudy: 'Not yet'
-      }
+        rightToWorkStudy: 'Not yet, or not sure',
+        rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
+      },
+      feeStatus: 'Not eligible for home student funding'
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -824,8 +838,10 @@ const generateFakeApplications = () => {
       familyName: 'Sra',
       nationality: ['Indian'],
       residency: {
-        rightToWorkStudy: 'Do not know'
-      }
+        rightToWorkStudy: 'Not yet, or not sure',
+        rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
+      },
+      feeStatus: 'Not eligible for home student funding'
     },
     degree: [{
       type: 'BCA',
