@@ -21,6 +21,8 @@
 
           <div class="app-activity-log__box">
             {{appEventNote({
+              application: event.application,
+              offer: event.application.offer,
               note: event.event.meta.note
             })}}
           </div>

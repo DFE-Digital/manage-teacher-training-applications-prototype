@@ -1,1 +1,30 @@
-<p class="govuk-!-margin-bottom-0">{{params.note.message | nl2br}}</p>
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Training provider"
+      },
+      value: {
+        text: params.offer.provider or params.application.provider
+      }
+    } if params.offer.provider or params.application.provider,
+    {
+      key: {
+        text: "Course"
+      },
+      value: {
+        text: params.offer.course or params.application.course
+      }
+    } if params.offer.course or params.application.course,
+    {
+      key: {
+        text: "Note"
+      },
+      value: {
+        text: params.note.message | nl2br
+      }
+    }
+  ]
+}) }}
