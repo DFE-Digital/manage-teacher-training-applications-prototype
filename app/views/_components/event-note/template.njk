@@ -4,15 +4,23 @@
   rows: [
     {
       key: {
-        text: "Sender"
+        text: "Training provider"
       },
       value: {
-        text: params.note.sender
+        text: params.offer.provider or params.application.provider
       }
-    },
+    } if params.offer.provider or params.application.provider,
     {
       key: {
-        text: "Message"
+        text: "Course"
+      },
+      value: {
+        text: params.offer.course or params.application.course
+      }
+    } if params.offer.course or params.application.course,
+    {
+      key: {
+        text: "Note"
       },
       value: {
         text: params.note.message | nl2br

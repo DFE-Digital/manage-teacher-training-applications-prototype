@@ -2,52 +2,14 @@
   {%- for event in events %}
     {% set name = event.application.personalDetails.name %}
 
-    {% if event.event.title == "Conditions marked as met" %}
-      {% set title = event.event.user + " marked " + name + "’s conditions as met"  %}
-    {% elseif event.event.title == "Offer deferred" %}
-      {% set title = event.event.user + " deferred " + name + "’s offer" %}
-    {% elseif event.event.title == "Offer reconfirmed" %}
-      {% set title = event.event.user + " reconfirmed " + name + "’s offer" %}
-    {% elseif event.event.title == "Interview set up" %}
-      {% set title = event.event.user + " set up an interview with " + name %}
-    {% elseif event.event.title == "Interview cancelled" %}
-      {% set title = event.event.user + " cancelled the interview with " + name %}
-    {% elseif event.event.title == "Interview changed" %}
-      {% set title = event.event.user + " changed the interview details for " + name %}
-    {% elseif event.event.title == "Application submitted" %}
-      {% set title = name + " submitted an application "  %}
-    {% elseif event.event.title == "Application rejected automatically" %}
-      {% set title = name + "’s application was rejected automatically" %}
-    {% elseif event.event.title == "Application rejected" %}
-      {% set title = event.event.user + " rejected " + name + "’s application"%}
-    {% elseif event.event.title == "Offer accepted" %}
-      {% set title = name + " accepted an offer"  %}
-    {% elseif event.event.title == "Note added" %}
-      {% set title = event.event.user + " added a note to " + name +"’s application" %}
-    {% elseif event.event.title == "Offer declined" %}
-      {% set title = name + " declined an offer " %}
-    {% elseif event.event.title == "Offer made" %}
-      {% set title = event.event.user + " made an offer to " + name  %}
-    {% elseif event.event.title == "Offer changed" %}
-      {% set title = event.event.user + " changed the offer for " + name +"’s application" %}
-    {% elseif event.event.title == "Application withdrawn" %}
-      {% set title = name + " withdrew their application" %}
-    {% elseif event.event.title == "Conditions marked as not met" %}
-      {% set title = event.event.user + " marked " + name + "’s conditions as not met"  %}
-    {% elseif event.event.title == "Status of conditions updated" %}
-      {% set title = event.event.user + " updated the status of " + name + "’s conditions"  %}
-    {% elseif event.event.title == "Offer withdrawn" %}
-      {% set title = event.event.user + " withdrew " + name + "’s offer"  %}
-    {% else %}
-      {% set title = event.event.title %}
-    {% endif -%}
-
     <div class="app-activity-log__item">
       <div class="app-activity-log__header">
         <h2 class="app-activity-log__title govuk-heading-s govuk-!-margin-bottom-1">
-          {{ title }}
+          {{event.event.title}} ({{name}})
+          <span class="govuk-visually-hidden">{{- event.event.date | govukDateAtTime -}}</span>
         </h2>
         <p class="app-activity-log__byline govuk-body-">
+          {{event.event.user}},
           <time datetime="{{ event.event.date | formatDate }}">
             {{- event.event.date | govukDateAtTime -}}
           </time>
@@ -58,42 +20,11 @@
          {% if event.event.title == 'Note added' %}
 
           <div class="app-activity-log__box">
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Training provider"
-                },
-                value: {
-                  text: event.application.provider
-                }
-              },
-              {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  text: event.application.course
-                }
-              },
-              {
-                key: {
-                  text: "Message"
-                },
-                value: {
-                  text: event.event.meta.note.message | nl2br
-                }
-              },
-              {
-                key: {
-                  text: "Sender"
-                },
-                value: {
-                  text: event.event.meta.note.sender
-                }
-              }
-            ]
-          }) }}
+            {{appEventNote({
+              application: event.application,
+              offer: event.application.offer,
+              note: event.event.meta.note
+            })}}
           </div>
 
           <p class="app-log-card__note--link">

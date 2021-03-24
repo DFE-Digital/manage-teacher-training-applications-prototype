@@ -90,7 +90,7 @@ module.exports = (params) => {
 
   events.items.push({
     title: 'Note added',
-    user: faker.name.findName(),
+    user: params.notes.items[0].sender,
     date: date,
     meta: {
       note: params.notes.items[0]
@@ -131,6 +131,7 @@ module.exports = (params) => {
           provider: params.provider,
           course: params.course,
           location: params.location,
+          studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
           conditions
         }
@@ -150,6 +151,7 @@ module.exports = (params) => {
           provider: params.provider,
           course: params.course,
           location: params.location,
+          studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
           conditions
         }
@@ -169,6 +171,7 @@ module.exports = (params) => {
           provider: params.provider,
           course: params.course,
           location: params.location,
+          studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
           conditions
         }
@@ -186,6 +189,7 @@ module.exports = (params) => {
           provider: params.provider,
           course: params.course,
           location: params.location,
+          studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
           conditions
         }
@@ -205,6 +209,7 @@ module.exports = (params) => {
             provider: params.provider,
             course: params.course,
             location: params.location,
+            studyMode: params.studyMode,
             accreditedBody: params.accreditedBody,
             conditions
           }
@@ -220,6 +225,7 @@ module.exports = (params) => {
             provider: params.provider,
             course: params.course,
             location: params.location,
+            studyMode: params.studyMode,
             accreditedBody: params.accreditedBody,
             conditions
           }
@@ -236,6 +242,7 @@ module.exports = (params) => {
             provider: params.provider,
             course: params.course,
             location: params.location,
+            studyMode: params.studyMode,
             accreditedBody: params.accreditedBody
           }
         }
@@ -257,6 +264,7 @@ module.exports = (params) => {
           provider: params.provider,
           course: params.course,
           location: params.location,
+          studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
           conditions
         }
@@ -276,6 +284,7 @@ module.exports = (params) => {
           provider: params.provider,
           course: params.course,
           location: params.location,
+          studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
           conditions
         }

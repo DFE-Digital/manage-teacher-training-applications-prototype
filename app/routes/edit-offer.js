@@ -120,6 +120,7 @@ module.exports = router => {
     application.offer.provider = req.session.data['edit-offer'].provider || application.offer.provider
     application.offer.course = req.session.data['edit-offer'].course || application.offer.course
     application.offer.location = req.session.data['edit-offer'].location || application.offer.location
+    application.offer.studyMode = req.session.data['edit-offer'].studyMode || application.offer.studyMode
 
     // if it's been submitted then save conditions from data
     if(req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {
@@ -158,6 +159,7 @@ module.exports = router => {
           provider: application.offer.provider,
           course: application.offer.course,
           location: application.offer.location,
+          studyMode: application.offer.studyMode,
           accreditedBody: application.offer.accreditedBody,
           conditions: ApplicationHelper.getConditions(application.offer)
         }
