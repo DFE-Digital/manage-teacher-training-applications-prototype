@@ -45,13 +45,13 @@
         }
       })}}
 
-      {% set currentProvider = application.provider %}
+      {# {% set currentProvider = application.provider %}
       {% set newProvider = data['new-offer']['provider'] %}
       {% if conditions.length %}
         <p>By sending this offer, you’re guaranteeing the candidate a place on the course as long as they meet the conditions.</p>
       {% else %}
         <p>By sending this offer, you’re guaranteeing the candidate a place on the course.</p>
-      {% endif %}
+      {% endif %} #}
 
       {# {% if newProvider and currentProvider != newProvider %}
         <p>Notifications will also be sent to users at:</p>
