@@ -1,6 +1,6 @@
 {
-  "name": "express-prototype",
-  "description": "GOVUK prototyping app in Express",
+  "name": "manage-teacher-training-applications-prototype",
+  "description": "Prototype for the ‘Manage teacher training applications’ service",
   "version": "9.0.0",
   "private": true,
   "engines": {
