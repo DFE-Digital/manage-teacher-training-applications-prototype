@@ -105,6 +105,16 @@ filters.govukDate = (date) => {
   }
 }
 
+filters.govukExampleHintDate = (date) => {
+  return DateTime.fromISO(date).toFormat('d M yyyy')
+}
+
+filters.minusDays = (date, days) => {
+  return DateTime.fromISO(date).minus({
+    days: days
+  })
+}
+
 
 
 /*

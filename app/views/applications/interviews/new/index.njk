@@ -47,7 +47,7 @@
             }
           },
           hint: {
-            text: "For example, 31 3 2021"
+            text: "No later than " + (application.respondByDate | govukDate) + ", after which the application will be automatically rejected - enter numbers, for example, " + (application.respondByDate | minusDays(1) | govukExampleHintDate)
           },
           items: [{
             name: "interview[date][day]",
