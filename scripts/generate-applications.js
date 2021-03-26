@@ -180,8 +180,8 @@ const generateFakeApplications = () => {
     cycle: '2020 to 2021',
     submittedDate: '2020-07-06T14:02:00',
     personalDetails: {
-      givenName: 'Tricia',
-      familyName: 'Jones',
+      givenName: 'Rachael',
+      familyName: 'Harvey',
       sex: 'Female',
       dateOfBirth: '1965-03-05',
       isInternationalCandidate: false

@@ -39,7 +39,7 @@
             }
           },
           hint: {
-            text: "For example, 31 3 1980"
+            text: "No later than " + (application.respondByDate | govukDate) + ", after which the application will be automatically rejected - enter numbers, for example, " + (application.respondByDate | minusDays(1) | govukExampleHintDate)
           },
           items: [{
             name: "interview[date][day]",
@@ -64,7 +64,7 @@
             Time
           </label>
           <span id="interview[time]-hint" class="govuk-hint">
-            For example 2:30pm or 12am
+            For example, 9am or 2:30pm - enter 12pm for midday
           </span>
           <div class="app-time">
             <input class="govuk-input govuk-input--width-5" id="interview[time]" name="interview[time]" type="text" aria-describedby="interview[time]-hint" value="{{interview.date | time}}">
