@@ -57,11 +57,11 @@
         }) }}
 
         {{ govukRadios({
-          idPrefix: "blah2",
-          name: "blah2",
+          idPrefix: "blah6",
+          name: "blah6",
           fieldset: {
             legend: {
-              text: "Application withdrawn by candidate",
+              text: "Application received from another organisation",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -85,6 +85,54 @@
           fieldset: {
             legend: {
               text: "Application automatically rejected",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "blah2",
+          name: "blah2",
+          fieldset: {
+            legend: {
+              text: "Application withdrawn by candidate",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukRadios({
+          idPrefix: "blah7",
+          name: "blah7",
+          fieldset: {
+            legend: {
+              text: "Application transferred to another organisation",
               classes: "govuk-fieldset__legend--m"
             }
           },
