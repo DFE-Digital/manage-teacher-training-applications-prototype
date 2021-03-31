@@ -1,4 +1,5 @@
 const { DateTime } = require('luxon')
+const SystemHelper = require('./system')
 
 exports.getRejectReasons = (data) => {
   return {
@@ -120,7 +121,7 @@ exports.calculateDaysToDecline = (application) => {
   if(application.status != 'Offered') {
     return null;
   }
-  const now = DateTime.fromISO('2020-08-15')
+  let now = SystemHelper.now();
   let diff = DateTime.fromISO(application.offer.declineByDate).diff(now, 'days').toObject().days
   diff = Math.round(diff)
   if (diff < 1) {
@@ -129,3 +130,9 @@ exports.calculateDaysToDecline = (application) => {
   return diff;
 }
 
+exports.getUpcomingInterviews = (application) => {
+  let now = SystemHelper.now();
+  return application.interviews.items.filter(interview => {
+    return DateTime.fromISO(interview.date) >= now;
+  })
+}

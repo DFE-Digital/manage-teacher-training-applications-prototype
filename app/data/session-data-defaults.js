@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const SystemHelper = require('../data/helpers/system')
 const { DateTime } = require('luxon')
 
 const trainingProviders = require('./organisations.json').filter(org => {
@@ -33,7 +34,7 @@ applications = applications.map(application => {
       if(application.status != 'Awaiting decision') {
         return null;
       }
-      const now = DateTime.fromISO('2020-08-15')
+      const now = SystemHelper.now()
       let diff = DateTime.fromISO(application.respondByDate).diff(now, 'days').toObject().days
       diff = Math.round(diff)
       if (diff < 1) {

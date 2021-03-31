@@ -1,12 +1,13 @@
 const DateHelper = require('../helpers/dates');
 const ApplicationHelper = require('../helpers/application');
+const SystemHelper = require('../helpers/system');
 const faker = require('faker')
 faker.locale = 'en_GB'
 const _ = require('lodash')
 
 module.exports = (params) => {
   const events = { items: [] }
-  const now = new Date(2020, 8, 12)
+  const now = SystemHelper.now().toISO()
 
   let date = faker.helpers.randomize([
     new Date(2020, 8, 12, 9, 22),

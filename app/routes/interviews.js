@@ -1,5 +1,6 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
+const SystemHelper = require('../data/helpers/system')
 const _ = require('lodash');
 const { DateTime } = require('luxon')
 const { v4: uuidv4 } = require('uuid')
@@ -120,20 +121,13 @@ module.exports = router => {
 
     const statusText = ApplicationHelper.getStatusText(application)
 
-    // make 6 Aug 2020 = today
-    var now = DateTime.fromObject({
-      day: 6,
-      month: 8,
-      year: 2020
-    })
+    var now = SystemHelper.now()
 
     let upcomingInterviews = [];
     let pastInterviews = [];
 
     if(statusText == "Received" || statusText == "Interviewing") {
-      upcomingInterviews = application.interviews.items.filter(interview => {
-        return DateTime.fromISO(interview.date) >= now;
-      })
+      upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
 
       pastInterviews = application.interviews.items.filter(interview => {
         return DateTime.fromISO(interview.date) < now;

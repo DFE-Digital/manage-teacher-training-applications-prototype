@@ -4,6 +4,7 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const _ = require('lodash')
+const SystemHelper = require('../app/data/helpers/system')
 
 // Fake data generators: general
 const generateSubject = require('../app/data/generators/subject')
@@ -43,7 +44,7 @@ const generateFakeApplication = (params = {}) => {
   const status = params.status
   const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
-  const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 }).toISO()
+  const submittedDate = params.submittedDate || SystemHelper.now().minus({ days: 20 }).toISO()
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
@@ -162,7 +163,7 @@ const generateFakeApplication = (params = {}) => {
 const generateFakeApplications = () => {
   const organisations = require('../app/data/organisations.json')
   const applications = []
-  const now = DateTime.fromISO('2020-08-15')
+  const now = SystemHelper.now()
   const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
