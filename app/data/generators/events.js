@@ -1,23 +1,14 @@
 const DateHelper = require('../helpers/dates');
 const ApplicationHelper = require('../helpers/application');
-const SystemHelper = require('../helpers/system');
 const faker = require('faker')
 faker.locale = 'en_GB'
 const _ = require('lodash')
+const { DateTime } = require('luxon')
 
 module.exports = (params) => {
   const events = { items: [] }
-  const now = SystemHelper.now().toISO()
 
-  let date = faker.helpers.randomize([
-    new Date(2020, 8, 12, 9, 22),
-    new Date(2020, 8, 11, 18, 49),
-    DateHelper.getPastDate(now),
-    DateHelper.getPastDate(now),
-    DateHelper.getPastDate(now),
-    DateHelper.getPastDate(now),
-    DateHelper.getPastDate(now)
-  ])
+  let date = DateTime.fromISO(params.submittedDate).toJSDate()
 
   events.items.push({
     title: 'Application submitted',

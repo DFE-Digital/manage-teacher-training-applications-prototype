@@ -1,8 +1,9 @@
-const { fake } = require('faker');
+const faker = require('faker')
+faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const SystemHelper = require('../helpers/system')
 
-function getInterview(faker, params) {
+function getInterview(params) {
   const now = SystemHelper.now()
   const randomNumber = faker.random.number({ 'min': 1, 'max': 20 });
   const past = now.minus({ days: randomNumber }).set({

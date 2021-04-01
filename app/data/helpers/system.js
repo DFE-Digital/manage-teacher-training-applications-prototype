@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon')
 
-exports.now = (application) => {
+exports.now = () => {
   return DateTime.fromObject({
     day: 15,
     month: 8,
