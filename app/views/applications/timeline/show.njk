@@ -115,7 +115,7 @@
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Application withdrawn" %}
                 <div class="app-activity-log__box">
-                  {{appEventOffer({ application: application })}}
+                  {{appEventApplication({ application: application })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Status of conditions updated" %}

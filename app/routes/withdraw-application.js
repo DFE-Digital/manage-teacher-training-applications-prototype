@@ -37,7 +37,9 @@ module.exports = router => {
     req.flash('success', 'Application withdrawn')
     delete req.session.data.rejectionReasons
 
-
+    ApplicationHelper.getUpcomingInterviews(application).forEach((interview) => {
+      ApplicationHelper.cancelInterview({ application, interview, cancellationReason: "You withdrew your application." })
+    })
 
     ApplicationHelper.addEvent(application, {
       "title": "Application withdrawn",

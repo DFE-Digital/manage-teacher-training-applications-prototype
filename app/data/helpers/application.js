@@ -137,3 +137,17 @@ exports.getUpcomingInterviews = (application) => {
     return DateTime.fromISO(interview.date) >= now;
   })
 }
+
+exports.cancelInterview = (params) => {
+  params.application.events.items.push({
+    title: "Interview cancelled",
+    user: "Angela Mode",
+    date: new Date().toISOString(),
+    meta: {
+      interview: params.application.interviews.items.find(item => item.id === params.interview.id),
+      cancellationReason: params.cancellationReason
+    }
+  })
+
+  params.application.interviews.items = params.application.interviews.items.filter(item => item.id !== params.interview.id)
+}
