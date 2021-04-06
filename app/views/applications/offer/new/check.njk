@@ -45,8 +45,10 @@
         }
       })}}
 
-      {% if hasUpcomingInterviews %}
-        <p>Upcoming interviews will cancelled.</p>
+      {% if upcomingInterviews.length == 1 %}
+        <p>The upcoming interview will be cancelled.</p>
+      {% elseif upcomingInterviews.length > 1 %}
+        <p>Upcoming interviews will be cancelled.</p>
       {% endif %}
 
 

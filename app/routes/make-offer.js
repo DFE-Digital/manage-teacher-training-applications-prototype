@@ -44,7 +44,7 @@ module.exports = router => {
     })
 
     res.render('applications/offer/new/check', {
-      hasUpcomingInterviews: ApplicationHelper.getUpcomingInterviews(application).length > 0,
+      upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application,
       conditions
     })

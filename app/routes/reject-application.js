@@ -40,7 +40,10 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/reject/check', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
     res.render('applications/reject/check', {
+      upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
