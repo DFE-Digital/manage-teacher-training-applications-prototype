@@ -54,6 +54,10 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    ApplicationHelper.getUpcomingInterviews(application).forEach((interview) => {
+      ApplicationHelper.cancelInterview({ application, interview, cancellationReason: "We made you an offer." })
+    })
+
     application.status = 'Offered'
     application.offer = {
       madeDate: new Date().toISOString(),
