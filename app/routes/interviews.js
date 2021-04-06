@@ -293,18 +293,13 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const interview = application.interviews.items.find(interview => interview.id === interviewId)
 
-    application.events.items.push({
-      title: "Interview cancelled",
-      user: "Angela Mode",
-      date: new Date().toISOString(),
-      meta: {
-        interview: application.interviews.items.find(interview => interview.id === interviewId),
-        cancellationReason: req.session.data.cancelInterview.reason
-      }
+    ApplicationHelper.cancelInterview({
+      application,
+      interview,
+      cancellationReason: req.session.data.cancelInterview.reason
     })
-
-    application.interviews.items = application.interviews.items.filter(item => item.id !== interviewId)
 
     req.flash('success', 'Interview cancelled')
 
