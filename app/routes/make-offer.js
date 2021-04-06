@@ -42,7 +42,9 @@ module.exports = router => {
         status: "Pending"
       }
     })
+
     res.render('applications/offer/new/check', {
+      hasUpcomingInterviews: ApplicationHelper.getUpcomingInterviews(application).length > 0,
       application,
       conditions
     })

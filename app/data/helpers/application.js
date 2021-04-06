@@ -132,6 +132,7 @@ exports.calculateDaysToDecline = (application) => {
 
 exports.getUpcomingInterviews = (application) => {
   let now = SystemHelper.now();
+
   return application.interviews.items.filter(interview => {
     return DateTime.fromISO(interview.date) >= now;
   })

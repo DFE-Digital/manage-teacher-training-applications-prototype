@@ -90,6 +90,7 @@ module.exports = router => {
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
 
+    // this is close to SystemHelper.now() and is used to make sure we show the ‘today’ label in this view
     let now = interviews[0].interview.date
 
     interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
