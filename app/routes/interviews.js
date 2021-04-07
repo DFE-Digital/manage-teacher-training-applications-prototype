@@ -1,5 +1,6 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
+const SystemHelper = require('../data/helpers/system')
 const _ = require('lodash');
 const { DateTime } = require('luxon')
 const { v4: uuidv4 } = require('uuid')
@@ -89,6 +90,7 @@ module.exports = router => {
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
 
+    // this is close to SystemHelper.now() and is used to make sure we show the ‘today’ label in this view
     let now = interviews[0].interview.date
 
     interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
@@ -120,20 +122,13 @@ module.exports = router => {
 
     const statusText = ApplicationHelper.getStatusText(application)
 
-    // make 6 Aug 2020 = today
-    var now = DateTime.fromObject({
-      day: 6,
-      month: 8,
-      year: 2020
-    })
+    var now = SystemHelper.now()
 
     let upcomingInterviews = [];
     let pastInterviews = [];
 
     if(statusText == "Received" || statusText == "Interviewing") {
-      upcomingInterviews = application.interviews.items.filter(interview => {
-        return DateTime.fromISO(interview.date) >= now;
-      })
+      upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
 
       pastInterviews = application.interviews.items.filter(interview => {
         return DateTime.fromISO(interview.date) < now;
@@ -298,13 +293,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const interview = application.interviews.items.find(interview => interview.id === interviewId)
 
-    application.interviews.items = application.interviews.items.filter(item => item.id !== interviewId)
-
-    application.events.items.push({
-      title: "Interview cancelled",
-      user: "Angela Mode",
-      date: new Date().toISOString()
+    ApplicationHelper.cancelInterview({
+      application,
+      interview,
+      cancellationReason: req.session.data.cancelInterview.reason
     })
 
     req.flash('success', 'Interview cancelled')

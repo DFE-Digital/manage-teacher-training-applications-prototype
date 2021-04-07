@@ -4,6 +4,7 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const _ = require('lodash')
+const SystemHelper = require('../app/data/helpers/system')
 
 // Fake data generators: general
 const generateSubject = require('../app/data/generators/subject')
@@ -32,6 +33,7 @@ const generateWithdrawal = require('../app/data/generators/withdrawal')
 const generateNotes = require('../app/data/generators/notes')
 const generateEvents = require('../app/data/generators/events')
 const generateInterviews = require('../app/data/generators/interviews')
+const generateSubmittedDate = require('../app/data/generators/submittedDate')
 
 // Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
@@ -43,7 +45,7 @@ const generateFakeApplication = (params = {}) => {
   const status = params.status
   const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
-  const submittedDate = params.submittedDate || DateTime.fromISO('2020-08-15').minus({ days: 20 }).toISO()
+  const submittedDate = params.submittedDate || generateSubmittedDate({ status })
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
   const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
@@ -68,11 +70,16 @@ const generateFakeApplication = (params = {}) => {
   }
 
   const notes = generateNotes(faker)
-  const interviews = params.interviews || generateInterviews(faker, { status })
+
+  const interviews = params.interviews || generateInterviews({
+    status,
+    submittedDate
+  })
 
   const events = generateEvents({
     offer,
     status,
+    submittedDate,
     interviews,
     notes,
     provider: provider.name,
@@ -153,16 +160,10 @@ const generateFakeApplication = (params = {}) => {
   }
 }
 
-/**
- * Generate a number of fake applications
- *
- * @param {String} count Number of applications to generate
- *
- */
 const generateFakeApplications = () => {
   const organisations = require('../app/data/organisations.json')
   const applications = []
-  const now = DateTime.fromISO('2020-08-15')
+  const now = SystemHelper.now()
   const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
@@ -173,12 +174,38 @@ const generateFakeApplications = () => {
     minute: faker.helpers.randomize([0, 15, 30, 45])
   })
 
-  /* Applications for Work History research */
+  applications.push(generateFakeApplication({
+    id: 'P6RGOZC',
+    status: 'Awaiting decision',
+    cycle: '2020 to 2021',
+    submittedDate: SystemHelper.now().minus({ days: 36 }).toISO(),
+    personalDetails: {
+      givenName: 'Sarah',
+      familyName: 'Fisher',
+      sex: 'Female'
+    },
+    interviews: {
+      items: [{
+        id: faker.random.uuid(),
+        date: future,
+        organisation: 'The Royal Borough Teaching School Alliance',
+        location: 'https://zoom.us/12345/'
+      }, {
+        id: faker.random.uuid(),
+        date: future.plus({
+          days: 1
+        }),
+        organisation: 'Kingston University',
+        location: 'https://zoom.us/z1234/'
+      }]
+    }
+  }))
+
   applications.push(generateFakeApplication({
     id: 'PBNF7WM',
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-06T14:02:00',
+    submittedDate: SystemHelper.now().minus({ days: 38 }).toISO(),
     personalDetails: {
       givenName: 'Rachael',
       familyName: 'Harvey',
@@ -367,12 +394,11 @@ const generateFakeApplications = () => {
     }
   }))
 
-
   applications.push(generateFakeApplication({
     id: 'YD3TMD2L',
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-05T14:02:00',
+    submittedDate: SystemHelper.now().minus({ days: 40 }).toISO(),
     personalDetails: {
       givenName: 'Alex',
       familyName: 'Roberts',
@@ -402,7 +428,7 @@ const generateFakeApplications = () => {
     id: 'ABC15F25',
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-05T14:02:00',
+    submittedDate: SystemHelper.now().minus({ days: 30 }).toISO(),
     personalDetails: {
       givenName: 'Barbara',
       familyName: 'Kite',
@@ -429,7 +455,6 @@ const generateFakeApplications = () => {
 
     ]
   }))
-
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
@@ -470,7 +495,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-05T14:01:00',
+    submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
     personalDetails: {
       givenName: 'James',
       familyName: 'Sully',
@@ -485,37 +510,12 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    id: 'P6RGOZC',
-    status: 'Awaiting decision',
-    cycle: '2020 to 2021',
-    submittedDate: '2020-07-05T14:01:00',
-    personalDetails: {
-      givenName: 'Sarah',
-      familyName: 'Fisher',
-      sex: 'Female'
-    },
-    interviews: {
-      items: [{
-        id: faker.random.uuid(),
-        date: future,
-        organisation: 'The Royal Borough Teaching School Alliance',
-        location: 'https://zoom.us/12345/'
-      }, {
-        id: faker.random.uuid(),
-        date: future.plus({
-          days: 1
-        }),
-        organisation: 'Kingston University',
-        location: 'https://zoom.us/z1234/'
-      }]
-    }
-  }))
+
 
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-08T13:01:00',
+    submittedDate: SystemHelper.now().minus({ days: 37 }).toISO(),
     personalDetails: {
       givenName: 'Umar',
       familyName: 'Smith',
@@ -529,7 +529,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Rejected',
     cycle: '2019 to 2020',
-    submittedDate: '2018-07-21T18:59:00',
+    submittedDate: SystemHelper.now().minus({ days: 1 }).toISO(),
     organisation: organisation,
     givenName: 'Emma',
     familyName: 'Hayes',
@@ -543,6 +543,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: '2020 to 2021',
+    submittedDate: SystemHelper.now().minus({ days: 19 }).toISO(),
     personalDetails: {
       givenName: 'Sally',
       familyName: 'Harvey',
@@ -553,6 +554,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: '2020 to 2021',
+    submittedDate: SystemHelper.now().minus({ days: 18 }).toISO(),
     personalDetails: {
       givenName: 'Rachael',
       familyName: 'Wayne',
@@ -603,6 +605,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Ready to enroll',
     cycle: '2020 to 2021',
+    submittedDate: SystemHelper.now().minus({ days: 60 }).toISO(),
     personalDetails: {
       givenName: 'Bill',
       familyName: 'Jones',
@@ -613,6 +616,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Ready to enroll',
     cycle: '2020 to 2021',
+    submittedDate: SystemHelper.now().minus({ days: 70 }).toISO(),
     personalDetails: {
       givenName: 'Amy',
       familyName: 'Black',
@@ -623,6 +627,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Ready to enroll',
     cycle: '2020 to 2021',
+    submittedDate: SystemHelper.now().minus({ days: 65 }).toISO(),
     personalDetails: {
       givenName: 'Tony',
       familyName: 'Stark',
@@ -630,12 +635,10 @@ const generateFakeApplications = () => {
     }
   }))
 
-  // UR for international candidates
-  // Scenario 1: Simple candidate
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-12T14:01:00',
+    submittedDate: SystemHelper.now().minus({ days: 33 }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Tiago',
@@ -749,12 +752,10 @@ const generateFakeApplications = () => {
     }
   }))
 
-  // UR for international candidates
-  // Scenario 2: Slightly difficult candidate
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-11T14:01:00',
+    submittedDate: SystemHelper.now().minus({ days: 34 }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Kung',
@@ -829,12 +830,10 @@ const generateFakeApplications = () => {
     }
   }))
 
-  // UR for international candidates
-  // Scenario 3: Difficult candidate
   applications.push(generateFakeApplication({
     status: 'Awaiting decision',
     cycle: '2020 to 2021',
-    submittedDate: '2020-07-10T14:01:00',
+    submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Chitprem',

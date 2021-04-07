@@ -42,7 +42,9 @@ module.exports = router => {
         status: "Pending"
       }
     })
+
     res.render('applications/offer/new/check', {
+      upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application,
       conditions
     })
@@ -51,6 +53,10 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/new/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    ApplicationHelper.getUpcomingInterviews(application).forEach((interview) => {
+      ApplicationHelper.cancelInterview({ application, interview, cancellationReason: "We made you an offer." })
+    })
 
     application.status = 'Offered'
     application.offer = {

@@ -45,6 +45,13 @@
         }
       })}}
 
+      {% if upcomingInterviews.length == 1 %}
+        <p>The upcoming interview will be cancelled.</p>
+      {% elseif upcomingInterviews.length > 1 %}
+        <p>Upcoming interviews will be cancelled.</p>
+      {% endif %}
+
+
       {# {% set currentProvider = application.provider %}
       {% set newProvider = data['new-offer']['provider'] %}
       {% if conditions.length %}
