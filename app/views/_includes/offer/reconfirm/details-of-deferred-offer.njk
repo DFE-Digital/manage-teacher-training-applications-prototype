@@ -48,25 +48,30 @@
     Conditions of offer
   </h2>
 
-  <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
-    {% for condition in conditions %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          {{condition.description}}
-        </dt>
-        <dd class="govuk-summary-list__value app-conditions-list__tag">
-          {% if condition.status == "Pending" %}
-              {% set statusClass = "app-tag--grey" %}
-            {% elseif condition.status == "Met" %}
-              {% set statusClass = "app-tag--green" %}
-            {% elseif condition.status == "Not met" %}
-              {% set statusClass = "app-tag--red" %}
-            {% endif %}
-            {{govukTag({ text: condition.status, classes: statusClass })}}
-        </dd>
-      </div>
-    {% endfor %}
-  </dl>
+  {% if conditions.length %}
+
+    <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+      {% for condition in conditions %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{condition.description}}
+          </dt>
+          <dd class="govuk-summary-list__value app-conditions-list__tag">
+            {% if condition.status == "Pending" %}
+                {% set statusClass = "app-tag--grey" %}
+              {% elseif condition.status == "Met" %}
+                {% set statusClass = "app-tag--green" %}
+              {% elseif condition.status == "Not met" %}
+                {% set statusClass = "app-tag--red" %}
+              {% endif %}
+              {{govukTag({ text: condition.status, classes: statusClass })}}
+          </dd>
+        </div>
+      {% endfor %}
+    </dl>
+  {% else %}
+    <p>No conditions have been set for this offer.</p>
+  {% endif %}
 
 {% endset %}
 
