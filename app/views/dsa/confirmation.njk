@@ -9,20 +9,22 @@
         titleText: "You’ve successfully signed the data sharing agreement"
       }) }}
 
-      {% if data.user.relationships.length > 0 and data.user.relationships[0].partner %}
+      {{data.user | log}}
 
-      <h2 class="govuk-heading-m">
-        Next steps
-      </h2>
+      {% if data.user.relationships.length > 0 and data.user.relationships[0].org2 %}
 
-      <p class="govuk-body">
-        You need to set up permissions for your organisation before you do anything else. We’ll guide you through this process.
-      <p>
+        <h2 class="govuk-heading-m">
+          Next steps
+        </h2>
 
-      {{ govukButton({
-        text: "Set up permissions",
-        href: "/onboard"
-      }) }}
+        <p class="govuk-body">
+          You need to set up permissions for your organisation before you do anything else. We’ll guide you through this process.
+        <p>
+
+        {{ govukButton({
+          text: "Set up permissions",
+          href: "/onboard"
+        }) }}
 
       {% else %}
 

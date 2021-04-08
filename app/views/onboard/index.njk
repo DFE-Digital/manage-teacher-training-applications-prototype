@@ -18,55 +18,29 @@
         <p>You belong to {{ orgs[0].name }}
       {% endif %}
 
-
       {% for trainingProvider in trainingProviders %}
         {% if trainingProvider.partners.length > 1 %}
           <p>The accredited bodies for your {{trainingProvider.org.name}} courses are:</p>
-            <ul class="govuk-list govuk-list--bullet">
+          <ul class="govuk-list govuk-list--bullet">
             {% for partner in trainingProvider.partners %}
               <li>{{partner.name}}</li>
             {% endfor %}
           </ul>
-        {% else %}
-          <p>{{trainingProviders[0].name}} is the accredited body for your {{trainingProvider.org.name}} courses.
+        {% elseif trainingProvider.partners.length == 1 %}
+          <p>{{trainingProvider.partners[0].name}} is the accredited body for your {{trainingProvider.org.name}} courses.
         {% endif %}
-
       {% endfor %}
 
-        <p>You need to set permissions at an organisational level for your own organisations and your accredited bodies. Choose who can:</p>
+      <p>You need to set permissions at an organisational level for your own organisations and your accredited bodies. Choose who can:</p>
 
-        <ul class="govuk-list govuk-list--bullet">
-          <li>make decisions about applications and set up interviews</li>
-          <li>access sensitive candidate information</li>
-        </ul>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make decisions about applications and set up interviews</li>
+        <li>access sensitive candidate information</li>
+      </ul>
 
-        <p>Accredited bodies will always be able to view applications, even if they have no other permissions.</p>
+      <p>Accredited bodies will always be able to view applications, even if they have no other permissions.</p>
 
-        <p>Once you’ve set organisational permissions, you and your accredited bodies will need to set permissions for individual users. You can only give users permissions that have been assigned to their organisation as a whole.</p>
-
-      {# <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Your organisations</th>
-            <th scope="col" class="govuk-table__header">Accredited bodies</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-         {% for item in items %}
-          {% if not item.org.isAccreditedBody %}
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__cell">{{ item.org.name }}</th>
-              <td class="govuk-table__cell"><ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-                  {% for p in item.partners %}
-                    <li>{{ p.name }}</li>
-                  {% endfor %}
-                </ul>
-              </td>
-            </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-      </table> #}
+      <p>Once you’ve set organisational permissions, you and your accredited bodies will need to set permissions for individual users. You can only give users permissions that have been assigned to their organisation as a whole.</p>
 
       <form novalidate action="/onboard/relationship1">
         {{govukButton({
