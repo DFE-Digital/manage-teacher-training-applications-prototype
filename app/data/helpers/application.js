@@ -1,6 +1,14 @@
 const { DateTime } = require('luxon')
 const SystemHelper = require('./system')
 
+exports.getApplicationWithdrawnReasons = (data) => {
+  return {
+    // withdraw application
+    'reason': data.reason,
+    'has-reason': data['has-reason']
+  }
+}
+
 exports.getRejectReasons = (data) => {
   return {
     // Candidate actions
@@ -55,8 +63,9 @@ exports.getRejectReasons = (data) => {
     'other-feedback': data['other-feedback'],
     'other-feedback-details': data['other-feedback-details'],
 
+    // withdraw application
     'asked': data.asked,
-    'asked-reasons': data['asked-reasons']
+    'asked-reason': data['asked-reason']
   }
 }
 

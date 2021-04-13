@@ -1,0 +1,21 @@
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% set previewHtml %}
+  {% if withdraw['has-reason'] == "Yes" %}
+    <div class="app-feedback">
+      <h2 class="govuk-heading-s">
+        You asked to withdraw your application
+      </h2>
+      <p>{{withdraw["reason"]}}</p>
+
+      {% if withdrawApplicationChangeLinks %}
+        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="/applications/{{application.id}}/withdraw">Change</a></p>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endset %}
+
+{{ govukInsetText({
+  html: previewHtml,
+  classes: "app-inset-text"
+}) }}

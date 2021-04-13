@@ -34,6 +34,11 @@
         {% set rejectionReasons = application.offer.withdrawalReasons %}
         {% set whyHeading = "Why your offer was withdrawn" %}
         {% include "_includes/candidate-feedback.njk" %}
+      {% elseif application.status == "Application withdrawn" %}
+        <p>The application was withdrawn on {{application.withdrawalDate | govukDate}}. The following feedback was sent to the candidate.</p>
+        {% set withdraw = application.withdrawalReasons %}
+        {% set withdrawApplicationChangeLinks = true %}
+        {% include "_includes/withdraw-application-feedback.njk" %}
       {% endif%}
     </div>
   </div>
