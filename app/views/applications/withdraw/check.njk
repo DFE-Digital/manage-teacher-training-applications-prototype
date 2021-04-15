@@ -3,12 +3,12 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "Check your feedback and withdraw application" %}
-{% set buttonText = "Send feedback and withdraw application" %}
+{% set title = "Confirm that the candidate wants to withdraw their application" %}
+{% set buttonText = "Withdraw application" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/withdraw/other-reasons-for-rejection/"
+    href: "/applications/" + application.id
   }) }}
 {% endblock %}
 
@@ -18,11 +18,7 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>Your feedback will be given to the candidate in the format below.</p>
-
-      {% set rejectionReasons = data.rejectionReasons %}
-      {% set rejectionChangeLinks = true %}
-      {% include "_includes/candidate-feedback.njk" %}
+      <p>The candidate will be told that their application has been withdrawn.</p>
 
       {% if upcomingInterviews.length == 1 %}
         <p>The upcoming interview will be cancelled.</p>

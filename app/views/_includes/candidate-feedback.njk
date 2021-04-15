@@ -272,19 +272,6 @@
     </div>
   {% endif %}
 
-  {% if rejectionReasons['asked'] == "Yes" %}
-    <div class="app-feedback">
-    <h2 class="govuk-heading-s">
-      You asked to withdraw your application
-    </h2>
-    <p>{{rejectionReasons["asked-reasons"]}}</p>
-
-    {% if rejectionChangeLinks %}
-      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
-    {% endif %}
-    </div>
-  {% endif %}
-
   {% if rejectionReasons['why'] %}
     <div class="app-feedback">
     <h2 class="govuk-heading-s">
