@@ -9,7 +9,13 @@ module.exports = router => {
     delete req.session.data.keywords
 
     // combine work history and school experience
-    let experience = application.workHistory.items.concat(application.schoolExperience).sort((a, b) => {
+
+    let experience = application.workHistory.items
+    if(application.schoolExperience) {
+      experience = experience.concat(application.schoolExperience)
+    }
+
+    experience.sort((a, b) => {
       return new Date(b.startDate) - new Date(a.startDate);
     })
 
