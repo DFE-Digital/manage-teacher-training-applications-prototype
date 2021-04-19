@@ -1,5 +1,9 @@
 {% extends "_layout.njk" %}
 
+{% set title %}
+  Check and save organisational permissions
+{% endset %}
+
 {% block beforeContent %}
   {{ govukBackLink({
     href: "/onboard/relationship1"
@@ -8,31 +12,24 @@
 
 {% block content %}
 
-  {% set tick %}
-    {{ appIcon({
-      icon: "check",
-      hidden: true
-    }) }}
-  {% endset %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
-      <span class="govuk-caption-l">Set up permissions</span>
-      <h1 class="govuk-heading-l">Check permissions</h1>
+      <span class="govuk-caption-l">Set up organisational permissions</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
 
       <form novalidate action="/onboard/confirmation">
 
-        <h2 class="govuk-heading-m">
+        {# <h2 class="govuk-heading-m">
           {{ data.user.organisations[0].name }}
-        </h2>
+        </h2> #}
 
-        {% set viewApplicationsHtml %}
+        {# {% set viewApplicationsHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }} (can only see courses they ratify)</li>
+          <li>{{ data.user.organisations[0].name }}</li>
+          <li>{{ data.accreditedBodies[0].name }} (can only see courses they ratify)</li>
         </ul>
 
           {{ govukDetails({
@@ -40,22 +37,22 @@
             text: "All users at both organisations can view applications – you do not need to set permissions for this."
           }) }}
 
-        {% endset %}
+        {% endset %} #}
         {% set makeDecisionsHtml %}
           <ul class="govuk-list">
-            <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
+            <li>{{ data.user.organisations[0].name }}</li>
           </ul>
         {% endset %}
         {% set viewSafeguardingHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
+          <li>{{ data.user.organisations[0].name }}</li>
+          <li>{{ data.accreditedBodies[0].name }}</li>
         </ul>
         {% endset %}
         {% set viewDiversityHtml %}
           <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
+          <li>{{ data.user.organisations[0].name }}</li>
+          <li>{{ data.accreditedBodies[0].name }}</li>
         </ul>
         {% endset %}
 
@@ -65,15 +62,7 @@
         rows: [
           {
             key: {
-              text: "Who can view applications?"
-            },
-            value: {
-              html: viewApplicationsHtml
-            }
-          },
-          {
-            key: {
-              text: "Who can make decisions and set up interviews?"
+              text: "Make decisions and set up interviews"
             },
             value: {
               html: makeDecisionsHtml
@@ -87,7 +76,7 @@
           },
           {
             key: {
-              text: "Who can view safeguarding information?"
+              text: "View criminal convictions and professional misconduct"
             },
             value: {
               html: viewSafeguardingHtml
@@ -101,7 +90,7 @@
           },
           {
             key: {
-              text: "Who can view diversity information?"
+              text: "View equality and diversity information"
             },
             value: {
               html: viewDiversityHtml
@@ -128,7 +117,7 @@
 
 
         {{govukButton({
-          text: "Save permissions"
+          text: "Save organisational permissions"
         })}}
       </form>
     </div>

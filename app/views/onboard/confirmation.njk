@@ -1,17 +1,46 @@
 {% extends "_layout.njk" %}
 
-{% set title = "Agree to the terms and conditions" %}
+{% set title = "Organisational permissions set up" %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukPanel({
-        titleText: "Organisational permissions set"
+        titleText: "Organisational permissions set up"
       }) }}
 
-      <p>You can now <a href="/">view applications</a> or <a href="/account/users">invite users</a>.</p>
+        <h2 class="govuk-heading-m">
+          Next steps
+        </h2>
 
-      <p>You can change organisational permissions in <a href="/account">your account</a>.</p>
+        <p class="govuk-body">
+          You can now:
+        <p>
+
+        {% if (["managerUsers", ""] | random) == "managerUsers" %}
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="/">view applications</a>
+            </li>
+            <li>
+              <a href="/account/users">invite or manage users</a>
+            </li>
+            <li>
+              <a href="/account/notifications">manage your email notifications</a>
+            </li>
+          </ul>
+
+        {% else %}
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="/">view applications</a>
+            </li>
+            <li>
+              <a href="/account/notifications">manage your email notifications</a>
+            </li>
+          </ul>        {% endif %}
 
     </div>
   </div>
