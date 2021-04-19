@@ -46,6 +46,9 @@ module.exports = router => {
     })
   })
 
+  router.get('/onboard/confirmation', (req, res) => {
+    res.render('onboard/confirmation')
+  })
 
 
   router.get('/onboard/:relationshipId', (req, res) => {
