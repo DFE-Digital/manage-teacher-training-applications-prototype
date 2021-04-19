@@ -33,12 +33,9 @@
         {{trainingProvider}}
       </h1>
 
-      {% set tick %}
-        {{ appIcon({
-          icon: "check",
-          hidden: true
-        }) }}
-      {% endset %}
+      {% if org.isAccreditedBody %}
+        <p>Only training providers can change organisational permissions.</p>
+      {% endif %}
 
       {% if relationships.length %}
         {% for relationship in relationships %}
@@ -46,33 +43,22 @@
           {% set title %}
             {{relationship.org.name}} and {{ relationship.partner.name }}
           {% endset %}
-          {% set viewApplicationsHtml %}
-            <ul class="govuk-list">
-              <li>{{tick | safe }} {{ relationship.org.name }}</li>
-              <li>{{tick | safe }} {{ relationship.partner.name }} {% if not relationship.org.isAccreditedBody %}(can only see courses they ratify) {% endif %}</li>
-            </ul>
-            {% if not relationship.org.isAccreditedBody %}
-            {{ govukDetails({
-              summaryText: "Why can’t this be changed?",
-              text: "All users at both organisations can view applications – you do not need to set permissions for this."
-            }) }}
-            {% endif %}
-          {% endset %}
+
           {% set makeDecisionsHtml %}
             {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
               <ul class="govuk-list">
                 {% if relationship.orgPermissions.makeDecisions %}
-                  <li>{{tick | safe }} {{ relationship.org.name }}</li>
+                  <li>{{ relationship.org.name }}</li>
                 {% endif %}
                 {% if relationship.partnerPermissions.makeDecisions %}
-                  <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+                  <li>{{ relationship.partner.name }}</li>
                 {% endif %}
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">No users can make decisions and set up interviews, because you have not set this up yet.</p>
+                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -80,17 +66,17 @@
             {% if relationship.orgPermissions.viewSafeguardingInformation or relationship.partnerPermissions.viewSafeguardingInformation %}
               <ul class="govuk-list">
                 {% if relationship.orgPermissions.viewSafeguardingInformation %}
-                  <li>{{tick | safe }} {{ relationship.org.name }}</li>
+                  <li>{{ relationship.org.name }}</li>
                 {% endif %}
                 {% if relationship.partnerPermissions.viewSafeguardingInformation %}
-                  <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+                  <li>{{ relationship.partner.name }}</li>
                 {% endif %}
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">No users can see safeguarding information because you have not set this up yet.</p>
+                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -98,17 +84,17 @@
             {% if relationship.orgPermissions.viewDiversityInformation or relationship.partnerPermissions.viewDiversityInformation %}
               <ul class="govuk-list">
                 {% if relationship.orgPermissions.viewDiversityInformation %}
-                  <li>{{tick | safe }} {{ relationship.org.name }}</li>
+                  <li>{{ relationship.org.name }}</li>
                 {% endif %}
                 {% if relationship.partnerPermissions.viewDiversityInformation %}
-                  <li>{{tick | safe }} {{ relationship.partner.name }}</li>
+                  <li>{{ relationship.partner.name }}</li>
                 {% endif %}
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>{{ relationship.partner.name }} has not set this up yet – contact them to change this.</p>
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">No users can see diversity information because you have not set this up yet.</p>
+                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -121,24 +107,15 @@
 
             {% if relationship.org.isAccreditedBody %}
 
-              <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to change these settings.</p>
+              {# <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to change these settings.</p> #}
 
             {% endif %}
 
             {{ govukSummaryList({
-              classes: "app-summary-list--border-top" if relationship.org.isAccreditedBody,
               rows: [
                 {
                   key: {
-                    text: "Who can view applications?"
-                  },
-                  value: {
-                    html: viewApplicationsHtml
-                  }
-                },
-                {
-                  key: {
-                    text: "Who can make decisions and set up interviews?"
+                    text: "Make decisions and set up interviews"
                   },
                   value: {
                     html: makeDecisionsHtml
@@ -155,7 +132,7 @@
                 },
                 {
                   key: {
-                    text: "Who can view safeguarding information?"
+                    text: "View criminal convictions and professional misconduct"
                   },
                   value: {
                     html: viewSafeguardingHtml
@@ -172,7 +149,7 @@
                 },
                 {
                   key: {
-                    text: "Who can view diversity information?"
+                    text: "View equality and diversity information"
                   },
                   value: {
                     html: viewDiversityHtml

@@ -85,13 +85,13 @@ let relationships = [{
   }
 }, {
   id: 2,
-  org1: trainingProviders[0],
+  org1: trainingProviders[1],
   org1Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: accreditedBodies[1],
+  org2: accreditedBodies[0],
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -99,7 +99,7 @@ let relationships = [{
   }
 }];
 
-let userOrgs = [trainingProviders[0]];
+let userOrgs = [accreditedBodies[0], trainingProviders[0]];
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],

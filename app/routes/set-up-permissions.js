@@ -46,6 +46,8 @@ module.exports = router => {
     })
   })
 
+
+
   router.get('/onboard/:relationshipId', (req, res) => {
 
     let relationship = req.session.data.relationships.filter(relationship => {

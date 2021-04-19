@@ -42,7 +42,7 @@ module.exports = router => {
   })
 
   router.post('/account/organisational-permissions/:organisationId/edit', (req, res) => {
-    req.flash('success', 'Permissions successfully changed')
+    req.flash('success', 'Organisational permissions changed')
     res.redirect(`/account/organisational-permissions/${req.params.organisationId}`)
   })
 }
