@@ -2,7 +2,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/onboard/relationship1"
+    href: "/onboard/" + lastRelationshipId
   }) }}
 {% endblock %}
 
@@ -25,107 +25,94 @@
 
       <form novalidate action="/onboard/confirmation">
 
-        <h2 class="govuk-heading-m">
-          {{ data.user.organisations[0].name }}
-        </h2>
+        {% for item in relationships %}
+          {# {% if relationships.length > 1 %} #}
+            <h2 class="govuk-heading-m">
+              {{ item.org.name }}
+            </h2>
+          {# {% endif %} #}
 
-        {% set viewApplicationsHtml %}
-          <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }} (can only see courses they ratify)</li>
-        </ul>
 
-          {{ govukDetails({
-            summaryText: "Why can’t this be changed?",
-            text: "All users at both organisations can view applications – you do not need to set permissions for this."
-          }) }}
+          {% for partner in item.partners %}
 
-        {% endset %}
-        {% set makeDecisionsHtml %}
-          <ul class="govuk-list">
-            <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          </ul>
-        {% endset %}
-        {% set viewSafeguardingHtml %}
-          <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
-        </ul>
-        {% endset %}
-        {% set viewDiversityHtml %}
-          <ul class="govuk-list">
-          <li>{{tick | safe }} {{ data.user.organisations[0].name }}</li>
-          <li>{{tick | safe }} {{ data.accreditedBodies[0].name }}</li>
-        </ul>
-        {% endset %}
+            {% set makeDecisionsHtml %}
+              {% for item in data.onboard['a'+partner.id].makeDecisions %}
+                <p>{{item}}</p>
+              {% endfor %}
+            {% endset %}
 
-        {% set cardHtml %}
+            {% set viewSafeguardingHtml %}
+              {% for item in data.onboard['a'+partner.id].viewCriminalConvictions %}
+                <p>{{item}}</p>
+              {% endfor %}
+            {% endset %}
 
-         {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Who can view applications?"
-            },
-            value: {
-              html: viewApplicationsHtml
-            }
-          },
-          {
-            key: {
-              text: "Who can make decisions and set up interviews?"
-            },
-            value: {
-              html: makeDecisionsHtml
-            },
-            actions: {
-              items: [{
-                href: "/onboard/relationship1",
-                text: "Change"
-              }]
-            }
-          },
-          {
-            key: {
-              text: "Who can view safeguarding information?"
-            },
-            value: {
-              html: viewSafeguardingHtml
-            },
-            actions: {
-              items: [{
-                href: "/onboard/relationship1",
-                text: "Change"
-              }]
-            }
-          },
-          {
-            key: {
-              text: "Who can view diversity information?"
-            },
-            value: {
-              html: viewDiversityHtml
-            },
-            actions: {
-              items: [{
-                href: "/onboard/relationship1",
-                text: "Change"
-              }]
-            }
-          }
-        ]
-      }) }}
-          {% endset %}
+            {% set viewDiversityHtml %}
+              {% for item in data.onboard['a'+partner.id].viewDiversityInformation %}
+                <p>{{item}}</p>
+              {% endfor %}
+            {% endset %}
 
-          {% set title %}
-            {{ data.user.organisations[0].name }} and {{ data.accreditedBodies[0].name }}
-          {% endset %}
-          {{appSummaryCard({
-            titleText: title,
-            classes: "govuk-!-margin-bottom-6",
-            html: cardHtml
-          })}}
+            {% set cardHtml %}
 
+              {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Who can make decisions and set up interviews?"
+                    },
+                    value: {
+                      html: makeDecisionsHtml
+                    },
+                    actions: {
+                      items: [{
+                        href: "/onboard/"+partner.id,
+                        text: "Change"
+                      }]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Who can view safeguarding information?"
+                    },
+                    value: {
+                      html: viewSafeguardingHtml
+                    },
+                    actions: {
+                      items: [{
+                        href: "/onboard/"+partner.id,
+                        text: "Change"
+                      }]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Who can view diversity information?"
+                    },
+                    value: {
+                      html: viewDiversityHtml
+                    },
+                    actions: {
+                      items: [{
+                        href: "/onboard/"+partner.id,
+                        text: "Change"
+                      }]
+                    }
+                  }
+                ]
+              }) }}
+            {% endset %}
+
+
+            {{appSummaryCard({
+              titleText: item.org.name + ' and ' + partner.org.name,
+              classes: "govuk-!-margin-bottom-6",
+              html: cardHtml
+            })}}
+          {% endfor %}
+
+
+        {% endfor %}
 
         {{govukButton({
           text: "Save permissions"

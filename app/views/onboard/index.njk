@@ -41,7 +41,7 @@
           </ul>
         {% elseif trainingProviders[0].partners.length == 1 %}
           <p>{{trainingProviders[0].partners[0].name}} is the accredited body for your courses.
-        {% endif %} 
+        {% endif %}
       {% endif %}
 
       <p>You need to choose which organisations can:</p>
@@ -55,7 +55,9 @@
         text: "All organisations can view applications to their courses."
       }) }}
 
-      <form novalidate action="/onboard/relationship1">
+      {{ relationships | log}}
+
+      <form novalidate action="/onboard/{{relationships[0].id}}">
         {{govukButton({
           text: "Continue"
         })}}

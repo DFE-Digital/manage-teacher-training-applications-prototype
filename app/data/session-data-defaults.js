@@ -70,6 +70,7 @@ applications = applications
   })
 
 let relationships = [{
+  id: 1,
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: false,
@@ -83,6 +84,7 @@ let relationships = [{
     viewDiversityInformation: false
   }
 }, {
+  id: 2,
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: true,

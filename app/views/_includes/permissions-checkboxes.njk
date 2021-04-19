@@ -1,6 +1,4 @@
 {{ govukCheckboxes({
-  idPrefix: "makedecisions",
-  name: "makedecisions",
   fieldset: {
     legend: {
       text: "Who can make decisions and set up interviews?",
@@ -17,11 +15,9 @@
       text: partner
     }
   ]
-}) }}
+} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.makeDecisions')) }}
 
 {{ govukCheckboxes({
-  idPrefix: "safeguarding",
-  name: "safeguarding",
   fieldset: {
     legend: {
       text: "Who can view criminal convictions and professional misconduct information?",
@@ -38,11 +34,9 @@
       text: partner
     }
   ]
-}) }}
+} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.viewCriminalConvictions')) }}
 
 {{ govukCheckboxes({
-  idPrefix: "diversity",
-  name: "diversity",
   fieldset: {
     legend: {
       text: "Who can view equality and diversity information?",
@@ -59,4 +53,4 @@
       text: partner
     }
   ]
-}) }}
+} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.viewDiversityInformation')) }}
