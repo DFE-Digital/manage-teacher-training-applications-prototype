@@ -102,8 +102,15 @@ module.exports = router => {
 
   router.post('/account/users/new/permissions/:orgId', (req, res) => {
 
-    var index = req.session.data.newuser.organisations.indexOf(req.params.orgId)
-    if(req.session.data.newuser.organisations[index+1]) {
+    // if the user belongs to one org, they won't be shown the orgs checkboxes
+    // which means they'll be no data for it. So be defensive.
+    let organisations = req.session.data.newuser.organisations
+    let index = 0
+    if(organisations && organisations.length > 1) {
+      index = organisations.indexOf(req.params.orgId)
+    }
+
+    if(organisations && organisations[index+1]) {
       res.redirect(`/account/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
     } else {
       res.redirect(`/account/users/new/check`)
@@ -112,7 +119,9 @@ module.exports = router => {
   })
 
   router.get('/account/users/new/check', (req, res) => {
-    var orgs = req.session.data.newuser.organisations.map(orgId => {
+    let organisations = req.session.data.newuser.organisations || [req.session.data.user.organisations[0].id]
+
+    let orgs = organisations.map(orgId => {
       var returnValue = {
         org: req.session.data.organisations.find(org => org.id == orgId)
       }
@@ -130,7 +139,6 @@ module.exports = router => {
       return returnValue
     })
 
-
     // mixin org permissions
     orgs.forEach(org => {
 
@@ -147,7 +155,6 @@ module.exports = router => {
       orgs
     })
   })
-
 
   router.post('/account/users/new/check', (req, res) => {
     req.flash('success', 'User successfully invited')

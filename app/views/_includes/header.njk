@@ -11,8 +11,12 @@
   "productName": serviceName,
   "navigation": [{
       href: "/account",
-      text: "Your account",
+      text: "Account",
       active: primaryNavId == 'account'
+    }, {
+      href: "/account/organisational-permissions",
+      text: "Organisations",
+      active: primaryNavId == 'orgs'
     }, {
       href: "/",
       text: "Sign out"

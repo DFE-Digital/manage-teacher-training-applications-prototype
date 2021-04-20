@@ -1,7 +1,7 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Check permissions before you invite user – Invite user" %}
+{% set title = "Check permissions before you invite user" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -90,57 +90,44 @@
               {% endif %}
               {% if org.permissions.manageOrganisations %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
                   Manage organisational permissions
                 </p>
               {% endif %}
               {% if org.permissions.manageUsers %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
                   Manage users
                 </p>
               {% endif %}
               {% if org.permissions.makeDecisions %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
                   Make decisions and set up interviews
                 </p>
 
                 {% if org.permissions.applicableOrgs.makeDecisions %}
-                  <div class="govuk-!-margin-left-5">
+                  <div class="govuk-!-margin-left-2">
                     {% if org.org.isAccreditedBody %}
                       <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
                     {% else %}
                       <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
                     {% endif %}
-                    <ul class="govuk-list">
+                    <ul class="govuk-list govuk-list--bullet">
                       {% for item in org.permissions.applicableOrgs.makeDecisions %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "check",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
+                        <li>{{ item.name }}</li>
                       {% endfor %}
                     </ul>
                   </div>
                 {% endif %}
 
                 {% if org.permissions.nonApplicableOrgs.makeDecisions %}
-                  <div class="govuk-!-margin-left-5">
+                  <div class="govuk-!-margin-left-2">
                     {% if org.org.isAccreditedBody %}
                       <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
                     {% else %}
                       <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
                     {% endif %}
-                    <ul class="govuk-list">
+                    <ul class="govuk-list govuk-list--bullet">
                       {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "cross",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
+                        <li>{{ item.name }}</li>
                       {% endfor %}
                     </ul>
                   </div>
@@ -149,44 +136,33 @@
               {% endif %}
               {% if org.permissions.viewSafeguardingInformation %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
                   View safeguarding information
                 </p>
                 {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
-                  <div class="govuk-!-margin-left-5">
+                  <div class="govuk-!-margin-left-2">
                     {% if org.org.isAccreditedBody %}
                       <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
                     {% else %}
                       <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
                     {% endif %}
-                    <ul class="govuk-list">
+                    <ul class="govuk-list govuk-list--bullet">
                       {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "check",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
+                        <li>{{ item.name }}</li>
                       {% endfor %}
                     </ul>
                   </div>
                 {% endif %}
 
                 {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-                  <div class="govuk-!-margin-left-5">
+                  <div class="govuk-!-margin-left-2">
                     {% if org.org.isAccreditedBody %}
                       <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
                     {% else %}
                       <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
                     {% endif %}
-                    <ul class="govuk-list">
+                    <ul class="govuk-list govuk-list--bullet">
                       {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "cross",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
+                        <li>{{ item.name }}</li>
                       {% endfor %}
                     </ul>
                   </div>
@@ -195,38 +171,29 @@
 
               {% if org.permissions.viewDiversityInformation %}
                 <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
                   View diversity information
                 </p>
                 {% if org.permissions.applicableOrgs.viewDiversityInformation %}
-                  <div class="govuk-!-margin-left-5">
+                  <div class="govuk-!-margin-left-2">
                   <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-                  <ul class="govuk-list">
+                  <ul class="govuk-list govuk-list--bullet">
                     {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
-                      <li>{{ appIcon({
-                          icon: "check",
-                          hidden: true
-                        }) }} {{ item.name }}
-                      </li>
+                      <li>{{ item.name }}</li>
                     {% endfor %}
                     </ul>
                   </div>
                 {% endif %}
 
                 {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-                  <div class="govuk-!-margin-left-5">
+                  <div class="govuk-!-margin-left-2">
                   {% if org.org.isAccreditedBody %}
                       <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
                     {% else %}
                       <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
                     {% endif %}
-                    <ul class="govuk-list">
+                    <ul class="govuk-list govuk-list--bullet">
                       {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-                        <li>{{ appIcon({
-                            icon: "cross",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
+                        <li>{{ item.name }}</li>
                       {% endfor %}
                     </ul>
                   </div>
@@ -251,6 +218,7 @@
           text: "Invite user"
         })}}
       </form>
+      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
     </div>
   </div>
 

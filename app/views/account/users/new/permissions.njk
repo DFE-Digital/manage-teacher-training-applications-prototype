@@ -14,27 +14,85 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        <span class="govuk-caption-l">Invite user</span>
-        Set permissions: {{ org.org.name }}
-      {% endset %}
 
-      {% set makeDecisionsHintHtml %}
-        <p class="govuk-!-margin-bottom-1">Make offers, amend offers and reject applications</p>
+      <span class="govuk-caption-l">
+        Invite user
+      </span>
+      <h1 class="govuk-heading-l">
+        Permissions
+      </h1>
 
+
+
+      <h2 class="govuk-heading-m">
+        Administrative permissions
+      </h2>
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "blah1",
+        name: "blah1",
+        fieldset: {
+          legend: {
+            text: "Manage organisations",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "On",
+            text: "On"
+          },
+          {
+            value: "Off",
+            text: "Off",
+            checked: true
+          }
+        ]
+      }) }}
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "blah2",
+        name: "blah2",
+        fieldset: {
+          legend: {
+            text: "Manage users and their permissions",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "On",
+            text: "On"
+          },
+          {
+            value: "Off",
+            text: "Off",
+            checked: true
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Application permissions
+      </h2>
+
+      <p>This user will be able to view all applications to courses you run.</p>
+
+  {% set makeDecisionsHintHtml %}
         {% if org.permissions.applicableOrgs.makeDecisions %}
-          <div class="govuk-!-margin-left-5">
+          <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
             {% if org.org.isAccreditedBody %}
               <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
             {% else %}
               <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
             {% endif %}
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.applicableOrgs.makeDecisions %}
-                <li>{{ appIcon({
-                    icon: "check",
-                    hidden: true
-                  }) }} {{ item.name }}
+                <li>{{ item.name }}
                 </li>
               {% endfor %}
             </ul>
@@ -42,40 +100,59 @@
         {% endif %}
 
         {% if org.permissions.nonApplicableOrgs.makeDecisions %}
-          <div class="govuk-!-margin-left-5">
+          <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
             {% if org.org.isAccreditedBody %}
               <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
             {% else %}
               <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
             {% endif %}
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
-                <li>{{ appIcon({
-                    icon: "cross",
-                    hidden: true
-                  }) }} {{ item.name }}
-                </li>
+                <li>{{ item.name }}</li>
               {% endfor %}
             </ul>
           </div>
         {% endif %}
       {% endset %}
 
-      {% set safeguardingInformationHintHtml %}
-        <p class="govuk-!-margin-bottom-1">View sensitive material about the candidate</p>
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "blah3",
+        name: "blah3",
+        fieldset: {
+          legend: {
+            text: "Make decisions and set up interviews",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        hint: {
+          html: makeDecisionsHintHtml
+        },
+        items: [
+          {
+            value: "On",
+            text: "On"
+          },
+          {
+            value: "Off",
+            text: "Off",
+            checked: true
+          }
+        ]
+      }) }}
+
+{% set safeguardingInformationHintHtml %}
         {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
-          <div class="govuk-!-margin-left-5">
+          <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
             {% if org.org.isAccreditedBody %}
               <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
             {% else %}
               <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
             {% endif %}
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
-                <li>{{ appIcon({
-                    icon: "check",
-                    hidden: true
-                  }) }} {{ item.name }}
+                <li>{{ item.name }}
                 </li>
               {% endfor %}
             </ul>
@@ -83,40 +160,59 @@
         {% endif %}
 
         {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-          <div class="govuk-!-margin-left-5">
+          <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
             {% if org.org.isAccreditedBody %}
               <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
             {% else %}
               <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
             {% endif %}
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
-                <li>{{ appIcon({
-                    icon: "cross",
-                    hidden: true
-                  }) }} {{ item.name }}
-                </li>
+                <li>{{ item.name }}</li>
               {% endfor %}
             </ul>
           </div>
         {% endif %}
       {% endset %}
 
+  {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "blah4",
+        name: "blah4",
+        fieldset: {
+          legend: {
+            text: "View criminal convictions and professional misconduct",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        hint: {
+          html: safeguardingInformationHintHtml
+        },
+        items: [
+          {
+            value: "On",
+            text: "On"
+          },
+          {
+            value: "Off",
+            text: "Off",
+            checked: true
+          }
+        ]
+      }) }}
+
       {% set diversityInformationHintHtml %}
-        <p class="govuk-!-margin-bottom-1">View diversity information about the candidate</p>
         {% if org.permissions.applicableOrgs.viewDiversityInformation %}
-          <div class="govuk-!-margin-left-5">
+          <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
             {% if org.org.isAccreditedBody %}
               <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
             {% else %}
               <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
             {% endif %}
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
-                <li>{{ appIcon({
-                    icon: "check",
-                    hidden: true
-                  }) }} {{ item.name }}
+                <li>{{ item.name }}
                 </li>
               {% endfor %}
             </ul>
@@ -124,24 +220,59 @@
         {% endif %}
 
         {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-          <div class="govuk-!-margin-left-5">
+          <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
             {% if org.org.isAccreditedBody %}
               <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
             {% else %}
               <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
             {% endif %}
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-                <li>{{ appIcon({
-                    icon: "cross",
-                    hidden: true
-                  }) }} {{ item.name }}
-                </li>
+                <li>{{ item.name }}</li>
               {% endfor %}
             </ul>
           </div>
         {% endif %}
       {% endset %}
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "blah5",
+        name: "blah5",
+        fieldset: {
+          legend: {
+            text: "View equality and diversity information",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        hint: {
+          html: diversityInformationHintHtml
+        },
+        items: [
+          {
+            value: "On",
+            text: "On"
+          },
+          {
+            value: "Off",
+            text: "Off",
+            checked: true
+          }
+        ]
+      }) }}
+
+{#
+      {% set h1 %}
+        <span class="govuk-caption-l">Invite user</span>
+        Set permissions
+      {% endset %}
+
+
+
+
+
+
 
 
       <form novalidate method="post" >
@@ -152,7 +283,7 @@
               fieldset: {
                 legend: {
                   html: "Select permissions",
-                  classes: "govuk-fieldset__legend--m"
+                  classes: "govuk-fieldset__legend--s"
                 }
               },
               items: [
@@ -160,27 +291,21 @@
                   value: "manageOrganisations",
                   text: "Manage organisational permissions",
                   label: {
-                    classes: "govuk-label--s"
-                  },
-                  hint: {
-                    html: "<p>Change permissions between organisations</p>"
+                    classes: "govuk-label--"
                   }
                 },
                 {
                   value: "manageUsers",
-                  text: "Manage users",
+                  text: "Manage users and their permissions",
                   label: {
-                    classes: "govuk-label--s"
-                  },
-                  hint: {
-                    html: "<p>Invite or delete users and set their permissions</p>"
+                    classes: "govuk-label--"
                   }
                 },
                 {
                   value: "makeDecisions",
                   html: "Make decisions and set up interviews",
                   label: {
-                    classes: "govuk-label--s"
+                    classes: "govuk-label--"
                   },
                   hint: {
                     html: makeDecisionsHintHtml
@@ -188,9 +313,9 @@
                 },
                 {
                   value: "viewSafeguardingInformation",
-                  text: "Access safeguarding information",
+                  text: "View criminal convictions and professional misconduct",
                   label: {
-                    classes: "govuk-label--s"
+                    classes: "govuk-label--"
                   },
                   hint: {
                     html: safeguardingInformationHintHtml
@@ -198,9 +323,9 @@
                 },
                 {
                   value: "viewDiversityInformation",
-                  text: "Access diversity information",
+                  text: "View equality and diversity information",
                   label: {
-                    classes: "govuk-label--s"
+                    classes: "govuk-label--"
                   },
                   hint: {
                     html: diversityInformationHintHtml
@@ -235,7 +360,7 @@
               }
             }
           ]
-        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }}
+        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }} #}
 
         {{govukButton({
           text: "Continue"
