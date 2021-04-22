@@ -15,110 +15,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {# <span class="govuk-caption-l">
-        Invite user
-      </span>
-      <h1 class="govuk-heading-l">
-        Permissions
-      </h1> #}
-
-      {# <p>This user will be able to view all applications to courses you run.</p> #}
-
-      {# {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "blah1",
-        name: "blah1",
-        fieldset: {
-          legend: {
-            text: "Manage organisations",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-          {
-            value: "On",
-            text: "On"
-          },
-          {
-            value: "Off",
-            text: "Off",
-            checked: true
-          }
-        ]
-      }) }} #}
-
-      {# {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "blah2",
-        name: "blah2",
-        fieldset: {
-          legend: {
-            text: "Manage users and their permissions",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-          {
-            value: "On",
-            text: "On"
-          },
-          {
-            value: "Off",
-            text: "Off",
-            checked: true
-          }
-        ]
-      }) }} #}
-
-
+      {% set runOrRatified %}
+          {% if org.org.isAccreditedBody %}
+            run
+          {% else %}
+            ratified
+          {% endif %}
+        {% endset %}
 
       {% set makeDecisionsHintHtml %}
-        {# <div class="app-permissions-hint-text">
-          <p>This user will be able make decisions and set up interviews where the organisational permissions allow it</p> #}
-          {# <p>This user will only be able to make decisions and set up interviews for courses where the organisational permissions allow it</p> #}
-          {# <p>This permission is only granted if the organisational permissions also allow it</p> #}
-          {# <p>Due to organisational permissions, this user will only be able to make decisions and set up interviews for courses ratified by:</p>
-
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              Springbank SCITT
-            </li>
-          </ul>
-
-          <p>They’ll not be able to make decisions and set up interviews for courses ratified by:</p>
-
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              Kingston University
-            </li>
-          </ul> #}
-        {# </div> #}
-
-
-
 
         {% if org.permissions.applicableOrgs.makeDecisions %}
           <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
 
-            {# {% if org.permissions.applicableOrgs.makeDecisions.length > 0 %}
-              {% if org.org.isAccreditedBody %}
-                <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this permission only applies to courses run by:</p>
-              {% else %}
-                <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this permission only applies to courses ratified by:</p>
-              {% endif %}
-            {% else %}
+            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
 
-            {% endif %} #}
-
-
-
-            {% if org.org.isAccreditedBody %}
-              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this permission only applies to courses run by:</p>
-            {% else %}
-              <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-            {% endif %}
             <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.applicableOrgs.makeDecisions %}
                 <li>{{ item.name }}
@@ -130,11 +41,12 @@
 
         {% if org.permissions.nonApplicableOrgs.makeDecisions %}
           <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-            {% if org.org.isAccreditedBody %}
-              <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
+            {% if not org.permissions.applicableOrgs.makeDecisions or org.permissions.applicableOrgs.makeDecisions.length == 0 %}
+              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to make decisions or set up interviews for courses {{runOrRatfied}} by:</p>
             {% else %}
-              <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
+              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
             {% endif %}
+
             <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
               {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
                 <li>{{ item.name }}</li>
@@ -143,33 +55,6 @@
           </div>
         {% endif %}
       {% endset %}
-
-      {# {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "blah3",
-        name: "blah3",
-        fieldset: {
-          legend: {
-            text: "Make decisions and set up interviews",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          html: makeDecisionsHintHtml
-        },
-        items: [
-          {
-            value: "On",
-            text: "On"
-          },
-          {
-            value: "Off",
-            text: "Off",
-            checked: true
-          }
-        ]
-      }) }} #}
 
       {% set safeguardingInformationHintHtml %}
         {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
@@ -204,33 +89,6 @@
         {% endif %}
       {% endset %}
 
-      {# {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "blah4",
-        name: "blah4",
-        fieldset: {
-          legend: {
-            text: "View criminal convictions and professional misconduct",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          html: safeguardingInformationHintHtml
-        },
-        items: [
-          {
-            value: "On",
-            text: "On"
-          },
-          {
-            value: "Off",
-            text: "Off",
-            checked: true
-          }
-        ]
-      }) }} #}
-
       {% set diversityInformationHintHtml %}
         {% if org.permissions.applicableOrgs.viewDiversityInformation %}
           <div class="govuk-!-margin-left- govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
@@ -264,52 +122,21 @@
         {% endif %}
       {% endset %}
 
-      {# {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "blah5",
-        name: "blah5",
-        fieldset: {
-          legend: {
-            text: "View equality and diversity information",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          html: diversityInformationHintHtml
-        },
-        items: [
-          {
-            value: "On",
-            text: "On"
-          },
-          {
-            value: "Off",
-            text: "Off",
-            checked: true
-          }
-        ]
-      }) }} #}
 
-
-      {% set h1 %}
         <span class="govuk-caption-l">Invite user</span>
-        Permissions
-      {% endset %}
+        <h1 class="govuk-heading-l">
+          Permissions
+        </h1>
 
-      {# <p>This user will be able to view all applications to courses you run.</p> #}
+      <p>This user will be able to view all applications to courses you run.</p>
 
       <form novalidate method="post" >
         {{ govukCheckboxes({
             fieldset: {
               legend: {
-                html: h1,
-                isPageheading: true,
-                classes: "govuk-fieldset__legend--l"
+                text: "Select permissions",
+                classes: "govuk-fieldset__legend--m"
               }
-            },
-            hint: {
-              html: "This user will be able to view all applications to courses you run."
             },
             items: [
               {
