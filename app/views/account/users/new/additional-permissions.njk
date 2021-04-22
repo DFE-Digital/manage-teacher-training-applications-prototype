@@ -14,7 +14,6 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% set runOrRatified %}
         {% if org.org.isAccreditedBody %}
           run
@@ -117,6 +116,7 @@
         {% endif %}
       {% endset %}
 
+
       <span class="govuk-caption-l">Invite user</span>
       <h1 class="govuk-heading-l">
         Additional permissions
@@ -127,22 +127,15 @@
       {% set flippyHtml%}
         <h2 class="govuk-heading-s">Make decisions and set up interviews</h2>
 
-        <p>This will apply to courses ratified by:</p>
-
-        Org 1
-        Org 2
-
-        It will not apply to:
-
-        Org 3
+        {{makeDecisionsHintHtml | safe}}
 
         <h2 class="govuk-heading-s">View criminal convictions and professional misconduct</h2>
 
-        <p>This will not apply to any courses.</p>
+        {{safeguardingInformationHintHtml | safe}}
 
         <h2 class="govuk-heading-s">View equality and diversity information</h2>
 
-        <p>This will apply to all courses.</p>
+        {{diversityInformationHintHtml | safe}}
 
       {% endset %}
       {{ govukDetails({
@@ -186,7 +179,7 @@
                 },
                 hint: {
                   html: makeDecisionsHintHtml
-                }
+                } if 1==2
               },
               {
                 value: "viewSafeguardingInformation",
@@ -196,7 +189,7 @@
                 },
                 hint: {
                   html: safeguardingInformationHintHtml
-                }
+                } if 1==2
               },
               {
                 value: "viewDiversityInformation",
@@ -206,7 +199,7 @@
                 },
                 hint: {
                   html: diversityInformationHintHtml
-                }
+                } if 1==2
               }
             ]
           } | decorateAttributes(data, 'data.newuser.permissions.'+org.org.id)) }}
