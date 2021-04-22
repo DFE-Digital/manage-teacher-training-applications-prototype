@@ -200,7 +200,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/new/check', (req, res) => {
-    req.flash('success', 'User successfully invited')
+    req.flash('success', 'User invited')
     res.redirect('/account/users/')
   })
 
@@ -281,7 +281,7 @@ module.exports = router => {
 
 
   router.post('/account/users/:userId/permissions/:orgId/edit', (req, res) => {
-    req.flash('success', 'User’s permissions successfully updated')
+    req.flash('success', 'Permissions updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
