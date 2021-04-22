@@ -101,6 +101,49 @@ module.exports = router => {
   })
 
   router.post('/account/users/new/permissions/:orgId', (req, res) => {
+    let orgId = req.params.orgId
+    if(req.session.data.newuser.access[orgId] == "Additional permissions") {
+      res.redirect(`/account/users/new/additional-permissions/${req.params.orgId}`)
+    } else {
+      // if the user belongs to one org, they won't be shown the orgs checkboxes
+      // which means they'll be no data for it. So be defensive.
+      let organisations = req.session.data.newuser.organisations
+      let index = 0
+      if(organisations && organisations.length > 1) {
+        index = organisations.indexOf(req.params.orgId)
+      }
+
+      if(organisations && organisations[index+1]) {
+        res.redirect(`/account/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
+      } else {
+        res.redirect(`/account/users/new/check`)
+      }
+    }
+
+  })
+
+  router.get('/account/users/new/additional-permissions/:orgId', (req, res) => {
+    var org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
+
+    // hurrendous but don't worry peeps
+    org = {
+      org: org,
+      permissions: {
+        applicableOrgs: {},
+        nonApplicableOrgs: {}
+      }
+    }
+
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+
+    res.render('account/users/new/additional-permissions', {
+      org
+    })
+  })
+
+  router.post('/account/users/new/additional-permissions/:orgId', (req, res) => {
 
     // if the user belongs to one org, they won't be shown the orgs checkboxes
     // which means they'll be no data for it. So be defensive.
@@ -126,7 +169,7 @@ module.exports = router => {
         org: req.session.data.organisations.find(org => org.id == orgId)
       }
 
-      if(req.session.data.newuser.access[orgId] == "Extra permissions") {
+      if(req.session.data.newuser.access[orgId] == "Additional permissions") {
         returnValue.permissions = {
             manageOrganisations: req.session.data.newuser.permissions[orgId].indexOf('manageOrganisations') > -1,
             manageUsers: req.session.data.newuser.permissions[orgId].indexOf('manageUsers') > -1,

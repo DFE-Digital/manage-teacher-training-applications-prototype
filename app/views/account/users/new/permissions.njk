@@ -12,175 +12,19 @@
 
 {% block content %}
 
+  {{params.orgId}}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set runOrRatified %}
-          {% if org.org.isAccreditedBody %}
-            run
-          {% else %}
-            ratified
-          {% endif %}
-        {% endset %}
-
-      {% set makeDecisionsHintHtml %}
-
-        {% if org.permissions.applicableOrgs.makeDecisions %}
-          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-
-            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
-
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for item in org.permissions.applicableOrgs.makeDecisions %}
-                <li>{{ item.name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-
-        {% if org.permissions.nonApplicableOrgs.makeDecisions %}
-          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-            {% if not org.permissions.applicableOrgs.makeDecisions or org.permissions.applicableOrgs.makeDecisions.length == 0 %}
-              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to make decisions or set up interviews for courses {{runOrRatfied}} by:</p>
-            {% else %}
-              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
-            {% endif %}
-
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
-                <li>{{ item.name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      {% endset %}
-
-      {% set safeguardingInformationHintHtml %}
-        {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
-          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-
-            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to view criminal convictions and professional misconduct for courses {{runOrRatified}} by:</p>
-
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
-                <li>{{ item.name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-
-        {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-            {% if not org.permissions.applicableOrgs.viewSafeguardingInformation or org.permissions.applicableOrgs.viewSafeguardingInformation.length == 0 %}
-              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to view criminal convictions and professional misconduct for courses {{runOrRatfied}} by:</p>
-            {% else %}
-              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
-            {% endif %}
-
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-                <li>{{ item.name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      {% endset %}
-
-      {% set diversityInformationHintHtml %}
-        {% if org.permissions.applicableOrgs.viewDiversityInformation %}
-          <div class="govuk-!-padding-bottom-0 govuk-!-padding-top-1 app-permissions-hint-text">
-
-            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to view equality and diversity information for courses {{runOrRatified}} by:</p>
-
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
-                <li>{{ item.name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-
-        {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-          <div class="govuk-!-padding-bottom-0 govuk-!-padding-top-1 app-permissions-hint-text">
-            {% if not org.permissions.applicableOrgs.viewDiversityInformation or org.permissions.applicableOrgs.viewDiversityInformation.length == 0 %}
-              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to view equality and diversity information for courses {{runOrRatfied}} by:</p>
-            {% else %}
-              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
-            {% endif %}
-
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-              {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-                <li>{{ item.name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      {% endset %}
-
+      {% set h1 %}
         <span class="govuk-caption-l">Invite user</span>
-        <h1 class="govuk-heading-l">
-          Permissions
-        </h1>
+        Permissions
+      {% endset %}
 
-      <p>This user will be able to view all applications to courses you run.</p>
+      <form novalidate method="post">
 
-      <form novalidate method="post" >
-        {{ govukCheckboxes({
-            fieldset: {
-              legend: {
-                text: "Select extra permissions",
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            items: [
-              {
-                value: "manageOrganisations",
-                text: "Manage organisational permissions",
-                label: {
-                  classes: "govuk-label--"
-                }
-              },
-              {
-                value: "manageUsers",
-                text: "Manage users and their permissions",
-                label: {
-                  classes: "govuk-label--"
-                }
-              },
-              {
-                value: "makeDecisions",
-                html: "Make decisions and set up interviews",
-                label: {
-                  classes: "govuk-label--"
-                },
-                hint: {
-                  html: makeDecisionsHintHtml
-                }
-              },
-              {
-                value: "viewSafeguardingInformation",
-                text: "View criminal convictions and professional misconduct",
-                label: {
-                  classes: "govuk-label--"
-                },
-                hint: {
-                  html: safeguardingInformationHintHtml
-                }
-              },
-              {
-                value: "viewDiversityInformation",
-                text: "View equality and diversity information",
-                label: {
-                  classes: "govuk-label--"
-                },
-                hint: {
-                  html: diversityInformationHintHtml
-                }
-              }
-            ]
-          } | decorateAttributes(data, 'data.newuser.permissions.'+org.org.id)) }}
-
-        {# {{ govukRadios({
+        {{ govukRadios({
           fieldset: {
             legend: {
               html: h1,
@@ -190,24 +34,15 @@
           },
           items: [
             {
-              text: "View applications only",
-              hint: {
-                text: "The user will be able to view all sections of the application, except sensitive candidate content"
-              }
+              value: "View applications",
+              text: "View applications (excluding sensitive information)"
             },
             {
-              text: "Extra permissions",
-              hint: {
-                text: "For example, being able to make offers and access sensitive content"
-              },
-              conditional: {
-                html: permissionsHtml
-              }
+              value: "Additional permissions",
+              text: "Additional permissions, such as making decisions or viewing sensitive information"
             }
           ]
-        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }} #}
-
-        {{permissionsHtml | safe}}
+        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }}
 
         {{govukButton({
           text: "Continue"

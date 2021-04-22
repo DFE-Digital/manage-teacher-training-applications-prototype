@@ -1,0 +1,223 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+
+{% set title = 'Extra permissions' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/account/users/new/permissions/"+org.org.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set runOrRatified %}
+        {% if org.org.isAccreditedBody %}
+          run
+        {% else %}
+          ratified
+        {% endif %}
+      {% endset %}
+
+      {% set makeDecisionsHintHtml %}
+
+        {% if org.permissions.applicableOrgs.makeDecisions %}
+          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
+
+            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in org.permissions.applicableOrgs.makeDecisions %}
+                <li>{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if org.permissions.nonApplicableOrgs.makeDecisions %}
+          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
+            {% if not org.permissions.applicableOrgs.makeDecisions or org.permissions.applicableOrgs.makeDecisions.length == 0 %}
+              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to make decisions or set up interviews for courses {{runOrRatfied}} by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
+            {% endif %}
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
+                <li>{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endset %}
+
+      {% set safeguardingInformationHintHtml %}
+        {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
+          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
+
+            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to view criminal convictions and professional misconduct for courses {{runOrRatified}} by:</p>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
+                <li>{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+          <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
+            {% if not org.permissions.applicableOrgs.viewSafeguardingInformation or org.permissions.applicableOrgs.viewSafeguardingInformation.length == 0 %}
+              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to view criminal convictions and professional misconduct for courses {{runOrRatfied}} by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
+            {% endif %}
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
+                <li>{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endset %}
+
+      {% set diversityInformationHintHtml %}
+        {% if org.permissions.applicableOrgs.viewDiversityInformation %}
+          <div class="govuk-!-padding-bottom-0 govuk-!-padding-top-1 app-permissions-hint-text">
+
+            <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will be able to view equality and diversity information for courses {{runOrRatified}} by:</p>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
+                <li>{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+          <div class="govuk-!-padding-bottom-0 govuk-!-padding-top-1 app-permissions-hint-text">
+            {% if not org.permissions.applicableOrgs.viewDiversityInformation or org.permissions.applicableOrgs.viewDiversityInformation.length == 0 %}
+              <p class="govuk-!-margin-bottom-1">Due to your organisational permissions, this user will not be able to view equality and diversity information for courses {{runOrRatfied}} by:</p>
+            {% else %}
+              <p class="govuk-!-margin-bottom-1">They’ll not be able to make decisions and set up interviews for courses {{runOrRatified}} by:</p>
+            {% endif %}
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
+                <li>{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endset %}
+
+      <span class="govuk-caption-l">Invite user</span>
+      <h1 class="govuk-heading-l">
+        Additional permissions
+      </h1>
+
+      <p>Some additional permissions may only apply to courses ratified by certain organisations. This depends on your organisational permissions.</p>
+
+      {% set flippyHtml%}
+        <h2 class="govuk-heading-s">Make decisions and set up interviews</h2>
+
+        <p>This will apply to courses ratified by:</p>
+
+        Org 1
+        Org 2
+
+        It will not apply to:
+
+        Org 3
+
+        <h2 class="govuk-heading-s">View criminal convictions and professional misconduct</h2>
+
+        <p>This will not apply to any courses.</p>
+
+        <h2 class="govuk-heading-s">View equality and diversity information</h2>
+
+        <p>This will apply to all courses.</p>
+
+      {% endset %}
+      {{ govukDetails({
+        summaryText: "Details of your organisational permissions",
+        html: flippyHtml
+      }) }}
+
+
+
+
+      <form novalidate method="post">
+
+          {{ govukCheckboxes({
+            fieldset: {
+              legend: {
+                html: "Select additional permissions",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "manageOrganisations",
+                text: "Manage organisational permissions",
+                label: {
+                  classes: "govuk-label--"
+                }
+              },
+              {
+                value: "manageUsers",
+                text: "Manage users and their permissions",
+                label: {
+                  classes: "govuk-label--"
+                }
+              },
+              {
+                value: "makeDecisions",
+                html: "Make decisions and set up interviews",
+                label: {
+                  classes: "govuk-label--"
+                },
+                hint: {
+                  html: makeDecisionsHintHtml
+                }
+              },
+              {
+                value: "viewSafeguardingInformation",
+                text: "View criminal convictions and professional misconduct",
+                label: {
+                  classes: "govuk-label--"
+                },
+                hint: {
+                  html: safeguardingInformationHintHtml
+                }
+              },
+              {
+                value: "viewDiversityInformation",
+                text: "View equality and diversity information",
+                label: {
+                  classes: "govuk-label--"
+                },
+                hint: {
+                  html: diversityInformationHintHtml
+                }
+              }
+            ]
+          } | decorateAttributes(data, 'data.newuser.permissions.'+org.org.id)) }}
+
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}
