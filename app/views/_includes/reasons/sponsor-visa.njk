@@ -1,0 +1,36 @@
+{% set otherOfferDetailsHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details"
+
+    },
+    id: "rejection-sponsor-visa-details",
+    name: "rejectionReasons[sponsor-visa-details]",
+    value: data['rejectionReasons']["sponsor-visa-details"]
+  }) }}
+{% endset %}
+
+{{ govukRadios({
+  fieldset: {
+    legend: {
+      html: "Was it because you cannot sponsor the candidate’s visa?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  idPrefix: "rejection-sponsor-visa",
+  name: "rejectionReasons[sponsor-visa]",
+  items: [{
+    value: "Yes",
+    text: "Yes",
+    checked: checked(data['rejectionReasons']['sponsor-visa'], "Yes"),
+    conditional: {
+      html: otherOfferDetailsHtml
+    }
+  },
+  {
+    value: "No",
+    text: "No",
+    checked: checked(data['rejectionReasons']['sponsor-visa'], "No")
+  }]
+}) if application.personalDetails.isInternationalCandidate }}

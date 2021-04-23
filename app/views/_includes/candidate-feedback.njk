@@ -165,6 +165,20 @@
     </div>
   {% endif %}
 
+  {% if rejectionReasons['sponsor-visa'] == "Yes" %}
+    <div class="app-feedback">
+    <h2 class="govuk-heading-s">
+      Visa application sponsorship
+    </h2>
+
+    <p>{{ rejectionReasons["sponsor-visa-details"] }}</p>
+
+    {% if rejectionChangeLinks %}
+      <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
+    {% endif %}
+    </div>
+  {% endif %}
+
 
   {% if rejectionReasons['other-offer'] == "Yes" %}
     <div class="app-feedback">

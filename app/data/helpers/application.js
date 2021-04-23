@@ -37,6 +37,10 @@ exports.getRejectReasons = (data) => {
     // Course full
     'course-full': data['course-full'],
 
+    // Sponsor visa
+    'sponsor-visa': data['sponsor-visa'],
+    'sponsor-visa-details': data['sponsor-visa-details'],
+
     // Other offer
     'other-offer': data['other-offer'],
     'other-offer-details': data['other-offer-details'],
