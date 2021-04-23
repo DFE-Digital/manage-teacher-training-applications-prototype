@@ -32,6 +32,21 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: true
   })
 
+  let ab5 = generateFakeOrganisation({
+    name: "Some University",
+    isAccreditedBody: true
+  })
+
+  let ab6 = generateFakeOrganisation({
+    name: "Boom University",
+    isAccreditedBody: true
+  })
+
+  let ab7 = generateFakeOrganisation({
+    name: "Yay University",
+    isAccreditedBody: true
+  })
+
   let tp1 = generateFakeOrganisation({
     name: "Wren Academy",
     isAccreditedBody: false
@@ -44,11 +59,13 @@ const generateFakeOrganisations = (count) => {
 
   organisations.push(tp1)
   organisations.push(tp2)
-
   organisations.push(ab1)
   organisations.push(ab2)
   organisations.push(ab3)
   organisations.push(ab4)
+  organisations.push(ab5)
+  organisations.push(ab6)
+  organisations.push(ab7)
 
   return organisations
 }

@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'Extra permissions' %}
+{% set title = 'Additional permissions - Invite user' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -22,7 +22,34 @@
         {% endif %}
       {% endset %}
 
-      {% set makeDecisionsHintHtml %}
+      {% set makeDecisionsHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          permissionDescription: "make decisions and set up interviews",
+          applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
+          nonApplicableOrgs: org.permissions.nonApplicableOrgs.makeDecisions
+        })}}
+      {% endset %}
+
+      {% set safeguardingHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          permissionDescription: "view criminal convictions and professional misconduct",
+          applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
+          nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
+        })}}
+      {% endset %}
+
+      {% set diversityHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          permissionDescription: "view equality and diversity information",
+          applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
+          nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
+        })}}
+      {% endset %}
+
+      {% set makeDecisionsFlippy %}
 
         {% if org.permissions.applicableOrgs.makeDecisions %}
           <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
@@ -54,7 +81,7 @@
         {% endif %}
       {% endset %}
 
-      {% set safeguardingInformationHintHtml %}
+      {% set safeguardingFlippy %}
         {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
           <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
 
@@ -85,7 +112,7 @@
         {% endif %}
       {% endset %}
 
-      {% set diversityInformationHintHtml %}
+      {% set diversityFlippy %}
         {% if org.permissions.applicableOrgs.viewDiversityInformation %}
           <div class="govuk-!-padding-bottom-0 govuk-!-padding-top-1 app-permissions-hint-text">
 
@@ -116,32 +143,32 @@
         {% endif %}
       {% endset %}
 
-
-      <span class="govuk-caption-l">Invite user</span>
-      <h1 class="govuk-heading-l">
-        Additional permissions
-      </h1>
-
-      <p>Some additional permissions may only apply to courses ratified by certain organisations. This depends on your organisational permissions.</p>
-
       {% set flippyHtml%}
         <h2 class="govuk-heading-s">Make decisions and set up interviews</h2>
 
-        {{makeDecisionsHintHtml | safe}}
+        {{makeDecisionsFlippy | safe}}
 
         <h2 class="govuk-heading-s">View criminal convictions and professional misconduct</h2>
 
-        {{safeguardingInformationHintHtml | safe}}
+        {{safeguardingFlippy | safe}}
 
         <h2 class="govuk-heading-s">View equality and diversity information</h2>
 
-        {{diversityInformationHintHtml | safe}}
+        {{diversityFlippy | safe}}
 
       {% endset %}
+
+      {% set h1 %}
+        <span class="govuk-caption-l">Invite user</span>
+        Additional user permissions for {{org.org.name}}
+      {% endset %}
+
+      {# <p>Some additional permissions may only apply to courses ratified by certain organisations. This depends on your organisational permissions.</p>
+
       {{ govukDetails({
         summaryText: "Details of your organisational permissions",
         html: flippyHtml
-      }) }}
+      }) }} #}
 
 
 
@@ -151,9 +178,9 @@
           {{ govukCheckboxes({
             fieldset: {
               legend: {
-                html: "Select additional permissions",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--m"
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
               }
             },
             items: [
@@ -166,7 +193,7 @@
               },
               {
                 value: "manageUsers",
-                text: "Manage users and their permissions",
+                text: "Manage users",
                 label: {
                   classes: "govuk-label--"
                 }
@@ -178,8 +205,8 @@
                   classes: "govuk-label--"
                 },
                 hint: {
-                  html: makeDecisionsHintHtml
-                } if 1==2
+                  html: makeDecisionsHint
+                }
               },
               {
                 value: "viewSafeguardingInformation",
@@ -188,8 +215,8 @@
                   classes: "govuk-label--"
                 },
                 hint: {
-                  html: safeguardingInformationHintHtml
-                } if 1==2
+                  html: safeguardingHint
+                }
               },
               {
                 value: "viewDiversityInformation",
@@ -198,8 +225,8 @@
                   classes: "govuk-label--"
                 },
                 hint: {
-                  html: diversityInformationHintHtml
-                } if 1==2
+                  html: diversityHint
+                }
               }
             ]
           } | decorateAttributes(data, 'data.newuser.permissions.'+org.org.id)) }}

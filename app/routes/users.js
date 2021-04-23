@@ -2,6 +2,7 @@ const ApplicationHelper = require('../data/helpers/application')
 
 function mixinRelatedOrgPermissions(org, relationships, permissionType) {
   relationships.forEach(relationship => {
+
     // org not in relationship at all
     if(relationship.org1.id != org.org.id && relationship.org2.id != org.org.id ) {
       return;
@@ -81,7 +82,6 @@ module.exports = router => {
 
   router.get('/account/users/new/permissions/:orgId', (req, res) => {
     var org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
-
     // hurrendous but don't worry peeps
     org = {
       org: org,
@@ -92,8 +92,8 @@ module.exports = router => {
     }
 
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
-    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
-    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
 
     res.render('account/users/new/permissions', {
       org
@@ -144,7 +144,6 @@ module.exports = router => {
   })
 
   router.post('/account/users/new/additional-permissions/:orgId', (req, res) => {
-
     // if the user belongs to one org, they won't be shown the orgs checkboxes
     // which means they'll be no data for it. So be defensive.
     let organisations = req.session.data.newuser.organisations
