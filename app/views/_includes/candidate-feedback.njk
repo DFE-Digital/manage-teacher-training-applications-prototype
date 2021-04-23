@@ -170,7 +170,8 @@
     <h2 class="govuk-heading-s">
       Visa application sponsorship
     </h2>
-    <p>We cannot sponsor your visa application.</p>
+
+    <p>{{ rejectionReasons["sponsor-visa-details"] }}</p>
 
     {% if rejectionChangeLinks %}
       <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
