@@ -21,6 +21,10 @@
         {{title}}
       </h1>
 
+      <h2 class="govuk-heading-m">
+        Basic details
+      </h2>
+
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -63,23 +67,31 @@
             </a>
           </dd>
         </div>
+      </dl>
+
+
 
         {% if data.user.organisations.length > 1 %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisations this user has access to
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% for org in orgs %}
-                <p>{{org.org.name}}</p>
-              {% endfor %}
-            </dd>
+          <h2 class="govuk-heading-m">
+            Access to organisations
+          </h2>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Organisations this user will have access to
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% for org in orgs %}
+                  <p>{{org.org.name}}</p>
+                {% endfor %}
+              </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="/account/users/new/organisations">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
-          </div>
+            </div>
+          </dl>
         {% endif %}
 
         {% for org in orgs %}
@@ -92,9 +104,14 @@
             {% endif %}
           {% endset %}
 
+          <h2 class="govuk-heading-m">
+            User permissions for {{org.org.name}}
+          </h2>
+
+          <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Permissions for {{org.org.name}}
+              User permissions
             </dt>
             <dd class="govuk-summary-list__value">
               {{"View applications (excluding sensitive information)" if data.newuser.access[org.org.id] == "View applications"}}
@@ -110,7 +127,7 @@
           {% if data.newuser.access[org.org.id] == "Additional permissions" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Additional permissions for {{org.org.name}}
+                Additional user permissions
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if org.permissions.manageOrganisations %}
@@ -168,8 +185,8 @@
               </dd>
             </div>
           {% endif %}
-        {% endfor %}
-      </dl>
+        </dl>
+      {% endfor %}
 
       <form novalidate method="post">
         {{govukButton({

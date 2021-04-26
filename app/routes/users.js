@@ -213,7 +213,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/name/edit', (req, res) => {
-    req.flash('success', 'User’s name successfully updated')
+    req.flash('success', 'Name updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -227,7 +227,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/email-address/edit', (req, res) => {
-    req.flash('success', 'User’s email address successfully updated')
+    req.flash('success', 'Email address updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -250,7 +250,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/organisations/edit', (req, res) => {
-    req.flash('success', 'User’s organisations updated')
+    req.flash('success', 'Access updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -292,7 +292,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/delete', (req, res) => {
-    req.flash('success', 'User’s account successfully deleted')
+    req.flash('success', 'Account deleted')
     res.redirect('/account/users')
   })
 

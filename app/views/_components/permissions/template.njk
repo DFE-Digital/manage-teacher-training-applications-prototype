@@ -1,27 +1,29 @@
-{% if params.applicableOrgs %}
-  <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-    <p class="govuk-!-margin-bottom-1">Due to organisational permissions, this applies to courses {{params.runOrRatified}} by:</p>
+<div>
+  {% if params.applicableOrgs %}
+    <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
+      <p class="govuk-!-margin-bottom-1">Due to organisational permissions, this applies to courses {{params.runOrRatified}} by:</p>
 
-    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-      {% for item in params.applicableOrgs %}
-        <li>{{ item.name }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+        {% for item in params.applicableOrgs %}
+          <li>{{ item.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
 
-{% if params.nonApplicableOrgs %}
-  <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
-    {% if not params.applicableOrgs or params.applicableOrgs.length == 0 %}
-      <p class="govuk-!-margin-bottom-1">Due to organisational permissions, this does not apply to courses {{params.runOrRatified}} by:</p>
-    {% else %}
-      <p class="govuk-!-margin-bottom-1">It does not apply to courses {{params.runOrRatified}} by:</p>
-    {% endif %}
+  {% if params.nonApplicableOrgs %}
+    <div class="govuk-!-padding-bottom-2 govuk-!-padding-top-1 app-permissions-hint-text">
+      {% if not params.applicableOrgs or params.applicableOrgs.length == 0 %}
+        <p class="govuk-!-margin-bottom-1">Due to organisational permissions, this does not apply to courses {{params.runOrRatified}} by:</p>
+      {% else %}
+        <p class="govuk-!-margin-bottom-1">It does not apply to courses {{params.runOrRatified}} by:</p>
+      {% endif %}
 
-    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-      {% for item in params.nonApplicableOrgs %}
-        <li>{{ item.name }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+        {% for item in params.nonApplicableOrgs %}
+          <li>{{ item.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
