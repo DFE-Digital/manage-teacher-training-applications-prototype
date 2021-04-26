@@ -48,8 +48,6 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>Use this section to change permissions between your own organisations and your partner organisations.</p>
-
       <ul class="govuk-list govuk-list--bullet">
         {% for org in data.user.organisations %}
           <li><a class="govuk-link govuk-link--no-visited-state" href="/account/organisational-permissions/{{org.id}}">{{ org.name }}</a></li>
