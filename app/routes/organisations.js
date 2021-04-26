@@ -1,7 +1,7 @@
 const ApplicationHelper = require('../data/helpers/application')
 
 function getUserRelationships(params) {
-  return params.userOrgs.filter(org => !org.isAccreditedBody).map(org => {
+  return params.userOrgs.map(org => {
 
     var item = { org: org, relationships: [] };
     params.orgRelationships
