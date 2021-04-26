@@ -27,11 +27,11 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% for item in relationships %}
-        {# {% if relationships.length > 1 %} #}
+        {% if relationships.length > 1 %}
           <h2 class="govuk-heading-m">
             {{ item.org.name }}
           </h2>
-        {# {% endif %} #}
+        {% endif %}
 
         {% if org.isAccreditedBody %}
           <p>Only training providers can change organisational permissions.</p>
