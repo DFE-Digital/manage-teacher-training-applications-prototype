@@ -1,13 +1,13 @@
 {% extends "_layout.njk" %}
 
-{% set org = data.user.organisations[0].name %}
-{% set partner = data.accreditedBodies[0].name %}
+{% set org = relationship.org1.name %}
+{% set partner = relationship.org2.name %}
 
 {% set title = 'Change permissions - ' + org + ' and ' + partner %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/organisational-permissions/" + organisationId
+    href: "/account/organisational-permissions/"
   }) }}
 {% endblock %}
 
@@ -16,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Change permissions</span>
-      <h1 class="govuk-heading-l">{{org}} and {{ partner }}</h1>
+      <h1 class="govuk-heading-l">{{org}} and {{partner}}</h1>
 
       {% include "_includes/permissions-guidance.njk" %}
 
