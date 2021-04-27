@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 module.exports = router => {
 
   function getUserRelationships(params) {
@@ -22,11 +24,13 @@ module.exports = router => {
   router.get('/onboard', (req, res) => {
 
     let userOrgs = req.session.data.user.organisations
-    let orgRelationships = req.session.data.relationships
+    let relationships = _.groupBy(req.session.data.relationships, function(relationship){
+      return relationship.org1.id
+    })
 
     res.render('onboard/index', {
-      orgs: userOrgs,
-      relationships: orgRelationships
+      userOrgs,
+      relationships
     })
   })
 

@@ -1,13 +1,13 @@
-{% set tick %}
+{# {% set tick %}
   {{ appIcon({
     icon: "check",
     hidden: true
   }) }}
-{% endset %}
+{% endset %} #}
 
-{# <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Who can view applications?</h2>
+<h2 class="govuk-heading-m govuk-!-margin-bottom-3">Who can view applications?</h2>
 
-<ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-6">
-  <li>{{tick | safe }} {{ org }}</li>
-  <li>{{tick | safe }} {{ partner }} (can only see courses they ratify)</li>
-</ul> #}
+<ul class="govuk-list govuk-list--bullet govuk-list govuk-list--space govuk-!-margin-bottom-6">
+  <li>{{ org }}</li>
+  <li>{{ partner }} (can only see courses they ratify)</li>
+</ul>

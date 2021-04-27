@@ -22,7 +22,7 @@
       </h1>
 
       <h2 class="govuk-heading-m">
-        Basic details
+        Personal details
       </h2>
 
       <dl class="govuk-summary-list">
@@ -116,7 +116,7 @@
             <dd class="govuk-summary-list__value">
               {{"View applications (excluding sensitive information)" if data.newuser.access[org.org.id] == "View applications"}}
 
-              {{"Additional permissions, such as making decisions or viewing sensitive information" if data.newuser.access[org.org.id] == "Additional permissions"}}
+              {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.newuser.access[org.org.id] == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/account/users/new/permissions/{{org.org.id}}">
@@ -131,52 +131,41 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if org.permissions.manageOrganisations %}
-                  <p class="govuk-!-font-weight-bol">
-                    Manage organisational permissions
-                  </p>
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Manage organisational permissions
+                    </p>
+                  </div>
                 {% endif %}
                 {% if org.permissions.manageUsers %}
-                  <p class="govuk-!-font-weight-bol">
-                    Manage users
-                  </p>
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Manage users
+                    </p>
+                  </div>
                 {% endif %}
                 {% if org.permissions.makeDecisions %}
-                  <p class="govuk-!-font-weight-bol">
-                    Make decisions and set up interviews
-                  </p>
-
-                  {# {{appPermissions({
-                    runOrRatified: runOrRatified,
-                    permissionDescription: "make decisions and set up interviews",
-                    applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
-                    nonApplicableOrgs: org.permissions.nonApplicableOrgs.makeDecisions
-                  })}} #}
-
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Make decisions and set up interviews
+                    </p>
+                  </div>
                 {% endif %}
                 {% if org.permissions.viewSafeguardingInformation %}
-                  <p class="govuk-!-font-weight-bol">
-                    View criminal convictions and professional misconduct
-                  </p>
-                  {# {{appPermissions({
-                    runOrRatified: runOrRatified,
-                    permissionDescription: "view criminal convictions and professional misconduct",
-                    applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
-                    nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
-                  })}} #}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      View criminal convictions and professional misconduct
+                    </p>
+                  </div>
                 {% endif %}
 
                 {% if org.permissions.viewDiversityInformation %}
-                  <p class="govuk-!-font-weight-bol">
-                    View equality and diversity information
-                  </p>
-                  {# {{appPermissions({
-                    runOrRatified: runOrRatified,
-                    permissionDescription: "view equality and diversity information",
-                    applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
-                    nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
-                  })}} #}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      View equality and diversity information
+                    </p>
+                  </div>
                 {% endif %}
-
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="/account/users/new/additional-permissions/{{org.org.id}}">

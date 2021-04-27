@@ -7,8 +7,35 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if orgs.length > 1 %}
-        <p>You belong to:</p>
+      {# {{ relationships | log}} #}
+
+      {% if (relationships | length) != "1" %}
+        <p>You need to set up permissions for each accredited body you work with.</p>
+      {% endif %}
+
+      {% for key, value in relationships %}
+        {% if (relationships | length) == "1" %}
+          <p>You need to set up permissions for each accredited body you work with:
+</p>
+        {% else %}
+          <h2 class="govuk-heading-m">
+            {{value[0].org1.name}}
+          </h2>
+          <p>You need to set up permissions for courses ratified by:</p>
+        {% endif %}
+
+        <ul class="govuk-list govuk-list--bullet">
+          {% for relationship in value %}
+            <li>
+              {{relationship.org2.name}}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+
+        {# <p>You need to set up permissions for your partner organisations:</p> #}
+      {# {% if orgs.length > 1 %}
+        <p>You need to set up permissions for your partner organisations:</p>
         <ul class="govuk-list govuk-list--bullet">
           {% for org in orgs %}
             <li>{{org.name}}</li>
@@ -16,9 +43,9 @@
         </ul>
       {% else %}
         <p>You belong to {{ orgs[0].name }}.</p>
-      {% endif %}
+      {% endif %} #}
 
-      {% if trainingProviders.length > 1 %}
+      {# {% if trainingProviders.length > 1 %}
         {% for trainingProvider in trainingProviders %}
           {% if trainingProvider.partners.length > 1 %}
             <p>The accredited bodies for your {{trainingProvider.org.name}} courses are:</p>
@@ -42,9 +69,9 @@
         {% elseif trainingProviders[0].partners.length == 1 %}
           <p>{{trainingProviders[0].partners[0].name}} is the accredited body for your courses.
         {% endif %}
-      {% endif %}
+      {% endif %} #}
 
-      <p>You need to choose which organisations can:</p>
+      {# <p>You need to choose which organisations can:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         <li>make decisions about applications and set up interviews</li>
@@ -53,11 +80,11 @@
 
       {{ govukInsetText({
         text: "All organisations can view applications to their courses."
-      }) }}
+      }) }} #}
 
-      {{ relationships | log}}
+      {# {{ relationships | log}} #}
 
-      <form novalidate action="/onboard/{{relationships[0].id}}">
+      <form novalidate action="/onboard/1">
         {{govukButton({
           text: "Continue"
         })}}

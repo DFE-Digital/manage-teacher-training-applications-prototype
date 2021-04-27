@@ -238,7 +238,19 @@ h1 .govuk-tag {
   margin-bottom: 0;
 }
 
+.app-permissions-hint-text {
+  padding-top: govuk-spacing(1)
+}
+
 .app-permissions-hint-text p,
 .app-permissions-hint-text ul, {
-  color: govuk-colour('dark-grey') !important
+  color: govuk-colour('dark-grey') !important;
+}
+
+.app-permission-item {
+  margin-bottom: govuk-spacing(1);
+}
+
+.app-permission-item + .app-permission-item {
+  margin-top: govuk-spacing(4);
 }
