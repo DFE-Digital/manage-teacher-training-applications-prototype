@@ -53,7 +53,7 @@
               {% if relationship.org.isAccreditedBody %}
                 <p>Nobody can do this - the training provider needs to change organisational permissions</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
+                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -72,7 +72,7 @@
               {% if relationship.org.isAccreditedBody %}
                 <p>Nobody can do this - the training provider needs to change organisational permissions</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
+                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -91,7 +91,7 @@
               {% if relationship.org.isAccreditedBody %}
                 <p>Nobody can do this - the training provider needs to change organisational permissions</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
+                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -118,7 +118,7 @@
                       href: "/account/organisational-permissions/"+relationship.id+"/edit",
                       text: "Change"
                     }]
-                  } if not relationship.org.isAccreditedBody
+                  } if not relationship.org.isAccreditedBody and 1 == 2
                 },
                 {
                   key: {
@@ -132,7 +132,7 @@
                       href: "/account/organisational-permissions/"+relationship.id+"/edit",
                       text: "Change"
                     }]
-                  } if not relationship.org.isAccreditedBody
+                  } if not relationship.org.isAccreditedBody and 1 == 2
                 },
                 {
                   key: {
@@ -146,7 +146,7 @@
                       href: "/account/organisational-permissions/"+relationship.id+"/edit",
                       text: "Change"
                     }]
-                  } if not relationship.org.isAccreditedBody
+                  } if not relationship.org.isAccreditedBody and 1 == 2
                 }
               ]
             }) }}
@@ -155,7 +155,13 @@
           {{appSummaryCard({
             titleText: item.org.name + ' and ' + relationship.partner.name,
             classes: "govuk-!-margin-bottom-6",
-            html: cardHtml
+            html: cardHtml,
+            actions: {
+              items: [{
+                href: "/account/organisational-permissions/"+relationship.id+"/edit",
+                text: "Change permissions"
+              }]
+            }
           })}}
 
         {% endfor %}

@@ -66,7 +66,7 @@
                         href: "/onboard/"+partner.id,
                         text: "Change"
                       }]
-                    }
+                    } if 1 == 2
                   },
                   {
                     key: {
@@ -80,7 +80,7 @@
                         href: "/onboard/"+partner.id,
                         text: "Change"
                       }]
-                    }
+                    } if 1 == 2
                   },
                   {
                     key: {
@@ -94,7 +94,7 @@
                         href: "/onboard/"+partner.id,
                         text: "Change"
                       }]
-                    }
+                    } if 1 == 2
                   }
                 ]
               }) }}
@@ -104,7 +104,13 @@
             {{appSummaryCard({
               titleText: item.org.name + ' and ' + partner.org.name,
               classes: "govuk-!-margin-bottom-6",
-              html: cardHtml
+              html: cardHtml,
+              actions: {
+                items: [{
+                  href: "/onboard/"+partner.id,
+                  text: "Change permissions"
+                }]
+              }
             })}}
           {% endfor %}
 
