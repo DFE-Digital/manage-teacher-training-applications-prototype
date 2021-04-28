@@ -1,0 +1,94 @@
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">
+    Your applications
+  </h1>
+
+  <p>You can have up to 5 applications in progress at any one time.</p>
+
+  {{ govukButton({
+    text: "Start another application"
+  }) }}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">
+    Applications in progress
+  </h2>
+      {{ govukTable({
+    rows: [
+      [
+        {
+          html: '<a href="/">Primary with Physical Education</a><br><span class="govuk-hint govuk-!-margin-bottom-0">University of Derby</span>'
+        },
+        {
+          html: govukTag({ text: "Offer received", classes: "govuk-tag--turquoise" }) + '<p class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"><a href="/">Respond to offer</a></p>'
+        }
+      ],
+      [
+        {
+          html: '<a href="/">Art and Design</a><br><span class="govuk-hint govuk-!-margin-bottom-0">University of Hertfordshire</span>'
+        },
+        {
+          html: govukTag({ text: "Awaiting decision", classes: "govuk-tag--purple" })
+        }
+      ]
+    ]
+  }) }}
+
+  <h2 class="govuk-heading-m">
+    Unsuccessful applications
+  </h2>
+      {{ govukTable({
+    rows: [
+      [
+        {
+          html: '<a href="/">Primary with Physical Education</a><br><span class="govuk-hint govuk-!-margin-bottom-0">University of Derby</span>'
+        },
+        {
+          html: govukTag({ text: "Application withdrawn", classes: "govuk-tag--pink" })
+        }
+      ],
+      [
+        {
+          html: '<a href="/">Art and Design</a><br><span class="govuk-hint govuk-!-margin-bottom-0">University of Hertfordshire</span>'
+        },
+        {
+          html: govukTag({ text: "Offer declined", classes: "govuk-tag--orange" })
+        }
+      ]
+    ]
+  }) }}
+
+      <h2 class="govuk-heading-m">
+        Complete equality and diversity questionnaire
+      </h2>
+
+      <p>Help us improve the service giving us these details.</p>
+
+      {{ govukButton({
+        text: "Start questionnaire",
+        classes: "govuk-button--secondary"
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Give feedback
+      </h2>
+
+      <p>Help us improve the service by telling us about your experience.</p>
+
+      {{ govukButton({
+        text: "Give feedback",
+        classes: "govuk-button--secondary"
+      }) }}
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
