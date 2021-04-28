@@ -1,9 +1,8 @@
-{% set otherOfferDetailsHtml %}
+{% set otherSponsorVisaDetailsHtml %}
   {{ govukCharacterCount({
     maxwords: 100,
     label: {
       text: "Give details"
-
     },
     id: "rejection-sponsor-visa-details",
     name: "rejectionReasons[sponsor-visa-details]",
@@ -25,7 +24,7 @@
     text: "Yes",
     checked: checked(data['rejectionReasons']['sponsor-visa'], "Yes"),
     conditional: {
-      html: otherOfferDetailsHtml
+      html: otherSponsorVisaDetailsHtml
     }
   },
   {
