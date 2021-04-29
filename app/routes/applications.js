@@ -100,6 +100,8 @@ module.exports = router => {
       res.redirect(`/applications/${applicationId}/offer/new`)
     } else if (decision === '2') {
       res.redirect(`/applications/${applicationId}/offer/new/provider`)
+    } else if (decision === '4') {
+      res.redirect(`/applications/${applicationId}/course-full`)
     } else {
       res.redirect(`/applications/${applicationId}/reject`)
     }

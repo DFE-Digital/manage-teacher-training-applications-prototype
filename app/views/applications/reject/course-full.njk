@@ -1,0 +1,62 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set title = "Reasons for rejecting this application" %}
+
+{% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id + "/decision" %}
+  {% if application.status == "Rejected" %}
+    {% set backUrl = "/applications/" + application.id %}
+  {% endif %}
+
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Course status</h1>
+
+      <p class="govuk-body">{{ application.course }} is currently still open for applications.</p>
+
+      <form method="post" >
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            idPrefix: "answer",
+            name: "answer",
+            fieldset: {
+              legend: {
+                text: "Do you want to close the course for applications?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              html: "Applications already submitted can still be considered"
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes, close the course"
+              },
+              {
+                value: "No",
+                text: "No, I will select a different rejection reason"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -7,6 +7,28 @@ module.exports = router => {
     })
   })
 
+  router.get('/applications/:applicationId/course-full', (req, res) => {
+    res.render('applications/reject/course-full', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+  router.post('/applications/:applicationId/course-full', (req, res) => {
+    const answer = req.body['answer']
+
+    if (answer === "Yes") {
+      res.redirect(`/applications/${req.params.applicationId}/course-closed`)
+    } else {
+      res.redirect(`/applications/${req.params.applicationId}/reject`)
+    }
+  })
+
+  router.get('/applications/:applicationId/course-closed', (req, res) => {
+    res.render('applications/reject/course-closed', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
   router.post('/applications/:applicationId/reject', (req, res) => {
     // skip last page if safeguarding, honesty or other offer given
     if (req.session.data.rejectionReasons.honesty === 'Yes' || req.session.data.rejectionReasons.safeguarding === 'Yes') {
