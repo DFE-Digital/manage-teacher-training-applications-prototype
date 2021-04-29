@@ -1,7 +1,7 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Check permissions before you invite user – Invite user" %}
+{% set title = "Check permissions and invite user" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -10,6 +10,9 @@
 {% endblock %}
 
 {% block content %}
+
+  {{orgs | log}}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -17,6 +20,10 @@
         <span class="govuk-caption-l">Invite user</span>
         {{title}}
       </h1>
+
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -60,178 +67,56 @@
             </a>
           </dd>
         </div>
+      </dl>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Organisations this user has access to
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% for org in orgs %}
-              <p>{{org.org.name}}</p>
-            {% endfor %}
-          </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/new/organisations">
-                Change<span class="govuk-visually-hidden"></span>
-              </a>
-            </dd>
-        </div>
+
+
+        {% if data.user.organisations.length > 1 %}
+          <h2 class="govuk-heading-m">
+            Access to organisations
+          </h2>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Organisations this user will have access to
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% for org in orgs %}
+                  <p>{{org.org.name}}</p>
+                {% endfor %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/account/users/new/organisations">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+          </dl>
+        {% endif %}
 
         {% for org in orgs %}
+
+          {% set runOrRatified %}
+            {% if org.org.isAccreditedBody %}
+              run
+            {% else %}
+              ratified
+            {% endif %}
+          {% endset %}
+
+          <h2 class="govuk-heading-m">
+            User permissions for {{org.org.name}}
+          </h2>
+
+          <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Permissions: {{org.org.name}}
+              User permissions
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if not org.permissions %}
-                <p>
-                  The user will only be able to view applications
-                </p>
-              {% endif %}
-              {% if org.permissions.manageOrganisations %}
-                <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
-                  Manage organisational permissions
-                </p>
-              {% endif %}
-              {% if org.permissions.manageUsers %}
-                <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
-                  Manage users
-                </p>
-              {% endif %}
-              {% if org.permissions.makeDecisions %}
-                <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
-                  Make decisions and set up interviews
-                </p>
+              {{"View applications (excluding sensitive information)" if data.newuser.access[org.org.id] == "View applications"}}
 
-                {% if org.permissions.applicableOrgs.makeDecisions %}
-                  <div class="govuk-!-margin-left-5">
-                    {% if org.org.isAccreditedBody %}
-                      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
-                    {% else %}
-                      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-                    {% endif %}
-                    <ul class="govuk-list">
-                      {% for item in org.permissions.applicableOrgs.makeDecisions %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "check",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-
-                {% if org.permissions.nonApplicableOrgs.makeDecisions %}
-                  <div class="govuk-!-margin-left-5">
-                    {% if org.org.isAccreditedBody %}
-                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
-                    {% else %}
-                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-                    {% endif %}
-                    <ul class="govuk-list">
-                      {% for item in org.permissions.nonApplicableOrgs.makeDecisions %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "cross",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-
-              {% endif %}
-              {% if org.permissions.viewSafeguardingInformation %}
-                <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
-                  View safeguarding information
-                </p>
-                {% if org.permissions.applicableOrgs.viewSafeguardingInformation %}
-                  <div class="govuk-!-margin-left-5">
-                    {% if org.org.isAccreditedBody %}
-                      <p class="govuk-!-margin-bottom-1">Applies to courses run by:</p>
-                    {% else %}
-                      <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-                    {% endif %}
-                    <ul class="govuk-list">
-                      {% for item in org.permissions.applicableOrgs.viewSafeguardingInformation %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "check",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-
-                {% if org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-                  <div class="govuk-!-margin-left-5">
-                    {% if org.org.isAccreditedBody %}
-                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
-                    {% else %}
-                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-                    {% endif %}
-                    <ul class="govuk-list">
-                      {% for item in org.permissions.nonApplicableOrgs.viewSafeguardingInformation %}
-                        <li>{{ appIcon({
-                            classes: "govuk-!-margin-right-1",
-                            icon: "cross",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-              {% endif %}
-
-              {% if org.permissions.viewDiversityInformation %}
-                <p class="govuk-!-font-weight-bold">
-                  {{ appIcon({ icon: "check", hidden: true }) }}
-                  View diversity information
-                </p>
-                {% if org.permissions.applicableOrgs.viewDiversityInformation %}
-                  <div class="govuk-!-margin-left-5">
-                  <p class="govuk-!-margin-bottom-1">Applies to courses ratified by:</p>
-                  <ul class="govuk-list">
-                    {% for item in org.permissions.applicableOrgs.viewDiversityInformation %}
-                      <li>{{ appIcon({
-                          icon: "check",
-                          hidden: true
-                        }) }} {{ item.name }}
-                      </li>
-                    {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-
-                {% if org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-                  <div class="govuk-!-margin-left-5">
-                  {% if org.org.isAccreditedBody %}
-                      <p class="govuk-!-margin-bottom-1">Does not apply to courses run by:</p>
-                    {% else %}
-                      <p class="govuk-!-margin-bottom-1">Does not apply to courses ratified by:</p>
-                    {% endif %}
-                    <ul class="govuk-list">
-                      {% for item in org.permissions.nonApplicableOrgs.viewDiversityInformation %}
-                        <li>{{ appIcon({
-                            icon: "cross",
-                            hidden: true
-                          }) }} {{ item.name }}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-              {% endif %}
+              {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.newuser.access[org.org.id] == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/account/users/new/permissions/{{org.org.id}}">
@@ -239,18 +124,65 @@
               </a>
             </dd>
           </div>
-        {% endfor %}
-      </dl>
+          {% if data.newuser.access[org.org.id] == "Additional permissions" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Additional user permissions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if org.permissions.manageOrganisations %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Manage organisational permissions
+                    </p>
+                  </div>
+                {% endif %}
+                {% if org.permissions.manageUsers %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Manage users
+                    </p>
+                  </div>
+                {% endif %}
+                {% if org.permissions.makeDecisions %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Make decisions and set up interviews
+                    </p>
+                  </div>
+                {% endif %}
+                {% if org.permissions.viewSafeguardingInformation %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      View criminal convictions and professional misconduct
+                    </p>
+                  </div>
+                {% endif %}
 
-      {{ govukWarningText({
-        text: "We'll email the user to help them set up their account."
-      }) }}
+                {% if org.permissions.viewDiversityInformation %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      View equality and diversity information
+                    </p>
+                  </div>
+                {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/account/users/new/additional-permissions/{{org.org.id}}">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+      {% endfor %}
 
       <form novalidate method="post">
         {{govukButton({
           text: "Invite user"
         })}}
       </form>
+      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
     </div>
   </div>
 

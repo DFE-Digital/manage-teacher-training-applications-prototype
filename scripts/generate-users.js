@@ -18,7 +18,7 @@ const generateFakeUsers = (count) => {
     lastName: 'Adams',
     emailAddress: 'claudine.adams@newzoescitt.co.uk',
     organisations: [{
-      org: organisations[2],
+      org: organisations[0],
       permissions: {
         manageOrganisation: true,
         manageUsers: true,

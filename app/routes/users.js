@@ -2,6 +2,7 @@ const ApplicationHelper = require('../data/helpers/application')
 
 function mixinRelatedOrgPermissions(org, relationships, permissionType) {
   relationships.forEach(relationship => {
+
     // org not in relationship at all
     if(relationship.org1.id != org.org.id && relationship.org2.id != org.org.id ) {
       return;
@@ -81,6 +82,48 @@ module.exports = router => {
 
   router.get('/account/users/new/permissions/:orgId', (req, res) => {
     var org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
+    // hurrendous but don't worry peeps
+    org = {
+      org: org,
+      permissions: {
+        applicableOrgs: {},
+        nonApplicableOrgs: {}
+      }
+    }
+
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
+    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+
+    res.render('account/users/new/permissions', {
+      org
+    })
+  })
+
+  router.post('/account/users/new/permissions/:orgId', (req, res) => {
+    let orgId = req.params.orgId
+    if(req.session.data.newuser.access[orgId] == "Additional permissions") {
+      res.redirect(`/account/users/new/additional-permissions/${req.params.orgId}`)
+    } else {
+      // if the user belongs to one org, they won't be shown the orgs checkboxes
+      // which means they'll be no data for it. So be defensive.
+      let organisations = req.session.data.newuser.organisations
+      let index = 0
+      if(organisations && organisations.length > 1) {
+        index = organisations.indexOf(req.params.orgId)
+      }
+
+      if(organisations && organisations[index+1]) {
+        res.redirect(`/account/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
+      } else {
+        res.redirect(`/account/users/new/check`)
+      }
+    }
+
+  })
+
+  router.get('/account/users/new/additional-permissions/:orgId', (req, res) => {
+    var org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
 
     // hurrendous but don't worry peeps
     org = {
@@ -95,15 +138,21 @@ module.exports = router => {
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
 
-    res.render('account/users/new/permissions', {
+    res.render('account/users/new/additional-permissions', {
       org
     })
   })
 
-  router.post('/account/users/new/permissions/:orgId', (req, res) => {
+  router.post('/account/users/new/additional-permissions/:orgId', (req, res) => {
+    // if the user belongs to one org, they won't be shown the orgs checkboxes
+    // which means they'll be no data for it. So be defensive.
+    let organisations = req.session.data.newuser.organisations
+    let index = 0
+    if(organisations && organisations.length > 1) {
+      index = organisations.indexOf(req.params.orgId)
+    }
 
-    var index = req.session.data.newuser.organisations.indexOf(req.params.orgId)
-    if(req.session.data.newuser.organisations[index+1]) {
+    if(organisations && organisations[index+1]) {
       res.redirect(`/account/users/new/permissions/${req.session.data.newuser.organisations[index+1]}`)
     } else {
       res.redirect(`/account/users/new/check`)
@@ -112,12 +161,14 @@ module.exports = router => {
   })
 
   router.get('/account/users/new/check', (req, res) => {
-    var orgs = req.session.data.newuser.organisations.map(orgId => {
+    let organisations = req.session.data.newuser.organisations || [req.session.data.user.organisations[0].id]
+
+    let orgs = organisations.map(orgId => {
       var returnValue = {
         org: req.session.data.organisations.find(org => org.id == orgId)
       }
 
-      if(req.session.data.newuser.access[orgId] == "Extra permissions") {
+      if(req.session.data.newuser.access[orgId] == "Additional permissions") {
         returnValue.permissions = {
             manageOrganisations: req.session.data.newuser.permissions[orgId].indexOf('manageOrganisations') > -1,
             manageUsers: req.session.data.newuser.permissions[orgId].indexOf('manageUsers') > -1,
@@ -129,7 +180,6 @@ module.exports = router => {
 
       return returnValue
     })
-
 
     // mixin org permissions
     orgs.forEach(org => {
@@ -148,9 +198,8 @@ module.exports = router => {
     })
   })
 
-
   router.post('/account/users/new/check', (req, res) => {
-    req.flash('success', 'User successfully invited')
+    req.flash('success', 'User invited')
     res.redirect('/account/users/')
   })
 
@@ -164,7 +213,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/name/edit', (req, res) => {
-    req.flash('success', 'User’s name successfully updated')
+    req.flash('success', 'Name updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -178,7 +227,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/email-address/edit', (req, res) => {
-    req.flash('success', 'User’s email address successfully updated')
+    req.flash('success', 'Email address updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -201,7 +250,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/organisations/edit', (req, res) => {
-    req.flash('success', 'User’s organisations updated')
+    req.flash('success', 'Access updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -231,7 +280,7 @@ module.exports = router => {
 
 
   router.post('/account/users/:userId/permissions/:orgId/edit', (req, res) => {
-    req.flash('success', 'User’s permissions successfully updated')
+    req.flash('success', 'Permissions updated')
     res.redirect(`/account/users/${req.params.userId}`)
   })
 
@@ -243,7 +292,7 @@ module.exports = router => {
   })
 
   router.post('/account/users/:userId/delete', (req, res) => {
-    req.flash('success', 'User’s account successfully deleted')
+    req.flash('success', 'Account deleted')
     res.redirect('/account/users')
   })
 

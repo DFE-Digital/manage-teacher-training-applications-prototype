@@ -16,19 +16,308 @@
 
 {% block content %}
 
+   {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>Use this section to change permissions between your own organisations and your partner organisations.</p>
+      {% for item in relationships %}
+        {% if relationships.length > 1 %}
+          <h2 class="govuk-heading-m">
+            {{ item.org.name }}
+          </h2>
+        {% endif %}
 
-      {% for org in data.user.organisations %}
-        <div class="app-application-card">
-          <div>
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/account/organisational-permissions/{{org.id}}">{{ org.name }}</a></h2>
-          </div>
-        </div>
+        {% if org.isAccreditedBody %}
+          <p>Only training providers can change organisational permissions.</p>
+        {% endif %}
+
+        {% for relationship in item.relationships %}
+
+          {% set makeDecisionsHtml %}
+            {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.makeDecisions %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.makeDecisions %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% else %}
+                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+
+          {% set viewSafeguardingHtml %}
+           {% if relationship.orgPermissions.viewSafeguardingInformation or relationship.partnerPermissions.viewSafeguardingInformation %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.viewSafeguardingInformation %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.viewSafeguardingInformation %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% else %}
+                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+
+          {% set viewDiversityHtml %}
+            {% if relationship.orgPermissions.viewDiversityInformation or relationship.partnerPermissions.viewDiversityInformation %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.viewDiversityInformation %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.viewDiversityInformation %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% else %}
+                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+
+          {% set cardHtml %}
+
+            {% if relationship.org.isAccreditedBody %}
+
+              {# <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to change these settings.</p> #}
+
+            {% endif %}
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Make decisions and set up interviews"
+                  },
+                  value: {
+                    html: makeDecisionsHtml
+                  },
+                  actions: {
+                    items: [{
+                      href: "/account/organisational-permissions/"+relationship.id+"/edit",
+                      text: "Change"
+                    }]
+                  } if not relationship.org.isAccreditedBody and 1 == 2
+                },
+                {
+                  key: {
+                    text: "View criminal convictions and professional misconduct"
+                  },
+                  value: {
+                    html: viewSafeguardingHtml
+                  },
+                  actions: {
+                    items: [{
+                      href: "/account/organisational-permissions/"+relationship.id+"/edit",
+                      text: "Change"
+                    }]
+                  } if not relationship.org.isAccreditedBody and 1 == 2
+                },
+                {
+                  key: {
+                    text: "View equality and diversity information"
+                  },
+                  value: {
+                    html: viewDiversityHtml
+                  },
+                  actions: {
+                    items: [{
+                      href: "/account/organisational-permissions/"+relationship.id+"/edit",
+                      text: "Change"
+                    }]
+                  } if not relationship.org.isAccreditedBody and 1 == 2
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {{appSummaryCard({
+            titleText: item.org.name + ' and ' + relationship.partner.name,
+            classes: "govuk-!-margin-bottom-6",
+            html: cardHtml,
+            actions: {
+              items: [{
+                href: "/account/organisational-permissions/"+relationship.id+"/edit",
+                text: "Change permissions"
+              }]
+            }
+          })}}
+
+        {% endfor %}
+
       {% endfor %}
+
+
+
+
+      {#
+      {% if org.isAccreditedBody %}
+        <p>Only training providers can change organisational permissions.</p>
+      {% endif %}
+
+      {% if relationships.length %}
+        {% for relationship in relationships %}
+
+          {% set title %}
+            {{relationship.org.name}} and {{ relationship.partner.name }}
+          {% endset %}
+
+          {% set makeDecisionsHtml %}
+            {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.makeDecisions %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.makeDecisions %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% else %}
+                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+          {% set viewSafeguardingHtml %}
+            {% if relationship.orgPermissions.viewSafeguardingInformation or relationship.partnerPermissions.viewSafeguardingInformation %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.viewSafeguardingInformation %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.viewSafeguardingInformation %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% else %}
+                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+          {% set viewDiversityHtml %}
+            {% if relationship.orgPermissions.viewDiversityInformation or relationship.partnerPermissions.viewDiversityInformation %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.viewDiversityInformation %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.viewDiversityInformation %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              {% if relationship.org.isAccreditedBody %}
+                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% else %}
+                <p class="govuk-!-margin-bottom-0">Change permissions to allow an organisation to do this</p>
+              {% endif %}
+            {% endif %}
+          {% endset %}
+
+          {% set editLink %}
+            /account/organisational-permissions/{{org.id}}/edit
+          {% endset %}
+
+          {% set cardHtml %}
+
+            {% if relationship.org.isAccreditedBody %}
+
+              <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to change these settings.</p>
+
+            {% endif %}
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Make decisions and set up interviews"
+                  },
+                  value: {
+                    html: makeDecisionsHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "name"
+                      }
+                    ]
+                  } if not relationship.org.isAccreditedBody
+                },
+                {
+                  key: {
+                    text: "View criminal convictions and professional misconduct"
+                  },
+                  value: {
+                    html: viewSafeguardingHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "name"
+                      }
+                    ]
+                  } if not relationship.org.isAccreditedBody
+                },
+                {
+                  key: {
+                    text: "View equality and diversity information"
+                  },
+                  value: {
+                    html: viewDiversityHtml
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: editLink,
+                        text: "Change",
+                        visuallyHiddenText: "permissions for " + org.name
+                      }
+                    ]
+                  } if not relationship.org.isAccreditedBody
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {{appSummaryCard({
+            titleText: title,
+            classes: "govuk-!-margin-bottom-6",
+            html: cardHtml
+          })}}
+        {% endfor %}
+      {% else %}
+        <p class="govuk-!-margin-bottom-0">This organisation runs and ratifies its own courses. You do not need to set permissions for this.</p>
+      {% endif %}
+      #}
+
     </div>
   </div>
 

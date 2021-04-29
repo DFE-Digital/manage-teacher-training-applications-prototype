@@ -1,0 +1,28 @@
+<div class="app-permissions-hint-text {{- ' ' + params.classes if params.classes}}">
+  {% if params.applicableOrgs %}
+    <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p>
+    <p class="app-permissions-hint-text__lede">It applies to courses {{params.runOrRatified}} by:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.applicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if params.nonApplicableOrgs %}
+    {% if not params.applicableOrgs or params.applicableOrgs.length == 0 %}
+      <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p>
+      <p class="app-permissions-hint-text__lede">It does not apply to courses {{params.runOrRatified}} by:</p>
+    {% else %}
+      <p class="app-permissions-hint-text__lede">It does not apply to courses {{params.runOrRatified}} by:</p>
+    {% endif %}
+
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.nonApplicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</div>

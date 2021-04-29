@@ -1,7 +1,7 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = 'Basic details - Invite user' %}
+{% set title = 'Personal details - Invite user' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,26 +15,12 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">Invite user</span>
-        Basic details
+        Personal details
       </h1>
 
       <form novalidate method="post">
-        {{ govukInput({
-          label: {
-            text: "Email address",
-            classes: "govuk-label--m"
-          },
-          id: "newuser[email-address]",
-          name: "newuser[email-address]",
-          type: "email",
-          autocomplete: "email",
-          attributes: {
-            spellcheck: "false"
-          },
-          value: data.newuser['email-address']
-        }) }}
 
-        {{ govukInput({
+      {{ govukInput({
           label: {
             text: "First name",
             classes: "govuk-label--m"
@@ -62,15 +48,33 @@
           value: data.newuser['last-name']
         }) }}
 
-         {{ govukWarningText({
-        text: "Anyone you invite to your organisation will be able to view all applications to courses you look after. They’ll be able to make decisions about applications, set up interviews and view sensitive information if you give them permission.",
-        iconFallbackText: "Fallback text"
-      }) }}
+        {{ govukInput({
+          label: {
+            text: "Email address",
+            classes: "govuk-label--m"
+          },
+          id: "newuser[email-address]",
+          name: "newuser[email-address]",
+          type: "email",
+          autocomplete: "email",
+          attributes: {
+            spellcheck: "false"
+          },
+          value: data.newuser['email-address']
+        }) }}
+
+
+
+        {# {{ govukWarningText({
+          text: "Anyone you invite to your organisation will be able to view all applications to courses you look after. They’ll be able to make decisions about applications, set up interviews and view sensitive information if you give them permission.",
+          iconFallbackText: "Fallback text"
+        }) }} #}
 
         {{govukButton({
           text: "Continue"
         })}}
       </form>
+      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
     </div>
   </div>
 

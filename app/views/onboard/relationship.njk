@@ -2,28 +2,36 @@
 
 {% set org = relationship.org1.name %}
 {% set partner = relationship.org2.name %}
-
-{% set title = 'Change permissions - ' + org + ' and ' + partner %}
+{% set title %}
+  {{org}} and {{partner}}
+{% endset %}
 
 {% block beforeContent %}
-  {{ govukBackLink({
-    href: "/account/organisational-permissions/"
-  }) }}
+  {% if relationship.id == 1 %}
+    {{ govukBackLink({
+      href: "/onboard"
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: "/onboard/" + previousRelationshipId
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Change permissions</span>
-      <h1 class="govuk-heading-l">{{org}} and {{partner}}</h1>
+
+      <span class="govuk-caption-l">Set up organisational permissions</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
 
       {% include "_includes/permissions-guidance.njk" %}
 
       <form novalidate method="post">
         {% include "_includes/permissions-checkboxes.njk" %}
         {{govukButton({
-          text: "Save permissions"
+          text: "Continue"
         })}}
       </form>
     </div>

@@ -12,30 +12,60 @@ const generateFakeOrganisation = (params = {}) => {
 const generateFakeOrganisations = (count) => {
   const organisations = []
 
-  let org1 = generateFakeOrganisation({
+  let ab1 = generateFakeOrganisation({
     name: "Springbank SCITT",
     isAccreditedBody: true,
   })
 
-  let org2 = generateFakeOrganisation({
+  let ab2 = generateFakeOrganisation({
     name: "Kingston University",
     isAccreditedBody: true
   })
 
-  let org3 = generateFakeOrganisation({
+  let ab3 = generateFakeOrganisation({
+    name: "Bedford University",
+    isAccreditedBody: true
+  })
+
+  let ab4 = generateFakeOrganisation({
+    name: "Gorse SCITT",
+    isAccreditedBody: true
+  })
+
+  let ab5 = generateFakeOrganisation({
+    name: "Some University",
+    isAccreditedBody: true
+  })
+
+  let ab6 = generateFakeOrganisation({
+    name: "Boom University",
+    isAccreditedBody: true
+  })
+
+  let ab7 = generateFakeOrganisation({
+    name: "Yay University",
+    isAccreditedBody: true
+  })
+
+  let tp1 = generateFakeOrganisation({
     name: "Wren Academy",
     isAccreditedBody: false
   })
 
-  let org4 = generateFakeOrganisation({
+  let tp2 = generateFakeOrganisation({
     name: "The Royal Borough Teaching School Alliance",
     isAccreditedBody: false
   })
 
-  organisations.push(org1)
-  organisations.push(org2)
-  organisations.push(org3)
-  organisations.push(org4)
+  organisations.push(tp1)
+  organisations.push(tp2)
+  organisations.push(ab1)
+  organisations.push(ab2)
+  organisations.push(ab3)
+  organisations.push(ab4)
+  organisations.push(ab5)
+  organisations.push(ab6)
+  organisations.push(ab7)
 
   return organisations
 }
