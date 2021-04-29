@@ -26,9 +26,9 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      {% set canManageOrgPermissions = (["managerOrgPermissions", ""] | random) == "managerOrgPermissions" %}
       {% for item in relationships %}
-        {% set canManageOrgPermissions = (["managerOrgPermissions", ""] | random) == "managerOrgPermissions" %}
-
+        {% set canManageOrgPermissions = not canManageOrgPermissions %}
         {% if relationships.length > 1 %}
           <h2 class="govuk-heading-m">
             {{ item.org.name }}
