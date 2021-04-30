@@ -127,10 +127,6 @@ let relationships = [{
   }
 }];
 
-
-
-
-
 let userOrgs = [accreditedBodies[0], trainingProviders[0]];
 
 module.exports = {

@@ -15,6 +15,9 @@
 {% endblock %}
 
 {% block content %}
+
+  {% set canManageUsers = [true, false] | random %}
+
   {{ govukNotificationBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
@@ -24,10 +27,15 @@
   <div class="govuk-grid">
     <div class="govuk-grid-column-two-third">
       <h1 class="govuk-heading-l">{{title}}</h1>
-      {{govukButton({
-        text: 'Invite user',
-        href: '/account/users/new'
-      })}}
+
+      {% if canManageUsers %}
+        {{govukButton({
+          text: 'Invite user',
+          href: '/account/users/new'
+        })}}
+      {% else %}
+        <p>You do not have permission to invite users.</p>
+      {% endif %}
 
       {% for user in data.users %}
         <div class="app-application-card">
