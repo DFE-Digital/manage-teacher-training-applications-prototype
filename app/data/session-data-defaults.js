@@ -119,7 +119,7 @@ let relationships = [{
     viewSafeguardingInformation: false,
     viewDiversityInformation: false
   },
-  org2: accreditedBodies[0],
+  org2: accreditedBodies[1],
   org2Permissions: {
     makeDecisions: false,
     viewSafeguardingInformation: false,
