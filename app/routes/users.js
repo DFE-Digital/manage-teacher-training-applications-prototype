@@ -111,8 +111,8 @@ module.exports = router => {
     }
 
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
-    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
-    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
 
     res.render('account/users/new/permissions', {
       org
