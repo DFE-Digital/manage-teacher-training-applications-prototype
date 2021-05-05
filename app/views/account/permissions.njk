@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'account' %}
-{% set title = "Profile" %}
+{% set title = "Your user permissions" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -9,7 +9,7 @@
       text: "Your account",
       href: "/account"
     }, {
-      text: "Profile"
+      text: title
     }]
   }) }}
 {% endblock %}
@@ -21,47 +21,8 @@
 
       <h1 class="govuk-heading-l">{{title}}</h1>
       <h2 class="govuk-heading-m">
-        Personal details
+        Access to organisations
       </h2>
-
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{user.firstName}}
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Last name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{user.lastName}}
-          </dd>
-          {% if canManageUsers %}
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
-                Change<span class="govuk-visually-hidden"></span>
-              </a>
-            </dd>
-          {% endif %}
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{user.emailAddress}}
-          </dd>
-        </div>
-        </dl>
-        <h2 class="govuk-heading-m">
-          Access to organisations
-        </h2>
 
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">

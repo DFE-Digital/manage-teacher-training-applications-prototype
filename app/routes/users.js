@@ -28,7 +28,13 @@ function mixinRelatedOrgPermissions(org, relationships, permissionType) {
 
 module.exports = router => {
 
-  router.get('/account/profile', (req, res) => {
+  router.get('/account/personal-details', (req, res) => {
+    var user = req.session.data.users[0]
+
+    res.render('account/personal-details', { user })
+  })
+
+  router.get('/account/permissions', (req, res) => {
     var user = req.session.data.users[0]
 
     // mixin org permissions into user object
@@ -44,7 +50,7 @@ module.exports = router => {
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     })
 
-    res.render('account/profile', { user })
+    res.render('account/permissions', { user })
   })
 
   router.get('/account/users', (req, res) => {
