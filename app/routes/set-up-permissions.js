@@ -3,7 +3,7 @@ const _ = require('lodash');
 module.exports = router => {
 
   function getUserRelationships(params) {
-    return params.userOrgs.filter(org => !org.isAccreditedBody).map(org => {
+    return params.userOrgs.map(org => {
 
       var item = { org: org, partners: [] };
 

@@ -1,13 +1,16 @@
-{# {% set tick %}
-  {{ appIcon({
-    icon: "check",
-    hidden: true
-  }) }}
-{% endset %} #}
+{%- set runOrRatified -%}
+  {%- if relationship.org2.isAccreditedBody -%}
+    ratified
+  {%- else -%}
+    run
+  {%- endif -%}
+{%- endset -%}
+
+{{relationship | log}}
 
 <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Who can view applications?</h2>
 
 <ul class="govuk-list govuk-list--bullet govuk-list govuk-list--space govuk-!-margin-bottom-6">
   <li>{{ org }}</li>
-  <li>{{ partner }} (can only see courses they ratify)</li>
+  <li>{{ partner }} (can only view courses they {{runOrRatified}})</li>
 </ul>

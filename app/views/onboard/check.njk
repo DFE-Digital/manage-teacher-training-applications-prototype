@@ -15,12 +15,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
       <span class="govuk-caption-l">Set up organisational permissions</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
       <form novalidate action="/onboard/confirmation">
+
+        {{relationships | log}}
+
+
 
         {% for item in relationships %}
           {# {% if relationships.length > 1 %} #}
