@@ -28,6 +28,31 @@ function mixinRelatedOrgPermissions(org, relationships, permissionType) {
 
 module.exports = router => {
 
+  router.get('/account/personal-details', (req, res) => {
+    var user = req.session.data.users[0]
+
+    res.render('account/personal-details', { user })
+  })
+
+  router.get('/account/permissions', (req, res) => {
+    var user = req.session.data.users[0]
+
+    // mixin org permissions into user object
+    user.organisations.forEach(org => {
+
+      if(!org.permissions) return;
+
+      org.permissions.applicableOrgs = {};
+      org.permissions.nonApplicableOrgs = {};
+
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+    })
+
+    res.render('account/permissions', { user })
+  })
+
   router.get('/account/users', (req, res) => {
     res.render('account/users/index')
   })
@@ -92,8 +117,8 @@ module.exports = router => {
     }
 
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
-    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
-    // mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
 
     res.render('account/users/new/permissions', {
       org

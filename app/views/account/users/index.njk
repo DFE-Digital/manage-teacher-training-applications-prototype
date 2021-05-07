@@ -6,8 +6,8 @@
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
     items: [{
-      text: "Your account",
-      href: "/account"
+      text: "Organisation settings",
+      href: "/organisation-settings"
     }, {
       text: "Users"
     }]
@@ -15,19 +15,27 @@
 {% endblock %}
 
 {% block content %}
+
+  {% set canManageUsers = [true, false] | random %}
+
   {{ govukNotificationBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
   }) if flash | falsify }}
 
-  <div class="govuk-grid">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
-      {{govukButton({
-        text: 'Invite user',
-        href: '/account/users/new'
-      })}}
+
+      {% if canManageUsers %}
+        {{govukButton({
+          text: 'Invite user',
+          href: '/account/users/new'
+        })}}
+      {% else %}
+        <p>You cannot invite users to the service because you do not have permission to manage users.</p>
+      {% endif %}
 
       {% for user in data.users %}
         <div class="app-application-card">

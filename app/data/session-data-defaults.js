@@ -71,27 +71,27 @@ applications = applications
 
 let relationships = [{
   id: 1,
-  org1: trainingProviders[0],
+  org1: accreditedBodies[0],
   org1Permissions: {
     makeDecisions: false,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: accreditedBodies[0],
+  org2: trainingProviders[0],
   org2Permissions: {
     makeDecisions: false,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   }
 }, {
   id: 2,
-  org1: trainingProviders[0],
+  org1: accreditedBodies[0],
   org1Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: accreditedBodies[1],
+  org2: trainingProviders[2],
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -99,91 +99,35 @@ let relationships = [{
   }
 }, {
   id: 3,
-  org1: trainingProviders[0],
+  org1: accreditedBodies[0],
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
-  org2: accreditedBodies[2],
+  org2: trainingProviders[2],
   org2Permissions: {
-    makeDecisions: true,
+    makeDecisions: false,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: true
+    viewDiversityInformation: false
   }
 }, {
   id: 4,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[3],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 5,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[4],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 6,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[5],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 7,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[6],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 8,
   org1: trainingProviders[1],
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
-  org2: accreditedBodies[0],
+  org2: accreditedBodies[1],
   org2Permissions: {
-    makeDecisions: true,
+    makeDecisions: false,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: true
+    viewDiversityInformation: false
   }
 }];
 
-let userOrgs = [trainingProviders[0], trainingProviders[1]];
+let userOrgs = [accreditedBodies[0], trainingProviders[1]];
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],

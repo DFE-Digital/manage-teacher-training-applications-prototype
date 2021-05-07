@@ -1,0 +1,26 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'organisation-settings' %}
+{% set subNavId = 'organisation-settings' %}
+
+{% set title = "Organisation settings" %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-l">
+      Organisation settings
+    </h1>
+    <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a href="/account/users">
+          Users
+        </a>
+      </li>
+      <li>
+        <a href="/account/organisational-permissions">
+          Organisational permissions
+        </a>
+      </li>
+    </ul>
+  </div>
+{% endblock %}

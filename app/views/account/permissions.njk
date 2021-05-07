@@ -1,19 +1,13 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'users' %}
-{% set firstName = user.firstName %}
-{% set lastName = user.lastName %}
-{% set emailAddress = user.emailAddress %}
-{% set title = firstName + " " + lastName %}
+{% set primaryNavId = 'account' %}
+{% set title = "User permissions" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
     items: [{
-      text: "Organisation settings",
-      href: "/organisation-settings"
-    }, {
-      text: "Users",
-      href: "/account/users"
+      text: "Your account",
+      href: "/account"
     }, {
       text: title
     }]
@@ -21,78 +15,14 @@
 {% endblock %}
 
 {% block content %}
-  {% set canManageUsers = [true, false] | random %}
 
-  {{ govukNotificationBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
-    type: "success",
-    icon: false
-  }) if flash | falsify }}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
-
-      {% if not canManageUser %}
-        <p>You cannot change these details because you do not have permission to manage users.</p>
-      {% endif %}
-
       <h2 class="govuk-heading-m">
-        Personal details
+        Access to organisations
       </h2>
-
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{firstName}}
-          </dd>
-          {% if canManageUsers %}
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
-                Change<span class="govuk-visually-hidden"> </span>
-              </a>
-            </dd>
-          {% endif %}
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Last name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{lastName}}
-          </dd>
-          {% if canManageUsers %}
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
-                Change<span class="govuk-visually-hidden"></span>
-              </a>
-            </dd>
-          {% endif %}
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{user.emailAddress}}
-          </dd>
-          {% if canManageUsers %}
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/email-address/edit">
-                Change<span class="govuk-visually-hidden"></span>
-              </a>
-            </dd>
-          {% endif %}
-        </div>
-        </dl>
-        <h2 class="govuk-heading-m">
-          Access to organisations
-        </h2>
 
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
@@ -104,13 +34,6 @@
                 <p>{{organisation.org.name}}</p>
               {% endfor %}
             </dd>
-            {% if canManageUsers %}
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/{{user.id}}/organisations/edit">
-                  Change<span class="govuk-visually-hidden"></span>
-                </a>
-              </dd>
-            {% endif %}
           </div>
         </dl>
 
@@ -141,13 +64,6 @@
                 View applications (excluding sensitive information)
               {% endif %}
             </dd>
-            {% if canManageUsers %}
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/{{user.id}}/permissions/{{org.org.id}}/edit">
-                  Change<span class="govuk-visually-hidden"></span>
-                </a>
-              </dd>
-            {% endif %}
           </div>
           {% if org.permissions %}
             <div class="govuk-summary-list__row">
@@ -211,25 +127,10 @@
                   </div>
                 {% endif %}
               </dd>
-              {% if canManageUsers %}
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/account/users/{{user.id}}/permissions/{{org.org.id}}/edit">
-                    Change<span class="govuk-visually-hidden"></span>
-                  </a>
-                </dd>
-              {% endif %}
             </div>
           {% endif %}
           </dl>
         {% endfor %}
-      {% if canManageUsers %}
-        {{ govukButton({
-          text: "Delete user",
-          classes: "govuk-button--warning",
-          href: "/account/users/"+ user.id + "/delete"
-        }) }}
-      {% endif %}
     </div>
   </div>
-
 {% endblock %}

@@ -57,8 +57,14 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false
   })
 
+  let tp3 = generateFakeOrganisation({
+    name: "Boom School Alliance",
+    isAccreditedBody: false
+  })
+
   organisations.push(tp1)
   organisations.push(tp2)
+  organisations.push(tp3)
   organisations.push(ab1)
   organisations.push(ab2)
   organisations.push(ab3)
