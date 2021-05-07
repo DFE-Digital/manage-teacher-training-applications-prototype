@@ -1,6 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set title = "Data sharing agreement signed" %}
+{% set canManageOrgPermissions = [true, false] | random %}
+{% set canManageUsers = [true, false] | random %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -9,7 +11,7 @@
         titleText: "Data sharing agreement signed"
       }) }}
 
-      {% if data.user.relationships.length > 0 and data.user.relationships[0].org2 %}
+      {% if canManageOrgPermissions %}
 
         <h2 class="govuk-heading-m">
           Next steps
@@ -29,28 +31,22 @@
         <h2 class="govuk-heading-m">
           Next steps
         </h2>
-
-        {% if (["managerUsers", ""] | random) == "managerUsers" %}
-          <p class="govuk-body">
-          You can now:
-          <p>
-
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <a href="/">view applications</a>
-            </li>
+        <p class="govuk-body">
+        You can now:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="/">view applications</a>
+          </li>
+          {% if canManageUsers %}
             <li>
               <a href="/account/users">invite or manage users</a>
             </li>
-          </ul>
-
-        {% else %}
-          <p class="govuk-body">
-            You can now <a href="/">view applications</a>.
-          <p>
-        {% endif %}
-
-
+          {% endif %}
+          <li>
+            <a href="/account/notifications">manage your email notifications</a>
+          </li>
+        </ul>
       {% endif %}
 
 
