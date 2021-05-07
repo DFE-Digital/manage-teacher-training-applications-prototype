@@ -73,13 +73,13 @@ let relationships = [{
   id: 1,
   org1: accreditedBodies[0],
   org1Permissions: {
-    makeDecisions: true,
+    makeDecisions: false,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: trainingProviders[0],
   org2Permissions: {
-    makeDecisions: true,
+    makeDecisions: false,
     viewSafeguardingInformation: false,
     viewDiversityInformation: true
   }

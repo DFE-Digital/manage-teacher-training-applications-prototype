@@ -52,7 +52,7 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
             {% endif %}
           {% endset %}
 
@@ -67,7 +67,7 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
             {% endif %}
           {% endset %}
 
@@ -82,17 +82,11 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
             {% endif %}
           {% endset %}
 
           {% set cardHtml %}
-
-            {% if relationship.org.isAccreditedBody %}
-
-              {# <p class="govuk-!-margin-bottom-4">Only {{relationship.partner.name}} can change permissions because they run the courses. Contact them to change these settings.</p> #}
-
-            {% endif %}
 
             {{ govukSummaryList({
               rows: [
