@@ -1,0 +1,139 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "performance" %}
+{% set subNavId = "applications" %}
+{% set pageName = "Statistics" %}
+
+{% block content %}
+
+{% include "_includes/performance/header.njk" %}
+
+<h2 class="govuk-heading-m">Applications</h2>
+
+<p class="govuk-body">
+  <a class="govuk-link" href="/performance/applications">See application data</a>
+</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications received"
+      },
+      metric: {
+        figure: totalApplications
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications rejected"
+      },
+      metric: {
+        figure: statusCounts['Rejected']
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers outstanding"
+      },
+      metric: {
+        figure: statusCounts['Offered']
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers accepted"
+      },
+      metric: {
+        figure: statusCounts['Ready to enroll']
+      }
+    }) }}
+  </div>
+</div>
+
+<h2 class="govuk-heading-m">Candidates</h2>
+
+<p class="govuk-body">
+  <a class="govuk-link" href="/performance/candidates">See candidate data</a>
+</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 1"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 2"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 3"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 4"
+      }
+    }) }}
+  </div>
+</div>
+
+<h2 class="govuk-heading-m">Something else</h2>
+
+<p class="govuk-body">
+  <a class="govuk-link" href="#">See something else data</a>
+</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 1"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 2"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 3"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Metric 4"
+      }
+    }) }}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+
+{% endblock %}

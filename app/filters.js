@@ -299,6 +299,5 @@ filters.falsify = (input) => {
     return error
   }
 
-
   return filters
 }

@@ -1,6 +1,11 @@
 const { DateTime } = require('luxon')
 const SystemHelper = require('./system')
 
+const path = require('path')
+const fs = require('fs')
+
+const dataDirectoryPath = path.join(__dirname, '../')
+
 exports.getApplicationWithdrawnReasons = (data) => {
   return {
     // withdraw application
@@ -163,4 +168,108 @@ exports.cancelInterview = (params) => {
   })
 
   params.application.interviews.items = params.application.interviews.items.filter(item => item.id !== params.interview.id)
+}
+
+
+// -----------------------------------------------------------------------------
+// Statistics
+// -----------------------------------------------------------------------------
+
+exports.getApplicationCountsByStatus = (applications) => {
+  // , filters = {}
+  const statuses = SystemHelper.statuses
+  const counts = {}
+  statuses.forEach((status, i) => {
+    //  && application.cycle === filters.cycle // '2020 to 2021'
+    counts[status] = applications.filter(application => application.status === status).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByStudyMode = (applications) => {
+  const studyModes = SystemHelper.studyModes
+  const counts = {}
+  studyModes.forEach((studyMode, i) => {
+    counts[studyMode] = applications.filter(application => application.studyMode === studyMode).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByFundingType = (applications) => {
+  const fundingTypes = SystemHelper.fundingTypes
+  const counts = {}
+  fundingTypes.forEach((fundingType, i) => {
+    counts[fundingType] = applications.filter(application => application.fundingType === fundingType).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsBySubject = (applications) => {
+  const subjects = SystemHelper.subjects
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject] = applications.filter(application => application.subject === subject).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByOrganisation = (applications) => {
+  const filePath = dataDirectoryPath + '/organisations.json'
+  const rawData = fs.readFileSync(filePath)
+  const organisations = JSON.parse(rawData)
+  const counts = {}
+  organisations.forEach((organisation, i) => {
+    counts[organisation.name] = applications.filter(application => application.provider === organisation.name).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByTrainingLocation = (applications) => {
+  const trainingLocations = SystemHelper.trainingLocations
+  const counts = {}
+  trainingLocations.forEach((location, i) => {
+    counts[location] = applications.filter(application => application.location === location).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByCandidateNationality = (applications) => {
+  // personalDetails.nationality.includes()
+  const counts = {}
+
+  // British
+
+  // Irish
+
+  // EU, Switzerland, Norway, Iceland or Liechtenstein
+
+  // Rest of world
+
+}
+
+exports.getApplicationCountsByCandidateResidence = (applications) => {
+  const residenceTypes = ['uk','international']
+  const counts = {}
+  residenceTypes.forEach((type, i) => {
+    counts[type] = applications.filter(application => application.contactDetails.addressType === type).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByCandidateRightToWorkStudy = (applications) => {
+  const hasRightToWorkStudy = ['Yes', 'Not yet, or not sure']
+  const counts = {}
+  hasRightToWorkStudy.forEach((right, i) => {
+    counts[right] = applications.filter(application => application.personalDetails.residency.rightToWorkStudy === right).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByCandidateLanguageAssessment = (applications) => {
+  const hasEnglishLanguageQualifictions = ['Yes', 'No', 'Not needed']
+  const counts = {}
+  hasEnglishLanguageQualifictions.forEach((qualification, i) => {
+    counts[qualification] = applications.filter(application => application.englishLanguageQualification.hasQualification === qualification).length
+  })
+  return counts
 }

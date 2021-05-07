@@ -1,0 +1,23 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Applications by status</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for status in statuses %}
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ status }}</td>
+            <td class="govuk-table__cell">{{ statusCounts[status] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
