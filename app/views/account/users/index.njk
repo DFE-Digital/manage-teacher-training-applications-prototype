@@ -24,8 +24,8 @@
     icon: false
   }) if flash | falsify }}
 
-  <div class="govuk-grid">
-    <div class="govuk-grid-column-two-third">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if canManageUsers %}
@@ -34,7 +34,7 @@
           href: '/account/users/new'
         })}}
       {% else %}
-        <p>You do not have permission to invite users.</p>
+        <p>You cannot invite users to the service because you do not have permission to manage users.</p>
       {% endif %}
 
       {% for user in data.users %}
