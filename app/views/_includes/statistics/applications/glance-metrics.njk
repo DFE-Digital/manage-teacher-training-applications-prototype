@@ -1,0 +1,42 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications received"
+      },
+      metric: {
+        figure: totalApplications
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications rejected"
+      },
+      metric: {
+        figure: statusCounts['Rejected']
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers outstanding"
+      },
+      metric: {
+        figure: statusCounts['Offered']
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers accepted"
+      },
+      metric: {
+        figure: statusCounts['Ready to enroll']
+      }
+    }) }}
+  </div>
+</div>

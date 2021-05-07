@@ -31,7 +31,7 @@ require('./routes/notifications')(router)
 require('./routes/withdraw-application')(router)
 
 
-require('./routes/performance')(router)
+require('./routes/statistics')(router)
 
 // TODO: clean up registration flows when onboarding work finished
 require('./routes/register1')(router)

@@ -1,31 +1,28 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "performance" %}
-{% set subNavId = "applications" %}
-{% set pageName = "Applications (" + totalApplications + ")" %}
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Candidates" %}
+{% set pageName = "Residence" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/performance",
+    href: "/statistics",
     text: "Statistics"
   }, {
-    href: "/performance/applications",
-    text: "Applications"
-  }, {
-    text: "Details"
+    text: pageName
   }]
 }) }}
 {% endblock %}
 
 {% block content %}
 
-{% include "_includes/performance/header.njk" %}
+{% include "_includes/statistics/header.njk" %}
 
 <div class="app-filter-layout">
   <div class="app-filter-layout__filter">
 
-    {% include "_includes/performance/filter-panel.njk" %}
+    {% include "_includes/statistics/filter-panel.njk" %}
 
   </div>
   <div class="app-filter-layout__content">
@@ -36,12 +33,35 @@
 
     <div>
 
-      {#% include "_includes/performance/sub-navigation.njk" %#}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
 
-      {% include "_includes/performance/applications-by-status.njk" %}
-      {% include "_includes/performance/applications-by-subject.njk" %}
-      {% include "_includes/performance/applications-by-provider.njk" %}
-      {% include "_includes/performance/applications-by-location.njk" %}
+          <table class="govuk-table">
+            <!-- <caption class="govuk-table__caption govuk-table__caption--m">Residence</caption> -->
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Residence</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell">UK</td>
+                <td class="govuk-table__cell">{{ residenceCounts['uk'] }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell">International</td>
+                <td class="govuk-table__cell">{{ residenceCounts['international'] }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="govuk-body">
+            <a href="#">Download <span class="govuk-visually-hidden">Residence</span> data</a>
+          </p>
+
+        </div>
+      </div>
 
     </div>
   </div>

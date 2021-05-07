@@ -1,28 +1,28 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "performance" %}
-{% set subNavId = "candidates" %}
-{% set pageName = "Candidates" %}
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Applications" %}
+{% set pageName = "Applications by subject" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/performance",
+    href: "/statistics",
     text: "Statistics"
   }, {
-    text: "Candidates"
+    text: pageName
   }]
 }) }}
 {% endblock %}
 
 {% block content %}
 
-{% include "_includes/performance/header.njk" %}
+{% include "_includes/statistics/header.njk" %}
 
 <div class="app-filter-layout">
   <div class="app-filter-layout__filter">
 
-    {% include "_includes/performance/filter-panel.njk" %}
+    {% include "_includes/statistics/filter-panel.njk" %}
 
   </div>
   <div class="app-filter-layout__content">
@@ -33,12 +33,29 @@
 
     <div>
 
-      {#% include "_includes/performance/sub-navigation.njk" %#}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
 
-      {% include "_includes/performance/applications-by-nationality.njk" %}
-      {% include "_includes/performance/applications-by-residence.njk" %}
-      {% include "_includes/performance/applications-by-right-to-work-study.njk" %}
-      {% include "_includes/performance/applications-by-english-language-qualification.njk" %}
+          <table class="govuk-table">
+            <!-- <caption class="govuk-table__caption govuk-table__caption--m govuk-!-margin-top-5">Applications by subject</caption> -->
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Subject</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              {% for subject in subjects %}
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell">{{ subject }}</td>
+                  <td class="govuk-table__cell">{{ subjectCounts[subject] }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
 
     </div>
   </div>
