@@ -74,21 +74,21 @@ let relationships = [{
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: false
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
   },
   org2: accreditedBodies[0],
   org2Permissions: {
     makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: false
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
   }
 }, {
   id: 2,
   org1: trainingProviders[0],
   org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: accreditedBodies[1],
@@ -101,8 +101,8 @@ let relationships = [{
   id: 3,
   org1: trainingProviders[0],
   org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: accreditedBodies[2],
@@ -116,12 +116,12 @@ let relationships = [{
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: false,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: accreditedBodies[3],
   org2Permissions: {
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
@@ -130,12 +130,12 @@ let relationships = [{
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: false,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: accreditedBodies[4],
   org2Permissions: {
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
@@ -144,21 +144,21 @@ let relationships = [{
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: false,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: accreditedBodies[5],
   org2Permissions: {
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: false
+    viewDiversityInformation: true
   }
 }, {
   id: 7,
   org1: trainingProviders[0],
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: false,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: accreditedBodies[6],
@@ -171,7 +171,7 @@ let relationships = [{
   id: 8,
   org1: trainingProviders[1],
   org1Permissions: {
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
@@ -179,13 +179,9 @@ let relationships = [{
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: false
+    viewDiversityInformation: true
   }
 }];
-
-
-
-
 
 let userOrgs = [trainingProviders[0], trainingProviders[1]];
 

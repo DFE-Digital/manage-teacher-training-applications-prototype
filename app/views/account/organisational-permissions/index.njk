@@ -50,10 +50,10 @@
                 {% endif %}
               </ul>
             {% else %}
-              {% if relationship.org.isAccreditedBody %}
-                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+              {% if not relationship.org.isAccreditedBody %}
+                <p>Neither organisation can do this - {{relationship.partner.name}} can change permissions to allow it</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+                <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -70,9 +70,9 @@
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+                <p>Neither organisation can do this - {{relationship.partner.name}} can change permissions to allow it</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+                <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
               {% endif %}
             {% endif %}
           {% endset %}
@@ -89,9 +89,9 @@
               </ul>
             {% else %}
               {% if relationship.org.isAccreditedBody %}
-                <p>Nobody can do this - the training provider needs to change organisational permissions</p>
+                <p>Neither organisation can do this - {{relationship.partner.name}} can change permissions to allow it</p>
               {% else %}
-                <p class="govuk-!-margin-bottom-0">Permissions need to be set up</p>
+                <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
               {% endif %}
             {% endif %}
           {% endset %}
