@@ -1,0 +1,59 @@
+{%- from "govuk/components/details/macro.njk" import govukDetails -%}
+
+<div class="app-info-metric {{- ' ' + params.classes if params.classes }}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+  <h{{ params.heading.headingLevel | default(3) }} class="app-info-metric__heading {{- ' ' + params.heading.classes if params.heading.classes }}">
+    {{- params.heading.html | safe if params.heading.html else params.heading.text -}}
+  </h{{ params.heading.headingLevel | default(3) }}>
+  {%- if params.description %}
+    <p class="app-info-metric__context {{- ' ' + params.description.classes if params.description.classes }}">
+      {{- params.description.html | safe if params.description.html else params.description.text -}}
+    </p>
+  {% endif -%}
+  {%- if params.details %}
+    <div class="app-info-metric__about {{- ' ' + params.details.containerClasses if params.details.containerClasses }}">
+      {{ govukDetails({
+        summaryText: params.details.summaryText,
+        summaryHtml: params.details.summaryHtml,
+        text: params.details.text,
+        html: params.details.html,
+        open: params.details.open,
+        classes: params.details.classes,
+        attributes: params.details.attributes
+      }) }}
+    </div>
+  {% endif -%}
+  <span class="app-info-metric__figure">
+    {%- if params.metric.figure %}
+      {{- params.metric.figure -}}
+      {%- if params.metric.figureContext %} <span class="app-info-metric__short-context">( {{- params.metric.figureContext -}} )</span>{% endif -%}
+    {% else %}
+      No data
+    {% endif -%}
+  </span>
+  {%- if params.metric.trend %}
+    <span class="app-info-metric__trend">
+      {%- if params.metric.trend > 0 %}+{% endif -%}{{- params.metric.trend -}}%
+    </span>
+    {%- if params.metric.trend > 0 %}
+      <span class="app-info-metric__trend--up">
+        <span aria-hidden="true" class="app-info-metric__trend-icon">&#9650;</span>
+        <span class="app-info-metric__trend-text">Upward trend</span>
+      </span>
+    {% elif params.metric.trend < 0 %}
+      <span class="app-info-metric__trend--down">
+        <span aria-hidden="true" class="app-info-metric__trend-icon">&#9660;</span>
+        <span class="app-info-metric__trend-text">Downward trend</span>
+      </span>
+    {% else %}
+      <span class="app-info-metric__trend--no-change">
+        <span aria-hidden="true" class="app-info-metric__trend-icon">&#9679;</span>
+        <span class="app-info-metric__trend-text">No change</span>
+      </span>
+    {% endif -%}
+  {% endif -%}
+  {% if params.metric.period %}
+    <span class="app-info-metric__period">
+      {{- params.metric.period -}}
+    </span>
+  {% endif -%}
+</div>
