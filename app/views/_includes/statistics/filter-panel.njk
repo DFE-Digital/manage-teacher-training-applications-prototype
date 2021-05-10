@@ -25,95 +25,95 @@
     ]
   }) }}
 
-  {#{ govukCheckboxes({
-    idPrefix: 'status',
-    name: 'status',
+  {{ govukCheckboxes({
+    idPrefix: "status",
+    name: "status",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: 'Status',
-        classes: 'govuk-fieldset__legend--s'
+        text: "Status",
+        classes: "govuk-fieldset__legend--s"
       }
     },
     items: [
       {
-        value: 'Received',
-        text: 'Received',
-        checked: checked(data.status, "Received") == 'checked'
+        value: "Received",
+        text: "Received",
+        checked: checked(data.status, "Received") == "checked"
       },
       {
-        value: 'Interviewing',
-        text: 'Interviewing',
-        checked: checked(data.status, "Interviewing") == 'checked'
+        value: "Interviewing",
+        text: "Interviewing",
+        checked: checked(data.status, "Interviewing") == "checked"
       },
       {
-        value: 'Offered',
-        text: 'Offered',
-        checked: checked(data.status, "Offered") == 'checked'
+        value: "Offered",
+        text: "Offered",
+        checked: checked(data.status, "Offered") == "checked"
       },
       {
-        value: 'Awaiting conditions',
-        text: 'Awaiting conditions',
-        checked: checked(data.status, "Awaiting conditions") == 'checked'
+        value: "Awaiting conditions",
+        text: "Awaiting conditions",
+        checked: checked(data.status, "Awaiting conditions") == "checked"
       },
       {
-        value: 'Ready to enroll',
-        text: 'Ready to enroll',
-        checked: checked(data.status, "Ready to enroll") == 'checked'
+        value: "Ready to enroll",
+        text: "Ready to enroll",
+        checked: checked(data.status, "Ready to enroll") == "checked"
       },
        {
-        value: 'Conditions not met',
-        text: 'Conditions not met',
-        checked: checked(data.status, "Conditions not met") == 'checked'
+        value: "Conditions not met",
+        text: "Conditions not met",
+        checked: checked(data.status, "Conditions not met") == "checked"
       },
       {
-        value: 'Deferred',
-        text: 'Deferred',
-        checked: checked(data.status, "Deferred") == 'checked'
+        value: "Deferred",
+        text: "Deferred",
+        checked: checked(data.status, "Deferred") == "checked"
       },
       {
-        value: 'Declined',
-        text: 'Declined',
-        checked: checked(data.status, "Declined") == 'checked'
+        value: "Declined",
+        text: "Declined",
+        checked: checked(data.status, "Declined") == "checked"
       },
       {
-        value: 'Rejected',
-        text: 'Rejected',
-        checked: checked(data.status, "Rejected") == 'checked'
+        value: "Rejected",
+        text: "Rejected",
+        checked: checked(data.status, "Rejected") == "checked"
       },
       {
-        value: 'Application withdrawn',
-        text: 'Application withdrawn',
-        checked: checked(data.status, "Application withdrawn") == 'checked'
+        value: "Application withdrawn",
+        text: "Application withdrawn",
+        checked: checked(data.status, "Application withdrawn") == "checked"
       },
       {
-        value: 'Offer withdrawn',
-        text: 'Offer withdrawn',
-        checked: checked(data.status, "Offer withdrawn") == 'checked'
+        value: "Offer withdrawn",
+        text: "Offer withdrawn",
+        checked: checked(data.status, "Offer withdrawn") == "checked"
       }
     ]
-  }) }#}
+  }) if not hideStatusFilter }}
 
   {#{ govukCheckboxes({
-    idPrefix: 'provider',
-    name: 'provider',
+    idPrefix: "provider",
+    name: "provider",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: 'Courses run by',
-        classes: 'govuk-fieldset__legend--s'
+        text: "Courses run by",
+        classes: "govuk-fieldset__legend--s"
       }
     },
     items: [
       {
         value: data.user.organisations[0].name,
         text: data.user.organisations[0].name,
-        checked: checked(data.provider, data.user.organisations[0].name) == 'checked'
+        checked: checked(data.provider, data.user.organisations[0].name) == "checked"
       },
       {
         value: data.user.organisations[1].name,
         text: data.user.organisations[1].name,
-        checked: checked(data.provider, data.user.organisations[1].name) == 'checked'
+        checked: checked(data.provider, data.user.organisations[1].name) == "checked"
       }
     ]
   }) }#}
@@ -121,34 +121,34 @@
   {#% if checked(data.provider, data.user.organisations[0].name) %}
 
     {{ govukCheckboxes({
-      name: 'location',
+      name: "location",
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: 'Training locations for ' + data.user.organisations[0].name,
-          classes: 'govuk-fieldset__legend--s'
+          text: "Training locations for " + data.user.organisations[0].name,
+          classes: "govuk-fieldset__legend--s"
         }
       },
       items: [
         {
-          value: 'Main site',
-          text: 'Main site',
-          checked: checked(data.location, "Main site") == 'checked'
+          value: "Main site",
+          text: "Main site",
+          checked: checked(data.location, "Main site") == "checked"
         },
         {
-          value: 'Camberley - training location',
-          text: 'Camberley - training location',
-          checked: checked(data.location, "Camberley - training location") == 'checked'
+          value: "Camberley - training location",
+          text: "Camberley - training location",
+          checked: checked(data.location, "Camberley - training location") == "checked"
         },
         {
-          value: 'Epsom Grinstead - training location',
-          text: 'Epsom Grinstead - training location',
-          checked: checked(data.location, "Epsom Grinstead - training location") == 'checked'
+          value: "Epsom Grinstead - training location",
+          text: "Epsom Grinstead - training location",
+          checked: checked(data.location, "Epsom Grinstead - training location") == "checked"
         },
         {
-          value: 'Lingfield - training location',
-          text: 'Lingfield - training location',
-          checked: checked(data.location, "Lingfield - training location") == 'checked'
+          value: "Lingfield - training location",
+          text: "Lingfield - training location",
+          checked: checked(data.location, "Lingfield - training location") == "checked"
         }
       ]
     }) }}
@@ -156,25 +156,25 @@
   {% endif %#}
 
   {#{ govukCheckboxes({
-    idPrefix: 'accreditedBody',
-    name: 'accreditedBody',
+    idPrefix: "accreditedBody",
+    name: "accreditedBody",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: 'Courses ratified by',
-        classes: 'govuk-fieldset__legend--s'
+        text: "Courses ratified by",
+        classes: "govuk-fieldset__legend--s"
       }
     },
     items: [
       {
         value: data.accreditedBodies[0].name,
         text: data.accreditedBodies[0].name,
-        checked: checked(data.accreditedBody, data.accreditedBodies[0].name) == 'checked'
+        checked: checked(data.accreditedBody, data.accreditedBodies[0].name) == "checked"
       },
       {
         value: data.accreditedBodies[1].name,
         text: data.accreditedBodies[1].name,
-        checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == 'checked'
+        checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == "checked"
       }
     ]
   }) }#}
@@ -182,25 +182,25 @@
   {#% if subjectItems.length >= subjectItemsDisplayLimit %}
 
     {{ appCheckboxFilter({
-      idPrefix: 'subject',
-      name: 'subject',
+      idPrefix: "subject",
+      name: "subject",
       legend: {
-        text: 'Subject'
+        text: "Subject"
       },
       items: subjectItems,
       selectedItems: selectedSubjects,
-      classes: 'govuk-!-margin-bottom-7'
+      classes: "govuk-!-margin-bottom-7"
     }) }}
 
   {% else %}
 
     {{ govukCheckboxes({
-      idPrefix: 'subject',
-      name: 'subject',
+      idPrefix: "subject",
+      name: "subject",
       fieldset: {
         legend: {
-          text: 'Subject',
-          classes: 'govuk-fieldset__legend--s'
+          text: "Subject",
+          classes: "govuk-fieldset__legend--s"
         }
       },
       items: subjectItems,
@@ -210,25 +210,78 @@
   {% endif %#}
 
   {{ govukCheckboxes({
-    idPrefix: 'studyMode',
-    name: 'studyMode',
+    idPrefix: "studyMode",
+    name: "studyMode",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: 'Full time or part time',
-        classes: 'govuk-fieldset__legend--s'
+        text: "Full time or part time",
+        classes: "govuk-fieldset__legend--s"
       }
     },
     items: [
       {
-        value: 'Full time',
-        text: 'Full time',
-        checked: checked(data.studyMode, 'Full time') == 'checked'
+        value: "Full time",
+        text: "Full time",
+        checked: checked(data.studyMode, "Full time") == "checked"
       },
       {
-        value: 'Part time',
-        text: 'Part time',
-        checked: checked(data.studyMode, 'Part time') == 'checked'
+        value: "Part time",
+        text: "Part time",
+        checked: checked(data.studyMode, "Part time") == "checked"
+      }
+    ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "fundingType",
+    name: "fundingType",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Funding type",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "Fee paying",
+        text: "Fee paying",
+        checked: checked(data.fundingType, "Fee paying") == "checked"
+      },
+      {
+        value: "Salaried",
+        text: "Salaried",
+        checked: checked(data.fundingType, "Salaried") == "checked"
+      },
+      {
+        value: "Apprenticeship",
+        text: "Apprenticeship",
+        checked: checked(data.fundingType, "Apprenticeship") == "checked"
+      }
+    ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "subjectLevel",
+    name: "subjectLevel",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Subject level",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "Primary",
+        text: "Primary",
+        checked: checked(data.subjectLevel, "Primary") == "checked"
+      },
+      {
+        value: "Secondary",
+        text: "Secondary",
+        checked: checked(data.subjectLevel, "Secondary") == "checked"
       }
     ]
   }) }}
@@ -237,7 +290,7 @@
 <div class="app-filter">
   <div class="app-filter__header">
     <div class="app-filter__header-title">
-      <h2 class="govuk-heading-m">Filter</h2>
+      <h2 class="govuk-heading-m">Filters</h2>
     </div>
     <div class="app-filter__header-action">
 
@@ -249,7 +302,7 @@
         <div class="app-filter__selected-heading">
           <div class="app-filter__heading-title">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
-            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/performance/remove-all-filters">Clear filters</a></p>
+            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/statistics/remove-all-filters">Clear filters</a></p>
           </div>
         </div>
 
@@ -257,14 +310,14 @@
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
           <ul class="app-filter-tags">
             {% for item in category.items %}
-              <li><a class="app-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
+              <li><a class="app-filter__tag" href="{{ item.href }}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
             {% endfor %}
           </ul>
         {% endfor %}
       </div>
     {% endif %}
     <div class="app-filter__options">
-      <form method="get" action="{{ filterAction }}" accept-charset="UTF-8" novalidate>
+      <form method="get" accept-charset="UTF-8" novalidate>
         <button class="govuk-button" data-module="govuk-button">
           Apply filters
         </button>

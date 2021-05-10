@@ -41,7 +41,7 @@
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Status</th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number of applications</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -51,6 +51,10 @@
                   <td class="govuk-table__cell">{{ statusCounts[status] }}</td>
                 </tr>
               {% endfor %}
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Total</th>
+                <td class="govuk-table__cell">{{ totalApplications }}</td>
+              </tr>
             </tbody>
           </table>
 

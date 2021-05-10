@@ -2,201 +2,201 @@
   {
     "code": "W1",
     "name": "Art and design",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "C1",
     "name": "Biology",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "08",
     "name": "Business studies",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "F1",
     "name": "Chemistry",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "09",
     "name": "Citizenship",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "Q8",
     "name": "Classics",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "P3",
     "name": "Communications and media studies",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "11",
     "name": "Computer science",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "12",
     "name": "Dance",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "DT",
     "name": "Design and technology",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "Q3",
     "name": "Drama",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "L1",
     "name": "Economics",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "13",
     "name": "English",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "16",
     "name": "English as a second or other language",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "15",
     "name": "French",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "F8",
     "name": "Geography",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "17",
     "name": "German",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "L5",
     "name": "Health and social care",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "V1",
     "name": "History",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "18",
     "name": "Italian",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "19",
     "name": "Japanese",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "20",
     "name": "Mandarin",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "G1",
     "name": "Mathematics",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "24",
     "name": "Modern languages (other)",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "W3",
     "name": "Music",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "C6",
     "name": "Physical education",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "F3",
     "name": "Physics",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "00",
     "name": "Primary",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "01",
     "name": "Primary with English",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "02",
     "name": "Primary with geography and history",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "03",
     "name": "Primary with mathematics",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "04",
     "name": "Primary with modern languages",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "06",
     "name": "Primary with physical education",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "07",
     "name": "Primary with science",
-    "level": "primary"
+    "level": "Primary"
   },
   {
     "code": "C8",
     "name": "Psychology",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "V6",
     "name": "Religious education",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "21",
     "name": "Russian",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "F0",
     "name": "Science",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "14",
     "name": "Social sciences",
-    "level": "secondary"
+    "level": "Secondary"
   },
   {
     "code": "22",
     "name": "Spanish",
-    "level": "secondary"
+    "level": "Secondary"
   }
 ]

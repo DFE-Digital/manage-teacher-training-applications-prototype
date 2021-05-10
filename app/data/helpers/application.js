@@ -208,7 +208,7 @@ exports.getApplicationCountsBySubject = (applications) => {
   const subjects = SystemHelper.subjects
   const counts = {}
   subjects.forEach((subject, i) => {
-    counts[subject] = applications.filter(application => application.subject === subject).length
+    counts[subject.name] = applications.filter(application => application.subject === subject.name).length
   })
   return counts
 }
@@ -229,6 +229,19 @@ exports.getApplicationCountsByTrainingLocation = (applications) => {
   const counts = {}
   trainingLocations.forEach((location, i) => {
     counts[location] = applications.filter(application => application.location === location).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsByReasonsForRejection = (applications) => {
+  const reasonsForRejection = SystemHelper.reasonsForRejection
+  const counts = {}
+  reasonsForRejection.forEach((reason, i) => {
+    counts[reason.name] = applications.filter(application => {
+      if (application.rejectedReasons) {
+        return application.status === 'Rejected' && application.rejectedReasons[reason.code] === 'Yes'
+      }
+    }).length
   })
   return counts
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "code": "actions",
+    "name": "Candidate behaviour"
+  },
+  {
+    "code": "application-quality",
+    "name": "Application quality"
+  },
+  {
+    "code": "missing-qualifications",
+    "name": "Missing qualifications"
+  },
+  {
+    "code": "interview-performance",
+    "name": "Performance at interview"
+  },
+  {
+    "code": "course-full",
+    "name": "Course full"
+  },
+  {
+    "code": "other-offer",
+    "name": "Other offer"
+  },
+  {
+    "code": "honesty",
+    "name": "Honesty"
+  },
+  {
+    "code": "safeguarding",
+    "name": "Safeguarding"
+  },
+  {
+    "code": "sponsor-visa",
+    "name": "Visa sponsorship"
+  },
+  {
+    "code": "other-feedback",
+    "name": "Other feedback"
+  }
+]

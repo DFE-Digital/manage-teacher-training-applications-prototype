@@ -9,7 +9,7 @@ const getSubjects = () => {
   const filePath = dataDirectoryPath + '/subjects.json'
   const rawData = fs.readFileSync(filePath)
   const subjects = JSON.parse(rawData).map((subject) => {
-    return subject.name
+    return subject
   })
   return subjects
 }
@@ -21,6 +21,15 @@ const getOrganisations = () => {
     return organisation.name
   })
   return organisations
+}
+
+const getReasonsForRejection = () => {
+  const filePath = dataDirectoryPath + '/reasons-for-rejection.json'
+  const rawData = fs.readFileSync(filePath)
+  const reasons = JSON.parse(rawData).map((reason) => {
+    return reason
+  })
+  return reasons
 }
 
 exports.getCheckboxValues = (name, data) => {
@@ -35,7 +44,7 @@ exports.now = () => {
 
 exports.statuses = [
   'Received',
-  'Interviewing',
+  'Awaiting decision',
   'Offered',
   'Awaiting conditions',
   'Ready to enroll',
@@ -69,6 +78,8 @@ exports.trainingLocations = [
   'Camberley - training location',
   'Lingfield - training location'
 ]
+
+exports.reasonsForRejection = getReasonsForRejection()
 
 exports.subjects = getSubjects()
 
