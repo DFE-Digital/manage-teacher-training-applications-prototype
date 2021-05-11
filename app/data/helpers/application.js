@@ -115,14 +115,6 @@ exports.addEvent = (application, event) => {
 
 exports.getStatusText = (application) => {
   var status = application.status
-
-  // has interviews that we need to surface as a status
-  if(application.status === "Awaiting decision" && application.interviews.items.length) {
-    status = "Interviewing"
-  } else if (application.status === "Awaiting decision") {
-    status = "Received"
-  }
-
   return status
 }
 
@@ -144,7 +136,7 @@ exports.calculateDaysToDecline = (application) => {
 }
 
 exports.getUpcomingInterviews = (application) => {
-  let now = SystemHelper.now();
+  let now = SystemHelper.now()
 
   return application.interviews.items.filter(interview => {
     return DateTime.fromISO(interview.date) >= now;

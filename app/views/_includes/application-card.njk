@@ -15,7 +15,7 @@
         classes: a.statusText | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
         text: a.statusText
       }) }}
-      {% if a.status == 'Awaiting decision' %}
+      {% if a.status == 'Received' or a.status == 'Interviewing' %}
         {% if a.daysToRespond == 0 %}
           <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day to make decision</p>
         {% else %}

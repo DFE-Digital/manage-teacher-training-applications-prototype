@@ -31,7 +31,7 @@ applications = applications.map(application => {
 
   Object.defineProperty(application, 'daysToRespond', {
     get() {
-      if(application.status != 'Awaiting decision') {
+      if(application.status != 'Received' && application.status != 'Interviewing') {
         return null;
       }
       const now = SystemHelper.now()

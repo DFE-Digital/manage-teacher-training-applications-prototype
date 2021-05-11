@@ -26,7 +26,7 @@ function getApplicationsByGroup (applications) {
     .filter(app => !app.rejectedReasons)
 
   const aboutToBeRejectedAutomatically = applications
-    .filter(app => (app.status === 'Awaiting decision'))
+    .filter(app => (app.status === 'Received' || app.status === 'Interviewing'))
     .filter(app => app.daysToRespond < 5)
     .sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
@@ -64,7 +64,8 @@ function getApplicationsByGroup (applications) {
     .filter(app => app.cycle === '2020 to 2021')
 
   let other = applications
-    .filter(app => app.status !== 'Awaiting decision')
+    .filter(app => app.status !== 'Received')
+    .filter(app => app.status !== 'Interviewing')
     .filter(app => app.status !== 'Deferred')
     .filter(app => app.status !== 'Offered')
     .filter(app => app.status !== 'Awaiting conditions')

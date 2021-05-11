@@ -11,7 +11,7 @@
   <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Year received</h3>
   <p>{{application.cycle | cycleText}}</p>
 
-  {% if application.status == "Awaiting decision" %}
+  {% if application.status == "Received" or application.status == "Interviewing" %}
     <p><a href="/applications/{{application.id}}/reject">Reject or withdraw application</a></p>
   {% else %}
     <p><a href="/applications/{{application.id}}/reject">Withdraw application</a></p>
