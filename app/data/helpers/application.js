@@ -247,17 +247,81 @@ exports.getApplicationCountsByReasonsForRejection = (applications) => {
 }
 
 exports.getApplicationCountsByCandidateNationality = (applications) => {
-  // personalDetails.nationality.includes()
+  const countries = SystemHelper.countries
   const counts = {}
 
-  // British
+  counts['British'] = 0
+  counts['British (Dual)'] = 0
+  counts['Irish'] = 0
+  counts['Europe'] = 0
+  counts['Europe (Dual)'] = 0
+  counts['Rest of world'] = 0
+  counts['Rest of world (Dual)'] = 0
 
-  // Irish
+  countries.forEach((country, i) => {
 
-  // EU, Switzerland, Norway, Iceland or Liechtenstein
+      if (country.nationality === 'British') {
+        counts['British'] = applications.filter(application => {
+          if (application.personalDetails.nationality.length === 1) {
+            return application.personalDetails.nationality.includes(country.nationality)
+          }
+        }).length
 
-  // Rest of world
+        counts['British (Dual)'] = applications.filter(application => {
+          if (application.personalDetails.nationality.length > 1) {
+            return application.personalDetails.nationality.includes(country.nationality)
+          }
+        }).length
+      }
 
+      if (country.nationality === 'Irish') {
+        counts['Irish'] = applications.filter(application => {
+          if (application.personalDetails.nationality.length === 1) {
+            return application.personalDetails.nationality.includes(country.nationality)
+          }
+        }).length
+      }
+
+      // EU, Switzerland, Norway, Iceland or Liechtenstein
+      if (country.region === 'europe') {
+        counts['Europe'] += applications.filter(application => {
+          return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+        }).length
+
+        // counts['Europe'] += applications.filter(application => {
+        //   if (application.personalDetails.nationality.length === 1) {
+        //     return application.personalDetails.nationality.includes(country.nationality)
+        //   }
+        // }).length
+        //
+        // counts['Europe (Dual)'] += applications.filter(application => {
+        //   if (application.personalDetails.nationality.length > 1) {
+        //     return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+        //   }
+        // }).length
+      }
+
+      if (country.region === 'row') {
+
+        counts['Rest of world'] += applications.filter(application => {
+          return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+        }).length
+
+        // counts['Rest of world'] += applications.filter(application => {
+        //   if (application.personalDetails.nationality.length === 1) {
+        //     return application.personalDetails.nationality.includes(country.nationality)
+        //   }
+        // }).length
+        //
+        // counts['Rest of world (Dual)'] += applications.filter(application => {
+        //   if (application.personalDetails.nationality.length > 1) {
+        //     return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+        //   }
+        // }).length
+      }
+    })
+
+  return counts
 }
 
 exports.getApplicationCountsByCandidateResidence = (applications) => {

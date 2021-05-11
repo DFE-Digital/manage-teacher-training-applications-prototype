@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "statistics" %}
 {% set sectionName = "Applications" %}
-{% set pageName = "Applications by provider" %}
+{% set pageName = "Provider" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -53,6 +53,10 @@
               {% endfor %}
             </tbody>
           </table>
+
+          <p class="govuk-body">
+            <a href="#">Download <span class="govuk-visually-hidden">English as a foreign language assessment</span> data</a>
+          </p>
 
         </div>
       </div>

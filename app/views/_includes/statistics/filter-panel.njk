@@ -94,7 +94,7 @@
     ]
   }) if not hideStatusFilter }}
 
-  {#{ govukCheckboxes({
+  {{ govukCheckboxes({
     idPrefix: "provider",
     name: "provider",
     classes: "govuk-checkboxes--small",
@@ -116,7 +116,7 @@
         checked: checked(data.provider, data.user.organisations[1].name) == "checked"
       }
     ]
-  }) }#}
+  }) }}
 
   {#% if checked(data.provider, data.user.organisations[0].name) %}
 
@@ -155,7 +155,7 @@
 
   {% endif %#}
 
-  {#{ govukCheckboxes({
+  {{ govukCheckboxes({
     idPrefix: "accreditedBody",
     name: "accreditedBody",
     classes: "govuk-checkboxes--small",
@@ -177,7 +177,7 @@
         checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == "checked"
       }
     ]
-  }) }#}
+  }) }}
 
   {#% if subjectItems.length >= subjectItemsDisplayLimit %}
 

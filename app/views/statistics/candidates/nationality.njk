@@ -33,7 +33,48 @@
 
     <div>
 
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
 
+          <table class="govuk-table">
+            <!-- <caption class="govuk-table__caption govuk-table__caption--m">Candidate’s national
+          </caption> -->
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Nationality</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number of candidates</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell">British</td>
+                  <td class="govuk-table__cell">{{ nationalityCounts['British'] }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell">British (with dual nationality)</td>
+                  <td class="govuk-table__cell">{{ nationalityCounts['British (Dual)'] }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell">Irish</td>
+                  <td class="govuk-table__cell">{{ nationalityCounts['Irish'] }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell">EU, Switzerland, Norway, Iceland or Liechtenstein (not including Ireland)</td>
+                  <td class="govuk-table__cell">{{ nationalityCounts['Europe'] }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell">Somewhere else</td>
+                  <td class="govuk-table__cell">{{ nationalityCounts['Rest of world'] }}</td>
+                </tr>
+            </tbody>
+          </table>
+
+          <p class="govuk-body">
+            <a href="#">Download <span class="govuk-visually-hidden">Residence</span> data</a>
+          </p>
+
+        </div>
+      </div>
 
     </div>
   </div>
