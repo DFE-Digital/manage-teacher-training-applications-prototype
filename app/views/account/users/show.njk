@@ -169,14 +169,28 @@
                     </p>
                   </div>
                 {% endif %}
-                {% if org.permissions.makeDecisions %}
+                {% if org.permissions.setupInterviews %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      Make decisions and set up interviews
+                      Set up interviews
                     </p>
                     {{appPermissions({
                       runOrRatified: runOrRatified,
-                      permissionDescription: "make decisions and set up interviews",
+                      permissionDescription: "set up interviews",
+                      applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
+                      nonApplicableOrgs: org.permissions.
+                      nonApplicableOrgs.makeDecisions
+                    })}}
+                  </div>
+                {% endif %}
+                {% if org.permissions.makeDecisions %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
+                      Make decisions
+                    </p>
+                    {{appPermissions({
+                      runOrRatified: runOrRatified,
+                      permissionDescription: "make decisions",
                       applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
                       nonApplicableOrgs: org.permissions.
                       nonApplicableOrgs.makeDecisions

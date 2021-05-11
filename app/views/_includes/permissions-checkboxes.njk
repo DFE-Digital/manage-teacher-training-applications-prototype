@@ -1,7 +1,26 @@
 {{ govukCheckboxes({
   fieldset: {
     legend: {
-      text: "Who can make decisions and set up interviews?",
+      text: "Who can set up interviews?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: org,
+      text: org
+    },
+    {
+      value: partner,
+      text: partner
+    }
+  ]
+} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.setupInterviews')) }}
+
+{{ govukCheckboxes({
+  fieldset: {
+    legend: {
+      text: "Who can make decisions?",
       classes: "govuk-fieldset__legend--m"
     }
   },

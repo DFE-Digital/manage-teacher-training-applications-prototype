@@ -45,6 +45,7 @@ module.exports = router => {
       org.permissions.applicableOrgs = {};
       org.permissions.nonApplicableOrgs = {};
 
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
@@ -73,6 +74,7 @@ module.exports = router => {
       org.permissions.applicableOrgs = {};
       org.permissions.nonApplicableOrgs = {};
 
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
@@ -116,6 +118,7 @@ module.exports = router => {
       }
     }
 
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
@@ -159,6 +162,7 @@ module.exports = router => {
       }
     }
 
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
@@ -197,6 +201,7 @@ module.exports = router => {
         returnValue.permissions = {
             manageOrganisations: req.session.data.newuser.permissions[orgId].indexOf('manageOrganisations') > -1,
             manageUsers: req.session.data.newuser.permissions[orgId].indexOf('manageUsers') > -1,
+            setupInterviews: req.session.data.newuser.permissions[orgId].indexOf('setupInterviews') > -1,
             makeDecisions: req.session.data.newuser.permissions[orgId].indexOf('makeDecisions') > -1,
             viewSafeguardingInformation: req.session.data.newuser.permissions[orgId].indexOf('viewSafeguardingInformation') > -1,
             viewDiversityInformation: req.session.data.newuser.permissions[orgId].indexOf('viewDiversityInformation') > -1
@@ -213,6 +218,7 @@ module.exports = router => {
 
       org.permissions.applicableOrgs = {};
       org.permissions.nonApplicableOrgs = {};
+      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
       mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
@@ -294,6 +300,7 @@ module.exports = router => {
       }
     }
 
+    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');

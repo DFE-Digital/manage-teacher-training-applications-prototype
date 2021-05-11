@@ -144,10 +144,17 @@
                     </p>
                   </div>
                 {% endif %}
+                {% if org.permissions.setupInterviews %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                      Set up interviews
+                    </p>
+                  </div>
+                {% endif %}
                 {% if org.permissions.makeDecisions %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-                      Make decisions and set up interviews
+                      Make decisions
                     </p>
                   </div>
                 {% endif %}

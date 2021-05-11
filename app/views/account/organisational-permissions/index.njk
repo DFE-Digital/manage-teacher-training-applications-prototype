@@ -41,6 +41,21 @@
 
         {% for relationship in item.relationships %}
 
+          {% set setupInterviewsHtml %}
+            {% if relationship.orgPermissions.setupInterviews or relationship.partnerPermissions.setupInterviews %}
+              <ul class="govuk-list">
+                {% if relationship.orgPermissions.setupInterviews %}
+                  <li>{{ relationship.org.name }}</li>
+                {% endif %}
+                {% if relationship.partnerPermissions.setupInterviews %}
+                  <li>{{ relationship.partner.name }}</li>
+                {% endif %}
+              </ul>
+            {% else %}
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
+            {% endif %}
+          {% endset %}
+
           {% set makeDecisionsHtml %}
             {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
               <ul class="govuk-list">
@@ -92,7 +107,15 @@
               rows: [
                 {
                   key: {
-                    text: "Make decisions and set up interviews"
+                    text: "Set up interviews"
+                  },
+                  value: {
+                    html: setupInterviewsHtml
+                  }
+                },
+                {
+                  key: {
+                    text: "Make decisions"
                   },
                   value: {
                     html: makeDecisionsHtml
