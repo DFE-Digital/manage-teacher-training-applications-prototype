@@ -3,6 +3,13 @@
 {% set primaryNavId = "statistics" %}
 {% set pageName = "Configure report" %}
 
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/statistics/" + section + "/" + report
+}) }}
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">

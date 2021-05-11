@@ -253,6 +253,10 @@ module.exports = router => {
   router.get('/statistics/applications/subjects-by-status', (req, res) => {
     let applications = req.session.data.applications
 
+    // HACK to fix absence of request params needed for filters
+    req.params.section = 'applications'
+    req.params.report = 'subjects-by-status'
+
     const filters = getFilters(req)
 
     if (filters.hasFilters) {
@@ -264,6 +268,8 @@ module.exports = router => {
       subjects: SystemHelper.subjects,
       statuses: SystemHelper.statuses,
       subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndStatus(applications),
+      section: req.params.section,
+      report: req.params.report,
       hasFilters: filters.hasFilters,
       selectedFilters: filters.selectedFilters
     })
