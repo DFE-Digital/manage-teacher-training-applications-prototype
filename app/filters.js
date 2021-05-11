@@ -4,6 +4,7 @@ const path = require('path')
 const pluralize = require('pluralize')
 const { DateTime } = require('luxon')
 const individualFiltersFolder = path.join(__dirname, './filters')
+const numeral = require('numeral')
 
 module.exports = (env) => {
   /**
@@ -297,6 +298,15 @@ filters.falsify = (input) => {
     )[0]
 
     return error
+  }
+
+  /* ------------------------------------------------------------------
+   numeral filter for use in Nunjucks
+   example: {{ params.number | numeral("0,00.0") }}
+   outputs: 1,000.00
+  ------------------------------------------------------------------ */
+  filters.numeral = function(number, format) {
+   return numeral(number).format(format)
   }
 
   return filters

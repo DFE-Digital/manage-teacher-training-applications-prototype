@@ -185,8 +185,11 @@ const getRedirect = (referer) => {
 module.exports = router => {
 
   router.get('/statistics', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
     res.render('statistics/index', {
-
+      totalApplications: applications.length,
+      statusCounts: ApplicationHelper.getApplicationCountsByStatus(applications)
     })
   })
 

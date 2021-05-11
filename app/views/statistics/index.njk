@@ -1,7 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "performance" %}
-{% set subNavId = "applications" %}
+{% set primaryNavId = "statistics" %}
 {% set pageName = "Statistics" %}
 
 {% block content %}
@@ -10,12 +9,17 @@
 
 <h2 class="govuk-heading-m">Applications</h2>
 
+{#% include "_includes/statistics/applications/glance-metrics.njk" %#}
+
 <ul class="govuk-list">
   <li>
     <a class="govuk-link" href="/statistics/applications/status">Status</a>
   </li>
   <li>
     <a class="govuk-link" href="/statistics/applications/subject">Subject</a>
+  </li>
+  <li>
+    <a class="govuk-link" href="/statistics/applications/subjects-by-status">Subject by status</a>
   </li>
   <li>
     <a class="govuk-link" href="/statistics/applications/provider">Provider</a>
@@ -29,6 +33,8 @@
 </ul>
 
 <h2 class="govuk-heading-m">Candidates</h2>
+
+{#% include "_includes/statistics/candidates/glance-metrics.njk" %#}
 
 <ul class="govuk-list">
   <li>
