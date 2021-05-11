@@ -1,4 +1,4 @@
-{% if statusText == 'Interviewing' %}
+{% if application.status == 'Interviewing' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% if application.daysToRespond == 0 %}

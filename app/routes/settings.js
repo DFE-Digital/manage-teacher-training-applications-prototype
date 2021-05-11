@@ -32,7 +32,8 @@ module.exports = router => {
         .filter(app => (app.status == 'Awaiting conditions'))
 
       let other = applications
-        .filter(app => app.status !== 'Awaiting decision')
+        .filter(app => app.status !== 'Received')
+        .filter(app => app.status !== 'Interviewing')
         .filter(app => app.status !== 'Deferred')
         .filter(app => app.status !== 'Offered')
         .filter(app => app.status !== 'Awaiting conditions')

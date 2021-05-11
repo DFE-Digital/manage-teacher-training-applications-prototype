@@ -8,8 +8,7 @@ module.exports = router => {
 
     res.render('applications/offer/show', {
       application,
-      conditions: ApplicationHelper.getConditions(application.offer),
-      statusText: ApplicationHelper.getStatusText(application)
+      conditions: ApplicationHelper.getConditions(application.offer)
     })
   })
 

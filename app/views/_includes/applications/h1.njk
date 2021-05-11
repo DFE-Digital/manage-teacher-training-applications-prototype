@@ -4,7 +4,7 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
         {{name}}
         <span class="govuk-visually-hidden">{{pageName}}</span>
-        {{ govukTag({ classes: statusText | statusClass, text: statusText }) }}
+        {{ govukTag({ classes: application.status | statusClass, text: application.status }) }}
       </h1>
       {% include "_includes/applications/prompts.njk" %}
     {% else %}

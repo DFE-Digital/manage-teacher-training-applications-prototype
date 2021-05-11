@@ -1,4 +1,4 @@
-{% if statusText == 'Received' %}
+{% if application.status == 'Received' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview or make a decision</h2>
     {% if application.daysToRespond == 0 %}
