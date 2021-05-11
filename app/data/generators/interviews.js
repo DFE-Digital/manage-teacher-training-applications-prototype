@@ -4,7 +4,10 @@ const { DateTime } = require('luxon')
 const SystemHelper = require('../helpers/system')
 
 function getInterview(params) {
-  const now = SystemHelper.now()
+  const now = SystemHelper.now().set({
+    hour: faker.helpers.randomize([9, 10, 11]),
+    minute: faker.helpers.randomize([0, 15, 30, 45])
+  })
   const past = now.minus({ days: faker.random.number({ 'min': 1, 'max': 20 }) }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])

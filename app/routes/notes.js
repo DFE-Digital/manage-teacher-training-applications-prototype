@@ -6,8 +6,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('applications/notes/index', {
-      application,
-      statusText: ApplicationHelper.getStatusText(application)
+      application
     })
   })
 

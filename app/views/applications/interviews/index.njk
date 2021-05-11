@@ -21,7 +21,7 @@
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Interviews</h2>
 
       {% if not query.transferred %}
-        {% if statusText == "Interviewing" %}
+        {% if application.status == "Interviewing" %}
           {{ govukButton({
             text: "Set up interview",
             href: "/applications/" + application.id + "/interviews/new",
@@ -104,10 +104,10 @@
               items: [{
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
                 html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
-              } if statusText == "Received" or statusText == "Interviewing", {
+              } if application.status == "Received" or application.status == "Interviewing", {
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
                 html: 'Cancel interview <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
-              } if statusText == "Received" or statusText == "Interviewing"]
+              } if application.status == "Received" or application.status == "Interviewing"]
             },
             html: interviewSummaryListHtml
           })}}
@@ -188,10 +188,10 @@
             items: [{
               href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
               html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
-            } if statusText == "Received" or statusText == "Interviewing", {
+            } if application.status == "Received" or application.status == "Interviewing", {
               href: '/applications/' + application.id + '/interviews/'+ interview.id + '/delete',
               html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
-            } if statusText == "Received" or statusText == "Interviewing"]
+            } if application.status == "Received" or application.status == "Interviewing"]
           },
           html: interviewSummaryListHtml
         })}}

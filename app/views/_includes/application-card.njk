@@ -12,8 +12,8 @@
   <div class="app-application-card__secondary">
     <div class="app-application-card__status">
       {{ govukTag({
-        classes: a.statusText | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
-        text: a.statusText
+        classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
+        text: a.status
       }) }}
       {% if a.status == 'Received' or a.status == 'Interviewing' %}
         {% if a.daysToRespond == 0 %}

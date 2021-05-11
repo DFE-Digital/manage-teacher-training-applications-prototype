@@ -113,11 +113,6 @@ exports.addEvent = (application, event) => {
   application.events.items.push(event)
 }
 
-exports.getStatusText = (application) => {
-  var status = application.status
-  return status
-}
-
 exports.calculateDeclineDate = (application) => {
   return DateTime.fromISO(application.offer.madeDate).plus({ days: 10 }).toISO()
 }

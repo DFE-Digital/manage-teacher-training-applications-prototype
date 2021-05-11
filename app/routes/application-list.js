@@ -33,14 +33,14 @@ function getApplicationsByGroup (applications) {
     })
 
   const awaitingDecision = applications
-    .filter(app => (ApplicationHelper.getStatusText(app) === 'Received'))
+    .filter(app => (app.status === 'Received'))
     .filter(app => app.daysToRespond >= 5)
     .sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
     })
 
   const pendingInterview = applications
-    .filter(app => (ApplicationHelper.getStatusText(app) === 'Interviewing'))
+    .filter(app => (app.status === 'Interviewing'))
     .filter(app => app.daysToRespond >= 5)
     .sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
@@ -283,7 +283,7 @@ module.exports = router => {
         }
 
         if (statuses && statuses.length) {
-          statusValid = statuses.includes(ApplicationHelper.getStatusText(app))
+          statusValid = statuses.includes(app.status)
         }
 
         if (locations && locations.length) {
@@ -405,11 +405,6 @@ module.exports = router => {
     let applications = apps;
 
     let allApplications = applications;
-
-    applications = applications.map((application) => {
-      application.statusText = ApplicationHelper.getStatusText(application)
-      return application
-    })
 
     // Whack all the grouped items into an array without headings
     let grouped = getApplicationsByGroup(applications)

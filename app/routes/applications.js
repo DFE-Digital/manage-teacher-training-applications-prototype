@@ -21,8 +21,7 @@ module.exports = router => {
 
     res.render('applications/show', {
       experience,
-      application,
-      statusText: ApplicationHelper.getStatusText(application)
+      application
     })
   })
 
@@ -61,7 +60,6 @@ module.exports = router => {
 
     res.render('applications/timeline/show', {
       application,
-      statusText: ApplicationHelper.getStatusText(application),
       events: events,
       conditions: ApplicationHelper.getConditions(application.offer)
     })
@@ -72,8 +70,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('applications/feedback/show', {
-      application,
-      statusText: ApplicationHelper.getStatusText(application)
+      application
     })
   })
 

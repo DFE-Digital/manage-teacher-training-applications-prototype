@@ -123,14 +123,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    const statusText = ApplicationHelper.getStatusText(application)
-
     var now = SystemHelper.now()
 
     let upcomingInterviews = [];
     let pastInterviews = [];
 
-    if(statusText == "Received" || statusText == "Interviewing") {
+    if(application.status == "Received" || application.status == "Interviewing") {
       upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
 
       pastInterviews = application.interviews.items.filter(interview => {
@@ -144,8 +142,7 @@ module.exports = router => {
     res.render('applications/interviews/index', {
       application,
       upcomingInterviews,
-      pastInterviews,
-      statusText: ApplicationHelper.getStatusText(application)
+      pastInterviews
     })
   })
 
