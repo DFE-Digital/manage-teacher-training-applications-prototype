@@ -2,7 +2,7 @@ const { DateTime } = require('luxon')
 
 exports.now = () => {
   return DateTime.now().set({
-    hour: 0,
+    hour: 1,
     minute: 0
   })
 }

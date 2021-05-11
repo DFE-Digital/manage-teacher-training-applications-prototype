@@ -4,10 +4,7 @@ const { DateTime } = require('luxon')
 const SystemHelper = require('../helpers/system')
 
 function getInterview(params) {
-  const now = SystemHelper.now().set({
-    hour: faker.helpers.randomize([9, 10, 11]),
-    minute: faker.helpers.randomize([0, 15, 30, 45])
-  });
+  const now = SystemHelper.now()
   const past = now.minus({ days: faker.random.number({ 'min': 1, 'max': 20 }) }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])
@@ -28,7 +25,7 @@ function getInterview(params) {
   interview.organisation = faker.helpers.randomize(["The Royal Borough Teaching School Alliance", "Kingston University"])
 
   if (params.status === 'Interviewing') {
-    interview.date = faker.helpers.randomize([past, future, now, now.plus({ days: 1 })])
+    interview.date = faker.helpers.randomize([past, future, now, now.plus({days: 1})])
     if(faker.helpers.randomize(["has interviews", ""]) == "has interviews") {
       return interview
     }
