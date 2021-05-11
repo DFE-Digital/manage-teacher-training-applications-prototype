@@ -176,11 +176,9 @@ exports.cancelInterview = (params) => {
 // -----------------------------------------------------------------------------
 
 exports.getApplicationCountsByStatus = (applications) => {
-  // , filters = {}
   const statuses = SystemHelper.statuses
   const counts = {}
   statuses.forEach((status, i) => {
-    //  && application.cycle === filters.cycle // '2020 to 2021'
     counts[status] = applications.filter(application => application.status === status).length
   })
   return counts
@@ -209,6 +207,20 @@ exports.getApplicationCountsBySubject = (applications) => {
   const counts = {}
   subjects.forEach((subject, i) => {
     counts[subject.name] = applications.filter(application => application.subject === subject.name).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsBySubjectAndStatus = (applications) => {
+  const subjects = SystemHelper.subjects
+  const statuses = SystemHelper.statuses
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+    statuses.forEach((status, i) => {
+      counts[subject.name][status] = applications.filter(application => application.subject === subject.name && application.status === status).length
+    })
+    counts[subject.name]['total'] = applications.filter(application => application.subject === subject.name).length
   })
   return counts
 }

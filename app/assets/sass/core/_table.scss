@@ -1,3 +1,11 @@
+.app-table {
+  display: block;
+  // margin: 0 auto;
+  // max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 .app-table-sortable-status {
   position: absolute;
   overflow: hidden;

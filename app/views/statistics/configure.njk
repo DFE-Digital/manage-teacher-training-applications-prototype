@@ -1,0 +1,314 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set pageName = "Configure report" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+    {% include "_includes/statistics/selected-filters.njk" %}
+
+    <form action="/statistics/{{ section }}/{{ report }}" method="post" accept-charset="UTF-8" novalidate>
+
+      {{ govukCheckboxes({
+        idPrefix: "cycle",
+        name: "cycle",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Year received",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "2020 to 2021",
+            text: "2020 to 2021" | cycleText,
+            checked: checked(data.cycle, "2020 to 2021")
+          },
+          {
+            value: "2019 to 2020",
+            text: "2019 to 2020" | cycleText,
+            checked: checked(data.cycle, "2019 to 2020")
+          }
+        ]
+      }) if 'cycle' in showFilters }}
+
+      {{ govukCheckboxes({
+        idPrefix: "status",
+        name: "status",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Status",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Received",
+            text: "Received",
+            checked: checked(data.status, "Received") == "checked"
+          },
+          {
+            value: "Interviewing",
+            text: "Interviewing",
+            checked: checked(data.status, "Interviewing") == "checked"
+          },
+          {
+            value: "Offered",
+            text: "Offered",
+            checked: checked(data.status, "Offered") == "checked"
+          },
+          {
+            value: "Awaiting conditions",
+            text: "Awaiting conditions",
+            checked: checked(data.status, "Awaiting conditions") == "checked"
+          },
+          {
+            value: "Ready to enroll",
+            text: "Ready to enroll",
+            checked: checked(data.status, "Ready to enroll") == "checked"
+          },
+           {
+            value: "Conditions not met",
+            text: "Conditions not met",
+            checked: checked(data.status, "Conditions not met") == "checked"
+          },
+          {
+            value: "Deferred",
+            text: "Deferred",
+            checked: checked(data.status, "Deferred") == "checked"
+          },
+          {
+            value: "Declined",
+            text: "Declined",
+            checked: checked(data.status, "Declined") == "checked"
+          },
+          {
+            value: "Rejected",
+            text: "Rejected",
+            checked: checked(data.status, "Rejected") == "checked"
+          },
+          {
+            value: "Application withdrawn",
+            text: "Application withdrawn",
+            checked: checked(data.status, "Application withdrawn") == "checked"
+          },
+          {
+            value: "Offer withdrawn",
+            text: "Offer withdrawn",
+            checked: checked(data.status, "Offer withdrawn") == "checked"
+          }
+        ]
+      })  if 'status' in showFilters }}
+
+      {{ govukCheckboxes({
+        idPrefix: "provider",
+        name: "provider",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Courses run by",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: data.user.organisations[0].name,
+            text: data.user.organisations[0].name,
+            checked: checked(data.provider, data.user.organisations[0].name) == "checked"
+          },
+          {
+            value: data.user.organisations[1].name,
+            text: data.user.organisations[1].name,
+            checked: checked(data.provider, data.user.organisations[1].name) == "checked"
+          }
+        ]
+      }) if 'trainingProvider' in showFilters }}
+
+      {#% if checked(data.provider, data.user.organisations[0].name) %}
+
+        {{ govukCheckboxes({
+          name: "location",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Training locations for " + data.user.organisations[0].name,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Main site",
+              text: "Main site",
+              checked: checked(data.location, "Main site") == "checked"
+            },
+            {
+              value: "Camberley - training location",
+              text: "Camberley - training location",
+              checked: checked(data.location, "Camberley - training location") == "checked"
+            },
+            {
+              value: "Epsom Grinstead - training location",
+              text: "Epsom Grinstead - training location",
+              checked: checked(data.location, "Epsom Grinstead - training location") == "checked"
+            },
+            {
+              value: "Lingfield - training location",
+              text: "Lingfield - training location",
+              checked: checked(data.location, "Lingfield - training location") == "checked"
+            }
+          ]
+        }) }}
+
+      {% endif %#}
+
+      {{ govukCheckboxes({
+        idPrefix: "accreditedBody",
+        name: "accreditedBody",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Courses ratified by",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: data.accreditedBodies[0].name,
+            text: data.accreditedBodies[0].name,
+            checked: checked(data.accreditedBody, data.accreditedBodies[0].name) == "checked"
+          },
+          {
+            value: data.accreditedBodies[1].name,
+            text: data.accreditedBodies[1].name,
+            checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == "checked"
+          }
+        ]
+      }) if 'accreditedBody' in showFilters }}
+
+      {#% if subjectItems.length >= subjectItemsDisplayLimit %}
+
+        {{ appCheckboxFilter({
+          idPrefix: "subject",
+          name: "subject",
+          legend: {
+            text: "Subject"
+          },
+          items: subjectItems,
+          selectedItems: selectedSubjects,
+          classes: "govuk-!-margin-bottom-7"
+        }) }}
+
+      {% else %}
+
+        {{ govukCheckboxes({
+          idPrefix: "subject",
+          name: "subject",
+          fieldset: {
+            legend: {
+              text: "Subject",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: subjectItems,
+          classes: "govuk-checkboxes--small"
+        }) }}
+
+      {% endif %#}
+
+      {{ govukCheckboxes({
+        idPrefix: "studyMode",
+        name: "studyMode",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Full time or part time",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Full time",
+            text: "Full time",
+            checked: checked(data.studyMode, "Full time") == "checked"
+          },
+          {
+            value: "Part time",
+            text: "Part time",
+            checked: checked(data.studyMode, "Part time") == "checked"
+          }
+        ]
+      }) if 'studyMode' in showFilters }}
+
+      {{ govukCheckboxes({
+        idPrefix: "fundingType",
+        name: "fundingType",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Funding type",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Fee paying",
+            text: "Fee paying",
+            checked: checked(data.fundingType, "Fee paying") == "checked"
+          },
+          {
+            value: "Salaried",
+            text: "Salaried",
+            checked: checked(data.fundingType, "Salaried") == "checked"
+          },
+          {
+            value: "Apprenticeship",
+            text: "Apprenticeship",
+            checked: checked(data.fundingType, "Apprenticeship") == "checked"
+          }
+        ]
+      })  if 'fundingType' in showFilters }}
+
+      {{ govukCheckboxes({
+        idPrefix: "subjectLevel",
+        name: "subjectLevel",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Subject level",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Primary",
+            text: "Primary",
+            checked: checked(data.subjectLevel, "Primary") == "checked"
+          },
+          {
+            value: "Secondary",
+            text: "Secondary",
+            checked: checked(data.subjectLevel, "Secondary") == "checked"
+          }
+        ]
+      }) if 'subjectLevel' in showFilters }}
+
+      {{ govukButton({
+        text: "Save"
+      }) }}
+
+    </form>
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Applications" %}
+{% set pageName = "Subjects by status" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/statistics",
+    text: "Statistics"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% include "_includes/statistics/header.njk" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/statistics/applications/subjects-by-status/configure">Configure report</a>
+    </p>
+
+    {% if hasFilters %}
+      {% include "_includes/statistics/selected-filters.njk" %}
+    <!-- <p class="govuk-body">
+      <a class="govuk-link govuk-link--no-visited-state" href="/statistics/applications/subjects-by-status/remove-all-filters">Clear filters</a>
+    </p> -->
+    {% endif %}
+
+    <table class="govuk-table app-table">
+      <!-- <caption class="govuk-table__caption govuk-table__caption--m govuk-!-margin-top-5">Applications by subject</caption> -->
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Subject</th>
+          {% for status in statuses %}
+            {% if (data.status and status in data.status) or (not data.status.length) %}
+              <th scope="col" class="govuk-table__header">{{ status }}</th>
+            {% endif %}
+          {% endfor %}
+          <th scope="col" class="govuk-table__header">Total</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for subject in subjects %}
+          {% if (data.subjectLevel and subject.level in data.subjectLevel) or (not data.subjectLevel.length) %}
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">{{ subject.name }}</td>
+              {% for status in statuses %}
+                {% if (data.status and status in data.status) or (not data.status.length) %}
+                  <td class="govuk-table__cell">{{ subjectCounts[subject.name][status] }}</td>
+                {% endif %}
+              {% endfor %}
+              <td class="govuk-table__cell">{{ subjectCounts[subject.name]['total'] }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+        <!-- <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Total</th>
+          {% for status in statuses %}
+            <td class="govuk-table__cell">{{ totalApplications }}</td>
+          {% endfor %}
+        </tr> -->
+      </tbody>
+    </table>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Download <span class="govuk-visually-hidden">subjects by status</span> data</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

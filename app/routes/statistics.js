@@ -18,6 +18,12 @@ const getFilters = (req) => {
   let selectedFilters = null
 
   if (hasFilters) {
+
+    let slug = req.route.path
+    if (req.params) {
+      slug = `/statistics/${req.params.section}/${req.params.report}`
+    }
+
     selectedFilters = {
       categories: []
     }
@@ -28,7 +34,7 @@ const getFilters = (req) => {
         items: filters.cycles.map((cycle) => {
           return {
             text: cycle,
-            href: `/statistics/remove-cycle-filter/${cycle}`
+            href: `${slug}/remove-cycle-filter/${cycle}`
           }
         })
       })
@@ -40,7 +46,7 @@ const getFilters = (req) => {
         items: filters.statuses.map((status) => {
           return {
             text: status,
-            href: `/statistics/remove-status-filter/${status}`
+            href: `${slug}/remove-status-filter/${status}`
           }
         })
       })
@@ -52,7 +58,7 @@ const getFilters = (req) => {
         items: filters.providers.map((provider) => {
           return {
             text: provider,
-            href: `/statistics/remove-provider-filter/${provider}`
+            href: `${slug}/remove-provider-filter/${provider}`
           }
         })
       })
@@ -64,7 +70,7 @@ const getFilters = (req) => {
         items: filters.accreditedBodies.map((accreditedbody) => {
           return {
             text: accreditedbody,
-            href: `/statistics/remove-accreditedbody-filter/${accreditedbody}`
+            href: `${slug}/remove-accreditedbody-filter/${accreditedbody}`
           }
         })
       })
@@ -76,7 +82,7 @@ const getFilters = (req) => {
         items: filters.studyModes.map((studyMode) => {
           return {
             text: studyMode,
-            href: `/statistics/remove-studymode-filter/${studyMode}`
+            href: `${slug}/remove-studymode-filter/${studyMode}`
           }
         })
       })
@@ -88,7 +94,7 @@ const getFilters = (req) => {
         items: filters.fundingTypes.map((fundingType) => {
           return {
             text: fundingType,
-            href: `/statistics/remove-fundingtype-filter/${fundingType}`
+            href: `${slug}/remove-fundingtype-filter/${fundingType}`
           }
         })
       })
@@ -100,7 +106,7 @@ const getFilters = (req) => {
         items: filters.subjectLevels.map((subjectLevel) => {
           return {
             text: subjectLevel,
-            href: `/statistics/remove-subjectlevel-filter/${subjectLevel}`
+            href: `${slug}/remove-subjectlevel-filter/${subjectLevel}`
           }
         })
       })
@@ -202,7 +208,15 @@ module.exports = router => {
       statuses: SystemHelper.statuses,
       statusCounts: ApplicationHelper.getApplicationCountsByStatus(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -221,7 +235,54 @@ module.exports = router => {
       subjectCounts: ApplicationHelper.getApplicationCountsBySubject(applications),
       hasFilters: filters.hasFilters,
       selectedFilters: filters.selectedFilters,
-      hideStatusFilter: true
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
+    })
+  })
+
+  router.get('/statistics/applications/subjects-by-status', (req, res) => {
+    let applications = req.session.data.applications
+
+    const filters = getFilters(req)
+
+    if (filters.hasFilters) {
+      applications = getApplications(applications, filters.filters)
+    }
+
+    res.render('statistics/applications/subjects-by-status', {
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      statuses: SystemHelper.statuses,
+      subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndStatus(applications),
+      hasFilters: filters.hasFilters,
+      selectedFilters: filters.selectedFilters
+    })
+  })
+
+  router.get('/statistics/:section/:report/configure', (req, res) => {
+    // getReportConfigOptions(req.params.section, req.params.report)
+    const filters = getFilters(req)
+    res.render('statistics/configure', {
+      section: req.params.section,
+      report: req.params.report,
+      hasFilters: filters.hasFilters,
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -239,7 +300,16 @@ module.exports = router => {
       organisations: SystemHelper.organisations,
       organisationCounts: ApplicationHelper.getApplicationCountsByOrganisation(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -257,7 +327,16 @@ module.exports = router => {
       locations: SystemHelper.trainingLocations,
       locationCounts: ApplicationHelper.getApplicationCountsByTrainingLocation(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -277,7 +356,14 @@ module.exports = router => {
       reasonCounts: ApplicationHelper.getApplicationCountsByReasonsForRejection(applications),
       hasFilters: filters.hasFilters,
       selectedFilters: filters.selectedFilters,
-      hideStatusFilter: true
+      showFilters: [
+        'cycle',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -297,7 +383,16 @@ module.exports = router => {
     res.render('statistics/candidates/english-language-qualification', {
       foreignLanguageCounts: ApplicationHelper.getApplicationCountsByCandidateLanguageAssessment(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -313,7 +408,16 @@ module.exports = router => {
     res.render('statistics/candidates/nationality', {
       nationalityCounts: ApplicationHelper.getApplicationCountsByCandidateNationality(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -329,7 +433,16 @@ module.exports = router => {
     res.render('statistics/candidates/residence', {
       residenceCounts: ApplicationHelper.getApplicationCountsByCandidateResidence(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
@@ -345,43 +458,52 @@ module.exports = router => {
     res.render('statistics/candidates/right-to-work-study', {
       rightWorkStudyCounts: ApplicationHelper.getApplicationCountsByCandidateRightToWorkStudy(applications),
       hasFilters: filters.hasFilters,
-      selectedFilters: filters.selectedFilters
+      selectedFilters: filters.selectedFilters,
+      showFilters: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
     })
   })
 
-  router.get('/statistics/remove-cycle-filter/:cycle', (req, res) => {
+  router.get('/statistics/:section/:report/remove-cycle-filter/:cycle', (req, res) => {
     req.session.data.cycle = req.session.data.cycle.filter(item => item !== req.params.cycle)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/remove-status-filter/:status', (req, res) => {
+  router.get('/statistics/:section/:report/remove-status-filter/:status', (req, res) => {
     req.session.data.status = req.session.data.status.filter(item => item !== req.params.status)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/remove-provider-filter/:provider', (req, res) => {
+  router.get('/statistics/:section/:report/remove-provider-filter/:provider', (req, res) => {
     req.session.data.provider = req.session.data.provider.filter(item => item !== req.params.provider)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/remove-accreditedbody-filter/:accreditedBody', (req, res) => {
+  router.get('/statistics/:section/:report/remove-accreditedbody-filter/:accreditedBody', (req, res) => {
     req.session.data.accreditedBody = req.session.data.accreditedBody.filter(item => item !== req.params.accreditedBody)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/remove-studymode-filter/:studyMode', (req, res) => {
+  router.get('/statistics/:section/:report/remove-studymode-filter/:studyMode', (req, res) => {
     req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/remove-fundingtype-filter/:fundingType', (req, res) => {
+  router.get('/statistics/:section/:report/remove-fundingtype-filter/:fundingType', (req, res) => {
     req.session.data.fundingType = req.session.data.fundingType.filter(item => item !== req.params.fundingType)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/remove-subjectlevel-filter/:subjectLevel', (req, res) => {
+  router.get('/statistics/:section/:report/remove-subjectlevel-filter/:subjectLevel', (req, res) => {
     req.session.data.subjectLevel = req.session.data.subjectLevel.filter(item => item !== req.params.subjectLevel)
-    res.redirect(getRedirect(req.headers.referer))
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/remove-all-filters', (req, res) => {
@@ -393,6 +515,17 @@ module.exports = router => {
     req.session.data.fundingType = null
     req.session.data.subjectLevel = null
     res.redirect(getRedirect(req.headers.referer))
+  })
+
+  router.get('/statistics/:section/:report/remove-all-filters', (req, res) => {
+    req.session.data.cycle = null
+    req.session.data.status = null
+    req.session.data.provider = null
+    req.session.data.accreditedBody = null
+    req.session.data.studyMode = null
+    req.session.data.fundingType = null
+    req.session.data.subjectLevel = null
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
 }
