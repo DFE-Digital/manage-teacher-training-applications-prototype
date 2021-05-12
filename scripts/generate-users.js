@@ -22,6 +22,7 @@ const generateFakeUsers = (count) => {
       permissions: {
         manageOrganisation: true,
         manageUsers: true,
+        setupInterviews: true,
         makeDecisions: true,
         viewSafeguardingInformation: true,
         viewDiversityInformation: true
@@ -31,6 +32,7 @@ const generateFakeUsers = (count) => {
       permissions: {
         manageOrganisation: true,
         manageUsers: true,
+        setupInterviews: true,
         makeDecisions: true,
         viewSafeguardingInformation: true,
         viewDiversityInformation: true

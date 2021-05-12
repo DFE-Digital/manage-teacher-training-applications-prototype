@@ -33,6 +33,11 @@
 
 
           {% for partner in item.partners %}
+            {% set setupInterviewsHtml %}
+              {% for item in data.onboard['a'+partner.id].setupInterviews %}
+                <p>{{item}}</p>
+              {% endfor %}
+            {% endset %}
 
             {% set makeDecisionsHtml %}
               {% for item in data.onboard['a'+partner.id].makeDecisions %}
@@ -58,17 +63,19 @@
                 rows: [
                   {
                     key: {
-                      text: "Make decisions and set up interviews"
+                      text: "Set up interviews"
+                    },
+                    value: {
+                      html: setupInterviewsHtml
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Make decisions"
                     },
                     value: {
                       html: makeDecisionsHtml
-                    },
-                    actions: {
-                      items: [{
-                        href: "/onboard/"+partner.id,
-                        text: "Change"
-                      }]
-                    } if 1 == 2
+                    }
                   },
                   {
                     key: {
@@ -76,13 +83,7 @@
                     },
                     value: {
                       html: viewSafeguardingHtml
-                    },
-                    actions: {
-                      items: [{
-                        href: "/onboard/"+partner.id,
-                        text: "Change"
-                      }]
-                    } if 1 == 2
+                    }
                   },
                   {
                     key: {
@@ -90,13 +91,7 @@
                     },
                     value: {
                       html: viewDiversityHtml
-                    },
-                    actions: {
-                      items: [{
-                        href: "/onboard/"+partner.id,
-                        text: "Change"
-                      }]
-                    } if 1 == 2
+                    }
                   }
                 ]
               }) }}
