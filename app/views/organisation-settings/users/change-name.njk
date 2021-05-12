@@ -4,12 +4,11 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set emailAddress = user.emailAddress %}
-{% set title = "Change email address - " + name %}
+{% set title = "Change name - " + name %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/account/users/" + user.id
+    href: "/organisation-settings/users/" + user.id
   }) }}
 {% endblock %}
 
@@ -18,21 +17,29 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set h1 %}
+      <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{name}}</span>
-        Change email address
-      {% endset %}
+        {{title}}
+      </h1>
 
       <form novalidate method="post">
         {{ govukInput({
           label: {
-            html: h1,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "First name",
+            classes: "govuk-label--m"
           },
-          id: "new-email-address",
-          name: "new-email-address",
-          value: emailAddress
+          id: "first-name",
+          name: "first-name",
+          value: firstName
+        }) }}
+        {{ govukInput({
+          label: {
+            text: "Last name",
+            classes: "govuk-label--m"
+          },
+          id: "last-name",
+          name: "last-name",
+          value: lastName
         }) }}
         {{ govukButton({
           text: "Save"

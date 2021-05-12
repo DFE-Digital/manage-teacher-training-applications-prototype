@@ -36,7 +36,7 @@ function getUserRelationships(params) {
 
 module.exports = router => {
 
-  router.get('/account/organisational-permissions', (req, res) => {
+  router.get('/organisation-settings/organisational-permissions', (req, res) => {
     let userOrgs = req.session.data.user.organisations
     let orgRelationships = req.session.data.relationships
     let relationships = getUserRelationships({
@@ -44,21 +44,21 @@ module.exports = router => {
       orgRelationships
     })
 
-    res.render('account/organisational-permissions/index', {
+    res.render('organisation-settings/organisational-permissions/index', {
       relationships
     })
   })
 
-  router.get('/account/organisational-permissions/:relationshipId/edit', (req, res) => {
+  router.get('/organisation-settings/organisational-permissions/:relationshipId/edit', (req, res) => {
     let relationship = req.session.data.relationships.find(relationship => relationship.id == req.params.relationshipId)
 
-    res.render('account/organisational-permissions/edit', {
+    res.render('organisation-settings/organisational-permissions/edit', {
       relationship
     })
   })
 
-  router.post('/account/organisational-permissions/:relationshipId/edit', (req, res) => {
+  router.post('/organisation-settings/organisational-permissions/:relationshipId/edit', (req, res) => {
     req.flash('success', 'Organisational permissions changed')
-    res.redirect(`/account/organisational-permissions`)
+    res.redirect(`/organisation-settings/organisational-permissions`)
   })
 }

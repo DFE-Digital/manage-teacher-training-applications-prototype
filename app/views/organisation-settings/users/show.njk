@@ -13,7 +13,7 @@
       href: "/organisation-settings"
     }, {
       text: "Users",
-      href: "/account/users"
+      href: "/organisation-settings/users"
     }, {
       text: title
     }]
@@ -51,7 +51,7 @@
           </dd>
           {% if canManageUsers %}
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
+              <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/name/edit">
                 Change<span class="govuk-visually-hidden"> </span>
               </a>
             </dd>
@@ -67,7 +67,7 @@
           </dd>
           {% if canManageUsers %}
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
+              <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/name/edit">
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
@@ -83,7 +83,7 @@
           </dd>
           {% if canManageUsers %}
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/email-address/edit">
+              <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/email-address/edit">
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
@@ -106,7 +106,7 @@
             </dd>
             {% if canManageUsers %}
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/{{user.id}}/organisations/edit">
+                <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/organisations/edit">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -143,7 +143,7 @@
             </dd>
             {% if canManageUsers %}
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/{{user.id}}/permissions/{{org.org.id}}/edit">
+                <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/permissions/{{org.org.id}}/edit">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -227,7 +227,7 @@
               </dd>
               {% if canManageUsers %}
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="/account/users/{{user.id}}/permissions/{{org.org.id}}/edit">
+                  <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/permissions/{{org.org.id}}/edit">
                     Change<span class="govuk-visually-hidden"></span>
                   </a>
                 </dd>
@@ -240,7 +240,7 @@
         {{ govukButton({
           text: "Delete user",
           classes: "govuk-button--warning",
-          href: "/account/users/"+ user.id + "/delete"
+          href: "/organisation-settings/users/"+ user.id + "/delete"
         }) }}
       {% endif %}
     </div>

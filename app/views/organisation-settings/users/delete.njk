@@ -4,11 +4,11 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Are you sure you want to delete this user’s account?" %}
+{% set title = "Are you sure you want to delete this user’s organisation-settings?" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/account/users/" + user.id
+    href: "/organisation-settings/users/" + user.id
   }) }}
 {% endblock %}
 
@@ -22,11 +22,11 @@
 
       <form novalidate method="post">
         {{ govukButton({
-          text: "Yes I’m sure - delete this account",
+          text: "Yes I’m sure - delete this organisation-settings",
           classes: "govuk-button--warning"
         }) }}
 
-        <p><a href="/account/users/{{user.id}}">Cancel</a></p>
+        <p><a href="/organisation-settings/users/{{user.id}}">Cancel</a></p>
       </form>
     </div>
   </div>

@@ -4,11 +4,11 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Change organisations this user will have access to - " + name %}
+{% set title = "Change permissions: " + data.user.organisations[0].name + ' - ' + name %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/" + user.id
+    href: "/organisation-settings/users/" + user.id
   }) }}
 {% endblock %}
 
@@ -18,11 +18,14 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
-        Select organisations this user will have access to
+        Permissions for {{data.user.organisations[0].name}}
       {% endset %}
 
       <form novalidate method="post">
-        {{ govukCheckboxes({
+
+        {{ govukRadios({
+          idPrefix: "newuser-access",
+          name: "newuser[access][orgId]",
           fieldset: {
             legend: {
               html: h1,
@@ -30,12 +33,20 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-
-          items: items
+          items: [
+            {
+              value: "View applications",
+              text: "View applications (excluding sensitive information)"
+            },
+            {
+              value: "Additional permissions",
+              text: "Additional permissions, such as making decisions or viewing sensitive information"
+            }
+          ]
         } ) }}
 
         {{govukButton({
-          text: "Continue"
+          text: "Save"
         })}}
       </form>
     </div>

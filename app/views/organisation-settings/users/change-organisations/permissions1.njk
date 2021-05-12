@@ -8,7 +8,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/1/change-organisations"
+    href: "/organisation-settings/users/1/change-organisations"
   }) }}
 {% endblock %}
 
@@ -79,7 +79,7 @@
       {% endset %}
 
 
-      <form novalidate action="/account/users/1/change-organisations/permissions2">
+      <form novalidate action="/organisation-settings/users/1/change-organisations/permissions2">
 
         {{ govukCheckboxes({
             name: "permissions",

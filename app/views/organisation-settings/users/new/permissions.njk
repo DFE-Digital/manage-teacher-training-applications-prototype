@@ -1,14 +1,12 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set firstName = user.firstName %}
-{% set lastName = user.lastName %}
-{% set name = firstName + " " + lastName %}
-{% set title = "Change permissions: " + data.user.organisations[0].name + ' - ' + name %}
+
+{% set title = 'Select organisations this user will have access to - Invite user' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/" + user.id
+    href: "/organisation-settings/users/new/organisations"
   }) }}
 {% endblock %}
 
@@ -16,16 +14,15 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
-        Permissions for {{data.user.organisations[0].name}}
+        <span class="govuk-caption-l">Invite user</span>
+        User permissions for {{org.org.name}}
       {% endset %}
 
       <form novalidate method="post">
 
         {{ govukRadios({
-          idPrefix: "newuser-access",
-          name: "newuser[access][orgId]",
           fieldset: {
             legend: {
               html: h1,
@@ -40,15 +37,16 @@
             },
             {
               value: "Additional permissions",
-              text: "Additional permissions, such as making decisions or viewing sensitive information"
+              text: "Additional user permissions, such as making decisions or viewing sensitive information"
             }
           ]
-        } ) }}
+        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }}
 
         {{govukButton({
-          text: "Save"
+          text: "Continue"
         })}}
       </form>
+      <p class="govuk-body"><a href="/organisation-settings/users">Cancel</a></p>
     </div>
   </div>
 

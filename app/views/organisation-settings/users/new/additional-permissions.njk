@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/new/permissions/"+org.org.id
+    href: "/organisation-settings/users/new/permissions/"+org.org.id
   }) }}
 {% endblock %}
 
@@ -124,7 +124,7 @@
           text: "Continue"
         })}}
       </form>
-      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+      <p class="govuk-body"><a href="/organisation-settings/users">Cancel</a></p>
     </div>
   </div>
 

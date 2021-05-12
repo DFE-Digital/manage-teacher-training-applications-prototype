@@ -5,7 +5,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/account/users/new"
+    href: "/organisation-settings/users/new"
   }) }}
 {% endblock %}
 
@@ -34,7 +34,7 @@
             {{data.newuser['first-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/account/users/new">
+            <a class="govuk-link" href="/organisation-settings/users/new">
               Change<span class="govuk-visually-hidden"> </span>
             </a>
           </dd>
@@ -48,7 +48,7 @@
             {{data.newuser['last-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/account/users/new">
+            <a class="govuk-link" href="/organisation-settings/users/new">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -62,7 +62,7 @@
             {{data.newuser['email-address']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/account/users/{{user.id}}/email-address/edit">
+            <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/email-address/edit">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -86,7 +86,7 @@
                 {% endfor %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/new/organisations">
+                <a class="govuk-link" href="/organisation-settings/users/new/organisations">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -119,7 +119,7 @@
               {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.newuser.access[org.org.id] == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/new/permissions/{{org.org.id}}">
+              <a class="govuk-link" href="/organisation-settings/users/new/permissions/{{org.org.id}}">
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
@@ -175,7 +175,7 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/new/additional-permissions/{{org.org.id}}">
+                <a class="govuk-link" href="/organisation-settings/users/new/additional-permissions/{{org.org.id}}">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -189,7 +189,7 @@
           text: "Invite user"
         })}}
       </form>
-      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+      <p class="govuk-body"><a href="/organisation-settings/users">Cancel</a></p>
     </div>
   </div>
 
