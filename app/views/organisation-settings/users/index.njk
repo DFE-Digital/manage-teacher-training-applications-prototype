@@ -4,14 +4,29 @@
 {% set title = "Users" %}
 
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Organisation settings",
-      href: "/organisation-settings"
-    }, {
-      text: "Users"
-    }]
-  }) }}
+  {% if data.user.organisations.length > 1 %}
+    {{ govukBreadcrumbs({
+      items: [{
+        text: "Organisation settings",
+        href: "/organisation-settings"
+      }, {
+        text: org.name,
+        href: "/organisation-settings/" + org.id
+      },{
+        text: "Users"
+      }]
+    }) }}
+  {% else %}
+    {{ govukBreadcrumbs({
+      items: [{
+        text: "Organisation settings",
+        href: "/organisation-settings"
+      }, {
+        text: "Users"
+      }]
+    }) }}
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -26,12 +41,17 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if data.user.organisations.length > 1 %}
+        <span class="govuk-caption-l">
+          {{org.name}}
+        </span>
+      {% endif %}
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if canManageUsers %}
         {{govukButton({
           text: 'Invite user',
-          href: '/organisation-settings/users/new'
+          href: '/organisation-settings/' + org.id + '/users/new'
         })}}
       {% else %}
         <p>You cannot invite users to the service because you do not have permission to manage users.</p>
@@ -40,14 +60,8 @@
       {% for user in data.users %}
         <div class="app-application-card">
           <div>
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
-            <p class="govuk-!-margin-bottom-1">{{ user.emailAddress }}</p>
-            <p class="govuk-!-font-size-16 govuk-caption-m govuk-!-margin-bottom-0">
-
-              {% for org in user.organisations %}
-                {{org.org.name}}{% if not loop.last %}, {% endif %}
-              {% endfor %}
-            </p>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{org.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
+            <p class="govuk-!-margin-bottom-0">{{ user.emailAddress }}</p>
           </div>
         </div>
       {% endfor %}

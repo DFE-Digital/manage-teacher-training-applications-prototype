@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/organisation-settings/users/new/organisations"
+    href: "/organisation-settings/"+orgId+"/users/new"
   }) }}
 {% endblock %}
 
@@ -17,7 +17,7 @@
 
       {% set h1 %}
         <span class="govuk-caption-l">Invite user</span>
-        User permissions for {{org.org.name}}
+        User permissions
       {% endset %}
 
       <form novalidate method="post">
@@ -40,7 +40,7 @@
               text: "Additional user permissions, such as making decisions or viewing sensitive information"
             }
           ]
-        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }}
+        } | decorateAttributes(data, 'data.newuser.access')) }}
 
         {{govukButton({
           text: "Continue"

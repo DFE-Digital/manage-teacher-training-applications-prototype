@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/organisation-settings/users/new/permissions/"+org.org.id
+    href: "/organisation-settings/"+org.id+"/users/new/permissions"
   }) }}
 {% endblock %}
 
@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set runOrRatified %}
-        {% if org.org.isAccreditedBody %}
+        {% if org.isAccreditedBody %}
           run
         {% else %}
           ratified
@@ -26,8 +26,8 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "set up interviews",
-          applicableOrgs: org.permissions.applicableOrgs.setupInterviews,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.setupInterviews
+          applicableOrgs: permissions.applicableOrgs.setupInterviews,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.setupInterviews
         })}}
       {% endset %}
 
@@ -35,8 +35,8 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "make decisions",
-          applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.makeDecisions
+          applicableOrgs: permissions.applicableOrgs.makeDecisions,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
         })}}
       {% endset %}
 
@@ -44,8 +44,8 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "view criminal convictions and professional misconduct",
-          applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
+          applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
         })}}
       {% endset %}
 
@@ -53,14 +53,14 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "view equality and diversity information",
-          applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
+          applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
         })}}
       {% endset %}
 
       {% set h1 %}
         <span class="govuk-caption-l">Invite user</span>
-        Additional user permissions for {{org.org.name}}
+        Additional user permissions
       {% endset %}
 
       <form novalidate method="post">
@@ -92,7 +92,7 @@
                 value: "setupInterviews",
                 html: "Set up interviews",
                 hint: {
-                  html: makeDecisionsHint
+                  html: setupInterviewsHint
                 }
               },
               {
@@ -117,7 +117,7 @@
                 }
               }
             ]
-          } | decorateAttributes(data, 'data.newuser.permissions.'+org.org.id)) }}
+          } | decorateAttributes(data, 'data.newuser.permissions')) }}
 
 
         {{govukButton({

@@ -5,12 +5,11 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/organisation-settings/users/"
+    href: "/organisation-settings/"+orgId+"/users/"
   }) }}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
@@ -62,13 +61,6 @@
           },
           value: data.newuser['email-address']
         }) }}
-
-
-
-        {# {{ govukWarningText({
-          text: "Anyone you invite to your organisation will be able to view all applications to courses you look after. They’ll be able to make decisions about applications, set up interviews and view sensitive information if you give them permission.",
-          iconFallbackText: "Fallback text"
-        }) }} #}
 
         {{govukButton({
           text: "Continue"

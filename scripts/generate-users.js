@@ -17,27 +17,15 @@ const generateFakeUsers = (count) => {
     firstName: 'Claudine',
     lastName: 'Adams',
     emailAddress: 'claudine.adams@newzoescitt.co.uk',
-    organisations: [{
-      org: organisations[0],
-      permissions: {
-        manageOrganisation: true,
-        manageUsers: true,
-        setupInterviews: true,
-        makeDecisions: true,
-        viewSafeguardingInformation: true,
-        viewDiversityInformation: true
-      }
-    }, {
-      org: organisations[1],
-      permissions: {
-        manageOrganisation: true,
-        manageUsers: true,
-        setupInterviews: true,
-        makeDecisions: true,
-        viewSafeguardingInformation: true,
-        viewDiversityInformation: true
-      }
-    }]
+    organisation: organisations[0],
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
   })
 
   users.push(user1)
@@ -46,9 +34,15 @@ const generateFakeUsers = (count) => {
     firstName: 'Duncan',
     lastName: 'Patricks',
     emailAddress: 'duncan.patricks@newzoescitt.co.uk',
-    organisations: [{
-      org: organisations[2]
-    }]
+    organisation: organisations[0],
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
   })
 
   users.push(user2)
