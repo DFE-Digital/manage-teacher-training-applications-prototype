@@ -4,29 +4,14 @@
 {% set title = "Users" %}
 
 {% block pageNavigation %}
-  {% if data.user.organisations.length > 1 %}
-    {{ govukBreadcrumbs({
-      items: [{
-        text: "Organisation settings",
-        href: "/organisation-settings"
-      }, {
-        text: org.name,
-        href: "/organisation-settings/" + org.id
-      },{
-        text: "Users"
-      }]
-    }) }}
-  {% else %}
-    {{ govukBreadcrumbs({
-      items: [{
-        text: "Organisation settings",
-        href: "/organisation-settings"
-      }, {
-        text: "Users"
-      }]
-    }) }}
-  {% endif %}
-
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Organisation settings",
+      href: "/organisation-settings"
+    }, {
+      text: "Users"
+    }]
+  }) }}
 {% endblock %}
 
 {% block content %}

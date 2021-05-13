@@ -3,9 +3,11 @@
 {% set primaryNavId = 'users' %}
 {% set title = 'Personal details - Invite user' %}
 
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/organisation-settings/"+orgId+"/users/"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
@@ -66,7 +68,7 @@
           text: "Continue"
         })}}
       </form>
-      <p class="govuk-body"><a href="/organisation-settings/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{backLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 

@@ -3,9 +3,12 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Check permissions and invite user" %}
 
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/additional-permissions{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/organisation-settings/"+orgId+"/users/new/additional-permissions"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
@@ -18,10 +21,6 @@
         <span class="govuk-caption-l">Invite user</span>
         {{title}}
       </h1>
-
-      <h2 class="govuk-heading-m">
-        Personal details
-      </h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -157,7 +156,7 @@
           text: "Invite user"
         })}}
       </form>
-      <p class="govuk-body"><a href="/organisation-settings/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 

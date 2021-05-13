@@ -7,20 +7,7 @@
 {% set title = firstName + " " + lastName %}
 
 {% block pageNavigation %}
-  {% if data.user.organisations.length > 1 %}
-    {{ govukBreadcrumbs({
-      items: [{
-        text: "Organisation settings",
-        href: "/organisation-settings"
-      }, {
-        text: org.name,
-        href: "/organisation-settings/" + org.id
-      },{
-        text: "Users"
-      }]
-    }) }}
-  {% else %}
-    {{ govukBreadcrumbs({
+  {{ govukBreadcrumbs({
     items: [{
       text: "Organisation settings",
       href: "/organisation-settings"
@@ -31,8 +18,6 @@
       text: title
     }]
   }) }}
-  {% endif %}
-
 {% endblock %}
 
 {% block content %}
@@ -52,10 +37,6 @@
       {% if not canManageUsers %}
         <p>You cannot change these details because you do not have permission to manage users.</p>
       {% endif %}
-
-      <h2 class="govuk-heading-m">
-        Personal details
-      </h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">

@@ -61,8 +61,9 @@ module.exports = router => {
   })
 
   router.get('/organisation-settings/:orgId/users/new', (req, res) => {
+    let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
     res.render('organisation-settings/users/new/index', {
-      orgId: req.params.orgId
+      org
     })
   })
 
@@ -71,8 +72,9 @@ module.exports = router => {
   })
 
   router.get('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
+    let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
     res.render('organisation-settings/users/new/permissions', {
-      orgId: req.params.orgId
+      org
     })
   })
 
@@ -99,8 +101,9 @@ module.exports = router => {
   })
 
   router.get('/organisation-settings/:orgId/users/new/check', (req, res) => {
+    let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
     res.render('organisation-settings/users/new/check', {
-      orgId: req.params.orgId
+      org
     })
   })
 

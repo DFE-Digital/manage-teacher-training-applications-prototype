@@ -4,9 +4,12 @@
 
 {% set title = 'Select organisations this user will have access to - Invite user' %}
 
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/organisation-settings/"+orgId+"/users/new"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
@@ -46,7 +49,7 @@
           text: "Continue"
         })}}
       </form>
-      <p class="govuk-body"><a href="/organisation-settings/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 
