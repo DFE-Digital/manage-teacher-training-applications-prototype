@@ -4,28 +4,14 @@
 {% set title = "Organisational permissions" %}
 
 {% block pageNavigation %}
-  {% if data.user.organisations.length > 1 %}
-    {{ govukBreadcrumbs({
-      items: [{
-        text: "Organisation settings",
-        href: "/organisation-settings"
-      }, {
-        text: org.name,
-        href: "/organisation-settings/"+org.id+"organisational-permissions"
-      }, {
-        text: title
-      }]
-    }) }}
-  {% else %}
-    {{ govukBreadcrumbs({
-      items: [{
-        text: "Organisation settings",
-        href: "/organisation-settings"
-      }, {
-        text: title
-      }]
-    }) }}
-  {% endif %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Organisation settings",
+      href: "/organisation-settings"
+    }, {
+      text: title
+    }]
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -46,130 +32,125 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set canManageOrgPermissions = (["managerOrgPermissions", ""] | random) == "managerOrgPermissions" %}
-      {% for item in relationships %}
-        {% set canManageOrgPermissions = not canManageOrgPermissions %}
 
-        {% if not canManageOrgPermissions %}
-          <p>You cannot change these permissions because you do not have permission to manage organisations.</p>
-        {% endif %}
+      {% if not canManageOrgPermissions %}
+        <p>You cannot change these permissions because you do not have permission to manage organisations.</p>
+      {% endif %}
 
-        {% for relationship in item.relationships %}
+      {% for relationship in relationships %}
 
-          {% set setupInterviewsHtml %}
-            {% if relationship.orgPermissions.setupInterviews or relationship.partnerPermissions.setupInterviews %}
-              <ul class="govuk-list">
-                {% if relationship.orgPermissions.setupInterviews %}
-                  <li>{{ relationship.org.name }}</li>
-                {% endif %}
-                {% if relationship.partnerPermissions.setupInterviews %}
-                  <li>{{ relationship.partner.name }}</li>
-                {% endif %}
-              </ul>
-            {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
-            {% endif %}
-          {% endset %}
+        {% set setupInterviewsHtml %}
+          {% if relationship.orgPermissions.setupInterviews or relationship.partnerPermissions.setupInterviews %}
+            <ul class="govuk-list">
+              {% if relationship.orgPermissions.setupInterviews %}
+                <li>{{ relationship.org.name }}</li>
+              {% endif %}
+              {% if relationship.partnerPermissions.setupInterviews %}
+                <li>{{ relationship.partner.name }}</li>
+              {% endif %}
+            </ul>
+          {% else %}
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+          {% endif %}
+        {% endset %}
 
-          {% set makeDecisionsHtml %}
-            {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
-              <ul class="govuk-list">
-                {% if relationship.orgPermissions.makeDecisions %}
-                  <li>{{ relationship.org.name }}</li>
-                {% endif %}
-                {% if relationship.partnerPermissions.makeDecisions %}
-                  <li>{{ relationship.partner.name }}</li>
-                {% endif %}
-              </ul>
-            {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
-            {% endif %}
-          {% endset %}
+        {% set makeDecisionsHtml %}
+          {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
+            <ul class="govuk-list">
+              {% if relationship.orgPermissions.makeDecisions %}
+                <li>{{ relationship.org.name }}</li>
+              {% endif %}
+              {% if relationship.partnerPermissions.makeDecisions %}
+                <li>{{ relationship.partner.name }}</li>
+              {% endif %}
+            </ul>
+          {% else %}
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+          {% endif %}
+        {% endset %}
 
-          {% set viewSafeguardingHtml %}
-           {% if relationship.orgPermissions.viewSafeguardingInformation or relationship.partnerPermissions.viewSafeguardingInformation %}
-              <ul class="govuk-list">
-                {% if relationship.orgPermissions.viewSafeguardingInformation %}
-                  <li>{{ relationship.org.name }}</li>
-                {% endif %}
-                {% if relationship.partnerPermissions.viewSafeguardingInformation %}
-                  <li>{{ relationship.partner.name }}</li>
-                {% endif %}
-              </ul>
-            {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
-            {% endif %}
-          {% endset %}
+        {% set viewSafeguardingHtml %}
+          {% if relationship.orgPermissions.viewSafeguardingInformation or relationship.partnerPermissions.viewSafeguardingInformation %}
+            <ul class="govuk-list">
+              {% if relationship.orgPermissions.viewSafeguardingInformation %}
+                <li>{{ relationship.org.name }}</li>
+              {% endif %}
+              {% if relationship.partnerPermissions.viewSafeguardingInformation %}
+                <li>{{ relationship.partner.name }}</li>
+              {% endif %}
+            </ul>
+          {% else %}
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+          {% endif %}
+        {% endset %}
 
-          {% set viewDiversityHtml %}
-            {% if relationship.orgPermissions.viewDiversityInformation or relationship.partnerPermissions.viewDiversityInformation %}
-              <ul class="govuk-list">
-                {% if relationship.orgPermissions.viewDiversityInformation %}
-                  <li>{{ relationship.org.name }}</li>
-                {% endif %}
-                {% if relationship.partnerPermissions.viewDiversityInformation %}
-                  <li>{{ relationship.partner.name }}</li>
-                {% endif %}
-              </ul>
-            {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
-            {% endif %}
-          {% endset %}
+        {% set viewDiversityHtml %}
+          {% if relationship.orgPermissions.viewDiversityInformation or relationship.partnerPermissions.viewDiversityInformation %}
+            <ul class="govuk-list">
+              {% if relationship.orgPermissions.viewDiversityInformation %}
+                <li>{{ relationship.org.name }}</li>
+              {% endif %}
+              {% if relationship.partnerPermissions.viewDiversityInformation %}
+                <li>{{ relationship.partner.name }}</li>
+              {% endif %}
+            </ul>
+          {% else %}
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+          {% endif %}
+        {% endset %}
 
-          {% set cardHtml %}
+        {% set cardHtml %}
 
-            {{ govukSummaryList({
-              rows: [
-                {
-                  key: {
-                    text: "Set up interviews"
-                  },
-                  value: {
-                    html: setupInterviewsHtml
-                  }
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Set up interviews"
                 },
-                {
-                  key: {
-                    text: "Make decisions"
-                  },
-                  value: {
-                    html: makeDecisionsHtml
-                  }
-                },
-                {
-                  key: {
-                    text: "View criminal convictions and professional misconduct"
-                  },
-                  value: {
-                    html: viewSafeguardingHtml
-                  }
-                },
-                {
-                  key: {
-                    text: "View equality and diversity information"
-                  },
-                  value: {
-                    html: viewDiversityHtml
-                  }
+                value: {
+                  html: setupInterviewsHtml
                 }
-              ]
-            }) }}
-          {% endset %}
-          {{appSummaryCard({
-            titleText: item.org.name + ' and ' + relationship.partner.name,
-            classes: "govuk-!-margin-bottom-6",
-            html: cardHtml,
-            actions: {
-              items: [{
-                href: "/organisation-settings/organisational-permissions/"+relationship.id+"/edit",
-                text: "Change permissions"
-              }]
-            } if canManageOrgPermissions
-          })}}
-
-        {% endfor %}
+              },
+              {
+                key: {
+                  text: "Make decisions"
+                },
+                value: {
+                  html: makeDecisionsHtml
+                }
+              },
+              {
+                key: {
+                  text: "View criminal convictions and professional misconduct"
+                },
+                value: {
+                  html: viewSafeguardingHtml
+                }
+              },
+              {
+                key: {
+                  text: "View equality and diversity information"
+                },
+                value: {
+                  html: viewDiversityHtml
+                }
+              }
+            ]
+          }) }}
+        {% endset %}
+        {{appSummaryCard({
+          titleText: org.name + ' and ' + relationship.partner.name,
+          classes: "govuk-!-margin-bottom-6",
+          html: cardHtml,
+          actions: {
+            items: [{
+              href: "/organisation-settings/organisational-permissions/"+relationship.id+"/edit",
+              text: "Change permissions"
+            }]
+          } if canManageOrgPermissions
+        })}}
 
       {% endfor %}
-
     </div>
   </div>
 
