@@ -33,11 +33,6 @@
 
 
           {% for partner in item.partners %}
-            {% set setupInterviewsHtml %}
-              {% for item in data.onboard['a'+partner.id].setupInterviews %}
-                <p>{{item}}</p>
-              {% endfor %}
-            {% endset %}
 
             {% set makeDecisionsHtml %}
               {% for item in data.onboard['a'+partner.id].makeDecisions %}
@@ -61,14 +56,6 @@
 
               {{ govukSummaryList({
                 rows: [
-                  {
-                    key: {
-                      text: "Set up interviews"
-                    },
-                    value: {
-                      html: setupInterviewsHtml
-                    }
-                  },
                   {
                     key: {
                       text: "Make decisions"
