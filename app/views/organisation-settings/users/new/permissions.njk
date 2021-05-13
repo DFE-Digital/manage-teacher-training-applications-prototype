@@ -19,7 +19,12 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-l">Invite user</span>
+        <span class="govuk-caption-l">
+          Invite user
+          {% if data.user.organisations.length > 1 %}
+            to {{org.name}}
+          {% endif %}
+        </span>
         User permissions
       {% endset %}
 

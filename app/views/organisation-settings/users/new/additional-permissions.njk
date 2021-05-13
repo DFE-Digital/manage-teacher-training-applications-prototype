@@ -62,7 +62,12 @@
       {% endset %}
 
       {% set h1 %}
-        <span class="govuk-caption-l">Invite user</span>
+        <span class="govuk-caption-l">
+          Invite user
+          {% if data.user.organisations.length > 1 %}
+            to {{org.name}}
+          {% endif %}
+        </span>
         Additional user permissions
       {% endset %}
 
