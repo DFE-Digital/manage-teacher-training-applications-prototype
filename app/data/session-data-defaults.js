@@ -135,7 +135,7 @@ let relationships = [{
   }
 }];
 
-let userOrgs = [accreditedBodies[0], trainingProviders[1]];
+let userOrgs = [trainingProviders[1]];
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],

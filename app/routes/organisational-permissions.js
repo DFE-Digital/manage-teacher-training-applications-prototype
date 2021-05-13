@@ -1,5 +1,3 @@
-const ApplicationHelper = require('../data/helpers/application')
-
 function getRelationships(params) {
   let relationships = []
 
@@ -44,7 +42,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/organisation-settings/organisational-permissions/:relationshipId/edit', (req, res) => {
+  router.get('/organisation-settings/:orgId/organisational-permissions/:relationshipId/edit', (req, res) => {
     let relationship = req.session.data.relationships.find(relationship => relationship.id == req.params.relationshipId)
 
     res.render('organisation-settings/organisational-permissions/edit', {
@@ -52,8 +50,8 @@ module.exports = router => {
     })
   })
 
-  router.post('/organisation-settings/organisational-permissions/:relationshipId/edit', (req, res) => {
+  router.post('/organisation-settings/:orgId/organisational-permissions/:relationshipId/edit', (req, res) => {
     req.flash('success', 'Organisational permissions changed')
-    res.redirect(`/organisation-settings/organisational-permissions`)
+    res.redirect(`/organisation-settings/${req.params.orgId}/organisational-permissions`)
   })
 }
