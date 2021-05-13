@@ -184,9 +184,6 @@ module.exports = router => {
     }
 
     mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
-    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
-    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
-    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     res.render('organisation-settings/users/change-permissions', {
       user,
       org
@@ -218,23 +215,19 @@ module.exports = router => {
   })
 
   router.get('/account/permissions', (req, res) => {
-    var user = req.session.data.users[0]
+    let user = req.session.data.user
 
-    // mixin org permissions into user object
-    user.organisations.forEach(org => {
+    let orgs = user.organisations.map(org => {
+      // add permissions in for each org
 
-      if(!org.permissions) return;
+      return {
+        org: org,
+        permissions: getOrganisationPermission(org, req.session.data.relationships)
+      }
 
-      org.permissions.applicableOrgs = {};
-      org.permissions.nonApplicableOrgs = {};
-
-      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
-      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'makeDecisions');
-      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewSafeguardingInformation');
-      mixinRelatedOrgPermissions(org, req.session.data.relationships, 'viewDiversityInformation');
     })
 
-    res.render('account/permissions', { user })
+    res.render('account/permissions', { user, orgs })
   })
 
 }

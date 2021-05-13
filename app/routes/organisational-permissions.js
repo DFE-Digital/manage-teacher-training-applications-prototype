@@ -36,7 +36,7 @@ function getUserRelationships(params) {
 
 module.exports = router => {
 
-  router.get('/organisation-settings/organisational-permissions', (req, res) => {
+  router.get('/organisation-settings/:orgId/organisational-permissions', (req, res) => {
     let userOrgs = req.session.data.user.organisations
     let orgRelationships = req.session.data.relationships
     let relationships = getUserRelationships({
@@ -45,6 +45,7 @@ module.exports = router => {
     })
 
     res.render('organisation-settings/organisational-permissions/index', {
+      org: req.session.data.user.organisations.find(org => org.id == req.params.orgId),
       relationships
     })
   })

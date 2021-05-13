@@ -4,14 +4,28 @@
 {% set title = "Organisational permissions" %}
 
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-    items: [{
-      text: "Organisation settings",
-      href: "/organisation-settings"
-    }, {
-      text: title
-    }]
-  }) }}
+  {% if data.user.organisations.length > 1 %}
+    {{ govukBreadcrumbs({
+      items: [{
+        text: "Organisation settings",
+        href: "/organisation-settings"
+      }, {
+        text: org.name,
+        href: "/organisation-settings/"+org.id+"organisational-permissions"
+      }, {
+        text: title
+      }]
+    }) }}
+  {% else %}
+    {{ govukBreadcrumbs({
+      items: [{
+        text: "Organisation settings",
+        href: "/organisation-settings"
+      }, {
+        text: title
+      }]
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -24,16 +38,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if data.user.organisations.length > 1 %}
+        <span class="govuk-caption-l">
+          {{org.name}}
+        </span>
+      {% endif %}
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set canManageOrgPermissions = (["managerOrgPermissions", ""] | random) == "managerOrgPermissions" %}
       {% for item in relationships %}
         {% set canManageOrgPermissions = not canManageOrgPermissions %}
-        {% if relationships.length > 1 %}
-          <h2 class="govuk-heading-m">
-            {{ item.org.name }}
-          </h2>
-        {% endif %}
 
         {% if not canManageOrgPermissions %}
           <p>You cannot change these permissions because you do not have permission to manage organisations.</p>
