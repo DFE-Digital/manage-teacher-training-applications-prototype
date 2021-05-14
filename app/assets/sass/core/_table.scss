@@ -6,6 +6,10 @@
   white-space: nowrap;
 }
 
+.app-table__cell--indent {
+  padding-left: govuk-spacing(3);
+}
+
 .app-table-sortable-status {
   position: absolute;
   overflow: hidden;

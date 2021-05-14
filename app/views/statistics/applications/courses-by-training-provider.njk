@@ -1,0 +1,75 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Applications" %}
+{% set pageName = "Courses by training provider" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/statistics",
+    text: "Statistics"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% include "_includes/statistics/header.njk" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/statistics/applications/courses-by-training-provider/configure">Configure report</a>
+    </p>
+
+    {% if hasOptions %}
+      {% include "_includes/statistics/selected-config-options.njk" %}
+    <!-- <p class="govuk-body">
+      <a class="govuk-link govuk-link--no-visited-state" href="/statistics/applications/subjects-by-status/remove-all-filters">Clear filters</a>
+    </p> -->
+    {% endif %}
+
+    <table class="govuk-table">
+      <!-- <caption class="govuk-table__caption govuk-table__caption--m govuk-!-margin-top-5">{{ pageName }}</caption> -->
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Courses</th>
+          {% for provider in trainingProviders %}
+            {% if (data.provider and provider in data.provider) or (not data.provider.length) %}
+              <th scope="col" class="govuk-table__header">{{ provider }}</th>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for subject in subjects %}
+          {% if (data.subjectLevel and subject.level in data.subjectLevel) or (not data.subjectLevel.length) %}
+            <tr class="govuk-table__row">
+              {% if data.cycle.length %}
+                <th scope="row" class="govuk-table__header">{{ subject.name }} (AB{{ subject.code }})</th>
+              {% else %}
+                <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
+              {% endif %}
+              {% for provider in trainingProviders %}
+                {% if (data.provider and provider in data.provider) or (not data.provider.length) %}
+                  <td class="govuk-table__cell">{{ subjectCounts[subject.name][provider] }}</td>
+                {% endif %}
+              {% endfor %}
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Download <span class="govuk-visually-hidden">{{ pageName | lower }}</span> data</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

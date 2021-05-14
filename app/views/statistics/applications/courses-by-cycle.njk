@@ -1,0 +1,80 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Applications" %}
+{% set pageName = "Courses by cycle" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/statistics",
+    text: "Statistics"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% include "_includes/statistics/header.njk" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/statistics/applications/courses-by-cycle/configure">Configure report</a>
+    </p>
+
+    {% if hasOptions %}
+      {% include "_includes/statistics/selected-config-options.njk" %}
+    <!-- <p class="govuk-body">
+      <a class="govuk-link govuk-link--no-visited-state" href="/statistics/applications/subjects-by-status/remove-all-filters">Clear filters</a>
+    </p> -->
+    {% endif %}
+
+    <table class="govuk-table">
+      <!-- <caption class="govuk-table__caption govuk-table__caption--m govuk-!-margin-top-5">{{ pageName }}</caption> -->
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Courses</th>
+          <th scope="col" class="govuk-table__header">Current cycle 2020 to 2021</th>
+          <th scope="col" class="govuk-table__header">Last cycle 2019 to 2020</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for subject in subjects %}
+          {% if (data.subjectLevel and subject.level in data.subjectLevel) or (not data.subjectLevel.length) %}
+            <tr class="govuk-table__row">
+              {% if data.status %}
+                <th scope="row" class="govuk-table__header">{{ subject.name }} (AB{{ subject.code }})</th>
+              {% else %}
+                <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
+              {% endif %}
+              <td class="govuk-table__cell">{{ subjectCountsCurrentCycle[subject.name]['total'] }}</td>
+              <td class="govuk-table__cell">{{ subjectCountsPreviousCycle[subject.name]['total'] }}</td>
+            </tr>
+            {% if data.status %}
+              {% for status in statuses %}
+                {% if status in data.status %}
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell app-table__cell--indent">{{ status }}</td>
+                  <td class="govuk-table__cell">{{ subjectCountsCurrentCycle[subject.name][status] }}</td>
+                  <td class="govuk-table__cell">{{ subjectCountsPreviousCycle[subject.name][status] }}</td>
+                </tr>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Download <span class="govuk-visually-hidden">{{ pageName | lower }}</span> data</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

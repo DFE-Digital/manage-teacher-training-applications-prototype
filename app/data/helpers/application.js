@@ -225,11 +225,43 @@ exports.getApplicationCountsBySubjectAndStatus = (applications) => {
   return counts
 }
 
+exports.getApplicationCountsBySubjectAndTrainingProvider = (applications) => {
+  const filePath = dataDirectoryPath + '/organisations.json'
+  const rawData = fs.readFileSync(filePath)
+  let organisations = JSON.parse(rawData)
+  const subjects = SystemHelper.subjects
+  const counts = {}
+  organisations = organisations.filter(organisation => organisation.isAccreditedBody === false)
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+    organisations.forEach((organisation, i) => {
+      counts[subject.name][organisation.name] = applications.filter(application => application.subject === subject.name && application.provider === organisation.name).length
+    })
+    counts[subject.name]['total'] = applications.filter(application => application.subject === subject.name).length
+  })
+  return counts
+}
+
+exports.getApplicationCountsBySubjectAndLocation = (applications) => {
+  const subjects = SystemHelper.subjects
+  const locations = SystemHelper.trainingLocations
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+    locations.forEach((location, i) => {
+      counts[subject.name][location] = applications.filter(application => application.subject === subject.name && application.location === location).length
+    })
+    counts[subject.name]['total'] = applications.filter(application => application.subject === subject.name).length
+  })
+  return counts
+}
+
 exports.getApplicationCountsByOrganisation = (applications) => {
   const filePath = dataDirectoryPath + '/organisations.json'
   const rawData = fs.readFileSync(filePath)
-  const organisations = JSON.parse(rawData)
+  let organisations = JSON.parse(rawData)
   const counts = {}
+  organisations = organisations.filter(organisation => organisation.isAccreditedBody === false)
   organisations.forEach((organisation, i) => {
     counts[organisation.name] = applications.filter(application => application.provider === organisation.name).length
   })

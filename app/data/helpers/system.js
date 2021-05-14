@@ -15,6 +15,11 @@ exports.now = () => {
   return DateTime.now()
 }
 
+exports.cycles = [
+  '2019 to 2020',
+  '2020 to 2021'
+]
+
 exports.statuses = [
   'Received',
   'Awaiting decision',

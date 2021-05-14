@@ -23,7 +23,7 @@
         checked: checked(data.cycle, "2019 to 2020")
       }
     ]
-  }) if 'cycle' in showFilters }}
+  }) if 'cycle' in showOptions }}
 
   {{ govukCheckboxes({
     idPrefix: "status",
@@ -92,7 +92,7 @@
         checked: checked(data.status, "Offer withdrawn") == "checked"
       }
     ]
-  })  if 'status' in showFilters }}
+  })  if 'status' in showOptions }}
 
   {{ govukCheckboxes({
     idPrefix: "provider",
@@ -116,7 +116,7 @@
         checked: checked(data.provider, data.user.organisations[1].name) == "checked"
       }
     ]
-  }) if 'trainingProvider' in showFilters }}
+  }) if 'trainingProvider' in showOptions }}
 
   {#% if checked(data.provider, data.user.organisations[0].name) %}
 
@@ -177,7 +177,7 @@
         checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == "checked"
       }
     ]
-  }) if 'accreditedBody' in showFilters }}
+  }) if 'accreditedBody' in showOptions }}
 
   {#% if subjectItems.length >= subjectItemsDisplayLimit %}
 
@@ -231,7 +231,7 @@
         checked: checked(data.studyMode, "Part time") == "checked"
       }
     ]
-  }) if 'studyMode' in showFilters }}
+  }) if 'studyMode' in showOptions }}
 
   {{ govukCheckboxes({
     idPrefix: "fundingType",
@@ -260,7 +260,7 @@
         checked: checked(data.fundingType, "Apprenticeship") == "checked"
       }
     ]
-  })  if 'fundingType' in showFilters }}
+  })  if 'fundingType' in showOptions }}
 
   {{ govukCheckboxes({
     idPrefix: "subjectLevel",
@@ -284,7 +284,7 @@
         checked: checked(data.subjectLevel, "Secondary") == "checked"
       }
     ]
-  }) if 'subjectLevel' in showFilters }}
+  }) if 'subjectLevel' in showOptions }}
 {% endset %}
 
 <div class="app-filter">
@@ -297,7 +297,7 @@
     </div>
   </div>
   <div class="app-filter__content">
-    {% if selectedFilters %}
+    {% if selectedOptions %}
       <div class="app-filter__selected">
         <div class="app-filter__selected-heading">
           <div class="app-filter__heading-title">
@@ -306,7 +306,7 @@
           </div>
         </div>
 
-        {% for category in selectedFilters.categories %}
+        {% for category in selectedOptions.categories %}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
           <ul class="app-filter-tags">
             {% for item in category.items %}
