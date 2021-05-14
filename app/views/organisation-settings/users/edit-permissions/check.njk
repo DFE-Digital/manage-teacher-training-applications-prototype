@@ -1,0 +1,127 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Check and save user permissions" %}
+
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: backLinkUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">
+          {{user.firstName}} {{user.lastName}}
+          {% if data.user.organisations.length > 1 %}
+            for {{org.name}}
+          {% endif %}
+        </span>
+        {{title}}
+      </h1>
+
+      <dl class="govuk-summary-list">
+
+        {% set runOrRatified %}
+          {% if org.isAccreditedBody %}
+            run
+          {% else %}
+            ratified
+          {% endif %}
+        {% endset %}
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              User permissions
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{"View applications (excluding sensitive information)" if data.editpermissions.access == "View applications"}}
+
+              {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.editpermissions.access == "Additional permissions"}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit">
+                Change<span class="govuk-visually-hidden"></span>
+              </a>
+            </dd>
+          </div>
+          {% if data.editpermissions.access == "Additional permissions" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Additional user permissions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data.editpermissions | log}}
+                {% if checked(data.editpermissions.permissions, 'manageUsers') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      Manage organisational permissions
+                    </p>
+                  </div>
+                {% endif %}
+
+                {% if checked(data.editpermissions.permissions, 'manageUsers') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      Manage users
+                    </p>
+                  </div>
+                {% endif %}
+                {% if checked(data.editpermissions.permissions, 'setupInterviews') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      Set up interviews
+                    </p>
+                  </div>
+                {% endif %}
+                {% if checked(data.editpermissions.permissions, 'makeDecisions') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      Make decisions
+                    </p>
+                  </div>
+                {% endif %}
+                {% if checked(data.editpermissions.permissions, 'viewSafeguardingInformation') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      View criminal convictions and professional misconduct
+                    </p>
+                  </div>
+                {% endif %}
+
+                {% if checked(data.editpermissions.permissions, 'viewDiversityInformation') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      View equality and diversity information
+                    </p>
+                  </div>
+                {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+
+      <form novalidate method="post">
+        {{govukButton({
+          text: "Save user permissions"
+        })}}
+      </form>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}

@@ -120,83 +120,54 @@ module.exports = router => {
     res.render('organisation-settings/users/show', { user, org, permissions: getOrganisationPermission(org, req.session.data.relationships) })
   })
 
-  // Edit name
-
-  router.get('/organisation-settings/users/:userId/name/edit', (req, res) => {
-    var user = req.session.data.users.find(user => user.id == req.params.userId)
-    res.render('organisation-settings/users/change-name', {
-      user
-    })
-  })
-
-  router.post('/organisation-settings/users/:userId/name/edit', (req, res) => {
-    req.flash('success', 'Name updated')
-    res.redirect(`/organisation-settings/users/${req.params.userId}`)
-  })
-
-  // Edit email
-
-  router.get('/organisation-settings/users/:userId/email-address/edit', (req, res) => {
-    var user = req.session.data.users.find(user => user.id == req.params.userId)
-    res.render('organisation-settings/users/change-email-address', {
-      user
-    })
-  })
-
-  router.post('/organisation-settings/users/:userId/email-address/edit', (req, res) => {
-    req.flash('success', 'Email address updated')
-    res.redirect(`/organisation-settings/users/${req.params.userId}`)
-  })
-
-  // Edit organisations
-
-  router.get('/organisation-settings/users/:userId/organisations/edit', (req, res) => {
-    var user = req.session.data.users.find(user => user.id == req.params.userId)
-
-    var items = req.session.data.user.organisations.map(org => {
-      return {
-        value: org.id,
-        text: org.name
-      }
-    })
-
-    res.render('organisation-settings/users/change-organisations', {
-      user,
-      items
-    })
-  })
-
-  router.post('/organisation-settings/users/:userId/organisations/edit', (req, res) => {
-    req.flash('success', 'Access updated')
-    res.redirect(`/organisation-settings/users/${req.params.userId}`)
-  })
-
   // Edit permissions
 
-  router.get('/organisation-settings/users/:userId/permissions/:orgId/edit', (req, res) => {
+  router.get('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
     var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
-
-    // hurrendous but don't worry peeps
-    org = {
-      org: org,
-      permissions: {
-        applicableOrgs: {},
-        nonApplicableOrgs: {}
-      }
-    }
-
-    mixinRelatedOrgPermissions(org, req.session.data.relationships, 'setupInterviews');
-    res.render('organisation-settings/users/change-permissions', {
+    res.render('organisation-settings/users/edit-permissions/permissions', {
       user,
       org
     })
   })
 
 
-  router.post('/organisation-settings/users/:userId/permissions/:orgId/edit', (req, res) => {
+  router.post('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
+    if(req.session.data.editpermissions.access == "Additional permissions") {
+      res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/additional-permissions`)
+    } else {
+      res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/check`)
+    }
+  })
+
+  router.get('/organisation-settings/:orgId/users/:userId/permissions/edit/additional-permissions', (req, res) => {
+    let user = req.session.data.users.find(user => user.id == req.params.userId)
+    let org = req.session.data.organisations.find(org => req.params.orgId == org.id)
+    let permissions = getOrganisationPermission(org, req.session.data.relationships)
+
+    res.render('organisation-settings/users/edit-permissions/additional-permissions', {
+      user,
+      org,
+      permissions
+    })
+  })
+
+  router.post('/organisation-settings/:orgId/users/:userId/permissions/edit/additional-permissions', (req, res) => {
+    res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/check`)
+  })
+
+  router.get('/organisation-settings/:orgId/users/:userId/permissions/edit/check', (req, res) => {
+    let user = req.session.data.users.find(user => user.id == req.params.userId)
+    let org = req.session.data.organisations.find(org => req.params.orgId == org.id)
+    res.render('organisation-settings/users/edit-permissions/check', {
+      user,
+      org
+    })
+  })
+
+  router.post('/organisation-settings/:orgId/users/:userId/permissions/edit/check', (req, res) => {
     req.flash('success', 'Permissions updated')
-    res.redirect(`/organisation-settings/users/${req.params.userId}`)
+    res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}`)
   })
 
   // Delete user
