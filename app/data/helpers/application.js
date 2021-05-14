@@ -256,6 +256,50 @@ exports.getApplicationCountsBySubjectAndLocation = (applications) => {
   return counts
 }
 
+exports.getApplicationCountsBySubjectAndReasonsForRejection = (applications) => {
+  const subjects = SystemHelper.subjects
+  const reasonsForRejection = SystemHelper.reasonsForRejection
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+    reasonsForRejection.forEach((reason, i) => {
+      counts[subject.name][reason.name] = applications.filter(application => {
+        if (application.rejectedReasons) {
+          return application.status === 'Rejected' && application.subject === subject.name && application.rejectedReasons[reason.code] === 'Yes'
+        }
+      }).length
+    })
+    counts[subject.name]['total'] = applications.filter(application => application.status === 'Rejected' && application.subject === subject.name).length
+  })
+  return counts
+}
+
+exports.getSubjectPerformance = (applications) => {
+  const subjects = SystemHelper.subjects
+  const counts = {}
+
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+
+    // Offer counts
+    counts[subject.name]['Offers sent'] = applications.filter(application => application.offer !== null && application.subject === subject.name).length
+    counts[subject.name]['Offers accepted'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Ready to enroll').length
+    counts[subject.name]['Offers accepted'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Ready to enroll').length
+    counts[subject.name]['Offers declined'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Declined').length
+    counts[subject.name]['Offers deferred'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Deferred').length
+    counts[subject.name]['Offers awaiting conditions'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Awaiting conditions').length
+
+    // Application counts
+    counts[subject.name]['Applications withdrawn'] = applications.filter(application => application.subject === subject.name && application.status === 'Withdrawn').length
+
+    // counts[subject.name]['Applications rejected before interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Withdrawn').length
+    //
+    // counts[subject.name]['Applications rejected after interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Withdrawn').length
+  })
+  console.log(counts);
+  return counts
+}
+
 exports.getApplicationCountsByOrganisation = (applications) => {
   const filePath = dataDirectoryPath + '/organisations.json'
   const rawData = fs.readFileSync(filePath)

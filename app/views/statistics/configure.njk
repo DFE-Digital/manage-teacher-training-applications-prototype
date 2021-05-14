@@ -138,14 +138,14 @@
         ]
       }) if 'trainingProvider' in configOptions }}
 
-      {#% if checked(data.provider, data.user.organisations[0].name) %}
+      {#% if checked(data.provider, data.user.organisations[0].name) %#}
 
         {{ govukCheckboxes({
           name: "location",
           classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
-              text: "Training locations for " + data.user.organisations[0].name,
+              text: "Training locations",
               classes: "govuk-fieldset__legend--s"
             }
           },
@@ -171,9 +171,9 @@
               checked: checked(data.location, "Lingfield - training location") == "checked"
             }
           ]
-        }) }}
+        }) if 'location' in configOptions }}
 
-      {% endif %#}
+      {#% endif %#}
 
       {{ govukCheckboxes({
         idPrefix: "accreditedBody",

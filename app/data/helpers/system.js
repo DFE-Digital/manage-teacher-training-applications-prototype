@@ -51,7 +51,7 @@ exports.fundingType = [
 ]
 
 exports.trainingLocations = [
-  'Main Site',
+  'Main site',
   'Epsom Grinstead - training location',
   'Camberley - training location',
   'Lingfield - training location'

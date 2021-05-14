@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "statistics" %}
 {% set sectionName = "Applications" %}
-{% set pageName = "Courses by cycle" %}
+{% set pageName = "Courses by year" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -28,9 +28,6 @@
 
     {% if hasOptions %}
       {% include "_includes/statistics/selected-config-options.njk" %}
-    <!-- <p class="govuk-body">
-      <a class="govuk-link govuk-link--no-visited-state" href="/statistics/applications/subjects-by-status/remove-all-filters">Clear filters</a>
-    </p> -->
     {% endif %}
 
     <table class="govuk-table">
@@ -38,8 +35,8 @@
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Courses</th>
-          <th scope="col" class="govuk-table__header">Current cycle 2020 to 2021</th>
-          <th scope="col" class="govuk-table__header">Last cycle 2019 to 2020</th>
+          <th scope="col" class="govuk-table__header">Applications 2020 to 2021</th>
+          <th scope="col" class="govuk-table__header">Applications 2019 to 2020</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">

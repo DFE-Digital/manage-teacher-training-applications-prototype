@@ -2,7 +2,7 @@ const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
 
 const getConfigOptions = (req) => {
-  let { cycle, status, provider, accreditedBody, studyMode, fundingType, subjectLevel } = req.query
+  let { cycle, status, provider, accreditedBody, studyMode, fundingType, subjectLevel, location } = req.query
 
   let options = {}
   options.cycles = SystemHelper.getCheckboxValues(cycle, req.session.data.cycle)
@@ -12,8 +12,9 @@ const getConfigOptions = (req) => {
   options.subjectLevels = SystemHelper.getCheckboxValues(subjectLevel, req.session.data.subjectLevel)
   options.providers = SystemHelper.getCheckboxValues(provider, req.session.data.provider)
   options.accreditedBodies = SystemHelper.getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
+  options.locations = SystemHelper.getCheckboxValues(accreditedBody, req.session.data.location)
 
-  const hasOptions = !!((options.cycles && options.cycles.length > 0) || (options.statuses && options.statuses.length > 0) || (options.providers && options.providers.length > 0) || (options.accreditedBodies && options.accreditedBodies.length > 0) || (options.studyModes && options.studyModes.length > 0) || (options.fundingTypes && options.fundingTypes.length > 0) || (options.subjectLevels && options.subjectLevels.length > 0))
+  const hasOptions = !!((options.cycles && options.cycles.length > 0) || (options.statuses && options.statuses.length > 0) || (options.providers && options.providers.length > 0) || (options.accreditedBodies && options.accreditedBodies.length > 0) || (options.studyModes && options.studyModes.length > 0) || (options.fundingTypes && options.fundingTypes.length > 0) || (options.subjectLevels && options.subjectLevels.length > 0) || (options.locations && options.locations.length > 0))
 
   let selectedOptions = null
 
@@ -59,6 +60,18 @@ const getConfigOptions = (req) => {
           return {
             text: provider,
             href: `${slug}/remove-provider-filter/${provider}`
+          }
+        })
+      })
+    }
+
+    if (options.locations && options.locations.length) {
+      selectedOptions.categories.push({
+        heading: { text: 'Location' },
+        items: options.locations.map((location) => {
+          return {
+            text: location,
+            href: `${slug}/remove-location-filter/${location}`
           }
         })
       })
@@ -125,6 +138,7 @@ const getApplications = (applications, options) => {
     let studyModeValid = true
     let fundingTypeValid = true
     let subjectLevelValid = true
+    let locationValid = true
 
     if (options.cycles && options.cycles.length) {
       cycleValid = options.cycles.includes(app.cycle)
@@ -154,7 +168,11 @@ const getApplications = (applications, options) => {
       subjectLevelValid = options.subjectLevels.includes(app.subjectLevel)
     }
 
-    return cycleValid && statusValid && providerValid && accreditedBodyValid && studyModeValid && fundingTypeValid && subjectLevelValid
+    if (options.locations && options.locations.length) {
+      locationValid = options.locations.includes(app.location)
+    }
+
+    return cycleValid && statusValid && providerValid && accreditedBodyValid && studyModeValid && fundingTypeValid && subjectLevelValid && locationValid
   })
 }
 
@@ -163,22 +181,11 @@ const getReportConfigOptions = (report) => {
     return null
   }
 
-  // [
-  //   'cycle',
-  //   'status',
-  //   'trainingProvider',
-  //   'accreditedBody',
-  //   'studyMode',
-  //   'fundingType',
-  //   'subjectLevel'
-  // ]
-
   let options = []
 
   switch (report) {
     case 'courses-by-cycle':
       options = [
-        'cycle',
         'status',
         'trainingProvider',
         'accreditedBody',
@@ -200,6 +207,20 @@ const getReportConfigOptions = (report) => {
         'status',
         'trainingProvider',
         'accreditedBody',
+        'subjectLevel'
+      ]
+      break
+    case 'courses-by-location':
+      options = [
+        'cycle',
+        'status',
+        'location',
+        'subjectLevel'
+      ]
+      break
+    case 'courses-by-reasons-for-rejection':
+      options = [
+        'subject',
         'subjectLevel'
       ]
       break
@@ -387,6 +408,53 @@ module.exports = router => {
       subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndLocation(applications),
       section: 'applications',
       report: 'courses-by-location',
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions
+    })
+  })
+
+  router.get('/statistics/applications/courses-by-reasons-for-rejection', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/courses-by-reasons-for-rejection', {
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      reasons: SystemHelper.reasonsForRejection,
+      subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndReasonsForRejection(applications),
+      section: 'applications',
+      report: 'courses-by-reasons-for-rejection',
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions
+    })
+  })
+
+
+
+  router.get('/statistics/applications/course-performance', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    console.log(ApplicationHelper.getSubjectPerformance(applications));
+
+    res.render('statistics/applications/course-performance', {
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      subjectCounts: ApplicationHelper.getSubjectPerformance(applications),
+      section: 'applications',
+      report: 'course-performance',
       hasOptions: options.hasOptions,
       selectedOptions: options.selectedOptions
     })
@@ -623,6 +691,11 @@ module.exports = router => {
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
+  router.get('/statistics/:section/:report/remove-location-filter/:location', (req, res) => {
+    req.session.data.location = req.session.data.location.filter(item => item !== req.params.location)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
   router.get('/statistics/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.status = null
@@ -631,6 +704,7 @@ module.exports = router => {
     req.session.data.studyMode = null
     req.session.data.fundingType = null
     req.session.data.subjectLevel = null
+    req.session.data.location = null
     res.redirect(getRedirect(req.headers.referer))
   })
 
@@ -642,6 +716,7 @@ module.exports = router => {
     req.session.data.studyMode = null
     req.session.data.fundingType = null
     req.session.data.subjectLevel = null
+    req.session.data.location = null
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
