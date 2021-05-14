@@ -4,7 +4,9 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title = "Are you sure you want to remove this user’s access to this organisation?" %}
+{% set title %}
+Are you sure you want to remove this user’s access to {{org.name}}?
+{% endset %}
 
 {% block pageNavigation %}
   {{ govukBackLink({

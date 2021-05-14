@@ -196,11 +196,7 @@
           {% endif %}
           </dl>
       {% if canManageUsers %}
-        {{ govukButton({
-          text: "Delete user",
-          classes: "govuk-button--warning",
-          href: "/organisation-settings/"+org.id+"/users/"+ user.id + "/delete"
-        }) }}
+        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Remove access</a></p>
       {% endif %}
     </div>
   </div>
