@@ -201,14 +201,15 @@ module.exports = router => {
 
   // Delete user
 
-  router.get('/organisation-settings/users/:userId/delete', (req, res) => {
+  router.get('/organisation-settings/:orgId/users/:userId/delete', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
-    res.render('organisation-settings/users/delete', { user  })
+    let org = req.session.data.organisations.find(org => org.id == req.params.orgId)
+    res.render('organisation-settings/users/delete', { user, org })
   })
 
-  router.post('/organisation-settings/users/:userId/delete', (req, res) => {
-    req.flash('success', 'Account deleted')
-    res.redirect('/organisation-settings/users')
+  router.post('/organisation-settings/:orgId/users/:userId/delete', (req, res) => {
+    req.flash('success', 'Access removed')
+    res.redirect(`/organisation-settings/${req.params.orgId}/users`)
   })
 
   router.get('/account/personal-details', (req, res) => {
