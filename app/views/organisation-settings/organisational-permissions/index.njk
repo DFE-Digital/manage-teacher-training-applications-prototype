@@ -31,29 +31,11 @@
       {% endif %}
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% set canManageOrgPermissions = (["managerOrgPermissions", ""] | random) == "managerOrgPermissions" %}
-
       {% if not canManageOrgPermissions %}
         <p>You cannot change these permissions because you do not have permission to manage organisations.</p>
       {% endif %}
 
       {% for relationship in relationships %}
-
-        {% set setupInterviewsHtml %}
-          {% if relationship.orgPermissions.setupInterviews or relationship.partnerPermissions.setupInterviews %}
-            <ul class="govuk-list">
-              {% if relationship.orgPermissions.setupInterviews %}
-                <li>{{ relationship.org.name }}</li>
-              {% endif %}
-              {% if relationship.partnerPermissions.setupInterviews %}
-                <li>{{ relationship.partner.name }}</li>
-              {% endif %}
-            </ul>
-          {% else %}
-            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
-          {% endif %}
-        {% endset %}
-
         {% set makeDecisionsHtml %}
           {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
             <ul class="govuk-list">
@@ -103,14 +85,6 @@
 
           {{ govukSummaryList({
             rows: [
-              {
-                key: {
-                  text: "Set up interviews"
-                },
-                value: {
-                  html: setupInterviewsHtml
-                }
-              },
               {
                 key: {
                   text: "Make decisions"

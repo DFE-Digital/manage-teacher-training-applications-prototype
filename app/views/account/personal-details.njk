@@ -38,13 +38,6 @@
           <dd class="govuk-summary-list__value">
             {{user.lastName}}
           </dd>
-          {% if canManageUsers %}
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/{{user.id}}/name/edit">
-                Change<span class="govuk-visually-hidden"></span>
-              </a>
-            </dd>
-          {% endif %}
         </div>
 
         <div class="govuk-summary-list__row">

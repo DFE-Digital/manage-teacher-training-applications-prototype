@@ -15,9 +15,6 @@
 {% endblock %}
 
 {% block content %}
-
-  {% set canManageUsers = [true, false] | random %}
-
   {{ govukNotificationBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",

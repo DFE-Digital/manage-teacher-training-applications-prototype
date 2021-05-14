@@ -22,7 +22,7 @@
         <li>
           <a href="/">view applications</a>
         </li>
-        {% if (["managerUsers", ""] | random) == "managerUsers" %}
+        {% if canManageUsers %}
           <li>
             <a href="/account/users">invite or manage users</a>
           </li>

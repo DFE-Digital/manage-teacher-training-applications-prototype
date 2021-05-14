@@ -25,15 +25,6 @@
         {% endif %}
       {% endset %}
 
-      {% set setupInterviewsHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          permissionDescription: "set up interviews",
-          applicableOrgs: permissions.applicableOrgs.setupInterviews,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.setupInterviews
-        })}}
-      {% endset %}
-
       {% set makeDecisionsHint %}
         {{appPermissions({
           runOrRatified: runOrRatified,
@@ -98,10 +89,7 @@
               },
               {
                 value: "setupInterviews",
-                html: "Set up interviews",
-                hint: {
-                  html: setupInterviewsHint
-                }
+                html: "Set up interviews"
               },
               {
                 value: "makeDecisions",
