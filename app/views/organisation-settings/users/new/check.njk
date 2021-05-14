@@ -88,7 +88,7 @@
             <dd class="govuk-summary-list__value">
               {{"View applications (excluding sensitive information)" if data.newuser.access == "View applications"}}
 
-              {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.newuser.access == "Additional permissions"}}
+              {{"Additional user permissions" if data.newuser.access == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/organisation-settings/{{org.org.id}}/users/new/permissions">
