@@ -55,6 +55,9 @@
       {% set h1 %}
         <span class="govuk-caption-l">
           {{user.firstName}} {{user.lastName}}
+          {% if data.user.organisations.length > 1 %}
+            - {{org.name}}
+          {% endif %}
         </span>
         Additional user permissions
       {% endset %}

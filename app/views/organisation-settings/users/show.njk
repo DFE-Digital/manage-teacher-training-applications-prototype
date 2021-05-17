@@ -41,6 +41,10 @@
         <p>You cannot change these details because you do not have permission to manage users.</p>
       {% endif %}
 
+      {% if canManageUsers %}
+        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Delete user</a></p>
+      {% endif %}
+
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -98,7 +102,7 @@
           </div>
           {%- set runOrRatified -%}
             {%- if org.isAccreditedBody -%}
-              ran
+              run
             {%- else -%}
               ratified
             {%- endif -%}
@@ -188,9 +192,6 @@
             </div>
           {% endif %}
         </dl>
-      {% if canManageUsers %}
-        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Delete user</a></p>
-      {% endif %}
     </div>
   </div>
 
