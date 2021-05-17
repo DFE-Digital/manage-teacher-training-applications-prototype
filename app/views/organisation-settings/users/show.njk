@@ -30,6 +30,11 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if data.user.organisations.length > 1 %}
+        <span class="govuk-caption-l">
+          {{org.name}}
+        </span>
+      {% endif %}
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if not canManageUsers %}
@@ -184,7 +189,7 @@
           {% endif %}
         </dl>
       {% if canManageUsers %}
-        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Remove access</a></p>
+        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Delete user</a></p>
       {% endif %}
     </div>
   </div>

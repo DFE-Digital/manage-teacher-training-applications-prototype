@@ -21,9 +21,6 @@
       {% set h1 %}
         <span class="govuk-caption-l">
           {{user.firstName}} {{user.lastName}}
-          {% if data.user.organisations.length > 1 %}
-            to {{org.name}}
-          {% endif %}
         </span>
         User permissions
       {% endset %}

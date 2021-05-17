@@ -15,51 +15,61 @@ const generateFakeOrganisations = (count) => {
   let ab1 = generateFakeOrganisation({
     name: "Springbank SCITT",
     isAccreditedBody: true,
+    domain: "springbank.org.uk"
   })
 
   let ab2 = generateFakeOrganisation({
     name: "Kingston University",
-    isAccreditedBody: true
+    isAccreditedBody: true,
+    domain: "kingstonuniversity.org.uk"
   })
 
   let ab3 = generateFakeOrganisation({
     name: "Bedford University",
-    isAccreditedBody: true
+    isAccreditedBody: true,
+    domain: "bedforduniversity.org.uk"
   })
 
   let ab4 = generateFakeOrganisation({
     name: "Gorse SCITT",
-    isAccreditedBody: true
+    isAccreditedBody: true,
+    domain: "gorsescitt.org"
   })
 
   let ab5 = generateFakeOrganisation({
-    name: "Some University",
-    isAccreditedBody: true
+    name: "Total University",
+    isAccreditedBody: true,
+    domain: "total.university"
   })
 
   let ab6 = generateFakeOrganisation({
-    name: "Boom University",
-    isAccreditedBody: true
+    name: "Construct SCITT",
+    isAccreditedBody: true,
+    domain: "constructscitt.org.uk"
   })
 
   let ab7 = generateFakeOrganisation({
-    name: "Yay University",
-    isAccreditedBody: true
+    name: "Leeds University",
+    isAccreditedBody: true,
+    domain: "leedsuniversity.org.uk"
   })
 
   let tp1 = generateFakeOrganisation({
     name: "Wren Academy",
-    isAccreditedBody: false
+    isAccreditedBody: false,
+    domain: "wrenacademy.co.uk"
   })
 
   let tp2 = generateFakeOrganisation({
     name: "The Royal Borough Teaching School Alliance",
-    isAccreditedBody: false
+    isAccreditedBody: false,
+    domain: "royalboroughteachingschool.org"
   })
 
   let tp3 = generateFakeOrganisation({
-    name: "Boom School Alliance",
-    isAccreditedBody: false
+    name: "George School Alliance",
+    isAccreditedBody: false,
+    domain: "georgealliance.org.uk"
   })
 
   organisations.push(tp1)

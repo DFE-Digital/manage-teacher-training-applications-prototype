@@ -54,6 +54,7 @@ module.exports = router => {
   router.get('/organisation-settings/:orgId/users', (req, res) => {
     let org = req.session.data.organisations.find(org => org.id == req.params.orgId)
     let users = req.session.data.users.filter(user => user.organisation.id == req.params.orgId)
+
     res.render('organisation-settings/users/index', {
       org,
       users
@@ -179,7 +180,7 @@ module.exports = router => {
   })
 
   router.post('/organisation-settings/:orgId/users/:userId/delete', (req, res) => {
-    req.flash('success', 'Access removed')
+    req.flash('success', 'User deleted')
     res.redirect(`/organisation-settings/${req.params.orgId}/users`)
   })
 

@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const faker = require('faker')
 faker.locale = 'en_GB'
-
+const generatorHelpers = require('../app/data/helpers/generators')
 const generateUser = require('../app/data/generators/user')
 
 const generateFakeUser = (params = {}) => {
@@ -13,39 +13,26 @@ const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
 
-  let user1 = generateFakeUser({
-    firstName: 'Claudine',
-    lastName: 'Adams',
-    emailAddress: 'claudine.adams@newzoescitt.co.uk',
-    organisation: organisations[0],
-    permissions: {
-      manageOrganisation: true,
-      manageUsers: true,
-      setupInterviews: true,
-      makeDecisions: true,
-      viewSafeguardingInformation: true,
-      viewDiversityInformation: true
-    }
-  })
-
-  users.push(user1)
-
-  let user2 = generateFakeUser({
-    firstName: 'Duncan',
-    lastName: 'Patricks',
-    emailAddress: 'duncan.patricks@newzoescitt.co.uk',
-    organisation: organisations[0],
-    permissions: {
-      manageOrganisation: true,
-      manageUsers: true,
-      setupInterviews: true,
-      makeDecisions: true,
-      viewSafeguardingInformation: true,
-      viewDiversityInformation: true
-    }
-  })
-
-  users.push(user2)
+  for(var i = 0; i < 100; i++) {
+    let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
+    let lastName = generatorHelpers.lastName()
+    let organisation = faker.helpers.randomize(organisations)
+    users.push({
+      id: faker.random.uuid(),
+      firstName,
+      lastName,
+      emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,
+      organisation,
+      permissions: {
+        manageOrganisation: true,
+        manageUsers: true,
+        setupInterviews: true,
+        makeDecisions: true,
+        viewSafeguardingInformation: true,
+        viewDiversityInformation: true
+      }
+    })
+  }
 
   return users
 }
