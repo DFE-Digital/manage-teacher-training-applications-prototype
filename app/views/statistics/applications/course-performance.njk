@@ -35,7 +35,7 @@
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Courses</th>
-          <th scope="col" class="govuk-table__header">Offers sent</th>
+          <th scope="col" class="govuk-table__header">Applications sent offers</th>
           <th scope="col" class="govuk-table__header">Offers accepted</th>
           <th scope="col" class="govuk-table__header">Offers declined</th>
           <th scope="col" class="govuk-table__header">Offers deferred</th>
@@ -50,17 +50,17 @@
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
               <td class="govuk-table__cell">
-                {#{ ((subjectCounts[subject.name]['Offers sent'] / totalApplications) * 100) | numeral('0') + "%" }#}
-                {{ subjectCounts[subject.name]['Offers sent'] }}
+                {{ ((subjectCounts[subject.name]['Offers sent'] / totalApplications) * 100) | numeral('0') + "%" }}
+                {#{ subjectCounts[subject.name]['Offers sent'] }#}
               </td>
               <td class="govuk-table__cell">
                 {{ ((subjectCounts[subject.name]['Offers accepted'] / subjectCounts[subject.name]['Offers sent']) * 100) | numeral('0') + "%" }}
               </td>
               <td class="govuk-table__cell">{{ ((subjectCounts[subject.name]['Offers declined'] / subjectCounts[subject.name]['Offers sent']) * 100) | numeral('0') + "%" }}</td>
               <td class="govuk-table__cell">{{ ((subjectCounts[subject.name]['Offers deferred'] / subjectCounts[subject.name]['Offers sent']) * 100) | numeral('0') + "%" }}</td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">{{ ((subjectCounts[subject.name]['Applications withdrawn'] / totalApplications) * 100) | numeral('0') + "%" }}</td>
+              <td class="govuk-table__cell">{{ ((subjectCounts[subject.name]['Applications rejected before interview'] / totalApplications) * 100) | numeral('0') + "%" }}</td>
+              <td class="govuk-table__cell">{{ ((subjectCounts[subject.name]['Applications rejected after interview'] / totalApplications) * 100) | numeral('0') + "%" }}</td>
             </tr>
           {% endif %}
         {% endfor %}

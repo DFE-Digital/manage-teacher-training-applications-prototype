@@ -435,8 +435,6 @@ module.exports = router => {
     })
   })
 
-
-
   router.get('/statistics/applications/course-performance', (req, res) => {
     let applications = req.session.data.applications
     applications = applications.filter(application => application.cycle === '2020 to 2021')
@@ -447,14 +445,78 @@ module.exports = router => {
       applications = getApplications(applications, options.options)
     }
 
-    console.log(ApplicationHelper.getSubjectPerformance(applications));
-
     res.render('statistics/applications/course-performance', {
       totalApplications: applications.length,
       subjects: SystemHelper.subjects,
       subjectCounts: ApplicationHelper.getSubjectPerformance(applications),
       section: 'applications',
       report: 'course-performance',
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions
+    })
+  })
+
+  router.get('/statistics/applications/course-diversity-sex', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/courses-diversity-sex', {
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      sexes: SystemHelper.sex,
+      subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndSex(applications),
+      section: 'applications',
+      report: 'course-diversity-sex',
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions
+    })
+  })
+
+  router.get('/statistics/applications/course-diversity-ethnicity', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/courses-diversity-ethnicity', {
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      ethnicities: SystemHelper.ethnicity,
+      subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndEthnicity(applications),
+      section: 'applications',
+      report: 'course-diversity-ethnicity',
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions
+    })
+  })
+
+  router.get('/statistics/applications/course-diversity-nationality', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/courses-diversity-nationality', {
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      nationalities: SystemHelper.nationality,
+      subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndNationality(applications),
+      section: 'applications',
+      report: 'course-diversity-nationality',
       hasOptions: options.hasOptions,
       selectedOptions: options.selectedOptions
     })

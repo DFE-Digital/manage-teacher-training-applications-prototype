@@ -15,6 +15,28 @@ exports.now = () => {
   return DateTime.now()
 }
 
+exports.sex = [
+  'Female',
+  'Male'
+]
+
+exports.ethnicity = [
+  "Asian or Asian British",
+  "Black, African, Black British or Caribbean",
+  "Mixed or multiple ethnic groups",
+  "White",
+  "Another ethnic group",
+  "Prefer not to say"
+]
+
+exports.nationality = [
+  'British',
+  'British (Dual)',
+  'Irish',
+  'Europe',
+  'Rest of world'
+]
+
 exports.cycles = [
   '2019 to 2020',
   '2020 to 2021'

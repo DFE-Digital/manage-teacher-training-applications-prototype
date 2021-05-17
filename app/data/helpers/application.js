@@ -283,22 +283,113 @@ exports.getSubjectPerformance = (applications) => {
 
     // Offer counts
     counts[subject.name]['Offers sent'] = applications.filter(application => application.offer !== null && application.subject === subject.name).length
+
     counts[subject.name]['Offers accepted'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Ready to enroll').length
+
     counts[subject.name]['Offers accepted'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Ready to enroll').length
+
     counts[subject.name]['Offers declined'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Declined').length
+
     counts[subject.name]['Offers deferred'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Deferred').length
+
     counts[subject.name]['Offers awaiting conditions'] = applications.filter(application => application.offer !== null && application.subject === subject.name && application.status === 'Awaiting conditions').length
 
     // Application counts
     counts[subject.name]['Applications withdrawn'] = applications.filter(application => application.subject === subject.name && application.status === 'Withdrawn').length
 
-    // counts[subject.name]['Applications rejected before interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Withdrawn').length
-    //
-    // counts[subject.name]['Applications rejected after interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Withdrawn').length
+    counts[subject.name]['Applications rejected before interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Rejected' && application.interviews === undefined).length
+
+    counts[subject.name]['Applications rejected after interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Rejected' && application.interviews !== undefined).length
   })
   console.log(counts);
   return counts
 }
+
+exports.getApplicationCountsBySubjectAndSex = (applications) => {
+  const subjects = SystemHelper.subjects
+  const sexes = SystemHelper.sex
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+    sexes.forEach((sex, i) => {
+      counts[subject.name][sex] = applications.filter(application => application.subject === subject.name && application.personalDetails.sex === sex).length
+    })
+  })
+  return counts
+}
+
+exports.getApplicationCountsBySubjectAndEthnicity = (applications) => {
+  const subjects = SystemHelper.subjects
+  const ethnicities = SystemHelper.ethnicity
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+    ethnicities.forEach((ethnicity, i) => {
+      counts[subject.name][ethnicity] = applications.filter(application => application.subject === subject.name && application.personalDetails.ethnicGroup === ethnicity).length
+    })
+  })
+  return counts
+}
+
+exports.getApplicationCountsBySubjectAndNationality = (applications) => {
+  const subjects = SystemHelper.subjects
+  const countries = SystemHelper.countries
+  const counts = {}
+  subjects.forEach((subject, i) => {
+    counts[subject.name] = {}
+
+    counts[subject.name]['British'] = 0
+    counts[subject.name]['British (Dual)'] = 0
+    counts[subject.name]['Irish'] = 0
+    counts[subject.name]['Europe'] = 0
+    counts[subject.name]['Rest of world'] = 0
+
+    countries.forEach((country, i) => {
+
+      if (country.nationality === 'British') {
+        // The applicant is only British
+        counts[subject.name]['British'] = applications.filter(application => {
+          if (application.personalDetails.nationality.length === 1) {
+            return application.subject === subject.name && application.personalDetails.nationality.includes(country.nationality)
+          }
+        }).length
+
+        // The applicant has dual or multiple nationalities with British as one of them
+        counts[subject.name]['British (Dual)'] = applications.filter(application => {
+          if (application.personalDetails.nationality.length > 1) {
+            return application.subject === subject.name &&  application.personalDetails.nationality.includes(country.nationality)
+          }
+        }).length
+      }
+
+      // The applicant is only Irish
+      if (country.nationality === 'Irish') {
+        counts[subject.name]['Irish'] = applications.filter(application => {
+          if (application.personalDetails.nationality.length === 1) {
+            return application.subject === subject.name &&  application.personalDetails.nationality.includes(country.nationality)
+          }
+        }).length
+      }
+
+      // The applicant is from the EU, Switzerland, Norway, Iceland or Liechtenstein (not including Ireland)
+      if (country.region === 'europe') {
+        counts[subject.name]['Europe'] += applications.filter(application => {
+          return application.subject === subject.name &&  application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+        }).length
+      }
+
+      // The applicant is from somewhere else in the world
+      if (country.region === 'row') {
+        counts[subject.name]['Rest of world'] += applications.filter(application => {
+          return application.subject === subject.name &&  application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+        }).length
+      }
+    })
+
+  })
+  return counts
+}
+
 
 exports.getApplicationCountsByOrganisation = (applications) => {
   const filePath = dataDirectoryPath + '/organisations.json'
@@ -348,66 +439,66 @@ exports.getApplicationCountsByCandidateNationality = (applications) => {
 
   countries.forEach((country, i) => {
 
-      if (country.nationality === 'British') {
-        counts['British'] = applications.filter(application => {
-          if (application.personalDetails.nationality.length === 1) {
-            return application.personalDetails.nationality.includes(country.nationality)
-          }
-        }).length
+    if (country.nationality === 'British') {
+      counts['British'] = applications.filter(application => {
+        if (application.personalDetails.nationality.length === 1) {
+          return application.personalDetails.nationality.includes(country.nationality)
+        }
+      }).length
 
-        counts['British (Dual)'] = applications.filter(application => {
-          if (application.personalDetails.nationality.length > 1) {
-            return application.personalDetails.nationality.includes(country.nationality)
-          }
-        }).length
-      }
+      counts['British (Dual)'] = applications.filter(application => {
+        if (application.personalDetails.nationality.length > 1) {
+          return application.personalDetails.nationality.includes(country.nationality)
+        }
+      }).length
+    }
 
-      if (country.nationality === 'Irish') {
-        counts['Irish'] = applications.filter(application => {
-          if (application.personalDetails.nationality.length === 1) {
-            return application.personalDetails.nationality.includes(country.nationality)
-          }
-        }).length
-      }
+    if (country.nationality === 'Irish') {
+      counts['Irish'] = applications.filter(application => {
+        if (application.personalDetails.nationality.length === 1) {
+          return application.personalDetails.nationality.includes(country.nationality)
+        }
+      }).length
+    }
 
-      // EU, Switzerland, Norway, Iceland or Liechtenstein
-      if (country.region === 'europe') {
-        counts['Europe'] += applications.filter(application => {
-          return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
-        }).length
+    // EU, Switzerland, Norway, Iceland or Liechtenstein
+    if (country.region === 'europe') {
+      counts['Europe'] += applications.filter(application => {
+        return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+      }).length
 
-        // counts['Europe'] += applications.filter(application => {
-        //   if (application.personalDetails.nationality.length === 1) {
-        //     return application.personalDetails.nationality.includes(country.nationality)
-        //   }
-        // }).length
-        //
-        // counts['Europe (Dual)'] += applications.filter(application => {
-        //   if (application.personalDetails.nationality.length > 1) {
-        //     return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
-        //   }
-        // }).length
-      }
+      // counts['Europe'] += applications.filter(application => {
+      //   if (application.personalDetails.nationality.length === 1) {
+      //     return application.personalDetails.nationality.includes(country.nationality)
+      //   }
+      // }).length
+      //
+      // counts['Europe (Dual)'] += applications.filter(application => {
+      //   if (application.personalDetails.nationality.length > 1) {
+      //     return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+      //   }
+      // }).length
+    }
 
-      if (country.region === 'row') {
+    if (country.region === 'row') {
 
-        counts['Rest of world'] += applications.filter(application => {
-          return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
-        }).length
+      counts['Rest of world'] += applications.filter(application => {
+        return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+      }).length
 
-        // counts['Rest of world'] += applications.filter(application => {
-        //   if (application.personalDetails.nationality.length === 1) {
-        //     return application.personalDetails.nationality.includes(country.nationality)
-        //   }
-        // }).length
-        //
-        // counts['Rest of world (Dual)'] += applications.filter(application => {
-        //   if (application.personalDetails.nationality.length > 1) {
-        //     return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
-        //   }
-        // }).length
-      }
-    })
+      // counts['Rest of world'] += applications.filter(application => {
+      //   if (application.personalDetails.nationality.length === 1) {
+      //     return application.personalDetails.nationality.includes(country.nationality)
+      //   }
+      // }).length
+      //
+      // counts['Rest of world (Dual)'] += applications.filter(application => {
+      //   if (application.personalDetails.nationality.length > 1) {
+      //     return application.personalDetails.nationality.includes(country.nationality) && !(application.personalDetails.nationality.includes('British') || application.personalDetails.nationality.includes('Irish'))
+      //   }
+      // }).length
+    }
+  })
 
   return counts
 }
