@@ -37,9 +37,9 @@ const generateFakeOrganisations = (count) => {
   })
 
   let ab5 = generateFakeOrganisation({
-    name: "Total University",
+    name: "The University of Gloucestershire",
     isAccreditedBody: true,
-    domain: "total.university"
+    domain: "glos.ac.uk"
   })
 
   let ab6 = generateFakeOrganisation({
@@ -67,14 +67,42 @@ const generateFakeOrganisations = (count) => {
   })
 
   let tp3 = generateFakeOrganisation({
-    name: "George School Alliance",
+    name: "WGSPschoolsdirect",
     isAccreditedBody: false,
-    domain: "georgealliance.org.uk"
+    domain: "wgsp.education"
+  })
+
+  let tp4 = generateFakeOrganisation({
+    name: "Odyssey Learning Alliance",
+    isAccreditedBody: false,
+    domain: "odysseyts.org"
+  })
+
+  let tp5 = generateFakeOrganisation({
+    name: "The Cotswold Teaching School Partnership",
+    isAccreditedBody: false,
+    domain: "cotswoldteachingschoolpartnership.org.uk"
+  })
+
+  let tp6 = generateFakeOrganisation({
+    name: "The Mead Academy Trust",
+    isAccreditedBody: false,
+    domain: "themeadtrust.org"
+  })
+
+  let tp7 = generateFakeOrganisation({
+    name: "Cleeve School",
+    isAccreditedBody: false,
+    domain: "cleeveschool.net"
   })
 
   organisations.push(tp1)
   organisations.push(tp2)
   organisations.push(tp3)
+  organisations.push(tp4)
+  organisations.push(tp5)
+  organisations.push(tp6)
+  organisations.push(tp7)
   organisations.push(ab1)
   organisations.push(ab2)
   organisations.push(ab3)

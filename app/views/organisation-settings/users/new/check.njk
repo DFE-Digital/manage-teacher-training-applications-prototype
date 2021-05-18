@@ -36,7 +36,7 @@
             {{data.newuser['first-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/organisation-settings/users/new">
+            <a class="govuk-link" href="/organisation-settings/{org.id}/users/new">
               Change<span class="govuk-visually-hidden"> </span>
             </a>
           </dd>
@@ -50,7 +50,7 @@
             {{data.newuser['last-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/organisation-settings/users/new">
+            <a class="govuk-link" href="/organisation-settings/{org.id}/users/new">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -64,7 +64,7 @@
             {{data.newuser['email-address']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/email-address/edit">
+            <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -91,7 +91,7 @@
               {{"Additional user permissions" if data.newuser.access == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/organisation-settings/{{org.org.id}}/users/new/permissions">
+              <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/permissions">
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
@@ -148,7 +148,7 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/users/new/additional-permissions/{{org.org.id}}">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/additional-permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
