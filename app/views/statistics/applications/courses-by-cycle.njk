@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "statistics" %}
-{% set sectionName = "Applications" %}
+{% set sectionName = section | capitalize %}
 {% set pageName = "Courses by year" %}
 
 {% block beforeContent %}
@@ -23,7 +23,7 @@
   <div class="govuk-grid-column-full">
 
     <p class="govuk-body">
-      <a class="govuk-link" href="/statistics/applications/courses-by-cycle/configure">Configure report</a>
+      <a class="govuk-link" href="/statistics/{{ section }}/{{ report }}/configure">Configure report</a>
     </p>
 
     {% if hasOptions %}
