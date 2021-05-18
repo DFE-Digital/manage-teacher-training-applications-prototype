@@ -52,7 +52,7 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %} - you can change permissions to allow it{% endif %}</p>
             {% endif %}
           {% endset %}
 
@@ -67,7 +67,7 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %} - you can change permissions to allow it{% endif %}</p>
             {% endif %}
           {% endset %}
 
@@ -82,7 +82,7 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %} - you can change permissions to allow it{% endif %}</p>
             {% endif %}
           {% endset %}
 
@@ -97,7 +97,7 @@
                 {% endif %}
               </ul>
             {% else %}
-              <p class="govuk-!-margin-bottom-0">Neither organisation can do this - you can change permissions to allow it</p>
+              <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %} - you can change permissions to allow it{% endif %}</p>
             {% endif %}
           {% endset %}
 
