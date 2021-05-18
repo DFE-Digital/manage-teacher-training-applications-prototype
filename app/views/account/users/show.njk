@@ -33,7 +33,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if not canManageUser %}
+      {% if not canManageUsers %}
         <p>You cannot change these details because you do not have permission to manage users.</p>
       {% endif %}
 
