@@ -37,7 +37,7 @@
           <th scope="col" class="govuk-table__header">Courses</th>
           {% for nationality in nationalities %}
             {% if (data.nationality and nationality in data.nationality) or (not data.nationality.length) %}
-              <th scope="col" class="govuk-table__header">{{ nationality }}</th>
+              <th scope="col" class="govuk-table__header">{{ nationality | getNationalityLabel }}</th>
             {% endif %}
           {% endfor %}
         </tr>

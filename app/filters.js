@@ -309,5 +309,18 @@ filters.falsify = (input) => {
    return numeral(number).format(format)
   }
 
+  filters.getNationalityLabel = (nationality) => {
+    switch (nationality) {
+      case 'British':
+      case 'British (Dual)':
+      case 'Irish':
+        return nationality
+      case 'Europe':
+        return 'EU, Switzerland, Norway, Iceland or Liechtenstein (not including Ireland)'
+      case 'Rest of world':
+        return 'Somewhere else'
+    }
+  }
+
   return filters
 }
