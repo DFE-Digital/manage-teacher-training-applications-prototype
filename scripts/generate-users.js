@@ -13,6 +13,22 @@ const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
 
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Natasha",
+    lastName: "Cresswell",
+    emailAddress: "ncresswell@glos.ac.uk",
+    organisation: organisations.find(org => org.name == "The University of Gloucestershire"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
   for(var i = 0; i < 100; i++) {
     let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
     let lastName = generatorHelpers.lastName()

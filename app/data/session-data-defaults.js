@@ -71,82 +71,85 @@ applications = applications
 
 let relationships = [{
   id: 1,
-  org1: accreditedBodies[0],
+  org1: accreditedBodies[4],
   org1Permissions: {
-    setupInterviews: false,
-    makeDecisions: false,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: trainingProviders[0],
-  org2Permissions: {
-    setupInterviews: false,
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 2,
-  org1: accreditedBodies[0],
-  org1Permissions: {
-    setupInterviews: true,
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
   org2: trainingProviders[2],
   org2Permissions: {
-    setupInterviews: true,
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 2,
+  org1: accreditedBodies[4],
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: trainingProviders[3],
+  org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
 }, {
   id: 3,
-  org1: accreditedBodies[0],
+  org1: accreditedBodies[4],
   org1Permissions: {
-    setupInterviews: true,
     makeDecisions: true,
-    viewSafeguardingInformation: false,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: trainingProviders[1],
+  org2: trainingProviders[4],
   org2Permissions: {
-    setupInterviews: false,
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: false
+    viewDiversityInformation: true
   }
 }, {
   id: 4,
-  org1: trainingProviders[1],
+  org1: accreditedBodies[4],
   org1Permissions: {
-    setupInterviews: true,
     makeDecisions: true,
-    viewSafeguardingInformation: false,
+    viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: accreditedBodies[1],
+  org2: trainingProviders[5],
   org2Permissions: {
-    setupInterviews: false,
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: false
+    viewDiversityInformation: true
+  }
+}, {
+  id: 4,
+  org1: accreditedBodies[4],
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: trainingProviders[6],
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
   }
 }];
 
-let userOrgs = [accreditedBodies[0], trainingProviders[1]];
+let userOrgs = [accreditedBodies[4]];
+
+let user = users[0]
+user.organisations = userOrgs
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],
   settings: [],
-  user: {
-    givenName: "Claudine",
-    familyName: "Adams",
-    emailAddress: "claudine.adams@newzoescitt.co.uk",
-    organisations: userOrgs,
-    relationships: relationships
-  },
+  user,
   "standard-conditions" : [
     "Fitness to teach check",
     "Disclosure and barring service check"
