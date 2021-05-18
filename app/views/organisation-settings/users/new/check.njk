@@ -3,27 +3,29 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Check permissions and invite user" %}
 
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/additional-permissions{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/account/users/new"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
 {% block content %}
 
-  {{orgs | log}}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">Invite user</span>
+        <span class="govuk-caption-l">
+          Invite user
+          {% if data.user.organisations.length > 1 %}
+            - {{org.name}}
+          {% endif %}
+        </span>
         {{title}}
       </h1>
-
-      <h2 class="govuk-heading-m">
-        Personal details
-      </h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -34,7 +36,7 @@
             {{data.newuser['first-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/account/users/new">
+            <a class="govuk-link" href="/organisation-settings/users/new">
               Change<span class="govuk-visually-hidden"> </span>
             </a>
           </dd>
@@ -48,7 +50,7 @@
             {{data.newuser['last-name']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/account/users/new">
+            <a class="govuk-link" href="/organisation-settings/users/new">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
@@ -62,69 +64,39 @@
             {{data.newuser['email-address']}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/account/users/{{user.id}}/email-address/edit">
+            <a class="govuk-link" href="/organisation-settings/users/{{user.id}}/email-address/edit">
               Change<span class="govuk-visually-hidden"></span>
             </a>
           </dd>
         </div>
-      </dl>
+
+
+        {% set runOrRatified %}
+          {% if org.isAccreditedBody %}
+            run
+          {% else %}
+            ratified
+          {% endif %}
+        {% endset %}
 
 
 
-        {% if data.user.organisations.length > 1 %}
-          <h2 class="govuk-heading-m">
-            Access to organisations
-          </h2>
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Organisations this user will have access to
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% for org in orgs %}
-                  <p>{{org.org.name}}</p>
-                {% endfor %}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/new/organisations">
-                  Change<span class="govuk-visually-hidden"></span>
-                </a>
-              </dd>
-            </div>
-          </dl>
-        {% endif %}
-
-        {% for org in orgs %}
-
-          {% set runOrRatified %}
-            {% if org.org.isAccreditedBody %}
-              run
-            {% else %}
-              ratified
-            {% endif %}
-          {% endset %}
-
-          <h2 class="govuk-heading-m">
-            User permissions for {{org.org.name}}
-          </h2>
-
-          <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               User permissions
             </dt>
             <dd class="govuk-summary-list__value">
-              {{"View applications (excluding sensitive information)" if data.newuser.access[org.org.id] == "View applications"}}
+              {{"View applications (excluding sensitive information)" if data.newuser.access == "View applications"}}
 
-              {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.newuser.access[org.org.id] == "Additional permissions"}}
+              {{"Additional user permissions" if data.newuser.access == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/account/users/new/permissions/{{org.org.id}}">
+              <a class="govuk-link" href="/organisation-settings/{{org.org.id}}/users/new/permissions">
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
           </div>
-          {% if data.newuser.access[org.org.id] == "Additional permissions" %}
+          {% if data.newuser.access == "Additional permissions" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Additional user permissions
@@ -132,64 +104,64 @@
               <dd class="govuk-summary-list__value">
                 {% if org.permissions.manageOrganisations %}
                   <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                    <p class="govuk-!-margin-bottom-0">
                       Manage organisational permissions
                     </p>
                   </div>
                 {% endif %}
-                {% if org.permissions.manageUsers %}
+
+                {% if checked(data.newuser.permissions, 'manageUsers') == 'checked' %}
                   <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                    <p class="govuk-!-margin-bottom-0">
                       Manage users
                     </p>
                   </div>
                 {% endif %}
-                {% if org.permissions.setupInterviews %}
+                {% if checked(data.newuser.permissions, 'setupInterviews') == 'checked' %}
                   <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                    <p class="govuk-!-margin-bottom-0">
                       Set up interviews
                     </p>
                   </div>
                 {% endif %}
-                {% if org.permissions.makeDecisions %}
+                {% if checked(data.newuser.permissions, 'makeDecisions') == 'checked' %}
                   <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                    <p class="govuk-!-margin-bottom-0">
                       Make decisions
                     </p>
                   </div>
                 {% endif %}
-                {% if org.permissions.viewSafeguardingInformation %}
+                {% if checked(data.newuser.permissions, 'viewSafeguardingInformation') == 'checked' %}
                   <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                    <p class="govuk-!-margin-bottom-0">
                       View criminal convictions and professional misconduct
                     </p>
                   </div>
                 {% endif %}
 
-                {% if org.permissions.viewDiversityInformation %}
+                {% if checked(data.newuser.permissions, 'viewDiversityInformation') == 'checked' %}
                   <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+                    <p class="govuk-!-margin-bottom-0">
                       View equality and diversity information
                     </p>
                   </div>
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/account/users/new/additional-permissions/{{org.org.id}}">
+                <a class="govuk-link" href="/organisation-settings/users/new/additional-permissions/{{org.org.id}}">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
             </div>
           {% endif %}
         </dl>
-      {% endfor %}
 
       <form novalidate method="post">
         {{govukButton({
           text: "Invite user"
         })}}
       </form>
-      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 

@@ -4,6 +4,7 @@ module.exports = (faker, params = {}) => {
     firstName: params.firstName || faker.name.firstName(),
     lastName: params.lastName || faker.name.lastName(),
     emailAddress: params.emailAddress || faker.name.emailAddress(),
-    organisations: params.organisations
+    organisation: params.organisation,
+    permissions: params.permissions
   }
 }

@@ -57,6 +57,27 @@
 {% from "_components/conditions-panel/macro.njk" import appConditionsPanel %}
 {% from "_components/permissions/macro.njk" import appPermissions %}
 
+{% set canManageUsers = true %}
+{% if query.canManageUsers %}
+  {% set canManageUsers = false %}
+{% endif %}
+
+{% set canManageOrgPermissions = true %}
+{% if query.canManageOrgPermissions %}
+  {% set canManageOrgPermissions = false %}
+{% endif %}
+
+{% set canSetupInterviews = true %}
+{% if query.canSetupInterviews %}
+  {% set canSetupInterviews = false %}
+{% endif %}
+
+{% set canMakeDecisions = true %}
+{% if query.canMakeDecisions %}
+  {% set canMakeDecisions = false %}
+{% endif %}
+
+
 {% block head %}
   {% include "_includes/head.njk" %}
 {% endblock %}
@@ -171,10 +192,22 @@
         text: "Sign in permissions prompt"
       }, {
         href: "?transferred=true",
-        text: "Transferred mode"
+        text: "Enable transferred mode"
+      }, {
+        href: "?canManageUsers=false",
+        text: "Disable permission: manage users"
+      }, {
+        href: "?canManageOrgPermissions=false",
+        text: "Disable permission: manage org permissions"
+      }, {
+        href: "?canSetupInterviews=false",
+        text: "Disable permission: set up interviews"
+      }, {
+        href: "?canMakeDecisions=false",
+        text: "Disable permission: make decisions"
       }]
     }
-  }) if not data.bare }}
+  }) }}
 {% endblock %}
 
 {% block bodyEnd %}

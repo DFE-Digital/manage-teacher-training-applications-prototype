@@ -110,7 +110,7 @@ let relationships = [{
     viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
-  org2: trainingProviders[2],
+  org2: trainingProviders[1],
   org2Permissions: {
     setupInterviews: false,
     makeDecisions: false,

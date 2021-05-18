@@ -27,17 +27,17 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Organisations this user has access to
+              Organisations you have access to
             </dt>
             <dd class="govuk-summary-list__value">
-              {% for organisation in user.organisations %}
-                <p>{{organisation.org.name}}</p>
+              {% for org in user.organisations %}
+                <p>{{org.name}}</p>
               {% endfor %}
             </dd>
           </div>
         </dl>
 
-        {% for org in user.organisations %}
+        {% for org in orgs %}
 
           {% set runOrRatified %}
             {% if org.org.isAccreditedBody %}
@@ -47,6 +47,7 @@
             {% endif %}
           {% endset %}
 
+          {% set hasAdditionalPermissions = [true, false] | random %}
 
           <h2 class="govuk-heading-m">
             Permissions for {{org.org.name}}
@@ -58,34 +59,29 @@
               User permissions
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if org.permissions %}
-                Additional user permissions, such as making decisions or viewing sensitive information
+              {% if hasAdditionalPermissions %}
+                Additional user permissions
               {% else %}
                 View applications (excluding sensitive information)
               {% endif %}
             </dd>
           </div>
-          {% if org.permissions %}
+          {% if hasAdditionalPermissions %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Additional user permissions
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if org.permissions.manageOrganisation %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
                       Manage organisational permissions
                     </p>
                   </div>
-                {% endif %}
-                {% if org.permissions.manageUsers %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
                       Manage users
                     </p>
                   </div>
-                {% endif %}
-                {% if org.permissions.makeDecisions %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
                       Make decisions and set up interviews
@@ -98,8 +94,6 @@
                       nonApplicableOrgs.makeDecisions
                     })}}
                   </div>
-                {% endif %}
-                {% if org.permissions.viewSafeguardingInformation %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
                       View safeguarding information
@@ -111,9 +105,6 @@
                       nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
                     })}}
                   </div>
-                {% endif %}
-
-                {% if org.permissions.viewDiversityInformation %}
                   <div class="app-permission-item">
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
                       View diversity information
@@ -125,7 +116,6 @@
                       nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
                     })}}
                   </div>
-                {% endif %}
               </dd>
             </div>
           {% endif %}

@@ -4,6 +4,7 @@ module.exports = (faker, params = {}) => {
     name: params.name,
     permissions: params.permissions,
     isAccreditedBody: params.isAccreditedBody,
-    partners: params.partners
+    partners: params.partners,
+    domain: params.domain
   }
 }

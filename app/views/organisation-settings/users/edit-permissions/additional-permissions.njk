@@ -1,0 +1,127 @@
+{% extends "_content-wide.njk" %}
+
+{% set primaryNavId = 'users' %}
+
+{% set title = 'Additional user permissions - Invite user' %}
+
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/permissions{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: backLinkUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set runOrRatified %}
+        {% if org.isAccreditedBody %}
+          run
+        {% else %}
+          ratified
+        {% endif %}
+      {% endset %}
+
+      {% set makeDecisionsHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          permissionDescription: "make decisions",
+          applicableOrgs: permissions.applicableOrgs.makeDecisions,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
+        })}}
+      {% endset %}
+
+      {% set safeguardingHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          permissionDescription: "view criminal convictions and professional misconduct",
+          applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
+        })}}
+      {% endset %}
+
+      {% set diversityHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          permissionDescription: "view equality and diversity information",
+          applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
+        })}}
+      {% endset %}
+
+      {% set h1 %}
+        <span class="govuk-caption-l">
+          {{user.firstName}} {{user.lastName}}
+          {% if data.user.organisations.length > 1 %}
+            - {{org.name}}
+          {% endif %}
+        </span>
+        Additional user permissions
+      {% endset %}
+
+      <form novalidate method="post">
+
+          {{ govukCheckboxes({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "manageOrganisations",
+                text: "Manage organisational permissions",
+                label: {
+                  classes: "govuk-label--"
+                }
+              },
+              {
+                value: "manageUsers",
+                text: "Manage users",
+                label: {
+                  classes: "govuk-label--"
+                }
+              },
+              {
+                value: "setupInterviews",
+                html: "Set up interviews"
+              },
+              {
+                value: "makeDecisions",
+                html: "Make decisions",
+                hint: {
+                  html: makeDecisionsHint
+                }
+              },
+              {
+                value: "viewSafeguardingInformation",
+                text: "View criminal convictions and professional misconduct",
+                hint: {
+                  html: safeguardingHint
+                }
+              },
+              {
+                value: "viewDiversityInformation",
+                text: "View equality and diversity information",
+                hint: {
+                  html: diversityHint
+                }
+              }
+            ]
+          } | decorateAttributes(data, 'data.editpermissions.permissions')) }}
+
+
+        {{govukButton({
+          text: "Continue"
+        })}}
+      </form>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
+    </div>
+  </div>
+
+{% endblock %}

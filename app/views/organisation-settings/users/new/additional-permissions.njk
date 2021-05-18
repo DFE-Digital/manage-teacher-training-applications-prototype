@@ -4,9 +4,12 @@
 
 {% set title = 'Additional permissions - Invite user' %}
 
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/permissions{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/new/permissions/"+org.org.id
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
@@ -15,7 +18,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set runOrRatified %}
-        {% if org.org.isAccreditedBody %}
+        {% if org.isAccreditedBody %}
           run
         {% else %}
           ratified
@@ -26,8 +29,8 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "make decisions",
-          applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.makeDecisions
+          applicableOrgs: permissions.applicableOrgs.makeDecisions,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
         })}}
       {% endset %}
 
@@ -35,8 +38,8 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "view criminal convictions and professional misconduct",
-          applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
+          applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
         })}}
       {% endset %}
 
@@ -44,14 +47,19 @@
         {{appPermissions({
           runOrRatified: runOrRatified,
           permissionDescription: "view equality and diversity information",
-          applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
-          nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
+          applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
         })}}
       {% endset %}
 
       {% set h1 %}
-        <span class="govuk-caption-l">Invite user</span>
-        Additional user permissions for {{org.org.name}}
+        <span class="govuk-caption-l">
+          Invite user
+          {% if data.user.organisations.length > 1 %}
+            - {{org.name}}
+          {% endif %}
+        </span>
+        Additional user permissions
       {% endset %}
 
       <form novalidate method="post">
@@ -105,14 +113,14 @@
                 }
               }
             ]
-          } | decorateAttributes(data, 'data.newuser.permissions.'+org.org.id)) }}
+          } | decorateAttributes(data, 'data.newuser.permissions')) }}
 
 
         {{govukButton({
           text: "Continue"
         })}}
       </form>
-      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 
