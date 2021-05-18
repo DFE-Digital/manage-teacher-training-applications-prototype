@@ -2,17 +2,30 @@ const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
 
 const getConfigOptions = (req) => {
-  let { cycle, status, provider, accreditedBody, studyMode, fundingType, subjectLevel, location } = req.query
+  // let { cycle, status, provider, accreditedBody, studyMode, fundingType, subjectLevel, location } = req.query
+
+  if (req.session.data.statistics === undefined) {
+    req.session.data.statistics = {}
+  }
 
   let options = {}
-  options.cycles = SystemHelper.getCheckboxValues(cycle, req.session.data.cycle)
-  options.statuses = SystemHelper.getCheckboxValues(status, req.session.data.status)
-  options.studyModes = SystemHelper.getCheckboxValues(studyMode, req.session.data.studyMode)
-  options.fundingTypes = SystemHelper.getCheckboxValues(fundingType, req.session.data.fundingType)
-  options.subjectLevels = SystemHelper.getCheckboxValues(subjectLevel, req.session.data.subjectLevel)
-  options.providers = SystemHelper.getCheckboxValues(provider, req.session.data.provider)
-  options.accreditedBodies = SystemHelper.getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
-  options.locations = SystemHelper.getCheckboxValues(accreditedBody, req.session.data.location)
+  options.cycles = req.session.data.statistics.cycle
+  options.statuses = req.session.data.statistics.status
+  options.studyModes = req.session.data.statistics.studyMode
+  options.fundingTypes = req.session.data.statistics.fundingType
+  options.subjectLevels = req.session.data.statistics.subjectLevel
+  options.providers = req.session.data.statistics.provider
+  options.accreditedBodies = req.session.data.statistics.accreditedBody
+  options.locations = req.session.data.statistics.location
+
+  // options.cycles = SystemHelper.getCheckboxValues(config.cycle, req.session.data.statistics.cycle)
+  // options.statuses = SystemHelper.getCheckboxValues(config.status, req.session.data.statistics.status)
+  // options.studyModes = SystemHelper.getCheckboxValues(config.studyMode, req.session.data.statistics.studyMode)
+  // options.fundingTypes = SystemHelper.getCheckboxValues(config.fundingType, req.session.data.statistics.fundingType)
+  // options.subjectLevels = SystemHelper.getCheckboxValues(config.subjectLevel, req.session.data.statistics.subjectLevel)
+  // options.providers = SystemHelper.getCheckboxValues(config.provider, req.session.data.statistics.provider)
+  // options.accreditedBodies = SystemHelper.getCheckboxValues(config.accreditedBody, req.session.data.statistics.accreditedBody)
+  // options.locations = SystemHelper.getCheckboxValues(config.accreditedBody, req.session.data.statistics.location)
 
   const hasOptions = !!((options.cycles && options.cycles.length > 0) || (options.statuses && options.statuses.length > 0) || (options.providers && options.providers.length > 0) || (options.accreditedBodies && options.accreditedBodies.length > 0) || (options.studyModes && options.studyModes.length > 0) || (options.fundingTypes && options.fundingTypes.length > 0) || (options.subjectLevels && options.subjectLevels.length > 0) || (options.locations && options.locations.length > 0))
 
@@ -35,7 +48,7 @@ const getConfigOptions = (req) => {
         items: options.cycles.map((cycle) => {
           return {
             text: cycle,
-            href: `${slug}/remove-cycle-filter/${cycle}`
+            href: `${slug}/remove-cycle-option/${cycle}`
           }
         })
       })
@@ -47,7 +60,7 @@ const getConfigOptions = (req) => {
         items: options.statuses.map((status) => {
           return {
             text: status,
-            href: `${slug}/remove-status-filter/${status}`
+            href: `${slug}/remove-status-option/${status}`
           }
         })
       })
@@ -59,7 +72,7 @@ const getConfigOptions = (req) => {
         items: options.providers.map((provider) => {
           return {
             text: provider,
-            href: `${slug}/remove-provider-filter/${provider}`
+            href: `${slug}/remove-provider-option/${provider}`
           }
         })
       })
@@ -71,7 +84,7 @@ const getConfigOptions = (req) => {
         items: options.locations.map((location) => {
           return {
             text: location,
-            href: `${slug}/remove-location-filter/${location}`
+            href: `${slug}/remove-location-option/${location}`
           }
         })
       })
@@ -83,7 +96,7 @@ const getConfigOptions = (req) => {
         items: options.accreditedBodies.map((accreditedbody) => {
           return {
             text: accreditedbody,
-            href: `${slug}/remove-accreditedbody-filter/${accreditedbody}`
+            href: `${slug}/remove-accreditedbody-option/${accreditedbody}`
           }
         })
       })
@@ -95,7 +108,7 @@ const getConfigOptions = (req) => {
         items: options.studyModes.map((studyMode) => {
           return {
             text: studyMode,
-            href: `${slug}/remove-studymode-filter/${studyMode}`
+            href: `${slug}/remove-studymode-option/${studyMode}`
           }
         })
       })
@@ -107,7 +120,7 @@ const getConfigOptions = (req) => {
         items: options.fundingTypes.map((fundingType) => {
           return {
             text: fundingType,
-            href: `${slug}/remove-fundingtype-filter/${fundingType}`
+            href: `${slug}/remove-fundingtype-option/${fundingType}`
           }
         })
       })
@@ -119,7 +132,7 @@ const getConfigOptions = (req) => {
         items: options.subjectLevels.map((subjectLevel) => {
           return {
             text: subjectLevel,
-            href: `${slug}/remove-subjectlevel-filter/${subjectLevel}`
+            href: `${slug}/remove-subjectlevel-option/${subjectLevel}`
           }
         })
       })
@@ -256,12 +269,8 @@ const getRedirect = (referer) => {
 module.exports = router => {
 
   router.get('/statistics', (req, res) => {
-    let applications = req.session.data.applications
-    applications = applications.filter(application => application.cycle === '2020 to 2021')
-    res.render('statistics/index', {
-      totalApplications: applications.length,
-      statusCounts: ApplicationHelper.getApplicationCountsByStatus(applications)
-    })
+    delete req.session.data.statistics
+    res.render('statistics/index', {})
   })
 
   router.get('/statistics/applications', (req, res) => {
@@ -718,67 +727,67 @@ module.exports = router => {
     })
   })
 
-  router.get('/statistics/:section/:report/remove-cycle-filter/:cycle', (req, res) => {
-    req.session.data.cycle = req.session.data.cycle.filter(item => item !== req.params.cycle)
+  router.get('/statistics/:section/:report/remove-cycle-option/:cycle', (req, res) => {
+    req.session.data.statistics.cycle = req.session.data.statistics.cycle.filter(item => item !== req.params.cycle)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-status-filter/:status', (req, res) => {
-    req.session.data.status = req.session.data.status.filter(item => item !== req.params.status)
+  router.get('/statistics/:section/:report/remove-status-option/:status', (req, res) => {
+    req.session.data.statistics.status = req.session.data.statistics.status.filter(item => item !== req.params.status)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-provider-filter/:provider', (req, res) => {
-    req.session.data.provider = req.session.data.provider.filter(item => item !== req.params.provider)
+  router.get('/statistics/:section/:report/remove-provider-option/:provider', (req, res) => {
+    req.session.data.statistics.provider = req.session.data.statistics.provider.filter(item => item !== req.params.provider)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-accreditedbody-filter/:accreditedBody', (req, res) => {
-    req.session.data.accreditedBody = req.session.data.accreditedBody.filter(item => item !== req.params.accreditedBody)
+  router.get('/statistics/:section/:report/remove-accreditedbody-option/:accreditedBody', (req, res) => {
+    req.session.data.statistics.accreditedBody = req.session.data.statistics.accreditedBody.filter(item => item !== req.params.accreditedBody)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-studymode-filter/:studyMode', (req, res) => {
-    req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
+  router.get('/statistics/:section/:report/remove-studymode-option/:studyMode', (req, res) => {
+    req.session.data.statistics.studyMode = req.session.data.statistics.studyMode.filter(item => item !== req.params.studyMode)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-fundingtype-filter/:fundingType', (req, res) => {
-    req.session.data.fundingType = req.session.data.fundingType.filter(item => item !== req.params.fundingType)
+  router.get('/statistics/:section/:report/remove-fundingtype-option/:fundingType', (req, res) => {
+    req.session.data.statistics.fundingType = req.session.data.statistics.fundingType.filter(item => item !== req.params.fundingType)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-subjectlevel-filter/:subjectLevel', (req, res) => {
-    req.session.data.subjectLevel = req.session.data.subjectLevel.filter(item => item !== req.params.subjectLevel)
+  router.get('/statistics/:section/:report/remove-subjectlevel-option/:subjectLevel', (req, res) => {
+    req.session.data.statistics.subjectLevel = req.session.data.statistics.subjectLevel.filter(item => item !== req.params.subjectLevel)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
-  router.get('/statistics/:section/:report/remove-location-filter/:location', (req, res) => {
-    req.session.data.location = req.session.data.location.filter(item => item !== req.params.location)
+  router.get('/statistics/:section/:report/remove-location-option/:location', (req, res) => {
+    req.session.data.statistics.location = req.session.data.statistics.location.filter(item => item !== req.params.location)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/remove-all-filters', (req, res) => {
-    req.session.data.cycle = null
-    req.session.data.status = null
-    req.session.data.provider = null
-    req.session.data.accreditedBody = null
-    req.session.data.studyMode = null
-    req.session.data.fundingType = null
-    req.session.data.subjectLevel = null
-    req.session.data.location = null
+    req.session.data.statistics.cycle = null
+    req.session.data.statistics.status = null
+    req.session.data.statistics.provider = null
+    req.session.data.statistics.accreditedBody = null
+    req.session.data.statistics.studyMode = null
+    req.session.data.statistics.fundingType = null
+    req.session.data.statistics.subjectLevel = null
+    req.session.data.statistics.location = null
     res.redirect(getRedirect(req.headers.referer))
   })
 
   router.get('/statistics/:section/:report/remove-all-options', (req, res) => {
-    req.session.data.cycle = null
-    req.session.data.status = null
-    req.session.data.provider = null
-    req.session.data.accreditedBody = null
-    req.session.data.studyMode = null
-    req.session.data.fundingType = null
-    req.session.data.subjectLevel = null
-    req.session.data.location = null
+    req.session.data.statistics.cycle = null
+    req.session.data.statistics.status = null
+    req.session.data.statistics.provider = null
+    req.session.data.statistics.accreditedBody = null
+    req.session.data.statistics.studyMode = null
+    req.session.data.statistics.fundingType = null
+    req.session.data.statistics.subjectLevel = null
+    req.session.data.statistics.location = null
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 

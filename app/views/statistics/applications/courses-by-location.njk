@@ -36,7 +36,7 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Courses</th>
           {% for location in locations %}
-            {% if (data.location and location in data.location) or (not data.location.length) %}
+            {% if (data.statistics.location and location in data.statistics.location) or (not data.statistics.location.length) %}
               <th scope="col" class="govuk-table__header">{{ location }}</th>
             {% endif %}
           {% endfor %}
@@ -44,11 +44,11 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for subject in subjects %}
-          {% if (data.subjectLevel and subject.level in data.subjectLevel) or (not data.subjectLevel.length) %}
+          {% if (data.statistics.subjectLevel and subject.level in data.statistics.subjectLevel) or (not data.statistics.subjectLevel.length) %}
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
               {% for location in locations %}
-                {% if (data.location and location in data.location) or (not data.location.length) %}
+                {% if (data.statistics.location and location in data.statistics.location) or (not data.statistics.location.length) %}
                   <td class="govuk-table__cell">{{ subjectCounts[subject.name][location] }}</td>
                 {% endif %}
               {% endfor %}

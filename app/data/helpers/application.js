@@ -301,7 +301,7 @@ exports.getSubjectPerformance = (applications) => {
 
     counts[subject.name]['Applications rejected after interview'] = applications.filter(application => application.subject === subject.name && application.status === 'Rejected' && application.interviews !== undefined).length
   })
-  console.log(counts);
+
   return counts
 }
 
