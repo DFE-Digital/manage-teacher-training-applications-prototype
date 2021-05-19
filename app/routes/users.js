@@ -126,6 +126,11 @@ module.exports = router => {
   router.get('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
     var user = req.session.data.users.find(user => user.id == req.params.userId)
     var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
+    if(!req.session.data.editpermissions) {
+      req.session.data.editpermissions = {
+        access: "Additional permissions"
+      }
+    }
     res.render('organisation-settings/users/edit-permissions/permissions', {
       user,
       org
@@ -145,6 +150,23 @@ module.exports = router => {
     let user = req.session.data.users.find(user => user.id == req.params.userId)
     let org = req.session.data.organisations.find(org => req.params.orgId == org.id)
     let permissions = getOrganisationPermission(org, req.session.data.relationships)
+
+    if(!req.session.data.editpermissions) {
+      req.session.data.editpermissions = {
+        access: "Additional permissions"
+      }
+    }
+
+    if(!req.session.data.editpermissions.permissions) {
+      req.session.data.editpermissions.permissions = [
+        'manageOrganisations',
+        'manageUsers',
+        'setupInterviews',
+        'makeDecisions',
+        'viewSafeguardingInformation',
+        'viewDiversityInformation'
+      ]
+    }
 
     res.render('organisation-settings/users/edit-permissions/additional-permissions', {
       user,
@@ -167,6 +189,26 @@ module.exports = router => {
   })
 
   router.post('/organisation-settings/:orgId/users/:userId/permissions/edit/check', (req, res) => {
+    var user = req.session.data.users.find(user => user.id == req.params.userId)
+
+    var data = req.session.data.editpermissions
+
+    if(data.access == "View applications") {
+      delete user.permissions
+    } else {
+      if(!user.permissions) {
+        user.permissions = {}
+      }
+      user.permissions.manageOrganisation = data.permissions.indexOf('manageOrganisations') > -1
+      user.permissions.manageUsers = data.permissions.indexOf('manageUsers') > -1
+      user.permissions.setupInterviews = data.permissions.indexOf('setupInterviews') > -1
+      user.permissions.makeDecisions = data.permissions.indexOf('makeDecisions') > -1
+      user.permissions.viewSafeguardingInformation = data.permissions.indexOf('viewSafeguardingInformation') > -1
+      user.permissions.viewDiversityInformation= data.permissions.indexOf('viewDiversityInformation') > -1
+    }
+
+    delete data
+
     req.flash('success', 'Permissions updated')
     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}`)
   })

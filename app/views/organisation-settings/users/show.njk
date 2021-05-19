@@ -132,13 +132,6 @@
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
                       Set up interviews
                     </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      permissionDescription: "set up interviews",
-                      applicableOrgs: permissions.applicableOrgs.setupInterviews,
-                      nonApplicableOrgs: permissions.
-                      nonApplicableOrgs.setupInterviews
-                    })}}
                   </div>
                 {% endif %}
                 {% if user.permissions.makeDecisions %}
