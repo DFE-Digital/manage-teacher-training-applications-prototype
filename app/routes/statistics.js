@@ -228,12 +228,30 @@ const getReportConfigOptions = (report) => {
         'cycle',
         'status',
         'location',
+        'subject',
         'subjectLevel'
       ]
       break
     case 'courses-by-reasons-for-rejection':
       options = [
+        'cycle',
         'subject',
+        'subjectLevel'
+      ]
+      break
+    case 'course-performance':
+      options = [
+        'cycle',
+        'location',
+        'subject',
+        'subjectLevel'
+      ]
+      break
+    case 'course-diversity-ethnicity':
+    case 'course-diversity-nationality':
+    case 'course-diversity-sex':
+      options = [
+        'cycle',
         'subjectLevel'
       ]
       break
@@ -252,16 +270,16 @@ const getRedirect = (referer) => {
     redirect = '/statistics/candidates/right-to-work-study'
   } else if (referer.includes('/candidates/english-language-qualification')) {
     redirect = '/statistics/candidates/english-language-qualification'
-  } else if (referer.includes('/applications/status')) {
-    redirect = '/statistics/applications/status'
-  } else if (referer.includes('/applications/subject')) {
-    redirect = '/statistics/applications/subject'
-  } else if (referer.includes('/applications/provider')) {
-    redirect = '/statistics/applications/provider'
-  } else if (referer.includes('/applications/location')) {
-    redirect = '/statistics/applications/location'
-  } else if (referer.includes('/applications/reasons-for-rejection')) {
-    redirect = '/statistics/applications/reasons-for-rejection'
+  // } else if (referer.includes('/applications/status')) {
+  //   redirect = '/statistics/applications/status'
+  // } else if (referer.includes('/applications/subject')) {
+  //   redirect = '/statistics/applications/subject'
+  // } else if (referer.includes('/applications/provider')) {
+  //   redirect = '/statistics/applications/provider'
+  // } else if (referer.includes('/applications/location')) {
+  //   redirect = '/statistics/applications/location'
+  // } else if (referer.includes('/applications/reasons-for-rejection')) {
+  //   redirect = '/statistics/applications/reasons-for-rejection'
   }
   return redirect
 }
