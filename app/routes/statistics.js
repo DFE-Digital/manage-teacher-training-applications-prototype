@@ -2,8 +2,6 @@ const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
 
 const getConfigOptions = (req) => {
-  // let { cycle, status, provider, accreditedBody, studyMode, fundingType, subjectLevel, location } = req.query
-
   if (req.session.data.statistics === undefined) {
     req.session.data.statistics = {}
   }
@@ -17,15 +15,6 @@ const getConfigOptions = (req) => {
   options.providers = req.session.data.statistics.provider
   options.accreditedBodies = req.session.data.statistics.accreditedBody
   options.locations = req.session.data.statistics.location
-
-  // options.cycles = SystemHelper.getCheckboxValues(config.cycle, req.session.data.statistics.cycle)
-  // options.statuses = SystemHelper.getCheckboxValues(config.status, req.session.data.statistics.status)
-  // options.studyModes = SystemHelper.getCheckboxValues(config.studyMode, req.session.data.statistics.studyMode)
-  // options.fundingTypes = SystemHelper.getCheckboxValues(config.fundingType, req.session.data.statistics.fundingType)
-  // options.subjectLevels = SystemHelper.getCheckboxValues(config.subjectLevel, req.session.data.statistics.subjectLevel)
-  // options.providers = SystemHelper.getCheckboxValues(config.provider, req.session.data.statistics.provider)
-  // options.accreditedBodies = SystemHelper.getCheckboxValues(config.accreditedBody, req.session.data.statistics.accreditedBody)
-  // options.locations = SystemHelper.getCheckboxValues(config.accreditedBody, req.session.data.statistics.location)
 
   const hasOptions = !!((options.cycles && options.cycles.length > 0) || (options.statuses && options.statuses.length > 0) || (options.providers && options.providers.length > 0) || (options.accreditedBodies && options.accreditedBodies.length > 0) || (options.studyModes && options.studyModes.length > 0) || (options.fundingTypes && options.fundingTypes.length > 0) || (options.subjectLevels && options.subjectLevels.length > 0) || (options.locations && options.locations.length > 0))
 
@@ -197,7 +186,7 @@ const getReportConfigOptions = (report) => {
   let options = []
 
   switch (report) {
-    case 'courses-by-cycle':
+    case 'courses-by-year':
       options = [
         'status',
         'trainingProvider',
@@ -258,6 +247,49 @@ const getReportConfigOptions = (report) => {
   }
 
   return options
+}
+
+const getReportName = (report) => {
+  if (!report.length) {
+    return null
+  }
+
+  let name = ''
+
+  switch (report) {
+    case 'courses-by-year':
+      name = 'Courses by year'
+      break
+    case 'courses-by-status':
+      name = 'Courses by status'
+      break
+    case 'courses-by-training-provider':
+      name = 'Courses by training provider'
+      break
+    case 'courses-by-location':
+      name = 'Courses by location'
+      break
+    case 'courses-by-reasons-for-rejection':
+      name = 'Courses by reasons for rejection'
+      break
+    case 'course-performance':
+      name = 'Course performance'
+      break
+    case 'course-diversity-ethnicity':
+      name = 'Course diversity - ethnicity'
+      break
+    case 'course-diversity-nationality':
+      name = 'Course diversity - nationality'
+      break
+    case 'course-diversity-sex':
+      name = 'Course diversity - sex'
+      break
+    default:
+      name = report
+      break
+  }
+
+  return name
 }
 
 const getRedirect = (referer) => {
@@ -370,7 +402,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/statistics/applications/courses-by-cycle', (req, res) => {
+  router.get('/statistics/applications/courses-by-year', (req, res) => {
     let applications = req.session.data.applications
 
     const options = getConfigOptions(req)
@@ -382,14 +414,14 @@ module.exports = router => {
     applicationsCurrentCycle = applications.filter(application => application.cycle === '2020 to 2021')
     applicationsPreviousCycle = applications.filter(application => application.cycle === '2019 to 2020')
 
-    res.render('statistics/applications/courses-by-cycle', {
+    res.render('statistics/applications/courses-by-year', {
       totalApplications: applications.length,
       subjects: SystemHelper.subjects,
       statuses: SystemHelper.statuses,
       subjectCountsCurrentCycle: ApplicationHelper.getApplicationCountsBySubjectAndStatus(applicationsCurrentCycle),
       subjectCountsPreviousCycle: ApplicationHelper.getApplicationCountsBySubjectAndStatus(applicationsPreviousCycle),
       section: 'applications',
-      report: 'courses-by-cycle',
+      report: 'courses-by-year',
       hasOptions: options.hasOptions,
       selectedOptions: options.selectedOptions
     })
@@ -407,10 +439,7 @@ module.exports = router => {
     res.render('statistics/applications/courses-by-training-provider', {
       totalApplications: applications.length,
       subjects: SystemHelper.subjects,
-      trainingProviders: [
-        'Wren Academy',
-        'The Royal Borough Teaching School Alliance'
-      ],
+      trainingProviders: SystemHelper.trainingProviders,
       subjectCounts: ApplicationHelper.getApplicationCountsBySubjectAndTrainingProvider(applications),
       section: 'applications',
       report: 'courses-by-training-provider',
@@ -554,6 +583,7 @@ module.exports = router => {
     res.render('statistics/configure', {
       section: req.params.section,
       report: req.params.report,
+      reportName: getReportName(req.params.report),
       hasOptions: options.hasOptions,
       selectedOptions: options.selectedOptions,
       configOptions: getReportConfigOptions(req.params.report)

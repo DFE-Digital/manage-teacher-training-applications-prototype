@@ -14,7 +14,12 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">{{ pageName }}</h1>
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">
+        {{ reportName }}
+      </span>
+      {{ pageName }}
+    </h1>
 
     {% include "_includes/statistics/selected-config-options.njk" %}
 
@@ -23,7 +28,6 @@
       {{ govukCheckboxes({
         idPrefix: "cycle",
         name: "statistics[cycle]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Year received",
@@ -48,7 +52,6 @@
       {{ govukCheckboxes({
         idPrefix: "status",
         name: "statistics[status]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Status",
@@ -117,7 +120,6 @@
       {{ govukCheckboxes({
         idPrefix: "provider",
         name: "statistics[provider]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Courses run by",
@@ -142,7 +144,6 @@
 
         {{ govukCheckboxes({
           name: "statistics[location]",
-          classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
               text: "Training locations",
@@ -178,7 +179,6 @@
       {{ govukCheckboxes({
         idPrefix: "accreditedBody",
         name: "statistics[accreditedBody]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Courses ratified by",
@@ -232,7 +232,6 @@
       {{ govukCheckboxes({
         idPrefix: "studyMode",
         name: "statistics[studyMode]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Full time or part time",
@@ -256,7 +255,6 @@
       {{ govukCheckboxes({
         idPrefix: "fundingType",
         name: "statistics[fundingType]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Funding type",
@@ -285,7 +283,6 @@
       {{ govukCheckboxes({
         idPrefix: "subjectLevel",
         name: "statistics[subjectLevel]",
-        classes: "govuk-checkboxes--small",
         fieldset: {
           legend: {
             text: "Subject level",
@@ -307,7 +304,7 @@
       }) if 'subjectLevel' in configOptions }}
 
       {{ govukButton({
-        text: "Save"
+        text: "Save settings and view report"
       }) }}
 
     </form>

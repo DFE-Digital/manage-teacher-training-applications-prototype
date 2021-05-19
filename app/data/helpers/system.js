@@ -112,6 +112,17 @@ const getOrganisations = () => {
 
 exports.organisations = getOrganisations()
 
+const getTrainingProviders = () => {
+  const filePath = dataDirectoryPath + '/organisations.json'
+  const rawData = fs.readFileSync(filePath)
+  const organisations = JSON.parse(rawData).filter(data => data.isAccreditedBody === false).map((organisation) => {
+    return organisation.name
+  })
+  return organisations
+}
+
+exports.trainingProviders = getTrainingProviders()
+
 const getCountries = () => {
   const filePath = dataDirectoryPath + '/countries.json'
   const rawData = fs.readFileSync(filePath)
