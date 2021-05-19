@@ -9,11 +9,11 @@
   },
   {
     "code": "missing-qualifications",
-    "name": "Missing qualifications"
+    "name": "Qualifications"
   },
   {
     "code": "interview-performance",
-    "name": "Performance at interview"
+    "name": "Interview performance"
   },
   {
     "code": "course-full",
@@ -21,7 +21,7 @@
   },
   {
     "code": "other-offer",
-    "name": "Other offer"
+    "name": "Made other offer"
   },
   {
     "code": "honesty",
@@ -37,6 +37,6 @@
   },
   {
     "code": "other-feedback",
-    "name": "Other feedback"
+    "name": "Other"
   }
 ]

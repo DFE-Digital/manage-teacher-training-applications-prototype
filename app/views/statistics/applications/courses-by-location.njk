@@ -34,7 +34,7 @@
       <!-- <caption class="govuk-table__caption govuk-table__caption--m govuk-!-margin-top-5">{{ pageName }}</caption> -->
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Courses</th>
+          <th scope="col" class="govuk-table__header">Course</th>
           {% for location in locations %}
             {% if (data.statistics.location and location in data.statistics.location) or (not data.statistics.location.length) %}
               <th scope="col" class="govuk-table__header">{{ location }}</th>

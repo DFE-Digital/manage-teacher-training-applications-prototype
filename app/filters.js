@@ -316,7 +316,7 @@ filters.falsify = (input) => {
       case 'Irish':
         return nationality
       case 'Europe':
-        return 'EU, Switzerland, Norway, Iceland or Liechtenstein (not including Ireland)'
+        return 'EU, Switzerland, Norway, Iceland or Liechtenstein (not Ireland)'
       case 'Rest of world':
         return 'Somewhere else'
     }

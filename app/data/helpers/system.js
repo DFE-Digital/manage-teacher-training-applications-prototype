@@ -74,9 +74,9 @@ exports.fundingType = [
 
 exports.trainingLocations = [
   'Main site',
-  'Epsom Grinstead - training location',
-  'Camberley - training location',
-  'Lingfield - training location'
+  'Epsom Grinstead',
+  'Camberley',
+  'Lingfield'
 ]
 
 const getReasonsForRejection = () => {

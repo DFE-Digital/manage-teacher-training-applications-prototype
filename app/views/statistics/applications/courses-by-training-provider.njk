@@ -34,7 +34,7 @@
       <!-- <caption class="govuk-table__caption govuk-table__caption--m govuk-!-margin-top-5">{{ pageName }}</caption> -->
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Courses</th>
+          <th scope="col" class="govuk-table__header">Course</th>
           {% for provider in trainingProviders %}
             {% if (data.statistics.provider and provider in data.statistics.provider) or (not data.statistics.provider.length) %}
               <th scope="col" class="govuk-table__header">{{ provider }}</th>
