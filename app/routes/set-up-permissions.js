@@ -67,6 +67,30 @@ module.exports = router => {
     })
   })
 
+  router.post('/onboard/check', (req, res) => {
+    // save relationship permissions
+
+    Object.entries(req.session.data.orgpermissions).forEach(item => {
+      const [key, value] = item;
+      const relationshipId = parseInt(key.split('a')[1], 10)
+      const relationship = req.session.data.relationships.find(relationship => relationship.id == relationshipId)
+
+      relationship.org1Permissions = {
+        makeDecisions: value.makeDecisions && value.makeDecisions.includes(relationship.org1.name),
+        viewSafeguardingInformation: value.viewSafeguardingInformation && value.viewSafeguardingInformation.includes(relationship.org1.name),
+        viewDiversityInformation: value.viewDiversityInformation && value.viewDiversityInformation.includes(relationship.org1.name)
+      }
+      relationship.org2Permissions = {
+        makeDecisions: value.makeDecisions && value.makeDecisions.includes(relationship.org2.name),
+        viewSafeguardingInformation: value.viewSafeguardingInformation && value.viewSafeguardingInformation.includes(relationship.org2.name),
+        viewDiversityInformation: value.viewDiversityInformation && value.viewDiversityInformation.includes(relationship.org2.name)
+      }
+    })
+
+
+    res.redirect('/onboard/confirmation')
+  })
+
   router.post('/onboard/:relationshipId', (req, res) => {
 
     let nextRelationshipId = parseInt(req.params.relationshipId, 10) + 1;

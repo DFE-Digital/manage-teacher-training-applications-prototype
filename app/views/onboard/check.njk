@@ -18,14 +18,13 @@
       <span class="govuk-caption-l">Set up organisational permissions</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      <form novalidate action="/onboard/confirmation">
-
+      <form method="post">
         {% for item in relationships %}
-          {# {% if relationships.length > 1 %} #}
+          {% if relationships.length > 1 %}
             <h2 class="govuk-heading-m">
               {{ item.org.name }}
             </h2>
-          {# {% endif %} #}
+          {% endif %}
 
 
           {% for partner in item.partners %}

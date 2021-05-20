@@ -97,48 +97,6 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
-}, {
-  id: 3,
-  org1: accreditedBodies[4],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: trainingProviders[4],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 4,
-  org1: accreditedBodies[4],
-  org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: false
-  },
-  org2: trainingProviders[5],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 5,
-  org1: accreditedBodies[4],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: trainingProviders[6],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
 }];
 
 let userOrgs = [accreditedBodies[4]];
