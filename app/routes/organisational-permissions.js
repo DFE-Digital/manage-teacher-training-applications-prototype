@@ -79,10 +79,22 @@ module.exports = router => {
 
   router.post('/organisation-settings/:orgId/organisational-permissions/:relationshipId/edit', (req, res) => {
 
-    // update permissions
     let relationship = req.session.data.relationships.find(relationship => relationship.id == req.params.relationshipId)
 
-    delete req.session.data.orgpermissions
+    let data = req.session.data.orgpermissions
+
+    relationship.org1Permissions = {
+      makeDecisions: data.makeDecisions && data.makeDecisions.includes(relationship.org1.name),
+      viewSafeguardingInformation: data.viewSafeguardingInformation && data.viewSafeguardingInformation.includes(relationship.org1.name),
+      viewDiversityInformation: data.viewDiversityInformation && data.viewDiversityInformation.includes(relationship.org1.name)
+    }
+    relationship.org2Permissions = {
+      makeDecisions: data.makeDecisions && data.makeDecisions.includes(relationship.org2.name),
+      viewSafeguardingInformation: data.viewSafeguardingInformation && data.viewSafeguardingInformation.includes(relationship.org2.name),
+      viewDiversityInformation: data.viewDiversityInformation && data.viewDiversityInformation.includes(relationship.org2.name)
+    }
+
+    delete data
 
     req.flash('success', 'Organisational permissions updated')
     res.redirect(`/organisation-settings/${req.params.orgId}/organisational-permissions`)
