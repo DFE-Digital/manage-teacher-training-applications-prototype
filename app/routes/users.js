@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const { v4: uuidv4 } = require('uuid')
 
 function getOrganisationPermission(org, relationships) {
   var permissions = {
@@ -54,7 +55,6 @@ module.exports = router => {
   router.get('/organisation-settings/:orgId/users', (req, res) => {
     let org = req.session.data.organisations.find(org => org.id == req.params.orgId)
     let users = req.session.data.users.filter(user => user.organisation.id == req.params.orgId)
-
     res.render('organisation-settings/users/index', {
       org,
       users
@@ -109,6 +109,30 @@ module.exports = router => {
   })
 
   router.post('/organisation-settings/:orgId/users/new/check', (req, res) => {
+
+    let data = req.session.data.newuser
+
+    let user = {}
+    user.id = uuidv4()
+    user.firstName = data['first-name']
+    user.lastName = data['last-name']
+    user.emailAddress = data['email-address']
+    user.organisation = req.session.data.organisations.find(org => org.id == req.params.orgId)
+
+    if(data.access == "Additional permissions") {
+      user.permissions = {}
+      user.permissions.manageOrganisation = data.permissions.indexOf('manageOrganisation') > -1
+      user.permissions.manageUsers = data.permissions.indexOf('manageUsers') > -1
+      user.permissions.setupInterviews = data.permissions.indexOf('setupInterviews') > -1
+      user.permissions.makeDecisions = data.permissions.indexOf('makeDecisions') > -1
+      user.permissions.viewSafeguardingInformation = data.permissions.indexOf('viewSafeguardingInformation') > -1
+      user.permissions.viewDiversityInformation= data.permissions.indexOf('viewDiversityInformation') > -1
+    }
+
+    req.session.data.users.push(user)
+
+    delete data
+
     req.flash('success', 'User invited')
     res.redirect(`/organisation-settings/${req.params.orgId}/users/`)
   })
@@ -162,22 +186,22 @@ module.exports = router => {
       // get from user object
       res.locals.data.editpermissions = { permissions: [] }
 
-      if(user.permissions.manageOrganisation) {
+      if(user.permissions && user.permissions.manageOrganisation) {
         res.locals.data.editpermissions.permissions.push('manageOrganisation')
       }
-      if(user.permissions.manageUsers) {
+      if(user.permissions && user.permissions.manageUsers) {
         res.locals.data.editpermissions.permissions.push('manageUsers')
       }
-      if(user.permissions.setupInterviews) {
+      if(user.permissions && user.permissions.setupInterviews) {
         res.locals.data.editpermissions.permissions.push('setupInterviews')
       }
-      if(user.permissions.makeDecisions) {
+      if(user.permissions && user.permissions.makeDecisions) {
         res.locals.data.editpermissions.permissions.push('makeDecisions')
       }
-      if(user.permissions.viewSafeguardingInformation) {
+      if(user.permissions && user.permissions.viewSafeguardingInformation) {
         res.locals.data.editpermissions.permissions.push('viewSafeguardingInformation')
       }
-      if(user.permissions.viewDiversityInformation) {
+      if(user.permissions && user.permissions.viewDiversityInformation) {
         res.locals.data.editpermissions.permissions.push('viewDiversityInformation')
       }
     }
