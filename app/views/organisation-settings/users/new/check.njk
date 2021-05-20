@@ -102,13 +102,6 @@
                 Additional user permissions
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if org.permissions.manageOrganisations %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      Manage organisational permissions
-                    </p>
-                  </div>
-                {% endif %}
 
                 {% if checked(data.newuser.permissions, 'manageUsers') == 'checked' %}
                   <div class="app-permission-item">
@@ -117,6 +110,16 @@
                     </p>
                   </div>
                 {% endif %}
+
+                {% if org.permissions.manageOrganisation %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      Manage organisational permissions
+                    </p>
+                  </div>
+                {% endif %}
+
+
                 {% if checked(data.newuser.permissions, 'setupInterviews') == 'checked' %}
                   <div class="app-permission-item">
                     <p class="govuk-!-margin-bottom-0">

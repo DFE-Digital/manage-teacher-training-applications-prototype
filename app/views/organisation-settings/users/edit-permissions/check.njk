@@ -46,7 +46,7 @@
             <dd class="govuk-summary-list__value">
               {{"View applications (excluding sensitive information)" if data.editpermissions.access == "View applications"}}
 
-              {{"Additional user permissions, such as making decisions or viewing sensitive information" if data.editpermissions.access == "Additional permissions"}}
+              {{"Additional user permissions" if data.editpermissions.access == "Additional permissions"}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit">
@@ -60,14 +60,6 @@
                 Additional user permissions
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data.editpermissions | log}}
-                {% if checked(data.editpermissions.permissions, 'manageUsers') == 'checked' %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      Manage organisational permissions
-                    </p>
-                  </div>
-                {% endif %}
 
                 {% if checked(data.editpermissions.permissions, 'manageUsers') == 'checked' %}
                   <div class="app-permission-item">
@@ -76,6 +68,15 @@
                     </p>
                   </div>
                 {% endif %}
+
+                {% if checked(data.editpermissions.permissions, 'manageOrganisation') == 'checked' %}
+                  <div class="app-permission-item">
+                    <p class="govuk-!-margin-bottom-0">
+                      Manage organisational permissions
+                    </p>
+                  </div>
+                {% endif %}
+
                 {% if checked(data.editpermissions.permissions, 'setupInterviews') == 'checked' %}
                   <div class="app-permission-item">
                     <p class="govuk-!-margin-bottom-0">

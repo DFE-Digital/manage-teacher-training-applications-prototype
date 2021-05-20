@@ -28,7 +28,6 @@
       {% set makeDecisionsHint %}
         {{appPermissions({
           runOrRatified: runOrRatified,
-          permissionDescription: "make decisions",
           applicableOrgs: permissions.applicableOrgs.makeDecisions,
           nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
         })}}
@@ -37,7 +36,6 @@
       {% set safeguardingHint %}
         {{appPermissions({
           runOrRatified: runOrRatified,
-          permissionDescription: "view criminal convictions and professional misconduct",
           applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
           nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
         })}}
@@ -46,7 +44,6 @@
       {% set diversityHint %}
         {{appPermissions({
           runOrRatified: runOrRatified,
-          permissionDescription: "view equality and diversity information",
           applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
           nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
         })}}
@@ -74,18 +71,12 @@
             },
             items: [
               {
-                value: "manageOrganisations",
-                text: "Manage organisational permissions",
-                label: {
-                  classes: "govuk-label--"
-                }
+                value: "manageUsers",
+                text: "Manage users"
               },
               {
-                value: "manageUsers",
-                text: "Manage users",
-                label: {
-                  classes: "govuk-label--"
-                }
+                value: "manageOrganisation",
+                text: "Manage organisational permissions"
               },
               {
                 value: "setupInterviews",
