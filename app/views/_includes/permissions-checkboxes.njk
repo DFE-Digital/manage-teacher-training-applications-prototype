@@ -1,3 +1,7 @@
+{% if not fieldName %}
+  {% set fieldName = 'data.orgpermissions.a' + relationship.id%}
+{% endif %}
+
 {{ govukCheckboxes({
   fieldset: {
     legend: {
@@ -15,7 +19,7 @@
       text: partner
     }
   ]
-} | decorateAttributes(data, 'data.orgpermissions.a'+relationship.id+'.makeDecisions')) }}
+} | decorateAttributes(data, fieldName+'.makeDecisions')) }}
 
 {{ govukCheckboxes({
   fieldset: {
@@ -34,7 +38,7 @@
       text: partner
     }
   ]
-} | decorateAttributes(data, 'data.orgpermissions.a'+relationship.id+'.viewSafeguardingInformation')) }}
+} | decorateAttributes(data, fieldName+'.viewSafeguardingInformation')) }}
 
 {{ govukCheckboxes({
   fieldset: {
@@ -53,4 +57,4 @@
       text: partner
     }
   ]
-} | decorateAttributes(data, 'data.orgpermissions.a'+relationship.id+'.viewDiversityInformation')) }}
+} | decorateAttributes(data, fieldName+'.viewDiversityInformation')) }}

@@ -20,8 +20,9 @@
 
       {% include "_includes/permissions-guidance.njk" %}
 
-      {{relationship | log}}
       <form novalidate method="post">
+        {% set fieldName = 'data.orgpermissions'%}
+
         {% include "_includes/permissions-checkboxes.njk" %}
         {{govukButton({
           text: "Save organisational permissions"
