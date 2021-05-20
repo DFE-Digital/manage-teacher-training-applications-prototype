@@ -260,6 +260,10 @@ module.exports = router => {
   })
 
   router.post('/organisation-settings/:orgId/users/:userId/delete', (req, res) => {
+
+    // delete
+    req.session.data.users = req.session.data.users.filter(user => user.id !== req.params.userId)
+
     req.flash('success', 'User deleted')
     res.redirect(`/organisation-settings/${req.params.orgId}/users`)
   })
