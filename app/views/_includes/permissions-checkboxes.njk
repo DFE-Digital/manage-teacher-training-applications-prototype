@@ -15,7 +15,7 @@
       text: partner
     }
   ]
-} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.makeDecisions')) }}
+} | decorateAttributes(data, 'data.orgpermissions.a'+relationship.id+'.makeDecisions')) }}
 
 {{ govukCheckboxes({
   fieldset: {
@@ -34,7 +34,7 @@
       text: partner
     }
   ]
-} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.viewCriminalConvictions')) }}
+} | decorateAttributes(data, 'data.orgpermissions.a'+relationship.id+'.viewSafeguardingInformation')) }}
 
 {{ govukCheckboxes({
   fieldset: {
@@ -53,4 +53,4 @@
       text: partner
     }
   ]
-} | decorateAttributes(data, 'data.onboard.a'+relationship.id+'.viewDiversityInformation')) }}
+} | decorateAttributes(data, 'data.orgpermissions.a'+relationship.id+'.viewDiversityInformation')) }}

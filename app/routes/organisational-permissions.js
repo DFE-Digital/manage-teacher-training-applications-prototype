@@ -45,6 +45,33 @@ module.exports = router => {
   router.get('/organisation-settings/:orgId/organisational-permissions/:relationshipId/edit', (req, res) => {
     let relationship = req.session.data.relationships.find(relationship => relationship.id == req.params.relationshipId)
 
+    let orgKey = 'a' + relationship.id
+    let orgpermissions = {}
+    orgpermissions[orgKey] = {}
+    orgpermissions[orgKey].makeDecisions = []
+    orgpermissions[orgKey].viewSafeguardingInformation = []
+    orgpermissions[orgKey].viewDiversityInformation = []
+    if(relationship.org1Permissions.makeDecisions) {
+      orgpermissions[orgKey].makeDecisions.push(relationship.org1.name)
+    }
+    if(relationship.org2Permissions.makeDecisions) {
+      orgpermissions[orgKey].makeDecisions.push(relationship.org2.name)
+    }
+    if(relationship.org1Permissions.viewSafeguardingInformation) {
+      orgpermissions[orgKey].viewSafeguardingInformation.push(relationship.org1.name)
+    }
+    if(relationship.org2Permissions.viewSafeguardingInformation) {
+      orgpermissions[orgKey].viewSafeguardingInformation.push(relationship.org2.name)
+    }
+    if(relationship.org1Permissions.viewDiversityInformation) {
+      orgpermissions[orgKey].viewDiversityInformation.push(relationship.org1.name)
+    }
+    if(relationship.org2Permissions.viewDiversityInformation) {
+      orgpermissions[orgKey].viewDiversityInformation.push(relationship.org2.name)
+    }
+
+    res.locals.data.orgpermissions = orgpermissions
+
     res.render('organisation-settings/organisational-permissions/edit', {
       relationship
     })

@@ -31,19 +31,19 @@
           {% for partner in item.partners %}
 
             {% set makeDecisionsHtml %}
-              {% for item in data.onboard['a'+partner.id].makeDecisions %}
+              {% for item in data.orgpermissions['a'+partner.id].makeDecisions %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
 
             {% set viewSafeguardingHtml %}
-              {% for item in data.onboard['a'+partner.id].viewCriminalConvictions %}
+              {% for item in data.orgpermissions['a'+partner.id].viewCriminalConvictions %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
 
             {% set viewDiversityHtml %}
-              {% for item in data.onboard['a'+partner.id].viewDiversityInformation %}
+              {% for item in data.orgpermissions['a'+partner.id].viewDiversityInformation %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
