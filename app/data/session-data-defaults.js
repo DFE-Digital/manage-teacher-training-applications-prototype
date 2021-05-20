@@ -139,23 +139,9 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
-}, {
-  id: 5,
-  org1: trainingProviders[6],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[4],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
 }];
 
-let userOrgs = [accreditedBodies[4], trainingProviders[6]];
+let userOrgs = [accreditedBodies[4]];
 
 let user = users[0]
 user.organisations = userOrgs

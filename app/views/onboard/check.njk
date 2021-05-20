@@ -37,7 +37,7 @@
             {% endset %}
 
             {% set viewSafeguardingHtml %}
-              {% for item in data.orgpermissions['a'+partner.id].viewCriminalConvictions %}
+              {% for item in data.orgpermissions['a'+partner.id].viewSafeguardingInformation %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
