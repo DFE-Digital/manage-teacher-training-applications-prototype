@@ -45,6 +45,10 @@
         <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Delete user</a></p>
       {% endif %}
 
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
+
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -81,7 +85,16 @@
 
           </dd>
         </div>
-          <div class="govuk-summary-list__row">
+      </dl>
+
+       <h2 class="govuk-heading-m">
+        User permissions
+      </h2>
+
+      <p>All users can view applications.</p>
+
+      <dl class="govuk-summary-list">
+          {# <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               User permissions
             </dt>
@@ -99,7 +112,7 @@
                 </a>
               </dd>
             {% endif %}
-          </div>
+          </div> #}
           {%- set runOrRatified -%}
             {%- if org.isAccreditedBody -%}
               run
@@ -110,66 +123,125 @@
           {% if user.permissions %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Additional user permissions
+                Manage users
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.manageUsers %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Manage organisational permissions
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if user.permissions.manageOrganisation %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-                      Manage organisational permissions
-                    </p>
-                  </div>
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
-                {% if user.permissions.manageUsers %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-                      Manage users
-                    </p>
-                  </div>
-                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Set up interviews
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if user.permissions.setupInterviews %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      Set up interviews
-                    </p>
-                  </div>
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Make decisions
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if user.permissions.makeDecisions %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      Make decisions
-                    </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      applicableOrgs: permissions.applicableOrgs.makeDecisions,
-                      nonApplicableOrgs: permissions.
-                      nonApplicableOrgs.makeDecisions
-                    })}}
-                  </div>
+                  <p>Yes</p>
+                  {{appPermissions({
+                    runOrRatified: runOrRatified,
+                    applicableOrgs: permissions.applicableOrgs.makeDecisions,
+                    nonApplicableOrgs: permissions.
+                    nonApplicableOrgs.makeDecisions
+                  })}}
+                {% else %}
+                  No
                 {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View criminal convictions and professional misconduct
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if user.permissions.viewSafeguardingInformation %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      View criminal convictions and professional misconduct
-                    </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
-                      nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
-                    })}}
-                  </div>
+                  <p>Yes</p>
+                  {{appPermissions({
+                    runOrRatified: runOrRatified,
+                    applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
+                    nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
+                  })}}
+                {% else %}
+                  No
                 {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View diversity information
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if user.permissions.viewDiversityInformation %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      View diversity information
-                    </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
-                      nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
-                    })}}
-                  </div>
+                  <p>Yes</p>
+                  {{appPermissions({
+                    runOrRatified: runOrRatified,
+                    applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
+                    nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
+                  })}}
+                {% else %}
+                  No
                 {% endif %}
               </dd>
               {% if canManageUsers %}

@@ -27,6 +27,10 @@
         {{title}}
       </h1>
 
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
+
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -69,7 +73,13 @@
             </a>
           </dd>
         </div>
+      </dl>
+      <h2 class="govuk-heading-m">
+        User permissions
+      </h2>
+      <p>All users can view applications.</p>
 
+      <dl class="govuk-summary-list">
 
         {% set runOrRatified %}
           {% if org.isAccreditedBody %}
@@ -81,7 +91,7 @@
 
 
 
-          <div class="govuk-summary-list__row">
+          {# <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               User permissions
             </dt>
@@ -95,59 +105,104 @@
                 Change<span class="govuk-visually-hidden"></span>
               </a>
             </dd>
-          </div>
-          {% if data.newuser.access == "Additional permissions" %}
+          </div> #}
+          {# {% if data.newuser.access == "Additional permissions" %} #}
+          {% if 1 == 1 %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Additional user permissions
+                Manage users
               </dt>
               <dd class="govuk-summary-list__value">
 
                 {% if checked(data.newuser.permissions, 'manageUsers') == 'checked' %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      Manage users
-                    </p>
-                  </div>
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
-
-                {% if org.permissions.manageOrganisation %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      Manage organisational permissions
-                    </p>
-                  </div>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/additional-permissions">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Manage organisational permissions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if checked(data.newuser.permissions, 'manageOrganisation') == 'checked' %}
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
-
-
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/additional-permissions">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Set up interviews
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if checked(data.newuser.permissions, 'setupInterviews') == 'checked' %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      Set up interviews
-                    </p>
-                  </div>
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/additional-permissions">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Make decisions
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if checked(data.newuser.permissions, 'makeDecisions') == 'checked' %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      Make decisions
-                    </p>
-                  </div>
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/additional-permissions">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View criminal convictions and professional misconduct
+              </dt>
+              <dd class="govuk-summary-list__value">
                 {% if checked(data.newuser.permissions, 'viewSafeguardingInformation') == 'checked' %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      View criminal convictions and professional misconduct
-                    </p>
-                  </div>
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
-
-                {% if checked(data.newuser.permissions, 'viewDiversityInformation') == 'checked' %}
-                  <div class="app-permission-item">
-                    <p class="govuk-!-margin-bottom-0">
-                      View equality and diversity information
-                    </p>
-                  </div>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/new/additional-permissions">
+                  Change<span class="govuk-visually-hidden"></span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View equality and diversity information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if checked(data.newuser.permissions, 'viewSafeguardingInformation') == 'checked' %}
+                  Yes
+                {% else %}
+                  No
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">

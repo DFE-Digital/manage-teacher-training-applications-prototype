@@ -69,23 +69,23 @@ module.exports = router => {
   })
 
   router.post('/organisation-settings/:orgId/users/new', (req, res) => {
-    res.redirect(`/organisation-settings/${req.params.orgId}/users/new/permissions/`)
+    res.redirect(`/organisation-settings/${req.params.orgId}/users/new/additional-permissions/`)
   })
 
-  router.get('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
-    let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
-    res.render('organisation-settings/users/new/permissions', {
-      org
-    })
-  })
+  // router.get('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
+  //   let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
+  //   res.render('organisation-settings/users/new/permissions', {
+  //     org
+  //   })
+  // })
 
-  router.post('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
-    if(req.session.data.newuser.access == "Additional permissions") {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/new/additional-permissions`)
-    } else {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/new/check`)
-    }
-  })
+  // router.post('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
+  //   if(req.session.data.newuser.access == "Additional permissions") {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/additional-permissions`)
+  //   } else {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/check`)
+  //   }
+  // })
 
   router.get('/organisation-settings/:orgId/users/new/additional-permissions', (req, res) => {
     let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
@@ -119,8 +119,9 @@ module.exports = router => {
     user.emailAddress = data['email-address']
     user.organisation = req.session.data.organisations.find(org => org.id == req.params.orgId)
 
-    if(data.access == "Additional permissions") {
-      user.permissions = {}
+    user.permissions = {}
+
+    if(data.permissions) {
       user.permissions.manageOrganisation = data.permissions.indexOf('manageOrganisation') > -1
       user.permissions.manageUsers = data.permissions.indexOf('manageUsers') > -1
       user.permissions.setupInterviews = data.permissions.indexOf('setupInterviews') > -1
@@ -147,28 +148,28 @@ module.exports = router => {
 
   // Edit permissions
 
-  router.get('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
-    var user = req.session.data.users.find(user => user.id == req.params.userId)
-    var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
-    if(!req.session.data.editpermissions) {
-      req.session.data.editpermissions = res.locals.data.editpermissions = {
-        access: "Additional permissions"
-      }
-    }
-    res.render('organisation-settings/users/edit-permissions/permissions', {
-      user,
-      org
-    })
-  })
+  // router.get('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
+  //   var user = req.session.data.users.find(user => user.id == req.params.userId)
+  //   var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
+  //   if(!req.session.data.editpermissions) {
+  //     req.session.data.editpermissions = res.locals.data.editpermissions = {
+  //       access: "Additional permissions"
+  //     }
+  //   }
+  //   res.render('organisation-settings/users/edit-permissions/permissions', {
+  //     user,
+  //     org
+  //   })
+  // })
 
 
-  router.post('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
-    if(req.session.data.editpermissions.access == "Additional permissions") {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/additional-permissions`)
-    } else {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/check`)
-    }
-  })
+  // router.post('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
+  //   if(req.session.data.editpermissions.access == "Additional permissions") {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/additional-permissions`)
+  //   } else {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/check`)
+  //   }
+  // })
 
   router.get('/organisation-settings/:orgId/users/:userId/permissions/edit/additional-permissions', (req, res) => {
     let user = req.session.data.users.find(user => user.id == req.params.userId)
@@ -179,9 +180,9 @@ module.exports = router => {
 
     if(!data || !data.permissions) {
       // you're on additional permissions page so...
-      req.session.data.editpermissions = {
-        access: "Additional permissions"
-      }
+      // req.session.data.editpermissions = {
+      //   access: "Additional permissions"
+      // }
 
       // get from user object
       res.locals.data.editpermissions = { permissions: [] }
@@ -231,23 +232,24 @@ module.exports = router => {
 
     var data = req.session.data.editpermissions
 
-    if(data.access == "View applications") {
-      delete user.permissions
-    } else {
-      if(!user.permissions) {
-        user.permissions = {}
-      }
+    if(!user.permissions) {
+      user.permissions = {}
+    }
+
+    if(data.permissions) {
       user.permissions.manageOrganisation = data.permissions.indexOf('manageOrganisation') > -1
       user.permissions.manageUsers = data.permissions.indexOf('manageUsers') > -1
       user.permissions.setupInterviews = data.permissions.indexOf('setupInterviews') > -1
       user.permissions.makeDecisions = data.permissions.indexOf('makeDecisions') > -1
       user.permissions.viewSafeguardingInformation = data.permissions.indexOf('viewSafeguardingInformation') > -1
       user.permissions.viewDiversityInformation= data.permissions.indexOf('viewDiversityInformation') > -1
+    } else {
+      user.permissions = {}
     }
 
     data = null
 
-    req.flash('success', 'Permissions updated')
+    req.flash('success', 'User permissions updated')
     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}`)
   })
 

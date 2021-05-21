@@ -2,10 +2,10 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'Additional permissions - Invite user' %}
+{% set title = 'User permissions - Invite user' %}
 
-{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/permissions{% endset %}
-{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users{% endset %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -56,7 +56,7 @@
             - {{org.name}}
           {% endif %}
         </span>
-        Additional user permissions
+        User permissions
       {% endset %}
 
       <form novalidate method="post">
@@ -68,7 +68,11 @@
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
+
             },
+            hint: {
+                text: "All users can view applications."
+              },
             items: [
               {
                 value: "manageUsers",

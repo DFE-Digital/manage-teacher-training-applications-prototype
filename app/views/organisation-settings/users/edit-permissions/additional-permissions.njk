@@ -2,9 +2,9 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'Additional user permissions - Invite user' %}
+{% set title = 'User permissions - Invite user' %}
 
-{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit{% endset %}
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 
 {% block beforeContent %}
@@ -56,7 +56,7 @@
             - {{org.name}}
           {% endif %}
         </span>
-        Additional user permissions
+        User permissions
       {% endset %}
 
       <form novalidate method="post">
@@ -68,6 +68,9 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+                text: "All users can view applications."
+              },
           items: [
             {
               value: "manageUsers",
