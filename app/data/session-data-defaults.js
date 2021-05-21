@@ -272,6 +272,48 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
+}, {
+  id: 15,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Waterton Academy Trust"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 16,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("White Rose Alliance"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 17,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Yorkshire Schools Alliance"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
 }];
 
 let userOrgs = [userOrg];
