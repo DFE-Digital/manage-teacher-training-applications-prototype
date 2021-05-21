@@ -15,10 +15,10 @@ const generateFakeUsers = (count) => {
 
   users.push({
     id: faker.random.uuid(),
-    firstName: "Natasha",
-    lastName: "Cresswell",
-    emailAddress: "ncresswell@glos.ac.uk",
-    organisation: organisations.find(org => org.name == "The University of Gloucestershire"),
+    firstName: "Emma",
+    lastName: "Turner-Lindley",
+    emailAddress: "e.turner-lindley@leedstrinity.ac.uk",
+    organisation: organisations.find(org => org.name == "Leeds Trinity University"),
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
@@ -28,6 +28,7 @@ const generateFakeUsers = (count) => {
       viewDiversityInformation: true
     }
   })
+
 
   for(var i = 0; i < 100; i++) {
     let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))

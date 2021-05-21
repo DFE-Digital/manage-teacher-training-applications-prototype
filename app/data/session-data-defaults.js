@@ -1,12 +1,17 @@
 const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
 const { DateTime } = require('luxon')
+const organisations = require('./organisations.json')
 
-const trainingProviders = require('./organisations.json').filter(org => {
+function findOrg(name) {
+  return organisations.find(org => org.name == name)
+}
+
+const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
 })
 
-const accreditedBodies = require('./organisations.json').filter(org => {
+const accreditedBodies = organisations.filter(org => {
   return org.isAccreditedBody
 })
 
@@ -69,15 +74,17 @@ applications = applications
     }
   })
 
+let userOrg = findOrg("Leeds Trinity University")
+
 let relationships = [{
   id: 1,
-  org1: accreditedBodies[4],
+  org1: userOrg,
   org1Permissions: {
     makeDecisions: false,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: trainingProviders[2],
+  org2: findOrg("Co-op Academies Trust School Direct - Primary"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -85,13 +92,181 @@ let relationships = [{
   }
 }, {
   id: 2,
-  org1: accreditedBodies[4],
+  org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: trainingProviders[3],
+  org2: findOrg("Diocese of Leeds BKCAT Alliance"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 3,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Dixons Multi-Academy Trust (DMAT)"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 4,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("East One Partnership"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 5,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Ilkley All Saints’ Teacher Training Partnership"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 6,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Nicholas Postgate Catholic Academy Trust"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 7,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("North Star"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 8,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Rodillian"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 9,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("St Anthony’s Primary Learning Partnership"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 10,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("St Bede’s Deanery Teaching Alliance"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 11,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("St. Mary’s TSA"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 12,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("The Beckfoot School Direct Partnership"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 13,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("The Catholic Schools Partnership Teaching School Alliance"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 14,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("The Yorkshire Rose Teaching Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -99,7 +274,7 @@ let relationships = [{
   }
 }];
 
-let userOrgs = [accreditedBodies[4]];
+let userOrgs = [userOrg];
 
 let user = users[0]
 user.organisations = userOrgs
@@ -122,7 +297,7 @@ module.exports = {
   applications,
   trainingProviders,
   accreditedBodies,
-  organisations: require('./organisations.json'),
+  organisations,
   users,
   bare: process.env.BARE,
   flags: {
