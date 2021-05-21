@@ -46,7 +46,7 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for subject in subjects %}
-          {% if (data.statistics.subjectLevel and subject.level in data.statistics.subjectLevel) or (not data.statistics.subjectLevel.length) %}
+          {% if (data.statisticsOptions.subjectLevel and subject.level in data.statisticsOptions.subjectLevel) or (not data.statisticsOptions.subjectLevel.length) %}
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
               <td class="govuk-table__cell">

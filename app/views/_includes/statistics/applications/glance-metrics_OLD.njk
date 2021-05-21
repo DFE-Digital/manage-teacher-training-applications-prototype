@@ -1,0 +1,155 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications received"
+      },
+      metric: {
+        figure: totalApplications
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications rejected"
+      },
+      metric: {
+        figure: statusCounts['Rejected']
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers outstanding"
+      },
+      metric: {
+        figure: statusCounts['Offered']
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers accepted"
+      },
+      metric: {
+        figure: statusCounts['Ready to enroll']
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Offers accepted"
+      },
+      metric: {
+        figure: ((statusCounts['Ready to enroll']/statusCounts['Offered'])*100) | numeral('0') + "%"
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Applications accepted"
+      },
+      metric: {
+        figure: ((statusCounts['Ready to enroll']/totalApplications)*100) | numeral('0') + "%"
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Interviews declined"
+      },
+      metric: {
+        figure: ((statusCounts['Declined']/statusCounts['Offered'])*100) | numeral('0') + "%"
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Rejected after interview"
+      },
+      metric: {
+        figure: "XX%"
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    {{ appGlanceMetric({
+      heading: {
+        text: "Deferrals"
+      },
+      metric: {
+        figure: statusCounts['Deferred']
+      },
+      description: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      }
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <!-- {{ appGlanceMetric({
+      heading: {
+        text: "HEADING"
+      },
+      metric: {
+        figure: "XX%"
+      }
+    }) }} -->
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <!-- {{ appGlanceMetric({
+      heading: {
+        text: "HEADING"
+      },
+      metric: {
+        figure: "XX%"
+      }
+    }) }} -->
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <!-- {{ appGlanceMetric({
+      heading: {
+        text: "HEADING"
+      },
+      metric: {
+        figure: "XX%"
+      }
+    }) }} -->
+  </div>
+</div>

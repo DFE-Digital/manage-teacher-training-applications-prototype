@@ -7,11 +7,14 @@
 
 {% include "_includes/statistics/header.njk" %}
 
-<h2 class="govuk-heading-m">Applications</h2>
+<h2 class="govuk-heading-m">Number of applications</h2>
 
-{#% include "_includes/statistics/applications/glance-metrics.njk" %#}
+{% include "_includes/statistics/applications/glance-metrics.njk" %}
 
-<ul class="govuk-list">
+<ul class="govuk-list govuk-!-margin-top-9">
+  <!-- <li>
+    <a class="govuk-link" href="/statistics/applications/courses">Courses</a>
+  </li> -->
   <li>
     <a class="govuk-link" href="/statistics/applications/courses-by-year">Courses by year</a>
   </li>
@@ -60,9 +63,11 @@
   </li>
 </ul> -->
 
-<h2 class="govuk-heading-m">Candidates</h2>
+<h2 class="govuk-heading-m govuk-!-margin-top-9">Diversity of recruitment</h2>
 
-{#% include "_includes/statistics/candidates/glance-metrics.njk" %#}
+<!-- <h2 class="govuk-heading-m">Candidates</h2>
+
+{#% include "_includes/statistics/candidates/glance-metrics.njk" %#} -->
 
 <ul class="govuk-list">
   <li>

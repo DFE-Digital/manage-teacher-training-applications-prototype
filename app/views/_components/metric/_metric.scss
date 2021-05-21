@@ -1,0 +1,74 @@
+.app-metric {
+  @include govuk-responsive-padding(4);
+  @include govuk-font($size: 19);
+  background-color: govuk-colour("light-grey");
+  display: block;
+  position: relative;
+}
+
+.app-metric__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-metric__figure {
+  @include govuk-font($size: 48, $weight: bold);
+  display: block;
+}
+
+.app-metric__secondary-figure {
+  @include govuk-font($size: 36, $weight: bold);
+  display: block;
+}
+
+.app-metric--outline {
+  background-color: govuk-colour("white");
+  border: 1px solid govuk-colour("mid-grey");
+  font-size: 18px;
+}
+
+
+.app-metric--grey {
+  color: govuk-shade(govuk-colour("dark-grey"), 30);
+  background: govuk-tint(govuk-colour("dark-grey"), 90);
+}
+
+.app-metric--purple {
+  color: govuk-shade(govuk-colour("purple"), 20);
+  background: govuk-tint(govuk-colour("purple"), 80);
+}
+
+.app-metric--turquoise {
+  color: govuk-shade(govuk-colour("turquoise"), 60);
+  background: govuk-tint(govuk-colour("turquoise"), 70);
+}
+
+.app-metric--blue {
+  color: govuk-shade(govuk-colour("blue"), 30);
+  background: govuk-tint(govuk-colour("blue"), 80);
+}
+
+.app-metric--yellow {
+  color: govuk-shade(govuk-colour("yellow"), 65);
+  background: govuk-tint(govuk-colour("yellow"), 75);
+}
+
+.app-metric--orange {
+  color: govuk-shade(govuk-colour("orange"), 55);
+  background: govuk-tint(govuk-colour("orange"), 70);
+}
+
+.app-metric--red {
+  color: govuk-shade(govuk-colour("red"), 30);
+  background: govuk-tint(govuk-colour("red"), 80);
+}
+
+.app-metric--pink {
+  color: govuk-shade(govuk-colour("pink"), 40);
+  background: govuk-tint(govuk-colour("pink"), 80);
+}
+
+.app-metric--green {
+  color: govuk-shade(govuk-colour("green"), 20);
+  background: govuk-tint(govuk-colour("green"), 80);
+}

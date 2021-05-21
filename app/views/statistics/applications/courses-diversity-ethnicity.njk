@@ -36,7 +36,7 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Course</th>
           {% for ethnicity in ethnicities %}
-            {% if (data.statistics.ethnicity and ethnicity in data.statistics.ethnicity) or (not data.statistics.ethnicity.length) %}
+            {% if (data.statisticsOptions.ethnicity and ethnicity in data.statisticsOptions.ethnicity) or (not data.statisticsOptions.ethnicity.length) %}
               <th scope="col" class="govuk-table__header">{{ ethnicity }}</th>
             {% endif %}
           {% endfor %}
@@ -44,11 +44,11 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for subject in subjects %}
-          {% if (data.statistics.subjectLevel and subject.level in data.statistics.subjectLevel) or (not data.statistics.subjectLevel.length) %}
+          {% if (data.statisticsOptions.subjectLevel and subject.level in data.statisticsOptions.subjectLevel) or (not data.statisticsOptions.subjectLevel.length) %}
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
               {% for ethnicity in ethnicities %}
-                {% if (data.statistics.ethnicity and ethnicity in data.statistics.ethnicity) or (not data.statistics.ethnicity.length) %}
+                {% if (data.statisticsOptions.ethnicity and ethnicity in data.statisticsOptions.ethnicity) or (not data.statisticsOptions.ethnicity.length) %}
                   <td class="govuk-table__cell">{{ subjectCounts[subject.name][ethnicity] }}</td>
                 {% endif %}
               {% endfor %}

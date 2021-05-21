@@ -41,9 +41,9 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for subject in subjects %}
-          {% if (data.statistics.subjectLevel and subject.level in data.statistics.subjectLevel) or (not data.statistics.subjectLevel.length) %}
+          {% if (data.statisticsOptions.subjectLevel and subject.level in data.statisticsOptions.subjectLevel) or (not data.statisticsOptions.subjectLevel.length) %}
             <tr class="govuk-table__row">
-              {% if data.statistics.status %}
+              {% if data.statisticsOptions.status %}
                 <th scope="row" class="govuk-table__header">{{ subject.name }} (AB{{ subject.code }})</th>
               {% else %}
                 <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
@@ -51,9 +51,9 @@
               <td class="govuk-table__cell">{{ subjectCountsCurrentCycle[subject.name]['total'] }}</td>
               <td class="govuk-table__cell">{{ subjectCountsPreviousCycle[subject.name]['total'] }}</td>
             </tr>
-            {% if data.statistics.status %}
+            {% if data.statisticsOptions.status %}
               {% for status in statuses %}
-                {% if status in data.statistics.status %}
+                {% if status in data.statisticsOptions.status %}
                 <tr class="govuk-table__row">
                   <td scope="row" class="govuk-table__cell app-table__cell--indent">{{ status }}</td>
                   <td class="govuk-table__cell">{{ subjectCountsCurrentCycle[subject.name][status] }}</td>

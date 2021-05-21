@@ -36,7 +36,7 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Course</th>
           {% for status in statuses %}
-            {% if (data.statistics.status and status in data.statistics.status) or (not data.statistics.status.length) %}
+            {% if (data.statisticsOptions.status and status in data.statisticsOptions.status) or (not data.statisticsOptions.status.length) %}
               <th scope="col" class="govuk-table__header">{{ status }}</th>
             {% endif %}
           {% endfor %}
@@ -44,26 +44,26 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for subject in subjects %}
-          {% if (data.statistics.subjectLevel and subject.level in data.statistics.subjectLevel) or (not data.statistics.subjectLevel.length) %}
+          {% if (data.statisticsOptions.subjectLevel and subject.level in data.statisticsOptions.subjectLevel) or (not data.statisticsOptions.subjectLevel.length) %}
             <tr class="govuk-table__row">
-              {% if data.statistics.cycle.length %}
+              {% if data.statisticsOptions.cycle.length %}
                 <th scope="row" class="govuk-table__header">{{ subject.name }} (AB{{ subject.code }})</th>
               {% else %}
                 <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
               {% endif %}
               {% for status in statuses %}
-                {% if (data.statistics.status and status in data.statistics.status) or (not data.statistics.status.length) %}
+                {% if (data.statisticsOptions.status and status in data.statisticsOptions.status) or (not data.statisticsOptions.status.length) %}
                   <td class="govuk-table__cell">{{ subjectCounts[subject.name][status] }}</td>
                 {% endif %}
               {% endfor %}
             </tr>
-            {% if data.statistics.cycle %}
+            {% if data.statisticsOptions.cycle %}
               {% for cycle in cycles %}
-                {% if cycle in data.statistics.cycle %}
+                {% if cycle in data.statisticsOptions.cycle %}
                   <tr class="govuk-table__row">
                     <td scope="row" class="govuk-table__cell app-table__cell--indent">{{ cycle }}</td>
                     {% for status in statuses %}
-                      {% if (data.statistics.status and status in data.statistics.status) or (not data.statistics.status.length) %}
+                      {% if (data.statisticsOptions.status and status in data.statisticsOptions.status) or (not data.statisticsOptions.status.length) %}
                         <td class="govuk-table__cell">{{ subjectCounts[subject.name][status] }}</td>
                       {% endif %}
                     {% endfor %}

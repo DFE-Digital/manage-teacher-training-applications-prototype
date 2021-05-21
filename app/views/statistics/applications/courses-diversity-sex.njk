@@ -36,7 +36,7 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Course</th>
           {% for sex in sexes %}
-            {% if (data.statistics.sex and sex in data.statistics.sex) or (not data.statistics.sex.length) %}
+            {% if (data.statisticsOptions.sex and sex in data.statisticsOptions.sex) or (not data.statisticsOptions.sex.length) %}
               <th scope="col" class="govuk-table__header">{{ sex }}</th>
             {% endif %}
           {% endfor %}
@@ -44,11 +44,11 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for subject in subjects %}
-          {% if (data.statistics.subjectLevel and subject.level in data.statistics.subjectLevel) or (not data.statistics.subjectLevel.length) %}
+          {% if (data.statisticsOptions.subjectLevel and subject.level in data.statisticsOptions.subjectLevel) or (not data.statisticsOptions.subjectLevel.length) %}
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__cell">{{ subject.name }} (AB{{ subject.code }})</td>
               {% for sex in sexes %}
-                {% if (data.statistics.sex and sex in data.statistics.sex) or (not data.statistics.sex.length) %}
+                {% if (data.statisticsOptions.sex and sex in data.statisticsOptions.sex) or (not data.statisticsOptions.sex.length) %}
                   <td class="govuk-table__cell">{{ subjectCounts[subject.name][sex] }}</td>
                 {% endif %}
               {% endfor %}

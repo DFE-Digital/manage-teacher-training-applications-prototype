@@ -2,19 +2,19 @@ const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
 
 const getConfigOptions = (req) => {
-  if (req.session.data.statistics === undefined) {
-    req.session.data.statistics = {}
+  if (req.session.data.statisticsOptions === undefined) {
+    req.session.data.statisticsOptions = {}
   }
 
   let options = {}
-  options.cycles = req.session.data.statistics.cycle
-  options.statuses = req.session.data.statistics.status
-  options.studyModes = req.session.data.statistics.studyMode
-  options.fundingTypes = req.session.data.statistics.fundingType
-  options.subjectLevels = req.session.data.statistics.subjectLevel
-  options.providers = req.session.data.statistics.provider
-  options.accreditedBodies = req.session.data.statistics.accreditedBody
-  options.locations = req.session.data.statistics.location
+  options.cycles = req.session.data.statisticsOptions.cycle
+  options.statuses = req.session.data.statisticsOptions.status
+  options.studyModes = req.session.data.statisticsOptions.studyMode
+  options.fundingTypes = req.session.data.statisticsOptions.fundingType
+  options.subjectLevels = req.session.data.statisticsOptions.subjectLevel
+  options.providers = req.session.data.statisticsOptions.provider
+  options.accreditedBodies = req.session.data.statisticsOptions.accreditedBody
+  options.locations = req.session.data.statisticsOptions.location
 
   const hasOptions = !!((options.cycles && options.cycles.length > 0) || (options.statuses && options.statuses.length > 0) || (options.providers && options.providers.length > 0) || (options.accreditedBodies && options.accreditedBodies.length > 0) || (options.studyModes && options.studyModes.length > 0) || (options.fundingTypes && options.fundingTypes.length > 0) || (options.subjectLevels && options.subjectLevels.length > 0) || (options.locations && options.locations.length > 0))
 
@@ -131,7 +131,61 @@ const getConfigOptions = (req) => {
   return { hasOptions, selectedOptions, options }
 }
 
+const getFilters = (req) => {
+  if (req.session.data.statisticsFilters === undefined) {
+    req.session.data.statisticsFilters = {}
+  }
+
+  let filters = {}
+  filters.cycles = req.session.data.statisticsFilters.cycle
+  filters.subjectLevels = req.session.data.statisticsFilters.subjectLevel
+
+  const hasFilters = !!((filters.cycles && filters.cycles.length > 0) || (filters.subjectLevels && filters.subjectLevels.length > 0))
+
+  let selectedFilters = null
+
+  if (hasFilters) {
+
+    let slug = req.route.path
+    if (req.params.section && req.params.report) {
+      slug = `/statistics/${req.params.section}/${req.params.report}`
+    }
+
+    selectedFilters = {
+      categories: []
+    }
+
+    if (filters.cycles && filters.cycles.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Year received' },
+        items: filters.cycles.map((cycle) => {
+          return {
+            text: cycle,
+            href: `${slug}/remove-cycle-filter/${cycle}`
+          }
+        })
+      })
+    }
+
+    if (filters.subjectLevels && filters.subjectLevels.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Subject level' },
+        items: filters.subjectLevels.map((subjectLevel) => {
+          return {
+            text: subjectLevel,
+            href: `${slug}/remove-subjectlevel-option/${subjectLevel}`
+          }
+        })
+      })
+    }
+
+  }
+
+  return { hasFilters, selectedFilters, filters }
+}
+
 const getApplications = (applications, options) => {
+  console.log(options);
   return applications = applications.filter((app) => {
     let cycleValid = true
     let statusValid = true
@@ -319,13 +373,116 @@ const getRedirect = (referer) => {
 module.exports = router => {
 
   router.get('/statistics', (req, res) => {
-    delete req.session.data.statistics
-    res.render('statistics/index', {})
+    delete req.session.data.statisticsOptions
+    delete req.session.data.statisticsFilters
+
+    let applications = req.session.data.applications
+    let current = applications.filter(application => application.cycle === '2020 to 2021')
+
+    let previous = applications.filter(application => application.cycle === '2019 to 2020')
+
+    res.render('statistics/index', {
+      counts: {
+        current: {
+          total: current.length,
+          interviewing: current.filter(c => c.status === 'Awaiting decision').length,
+          offered: current.filter(c => c.status === 'Offered').length,
+          awaitingConditions: current.filter(c => c.status === 'Awaiting conditions').length,
+          readyToEnroll: current.filter(c => c.status === 'Ready to enroll').length
+        },
+        previous: {
+          total: previous.length,
+          interviewing: 22,
+          offered: 16,
+          awaitingConditions: 7,
+          readyToEnroll: 10
+        }
+      }
+    })
   })
 
   router.get('/statistics/applications', (req, res) => {
     res.redirect('/statistics')
   })
+
+  // ===========================================================================
+  // Version 3
+  // ===========================================================================
+
+  router.get('/statistics/applications/courses', (req, res) => {
+    let applications = req.session.data.applications
+
+    // const options = getConfigOptions(req)
+    //
+    // if (options.hasOptions) {
+    //   applications = getApplications(applications, options.options)
+    // }
+
+    const filters = getFilters(req)
+
+    if (filters.hasFilters) {
+      applications = getApplications(applications, filters.filters)
+    }
+
+    const options = req.session.data.statisticsOptions
+
+    const showFilters = []
+    if (options) {
+      // parse the dimensions so we know what filters to show
+      for (const [key, value] of Object.entries(options)) {
+        showFilters.push(value)
+      }
+    }
+
+
+    // Now lets get the subject counts data
+    // Dimension 2 and 4 are optional
+    // | =============== | Dimension 3               | Dimension 3               |
+    // | =============== | Dimension 4 | Dimension 4 | Dimension 4 | Dimension 4 |
+    // | Dimension 1     | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 2 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 2 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 2 | =========== | =========== | =========== | =========== |
+    // | Dimension 1     | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 2 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 2 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 2 | =========== | =========== | =========== | =========== |
+
+    res.render('statistics/applications/courses', {
+      section: 'applications',
+      report: 'courses',
+      totalApplications: applications.length,
+      subjects: SystemHelper.subjects,
+      subjectCounts: ApplicationHelper.getApplicationCountsBySubject(applications),
+      hasFilters: filters.hasFilters,
+      selectedFilters: filters.selectedFilters,
+      showFilters
+    })
+  })
+
+  router.get('/statistics/:section/:report/settings', (req, res) => {
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/settings/rows', (req, res) => {
+    res.render('statistics/settings/rows', {
+      section: req.params.section,
+      report: req.params.report,
+      reportName: getReportName(req.params.report)
+    })
+  })
+
+  router.get('/statistics/:section/:report/settings/columns', (req, res) => {
+    res.render('statistics/settings/columns', {
+      section: req.params.section,
+      report: req.params.report,
+      reportName: getReportName(req.params.report)
+    })
+  })
+
+  // ===========================================================================
+  // Version 1 – Applications
+  // ===========================================================================
 
   router.get('/statistics/applications/status', (req, res) => {
     let applications = req.session.data.applications
@@ -379,6 +536,91 @@ module.exports = router => {
       ]
     })
   })
+
+  router.get('/statistics/applications/provider', (req, res) => {
+    let applications = req.session.data.applications
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/providers', {
+      totalApplications: applications.length,
+      organisations: SystemHelper.organisations,
+      organisationCounts: ApplicationHelper.getApplicationCountsByOrganisation(applications),
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions,
+      showOptions: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
+    })
+  })
+
+  router.get('/statistics/applications/location', (req, res) => {
+    let applications = req.session.data.applications
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/locations', {
+      totalApplications: applications.length,
+      locations: SystemHelper.trainingLocations,
+      locationCounts: ApplicationHelper.getApplicationCountsByTrainingLocation(applications),
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions,
+      showOptions: [
+        'cycle',
+        'status',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
+    })
+  })
+
+  router.get('/statistics/applications/reasons-for-rejection', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.status === 'Rejected')
+
+    const options = getConfigOptions(req)
+
+    if (options.hasOptions) {
+      applications = getApplications(applications, options.options)
+    }
+
+    res.render('statistics/applications/reasons-for-rejection', {
+      totalApplications: applications.length,
+      reasons: SystemHelper.reasonsForRejection,
+      reasonCounts: ApplicationHelper.getApplicationCountsByReasonsForRejection(applications),
+      hasOptions: options.hasOptions,
+      selectedOptions: options.selectedOptions,
+      showOptions: [
+        'cycle',
+        'trainingProvider',
+        'accreditedBody',
+        'studyMode',
+        'fundingType',
+        'subjectLevel'
+      ]
+    })
+  })
+
+  // ===========================================================================
+  // Version 2 – Applications
+  // ===========================================================================
 
   router.get('/statistics/applications/courses-by-status', (req, res) => {
     let applications = req.session.data.applications
@@ -580,7 +822,7 @@ module.exports = router => {
 
   router.get('/statistics/:section/:report/configure', (req, res) => {
     const options = getConfigOptions(req)
-    res.render('statistics/configure', {
+    res.render('statistics/config-options', {
       section: req.params.section,
       report: req.params.report,
       reportName: getReportName(req.params.report),
@@ -590,86 +832,9 @@ module.exports = router => {
     })
   })
 
-  router.get('/statistics/applications/provider', (req, res) => {
-    let applications = req.session.data.applications
-
-    const options = getConfigOptions(req)
-
-    if (options.hasOptions) {
-      applications = getApplications(applications, options.options)
-    }
-
-    res.render('statistics/applications/providers', {
-      totalApplications: applications.length,
-      organisations: SystemHelper.organisations,
-      organisationCounts: ApplicationHelper.getApplicationCountsByOrganisation(applications),
-      hasOptions: options.hasOptions,
-      selectedOptions: options.selectedOptions,
-      showOptions: [
-        'cycle',
-        'status',
-        'trainingProvider',
-        'accreditedBody',
-        'studyMode',
-        'fundingType',
-        'subjectLevel'
-      ]
-    })
-  })
-
-  router.get('/statistics/applications/location', (req, res) => {
-    let applications = req.session.data.applications
-
-    const options = getConfigOptions(req)
-
-    if (options.hasOptions) {
-      applications = getApplications(applications, options.options)
-    }
-
-    res.render('statistics/applications/locations', {
-      totalApplications: applications.length,
-      locations: SystemHelper.trainingLocations,
-      locationCounts: ApplicationHelper.getApplicationCountsByTrainingLocation(applications),
-      hasOptions: options.hasOptions,
-      selectedOptions: options.selectedOptions,
-      showOptions: [
-        'cycle',
-        'status',
-        'trainingProvider',
-        'accreditedBody',
-        'studyMode',
-        'fundingType',
-        'subjectLevel'
-      ]
-    })
-  })
-
-  router.get('/statistics/applications/reasons-for-rejection', (req, res) => {
-    let applications = req.session.data.applications
-    applications = applications.filter(application => application.status === 'Rejected')
-
-    const options = getConfigOptions(req)
-
-    if (options.hasOptions) {
-      applications = getApplications(applications, options.options)
-    }
-
-    res.render('statistics/applications/reasons-for-rejection', {
-      totalApplications: applications.length,
-      reasons: SystemHelper.reasonsForRejection,
-      reasonCounts: ApplicationHelper.getApplicationCountsByReasonsForRejection(applications),
-      hasOptions: options.hasOptions,
-      selectedOptions: options.selectedOptions,
-      showOptions: [
-        'cycle',
-        'trainingProvider',
-        'accreditedBody',
-        'studyMode',
-        'fundingType',
-        'subjectLevel'
-      ]
-    })
-  })
+  // ===========================================================================
+  // Version 1 – Candidates
+  // ===========================================================================
 
   router.get('/statistics/candidates', (req, res) => {
     res.redirect('/statistics')
@@ -775,67 +940,83 @@ module.exports = router => {
     })
   })
 
+  // ===========================================================================
+  // Miscellaneous
+  // ===========================================================================
+
   router.get('/statistics/:section/:report/remove-cycle-option/:cycle', (req, res) => {
-    req.session.data.statistics.cycle = req.session.data.statistics.cycle.filter(item => item !== req.params.cycle)
+    req.session.data.statisticsOptions.cycle = req.session.data.statisticsOptions.cycle.filter(item => item !== req.params.cycle)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-status-option/:status', (req, res) => {
-    req.session.data.statistics.status = req.session.data.statistics.status.filter(item => item !== req.params.status)
+    req.session.data.statisticsOptions.status = req.session.data.statisticsOptions.status.filter(item => item !== req.params.status)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-provider-option/:provider', (req, res) => {
-    req.session.data.statistics.provider = req.session.data.statistics.provider.filter(item => item !== req.params.provider)
+    req.session.data.statisticsOptions.provider = req.session.data.statisticsOptions.provider.filter(item => item !== req.params.provider)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-accreditedbody-option/:accreditedBody', (req, res) => {
-    req.session.data.statistics.accreditedBody = req.session.data.statistics.accreditedBody.filter(item => item !== req.params.accreditedBody)
+    req.session.data.statisticsOptions.accreditedBody = req.session.data.statisticsOptions.accreditedBody.filter(item => item !== req.params.accreditedBody)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-studymode-option/:studyMode', (req, res) => {
-    req.session.data.statistics.studyMode = req.session.data.statistics.studyMode.filter(item => item !== req.params.studyMode)
+    req.session.data.statisticsOptions.studyMode = req.session.data.statisticsOptions.studyMode.filter(item => item !== req.params.studyMode)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-fundingtype-option/:fundingType', (req, res) => {
-    req.session.data.statistics.fundingType = req.session.data.statistics.fundingType.filter(item => item !== req.params.fundingType)
+    req.session.data.statisticsOptions.fundingType = req.session.data.statisticsOptions.fundingType.filter(item => item !== req.params.fundingType)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-subjectlevel-option/:subjectLevel', (req, res) => {
-    req.session.data.statistics.subjectLevel = req.session.data.statistics.subjectLevel.filter(item => item !== req.params.subjectLevel)
+    req.session.data.statisticsOptions.subjectLevel = req.session.data.statisticsOptions.subjectLevel.filter(item => item !== req.params.subjectLevel)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/:section/:report/remove-location-option/:location', (req, res) => {
-    req.session.data.statistics.location = req.session.data.statistics.location.filter(item => item !== req.params.location)
+    req.session.data.statisticsOptions.location = req.session.data.statisticsOptions.location.filter(item => item !== req.params.location)
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
   router.get('/statistics/remove-all-filters', (req, res) => {
-    req.session.data.statistics.cycle = null
-    req.session.data.statistics.status = null
-    req.session.data.statistics.provider = null
-    req.session.data.statistics.accreditedBody = null
-    req.session.data.statistics.studyMode = null
-    req.session.data.statistics.fundingType = null
-    req.session.data.statistics.subjectLevel = null
-    req.session.data.statistics.location = null
+    req.session.data.statisticsOptions.cycle = null
+    req.session.data.statisticsOptions.status = null
+    req.session.data.statisticsOptions.provider = null
+    req.session.data.statisticsOptions.accreditedBody = null
+    req.session.data.statisticsOptions.studyMode = null
+    req.session.data.statisticsOptions.fundingType = null
+    req.session.data.statisticsOptions.subjectLevel = null
+    req.session.data.statisticsOptions.location = null
     res.redirect(getRedirect(req.headers.referer))
   })
 
   router.get('/statistics/:section/:report/remove-all-options', (req, res) => {
-    req.session.data.statistics.cycle = null
-    req.session.data.statistics.status = null
-    req.session.data.statistics.provider = null
-    req.session.data.statistics.accreditedBody = null
-    req.session.data.statistics.studyMode = null
-    req.session.data.statistics.fundingType = null
-    req.session.data.statistics.subjectLevel = null
-    req.session.data.statistics.location = null
+    req.session.data.statisticsOptions.cycle = null
+    req.session.data.statisticsOptions.status = null
+    req.session.data.statisticsOptions.provider = null
+    req.session.data.statisticsOptions.accreditedBody = null
+    req.session.data.statisticsOptions.studyMode = null
+    req.session.data.statisticsOptions.fundingType = null
+    req.session.data.statisticsOptions.subjectLevel = null
+    req.session.data.statisticsOptions.location = null
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-all-filters', (req, res) => {
+    req.session.data.statisticsFilters.cycle = null
+    req.session.data.statisticsFilters.status = null
+    req.session.data.statisticsFilters.provider = null
+    req.session.data.statisticsFilters.accreditedBody = null
+    req.session.data.statisticsFilters.studyMode = null
+    req.session.data.statisticsFilters.fundingType = null
+    req.session.data.statisticsFilters.subjectLevel = null
+    req.session.data.statisticsFilters.location = null
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
