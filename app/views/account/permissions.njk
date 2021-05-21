@@ -50,16 +50,16 @@
             {% endif %}
           {% endset %}
 
-          {% set hasAdditionalPermissions = [true] | random %}
-
           {% if orgs.length > 1 %}
             <h2 class="govuk-heading-m">
               Permissions for {{org.org.name}}
             </h2>
           {% endif %}
 
+          <p>All users can view applications.</p>
+
           <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
+          {# <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               User permissions
             </dt>
@@ -70,62 +70,71 @@
                 View applications (excluding sensitive information)
               {% endif %}
             </dd>
-          </div>
-          {% if hasAdditionalPermissions %}
+          </div> #}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Additional user permissions
+                Manage users
               </dt>
               <dd class="govuk-summary-list__value">
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-                      Manage organisational permissions
-                    </p>
-                  </div>
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-                      Manage users
-                    </p>
-                  </div>
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-                      Set up interviews
-                    </p>
-                  </div>
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      Make decisions
-                    </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
-                      nonApplicableOrgs: org.permissions.
-                      nonApplicableOrgs.makeDecisions
-                    })}}
-                  </div>
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      View criminal convictions and professional misconduct
-                    </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
-                      nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
-                    })}}
-                  </div>
-                  <div class="app-permission-item">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">
-                      View diversity information
-                    </p>
-                    {{appPermissions({
-                      runOrRatified: runOrRatified,
-                      applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
-                      nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
-                    })}}
-                  </div>
+                Yes
               </dd>
             </div>
-          {% endif %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Manage organisational permissions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Set up interviews
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Make decisions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+                {{appPermissions({
+                  runOrRatified: runOrRatified,
+                  applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
+                  nonApplicableOrgs: org.permissions.
+                  nonApplicableOrgs.makeDecisions
+                })}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View criminal convictions and professional misconduct
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+                {{appPermissions({
+                  runOrRatified: runOrRatified,
+                  applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
+                  nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
+                })}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View diversity information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+                {{appPermissions({
+                  runOrRatified: runOrRatified,
+                  applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
+                  nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
+                })}}
+              </dd>
+            </div>
           </dl>
         {% endfor %}
     </div>
