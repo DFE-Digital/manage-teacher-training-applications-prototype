@@ -119,8 +119,9 @@ module.exports = router => {
     user.emailAddress = data['email-address']
     user.organisation = req.session.data.organisations.find(org => org.id == req.params.orgId)
 
-    if(data.access == "Additional permissions") {
-      user.permissions = {}
+    user.permissions = {}
+
+    if(data.permissions) {
       user.permissions.manageOrganisation = data.permissions.indexOf('manageOrganisation') > -1
       user.permissions.manageUsers = data.permissions.indexOf('manageUsers') > -1
       user.permissions.setupInterviews = data.permissions.indexOf('setupInterviews') > -1
@@ -231,23 +232,24 @@ module.exports = router => {
 
     var data = req.session.data.editpermissions
 
-    if(data.access == "View applications") {
-      delete user.permissions
-    } else {
-      if(!user.permissions) {
-        user.permissions = {}
-      }
+    if(!user.permissions) {
+      user.permissions = {}
+    }
+
+    if(data.permissions) {
       user.permissions.manageOrganisation = data.permissions.indexOf('manageOrganisation') > -1
       user.permissions.manageUsers = data.permissions.indexOf('manageUsers') > -1
       user.permissions.setupInterviews = data.permissions.indexOf('setupInterviews') > -1
       user.permissions.makeDecisions = data.permissions.indexOf('makeDecisions') > -1
       user.permissions.viewSafeguardingInformation = data.permissions.indexOf('viewSafeguardingInformation') > -1
       user.permissions.viewDiversityInformation= data.permissions.indexOf('viewDiversityInformation') > -1
+    } else {
+      user.permissions = {}
     }
 
     data = null
 
-    req.flash('success', 'Permissions updated')
+    req.flash('success', 'User permissions updated')
     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}`)
   })
 
