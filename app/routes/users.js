@@ -69,23 +69,23 @@ module.exports = router => {
   })
 
   router.post('/organisation-settings/:orgId/users/new', (req, res) => {
-    res.redirect(`/organisation-settings/${req.params.orgId}/users/new/permissions/`)
+    res.redirect(`/organisation-settings/${req.params.orgId}/users/new/additional-permissions/`)
   })
 
-  router.get('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
-    let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
-    res.render('organisation-settings/users/new/permissions', {
-      org
-    })
-  })
+  // router.get('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
+  //   let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
+  //   res.render('organisation-settings/users/new/permissions', {
+  //     org
+  //   })
+  // })
 
-  router.post('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
-    if(req.session.data.newuser.access == "Additional permissions") {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/new/additional-permissions`)
-    } else {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/new/check`)
-    }
-  })
+  // router.post('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
+  //   if(req.session.data.newuser.access == "Additional permissions") {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/additional-permissions`)
+  //   } else {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/check`)
+  //   }
+  // })
 
   router.get('/organisation-settings/:orgId/users/new/additional-permissions', (req, res) => {
     let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
@@ -147,28 +147,28 @@ module.exports = router => {
 
   // Edit permissions
 
-  router.get('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
-    var user = req.session.data.users.find(user => user.id == req.params.userId)
-    var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
-    if(!req.session.data.editpermissions) {
-      req.session.data.editpermissions = res.locals.data.editpermissions = {
-        access: "Additional permissions"
-      }
-    }
-    res.render('organisation-settings/users/edit-permissions/permissions', {
-      user,
-      org
-    })
-  })
+  // router.get('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
+  //   var user = req.session.data.users.find(user => user.id == req.params.userId)
+  //   var org = req.session.data.organisations.find(org => req.params.orgId == org.id)
+  //   if(!req.session.data.editpermissions) {
+  //     req.session.data.editpermissions = res.locals.data.editpermissions = {
+  //       access: "Additional permissions"
+  //     }
+  //   }
+  //   res.render('organisation-settings/users/edit-permissions/permissions', {
+  //     user,
+  //     org
+  //   })
+  // })
 
 
-  router.post('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
-    if(req.session.data.editpermissions.access == "Additional permissions") {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/additional-permissions`)
-    } else {
-      res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/check`)
-    }
-  })
+  // router.post('/organisation-settings/:orgId/users/:userId/permissions/edit', (req, res) => {
+  //   if(req.session.data.editpermissions.access == "Additional permissions") {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/additional-permissions`)
+  //   } else {
+  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}/permissions/edit/check`)
+  //   }
+  // })
 
   router.get('/organisation-settings/:orgId/users/:userId/permissions/edit/additional-permissions', (req, res) => {
     let user = req.session.data.users.find(user => user.id == req.params.userId)
@@ -179,9 +179,9 @@ module.exports = router => {
 
     if(!data || !data.permissions) {
       // you're on additional permissions page so...
-      req.session.data.editpermissions = {
-        access: "Additional permissions"
-      }
+      // req.session.data.editpermissions = {
+      //   access: "Additional permissions"
+      // }
 
       // get from user object
       res.locals.data.editpermissions = { permissions: [] }

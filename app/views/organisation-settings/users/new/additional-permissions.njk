@@ -2,10 +2,10 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'Additional permissions - Invite user' %}
+{% set title = 'User permissions - Invite user' %}
 
-{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/permissions{% endset %}
-{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users{% endset %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -71,7 +71,7 @@
 
             },
             hint: {
-                text: "All users can view applications"
+                text: "All users can view applications."
               },
             items: [
               {
