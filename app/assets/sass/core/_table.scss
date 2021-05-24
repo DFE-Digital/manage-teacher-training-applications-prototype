@@ -13,6 +13,7 @@
 }
 
 .app-table {
+  @include govuk-font(16);
 
   .govuk-table__head {
 
