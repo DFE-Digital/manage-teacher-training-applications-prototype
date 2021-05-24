@@ -6,6 +6,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if query.new == "true" %}
+        <p>Some new partners have joined Manage (opened courses you run or ratify).</p>
+      {% endif %}
 
       {% if (relationships | length) != "1" %}
         <p>You need to set up permissions for each partner you work with.</p>
