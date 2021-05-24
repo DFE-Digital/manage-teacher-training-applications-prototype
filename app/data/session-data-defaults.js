@@ -74,7 +74,7 @@ applications = applications
     }
   })
 
-let userOrg = findOrg("Leeds Trinity University")
+let userOrg = findOrg("Goldsmiths, University of London")
 
 let relationships = [{
   id: 1,
@@ -84,7 +84,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Co-op Academies Trust School Direct - Primary"),
+  org2: findOrg("Academies Enterprise Trust: London"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -98,7 +98,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Diocese of Leeds BKCAT Alliance"),
+  org2: findOrg("Aspire Education Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -112,7 +112,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Dixons Multi-Academy Trust (DMAT)"),
+  org2: findOrg("Catholic Schools’ Partnership"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -126,7 +126,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("East One Partnership"),
+  org2: findOrg("Ealing Teaching School Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -140,7 +140,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Ilkley All Saints’ Teacher Training Partnership"),
+  org2: findOrg("Future Stars TSA"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -154,7 +154,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Nicholas Postgate Catholic Academy Trust"),
+  org2: findOrg("Grey Court Teaching School Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -168,7 +168,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("North Star"),
+  org2: findOrg("Halstow Primary School"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -196,7 +196,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("St Anthony’s Primary Learning Partnership"),
+  org2: findOrg("Inspire Partnership"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -210,7 +210,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("St Bede’s Deanery Teaching Alliance"),
+  org2: findOrg("John Donne Primary School"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -224,7 +224,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("St. Mary’s TSA"),
+  org2: findOrg("North London New River Teaching Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -238,7 +238,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("The Beckfoot School Direct Partnership"),
+  org2: findOrg("Redriff Primary School"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -252,7 +252,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("The Catholic Schools Partnership Teaching School Alliance"),
+  org2: findOrg("South Thames Early Education Partnership & Goldsmiths University (STEEPtsa)"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -266,7 +266,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("The Yorkshire Rose Teaching Alliance"),
+  org2: findOrg("TESLA, Bohunt School"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -280,7 +280,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Waterton Academy Trust"),
+  org2: findOrg("The Bridge London TSA"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -294,7 +294,7 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("White Rose Alliance"),
+  org2: findOrg("The Royal Greenwich Teaching School Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
@@ -308,7 +308,35 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Yorkshire Schools Alliance"),
+  org2: findOrg("United Teaching National SCITT"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 18,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Vita London"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+}, {
+  id: 18,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Wandle Teaching School Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,

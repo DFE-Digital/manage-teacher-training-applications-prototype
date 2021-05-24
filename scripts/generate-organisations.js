@@ -196,6 +196,106 @@ const generateFakeOrganisations = (count) => {
     domain: "example.net"
   }))
 
+  // goldsmiths
+
+  organisations.push(generateFakeOrganisation({
+    name: "Goldsmiths, University of London",
+    isAccreditedBody: true,
+    domain: "gold.ac.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Academies Enterprise Trust: London",
+    isAccreditedBody: false,
+    domain: "academiesenterprisetrust.org"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Aspire Education Alliance",
+    isAccreditedBody: false,
+    domain: "warrenjunior.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Catholic Schools’ Partnership",
+    isAccreditedBody: false,
+    domain: "catholicteachingalliance.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Ealing Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "teachwestlondon.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Future Stars TSA",
+    isAccreditedBody: false,
+    domain: "queensbridge.hackney.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Grey Court Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "greycourt.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Halstow Primary School",
+    isAccreditedBody: false,
+    domain: "compass-partnership.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Inspire Partnership",
+    isAccreditedBody: false,
+    domain: "inspirepartnership.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "John Donne Primary School",
+    isAccreditedBody: false,
+    domain: "jdacademy.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "North London New River Teaching Alliance",
+    isAccreditedBody: false,
+    domain: "nrta.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Redriff Primary School",
+    isAccreditedBody: false,
+    domain: "redriff.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "South Thames Early Education Partnership & Goldsmiths University (STEEPtsa)",
+    isAccreditedBody: false,
+    domain: "gold.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "TESLA, Bohunt School",
+    isAccreditedBody: false,
+    domain: "bohunt.hants.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The Bridge London TSA",
+    isAccreditedBody: false,
+    domain: "thebridgelondon.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The Royal Greenwich Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "rgtsa.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "United Teaching National SCITT",
+    isAccreditedBody: false,
+    domain: "unitedlearning.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Vita London",
+    isAccreditedBody: false,
+    domain: "st-marys-coe.waltham.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Wandle Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "wandletsa.com"
+  }))
+
+
   return organisations
 }
 

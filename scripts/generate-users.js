@@ -15,10 +15,10 @@ const generateFakeUsers = (count) => {
 
   users.push({
     id: faker.random.uuid(),
-    firstName: "Emma",
-    lastName: "Turner-Lindley",
-    emailAddress: "e.turner-lindley@leedstrinity.ac.uk",
-    organisation: organisations.find(org => org.name == "Leeds Trinity University"),
+    firstName: "Jennifer",
+    lastName: "Geary",
+    emailAddress: "j.qeary@gold.ac.uk",
+    organisation: organisations.find(org => org.name == "Goldsmiths, University of London"),
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
