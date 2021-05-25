@@ -138,9 +138,15 @@ const getFilters = (req) => {
 
   let filters = {}
   filters.cycles = req.session.data.statisticsFilters.cycle
+  filters.statuses = req.session.data.statisticsFilters.status
+  filters.studyModes = req.session.data.statisticsFilters.studyMode
+  filters.fundingTypes = req.session.data.statisticsFilters.fundingType
   filters.subjectLevels = req.session.data.statisticsFilters.subjectLevel
+  filters.providers = req.session.data.statisticsFilters.provider
+  filters.accreditedBodies = req.session.data.statisticsFilters.accreditedBody
+  filters.locations = req.session.data.statisticsFilters.location
 
-  const hasFilters = !!((filters.cycles && filters.cycles.length > 0) || (filters.subjectLevels && filters.subjectLevels.length > 0))
+  const hasFilters = !!((filters.cycles && filters.cycles.length > 0) || (filters.statuses && filters.statuses.length > 0) || (filters.providers && filters.providers.length > 0) || (filters.accreditedBodies && filters.accreditedBodies.length > 0) || (filters.studyModes && filters.studyModes.length > 0) || (filters.fundingTypes && filters.fundingTypes.length > 0) || (filters.subjectLevels && filters.subjectLevels.length > 0) || (filters.locations && filters.locations.length > 0))
 
   let selectedFilters = null
 
@@ -167,25 +173,95 @@ const getFilters = (req) => {
       })
     }
 
+    if (filters.statuses && filters.statuses.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Status' },
+        items: filters.statuses.map((status) => {
+          return {
+            text: status,
+            href: `${slug}/remove-status-filter/${status}`
+          }
+        })
+      })
+    }
+
+    if (filters.providers && filters.providers.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Training provider' },
+        items: filters.providers.map((provider) => {
+          return {
+            text: provider,
+            href: `${slug}/remove-provider-filter/${provider}`
+          }
+        })
+      })
+    }
+
+    if (filters.locations && filters.locations.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Location' },
+        items: filters.locations.map((location) => {
+          return {
+            text: location,
+            href: `${slug}/remove-location-filter/${location}`
+          }
+        })
+      })
+    }
+
+    if (filters.accreditedBodies && filters.accreditedBodies.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Accredited body' },
+        items: filters.accreditedBodies.map((accreditedbody) => {
+          return {
+            text: accreditedbody,
+            href: `${slug}/remove-accreditedbody-filter/${accreditedbody}`
+          }
+        })
+      })
+    }
+
+    if (filters.studyModes && filters.studyModes.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Full time or part time' },
+        items: filters.studyModes.map((studyMode) => {
+          return {
+            text: studyMode,
+            href: `${slug}/remove-studymode-filter/${studyMode}`
+          }
+        })
+      })
+    }
+
+    if (filters.fundingTypes && filters.fundingTypes.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Funding type' },
+        items: filters.fundingTypes.map((fundingType) => {
+          return {
+            text: fundingType,
+            href: `${slug}/remove-fundingtype-filter/${fundingType}`
+          }
+        })
+      })
+    }
+
     if (filters.subjectLevels && filters.subjectLevels.length) {
       selectedFilters.categories.push({
         heading: { text: 'Subject level' },
         items: filters.subjectLevels.map((subjectLevel) => {
           return {
             text: subjectLevel,
-            href: `${slug}/remove-subjectlevel-option/${subjectLevel}`
+            href: `${slug}/remove-subjectlevel-filter/${subjectLevel}`
           }
         })
       })
     }
-
   }
 
   return { hasFilters, selectedFilters, filters }
 }
 
 const getApplications = (applications, options) => {
-  console.log(options);
   return applications = applications.filter((app) => {
     let cycleValid = true
     let statusValid = true
@@ -412,12 +488,6 @@ module.exports = router => {
   router.get('/statistics/applications/courses', (req, res) => {
     let applications = req.session.data.applications
 
-    // const options = getConfigOptions(req)
-    //
-    // if (options.hasOptions) {
-    //   applications = getApplications(applications, options.options)
-    // }
-
     const filters = getFilters(req)
 
     if (filters.hasFilters) {
@@ -434,9 +504,23 @@ module.exports = router => {
       }
     }
 
+    let counts = ApplicationHelper.getApplicationCountsBySubject(applications)
+    const dimension1 = SystemHelper.subjects.map((subject) => {
+      return subject.name
+    })
+    let dimension2 = []
+    let dimension3 = []
 
-    // Now lets get the subject counts data
+    if (options) {
+      counts = ApplicationHelper.getApplicationCounts(applications, options)
+      dimension2 = ApplicationHelper.getDimensionData(options.dimension2).data
+      dimension3 = ApplicationHelper.getDimensionData(options.dimension3).data
+    }
+
+    console.log(counts);
+
     // Dimension 2 and 4 are optional
+
     // | =============== | Dimension 3               | Dimension 3               |
     // | =============== | Dimension 4 | Dimension 4 | Dimension 4 | Dimension 4 |
     // | Dimension 1     | =========== | =========== | =========== | =========== |
@@ -452,8 +536,11 @@ module.exports = router => {
       section: 'applications',
       report: 'courses',
       totalApplications: applications.length,
-      subjects: SystemHelper.subjects,
-      subjectCounts: ApplicationHelper.getApplicationCountsBySubject(applications),
+      options,
+      dimension1,
+      dimension2,
+      dimension3,
+      counts,
       hasFilters: filters.hasFilters,
       selectedFilters: filters.selectedFilters,
       showFilters
@@ -1008,6 +1095,51 @@ module.exports = router => {
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 
+
+  // ===========================================================================
+  // Filters
+  // ===========================================================================
+
+  router.get('/statistics/:section/:report/remove-cycle-filter/:cycle', (req, res) => {
+    req.session.data.statisticsFilters.cycle = req.session.data.statisticsFilters.cycle.filter(item => item !== req.params.cycle)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-status-filter/:status', (req, res) => {
+    req.session.data.statisticsFilters.status = req.session.data.statisticsFilters.status.filter(item => item !== req.params.status)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-provider-filter/:provider', (req, res) => {
+    req.session.data.statisticsFilters.provider = req.session.data.statisticsFilters.provider.filter(item => item !== req.params.provider)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-accreditedbody-filter/:accreditedBody', (req, res) => {
+    req.session.data.statisticsFilters.accreditedBody = req.session.data.statisticsFilters.accreditedBody.filter(item => item !== req.params.accreditedBody)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-studymode-filter/:studyMode', (req, res) => {
+    req.session.data.statisticsFilters.studyMode = req.session.data.statisticsFilters.studyMode.filter(item => item !== req.params.studyMode)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-fundingtype-filter/:fundingType', (req, res) => {
+    req.session.data.statisticsFilters.fundingType = req.session.data.statisticsFilters.fundingType.filter(item => item !== req.params.fundingType)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-subjectlevel-filter/:subjectLevel', (req, res) => {
+    req.session.data.statisticsFilters.subjectLevel = req.session.data.statisticsFilters.subjectLevel.filter(item => item !== req.params.subjectLevel)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  router.get('/statistics/:section/:report/remove-location-filter/:location', (req, res) => {
+    req.session.data.statisticsFilters.location = req.session.data.statisticsFilters.location.filter(item => item !== req.params.location)
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
   router.get('/statistics/:section/:report/remove-all-filters', (req, res) => {
     req.session.data.statisticsFilters.cycle = null
     req.session.data.statisticsFilters.status = null
@@ -1017,6 +1149,15 @@ module.exports = router => {
     req.session.data.statisticsFilters.fundingType = null
     req.session.data.statisticsFilters.subjectLevel = null
     req.session.data.statisticsFilters.location = null
+    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  })
+
+  // ===========================================================================
+  // Report settings
+  // ===========================================================================
+
+  router.get('/statistics/:section/:report/remove-all-settings', (req, res) => {
+    delete req.session.data.statisticsOptions
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 

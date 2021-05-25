@@ -47,9 +47,9 @@
             checked: checked(data.statisticsOptions.dimension2, "status") == "checked"
           },
           {
-            value: "trainingProvider",
+            value: "provider",
             text: "Training provider",
-            checked: checked(data.statisticsOptions.dimension2, "trainingProvider") == "checked"
+            checked: checked(data.statisticsOptions.dimension2, "provider") == "checked"
           },
           {
             value: "accreditedBody",
@@ -90,6 +90,10 @@
       {{ govukButton({
         text: "Next"
       }) }}
+
+      <p class="govuk-body">
+        <a href="/statistics/{{ section }}/{{ report }}/remove-all-options">Cancel</a>
+      </p>
 
     </form>
 

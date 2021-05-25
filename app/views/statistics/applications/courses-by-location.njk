@@ -37,7 +37,7 @@
           <th scope="col" class="govuk-table__header">Course</th>
           {% for location in locations %}
             {% if (data.statisticsOptions.location and location in data.statisticsOptions.location) or (not data.statisticsOptions.location.length) %}
-              <th scope="col" class="govuk-table__header">{{ location }}</th>
+              <th scope="col" class="govuk-table__header">{{ location | replace(' - training location','') }}</th>
             {% endif %}
           {% endfor %}
         </tr>

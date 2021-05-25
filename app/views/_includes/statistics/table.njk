@@ -1,0 +1,67 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Course</th>
+          {% if options %}
+            {% for dm3 in dimension3 %}
+              {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
+                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">{{ dm3 }}</th>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number of applications</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for dm1 in dimension1 %}
+          <!-- {#% if (data.statisticsFilters.subjectLevel and subject.level in data.statisticsFilters.subjectLevel) or (not data.statisticsFilters.subjectLevel.length) %#} -->
+            <tr class="govuk-table__row">
+              {% if options %}
+                <th scope="row" class="govuk-table__header">{{ dm1 }} (AB{{ subject.code }})</th>
+              {% else %}
+                <td scope="row" class="govuk-table__cell">{{ dm1 }} (AB{{ subject.code }})</td>
+              {% endif %}
+              {% if options %}
+                {% for dm3 in dimension3 %}
+                  {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
+                    <td class="govuk-table__cell govuk-!-font-weight-bold">{{ counts[dm1].totals[dm3] }}</td>
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                <td class="govuk-table__cell">{{ counts[dm1] }}</td>
+              {% endif %}
+            </tr>
+          <!-- {#% endif %#} -->
+          {% if options %}
+            {% for dm2 in dimension2 %}
+              {% if (data.statisticsFilters[options.dimension2] and dm2 in data.statisticsFilters[options.dimension2]) or (not data.statisticsFilters[options.dimension2].length) %}
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell app-table__cell--indent">{{ dm2 }}</td>
+                {% for dm3 in dimension3 %}
+                  {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
+                    <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3] }}</td>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Total</th>
+          <td class="govuk-table__cell">{{ totalApplications }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Download <span class="govuk-visually-hidden">{{ pageName }}</span> data</a>
+    </p>
+
+  </div>
+</div>

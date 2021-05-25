@@ -61,12 +61,12 @@ exports.studyModes = [
   'Part time'
 ]
 
-exports.studyLevel = [
+exports.subjectLevels = [
   'Primary',
   'Secondary'
 ]
 
-exports.fundingType = [
+exports.fundingTypes = [
   'Fee paying',
   'Salary',
   'Apprenticeship'
@@ -74,9 +74,9 @@ exports.fundingType = [
 
 exports.trainingLocations = [
   'Main site',
-  'Epsom Grinstead',
-  'Camberley',
-  'Lingfield'
+  'Epsom Grinstead - training location',
+  'Camberley - training location',
+  'Lingfield - training location'
 ]
 
 const getReasonsForRejection = () => {
@@ -122,6 +122,17 @@ const getTrainingProviders = () => {
 }
 
 exports.trainingProviders = getTrainingProviders()
+
+const getAccreditedBodies = () => {
+  const filePath = dataDirectoryPath + '/organisations.json'
+  const rawData = fs.readFileSync(filePath)
+  const organisations = JSON.parse(rawData).filter(data => data.isAccreditedBody === true).map((organisation) => {
+    return organisation.name
+  })
+  return organisations
+}
+
+exports.accreditedBodies = getAccreditedBodies()
 
 const getCountries = () => {
   const filePath = dataDirectoryPath + '/countries.json'
