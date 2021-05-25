@@ -22,9 +22,9 @@
           <!-- {#% if (data.statisticsFilters.subjectLevel and subject.level in data.statisticsFilters.subjectLevel) or (not data.statisticsFilters.subjectLevel.length) %#} -->
             <tr class="govuk-table__row">
               {% if options %}
-                <th scope="row" class="govuk-table__header">{{ dm1 }} (AB{{ subject.code }})</th>
+                <th scope="row" class="govuk-table__header">{{ dm1 }} (AB{{ loop.index | numeral('000') }})</th>
               {% else %}
-                <td scope="row" class="govuk-table__cell">{{ dm1 }} (AB{{ subject.code }})</td>
+                <td scope="row" class="govuk-table__cell">{{ dm1 }} (AB{{ loop.index | numeral('000') }})</td>
               {% endif %}
               {% if options %}
                 {% for dm3 in dimension3 %}
