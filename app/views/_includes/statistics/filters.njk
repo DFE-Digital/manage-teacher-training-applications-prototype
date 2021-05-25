@@ -118,42 +118,38 @@
     ]
   }) if (showFilters and 'provider' in showFilters) }}
 
-  {#% if checked(data.provider, data.user.organisations[0].name) %}
-
-    {{ govukCheckboxes({
-      name: "statisticsFilters[location]",
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: "Training locations for " + data.user.organisations[0].name,
-          classes: "govuk-fieldset__legend--s"
-        }
+  {{ govukCheckboxes({
+    name: "statisticsFilters[location]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Training locations",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "Main site",
+        text: "Main site",
+        checked: checked(data.statisticsFilters.location, "Main site") == "checked"
       },
-      items: [
-        {
-          value: "Main site",
-          text: "Main site",
-          checked: checked(data.statisticsFilters.location, "Main site") == "checked"
-        },
-        {
-          value: "Camberley - training location",
-          text: "Camberley - training location",
-          checked: checked(data.statisticsFilters.location, "Camberley - training location") == "checked"
-        },
-        {
-          value: "Epsom Grinstead - training location",
-          text: "Epsom Grinstead - training location",
-          checked: checked(data.statisticsFilters.location, "Epsom Grinstead - training location") == "checked"
-        },
-        {
-          value: "Lingfield - training location",
-          text: "Lingfield - training location",
-          checked: checked(data.statisticsFilters.location, "Lingfield - training location") == "checked"
-        }
-      ]
-    }) }}
-
-  {% endif %#}
+      {
+        value: "Camberley - training location",
+        text: "Camberley - training location",
+        checked: checked(data.statisticsFilters.location, "Camberley - training location") == "checked"
+      },
+      {
+        value: "Epsom Grinstead - training location",
+        text: "Epsom Grinstead - training location",
+        checked: checked(data.statisticsFilters.location, "Epsom Grinstead - training location") == "checked"
+      },
+      {
+        value: "Lingfield - training location",
+        text: "Lingfield - training location",
+        checked: checked(data.statisticsFilters.location, "Lingfield - training location") == "checked"
+      }
+    ]
+  }) if (showFilters and 'location' in showFilters) }}
 
   {{ govukCheckboxes({
     idPrefix: "accreditedBody",
