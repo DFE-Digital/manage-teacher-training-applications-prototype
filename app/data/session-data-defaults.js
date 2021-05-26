@@ -74,13 +74,15 @@ applications = applications
     }
   })
 
-let userOrg = findOrg("Goldsmiths, University of London")
+let userOrg = findOrg("Coventry University")
 
-let relationships = [{
+let relationships = [];
+
+relationships.push({
   id: 1,
   org1: userOrg,
   org1Permissions: {
-    makeDecisions: false,
+    makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
@@ -90,7 +92,9 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
-}, {
+})
+
+relationships.push({
   id: 2,
   org1: userOrg,
   org1Permissions: {
@@ -98,13 +102,15 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Aspire Education Alliance"),
+  org2: findOrg("Greenwood Academies Trust"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
-}, {
+})
+
+relationships.push({
   id: 3,
   org1: userOrg,
   org1Permissions: {
@@ -112,13 +118,15 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Catholic Schools’ Partnership"),
+  org2: findOrg("The Lion Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
-}, {
+})
+
+relationships.push({
   id: 4,
   org1: userOrg,
   org1Permissions: {
@@ -126,223 +134,13 @@ let relationships = [{
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Ealing Teaching School Alliance"),
+  org2: findOrg("The Millais Alliance"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
-}, {
-  id: 5,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Future Stars TSA"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 6,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Grey Court Teaching School Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 7,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Halstow Primary School"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 8,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Rodillian"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 9,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Inspire Partnership"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 10,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("John Donne Primary School"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 11,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("North London New River Teaching Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 12,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Redriff Primary School"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 13,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("South Thames Early Education Partnership & Goldsmiths University (STEEPtsa)"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 14,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("TESLA, Bohunt School"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 15,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("The Bridge London TSA"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 16,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("The Royal Greenwich Teaching School Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 17,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("United Teaching National SCITT"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 18,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Vita London"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 19,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Wandle Teaching School Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}];
+})
 
 let userOrgs = [userOrg];
 

@@ -196,12 +196,16 @@ const generateFakeOrganisations = (count) => {
     domain: "example.net"
   }))
 
-  // goldsmiths
-
   organisations.push(generateFakeOrganisation({
     name: "Goldsmiths, University of London",
     isAccreditedBody: true,
     domain: "gold.ac.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Coventry University",
+    isAccreditedBody: true,
+    domain: "coventry.ac.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
@@ -295,6 +299,29 @@ const generateFakeOrganisations = (count) => {
     domain: "wandletsa.com"
   }))
 
+  organisations.push(generateFakeOrganisation({
+    name: "Greenwood Academies Trust",
+    isAccreditedBody: false,
+    domain: "greenwoodacademies.org"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Greenwood Academies Trust",
+    isAccreditedBody: false,
+    domain: "greenwoodacademies.org"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "The Lion Alliance",
+    isAccreditedBody: false,
+    domain: "finhampark.co.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "The Millais Alliance",
+    isAccreditedBody: false,
+    domain: "millais.org.uk"
+  }))
 
   return organisations
 }
