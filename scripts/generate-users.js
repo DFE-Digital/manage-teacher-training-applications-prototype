@@ -29,6 +29,21 @@ const generateFakeUsers = (count) => {
     }
   })
 
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Rachel",
+  //   lastName: "Reeds",
+  //   emailAddress: "rachel.reeds@beds.ac.uk",
+  //   organisation: organisations.find(org => org.name == "Bedfordshire University"),
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
 
   for(var i = 0; i < 100; i++) {
     let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
