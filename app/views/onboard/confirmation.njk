@@ -24,7 +24,7 @@
         </li>
         {% if canManageUsers %}
           <li>
-            {% if user.organisations.length > 1 %}
+            {% if data.user.organisations.length > 1 %}
               <a href="/organisation-settings">invite or manage users</a>
             {% else %}
               <a href="/organisation-settings/{{data.user.organisation.id}}/users">invite or manage users</a>
