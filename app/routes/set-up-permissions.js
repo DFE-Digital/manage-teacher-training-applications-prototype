@@ -9,7 +9,8 @@ module.exports = router => {
 
       params.orgRelationships.filter(relationship => {
         return relationship.org1.id == org.id
-      }).forEach(relationship => {
+      })
+      .forEach(relationship => {
         item.partners.push({
           org: relationship.org2,
           id: relationship.id
@@ -35,7 +36,7 @@ module.exports = router => {
   })
 
   router.get('/onboard/check', (req, res) => {
-    let userOrgs = req.session.data.user.organisations
+    let userOrgs = req.session.data.user.organisations.filter(org => org.name === "University of Bedfordshire")
     let orgRelationships = req.session.data.relationships
     let lastRelationshipId = req.session.data.relationships[req.session.data.relationships.length - 1].id
 
