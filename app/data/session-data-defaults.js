@@ -74,7 +74,7 @@ applications = applications
     }
   })
 
-let userOrg = findOrg("Coventry University")
+let userOrg = findOrg("Bedfordshire University")
 
 let relationships = [];
 
@@ -86,14 +86,13 @@ relationships.push({
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Academies Enterprise Trust: London"),
+  org2: findOrg("Active Teacher Training"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
 })
-
 relationships.push({
   id: 2,
   org1: userOrg,
@@ -102,14 +101,13 @@ relationships.push({
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("Greenwood Academies Trust"),
+  org2: findOrg("ATT Partnership"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
 })
-
 relationships.push({
   id: 3,
   org1: userOrg,
@@ -118,14 +116,13 @@ relationships.push({
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("The Lion Alliance"),
+  org2: findOrg("Biddenham Upper School and Sports College"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
 })
-
 relationships.push({
   id: 4,
   org1: userOrg,
@@ -134,179 +131,118 @@ relationships.push({
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   },
-  org2: findOrg("The Millais Alliance"),
+  org2: findOrg("Castle Newnham Partnership"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
     viewDiversityInformation: true
   }
 })
-
-// relationships.push({
-//   id: 1,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Active Teacher Training"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 2,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("ATT Partnership"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 3,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Biddenham Upper School and Sports College"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 4,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Castle Newnham Partnership"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 5,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Fenland Teaching School Alliance"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 6,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Goldington Academy"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 7,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Luton Futures"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 8,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Middlefield Primary Academy"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 9,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Nene and Ramnoth"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 10,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Redborne Upper School And Community College"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
-// relationships.push({
-//   id: 11,
-//   org1: userOrg,
-//   org1Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   },
-//   org2: findOrg("Thorndown Primary School"),
-//   org2Permissions: {
-//     makeDecisions: true,
-//     viewSafeguardingInformation: true,
-//     viewDiversityInformation: true
-//   }
-// })
+relationships.push({
+  id: 5,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Fenland Teaching School Alliance"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
+relationships.push({
+  id: 6,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Goldington Academy"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
+relationships.push({
+  id: 7,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Luton Futures"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
+relationships.push({
+  id: 8,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Middlefield Primary Academy"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
+relationships.push({
+  id: 9,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Nene and Ramnoth"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
+relationships.push({
+  id: 10,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Redborne Upper School And Community College"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
+relationships.push({
+  id: 11,
+  org1: userOrg,
+  org1Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  },
+  org2: findOrg("Thorndown Primary School"),
+  org2Permissions: {
+    makeDecisions: true,
+    viewSafeguardingInformation: true,
+    viewDiversityInformation: true
+  }
+})
 
 let userOrgs = [userOrg];
 

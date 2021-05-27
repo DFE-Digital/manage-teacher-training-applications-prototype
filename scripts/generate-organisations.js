@@ -25,9 +25,9 @@ const generateFakeOrganisations = (count) => {
   })
 
   let ab3 = generateFakeOrganisation({
-    name: "Bedford University",
+    name: "Bedfordshire University",
     isAccreditedBody: true,
-    domain: "bedforduniversity.org.uk"
+    domain: "beds.ac.uk"
   })
 
   let ab4 = generateFakeOrganisation({
