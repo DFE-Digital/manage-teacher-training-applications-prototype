@@ -2,6 +2,14 @@ const _ = require('lodash');
 
 module.exports = router => {
 
+  /*
+    Returns a structure that looks like this:
+
+    [{
+      org: {id, name},
+      partners: [{id, name}, ...]
+    }, ...]
+  */
   function getUserRelationships(params) {
     return params.userOrgs.map(org => {
 
@@ -16,7 +24,6 @@ module.exports = router => {
           id: relationship.id
         })
       })
-
       return item
 
     })
