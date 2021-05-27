@@ -244,7 +244,16 @@ relationships.push({
   }
 })
 
-let userOrgs = [userOrg];
+let userOrgs = [];
+
+userOrgs.push(userOrg)
+userOrgs.push(findOrg("ATT Partnership"))
+userOrgs.push(findOrg("Castle Newnham Partnership"))
+userOrgs.push(findOrg("Fenland Teaching School Alliance"))
+userOrgs.push(findOrg("Goldington Academy"))
+userOrgs.push(findOrg("Middlefield Primary Academy"))
+userOrgs.push(findOrg("Redborne Upper School And Community College"))
+userOrgs.push(findOrg("Thorndown Primary School"))
 
 let user = users[0]
 user.organisations = userOrgs

@@ -54,7 +54,9 @@ module.exports = router => {
 
   router.get('/organisation-settings/:orgId/users', (req, res) => {
     let org = req.session.data.organisations.find(org => org.id == req.params.orgId)
-    let users = req.session.data.users.filter(user => user.organisation.id == req.params.orgId)
+    let users = req.session.data.users.filter(user => {
+      return user.organisation.id == req.params.orgId
+    })
     res.render('organisation-settings/users/index', {
       org,
       users

@@ -13,28 +13,124 @@ const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
 
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "Louise",
-  //   lastName: "Jakes",
-  //   emailAddress: "ad3562@coventry.ac.uk",
-  //   organisation: organisations.find(org => org.name == "Coventry University"),
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
-
   users.push({
     id: faker.random.uuid(),
     firstName: "Rachel",
     lastName: "Reeds",
     emailAddress: "rachel.reeds@beds.ac.uk",
     organisation: organisations.find(org => org.name == "Bedfordshire University"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "ATT Partnership"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Castle Newnham Partnership"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Fenland Teaching School Alliance"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Goldington Academy"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Middlefield Primary Academy"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Redborne Upper School And Community College"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Thorndown Primary School"),
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
