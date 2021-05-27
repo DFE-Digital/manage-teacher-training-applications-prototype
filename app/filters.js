@@ -305,7 +305,7 @@ filters.falsify = (input) => {
    example: {{ params.number | numeral("0,00.0") }}
    outputs: 1,000.00
   ------------------------------------------------------------------ */
-  filters.numeral = function(number, format) {
+  filters.numeral = (number, format) => {
    return numeral(number).format(format)
   }
 
@@ -320,6 +320,41 @@ filters.falsify = (input) => {
       case 'Rest of world':
         return 'Somewhere else'
     }
+  }
+
+  filters.getStatisticsOptionLabel = (option) => {
+    let label = ''
+    switch (option) {
+      case 'cycle':
+        label = 'Year received'
+        break
+      case 'status':
+        label = 'Status'
+        break
+      case 'subject':
+        label = 'Subject'
+        break
+      case 'studyMode':
+        label = 'Full time or part time'
+        break
+      case 'fundingType':
+        label = 'Fee paying or salaried'
+        break
+      case 'subjectLevel':
+        label = 'Primary or secondary'
+        break
+      case 'location':
+        label = 'Location'
+        break
+      case 'provider':
+      case 'trainingProvider':
+        label = 'Training provider'
+        break
+      case 'accreditedBody':
+        label = 'Accredited body'
+        break
+    }
+    return label
   }
 
   return filters

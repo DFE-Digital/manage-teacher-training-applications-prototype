@@ -487,14 +487,18 @@ module.exports = router => {
 
   router.get('/statistics/applications/courses', (req, res) => {
     let applications = req.session.data.applications
-
+    const options = req.session.data.statisticsOptions
     const filters = getFilters(req)
+
+    // if the user hasn't configured the report to include cycle data,
+    // we just want the current cycle's data
+    if (!options || !((options.dimension2 === 'cycle') || (options.dimension3 === 'cycle'))) {
+      applications = applications.filter(application => application.cycle === '2020 to 2021')
+    }
 
     if (filters.hasFilters) {
       applications = getApplications(applications, filters.filters)
     }
-
-    const options = req.session.data.statisticsOptions
 
     const showFilters = []
     if (options) {
@@ -505,9 +509,7 @@ module.exports = router => {
     }
 
     let counts = ApplicationHelper.getApplicationCountsBySubject(applications)
-    const dimension1 = SystemHelper.subjects.map((subject) => {
-      return subject.name
-    })
+    const dimension1 = ApplicationHelper.getDimensionData('subject').data
     let dimension2 = []
     let dimension3 = []
 
@@ -516,8 +518,6 @@ module.exports = router => {
       dimension2 = ApplicationHelper.getDimensionData(options.dimension2).data
       dimension3 = ApplicationHelper.getDimensionData(options.dimension3).data
     }
-
-    console.log(counts);
 
     // Dimension 2 and 4 are optional
 
@@ -547,9 +547,9 @@ module.exports = router => {
     })
   })
 
-  router.get('/statistics/:section/:report/settings', (req, res) => {
-    res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
-  })
+  // router.get('/statistics/:section/:report/settings', (req, res) => {
+  //   res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+  // })
 
   router.get('/statistics/:section/:report/settings/rows', (req, res) => {
     res.render('statistics/settings/rows', {
@@ -565,6 +565,126 @@ module.exports = router => {
       report: req.params.report,
       reportName: getReportName(req.params.report)
     })
+  })
+
+  // ===========================================================================
+  // Version 3.1
+  // ===========================================================================
+
+  router.get('/statistics/applications/courses2', (req, res) => {
+    let applications = req.session.data.applications
+    const options = req.session.data.statisticsOptions
+    // const options = { dimension1: 'subject', dimension2: 'location', dimension3: 'cycle', dimension4: 'status' } //
+    const filters = getFilters(req)
+
+    // if the user hasn't configured the report to include cycle data,
+    // we just want the current cycle's data
+    if (!options || !((options.dimension2 === 'cycle') || (options.dimension3 === 'cycle') || (options.dimension4 === 'cycle'))) {
+      applications = applications.filter(application => application.cycle === '2020 to 2021')
+    }
+
+    if (filters.hasFilters) {
+      applications = getApplications(applications, filters.filters)
+    }
+
+    const showFilters = []
+    if (options) {
+      // parse the dimensions so we know what filters to show
+      for (const [key, value] of Object.entries(options)) {
+        showFilters.push(value)
+      }
+    }
+
+    // get the default counts for the report
+    let counts = ApplicationHelper.getApplicationCountsBySubject(applications)
+
+    // get the counts based on the dimenstions chosen by the user
+    if (options) {
+      counts = ApplicationHelper.getApplicationCountsV2(applications, options)
+    }
+
+    // default dimension 1 to the subject (a proxy for course)
+    const dimension1 = ApplicationHelper.getDimensionData('subject').data
+
+    let dimension2 = []
+    if (options && options.dimension2) {
+      dimension2 = ApplicationHelper.getDimensionData(options.dimension2).data
+    }
+
+    let dimension3 = []
+    if (options && options.dimension3) {
+      dimension3 = ApplicationHelper.getDimensionData(options.dimension3).data
+    }
+
+    let dimension4 = []
+    if (options && options.dimension4) {
+      dimension4 = ApplicationHelper.getDimensionData(options.dimension4).data
+    }
+
+    // Dimension 3 and 4 are optional
+
+    // | =============== | Dimension 2               | Dimension 2               |
+    // | =============== | Dimension 3 | Dimension 3 | Dimension 3 | Dimension 3 |
+    // | Dimension 1     | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // | Dimension 1     | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+
+    res.render('statistics/applications/courses2', {
+      section: 'applications',
+      report: 'courses2',
+      totalApplications: applications.length,
+      options,
+      dimension1,
+      dimension2,
+      dimension3,
+      dimension4,
+      counts,
+      hasFilters: filters.hasFilters,
+      selectedFilters: filters.selectedFilters,
+      showFilters
+    })
+  })
+
+  router.get('/statistics/:section/:report/settings', (req, res) => {
+    if (!req.session.data.statisticsOptions) {
+      req.session.data.statisticsOptions = { dimension1: 'subject' }
+    }
+
+    const options = req.session.data.statisticsOptions
+
+    const chosenOptions = []
+    if (options) {
+      // parse the dimensions so we know what filters to show
+      for (const [key, value] of Object.entries(options)) {
+        chosenOptions.push(value)
+      }
+    }
+
+    let counter = 1
+    if (options) {
+      counter = chosenOptions.length + 1
+    }
+
+    res.render('statistics/settings/settings', {
+      section: req.params.section,
+      report: req.params.report,
+      reportName: getReportName(req.params.report),
+      counter,
+      chosenOptions
+    })
+  })
+
+  router.post('/statistics/:section/:report/settings', (req, res) => {
+    if (req.session.data.button.submit === 'continue') {
+      res.redirect(`/statistics/${req.params.section}/${req.params.report}/settings`)
+    } else {
+      res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
+    }
   })
 
   // ===========================================================================
@@ -1158,6 +1278,7 @@ module.exports = router => {
 
   router.get('/statistics/:section/:report/remove-all-settings', (req, res) => {
     delete req.session.data.statisticsOptions
+    delete req.session.data.statisticsFilters
     res.redirect(`/statistics/${req.params.section}/${req.params.report}`)
   })
 

@@ -1,0 +1,103 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table {{- ' app-table--scrollable' if options }}">
+      <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" {%- if dimension3.length %} rowspan="2"{% endif %}>Course</th>
+          {% if options %}
+            {% for dm2 in dimension2 %}
+              {% if (data.statisticsFilters[options.dimension2] and dm2 in data.statisticsFilters[options.dimension2]) or (not data.statisticsFilters[options.dimension2].length) %}
+              <th scope="col" class="govuk-table__header" {%- if dimension3.length %} colspan="{{ data.statisticsFilters[options.dimension3].length if data.statisticsFilters[options.dimension3].length else dimension3.length }}"{% endif %}>{{ dm2 }}</th>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Number of applications</th>
+          {% endif %}
+        </tr>
+
+        {% if dimension3.length %}
+          <tr class="govuk-table__row">
+            {% for dm2 in dimension2 %}
+              {% if (data.statisticsFilters[options.dimension2] and dm2 in data.statisticsFilters[options.dimension2]) or (not data.statisticsFilters[options.dimension2].length) %}
+                {% for dm3 in dimension3 %}
+                  {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
+                  <th scope="col" class="govuk-table__header">{{ dm3 }}</th>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          </tr>
+        {% endif %}
+
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for dm1 in dimension1 %}
+
+          <tr class="govuk-table__row">
+
+            {% if dimension4.length %}
+              <th scope="row" class="govuk-table__header">{{ dm1 }}</th>
+            {% else %}
+              <td class="govuk-table__cell">{{ dm1 }}</td>
+            {% endif %}
+
+            {% if options %}
+
+              {% for dm2 in dimension2 %}
+                {% if (data.statisticsFilters[options.dimension2] and dm2 in data.statisticsFilters[options.dimension2]) or (not data.statisticsFilters[options.dimension2].length) %}
+                  {% if dimension3.length %}
+                    {% for dm3 in dimension3 %}
+                      {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
+                        <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3].total }}</td>
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    <td class="govuk-table__cell">{{ counts[dm1][dm2].total }}</td>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+            {% else %}
+              <td class="govuk-table__cell">{{ counts[dm1] }}</td>
+            {% endif %}
+
+          </tr>
+
+          {% if dimension4.length %}
+            {% for dm4 in dimension4 %}
+              {% if (data.statisticsFilters[options.dimension4] and dm4 in data.statisticsFilters[options.dimension4]) or (not data.statisticsFilters[options.dimension4].length) %}
+                <tr class="govuk-table__row">
+
+                  <td class="govuk-table__cell app-table__cell--indent">{{ dm4 }}</td>
+
+                  {% for dm2 in dimension2 %}
+                    {% if (data.statisticsFilters[options.dimension2] and dm2 in data.statisticsFilters[options.dimension2]) or (not data.statisticsFilters[options.dimension2].length) %}
+                      {% if dimension4.length %}
+                        {% for dm3 in dimension3 %}
+                          {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
+                            <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3][dm4].total }}</td>
+                          {% endif %}
+                        {% endfor %}
+                      {% else %}
+                        <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3].total }}</td>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+
+                </tr>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Download <span class="govuk-visually-hidden">{{ pageName }}</span> data</a>
+    </p>
+
+  </div>
+</div>

@@ -1,0 +1,141 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set pageName = "Configure report" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/statistics/" + section + "/" + report
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">
+        {{ reportName | capitalize }}
+      </span>
+      {{ pageName }}
+    </h1>
+
+    <form action="/statistics/{{ section }}/{{ report }}/settings/dimension2" method="post" accept-charset="UTF-8" novalidate>
+
+      {{ govukRadios({
+        idPrefix: "statisticsOptions",
+        name: "statisticsOptions[dimension2]",
+        fieldset: {
+          legend: {
+            text: "Split courses by",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "cycle",
+            text: "Year received",
+            checked: checked(data.statisticsOptions.dimension2, "cycle") == "checked"
+          },
+          {
+            value: "status",
+            text: "Status",
+            checked: checked(data.statisticsOptions.dimension2, "status") == "checked"
+          },
+          {
+            value: "provider",
+            text: "Training provider",
+            checked: checked(data.statisticsOptions.dimension2, "provider") == "checked"
+          },
+          {
+            value: "accreditedBody",
+            text: "Accredited body",
+            checked: checked(data.statisticsOptions.dimension2, "accreditedBody") == "checked"
+          },
+          {
+            value: "location",
+            text: "Location",
+            checked: checked(data.statisticsOptions.dimension2, "location") == "checked"
+          },
+          {
+            value: "studyMode",
+            text: "Study mode",
+            checked: checked(data.statisticsOptions.dimension2, "studyMode") == "checked"
+          },
+          {
+            value: "subjectLevel",
+            text: "Subject level",
+            checked: checked(data.statisticsOptions.dimension2, "subjectLevel") == "checked"
+          },
+          {
+            value: "fundingType",
+            text: "Funding type",
+            checked: checked(data.statisticsOptions.dimension2, "fundingType") == "checked"
+          }
+        ]
+      }) }}
+
+      {#{ govukRadios({
+        idPrefix: "",
+        name: "",
+        fieldset: {
+          legend: {
+            text: "Add another dimension",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }#}
+
+      <!-- ,
+      {
+        divider: "or"
+      },
+      {
+        value: "none",
+        text: "None of the above",
+        checked: checked(data.statisticsOptions.dimension2, "none") == "checked"
+      } -->
+
+      {{ govukButton({
+        name: "button[submit]",
+        value: "save",
+        text: "View report"
+      }) }}
+
+      {{ govukButton({
+        name: "button[submit]",
+        value: "continue",
+        text: "Add another dimension",
+        classes: "govuk-button--secondary"
+      }) }}
+
+      <p class="govuk-body">
+        <a href="/statistics/{{ section }}/{{ report }}/remove-all-options">Cancel</a>
+      </p>
+
+    </form>
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+
+  </div>
+</div>
+
+{% endblock %}

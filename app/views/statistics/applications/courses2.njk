@@ -1,0 +1,93 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Applications" %}
+{% set pageName = "Courses" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/statistics",
+    text: "Statistics"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% include "_includes/statistics/header.njk" %}
+
+<p class="govuk-body">
+  <a class="govuk-link" href="/statistics/{{ section }}/{{ report }}/settings">Change report settings</a>
+</p>
+
+{% if data.statisticsOptions %}
+
+<div class="app-filter-layout">
+  <div class="app-filter-layout__filter">
+
+    {% include "_includes/statistics/selected-config2.njk" %}
+
+    {% include "_includes/statistics/filters2.njk" %}
+
+  </div>
+  <div class="app-filter-layout__content">
+
+    <div class="app-action-bar">
+      <div class="app-action-bar__filter"></div>
+    </div>
+
+    <div>
+
+      {% include "_includes/statistics/table2.njk" %}
+
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+  {% include "_includes/statistics/table2.njk" %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block pageScripts %}
+  {% if data.statisticsOptions %}
+    <script src="/public/javascripts/components/filter-toggle-button/filter-toggle-button.js"></script>
+    <script>
+      new AppFrontend.FilterToggleButton({
+        bigModeMediaQuery: '(min-width: 48.063em)',
+        startHidden: false,
+        toggleButton: {
+          container: $('.app-action-bar__filter'),
+          showText: 'Show filter',
+          hideText: 'Hide filter',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+        },
+        closeButton: {
+          container: $('.app-filter__header-action'),
+          text: 'Close'
+        },
+        filter: {
+          container: $('.app-filter-layout__filter')
+        }
+      })
+    </script>
+
+    {% if subjectItems.length >= subjectItemsDisplayLimit %}
+      <script type="text/javascript" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
+      <script type="text/javascript">
+        new AppFrontend.CheckboxFilter({
+          container: $('#subject'),
+          textBox: {
+            label: 'Search for subject'
+          }
+        })
+      </script>
+    {% endif %}
+  {% endif %}
+{% endblock %}
