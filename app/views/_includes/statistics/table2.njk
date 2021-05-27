@@ -1,5 +1,5 @@
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="{{'govuk-grid-column-full' if options else 'govuk-grid-column-two-thirds' }}">
 
     <table class="govuk-table {{- ' app-table--scrollable' if options }}">
       <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
@@ -92,6 +92,14 @@
           {% endif %}
 
         {% endfor %}
+
+        {% if not options %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Total</th>
+            <td class="govuk-table__cell">{{ totalApplications }}</td>
+          </tr>
+        {% endif %}
+
       </tbody>
     </table>
 

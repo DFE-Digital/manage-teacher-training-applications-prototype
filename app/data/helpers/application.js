@@ -659,7 +659,6 @@ exports.getApplicationCountsV2 = (applications, options) => {
   })
 
   return counts
-
 }
 
 exports.getDimensionData = (dimension) => {

@@ -574,7 +574,6 @@ module.exports = router => {
   router.get('/statistics/applications/courses2', (req, res) => {
     let applications = req.session.data.applications
     const options = req.session.data.statisticsOptions
-    // const options = { dimension1: 'subject', dimension2: 'location', dimension3: 'cycle', dimension4: 'status' } //
     const filters = getFilters(req)
 
     // if the user hasn't configured the report to include cycle data,
