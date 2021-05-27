@@ -74,7 +74,7 @@ applications = applications
     }
   })
 
-let userOrg = findOrg("Bedfordshire University")
+let userOrg = findOrg("University of Bedfordshire")
 
 let relationships = [];
 

@@ -18,7 +18,7 @@ const generateFakeUsers = (count) => {
     firstName: "Rachel",
     lastName: "Reeds",
     emailAddress: "rachel.reeds@beds.ac.uk",
-    organisation: organisations.find(org => org.name == "Bedfordshire University"),
+    organisation: organisations.find(org => org.name == "University of Bedfordshire"),
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
