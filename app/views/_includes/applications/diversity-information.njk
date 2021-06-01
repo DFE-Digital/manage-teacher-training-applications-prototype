@@ -46,13 +46,6 @@
       }
     }, {
       key: {
-        text: "Ethnic group"
-      },
-      value: {
-        html: application.personalDetails.ethnicGroup
-      }
-    }, {
-      key: {
         text: "Disabled"
       },
       value: {
@@ -65,8 +58,15 @@
       value: {
         html: disabledText
       }
-    } if isDisabled
-    ]
+    } if isDisabled,
+    {
+      key: {
+        text: "Ethnic group"
+      },
+      value: {
+        html: application.personalDetails.ethnicGroup
+      }
+    }]
   }) }}
 {% endset %}
 
@@ -104,9 +104,9 @@
 
      <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
      {% if applicationAccepted %}
-        <p class="govuk-body">This section is only available to users with permission to ‘view diversity information’.</p>
+        <p class="govuk-body">This section is only available to users with permission to ‘view sex, disability and ethnicity information’.</p>
       {% else %}
-        <p class="govuk-body">This will become available to users with permission to ‘view diversity information’ when {{offerContext}} offer has been accepted.</p>
+        <p class="govuk-body">This will become available to users with permission to ‘view sex, disability and ethnicity information’ when {{offerContext}} offer has been accepted.</p>
     {% endif %}
 
   {% endif %}
