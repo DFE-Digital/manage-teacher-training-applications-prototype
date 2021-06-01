@@ -134,7 +134,7 @@ module.exports = router => {
 
     req.session.data.users.push(user)
 
-    delete data
+    delete req.session.data.newuser
 
     req.flash('success', 'User invited')
     res.redirect(`/organisation-settings/${req.params.orgId}/users/`)
