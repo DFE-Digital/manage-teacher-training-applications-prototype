@@ -2,10 +2,10 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'User permissions' %}
+{% set title = 'User permissions - Invite user' %}
 
-{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
-{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -17,6 +17,37 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% set runOrRatified %}
+        {% if org.isAccreditedBody %}
+          run
+        {% else %}
+          ratified
+        {% endif %}
+      {% endset %}
+
+      {% set makeDecisionsHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          applicableOrgs: orgPermissions.applicableOrgs.makeDecisions,
+          nonApplicableOrgs: orgPermissions.nonApplicableOrgs.makeDecisions
+        })}}
+      {% endset %}
+
+      {% set safeguardingHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          applicableOrgs: orgPermissions.applicableOrgs.viewSafeguardingInformation,
+          nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewSafeguardingInformation
+        })}}
+      {% endset %}
+
+      {% set diversityHint %}
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          applicableOrgs: orgPermissions.applicableOrgs.viewDiversityInformation,
+          nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewDiversityInformation
+        })}}
+      {% endset %}
 
       {% set h1 %}
         <span class="govuk-caption-l">
@@ -29,8 +60,7 @@
       {% endset %}
 
       <form novalidate method="post">
-
-        {{ govukRadios({
+        {{ govukCheckboxes({
           fieldset: {
             legend: {
               html: h1,
@@ -38,17 +68,45 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+                text: "All users can view applications."
+              },
           items: [
             {
-              value: "View applications",
-              text: "View applications (excluding sensitive information)"
+              value: "manageUsers",
+              text: "Manage users"
             },
             {
-              value: "Additional permissions",
-              text: "Additional user permissions, such as making decisions or viewing sensitive information"
+              value: "manageOrganisation",
+              text: "Manage organisational permissions"
+            },
+            {
+              value: "setupInterviews",
+              html: "Set up interviews"
+            },
+            {
+              value: "makeDecisions",
+              html: "Make offers and reject applications",
+              hint: {
+                html: makeDecisionsHint
+              }
+            },
+            {
+              value: "viewSafeguardingInformation",
+              text: "View criminal convictions and professional misconduct",
+              hint: {
+                html: safeguardingHint
+              }
+            },
+            {
+              value: "viewDiversityInformation",
+              text: "View sex, disability and ethnicity information",
+              hint: {
+                html: diversityHint
+              }
             }
           ]
-        } | decorateAttributes(data, 'data.editpermissions.access')) }}
+        } | decorateAttributes(data, 'data.editpermissions.permissions')) }}
 
         {{govukButton({
           text: "Continue"
