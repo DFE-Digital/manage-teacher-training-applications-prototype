@@ -31,6 +31,7 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if canManageUsers %}
+        {# <p><a href="">Check how organisational permissions affect user permissions</a></p> #}
         {{govukButton({
           text: 'Invite user',
           href: '/organisation-settings/' + org.id + '/users/new'
@@ -45,9 +46,13 @@
           <div>
             <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
             <p class="govuk-!-margin-bottom-0">{{ user.emailAddress }}</p>
+            <p class="govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">Make offers and reject applications, manage users</p>
           </div>
         </div>
       {% endfor %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+
     </div>
   </div>
 
