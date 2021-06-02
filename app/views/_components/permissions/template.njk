@@ -1,7 +1,7 @@
 <div class="app-permissions-hint-text {{- ' ' + params.classes if params.classes}}">
   {% if params.applicableOrgs.length %}
-    <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p>
-    <p class="app-permissions-hint-text__lede">It applies to courses {{params.runOrRatified}} by:</p>
+    {# <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p> #}
+    <p class="app-permissions-hint-text__lede">This applies to courses {{params.runOrRatified}} by:</p>
 
     <ul class="govuk-list govuk-list--bullet">
       {% for item in params.applicableOrgs %}
@@ -12,10 +12,10 @@
 
   {% if params.nonApplicableOrgs.length %}
     {% if not params.applicableOrgs or params.applicableOrgs.length == 0 %}
-      <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p>
-      <p class="app-permissions-hint-text__lede">It does not apply to courses {{params.runOrRatified}} by:</p>
+      {# <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p> #}
+      <p class="app-permissions-hint-text__lede">This does not apply to courses {{params.runOrRatified}} by:</p>
     {% else %}
-      <p class="app-permissions-hint-text__lede">It does not apply to courses {{params.runOrRatified}} by:</p>
+      <p class="app-permissions-hint-text__lede">This does not apply to courses {{params.runOrRatified}} by:</p>
     {% endif %}
 
     <ul class="govuk-list govuk-list--bullet">

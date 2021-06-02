@@ -50,6 +50,7 @@
       {% endset %}
 
       {% set h1 %}
+      {# <h1 class="govuk-heading-l"> #}
         <span class="govuk-caption-l">
           Invite user
           {% if data.user.organisations.length > 1 %}
@@ -58,58 +59,80 @@
         </span>
         User permissions
       {% endset %}
+      {# </h1> #}
 
       <form novalidate method="post">
+        {{ govukCheckboxes({
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
 
-          {{ govukCheckboxes({
-            fieldset: {
-              legend: {
-                html: h1,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-
+          },
+          hint: {
+              text: "All users can view applications."
             },
-            hint: {
-                text: "All users can view applications."
-              },
-            items: [
-              {
-                value: "manageUsers",
-                text: "Manage users"
-              },
-              {
-                value: "manageOrganisation",
-                text: "Manage organisational permissions"
-              },
-              {
-                value: "setupInterviews",
-                html: "Manage interviews"
-              },
-              {
-                value: "makeDecisions",
-                html: "Make offers and reject applications",
-                hint: {
-                  html: makeDecisionsHint
-                }
-              },
-              {
-                value: "viewSafeguardingInformation",
-                text: "View criminal convictions and professional misconduct",
-                hint: {
-                  html: safeguardingHint
-                }
-              },
-              {
-                value: "viewDiversityInformation",
-                text: "View sex, disability and ethnicity information",
-                hint: {
-                  html: diversityHint
-                }
-              }
-            ]
-          } | decorateAttributes(data, 'data.newuser.permissions')) }}
+          items: [
+            {
+              value: "manageUsers",
+              text: "Manage users"
+            },
+            {
+              value: "manageOrganisation",
+              text: "Manage organisational permissions"
+            },
+            {
+              value: "setupInterviews",
+              html: "Manage interviews"
+            },
+            {
+              value: "makeDecisions",
+              html: "Make offers and reject applications",
+              hint: {
+                html: makeDecisionsHint
+              } if 1 == 2
+            },
+            {
+              value: "viewSafeguardingInformation",
+              text: "View criminal convictions and professional misconduct",
+              hint: {
+                html: safeguardingHint
+              } if 1 == 2
+            },
+            {
+              value: "viewDiversityInformation",
+              text: "View sex, disability and ethnicity information",
+              hint: {
+                html: diversityHint
+              } if 1 == 2
+            }
+          ]
+        } | decorateAttributes(data, 'data.newuser.permissions')) }}
 
+        {% set detailsHtml %}
+          {# <p>The following user permissions are affected by the way organisational permissions have been set up.</p> #}
+
+          <h2 class="govuk-heading-s">
+            Make offers and reject applications
+          </h2>
+          {{makeDecisionsHint | safe}}
+
+          <h2 class="govuk-heading-s">
+            View criminal convictions and professional misconduct
+          </h2>
+          {{safeguardingHint | safe}}
+
+          <h2 class="govuk-heading-s">
+            View sex, disability and ethnicity information
+          </h2>
+          {{diversityHint | safe}}
+        {% endset %}
+        {{ govukDetails({
+          summaryText: "Check how organisational permissions affect this user’s permissions",
+          html: detailsHtml
+        }) }}
 
         {{govukButton({
           text: "Continue"
