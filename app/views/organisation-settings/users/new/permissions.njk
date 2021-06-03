@@ -17,39 +17,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set runOrRatified %}
-        {% if org.isAccreditedBody %}
-          run
-        {% else %}
-          ratified
-        {% endif %}
-      {% endset %}
 
-      {% set makeDecisionsHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: permissions.applicableOrgs.makeDecisions,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
-        })}}
-      {% endset %}
 
-      {% set safeguardingHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
-        })}}
-      {% endset %}
 
-      {% set diversityHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
-        })}}
-      {% endset %}
-
-      {# {% set h1 %} #}
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
           Invite user
@@ -58,37 +28,50 @@
           {% endif %}
         </span>
         User permissions
-      {# {% endset %} #}
       </h1>
 
+      {% set runOrRatified %}
+        {% if org.isAccreditedBody %}
+          run
+        {% else %}
+          ratified
+        {% endif %}
+      {% endset %}
 
+      {% set detailsHtml %}
+        <h2 class="govuk-heading-s">
+          Make offers and reject applications
+        </h2>
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          applicableOrgs: permissions.applicableOrgs.makeDecisions,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
+        })}}
 
-        {% set detailsHtml %}
+        <h2 class="govuk-heading-s">
+          View criminal convictions and professional misconduct
+        </h2>
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
+        })}}
 
-          <h2 class="govuk-heading-s">
-            Make offers and reject applications
-          </h2>
-          {{makeDecisionsHint | safe}}
+        <h2 class="govuk-heading-s">
+          View sex, disability and ethnicity information
+        </h2>
+        {{appPermissions({
+          runOrRatified: runOrRatified,
+          applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
+          nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
+        })}}
+      {% endset %}
 
-          <h2 class="govuk-heading-s">
-            View criminal convictions and professional misconduct
-          </h2>
-          {{safeguardingHint | safe}}
-
-          <h2 class="govuk-heading-s">
-            View sex, disability and ethnicity information
-          </h2>
-          {{diversityHint | safe}}
-        {% endset %}
-
-        <p>Some user permissions are affected by organisational permissions.</p>
-        {{ govukDetails({
-          summaryText: "Check how organisational permissions affect things",
-          html: detailsHtml
-        }) }}
-
-
-
+      <p>Some user permissions are affected by organisational permissions.</p>
+      {{ govukDetails({
+        summaryText: "Check how organisational permissions affect things",
+        html: detailsHtml
+      }) }}
 
       <form novalidate method="post">
         {{ govukCheckboxes({
@@ -113,29 +96,20 @@
               text: "Manage organisational permissions"
             },
             {
+              value: "makeDecisions",
+              html: "Make offers and reject applications"
+            },
+            {
               value: "setupInterviews",
               html: "Manage interviews"
             },
             {
-              value: "makeDecisions",
-              html: "Make offers and reject applications",
-              hint: {
-                html: makeDecisionsHint
-              } if 1 == 2
-            },
-            {
               value: "viewSafeguardingInformation",
-              text: "View criminal convictions and professional misconduct",
-              hint: {
-                html: safeguardingHint
-              } if 1 == 2
+              text: "View criminal convictions and professional misconduct"
             },
             {
               value: "viewDiversityInformation",
-              text: "View sex, disability and ethnicity information",
-              hint: {
-                html: diversityHint
-              } if 1 == 2
+              text: "View sex, disability and ethnicity information"
             }
           ]
         } | decorateAttributes(data, 'data.newuser.permissions')) }}
