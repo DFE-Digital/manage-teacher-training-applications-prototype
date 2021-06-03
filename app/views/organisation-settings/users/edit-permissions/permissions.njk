@@ -49,7 +49,7 @@
         })}}
       {% endset %}
 
-      {% set h1 %}
+      <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
           {{user.firstName}} {{user.lastName}}
           {% if data.user.organisations.length > 1 %}
@@ -57,20 +57,22 @@
           {% endif %}
         </span>
         User permissions
-      {% endset %}
+      </h1>
+
+      {% include "_includes/users/organisational-permissions-content.njk" %}
 
       <form novalidate method="post">
         {{ govukCheckboxes({
           fieldset: {
             legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              html: "Choose user permssions",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
-                text: "All users can view applications."
-              },
+            text: "All users can view applications."
+          },
           items: [
             {
               value: "manageUsers",
@@ -81,29 +83,20 @@
               text: "Manage organisational permissions"
             },
             {
-              value: "setupInterviews",
-              html: "Set up interviews"
+              value: "makeDecisions",
+              html: "Make offers and reject applications"
             },
             {
-              value: "makeDecisions",
-              html: "Make offers and reject applications",
-              hint: {
-                html: makeDecisionsHint
-              }
+              value: "setupInterviews",
+              html: "Manage interviews"
             },
             {
               value: "viewSafeguardingInformation",
-              text: "View criminal convictions and professional misconduct",
-              hint: {
-                html: safeguardingHint
-              }
+              text: "View criminal convictions and professional misconduct"
             },
             {
               value: "viewDiversityInformation",
-              text: "View sex, disability and ethnicity information",
-              hint: {
-                html: diversityHint
-              }
+              text: "View sex, disability and ethnicity information"
             }
           ]
         } | decorateAttributes(data, 'data.editpermissions.permissions')) }}

@@ -74,28 +74,13 @@ module.exports = router => {
     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/permissions/`)
   })
 
-  // router.get('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
-  //   let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
-  //   res.render('organisation-settings/users/new/permissions', {
-  //     org
-  //   })
-  // })
-
-  // router.post('/organisation-settings/:orgId/users/new/permissions/', (req, res) => {
-  //   if(req.session.data.newuser.access == "Additional permissions") {
-  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/permissions`)
-  //   } else {
-  //     res.redirect(`/organisation-settings/${req.params.orgId}/users/new/check`)
-  //   }
-  // })
-
   router.get('/organisation-settings/:orgId/users/new/permissions', (req, res) => {
     let org = req.session.data.user.organisations.find(org => req.params.orgId == org.id)
-    let permissions = getOrganisationPermission(org, req.session.data.relationships)
+    let orgPermissions = getOrganisationPermission(org, req.session.data.relationships)
 
     res.render('organisation-settings/users/new/permissions', {
       org,
-      permissions
+      orgPermissions
     })
   })
 

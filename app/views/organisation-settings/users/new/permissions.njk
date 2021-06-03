@@ -18,8 +18,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
           Invite user
@@ -30,48 +28,7 @@
         User permissions
       </h1>
 
-      {% set runOrRatified %}
-        {% if org.isAccreditedBody %}
-          run
-        {% else %}
-          ratified
-        {% endif %}
-      {% endset %}
-
-      {% set detailsHtml %}
-        <h2 class="govuk-heading-s">
-          Make offers and reject applications
-        </h2>
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: permissions.applicableOrgs.makeDecisions,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.makeDecisions
-        })}}
-
-        <h2 class="govuk-heading-s">
-          View criminal convictions and professional misconduct
-        </h2>
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
-        })}}
-
-        <h2 class="govuk-heading-s">
-          View sex, disability and ethnicity information
-        </h2>
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
-          nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
-        })}}
-      {% endset %}
-
-      <p>Some user permissions are affected by organisational permissions.</p>
-      {{ govukDetails({
-        summaryText: "Check how organisational permissions affect things",
-        html: detailsHtml
-      }) }}
+      {% include "_includes/users/organisational-permissions-content.njk" %}
 
       <form novalidate method="post">
         {{ govukCheckboxes({
@@ -81,7 +38,6 @@
               isPageHeading: false,
               classes: "govuk-fieldset__legend--m"
             }
-
           },
           hint: {
               text: "All users can view applications."

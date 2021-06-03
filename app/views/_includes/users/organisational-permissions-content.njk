@@ -1,0 +1,42 @@
+{% set runOrRatified %}
+  {% if org.isAccreditedBody %}
+    run
+  {% else %}
+    ratified
+  {% endif %}
+{% endset %}
+
+{% set detailsHtml %}
+  <h2 class="govuk-heading-s">
+    Make offers and reject applications
+  </h2>
+  {{appPermissions({
+    runOrRatified: runOrRatified,
+    applicableOrgs: orgPermissions.applicableOrgs.makeDecisions,
+    nonApplicableOrgs: orgPermissions.nonApplicableOrgs.makeDecisions
+  })}}
+
+  <h2 class="govuk-heading-s">
+    View criminal convictions and professional misconduct
+  </h2>
+  {{appPermissions({
+    runOrRatified: runOrRatified,
+    applicableOrgs: orgPermissions.applicableOrgs.viewSafeguardingInformation,
+    nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewSafeguardingInformation
+  })}}
+
+  <h2 class="govuk-heading-s">
+    View sex, disability and ethnicity information
+  </h2>
+  {{appPermissions({
+    runOrRatified: runOrRatified,
+    applicableOrgs: orgPermissions.applicableOrgs.viewDiversityInformation,
+    nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewDiversityInformation
+  })}}
+  {% endset %}
+
+  <p>Some user permissions are affected by organisational orgPermissions.</p>
+  {{ govukDetails({
+  summaryText: "Check how organisational permissions affect things",
+  html: detailsHtml
+  }) }}
