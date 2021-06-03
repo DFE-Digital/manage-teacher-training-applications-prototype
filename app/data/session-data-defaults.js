@@ -1,11 +1,11 @@
 const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
+const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
 const organisations = require('./organisations.json')
-
-function findOrg(name) {
-  return organisations.find(org => org.name == name)
-}
+const relationships = require('./relationships.js')
+let applications = require('./applications.json')
+let users = require('./users.json')
 
 const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
@@ -14,10 +14,6 @@ const trainingProviders = organisations.filter(org => {
 const accreditedBodies = organisations.filter(org => {
   return org.isAccreditedBody
 })
-
-let applications = require('./applications.json')
-
-let users = require('./users.json')
 
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {
@@ -74,249 +70,18 @@ applications = applications
     }
   })
 
-let userOrg = findOrg("Leeds Trinity University")
+let userOrg = OrgHelper.findOrg("University of Bedfordshire")
 
-let relationships = [{
-  id: 1,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Co-op Academies Trust School Direct - Primary"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 2,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Diocese of Leeds BKCAT Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 3,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Dixons Multi-Academy Trust (DMAT)"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 4,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("East One Partnership"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 5,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Ilkley All Saints’ Teacher Training Partnership"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 6,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Nicholas Postgate Catholic Academy Trust"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 7,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("North Star"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 8,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Rodillian"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 9,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("St Anthony’s Primary Learning Partnership"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 10,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("St Bede’s Deanery Teaching Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 11,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("St. Mary’s TSA"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 12,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("The Beckfoot School Direct Partnership"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 13,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("The Catholic Schools Partnership Teaching School Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 14,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("The Yorkshire Rose Teaching Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 15,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Waterton Academy Trust"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 16,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("White Rose Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 17,
-  org1: userOrg,
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: findOrg("Yorkshire Schools Alliance"),
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}];
+let userOrgs = [];
 
-let userOrgs = [userOrg];
+userOrgs.push(userOrg)
+// userOrgs.push(OrgHelper.findOrg("ATT Partnership"))
+// userOrgs.push(OrgHelper.findOrg("Castle Newnham Partnership"))
+// userOrgs.push(OrgHelper.findOrg("Fenland Teaching School Alliance"))
+// userOrgs.push(OrgHelper.findOrg("Goldington Academy"))
+// userOrgs.push(OrgHelper.findOrg("Middlefield Primary Academy"))
+// userOrgs.push(OrgHelper.findOrg("Redborne Upper School And Community College"))
+// userOrgs.push(OrgHelper.findOrg("Thorndown Primary School"))
 
 let user = users[0]
 user.organisations = userOrgs
@@ -340,9 +105,5 @@ module.exports = {
   trainingProviders,
   accreditedBodies,
   organisations,
-  users,
-  bare: process.env.BARE,
-  flags: {
-    interview_preferences: true
-  }
+  users
 }

@@ -2,14 +2,25 @@ const _ = require('lodash');
 
 module.exports = router => {
 
+  /*
+    Returns a structure that looks like this:
+
+    [{
+      org: {id, name},
+      partners: [{id, name}, ...]
+    }, ...]
+  */
   function getUserRelationships(params) {
     return params.userOrgs.map(org => {
 
-      var item = { org: org, partners: [] };
+      let item = { org: org, partners: [] };
 
-      params.orgRelationships.filter(relationship => {
+      let orgRelationships = params.orgRelationships.filter(relationship => {
         return relationship.org1.id == org.id
-      }).forEach(relationship => {
+      })
+
+      // for each relationship found put it in partners array
+      orgRelationships.forEach(relationship => {
         item.partners.push({
           org: relationship.org2,
           id: relationship.id
@@ -19,6 +30,15 @@ module.exports = router => {
       return item
 
     })
+    // At the moment I am not depuping relationships.
+    // meaning, if the user belongs to, for example, the SCITT and SD
+    // then the relationship should be included in the relationships data twice
+    // As I do not dedupe, it means this function goes a bit funny
+    // because the the SCITT and SD org is in the user object which this entire
+    // function references, but there's no relationship for it.
+    // So instead, I will just filter() out any items that don't have any partners
+    // if we ever dedupe properly, we can kill this filter.
+    .filter(item => item.partners.length > 0)
   }
 
   router.get('/onboard', (req, res) => {

@@ -15,10 +15,10 @@ const generateFakeUsers = (count) => {
 
   users.push({
     id: faker.random.uuid(),
-    firstName: "Emma",
-    lastName: "Turner-Lindley",
-    emailAddress: "e.turner-lindley@leedstrinity.ac.uk",
-    organisation: organisations.find(org => org.name == "Leeds Trinity University"),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "University of Bedfordshire"),
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
@@ -29,6 +29,117 @@ const generateFakeUsers = (count) => {
     }
   })
 
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "ATT Partnership"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Castle Newnham Partnership"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Fenland Teaching School Alliance"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Goldington Academy"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Middlefield Primary Academy"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Redborne Upper School And Community College"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Rachel",
+    lastName: "Reeds",
+    emailAddress: "rachel.reeds@beds.ac.uk",
+    organisation: organisations.find(org => org.name == "Thorndown Primary School"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
 
   for(var i = 0; i < 100; i++) {
     let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))

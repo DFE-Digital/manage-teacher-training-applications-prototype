@@ -10,6 +10,8 @@
         <p>Some new partners have joined Manage (opened courses you run or ratify).</p>
       {% endif %}
 
+      {{relationships | log}}
+
       {% if (relationships | length) != "1" %}
         <p>You need to set up permissions for each partner you work with.</p>
       {% endif %}
