@@ -31,7 +31,6 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if canManageUsers %}
-        {# <p><a href="">Check how organisational permissions affect user permissions</a></p> #}
         {{govukButton({
           text: 'Invite user',
           href: '/organisation-settings/' + org.id + '/users/new'
@@ -44,9 +43,35 @@
 
         <div class="app-application-card">
           <div>
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
-            <p class="govuk-!-margin-bottom-0">{{ user.emailAddress }}</p>
-            <p class="govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">Make offers and reject applications, manage users</p>
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a> <span class="govuk-!-font-weight-regular"> - {{ user.emailAddress }}</h2>
+
+            {% if user.permissions %}
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">
+                {% for key, value in user.permissions %}
+                  {% if value %}
+                    {%- if key == "manageUsers" -%}
+                      <li>Manage users</li>
+                    {% endif %}
+                    {%- if key == "manageOrganisation" -%}
+                      <li>Manage organisational permissions</li>
+                    {% endif %}
+                    {%- if key == "makeDecisions" -%}
+                      <li>Make offers and reject applications</li>
+                    {% endif %}
+                    {%- if key == "setupInterviews" -%}
+                      <li>Manage interviews</li>
+                    {% endif %}
+                    {%- if key == "viewSafeguardingInformation" -%}
+                      <li>View criminal convictions and professional misconduct</li>
+                    {% endif %}
+                    {%- if key == "viewDiversityInformation" -%}
+                      <li>View sex, disability and ethnicity information</li>
+                    {% endif %}
+
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
         </div>
       {% endfor %}
