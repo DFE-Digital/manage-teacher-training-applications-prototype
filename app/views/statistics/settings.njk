@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "statistics" %}
-{% set pageName = "Configure report" %}
+{% set pageName = "Change report settings" %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -16,102 +16,75 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">
       <span class="govuk-caption-l">
-        {{ reportName | capitalize }}
+        Courses
       </span>
       {{ pageName }}
     </h1>
 
-    <form action="/statistics/{{ section }}/{{ report }}/settings/dimension2" method="post" accept-charset="UTF-8" novalidate>
+    <form action="/statistics/{{ report }}/settings" method="post" accept-charset="UTF-8" novalidate>
+
+      {% set legendText %}
+        {% if counter == 2 %}
+        Show in columns
+        {% elif counter == 3 %}
+        Split {{ data.statisticsOptions.dimension2 | getStatisticsOptionLabel | lower }} columns by
+        {% else %}
+        Split courses by
+        {% endif %}
+      {% endset %}
 
       {{ govukRadios({
         idPrefix: "statisticsOptions",
-        name: "statisticsOptions[dimension2]",
+        name: "statisticsOptions[dimension" + counter + "]",
         fieldset: {
           legend: {
-            text: "Split courses by",
+            text: legendText,
             classes: "govuk-fieldset__legend--m"
           }
-        },
-        hint: {
-          text: ""
         },
         items: [
           {
             value: "cycle",
-            text: "Year received",
+            text: "cycle" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "cycle") == "checked"
-          },
+          } if (chosenOptions and "cycle" not in chosenOptions),
           {
             value: "status",
-            text: "Status",
+            text: "status" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "status") == "checked"
-          },
+          } if (chosenOptions and "status" not in chosenOptions),
           {
             value: "provider",
-            text: "Training provider",
+            text: "provider" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "provider") == "checked"
-          },
+          } if (chosenOptions and "provider" not in chosenOptions),
           {
             value: "accreditedBody",
-            text: "Accredited body",
+            text: "accreditedBody" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "accreditedBody") == "checked"
-          },
+          } if (chosenOptions and "accreditedBody" not in chosenOptions),
           {
             value: "location",
-            text: "Location",
+            text: "location" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "location") == "checked"
-          },
+          } if (chosenOptions and "location" not in chosenOptions),
           {
             value: "studyMode",
-            text: "Study mode",
+            text: "studyMode" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "studyMode") == "checked"
-          },
+          } if (chosenOptions and "studyMode" not in chosenOptions),
           {
             value: "subjectLevel",
-            text: "Subject level",
+            text: "subjectLevel" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "subjectLevel") == "checked"
-          },
+          } if (chosenOptions and "subjectLevel" not in chosenOptions),
           {
             value: "fundingType",
-            text: "Funding type",
+            text: "fundingType" | getStatisticsOptionLabel,
             checked: checked(data.statisticsOptions.dimension2, "fundingType") == "checked"
-          }
+          } if (chosenOptions and "fundingType" not in chosenOptions)
         ]
       }) }}
-
-      {#{ govukRadios({
-        idPrefix: "",
-        name: "",
-        fieldset: {
-          legend: {
-            text: "Add another dimension",
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          text: ""
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes"
-          },
-          {
-            value: "no",
-            text: "No"
-          }
-        ]
-      }) }#}
-
-      <!-- ,
-      {
-        divider: "or"
-      },
-      {
-        value: "none",
-        text: "None of the above",
-        checked: checked(data.statisticsOptions.dimension2, "none") == "checked"
-      } -->
 
       {{ govukButton({
         name: "button[submit]",
@@ -122,12 +95,12 @@
       {{ govukButton({
         name: "button[submit]",
         value: "continue",
-        text: "Add another dimension",
+        text: "Split data further",
         classes: "govuk-button--secondary"
-      }) }}
+      }) if counter < 4 }}
 
       <p class="govuk-body">
-        <a href="/statistics/{{ section }}/{{ report }}/remove-all-options">Cancel</a>
+        <a href="/statistics/{{ section }}/{{ report }}/remove-all-settings">Cancel</a>
       </p>
 
     </form>

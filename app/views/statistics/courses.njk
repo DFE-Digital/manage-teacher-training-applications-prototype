@@ -20,7 +20,7 @@
 {% include "_includes/statistics/header.njk" %}
 
 <p class="govuk-body">
-  <a class="govuk-link" href="/statistics/{{ section }}/{{ report }}/settings">Change report settings</a>
+  <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
 </p>
 
 {% if data.statisticsOptions %}
@@ -28,9 +28,9 @@
 <div class="app-filter-layout">
   <div class="app-filter-layout__filter">
 
-    {% include "_includes/statistics/selected-config2.njk" %}
+    {% include "_includes/statistics/selected-config.njk" %}
 
-    {% include "_includes/statistics/filters2.njk" %}
+    {% include "_includes/statistics/filter-panel.njk" %}
 
   </div>
   <div class="app-filter-layout__content">
@@ -41,7 +41,7 @@
 
     <div>
 
-      {% include "_includes/statistics/table2.njk" %}
+      {% include "_includes/statistics/table.njk" %}
 
     </div>
   </div>
@@ -49,7 +49,7 @@
 
 {% else %}
 
-  {% include "_includes/statistics/table2.njk" %}
+  {% include "_includes/statistics/table.njk" %}
 
 {% endif %}
 

@@ -42,9 +42,7 @@
 {% from "_components/event-offer/macro.njk" import appEventOffer %}
 {% from "_components/filter/macro.njk" import appFilter %}
 {% from "_components/footer/macro.njk" import appFooter %}
-{% from "_components/glance-metric/macro.njk" import appGlanceMetric %}
 {% from "_components/icon/macro.njk" import appIcon %}
-{% from "_components/info-metric/macro.njk" import appInfoMetric %}
 {% from "_components/interview-card/macro.njk" import appInterviewCard %}
 {% from "_components/metric/macro.njk" import appMetric %}
 {% from "_components/no-information-shared/macro.njk" import appNoInformationShared %}
@@ -119,11 +117,6 @@
       href: "/notifications",
       html: alertsLinkHtml,
       active: primaryNavId == 'notifications'
-    },
-    {
-      href: "/statistics",
-      text: "Statistics",
-      active: primaryNavId == 'statistics'
     },
     {
       href: "/export",
