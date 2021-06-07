@@ -7,14 +7,14 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Active Teacher Training"),
   org2Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
+    viewSafeguardingInformation: false,
+    viewDiversityInformation: false
   }
 })
 relationships.push({
@@ -22,14 +22,14 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("ATT Partnership"),
   org2Permissions: {
     makeDecisions: true,
     viewSafeguardingInformation: true,
-    viewDiversityInformation: true
+    viewDiversityInformation: false
   }
 })
 relationships.push({
@@ -37,8 +37,8 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
+    viewSafeguardingInformation: false,
+    viewDiversityInformation: false
   },
   org2: OrgHelper.findOrg("Biddenham Upper School and Sports College"),
   org2Permissions: {
@@ -52,7 +52,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Castle Newnham Partnership"),
@@ -67,7 +67,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Fenland Teaching School Alliance"),
@@ -82,7 +82,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Goldington Academy"),
@@ -97,7 +97,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Luton Futures"),
@@ -112,7 +112,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Middlefield Primary Academy"),
@@ -127,7 +127,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Nene and Ramnoth"),
@@ -142,7 +142,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Redborne Upper School And Community College"),
@@ -157,7 +157,7 @@ relationships.push({
   org1: userOrg,
   org1Permissions: {
     makeDecisions: true,
-    viewSafeguardingInformation: true,
+    viewSafeguardingInformation: false,
     viewDiversityInformation: true
   },
   org2: OrgHelper.findOrg("Thorndown Primary School"),

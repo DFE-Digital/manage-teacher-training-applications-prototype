@@ -55,8 +55,8 @@
 {% from "_components/event-application/macro.njk" import appEventApplication %}
 {% from "_components/event-offer/macro.njk" import appEventOffer %}
 {% from "_components/conditions-panel/macro.njk" import appConditionsPanel %}
-{% from "_components/permissions/macro.njk" import appPermissions %}
 {% from "_components/applicable-permissions/macro.njk" import appApplicablePermissions %}
+{% from "_components/applicable-permissions-inline/macro.njk" import appApplicablePermissionsInline %}
 
 {% set canManageUsers = true %}
 {% if query.canManageUsers %}
