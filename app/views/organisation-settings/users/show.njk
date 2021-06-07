@@ -186,7 +186,7 @@
               <dd class="govuk-summary-list__value">
                 {% if user.permissions.makeDecisions %}
                   <p>Yes</p>
-                  {{appApplicablePermissions({
+                  {{appApplicablePermissionsInline({
                     applicableOrgs: permissions.applicableOrgs.makeDecisions,
                     nonApplicableOrgs: permissions.
                     nonApplicableOrgs.makeDecisions
@@ -210,7 +210,7 @@
               <dd class="govuk-summary-list__value">
                 {% if user.permissions.viewSafeguardingInformation %}
                   <p>Yes</p>
-                  {{appApplicablePermissions({
+                  {{appApplicablePermissionsInline({
                     applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
                     nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
                   })}}
@@ -233,7 +233,7 @@
               <dd class="govuk-summary-list__value">
                 {% if user.permissions.viewDiversityInformation %}
                   <p>Yes</p>
-                  {{appApplicablePermissions({
+                  {{appApplicablePermissionsInline({
                     applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
                     nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
                   })}}
