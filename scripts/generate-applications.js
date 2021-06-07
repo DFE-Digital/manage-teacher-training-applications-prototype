@@ -132,6 +132,7 @@ const generateFakeApplication = (params = {}) => {
     studyMode: params.studyMode || studyMode,
     fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
     subject: params.subject || subject.name,
+    subjectLevel: params.subjectLevel || subject.level,
     course: params.course || course,
     location: params.location || location,
     status,

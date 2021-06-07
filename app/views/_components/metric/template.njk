@@ -1,0 +1,12 @@
+<div class="app-metric {{- ' ' + params.classes if params.classes }}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+  <div class="app-metric__figure {{- ' ' + params.metric.classes if params.metric.classes }}">
+    {%- if params.metric.html or params.metric.text %}
+      {{- params.metric.html | safe if params.metric.html else params.metric.text -}}
+    {% else %}
+      No data
+    {% endif -%}
+  </div>
+  <div {%- if params.label.classes %} class="{{ params.label.classes }}"{% endif %}>
+    {{- params.label.html | safe if params.label.html else params.label.text -}}
+  </div>
+</div>

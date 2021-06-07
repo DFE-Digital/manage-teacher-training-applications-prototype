@@ -1,0 +1,277 @@
+<div class="govuk-grid-row govuk-!-margin-top-5">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-s">This year (2020 to 2021)</h2>
+  </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-bottom-5">
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="/statistics/courses">
+      {{ appMetric({
+        label: {
+          text: "Applications received"
+        },
+        metric: {
+          text: counts.current.total
+        },
+        classes: "app-metric--blue"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    {{ appMetric({
+      label: {
+        text: "Applications now ready to enroll"
+      },
+      metric: {
+        text: "5%"
+      },
+      classes: "app-metric--grey"
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="/statistics/courses?statisticsOptions%5Bdimension1%5D=subject&statisticsOptions%5Bdimension2%5D=status&statisticsFilters%5Bstatus%5D=_unchecked&statisticsFilters%5Bstatus%5D=Interviewing">
+      {{ appMetric({
+        label: {
+          text: "Interviewing"
+        },
+        metric: {
+          text: counts.current.interviewing
+        },
+        classes: "app-metric--blue"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="/statistics/courses?statisticsOptions%5Bdimension1%5D=subject&statisticsOptions%5Bdimension2%5D=status&statisticsFilters%5Bstatus%5D=_unchecked&statisticsFilters%5Bstatus%5D=Offered">
+      {{ appMetric({
+        label: {
+          text: "Offered"
+        },
+        metric: {
+          text: counts.current.offered
+        },
+        classes: "app-metric--blue"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="/statistics/courses?statisticsOptions%5Bdimension1%5D=subject&statisticsOptions%5Bdimension2%5D=status&statisticsFilters%5Bstatus%5D=_unchecked&statisticsFilters%5Bstatus%5D=Awaiting+conditions">
+      {{ appMetric({
+        label: {
+          text: "Awaiting conditions"
+        },
+        metric: {
+          text: counts.current.awaitingConditions
+        },
+        classes: "app-metric--blue"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="/statistics/courses?statisticsOptions%5Bdimension1%5D=subject&statisticsOptions%5Bdimension2%5D=status&statisticsFilters%5Bstatus%5D=_unchecked&statisticsFilters%5Bstatus%5D=Ready+to+enroll">
+      {{ appMetric({
+        label: {
+          text: "Ready to enroll"
+        },
+        metric: {
+          text: counts.current.readyToEnroll
+        },
+        classes: "app-metric--blue"
+      }) }}
+    </a>
+  </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-5">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-s">A month ago</h2>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Interviewing"
+        },
+        metric: {
+          text: 17
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Offered"
+        },
+        metric: {
+          text: 21
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Awaiting conditions"
+        },
+        metric: {
+          text: 3
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Ready to enroll"
+        },
+        metric: {
+          text: 10
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-5">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-s">A year ago</h2>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Interviewing"
+        },
+        metric: {
+          text: 22
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Offered"
+        },
+        metric: {
+          text: 16
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Awaiting conditions"
+        },
+        metric: {
+          text: 7
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "Ready to enroll"
+        },
+        metric: {
+          text: 10
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+</div>
+
+
+<div class="govuk-grid-row govuk-!-margin-top-5">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-s">Average processing times</h2>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "From received to interviewing"
+        },
+        metric: {
+          text: "12 days"
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "From interviewing to offered"
+        },
+        metric: {
+          text: "7 days"
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "From awaiting conditions to ready to enroll"
+        },
+        metric: {
+          text: "35 days"
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <!-- <a class="app-metric__link" href="#">
+      {{ appMetric({
+        label: {
+          text: "LABEL TEXT"
+        },
+        metric: {
+          text: 0
+        },
+        classes: "app-metric--grey"
+      }) }}
+    </a> -->
+  </div>
+</div>

@@ -40,6 +40,7 @@
     "luxon": "^1.26.0",
     "marked": "^2.0.1",
     "notifications-node-client": "^5.1.0",
+    "numeral": "^2.0.6",
     "nunjucks": "^3.2.2",
     "pluralize": "^8.0.0",
     "portscanner": "^2.1.1",
