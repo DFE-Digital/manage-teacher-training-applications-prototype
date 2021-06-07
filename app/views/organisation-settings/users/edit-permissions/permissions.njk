@@ -17,37 +17,6 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set runOrRatified %}
-        {% if org.isAccreditedBody %}
-          run
-        {% else %}
-          ratified
-        {% endif %}
-      {% endset %}
-
-      {% set makeDecisionsHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: orgPermissions.applicableOrgs.makeDecisions,
-          nonApplicableOrgs: orgPermissions.nonApplicableOrgs.makeDecisions
-        })}}
-      {% endset %}
-
-      {% set safeguardingHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: orgPermissions.applicableOrgs.viewSafeguardingInformation,
-          nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewSafeguardingInformation
-        })}}
-      {% endset %}
-
-      {% set diversityHint %}
-        {{appPermissions({
-          runOrRatified: runOrRatified,
-          applicableOrgs: orgPermissions.applicableOrgs.viewDiversityInformation,
-          nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewDiversityInformation
-        })}}
-      {% endset %}
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
