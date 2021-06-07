@@ -58,6 +58,27 @@
 {% from "_components/task-list/macro.njk" import appTaskList %}
 {% from "_components/timeline/macro.njk" import appTimeline %}
 
+{% set canManageUsers = true %}
+{% if query.canManageUsers %}
+  {% set canManageUsers = false %}
+{% endif %}
+
+{% set canManageOrgPermissions = true %}
+{% if query.canManageOrgPermissions %}
+  {% set canManageOrgPermissions = false %}
+{% endif %}
+
+{% set canSetupInterviews = true %}
+{% if query.canSetupInterviews %}
+  {% set canSetupInterviews = false %}
+{% endif %}
+
+{% set canMakeDecisions = true %}
+{% if query.canMakeDecisions %}
+  {% set canMakeDecisions = false %}
+{% endif %}
+
+
 {% block head %}
   {% include "_includes/head.njk" %}
 {% endblock %}
@@ -138,12 +159,6 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {# {{ govukPhaseBanner({
-    tag: {
-      text: "prototype"
-    },
-    html: "This is a prototype of a new service. Some parts of this prototype do not work yet."
-  }) if not data.bare }} #}
   {% block pageNavigation %}
   {% endblock %}
   {% block pageBanner %}
@@ -172,10 +187,22 @@
         text: "Sign in permissions prompt"
       }, {
         href: "?transferred=true",
-        text: "Transferred mode"
+        text: "Enable transferred mode"
+      }, {
+        href: "?canManageUsers=false",
+        text: "Disable permission: manage users"
+      }, {
+        href: "?canManageOrgPermissions=false",
+        text: "Disable permission: manage org permissions"
+      }, {
+        href: "?canSetupInterviews=false",
+        text: "Disable permission: set up interviews"
+      }, {
+        href: "?canMakeDecisions=false",
+        text: "Disable permission: make decisions"
       }]
     }
-  }) if not data.bare }}
+  }) }}
 {% endblock %}
 
 {% block bodyEnd %}

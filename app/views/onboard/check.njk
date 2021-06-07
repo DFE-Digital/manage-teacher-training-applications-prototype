@@ -15,37 +15,34 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
       <span class="govuk-caption-l">Set up organisational permissions</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      <form novalidate action="/onboard/confirmation">
-
+      <form method="post">
         {% for item in relationships %}
-          {# {% if relationships.length > 1 %} #}
+          {% if relationships.length > 1 %}
             <h2 class="govuk-heading-m">
               {{ item.org.name }}
             </h2>
-          {# {% endif %} #}
+          {% endif %}
 
 
           {% for partner in item.partners %}
 
             {% set makeDecisionsHtml %}
-              {% for item in data.onboard['a'+partner.id].makeDecisions %}
+              {% for item in data.orgpermissions['a'+partner.id].makeDecisions %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
 
             {% set viewSafeguardingHtml %}
-              {% for item in data.onboard['a'+partner.id].viewCriminalConvictions %}
+              {% for item in data.orgpermissions['a'+partner.id].viewSafeguardingInformation %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
 
             {% set viewDiversityHtml %}
-              {% for item in data.onboard['a'+partner.id].viewDiversityInformation %}
+              {% for item in data.orgpermissions['a'+partner.id].viewDiversityInformation %}
                 <p>{{item}}</p>
               {% endfor %}
             {% endset %}
@@ -56,17 +53,11 @@
                 rows: [
                   {
                     key: {
-                      text: "Make decisions and set up interviews"
+                      text: "Make decisions"
                     },
                     value: {
                       html: makeDecisionsHtml
-                    },
-                    actions: {
-                      items: [{
-                        href: "/onboard/"+partner.id,
-                        text: "Change"
-                      }]
-                    } if 1 == 2
+                    }
                   },
                   {
                     key: {
@@ -74,13 +65,7 @@
                     },
                     value: {
                       html: viewSafeguardingHtml
-                    },
-                    actions: {
-                      items: [{
-                        href: "/onboard/"+partner.id,
-                        text: "Change"
-                      }]
-                    } if 1 == 2
+                    }
                   },
                   {
                     key: {
@@ -88,13 +73,7 @@
                     },
                     value: {
                       html: viewDiversityHtml
-                    },
-                    actions: {
-                      items: [{
-                        href: "/onboard/"+partner.id,
-                        text: "Change"
-                      }]
-                    } if 1 == 2
+                    }
                   }
                 ]
               }) }}
@@ -108,7 +87,7 @@
               actions: {
                 items: [{
                   href: "/onboard/"+partner.id,
-                  text: "Change permissions"
+                  text: "Change"
                 }]
               }
             })}}

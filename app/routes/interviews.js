@@ -45,9 +45,10 @@ function getTimeObject(time) {
 
 function getInterviews(applications) {
   let interviews = []
-  applications = applications.filter(app => {
-    return ApplicationHelper.getStatusText(app) == "Interviewing"
-  })
+  applications = applications
+    .filter(app => {
+      return app.interviews.items.length > 0
+    })
 
   // update this to use FLATMAP
   applications.forEach(app => {
@@ -84,14 +85,14 @@ module.exports = router => {
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
 
-    let interviews = getInterviews(req.session.data.applications)
-    interviews = interviews.slice(9, interviews.length)
+    let now = SystemHelper.now()
+
+    let interviews = getInterviews(req.session.data.applications).filter(interview => {
+      return DateTime.fromISO(interview.interview.date) >= DateTime.fromISO(now)
+    })
 
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
-
-    // this is close to SystemHelper.now() and is used to make sure we show the ‘today’ label in this view
-    let now = interviews[0].interview.date
 
     interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
@@ -104,8 +105,10 @@ module.exports = router => {
   })
 
   router.get('/interviews/past', (req, res) => {
-    let interviews = getInterviews(req.session.data.applications)
-    interviews = interviews.slice(0, 9).reverse()
+    let now = SystemHelper.now()
+    let interviews = getInterviews(req.session.data.applications).filter(interview => {
+      return DateTime.fromISO(interview.interview.date) < DateTime.fromISO(now)
+    }).reverse()
     let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
     interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
@@ -120,14 +123,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    const statusText = ApplicationHelper.getStatusText(application)
-
     var now = SystemHelper.now()
 
     let upcomingInterviews = [];
     let pastInterviews = [];
 
-    if(statusText == "Received" || statusText == "Interviewing") {
+    if(application.status == "Received" || application.status == "Interviewing") {
       upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
 
       pastInterviews = application.interviews.items.filter(interview => {
@@ -141,8 +142,7 @@ module.exports = router => {
     res.render('applications/interviews/index', {
       application,
       upcomingInterviews,
-      pastInterviews,
-      statusText: ApplicationHelper.getStatusText(application)
+      pastInterviews
     })
   })
 

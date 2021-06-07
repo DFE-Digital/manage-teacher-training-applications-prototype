@@ -1,0 +1,260 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set firstName = user.firstName %}
+{% set lastName = user.lastName %}
+{% set emailAddress = user.emailAddress %}
+{% set title = firstName + " " + lastName %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Organisation settings",
+      href: "/organisation-settings"
+    }, {
+      text: "Users",
+      href: "/organisation-settings/"+ org.id + "/users"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data.user.organisations.length > 1 %}
+        <span class="govuk-caption-l">
+          {{org.name}}
+        </span>
+      {% endif %}
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% if not canManageUsers %}
+        <p>You cannot change these details because you do not have permission to manage users.</p>
+      {% endif %}
+
+      {% if canManageUsers %}
+        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}/delete" class="govuk-link">Delete user</a></p>
+      {% endif %}
+
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{firstName}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{lastName}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{user.emailAddress}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+      </dl>
+
+       <h2 class="govuk-heading-m">
+        User permissions
+      </h2>
+
+      <p>All users can view applications.</p>
+
+      <dl class="govuk-summary-list">
+          {# <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              User permissions
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if user.permissions %}
+                Additional user permissions
+              {% else %}
+                View applications (excluding sensitive information)
+              {% endif %}
+            </dd>
+            {% if canManageUsers %}
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit">
+                  Change <span class="govuk-visually-hidden">permissions</span>
+                </a>
+              </dd>
+            {% endif %}
+          </div> #}
+          {%- set runOrRatified -%}
+            {%- if org.isAccreditedBody -%}
+              run
+            {%- else -%}
+              ratified
+            {%- endif -%}
+          {%- endset -%}
+          {% if user.permissions %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Manage users
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.manageUsers %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Manage organisational permissions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.manageOrganisation %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Set up interviews
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.setupInterviews %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Make decisions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.makeDecisions %}
+                  <p>Yes</p>
+                  {{appPermissions({
+                    runOrRatified: runOrRatified,
+                    applicableOrgs: permissions.applicableOrgs.makeDecisions,
+                    nonApplicableOrgs: permissions.
+                    nonApplicableOrgs.makeDecisions
+                  })}}
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View criminal convictions and professional misconduct
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.viewSafeguardingInformation %}
+                  <p>Yes</p>
+                  {{appPermissions({
+                    runOrRatified: runOrRatified,
+                    applicableOrgs: permissions.applicableOrgs.viewSafeguardingInformation,
+                    nonApplicableOrgs: permissions.nonApplicableOrgs.viewSafeguardingInformation
+                  })}}
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                View diversity information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if user.permissions.viewDiversityInformation %}
+                  <p>Yes</p>
+                  {{appPermissions({
+                    runOrRatified: runOrRatified,
+                    applicableOrgs: permissions.applicableOrgs.viewDiversityInformation,
+                    nonApplicableOrgs: permissions.nonApplicableOrgs.viewDiversityInformation
+                  })}}
+                {% else %}
+                  No
+                {% endif %}
+              </dd>
+              {% if canManageUsers %}
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                    Change<span class="govuk-visually-hidden"></span>
+                  </a>
+                </dd>
+              {% endif %}
+            </div>
+          {% endif %}
+        </dl>
+    </div>
+  </div>
+
+{% endblock %}

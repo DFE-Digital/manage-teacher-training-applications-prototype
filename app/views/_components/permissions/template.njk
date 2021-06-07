@@ -1,5 +1,5 @@
 <div class="app-permissions-hint-text {{- ' ' + params.classes if params.classes}}">
-  {% if params.applicableOrgs %}
+  {% if params.applicableOrgs.length %}
     <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p>
     <p class="app-permissions-hint-text__lede">It applies to courses {{params.runOrRatified}} by:</p>
 
@@ -10,7 +10,7 @@
     </ul>
   {% endif %}
 
-  {% if params.nonApplicableOrgs %}
+  {% if params.nonApplicableOrgs.length %}
     {% if not params.applicableOrgs or params.applicableOrgs.length == 0 %}
       <p class="app-permissions-hint-text__lede">This user permission is affected by organisational permissions.</p>
       <p class="app-permissions-hint-text__lede">It does not apply to courses {{params.runOrRatified}} by:</p>

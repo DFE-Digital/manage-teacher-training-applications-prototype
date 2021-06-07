@@ -9,7 +9,12 @@
   navigationLabel: "Account menu",
   "navigationClasses": "govuk-header__navigation--end",
   "productName": serviceName,
-  "navigation": [{
+  "navigation": [
+    {
+      href: "/organisation-settings",
+      text: "Organisation settings",
+      active: primaryNavId == 'organisation-settings'
+    }, {
       href: "/account",
       text: "Your account",
       active: primaryNavId == 'account'

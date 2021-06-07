@@ -1,0 +1,37 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'organisation-settings' %}
+{% set subNavId = 'organisation-settings' %}
+
+{% set title = "Organisation settings" %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-l">
+      Organisation settings
+    </h1>
+
+    {% for org in orgs %}
+
+      {% if data.user.organisations.length > 1 %}
+        <h2 class="govuk-heading-m">
+          {{org.name}}
+        </h2>
+      {% endif %}
+
+      <ul class="govuk-list govuk-list--spaced">
+        <li>
+          <a href="/organisation-settings/{{org.id}}/users">
+            Users
+          </a>
+        </li>
+        <li>
+          <a href="/organisation-settings/{{org.id}}/organisational-permissions">
+            Organisational permissions
+          </a>
+        </li>
+      </ul>
+    {% endfor %}
+
+  </div>
+{% endblock %}

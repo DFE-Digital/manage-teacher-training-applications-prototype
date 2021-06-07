@@ -2,11 +2,14 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'Select organisations this user will have access to - Invite user' %}
+{% set title = 'User permissions' %}
+
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/new/organisations"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
@@ -16,8 +19,13 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-l">Invite user</span>
-        User permissions for {{org.org.name}}
+        <span class="govuk-caption-l">
+          {{user.firstName}} {{user.lastName}}
+          {% if data.user.organisations.length > 1 %}
+            - {{org.name}}
+          {% endif %}
+        </span>
+        User permissions
       {% endset %}
 
       <form novalidate method="post">
@@ -40,13 +48,13 @@
               text: "Additional user permissions, such as making decisions or viewing sensitive information"
             }
           ]
-        } | decorateAttributes(data, 'data.newuser.access.'+org.org.id)) }}
+        } | decorateAttributes(data, 'data.editpermissions.access')) }}
 
         {{govukButton({
           text: "Continue"
         })}}
       </form>
-      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 

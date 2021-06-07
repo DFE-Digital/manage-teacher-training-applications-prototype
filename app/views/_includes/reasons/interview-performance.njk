@@ -33,4 +33,4 @@
     text: "No",
     checked: checked(data['rejectionReasons']['interview-performance'], "No")
   }]
-}) if application.status == 'Awaiting decision' or application.status == 'Rejected'}}
+}) if application.status == 'Received' or application.status == 'Interviewing' or application.status == 'Rejected'}}

@@ -1,18 +1,19 @@
 const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
+const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
+const organisations = require('./organisations.json')
+const relationships = require('./relationships.js')
+let applications = require('./applications.json')
+let users = require('./users.json')
 
-const trainingProviders = require('./organisations.json').filter(org => {
+const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
 })
 
-const accreditedBodies = require('./organisations.json').filter(org => {
+const accreditedBodies = organisations.filter(org => {
   return org.isAccreditedBody
 })
-
-let applications = require('./applications.json')
-
-let users = require('./users.json')
 
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {
@@ -31,7 +32,7 @@ applications = applications.map(application => {
 
   Object.defineProperty(application, 'daysToRespond', {
     get() {
-      if(application.status != 'Awaiting decision') {
+      if(application.status != 'Received' && application.status != 'Interviewing') {
         return null;
       }
       const now = SystemHelper.now()
@@ -69,136 +70,26 @@ applications = applications
     }
   })
 
-let relationships = [{
-  id: 1,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: false
-  },
-  org2: accreditedBodies[0],
-  org2Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: false
-  }
-}, {
-  id: 2,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[1],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 3,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[2],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 4,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[3],
-  org2Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 5,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[4],
-  org2Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 6,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[5],
-  org2Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: false
-  }
-}, {
-  id: 7,
-  org1: trainingProviders[0],
-  org1Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: false,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[6],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  }
-}, {
-  id: 8,
-  org1: trainingProviders[1],
-  org1Permissions: {
-    makeDecisions: false,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: true
-  },
-  org2: accreditedBodies[0],
-  org2Permissions: {
-    makeDecisions: true,
-    viewSafeguardingInformation: true,
-    viewDiversityInformation: false
-  }
-}];
+let userOrg = OrgHelper.findOrg("University of Bedfordshire")
 
+let userOrgs = [];
 
+userOrgs.push(userOrg)
+// userOrgs.push(OrgHelper.findOrg("ATT Partnership"))
+// userOrgs.push(OrgHelper.findOrg("Castle Newnham Partnership"))
+// userOrgs.push(OrgHelper.findOrg("Fenland Teaching School Alliance"))
+// userOrgs.push(OrgHelper.findOrg("Goldington Academy"))
+// userOrgs.push(OrgHelper.findOrg("Middlefield Primary Academy"))
+// userOrgs.push(OrgHelper.findOrg("Redborne Upper School And Community College"))
+// userOrgs.push(OrgHelper.findOrg("Thorndown Primary School"))
 
-
-
-let userOrgs = [trainingProviders[0], trainingProviders[1]];
+let user = users[0]
+user.organisations = userOrgs
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],
   settings: [],
-  user: {
-    givenName: "Claudine",
-    familyName: "Adams",
-    emailAddress: "claudine.adams@newzoescitt.co.uk",
-    organisations: userOrgs,
-    relationships: relationships
-  },
+  user,
   "standard-conditions" : [
     "Fitness to teach check",
     "Disclosure and barring service check"
@@ -213,10 +104,6 @@ module.exports = {
   applications,
   trainingProviders,
   accreditedBodies,
-  organisations: require('./organisations.json'),
-  users,
-  bare: process.env.BARE,
-  flags: {
-    interview_preferences: true
-  }
+  organisations,
+  users
 }

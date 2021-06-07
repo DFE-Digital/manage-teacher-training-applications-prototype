@@ -1,4 +1,4 @@
-{% if statusText == 'Offered' %}
+{% if application.status == 'Offered' %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Waiting for candidate’s response</h2>
     {% if application.offer.daysToDecline == 0 %}

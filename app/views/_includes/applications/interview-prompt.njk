@@ -1,18 +1,22 @@
-{% if statusText == 'Interviewing' %}
+{% if application.status == 'Interviewing' %}
   {% set promptHtml %}
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
-    {% if application.daysToRespond == 0 %}
-      <p>This application will be automatically rejected at the end of today ({{application.respondByDate | govukDate }} at 11:59pm) if you do not make a decision.</p>
-    {% elseif application.daysToRespond == 1 %}
-      <p>This application will be automatically rejected at the end of tomorrow ({{application.respondByDate | govukDate }} at 11:59pm) if you do not make a decision.</p>
-    {% else %}
-      <p>This application will be automatically rejected in {{application.daysToRespond}} days ({{application.respondByDate | govukDate }} at 11:59pm) if you do not make a decision.</p>
+    {% if canMakeDecisions %}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% endif %}
-    {{ govukButton({
-      text: "Make decision",
-      classes: "govuk-!-margin-bottom-0 ",
-      href: "/applications/" + application.id + "/decision"
-    }) }}
+    {% if application.daysToRespond == 0 %}
+      <p>This application will be automatically rejected if a decision has not been made by the end of today ({{application.respondByDate | govukDate }} at 11:59pm).</p>
+    {% elseif application.daysToRespond == 1 %}
+      <p>This application will be automatically rejected if a decision has not been made by the end of tomorrow ({{application.respondByDate | govukDate }} at 11:59pm).</p>
+    {% else %}
+      <p>This application will be automatically rejected if a decision has not been made within {{application.daysToRespond}} days ({{application.respondByDate | govukDate }} at 11:59pm).</p>
+    {% endif %}
+    {% if canMakeDecisions %}
+      {{ govukButton({
+        text: "Make decision",
+        classes: "govuk-!-margin-bottom-0 ",
+        href: "/applications/" + application.id + "/decision"
+      }) }}
+    {% endif %}
   {% endset %}
 
   {{govukInsetText({

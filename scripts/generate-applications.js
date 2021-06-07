@@ -177,7 +177,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: 'P6RGOZC',
-    status: 'Awaiting decision',
+    status: 'Interviewing',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 36 }).toISO(),
     personalDetails: {
@@ -204,7 +204,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: 'PBNF7WM',
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 38 }).toISO(),
     personalDetails: {
@@ -397,7 +397,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: 'YD3TMD2L',
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 40 }).toISO(),
     personalDetails: {
@@ -427,7 +427,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: 'ABC15F25',
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 30 }).toISO(),
     personalDetails: {
@@ -494,7 +494,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
+    status: 'Interviewing',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
     personalDetails: {
@@ -514,15 +514,14 @@ const generateFakeApplications = () => {
 
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 37 }).toISO(),
     personalDetails: {
       givenName: 'Umar',
       familyName: 'Smith',
       sex: 'Male'
-    },
-    interviews: { items: [] }
+    }
   }))
 
   var organisation = organisations[0]
@@ -637,7 +636,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 33 }).toISO(),
     personalDetails: {
@@ -754,7 +753,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 34 }).toISO(),
     personalDetails: {
@@ -832,7 +831,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting decision',
+    status: 'Received',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
     personalDetails: {
@@ -889,9 +888,16 @@ const generateFakeApplications = () => {
     otherQualifications: {}
   }))
 
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 5; i++) {
     const application = generateFakeApplication({
-      status: 'Awaiting decision'
+      status: 'Received'
+    })
+    applications.push(application)
+  }
+
+  for (var i = 0; i < 10; i++) {
+    const application = generateFakeApplication({
+      status: 'Interviewing'
     })
     applications.push(application)
   }

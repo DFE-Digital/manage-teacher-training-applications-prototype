@@ -3,22 +3,31 @@
 {% set primaryNavId = 'users' %}
 {% set title = 'Personal details - Invite user' %}
 
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+{% set cancelLinkUrl %}{{backLinkUrl}}{% endset %}
+
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/users/"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">Invite user</span>
+        <span class="govuk-caption-l">
+          Invite user
+          {% if data.user.organisations.length > 1 %}
+            - {{org.name}}
+          {% endif %}
+        </span>
         Personal details
       </h1>
 
       <form novalidate method="post">
+
+{{data | log}}
 
       {{ govukInput({
           label: {
@@ -63,18 +72,11 @@
           value: data.newuser['email-address']
         }) }}
 
-
-
-        {# {{ govukWarningText({
-          text: "Anyone you invite to your organisation will be able to view all applications to courses you look after. They’ll be able to make decisions about applications, set up interviews and view sensitive information if you give them permission.",
-          iconFallbackText: "Fallback text"
-        }) }} #}
-
         {{govukButton({
           text: "Continue"
         })}}
       </form>
-      <p class="govuk-body"><a href="/account/users">Cancel</a></p>
+      <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>
     </div>
   </div>
 

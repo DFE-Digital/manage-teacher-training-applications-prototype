@@ -5,27 +5,29 @@
 
 {% set title = 'Change permissions - ' + org + ' and ' + partner %}
 
+{% set backLinkUrl %}/organisation-settings/{{relationship.org1.id}}/organisational-permissions{% endset %}
 {% block beforeContent %}
   {{ govukBackLink({
-    href: "/account/organisational-permissions/"
+    href: backLinkUrl
   }) }}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Change permissions</span>
-      <h1 class="govuk-heading-l">{{org}} and {{partner}}</h1>
+      <span class="govuk-caption-l">{{org}} and {{partner}}</span>
+      <h1 class="govuk-heading-l">Organisational permissions</h1>
 
-      {% include "_includes/permissions-guidance.njk" %}
+      {# {% include "_includes/permissions-guidance.njk" %} #}
 
       <form novalidate method="post">
+        {% set fieldName = 'data.orgpermissions'%}
         {% include "_includes/permissions-checkboxes.njk" %}
         {{govukButton({
-          text: "Save permissions"
+          text: "Save organisational permissions"
         })}}
       </form>
+      <p><a href="{{backLinkUrl}}">Cancel</a>
     </div>
   </div>
 

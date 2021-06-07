@@ -1,0 +1,54 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'users' %}
+{% set title = "Users" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Organisation settings",
+      href: "/organisation-settings"
+    }, {
+      text: "Users"
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data.user.organisations.length > 1 %}
+        <span class="govuk-caption-l">
+          {{org.name}}
+        </span>
+      {% endif %}
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% if canManageUsers %}
+        {{govukButton({
+          text: 'Invite user',
+          href: '/organisation-settings/' + org.id + '/users/new'
+        })}}
+      {% else %}
+        <p>You cannot invite users to the service because you do not have permission to manage users.</p>
+      {% endif %}
+
+      {% for user in users %}
+
+        <div class="app-application-card">
+          <div>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
+            <p class="govuk-!-margin-bottom-0">{{ user.emailAddress }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

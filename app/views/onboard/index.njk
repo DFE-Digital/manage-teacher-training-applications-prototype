@@ -7,21 +7,29 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {# {{ relationships | log}} #}
+      {{relationships | log}}
 
       {% if (relationships | length) != "1" %}
-        <p>You need to set up permissions for each accredited body you work with.</p>
+        <p>You need to set up permissions for each partner you work with.</p>
       {% endif %}
 
       {% for key, value in relationships %}
         {% if (relationships | length) == "1" %}
-          <p>You need to set up permissions for each accredited body you work with:
-</p>
+          <p>You need to set up permissions for each partner you work with:</p>
         {% else %}
           <h2 class="govuk-heading-m">
             {{value[0].org1.name}}
           </h2>
-          <p>You need to set up permissions for courses ratified by:</p>
+
+          {% set runOrRatified %}
+            {% if value[0].org1.isAccreditedBody %}
+              run
+            {% else %}
+              ratified
+            {% endif %}
+          {% endset %}
+
+          <p>You need to set up permissions for courses {{runOrRatified}} by:</p>
         {% endif %}
 
         <ul class="govuk-list govuk-list--bullet">
@@ -32,57 +40,6 @@
           {% endfor %}
         </ul>
       {% endfor %}
-
-        {# <p>You need to set up permissions for your partner organisations:</p> #}
-      {# {% if orgs.length > 1 %}
-        <p>You need to set up permissions for your partner organisations:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          {% for org in orgs %}
-            <li>{{org.name}}</li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>You belong to {{ orgs[0].name }}.</p>
-      {% endif %} #}
-
-      {# {% if trainingProviders.length > 1 %}
-        {% for trainingProvider in trainingProviders %}
-          {% if trainingProvider.partners.length > 1 %}
-            <p>The accredited bodies for your {{trainingProvider.org.name}} courses are:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              {% for partner in trainingProvider.partners %}
-                <li>{{partner.name}}</li>
-              {% endfor %}
-            </ul>
-          {% elseif trainingProvider.partners.length == 1 %}
-            <p>{{trainingProvider.partners[0].name}} is the accredited body for your {{trainingProvider.org.name}} courses.
-          {% endif %}
-        {% endfor %}
-      {% else %}
-        {% if trainingProviders[0].partners.length > 1 %}
-          <p>The accredited bodies for your courses are:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            {% for partner in trainingProviders[0].partners %}
-              <li>{{partner.name}}</li>
-            {% endfor %}
-          </ul>
-        {% elseif trainingProviders[0].partners.length == 1 %}
-          <p>{{trainingProviders[0].partners[0].name}} is the accredited body for your courses.
-        {% endif %}
-      {% endif %} #}
-
-      {# <p>You need to choose which organisations can:</p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>make decisions about applications and set up interviews</li>
-        <li>access sensitive candidate information</li>
-      </ul>
-
-      {{ govukInsetText({
-        text: "All organisations can view applications to their courses."
-      }) }} #}
-
-      {# {{ relationships | log}} #}
 
       <form novalidate action="/onboard/1">
         {{govukButton({
