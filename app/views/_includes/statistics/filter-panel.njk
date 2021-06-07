@@ -6,7 +6,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Year received",
+        text: "cycle" | getStatisticsOptionLabel,
         isPageHeading: false,
         classes: "govuk-fieldset__legend--s"
       }
@@ -31,7 +31,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Status",
+        text: "status" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },
@@ -100,7 +100,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Courses run by",
+        text: "provider" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },
@@ -123,7 +123,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Training locations",
+        text: "location" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },
@@ -157,7 +157,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Courses ratified by",
+        text: "accreditedBody" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },
@@ -181,7 +181,7 @@
       idPrefix: "subject",
       name: "statisticsFilters[subject]",
       legend: {
-        text: "Subject"
+        text: "subject" | getStatisticsOptionLabel
       },
       items: subjectItems,
       selectedItems: selectedSubjects,
@@ -195,7 +195,7 @@
       name: "statisticsFilters[subject]",
       fieldset: {
         legend: {
-          text: "Subject",
+          text: "subject" | getStatisticsOptionLabel,
           classes: "govuk-fieldset__legend--s"
         }
       },
@@ -211,7 +211,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Full time or part time",
+        text: "studyMode" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },
@@ -235,7 +235,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Funding type",
+        text: "fundingType" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },
@@ -264,7 +264,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Subject level",
+        text: "subjectLevel" | getStatisticsOptionLabel,
         classes: "govuk-fieldset__legend--s"
       }
     },

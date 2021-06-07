@@ -309,21 +309,13 @@ filters.falsify = (input) => {
    return numeral(number).format(format)
   }
 
-  filters.getNationalityLabel = (nationality) => {
-    switch (nationality) {
-      case 'British':
-      case 'British (Dual)':
-      case 'Irish':
-        return nationality
-      case 'Europe':
-        return 'EU, Switzerland, Norway, Iceland or Liechtenstein (not Ireland)'
-      case 'Rest of world':
-        return 'Somewhere else'
-    }
-  }
-
+  /* ------------------------------------------------------------------
+  utility function to get the statistics option label
+  example: {{ "cycle" | getStatisticsOptionLabel }}
+  outputs: "Year received"
+  ------------------------------------------------------------------ */
   filters.getStatisticsOptionLabel = (option) => {
-    let label = ''
+    let label = option
     switch (option) {
       case 'cycle':
         label = 'Year received'
@@ -344,6 +336,7 @@ filters.falsify = (input) => {
         label = 'Primary or secondary'
         break
       case 'location':
+      case 'trainingLocation':
         label = 'Location'
         break
       case 'provider':

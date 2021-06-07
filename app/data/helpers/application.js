@@ -1,11 +1,6 @@
 const { DateTime } = require('luxon')
 const SystemHelper = require('./system')
 
-const path = require('path')
-const fs = require('fs')
-
-const dataDirectoryPath = path.join(__dirname, '../')
-
 exports.getApplicationWithdrawnReasons = (data) => {
   return {
     // withdraw application
