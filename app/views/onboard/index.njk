@@ -6,19 +6,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if query.new == "true" %}
-        <p>Some new partners have joined Manage (opened courses you run or ratify).</p>
-      {% endif %}
 
-      {{relationships | log}}
+      <p>Candidates can now apply through GOV.​UK for courses you work on with the partner organisations listed below.</p>
 
-      {% if (relationships | length) != "1" %}
-        <p>You need to set up permissions for each partner you work with.</p>
-      {% endif %}
+      <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
+
+      {% if (relationships | length) != "1" %}{% endif %}
 
       {% for key, value in relationships %}
         {% if (relationships | length) == "1" %}
-          <p>You need to set up permissions for each partner you work with:</p>
+          <p>You need to set up permissions for courses you work on with:</p>
         {% else %}
           <h2 class="govuk-heading-m">
             {{value[0].org1.name}}
@@ -46,7 +43,7 @@
 
       <form novalidate action="/onboard/1">
         {{govukButton({
-          text: "Continue"
+          text: "Set up organisational permissions"
         })}}
         <p><a href="/onboard/skip">Skip (you can do this later)</a></p>
       </form>
