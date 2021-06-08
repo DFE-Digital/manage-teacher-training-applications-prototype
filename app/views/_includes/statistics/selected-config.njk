@@ -1,0 +1,29 @@
+{% if data.statisticsOptions %}
+  <div class="app-filter__selected govuk-!-margin-bottom-5">
+    <div class="app-filter__selected-heading">
+      <div class="app-filter__heading-title">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Settings</h2>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}/remove-all-settings">Clear settings</a></p>
+      </div>
+    </div>
+
+    <ul class="app-filter-tags">
+      {% if options.dimension2 %}
+        <li>
+          <a class="app-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this option</span> {{ options.dimension2 | getStatisticsOptionLabel }}</a>
+        </li>
+      {% endif %}
+      {% if options.dimension3 %}
+        <li>
+          <a class="app-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this option</span> {{ options.dimension3 | getStatisticsOptionLabel }}</a>
+        </li>
+      {% endif %}
+      {% if options.dimension4 %}
+        <li>
+          <a class="app-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this option</span> {{ options.dimension4 | getStatisticsOptionLabel }}</a>
+        </li>
+      {% endif %}
+    </ul>
+
+  </div>
+{% endif %}

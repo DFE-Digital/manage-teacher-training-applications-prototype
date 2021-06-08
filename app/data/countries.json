@@ -1,0 +1,1455 @@
+[
+  {
+    "code": "AF",
+    "name": "Afghanistan",
+    "nationality": "Afghan",
+    "region": "row"
+  },
+  {
+    "code": "AL",
+    "name": "Albania",
+    "nationality": "Albanian",
+    "region": "row"
+  },
+  {
+    "code": "DZ",
+    "name": "Algeria",
+    "nationality": "Algerian",
+    "region": "row"
+  },
+  {
+    "code": "AS",
+    "name": "American Samoa",
+    "nationality": "American Samoan",
+    "region": "row"
+  },
+  {
+    "code": "AD",
+    "name": "Andorra",
+    "nationality": "Andorran",
+    "region": "row"
+  },
+  {
+    "code": "AO",
+    "name": "Angola",
+    "nationality": "Angolan",
+    "region": "row"
+  },
+  {
+    "code": "AI",
+    "name": "Anguilla",
+    "nationality": "Anguillan",
+    "region": "row"
+  },
+  {
+    "code": "AQ",
+    "name": "Antarctica",
+    "region": "row"
+  },
+  {
+    "code": "AG",
+    "name": "Antigua and Barbuda",
+    "nationality": "Citizen of Antigua and Barbuda",
+    "region": "row"
+  },
+  {
+    "code": "AR",
+    "name": "Argentina",
+    "nationality": "Argentinian",
+    "region": "row"
+  },
+  {
+    "code": "AM",
+    "name": "Armenia",
+    "nationality": "Amenian",
+    "region": "row"
+  },
+  {
+    "code": "AW",
+    "name": "Aruba",
+    "nationality": "Aruban",
+    "region": "row"
+  },
+  {
+    "code": "AU",
+    "name": "Australia",
+    "nationality": "Australian",
+    "region": "row"
+  },
+  {
+    "code": "AT",
+    "name": "Austria",
+    "nationality": "Austrian",
+    "region": "europe"
+  },
+  {
+    "code": "AZ",
+    "name": "Azerbaijan",
+    "nationality": "Azerbaijani",
+    "region": "row"
+  },
+  {
+    "code": "BS",
+    "name": "Bahamas",
+    "nationality": "Bahamian",
+    "region": "row"
+  },
+  {
+    "code": "BH",
+    "name": "Bahrain",
+    "nationality": "Bahraini",
+    "region": "row"
+  },
+  {
+    "code": "BD",
+    "name": "Bangladesh",
+    "nationality": "Bangladeshi",
+    "region": "row"
+  },
+  {
+    "code": "BB",
+    "name": "Barbados",
+    "nationality": "Barbadian",
+    "region": "row"
+  },
+  {
+    "code": "BY",
+    "name": "Belarus",
+    "nationality": "Belarussian",
+    "region": "row"
+  },
+  {
+    "code": "BE",
+    "name": "Belgium",
+    "nationality": "Belgian",
+    "region": "europe"
+  },
+  {
+    "code": "BZ",
+    "name": "Belize",
+    "nationality": "Belizean",
+    "region": "row"
+  },
+  {
+    "code": "BJ",
+    "name": "Benin",
+    "nationality": "Beninese",
+    "region": "row"
+  },
+  {
+    "code": "BM",
+    "name": "Bermuda",
+    "nationality": "Bermudian",
+    "region": "row"
+  },
+  {
+    "code": "BT",
+    "name": "Bhutan",
+    "nationality": "Bhutanese",
+    "region": "row"
+  },
+  {
+    "code": "BO",
+    "name": "Bolivia",
+    "nationality": "Bolivian",
+    "region": "row"
+  },
+  {
+    "code": "BQ",
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "region": "row"
+  },
+  {
+    "code": "BA",
+    "name": "Bosnia and Herzegovina",
+    "nationality": "Citizen of Bosnia and Herzegovina",
+    "region": "row"
+  },
+  {
+    "code": "BW",
+    "name": "Botswana",
+    "nationality": "Batswanan",
+    "region": "row"
+  },
+  {
+    "code": "BV",
+    "name": "Bouvet Island",
+    "region": "row"
+  },
+  {
+    "code": "BR",
+    "name": "Brazil",
+    "nationality": "Brazilian",
+    "region": "row"
+  },
+  {
+    "code": "IO",
+    "name": "British Indian Ocean Territory",
+    "region": "row"
+  },
+  {
+    "code": "BN",
+    "name": "Brunei Darussalam",
+    "nationality": "Bruneian",
+    "region": "row"
+  },
+  {
+    "code": "BG",
+    "name": "Bulgaria",
+    "nationality": "Bulgarian",
+    "region": "europe"
+  },
+  {
+    "code": "BF",
+    "name": "Burkina Faso",
+    "nationality": "Burkinan",
+    "region": "row"
+  },
+  {
+    "code": "BI",
+    "name": "Burundi",
+    "nationality": "Burundian",
+    "region": "row"
+  },
+  {
+    "code": "CV",
+    "name": "Cape Verde",
+    "nationality": "Cape Verdean",
+    "region": "row"
+  },
+  {
+    "code": "KH",
+    "name": "Cambodia",
+    "nationality": "Cambodian",
+    "region": "row"
+  },
+  {
+    "code": "CM",
+    "name": "Cameroon",
+    "nationality": "Cameroonian",
+    "region": "row"
+  },
+  {
+    "code": "CA",
+    "name": "Canada",
+    "nationality": "Canadian",
+    "region": "row"
+  },
+  {
+    "code": "KY",
+    "name": "Cayman Islands",
+    "nationality": "Cayman Islander",
+    "region": "row"
+  },
+  {
+    "code": "CF",
+    "name": "Central African Republic",
+    "nationality": "Central African",
+    "region": "row"
+  },
+  {
+    "code": "TD",
+    "name": "Chad",
+    "nationality": "Chadian",
+    "region": "row"
+  },
+  {
+    "code": "CL",
+    "name": "Chile",
+    "nationality": "Chilean",
+    "region": "row"
+  },
+  {
+    "code": "CN",
+    "name": "China",
+    "nationality": "Chinese",
+    "region": "row"
+  },
+  {
+    "code": "CX",
+    "name": "Christmas Island",
+    "region": "row"
+  },
+  {
+    "code": "CC",
+    "name": "Cocos (Keeling) Islands",
+    "region": "row"
+  },
+  {
+    "code": "CO",
+    "name": "Colombia",
+    "nationality": "Colombian",
+    "region": "row"
+  },
+  {
+    "code": "KM",
+    "name": "Comoros",
+    "nationality": "Comoran",
+    "region": "row"
+  },
+  {
+    "code": "CD",
+    "name": "Congo (the Democratic Republic of the)",
+    "nationality": "Congolese (DRC)",
+    "region": "row"
+  },
+  {
+    "code": "CG",
+    "name": "Congo",
+    "nationality": "Congolese (Congo)",
+    "region": "row"
+  },
+  {
+    "code": "CK",
+    "name": "Cook Islands",
+    "nationality": "Cook Islander",
+    "region": "row"
+  },
+  {
+    "code": "CR",
+    "name": "Costa Rica",
+    "nationality": "Costa Rican",
+    "region": "row"
+  },
+  {
+    "code": "HR",
+    "name": "Croatia",
+    "nationality": "Croatian",
+    "region": "europe"
+  },
+  {
+    "code": "CU",
+    "name": "Cuba",
+    "nationality": "Cuban",
+    "region": "row"
+  },
+  {
+    "code": "CW",
+    "name": "Curaçao",
+    "region": "row"
+  },
+  {
+    "code": "CY",
+    "name": "Cyprus",
+    "nationality": "Cypriot",
+    "region": "europe"
+  },
+  {
+    "code": "CZ",
+    "name": "Czech Republic",
+    "nationality": "Czech",
+    "region": "europe"
+  },
+  {
+    "code": "CI",
+    "name": "Ivory Coast",
+    "nationality": "Ivorian",
+    "region": "row"
+  },
+  {
+    "code": "DK",
+    "name": "Denmark",
+    "nationality": "Danish",
+    "region": "europe"
+  },
+  {
+    "code": "DJ",
+    "name": "Djibouti",
+    "nationality": "Djiboutian",
+    "region": "row"
+  },
+  {
+    "code": "DM",
+    "name": "Dominica",
+    "nationality": "Dominican",
+    "region": "row"
+  },
+  {
+    "code": "DO",
+    "name": "Dominican Republic",
+    "nationality": "Citizen of the Dominican Republic",
+    "region": "row"
+  },
+  {
+    "code": "EC",
+    "name": "Ecuador",
+    "nationality": "Ecuadorian",
+    "region": "row"
+  },
+  {
+    "code": "EG",
+    "name": "Egypt",
+    "nationality": "Egyptian",
+    "region": "row"
+  },
+  {
+    "code": "SV",
+    "name": "El Salvador",
+    "nationality": "Salvadorian",
+    "region": "row"
+  },
+  {
+    "code": "GQ",
+    "name": "Equatorial Guinea",
+    "nationality": "Equatorial Guinean",
+    "region": "row"
+  },
+  {
+    "code": "ER",
+    "name": "Eritrea",
+    "nationality": "Eritrean",
+    "region": "row"
+  },
+  {
+    "code": "EE",
+    "name": "Estonia",
+    "nationality": "Estonian",
+    "region": "europe"
+  },
+  {
+    "code": "SZ",
+    "name": "Eswatini",
+    "region": "row"
+  },
+  {
+    "code": "ET",
+    "name": "Ethiopia",
+    "nationality": "Ethiopian",
+    "region": "row"
+  },
+  {
+    "code": "FK",
+    "name": "Falkland Islands",
+    "nationality": "British",
+    "region": "row"
+  },
+  {
+    "code": "FO",
+    "name": "Faroe Islands",
+    "nationality": "Faroese",
+    "region": "row"
+  },
+  {
+    "code": "FJ",
+    "name": "Fiji",
+    "nationality": "Fijian",
+    "region": "row"
+  },
+  {
+    "code": "FI",
+    "name": "Finland",
+    "nationality": "Finnish",
+    "region": "europe"
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "nationality": "French",
+    "region": "europe"
+  },
+  {
+    "code": "GF",
+    "name": "French Guiana",
+    "region": "row"
+  },
+  {
+    "code": "PF",
+    "name": "French Polynesia",
+    "region": "row"
+  },
+  {
+    "code": "TF",
+    "name": "French Southern Territories",
+    "region": "row"
+  },
+  {
+    "code": "GA",
+    "name": "Gabon",
+    "nationality": "Gabonese",
+    "region": "row"
+  },
+  {
+    "code": "GM",
+    "name": "Gambia",
+    "nationality": "Gambian",
+    "region": "row"
+  },
+  {
+    "code": "GE",
+    "name": "Georgia",
+    "nationality": "Georgian",
+    "region": "row"
+  },
+  {
+    "code": "DE",
+    "name": "Germany",
+    "nationality": "German",
+    "region": "europe"
+  },
+  {
+    "code": "GH",
+    "name": "Ghana",
+    "nationality": "Ghanaian",
+    "region": "row"
+  },
+  {
+    "code": "GI",
+    "name": "Gibraltar",
+    "nationality": "Gibraltarian",
+    "region": "uk"
+  },
+  {
+    "code": "GR",
+    "name": "Greece",
+    "nationality": "Greek",
+    "region": "europe"
+  },
+  {
+    "code": "GL",
+    "name": "Greenland",
+    "nationality": "Greenlandic",
+    "region": "row"
+  },
+  {
+    "code": "GD",
+    "name": "Grenada",
+    "nationality": "Grenadian",
+    "region": "row"
+  },
+  {
+    "code": "GP",
+    "name": "Guadeloupe",
+    "region": "row"
+  },
+  {
+    "code": "GU",
+    "name": "Guam",
+    "nationality": "Guamanian",
+    "region": "row"
+  },
+  {
+    "code": "GT",
+    "name": "Guatemala",
+    "nationality": "Guatemalan",
+    "region": "row"
+  },
+  {
+    "code": "GG",
+    "name": "Guernsey",
+    "nationality": "British",
+    "region": "uk"
+  },
+  {
+    "code": "GN",
+    "name": "Guinea",
+    "nationality": "Guinean",
+    "region": "row"
+  },
+  {
+    "code": "GW",
+    "name": "Guinea-Bissau",
+    "nationality": "Citizen of Guinea-Bissau",
+    "region": "row"
+  },
+  {
+    "code": "GY",
+    "name": "Guyana",
+    "nationality": "Guyanese",
+    "region": "row"
+  },
+  {
+    "code": "HT",
+    "name": "Haiti",
+    "nationality": "Haitian",
+    "region": "row"
+  },
+  {
+    "code": "HM",
+    "name": "Heard Island and McDonald Islands",
+    "region": "row"
+  },
+  {
+    "code": "VA",
+    "name": "Holy See",
+    "region": "row"
+  },
+  {
+    "code": "HN",
+    "name": "Honduras",
+    "nationality": "Honduran",
+    "region": "row"
+  },
+  {
+    "code": "HK",
+    "name": "Hong Kong",
+    "nationality": "Chinese",
+    "region": "row"
+  },
+  {
+    "code": "HU",
+    "name": "Hungary",
+    "nationality": "Hungarian",
+    "region": "europe"
+  },
+  {
+    "code": "IS",
+    "name": "Iceland",
+    "nationality": "Icelandic",
+    "region": "europe"
+  },
+  {
+    "code": "IN",
+    "name": "India",
+    "nationality": "Indian",
+    "region": "row"
+  },
+  {
+    "code": "ID",
+    "name": "Indonesia",
+    "nationality": "Indonesian",
+    "region": "row"
+  },
+  {
+    "code": "IR",
+    "name": "Iran (Islamic Republic of)",
+    "nationality": "Iranian",
+    "region": "row"
+  },
+  {
+    "code": "IQ",
+    "name": "Iraq",
+    "nationality": "Iraqi",
+    "region": "row"
+  },
+  {
+    "code": "IE",
+    "name": "Ireland",
+    "nationality": "Irish",
+    "region": "europe"
+  },
+  {
+    "code": "IM",
+    "name": "Isle of Man",
+    "nationality": "British",
+    "region": "uk"
+  },
+  {
+    "code": "IL",
+    "name": "Israel",
+    "nationality": "Israeli",
+    "region": "row"
+  },
+  {
+    "code": "IT",
+    "name": "Italy",
+    "nationality": "Italian",
+    "region": "europe"
+  },
+  {
+    "code": "JM",
+    "name": "Jamaica",
+    "nationality": "Jamaican",
+    "region": "row"
+  },
+  {
+    "code": "JP",
+    "name": "Japan",
+    "nationality": "Japanese",
+    "region": "row"
+  },
+  {
+    "code": "JE",
+    "name": "Jersey",
+    "nationality": "British",
+    "region": "uk"
+  },
+  {
+    "code": "JO",
+    "name": "Jordan",
+    "nationality": "Jordanian",
+    "region": "row"
+  },
+  {
+    "code": "KZ",
+    "name": "Kazakhstan",
+    "nationality": "Kazakh",
+    "region": "row"
+  },
+  {
+    "code": "KE",
+    "name": "Kenya",
+    "nationality": "Kenyan",
+    "region": "row"
+  },
+  {
+    "code": "KI",
+    "name": "Kiribati",
+    "nationality": "Citizen of Kiribati",
+    "region": "row"
+  },
+  {
+    "code": "KP",
+    "name": "Korea (the Democratic People's Republic of)",
+    "nationality": "South Korean",
+    "region": "row"
+  },
+  {
+    "code": "KR",
+    "name": "Korea (the Republic of)",
+    "nationality": "North Korean",
+    "region": "row"
+  },
+  {
+    "code": "KW",
+    "name": "Kuwait",
+    "nationality": "Kuwaiti",
+    "region": "row"
+  },
+  {
+    "code": "KG",
+    "name": "Kyrgyzstan",
+    "nationality": "Kyrgyz",
+    "region": "row"
+  },
+  {
+    "code": "LA",
+    "name": "Lao People's Democratic Republic",
+    "nationality": "Lao",
+    "region": "row"
+  },
+  {
+    "code": "LV",
+    "name": "Latvia",
+    "nationality": "Latvian",
+    "region": "europe"
+  },
+  {
+    "code": "LB",
+    "name": "Lebanon",
+    "nationality": "Lebanese",
+    "region": "row"
+  },
+  {
+    "code": "LS",
+    "name": "Lesotho",
+    "region": "row"
+  },
+  {
+    "code": "LR",
+    "name": "Liberia",
+    "nationality": "Liberian",
+    "region": "row"
+  },
+  {
+    "code": "LY",
+    "name": "Libya",
+    "nationality": "Libyan",
+    "region": "row"
+  },
+  {
+    "code": "LI",
+    "name": "Liechtenstein",
+    "nationality": "Liechtenstein citizen",
+    "region": "europe"
+  },
+  {
+    "code": "LT",
+    "name": "Lithuania",
+    "nationality": "Lithuanian",
+    "region": "europe"
+  },
+  {
+    "code": "LU",
+    "name": "Luxembourg",
+    "nationality": "Luxembourger",
+    "region": "europe"
+  },
+  {
+    "code": "MO",
+    "name": "Macao",
+    "nationality": "Macanese",
+    "region": "row"
+  },
+  {
+    "code": "MG",
+    "name": "Madagascar",
+    "nationality": "Malagasy",
+    "region": "row"
+  },
+  {
+    "code": "MW",
+    "name": "Malawi",
+    "nationality": "Malawian",
+    "region": "row"
+  },
+  {
+    "code": "MY",
+    "name": "Malaysia",
+    "nationality": "Malaysian",
+    "region": "row"
+  },
+  {
+    "code": "MV",
+    "name": "Maldives",
+    "nationality": "Maldivian",
+    "region": "row"
+  },
+  {
+    "code": "ML",
+    "name": "Mali",
+    "nationality": "Malian",
+    "region": "row"
+  },
+  {
+    "code": "MT",
+    "name": "Malta",
+    "nationality": "Maltese",
+    "region": "europe"
+  },
+  {
+    "code": "MH",
+    "name": "Marshall Islands",
+    "nationality": "Marshallese",
+    "region": "row"
+  },
+  {
+    "code": "MQ",
+    "name": "Martinique",
+    "nationality": "Martiniquais",
+    "region": "row"
+  },
+  {
+    "code": "MR",
+    "name": "Mauritania",
+    "nationality": "Mauritanian",
+    "region": "row"
+  },
+  {
+    "code": "MU",
+    "name": "Mauritius",
+    "nationality": "Mauritian",
+    "region": "row"
+  },
+  {
+    "code": "YT",
+    "name": "Mayotte",
+    "region": "row"
+  },
+  {
+    "code": "MX",
+    "name": "Mexico",
+    "nationality": "Mexican",
+    "region": "row"
+  },
+  {
+    "code": "FM",
+    "name": "Micronesia (Federated States of)",
+    "nationality": "Micronesian",
+    "region": "row"
+  },
+  {
+    "code": "MD",
+    "name": "Moldova (the Republic of)",
+    "nationality": "Moldovan",
+    "region": "row"
+  },
+  {
+    "code": "MC",
+    "name": "Monaco",
+    "nationality": "Monégasque",
+    "region": "row"
+  },
+  {
+    "code": "MN",
+    "name": "Mongolia",
+    "nationality": "Mongolian",
+    "region": "row"
+  },
+  {
+    "code": "ME",
+    "name": "Montenegro",
+    "nationality": "Montenegrin",
+    "region": "row"
+  },
+  {
+    "code": "MS",
+    "name": "Montserrat",
+    "nationality": "Montserratian",
+    "region": "row"
+  },
+  {
+    "code": "MA",
+    "name": "Morocco",
+    "nationality": "Moroccan",
+    "region": "row"
+  },
+  {
+    "code": "MZ",
+    "name": "Mozambique",
+    "nationality": "Mozambican",
+    "region": "row"
+  },
+  {
+    "code": "MM",
+    "name": "Myanmar",
+    "region": "row"
+  },
+  {
+    "code": "NA",
+    "name": "Namibia",
+    "nationality": "Namibian",
+    "region": "row"
+  },
+  {
+    "code": "NR",
+    "name": "Nauru",
+    "region": "row"
+  },
+  {
+    "code": "NP",
+    "name": "Nepal",
+    "nationality": "Nepalese",
+    "region": "row"
+  },
+  {
+    "code": "NL",
+    "name": "Netherlands",
+    "nationality": "Dutch",
+    "region": "europe"
+  },
+  {
+    "code": "NC",
+    "name": "New Caledonia",
+    "region": "row"
+  },
+  {
+    "code": "NZ",
+    "name": "New Zealand",
+    "nationality": "New Zealander",
+    "region": "row"
+  },
+  {
+    "code": "NI",
+    "name": "Nicaragua",
+    "nationality": "Nicaraguan",
+    "region": "row"
+  },
+  {
+    "code": "NE",
+    "name": "Niger",
+    "nationality": "Nigerien",
+    "region": "row"
+  },
+  {
+    "code": "NG",
+    "name": "Nigeria",
+    "nationality": "Nigerian",
+    "region": "row"
+  },
+  {
+    "code": "NU",
+    "name": "Niue",
+    "nationality": "Niuean",
+    "region": "row"
+  },
+  {
+    "code": "NF",
+    "name": "Norfolk Island",
+    "region": "row"
+  },
+  {
+    "code": "MP",
+    "name": "Northern Mariana Islands",
+    "region": "row"
+  },
+  {
+    "code": "NO",
+    "name": "Norway",
+    "nationality": "Norwegian",
+    "region": "europe"
+  },
+  {
+    "code": "OM",
+    "name": "Oman",
+    "nationality": "Omani",
+    "region": "row"
+  },
+  {
+    "code": "PK",
+    "name": "Pakistan",
+    "nationality": "Pakistani",
+    "region": "row"
+  },
+  {
+    "code": "PW",
+    "name": "Palau",
+    "nationality": "Palauan",
+    "region": "row"
+  },
+  {
+    "code": "PS",
+    "name": "Palestine, State of",
+    "nationality": "Palestinian",
+    "region": "row"
+  },
+  {
+    "code": "PA",
+    "name": "Panama",
+    "nationality": "Panamanian",
+    "region": "row"
+  },
+  {
+    "code": "PG",
+    "name": "Papua New Guinea",
+    "nationality": "Papua New Guinean",
+    "region": "row"
+  },
+  {
+    "code": "PY",
+    "name": "Paraguay",
+    "nationality": "Paraguayan",
+    "region": "row"
+  },
+  {
+    "code": "PE",
+    "name": "Peru",
+    "nationality": "Peruvian",
+    "region": "row"
+  },
+  {
+    "code": "PH",
+    "name": "Philippines",
+    "nationality": "Filipino",
+    "region": "row"
+  },
+  {
+    "code": "PN",
+    "name": "Pitcairn",
+    "region": "row"
+  },
+  {
+    "code": "PL",
+    "name": "Poland",
+    "nationality": "Polish",
+    "region": "europe"
+  },
+  {
+    "code": "PT",
+    "name": "Portugal",
+    "nationality": "Portuguese",
+    "region": "europe"
+  },
+  {
+    "code": "PR",
+    "name": "Puerto Rico",
+    "nationality": "Puerto Rican",
+    "region": "row"
+  },
+  {
+    "code": "QA",
+    "name": "Qatar",
+    "nationality": "Qatari",
+    "region": "row"
+  },
+  {
+    "code": "MK",
+    "name": "Republic of North Macedonia",
+    "nationality": "Macedonian",
+    "region": "row"
+  },
+  {
+    "code": "RO",
+    "name": "Romania",
+    "nationality": "Romanian",
+    "region": "europe"
+  },
+  {
+    "code": "RU",
+    "name": "Russian Federation",
+    "nationality": "Russian",
+    "region": "row"
+  },
+  {
+    "code": "RW",
+    "name": "Rwanda",
+    "nationality": "Rwandan",
+    "region": "row"
+  },
+  {
+    "code": "RE",
+    "name": "Réunion",
+    "region": "row"
+  },
+  {
+    "code": "BL",
+    "name": "Saint Barthélemy",
+    "region": "row"
+  },
+  {
+    "code": "SH",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "nationality": "St Helenian",
+    "region": "row"
+  },
+  {
+    "code": "KN",
+    "name": "Saint Kitts and Nevis",
+    "region": "row"
+  },
+  {
+    "code": "LC",
+    "name": "Saint Lucia",
+    "nationality": "St Lucian",
+    "region": "row"
+  },
+  {
+    "code": "MF",
+    "name": "Saint Martin (French part)",
+    "region": "row"
+  },
+  {
+    "code": "PM",
+    "name": "Saint Pierre and Miquelon",
+    "region": "row"
+  },
+  {
+    "code": "VC",
+    "name": "Saint Vincent and the Grenadines",
+    "region": "row"
+  },
+  {
+    "code": "WS",
+    "name": "Samoa",
+    "nationality": "Samoan",
+    "region": "row"
+  },
+  {
+    "code": "SM",
+    "name": "San Marino",
+    "region": "row"
+  },
+  {
+    "code": "ST",
+    "name": "Sao Tome and Principe",
+    "nationality": "Sao Tomean",
+    "region": "row"
+  },
+  {
+    "code": "SA",
+    "name": "Saudi Arabia",
+    "nationality": "Saudi Arabian",
+    "region": "row"
+  },
+  {
+    "code": "SN",
+    "name": "Senegal",
+    "nationality": "Senegalese",
+    "region": "row"
+  },
+  {
+    "code": "RS",
+    "name": "Serbia",
+    "nationality": "Serbian",
+    "region": "row"
+  },
+  {
+    "code": "SC",
+    "name": "Seychelles",
+    "nationality": "Citizen of Seychelles",
+    "region": "row"
+  },
+  {
+    "code": "SL",
+    "name": "Sierra Leone",
+    "nationality": "Sierra Leonean",
+    "region": "row"
+  },
+  {
+    "code": "SG",
+    "name": "Singapore",
+    "nationality": "Singaporean",
+    "region": "row"
+  },
+  {
+    "code": "SX",
+    "name": "Sint Maarten (Dutch part)",
+    "region": "row"
+  },
+  {
+    "code": "SK",
+    "name": "Slovakia",
+    "nationality": "Slovak",
+    "region": "europe"
+  },
+  {
+    "code": "SI",
+    "name": "Slovenia",
+    "nationality": "Slovenian",
+    "region": "europe"
+  },
+  {
+    "code": "SB",
+    "name": "Solomon Islands",
+    "nationality": "Solomon Islander",
+    "region": "row"
+  },
+  {
+    "code": "SO",
+    "name": "Somalia",
+    "nationality": "Somali",
+    "region": "row"
+  },
+  {
+    "code": "ZA",
+    "name": "South Africa",
+    "nationality": "South African",
+    "region": "row"
+  },
+  {
+    "code": "GS",
+    "name": "South Georgia and the South Sandwich Islands",
+    "region": "row"
+  },
+  {
+    "code": "SS",
+    "name": "South Sudan",
+    "nationality": "South Sudanese",
+    "region": "row"
+  },
+  {
+    "code": "ES",
+    "name": "Spain",
+    "nationality": "Spanish",
+    "region": "europe"
+  },
+  {
+    "code": "LK",
+    "name": "Sri Lanka",
+    "nationality": "Sri Lankan",
+    "region": "row"
+  },
+  {
+    "code": "SD",
+    "name": "Sudan",
+    "nationality": "Sudanese",
+    "region": "row"
+  },
+  {
+    "code": "SR",
+    "name": "Suriname",
+    "nationality": "Surinamese",
+    "region": "row"
+  },
+  {
+    "code": "SJ",
+    "name": "Svalbard and Jan Mayen",
+    "region": "row"
+  },
+  {
+    "code": "SE",
+    "name": "Sweden",
+    "nationality": "Swedish",
+    "region": "europe"
+  },
+  {
+    "code": "CH",
+    "name": "Switzerland",
+    "nationality": "Swiss",
+    "region": "europe"
+  },
+  {
+    "code": "SY",
+    "name": "Syrian Arab Republic",
+    "nationality": "Syrian",
+    "region": "row"
+  },
+  {
+    "code": "TW",
+    "name": "Taiwan (Province of China)",
+    "nationality": "Taiwanese",
+    "region": "row"
+  },
+  {
+    "code": "TJ",
+    "name": "Tajikistan",
+    "nationality": "Tajikistani",
+    "region": "row"
+  },
+  {
+    "code": "TZ",
+    "name": "Tanzania, United Republic of",
+    "nationality": "Tanzanian",
+    "region": "row"
+  },
+  {
+    "code": "TH",
+    "name": "Thailand",
+    "nationality": "Thai",
+    "region": "row"
+  },
+  {
+    "code": "TL",
+    "name": "Timor-Leste",
+    "region": "row"
+  },
+  {
+    "code": "TG",
+    "name": "Togo",
+    "nationality": "Togolese",
+    "region": "row"
+  },
+  {
+    "code": "TK",
+    "name": "Tokelau",
+    "region": "row"
+  },
+  {
+    "code": "TO",
+    "name": "Tonga",
+    "nationality": "Tongan",
+    "region": "row"
+  },
+  {
+    "code": "TT",
+    "name": "Trinidad and Tobago",
+    "nationality": "Trinidadian",
+    "region": "row"
+  },
+  {
+    "code": "TN",
+    "name": "Tunisia",
+    "nationality": "Tunisian",
+    "region": "row"
+  },
+  {
+    "code": "TR",
+    "name": "Turkey",
+    "nationality": "Turkish",
+    "region": "row"
+  },
+  {
+    "code": "TM",
+    "name": "Turkmenistan",
+    "nationality": "Turkmen",
+    "region": "row"
+  },
+  {
+    "code": "TC",
+    "name": "Turks and Caicos Islands",
+    "nationality": "Turks and Caicos Islander",
+    "region": "row"
+  },
+  {
+    "code": "TV",
+    "name": "Tuvalu",
+    "nationality": "Tuvaluan",
+    "region": "row"
+  },
+  {
+    "code": "UG",
+    "name": "Uganda",
+    "nationality": "Ugandan",
+    "region": "row"
+  },
+  {
+    "code": "UA",
+    "name": "Ukraine",
+    "nationality": "Ukranian",
+    "region": "row"
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "region": "row"
+  },
+  {
+    "code": "GB",
+    "name": "United Kingdom",
+    "nationality": "British",
+    "region": "uk"
+  },
+  {
+    "code": "UM",
+    "name": "United States Minor Outlying Islands",
+    "region": "row"
+  },
+  {
+    "code": "US",
+    "name": "United States of America",
+    "nationality": "American",
+    "region": "row"
+  },
+  {
+    "code": "UY",
+    "name": "Uruguay",
+    "nationality": "Uruguayan",
+    "region": "row"
+  },
+  {
+    "code": "UZ",
+    "name": "Uzbekistan",
+    "nationality": "Uzbek",
+    "region": "row"
+  },
+  {
+    "code": "VU",
+    "name": "Vanuatu",
+    "nationality": "Citizen of Vanuatu",
+    "region": "row"
+  },
+  {
+    "code": "VE",
+    "name": "Venezuela (Bolivarian Republic of)",
+    "nationality": "Venezuelan",
+    "region": "row"
+  },
+  {
+    "code": "VN",
+    "name": "Vietnam",
+    "nationality": "Vietnamese",
+    "region": "row"
+  },
+  {
+    "code": "VG",
+    "name": "Virgin Islands (British)",
+    "region": "row"
+  },
+  {
+    "code": "VI",
+    "name": "Virgin Islands (U.S.)",
+    "region": "row"
+  },
+  {
+    "code": "WF",
+    "name": "Wallis and Futuna",
+    "region": "row"
+  },
+  {
+    "code": "EH",
+    "name": "Western Sahara",
+    "region": "row"
+  },
+  {
+    "code": "YE",
+    "name": "Yemen",
+    "nationality": "Yemeni",
+    "region": "row"
+  },
+  {
+    "code": "ZM",
+    "name": "Zambia",
+    "nationality": "Zambian",
+    "region": "row"
+  },
+  {
+    "code": "ZW",
+    "name": "Zimbabwe",
+    "nationality": "Zimbabwean",
+    "region": "row"
+  },
+  {
+    "code": "AX",
+    "name": "Åland Islands",
+    "region": "row"
+  }
+]

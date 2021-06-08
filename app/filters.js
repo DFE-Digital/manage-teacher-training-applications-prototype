@@ -4,6 +4,7 @@ const path = require('path')
 const pluralize = require('pluralize')
 const { DateTime } = require('luxon')
 const individualFiltersFolder = path.join(__dirname, './filters')
+const numeral = require('numeral')
 
 module.exports = (env) => {
   /**
@@ -299,6 +300,55 @@ filters.falsify = (input) => {
     return error
   }
 
+  /* ------------------------------------------------------------------
+   numeral filter for use in Nunjucks
+   example: {{ params.number | numeral("0,00.0") }}
+   outputs: 1,000.00
+  ------------------------------------------------------------------ */
+  filters.numeral = (number, format) => {
+   return numeral(number).format(format)
+  }
+
+  /* ------------------------------------------------------------------
+  utility function to get the statistics option label
+  example: {{ "cycle" | getStatisticsOptionLabel }}
+  outputs: "Year received"
+  ------------------------------------------------------------------ */
+  filters.getStatisticsOptionLabel = (option) => {
+    let label = option
+    switch (option) {
+      case 'cycle':
+        label = 'Year received'
+        break
+      case 'status':
+        label = 'Status'
+        break
+      case 'subject':
+        label = 'Subject'
+        break
+      case 'studyMode':
+        label = 'Full time or part time'
+        break
+      case 'fundingType':
+        label = 'Fee paying or salaried'
+        break
+      case 'subjectLevel':
+        label = 'Primary or secondary'
+        break
+      case 'location':
+      case 'trainingLocation':
+        label = 'Location'
+        break
+      case 'provider':
+      case 'trainingProvider':
+        label = 'Training provider'
+        break
+      case 'accreditedBody':
+        label = 'Accredited body'
+        break
+    }
+    return label
+  }
 
   return filters
 }
