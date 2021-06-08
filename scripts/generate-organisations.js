@@ -370,6 +370,16 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "thorndown.cambs.sch.uk"
   }))
+  organisations.push(generateFakeOrganisation({
+    name: "South West Teacher Training",
+    isAccreditedBody: true,
+    domain: "westexe.devon.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Exeter Consortium",
+    isAccreditedBody: false,
+    domain: "exeterconsortium.com"
+  }))
 
   return organisations
 }

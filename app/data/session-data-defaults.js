@@ -7,8 +7,10 @@ let applications = require('./applications.json')
 const users = require('./users.json')
 const relationships = require('./leicester-relationships.js')
 // const relationships = require('./goldsmiths-relationships.js')
-// const userOrg = OrgHelper.findOrg("Goldsmiths, University of London")
+// const relationships = require('./south-west-relationships.js')
 const userOrg = OrgHelper.findOrg("University of Leicester")
+// const userOrg = OrgHelper.findOrg("Goldsmiths, University of London")
+// const userOrg = OrgHelper.findOrg("South West Teacher Training")
 
 const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
