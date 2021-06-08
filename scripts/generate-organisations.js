@@ -202,6 +202,7 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: true,
     domain: "coventry.ac.uk"
   }))
+  // Goldsmiths partners
   organisations.push(generateFakeOrganisation({
     name: "Academies Enterprise Trust: London",
     isAccreditedBody: false,
@@ -292,6 +293,8 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "wandletsa.com"
   }))
+
+  // The rest
   organisations.push(generateFakeOrganisation({
     name: "Greenwood Academies Trust",
     isAccreditedBody: false,
