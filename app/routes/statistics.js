@@ -326,15 +326,30 @@ module.exports = router => {
       counts = ApplicationHelper.getApplicationCounts(applications, options)
     }
 
-    // default dimension 1 to the subject (a proxy for course)
-    const dimension1 = ApplicationHelper.getDimensionData('subject').data
+    const dimension1 = [
+      'Art and design',
+      'Biology',
+      'Chemistry',
+      'Computer science',
+      'Design and technology',
+      'Drama',
+      'English',
+      'Primary',
+      'Geography',
+      'History',
+      'Social sciences',
+      'Mathematics',
+      'Music',
+      'Physical education',
+      'Physics',
+      'Primary with English',
+      'Primary with science',
+      'Primary with physical education',
+      'Primary with mathematics',
+      'Religious education'
+    ]
 
-    // let dimension2 = []
-    // if (options && options.dimension2) {
-    //   dimension2 = ApplicationHelper.getDimensionData(options.dimension2).data
-    // }
-
-    let dimension2 = [
+    const dimension2 = [
       'Received',
       'Interviewing',
       'Offered',
@@ -343,14 +358,14 @@ module.exports = router => {
     ]
 
     let dimension3 = []
-    if (options && options.dimension3) {
-      dimension3 = ApplicationHelper.getDimensionData(options.dimension3).data
-    }
+    // if (options && options.dimension3) {
+    //   dimension3 = ApplicationHelper.getDimensionData(options.dimension3).data
+    // }
 
     let dimension4 = []
-    if (options && options.dimension4) {
-      dimension4 = ApplicationHelper.getDimensionData(options.dimension4).data
-    }
+    // if (options && options.dimension4) {
+    //   dimension4 = ApplicationHelper.getDimensionData(options.dimension4).data
+    // }
 
     // Dimension 3 and 4 are optional
 
@@ -368,7 +383,7 @@ module.exports = router => {
     res.render('statistics/courses', {
       section: 'applications',
       report: 'courses-by-status',
-      pageName: 'Courses by status',
+      pageName: 'Status of applications to courses in 2020 to 2021',
       totalApplications: applications.length,
       options,
       dimension1,
@@ -380,6 +395,51 @@ module.exports = router => {
       selectedFilters: filters.selectedFilters,
       showFilters,
       showPercentage
+    })
+  })
+
+  router.get('/statistics/courses-attrition', (req, res) => {
+    let applications = req.session.data.applications
+    applications = applications.filter(application => application.cycle === '2020 to 2021')
+
+    const options = { dimension1: 'subject', dimension2: 'status' }
+
+    // default dimension 1 to the subject (a proxy for course)
+    const dimension1 = [
+      'Art and design',
+      'Biology',
+      'Chemistry',
+      'Computer science',
+      'Design and technology',
+      'Drama',
+      'English',
+      'Primary',
+      'Geography',
+      'History',
+      'Social sciences',
+      'Mathematics',
+      'Music',
+      'Physical education',
+      'Physics',
+      'Primary with English',
+      'Primary with science',
+      'Primary with physical education',
+      'Primary with mathematics',
+      'Religious education'
+    ]
+
+    const dimension2 = [
+      'Received to interview offered',
+      'Interview offered to offered',
+      'Offered to accepted',
+      'Accepted to Conditions met',
+      'Conditions met to ready to enroll'
+    ]
+
+    res.render('statistics/course-attrition', {
+      pageName: 'Course attrition',
+      dimension1,
+      dimension2
     })
   })
 

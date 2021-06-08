@@ -1,0 +1,74 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "statistics" %}
+{% set sectionName = "Applications" %}
+{% set pageName = pageName if pageName else "Courses" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/statistics",
+    text: "Statistics"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">
+        {{ pageName }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <table class="govuk-table app-table {{- ' app-table--scrollable' if options }}">
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Course</th>
+              {% for dm2 in dimension2 %}
+                <th scope="col" class="govuk-table__header">{{ dm2 }}</th>
+              {% endfor %}
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for dm1 in dimension1 %}
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{ dm1 | getCourseLabel }}</td>
+
+              {% for dm2 in dimension2 %}
+
+                <td class="govuk-table__cell">
+                  {% if showPercentage and showPercentage == "yes" %}
+                    {{ counts[dm1][dm2].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total | numeral('0') }})</span>
+                  {% else %}
+                    {{ counts[dm1][dm2].total | numeral('0') }}
+                  {% endif %}
+                </td>
+
+              {% endfor %}
+
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+
+{% endblock %}

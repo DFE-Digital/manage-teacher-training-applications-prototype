@@ -66,7 +66,8 @@ exports.studyModes = [
 
 exports.subjectLevels = [
   'Primary',
-  'Secondary'
+  'Secondary',
+  'Further education'
 ]
 
 exports.fundingTypes = [

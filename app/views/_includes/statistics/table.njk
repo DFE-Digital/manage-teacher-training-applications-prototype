@@ -38,9 +38,9 @@
           <tr class="govuk-table__row">
 
             {% if dimension4.length %}
-              <th scope="row" class="govuk-table__header">{{ dm1 }}</th>
+              <th scope="row" class="govuk-table__header">{{ dm1 | getCourseLabel }}</th>
             {% else %}
-              <td class="govuk-table__cell">{{ dm1 }}</td>
+              <td class="govuk-table__cell">{{ dm1 | getCourseLabel }}</td>
             {% endif %}
 
             {% if options %}
@@ -52,9 +52,9 @@
                       {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
                         <td class="govuk-table__cell">
                           {% if showPercentage and showPercentage == "yes" %}
-                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total }})</span>
+                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total | numeral('0') }})</span>
                           {% else %}
-                            {{ counts[dm1][dm2][dm3].total }}
+                            {{ counts[dm1][dm2][dm3].total | numeral('0') }}
                           {% endif %}
                         </td>
                       {% endif %}
@@ -62,9 +62,9 @@
                   {% else %}
                     <td class="govuk-table__cell">
                       {% if showPercentage and showPercentage == "yes" %}
-                        {{ counts[dm1][dm2].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total }})</span>
+                        {{ counts[dm1][dm2].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total | numeral('0') }})</span>
                       {% else %}
-                        {{ counts[dm1][dm2].total }}
+                        {{ counts[dm1][dm2].total | numeral('0') }}
                       {% endif %}
                     </td>
                   {% endif %}
@@ -91,9 +91,9 @@
                           {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
                             <td class="govuk-table__cell">
                               {% if showPercentage and showPercentage == "yes" %}
-                                {{ counts[dm1][dm2][dm3][dm4].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3][dm4].total }})</span>
+                                {{ counts[dm1][dm2][dm3][dm4].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3][dm4].total | numeral('0') }})</span>
                               {% else %}
-                                {{ counts[dm1][dm2][dm3][dm4].total }}
+                                {{ counts[dm1][dm2][dm3][dm4].total | numeral('0') }}
                               {% endif %}
                             </td>
                           {% endif %}
@@ -101,9 +101,9 @@
                       {% else %}
                         <td class="govuk-table__cell">
                           {% if showPercentage and showPercentage == "yes" %}
-                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total }})</span>
+                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total | numeral('0') }})</span>
                           {% else %}
-                            {{ counts[dm1][dm2][dm3].total }}
+                            {{ counts[dm1][dm2][dm3].total | numeral('0') }}
                           {% endif %}
                         </td>
                       {% endif %}
