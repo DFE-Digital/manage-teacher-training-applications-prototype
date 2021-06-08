@@ -70,18 +70,11 @@ applications = applications
     }
   })
 
-let userOrg = OrgHelper.findOrg("University of Bedfordshire")
+let userOrg = OrgHelper.findOrg("University of Leicester")
 
 let userOrgs = [];
 
 userOrgs.push(userOrg)
-// userOrgs.push(OrgHelper.findOrg("ATT Partnership"))
-// userOrgs.push(OrgHelper.findOrg("Castle Newnham Partnership"))
-// userOrgs.push(OrgHelper.findOrg("Fenland Teaching School Alliance"))
-// userOrgs.push(OrgHelper.findOrg("Goldington Academy"))
-// userOrgs.push(OrgHelper.findOrg("Middlefield Primary Academy"))
-// userOrgs.push(OrgHelper.findOrg("Redborne Upper School And Community College"))
-// userOrgs.push(OrgHelper.findOrg("Thorndown Primary School"))
 
 let user = users[0]
 user.organisations = userOrgs
