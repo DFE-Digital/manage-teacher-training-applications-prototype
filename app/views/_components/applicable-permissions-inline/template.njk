@@ -1,0 +1,22 @@
+<div class="app-applicable-permissions-inline {{- ' ' + params.classes if params.classes}}">
+  <p>This user permission is affected by organisational permissions.
+  {% if params.applicableOrgs.length and params.nonApplicableOrgs.length %}
+    <p>It currently applies to courses you work on with:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.applicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
+    <p>It currently does not apply to courses you work on with:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.nonApplicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
+  {% elseif params.applicableOrgs.length and not params.nonApplicableOrgs.length %}
+    <p>It currently applies to courses you work on with all your partner organisations.</p>
+  {% elseif not params.applicableOrgs.length and params.nonApplicableOrgs.length %}
+    <p>It currently does not apply to courses you work on with all your partner organisations.</p>
+  {% endif %}
+</div>
+

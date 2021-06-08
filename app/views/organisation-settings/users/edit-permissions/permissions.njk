@@ -2,10 +2,10 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'User permissions' %}
+{% set title = 'User permissions - Invite user' %}
 
-{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
-{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
+{% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -18,7 +18,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set h1 %}
+      <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
           {{user.firstName}} {{user.lastName}}
           {% if data.user.organisations.length > 1 %}
@@ -26,29 +26,49 @@
           {% endif %}
         </span>
         User permissions
-      {% endset %}
+      </h1>
+
+      {% include "_includes/users/organisational-permissions-content.njk" %}
 
       <form novalidate method="post">
-
-        {{ govukRadios({
+        {{ govukCheckboxes({
           fieldset: {
             legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              html: "Choose user permissions",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
+          },
+          hint: {
+            text: "All users can view applications."
           },
           items: [
             {
-              value: "View applications",
-              text: "View applications (excluding sensitive information)"
+              value: "manageUsers",
+              text: "Manage users"
             },
             {
-              value: "Additional permissions",
-              text: "Additional user permissions, such as making decisions or viewing sensitive information"
+              value: "manageOrganisation",
+              text: "Manage organisational permissions"
+            },
+            {
+              value: "makeDecisions",
+              html: "Make offers and reject applications"
+            },
+            {
+              value: "setupInterviews",
+              html: "Manage interviews"
+            },
+            {
+              value: "viewSafeguardingInformation",
+              text: "View criminal convictions and professional misconduct"
+            },
+            {
+              value: "viewDiversityInformation",
+              text: "View sex, disability and ethnicity information"
             }
           ]
-        } | decorateAttributes(data, 'data.editpermissions.access')) }}
+        } | decorateAttributes(data, 'data.editpermissions.permissions')) }}
 
         {{govukButton({
           text: "Continue"

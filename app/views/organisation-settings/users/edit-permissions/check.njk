@@ -3,7 +3,7 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Check and save user permissions" %}
 
-{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions{% endset %}
+{% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
 
 {% block pageNavigation %}
@@ -70,7 +70,7 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -87,7 +87,7 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -104,14 +104,14 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Make decisions
+                Make offers and reject applications
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if checked(data.editpermissions.permissions, 'makeDecisions') == 'checked' %}
@@ -121,7 +121,7 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
@@ -138,14 +138,14 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                View equality and diversity information
+                View sex, disability and ethnicity information
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if checked(data.editpermissions.permissions, 'viewDiversityInformation') == 'checked' %}
@@ -155,7 +155,7 @@
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/additional-permissions">
+                <a class="govuk-link" href="/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions">
                   Change<span class="govuk-visually-hidden"></span>
                 </a>
               </dd>

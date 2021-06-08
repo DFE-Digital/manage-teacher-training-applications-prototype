@@ -41,13 +41,43 @@
 
       {% for user in users %}
 
-        <div class="app-application-card">
-          <div>
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a></h2>
-            <p class="govuk-!-margin-bottom-0">{{ user.emailAddress }}</p>
-          </div>
+        <div class="app-user-card">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a> <span class="govuk-!-font-weight-regular"> - {{ user.emailAddress }}</h2>
+
+
+            {% if (user.permissions | length) > 0 %}
+              <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">This user has permission to:</p>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-1 govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">
+                {% for key, value in user.permissions %}
+                  {% if value %}
+                    {%- if key == "manageUsers" -%}
+                      <li>manage users</li>
+                    {% endif %}
+                    {%- if key == "manageOrganisation" -%}
+                      <li>manage organisational permissions</li>
+                    {% endif %}
+                    {%- if key == "makeDecisions" -%}
+                      <li>make offers and reject applications</li>
+                    {% endif %}
+                    {%- if key == "setupInterviews" -%}
+                      <li>manage interviews</li>
+                    {% endif %}
+                    {%- if key == "viewSafeguardingInformation" -%}
+                      <li>view criminal convictions and professional misconduct</li>
+                    {% endif %}
+                    {%- if key == "viewDiversityInformation" -%}
+                      <li>view sex, disability and ethnicity information</li>
+                    {% endif %}
+
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
         </div>
       {% endfor %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+
     </div>
   </div>
 
