@@ -3,9 +3,12 @@ const SystemHelper = require('../data/helpers/system')
 const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
 const organisations = require('./organisations.json')
-const relationships = require('./relationships.js')
 let applications = require('./applications.json')
-let users = require('./users.json')
+const users = require('./users.json')
+const relationships = require('./leicester-relationships.js')
+// const relationships = require('./goldsmiths-relationships.js')
+// const userOrg = OrgHelper.findOrg("Goldsmiths, University of London")
+const userOrg = OrgHelper.findOrg("University of Leicester")
 
 const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
@@ -70,18 +73,9 @@ applications = applications
     }
   })
 
-let userOrg = OrgHelper.findOrg("University of Bedfordshire")
-
 let userOrgs = [];
 
 userOrgs.push(userOrg)
-// userOrgs.push(OrgHelper.findOrg("ATT Partnership"))
-// userOrgs.push(OrgHelper.findOrg("Castle Newnham Partnership"))
-// userOrgs.push(OrgHelper.findOrg("Fenland Teaching School Alliance"))
-// userOrgs.push(OrgHelper.findOrg("Goldington Academy"))
-// userOrgs.push(OrgHelper.findOrg("Middlefield Primary Academy"))
-// userOrgs.push(OrgHelper.findOrg("Redborne Upper School And Community College"))
-// userOrgs.push(OrgHelper.findOrg("Thorndown Primary School"))
 
 let user = users[0]
 user.organisations = userOrgs

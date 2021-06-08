@@ -12,104 +12,101 @@ const generateFakeOrganisation = (params = {}) => {
 const generateFakeOrganisations = (count) => {
   const organisations = []
 
-  let ab1 = generateFakeOrganisation({
+  organisations.push(generateFakeOrganisation({
+    name: "University of Leicester",
+    isAccreditedBody: true,
+    domain: "le.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Ashlawn Teaching School",
+    isAccreditedBody: false,
+    domain: "ashlawn.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The Beauchamp Lionheart Training Partnership",
+    isAccreditedBody: false,
+    domain: "beauchampteach.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "President Kennedy Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "@pks.coventry.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Southam Teaching Alliance",
+    isAccreditedBody: false,
+    domain: "stowevalley.com"
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Springbank SCITT",
     isAccreditedBody: true,
     domain: "springbank.org.uk"
-  })
-
-  let ab2 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Kingston University",
     isAccreditedBody: true,
     domain: "kingstonuniversity.org.uk"
-  })
-
-  let ab3 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "University of Bedfordshire",
     isAccreditedBody: true,
     domain: "beds.ac.uk"
-  })
-
-  let ab4 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Gorse SCITT",
     isAccreditedBody: true,
     domain: "gorsescitt.org"
-  })
-
-  let ab5 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "The University of Gloucestershire",
     isAccreditedBody: true,
     domain: "glos.ac.uk"
-  })
-
-  let ab6 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Construct SCITT",
     isAccreditedBody: true,
     domain: "constructscitt.org.uk"
-  })
-
-  let ab7 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Leeds Trinity University",
     isAccreditedBody: true,
     domain: "leedstrinity.ac.uk"
-  })
-
-  let tp1 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Wren Academy",
     isAccreditedBody: false,
     domain: "wrenacademy.co.uk"
-  })
-
-  let tp2 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "The Royal Borough Teaching School Alliance",
     isAccreditedBody: false,
     domain: "royalboroughteachingschool.org"
-  })
-
-  let tp3 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "WGSPschoolsdirect",
     isAccreditedBody: false,
     domain: "wgsp.education"
-  })
-
-  let tp4 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Odyssey Learning Alliance",
     isAccreditedBody: false,
     domain: "odysseyts.org"
-  })
-
-  let tp5 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "The Cotswold Teaching School Partnership",
     isAccreditedBody: false,
     domain: "cotswoldteachingschoolpartnership.org.uk"
-  })
-
-  let tp6 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "The Mead Academy Trust",
     isAccreditedBody: false,
     domain: "themeadtrust.org"
-  })
-
-  let tp7 = generateFakeOrganisation({
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Cleeve School",
     isAccreditedBody: false,
     domain: "cleeveschool.net"
-  })
-
-  organisations.push(tp1)
-  organisations.push(tp2)
-  organisations.push(tp3)
-  organisations.push(tp4)
-  organisations.push(tp5)
-  organisations.push(tp6)
-  organisations.push(tp7)
-  organisations.push(ab1)
-  organisations.push(ab2)
-  organisations.push(ab3)
-  organisations.push(ab4)
-  organisations.push(ab5)
-  organisations.push(ab6)
-  organisations.push(ab7)
+  }))
   organisations.push(generateFakeOrganisation({
     name: "Co-op Academies Trust School Direct - Primary",
     isAccreditedBody: false,
@@ -195,19 +192,17 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "example.net"
   }))
-
   organisations.push(generateFakeOrganisation({
     name: "Goldsmiths, University of London",
     isAccreditedBody: true,
     domain: "gold.ac.uk"
   }))
-
   organisations.push(generateFakeOrganisation({
     name: "Coventry University",
     isAccreditedBody: true,
     domain: "coventry.ac.uk"
   }))
-
+  // Goldsmiths partners
   organisations.push(generateFakeOrganisation({
     name: "Academies Enterprise Trust: London",
     isAccreditedBody: false,
@@ -299,30 +294,27 @@ const generateFakeOrganisations = (count) => {
     domain: "wandletsa.com"
   }))
 
+  // The rest
   organisations.push(generateFakeOrganisation({
     name: "Greenwood Academies Trust",
     isAccreditedBody: false,
     domain: "greenwoodacademies.org"
   }))
-
   organisations.push(generateFakeOrganisation({
     name: "Greenwood Academies Trust",
     isAccreditedBody: false,
     domain: "greenwoodacademies.org"
   }))
-
   organisations.push(generateFakeOrganisation({
     name: "The Lion Alliance",
     isAccreditedBody: false,
     domain: "finhampark.co.uk"
   }))
-
   organisations.push(generateFakeOrganisation({
     name: "The Millais Alliance",
     isAccreditedBody: false,
     domain: "millais.org.uk"
   }))
-
   organisations.push(generateFakeOrganisation({
     name: "Active Teacher Training",
     isAccreditedBody: false,
