@@ -1,0 +1,21 @@
+<div class="app-applicable-permissions {{- ' ' + params.classes if params.classes}}">
+  {% if params.applicableOrgs.length and params.nonApplicableOrgs.length %}
+    <p>This currently applies to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.applicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
+    <p>This does not currently apply to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.nonApplicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
+  {% elseif params.applicableOrgs.length and not params.nonApplicableOrgs.length %}
+    <p>This currently applies to all partner organisations.</p>
+  {% elseif not params.applicableOrgs.length and params.nonApplicableOrgs.length %}
+    <p>This does not currently apply to any partner organisations.</p>
+  {% endif %}
+</div>
+

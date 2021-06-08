@@ -1,0 +1,32 @@
+{% set detailsHtml %}
+  <h2 class="govuk-heading-s">
+    Make offers and reject applications
+  </h2>
+  {{appApplicablePermissions({
+    applicableOrgs: orgPermissions.applicableOrgs.makeDecisions,
+    nonApplicableOrgs: orgPermissions.nonApplicableOrgs.makeDecisions
+  })}}
+
+  <h2 class="govuk-heading-s">
+    View criminal convictions and professional misconduct
+  </h2>
+  {{appApplicablePermissions({
+    applicableOrgs: orgPermissions.applicableOrgs.viewSafeguardingInformation,
+    nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewSafeguardingInformation
+  })}}
+
+  <h2 class="govuk-heading-s">
+    View sex, disability and ethnicity information
+  </h2>
+  {{appApplicablePermissions({
+    applicableOrgs: orgPermissions.applicableOrgs.viewDiversityInformation,
+    nonApplicableOrgs: orgPermissions.nonApplicableOrgs.viewDiversityInformation
+  })}}
+  {% endset %}
+
+  <p>Some user permissions are affected by organisational permissions.</p>
+  <p>This means that the permissions you give to users may only apply to courses you work on with certain partner organisations.</p>
+  {{ govukDetails({
+  summaryText: "Check how user permissions are affected by organisational permissions",
+  html: detailsHtml
+  }) }}

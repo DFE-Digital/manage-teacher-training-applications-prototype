@@ -97,12 +97,11 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Make decisions
+                Make offers and reject applications
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>Yes</p>
-                {{appPermissions({
-                  runOrRatified: runOrRatified,
+                {{appApplicablePermissionsInline({
                   applicableOrgs: org.permissions.applicableOrgs.makeDecisions,
                   nonApplicableOrgs: org.permissions.
                   nonApplicableOrgs.makeDecisions
@@ -115,8 +114,7 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>Yes</p>
-                {{appPermissions({
-                  runOrRatified: runOrRatified,
+                {{appApplicablePermissionsInline({
                   applicableOrgs: org.permissions.applicableOrgs.viewSafeguardingInformation,
                   nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewSafeguardingInformation
                 })}}
@@ -124,12 +122,11 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                View diversity information
+                View sex, disability and ethnicity information
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>Yes</p>
-                {{appPermissions({
-                  runOrRatified: runOrRatified,
+                {{appApplicablePermissionsInline({
                   applicableOrgs: org.permissions.applicableOrgs.viewDiversityInformation,
                   nonApplicableOrgs: org.permissions.nonApplicableOrgs.viewDiversityInformation
                 })}}
