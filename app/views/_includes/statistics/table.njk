@@ -1,7 +1,7 @@
 <div class="govuk-grid-row">
   <div class="{{'govuk-grid-column-full' if options else 'govuk-grid-column-two-thirds' }}">
 
-    <table class="govuk-table {{- ' app-table--scrollable' if options }}">
+    <table class="govuk-table app-table {{- ' app-table--scrollable' if options }}">
       <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -50,11 +50,23 @@
                   {% if dimension3.length %}
                     {% for dm3 in dimension3 %}
                       {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
-                        <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3].total }}</td>
+                        <td class="govuk-table__cell">
+                          {% if showPercentage and showPercentage == "yes" %}
+                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total }})</span>
+                          {% else %}
+                            {{ counts[dm1][dm2][dm3].total }}
+                          {% endif %}
+                        </td>
                       {% endif %}
                     {% endfor %}
                   {% else %}
-                    <td class="govuk-table__cell">{{ counts[dm1][dm2].total }}</td>
+                    <td class="govuk-table__cell">
+                      {% if showPercentage and showPercentage == "yes" %}
+                        {{ counts[dm1][dm2].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total }})</span>
+                      {% else %}
+                        {{ counts[dm1][dm2].total }}
+                      {% endif %}
+                    </td>
                   {% endif %}
                 {% endif %}
               {% endfor %}
@@ -77,11 +89,23 @@
                       {% if dimension4.length %}
                         {% for dm3 in dimension3 %}
                           {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
-                            <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3][dm4].total }}</td>
+                            <td class="govuk-table__cell">
+                              {% if showPercentage and showPercentage == "yes" %}
+                                {{ counts[dm1][dm2][dm3][dm4].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3][dm4].total }})</span>
+                              {% else %}
+                                {{ counts[dm1][dm2][dm3][dm4].total }}
+                              {% endif %}
+                            </td>
                           {% endif %}
                         {% endfor %}
                       {% else %}
-                        <td class="govuk-table__cell">{{ counts[dm1][dm2][dm3].total }}</td>
+                        <td class="govuk-table__cell">
+                          {% if showPercentage and showPercentage == "yes" %}
+                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total }})</span>
+                          {% else %}
+                            {{ counts[dm1][dm2][dm3].total }}
+                          {% endif %}
+                        </td>
                       {% endif %}
                     {% endif %}
                   {% endfor %}
@@ -103,9 +127,9 @@
       </tbody>
     </table>
 
-    <p class="govuk-body">
+    <!-- <p class="govuk-body">
       <a class="govuk-link" href="#">Download <span class="govuk-visually-hidden">{{ pageName }}</span> data</a>
-    </p>
+    </p> -->
 
   </div>
 </div>

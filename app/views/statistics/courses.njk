@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "statistics" %}
 {% set sectionName = "Applications" %}
-{% set pageName = "Courses" %}
+{% set pageName = pageName if pageName else "Courses" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -19,8 +19,16 @@
 
 {% include "_includes/statistics/header.njk" %}
 
-<p class="govuk-body">
+<!-- <p class="govuk-body">
   <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
+</p> -->
+
+<p class="govuk-body">
+  {% if showPercentage and showPercentage == "yes" %}
+    <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=no">Hide percentages</a>
+  {% else %}
+    <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=yes">Show percentages</a>
+  {% endif %}
 </p>
 
 {% if data.statisticsOptions %}

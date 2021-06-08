@@ -47,7 +47,7 @@ exports.cycles = [
 
 exports.statuses = [
   'Received',
-  'Awaiting decision',
+  'Interviewing',
   'Offered',
   'Awaiting conditions',
   'Ready to enroll',

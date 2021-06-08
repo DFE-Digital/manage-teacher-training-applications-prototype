@@ -183,6 +183,9 @@ module.exports = router => {
   router.get('/statistics', (req, res) => {
     delete req.session.data.statisticsOptions
     delete req.session.data.statisticsFilters
+    delete req.session.data.showPercentage
+
+    console.log(req.session.data.showPercentage);
 
     let applications = req.session.data.applications
     let current = applications.filter(application => application.cycle === '2020 to 2021')
@@ -284,6 +287,99 @@ module.exports = router => {
       hasFilters: filters.hasFilters,
       selectedFilters: filters.selectedFilters,
       showFilters
+    })
+  })
+
+  router.get('/statistics/courses-by-status', (req, res) => {
+    let applications = req.session.data.applications
+    const options = { dimension1: 'subject', dimension2: 'status' }
+    const filters = getFilters(req)
+
+    let showPercentage = 'no'
+    if (req.query.showPercentage && req.query.showPercentage === 'yes') {
+      showPercentage = 'yes'
+    }
+
+    // if the user hasn't configured the report to include cycle data,
+    // we just want the current cycle's data
+    if (!options || !((options.dimension2 === 'cycle') || (options.dimension3 === 'cycle') || (options.dimension4 === 'cycle'))) {
+      applications = applications.filter(application => application.cycle === '2020 to 2021')
+    }
+
+    if (filters.hasFilters) {
+      applications = getApplications(applications, filters.filters)
+    }
+
+    const showFilters = []
+    if (options) {
+      // parse the dimensions so we know what filters to show
+      for (const [key, value] of Object.entries(options)) {
+        showFilters.push(value)
+      }
+    }
+
+    // get the default counts for the report
+    let counts = ApplicationHelper.getApplicationCountsBySubject(applications)
+
+    // get the counts based on the dimenstions chosen by the user
+    if (options) {
+      counts = ApplicationHelper.getApplicationCounts(applications, options)
+    }
+
+    // default dimension 1 to the subject (a proxy for course)
+    const dimension1 = ApplicationHelper.getDimensionData('subject').data
+
+    // let dimension2 = []
+    // if (options && options.dimension2) {
+    //   dimension2 = ApplicationHelper.getDimensionData(options.dimension2).data
+    // }
+
+    let dimension2 = [
+      'Received',
+      'Interviewing',
+      'Offered',
+      'Awaiting conditions',
+      'Ready to enroll'
+    ]
+
+    let dimension3 = []
+    if (options && options.dimension3) {
+      dimension3 = ApplicationHelper.getDimensionData(options.dimension3).data
+    }
+
+    let dimension4 = []
+    if (options && options.dimension4) {
+      dimension4 = ApplicationHelper.getDimensionData(options.dimension4).data
+    }
+
+    // Dimension 3 and 4 are optional
+
+    // | =============== | Dimension 2               | Dimension 2               |
+    // | =============== | Dimension 3 | Dimension 3 | Dimension 3 | Dimension 3 |
+    // | Dimension 1     | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // | Dimension 1     | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+    // |  -- Dimension 4 | =========== | =========== | =========== | =========== |
+
+    res.render('statistics/courses', {
+      section: 'applications',
+      report: 'courses-by-status',
+      pageName: 'Courses by status',
+      totalApplications: applications.length,
+      options,
+      dimension1,
+      dimension2,
+      dimension3,
+      dimension4,
+      counts,
+      hasFilters: filters.hasFilters,
+      selectedFilters: filters.selectedFilters,
+      showFilters,
+      showPercentage
     })
   })
 
