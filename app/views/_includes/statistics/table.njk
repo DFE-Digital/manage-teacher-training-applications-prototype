@@ -52,7 +52,7 @@
                       {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
                         <td class="govuk-table__cell">
                           {% if showPercentage and showPercentage == "yes" %}
-                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total | numeral('0') }})</span>
+                            {{ counts[dm1][dm2][dm3].percentage | numeral('0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total | numeral('0') }})</span>
                           {% else %}
                             {{ counts[dm1][dm2][dm3].total | numeral('0') }}
                           {% endif %}
@@ -62,7 +62,7 @@
                   {% else %}
                     <td class="govuk-table__cell">
                       {% if showPercentage and showPercentage == "yes" %}
-                        {{ counts[dm1][dm2].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total | numeral('0') }})</span>
+                        {{ counts[dm1][dm2].percentage | numeral('0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total | numeral('0') }})</span>
                       {% else %}
                         {{ counts[dm1][dm2].total | numeral('0') }}
                       {% endif %}
@@ -91,7 +91,7 @@
                           {% if (data.statisticsFilters[options.dimension3] and dm3 in data.statisticsFilters[options.dimension3]) or (not data.statisticsFilters[options.dimension3].length) %}
                             <td class="govuk-table__cell">
                               {% if showPercentage and showPercentage == "yes" %}
-                                {{ counts[dm1][dm2][dm3][dm4].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3][dm4].total | numeral('0') }})</span>
+                                {{ counts[dm1][dm2][dm3][dm4].percentage | numeral('0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3][dm4].total | numeral('0') }})</span>
                               {% else %}
                                 {{ counts[dm1][dm2][dm3][dm4].total | numeral('0') }}
                               {% endif %}
@@ -101,7 +101,7 @@
                       {% else %}
                         <td class="govuk-table__cell">
                           {% if showPercentage and showPercentage == "yes" %}
-                            {{ counts[dm1][dm2][dm3].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total | numeral('0') }})</span>
+                            {{ counts[dm1][dm2][dm3].percentage | numeral('0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2][dm3].total | numeral('0') }})</span>
                           {% else %}
                             {{ counts[dm1][dm2][dm3].total | numeral('0') }}
                           {% endif %}

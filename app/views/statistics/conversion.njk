@@ -18,7 +18,7 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
         {{ pageName }}
       </h1>
@@ -47,11 +47,7 @@
               {% for dm2 in dimension2 %}
 
                 <td class="govuk-table__cell">
-                  {% if showPercentage and showPercentage == "yes" %}
-                    {{ counts[dm1][dm2].percentage | numeral('0.0') + "%" }} <span class="govuk-hint">({{ counts[dm1][dm2].total | numeral('0') }})</span>
-                  {% else %}
-                    {{ counts[dm1][dm2].total | numeral('0') }}
-                  {% endif %}
+                  {{ counts[dm1][dm2] | numeral('0') + "%" }}
                 </td>
 
               {% endfor %}
@@ -65,7 +61,6 @@
 
     </div>
   </div>
-
 
 {% endblock %}
 
