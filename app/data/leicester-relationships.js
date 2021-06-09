@@ -63,4 +63,20 @@ relationships.push({
   }
 })
 
+// relationships.push({
+//   id: 5,
+//   org1: OrgHelper.findOrg("Ashlawn Teaching School"),
+//   org1Permissions: {
+//     makeDecisions: true,
+//     viewSafeguardingInformation: false,
+//     viewDiversityInformation: true
+//   },
+//   org2: OrgHelper.findOrg("Southam Teaching Alliance"),
+//   org2Permissions: {
+//     makeDecisions: true,
+//     viewSafeguardingInformation: true,
+//     viewDiversityInformation: true
+//   }
+// })
+
 module.exports = relationships

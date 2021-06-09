@@ -6,20 +6,21 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if (relationships | length) == "1" %}
+        <p>Candidates can now apply through GOV.​UK for courses you work on with:</p>
+      {% else %}
+        <p>Candidates can now apply through GOV.​UK for courses you work on with partner organisations.</p>
 
-      <p>Candidates can now apply through GOV.​UK for courses you work on with the partner organisations listed below.</p>
-
-      <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
-
-      {% if (relationships | length) != "1" %}{% endif %}
+        {# <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p> #}
+      {% endif %}
 
       {% for key, value in relationships %}
         {% if (relationships | length) == "1" %}
-          <p>You need to set up permissions for courses you work on with:</p>
+          {# <p>You need to set up permissions for courses you work on with:</p> #}
         {% else %}
-          <h2 class="govuk-heading-m">
+          {# <h2 class="govuk-heading-m">
             {{value[0].org1.name}}
-          </h2>
+          </h2> #}
 
           {% set runOrRatified %}
             {% if value[0].org1.isAccreditedBody %}
@@ -29,7 +30,7 @@
             {% endif %}
           {% endset %}
 
-          <p>You need to set up permissions for courses {{runOrRatified}} by:</p>
+          <p>For {{value[0].org1.name}}, you need to set up permissions for courses you work on with:</p>
         {% endif %}
 
         <ul class="govuk-list govuk-list--bullet">
@@ -41,11 +42,21 @@
         </ul>
       {% endfor %}
 
+       {# {% if (relationships | length) == "1" %} #}
+       {# {% set insetHtml %} #}
+        <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
+      {# {% endset %} #}
+      {# {% endif %} #}
+
+      {# {{ govukInsetText({
+        html: insetHtml
+      }) }} #}
+
       <form novalidate action="/onboard/1">
         {{govukButton({
           text: "Set up organisational permissions"
         })}}
-        <p><a href="/onboard/skip">Skip (you can do this later)</a></p>
+        <p><a href="/onboard/skip">Skip (you can set up permissions later)</a></p>
       </form>
     </div>
   </div>
