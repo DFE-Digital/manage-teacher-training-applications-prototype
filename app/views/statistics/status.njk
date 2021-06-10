@@ -17,122 +17,54 @@
 
 {% block content %}
 
-{#{data.organisations|dump|safe}#}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">
-      <!-- <span class="govuk-caption-l">{{ sectionName }}</span> -->
       {{ pageName }}
     </h1>
-
-    <!-- <p class="govuk-body">
-      <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
-    </p> -->
-
-    <!-- <p class="govuk-body">
-      {% if showPercentage and showPercentage == "yes" %}
-        <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=no">Hide as percentages of the number of applications received</a>
-      {% else %}
-        <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=yes">Show as percentages of the number of applications received</a>
-      {% endif %}
-    </p> -->
-
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <!-- <h2 class="govuk-heading-m">School direct view:</h2>
-
     <table class="govuk-table">
       <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Course</th>
-            {% for dm2 in dimension2 %}
-              <th scope="col" class="govuk-table__header">
-                {{ dm2 }}
-              </th>
+            {% for status in statuses %}
+              <th scope="col" class="govuk-table__header">{{ status }}</th>
             {% endfor %}
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" {% if showPercentage and showPercentage == "yes" %}rowspan="2"{% endif %}>
-            Totals
-          </th>
-          {% for dm2 in dimension2 %}
-            <td class="govuk-table__header {{- ' app-table__cell--no-border-bottom' if showPercentage and showPercentage == 'yes'}}">
-              {{ counts['All courses'][dm2] | numeral('0') }}
-            </td>
-          {% endfor %}
-        </tr>
 
-        {% for dm1 in dimension1 %}
+        {% for row in statusData %}
 
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell" {% if showPercentage and showPercentage == "yes" %}rowspan="2"{% endif %}>
-              {{ dm1 | getCourseLabel }}
-              <span class="govuk-hint govuk-!-margin-bottom-0">{{ ['Springbank SCITT','Kingston University'] | random }}</span>
-            </td>
-            {% for dm2 in dimension2 %}
-              <td class="govuk-table__cell {{- ' app-table__cell--no-border-bottom' if showPercentage and showPercentage == 'yes'}}">
-                {{ counts[dm1][dm2] | numeral('0') }}
+            {% if row.code == "TOTAL" %}
+              <th scope="row" class="govuk-table__header">
+                Totals
+              </th>
+            {% else %}
+              <td class="govuk-table__cell">
+                {{ row.title }} {{ "(" + row.code + ")" if row.code }}
+                <span class="govuk-hint govuk-!-margin-bottom-0">{{ partners | random }}</span>
+              </td>
+            {% endif %}
+            {% for status in statuses %}
+              <td class="{{ 'govuk-table__header' if row.code == 'TOTAL' else 'govuk-table__cell'}}">
+                {% set code = (status | replace(" ","_") | lower) %}
+                {{ row['counts'][code] | numeral('0') }}
               </td>
             {% endfor %}
           </tr>
 
         {% endfor %}
+
       </tbody>
     </table>
-
-      <h2 class="govuk-heading-m">Accredited body view:</h2> -->
-
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Course</th>
-              {% for dm2 in dimension2 %}
-                <th scope="col" class="govuk-table__header">{{ dm2 }}</th>
-              {% endfor %}
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header" {% if showPercentage and showPercentage == "yes" %}rowspan="2"{% endif %}>
-              Totals
-            </th>
-            {% for dm2 in dimension2 %}
-              <td class="govuk-table__header {{- ' app-table__cell--no-border-bottom' if showPercentage and showPercentage == 'yes'}}">
-                {{ counts['All courses'][dm2] | numeral('0') }}
-              </td>
-            {% endfor %}
-          </tr>
-
-          {% for dm1 in dimension1 %}
-
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell" {% if showPercentage and showPercentage == "yes" %}rowspan="2"{% endif %}>
-                {{ dm1 | getCourseLabel }}
-                {% if data.user.organisations[0].isAccreditedBody %}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ trainingProviders | random }}</span>
-                {% else %}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ ['Springbank SCITT','Kingston University'] | random }}</span>
-                {% endif %}
-              </td>
-              {% for dm2 in dimension2 %}
-                <td class="govuk-table__cell {{- ' app-table__cell--no-border-bottom' if showPercentage and showPercentage == 'yes'}}">
-                  {{ counts[dm1][dm2] | numeral('0') }}
-                </td>
-              {% endfor %}
-            </tr>
-
-          {% endfor %}
-        </tbody>
-      </table>
 
   </div>
 </div>

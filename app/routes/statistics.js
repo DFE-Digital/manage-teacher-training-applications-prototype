@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const StatisticsHelper = require('../data/helpers/statistics')
 const SystemHelper = require('../data/helpers/system')
 
 const getFilters = (req) => {
@@ -290,464 +291,16 @@ module.exports = router => {
     })
   })
 
-  // function getOrganisationPermission(org, relationships) {
-  //   var permissions = {
-  //     applicableOrgs: {
-  //       setupInterviews: [],
-  //       makeDecisions: [],
-  //       viewSafeguardingInformation: [],
-  //       viewDiversityInformation: []
-  //     },
-  //     nonApplicableOrgs: {
-  //       setupInterviews: [],
-  //       makeDecisions: [],
-  //       viewSafeguardingInformation: [],
-  //       viewDiversityInformation: []
-  //     }
-  //   }
-  //   relationships.filter(relationship => {
-  //     return relationship.org1.id === org.id || relationship.org2.id === org.id
-  //   }).forEach(relationship => {
-  //     var orgKey = relationship.org1.id == org.id ? 'org2' : 'org1';
-  //     let permissionsKey = relationship.org1.id == org.id ? 'org1Permissions' : 'org2Permissions';
-  //
-  //     if(relationship[permissionsKey].setupInterviews) {
-  //       permissions.applicableOrgs.setupInterviews.push(relationship[orgKey])
-  //     } else {
-  //       permissions.nonApplicableOrgs.setupInterviews.push(relationship[orgKey])
-  //     }
-  //
-  //     if(relationship[permissionsKey].makeDecisions) {
-  //       permissions.applicableOrgs.makeDecisions.push(relationship[orgKey])
-  //     } else {
-  //       permissions.nonApplicableOrgs.makeDecisions.push(relationship[orgKey])
-  //     }
-  //
-  //     if(relationship[permissionsKey].viewSafeguardingInformation) {
-  //       permissions.applicableOrgs.viewSafeguardingInformation.push(relationship[orgKey])
-  //     } else {
-  //       permissions.nonApplicableOrgs.viewSafeguardingInformation.push(relationship[orgKey])
-  //     }
-  //
-  //     if(relationship[permissionsKey].viewDiversityInformation) {
-  //       permissions.applicableOrgs.viewDiversityInformation.push(relationship[orgKey])
-  //     } else {
-  //       permissions.nonApplicableOrgs.viewDiversityInformation.push(relationship[orgKey])
-  //     }
-  //
-  //   })
-  //   return permissions
-  // }
-
-  router.get('/statistics/courses-by-status', (req, res) => {
-    let applications = req.session.data.applications
-    applications = applications.filter(application => application.cycle === '2020 to 2021')
-
-    // let showPercentage = 'no'
-    // if (req.query.showPercentage && req.query.showPercentage === 'yes') {
-    //   showPercentage = 'yes'
-    // }
-
-    // console.log(req.session.data.user.organisations[0]);
-
-    // let user = req.session.data.user
-    //
-    // let orgs = user.organisations.map(org => {
-    //   // add permissions in for each org
-    //
-    //   return {
-    //     org: org,
-    //     permissions: getOrganisationPermission(org, req.session.data.relationships)
-    //   }
-    //
-    // })
-
-    console.log(req.session.data.relationships);
-
-
-    const trainingProviders = req.session.data.organisations.filter(data => data.isAccreditedBody === false).map((organisation) => {
+  router.get('/statistics/status', (req, res) => {
+    const userOrganisations = req.session.data.user.organisations.map((organisation) => {
       return organisation.name
     })
 
-    const accreditedBodies = req.session.data.organisations.filter(data => data.isAccreditedBody === true).map((organisation) => {
-      return organisation.name
+    const partners = req.session.data.relationships.map((relationship) => {
+        return relationship.org2.name
     })
 
-    // console.log(accreditedBodies);
-
-    // console.log(req.session.data.organisations);
-
-    const showPercentage = 'no'
-
-    const options = { dimension1: 'subject', dimension2: 'status' }
-
-    const counts = {
-  "Art and design": {
-    "Received": 74,
-    "Interviewing": 31,
-    "Offered": 9,
-    "Awaiting conditions": 20,
-    "Ready to enroll": 6,
-    "Total": 140
-  },
-  "Biology": {
-    "Received": 35,
-    "Interviewing": 23,
-    "Offered": 20,
-    "Awaiting conditions": 11,
-    "Ready to enroll": 4,
-    "Total": 93
-  },
-  "Chemistry": {
-    "Received": 26,
-    "Interviewing": 31,
-    "Offered": 2,
-    "Awaiting conditions": 14,
-    "Ready to enroll": 8,
-    "Total": 81
-  },
-  "Computer science": {
-    "Received": 34,
-    "Interviewing": 9,
-    "Offered": 2,
-    "Awaiting conditions": 4,
-    "Ready to enroll": 2,
-    "Total": 51
-  },
-  "Design and technology": {
-    "Received": 63,
-    "Interviewing": 11,
-    "Offered": 16,
-    "Awaiting conditions": 7,
-    "Ready to enroll": 8,
-    "Total": 105
-  },
-  "Drama": {
-    "Received": 59,
-    "Interviewing": 25,
-    "Offered": 2,
-    "Awaiting conditions": 11,
-    "Ready to enroll": 1,
-    "Total": 98
-  },
-  "English": {
-    "Received": 50,
-    "Interviewing": 23,
-    "Offered": 3,
-    "Awaiting conditions": 3,
-    "Ready to enroll": 3,
-    "Total": 82
-  },
-  "Primary": {
-    "Received": 65,
-    "Interviewing": 21,
-    "Offered": 1,
-    "Awaiting conditions": 2,
-    "Ready to enroll": 2,
-    "Total": 91
-  },
-  "Geography": {
-    "Received": 69,
-    "Interviewing": 13,
-    "Offered": 3,
-    "Awaiting conditions": 12,
-    "Ready to enroll": 4,
-    "Total": 101
-  },
-  "History": {
-    "Received": 38,
-    "Interviewing": 4,
-    "Offered": 16,
-    "Awaiting conditions": 3,
-    "Ready to enroll": 1,
-    "Total": 62
-  },
-  "Social sciences": {
-    "Received": 67,
-    "Interviewing": 11,
-    "Offered": 19,
-    "Awaiting conditions": 18,
-    "Ready to enroll": 5,
-    "Total": 120
-  },
-  "Mathematics": {
-    "Received": 57,
-    "Interviewing": 11,
-    "Offered": 5,
-    "Awaiting conditions": 6,
-    "Ready to enroll": 5,
-    "Total": 84
-  },
-  "Music": {
-    "Received": 73,
-    "Interviewing": 8,
-    "Offered": 20,
-    "Awaiting conditions": 14,
-    "Ready to enroll": 8,
-    "Total": 123
-  },
-  "Physical education": {
-    "Received": 61,
-    "Interviewing": 33,
-    "Offered": 10,
-    "Awaiting conditions": 7,
-    "Ready to enroll": 7,
-    "Total": 118
-  },
-  "Physics": {
-    "Received": 33,
-    "Interviewing": 3,
-    "Offered": 5,
-    "Awaiting conditions": 16,
-    "Ready to enroll": 8,
-    "Total": 65
-  },
-  "Primary with English": {
-    "Received": 27,
-    "Interviewing": 28,
-    "Offered": 7,
-    "Awaiting conditions": 3,
-    "Ready to enroll": 2,
-    "Total": 67
-  },
-  "Primary with science": {
-    "Received": 70,
-    "Interviewing": 25,
-    "Offered": 6,
-    "Awaiting conditions": 16,
-    "Ready to enroll": 3,
-    "Total": 120
-  },
-  "Primary with physical education": {
-    "Received": 70,
-    "Interviewing": 29,
-    "Offered": 11,
-    "Awaiting conditions": 18,
-    "Ready to enroll": 1,
-    "Total": 129
-  },
-  "Primary with mathematics": {
-    "Received": 75,
-    "Interviewing": 25,
-    "Offered": 3,
-    "Awaiting conditions": 11,
-    "Ready to enroll": 8,
-    "Total": 122
-  },
-  "Religious education": {
-    "Received": 43,
-    "Interviewing": 10,
-    "Offered": 14,
-    "Awaiting conditions": 2,
-    "Ready to enroll": 5,
-    "Total": 74
-  },
-  "All courses": {
-    "Received": 1089,
-    "Interviewing": 374,
-    "Offered": 174,
-    "Awaiting conditions": 198,
-    "Ready to enroll": 91,
-    "Total": 1926
-  }
-}
-
-    // {
-    //   "Art and design": {
-    //     "Received": 7,
-    //     "Interviewing": 1,
-    //     "Offered": 5,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 1,
-    //     "Total": 14
-    //   },
-    //   "Biology": {
-    //     "Received": 0,
-    //     "Interviewing": 0,
-    //     "Offered": 5,
-    //     "Awaiting conditions": 5,
-    //     "Ready to enroll": 1,
-    //     "Total": 11
-    //   },
-    //   "Chemistry": {
-    //     "Received": 1,
-    //     "Interviewing": 4,
-    //     "Offered": 3,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 8
-    //   },
-    //   "Computer science": {
-    //     "Received": 11,
-    //     "Interviewing": 1,
-    //     "Offered": 7,
-    //     "Awaiting conditions": 1,
-    //     "Ready to enroll": 1,
-    //     "Total": 21
-    //   },
-    //   "Design and technology": {
-    //     "Received": 0,
-    //     "Interviewing": 0,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 0
-    //   },
-    //   "Drama": {
-    //     "Received": 3,
-    //     "Interviewing": 0,
-    //     "Offered": 1,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 4
-    //   },
-    //   "English": {
-    //     "Received": 37,
-    //     "Interviewing": 11,
-    //     "Offered": 10,
-    //     "Awaiting conditions": 5,
-    //     "Ready to enroll": 2,
-    //     "Total": 65
-    //   },
-    //   "Primary": {
-    //     "Received": 33,
-    //     "Interviewing": 12,
-    //     "Offered": 5,
-    //     "Awaiting conditions": 5,
-    //     "Ready to enroll": 8,
-    //     "Total": 63
-    //   },
-    //   "Geography": {
-    //     "Received": 0,
-    //     "Interviewing": 0,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 0
-    //   },
-    //   "History": {
-    //     "Received": 0,
-    //     "Interviewing": 0,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 0
-    //   },
-    //   "Social sciences": {
-    //     "Received": 3,
-    //     "Interviewing": 0,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 1,
-    //     "Ready to enroll": 0,
-    //     "Total": 4
-    //   },
-    //   "Mathematics": {
-    //     "Received": 22,
-    //     "Interviewing": 9,
-    //     "Offered": 8,
-    //     "Awaiting conditions": 12,
-    //     "Ready to enroll": 5,
-    //     "Total": 56
-    //   },
-    //   "Music": {
-    //     "Received": 4,
-    //     "Interviewing": 1,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 5
-    //   },
-    //   "Physical education": {
-    //     "Received": 17,
-    //     "Interviewing": 8,
-    //     "Offered": 1,
-    //     "Awaiting conditions": 7,
-    //     "Ready to enroll": 0,
-    //     "Total": 33
-    //   },
-    //   "Physics": {
-    //     "Received": 1,
-    //     "Interviewing": 1,
-    //     "Offered": 2,
-    //     "Awaiting conditions": 2,
-    //     "Ready to enroll": 1,
-    //     "Total": 7
-    //   },
-    //   "Primary with English": {
-    //     "Received": 15,
-    //     "Interviewing": 7,
-    //     "Offered": 7,
-    //     "Awaiting conditions": 6,
-    //     "Ready to enroll": 2,
-    //     "Total": 37
-    //   },
-    //   "Primary with science": {
-    //     "Received": 13,
-    //     "Interviewing": 5,
-    //     "Offered": 8,
-    //     "Awaiting conditions": 2,
-    //     "Ready to enroll": 5,
-    //     "Total": 33
-    //   },
-    //   "Primary with physical education": {
-    //     "Received": 22,
-    //     "Interviewing": 10,
-    //     "Offered": 2,
-    //     "Awaiting conditions": 4,
-    //     "Ready to enroll": 2,
-    //     "Total": 40
-    //   },
-    //   "Primary with mathematics": {
-    //     "Received": 0,
-    //     "Interviewing": 0,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 0
-    //   },
-    //   "Religious education": {
-    //     "Received": 1,
-    //     "Interviewing": 0,
-    //     "Offered": 0,
-    //     "Awaiting conditions": 0,
-    //     "Ready to enroll": 0,
-    //     "Total": 1
-    //   },
-    //   "All courses": {
-    //     "Received": 190,
-    //     "Interviewing": 70,
-    //     "Offered": 64,
-    //     "Awaiting conditions": 50,
-    //     "Ready to enroll": 28,
-    //     "Total": 402
-    //   }
-    // }
-
-    const dimension1 = [
-      'Art and design',
-      'Biology',
-      'Chemistry',
-      'Computer science',
-      'Design and technology',
-      'Design and technology',
-      'Drama',
-      'English',
-      'Primary',
-      'Geography',
-      'History',
-      'Social sciences',
-      'Mathematics',
-      'Music',
-      'Physical education',
-      'Physics',
-      'Primary with English',
-      'Primary with science',
-      'Primary with physical education',
-      'Primary with mathematics',
-      'Religious education'
-    ]
-
-    const dimension2 = [
+    const statuses = [
       'Received',
       'Interviewing',
       'Offered',
@@ -755,45 +308,27 @@ module.exports = router => {
       'Ready to enroll'
     ]
 
+    const statusData = StatisticsHelper.statusData
+
     res.render('statistics/status', {
-      report: 'courses-by-status',
-      pageName: 'Number of applications to courses by status (2020 to 2021)',
-      dimension1,
-      dimension2,
-      counts,
-      showPercentage,
-      trainingProviders
+      report: 'status',
+      pageName: 'Status of applications (2020 to 2021)',
+      statuses,
+      statusData,
+      partners
     })
   })
 
   router.get('/statistics/conversion', (req, res) => {
-    let applications = req.session.data.applications
-    applications = applications.filter(application => application.cycle === '2020 to 2021')
+    const userOrganisations = req.session.data.user.organisations.map((organisation) => {
+      return organisation.name
+    })
 
-    const dimension1 = [
-      'Art and design',
-      'Biology',
-      'Chemistry',
-      'Computer science',
-      'Design and technology',
-      'Drama',
-      'English',
-      'Primary',
-      'Geography',
-      'History',
-      'Social sciences',
-      'Mathematics',
-      'Music',
-      'Physical education',
-      'Physics',
-      'Primary with English',
-      'Primary with science',
-      'Primary with physical education',
-      'Primary with mathematics',
-      'Religious education'
-    ]
+    const partners = req.session.data.relationships.map((relationship) => {
+        return relationship.org2.name
+    })
 
-    const dimension2 = [
+    const stages = [
       'From received to interviewing',
       'From interviewing to offered',
       'From offered to awaiting conditions',
@@ -801,21 +336,14 @@ module.exports = router => {
       'From offered to ready to enroll'
     ]
 
-    const counts = {
-      "Art and design": {
-        "From received to interviewing": 65,
-        "From interviewing to offered": 85,
-        "From offered to awaiting conditions": 75,
-        "From awaiting conditions to ready to enroll": 65,
-        "From offered to ready to enroll": 10
-      }
-    }
+    const stageData = StatisticsHelper.progressData
 
     res.render('statistics/conversion', {
-      pageName: 'Movement of applications between statuses (2020 to 2021)',
-      dimension1,
-      dimension2,
-      counts
+      report: 'conversion',
+      pageName: 'Progress of applications (2020 to 2021)',
+      stages,
+      stageData,
+      partners
     })
   })
 

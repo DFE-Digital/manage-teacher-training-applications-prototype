@@ -1,0 +1,1286 @@
+[
+  {
+    "code": "2SKV",
+    "title": "Art and Design",
+    "counts": {
+      "received": 55,
+      "interviewing": 10,
+      "offered": 7,
+      "awaiting_conditions": 1,
+      "ready_to_enroll": 10,
+      "total": 83
+    }
+  },
+  {
+    "code": "2XCC",
+    "title": "Art and Design",
+    "counts": {
+      "received": 29,
+      "interviewing": 12,
+      "offered": 10,
+      "awaiting_conditions": 15,
+      "ready_to_enroll": 7,
+      "total": 73
+    }
+  },
+  {
+    "code": "2YKF",
+    "title": "Art and Design",
+    "counts": {
+      "received": 69,
+      "interviewing": 31,
+      "offered": 10,
+      "awaiting_conditions": 2,
+      "ready_to_enroll": 8,
+      "total": 120
+    }
+  },
+  {
+    "code": "2ZC4",
+    "title": "Art and Design",
+    "counts": {
+      "received": 46,
+      "interviewing": 6,
+      "offered": 3,
+      "awaiting_conditions": 10,
+      "ready_to_enroll": 7,
+      "total": 72
+    }
+  },
+  {
+    "code": "2ZH9",
+    "title": "Art and Design",
+    "counts": {
+      "received": 51,
+      "interviewing": 8,
+      "offered": 12,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 7,
+      "total": 94
+    }
+  },
+  {
+    "code": "39K2",
+    "title": "Art and Design",
+    "counts": {
+      "received": 44,
+      "interviewing": 1,
+      "offered": 2,
+      "awaiting_conditions": 15,
+      "ready_to_enroll": 5,
+      "total": 67
+    }
+  },
+  {
+    "code": "27Q7",
+    "title": "Biology",
+    "counts": {
+      "received": 69,
+      "interviewing": 10,
+      "offered": 15,
+      "awaiting_conditions": 2,
+      "ready_to_enroll": 4,
+      "total": 100
+    }
+  },
+  {
+    "code": "2G9N",
+    "title": "Biology",
+    "counts": {
+      "received": 56,
+      "interviewing": 31,
+      "offered": 20,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 1,
+      "total": 111
+    }
+  },
+  {
+    "code": "2SKC",
+    "title": "Biology",
+    "counts": {
+      "received": 32,
+      "interviewing": 10,
+      "offered": 11,
+      "awaiting_conditions": 14,
+      "ready_to_enroll": 8,
+      "total": 75
+    }
+  },
+  {
+    "code": "2XC9",
+    "title": "Biology",
+    "counts": {
+      "received": 65,
+      "interviewing": 5,
+      "offered": 19,
+      "awaiting_conditions": 1,
+      "ready_to_enroll": 3,
+      "total": 93
+    }
+  },
+  {
+    "code": "2ZC3",
+    "title": "Biology",
+    "counts": {
+      "received": 41,
+      "interviewing": 19,
+      "offered": 9,
+      "awaiting_conditions": 17,
+      "ready_to_enroll": 5,
+      "total": 91
+    }
+  },
+  {
+    "code": "2ZHB",
+    "title": "Biology",
+    "counts": {
+      "received": 65,
+      "interviewing": 29,
+      "offered": 10,
+      "awaiting_conditions": 12,
+      "ready_to_enroll": 10,
+      "total": 126
+    }
+  },
+  {
+    "code": "39KF",
+    "title": "Biology",
+    "counts": {
+      "received": 73,
+      "interviewing": 11,
+      "offered": 3,
+      "awaiting_conditions": 20,
+      "ready_to_enroll": 1,
+      "total": 108
+    }
+  },
+  {
+    "code": "245T",
+    "title": "Chemistry",
+    "counts": {
+      "received": 35,
+      "interviewing": 34,
+      "offered": 18,
+      "awaiting_conditions": 6,
+      "ready_to_enroll": 4,
+      "total": 97
+    }
+  },
+  {
+    "code": "27Q9",
+    "title": "Chemistry",
+    "counts": {
+      "received": 65,
+      "interviewing": 4,
+      "offered": 10,
+      "awaiting_conditions": 10,
+      "ready_to_enroll": 4,
+      "total": 93
+    }
+  },
+  {
+    "code": "2PT2",
+    "title": "Chemistry",
+    "counts": {
+      "received": 52,
+      "interviewing": 7,
+      "offered": 14,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 9,
+      "total": 89
+    }
+  },
+  {
+    "code": "2SK6",
+    "title": "Chemistry",
+    "counts": {
+      "received": 50,
+      "interviewing": 29,
+      "offered": 14,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 10,
+      "total": 111
+    }
+  },
+  {
+    "code": "2ZC2",
+    "title": "Chemistry",
+    "counts": {
+      "received": 28,
+      "interviewing": 7,
+      "offered": 6,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 6,
+      "total": 60
+    }
+  },
+  {
+    "code": "2ZHC",
+    "title": "Chemistry",
+    "counts": {
+      "received": 26,
+      "interviewing": 19,
+      "offered": 11,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 2,
+      "total": 61
+    }
+  },
+  {
+    "code": "38D7",
+    "title": "Chemistry",
+    "counts": {
+      "received": 29,
+      "interviewing": 7,
+      "offered": 9,
+      "awaiting_conditions": 2,
+      "ready_to_enroll": 10,
+      "total": 57
+    }
+  },
+  {
+    "code": "39KG",
+    "title": "Chemistry",
+    "counts": {
+      "received": 59,
+      "interviewing": 6,
+      "offered": 11,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 10,
+      "total": 102
+    }
+  },
+  {
+    "code": "2SKS",
+    "title": "Design and Technology",
+    "counts": {
+      "received": 71,
+      "interviewing": 8,
+      "offered": 14,
+      "awaiting_conditions": 12,
+      "ready_to_enroll": 9,
+      "total": 114
+    }
+  },
+  {
+    "code": "2ZHD",
+    "title": "Design and Technology",
+    "counts": {
+      "received": 51,
+      "interviewing": 4,
+      "offered": 4,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 2,
+      "total": 69
+    }
+  },
+  {
+    "code": "34T2",
+    "title": "Design and Technology",
+    "counts": {
+      "received": 36,
+      "interviewing": 28,
+      "offered": 7,
+      "awaiting_conditions": 5,
+      "ready_to_enroll": 5,
+      "total": 81
+    }
+  },
+  {
+    "code": "39K3",
+    "title": "Design and Technology",
+    "counts": {
+      "received": 45,
+      "interviewing": 11,
+      "offered": 20,
+      "awaiting_conditions": 9,
+      "ready_to_enroll": 6,
+      "total": 91
+    }
+  },
+  {
+    "code": "G833",
+    "title": "Design and Technology",
+    "counts": {
+      "received": 32,
+      "interviewing": 31,
+      "offered": 1,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 9,
+      "total": 76
+    }
+  },
+  {
+    "code": "2ZBY",
+    "title": "Design and Technology (Food and Product Design)",
+    "counts": {
+      "received": 30,
+      "interviewing": 13,
+      "offered": 7,
+      "awaiting_conditions": 1,
+      "ready_to_enroll": 6,
+      "total": 57
+    }
+  },
+  {
+    "code": "2SKR",
+    "title": "Drama",
+    "counts": {
+      "received": 73,
+      "interviewing": 1,
+      "offered": 20,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 7,
+      "total": 114
+    }
+  },
+  {
+    "code": "2ZBX",
+    "title": "Drama",
+    "counts": {
+      "received": 34,
+      "interviewing": 25,
+      "offered": 2,
+      "awaiting_conditions": 20,
+      "ready_to_enroll": 4,
+      "total": 85
+    }
+  },
+  {
+    "code": "2ZHF",
+    "title": "Drama",
+    "counts": {
+      "received": 40,
+      "interviewing": 29,
+      "offered": 5,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 6,
+      "total": 96
+    }
+  },
+  {
+    "code": "365M",
+    "title": "Drama",
+    "counts": {
+      "received": 61,
+      "interviewing": 8,
+      "offered": 9,
+      "awaiting_conditions": 5,
+      "ready_to_enroll": 10,
+      "total": 93
+    }
+  },
+  {
+    "code": "39K4",
+    "title": "Drama",
+    "counts": {
+      "received": 41,
+      "interviewing": 31,
+      "offered": 20,
+      "awaiting_conditions": 4,
+      "ready_to_enroll": 2,
+      "total": 98
+    }
+  },
+  {
+    "code": "245X",
+    "title": "English",
+    "counts": {
+      "received": 64,
+      "interviewing": 31,
+      "offered": 16,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 7,
+      "total": 131
+    }
+  },
+  {
+    "code": "27HK",
+    "title": "English",
+    "counts": {
+      "received": 57,
+      "interviewing": 12,
+      "offered": 11,
+      "awaiting_conditions": 10,
+      "ready_to_enroll": 9,
+      "total": 99
+    }
+  },
+  {
+    "code": "2SJW",
+    "title": "English",
+    "counts": {
+      "received": 36,
+      "interviewing": 28,
+      "offered": 14,
+      "awaiting_conditions": 14,
+      "ready_to_enroll": 8,
+      "total": 100
+    }
+  },
+  {
+    "code": "2YK7",
+    "title": "English",
+    "counts": {
+      "received": 51,
+      "interviewing": 22,
+      "offered": 2,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 8,
+      "total": 90
+    }
+  },
+  {
+    "code": "2ZBW",
+    "title": "English",
+    "counts": {
+      "received": 71,
+      "interviewing": 20,
+      "offered": 9,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 9,
+      "total": 122
+    }
+  },
+  {
+    "code": "2ZHG",
+    "title": "English",
+    "counts": {
+      "received": 35,
+      "interviewing": 18,
+      "offered": 15,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 4,
+      "total": 75
+    }
+  },
+  {
+    "code": "365F",
+    "title": "English",
+    "counts": {
+      "received": 55,
+      "interviewing": 35,
+      "offered": 3,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 4,
+      "total": 113
+    }
+  },
+  {
+    "code": "39K5",
+    "title": "English",
+    "counts": {
+      "received": 46,
+      "interviewing": 11,
+      "offered": 7,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 6,
+      "total": 73
+    }
+  },
+  {
+    "code": "2G9D",
+    "title": "Geography",
+    "counts": {
+      "received": 72,
+      "interviewing": 7,
+      "offered": 9,
+      "awaiting_conditions": 9,
+      "ready_to_enroll": 4,
+      "total": 101
+    }
+  },
+  {
+    "code": "2RX7",
+    "title": "Geography",
+    "counts": {
+      "received": 31,
+      "interviewing": 12,
+      "offered": 7,
+      "awaiting_conditions": 15,
+      "ready_to_enroll": 3,
+      "total": 68
+    }
+  },
+  {
+    "code": "2SKL",
+    "title": "Geography",
+    "counts": {
+      "received": 35,
+      "interviewing": 10,
+      "offered": 1,
+      "awaiting_conditions": 6,
+      "ready_to_enroll": 7,
+      "total": 59
+    }
+  },
+  {
+    "code": "2XBS",
+    "title": "Geography",
+    "counts": {
+      "received": 64,
+      "interviewing": 21,
+      "offered": 17,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 5,
+      "total": 114
+    }
+  },
+  {
+    "code": "2ZBV",
+    "title": "Geography",
+    "counts": {
+      "received": 64,
+      "interviewing": 15,
+      "offered": 8,
+      "awaiting_conditions": 20,
+      "ready_to_enroll": 3,
+      "total": 110
+    }
+  },
+  {
+    "code": "2ZHH",
+    "title": "Geography",
+    "counts": {
+      "received": 70,
+      "interviewing": 25,
+      "offered": 1,
+      "awaiting_conditions": 5,
+      "ready_to_enroll": 3,
+      "total": 104
+    }
+  },
+  {
+    "code": "38D8",
+    "title": "Geography",
+    "counts": {
+      "received": 42,
+      "interviewing": 34,
+      "offered": 1,
+      "awaiting_conditions": 15,
+      "ready_to_enroll": 4,
+      "total": 96
+    }
+  },
+  {
+    "code": "39K6",
+    "title": "Geography",
+    "counts": {
+      "received": 55,
+      "interviewing": 3,
+      "offered": 18,
+      "awaiting_conditions": 6,
+      "ready_to_enroll": 4,
+      "total": 86
+    }
+  },
+  {
+    "code": "2G9K",
+    "title": "History",
+    "counts": {
+      "received": 26,
+      "interviewing": 32,
+      "offered": 14,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 6,
+      "total": 94
+    }
+  },
+  {
+    "code": "2SKM",
+    "title": "History",
+    "counts": {
+      "received": 43,
+      "interviewing": 29,
+      "offered": 13,
+      "awaiting_conditions": 11,
+      "ready_to_enroll": 1,
+      "total": 97
+    }
+  },
+  {
+    "code": "2ZBT",
+    "title": "History",
+    "counts": {
+      "received": 33,
+      "interviewing": 4,
+      "offered": 6,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 5,
+      "total": 51
+    }
+  },
+  {
+    "code": "2ZHJ",
+    "title": "History",
+    "counts": {
+      "received": 67,
+      "interviewing": 19,
+      "offered": 17,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 9,
+      "total": 128
+    }
+  },
+  {
+    "code": "365J",
+    "title": "History",
+    "counts": {
+      "received": 44,
+      "interviewing": 17,
+      "offered": 10,
+      "awaiting_conditions": 4,
+      "ready_to_enroll": 9,
+      "total": 84
+    }
+  },
+  {
+    "code": "39K7",
+    "title": "History",
+    "counts": {
+      "received": 39,
+      "interviewing": 25,
+      "offered": 20,
+      "awaiting_conditions": 19,
+      "ready_to_enroll": 9,
+      "total": 112
+    }
+  },
+  {
+    "code": "245W",
+    "title": "Mathematics",
+    "counts": {
+      "received": 27,
+      "interviewing": 18,
+      "offered": 4,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 2,
+      "total": 64
+    }
+  },
+  {
+    "code": "27HL",
+    "title": "Mathematics",
+    "counts": {
+      "received": 40,
+      "interviewing": 35,
+      "offered": 4,
+      "awaiting_conditions": 14,
+      "ready_to_enroll": 7,
+      "total": 100
+    }
+  },
+  {
+    "code": "2PTS",
+    "title": "Mathematics",
+    "counts": {
+      "received": 67,
+      "interviewing": 24,
+      "offered": 17,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 6,
+      "total": 127
+    }
+  },
+  {
+    "code": "2SJY",
+    "title": "Mathematics",
+    "counts": {
+      "received": 46,
+      "interviewing": 12,
+      "offered": 5,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 8,
+      "total": 84
+    }
+  },
+  {
+    "code": "2YK6",
+    "title": "Mathematics",
+    "counts": {
+      "received": 64,
+      "interviewing": 13,
+      "offered": 9,
+      "awaiting_conditions": 1,
+      "ready_to_enroll": 1,
+      "total": 88
+    }
+  },
+  {
+    "code": "2ZBS",
+    "title": "Mathematics",
+    "counts": {
+      "received": 41,
+      "interviewing": 14,
+      "offered": 9,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 6,
+      "total": 77
+    }
+  },
+  {
+    "code": "2ZHK",
+    "title": "Mathematics",
+    "counts": {
+      "received": 69,
+      "interviewing": 29,
+      "offered": 15,
+      "awaiting_conditions": 18,
+      "ready_to_enroll": 7,
+      "total": 138
+    }
+  },
+  {
+    "code": "39K8",
+    "title": "Mathematics",
+    "counts": {
+      "received": 49,
+      "interviewing": 10,
+      "offered": 4,
+      "awaiting_conditions": 20,
+      "ready_to_enroll": 7,
+      "total": 90
+    }
+  },
+  {
+    "code": "2YKC",
+    "title": "Modern Languages",
+    "counts": {
+      "received": 28,
+      "interviewing": 6,
+      "offered": 13,
+      "awaiting_conditions": 17,
+      "ready_to_enroll": 4,
+      "total": 68
+    }
+  },
+  {
+    "code": "2ZHL",
+    "title": "Modern Languages",
+    "counts": {
+      "received": 47,
+      "interviewing": 15,
+      "offered": 5,
+      "awaiting_conditions": 1,
+      "ready_to_enroll": 5,
+      "total": 73
+    }
+  },
+  {
+    "code": "2PTW",
+    "title": "Modern Languages (French and German)",
+    "counts": {
+      "received": 42,
+      "interviewing": 22,
+      "offered": 10,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 8,
+      "total": 90
+    }
+  },
+  {
+    "code": "2ZBR",
+    "title": "Modern Languages (French and Spanish)",
+    "counts": {
+      "received": 57,
+      "interviewing": 7,
+      "offered": 9,
+      "awaiting_conditions": 11,
+      "ready_to_enroll": 2,
+      "total": 86
+    }
+  },
+  {
+    "code": "2SKQ",
+    "title": "Music",
+    "counts": {
+      "received": 27,
+      "interviewing": 14,
+      "offered": 20,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 3,
+      "total": 80
+    }
+  },
+  {
+    "code": "2YKB",
+    "title": "Music",
+    "counts": {
+      "received": 71,
+      "interviewing": 8,
+      "offered": 9,
+      "awaiting_conditions": 6,
+      "ready_to_enroll": 10,
+      "total": 104
+    }
+  },
+  {
+    "code": "2ZBQ",
+    "title": "Music",
+    "counts": {
+      "received": 54,
+      "interviewing": 10,
+      "offered": 8,
+      "awaiting_conditions": 11,
+      "ready_to_enroll": 7,
+      "total": 90
+    }
+  },
+  {
+    "code": "34T3",
+    "title": "Music",
+    "counts": {
+      "received": 36,
+      "interviewing": 1,
+      "offered": 8,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 10,
+      "total": 68
+    }
+  },
+  {
+    "code": "365G",
+    "title": "Music",
+    "counts": {
+      "received": 33,
+      "interviewing": 2,
+      "offered": 15,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 9,
+      "total": 67
+    }
+  },
+  {
+    "code": "39KB",
+    "title": "Music",
+    "counts": {
+      "received": 33,
+      "interviewing": 9,
+      "offered": 10,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 5,
+      "total": 60
+    }
+  },
+  {
+    "code": "26QZ",
+    "title": "Physical Education",
+    "counts": {
+      "received": 40,
+      "interviewing": 21,
+      "offered": 12,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 6,
+      "total": 92
+    }
+  },
+  {
+    "code": "2G9L",
+    "title": "Physical Education",
+    "counts": {
+      "received": 27,
+      "interviewing": 11,
+      "offered": 6,
+      "awaiting_conditions": 2,
+      "ready_to_enroll": 3,
+      "total": 49
+    }
+  },
+  {
+    "code": "2SKP",
+    "title": "Physical Education",
+    "counts": {
+      "received": 47,
+      "interviewing": 21,
+      "offered": 15,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 5,
+      "total": 95
+    }
+  },
+  {
+    "code": "2ZBP",
+    "title": "Physical Education",
+    "counts": {
+      "received": 44,
+      "interviewing": 2,
+      "offered": 11,
+      "awaiting_conditions": 12,
+      "ready_to_enroll": 2,
+      "total": 71
+    }
+  },
+  {
+    "code": "2ZHN",
+    "title": "Physical Education",
+    "counts": {
+      "received": 54,
+      "interviewing": 20,
+      "offered": 5,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 7,
+      "total": 93
+    }
+  },
+  {
+    "code": "365N",
+    "title": "Physical Education",
+    "counts": {
+      "received": 65,
+      "interviewing": 30,
+      "offered": 20,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 2,
+      "total": 120
+    }
+  },
+  {
+    "code": "39KC",
+    "title": "Physical Education",
+    "counts": {
+      "received": 55,
+      "interviewing": 28,
+      "offered": 6,
+      "awaiting_conditions": 17,
+      "ready_to_enroll": 4,
+      "total": 110
+    }
+  },
+  {
+    "code": "245R",
+    "title": "Physics",
+    "counts": {
+      "received": 66,
+      "interviewing": 19,
+      "offered": 15,
+      "awaiting_conditions": 6,
+      "ready_to_enroll": 3,
+      "total": 109
+    }
+  },
+  {
+    "code": "27HM",
+    "title": "Physics",
+    "counts": {
+      "received": 66,
+      "interviewing": 22,
+      "offered": 18,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 4,
+      "total": 113
+    }
+  },
+  {
+    "code": "2PTX",
+    "title": "Physics",
+    "counts": {
+      "received": 44,
+      "interviewing": 15,
+      "offered": 1,
+      "awaiting_conditions": 5,
+      "ready_to_enroll": 2,
+      "total": 67
+    }
+  },
+  {
+    "code": "2SKB",
+    "title": "Physics",
+    "counts": {
+      "received": 40,
+      "interviewing": 19,
+      "offered": 2,
+      "awaiting_conditions": 13,
+      "ready_to_enroll": 8,
+      "total": 82
+    }
+  },
+  {
+    "code": "2YK8",
+    "title": "Physics",
+    "counts": {
+      "received": 30,
+      "interviewing": 6,
+      "offered": 17,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 3,
+      "total": 64
+    }
+  },
+  {
+    "code": "2ZBN",
+    "title": "Physics",
+    "counts": {
+      "received": 26,
+      "interviewing": 13,
+      "offered": 8,
+      "awaiting_conditions": 3,
+      "ready_to_enroll": 9,
+      "total": 59
+    }
+  },
+  {
+    "code": "2ZHM",
+    "title": "Physics",
+    "counts": {
+      "received": 67,
+      "interviewing": 3,
+      "offered": 14,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 7,
+      "total": 99
+    }
+  },
+  {
+    "code": "39KH",
+    "title": "Physics",
+    "counts": {
+      "received": 26,
+      "interviewing": 18,
+      "offered": 16,
+      "awaiting_conditions": 9,
+      "ready_to_enroll": 10,
+      "total": 79
+    }
+  },
+  {
+    "code": "2C9X",
+    "title": "Primary",
+    "counts": {
+      "received": 64,
+      "interviewing": 11,
+      "offered": 3,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 5,
+      "total": 90
+    }
+  },
+  {
+    "code": "2C9Y",
+    "title": "Primary",
+    "counts": {
+      "received": 37,
+      "interviewing": 34,
+      "offered": 9,
+      "awaiting_conditions": 16,
+      "ready_to_enroll": 10,
+      "total": 106
+    }
+  },
+  {
+    "code": "2GKB",
+    "title": "Primary",
+    "counts": {
+      "received": 45,
+      "interviewing": 15,
+      "offered": 1,
+      "awaiting_conditions": 2,
+      "ready_to_enroll": 8,
+      "total": 71
+    }
+  },
+  {
+    "code": "2SJS",
+    "title": "Primary",
+    "counts": {
+      "received": 75,
+      "interviewing": 9,
+      "offered": 13,
+      "awaiting_conditions": 19,
+      "ready_to_enroll": 7,
+      "total": 123
+    }
+  },
+  {
+    "code": "2ZBD",
+    "title": "Primary",
+    "counts": {
+      "received": 63,
+      "interviewing": 4,
+      "offered": 11,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 10,
+      "total": 96
+    }
+  },
+  {
+    "code": "34SX",
+    "title": "Primary",
+    "counts": {
+      "received": 26,
+      "interviewing": 20,
+      "offered": 10,
+      "awaiting_conditions": 8,
+      "ready_to_enroll": 7,
+      "total": 71
+    }
+  },
+  {
+    "code": "36LK",
+    "title": "Primary",
+    "counts": {
+      "received": 37,
+      "interviewing": 29,
+      "offered": 17,
+      "awaiting_conditions": 17,
+      "ready_to_enroll": 3,
+      "total": 103
+    }
+  },
+  {
+    "code": "3FRH",
+    "title": "Primary",
+    "counts": {
+      "received": 26,
+      "interviewing": 9,
+      "offered": 4,
+      "awaiting_conditions": 1,
+      "ready_to_enroll": 8,
+      "total": 48
+    }
+  },
+  {
+    "code": "AT88",
+    "title": "Primary",
+    "counts": {
+      "received": 52,
+      "interviewing": 14,
+      "offered": 11,
+      "awaiting_conditions": 11,
+      "ready_to_enroll": 2,
+      "total": 90
+    }
+  },
+  {
+    "code": "T780",
+    "title": "Primary",
+    "counts": {
+      "received": 27,
+      "interviewing": 13,
+      "offered": 2,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 1,
+      "total": 50
+    }
+  },
+  {
+    "code": "F988",
+    "title": "Primary (3-7)",
+    "counts": {
+      "received": 52,
+      "interviewing": 11,
+      "offered": 12,
+      "awaiting_conditions": 19,
+      "ready_to_enroll": 9,
+      "total": 103
+    }
+  },
+  {
+    "code": "T473",
+    "title": "Primary (3-7)",
+    "counts": {
+      "received": 35,
+      "interviewing": 7,
+      "offered": 6,
+      "awaiting_conditions": 9,
+      "ready_to_enroll": 4,
+      "total": 61
+    }
+  },
+  {
+    "code": "F559",
+    "title": "Primary with mathematics",
+    "counts": {
+      "received": 42,
+      "interviewing": 17,
+      "offered": 10,
+      "awaiting_conditions": 2,
+      "ready_to_enroll": 6,
+      "total": 77
+    }
+  },
+  {
+    "code": "2XBT",
+    "title": "Religious Education",
+    "counts": {
+      "received": 73,
+      "interviewing": 14,
+      "offered": 1,
+      "awaiting_conditions": 10,
+      "ready_to_enroll": 1,
+      "total": 99
+    }
+  },
+  {
+    "code": "2ZB4",
+    "title": "Religious Education",
+    "counts": {
+      "received": 54,
+      "interviewing": 35,
+      "offered": 17,
+      "awaiting_conditions": 15,
+      "ready_to_enroll": 9,
+      "total": 130
+    }
+  },
+  {
+    "code": "39KD",
+    "title": "Religious Education",
+    "counts": {
+      "received": 39,
+      "interviewing": 16,
+      "offered": 19,
+      "awaiting_conditions": 6,
+      "ready_to_enroll": 8,
+      "total": 88
+    }
+  },
+  {
+    "code": "AE91",
+    "title": "Religious Education",
+    "counts": {
+      "received": 27,
+      "interviewing": 27,
+      "offered": 11,
+      "awaiting_conditions": 5,
+      "ready_to_enroll": 10,
+      "total": 80
+    }
+  },
+  {
+    "code": "G365",
+    "title": "Religious education",
+    "counts": {
+      "received": 68,
+      "interviewing": 34,
+      "offered": 13,
+      "awaiting_conditions": 7,
+      "ready_to_enroll": 10,
+      "total": 132
+    }
+  },
+  {
+    "code": "336K",
+    "title": "Social Sciences",
+    "counts": {
+      "received": 46,
+      "interviewing": 20,
+      "offered": 3,
+      "awaiting_conditions": 10,
+      "ready_to_enroll": 4,
+      "total": 83
+    }
+  },
+  {
+    "code": "TOTAL",
+    "title": "All courses",
+    "counts": {
+      "received": 980,
+      "interviewing": 290,
+      "offered": 213,
+      "awaiting_conditions": 177,
+      "ready_to_enroll": 121,
+      "total": 1781
+    }
+  }
+]

@@ -28,30 +28,37 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <table class="govuk-table app-table {{- ' app-table--scrollable' if options }}">
+      <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Course</th>
-              {% for dm2 in dimension2 %}
-                <th scope="col" class="govuk-table__header">{{ dm2 }}</th>
+              {% for stage in stages %}
+                <th scope="col" class="govuk-table__header">{{ stage }}</th>
               {% endfor %}
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% for dm1 in dimension1 %}
+
+          {% for row in stageData %}
 
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{ dm1 | getCourseLabel }}</td>
-
-              {% for dm2 in dimension2 %}
-
+              {% if row.code == "AVERAGE" %}
+                <th scope="row" class="govuk-table__header">
+                  Averages
+                </th>
+              {% else %}
                 <td class="govuk-table__cell">
-                  {{ counts[dm1][dm2] | numeral('0') + "%" }}
+                  {{ row.title }} {{ "(" + row.code + ")" if row.code }}
+                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ partners | random }}</span>
                 </td>
-
+              {% endif %}
+              {% for stage in stages %}
+                <td class="{{ 'govuk-table__header' if row.code == 'AVERAGE' else 'govuk-table__cell'}}">
+                  {% set code = (stage | replace(" ","_") | lower) %}
+                  {{ row['percentages'][code] | numeral('0') + "%" }}
+                </td>
               {% endfor %}
-
             </tr>
 
           {% endfor %}
