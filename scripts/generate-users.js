@@ -14,6 +14,7 @@ const generateFakeUsers = (count) => {
   const users = []
   const mainOrg = organisations.find(org => org.name == "University of Leicester")
   // const mainOrg = organisations.find(org => org.name == "Goldsmiths, University of London")
+  // const mainOrg = organisations.find(org => org.name == "South West Teacher Training")
 
   users.push({
     id: faker.random.uuid(),
@@ -52,6 +53,22 @@ const generateFakeUsers = (count) => {
   //   firstName: "James",
   //   lastName: "Miller",
   //   emailAddress: "j.miller@gold.ac.uk",
+  //   organisation: mainOrg,
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
+
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Cassie",
+  //   lastName: "Leicester",
+  //   emailAddress: "cassie.leicester@westexe.devon.sch.uk",
   //   organisation: mainOrg,
   //   permissions: {
   //     manageOrganisation: true,
