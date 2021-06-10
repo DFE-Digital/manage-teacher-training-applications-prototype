@@ -545,6 +545,32 @@ organisations.push(generateFakeOrganisation({
     isAccreditedBody: true,
     domain: "tes.com"
   }))
+  // Teach Kent and Sussex SCITT
+  organisations.push(generateFakeOrganisation({
+    name: "Teach Kent and Sussex SCITT",
+    isAccreditedBody: true,
+    domain: "bennett.kent.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Bennett Memorial Diocesan School",
+    isAccreditedBody: true,
+    domain: "bennett.kent.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Claremont Primary School",
+    isAccreditedBody: true,
+    domain: "bennett.kent.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Eastbourne Area School Direct Alliance",
+    isAccreditedBody: true,
+    domain: "bennett.kent.sch.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Wealden Partnership",
+    isAccreditedBody: true,
+    domain: "bennett.kent.sch.uk"
+  }))
 
   return organisations
 }

@@ -20,6 +20,7 @@ const generateFakeUsers = (count) => {
   // const mainOrg = organisations.find(org => org.name == "Tes Institute")
   // const mainOrg = organisations.find(org => org.name == "Thomas Estley Community College")
   // const mainOrg = organisations.find(org => org.name == "Riverley Primary School")
+  // const mainOrg = organisations.find(org => org.name == "Teach Kent and Sussex SCITT")
 
   // users.push({
   //   id: faker.random.uuid(),
@@ -165,26 +166,48 @@ const generateFakeUsers = (count) => {
   //   }
   // })
 
-  for(var i = 0; i < 20; i++) {
-    let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
-    let lastName = generatorHelpers.lastName()
-    let organisation = faker.helpers.randomize([mainOrg], faker.helpers.randomize(organisations))
-    users.push({
-      id: faker.random.uuid(),
-      firstName,
-      lastName,
-      emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,
-      organisation,
-      permissions: {
-        manageOrganisation: faker.helpers.randomize([true, false]),
-        manageUsers: faker.helpers.randomize([true, false]),
-        setupInterviews: faker.helpers.randomize([true, false]),
-        makeDecisions: faker.helpers.randomize([true, false]),
-        viewSafeguardingInformation: faker.helpers.randomize([true, false]),
-        viewDiversityInformation: faker.helpers.randomize([true, false])
-      }
-    })
-  }
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Carol",
+  //   lastName: "Hughes",
+  //   emailAddress: "hughesc@bennett.kent.sch.uk",
+  //   organisation: mainOrg,
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
+
+  organisations.forEach(organisation => {
+    for(var i = 0; i < 5; i++) {
+      let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
+      let lastName = generatorHelpers.lastName()
+      users.push({
+        id: faker.random.uuid(),
+        firstName,
+        lastName,
+        emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,
+        organisation,
+        permissions: {
+          manageOrganisation: faker.helpers.randomize([true, false]),
+          manageUsers: faker.helpers.randomize([true, false]),
+          setupInterviews: faker.helpers.randomize([true, false]),
+          makeDecisions: faker.helpers.randomize([true, false]),
+          viewSafeguardingInformation: faker.helpers.randomize([true, false]),
+          viewDiversityInformation: faker.helpers.randomize([true, false])
+        }
+      })
+    }
+  })
+
+
+
+
+
 
   return users
 }
