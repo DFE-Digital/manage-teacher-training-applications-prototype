@@ -441,6 +441,32 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "essexteachertraining.co.uk"
   }))
+  // Endeavour TSA partners
+organisations.push(generateFakeOrganisation({
+    name: "University College London",
+    isAccreditedBody: true,
+    domain: "essexteachertraining.co.uk"
+  }))
+organisations.push(generateFakeOrganisation({
+    name: "University of Birmingham",
+    isAccreditedBody: true,
+    domain: "essexteachertraining.co.uk"
+  }))
+organisations.push(generateFakeOrganisation({
+    name: "University of Derby",
+    isAccreditedBody: true,
+    domain: "essexteachertraining.co.uk"
+  }))
+organisations.push(generateFakeOrganisation({
+    name: "University of East Anglia",
+    isAccreditedBody: true,
+    domain: "essexteachertraining.co.uk"
+  }))
+organisations.push(generateFakeOrganisation({
+    name: "University of Greenwich",
+    isAccreditedBody: true,
+    domain: "essexteachertraining.co.uk"
+  }))
 
   return organisations
 }
