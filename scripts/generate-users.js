@@ -15,6 +15,7 @@ const generateFakeUsers = (count) => {
   const mainOrg = organisations.find(org => org.name == "University of Leicester")
   // const mainOrg = organisations.find(org => org.name == "Goldsmiths, University of London")
   // const mainOrg = organisations.find(org => org.name == "South West Teacher Training")
+  // const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
 
   users.push({
     id: faker.random.uuid(),
@@ -32,21 +33,21 @@ const generateFakeUsers = (count) => {
     }
   })
 
-  users.push({
-    id: faker.random.uuid(),
-    firstName: "Louise",
-    lastName: "Whaley",
-    emailAddress: "louise.whaley@le.ac.uk",
-    organisation: organisations.find(org => org.name == "Ashlawn Teaching School"),
-    permissions: {
-      manageOrganisation: true,
-      manageUsers: true,
-      setupInterviews: true,
-      makeDecisions: true,
-      viewSafeguardingInformation: true,
-      viewDiversityInformation: true
-    }
-  })
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Louise",
+  //   lastName: "Whaley",
+  //   emailAddress: "louise.whaley@le.ac.uk",
+  //   organisation: organisations.find(org => org.name == "Ashlawn Teaching School"),
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
 
   // users.push({
   //   id: faker.random.uuid(),
@@ -69,6 +70,22 @@ const generateFakeUsers = (count) => {
   //   firstName: "Cassie",
   //   lastName: "Leicester",
   //   emailAddress: "cassie.leicester@westexe.devon.sch.uk",
+  //   organisation: mainOrg,
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
+
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Alex",
+  //   lastName: "Rolle",
+  //   emailAddress: "alex.rolle@essexteachertraining.co.uk",
   //   organisation: mainOrg,
   //   permissions: {
   //     manageOrganisation: true,

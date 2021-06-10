@@ -380,6 +380,67 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "exeterconsortium.com"
   }))
+  // Essex Teacher Training and partners
+  organisations.push(generateFakeOrganisation({
+    name: "Essex Teacher Training",
+    isAccreditedBody: true,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Academies Enterprise Trust: Eastern",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Eastwood Park Academy Trust",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Endeavour TSA",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Harlow Teacher Training Partnership",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Merrylands Teacher Training Partnership",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "ORTU Trust (Gable Hall)",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Paradigm Trust: Old Ford Primary Academy and Ipswich Academy",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Romford Teacher Training Partnership (formerly Parklands Infants)",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "St Thomas More’s Catholic Primary School, Colchester",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Woodside Academy",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Zengage Teacher Training Essex",
+    isAccreditedBody: false,
+    domain: "essexteachertraining.co.uk"
+  }))
 
   return organisations
 }
