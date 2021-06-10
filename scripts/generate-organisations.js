@@ -518,6 +518,17 @@ organisations.push(generateFakeOrganisation({
     isAccreditedBody: false,
     domain: "tes.com"
   }))
+  // Riverly Primary School
+  organisations.push(generateFakeOrganisation({
+    name: "Riverly Primary School",
+    isAccreditedBody: false,
+    domain: "griffinschoolstrust.org."
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of East London",
+    isAccreditedBody: true,
+    domain: "tes.com"
+  }))
 
   return organisations
 }
