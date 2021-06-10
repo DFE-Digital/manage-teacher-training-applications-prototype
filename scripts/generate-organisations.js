@@ -518,6 +518,22 @@ organisations.push(generateFakeOrganisation({
     isAccreditedBody: false,
     domain: "tes.com"
   }))
+  // Thomas Estley Community College and partners
+  organisations.push(generateFakeOrganisation({
+    name: "Thomas Estley Community College",
+    isAccreditedBody: false,
+    domain: "thomasestley.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Leicestershire Secondary SCITT",
+    isAccreditedBody: true,
+    domain: "thomasestley.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The University of Warwick",
+    isAccreditedBody: true,
+    domain: "thomasestley.org.uk"
+  }))
   // Riverly Primary School
   organisations.push(generateFakeOrganisation({
     name: "Riverly Primary School",

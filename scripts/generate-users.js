@@ -18,6 +18,7 @@ const generateFakeUsers = (count) => {
   // const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
   // const mainOrg = organisations.find(org => org.name == "Endeavour TSA")
   // const mainOrg = organisations.find(org => org.name == "Tes Institute")
+  // const mainOrg = organisations.find(org => org.name == "Thomas Estley Community College")
   // const mainOrg = organisations.find(org => org.name == "Riverley Primary School")
 
   // users.push({
@@ -121,6 +122,22 @@ const generateFakeUsers = (count) => {
   //   firstName: "Jane",
   //   lastName: "Coleman",
   //   emailAddress: "jane.coleman@tes.com",
+  //   organisation: mainOrg,
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
+
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Jo",
+  //   lastName: "Robotham",
+  //   emailAddress: "tela@thomasestley.org.uk",
   //   organisation: mainOrg,
   //   permissions: {
   //     manageOrganisation: true,
