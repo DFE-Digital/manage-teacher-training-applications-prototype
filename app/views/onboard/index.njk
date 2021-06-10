@@ -11,25 +11,11 @@
       {% else %}
         <p>Candidates can now apply through GOV.​UK for courses you work on with partner organisations.</p>
 
-        {# <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p> #}
+        <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
       {% endif %}
 
       {% for key, value in relationships %}
-        {% if (relationships | length) == "1" %}
-          {# <p>You need to set up permissions for courses you work on with:</p> #}
-        {% else %}
-          {# <h2 class="govuk-heading-m">
-            {{value[0].org1.name}}
-          </h2> #}
-
-          {% set runOrRatified %}
-            {% if value[0].org1.isAccreditedBody %}
-              run
-            {% else %}
-              ratified
-            {% endif %}
-          {% endset %}
-
+        {% if (relationships | length) != "1" %}
           <p>For {{value[0].org1.name}}, you need to set up permissions for courses you work on with:</p>
         {% endif %}
 
@@ -42,21 +28,14 @@
         </ul>
       {% endfor %}
 
-       {# {% if (relationships | length) == "1" %} #}
-       {# {% set insetHtml %} #}
-        <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
-      {# {% endset %} #}
-      {# {% endif %} #}
-
-      {# {{ govukInsetText({
-        html: insetHtml
-      }) }} #}
-
+       {% if (relationships | length) == "1" %}
+        <p>You cannot manage applications to these courses until you set up organisational permissions.</p>
+      {% endif %}
       <form novalidate action="/onboard/1">
         {{govukButton({
           text: "Set up organisational permissions"
         })}}
-        <p><a href="/onboard/skip">Skip (you can set up permissions later)</a></p>
+        {# <p><a href="/onboard/skip">Skip (you can set up permissions later)</a></p> #}
       </form>
     </div>
   </div>
