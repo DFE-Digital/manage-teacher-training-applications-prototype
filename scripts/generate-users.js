@@ -16,22 +16,23 @@ const generateFakeUsers = (count) => {
   // const mainOrg = organisations.find(org => org.name == "Goldsmiths, University of London")
   // const mainOrg = organisations.find(org => org.name == "South West Teacher Training")
   // const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
+  // const mainOrg = organisations.find(org => org.name == "Endeavour TSA")
 
-  users.push({
-    id: faker.random.uuid(),
-    firstName: "Louise",
-    lastName: "Whaley",
-    emailAddress: "louise.whaley@le.ac.uk",
-    organisation: mainOrg,
-    permissions: {
-      manageOrganisation: true,
-      manageUsers: true,
-      setupInterviews: true,
-      makeDecisions: true,
-      viewSafeguardingInformation: true,
-      viewDiversityInformation: true
-    }
-  })
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Louise",
+  //   lastName: "Whaley",
+  //   emailAddress: "louise.whaley@le.ac.uk",
+  //   organisation: mainOrg,
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
 
   // users.push({
   //   id: faker.random.uuid(),
@@ -86,6 +87,22 @@ const generateFakeUsers = (count) => {
   //   firstName: "Alex",
   //   lastName: "Rolle",
   //   emailAddress: "alex.rolle@essexteachertraining.co.uk",
+  //   organisation: mainOrg,
+  //   permissions: {
+  //     manageOrganisation: true,
+  //     manageUsers: true,
+  //     setupInterviews: true,
+  //     makeDecisions: true,
+  //     viewSafeguardingInformation: true,
+  //     viewDiversityInformation: true
+  //   }
+  // })
+
+  // users.push({
+  //   id: faker.random.uuid(),
+  //   firstName: "Andrea",
+  //   lastName: "Wright",
+  //   emailAddress: "andrea.wright@tidemillacademy.org",
   //   organisation: mainOrg,
   //   permissions: {
   //     manageOrganisation: true,
