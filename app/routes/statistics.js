@@ -319,7 +319,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/statistics/conversion', (req, res) => {
+  router.get('/statistics/progress', (req, res) => {
     const userOrganisations = req.session.data.user.organisations.map((organisation) => {
       return organisation.name
     })
@@ -338,11 +338,41 @@ module.exports = router => {
 
     const stageData = StatisticsHelper.progressData
 
-    res.render('statistics/conversion', {
-      report: 'conversion',
+    res.render('statistics/progress', {
+      report: 'progress',
       pageName: 'Progress of applications (2020 to 2021)',
       stages,
       stageData,
+      partners
+    })
+  })
+
+  router.get('/statistics/conversion', (req, res) => {
+    const userOrganisations = req.session.data.user.organisations.map((organisation) => {
+      return organisation.name
+    })
+
+    const partners = req.session.data.relationships.map((relationship) => {
+        return relationship.org2.name
+    })
+
+    const stages = [
+      { title: 'Shortlist for interview rate', description: '% of applications received offered an interview' },
+      { title: 'Interview success rate', description: '% interviewed that are made an offer'},
+      { title: 'Offer rate', description: '% applications received that are made an offer'},
+      { title: 'Acceptance rate', description: '% offers made that are accepted'},
+      { title: 'Conditions met rate', description: '% accepted offers that go on to meet their conditions'},
+      { title: 'Offer conversion rate', description: '% offers made lead to successful enrollment'},
+      { title: 'Overall conversion', description: '% received applications that  lead to successful enrollment'}
+    ]
+
+    const conversionData = StatisticsHelper.conversionData
+
+    res.render('statistics/conversion', {
+      report: 'conversion',
+      pageName: 'Progress of applications (2020 to 2021) - Alternative',
+      stages,
+      conversionData,
       partners
     })
   })

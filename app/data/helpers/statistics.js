@@ -21,3 +21,12 @@ const getProgressData = () => {
 }
 
 exports.progressData = getProgressData()
+
+const getConversionData = () => {
+  const filePath = dataDirectoryPath + '/conversion.json'
+  const rawData = fs.readFileSync(filePath)
+  const data = JSON.parse(rawData)
+  return data
+}
+
+exports.conversionData = getConversionData()
