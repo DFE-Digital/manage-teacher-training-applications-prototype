@@ -9,12 +9,13 @@ const relationships = require('./relationships-leicester.js')
 // const relationships = require('./relationships-goldsmiths.js')
 // const relationships = require('./relationships-south-west-teacher-training.js')
 // const relationships = require('./relationships-endeavour-tsa.js')
-// const relationships = require('./relationships-.js')
+// const relationships = require('./relationships-tes-institute.js')
 const userOrg = OrgHelper.findOrg("University of Leicester")
 // const userOrg = OrgHelper.findOrg("Goldsmiths, University of London")
 // const userOrg = OrgHelper.findOrg("South West Teacher Training")
 // const userOrg = OrgHelper.findOrg("Essex Teacher Training")
 // const userOrg = OrgHelper.findOrg("Endeavour TSA")
+// const userOrg = OrgHelper.findOrg("Tes Institute")
 
 const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody

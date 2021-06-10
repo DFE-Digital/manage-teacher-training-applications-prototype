@@ -467,6 +467,57 @@ organisations.push(generateFakeOrganisation({
     isAccreditedBody: true,
     domain: "essexteachertraining.co.uk"
   }))
+  // Tes Institute
+  organisations.push(generateFakeOrganisation({
+    name: "Tes Institute",
+    isAccreditedBody: true,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Plume Community Teaching Partnership",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Teach in Kent",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Havering Train2Teach",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "London East Teacher Training Alliance",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Benfleet Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "TTSA (St. Clere’s)",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Essex School Direct",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Haberdashers’ Aske’s Federation",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Teach London South East",
+    isAccreditedBody: false,
+    domain: "tes.com"
+  }))
 
   return organisations
 }
