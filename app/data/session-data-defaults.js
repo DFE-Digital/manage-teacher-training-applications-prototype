@@ -12,6 +12,7 @@ const relationships = require('./relationships-leicester.js')
 // const relationships = require('./relationships-tes-institute.js')
 // const relationships = require('./relationships-thomas-estley-community-college.js')
 // const relationships = require('./relationships-riverly-primary-school.js')
+// const relationships = require('./relationships-teach-kent-and-sussex-scitt.js')
 const userOrg = OrgHelper.findOrg("University of Leicester")
 // const userOrg = OrgHelper.findOrg("Goldsmiths, University of London")
 // const userOrg = OrgHelper.findOrg("South West Teacher Training")
@@ -20,6 +21,7 @@ const userOrg = OrgHelper.findOrg("University of Leicester")
 // const userOrg = OrgHelper.findOrg("Tes Institute")
 // const userOrg = OrgHelper.findOrg("Thomas Estley Community College")
 // const userOrg = OrgHelper.findOrg("Riverley Primary School")
+// const userOrg = OrgHelper.findOrg("Teach Kent and Sussex SCITT")
 
 const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
