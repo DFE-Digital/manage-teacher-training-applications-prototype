@@ -31,6 +31,22 @@ const generateFakeUsers = (count) => {
     }
   })
 
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Louise",
+    lastName: "Whaley",
+    emailAddress: "louise.whaley@le.ac.uk",
+    organisation: organisations.find(org => org.name == "Ashlawn Teaching School"),
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
+
   // users.push({
   //   id: faker.random.uuid(),
   //   firstName: "James",

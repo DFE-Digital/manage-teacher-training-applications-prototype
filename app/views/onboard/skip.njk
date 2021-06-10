@@ -1,0 +1,42 @@
+{% extends "_layout.njk" %}
+
+{% set title = "Organisational permissions set up skipped" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      <p>You can set up organisational permissions in <a href="/organisation-settings">organisation settings</a>.</p>
+      <p>You’ll also be asked again to set them up the next time you sign in.</p>
+
+      <h2 class="govuk-heading-m">
+        Next steps
+      </h2>
+
+      <p class="govuk-body">
+        You can now:
+      <p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="/">view applications</a>
+        </li>
+        {% if canManageUsers %}
+          <li>
+            {% if data.user.organisations.length > 1 %}
+              <a href="/organisation-settings">invite or manage users</a>
+            {% else %}
+              <a href="/organisation-settings/{{data.user.organisation.id}}/users">invite or manage users</a>
+            {% endif %}
+          </li>
+        {% endif %}
+        <li>
+          <a href="/account/notifications">manage your email notifications</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+{% endblock %}

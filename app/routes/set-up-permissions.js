@@ -54,6 +54,10 @@ module.exports = router => {
     })
   })
 
+  router.get('/onboard/skip', (req, res) => {
+    res.render('onboard/skip')
+  })
+
   router.get('/onboard/check', (req, res) => {
     let userOrgs = req.session.data.user.organisations
     let orgRelationships = req.session.data.relationships

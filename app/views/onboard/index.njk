@@ -6,30 +6,17 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if (relationships | length) == "1" %}
+        <p>Candidates can now apply through GOV.​UK for courses you work on with:</p>
+      {% else %}
+        <p>Candidates can now apply through GOV.​UK for courses you work on with partner organisations.</p>
 
-      {{relationships | log}}
-
-      {% if (relationships | length) != "1" %}
-        <p>You need to set up permissions for each partner you work with.</p>
+        <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
       {% endif %}
 
       {% for key, value in relationships %}
-        {% if (relationships | length) == "1" %}
-          <p>You need to set up permissions for each partner you work with:</p>
-        {% else %}
-          <h2 class="govuk-heading-m">
-            {{value[0].org1.name}}
-          </h2>
-
-          {% set runOrRatified %}
-            {% if value[0].org1.isAccreditedBody %}
-              run
-            {% else %}
-              ratified
-            {% endif %}
-          {% endset %}
-
-          <p>You need to set up permissions for courses {{runOrRatified}} by:</p>
+        {% if (relationships | length) != "1" %}
+          <p>For {{value[0].org1.name}}, you need to set up permissions for courses you work on with:</p>
         {% endif %}
 
         <ul class="govuk-list govuk-list--bullet">
@@ -41,10 +28,14 @@
         </ul>
       {% endfor %}
 
+       {% if (relationships | length) == "1" %}
+        <p>You cannot manage applications to these courses until you set up organisational permissions.</p>
+      {% endif %}
       <form novalidate action="/onboard/1">
         {{govukButton({
-          text: "Continue"
+          text: "Set up organisational permissions"
         })}}
+        {# <p><a href="/onboard/skip">Skip (you can set up permissions later)</a></p> #}
       </form>
     </div>
   </div>
