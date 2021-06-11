@@ -1,0 +1,39 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "data" %}
+{% set pageName = "Statistics and data" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    <h2 class="govuk-heading-m">Performance reports</h2>
+
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="/data/status">Status of applications (2020 to 2021)</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="/data/progress">Progress of applications (2020 to 2021)</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="/data/conversion">Progress of applications (2020 to 2021) - Alternative</a>
+      </li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Export data</h2>
+
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="/data/export">Export data</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

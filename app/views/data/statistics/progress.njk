@@ -1,14 +1,13 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "statistics" %}
-{% set sectionName = "Applications" %}
-{% set pageName = pageName if pageName else "Courses" %}
+{% set primaryNavId = "data" %}
+{% set pageName = "Progress of applications (2020 to 2021)" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/statistics",
-    text: "Statistics"
+    href: "/data",
+    text: "Statistics and data"
   }, {
     text: pageName
   }]
@@ -27,6 +26,10 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="#">Download data</a>
+      </p>
 
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
