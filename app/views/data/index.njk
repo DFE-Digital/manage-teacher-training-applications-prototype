@@ -11,19 +11,55 @@
       {{ pageName }}
     </h1>
 
-    <h2 class="govuk-heading-m">Performance reports</h2>
+    {% if userOrganisations.length > 1 %}
 
-    <ul class="govuk-list">
-      <li>
-        <a class="govuk-link" href="/data/status">Status of applications (2020 to 2021)</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="/data/progress">Progress of applications (2020 to 2021)</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="/data/conversion">Progress of applications (2020 to 2021) - Alternative</a>
-      </li>
-    </ul>
+      <h2 class="govuk-heading-m">Status of applications</h2>
+
+      <ul class="govuk-list">
+        {% for organisation in userOrganisations %}
+          <li>
+            <a class="govuk-link" href="/data/status?organisation={{ organisation }}">{{ organisation }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <h2 class="govuk-heading-m">Progress of applications</h2>
+
+      <ul class="govuk-list">
+        {% for organisation in userOrganisations %}
+          <li>
+            <a class="govuk-link" href="/data/progress?organisation={{ organisation }}">{{ organisation }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <!-- <h2 class="govuk-heading-m">Progress of applications - Alternative</h2>
+
+      <ul class="govuk-list">
+        {% for organisation in userOrganisations %}
+          <li>
+            <a class="govuk-link" href="/data/conversion?organisation={{ organisation }}">{{ organisation }}</a>
+          </li>
+        {% endfor %}
+      </ul> -->
+
+    {% else %}
+
+      <h2 class="govuk-heading-m">Performance reports</h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="/data/status">Status of applications (2020 to 2021)</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/data/progress">Progress of applications (2020 to 2021)</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/data/conversion">Progress of applications (2020 to 2021) - Alternative</a>
+        </li>
+      </ul>
+
+    {% endif %}
 
     <h2 class="govuk-heading-m">Export data</h2>
 

@@ -27,9 +27,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <p class="govuk-body">
-        <a class="govuk-link" href="#">Download data</a>
-      </p>
+      <!-- <p class="govuk-body">
+        <a class="govuk-link" href="#">Export data</a>
+      </p> -->
+
+      {{ govukButton({
+        text: "Export data"
+      }) }}
 
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>

@@ -3,15 +3,23 @@ const StatisticsHelper = require('../data/helpers/statistics')
 module.exports = router => {
 
   router.get('/data', (req, res) => {
+    const userOrganisations = req.session.data.user.organisations.map((organisation) => {
+      return organisation.name
+    })
+
+    // const userOrganisations = [
+    //   'University of Bedfordshire',
+    //   'University of Hertfordshire'
+    // ]
 
     res.render('data/index', {
-
+      userOrganisations
     })
   })
 
   router.get('/data/status', (req, res) => {
     const partners = req.session.data.relationships.map((relationship) => {
-        return relationship.org2.name
+      return relationship.org2.name
     })
 
     const statuses = [
@@ -25,6 +33,7 @@ module.exports = router => {
     const statusData = StatisticsHelper.statusData
 
     res.render('data/statistics/status', {
+      organisation: req.query.organisation,
       statuses,
       statusData,
       partners
@@ -47,6 +56,7 @@ module.exports = router => {
     const stageData = StatisticsHelper.progressData
 
     res.render('data/statistics/progress', {
+      organisation: req.query.organisation,
       stages,
       stageData,
       partners
@@ -59,7 +69,7 @@ module.exports = router => {
     })
 
     const partners = req.session.data.relationships.map((relationship) => {
-        return relationship.org2.name
+      return relationship.org2.name
     })
 
     const stages = [
@@ -75,6 +85,7 @@ module.exports = router => {
     const conversionData = StatisticsHelper.conversionData
 
     res.render('data/statistics/conversion', {
+      organisation: req.query.organisation,
       stages,
       conversionData,
       partners
