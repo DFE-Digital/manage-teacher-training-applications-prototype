@@ -13,39 +13,39 @@
 
     {% if userOrganisations.length > 1 %}
 
-      <h2 class="govuk-heading-m">Status of applications</h2>
+      <h2 class="govuk-heading-m">Status of applications (2020 to 2021)</h2>
 
       <ul class="govuk-list">
         {% for organisation in userOrganisations %}
           <li>
-            <a class="govuk-link" href="/data/status?organisation={{ organisation }}">{{ organisation }}</a>
+            <a class="govuk-link" href="/data/{{ organisation.id }}/status">{{ organisation.name }}</a>
           </li>
         {% endfor %}
       </ul>
 
-      <h2 class="govuk-heading-m">Progress of applications</h2>
+      <h2 class="govuk-heading-m">Progress of applications (2020 to 2021)</h2>
 
       <ul class="govuk-list">
         {% for organisation in userOrganisations %}
           <li>
-            <a class="govuk-link" href="/data/progress?organisation={{ organisation }}">{{ organisation }}</a>
+            <a class="govuk-link" href="/data/{{ organisation.id }}/progress">{{ organisation.name }}</a>
           </li>
         {% endfor %}
       </ul>
 
-      <!-- <h2 class="govuk-heading-m">Progress of applications - Alternative</h2>
+      <h2 class="govuk-heading-m">Progress of applications (2020 to 2021) - Alternative</h2>
 
       <ul class="govuk-list">
         {% for organisation in userOrganisations %}
           <li>
-            <a class="govuk-link" href="/data/conversion?organisation={{ organisation }}">{{ organisation }}</a>
+            <a class="govuk-link" href="/data/{{ organisation.id }}/conversion">{{ organisation.name }}</a>
           </li>
         {% endfor %}
-      </ul> -->
+      </ul>
 
     {% else %}
 
-      <h2 class="govuk-heading-m">Performance reports</h2>
+      <h2 class="govuk-heading-m">Reports</h2>
 
       <ul class="govuk-list">
         <li>
@@ -65,7 +65,10 @@
 
     <ul class="govuk-list">
       <li>
-        <a class="govuk-link" href="/data/export">Export data</a>
+        <a class="govuk-link" href="/data/hesa">Export data for Higher Education Statistics Agency (HESA)</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="/data/export">Export application data</a>
       </li>
     </ul>
 
