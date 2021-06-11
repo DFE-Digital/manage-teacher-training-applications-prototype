@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "statistics" %}
 {% set sectionName = "Applications" %}
-{% set pageName = "Courses" %}
+{% set pageName = pageName if pageName else "Courses" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -17,11 +17,27 @@
 
 {% block content %}
 
-{% include "_includes/statistics/header.njk" %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      <!-- <span class="govuk-caption-l">{{ sectionName }}</span> -->
+      {{ pageName }}
+    </h1>
 
-<p class="govuk-body">
-  <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
-</p>
+    <!-- <p class="govuk-body">
+      <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
+    </p> -->
+
+    <p class="govuk-body">
+      {% if showPercentage and showPercentage == "yes" %}
+        <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=no">Hide as percentages of the number of applications received</a>
+      {% else %}
+        <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=yes">Show as percentages of the number of applications received</a>
+      {% endif %}
+    </p>
+
+  </div>
+</div>
 
 {% if data.statisticsOptions %}
 

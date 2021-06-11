@@ -1,53 +1,5 @@
-// .app-table {
-//   display: block;
-//   // margin: 0 auto;
-//   // max-width: fit-content;
-//   // overflow-x: auto;
-//   overflow: scroll;
-//   // white-space: nowrap;
-// }
-
-.app-table--scrollable {
-  display: block;
-  overflow: scroll;
-}
-
-.app-table {
-  @include govuk-font(16);
-
-  .govuk-table__head {
-
-    .govuk-table__header {
-      position: sticky;
-      top: 0;
-      background: govuk-colour('white');
-      z-index: 2;
-    }
-
-    .govuk-table__header:first-child {
-      position: sticky;
-      left: 0;
-      z-index: 3;
-    }
-  }
-
-  .govuk-table__body {
-
-    .govuk-table__header,
-    .govuk-table__cell:first-child {
-      min-width: 250px;
-      position: sticky;
-      left: 0;
-      background: govuk-colour('white');
-      z-index: 2;
-    }
-
-  }
-
-}
-
-.app-table__cell--indent {
-  padding-left: govuk-spacing(3);
+.app-table__cell--no-border-bottom {
+  border-bottom: 0 !important;
 }
 
 .app-table-sortable-status {

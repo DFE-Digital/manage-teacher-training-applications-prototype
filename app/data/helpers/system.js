@@ -47,7 +47,7 @@ exports.cycles = [
 
 exports.statuses = [
   'Received',
-  'Awaiting decision',
+  'Interviewing',
   'Offered',
   'Awaiting conditions',
   'Ready to enroll',
@@ -66,7 +66,8 @@ exports.studyModes = [
 
 exports.subjectLevels = [
   'Primary',
-  'Secondary'
+  'Secondary',
+  'Further education'
 ]
 
 exports.fundingTypes = [
