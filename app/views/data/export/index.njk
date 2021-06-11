@@ -1,0 +1,183 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "data" %}
+{% set pageName = "Export application data" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/data",
+    text: "Statistics and data"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        {{ pageName }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">Choose which data to export or <a class="govuk-link" href="/data/hesa">export only the data needed by the Higher Education Statistics Agency (HESA)</a>.</p>
+
+      <form action="#" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukCheckboxes({
+          idPrefix: 'export_cycle',
+          name: 'export_cycle',
+          fieldset: {
+            legend: {
+              text: 'Years',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              value: "2020 to 2021",
+              text: "2020 to 2021" | cycleText,
+              checked: checked(data['export_cycle'], "2020 to 2021")
+            },
+            {
+              value: "2019 to 2020",
+              text: "2019 to 2020" | cycleText,
+              checked: checked(data['export_cycle'], "2019 to 2020")
+            }
+          ]
+        }) }}
+
+        {% set statusHtml %}
+          {{ govukCheckboxes({
+            idPrefix: 'export_status',
+            name: 'export_status',
+            fieldset: {
+              legend: {
+                text: 'Statuses',
+                classes: 'govuk-fieldset__legend--s'
+              }
+            },
+            items: [
+              {
+                value: 'Received',
+                text: 'Received',
+                checked: checked(data['export_status'], "Received") == 'checked'
+              },
+              {
+                value: 'Interviewing',
+                text: 'Interviewing',
+                checked: checked(data['export_status'], "Interviewing") == 'checked'
+              },
+              {
+                value: 'Offered',
+                text: 'Offered',
+                checked: checked(data['export_status'], "Offered") == 'checked'
+              },
+              {
+                value: 'Awaiting conditions',
+                text: 'Awaiting conditions',
+                checked: checked(data['export_status'], "Awaiting conditions") == 'checked'
+              },
+              {
+                value: 'Ready to enroll',
+                text: 'Ready to enroll',
+                checked: checked(data['export_status'], "Ready to enroll") == 'checked'
+              },
+              {
+                value: 'Conditions not met',
+                text: 'Conditions not met',
+                checked: checked(data['export_status'], "Conditions not met") == 'checked'
+              },
+              {
+                value: 'Deferred',
+                text: 'Deferred',
+                checked: checked(data['export_status'], "Deferred") == 'checked'
+              },
+              {
+                value: 'Declined',
+                text: 'Declined',
+                checked: checked(data['export_status'], "Declined") == 'checked'
+              },
+              {
+                value: 'Rejected',
+                text: 'Rejected',
+                checked: checked(data['export_status'], "Rejected") == 'checked'
+              },
+              {
+                value: 'Application withdrawn',
+                text: 'Application withdrawn',
+                checked: checked(data['export_status'], "Application withdrawn") == 'checked'
+              },
+              {
+                value: 'Offer withdrawn',
+                text: 'Offer withdrawn',
+                checked: checked(data['export_status'], "Offer withdrawn") == 'checked'
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          idPrefix: "status",
+          name: "status",
+          fieldset: {
+            legend: {
+              text: "Statuses",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "All statuses",
+              text: "All statuses"
+            },
+            {
+              value: "Specific statuses",
+              text: "Specific statuses",
+              conditional: {
+                html: statusHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          idPrefix: "export_orgs",
+          name: "export_orgs",
+          fieldset: {
+            legend: {
+              text: "Organisations",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: data.organisations[0].name,
+              text: data.organisations[0].name
+            },
+            {
+              value: data.organisations[1].name,
+              text: data.organisations[1].name
+            }
+          ]
+        }) }}
+
+        {{ govukInsetText({
+          text: "Sex, disability and ethnicity information will be marked as confidential if you do not have permission to view it, or if the candidate has not accepted your offer."
+        }) }}
+
+        {{ govukButton({
+          text: "Export data"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
