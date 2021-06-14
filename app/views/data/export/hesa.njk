@@ -1,13 +1,13 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'export' %}
+{% set primaryNavId = "data" %}
 {% set pageName = "Export data for Higher Education Statistics Agency (HESA)" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/data",
-    text: "Statistics and data"
+    href: "/reports-and-export-data",
+    text: "Reports and export data"
   }, {
     text: pageName
   }]
