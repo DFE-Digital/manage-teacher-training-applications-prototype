@@ -350,5 +350,78 @@ filters.falsify = (input) => {
     return label
   }
 
+  /* ------------------------------------------------------------------
+  utility function to get the course label
+  this is just a trick to make courses look more like courses than subjects
+  example: {{ "Art and design" | getCourseLabel }}
+  outputs: "Art and design (3CGJ)"
+  ------------------------------------------------------------------ */
+  filters.getCourseLabel = (course) => {
+    let label = course
+    switch (course) {
+      case 'Art and design':
+        label = 'Art and Design (3CGJ)'
+        break
+      case 'Biology':
+        label = 'Biology (32XS)'
+        break
+      case 'Chemistry':
+        label = 'Chemistry (32XT)'
+        break
+      case 'Computer science':
+        label = 'Computer science with IT (3CZH)'
+        break
+      case 'Design and technology':
+        label = 'Design and Technology (33RM)'
+        break
+      case 'Drama':
+        label = 'Drama (3CGK)'
+        break
+      case 'English':
+        label = 'English (338J)'
+        break
+      case 'Primary':
+        label = 'General Primary (3FN2)'
+        break
+      case 'Geography':
+        label = 'Geography (3CGF)'
+        break
+      case 'History':
+        label = 'History (3CJM)'
+        break
+      case 'Social sciences':
+        label = 'Humanities and Social Sciences (PCET) (2V83)'
+        break
+      case 'Mathematics':
+        label = 'Mathematics (3CGN)'
+        break
+      case 'Music':
+        label = 'Music (3CGM)'
+        break
+      case 'Physical education':
+        label = 'Physical education (3CJN)'
+        break
+      case 'Physics':
+        label = 'Physics (32XR)'
+        break
+      case 'Primary with English':
+        label = 'Primary with English (X110)'
+        break
+      case 'Primary with science':
+        label = 'Primary with science (338B)'
+        break
+      case 'Primary with physical education':
+        label = 'Primary with physical education (338C)'
+        break
+      case 'Primary with mathematics':
+        label = 'Primary with Mathematics (3387)'
+        break
+      case 'Religious education':
+        label = 'Religious education (3CGG)'
+        break
+    }
+    return label
+  }
+
   return filters
 }

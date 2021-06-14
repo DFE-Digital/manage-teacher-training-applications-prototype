@@ -24,17 +24,17 @@
       {{ pageName }}
     </h1>
 
-    <!-- <p class="govuk-body">
-      <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
-    </p> -->
-
     <p class="govuk-body">
+      <a class="govuk-link" href="/statistics/{{ report }}/settings">Change report settings</a>
+    </p>
+
+    <!-- <p class="govuk-body">
       {% if showPercentage and showPercentage == "yes" %}
         <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=no">Hide as percentages of the number of applications received</a>
       {% else %}
         <a class="govuk-link govuk-link--no-visited-state" href="/statistics/{{ report }}?showPercentage=yes">Show as percentages of the number of applications received</a>
       {% endif %}
-    </p>
+    </p> -->
 
   </div>
 </div>
