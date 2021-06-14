@@ -45,7 +45,7 @@
             <h2 class="govuk-heading-s govuk-!-margin-bottom-0"><a class="govuk-link govuk-link--no-visited-state" href="/organisation-settings/{{user.organisation.id}}/users/{{user.id}}">{{ user.firstName }} {{ user.lastName }}</a> <span class="govuk-!-font-weight-regular"> - {{ user.emailAddress }}</h2>
 
 
-            {% if (user.permissions | length) > 0 %}
+            {% if user.permissions.manageUsers or user.permissions.manageOrganisation or user.permissions.makeDecisions or user.permissions.setupInterviews or user.permissions.viewSafeguardingInformation or user.permissions.viewDiversityInformation %}
               <p class="govuk-!-margin-top-1 govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">This user has permission to:</p>
               <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-1 govuk-!-margin-bottom-0 govuk-!-font-size-16 govuk-hint">
                 {% for key, value in user.permissions %}
