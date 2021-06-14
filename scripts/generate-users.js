@@ -12,8 +12,8 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = organisations.find(org => org.name == "University of Leicester")
-  // const mainOrg = organisations.find(org => org.name == "Goldsmiths, University of London")
+  // const mainOrg = organisations.find(org => org.name == "University of Leicester")
+  const mainOrg = organisations.find(org => org.name == "Goldsmiths, University of London")
   // const mainOrg = organisations.find(org => org.name == "South West Teacher Training")
   // const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
   // const mainOrg = organisations.find(org => org.name == "Endeavour TSA")
@@ -54,21 +54,21 @@ const generateFakeUsers = (count) => {
   //   }
   // })
 
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "James",
-  //   lastName: "Miller",
-  //   emailAddress: "j.miller@gold.ac.uk",
-  //   organisation: mainOrg,
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "James",
+    lastName: "Miller",
+    emailAddress: "j.miller@gold.ac.uk",
+    organisation: mainOrg,
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
 
   // users.push({
   //   id: faker.random.uuid(),
