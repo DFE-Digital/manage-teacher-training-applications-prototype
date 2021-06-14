@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "data" %}
-{% set pageName = "Statistics and data" %}
+{% set pageName = "Reports and data export" %}
 
 {% block content %}
 
@@ -15,30 +15,20 @@
 
       <h2 class="govuk-heading-m">Status of applications (2020 to 2021)</h2>
 
-      <ul class="govuk-list">
+      <ul class="govuk-list govuk-list--spaced">
         {% for organisation in userOrganisations %}
           <li>
-            <a class="govuk-link" href="/data/{{ organisation.id }}/status">{{ organisation.name }}</a>
+            <a class="govuk-link" href="/reports-and-export-data/{{ organisation.id }}/status-of-applications">{{ organisation.name }}</a>
           </li>
         {% endfor %}
       </ul>
 
       <h2 class="govuk-heading-m">Progress of applications (2020 to 2021)</h2>
 
-      <ul class="govuk-list">
+      <ul class="govuk-list govuk-list--spaced">
         {% for organisation in userOrganisations %}
           <li>
-            <a class="govuk-link" href="/data/{{ organisation.id }}/progress">{{ organisation.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-
-      <h2 class="govuk-heading-m">Progress of applications (2020 to 2021) - Alternative</h2>
-
-      <ul class="govuk-list">
-        {% for organisation in userOrganisations %}
-          <li>
-            <a class="govuk-link" href="/data/{{ organisation.id }}/conversion">{{ organisation.name }}</a>
+            <a class="govuk-link" href="/reports-and-export-data/{{ organisation.id }}/progress-of-applications">{{ organisation.name }}</a>
           </li>
         {% endfor %}
       </ul>
@@ -47,15 +37,12 @@
 
       <h2 class="govuk-heading-m">Reports</h2>
 
-      <ul class="govuk-list">
+      <ul class="govuk-list govuk-list--spaced">
         <li>
-          <a class="govuk-link" href="/data/status">Status of applications (2020 to 2021)</a>
+          <a class="govuk-link" href="/reports-and-export-data/status-of-applications">Status of applications (2020 to 2021)</a>
         </li>
         <li>
-          <a class="govuk-link" href="/data/progress">Progress of applications (2020 to 2021)</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="/data/conversion">Progress of applications (2020 to 2021) - Alternative</a>
+          <a class="govuk-link" href="/reports-and-export-data/progress-of-applications">Progress of applications (2020 to 2021)</a>
         </li>
       </ul>
 
@@ -63,12 +50,12 @@
 
     <h2 class="govuk-heading-m">Export data</h2>
 
-    <ul class="govuk-list">
+    <ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link" href="/data/hesa">Export data for Higher Education Statistics Agency (HESA)</a>
+        <a class="govuk-link" href="/reports-and-export-data/hesa">Export data for Higher Education Statistics Agency (HESA)</a>
       </li>
       <li>
-        <a class="govuk-link" href="/data/export">Export application data</a>
+        <a class="govuk-link" href="/reports-and-export-data/export">Export application data</a>
       </li>
     </ul>
 

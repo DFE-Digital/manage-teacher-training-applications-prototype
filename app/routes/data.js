@@ -2,7 +2,7 @@ const StatisticsHelper = require('../data/helpers/statistics')
 
 module.exports = router => {
 
-  router.get('/data', (req, res) => {
+  router.get('/reports-and-export-data', (req, res) => {
     const userOrganisations = req.session.data.user.organisations
 
     res.render('data/index', {
@@ -10,7 +10,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/status', (req, res) => {
+  router.get('/reports-and-export-data/status-of-applications', (req, res) => {
     const partners = req.session.data.relationships.map((relationship) => {
       return relationship.org2.name
     })
@@ -32,7 +32,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/:organisationId/status', (req, res) => {
+  router.get('/reports-and-export-data/:organisationId/status-of-applications', (req, res) => {
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
     const partners = req.session.data.relationships
@@ -59,7 +59,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/progress', (req, res) => {
+  router.get('/reports-and-export-data/progress-of-applications', (req, res) => {
     const partners = req.session.data.relationships.map((relationship) => {
       return relationship.org2.name
     })
@@ -81,7 +81,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/:organisationId/progress', (req, res) => {
+  router.get('/reports-and-export-data/:organisationId/progress-of-applications', (req, res) => {
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
     const partners = req.session.data.relationships
@@ -108,7 +108,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/conversion', (req, res) => {
+  router.get('/reports-and-export-data/conversion', (req, res) => {
     const partners = req.session.data.relationships.map((relationship) => {
       return relationship.org2.name
     })
@@ -132,7 +132,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/:organisationId/conversion', (req, res) => {
+  router.get('/reports-and-export-data/:organisationId/conversion', (req, res) => {
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
     const partners = req.session.data.relationships
@@ -161,14 +161,14 @@ module.exports = router => {
     })
   })
 
-  router.get('/data/export', (req, res) => {
+  router.get('/reports-and-export-data/export', (req, res) => {
 
     res.render('data/export/index', {
 
     })
   })
 
-  router.get('/data/hesa', (req, res) => {
+  router.get('/reports-and-export-data/hesa', (req, res) => {
 
     res.render('data/export/hesa', {
 
