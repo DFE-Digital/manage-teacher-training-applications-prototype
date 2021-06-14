@@ -33,6 +33,16 @@
         {% endfor %}
       </ul>
 
+      <h2 class="govuk-heading-m">Progress of applications (2020 to 2021) - Alternative</h2>
+
+      <ul class="govuk-list govuk-list--spaced">
+        {% for organisation in userOrganisations %}
+          <li>
+            <a class="govuk-link" href="/reports-and-export-data/{{ organisation.id }}/conversion">{{ organisation.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+
     {% else %}
 
       <h2 class="govuk-heading-m">Reports</h2>
@@ -43,6 +53,9 @@
         </li>
         <li>
           <a class="govuk-link" href="/reports-and-export-data/progress-of-applications">Progress of applications (2020 to 2021)</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports-and-export-data/conversion">Progress of applications (2020 to 2021) - Alternative</a>
         </li>
       </ul>
 
