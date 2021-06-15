@@ -12,9 +12,8 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = organisations.find(org => org.name == "Endeavour TSA")
   // const mainOrg = organisations.find(org => org.name == "South West Teacher Training")
-  // const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
+  const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
   // const mainOrg = organisations.find(org => org.name == "Tes Institute")
   // const mainOrg = organisations.find(org => org.name == "Thomas Estley Community College")
   // const mainOrg = organisations.find(org => org.name == "Riverley Primary School")
@@ -51,22 +50,6 @@ const generateFakeUsers = (count) => {
       viewDiversityInformation: true
     }
   })
-
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "Andrea",
-  //   lastName: "Wright",
-  //   emailAddress: "andrea.wright@tidemillacademy.org",
-  //   organisation: mainOrg,
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
 
   // users.push({
   //   id: faker.random.uuid(),
