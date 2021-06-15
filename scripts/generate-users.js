@@ -12,63 +12,13 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  // const mainOrg = organisations.find(org => org.name == "University of Leicester")
-  const mainOrg = organisations.find(org => org.name == "Goldsmiths, University of London")
+  const mainOrg = organisations.find(org => org.name == "Endeavour TSA")
   // const mainOrg = organisations.find(org => org.name == "South West Teacher Training")
   // const mainOrg = organisations.find(org => org.name == "Essex Teacher Training")
-  // const mainOrg = organisations.find(org => org.name == "Endeavour TSA")
   // const mainOrg = organisations.find(org => org.name == "Tes Institute")
   // const mainOrg = organisations.find(org => org.name == "Thomas Estley Community College")
   // const mainOrg = organisations.find(org => org.name == "Riverley Primary School")
   // const mainOrg = organisations.find(org => org.name == "Teach Kent and Sussex SCITT")
-
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "Louise",
-  //   lastName: "Whaley",
-  //   emailAddress: "louise.whaley@le.ac.uk",
-  //   organisation: mainOrg,
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
-
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "Louise",
-  //   lastName: "Whaley",
-  //   emailAddress: "louise.whaley@le.ac.uk",
-  //   organisation: organisations.find(org => org.name == "Ashlawn Teaching School"),
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
-
-  users.push({
-    id: faker.random.uuid(),
-    firstName: "James",
-    lastName: "Miller",
-    emailAddress: "j.miller@gold.ac.uk",
-    organisation: mainOrg,
-    permissions: {
-      manageOrganisation: true,
-      manageUsers: true,
-      setupInterviews: true,
-      makeDecisions: true,
-      viewSafeguardingInformation: true,
-      viewDiversityInformation: true
-    }
-  })
 
   // users.push({
   //   id: faker.random.uuid(),
@@ -86,21 +36,21 @@ const generateFakeUsers = (count) => {
   //   }
   // })
 
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "Alex",
-  //   lastName: "Rolle",
-  //   emailAddress: "alex.rolle@essexteachertraining.co.uk",
-  //   organisation: mainOrg,
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
+  users.push({
+    id: faker.random.uuid(),
+    firstName: "Alex",
+    lastName: "Rolle",
+    emailAddress: "alex.rolle@essexteachertraining.co.uk",
+    organisation: mainOrg,
+    permissions: {
+      manageOrganisation: true,
+      manageUsers: true,
+      setupInterviews: true,
+      makeDecisions: true,
+      viewSafeguardingInformation: true,
+      viewDiversityInformation: true
+    }
+  })
 
   // users.push({
   //   id: faker.random.uuid(),
