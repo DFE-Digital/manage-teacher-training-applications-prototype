@@ -5,13 +5,11 @@ const { DateTime } = require('luxon')
 const organisations = require('./organisations.json')
 let applications = require('./applications.json')
 const users = require('./users.json')
-const relationships = require('./relationships-south-west-teacher-training.js')
-// const relationships = require('./relationships-tes-institute.js')
+const relationships = require('./relationships-tes-institute.js')
 // const relationships = require('./relationships-thomas-estley-community-college.js')
 // const relationships = require('./relationships-riverly-primary-school.js')
 // const relationships = require('./relationships-teach-kent-and-sussex-scitt.js')
-const userOrg = OrgHelper.findOrg("South West Teacher Training")
-// const userOrg = OrgHelper.findOrg("Tes Institute")
+const userOrg = OrgHelper.findOrg("Tes Institute")
 // const userOrg = OrgHelper.findOrg("Thomas Estley Community College")
 // const userOrg = OrgHelper.findOrg("Riverley Primary School")
 // const userOrg = OrgHelper.findOrg("Teach Kent and Sussex SCITT")
@@ -80,9 +78,7 @@ applications = applications
   })
 
 let userOrgs = [];
-
 userOrgs.push(userOrg)
-// userOrgs.push(OrgHelper.findOrg("Ashlawn Teaching School"))
 
 let user = users[0]
 user.organisations = userOrgs
