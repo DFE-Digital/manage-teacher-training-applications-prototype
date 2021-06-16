@@ -536,7 +536,7 @@ organisations.push(generateFakeOrganisation({
   }))
   // Riverly Primary School
   organisations.push(generateFakeOrganisation({
-    name: "Riverly Primary School",
+    name: "Riverley Primary School",
     isAccreditedBody: false,
     domain: "griffinschoolstrust.org."
   }))
