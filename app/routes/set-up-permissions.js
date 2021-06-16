@@ -117,17 +117,22 @@ module.exports = router => {
 
   router.post('/onboard/:relationshipId', (req, res) => {
 
-    let nextRelationshipId = parseInt(req.params.relationshipId, 10) + 1;
-
-    let relationship = req.session.data.relationships.filter(relationship => {
-      return relationship.id == nextRelationshipId
-    })[0]
-
-    // there's another relationship
-    if(relationship) {
-      res.redirect(`/onboard/${nextRelationshipId}`)
-    } else {
+    if(req.body.referrer == 'check') {
+      console.log(1)
       res.redirect('/onboard/check')
+    } else {
+      let nextRelationshipId = parseInt(req.params.relationshipId, 10) + 1;
+
+      let relationship = req.session.data.relationships.filter(relationship => {
+        return relationship.id == nextRelationshipId
+      })[0]
+
+      // there's another relationship
+      if(relationship) {
+        res.redirect(`/onboard/${nextRelationshipId}`)
+      } else {
+        res.redirect('/onboard/check')
+      }
     }
 
   })
