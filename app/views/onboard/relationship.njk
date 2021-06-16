@@ -7,14 +7,20 @@
 {% endset %}
 
 {% block beforeContent %}
-  {% if relationship.id == 1 %}
+  {% if referrer == 'check' %}
     {{ govukBackLink({
-      href: "/onboard"
+      href: '/onboard/check'
     }) }}
   {% else %}
-    {{ govukBackLink({
-      href: "/onboard/" + previousRelationshipId
-    }) }}
+    {% if relationship.id == 1 %}
+      {{ govukBackLink({
+        href: "/onboard"
+      }) }}
+    {% else %}
+      {{ govukBackLink({
+        href: "/onboard/" + previousRelationshipId
+      }) }}
+    {% endif %}
   {% endif %}
 {% endblock %}
 
@@ -29,6 +35,9 @@
       <p>All users can view applications.</p>
 
       <form novalidate method="post">
+        {% if referrer == 'check' %}
+          <input type="hidden" name="referrer" value="check">
+        {% endif %}
         {% include "_includes/permissions-checkboxes.njk" %}
         {{govukButton({
           text: "Continue"
