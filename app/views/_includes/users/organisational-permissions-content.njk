@@ -1,4 +1,5 @@
 {% set detailsHtml %}
+  <p>The user permissions will apply for courses which you run and ratify.</p>
   <h2 class="govuk-heading-s">
     Make offers and reject applications
   </h2>
@@ -24,8 +25,16 @@
   })}}
   {% endset %}
 
-  <p>Some user permissions are affected by organisational permissions.</p>
+  {% set ratifiesOwnCourses = true %}
+
+  {% if ratifiesOwnCourses %}
+    <p>User permissions for courses you work on with partner organisations are affected by organisational permissions.</p>
+  {% else %}
+    <p>User permissions are affected by organisational permissions.</p>
+  {% endif %}
+
   <p>This means that the permissions you give to users may only apply to courses you work on with certain partner organisations.</p>
+
   {{ govukDetails({
   summaryText: "Check how user permissions are affected by organisational permissions",
   html: detailsHtml
