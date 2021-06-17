@@ -12,14 +12,13 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = organisations.find(org => org.name == "Thomas Estley Community College")
-  // const mainOrg = organisations.find(org => org.name == "Teach Kent and Sussex SCITT")
+  const mainOrg = organisations.find(org => org.name == "Teach Kent and Sussex SCITT")
 
   users.push({
     id: faker.random.uuid(),
-    firstName: "Jo",
-    lastName: "Robotham",
-    emailAddress: "tela@thomasestley.org.uk",
+    firstName: "Carol",
+    lastName: "Hughes",
+    emailAddress: "hughesc@bennett.kent.sch.uk",
     organisation: mainOrg,
     permissions: {
       manageOrganisation: true,
@@ -30,22 +29,6 @@ const generateFakeUsers = (count) => {
       viewDiversityInformation: true
     }
   })
-
-  // users.push({
-  //   id: faker.random.uuid(),
-  //   firstName: "Carol",
-  //   lastName: "Hughes",
-  //   emailAddress: "hughesc@bennett.kent.sch.uk",
-  //   organisation: mainOrg,
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
 
   organisations.forEach(organisation => {
     for(var i = 0; i < 5; i++) {

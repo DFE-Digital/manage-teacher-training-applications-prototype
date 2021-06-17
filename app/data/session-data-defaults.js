@@ -5,10 +5,8 @@ const { DateTime } = require('luxon')
 const organisations = require('./organisations.json')
 let applications = require('./applications.json')
 const users = require('./users.json')
-const relationships = require('./relationships-thomas-estley-community-college.js')
-// const relationships = require('./relationships-teach-kent-and-sussex-scitt.js')
-const userOrg = OrgHelper.findOrg("Thomas Estley Community College")
-// const userOrg = OrgHelper.findOrg("Teach Kent and Sussex SCITT")
+const relationships = require('./relationships-teach-kent-and-sussex-scitt.js')
+const userOrg = OrgHelper.findOrg("Teach Kent and Sussex SCITT")
 
 const trainingProviders = organisations.filter(org => {
   return !org.isAccreditedBody
