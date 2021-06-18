@@ -14,9 +14,19 @@
       {% endfor %}
     </ul>
   {% elseif params.applicableOrgs.length and not params.nonApplicableOrgs.length %}
-    <p>It currently applies to courses you work on with all your partner organisations.</p>
+    <p>It currently applies to courses you work on with all of your partner organisations:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.applicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
   {% elseif not params.applicableOrgs.length and params.nonApplicableOrgs.length %}
-    <p>It currently does not apply to courses you work on with any your partner organisations.</p>
+    <p>It currently does not apply to courses you work on with any of your partner organisations:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.nonApplicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
   {% endif %}
 </div>
 

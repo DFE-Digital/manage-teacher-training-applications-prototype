@@ -1,23 +1,30 @@
 <div class="app-applicable-permissions {{- ' ' + params.classes if params.classes}}">
   {% if params.applicableOrgs.length and params.nonApplicableOrgs.length %}
-    <p>This currently applies to:</p>
+    <p>This currently applies to courses you work on with:</p>
     <ul class="govuk-list govuk-list--bullet">
       {% for item in params.applicableOrgs %}
         <li>{{ item.name }}</li>
       {% endfor %}
     </ul>
-    <p>This does not currently apply to:</p>
+    <p>This does not currently apply to courses you work on with:</p>
     <ul class="govuk-list govuk-list--bullet">
       {% for item in params.nonApplicableOrgs %}
         <li>{{ item.name }}</li>
       {% endfor %}
     </ul>
   {% elseif params.applicableOrgs.length and not params.nonApplicableOrgs.length %}
-    <p>This currently applies to all partner organisations.</p>
+    <p>This currently applies to courses you work on with all of your partner organisations:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.applicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
   {% elseif not params.applicableOrgs.length and params.nonApplicableOrgs.length %}
-    <p>This does not currently apply to any partner organisations.</p>
+    <p>This does not currently apply to courses you work on with any of your partner organisations:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in params.nonApplicableOrgs %}
+        <li>{{ item.name }}</li>
+      {% endfor %}
+    </ul>
   {% endif %}
 </div>
-
-{{params | log}}
-
