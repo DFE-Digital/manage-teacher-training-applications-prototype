@@ -1,0 +1,14 @@
+{% if application.assignees.length %}
+  <p class="govuk-hint">
+    Assigned to
+    {% for assignee in application.assignees %}
+      {{ assignee.firstName + " " + assignee.lastName -}}
+      {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
+    {% endfor %}
+    - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>
+  <p>
+{% else %}
+  <p class="govuk-hint">
+    Application not assigned to any users - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>
+  </p>
+{% endif %}

@@ -1,0 +1,54 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set name = application.personalDetails.name %}
+{% set title = "Users assigned to application" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post" action="/applications/{{ application.id }}/assign" accept-charset="UTF-8" novalidate>
+
+        {% set titleHtml %}
+          <h1 class="govuk-fieldset__heading">
+            <span class="govuk-caption-l">{{ application.personalDetails.name }}</span>
+            {{ title }}
+          </h1>
+        {% endset %}
+
+        {{ govukCheckboxes({
+          idPrefix: "assignees",
+          name: "assignees",
+          fieldset: {
+            legend: {
+              html: titleHtml,
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: users
+        }) }}
+
+        {{ govukButton({
+          text: "Save assigned users"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/applications/{{ application.id }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}
