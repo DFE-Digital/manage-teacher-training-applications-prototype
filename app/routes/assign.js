@@ -74,6 +74,9 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    // boolean used to check if application has been previously assigned
+    const hasPreviousAssignees = (application.assignees && application.assignees.length) ? true : false
+
     const assigneeIds = req.session.data.assignees
 
     // get all the users for our organisation
@@ -97,18 +100,13 @@ module.exports = router => {
     // clean up the session data before moving on
     delete req.session.data.assignees
 
-    // TODO: we need to check if the application was previously assigned to
-    // ensure the success message is correct. For example, submitting an empty
-    // form shouldn't lead to an unassigned success message
-
     if (assigneeIds && assigneeIds.length) {
       req.flash('success', 'Application assigned')
-    } else {
+    } else if (hasPreviousAssignees) {
       req.flash('success', 'Application unassigned')
     }
 
     res.redirect(`/applications/${req.params.applicationId}/`);
-
   })
 
 }
