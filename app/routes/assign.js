@@ -56,9 +56,14 @@ module.exports = router => {
     // parse users to an array we can use in the checkbox component
     users = parseUsers(users, application.assignees, req.session.data.user)
 
+    // save the referrer for future routing
+    req.session.data.referrer = req.headers.referer
+    const back = req.session.data.referrer
+
     res.render('applications/assign/index', {
       application,
-      users
+      users,
+      back
     })
   })
 
@@ -95,14 +100,18 @@ module.exports = router => {
     // add the assignees to the application
     application.assignees = assignees
 
-    // clean up the session data before moving on
-    delete req.session.data.assignees
-
     if ((assignees && assignees.length) || hasPreviousAssignees) {
       req.flash('success', 'Assigned users updated')
     }
 
-    res.redirect(`/applications/${req.params.applicationId}/`);
+    // get the referrer for routing
+    const referrer = req.session.data.referrer
+
+    // clean up the session data before moving on
+    delete req.session.data.assignees
+    delete req.session.data.referrer
+
+    res.redirect(`${referrer}`);
   })
 
 }
