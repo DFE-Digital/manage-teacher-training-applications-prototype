@@ -100,10 +100,8 @@ module.exports = router => {
     // clean up the session data before moving on
     delete req.session.data.assignees
 
-    if (assigneeIds && assigneeIds.length) {
-      req.flash('success', 'Application assigned')
-    } else if (hasPreviousAssignees) {
-      req.flash('success', 'Application unassigned')
+    if ((assignees && assignees.length) || hasPreviousAssignees) {
+      req.flash('success', 'Assigned users updated')
     }
 
     res.redirect(`/applications/${req.params.applicationId}/`);
