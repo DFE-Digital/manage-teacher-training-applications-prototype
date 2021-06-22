@@ -1,6 +1,6 @@
 {% extends "_content-wide.njk" %}
 
-{% set title = "Set up organisational permissions" %}
+{% set title = "Set up organisation permissions" %}
 
 {% block primary %}
 
@@ -11,7 +11,7 @@
       {% else %}
         <p>Candidates can now apply through GOV.​UK for courses you work on with partner organisations.</p>
 
-        <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisational permissions.</p>
+        <p>You cannot manage applications to these courses until either you or your partner organisations have set up organisation permissions.</p>
       {% endif %}
 
       {% for key, value in relationships %}
@@ -29,11 +29,11 @@
       {% endfor %}
 
        {% if (relationships | length) == "1" %}
-        <p>You cannot manage applications to these courses until you set up organisational permissions.</p>
+        <p>You cannot manage applications to these courses until you set up organisation permissions.</p>
       {% endif %}
       <form novalidate action="/onboard/1">
         {{govukButton({
-          text: "Set up organisational permissions"
+          text: "Set up organisation permissions"
         })}}
         {# <p><a href="/onboard/skip">Skip (you can set up permissions later)</a></p> #}
       </form>
