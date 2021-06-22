@@ -230,6 +230,16 @@ function getSelectedSubjectItems (selectedItems) {
   return items
 }
 
+function getOrganisationItems (organisations, selectedProviders) {
+  return organisations.map(org => {
+    return {
+      value: org.name,
+      text: org.name,
+      checked: selectedProviders && selectedProviders.includes(org.name) ?  "checked": ""
+    }
+  })
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
@@ -408,6 +418,8 @@ module.exports = router => {
     grouped = getApplicationsByGroup(applications)
     applications = addHeadings(grouped)
 
+    const organisationItems = getOrganisationItems(req.session.data.organisations, req.session.data.provider)
+
     res.render('index', {
       allApplications,
       applications,
@@ -416,7 +428,8 @@ module.exports = router => {
       hasFilters,
       subjectItems,
       subjectItemsDisplayLimit: 15,
-      selectedSubjects
+      selectedSubjects,
+      organisationItems
     })
   })
 
