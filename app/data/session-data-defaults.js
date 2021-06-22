@@ -7,13 +7,23 @@ let applications = require('./applications.json')
 const users = require('./users.json')
 const relationships = require('./relationships-leicester.js')
 const userOrg = OrgHelper.findOrg("University of Leicester")
+const user = require('./user')
 
-const trainingProviders = organisations.filter(org => {
-  return !org.isAccreditedBody
-})
-
-const accreditedBodies = organisations.filter(org => {
-  return org.isAccreditedBody
+// get related training providers
+const trainingProviders = []
+const accreditedBodies = []
+user.organisations.forEach(org => {
+  if(org.isAccreditedBody) {
+    accreditedBodies.push(org)
+    relationships.map(relationship => relationship.org2).forEach(org => {
+      trainingProviders.push(org)
+    })
+  } else {
+    trainingProvidrs.push(org)
+    relationships.map(relationship => relationship.org2).forEach(org => {
+      accreditedBodies.push(org)
+    })
+  }
 })
 
 applications = applications.map(application => {
@@ -70,12 +80,6 @@ applications = applications
       return true;
     }
   })
-
-let userOrgs = [];
-userOrgs.push(userOrg)
-
-let user = users[0]
-user.organisations = userOrgs
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],

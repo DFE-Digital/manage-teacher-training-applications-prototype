@@ -7,7 +7,7 @@
       <span class="app-application-card__caption">{{ a.id }}</span>
     </h3>
     <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location | replace(' - training location','') }}</p>
-    <p class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }} – ratified by {{a.accreditedBody}}</p>
+    <p class="govuk-caption-m govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
   </div>
   <div class="app-application-card__secondary">
     <div class="app-application-card__status">
