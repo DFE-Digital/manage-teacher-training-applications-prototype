@@ -5,6 +5,9 @@ faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
+const user = require('../app/data/user')
+const relationships = require('../app/data/relationships-leicester.js')
+let partners = relationships.map(relationship => relationship.org2)
 
 // Fake data generators: general
 const generateSubject = require('../app/data/generators/subject')
@@ -41,15 +44,23 @@ const generateFakeApplication = (params = {}) => {
     return null
   }
 
-  const organisations = require('../app/data/organisations.json')
+  const organisations = user.organisations
   const status = params.status
   const cycle = params.cycle || generateCycle(faker, { status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
   const submittedDate = params.submittedDate || generateSubmittedDate({ status })
   const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
 
-  const accreditedBody = faker.helpers.randomize(organisations.filter(org => org.isAccreditedBody))
-  const provider = faker.helpers.randomize(organisations.filter(org => !org.isAccreditedBody))
+  let accreditedBody
+  let provider
+  if(organisations[0].isAccreditedBody) {
+    accreditedBody = organisations[0]
+    provider = faker.helpers.randomize(partners)
+  } else {
+    provider = organisations[0]
+    accreditedBody = faker.helpers.randomize(partners)
+  }
+
   const subject = generateSubject(faker)
   const courseCode = faker.random.alphaNumeric(4).toUpperCase()
   const course = `${subject.name} (${courseCode})`
@@ -162,7 +173,7 @@ const generateFakeApplication = (params = {}) => {
 }
 
 const generateFakeApplications = () => {
-  const organisations = require('../app/data/organisations.json')
+  const organisations = user.organisations
   const applications = []
   const now = SystemHelper.now()
   const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
