@@ -44,7 +44,7 @@ useHttps = useHttps.toLowerCase()
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (env === 'production' && useHttps === 'true')
+var isSecure = ((env === 'staging' || env === 'production') && useHttps === 'true')
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
