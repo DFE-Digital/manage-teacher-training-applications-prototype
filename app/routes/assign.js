@@ -1,53 +1,53 @@
 
-const parseUsers = (data, assignees, you) => {
-  if (!data) {
+const parseUsers = (users, assignees, you) => {
+  if (!users) {
     return null
   }
 
-  const users = []
-
-  // get all users that aren't 'you'
-  data.forEach((item, i) => {
-    if (item.id !== you.id) {
-      const user = {}
-      user.value = item.id
-      user.text = item.firstName + ' ' + item.lastName
-
-      user.hint = {}
-      user.hint.text = item.emailAddress
-
-      user.checked = false
-      if (assignees && assignees.find(assignee => assignee.id === item.id) !== undefined) {
-        user.checked = true
-      }
-
-      users.push(user)
-    }
-  })
+  const options = []
 
   // sort the users alphabetically
-  users.sort((a, b) => a.text.localeCompare(b.text))
+  users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
 
-  // put 'you' as the first person in the list of users
-  data.forEach((item, i) => {
-    if (item.id === you.id) {
-      const user = {}
-      user.value = item.id
-      user.text = item.firstName + ' ' + item.lastName + ' (you)'
+  // get all users that aren't 'you'
+  users.forEach((user, i) => {
+    if (user.id !== you.id) {
+      const option = {}
+      option.value = user.id
+      option.text = user.firstName + ' ' + user.lastName
 
-      user.hint = {}
-      user.hint.text = item.emailAddress
+      option.hint = {}
+      option.hint.text = user.emailAddress
 
-      user.checked = false
-      if (assignees && assignees.find(assignee => assignee.id === item.id) !== undefined) {
-        user.checked = true
+      option.checked = false
+      if (assignees && assignees.find(assignee => assignee.id === user.id) !== undefined) {
+        option.checked = true
       }
 
-      users.splice(0,0,user)
+      options.push(option)
     }
   })
 
-  return users
+  // put 'you' as the first person in the list of options
+  users.forEach((user, i) => {
+    if (user.id === you.id) {
+      const option = {}
+      option.value = user.id
+      option.text = user.firstName + ' ' + user.lastName + ' (you)'
+
+      option.hint = {}
+      option.hint.text = user.emailAddress
+
+      option.checked = false
+      if (assignees && assignees.find(assignee => assignee.id === user.id) !== undefined) {
+        option.checked = true
+      }
+
+      options.splice(0,0,option)
+    }
+  })
+
+  return options
 }
 
 module.exports = router => {

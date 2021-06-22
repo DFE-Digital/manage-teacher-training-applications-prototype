@@ -57,6 +57,9 @@ module.exports = router => {
     let users = req.session.data.users.filter(user => {
       return user.organisation.id == req.params.orgId
     })
+
+    users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
     res.render('organisation-settings/users/index', {
       org,
       users
