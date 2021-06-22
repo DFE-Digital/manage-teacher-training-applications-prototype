@@ -1,5 +1,5 @@
 
-const parseUsers = (users, assignees = [], you = {}) => {
+const parseUsers = (users, assignedUsers = [], you = {}) => {
   if (!(users)) {
     return null
   }
@@ -23,7 +23,7 @@ const parseUsers = (users, assignees = [], you = {}) => {
     option.hint.text = user.emailAddress
 
     option.checked = false
-    if (assignees && assignees.find(assignee => assignee.id === user.id) !== undefined) {
+    if (assignedUsers && assignedUsers.find(assignedUser => assignedUser.id === user.id) !== undefined) {
       option.checked = true
     }
 
@@ -54,7 +54,7 @@ module.exports = router => {
     })
 
     // parse users to an array we can use in the checkbox component
-    users = parseUsers(users, application.assignees, req.session.data.user)
+    users = parseUsers(users, application.assignedUsers, req.session.data.user)
 
     // save the referrer for future routing
     req.session.data.referrer = req.headers.referer
@@ -72,35 +72,35 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     // boolean used to check if application has been previously assigned
-    const hasPreviousAssignees = (application.assignees && application.assignees.length) ? true : false
+    const hasPreviousAssignedUsers = (application.assignedUsers && application.assignedUsers.length) ? true : false
 
-    const assigneeIds = req.session.data.assignees
+    const assignedUserIds = req.session.data.assignedUsers
 
     // get all the users for our organisation
     const users = req.session.data.users.filter(user => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
 
-    const assignees = []
+    const assignedUsers = []
 
-    if (assigneeIds) {
-      assigneeIds.forEach((assignee, i) => {
+    if (assignedUserIds) {
+      assignedUserIds.forEach((assignedUserId, i) => {
         let user = {}
-        user = users.find(u => u.id === assignee)
+        user = users.find(u => u.id === assignedUserId)
 
         // remove permissions as not needed
         delete user.permissions
         // remove organisations as not needed
         delete user.organisations
 
-        assignees.push(user)
+        assignedUsers.push(user)
       })
     }
 
-    // add the assignees to the application
-    application.assignees = assignees
+    // add the assignedUsers to the application
+    application.assignedUsers = assignedUsers
 
-    if ((assignees && assignees.length) || hasPreviousAssignees) {
+    if ((assignedUsers && assignedUsers.length) || hasPreviousAssignedUsers) {
       req.flash('success', 'Assigned users updated')
     }
 
@@ -108,7 +108,7 @@ module.exports = router => {
     const referrer = req.session.data.referrer
 
     // clean up the session data before moving on
-    delete req.session.data.assignees
+    delete req.session.data.assignedUsers
     delete req.session.data.referrer
 
     res.redirect(`${referrer}`);
