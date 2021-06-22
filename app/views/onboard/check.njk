@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set title %}
-  Check and save organisational permissions
+  Check and save organisation permissions
 {% endset %}
 
 {% block beforeContent %}
@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Set up organisational permissions</span>
+      <span class="govuk-caption-l">Set up organisation permissions</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
       <form method="post">
@@ -97,7 +97,7 @@
         {% endfor %}
 
         {{govukButton({
-          text: "Save organisational permissions"
+          text: "Save organisation permissions"
         })}}
       </form>
     </div>

@@ -3,6 +3,7 @@ const path = require('path')
 const faker = require('faker')
 faker.locale = 'en_GB'
 const generatorHelpers = require('../app/data/helpers/generators')
+const OrgHelper = require('../app/data/helpers/organisation')
 const generateUser = require('../app/data/generators/user')
 
 const generateFakeUser = (params = {}) => {
@@ -12,13 +13,13 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = organisations.find(org => org.name == "Teach Kent and Sussex SCITT")
+  const mainOrg = OrgHelper.findOrg("University of Leicester")
 
   users.push({
     id: faker.random.uuid(),
-    firstName: "Carol",
-    lastName: "Hughes",
-    emailAddress: "hughesc@bennett.kent.sch.uk",
+    firstName: "Louise",
+    lastName: "Whaley",
+    emailAddress: "louise.whaley@le.ac.uk",
     organisation: mainOrg,
     permissions: {
       manageOrganisation: true,
