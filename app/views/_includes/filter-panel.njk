@@ -106,19 +106,24 @@
     },
     items: [
       {
-        value: data.user.organisations[0].name,
-        text: data.user.organisations[0].name,
-        checked: checked(data.provider, data.user.organisations[0].name) == 'checked'
-      },
+        value: data.trainingProviders[0].name,
+        text: data.trainingProviders[0].name,
+        checked: checked(data.provider, data.trainingProviders[0].name) == 'checked'
+      } if data.trainingProviders[0],
       {
-        value: data.user.organisations[1].name,
-        text: data.user.organisations[1].name,
-        checked: checked(data.provider, data.user.organisations[1].name) == 'checked'
-      }
+        value: data.trainingProviders[1].name,
+        text: data.trainingProviders[1].name,
+        checked: checked(data.provider, data.trainingProviders[1].name) == 'checked'
+      } if data.trainingProviders[1],
+      {
+        value: data.trainingProviders[2].name,
+        text: data.trainingProviders[2].name,
+        checked: checked(data.provider, data.trainingProviders[2].name) == 'checked'
+      } if data.trainingProviders[2]
     ]
   }) }}
 
-  {% if checked(data.provider, data.user.organisations[0].name) %}
+  {% if checked(data.provider, data.trainingProviders[0].name) %}
 
     {{ govukCheckboxes({
       name: 'location',
@@ -169,12 +174,17 @@
         value: data.accreditedBodies[0].name,
         text: data.accreditedBodies[0].name,
         checked: checked(data.accreditedBody, data.accreditedBodies[0].name) == 'checked'
-      },
+      } if data.accreditedBodies[0],
       {
         value: data.accreditedBodies[1].name,
         text: data.accreditedBodies[1].name,
         checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == 'checked'
-      }
+      } if data.accreditedBodies[1],
+      {
+        value: data.accreditedBodies[2].name,
+        text: data.accreditedBodies[2].name,
+        checked: checked(data.accreditedBody, data.accreditedBodies[2].name) == 'checked'
+      } if data.accreditedBodies[2]
     ]
   }) }}
 

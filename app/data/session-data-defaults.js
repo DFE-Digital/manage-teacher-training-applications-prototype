@@ -9,13 +9,25 @@ const relationships = require('./relationships-leicester.js')
 const userOrg = OrgHelper.findOrg("University of Leicester")
 const user = require('./user')
 
-const trainingProviders = organisations.filter(org => {
-  return !org.isAccreditedBody
+// get related training providers
+const trainingProviders = []
+const accreditedBodies = []
+user.organisations.forEach(org => {
+  if(org.isAccreditedBody) {
+    accreditedBodies.push(org)
+    relationships.map(relationship => relationship.org2).forEach(org => {
+      trainingProviders.push(org)
+    })
+  } else {
+    trainingProvidrs.push(org)
+    relationships.map(relationship => relationship.org2).forEach(org => {
+      accreditedBodies.push(org)
+    })
+  }
 })
 
-const accreditedBodies = organisations.filter(org => {
-  return org.isAccreditedBody
-})
+// console.log(accreditedBodies)
+console.log(trainingProviders)
 
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {
