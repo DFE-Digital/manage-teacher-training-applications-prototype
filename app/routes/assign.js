@@ -1,51 +1,43 @@
 
-const parseUsers = (users, assignees, you) => {
-  if (!users) {
+const parseUsers = (users, assignees = [], you = {}) => {
+  if (!(users)) {
     return null
   }
 
-  const options = []
+  let options = []
 
   // sort the users alphabetically
   users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
 
-  // get all users that aren't 'you'
+  // parse all users into options
   users.forEach((user, i) => {
-    if (user.id !== you.id) {
-      const option = {}
-      option.value = user.id
-      option.text = user.firstName + ' ' + user.lastName
+    const option = {}
+    option.value = user.id
 
-      option.hint = {}
-      option.hint.text = user.emailAddress
-
-      option.checked = false
-      if (assignees && assignees.find(assignee => assignee.id === user.id) !== undefined) {
-        option.checked = true
-      }
-
-      options.push(option)
+    option.text = user.firstName + ' ' + user.lastName
+    if (you && you.id === user.id) {
+      option.text += ' (you)'
     }
+
+    option.hint = {}
+    option.hint.text = user.emailAddress
+
+    option.checked = false
+    if (assignees && assignees.find(assignee => assignee.id === user.id) !== undefined) {
+      option.checked = true
+    }
+
+    options.push(option)
   })
 
-  // put 'you' as the first person in the list of options
-  users.forEach((user, i) => {
-    if (user.id === you.id) {
-      const option = {}
-      option.value = user.id
-      option.text = user.firstName + ' ' + user.lastName + ' (you)'
+  // get 'me' out of the options
+  const me = options.find(option => option.value === you.id)
 
-      option.hint = {}
-      option.hint.text = user.emailAddress
+  // remove 'me' from the options
+  options = options.filter(option => option.value !== you.id)
 
-      option.checked = false
-      if (assignees && assignees.find(assignee => assignee.id === user.id) !== undefined) {
-        option.checked = true
-      }
-
-      options.splice(0,0,option)
-    }
-  })
+  // put 'me' as the first person in the list of options
+  options.splice(0,0,me)
 
   return options
 }
