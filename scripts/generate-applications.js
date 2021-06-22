@@ -53,11 +53,12 @@ const generateFakeApplication = (params = {}) => {
 
   let accreditedBody
   let provider
-  if(organisations[0].isAccreditedBody) {
-    accreditedBody = organisations[0]
+  let organisation = faker.helpers.randomize(organisations)
+  if(organisation.isAccreditedBody) {
+    accreditedBody = organisation
     provider = faker.helpers.randomize(partners)
   } else {
-    provider = organisations[0]
+    provider = organisation
     accreditedBody = faker.helpers.randomize(partners)
   }
 
