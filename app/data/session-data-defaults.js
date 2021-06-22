@@ -6,7 +6,6 @@ const organisations = require('./organisations.json')
 let applications = require('./applications.json')
 const users = require('./users.json')
 const relationships = require('./relationships-leicester.js')
-const userOrg = OrgHelper.findOrg("University of Leicester")
 const user = require('./user')
 
 // get related training providers
