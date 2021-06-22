@@ -26,9 +26,6 @@ user.organisations.forEach(org => {
   }
 })
 
-// console.log(accreditedBodies)
-console.log(trainingProviders)
-
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {
     get() {
