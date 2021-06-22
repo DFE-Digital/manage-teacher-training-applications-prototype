@@ -82,6 +82,12 @@ module.exports = router => {
       assigneeIds.forEach((assignee, i) => {
         let user = {}
         user = users.find(u => u.id === assignee)
+
+        // remove permissions as not needed
+        delete user.permissions
+        // remove organisations as not needed
+        delete user.organisations
+
         assignees.push(user)
       })
     }
