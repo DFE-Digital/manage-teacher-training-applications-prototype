@@ -27,14 +27,14 @@
   {% set ratifiesOwnCourses = true %}
 
   {% if ratifiesOwnCourses %}
-    <p>User permissions for courses you work on with partner organisations are affected by organisational permissions.</p>
+    <p>User permissions for courses you work on with partner organisations are affected by organisation permissions.</p>
   {% else %}
-    <p>User permissions are affected by organisational permissions.</p>
+    <p>User permissions are affected by organisation permissions.</p>
   {% endif %}
 
   <p>This means that the permissions you give to users may only apply to courses you work on with certain partner organisations.</p>
 
   {{ govukDetails({
-  summaryText: "Check how user permissions are affected by organisational permissions",
+  summaryText: "Check how user permissions are affected by organisation permissions",
   html: detailsHtml
   }) }}
