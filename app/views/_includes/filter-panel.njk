@@ -188,6 +188,36 @@
     ]
   }) }}
 
+  {% if userItems.length >= userItemsDisplayLimit %}
+
+    {{ appCheckboxFilter({
+      idPrefix: 'assignedUser',
+      name: 'assignedUser',
+      legend: {
+        text: 'Assigned users'
+      },
+      items: userItems,
+      selectedItems: selectedUsers,
+      classes: 'govuk-!-margin-bottom-7'
+    }) }}
+
+  {% else %}
+
+    {{ govukCheckboxes({
+      idPrefix: 'assignedUser',
+      name: 'assignedUser',
+      fieldset: {
+        legend: {
+          text: 'Assigned users',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: userItems,
+      classes: "govuk-checkboxes--small"
+    }) }}
+
+  {% endif %}
+
   {% if subjectItems.length >= subjectItemsDisplayLimit %}
 
     {{ appCheckboxFilter({

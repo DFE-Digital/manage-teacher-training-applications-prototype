@@ -204,10 +204,9 @@ function getSubjectItems (answerValues) {
     subject.value = item.name
     subject.id = item.code
 
+    subject.checked = false
     if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
       subject.checked = true
-    } else {
-      subject.checked = false
     }
 
     items.push(subject)
@@ -230,11 +229,48 @@ function getSelectedSubjectItems (selectedItems) {
   return items
 }
 
+function getUserItems (users, answerValues) {
+  const items = []
+
+  // sort the users alphabetically
+  users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
+  users.forEach((item) => {
+    const user = {}
+    user.text = item.firstName + ' ' + item.lastName
+    user.value = item.id
+    user.id = item.id
+
+    user.checked = false
+    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
+      user.checked = true
+    }
+
+    items.push(user)
+  })
+
+  return items
+}
+
+function getSelectedUserItems (selectedItems) {
+  const items = []
+
+  selectedItems.forEach((item) => {
+    const user = {}
+    user.text = item.text
+    user.href = `/remove-assignedUser-filter/${item.text}`
+
+    items.push(user)
+  })
+
+  return items
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
-    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject } = req.query
+    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -245,16 +281,17 @@ module.exports = router => {
     const accreditedBodies = getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
     const subjects = getCheckboxValues(subject, req.session.data.subject)
+    const assignedUsers = getCheckboxValues(assignedUser, req.session.data.assignedUser)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
 
         let candidateNameValid = true
-        let candidatIdValid = true
+        let candidateIdValid = true
 
         const candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
         const candidateId = app.id
@@ -277,6 +314,7 @@ module.exports = router => {
         let accreditedBodyValid = true
         let studyModeValid = true
         let subjectValid = true
+        let assignedUserValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -298,6 +336,10 @@ module.exports = router => {
           accreditedBodyValid = accreditedBodies.includes(app.accreditedBody)
         }
 
+        if (assignedUsers && assignedUsers.length) {
+          assignedUserValid = assignedUsers.includes(app.assignedUser)
+        }
+
         if (subjects && subjects.length) {
           subjectValid = subjects.includes(app.subject)
         }
@@ -306,7 +348,7 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationValid && providerValid && accreditedBodyValid && studyModeValid && subjectValid
+        return cycleValid && statusValid && locationValid && providerValid && accreditedBodyValid && studyModeValid && subjectValid && assignedUserValid
       })
     }
 
@@ -376,6 +418,18 @@ module.exports = router => {
         })
       }
 
+      if (assignedUsers && assignedUsers.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Assigned users' },
+          items: assignedUsers.map((assignedUser) => {
+            return {
+              text: assignedUser,
+              href: `/remove-assignedUser-filter/${assignedUser}`
+            }
+          })
+        })
+      }
+
       if (subjects && subjects.length) {
         selectedFilters.categories.push({
           heading: { text: 'Subjects' },
@@ -421,6 +475,16 @@ module.exports = router => {
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === true))
 
+    const users = req.session.data.users.filter(user => {
+      return user.organisation.id == req.session.data.user.organisation.id
+    })
+
+    console.log(users);
+
+    const userItems = getUserItems(users, req.session.data.assignedUser)
+    console.log(userItems);
+    const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
+
     // now mixin the headings
     grouped = getApplicationsByGroup(applications)
     applications = addHeadings(grouped)
@@ -433,7 +497,10 @@ module.exports = router => {
       hasFilters,
       subjectItems,
       subjectItemsDisplayLimit: 15,
-      selectedSubjects
+      selectedSubjects,
+      userItems,
+      userItemsDisplayLimit: 15,
+      selectedUsers
     })
   })
 
@@ -477,6 +544,11 @@ module.exports = router => {
     res.redirect('/')
   })
 
+  router.get('/remove-assignedUser-filter/:assignedUser', (req, res) => {
+    req.session.data.assignedUser = req.session.data.assignedUser.filter(item => item !== req.params.assignedUser)
+    res.redirect('/')
+  })
+
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.status = null
@@ -485,6 +557,7 @@ module.exports = router => {
     req.session.data.location = null
     req.session.data.subject = null
     req.session.data.studyMode = null
+    req.session.data.assignedUser = null
     res.redirect('/')
   })
 
