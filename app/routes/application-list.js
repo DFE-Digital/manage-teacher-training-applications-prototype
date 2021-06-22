@@ -242,13 +242,13 @@ module.exports = router => {
     const statuses = getCheckboxValues(status, req.session.data.status)
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locations = getCheckboxValues(location, req.session.data.location)
-    const accreditedBodies = getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
+    // const accreditedBodies = getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
     const subjects = getCheckboxValues(subject, req.session.data.subject)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -274,7 +274,6 @@ module.exports = router => {
         let statusValid = true
         let providerValid = true
         let locationValid = true
-        let accreditedBodyValid = true
         let studyModeValid = true
         let subjectValid = true
 
@@ -291,11 +290,7 @@ module.exports = router => {
         }
 
         if (providers && providers.length) {
-          providerValid = providers.includes(app.provider)
-        }
-
-        if (accreditedBodies && accreditedBodies.length) {
-          accreditedBodyValid = accreditedBodies.includes(app.accreditedBody)
+          providerValid = providers.includes(app.provider) || providers.includes(app.accreditedBody)
         }
 
         if (subjects && subjects.length) {
@@ -306,7 +301,7 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationValid && providerValid && accreditedBodyValid && studyModeValid && subjectValid
+        return cycleValid && statusValid && locationValid && providerValid && studyModeValid && subjectValid
       })
     }
 
@@ -354,23 +349,11 @@ module.exports = router => {
 
       if (providers && providers.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Providers' },
+          heading: { text: 'Organisations' },
           items: providers.map((provider) => {
             return {
               text: provider,
               href: `/remove-provider-filter/${provider}`
-            }
-          })
-        })
-      }
-
-      if (accreditedBodies && accreditedBodies.length) {
-        selectedFilters.categories.push({
-          heading: { text: 'Courses ratified by' },
-          items: accreditedBodies.map((accreditedBody) => {
-            return {
-              text: accreditedBody,
-              href: `/remove-accreditedBody-filter/${accreditedBody}`
             }
           })
         })
@@ -462,11 +445,6 @@ module.exports = router => {
     res.redirect('/')
   })
 
-  router.get('/remove-accreditedBody-filter/:accreditedBody', (req, res) => {
-    req.session.data.accreditedBody = req.session.data.accreditedBody.filter(item => item !== req.params.accreditedBody)
-    res.redirect('/')
-  })
-
   router.get('/remove-subject-filter/:subject', (req, res) => {
     req.session.data.subject = req.session.data.subject.filter(item => item !== req.params.subject)
     res.redirect('/')
@@ -481,7 +459,6 @@ module.exports = router => {
     req.session.data.cycle = null
     req.session.data.status = null
     req.session.data.provider = null
-    req.session.data.accreditedBody = null
     req.session.data.location = null
     req.session.data.subject = null
     req.session.data.studyMode = null
