@@ -242,7 +242,7 @@ function getUserItems (users, answerValues) {
     user.id = item.id
 
     user.checked = false
-    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
+    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.id)) {
       user.checked = true
     }
 
@@ -258,7 +258,7 @@ function getSelectedUserItems (selectedItems) {
   selectedItems.forEach((item) => {
     const user = {}
     user.text = item.text
-    user.href = `/remove-assignedUser-filter/${item.text}`
+    user.href = `/remove-assignedUser-filter/${item.value}`
 
     items.push(user)
   })
@@ -266,9 +266,19 @@ function getSelectedUserItems (selectedItems) {
   return items
 }
 
+function getUserFullName (users, assignedUserId) {
+  assignedUser = users.find(user => user.id === assignedUserId)
+  return assignedUser.firstName + ' ' + assignedUser.lastName
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
+
+    // for use in the filters
+    const users = req.session.data.users.filter(user => {
+      return user.organisation.id == req.session.data.user.organisation.id
+    })
 
     let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser } = req.query
 
@@ -420,10 +430,10 @@ module.exports = router => {
 
       if (assignedUsers && assignedUsers.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Assigned users' },
+          heading: { text: 'Assigned user' },
           items: assignedUsers.map((assignedUser) => {
             return {
-              text: assignedUser,
+              text: getUserFullName(users, assignedUser),
               href: `/remove-assignedUser-filter/${assignedUser}`
             }
           })
@@ -475,14 +485,7 @@ module.exports = router => {
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === true))
 
-    const users = req.session.data.users.filter(user => {
-      return user.organisation.id == req.session.data.user.organisation.id
-    })
-
-    console.log(users);
-
     const userItems = getUserItems(users, req.session.data.assignedUser)
-    console.log(userItems);
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
 
     // now mixin the headings
