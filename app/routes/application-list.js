@@ -229,27 +229,40 @@ function getSelectedSubjectItems (selectedItems) {
   return items
 }
 
-function getUserItems (users, answerValues) {
-  const items = []
+function getUserItems (users, assignedUsers = [], you = {}) {
+  let options = []
 
   // sort the users alphabetically
   users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
 
-  users.forEach((item) => {
-    const user = {}
-    user.text = item.firstName + ' ' + item.lastName
-    user.value = item.id
-    user.id = item.id
+  users.forEach((user) => {
+    const option = {}
+    option.id = user.id
+    option.value = user.id
 
-    user.checked = false
-    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.id)) {
-      user.checked = true
+    option.text = user.firstName + ' ' + user.lastName
+    if (you && you.id === user.id) {
+      option.text += ' (you)'
     }
 
-    items.push(user)
+    option.checked = false
+    if (assignedUsers !== undefined && assignedUsers !== null && assignedUsers.includes(user.id)) {
+      option.checked = true
+    }
+
+    options.push(option)
   })
 
-  return items
+  // get 'you' out of the options
+  const youOption = options.find(option => option.value === you.id)
+
+  // remove 'you' from the options
+  options = options.filter(option => option.value !== you.id)
+
+  // put 'you' as the first person in the list of options
+  options.splice(0,0,youOption)
+
+  return options
 }
 
 function getSelectedUserItems (selectedItems) {
@@ -485,7 +498,7 @@ module.exports = router => {
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === true))
 
-    const userItems = getUserItems(users, req.session.data.assignedUser)
+    const userItems = getUserItems(users, req.session.data.assignedUser, req.session.data.user)
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
 
     // now mixin the headings
