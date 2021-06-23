@@ -30,14 +30,14 @@ const parseUsers = (users, assignedUsers = [], you = {}) => {
     options.push(option)
   })
 
-  // get 'me' out of the options
-  const me = options.find(option => option.value === you.id)
+  // get 'you' out of the options
+  const youOption = options.find(option => option.value === you.id)
 
-  // remove 'me' from the options
+  // remove 'you' from the options
   options = options.filter(option => option.value !== you.id)
 
-  // put 'me' as the first person in the list of options
-  options.splice(0,0,me)
+  // put 'you' as the first person in the list of options
+  options.splice(0, 0, youOption)
 
   return options
 }
