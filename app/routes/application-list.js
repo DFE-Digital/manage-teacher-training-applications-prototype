@@ -246,21 +246,33 @@ function getUserItems (users, assignedUsers = [], you = {}) {
     }
 
     option.checked = false
-    if (assignedUsers !== undefined && assignedUsers !== null && assignedUsers.includes(user.id)) {
+    if (assignedUsers && assignedUsers.includes(user.id)) {
       option.checked = true
     }
 
     options.push(option)
   })
 
-  // get 'you' out of the options
-  const youOption = options.find(option => option.value === you.id)
+  if (you && you.id) {
+    // get 'you' out of the options
+    const youOption = options.find(option => option.value === you.id)
 
-  // remove 'you' from the options
-  options = options.filter(option => option.value !== you.id)
+    // remove 'you' from the options
+    options = options.filter(option => option.value !== you.id)
 
-  // put 'you' as the first person in the list of options
-  options.splice(0,0,youOption)
+    // put 'you' as the first person in the list of options
+    options.splice(0, 0, youOption)
+  }
+
+  const unassigned = {}
+  unassigned.id = 'unassigned'
+  unassigned.value = 'unassigned'
+  unassigned.text = 'Unassigned'
+  unassigned.checked = false
+  if (assignedUsers && assignedUsers.includes('unassigned')) {
+    unassigned.checked = true
+  }
+  options.splice(0, 0, unassigned)
 
   return options
 }
@@ -280,8 +292,16 @@ function getSelectedUserItems (selectedItems) {
 }
 
 function getUserFullName (users, assignedUserId) {
-  assignedUser = users.find(user => user.id === assignedUserId)
-  return assignedUser.firstName + ' ' + assignedUser.lastName
+  let name = ''
+
+  if (assignedUserId === 'unassigned') {
+    name = 'Unassigned'
+  } else {
+    const assignedUser = users.find(user => user.id === assignedUserId)
+    name = assignedUser.firstName + ' ' + assignedUser.lastName
+  }
+
+  return name
 }
 
 module.exports = router => {
@@ -360,7 +380,18 @@ module.exports = router => {
         }
 
         if (assignedUsers && assignedUsers.length) {
-          assignedUserValid = assignedUsers.includes(app.assignedUser)
+          const appAssignedUserIds = app.assignedUsers.map((user) => {
+            return user.id
+          })
+
+          assignedUsers.forEach((id, i) => {
+            if (id === 'unassigned') {
+              assignedUserValid = !appAssignedUserIds.length
+            } else {
+              assignedUserValid = appAssignedUserIds.includes(id)
+            }
+          })
+
         }
 
         if (subjects && subjects.length) {
