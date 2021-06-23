@@ -2,7 +2,6 @@ const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
 const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
-const organisations = require('./organisations.json')
 let applications = require('./applications.json')
 const users = require('./users.json')
 const relationships = require('./relationships-leicester.js')
@@ -24,6 +23,8 @@ user.organisations.forEach(org => {
     })
   }
 })
+
+const organisations = trainingProviders.concat(accreditedBodies)
 
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {

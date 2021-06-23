@@ -94,43 +94,31 @@
     ]
   }) }}
 
-  {{ govukCheckboxes({
-    idPrefix: 'provider',
-    name: 'provider',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Courses run by',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: [
-      {
-        value: data.trainingProviders[0].name,
-        text: data.trainingProviders[0].name,
-        checked: checked(data.provider, data.trainingProviders[0].name) == 'checked'
-      } if data.trainingProviders[0],
-      {
-        value: data.trainingProviders[1].name,
-        text: data.trainingProviders[1].name,
-        checked: checked(data.provider, data.trainingProviders[1].name) == 'checked'
-      } if data.trainingProviders[1],
-      {
-        value: data.trainingProviders[2].name,
-        text: data.trainingProviders[2].name,
-        checked: checked(data.provider, data.trainingProviders[2].name) == 'checked'
-      } if data.trainingProviders[2]
-    ]
-  }) }}
+  {% if trainingProviderItems.length > 1 %}
 
-  {% if checked(data.provider, data.trainingProviders[0].name) %}
+    {{ govukCheckboxes({
+      idPrefix: 'provider',
+      name: 'provider',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Training provider',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: trainingProviderItems
+    }) }}
+
+  {% endif %}
+
+  {% if checked(data.provider, data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
 
     {{ govukCheckboxes({
       name: 'location',
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: 'Training locations for ' + data.user.organisations[0].name,
+          text: 'Locations for ' + data.trainingProviders[0].name,
           classes: 'govuk-fieldset__legend--s'
         }
       },
@@ -159,34 +147,20 @@
     }) }}
   {% endif %}
 
-  {{ govukCheckboxes({
-    idPrefix: 'accreditedBody',
-    name: 'accreditedBody',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Courses ratified by',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: [
-      {
-        value: data.accreditedBodies[0].name,
-        text: data.accreditedBodies[0].name,
-        checked: checked(data.accreditedBody, data.accreditedBodies[0].name) == 'checked'
-      } if data.accreditedBodies[0],
-      {
-        value: data.accreditedBodies[1].name,
-        text: data.accreditedBodies[1].name,
-        checked: checked(data.accreditedBody, data.accreditedBodies[1].name) == 'checked'
-      } if data.accreditedBodies[1],
-      {
-        value: data.accreditedBodies[2].name,
-        text: data.accreditedBodies[2].name,
-        checked: checked(data.accreditedBody, data.accreditedBodies[2].name) == 'checked'
-      } if data.accreditedBodies[2]
-    ]
-  }) }}
+  {% if accreditedBodyItems.length > 1 %}
+    {{ govukCheckboxes({
+      idPrefix: 'accreditedBody',
+      name: 'accreditedBody',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Accredited body',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: accreditedBodyItems
+    }) }}
+  {% endif %}
 
   {% if subjectItems.length >= subjectItemsDisplayLimit %}
 
