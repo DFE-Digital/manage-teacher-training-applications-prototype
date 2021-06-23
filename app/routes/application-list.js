@@ -231,13 +231,18 @@ function getSelectedSubjectItems (selectedItems) {
 }
 
 function getOrganisationItems (organisations, selectedProviders) {
-  return organisations.map(org => {
-    return {
-      value: org.name,
-      text: org.name,
-      checked: selectedProviders && selectedProviders.includes(org.name) ?  "checked": ""
-    }
-  })
+  return organisations
+    .sort((a,b) => {
+      return a.name.localeCompare(b.name)
+    })
+    .map(org => {
+      return {
+        value: org.name,
+        text: org.name,
+        checked: selectedProviders && selectedProviders.includes(org.name) ?  "checked": ""
+      }
+    })
+
 }
 
 module.exports = router => {
@@ -359,7 +364,7 @@ module.exports = router => {
 
       if (providers && providers.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Organisations' },
+          heading: { text: 'Organisation' },
           items: providers.map((provider) => {
             return {
               text: provider,
