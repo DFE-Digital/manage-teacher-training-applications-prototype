@@ -1,14 +1,12 @@
-{% if application.assignedUsers.length %}
-  <p class="govuk-hint">
-    Assigned to
-    {% for assignedUser in application.assignedUsers %}
-      {{ assignedUser.firstName + " " + assignedUser.lastName -}}
-      {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
-    {% endfor %}
-    - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>
-  <p>
+<p class="govuk-hint">
+{%- if application.assignedUsers.length %}
+  Assigned to
+  {% for assignedUser in application.assignedUsers %}
+    {{ assignedUser.firstName + " " + assignedUser.lastName -}}
+    {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
+  {% endfor %}
+  - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>
 {% else %}
-  <p class="govuk-hint">
-    Not assigned to any users - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>
-  </p>
-{% endif %}
+  Not assigned to any users - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>
+{% endif -%}
+</p>
