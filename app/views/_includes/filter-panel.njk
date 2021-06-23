@@ -94,27 +94,31 @@
     ]
   }) }}
 
-  {{ govukCheckboxes({
-    idPrefix: 'provider',
-    name: 'provider',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Organisation',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: organisationItems
-  }) }}
+  {% if trainingProviderItems.length > 1 %}
 
-  {% if checked(data.provider, data.organisations[0].name) %}
+    {{ govukCheckboxes({
+      idPrefix: 'provider',
+      name: 'provider',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Training provider',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: trainingProviderItems
+    }) }}
+
+  {% endif %}
+
+  {% if checked(data.provider, data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
 
     {{ govukCheckboxes({
       name: 'location',
       classes: "govuk-checkboxes--small",
       fieldset: {
         legend: {
-          text: 'Training locations for ' + data.user.organisations[0].name,
+          text: 'Locations for ' + data.trainingProviders[0].name,
           classes: 'govuk-fieldset__legend--s'
         }
       },
@@ -140,6 +144,21 @@
           checked: checked(data.location, "Lingfield - training location") == 'checked'
         }
       ]
+    }) }}
+  {% endif %}
+
+  {% if accreditedBodyItems.length > 1 %}
+    {{ govukCheckboxes({
+      idPrefix: 'accreditedBody',
+      name: 'accreditedBody',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Accredited body',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: accreditedBodyItems
     }) }}
   {% endif %}
 
