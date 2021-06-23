@@ -1,3 +1,4 @@
+const _ = require('lodash')
 
 const parseUsers = (users, assignedUsers = [], you = {}) => {
   if (!(users)) {
@@ -30,14 +31,16 @@ const parseUsers = (users, assignedUsers = [], you = {}) => {
     options.push(option)
   })
 
-  // get 'you' out of the options
-  const youOption = options.find(option => option.value === you.id)
+  if (you && you.id) {
+    // get 'you' out of the options
+    const youOption = options.find(option => option.value === you.id)
 
-  // remove 'you' from the options
-  options = options.filter(option => option.value !== you.id)
+    // remove 'you' from the options
+    options = options.filter(option => option.value !== you.id)
 
-  // put 'you' as the first person in the list of options
-  options.splice(0, 0, youOption)
+    // put 'you' as the first person in the list of options
+    options.splice(0, 0, youOption)
+  }
 
   return options
 }
@@ -77,9 +80,12 @@ module.exports = router => {
     const assignedUserIds = req.session.data.assignedUsers
 
     // get all the users for our organisation
-    const users = req.session.data.users.filter(user => {
+    let users = req.session.data.users.filter(user => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
+
+    // clone the users so we can clean the data and only use what we need
+    users = _.cloneDeep(users)
 
     const assignedUsers = []
 
@@ -88,10 +94,10 @@ module.exports = router => {
         let user = {}
         user = users.find(u => u.id === assignedUserId)
 
-        // remove permissions as not needed
-        delete user.permissions
-        // remove organisations as not needed
+        // remove data that's not needed for the assignment
+        delete user.organisation
         delete user.organisations
+        delete user.permissions
 
         assignedUsers.push(user)
       })
