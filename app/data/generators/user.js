@@ -1,6 +1,6 @@
 module.exports = (faker, params = {}) => {
   return {
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     firstName: params.firstName || faker.name.firstName(),
     lastName: params.lastName || faker.name.lastName(),
     emailAddress: params.emailAddress || faker.name.emailAddress(),

@@ -4,7 +4,7 @@ const degreeData = require('../degree')
 module.exports = (faker, isInternationCandidate) => {
   const item = (faker) => {
     const subject = faker.helpers.randomize(degreeData().subjects)
-    const predicted = faker.random.boolean()
+    const predicted = faker.datatype.boolean()
     const startDate = '2017'
     const endDate = '2020'
 

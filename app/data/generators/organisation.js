@@ -1,6 +1,6 @@
 module.exports = (faker, params = {}) => {
   return {
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     name: params.name,
     permissions: params.permissions,
     isAccreditedBody: params.isAccreditedBody,

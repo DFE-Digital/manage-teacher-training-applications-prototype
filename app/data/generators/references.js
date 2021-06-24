@@ -32,7 +32,7 @@ module.exports = (faker) => {
       tel: faker.phone.phoneNumber(),
       relationship: {
         summary: relationshipSummary,
-        validated: faker.random.boolean(),
+        validated: faker.datatype.boolean(),
         correction: 'We worked together over a period of a year, but did not wotk that closely.'
       },
       safeguarding: {
