@@ -304,6 +304,34 @@ function getUserFullName (users, assignedUserId) {
   return name
 }
 
+function getTrainingProviderItems (providers, selectedProviders) {
+  return providers
+    .sort((a,b) => {
+      return a.name.localeCompare(b.name)
+    })
+    .map(org => {
+      return {
+        value: org.name,
+        text: org.name,
+        checked: selectedProviders && selectedProviders.includes(org.name) ?  "checked": ""
+      }
+    })
+}
+
+function getAccreditedBodyItems (accreditedBodies, selectedAccreditedBodies) {
+  return accreditedBodies
+    .sort((a,b) => {
+      return a.name.localeCompare(b.name)
+    })
+    .map(org => {
+      return {
+        value: org.name,
+        text: org.name,
+        checked: selectedAccreditedBodies && selectedAccreditedBodies.includes(org.name) ?  "checked": ""
+      }
+    })
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
@@ -468,7 +496,7 @@ module.exports = router => {
 
       if (providers && providers.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Courses run by' },
+          heading: { text: 'Training provider' },
           items: providers.map((provider) => {
             return {
               text: provider,
@@ -480,7 +508,7 @@ module.exports = router => {
 
       if (accreditedBodies && accreditedBodies.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Courses ratified by' },
+          heading: { text: 'Accredited body' },
           items: accreditedBodies.map((accreditedBody) => {
             return {
               text: accreditedBody,
@@ -554,6 +582,9 @@ module.exports = router => {
     grouped = getApplicationsByGroup(applications)
     applications = addHeadings(grouped)
 
+    const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
+    const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
+
     res.render('index', {
       allApplications,
       applications,
@@ -561,6 +592,8 @@ module.exports = router => {
       selectedFilters,
       hasFilters,
       subjectItems,
+      trainingProviderItems,
+      accreditedBodyItems,
       subjectItemsDisplayLimit: 15,
       selectedSubjects,
       userItems,
