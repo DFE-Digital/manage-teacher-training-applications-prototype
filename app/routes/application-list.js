@@ -358,6 +358,7 @@ module.exports = router => {
         let studyModeValid = true
         let subjectValid = true
         let assignedUserValid = true
+        let unassignedUserValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -384,13 +385,16 @@ module.exports = router => {
             return user.id
           })
 
-          assignedUsers.forEach((id, i) => {
-            if (id === 'unassigned') {
-              assignedUserValid = !appAssignedUserIds.length
-            } else {
-              assignedUserValid = appAssignedUserIds.includes(id)
+          if (assignedUsers.includes('unassigned') && appAssignedUserIds.length == 0) {
+            unassignedUserValid = appAssignedUserIds.length == 0
+          } else {
+            for (var i = 0; i < assignedUsers.length; i++) {
+              assignedUserValid = appAssignedUserIds.includes(assignedUsers[i])
+              if (assignedUserValid) {
+                break
+              }
             }
-          })
+          }
 
         }
 
@@ -402,7 +406,15 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        return cycleValid && statusValid && locationValid && providerValid && accreditedBodyValid && studyModeValid && subjectValid && assignedUserValid
+        return cycleValid
+          && statusValid
+          && locationValid
+          && providerValid
+          && accreditedBodyValid
+          && studyModeValid
+          && subjectValid
+          && assignedUserValid
+          && unassignedUserValid
       })
     }
 
