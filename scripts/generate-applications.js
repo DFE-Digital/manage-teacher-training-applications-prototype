@@ -138,7 +138,7 @@ const generateFakeApplication = (params = {}) => {
 
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
-    assignedUsers: params.assignedUsers || generatedAssignedUsers(organisation, status),
+    assignedUsers: params.assignedUsers || generatedAssignedUsers(accreditedBody, provider, status),
     offerCanNotBeReconfirmed,
     cycle,
     provider: provider.name,
