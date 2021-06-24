@@ -468,7 +468,7 @@ module.exports = router => {
 
       if (providers && providers.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Providers' },
+          heading: { text: 'Courses run by' },
           items: providers.map((provider) => {
             return {
               text: provider,
