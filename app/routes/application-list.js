@@ -264,6 +264,7 @@ function getUserItems (users, assignedUsers = [], you = {}) {
     options.splice(0, 0, youOption)
   }
 
+  // Add an 'unassigned' option as the first item in the array of options
   const unassigned = {}
   unassigned.id = 'unassigned'
   unassigned.value = 'unassigned'
@@ -412,7 +413,6 @@ module.exports = router => {
           const appAssignedUserIds = app.assignedUsers.map((user) => {
             return user.id
           })
-
 
           // [1] the user selected unassigned from the filter and the application
           // has no assigned users

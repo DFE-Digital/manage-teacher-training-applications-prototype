@@ -28,7 +28,7 @@ const generateReferences = require('../app/data/generators/references')
 const generateInterviewNeeds = require('../app/data/generators/interview-needs')
 const generateSafeguarding = require('../app/data/generators/safeguarding')
 const generateDisability = require('../app/data/generators/disability')
-const generatedAssignedUsers = require('../app/data/generators/assigned-users')
+const generateAssignedUsers = require('../app/data/generators/assigned-users')
 
 // Fake data generators: application management
 const generateOffer = require('../app/data/generators/offer')
@@ -138,7 +138,7 @@ const generateFakeApplication = (params = {}) => {
 
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
-    assignedUsers: params.assignedUsers || generatedAssignedUsers(accreditedBody, provider, status),
+    assignedUsers: params.assignedUsers || generateAssignedUsers(accreditedBody, provider, status),
     offerCanNotBeReconfirmed,
     cycle,
     provider: provider.name,
