@@ -385,10 +385,16 @@ module.exports = router => {
             return user.id
           })
 
+
+          // [1] the user selected unassigned from the filter and the application
+          // has no assigned users
           if (assignedUsers.includes('unassigned') && appAssignedUserIds.length == 0) {
-            unassignedUserValid = appAssignedUserIds.length == 0
-          } else {
-            for (var i = 0; i < assignedUsers.length; i++) {
+            unassignedUserValid = (appAssignedUserIds.length == 0)
+          }
+          // [2] the user selected some assigned users from the filter and the
+          // application has that person in their assigned list
+          else {
+            for (let i = 0; i < assignedUsers.length; i++) {
               assignedUserValid = appAssignedUserIds.includes(assignedUsers[i])
               if (assignedUserValid) {
                 break
