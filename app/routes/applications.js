@@ -5,11 +5,14 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    // get the assigned users for the user's current organisation
+    const assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+    assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
 
     // combine work history and school experience
-
     let experience = application.workHistory.items
     if(application.schoolExperience) {
       experience = experience.concat(application.schoolExperience)
@@ -21,7 +24,8 @@ module.exports = router => {
 
     res.render('applications/show', {
       experience,
-      application
+      application,
+      assignedUsers
     })
   })
 
@@ -56,7 +60,6 @@ module.exports = router => {
 
       return item;
     })
-
 
     res.render('applications/timeline/show', {
       application,
@@ -101,6 +104,5 @@ module.exports = router => {
       res.redirect(`/applications/${applicationId}/reject`)
     }
   })
-
 
 }

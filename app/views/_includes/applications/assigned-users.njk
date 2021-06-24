@@ -1,7 +1,7 @@
 <p class="govuk-hint">
-{%- if application.assignedUsers.length %}
+{%- if assignedUsers.length %}
   Assigned to
-  {% for assignedUser in application.assignedUsers %}
+  {% for assignedUser in assignedUsers %}
     {{ assignedUser.firstName + " " + assignedUser.lastName -}}
     {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
   {% endfor %}

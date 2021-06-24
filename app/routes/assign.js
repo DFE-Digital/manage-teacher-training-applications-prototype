@@ -74,12 +74,17 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    // boolean used to check if application has been previously assigned
-    const hasPreviousAssignedUsers = (application.assignedUsers && application.assignedUsers.length) ? true : false
+    // get assigned users in user's organisations
+    const currentAssignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
 
+    // boolean used to check if application has been previously assigned
+    // to someone in current user's organisation
+    const hasPreviousAssignedUsers = (currentAssignedUsers && currentAssignedUsers.length) ? true : false
+
+    // get all the assigned user IDs that have been submitted
     const assignedUserIds = req.session.data.assignedUsers
 
-    // get all the users for our organisation
+    // get all the users for the current user's organisation
     let users = req.session.data.users.filter(user => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
@@ -87,18 +92,23 @@ module.exports = router => {
     // clone the users so we can clean the data and only use what we need
     users = _.cloneDeep(users)
 
-    const assignedUsers = []
+    let assignedUsers = []
 
+    // get assigned users not in the user's current organisation and populate the array
+    assignedUsers = application.assignedUsers.filter(user => user.organisation.id !== req.session.data.user.organisation.id)
+
+    // populate the changes to the assigned users in user's organisation
     if (assignedUserIds) {
       assignedUserIds.forEach((assignedUserId, i) => {
         let user = {}
+        // get the user's details
         user = users.find(u => u.id === assignedUserId)
 
         // remove data that's not needed for the assignment
-        delete user.organisation
         delete user.organisations
         delete user.permissions
 
+        // put the user details into the assigned users array
         assignedUsers.push(user)
       })
     }
@@ -106,7 +116,10 @@ module.exports = router => {
     // add the assignedUsers to the application
     application.assignedUsers = assignedUsers
 
-    if ((assignedUsers && assignedUsers.length) || hasPreviousAssignedUsers) {
+    // only show a flash message based on where assigned users have been chosen
+    // or if there was previously assigned users (for when they're removed)
+    // i.e., don't flash a message if there hasn't be a change
+    if ((assignedUserIds && assignedUserIds.length) || hasPreviousAssignedUsers) {
       req.flash('success', 'Assigned users updated')
     }
 
