@@ -423,5 +423,21 @@ filters.falsify = (input) => {
     return label
   }
 
+  /* ------------------------------------------------------------------
+  utility function to get the course label
+  this is just a trick to make courses look more like courses than subjects
+  example: {{ "Art and design" | getCourseLabel }}
+  outputs: "Art and design (3CGJ)"
+  ------------------------------------------------------------------ */
+  filters.getAssignedUsers = (assignedUsers, userOrganisationId) => {
+    let users = assignedUsers.filter(user => {
+      return user.organisation.id == userOrganisationId
+    })
+
+    users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
+    return users
+  }
+
   return filters
 }

@@ -1,3 +1,5 @@
+{% set assignedUsers = a.assignedUsers | getAssignedUsers(data.user.organisation.id) %}
+
 <div class="app-application-card">
   <div class="app-application-card__primary">
     <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
@@ -8,10 +10,10 @@
     </h3>
     <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location | replace(' - training location','') }}</p>
     <p class="govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
-    {% if a.assignedUsers.length %}
+    {% if assignedUsers.length %}
       <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1">
       Assigned to
-      {% for assignedUser in a.assignedUsers %}
+      {% for assignedUser in assignedUsers %}
         {{ assignedUser.firstName + " " + assignedUser.lastName -}}
         {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
       {% endfor %}
