@@ -73,13 +73,16 @@ module.exports = router => {
   router.post('/applications/:applicationId/assign', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    let currentAssignedUsers = []
 
     // get assigned users in user's organisations
-    const currentAssignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+    if (application.assignedUsers && application.assignedUsers.length) {
+      currentAssignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+    }
 
     // boolean used to check if application has been previously assigned
     // to someone in current user's organisation
-    const hasPreviousAssignedUsers = (currentAssignedUsers && currentAssignedUsers.length) ? true : false
+    const hasPreviousAssignedUsers = (currentAssignedUsers && currentAssignedUsers.length > 0) ? true : false
 
     // get all the assigned user IDs that have been submitted
     const assignedUserIds = req.session.data.assignedUsers
@@ -95,7 +98,9 @@ module.exports = router => {
     let assignedUsers = []
 
     // get assigned users not in the user's current organisation and populate the array
-    assignedUsers = application.assignedUsers.filter(user => user.organisation.id !== req.session.data.user.organisation.id)
+    if (application.assignedUsers && application.assignedUsers.length) {
+      assignedUsers = application.assignedUsers.filter(user => user.organisation.id !== req.session.data.user.organisation.id)
+    }
 
     // populate the changes to the assigned users in user's organisation
     if (assignedUserIds) {

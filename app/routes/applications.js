@@ -4,10 +4,13 @@ module.exports = router => {
   router.get('/applications/:applicationId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    let assignedUsers = []
 
     // get the assigned users for the user's current organisation
-    const assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
-    assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+    if (application.assignedUsers && application.assignedUsers.length) {
+      assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+    }
 
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
