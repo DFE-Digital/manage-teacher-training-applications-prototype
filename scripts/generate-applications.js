@@ -177,7 +177,7 @@ const generateFakeApplications = () => {
   const organisations = user.organisations
   const applications = []
   const now = SystemHelper.now()
-  const randomNumber = faker.random.number({ 'min': 1, 'max': 20 })
+  const randomNumber = faker.datatype.number({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])
@@ -199,12 +199,12 @@ const generateFakeApplications = () => {
     },
     interviews: {
       items: [{
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         date: future,
         organisation: 'The Royal Borough Teaching School Alliance',
         location: 'https://zoom.us/12345/'
       }, {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         date: future.plus({
           days: 1
         }),
@@ -516,7 +516,7 @@ const generateFakeApplications = () => {
     },
     interviews: {
       items: [{
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         date: past,
         details: "Some details of the interview go here"
       }]

@@ -4,7 +4,7 @@ faker.locale = 'en_GB'
 module.exports = () => {
   const hasExperience = faker.helpers.randomize([true, false])
   if(hasExperience) {
-    const count = faker.random.number({ min: 1, max: 4 })
+    const count = faker.datatype.number({ min: 1, max: 4 })
     const items = []
     for (var i = 0; i < count; i++) {
       items.push({

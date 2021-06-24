@@ -16,7 +16,7 @@ const generateFakeUsers = (count) => {
   const mainOrg = OrgHelper.findOrg("University of Leicester")
 
   users.push({
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     firstName: "Louise",
     lastName: "Whaley",
     emailAddress: "louise.whaley@le.ac.uk",
@@ -36,7 +36,7 @@ const generateFakeUsers = (count) => {
       let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
       let lastName = generatorHelpers.lastName()
       users.push({
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         firstName,
         lastName,
         emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,

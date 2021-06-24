@@ -92,7 +92,7 @@ module.exports = (faker, isInternationCandidate) => {
           comparable: 'GCSE grades A*-C/9-4'
         },
         grade: [{
-          grade: faker.random.number({ min: 10, max: 20 })
+          grade: faker.datatype.number({ min: 10, max: 20 })
         }],
         year
       },
@@ -109,7 +109,7 @@ module.exports = (faker, isInternationCandidate) => {
           comparable: 'GCSE (grades A*-C / 9-4)'
         },
         grade: [{
-          grade: faker.random.number({ min: 10, max: 20 })
+          grade: faker.datatype.number({ min: 10, max: 20 })
         }],
         year
       },
@@ -126,7 +126,7 @@ module.exports = (faker, isInternationCandidate) => {
           comparable: 'GCSE (grades A*-C / 9-4)'
         },
         grade: [{
-          grade: faker.random.number({ min: 10, max: 20 })
+          grade: faker.datatype.number({ min: 10, max: 20 })
         }],
         year
       }
