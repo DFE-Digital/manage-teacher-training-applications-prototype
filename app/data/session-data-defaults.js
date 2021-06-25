@@ -4,7 +4,7 @@ const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
 let applications = require('./applications.json')
 const users = require('./users.json')
-const relationships = require('./relationships-leicester.js')
+const relationships = require('./relationships-endeavour-tsa.js')
 const user = require('./user')
 
 // get related training providers
@@ -13,14 +13,18 @@ const accreditedBodies = []
 user.organisations.forEach(org => {
   if(org.isAccreditedBody) {
     accreditedBodies.push(org)
-    relationships.map(relationship => relationship.org2).forEach(org => {
-      trainingProviders.push(org)
-    })
+      relationships
+        .filter(relationship => relationship.org1.id == org.id)
+        .map(relationship => relationship.org2).forEach(org => {
+          trainingProviders.push(org)
+        })
   } else {
-    trainingProvidrs.push(org)
-    relationships.map(relationship => relationship.org2).forEach(org => {
-      accreditedBodies.push(org)
-    })
+    trainingProviders.push(org)
+    relationships
+      .filter(relationship => relationship.org1.id == org.id)
+      .map(relationship => relationship.org2).forEach(org => {
+        accreditedBodies.push(org)
+      })
   }
 })
 
