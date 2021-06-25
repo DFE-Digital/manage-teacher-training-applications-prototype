@@ -429,15 +429,44 @@ filters.falsify = (input) => {
   example: {{ "Art and design" | getCourseLabel }}
   outputs: "Art and design (3CGJ)"
   ------------------------------------------------------------------ */
-  filters.getAssignedUsers = (assignedUsers, userOrganisationId) => {
-    let users = assignedUsers.filter(user => {
-      return user.organisation.id == userOrganisationId
-    })
+  filters.getAssignedUsers = (assignedUsers, userId, userOrganisationId) => {
+    // let users = assignedUsers.filter(user => {
+    //   return user.organisation.id == userOrganisationId
+    // })
+    //
+    // users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+    //
+    // return users
 
-    users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+    if (!assignedUsers || !userId || !userOrganisationId) {
+      return null
+    }
 
-    return users
+    // get the assigned users for the user's current organisation
+    if (assignedUsers && assignedUsers.length) {
+      assignedUsers = assignedUsers.filter(user => user.organisation.id === userOrganisationId)
+      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
+      // get 'you' out of the assigned users
+      const you = assignedUsers.find(user => user.id === userId)
+
+      if (you) {
+        you.you = true
+
+        // remove 'you' from the assigned users
+        assignedUsers = assignedUsers.filter(user => user.id !== userId)
+
+        // put 'you' as the first person in the list of assigned users
+        assignedUsers.splice(0, 0, you)
+      }
+
+    }
+
+    return assignedUsers
   }
+
+
+
 
   return filters
 }

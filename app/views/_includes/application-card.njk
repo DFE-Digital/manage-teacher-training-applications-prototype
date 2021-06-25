@@ -1,4 +1,4 @@
-{% set assignedUsers = a.assignedUsers | getAssignedUsers(data.user.organisation.id) %}
+{% set assignedUsers = a.assignedUsers | getAssignedUsers(data.user.id, data.user.organisation.id) %}
 
 <div class="app-application-card">
   <div class="app-application-card__primary">
@@ -14,7 +14,7 @@
       <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1">
       Assigned to
       {% for assignedUser in assignedUsers %}
-        {{ assignedUser.firstName + " " + assignedUser.lastName -}}
+        {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
         {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
       {% endfor %}
       </p>
