@@ -424,20 +424,10 @@ filters.falsify = (input) => {
   }
 
   /* ------------------------------------------------------------------
-  utility function to get the course label
-  this is just a trick to make courses look more like courses than subjects
-  example: {{ "Art and design" | getCourseLabel }}
-  outputs: "Art and design (3CGJ)"
+  utility function to get the assigned users list
+  example: {{ assignedUsers | getAssignedUsers(userId, organisationId) }}
   ------------------------------------------------------------------ */
   filters.getAssignedUsers = (assignedUsers, userId, userOrganisationId) => {
-    // let users = assignedUsers.filter(user => {
-    //   return user.organisation.id == userOrganisationId
-    // })
-    //
-    // users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
-    //
-    // return users
-
     if (!assignedUsers || !userId || !userOrganisationId) {
       return null
     }
@@ -459,14 +449,10 @@ filters.falsify = (input) => {
         // put 'you' as the first person in the list of assigned users
         assignedUsers.splice(0, 0, you)
       }
-
     }
 
     return assignedUsers
   }
-
-
-
 
   return filters
 }
