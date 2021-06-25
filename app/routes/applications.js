@@ -35,6 +35,14 @@ module.exports = router => {
   router.get('/applications/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    let assignedUsers = []
+
+    // get the assigned users for the user's current organisation
+    if (application.assignedUsers && application.assignedUsers.length) {
+      assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+    }
+
     const events = application.events.items.map(item => {
 
       // interview
@@ -67,16 +75,25 @@ module.exports = router => {
     res.render('applications/timeline/show', {
       application,
       events: events,
-      conditions: ApplicationHelper.getConditions(application.offer)
+      conditions: ApplicationHelper.getConditions(application.offer),
+      assignedUsers
     })
   })
 
   router.get('/applications/:applicationId/feedback', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    let assignedUsers = []
+
+    // get the assigned users for the user's current organisation
+    if (application.assignedUsers && application.assignedUsers.length) {
+      assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+    }
 
     res.render('applications/feedback/show', {
-      application
+      application,
+      assignedUsers
     })
   })
 
