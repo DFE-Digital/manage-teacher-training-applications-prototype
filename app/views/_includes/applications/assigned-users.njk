@@ -2,7 +2,7 @@
 {%- if assignedUsers.length %}
   Assigned to
   {% for assignedUser in assignedUsers %}
-    {{ assignedUser.firstName + " " + assignedUser.lastName -}}
+    {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
     {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
   {% endfor %}
   - <a class="govuk-link" href="/applications/{{ application.id }}/assign">change <span class="govuk-visually-hidden">assigned users</span></a>

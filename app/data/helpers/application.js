@@ -152,6 +152,36 @@ exports.cancelInterview = (params) => {
   params.application.interviews.items = params.application.interviews.items.filter(item => item.id !== params.interview.id)
 }
 
+exports.getAssignedUsers = (application, userId, userOrganisationId) => {
+  if (!application || !userId || !userOrganisationId) {
+    return null
+  }
+
+  let assignedUsers = []
+
+  // get the assigned users for the user's current organisation
+  if (application.assignedUsers && application.assignedUsers.length) {
+    assignedUsers = application.assignedUsers.filter(user => user.organisation.id === userOrganisationId)
+    assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
+    // get 'you' out of the assigned users
+    const you = assignedUsers.find(user => user.id === userId)
+
+    if (you) {
+      you.you = true
+
+      // remove 'you' from the assigned users
+      assignedUsers = assignedUsers.filter(user => user.id !== userId)
+
+      // put 'you' as the first person in the list of assigned users
+      assignedUsers.splice(0, 0, you)
+    }
+
+  }
+
+  return assignedUsers
+}
+
 
 // -----------------------------------------------------------------------------
 // Statistics

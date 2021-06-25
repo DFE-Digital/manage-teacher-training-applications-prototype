@@ -4,13 +4,7 @@ module.exports = router => {
   router.get('/applications/:applicationId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    let assignedUsers = []
-
-    // get the assigned users for the user's current organisation
-    if (application.assignedUsers && application.assignedUsers.length) {
-      assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
-      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
-    }
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
@@ -35,13 +29,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    let assignedUsers = []
-
-    // get the assigned users for the user's current organisation
-    if (application.assignedUsers && application.assignedUsers.length) {
-      assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
-      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
-    }
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
     const events = application.events.items.map(item => {
 
@@ -83,13 +71,7 @@ module.exports = router => {
   router.get('/applications/:applicationId/feedback', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    let assignedUsers = []
-
-    // get the assigned users for the user's current organisation
-    if (application.assignedUsers && application.assignedUsers.length) {
-      assignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
-      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
-    }
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
     res.render('applications/feedback/show', {
       application,
