@@ -124,9 +124,9 @@ module.exports = router => {
     // only show a flash message based on where assigned users have been chosen
     // or if there was previously assigned users (for when they're removed)
     // i.e., don't flash a message if there hasn't be a change
-    if ((assignedUserIds && assignedUserIds.length) || hasPreviousAssignedUsers) {
+    // if ((assignedUserIds && assignedUserIds.length) || hasPreviousAssignedUsers) {
       req.flash('success', 'Assigned users updated')
-    }
+    // }
 
     // get the referrer for routing
     const referrer = req.session.data.referrer
