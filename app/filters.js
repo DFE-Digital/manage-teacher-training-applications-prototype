@@ -423,5 +423,36 @@ filters.falsify = (input) => {
     return label
   }
 
+  /* ------------------------------------------------------------------
+  utility function to get the assigned users list
+  example: {{ assignedUsers | getAssignedUsers(userId, organisationId) }}
+  ------------------------------------------------------------------ */
+  filters.getAssignedUsers = (assignedUsers, userId, userOrganisationId) => {
+    if (!assignedUsers || !userId || !userOrganisationId) {
+      return null
+    }
+
+    // get the assigned users for the user's current organisation
+    if (assignedUsers && assignedUsers.length) {
+      assignedUsers = assignedUsers.filter(user => user.organisation.id === userOrganisationId)
+      assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+
+      // get 'you' out of the assigned users
+      const you = assignedUsers.find(user => user.id === userId)
+
+      if (you) {
+        you.you = true
+
+        // remove 'you' from the assigned users
+        assignedUsers = assignedUsers.filter(user => user.id !== userId)
+
+        // put 'you' as the first person in the list of assigned users
+        assignedUsers.splice(0, 0, you)
+      }
+    }
+
+    return assignedUsers
+  }
+
   return filters
 }

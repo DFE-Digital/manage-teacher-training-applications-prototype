@@ -121,6 +121,18 @@
     })
   </script>
 
+  {% if userItems.length >= userItemsDisplayLimit %}
+    <script type="text/javascript" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
+    <script type="text/javascript">
+      new AppFrontend.CheckboxFilter({
+        container: $('#assignedUser'),
+        textBox: {
+          label: 'Search for user'
+        }
+      })
+    </script>
+  {% endif %}
+
   {% if subjectItems.length >= subjectItemsDisplayLimit %}
     <script type="text/javascript" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
     <script type="text/javascript">
