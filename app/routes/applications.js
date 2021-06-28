@@ -4,12 +4,12 @@ module.exports = router => {
   router.get('/applications/:applicationId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
 
     // combine work history and school experience
-
     let experience = application.workHistory.items
     if(application.schoolExperience) {
       experience = experience.concat(application.schoolExperience)
@@ -21,13 +21,16 @@ module.exports = router => {
 
     res.render('applications/show', {
       experience,
-      application
+      application,
+      assignedUsers
     })
   })
 
   router.get('/applications/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
+
     const events = application.events.items.map(item => {
 
       // interview
@@ -57,20 +60,22 @@ module.exports = router => {
       return item;
     })
 
-
     res.render('applications/timeline/show', {
       application,
       events: events,
-      conditions: ApplicationHelper.getConditions(application.offer)
+      conditions: ApplicationHelper.getConditions(application.offer),
+      assignedUsers
     })
   })
 
   router.get('/applications/:applicationId/feedback', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
     res.render('applications/feedback/show', {
-      application
+      application,
+      assignedUsers
     })
   })
 
@@ -101,6 +106,5 @@ module.exports = router => {
       res.redirect(`/applications/${applicationId}/reject`)
     }
   })
-
 
 }

@@ -12,6 +12,7 @@ router.all('*', (req, res, next) => {
 require('./routes/activity-log')(router)
 require('./routes/application-list')(router)
 require('./routes/applications')(router)
+require('./routes/assign')(router)
 require('./routes/data')(router)
 require('./routes/defer-offer')(router)
 require('./routes/edit-condition-statuses')(router)

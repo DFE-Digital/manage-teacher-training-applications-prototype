@@ -122,8 +122,9 @@ module.exports = router => {
   router.get('/applications/:applicationId/interviews', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
-    var now = SystemHelper.now()
+    const now = SystemHelper.now()
 
     let upcomingInterviews = [];
     let pastInterviews = [];
@@ -142,7 +143,8 @@ module.exports = router => {
     res.render('applications/interviews/index', {
       application,
       upcomingInterviews,
-      pastInterviews
+      pastInterviews,
+      assignedUsers
     })
   })
 
