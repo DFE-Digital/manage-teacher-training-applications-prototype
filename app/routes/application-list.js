@@ -245,6 +245,14 @@ function getUserItems (users, assignedUsers = [], you = {}) {
       option.text += ' (you)'
     }
 
+    const hasDuplicateName = users.filter(u => u.firstName === user.firstName && u.lastName === user.lastName).length > 1 ? true : false
+
+    if(hasDuplicateName) {
+      option.hint = {}
+      option.hint.text = user.emailAddress
+      option.hint.classes = 'app-checkboxes__hint'
+    }
+
     option.checked = false
     if (assignedUsers && assignedUsers.includes(user.id)) {
       option.checked = true
