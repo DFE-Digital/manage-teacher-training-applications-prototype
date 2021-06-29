@@ -233,7 +233,9 @@ function getUserItems (users, assignedUsers = [], you = {}) {
   let options = []
 
   // sort the users alphabetically
-  users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+  users.sort((a, b) => a.firstName.localeCompare(b.firstName)
+                        || a.lastName.localeCompare(b.lastName)
+                        || a.emailAddress.localeCompare(b.emailAddress))
 
   users.forEach((user) => {
     const option = {}
