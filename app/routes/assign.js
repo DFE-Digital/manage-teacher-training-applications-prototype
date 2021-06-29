@@ -8,7 +8,9 @@ const parseUsers = (users, assignedUsers = [], you = {}) => {
   let options = []
 
   // sort the users alphabetically
-  users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+  users.sort((a, b) => a.firstName.localeCompare(b.firstName)
+                        || a.lastName.localeCompare(b.lastName)
+                        || a.emailAddress.localeCompare(b.emailAddress))
 
   // parse all users into options
   users.forEach((user, i) => {
@@ -20,8 +22,12 @@ const parseUsers = (users, assignedUsers = [], you = {}) => {
       option.text += ' (you)'
     }
 
-    option.hint = {}
-    option.hint.text = user.emailAddress
+    const hasDuplicateName = users.filter(u => u.firstName === user.firstName && u.lastName === user.lastName).length > 1 ? true : false
+
+    if(hasDuplicateName) {
+      option.hint = {}
+      option.hint.text = user.emailAddress
+    }
 
     option.checked = false
     if (assignedUsers && assignedUsers.find(assignedUser => assignedUser.id === user.id) !== undefined) {
