@@ -41,6 +41,11 @@
               <label class="govuk-label govuk-checkboxes__label" for="{{ idPrefix }}-{{ item.id }}">
                 {{- item.text -}}
               </label>
+
+              <div id="{{ idPrefix }}-{{ item.id }}-hint" class="govuk-hint govuk-checkboxes__hint {{- ' ' + item.hint.classes if item.hint.classes }}">
+                {{- item.hint.text -}}
+              </div>
+
             </div>
 
           {%- endfor -%}

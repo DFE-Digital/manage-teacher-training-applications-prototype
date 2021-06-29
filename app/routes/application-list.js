@@ -233,7 +233,9 @@ function getUserItems (users, assignedUsers = [], you = {}) {
   let options = []
 
   // sort the users alphabetically
-  users.sort((a, b) => a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName))
+  users.sort((a, b) => a.firstName.localeCompare(b.firstName)
+                        || a.lastName.localeCompare(b.lastName)
+                        || a.emailAddress.localeCompare(b.emailAddress))
 
   users.forEach((user) => {
     const option = {}
@@ -243,6 +245,14 @@ function getUserItems (users, assignedUsers = [], you = {}) {
     option.text = user.firstName + ' ' + user.lastName
     if (you && you.id === user.id) {
       option.text += ' (you)'
+    }
+
+    const hasDuplicateName = users.filter(u => u.firstName === user.firstName && u.lastName === user.lastName).length > 1 ? true : false
+
+    if(hasDuplicateName) {
+      option.hint = {}
+      option.hint.text = user.emailAddress
+      option.hint.classes = 'app-checkboxes__hint'
     }
 
     option.checked = false
