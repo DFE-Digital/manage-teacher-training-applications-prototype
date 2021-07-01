@@ -174,12 +174,31 @@
 {% endif %}
 
 {% set footerHtml %}
-  {% if chatOnline %}
-    <p class="govuk-!-font-size-16 govuk-!-margin-bottom-3">Webchat: <span id="app-web-chat"><a href="#" class="app-web-chat__button govuk-footer__link">speak to an adviser now (opens in new window)</a></span></p>
-  {% else %}
-    <p class="govuk-!-font-size-16 govuk-!-margin-bottom-3">Webchat: <span id="app-web-chat"><span class="app-web-chat__offline">available Monday to Friday,  10am to midday (except public holidays)</span></span></p>
-  {% endif %}
-  <p class="govuk-!-font-size-16">Email: <a class="govuk-footer__link" href="#">becomingateacher@digital.education.gov.uk</a> - response time is under one working day</p>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <div class="govuk-!-padding-right-1">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Online chat
+        </h3>
+        {% if chatOnline %}
+          <p class="govuk-!-font-size-16"><span id="app-web-chat"><a href="#" class="app-web-chat__button govuk-footer__link">Speak to an adviser now (opens in new window)</a></span></p>
+        {% else %}
+          <p class="govuk-!-font-size-16"><span id="app-web-chat"><span class="app-web-chat__offline">Available Monday to Friday,  10am to midday (except public holidays)</span></span></p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-half">
+      <div class="govuk-!-padding-left-1">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Email
+        </h3>
+        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1"><a class="govuk-footer__link" href="#">becomingateacher@digital.education.gov.uk</a></p>
+        <p class="govuk-!-font-size-16">Up to 5 days response time, 1 day for urgent issues</p>
+      </div>
+    </div>
+  </div>
+
 {% endset %}
 {% block footer %}
   {{ appFooter({
