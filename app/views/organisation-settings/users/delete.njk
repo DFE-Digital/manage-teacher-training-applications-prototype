@@ -4,9 +4,7 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set title %}
-Confirm that you want to delete this user from {{org.name}}
-{% endset %}
+{% set title = "Confirm that you want to delete this user from " + org.name %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -19,17 +17,38 @@ Confirm that you want to delete this user from {{org.name}}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ name }}</span>
+        {{ title }}
+      </h1>
 
-      <form novalidate method="post">
+      {% if assignedApplicationCount %}
+        <p class="govuk-body">
+          There are applications assigned to this user which:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            have a status of ‘received’, ‘interviewing’, ‘offered’ or ‘awaiting conditions’
+          </li>
+          <li>
+            are not assigned to any other user
+          </li>
+        </ul>
+        <p class="govuk-body">
+          You can <a class="govuk-link" href="/?assignedUser={{ user.id }}">check a list of all applications assigned to the user</a> before you delete them.
+        </p>
+      {% endif %}
+
+      <form method="post" novalidate>
         {{ govukButton({
           text: "Delete user",
           classes: "govuk-button--warning"
         }) }}
-
-        <p><a href="/organisation-settings/{{org.id}}/users/{{user.id}}">Cancel</a></p>
       </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/organisation-settings/{{ org.id }}/users/{{ user.id }}">Cancel</a>
+      </p>
     </div>
   </div>
 
