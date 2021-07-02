@@ -168,24 +168,20 @@
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
-{% set chatOnline = true %}
-{% if query.chatOnline %}
-  {% set chatOnline = false %}
-{% endif %}
+{% set chatStatus = ["online", "offline", "unavailable"] | random %}
+
+{% set chatOnlineHtml %}<a href="#" class="app-web-chat__button govuk-footer__link">Speak to an adviser now (opens in new window)</a>{% endset %}
+
+{% set chatOfflineHtml %}<span class="app-web-chat__offline">Available Monday to Friday,  10am to midday (except public holidays).</span>{% endset %}
 
 {% set footerHtml %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
       <div class="govuk-!-padding-right-1">
         <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
           Online chat
         </h3>
-        {% if chatOnline %}
-          <p class="govuk-!-font-size-16"><span id="app-web-chat"><a href="#" class="app-web-chat__button govuk-footer__link">Speak to an adviser now (opens in new window)</a></span></p>
-        {% else %}
-          <p class="govuk-!-font-size-16"><span id="app-web-chat"><span class="app-web-chat__offline">Available Monday to Friday,  10am to midday (except public holidays).</span></span></p>
-        {% endif %}
+        <p class="govuk-!-font-size-16"><span class="app-web-chat">You cannot use online chat because there’s a problem. Send an email if you keep seeing this message.</span></p>
       </div>
     </div>
     <div class="govuk-grid-column-one-half">
@@ -198,36 +194,9 @@
       </div>
     </div>
   </div>
-
 {% endset %}
 {% block footer %}
-  {{ appFooter({
-    classes: "govuk-footer--app",
-    meta: {
-      title: "Get help",
-      html: footerHtml,
-      items: [{
-        href: "#",
-        text: "How to use this service"
-      }, {
-        href: "#",
-        text: "Complaints"
-      }, {
-        href: "#",
-        text: "Accessibility"
-      }, {
-        href: "#",
-        text: "Cookies"
-      }, {
-        href: "#",
-        text: "Privacy policy"
-      }, {
-        href: "#",
-        text: "Roadmap"
-      }]
-    }
-  }) }}
-  {# {{ appFooter({
+{# {{ appFooter({
     classes: "govuk-footer--app",
     meta: {
       title: "Support and guidance",
@@ -265,14 +234,49 @@
       }]
     }
   }) }} #}
+
+  {{ appFooter({
+    classes: "govuk-footer--app",
+    meta: {
+      title: "Get help",
+      html: footerHtml,
+      items: [{
+        href: "#",
+        text: "How to use this service"
+      }, {
+        href: "#",
+        text: "Complaints"
+      }, {
+        href: "#",
+        text: "Accessibility"
+      }, {
+        href: "#",
+        text: "Cookies"
+      }, {
+        href: "#",
+        text: "Privacy policy"
+      }, {
+        href: "#",
+        text: "Roadmap"
+      }]
+    }
+  }) }}
+
 {% endblock %}
 
 {% block bodyEnd %}
   </div>
 
   {% block scripts %}
-    {# {{ data | log }} #}
     {% include "_includes/scripts.njk" %}
+
+    <script>
+      if("{{chatStatus}}" == "online") {
+        $('.app-web-chat').html('{{chatOnlineHtml | safe}}')
+      } else if("{{chatStatus}}" == "offline") {
+        $('.app-web-chat').html('{{chatOfflineHtml | safe}}')
+      }
+    </script>
     {% block pageScripts %}{% endblock %}
   {% endblock %}
 {% endblock %}
