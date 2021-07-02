@@ -223,15 +223,32 @@ module.exports = router => {
   // Delete user
 
   router.get('/organisation-settings/:orgId/users/:userId/delete', (req, res) => {
-    var user = req.session.data.users.find(user => user.id == req.params.userId)
-    let org = req.session.data.organisations.find(org => org.id == req.params.orgId)
-    res.render('organisation-settings/users/delete', { user, org })
+    const user = req.session.data.users.find(user => user.id === req.params.userId)
+    const org = req.session.data.organisations.find(org => org.id === req.params.orgId)
+
+    const assignedApplicationCount = ApplicationHelper.getAssignedApplicationCount(
+      req.session.data.applications,
+      req.params.userId,
+      req.params.orgId,
+      ['Received','Interviewing','Offered','Awaiting conditions'],
+      true
+    )
+
+    res.render('organisation-settings/users/delete', { user, org, assignedApplicationCount })
   })
 
   router.post('/organisation-settings/:orgId/users/:userId/delete', (req, res) => {
 
     // delete
     req.session.data.users = req.session.data.users.filter(user => user.id !== req.params.userId)
+
+    // delete all assignments
+    req.session.data.applications = ApplicationHelper.deleteAssignedUser(req.session.data.applications, req.params.userId)
+
+    // remove user from selected assignedUser filter
+    if (req.session.data.assignedUser) {
+      req.session.data.assignedUser = req.session.data.assignedUser.filter(item => item !== req.params.userId)
+    }
 
     req.flash('success', 'User deleted')
     res.redirect(`/organisation-settings/${req.params.orgId}/users`)

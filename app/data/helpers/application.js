@@ -182,6 +182,56 @@ exports.getAssignedUsers = (application, userId, userOrganisationId) => {
   return assignedUsers
 }
 
+exports.deleteAssignedUser = (applications, userId) => {
+  if (!applications || !userId) {
+    return null
+  }
+
+  const apps = []
+
+  applications.forEach((application, i) => {
+    let app = {}
+    app = application
+    app.assignedUsers = application.assignedUsers.filter(assignedUser => assignedUser.id !== userId)
+    apps.push(app)
+  })
+
+  return apps
+}
+
+exports.getAssignedApplicationCount = (applications, userId, userOrganisationId, statuses = [], isOnlyAssignedUser = false) => {
+  let count = 0
+
+  // get all the applications assigned to the user
+  let assignedApplications = applications
+    .filter(application => application.assignedUsers
+      .find(user => user.id === userId)
+    )
+
+  if (statuses.length) {
+    // get only the assigned applications for given statuses
+    assignedApplications = assignedApplications
+      .filter(application => statuses.includes(application.status))
+  }
+
+  if (isOnlyAssignedUser) {
+    assignedApplications.forEach((application, i) => {
+      // get only the assigned users in user's organisation
+      const assignedUserCount = application.assignedUsers.filter(user => {
+        return user.organisation.id === userOrganisationId
+      }).length
+
+      // if the user is the only one assigned in the application, increment count
+      if (assignedUserCount === 1) {
+        count += 1
+      }
+    })
+  } else {
+    count = assignedApplications.length
+  }
+
+  return count
+}
 
 // -----------------------------------------------------------------------------
 // Statistics
