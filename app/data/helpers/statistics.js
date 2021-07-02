@@ -13,15 +13,6 @@ const getStatusData = () => {
 
 exports.statusData = getStatusData()
 
-const getProgressData = () => {
-  const filePath = dataDirectoryPath + '/progress.json'
-  const rawData = fs.readFileSync(filePath)
-  const data = JSON.parse(rawData)
-  return data
-}
-
-exports.progressData = getProgressData()
-
 const getConversionData = () => {
   const filePath = dataDirectoryPath + '/conversion.json'
   const rawData = fs.readFileSync(filePath)
