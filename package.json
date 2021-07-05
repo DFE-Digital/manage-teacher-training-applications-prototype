@@ -4,7 +4,7 @@
   "version": "9.0.0",
   "private": true,
   "engines": {
-    "node": "^10.0.0"
+    "node": ">=10.0.0 <15.0.0"
   },
   "scripts": {
     "generate-data": "node ./scripts/generate-organisations.js && node ./scripts/generate-users.js && node ./scripts/generate-applications.js ",
