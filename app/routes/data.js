@@ -70,12 +70,12 @@ module.exports = router => {
     })
 
     const stages = [
-      { title: 'Shortlist for interview rate', description: '% of applications received offered an interview' },
-      { title: 'Interview success rate', description: '% interviewed that are made an offer'},
-      { title: 'Offer rate', description: '% applications received that are made an offer'},
-      { title: 'Acceptance rate', description: '% offers made that are accepted'},
-      { title: 'Conditions met rate', description: '% accepted offers that go on to meet their conditions'},
-      { title: 'Offer conversion rate', description: '% offers made lead to successful enrollment'},
+      { title: 'Shortlist for interview', description: '% of applications received offered an interview' },
+      { title: 'Interview success', description: '% interviewed that are made an offer'},
+      { title: 'Offer', description: '% applications received that are made an offer'},
+      { title: 'Acceptance', description: '% offers made that are accepted'},
+      { title: 'Conditions met', description: '% accepted offers that go on to meet their conditions'},
+      { title: 'Offer conversion', description: '% offers made lead to successful enrollment'},
       { title: 'Overall conversion', description: '% received applications that  lead to successful enrollment'}
     ]
 
@@ -183,13 +183,21 @@ module.exports = router => {
         { id: 'course', title: 'Course' },
         { id: 'code', title: 'Course code' },
         { id: 'provider', title: 'Provider' },
-        { id: 'data1', title: 'Shortlist for interview rate' },
-        { id: 'data2', title: 'Interview success rate' },
-        { id: 'data3', title: 'Offer rate' },
-        { id: 'data4', title: 'Acceptance rate' },
-        { id: 'data5', title: 'Conditions met rate' },
-        { id: 'data6', title: 'Offer conversion rate' },
-        { id: 'data7', title: 'Overall conversion rate' }
+        { id: 'total_count', title: 'Total number of applications' },
+        { id: 'data1_count', title: 'Shortlist for interview (number)' },
+        { id: 'data1_percentage', title: 'Shortlist for interview rate (percentage)' },
+        { id: 'data2_count', title: 'Interview success (number)' },
+        { id: 'data2_percentage', title: 'Interview success rate (percentage)' },
+        { id: 'data3_count', title: 'Offer (number)' },
+        { id: 'data3_percentage', title: 'Offer rate (percentage)' },
+        { id: 'data4_count', title: 'Acceptance (number)' },
+        { id: 'data4_percentage', title: 'Acceptance rate (percentage)' },
+        { id: 'data5_count', title: 'Conditions met (number)' },
+        { id: 'data5_percentage', title: 'Conditions met rate (percentage)' },
+        { id: 'data6_count', title: 'Offer conversion (number)' },
+        { id: 'data6_percentage', title: 'Offer conversion rate (percentage)' },
+        { id: 'data7_count', title: 'Overall conversion (number)' },
+        { id: 'data7_percentage', title: 'Overall conversion rate (percentage)' }
       ]
     })
 
@@ -199,13 +207,21 @@ module.exports = router => {
       course: '',
       code: '',
       provider: '',
-      data1: 'Percentage of applications received offered an interview',
-      data2: 'Percentage interviewed that are made an offer',
-      data3: 'Percentage applications received that are made an offer',
-      data4: 'Percentage offers made that are accepted',
-      data5: 'Percentage accepted offers that go on to meet their conditions',
-      data6: 'Percentage offers made lead to successful enrollment',
-      data7: 'Percentage  received applications that lead to successful enrollment'
+      total_count: '',
+      data1_count: 'Number of applications received offered an interview',
+      data1_percentage: 'Percentage of applications received offered an interview',
+      data2_count: 'Number interviewed that are made an offer',
+      data2_percentage: 'Percentage interviewed that are made an offer',
+      data3_count: 'Number of applications received that are made an offer',
+      data3_percentage: 'Percentage o fapplications received that are made an offer',
+      data4_count: 'Number of offers made that are accepted',
+      data4_percentage: 'Percentage of offers made that are accepted',
+      data5_count: 'Number of accepted offers that go on to meet their conditions',
+      data5_percentage: 'Percentage of accepted offers that go on to meet their conditions',
+      data6_count: 'Number of offers made lead to successful enrollment',
+      data6_percentage: 'Percentage of offers made lead to successful enrollment',
+      data7_count: 'Number of received applications that lead to successful enrollment',
+      data7_percentage: 'Percentage of received applications that lead to successful enrollment'
     }
 
     records.push(description)
@@ -218,20 +234,27 @@ module.exports = router => {
       data.course = item.title
       data.code = item.code
       data.provider = item.provider
-      data.data1 = item.percentages.shortlist_for_interview_rate
-      data.data2 = item.percentages.interview_success_rate
-      data.data3 = item.percentages.offer_rate
-      data.data4 = item.percentages.acceptance_rate
-      data.data5 = item.percentages.conditions_met_rate
-      data.data6 = item.percentages.offer_conversion_rate
-      data.data7 = item.percentages.overall_conversion
+      data.total_count = item.total_count
+      data.data1_count = item.shortlist_for_interview.count
+      data.data1_percentage = item.shortlist_for_interview.percentage
+      data.data2_count = item.interview_success.count
+      data.data2_percentage = item.interview_success.percentage
+      data.data3_count = item.offer.count
+      data.data3_percentage = item.offer.percentage
+      data.data4_count = item.acceptance.count
+      data.data4_percentage = item.acceptance.percentage
+      data.data5_count = item.conditions_met.count
+      data.data5_percentage = item.conditions_met.percentage
+      data.data6_count = item.offer_conversion.count
+      data.data6_percentage = item.offer_conversion.percentage
+      data.data7_count = item.overall_conversion.count
+      data.data7_percentage = item.overall_conversion.percentage
 
       records.push(data)
     })
 
     csv.writeRecords(records)
       .then(() => {
-        console.log('...Done')
         res.download(filePath,'Progress of applications (2020 to 2021)')
       })
   })
