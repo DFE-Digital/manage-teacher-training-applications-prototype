@@ -2,1392 +2,1498 @@
   {
     "code": "2SKV",
     "title": "Art and Design",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 57,
-      "interview_success_rate": 52,
-      "offer_rate": 29.64,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 85,
-      "offer_conversion_rate": 71.4,
-      "overall_conversion": 21.16296
+      "shortlist_for_interview_rate": "67",
+      "interview_success_rate": "60",
+      "offer_rate": "40",
+      "acceptance_rate": "80",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "26"
     }
   },
   {
     "code": "2XCC",
     "title": "Art and Design",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 56,
-      "interview_success_rate": 63,
-      "offer_rate": 35.28,
-      "acceptance_rate": 82,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 72.16,
-      "overall_conversion": 25.458047999999998
+      "shortlist_for_interview_rate": "51",
+      "interview_success_rate": "57",
+      "offer_rate": "29",
+      "acceptance_rate": "85",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "74",
+      "overall_conversion": "21"
     }
   },
   {
     "code": "2YKF",
     "title": "Art and Design",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 50,
-      "interview_success_rate": 38,
-      "offer_rate": 19,
-      "acceptance_rate": 67,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 54.27,
-      "overall_conversion": 10.311300000000001
+      "shortlist_for_interview_rate": "25",
+      "interview_success_rate": "28",
+      "offer_rate": "7",
+      "acceptance_rate": "80",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "67",
+      "overall_conversion": "5"
     }
   },
   {
     "code": "2ZC4",
     "title": "Art and Design",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 40,
-      "interview_success_rate": 65,
-      "offer_rate": 26,
-      "acceptance_rate": 68,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 57.12,
-      "overall_conversion": 14.851199999999999
+      "shortlist_for_interview_rate": "68",
+      "interview_success_rate": "33",
+      "offer_rate": "22",
+      "acceptance_rate": "83",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "15"
     }
   },
   {
     "code": "2ZH9",
     "title": "Art and Design",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 61,
-      "interview_success_rate": 28,
-      "offer_rate": 17.08,
-      "acceptance_rate": 73,
-      "conditions_met_rate": 87,
-      "offer_conversion_rate": 63.51,
-      "overall_conversion": 10.847507999999998
+      "shortlist_for_interview_rate": "48",
+      "interview_success_rate": "59",
+      "offer_rate": "28",
+      "acceptance_rate": "80",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "72",
+      "overall_conversion": "20"
     }
   },
   {
     "code": "39K2",
     "title": "Art and Design",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 58,
-      "interview_success_rate": 63,
-      "offer_rate": 36.54,
-      "acceptance_rate": 67,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 53.6,
-      "overall_conversion": 19.585440000000002
+      "shortlist_for_interview_rate": "48",
+      "interview_success_rate": "47",
+      "offer_rate": "23",
+      "acceptance_rate": "83",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "75",
+      "overall_conversion": "17"
     }
   },
   {
     "code": "27Q7",
     "title": "Biology",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 43,
-      "interview_success_rate": 43,
-      "offer_rate": 18.49,
-      "acceptance_rate": 68,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 56.44,
-      "overall_conversion": 10.435756
+      "shortlist_for_interview_rate": "41",
+      "interview_success_rate": "59",
+      "offer_rate": "24",
+      "acceptance_rate": "61",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "51",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "2G9N",
     "title": "Biology",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 35,
-      "interview_success_rate": 30,
-      "offer_rate": 10.5,
-      "acceptance_rate": 72,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 57.6,
-      "overall_conversion": 6.048000000000001
+      "shortlist_for_interview_rate": "41",
+      "interview_success_rate": "43",
+      "offer_rate": "18",
+      "acceptance_rate": "63",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "2SKC",
     "title": "Biology",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 44,
-      "interview_success_rate": 26,
-      "offer_rate": 11.44,
-      "acceptance_rate": 82,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 68.88,
-      "overall_conversion": 7.879871999999999
+      "shortlist_for_interview_rate": "45",
+      "interview_success_rate": "56",
+      "offer_rate": "25",
+      "acceptance_rate": "68",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "56",
+      "overall_conversion": "14"
     }
   },
   {
     "code": "2XC9",
     "title": "Biology",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 49,
-      "interview_success_rate": 55,
-      "offer_rate": 26.95,
-      "acceptance_rate": 60,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 49.8,
-      "overall_conversion": 13.4211
+      "shortlist_for_interview_rate": "65",
+      "interview_success_rate": "47",
+      "offer_rate": "31",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "17"
     }
   },
   {
     "code": "2ZC3",
     "title": "Biology",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 66,
-      "interview_success_rate": 25,
-      "offer_rate": 16.5,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 74.76,
-      "overall_conversion": 12.335400000000002
+      "shortlist_for_interview_rate": "61",
+      "interview_success_rate": "26",
+      "offer_rate": "16",
+      "acceptance_rate": "85",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "71",
+      "overall_conversion": "11"
     }
   },
   {
     "code": "2ZHB",
     "title": "Biology",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 46,
-      "interview_success_rate": 34,
-      "offer_rate": 15.64,
-      "acceptance_rate": 83,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 69.72,
-      "overall_conversion": 10.904208
+      "shortlist_for_interview_rate": "75",
+      "interview_success_rate": "28",
+      "offer_rate": "21",
+      "acceptance_rate": "64",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "58",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "39KF",
     "title": "Biology",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 60,
-      "interview_success_rate": 55,
-      "offer_rate": 33,
-      "acceptance_rate": 70,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 62.3,
-      "overall_conversion": 20.559
+      "shortlist_for_interview_rate": "72",
+      "interview_success_rate": "30",
+      "offer_rate": "22",
+      "acceptance_rate": "73",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "245T",
     "title": "Chemistry",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 57,
-      "interview_success_rate": 45,
-      "offer_rate": 25.65,
-      "acceptance_rate": 77,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 68.53,
-      "overall_conversion": 17.577945
+      "shortlist_for_interview_rate": "43",
+      "interview_success_rate": "34",
+      "offer_rate": "15",
+      "acceptance_rate": "72",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "27Q9",
     "title": "Chemistry",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 45,
-      "interview_success_rate": 37,
-      "offer_rate": 16.65,
-      "acceptance_rate": 62,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 52.08,
-      "overall_conversion": 8.67132
+      "shortlist_for_interview_rate": "66",
+      "interview_success_rate": "33",
+      "offer_rate": "22",
+      "acceptance_rate": "75",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "2PT2",
     "title": "Chemistry",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 27,
-      "interview_success_rate": 58,
-      "offer_rate": 15.66,
-      "acceptance_rate": 75,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 66,
-      "overall_conversion": 10.3356
+      "shortlist_for_interview_rate": "61",
+      "interview_success_rate": "51",
+      "offer_rate": "31",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "75",
+      "overall_conversion": "23"
     }
   },
   {
     "code": "2SK6",
     "title": "Chemistry",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 66,
-      "interview_success_rate": 56,
-      "offer_rate": 36.96,
-      "acceptance_rate": 64,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 55.04,
-      "overall_conversion": 20.342783999999998
+      "shortlist_for_interview_rate": "64",
+      "interview_success_rate": "64",
+      "offer_rate": "41",
+      "acceptance_rate": "72",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "25"
     }
   },
   {
     "code": "2ZC2",
     "title": "Chemistry",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 36,
-      "interview_success_rate": 54,
-      "offer_rate": 19.44,
-      "acceptance_rate": 69,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 57.27,
-      "overall_conversion": 11.133288000000002
+      "shortlist_for_interview_rate": "46",
+      "interview_success_rate": "35",
+      "offer_rate": "16",
+      "acceptance_rate": "71",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "60",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "2ZHC",
     "title": "Chemistry",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 68,
-      "interview_success_rate": 25,
-      "offer_rate": 17,
-      "acceptance_rate": 79,
-      "conditions_met_rate": 87,
-      "offer_conversion_rate": 68.73,
-      "overall_conversion": 11.6841
+      "shortlist_for_interview_rate": "54",
+      "interview_success_rate": "63",
+      "offer_rate": "34",
+      "acceptance_rate": "68",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "38D7",
     "title": "Chemistry",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 36,
-      "interview_success_rate": 45,
-      "offer_rate": 16.2,
-      "acceptance_rate": 70,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 58.1,
-      "overall_conversion": 9.4122
+      "shortlist_for_interview_rate": "60",
+      "interview_success_rate": "58",
+      "offer_rate": "35",
+      "acceptance_rate": "81",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "72",
+      "overall_conversion": "25"
     }
   },
   {
     "code": "39KG",
     "title": "Chemistry",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 49,
-      "interview_success_rate": 48,
-      "offer_rate": 23.52,
-      "acceptance_rate": 73,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 59.13,
-      "overall_conversion": 13.907376
+      "shortlist_for_interview_rate": "57",
+      "interview_success_rate": "35",
+      "offer_rate": "20",
+      "acceptance_rate": "60",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "51",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "2SKS",
     "title": "Design and Technology",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 61,
-      "interview_success_rate": 63,
-      "offer_rate": 38.43,
-      "acceptance_rate": 66,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 54.12,
-      "overall_conversion": 20.798316
+      "shortlist_for_interview_rate": "52",
+      "interview_success_rate": "58",
+      "offer_rate": "30",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "17"
     }
   },
   {
     "code": "2ZHD",
     "title": "Design and Technology",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 45,
-      "interview_success_rate": 45,
-      "offer_rate": 20.25,
-      "acceptance_rate": 60,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 49.8,
-      "overall_conversion": 10.084499999999998
+      "shortlist_for_interview_rate": "45",
+      "interview_success_rate": "26",
+      "offer_rate": "12",
+      "acceptance_rate": "65",
+      "conditions_met_rate": "86",
+      "offer_conversion_rate": "56",
+      "overall_conversion": "7"
     }
   },
   {
     "code": "34T2",
     "title": "Design and Technology",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 29,
-      "interview_success_rate": 37,
-      "offer_rate": 10.73,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 73.92,
-      "overall_conversion": 7.931616
+      "shortlist_for_interview_rate": "59",
+      "interview_success_rate": "28",
+      "offer_rate": "17",
+      "acceptance_rate": "76",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "66",
+      "overall_conversion": "11"
     }
   },
   {
     "code": "39K3",
     "title": "Design and Technology",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 65,
-      "interview_success_rate": 30,
-      "offer_rate": 19.5,
-      "acceptance_rate": 63,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 50.4,
-      "overall_conversion": 9.828
+      "shortlist_for_interview_rate": "53",
+      "interview_success_rate": "42",
+      "offer_rate": "22",
+      "acceptance_rate": "85",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "74",
+      "overall_conversion": "16"
     }
   },
   {
     "code": "G833",
     "title": "Design and Technology",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 42,
-      "interview_success_rate": 63,
-      "offer_rate": 26.46,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 73.92,
-      "overall_conversion": 19.559232
+      "shortlist_for_interview_rate": "57",
+      "interview_success_rate": "51",
+      "offer_rate": "29",
+      "acceptance_rate": "77",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "64",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "2ZBY",
     "title": "Design and Technology (Food and Product Design)",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 39,
-      "interview_success_rate": 56,
-      "offer_rate": 21.84,
-      "acceptance_rate": 62,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 55.8,
-      "overall_conversion": 12.186720000000001
+      "shortlist_for_interview_rate": "39",
+      "interview_success_rate": "47",
+      "offer_rate": "18",
+      "acceptance_rate": "80",
+      "conditions_met_rate": "86",
+      "offer_conversion_rate": "69",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "2SKR",
     "title": "Drama",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 36,
-      "interview_success_rate": 53,
-      "offer_rate": 19.08,
-      "acceptance_rate": 78,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 63.18,
-      "overall_conversion": 12.054743999999998
+      "shortlist_for_interview_rate": "57",
+      "interview_success_rate": "50",
+      "offer_rate": "29",
+      "acceptance_rate": "77",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "69",
+      "overall_conversion": "20"
     }
   },
   {
     "code": "2ZBX",
     "title": "Drama",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 57,
-      "interview_success_rate": 54,
-      "offer_rate": 30.78,
-      "acceptance_rate": 63,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 52.92,
-      "overall_conversion": 16.288776
+      "shortlist_for_interview_rate": "42",
+      "interview_success_rate": "30",
+      "offer_rate": "13",
+      "acceptance_rate": "79",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "71",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2ZHF",
     "title": "Drama",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 63,
-      "interview_success_rate": 62,
-      "offer_rate": 39.06,
-      "acceptance_rate": 64,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 56.32,
-      "overall_conversion": 21.998592000000002
+      "shortlist_for_interview_rate": "55",
+      "interview_success_rate": "32",
+      "offer_rate": "18",
+      "acceptance_rate": "75",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "11"
     }
   },
   {
     "code": "365M",
     "title": "Drama",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 36,
-      "interview_success_rate": 30,
-      "offer_rate": 10.8,
-      "acceptance_rate": 66,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 56.76,
-      "overall_conversion": 6.13008
+      "shortlist_for_interview_rate": "72",
+      "interview_success_rate": "40",
+      "offer_rate": "29",
+      "acceptance_rate": "61",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "53",
+      "overall_conversion": "15"
     }
   },
   {
     "code": "39K4",
     "title": "Drama",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 58,
-      "interview_success_rate": 64,
-      "offer_rate": 37.12,
-      "acceptance_rate": 79,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 64.78,
-      "overall_conversion": 24.046335999999997
+      "shortlist_for_interview_rate": "37",
+      "interview_success_rate": "37",
+      "offer_rate": "14",
+      "acceptance_rate": "65",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "57",
+      "overall_conversion": "8"
     }
   },
   {
     "code": "245X",
     "title": "English",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 49,
-      "interview_success_rate": 64,
-      "offer_rate": 31.36,
-      "acceptance_rate": 81,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 66.42,
-      "overall_conversion": 20.829312
+      "shortlist_for_interview_rate": "62",
+      "interview_success_rate": "28",
+      "offer_rate": "17",
+      "acceptance_rate": "60",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "53",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "27HK",
     "title": "English",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 34,
-      "interview_success_rate": 39,
-      "offer_rate": 13.26,
-      "acceptance_rate": 73,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 59.86,
-      "overall_conversion": 7.937436
+      "shortlist_for_interview_rate": "46",
+      "interview_success_rate": "38",
+      "offer_rate": "17",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "73",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "2SJW",
     "title": "English",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 74,
-      "interview_success_rate": 45,
-      "offer_rate": 33.3,
-      "acceptance_rate": 75,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 66.75,
-      "overall_conversion": 22.227749999999997
+      "shortlist_for_interview_rate": "69",
+      "interview_success_rate": "63",
+      "offer_rate": "43",
+      "acceptance_rate": "69",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "59",
+      "overall_conversion": "25"
     }
   },
   {
     "code": "2YK7",
     "title": "English",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 50,
-      "interview_success_rate": 37,
-      "offer_rate": 18.5,
-      "acceptance_rate": 66,
-      "conditions_met_rate": 85,
-      "offer_conversion_rate": 56.1,
-      "overall_conversion": 10.3785
+      "shortlist_for_interview_rate": "55",
+      "interview_success_rate": "26",
+      "offer_rate": "14",
+      "acceptance_rate": "71",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "62",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2ZBW",
     "title": "English",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 73,
-      "interview_success_rate": 55,
-      "offer_rate": 40.15,
-      "acceptance_rate": 78,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 70.2,
-      "overall_conversion": 28.1853
+      "shortlist_for_interview_rate": "42",
+      "interview_success_rate": "40",
+      "offer_rate": "17",
+      "acceptance_rate": "72",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "2ZHG",
     "title": "English",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 56,
-      "interview_success_rate": 28,
-      "offer_rate": 15.68,
-      "acceptance_rate": 60,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 54,
-      "overall_conversion": 8.4672
+      "shortlist_for_interview_rate": "44",
+      "interview_success_rate": "59",
+      "offer_rate": "26",
+      "acceptance_rate": "65",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "53",
+      "overall_conversion": "14"
     }
   },
   {
     "code": "365F",
     "title": "English",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 41,
-      "interview_success_rate": 49,
-      "offer_rate": 20.09,
-      "acceptance_rate": 80,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 65.6,
-      "overall_conversion": 13.179039999999997
+      "shortlist_for_interview_rate": "63",
+      "interview_success_rate": "50",
+      "offer_rate": "32",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "57",
+      "overall_conversion": "18"
     }
   },
   {
     "code": "39K5",
     "title": "English",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 50,
-      "interview_success_rate": 59,
-      "offer_rate": 29.5,
-      "acceptance_rate": 83,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 73.87,
-      "overall_conversion": 21.79165
+      "shortlist_for_interview_rate": "54",
+      "interview_success_rate": "30",
+      "offer_rate": "16",
+      "acceptance_rate": "75",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "2G9D",
     "title": "Geography",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 66,
-      "interview_success_rate": 25,
-      "offer_rate": 16.5,
-      "acceptance_rate": 67,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 54.27,
-      "overall_conversion": 8.954550000000001
+      "shortlist_for_interview_rate": "71",
+      "interview_success_rate": "25",
+      "offer_rate": "18",
+      "acceptance_rate": "75",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "62",
+      "overall_conversion": "11"
     }
   },
   {
     "code": "2RX7",
     "title": "Geography",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 58,
-      "interview_success_rate": 53,
-      "offer_rate": 30.74,
-      "acceptance_rate": 71,
-      "conditions_met_rate": 85,
-      "offer_conversion_rate": 60.35,
-      "overall_conversion": 18.551589999999997
+      "shortlist_for_interview_rate": "38",
+      "interview_success_rate": "51",
+      "offer_rate": "19",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "2SKL",
     "title": "Geography",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 30,
-      "interview_success_rate": 31,
-      "offer_rate": 9.3,
-      "acceptance_rate": 74,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 62.16,
-      "overall_conversion": 5.78088
+      "shortlist_for_interview_rate": "44",
+      "interview_success_rate": "64",
+      "offer_rate": "28",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "18"
     }
   },
   {
     "code": "2XBS",
     "title": "Geography",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 51,
-      "interview_success_rate": 31,
-      "offer_rate": 15.81,
-      "acceptance_rate": 64,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 57.6,
-      "overall_conversion": 9.10656
+      "shortlist_for_interview_rate": "48",
+      "interview_success_rate": "43",
+      "offer_rate": "21",
+      "acceptance_rate": "73",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "62",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "2ZBV",
     "title": "Geography",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 63,
-      "interview_success_rate": 33,
-      "offer_rate": 20.79,
-      "acceptance_rate": 77,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 67.76,
-      "overall_conversion": 14.087304000000001
+      "shortlist_for_interview_rate": "29",
+      "interview_success_rate": "44",
+      "offer_rate": "13",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "74",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2ZHH",
     "title": "Geography",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 60,
-      "interview_success_rate": 32,
-      "offer_rate": 19.2,
-      "acceptance_rate": 78,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 65.52,
-      "overall_conversion": 12.579839999999999
+      "shortlist_for_interview_rate": "67",
+      "interview_success_rate": "41",
+      "offer_rate": "27",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "76",
+      "overall_conversion": "21"
     }
   },
   {
     "code": "38D8",
     "title": "Geography",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 63,
-      "interview_success_rate": 48,
-      "offer_rate": 30.24,
-      "acceptance_rate": 67,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 54.27,
-      "overall_conversion": 16.411248
+      "shortlist_for_interview_rate": "67",
+      "interview_success_rate": "38",
+      "offer_rate": "25",
+      "acceptance_rate": "68",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "59",
+      "overall_conversion": "15"
     }
   },
   {
     "code": "39K6",
     "title": "Geography",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 73,
-      "interview_success_rate": 36,
-      "offer_rate": 26.28,
-      "acceptance_rate": 79,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 71.1,
-      "overall_conversion": 18.68508
+      "shortlist_for_interview_rate": "36",
+      "interview_success_rate": "48",
+      "offer_rate": "17",
+      "acceptance_rate": "62",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "52",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2G9K",
     "title": "History",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 31,
-      "interview_success_rate": 59,
-      "offer_rate": 18.29,
-      "acceptance_rate": 71,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 59.64,
-      "overall_conversion": 10.908155999999998
+      "shortlist_for_interview_rate": "56",
+      "interview_success_rate": "49",
+      "offer_rate": "27",
+      "acceptance_rate": "72",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "60",
+      "overall_conversion": "16"
     }
   },
   {
     "code": "2SKM",
     "title": "History",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 68,
-      "interview_success_rate": 47,
-      "offer_rate": 31.96,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 72.24,
-      "overall_conversion": 23.087903999999998
+      "shortlist_for_interview_rate": "63",
+      "interview_success_rate": "41",
+      "offer_rate": "26",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "64",
+      "overall_conversion": "17"
     }
   },
   {
     "code": "2ZBT",
     "title": "History",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 60,
-      "interview_success_rate": 43,
-      "offer_rate": 25.8,
-      "acceptance_rate": 79,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 69.52,
-      "overall_conversion": 17.93616
+      "shortlist_for_interview_rate": "58",
+      "interview_success_rate": "41",
+      "offer_rate": "24",
+      "acceptance_rate": "61",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "49",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "2ZHJ",
     "title": "History",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 26,
-      "interview_success_rate": 60,
-      "offer_rate": 15.6,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 68,
-      "overall_conversion": 10.607999999999999
+      "shortlist_for_interview_rate": "64",
+      "interview_success_rate": "54",
+      "offer_rate": "35",
+      "acceptance_rate": "69",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "21"
     }
   },
   {
     "code": "365J",
     "title": "History",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 71,
-      "interview_success_rate": 48,
-      "offer_rate": 34.08,
-      "acceptance_rate": 82,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 65.6,
-      "overall_conversion": 22.356479999999998
+      "shortlist_for_interview_rate": "63",
+      "interview_success_rate": "29",
+      "offer_rate": "18",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "80",
+      "offer_conversion_rate": "67",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "39K7",
     "title": "History",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 73,
-      "interview_success_rate": 38,
-      "offer_rate": 27.74,
-      "acceptance_rate": 64,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 53.12,
-      "overall_conversion": 14.735487999999998
+      "shortlist_for_interview_rate": "49",
+      "interview_success_rate": "36",
+      "offer_rate": "18",
+      "acceptance_rate": "68",
+      "conditions_met_rate": "80",
+      "offer_conversion_rate": "54",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "245W",
     "title": "Mathematics",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 59,
-      "interview_success_rate": 33,
-      "offer_rate": 19.47,
-      "acceptance_rate": 65,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 57.85,
-      "overall_conversion": 11.263395000000001
+      "shortlist_for_interview_rate": "74",
+      "interview_success_rate": "63",
+      "offer_rate": "47",
+      "acceptance_rate": "61",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "54",
+      "overall_conversion": "25"
     }
   },
   {
     "code": "27HL",
     "title": "Mathematics",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 49,
-      "interview_success_rate": 38,
-      "offer_rate": 18.62,
-      "acceptance_rate": 66,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 52.8,
-      "overall_conversion": 9.83136
+      "shortlist_for_interview_rate": "33",
+      "interview_success_rate": "37",
+      "offer_rate": "12",
+      "acceptance_rate": "70",
+      "conditions_met_rate": "80",
+      "offer_conversion_rate": "56",
+      "overall_conversion": "7"
     }
   },
   {
     "code": "2PTS",
     "title": "Mathematics",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 46,
-      "interview_success_rate": 26,
-      "offer_rate": 11.96,
-      "acceptance_rate": 69,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 55.89,
-      "overall_conversion": 6.684444000000001
+      "shortlist_for_interview_rate": "27",
+      "interview_success_rate": "63",
+      "offer_rate": "17",
+      "acceptance_rate": "76",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "11"
     }
   },
   {
     "code": "2SJY",
     "title": "Mathematics",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 50,
-      "interview_success_rate": 58,
-      "offer_rate": 29,
-      "acceptance_rate": 83,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 74.7,
-      "overall_conversion": 21.663
+      "shortlist_for_interview_rate": "36",
+      "interview_success_rate": "61",
+      "offer_rate": "22",
+      "acceptance_rate": "73",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "2YK6",
     "title": "Mathematics",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 74,
-      "interview_success_rate": 36,
-      "offer_rate": 26.64,
-      "acceptance_rate": 66,
-      "conditions_met_rate": 87,
-      "offer_conversion_rate": 57.42,
-      "overall_conversion": 15.296688000000001
+      "shortlist_for_interview_rate": "32",
+      "interview_success_rate": "65",
+      "offer_rate": "21",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "71",
+      "overall_conversion": "15"
     }
   },
   {
     "code": "2ZBS",
     "title": "Mathematics",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 70,
-      "interview_success_rate": 55,
-      "offer_rate": 38.5,
-      "acceptance_rate": 80,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 65.6,
-      "overall_conversion": 25.256
+      "shortlist_for_interview_rate": "38",
+      "interview_success_rate": "47",
+      "offer_rate": "18",
+      "acceptance_rate": "65",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "59",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "2ZHK",
     "title": "Mathematics",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 49,
-      "interview_success_rate": 28,
-      "offer_rate": 13.72,
-      "acceptance_rate": 76,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 65.36,
-      "overall_conversion": 8.967392
+      "shortlist_for_interview_rate": "54",
+      "interview_success_rate": "32",
+      "offer_rate": "17",
+      "acceptance_rate": "82",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "69",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "39K8",
     "title": "Mathematics",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 48,
-      "interview_success_rate": 34,
-      "offer_rate": 16.32,
-      "acceptance_rate": 81,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 72.9,
-      "overall_conversion": 11.89728
+      "shortlist_for_interview_rate": "64",
+      "interview_success_rate": "64",
+      "offer_rate": "41",
+      "acceptance_rate": "75",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "61",
+      "overall_conversion": "25"
     }
   },
   {
     "code": "2YKC",
     "title": "Modern Languages",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 26,
-      "interview_success_rate": 51,
-      "offer_rate": 13.26,
-      "acceptance_rate": 83,
-      "conditions_met_rate": 85,
-      "offer_conversion_rate": 70.55,
-      "overall_conversion": 9.35493
+      "shortlist_for_interview_rate": "47",
+      "interview_success_rate": "27",
+      "offer_rate": "13",
+      "acceptance_rate": "83",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "67",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2ZHL",
     "title": "Modern Languages",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 30,
-      "interview_success_rate": 34,
-      "offer_rate": 10.2,
-      "acceptance_rate": 83,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 69.72,
-      "overall_conversion": 7.111439999999999
+      "shortlist_for_interview_rate": "61",
+      "interview_success_rate": "45",
+      "offer_rate": "27",
+      "acceptance_rate": "85",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "75",
+      "overall_conversion": "21"
     }
   },
   {
     "code": "2PTW",
     "title": "Modern Languages (French and German)",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 26,
-      "interview_success_rate": 55,
-      "offer_rate": 14.3,
-      "acceptance_rate": 78,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 65.52,
-      "overall_conversion": 9.36936
+      "shortlist_for_interview_rate": "69",
+      "interview_success_rate": "58",
+      "offer_rate": "40",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "56",
+      "overall_conversion": "22"
     }
   },
   {
     "code": "2ZBR",
     "title": "Modern Languages (French and Spanish)",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 31,
-      "interview_success_rate": 42,
-      "offer_rate": 13.02,
-      "acceptance_rate": 80,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 66.4,
-      "overall_conversion": 8.64528
+      "shortlist_for_interview_rate": "60",
+      "interview_success_rate": "63",
+      "offer_rate": "38",
+      "acceptance_rate": "78",
+      "conditions_met_rate": "86",
+      "offer_conversion_rate": "67",
+      "overall_conversion": "25"
     }
   },
   {
     "code": "2SKQ",
     "title": "Music",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 72,
-      "interview_success_rate": 36,
-      "offer_rate": 25.92,
-      "acceptance_rate": 69,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 61.41,
-      "overall_conversion": 15.917472
+      "shortlist_for_interview_rate": "64",
+      "interview_success_rate": "60",
+      "offer_rate": "38",
+      "acceptance_rate": "71",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "60",
+      "overall_conversion": "23"
     }
   },
   {
     "code": "2YKB",
     "title": "Music",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 59,
-      "interview_success_rate": 61,
-      "offer_rate": 35.99,
-      "acceptance_rate": 69,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 60.72,
-      "overall_conversion": 21.853128
+      "shortlist_for_interview_rate": "52",
+      "interview_success_rate": "43",
+      "offer_rate": "22",
+      "acceptance_rate": "83",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "73",
+      "overall_conversion": "16"
     }
   },
   {
     "code": "2ZBQ",
     "title": "Music",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 73,
-      "interview_success_rate": 36,
-      "offer_rate": 26.28,
-      "acceptance_rate": 77,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 62.37,
-      "overall_conversion": 16.390836
+      "shortlist_for_interview_rate": "59",
+      "interview_success_rate": "56",
+      "offer_rate": "33",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "18"
     }
   },
   {
     "code": "34T3",
     "title": "Music",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 42,
-      "interview_success_rate": 35,
-      "offer_rate": 14.7,
-      "acceptance_rate": 68,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 61.2,
-      "overall_conversion": 8.9964
+      "shortlist_for_interview_rate": "35",
+      "interview_success_rate": "61",
+      "offer_rate": "21",
+      "acceptance_rate": "70",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "63",
+      "overall_conversion": "13"
     }
   },
   {
     "code": "365G",
     "title": "Music",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 33,
-      "interview_success_rate": 30,
-      "offer_rate": 9.9,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 69.7,
-      "overall_conversion": 6.9003000000000005
+      "shortlist_for_interview_rate": "73",
+      "interview_success_rate": "47",
+      "offer_rate": "34",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "39KB",
     "title": "Music",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 54,
-      "interview_success_rate": 30,
-      "offer_rate": 16.2,
-      "acceptance_rate": 83,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 68.06,
-      "overall_conversion": 11.02572
+      "shortlist_for_interview_rate": "46",
+      "interview_success_rate": "62",
+      "offer_rate": "29",
+      "acceptance_rate": "81",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "26QZ",
     "title": "Physical Education",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 34,
-      "interview_success_rate": 41,
-      "offer_rate": 13.94,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 75.65,
-      "overall_conversion": 10.545610000000002
+      "shortlist_for_interview_rate": "64",
+      "interview_success_rate": "52",
+      "offer_rate": "33",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "60",
+      "overall_conversion": "20"
     }
   },
   {
     "code": "2G9L",
     "title": "Physical Education",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 27,
-      "interview_success_rate": 49,
-      "offer_rate": 13.23,
-      "acceptance_rate": 74,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 66.6,
-      "overall_conversion": 8.81118
+      "shortlist_for_interview_rate": "32",
+      "interview_success_rate": "25",
+      "offer_rate": "8",
+      "acceptance_rate": "85",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "74",
+      "overall_conversion": "6"
     }
   },
   {
     "code": "2SKP",
     "title": "Physical Education",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 56,
-      "interview_success_rate": 54,
-      "offer_rate": 30.24,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 68,
-      "overall_conversion": 20.5632
+      "shortlist_for_interview_rate": "42",
+      "interview_success_rate": "28",
+      "offer_rate": "12",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "76",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2ZBP",
     "title": "Physical Education",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 62,
-      "interview_success_rate": 53,
-      "offer_rate": 32.86,
-      "acceptance_rate": 74,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 66.6,
-      "overall_conversion": 21.884759999999996
+      "shortlist_for_interview_rate": "31",
+      "interview_success_rate": "31",
+      "offer_rate": "10",
+      "acceptance_rate": "64",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "54",
+      "overall_conversion": "5"
     }
   },
   {
     "code": "2ZHN",
     "title": "Physical Education",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 32,
-      "interview_success_rate": 25,
-      "offer_rate": 8,
-      "acceptance_rate": 74,
-      "conditions_met_rate": 83,
-      "offer_conversion_rate": 61.42,
-      "overall_conversion": 4.9136
+      "shortlist_for_interview_rate": "26",
+      "interview_success_rate": "29",
+      "offer_rate": "8",
+      "acceptance_rate": "68",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "56",
+      "overall_conversion": "4"
     }
   },
   {
     "code": "365N",
     "title": "Physical Education",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 75,
-      "interview_success_rate": 40,
-      "offer_rate": 30,
-      "acceptance_rate": 71,
-      "conditions_met_rate": 87,
-      "offer_conversion_rate": 61.77,
-      "overall_conversion": 18.531000000000002
+      "shortlist_for_interview_rate": "49",
+      "interview_success_rate": "64",
+      "offer_rate": "31",
+      "acceptance_rate": "79",
+      "conditions_met_rate": "86",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "21"
     }
   },
   {
     "code": "39KC",
     "title": "Physical Education",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 40,
-      "interview_success_rate": 37,
-      "offer_rate": 14.8,
-      "acceptance_rate": 68,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 55.08,
-      "overall_conversion": 8.15184
+      "shortlist_for_interview_rate": "73",
+      "interview_success_rate": "39",
+      "offer_rate": "28",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "80",
+      "offer_conversion_rate": "67",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "245R",
     "title": "Physics",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 67,
-      "interview_success_rate": 53,
-      "offer_rate": 35.51,
-      "acceptance_rate": 70,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 62.3,
-      "overall_conversion": 22.122729999999997
+      "shortlist_for_interview_rate": "43",
+      "interview_success_rate": "55",
+      "offer_rate": "24",
+      "acceptance_rate": "76",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "16"
     }
   },
   {
     "code": "27HM",
     "title": "Physics",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 39,
-      "interview_success_rate": 52,
-      "offer_rate": 20.28,
-      "acceptance_rate": 74,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 65.12,
-      "overall_conversion": 13.206336
+      "shortlist_for_interview_rate": "70",
+      "interview_success_rate": "61",
+      "offer_rate": "43",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "69",
+      "overall_conversion": "29"
     }
   },
   {
     "code": "2PTX",
     "title": "Physics",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 28,
-      "interview_success_rate": 51,
-      "offer_rate": 14.28,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 71.4,
-      "overall_conversion": 10.19592
+      "shortlist_for_interview_rate": "69",
+      "interview_success_rate": "64",
+      "offer_rate": "44",
+      "acceptance_rate": "76",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "30"
     }
   },
   {
     "code": "2SKB",
     "title": "Physics",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 31,
-      "interview_success_rate": 48,
-      "offer_rate": 14.88,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 73.1,
-      "overall_conversion": 10.87728
+      "shortlist_for_interview_rate": "27",
+      "interview_success_rate": "32",
+      "offer_rate": "9",
+      "acceptance_rate": "75",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "64",
+      "overall_conversion": "6"
     }
   },
   {
     "code": "2YK8",
     "title": "Physics",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 25,
-      "interview_success_rate": 25,
-      "offer_rate": 6.25,
-      "acceptance_rate": 71,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 57.51,
-      "overall_conversion": 3.594375
+      "shortlist_for_interview_rate": "51",
+      "interview_success_rate": "45",
+      "offer_rate": "23",
+      "acceptance_rate": "61",
+      "conditions_met_rate": "88",
+      "offer_conversion_rate": "54",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "2ZBN",
     "title": "Physics",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 46,
-      "interview_success_rate": 55,
-      "offer_rate": 25.3,
-      "acceptance_rate": 67,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 59.63,
-      "overall_conversion": 15.086390000000002
+      "shortlist_for_interview_rate": "28",
+      "interview_success_rate": "33",
+      "offer_rate": "9",
+      "acceptance_rate": "85",
+      "conditions_met_rate": "80",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "6"
     }
   },
   {
     "code": "2ZHM",
     "title": "Physics",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 48,
-      "interview_success_rate": 52,
-      "offer_rate": 24.96,
-      "acceptance_rate": 80,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 64.8,
-      "overall_conversion": 16.17408
+      "shortlist_for_interview_rate": "50",
+      "interview_success_rate": "42",
+      "offer_rate": "21",
+      "acceptance_rate": "81",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "73",
+      "overall_conversion": "15"
     }
   },
   {
     "code": "39KH",
     "title": "Physics",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 65,
-      "interview_success_rate": 57,
-      "offer_rate": 37.05,
-      "acceptance_rate": 69,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 61.41,
-      "overall_conversion": 22.752405
+      "shortlist_for_interview_rate": "38",
+      "interview_success_rate": "34",
+      "offer_rate": "13",
+      "acceptance_rate": "70",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "59",
+      "overall_conversion": "8"
     }
   },
   {
     "code": "2C9X",
     "title": "Primary",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 43,
-      "interview_success_rate": 35,
-      "offer_rate": 15.05,
-      "acceptance_rate": 73,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 64.97,
-      "overall_conversion": 9.777985
+      "shortlist_for_interview_rate": "42",
+      "interview_success_rate": "32",
+      "offer_rate": "13",
+      "acceptance_rate": "63",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "52",
+      "overall_conversion": "7"
     }
   },
   {
     "code": "2C9Y",
     "title": "Primary",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 65,
-      "interview_success_rate": 28,
-      "offer_rate": 18.2,
-      "acceptance_rate": 77,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 64.68,
-      "overall_conversion": 11.771760000000002
+      "shortlist_for_interview_rate": "53",
+      "interview_success_rate": "26",
+      "offer_rate": "14",
+      "acceptance_rate": "60",
+      "conditions_met_rate": "81",
+      "offer_conversion_rate": "49",
+      "overall_conversion": "7"
     }
   },
   {
     "code": "2GKB",
     "title": "Primary",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 38,
-      "interview_success_rate": 29,
-      "offer_rate": 11.02,
-      "acceptance_rate": 65,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 57.85,
-      "overall_conversion": 6.375069999999999
+      "shortlist_for_interview_rate": "41",
+      "interview_success_rate": "41",
+      "offer_rate": "17",
+      "acceptance_rate": "83",
+      "conditions_met_rate": "87",
+      "offer_conversion_rate": "72",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "2SJS",
     "title": "Primary",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 52,
-      "interview_success_rate": 49,
-      "offer_rate": 25.48,
-      "acceptance_rate": 61,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 52.46,
-      "overall_conversion": 13.366808
+      "shortlist_for_interview_rate": "29",
+      "interview_success_rate": "52",
+      "offer_rate": "15",
+      "acceptance_rate": "66",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "59",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "2ZBD",
     "title": "Primary",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 52,
-      "interview_success_rate": 62,
-      "offer_rate": 32.24,
-      "acceptance_rate": 75,
-      "conditions_met_rate": 86,
-      "offer_conversion_rate": 64.5,
-      "overall_conversion": 20.7948
+      "shortlist_for_interview_rate": "69",
+      "interview_success_rate": "37",
+      "offer_rate": "26",
+      "acceptance_rate": "81",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "66",
+      "overall_conversion": "17"
     }
   },
   {
     "code": "34SX",
     "title": "Primary",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 67,
-      "interview_success_rate": 28,
-      "offer_rate": 18.76,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 88,
-      "offer_conversion_rate": 73.92,
-      "overall_conversion": 13.867392000000002
+      "shortlist_for_interview_rate": "37",
+      "interview_success_rate": "51",
+      "offer_rate": "19",
+      "acceptance_rate": "84",
+      "conditions_met_rate": "86",
+      "offer_conversion_rate": "72",
+      "overall_conversion": "14"
     }
   },
   {
     "code": "36LK",
     "title": "Primary",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 60,
-      "interview_success_rate": 65,
-      "offer_rate": 39,
-      "acceptance_rate": 74,
-      "conditions_met_rate": 85,
-      "offer_conversion_rate": 62.9,
-      "overall_conversion": 24.531
+      "shortlist_for_interview_rate": "74",
+      "interview_success_rate": "29",
+      "offer_rate": "21",
+      "acceptance_rate": "80",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "66",
+      "overall_conversion": "14"
     }
   },
   {
     "code": "3FRH",
     "title": "Primary",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 34,
-      "interview_success_rate": 55,
-      "offer_rate": 18.7,
-      "acceptance_rate": 72,
-      "conditions_met_rate": 87,
-      "offer_conversion_rate": 62.64,
-      "overall_conversion": 11.71368
+      "shortlist_for_interview_rate": "31",
+      "interview_success_rate": "44",
+      "offer_rate": "14",
+      "acceptance_rate": "67",
+      "conditions_met_rate": "83",
+      "offer_conversion_rate": "56",
+      "overall_conversion": "8"
     }
   },
   {
     "code": "AT88",
     "title": "Primary",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 52,
-      "interview_success_rate": 32,
-      "offer_rate": 16.64,
-      "acceptance_rate": 77,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 64.68,
-      "overall_conversion": 10.762752
+      "shortlist_for_interview_rate": "47",
+      "interview_success_rate": "30",
+      "offer_rate": "14",
+      "acceptance_rate": "80",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "71",
+      "overall_conversion": "10"
     }
   },
   {
     "code": "T780",
     "title": "Primary",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 63,
-      "interview_success_rate": 33,
-      "offer_rate": 20.79,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 90,
-      "offer_conversion_rate": 76.5,
-      "overall_conversion": 15.904349999999999
+      "shortlist_for_interview_rate": "56",
+      "interview_success_rate": "58",
+      "offer_rate": "32",
+      "acceptance_rate": "67",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "60",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "F988",
     "title": "Primary (3-7)",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 27,
-      "interview_success_rate": 27,
-      "offer_rate": 7.29,
-      "acceptance_rate": 80,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 64,
-      "overall_conversion": 4.6656
+      "shortlist_for_interview_rate": "55",
+      "interview_success_rate": "63",
+      "offer_rate": "35",
+      "acceptance_rate": "67",
+      "conditions_met_rate": "82",
+      "offer_conversion_rate": "55",
+      "overall_conversion": "19"
     }
   },
   {
     "code": "T473",
     "title": "Primary (3-7)",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 33,
-      "interview_success_rate": 59,
-      "offer_rate": 19.47,
-      "acceptance_rate": 76,
-      "conditions_met_rate": 87,
-      "offer_conversion_rate": 66.12,
-      "overall_conversion": 12.873564000000002
+      "shortlist_for_interview_rate": "34",
+      "interview_success_rate": "46",
+      "offer_rate": "16",
+      "acceptance_rate": "61",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "52",
+      "overall_conversion": "8"
     }
   },
   {
     "code": "F559",
     "title": "Primary with mathematics",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 54,
-      "interview_success_rate": 41,
-      "offer_rate": 22.14,
-      "acceptance_rate": 63,
-      "conditions_met_rate": 84,
-      "offer_conversion_rate": 52.92,
-      "overall_conversion": 11.716488000000002
+      "shortlist_for_interview_rate": "55",
+      "interview_success_rate": "35",
+      "offer_rate": "19",
+      "acceptance_rate": "77",
+      "conditions_met_rate": "80",
+      "offer_conversion_rate": "62",
+      "overall_conversion": "12"
     }
   },
   {
     "code": "2XBT",
     "title": "Religious Education",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 34,
-      "interview_success_rate": 60,
-      "offer_rate": 20.4,
-      "acceptance_rate": 63,
-      "conditions_met_rate": 82,
-      "offer_conversion_rate": 51.66,
-      "overall_conversion": 10.538639999999997
+      "shortlist_for_interview_rate": "30",
+      "interview_success_rate": "27",
+      "offer_rate": "8",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "84",
+      "offer_conversion_rate": "62",
+      "overall_conversion": "5"
     }
   },
   {
     "code": "2ZB4",
     "title": "Religious Education",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 27,
-      "interview_success_rate": 51,
-      "offer_rate": 13.77,
-      "acceptance_rate": 63,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 50.4,
-      "overall_conversion": 6.940079999999999
+      "shortlist_for_interview_rate": "53",
+      "interview_success_rate": "65",
+      "offer_rate": "34",
+      "acceptance_rate": "73",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "22"
     }
   },
   {
     "code": "39KD",
     "title": "Religious Education",
+    "provider": "University of Birmingham",
     "percentages": {
-      "shortlist_for_interview_rate": 38,
-      "interview_success_rate": 25,
-      "offer_rate": 9.5,
-      "acceptance_rate": 84,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 68.04,
-      "overall_conversion": 6.463800000000001
+      "shortlist_for_interview_rate": "51",
+      "interview_success_rate": "45",
+      "offer_rate": "23",
+      "acceptance_rate": "76",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "68",
+      "overall_conversion": "16"
     }
   },
   {
     "code": "AE91",
     "title": "Religious Education",
+    "provider": "University of Greenwich",
     "percentages": {
-      "shortlist_for_interview_rate": 29,
-      "interview_success_rate": 56,
-      "offer_rate": 16.24,
-      "acceptance_rate": 77,
-      "conditions_met_rate": 89,
-      "offer_conversion_rate": 68.53,
-      "overall_conversion": 11.129271999999998
+      "shortlist_for_interview_rate": "32",
+      "interview_success_rate": "31",
+      "offer_rate": "10",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "90",
+      "offer_conversion_rate": "67",
+      "overall_conversion": "7"
     }
   },
   {
     "code": "G365",
     "title": "Religious education",
+    "provider": "University College London",
     "percentages": {
-      "shortlist_for_interview_rate": 50,
-      "interview_success_rate": 63,
-      "offer_rate": 31.5,
-      "acceptance_rate": 85,
-      "conditions_met_rate": 80,
-      "offer_conversion_rate": 68,
-      "overall_conversion": 21.42
+      "shortlist_for_interview_rate": "50",
+      "interview_success_rate": "29",
+      "offer_rate": "15",
+      "acceptance_rate": "71",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "63",
+      "overall_conversion": "9"
     }
   },
   {
     "code": "336K",
     "title": "Social Sciences",
+    "provider": "University of Derby",
     "percentages": {
-      "shortlist_for_interview_rate": 62,
-      "interview_success_rate": 38,
-      "offer_rate": 23.56,
-      "acceptance_rate": 75,
-      "conditions_met_rate": 81,
-      "offer_conversion_rate": 60.75,
-      "overall_conversion": 14.3127
+      "shortlist_for_interview_rate": "63",
+      "interview_success_rate": "36",
+      "offer_rate": "23",
+      "acceptance_rate": "73",
+      "conditions_met_rate": "89",
+      "offer_conversion_rate": "65",
+      "overall_conversion": "15"
     }
   },
   {
     "code": "AVERAGE",
     "title": "All courses",
     "percentages": {
-      "shortlist_for_interview_rate": 49.490566037735846,
-      "interview_success_rate": 44.41509433962264,
-      "offer_rate": 21.893301886792443,
-      "acceptance_rate": 73.94339622641509,
-      "conditions_met_rate": 85.04716981132076,
-      "offer_conversion_rate": 62.89047169811321,
-      "overall_conversion": 13.748279405660375
+      "shortlist_for_interview_rate": "51",
+      "interview_success_rate": "44",
+      "offer_rate": "23",
+      "acceptance_rate": "74",
+      "conditions_met_rate": "85",
+      "offer_conversion_rate": "63",
+      "overall_conversion": "14"
     }
   }
 ]

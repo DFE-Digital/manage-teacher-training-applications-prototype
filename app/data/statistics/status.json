@@ -2,1285 +2,1391 @@
   {
     "code": "2SKV",
     "title": "Art and Design",
+    "provider": "University College London",
     "counts": {
-      "received": 55,
-      "interviewing": 10,
-      "offered": 7,
-      "awaiting_conditions": 1,
-      "ready_to_enroll": 10,
-      "total": 83
+      "received": "68",
+      "interviewing": "4",
+      "offered": "1",
+      "awaiting_conditions": "16",
+      "ready_to_enroll": "8",
+      "total": "97"
     }
   },
   {
     "code": "2XCC",
     "title": "Art and Design",
+    "provider": "University of Derby",
     "counts": {
-      "received": 29,
-      "interviewing": 12,
-      "offered": 10,
-      "awaiting_conditions": 15,
-      "ready_to_enroll": 7,
-      "total": 73
+      "received": "65",
+      "interviewing": "21",
+      "offered": "18",
+      "awaiting_conditions": "6",
+      "ready_to_enroll": "2",
+      "total": "112"
     }
   },
   {
     "code": "2YKF",
     "title": "Art and Design",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 69,
-      "interviewing": 31,
-      "offered": 10,
-      "awaiting_conditions": 2,
-      "ready_to_enroll": 8,
-      "total": 120
+      "received": "69",
+      "interviewing": "31",
+      "offered": "15",
+      "awaiting_conditions": "11",
+      "ready_to_enroll": "5",
+      "total": "131"
     }
   },
   {
     "code": "2ZC4",
     "title": "Art and Design",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 46,
-      "interviewing": 6,
-      "offered": 3,
-      "awaiting_conditions": 10,
-      "ready_to_enroll": 7,
-      "total": 72
+      "received": "51",
+      "interviewing": "26",
+      "offered": "4",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "7",
+      "total": "89"
     }
   },
   {
     "code": "2ZH9",
     "title": "Art and Design",
+    "provider": "University College London",
     "counts": {
-      "received": 51,
-      "interviewing": 8,
-      "offered": 12,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 7,
-      "total": 94
+      "received": "37",
+      "interviewing": "9",
+      "offered": "10",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "2",
+      "total": "76"
     }
   },
   {
     "code": "39K2",
     "title": "Art and Design",
+    "provider": "University of Derby",
     "counts": {
-      "received": 44,
-      "interviewing": 1,
-      "offered": 2,
-      "awaiting_conditions": 15,
-      "ready_to_enroll": 5,
-      "total": 67
+      "received": "31",
+      "interviewing": "9",
+      "offered": "2",
+      "awaiting_conditions": "6",
+      "ready_to_enroll": "2",
+      "total": "50"
     }
   },
   {
     "code": "27Q7",
     "title": "Biology",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 69,
-      "interviewing": 10,
-      "offered": 15,
-      "awaiting_conditions": 2,
-      "ready_to_enroll": 4,
-      "total": 100
+      "received": "49",
+      "interviewing": "21",
+      "offered": "1",
+      "awaiting_conditions": "16",
+      "ready_to_enroll": "7",
+      "total": "94"
     }
   },
   {
     "code": "2G9N",
     "title": "Biology",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 56,
-      "interviewing": 31,
-      "offered": 20,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 1,
-      "total": 111
+      "received": "33",
+      "interviewing": "9",
+      "offered": "2",
+      "awaiting_conditions": "4",
+      "ready_to_enroll": "2",
+      "total": "50"
     }
   },
   {
     "code": "2SKC",
     "title": "Biology",
+    "provider": "University College London",
     "counts": {
-      "received": 32,
-      "interviewing": 10,
-      "offered": 11,
-      "awaiting_conditions": 14,
-      "ready_to_enroll": 8,
-      "total": 75
+      "received": "65",
+      "interviewing": "26",
+      "offered": "19",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "5",
+      "total": "122"
     }
   },
   {
     "code": "2XC9",
     "title": "Biology",
+    "provider": "University of Derby",
     "counts": {
-      "received": 65,
-      "interviewing": 5,
-      "offered": 19,
-      "awaiting_conditions": 1,
-      "ready_to_enroll": 3,
-      "total": 93
+      "received": "35",
+      "interviewing": "20",
+      "offered": "15",
+      "awaiting_conditions": "19",
+      "ready_to_enroll": "8",
+      "total": "97"
     }
   },
   {
     "code": "2ZC3",
     "title": "Biology",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 41,
-      "interviewing": 19,
-      "offered": 9,
-      "awaiting_conditions": 17,
-      "ready_to_enroll": 5,
-      "total": 91
+      "received": "53",
+      "interviewing": "35",
+      "offered": "1",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "5",
+      "total": "97"
     }
   },
   {
     "code": "2ZHB",
     "title": "Biology",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 65,
-      "interviewing": 29,
-      "offered": 10,
-      "awaiting_conditions": 12,
-      "ready_to_enroll": 10,
-      "total": 126
+      "received": "55",
+      "interviewing": "21",
+      "offered": "13",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "7",
+      "total": "114"
     }
   },
   {
     "code": "39KF",
     "title": "Biology",
+    "provider": "University College London",
     "counts": {
-      "received": 73,
-      "interviewing": 11,
-      "offered": 3,
-      "awaiting_conditions": 20,
-      "ready_to_enroll": 1,
-      "total": 108
+      "received": "64",
+      "interviewing": "21",
+      "offered": "13",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "6",
+      "total": "122"
     }
   },
   {
     "code": "245T",
     "title": "Chemistry",
+    "provider": "University of Derby",
     "counts": {
-      "received": 35,
-      "interviewing": 34,
-      "offered": 18,
-      "awaiting_conditions": 6,
-      "ready_to_enroll": 4,
-      "total": 97
+      "received": "36",
+      "interviewing": "8",
+      "offered": "16",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "9",
+      "total": "89"
     }
   },
   {
     "code": "27Q9",
     "title": "Chemistry",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 65,
-      "interviewing": 4,
-      "offered": 10,
-      "awaiting_conditions": 10,
-      "ready_to_enroll": 4,
-      "total": 93
+      "received": "37",
+      "interviewing": "25",
+      "offered": "9",
+      "awaiting_conditions": "19",
+      "ready_to_enroll": "5",
+      "total": "95"
     }
   },
   {
     "code": "2PT2",
     "title": "Chemistry",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 52,
-      "interviewing": 7,
-      "offered": 14,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 9,
-      "total": 89
+      "received": "45",
+      "interviewing": "1",
+      "offered": "6",
+      "awaiting_conditions": "11",
+      "ready_to_enroll": "9",
+      "total": "72"
     }
   },
   {
     "code": "2SK6",
     "title": "Chemistry",
+    "provider": "University College London",
     "counts": {
-      "received": 50,
-      "interviewing": 29,
-      "offered": 14,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 10,
-      "total": 111
+      "received": "26",
+      "interviewing": "29",
+      "offered": "8",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "4",
+      "total": "70"
     }
   },
   {
     "code": "2ZC2",
     "title": "Chemistry",
+    "provider": "University of Derby",
     "counts": {
-      "received": 28,
-      "interviewing": 7,
-      "offered": 6,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 6,
-      "total": 60
+      "received": "51",
+      "interviewing": "20",
+      "offered": "18",
+      "awaiting_conditions": "4",
+      "ready_to_enroll": "1",
+      "total": "94"
     }
   },
   {
     "code": "2ZHC",
     "title": "Chemistry",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 26,
-      "interviewing": 19,
-      "offered": 11,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 2,
-      "total": 61
+      "received": "29",
+      "interviewing": "7",
+      "offered": "2",
+      "awaiting_conditions": "6",
+      "ready_to_enroll": "6",
+      "total": "50"
     }
   },
   {
     "code": "38D7",
     "title": "Chemistry",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 29,
-      "interviewing": 7,
-      "offered": 9,
-      "awaiting_conditions": 2,
-      "ready_to_enroll": 10,
-      "total": 57
+      "received": "58",
+      "interviewing": "4",
+      "offered": "12",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "8",
+      "total": "84"
     }
   },
   {
     "code": "39KG",
     "title": "Chemistry",
+    "provider": "University College London",
     "counts": {
-      "received": 59,
-      "interviewing": 6,
-      "offered": 11,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 10,
-      "total": 102
+      "received": "67",
+      "interviewing": "27",
+      "offered": "8",
+      "awaiting_conditions": "10",
+      "ready_to_enroll": "8",
+      "total": "120"
     }
   },
   {
     "code": "2SKS",
     "title": "Design and Technology",
+    "provider": "University of Derby",
     "counts": {
-      "received": 71,
-      "interviewing": 8,
-      "offered": 14,
-      "awaiting_conditions": 12,
-      "ready_to_enroll": 9,
-      "total": 114
+      "received": "27",
+      "interviewing": "24",
+      "offered": "12",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "4",
+      "total": "69"
     }
   },
   {
     "code": "2ZHD",
     "title": "Design and Technology",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 51,
-      "interviewing": 4,
-      "offered": 4,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 2,
-      "total": 69
+      "received": "60",
+      "interviewing": "32",
+      "offered": "3",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "3",
+      "total": "118"
     }
   },
   {
     "code": "34T2",
     "title": "Design and Technology",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 36,
-      "interviewing": 28,
-      "offered": 7,
-      "awaiting_conditions": 5,
-      "ready_to_enroll": 5,
-      "total": 81
+      "received": "74",
+      "interviewing": "7",
+      "offered": "17",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "8",
+      "total": "114"
     }
   },
   {
     "code": "39K3",
     "title": "Design and Technology",
+    "provider": "University College London",
     "counts": {
-      "received": 45,
-      "interviewing": 11,
-      "offered": 20,
-      "awaiting_conditions": 9,
-      "ready_to_enroll": 6,
-      "total": 91
+      "received": "35",
+      "interviewing": "29",
+      "offered": "18",
+      "awaiting_conditions": "12",
+      "ready_to_enroll": "3",
+      "total": "97"
     }
   },
   {
     "code": "G833",
     "title": "Design and Technology",
+    "provider": "University of Derby",
     "counts": {
-      "received": 32,
-      "interviewing": 31,
-      "offered": 1,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 9,
-      "total": 76
+      "received": "71",
+      "interviewing": "10",
+      "offered": "13",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "9",
+      "total": "123"
     }
   },
   {
     "code": "2ZBY",
     "title": "Design and Technology (Food and Product Design)",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 30,
-      "interviewing": 13,
-      "offered": 7,
-      "awaiting_conditions": 1,
-      "ready_to_enroll": 6,
-      "total": 57
+      "received": "53",
+      "interviewing": "28",
+      "offered": "12",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "6",
+      "total": "101"
     }
   },
   {
     "code": "2SKR",
     "title": "Drama",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 73,
-      "interviewing": 1,
-      "offered": 20,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 7,
-      "total": 114
+      "received": "59",
+      "interviewing": "8",
+      "offered": "17",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "9",
+      "total": "108"
     }
   },
   {
     "code": "2ZBX",
     "title": "Drama",
+    "provider": "University College London",
     "counts": {
-      "received": 34,
-      "interviewing": 25,
-      "offered": 2,
-      "awaiting_conditions": 20,
-      "ready_to_enroll": 4,
-      "total": 85
+      "received": "50",
+      "interviewing": "20",
+      "offered": "6",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "4",
+      "total": "88"
     }
   },
   {
     "code": "2ZHF",
     "title": "Drama",
+    "provider": "University of Derby",
     "counts": {
-      "received": 40,
-      "interviewing": 29,
-      "offered": 5,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 6,
-      "total": 96
+      "received": "30",
+      "interviewing": "28",
+      "offered": "18",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "1",
+      "total": "97"
     }
   },
   {
     "code": "365M",
     "title": "Drama",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 61,
-      "interviewing": 8,
-      "offered": 9,
-      "awaiting_conditions": 5,
-      "ready_to_enroll": 10,
-      "total": 93
+      "received": "26",
+      "interviewing": "23",
+      "offered": "17",
+      "awaiting_conditions": "6",
+      "ready_to_enroll": "8",
+      "total": "80"
     }
   },
   {
     "code": "39K4",
     "title": "Drama",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 41,
-      "interviewing": 31,
-      "offered": 20,
-      "awaiting_conditions": 4,
-      "ready_to_enroll": 2,
-      "total": 98
+      "received": "31",
+      "interviewing": "22",
+      "offered": "16",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "8",
+      "total": "95"
     }
   },
   {
     "code": "245X",
     "title": "English",
+    "provider": "University College London",
     "counts": {
-      "received": 64,
-      "interviewing": 31,
-      "offered": 16,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 7,
-      "total": 131
+      "received": "71",
+      "interviewing": "19",
+      "offered": "7",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "1",
+      "total": "118"
     }
   },
   {
     "code": "27HK",
     "title": "English",
+    "provider": "University of Derby",
     "counts": {
-      "received": 57,
-      "interviewing": 12,
-      "offered": 11,
-      "awaiting_conditions": 10,
-      "ready_to_enroll": 9,
-      "total": 99
+      "received": "68",
+      "interviewing": "26",
+      "offered": "5",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "2",
+      "total": "108"
     }
   },
   {
     "code": "2SJW",
     "title": "English",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 36,
-      "interviewing": 28,
-      "offered": 14,
-      "awaiting_conditions": 14,
-      "ready_to_enroll": 8,
-      "total": 100
+      "received": "61",
+      "interviewing": "14",
+      "offered": "5",
+      "awaiting_conditions": "13",
+      "ready_to_enroll": "9",
+      "total": "102"
     }
   },
   {
     "code": "2YK7",
     "title": "English",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 51,
-      "interviewing": 22,
-      "offered": 2,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 8,
-      "total": 90
+      "received": "38",
+      "interviewing": "29",
+      "offered": "14",
+      "awaiting_conditions": "5",
+      "ready_to_enroll": "8",
+      "total": "94"
     }
   },
   {
     "code": "2ZBW",
     "title": "English",
+    "provider": "University College London",
     "counts": {
-      "received": 71,
-      "interviewing": 20,
-      "offered": 9,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 9,
-      "total": 122
+      "received": "39",
+      "interviewing": "5",
+      "offered": "3",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "8",
+      "total": "70"
     }
   },
   {
     "code": "2ZHG",
     "title": "English",
+    "provider": "University of Derby",
     "counts": {
-      "received": 35,
-      "interviewing": 18,
-      "offered": 15,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 4,
-      "total": 75
+      "received": "52",
+      "interviewing": "2",
+      "offered": "3",
+      "awaiting_conditions": "9",
+      "ready_to_enroll": "1",
+      "total": "67"
     }
   },
   {
     "code": "365F",
     "title": "English",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 55,
-      "interviewing": 35,
-      "offered": 3,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 4,
-      "total": 113
+      "received": "62",
+      "interviewing": "18",
+      "offered": "9",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "7",
+      "total": "104"
     }
   },
   {
     "code": "39K5",
     "title": "English",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 46,
-      "interviewing": 11,
-      "offered": 7,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 6,
-      "total": 73
+      "received": "50",
+      "interviewing": "3",
+      "offered": "20",
+      "awaiting_conditions": "17",
+      "ready_to_enroll": "8",
+      "total": "98"
     }
   },
   {
     "code": "2G9D",
     "title": "Geography",
+    "provider": "University College London",
     "counts": {
-      "received": 72,
-      "interviewing": 7,
-      "offered": 9,
-      "awaiting_conditions": 9,
-      "ready_to_enroll": 4,
-      "total": 101
+      "received": "33",
+      "interviewing": "32",
+      "offered": "16",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "9",
+      "total": "105"
     }
   },
   {
     "code": "2RX7",
     "title": "Geography",
+    "provider": "University of Derby",
     "counts": {
-      "received": 31,
-      "interviewing": 12,
-      "offered": 7,
-      "awaiting_conditions": 15,
-      "ready_to_enroll": 3,
-      "total": 68
+      "received": "52",
+      "interviewing": "17",
+      "offered": "6",
+      "awaiting_conditions": "5",
+      "ready_to_enroll": "2",
+      "total": "82"
     }
   },
   {
     "code": "2SKL",
     "title": "Geography",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 35,
-      "interviewing": 10,
-      "offered": 1,
-      "awaiting_conditions": 6,
-      "ready_to_enroll": 7,
-      "total": 59
+      "received": "68",
+      "interviewing": "11",
+      "offered": "4",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "9",
+      "total": "95"
     }
   },
   {
     "code": "2XBS",
     "title": "Geography",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 64,
-      "interviewing": 21,
-      "offered": 17,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 5,
-      "total": 114
+      "received": "57",
+      "interviewing": "15",
+      "offered": "8",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "7",
+      "total": "88"
     }
   },
   {
     "code": "2ZBV",
     "title": "Geography",
+    "provider": "University College London",
     "counts": {
-      "received": 64,
-      "interviewing": 15,
-      "offered": 8,
-      "awaiting_conditions": 20,
-      "ready_to_enroll": 3,
-      "total": 110
+      "received": "74",
+      "interviewing": "10",
+      "offered": "11",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "5",
+      "total": "107"
     }
   },
   {
     "code": "2ZHH",
     "title": "Geography",
+    "provider": "University of Derby",
     "counts": {
-      "received": 70,
-      "interviewing": 25,
-      "offered": 1,
-      "awaiting_conditions": 5,
-      "ready_to_enroll": 3,
-      "total": 104
+      "received": "30",
+      "interviewing": "26",
+      "offered": "11",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "3",
+      "total": "77"
     }
   },
   {
     "code": "38D8",
     "title": "Geography",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 42,
-      "interviewing": 34,
-      "offered": 1,
-      "awaiting_conditions": 15,
-      "ready_to_enroll": 4,
-      "total": 96
+      "received": "62",
+      "interviewing": "23",
+      "offered": "12",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "6",
+      "total": "121"
     }
   },
   {
     "code": "39K6",
     "title": "Geography",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 55,
-      "interviewing": 3,
-      "offered": 18,
-      "awaiting_conditions": 6,
-      "ready_to_enroll": 4,
-      "total": 86
+      "received": "48",
+      "interviewing": "15",
+      "offered": "20",
+      "awaiting_conditions": "12",
+      "ready_to_enroll": "1",
+      "total": "96"
     }
   },
   {
     "code": "2G9K",
     "title": "History",
+    "provider": "University College London",
     "counts": {
-      "received": 26,
-      "interviewing": 32,
-      "offered": 14,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 6,
-      "total": 94
+      "received": "58",
+      "interviewing": "17",
+      "offered": "13",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "8",
+      "total": "116"
     }
   },
   {
     "code": "2SKM",
     "title": "History",
+    "provider": "University of Derby",
     "counts": {
-      "received": 43,
-      "interviewing": 29,
-      "offered": 13,
-      "awaiting_conditions": 11,
-      "ready_to_enroll": 1,
-      "total": 97
+      "received": "51",
+      "interviewing": "13",
+      "offered": "19",
+      "awaiting_conditions": "16",
+      "ready_to_enroll": "5",
+      "total": "104"
     }
   },
   {
     "code": "2ZBT",
     "title": "History",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 33,
-      "interviewing": 4,
-      "offered": 6,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 5,
-      "total": 51
+      "received": "71",
+      "interviewing": "29",
+      "offered": "14",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "6",
+      "total": "121"
     }
   },
   {
     "code": "2ZHJ",
     "title": "History",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 67,
-      "interviewing": 19,
-      "offered": 17,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 9,
-      "total": 128
+      "received": "51",
+      "interviewing": "2",
+      "offered": "15",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "10",
+      "total": "80"
     }
   },
   {
     "code": "365J",
     "title": "History",
+    "provider": "University College London",
     "counts": {
-      "received": 44,
-      "interviewing": 17,
-      "offered": 10,
-      "awaiting_conditions": 4,
-      "ready_to_enroll": 9,
-      "total": 84
+      "received": "58",
+      "interviewing": "2",
+      "offered": "11",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "2",
+      "total": "80"
     }
   },
   {
     "code": "39K7",
     "title": "History",
+    "provider": "University of Derby",
     "counts": {
-      "received": 39,
-      "interviewing": 25,
-      "offered": 20,
-      "awaiting_conditions": 19,
-      "ready_to_enroll": 9,
-      "total": 112
+      "received": "29",
+      "interviewing": "12",
+      "offered": "7",
+      "awaiting_conditions": "11",
+      "ready_to_enroll": "10",
+      "total": "69"
     }
   },
   {
     "code": "245W",
     "title": "Mathematics",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 27,
-      "interviewing": 18,
-      "offered": 4,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 2,
-      "total": 64
+      "received": "70",
+      "interviewing": "26",
+      "offered": "6",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "1",
+      "total": "110"
     }
   },
   {
     "code": "27HL",
     "title": "Mathematics",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 40,
-      "interviewing": 35,
-      "offered": 4,
-      "awaiting_conditions": 14,
-      "ready_to_enroll": 7,
-      "total": 100
+      "received": "72",
+      "interviewing": "34",
+      "offered": "20",
+      "awaiting_conditions": "12",
+      "ready_to_enroll": "8",
+      "total": "146"
     }
   },
   {
     "code": "2PTS",
     "title": "Mathematics",
+    "provider": "University College London",
     "counts": {
-      "received": 67,
-      "interviewing": 24,
-      "offered": 17,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 6,
-      "total": 127
+      "received": "47",
+      "interviewing": "34",
+      "offered": "1",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "8",
+      "total": "105"
     }
   },
   {
     "code": "2SJY",
     "title": "Mathematics",
+    "provider": "University of Derby",
     "counts": {
-      "received": 46,
-      "interviewing": 12,
-      "offered": 5,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 8,
-      "total": 84
+      "received": "27",
+      "interviewing": "26",
+      "offered": "11",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "2",
+      "total": "67"
     }
   },
   {
     "code": "2YK6",
     "title": "Mathematics",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 64,
-      "interviewing": 13,
-      "offered": 9,
-      "awaiting_conditions": 1,
-      "ready_to_enroll": 1,
-      "total": 88
+      "received": "54",
+      "interviewing": "2",
+      "offered": "6",
+      "awaiting_conditions": "16",
+      "ready_to_enroll": "1",
+      "total": "79"
     }
   },
   {
     "code": "2ZBS",
     "title": "Mathematics",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 41,
-      "interviewing": 14,
-      "offered": 9,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 6,
-      "total": 77
+      "received": "28",
+      "interviewing": "2",
+      "offered": "13",
+      "awaiting_conditions": "7",
+      "ready_to_enroll": "5",
+      "total": "55"
     }
   },
   {
     "code": "2ZHK",
     "title": "Mathematics",
+    "provider": "University College London",
     "counts": {
-      "received": 69,
-      "interviewing": 29,
-      "offered": 15,
-      "awaiting_conditions": 18,
-      "ready_to_enroll": 7,
-      "total": 138
+      "received": "75",
+      "interviewing": "7",
+      "offered": "20",
+      "awaiting_conditions": "5",
+      "ready_to_enroll": "1",
+      "total": "108"
     }
   },
   {
     "code": "39K8",
     "title": "Mathematics",
+    "provider": "University of Derby",
     "counts": {
-      "received": 49,
-      "interviewing": 10,
-      "offered": 4,
-      "awaiting_conditions": 20,
-      "ready_to_enroll": 7,
-      "total": 90
+      "received": "59",
+      "interviewing": "12",
+      "offered": "2",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "8",
+      "total": "89"
     }
   },
   {
     "code": "2YKC",
     "title": "Modern Languages",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 28,
-      "interviewing": 6,
-      "offered": 13,
-      "awaiting_conditions": 17,
-      "ready_to_enroll": 4,
-      "total": 68
+      "received": "56",
+      "interviewing": "13",
+      "offered": "17",
+      "awaiting_conditions": "14",
+      "ready_to_enroll": "6",
+      "total": "106"
     }
   },
   {
     "code": "2ZHL",
     "title": "Modern Languages",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 47,
-      "interviewing": 15,
-      "offered": 5,
-      "awaiting_conditions": 1,
-      "ready_to_enroll": 5,
-      "total": 73
+      "received": "52",
+      "interviewing": "33",
+      "offered": "13",
+      "awaiting_conditions": "9",
+      "ready_to_enroll": "4",
+      "total": "111"
     }
   },
   {
     "code": "2PTW",
     "title": "Modern Languages (French and German)",
+    "provider": "University College London",
     "counts": {
-      "received": 42,
-      "interviewing": 22,
-      "offered": 10,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 8,
-      "total": 90
+      "received": "61",
+      "interviewing": "17",
+      "offered": "18",
+      "awaiting_conditions": "13",
+      "ready_to_enroll": "3",
+      "total": "112"
     }
   },
   {
     "code": "2ZBR",
     "title": "Modern Languages (French and Spanish)",
+    "provider": "University of Derby",
     "counts": {
-      "received": 57,
-      "interviewing": 7,
-      "offered": 9,
-      "awaiting_conditions": 11,
-      "ready_to_enroll": 2,
-      "total": 86
+      "received": "58",
+      "interviewing": "4",
+      "offered": "19",
+      "awaiting_conditions": "9",
+      "ready_to_enroll": "10",
+      "total": "100"
     }
   },
   {
     "code": "2SKQ",
     "title": "Music",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 27,
-      "interviewing": 14,
-      "offered": 20,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 3,
-      "total": 80
+      "received": "25",
+      "interviewing": "30",
+      "offered": "14",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "1",
+      "total": "90"
     }
   },
   {
     "code": "2YKB",
     "title": "Music",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 71,
-      "interviewing": 8,
-      "offered": 9,
-      "awaiting_conditions": 6,
-      "ready_to_enroll": 10,
-      "total": 104
+      "received": "74",
+      "interviewing": "8",
+      "offered": "18",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "1",
+      "total": "121"
     }
   },
   {
     "code": "2ZBQ",
     "title": "Music",
+    "provider": "University College London",
     "counts": {
-      "received": 54,
-      "interviewing": 10,
-      "offered": 8,
-      "awaiting_conditions": 11,
-      "ready_to_enroll": 7,
-      "total": 90
+      "received": "36",
+      "interviewing": "14",
+      "offered": "2",
+      "awaiting_conditions": "10",
+      "ready_to_enroll": "9",
+      "total": "71"
     }
   },
   {
     "code": "34T3",
     "title": "Music",
+    "provider": "University of Derby",
     "counts": {
-      "received": 36,
-      "interviewing": 1,
-      "offered": 8,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 10,
-      "total": 68
+      "received": "57",
+      "interviewing": "5",
+      "offered": "5",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "3",
+      "total": "85"
     }
   },
   {
     "code": "365G",
     "title": "Music",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 33,
-      "interviewing": 2,
-      "offered": 15,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 9,
-      "total": 67
+      "received": "43",
+      "interviewing": "22",
+      "offered": "14",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "6",
+      "total": "93"
     }
   },
   {
     "code": "39KB",
     "title": "Music",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 33,
-      "interviewing": 9,
-      "offered": 10,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 5,
-      "total": 60
+      "received": "31",
+      "interviewing": "6",
+      "offered": "14",
+      "awaiting_conditions": "4",
+      "ready_to_enroll": "10",
+      "total": "65"
     }
   },
   {
     "code": "26QZ",
     "title": "Physical Education",
+    "provider": "University College London",
     "counts": {
-      "received": 40,
-      "interviewing": 21,
-      "offered": 12,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 6,
-      "total": 92
+      "received": "29",
+      "interviewing": "9",
+      "offered": "1",
+      "awaiting_conditions": "14",
+      "ready_to_enroll": "3",
+      "total": "56"
     }
   },
   {
     "code": "2G9L",
     "title": "Physical Education",
+    "provider": "University of Derby",
     "counts": {
-      "received": 27,
-      "interviewing": 11,
-      "offered": 6,
-      "awaiting_conditions": 2,
-      "ready_to_enroll": 3,
-      "total": 49
+      "received": "40",
+      "interviewing": "13",
+      "offered": "1",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "1",
+      "total": "63"
     }
   },
   {
     "code": "2SKP",
     "title": "Physical Education",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 47,
-      "interviewing": 21,
-      "offered": 15,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 5,
-      "total": 95
+      "received": "55",
+      "interviewing": "5",
+      "offered": "7",
+      "awaiting_conditions": "12",
+      "ready_to_enroll": "3",
+      "total": "82"
     }
   },
   {
     "code": "2ZBP",
     "title": "Physical Education",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 44,
-      "interviewing": 2,
-      "offered": 11,
-      "awaiting_conditions": 12,
-      "ready_to_enroll": 2,
-      "total": 71
+      "received": "36",
+      "interviewing": "2",
+      "offered": "9",
+      "awaiting_conditions": "9",
+      "ready_to_enroll": "8",
+      "total": "64"
     }
   },
   {
     "code": "2ZHN",
     "title": "Physical Education",
+    "provider": "University College London",
     "counts": {
-      "received": 54,
-      "interviewing": 20,
-      "offered": 5,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 7,
-      "total": 93
+      "received": "48",
+      "interviewing": "23",
+      "offered": "3",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "5",
+      "total": "81"
     }
   },
   {
     "code": "365N",
     "title": "Physical Education",
+    "provider": "University of Derby",
     "counts": {
-      "received": 65,
-      "interviewing": 30,
-      "offered": 20,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 2,
-      "total": 120
+      "received": "55",
+      "interviewing": "27",
+      "offered": "2",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "7",
+      "total": "109"
     }
   },
   {
     "code": "39KC",
     "title": "Physical Education",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 55,
-      "interviewing": 28,
-      "offered": 6,
-      "awaiting_conditions": 17,
-      "ready_to_enroll": 4,
-      "total": 110
+      "received": "54",
+      "interviewing": "23",
+      "offered": "7",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "7",
+      "total": "99"
     }
   },
   {
     "code": "245R",
     "title": "Physics",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 66,
-      "interviewing": 19,
-      "offered": 15,
-      "awaiting_conditions": 6,
-      "ready_to_enroll": 3,
-      "total": 109
+      "received": "45",
+      "interviewing": "13",
+      "offered": "4",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "6",
+      "total": "86"
     }
   },
   {
     "code": "27HM",
     "title": "Physics",
+    "provider": "University College London",
     "counts": {
-      "received": 66,
-      "interviewing": 22,
-      "offered": 18,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 4,
-      "total": 113
+      "received": "31",
+      "interviewing": "7",
+      "offered": "6",
+      "awaiting_conditions": "14",
+      "ready_to_enroll": "2",
+      "total": "60"
     }
   },
   {
     "code": "2PTX",
     "title": "Physics",
+    "provider": "University of Derby",
     "counts": {
-      "received": 44,
-      "interviewing": 15,
-      "offered": 1,
-      "awaiting_conditions": 5,
-      "ready_to_enroll": 2,
-      "total": 67
+      "received": "73",
+      "interviewing": "19",
+      "offered": "2",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "5",
+      "total": "100"
     }
   },
   {
     "code": "2SKB",
     "title": "Physics",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 40,
-      "interviewing": 19,
-      "offered": 2,
-      "awaiting_conditions": 13,
-      "ready_to_enroll": 8,
-      "total": 82
+      "received": "67",
+      "interviewing": "5",
+      "offered": "14",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "3",
+      "total": "97"
     }
   },
   {
     "code": "2YK8",
     "title": "Physics",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 30,
-      "interviewing": 6,
-      "offered": 17,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 3,
-      "total": 64
+      "received": "60",
+      "interviewing": "16",
+      "offered": "12",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "10",
+      "total": "113"
     }
   },
   {
     "code": "2ZBN",
     "title": "Physics",
+    "provider": "University College London",
     "counts": {
-      "received": 26,
-      "interviewing": 13,
-      "offered": 8,
-      "awaiting_conditions": 3,
-      "ready_to_enroll": 9,
-      "total": 59
+      "received": "46",
+      "interviewing": "1",
+      "offered": "5",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "3",
+      "total": "57"
     }
   },
   {
     "code": "2ZHM",
     "title": "Physics",
+    "provider": "University of Derby",
     "counts": {
-      "received": 67,
-      "interviewing": 3,
-      "offered": 14,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 7,
-      "total": 99
+      "received": "68",
+      "interviewing": "35",
+      "offered": "9",
+      "awaiting_conditions": "20",
+      "ready_to_enroll": "6",
+      "total": "138"
     }
   },
   {
     "code": "39KH",
     "title": "Physics",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 26,
-      "interviewing": 18,
-      "offered": 16,
-      "awaiting_conditions": 9,
-      "ready_to_enroll": 10,
-      "total": 79
+      "received": "37",
+      "interviewing": "34",
+      "offered": "19",
+      "awaiting_conditions": "5",
+      "ready_to_enroll": "7",
+      "total": "102"
     }
   },
   {
     "code": "2C9X",
     "title": "Primary",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 64,
-      "interviewing": 11,
-      "offered": 3,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 5,
-      "total": 90
+      "received": "54",
+      "interviewing": "5",
+      "offered": "20",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "9",
+      "total": "89"
     }
   },
   {
     "code": "2C9Y",
     "title": "Primary",
+    "provider": "University College London",
     "counts": {
-      "received": 37,
-      "interviewing": 34,
-      "offered": 9,
-      "awaiting_conditions": 16,
-      "ready_to_enroll": 10,
-      "total": 106
+      "received": "40",
+      "interviewing": "9",
+      "offered": "10",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "1",
+      "total": "63"
     }
   },
   {
     "code": "2GKB",
     "title": "Primary",
+    "provider": "University of Derby",
     "counts": {
-      "received": 45,
-      "interviewing": 15,
-      "offered": 1,
-      "awaiting_conditions": 2,
-      "ready_to_enroll": 8,
-      "total": 71
+      "received": "34",
+      "interviewing": "7",
+      "offered": "16",
+      "awaiting_conditions": "11",
+      "ready_to_enroll": "8",
+      "total": "76"
     }
   },
   {
     "code": "2SJS",
     "title": "Primary",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 75,
-      "interviewing": 9,
-      "offered": 13,
-      "awaiting_conditions": 19,
-      "ready_to_enroll": 7,
-      "total": 123
+      "received": "32",
+      "interviewing": "27",
+      "offered": "8",
+      "awaiting_conditions": "6",
+      "ready_to_enroll": "9",
+      "total": "82"
     }
   },
   {
     "code": "2ZBD",
     "title": "Primary",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 63,
-      "interviewing": 4,
-      "offered": 11,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 10,
-      "total": 96
+      "received": "72",
+      "interviewing": "34",
+      "offered": "3",
+      "awaiting_conditions": "8",
+      "ready_to_enroll": "10",
+      "total": "127"
     }
   },
   {
     "code": "34SX",
     "title": "Primary",
+    "provider": "University College London",
     "counts": {
-      "received": 26,
-      "interviewing": 20,
-      "offered": 10,
-      "awaiting_conditions": 8,
-      "ready_to_enroll": 7,
-      "total": 71
+      "received": "57",
+      "interviewing": "10",
+      "offered": "13",
+      "awaiting_conditions": "11",
+      "ready_to_enroll": "7",
+      "total": "98"
     }
   },
   {
     "code": "36LK",
     "title": "Primary",
+    "provider": "University of Derby",
     "counts": {
-      "received": 37,
-      "interviewing": 29,
-      "offered": 17,
-      "awaiting_conditions": 17,
-      "ready_to_enroll": 3,
-      "total": 103
+      "received": "63",
+      "interviewing": "24",
+      "offered": "19",
+      "awaiting_conditions": "17",
+      "ready_to_enroll": "9",
+      "total": "132"
     }
   },
   {
     "code": "3FRH",
     "title": "Primary",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 26,
-      "interviewing": 9,
-      "offered": 4,
-      "awaiting_conditions": 1,
-      "ready_to_enroll": 8,
-      "total": 48
+      "received": "37",
+      "interviewing": "26",
+      "offered": "13",
+      "awaiting_conditions": "2",
+      "ready_to_enroll": "5",
+      "total": "83"
     }
   },
   {
     "code": "AT88",
     "title": "Primary",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 52,
-      "interviewing": 14,
-      "offered": 11,
-      "awaiting_conditions": 11,
-      "ready_to_enroll": 2,
-      "total": 90
+      "received": "42",
+      "interviewing": "31",
+      "offered": "5",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "1",
+      "total": "82"
     }
   },
   {
     "code": "T780",
     "title": "Primary",
+    "provider": "University College London",
     "counts": {
-      "received": 27,
-      "interviewing": 13,
-      "offered": 2,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 1,
-      "total": 50
+      "received": "66",
+      "interviewing": "32",
+      "offered": "10",
+      "awaiting_conditions": "14",
+      "ready_to_enroll": "6",
+      "total": "128"
     }
   },
   {
     "code": "F988",
     "title": "Primary (3-7)",
+    "provider": "University of Derby",
     "counts": {
-      "received": 52,
-      "interviewing": 11,
-      "offered": 12,
-      "awaiting_conditions": 19,
-      "ready_to_enroll": 9,
-      "total": 103
+      "received": "63",
+      "interviewing": "16",
+      "offered": "4",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "8",
+      "total": "94"
     }
   },
   {
     "code": "T473",
     "title": "Primary (3-7)",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 35,
-      "interviewing": 7,
-      "offered": 6,
-      "awaiting_conditions": 9,
-      "ready_to_enroll": 4,
-      "total": 61
+      "received": "52",
+      "interviewing": "6",
+      "offered": "17",
+      "awaiting_conditions": "5",
+      "ready_to_enroll": "4",
+      "total": "84"
     }
   },
   {
     "code": "F559",
     "title": "Primary with mathematics",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 42,
-      "interviewing": 17,
-      "offered": 10,
-      "awaiting_conditions": 2,
-      "ready_to_enroll": 6,
-      "total": 77
+      "received": "35",
+      "interviewing": "10",
+      "offered": "7",
+      "awaiting_conditions": "14",
+      "ready_to_enroll": "1",
+      "total": "67"
     }
   },
   {
     "code": "2XBT",
     "title": "Religious Education",
+    "provider": "University College London",
     "counts": {
-      "received": 73,
-      "interviewing": 14,
-      "offered": 1,
-      "awaiting_conditions": 10,
-      "ready_to_enroll": 1,
-      "total": 99
+      "received": "58",
+      "interviewing": "3",
+      "offered": "15",
+      "awaiting_conditions": "15",
+      "ready_to_enroll": "2",
+      "total": "93"
     }
   },
   {
     "code": "2ZB4",
     "title": "Religious Education",
+    "provider": "University of Derby",
     "counts": {
-      "received": 54,
-      "interviewing": 35,
-      "offered": 17,
-      "awaiting_conditions": 15,
-      "ready_to_enroll": 9,
-      "total": 130
+      "received": "37",
+      "interviewing": "13",
+      "offered": "19",
+      "awaiting_conditions": "13",
+      "ready_to_enroll": "9",
+      "total": "91"
     }
   },
   {
     "code": "39KD",
     "title": "Religious Education",
+    "provider": "University of Birmingham",
     "counts": {
-      "received": 39,
-      "interviewing": 16,
-      "offered": 19,
-      "awaiting_conditions": 6,
-      "ready_to_enroll": 8,
-      "total": 88
+      "received": "27",
+      "interviewing": "33",
+      "offered": "11",
+      "awaiting_conditions": "18",
+      "ready_to_enroll": "6",
+      "total": "95"
     }
   },
   {
     "code": "AE91",
     "title": "Religious Education",
+    "provider": "University of Greenwich",
     "counts": {
-      "received": 27,
-      "interviewing": 27,
-      "offered": 11,
-      "awaiting_conditions": 5,
-      "ready_to_enroll": 10,
-      "total": 80
+      "received": "32",
+      "interviewing": "5",
+      "offered": "15",
+      "awaiting_conditions": "5",
+      "ready_to_enroll": "4",
+      "total": "61"
     }
   },
   {
     "code": "G365",
     "title": "Religious education",
+    "provider": "University College London",
     "counts": {
-      "received": 68,
-      "interviewing": 34,
-      "offered": 13,
-      "awaiting_conditions": 7,
-      "ready_to_enroll": 10,
-      "total": 132
+      "received": "45",
+      "interviewing": "25",
+      "offered": "4",
+      "awaiting_conditions": "3",
+      "ready_to_enroll": "3",
+      "total": "80"
     }
   },
   {
     "code": "336K",
     "title": "Social Sciences",
+    "provider": "University of Derby",
     "counts": {
-      "received": 46,
-      "interviewing": 20,
-      "offered": 3,
-      "awaiting_conditions": 10,
-      "ready_to_enroll": 4,
-      "total": 83
+      "received": "57",
+      "interviewing": "27",
+      "offered": "6",
+      "awaiting_conditions": "1",
+      "ready_to_enroll": "7",
+      "total": "98"
     }
   },
   {
     "code": "TOTAL",
     "title": "All courses",
     "counts": {
-      "received": 980,
-      "interviewing": 290,
-      "offered": 213,
-      "awaiting_conditions": 177,
-      "ready_to_enroll": 121,
-      "total": 1781
+      "received": "957",
+      "interviewing": "347",
+      "offered": "185",
+      "awaiting_conditions": "208",
+      "ready_to_enroll": "108",
+      "total": "1805"
     }
   }
 ]

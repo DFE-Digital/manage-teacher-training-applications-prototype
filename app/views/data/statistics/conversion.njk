@@ -32,7 +32,11 @@
 
       {{ govukButton({
         text: "Export report",
-        classes: "govuk-button--secondary"
+        href: "/reports/progress-of-applications/download",
+        classes: "govuk-button--secondary",
+        attributes: {
+          download: 'true'
+        }
       }) }}
 
       <table class="govuk-table">
@@ -62,7 +66,7 @@
               {% else %}
                 <td class="govuk-table__cell">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ partners | random }}</span>
+                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 </td>
               {% endif %}
               {% for stage in stages %}
