@@ -1,4 +1,7 @@
-module.exports = (faker, params = {}) => {
+const faker = require('faker')
+faker.locale = 'en_GB'
+
+module.exports = (params = {}) => {
   return {
     id: faker.datatype.uuid(),
     name: params.name,

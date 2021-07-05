@@ -1,8 +1,11 @@
+const faker = require('faker')
+faker.locale = 'en_GB'
+
 const weighted = require('weighted')
 const degreeData = require('../degree')
 
-module.exports = (faker, isInternationCandidate) => {
-  const item = (faker) => {
+module.exports = (isInternationCandidate) => {
+  const item = () => {
     const subject = faker.helpers.randomize(degreeData().subjects)
     const predicted = faker.datatype.boolean()
     const startDate = '2017'
