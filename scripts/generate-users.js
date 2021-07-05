@@ -15,8 +15,6 @@ const generateFakeUsers = (count) => {
   const users = []
   const mainOrg = OrgHelper.findOrg("Endeavour TSA")
 
-  console.log(mainOrg)
-
   users.push({
     id: faker.datatype.uuid(),
     firstName: "Louise",

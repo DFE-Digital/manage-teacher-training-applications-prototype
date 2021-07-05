@@ -6,7 +6,7 @@ faker.locale = 'en_GB'
 const generateOrganisation = require('../app/data/generators/organisation')
 
 const generateFakeOrganisation = (params = {}) => {
-  return generateOrganisation(faker, params)
+  return generateOrganisation(params)
 }
 
 const generateFakeOrganisations = (count) => {

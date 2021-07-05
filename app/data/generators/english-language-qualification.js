@@ -1,4 +1,7 @@
-module.exports = (faker) => {
+const faker = require('faker')
+faker.locale = 'en_GB'
+
+module.exports = () => {
   const type = faker.helpers.randomize([
     'IELTS',
     'TOEFL',

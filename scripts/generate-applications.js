@@ -39,7 +39,6 @@ const generateFakeApplication = (params = {}) => {
     return null
   }
 
-  console.log(user)
 
   const organisations = user.organisations
   const status = params.status
@@ -160,13 +159,13 @@ const generateFakeApplication = (params = {}) => {
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
     degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate),
-    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
-    otherQualifications: params.otherQualifications || generateOtherQualifications(faker),
-    personalStatement: params.personalStatement || generatePersonalStatement(faker),
-    references: params.references || generateReferences(faker),
+    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(),
+    otherQualifications: params.otherQualifications || generateOtherQualifications(),
+    personalStatement: params.personalStatement || generatePersonalStatement(),
+    references: params.references || generateReferences(),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
-    safeguarding: params.safeguarding || generateSafeguarding(faker),
-    disability: params.disability || generateDisability(faker)
+    safeguarding: params.safeguarding || generateSafeguarding(),
+    disability: params.disability || generateDisability()
   }
 }
 
