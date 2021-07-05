@@ -70,13 +70,13 @@ module.exports = router => {
     })
 
     const stages = [
-      { title: 'Shortlist for interview', description: '% of applications received offered an interview' },
-      { title: 'Interview success', description: '% interviewed that are made an offer'},
-      { title: 'Offer', description: '% applications received that are made an offer'},
-      { title: 'Acceptance', description: '% offers made that are accepted'},
-      { title: 'Conditions met', description: '% accepted offers that go on to meet their conditions'},
-      { title: 'Offer conversion', description: '% offers made lead to successful enrollment'},
-      { title: 'Overall conversion', description: '% received applications that  lead to successful enrollment'}
+      { title: 'Shortlist for interview', description: 'Percentage of of applications received offered an interview' },
+      { title: 'Interview success', description: 'Percentage interviewed that are made an offer'},
+      { title: 'Offer', description: 'Percentage of applications received that are made an offer'},
+      { title: 'Acceptance', description: 'Percentage of offers made that are accepted'},
+      { title: 'Conditions met', description: 'Percentage of accepted offers that go on to meet their conditions'},
+      { title: 'Offer conversion', description: 'Percentage of offers made lead to successful enrollment'},
+      { title: 'Overall conversion', description: 'Percentage of received applications that  lead to successful enrollment'}
     ]
 
     const conversionData = StatisticsHelper.conversionData
@@ -98,13 +98,13 @@ module.exports = router => {
                     })
 
     const stages = [
-      { title: 'Shortlist for interview rate', description: '% of applications received offered an interview' },
-      { title: 'Interview success rate', description: '% interviewed that are made an offer'},
-      { title: 'Offer rate', description: '% applications received that are made an offer'},
-      { title: 'Acceptance rate', description: '% offers made that are accepted'},
-      { title: 'Conditions met rate', description: '% accepted offers that go on to meet their conditions'},
-      { title: 'Offer conversion rate', description: '% offers made lead to successful enrollment'},
-      { title: 'Overall conversion', description: '% received applications that  lead to successful enrollment'}
+      { title: 'Shortlist for interview', description: 'Percentage of of applications received offered an interview' },
+      { title: 'Interview success', description: 'Percentage interviewed that are made an offer'},
+      { title: 'Offer', description: 'Percentage of applications received that are made an offer'},
+      { title: 'Acceptance', description: 'Percentage of offers made that are accepted'},
+      { title: 'Conditions met', description: 'Percentage of accepted offers that go on to meet their conditions'},
+      { title: 'Offer conversion', description: 'Percentage of offers made lead to successful enrollment'},
+      { title: 'Overall conversion', description: 'Percentage of received applications that  lead to successful enrollment'}
     ]
 
     const conversionData = StatisticsHelper.conversionData
