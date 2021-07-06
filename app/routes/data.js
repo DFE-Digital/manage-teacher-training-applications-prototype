@@ -148,12 +148,14 @@ module.exports = router => {
     stages.forEach((stage, i) => {
       const headerNumber = {}
       headerNumber.id = stage.code + '_number'
-      headerNumber.title = stage.title + ' - number'
+      // headerNumber.title = stage.title + ' - number'
+      headerNumber.title = stage.description + ' - number'
       headers.push(headerNumber)
 
       const headerPercentage = {}
       headerPercentage.id = stage.code + '_percentage'
-      headerPercentage.title = stage.title + ' - percentage'
+      // headerPercentage.title = stage.title + ' - percentage'
+      headerPercentage.title = stage.description + ' - percentage'
       headers.push(headerPercentage)
     })
 
@@ -165,18 +167,18 @@ module.exports = router => {
     const records = []
 
     // the first row for the records is a description
-    const description = {}
-    description.course = ''
-    description.code = ''
-    description.provider = ''
-    description.total_count = ''
-
-    stages.forEach((stage, i) => {
-      description[stage.code + '_number'] = stage.description
-      description[stage.code + '_percentage'] = stage.description
-    })
-
-    records.push(description)
+    // const description = {}
+    // description.course = ''
+    // description.code = ''
+    // description.provider = ''
+    // description.total_count = ''
+    //
+    // stages.forEach((stage, i) => {
+    //   description[stage.code + '_number'] = stage.description
+    //   description[stage.code + '_percentage'] = stage.description
+    // })
+    //
+    // records.push(description)
 
     // iterate over the conversion data to populate the CSV
     conversionData.forEach((item, i) => {

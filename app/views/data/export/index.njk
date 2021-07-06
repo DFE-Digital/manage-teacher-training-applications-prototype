@@ -18,7 +18,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {% if organisation and userOrganisations.length > 1 %}
+        {% if organisation %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
         {{ pageName }}
@@ -148,7 +148,7 @@
           ]
         }) }}
 
-        {{ govukCheckboxes({
+        {#{ govukCheckboxes({
           idPrefix: "export_orgs",
           name: "export_orgs",
           fieldset: {
@@ -167,7 +167,7 @@
               text: data.organisations[1].name
             }
           ]
-        }) }}
+        }) }#}
 
         {{ govukInsetText({
           text: "Sex, disability and ethnicity information will be marked as confidential if you do not have permission to view it, or if the candidate has not accepted your offer."

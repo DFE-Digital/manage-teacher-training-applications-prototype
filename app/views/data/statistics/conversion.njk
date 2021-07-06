@@ -19,7 +19,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {% if organisation and userOrganisations.length > 1 %}
+        {% if organisation %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
         {{ pageName }}
@@ -39,20 +39,50 @@
         }
       }) }}
 
-      <table class="govuk-table">
+      {% set headingDescriptionHtml %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column 1"
+            },
+            value: {
+              text: "Item value"
+            }
+          },
+          {
+            key: {
+              text: "Column 2"
+            },
+            value: {
+              text: "Item value"
+            }
+          }
+        ]
+      }) }}
+
+      {% endset %}
+
+      {#{ govukDetails({
+        summaryText: "Learn about what these headings mean",
+        html: headingDescriptionHtml
+      }) }#}
+
+      <table class="govuk-table app-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" rowspan="2">Course</th>
             {% for stage in stages %}
-              <th scope="col" class="govuk-table__header">{{ stage.title }}</th>
+              <th scope="col" class="govuk-table__header">{{ stage.description }}</th>
             {% endfor %}
           </tr>
-          <tr class="govuk-table__row">
+          <!-- <tr class="govuk-table__row">
             {% for stage in stages %}
               <td class="govuk-table__cell govuk-!-font-size-16">{{ stage.description }}</td>
             {% endfor %}
-          </tr>
+          </tr> -->
         </thead>
         <tbody class="govuk-table__body">
 
@@ -66,13 +96,13 @@
               {% else %}
                 <td class="govuk-table__cell">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
+                  <span class="govuk-hint govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 </td>
               {% endif %}
               {% for stage in stages %}
                 <td class="{{ 'govuk-table__header' if row.code | upper == 'AVERAGE' else 'govuk-table__cell'}}">
                   {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
-                  <span class="govuk-hint">({{ row[stage.code]['number'] | numeral('0') }})</span>
+                  <span class="govuk-hint govuk-!-font-size-16">({{ row[stage.code]['number'] | numeral('0') }})</span>
                 </td>
               {% endfor %}
             </tr>

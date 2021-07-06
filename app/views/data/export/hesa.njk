@@ -20,13 +20,13 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        {% if organisation and userOrganisations.length > 1 %}
+        {% if organisation %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
         {{ pageName }}
       </h1>
 
-      <p class="govuk-body">The data will include all candidates who have accepted an offer from any of your organisations since 13 October 2020.</p>
+      <p class="govuk-body">The data will include all candidates who have accepted an offer since 13 October 2020.</p>
 
       <!-- they dont have permission to see diversity information for one of their orgs -->
       <!-- {# <p class="govuk-body">Diversity information will be marked confidential if you or your organisation do not have permission to view it.</p> #} -->
