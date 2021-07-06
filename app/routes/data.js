@@ -33,22 +33,8 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/status-of-applications', (req, res) => {
-    // const partners = req.session.data.relationships.map((relationship) => {
-    //   return relationship.org2.name
-    // })
-
-    const statusData = StatisticsHelper.statusData
-
-    res.render('data/statistics/status', {
-      statuses,
-      statusData
-      // ,
-      // partners
-    })
-  })
-
   router.get('/reports/:organisationId/status-of-applications', (req, res) => {
+    const userOrganisations = req.session.data.user.organisations
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
     // const partners = req.session.data.relationships
@@ -60,30 +46,17 @@ module.exports = router => {
     const statusData = StatisticsHelper.statusData
 
     res.render('data/statistics/status', {
+      userOrganisations,
       organisation,
       statuses,
       statusData
-      // ,
-      // partners
-    })
-  })
-
-  router.get('/reports/progress-of-applications', (req, res) => {
-    // const partners = req.session.data.relationships.map((relationship) => {
-    //   return relationship.org2.name
-    // })
-
-    const conversionData = StatisticsHelper.conversionData
-
-    res.render('data/statistics/conversion', {
-      stages,
-      conversionData
       // ,
       // partners
     })
   })
 
   router.get('/reports/:organisationId/progress-of-applications', (req, res) => {
+    const userOrganisations = req.session.data.user.organisations
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
     // const partners = req.session.data.relationships
@@ -95,6 +68,7 @@ module.exports = router => {
     const conversionData = StatisticsHelper.conversionData
 
     res.render('data/statistics/conversion', {
+      userOrganisations,
       organisation,
       stages,
       conversionData
@@ -103,21 +77,21 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/export', (req, res) => {
-
+  router.get('/reports/:organisationId/export', (req, res) => {
+    const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
     res.render('data/export/index', {
-
+      organisation
     })
   })
 
-  router.get('/reports/hesa', (req, res) => {
-
+  router.get('/reports/:organisationId/hesa', (req, res) => {
+    const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
     res.render('data/export/hesa', {
-
+      organisation
     })
   })
 
-  router.get('/reports/status-of-applications/download', (req, res) => {
+  router.get('/reports/:organisationId/status-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/status-of-applications.csv'
     const statusData = StatisticsHelper.statusData
 
@@ -125,12 +99,12 @@ module.exports = router => {
     const headers = []
     headers.push({ id: 'course', title: 'Course' })
     headers.push({ id: 'code', title: 'Course code' })
-    headers.push({ id: 'provider', title: 'Provider' })
+    headers.push({ id: 'provider', title: 'Partner organisation' })
 
     statuses.forEach((status, i) => {
       const header = {}
       header.id = status.code + '_number'
-      header.title = status.title + ' - number'
+      header.title = status.title // + ' - number'
       headers.push(header)
     })
 
@@ -157,11 +131,11 @@ module.exports = router => {
 
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'Status of applications (2020 to 2021)')
+        res.download(filePath,'Status of applications')
       })
   })
 
-  router.get('/reports/progress-of-applications/download', (req, res) => {
+  router.get('/reports/:organisationId/progress-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/progress-of-applications.csv'
     const conversionData = StatisticsHelper.conversionData
 
@@ -169,7 +143,7 @@ module.exports = router => {
     const headers = []
     headers.push({ id: 'course', title: 'Course' })
     headers.push({ id: 'code', title: 'Course code' })
-    headers.push({ id: 'provider', title: 'Provider' })
+    headers.push({ id: 'provider', title: 'Partner organisation' })
 
     stages.forEach((stage, i) => {
       const headerNumber = {}
@@ -215,7 +189,7 @@ module.exports = router => {
 
       stages.forEach((stage, i) => {
         data[stage.code + '_number'] = item[stage.code].number
-        data[stage.code + '_percentage'] = item[stage.code].percentage
+        data[stage.code + '_percentage'] = item[stage.code].percentage + '%'
       })
 
       records.push(data)
@@ -224,7 +198,7 @@ module.exports = router => {
     // write the CSV file and send to browser
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'Progress of applications (2020 to 2021)')
+        res.download(filePath,'Progress of applications')
       })
   })
 
