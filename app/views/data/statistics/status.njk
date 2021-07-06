@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Status of applications (2020 to 2021)" %}
+{% set pageName = "Status of applications" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -9,7 +9,7 @@
     href: "/reports",
     text: "Reports"
   }, {
-    text: pageName + (" - " + organisation.name if organisation)
+    text: pageName
   }]
 }) }}
 {% endblock %}
@@ -19,7 +19,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {% if organisation %}
+        {% if organisation and userOrganisations.length > 1 %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
         {{ pageName }}
@@ -32,7 +32,7 @@
 
       {{ govukButton({
         text: "Export report",
-        href: "/reports/status-of-applications/download",
+        href: "/reports/" + organisation.id + "/status-of-applications/download",
         classes: "govuk-button--secondary",
         attributes: {
           download: true
@@ -54,7 +54,7 @@
           {% for row in statusData %}
 
             <tr class="govuk-table__row">
-              {% if row.code == "TOTAL" %}
+              {% if row.code | upper == "TOTAL" %}
                 <th scope="row" class="govuk-table__header">
                   Totals
                 </th>
@@ -65,7 +65,7 @@
                 </td>
               {% endif %}
               {% for status in statuses %}
-                <td class="{{ 'govuk-table__header' if row.code == 'TOTAL' else 'govuk-table__cell'}}">
+                <td class="{{ 'govuk-table__header' if row.code | upper == 'TOTAL' else 'govuk-table__cell'}}">
                   {{ row[status.code]['number'] | numeral('0') }}
                 </td>
               {% endfor %}

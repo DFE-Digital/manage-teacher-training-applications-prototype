@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Progress of applications (2020 to 2021)" %}
+{% set pageName = "Progress of applications" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -9,7 +9,7 @@
     href: "/reports",
     text: "Reports"
   }, {
-    text: pageName + (" - " + organisation.name if organisation)
+    text: pageName
   }]
 }) }}
 {% endblock %}
@@ -19,7 +19,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {% if organisation %}
+        {% if organisation and userOrganisations.length > 1 %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
         {{ pageName }}
@@ -32,7 +32,7 @@
 
       {{ govukButton({
         text: "Export report",
-        href: "/reports/progress-of-applications/download",
+        href: "/reports/" + organisation.id + "/progress-of-applications/download",
         classes: "govuk-button--secondary",
         attributes: {
           download: true
@@ -59,7 +59,7 @@
           {% for row in conversionData %}
 
             <tr class="govuk-table__row">
-              {% if row.code == "AVERAGE" %}
+              {% if row.code | upper == "AVERAGE" %}
                 <th scope="row" class="govuk-table__header">
                   Averages
                 </th>
@@ -70,7 +70,7 @@
                 </td>
               {% endif %}
               {% for stage in stages %}
-                <td class="{{ 'govuk-table__header' if row.code == 'AVERAGE' else 'govuk-table__cell'}}">
+                <td class="{{ 'govuk-table__header' if row.code | upper == 'AVERAGE' else 'govuk-table__cell'}}">
                   {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
                   <span class="govuk-hint">({{ row[stage.code]['number'] | numeral('0') }})</span>
                 </td>

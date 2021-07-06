@@ -11,56 +11,36 @@
       {{ pageName }}
     </h1>
 
-    {% if userOrganisations.length > 1 %}
+    {% for organisation in userOrganisations %}
 
-      {% for organisation in userOrganisations %}
-
+      {% if userOrganisations.length > 1 %}
         <h2 class="govuk-heading-m">{{ organisation.name }}</h2>
-
-        <ul class="govuk-list govuk-list--spaced">
-          <li>
-            <a class="govuk-link" href="/reports/{{ organisation.id }}/status-of-applications">
-              Status of applications (2020 to 2021)
-            </a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/reports/{{ organisation.id }}/progress-of-applications">
-              Progress of applications (2020 to 2021)
-            </a>
-          </li>
-        </ul>
-
-      {% endfor %}
-
-      <h2 class="govuk-heading-m">All organisations you belong to</h2>
+      {% endif %}
 
       <ul class="govuk-list govuk-list--spaced">
         <li>
-          <a class="govuk-link" href="/reports/export">Application data</a>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/status-of-applications">
+            Status of applications
+          </a>
         </li>
         <li>
-          <a class="govuk-link" href="/reports/hesa">Application data for Higher Education Statistics Agency (HESA)</a>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/progress-of-applications">
+            Progress of applications
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/hesa">
+            Export data for Higher Education Statistics Agency (HESA)
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/export">
+            Export application data
+          </a>
         </li>
       </ul>
 
-    {% else %}
-
-      <ul class="govuk-list govuk-list--spaced">
-        <li>
-          <a class="govuk-link" href="/reports/status-of-applications">Status of applications (2020 to 2021)</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="/reports/progress-of-applications">Progress of applications (2020 to 2021)</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="/reports/export">Application data</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="/reports/hesa">Application data for Higher Education Statistics Agency (HESA)</a>
-        </li>
-      </ul>
-
-    {% endif %}
+    {% endfor %}
 
   </div>
 </div>
