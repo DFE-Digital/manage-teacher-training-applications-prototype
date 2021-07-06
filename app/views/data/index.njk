@@ -1,6 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "data" %}
+{% set primaryNavId = "reports" %}
 {% set pageName = "Reports" %}
 
 {% block content %}
@@ -32,6 +32,17 @@
 
       {% endfor %}
 
+      <h2 class="govuk-heading-m">All organisations you belong to</h2>
+
+      <ul class="govuk-list govuk-list--spaced">
+        <li>
+          <a class="govuk-link" href="/reports/export">Application data</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/hesa">Application data for Higher Education Statistics Agency (HESA)</a>
+        </li>
+      </ul>
+
     {% else %}
 
       <ul class="govuk-list govuk-list--spaced">
@@ -41,20 +52,15 @@
         <li>
           <a class="govuk-link" href="/reports/progress-of-applications">Progress of applications (2020 to 2021)</a>
         </li>
+        <li>
+          <a class="govuk-link" href="/reports/export">Application data</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/hesa">Application data for Higher Education Statistics Agency (HESA)</a>
+        </li>
       </ul>
 
     {% endif %}
-
-    <h2 class="govuk-heading-m">All organisations you belong to</h2>
-
-    <ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link" href="/reports/hesa">Export data for Higher Education Statistics Agency (HESA)</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="/reports/export">Export application data</a>
-      </li>
-    </ul>
 
   </div>
 </div>

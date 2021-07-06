@@ -34,35 +34,37 @@ module.exports = router => {
   })
 
   router.get('/reports/status-of-applications', (req, res) => {
-    const partners = req.session.data.relationships.map((relationship) => {
-      return relationship.org2.name
-    })
+    // const partners = req.session.data.relationships.map((relationship) => {
+    //   return relationship.org2.name
+    // })
 
     const statusData = StatisticsHelper.statusData
 
     res.render('data/statistics/status', {
       statuses,
-      statusData,
-      partners
+      statusData
+      // ,
+      // partners
     })
   })
 
   router.get('/reports/:organisationId/status-of-applications', (req, res) => {
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
-    const partners = req.session.data.relationships
-                    .filter(rel => rel.org1.id = req.params.organisationId)
-                    .map((relationship) => {
-                      return relationship.org2.name
-                    })
+    // const partners = req.session.data.relationships
+    //                 .filter(rel => rel.org1.id = req.params.organisationId)
+    //                 .map((relationship) => {
+    //                   return relationship.org2.name
+    //                 })
 
     const statusData = StatisticsHelper.statusData
 
     res.render('data/statistics/status', {
       organisation,
       statuses,
-      statusData,
-      partners
+      statusData
+      // ,
+      // partners
     })
   })
 
@@ -150,18 +152,12 @@ module.exports = router => {
         data[status.code + '_number'] = item[status.code].number
       })
 
-      // data.data1 = item.counts.received
-      // data.data2 = item.counts.interviewing
-      // data.data3 = item.counts.offered
-      // data.data4 = item.counts.awaiting_conditions
-      // data.data5 = item.counts.ready_to_enroll
-
       records.push(data)
     })
 
     csv.writeRecords(records)
       .then(() => {
-        // res.download(filePath,'Status of applications (2020 to 2021)')
+        res.download(filePath,'Status of applications (2020 to 2021)')
       })
   })
 
