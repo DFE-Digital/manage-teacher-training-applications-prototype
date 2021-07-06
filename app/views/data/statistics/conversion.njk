@@ -71,9 +71,8 @@
               {% endif %}
               {% for stage in stages %}
                 <td class="{{ 'govuk-table__header' if row.code == 'AVERAGE' else 'govuk-table__cell'}}">
-                  {% set code = (stage.title | replace(" ","_") | lower) %}
-                  {{ row[code]['percentage'] | numeral('0') + "%" }}
-                  <span class="govuk-hint">({{ row[code]['count'] | numeral('0') }})</span>
+                  {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
+                  <span class="govuk-hint">({{ row[stage.code]['number'] | numeral('0') }})</span>
                 </td>
               {% endfor %}
             </tr>

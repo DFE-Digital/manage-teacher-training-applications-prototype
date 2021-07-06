@@ -45,7 +45,7 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Course</th>
               {% for status in statuses %}
-                <th scope="col" class="govuk-table__header">{{ status }}</th>
+                <th scope="col" class="govuk-table__header">{{ status.title }}</th>
               {% endfor %}
           </tr>
         </thead>
@@ -66,8 +66,7 @@
               {% endif %}
               {% for status in statuses %}
                 <td class="{{ 'govuk-table__header' if row.code == 'TOTAL' else 'govuk-table__cell'}}">
-                  {% set code = (status | replace(" ","_") | lower) %}
-                  {{ row['counts'][code] | numeral('0') }}
+                  {{ row[status.code]['number'] | numeral('0') }}
                 </td>
               {% endfor %}
             </tr>

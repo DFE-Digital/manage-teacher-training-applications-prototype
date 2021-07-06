@@ -5,6 +5,24 @@ const downloadDirectoryPath = path.join(__dirname, '../data/downloads')
 
 const StatisticsHelper = require('../data/helpers/statistics')
 
+const statuses = [
+  { code: 'received', title: 'Received' },
+  { code: 'interviewing', title: 'Interviewing' },
+  { code: 'offered', title: 'Offered' },
+  { code: 'awaiting_conditions', title: 'Awaiting conditions' },
+  { code: 'ready_to_enroll', title: 'Ready to enroll' }
+]
+
+const stages = [
+  { code: 'shortlist_for_interview', title: 'Invited to interview', description: 'Applications which led to interviews' },
+  { code: 'interview_success', title: 'Made offer after interview', description: 'Interviews which led to offers'},
+  { code: 'offer', title: 'Made offer', description: 'Applications which led to offers'},
+  { code: 'acceptance', title: 'Accepted offer', description: 'Offers which led to candidate accepting'},
+  { code: 'conditions_met', title: 'Met offer conditions', description: 'Accepted offers which led to conditions being met'},
+  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being ready to enroll'},
+  { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being ready to enroll'}
+]
+
 module.exports = router => {
 
   router.get('/reports', (req, res) => {
@@ -19,14 +37,6 @@ module.exports = router => {
     const partners = req.session.data.relationships.map((relationship) => {
       return relationship.org2.name
     })
-
-    const statuses = [
-      'Received',
-      'Interviewing',
-      'Offered',
-      'Awaiting conditions',
-      'Ready to enroll'
-    ]
 
     const statusData = StatisticsHelper.statusData
 
@@ -46,14 +56,6 @@ module.exports = router => {
                       return relationship.org2.name
                     })
 
-    const statuses = [
-      'Received',
-      'Interviewing',
-      'Offered',
-      'Awaiting conditions',
-      'Ready to enroll'
-    ]
-
     const statusData = StatisticsHelper.statusData
 
     res.render('data/statistics/status', {
@@ -65,55 +67,37 @@ module.exports = router => {
   })
 
   router.get('/reports/progress-of-applications', (req, res) => {
-    const partners = req.session.data.relationships.map((relationship) => {
-      return relationship.org2.name
-    })
-
-    const stages = [
-      { title: 'Shortlist for interview', description: 'Percentage of of applications received offered an interview' },
-      { title: 'Interview success', description: 'Percentage interviewed that are made an offer'},
-      { title: 'Offer', description: 'Percentage of applications received that are made an offer'},
-      { title: 'Acceptance', description: 'Percentage of offers made that are accepted'},
-      { title: 'Conditions met', description: 'Percentage of accepted offers that go on to meet their conditions'},
-      { title: 'Offer conversion', description: 'Percentage of offers made lead to successful enrollment'},
-      { title: 'Overall conversion', description: 'Percentage of received applications that  lead to successful enrollment'}
-    ]
+    // const partners = req.session.data.relationships.map((relationship) => {
+    //   return relationship.org2.name
+    // })
 
     const conversionData = StatisticsHelper.conversionData
 
     res.render('data/statistics/conversion', {
       stages,
-      conversionData,
-      partners
+      conversionData
+      // ,
+      // partners
     })
   })
 
   router.get('/reports/:organisationId/progress-of-applications', (req, res) => {
     const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
 
-    const partners = req.session.data.relationships
-                    .filter(rel => rel.org1.id = req.params.organisationId)
-                    .map((relationship) => {
-                      return relationship.org2.name
-                    })
-
-    const stages = [
-      { title: 'Shortlist for interview', description: 'Percentage of of applications received offered an interview' },
-      { title: 'Interview success', description: 'Percentage interviewed that are made an offer'},
-      { title: 'Offer', description: 'Percentage of applications received that are made an offer'},
-      { title: 'Acceptance', description: 'Percentage of offers made that are accepted'},
-      { title: 'Conditions met', description: 'Percentage of accepted offers that go on to meet their conditions'},
-      { title: 'Offer conversion', description: 'Percentage of offers made lead to successful enrollment'},
-      { title: 'Overall conversion', description: 'Percentage of received applications that  lead to successful enrollment'}
-    ]
+    // const partners = req.session.data.relationships
+    //                 .filter(rel => rel.org1.id = req.params.organisationId)
+    //                 .map((relationship) => {
+    //                   return relationship.org2.name
+    //                 })
 
     const conversionData = StatisticsHelper.conversionData
 
     res.render('data/statistics/conversion', {
       organisation,
       stages,
-      conversionData,
-      partners
+      conversionData
+      // ,
+      // partners
     })
   })
 
@@ -133,22 +117,25 @@ module.exports = router => {
 
   router.get('/reports/status-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/status-of-applications.csv'
+    const statusData = StatisticsHelper.statusData
+
+    // headers for the CSV file
+    const headers = []
+    headers.push({ id: 'course', title: 'Course' })
+    headers.push({ id: 'code', title: 'Course code' })
+    headers.push({ id: 'provider', title: 'Provider' })
+
+    statuses.forEach((status, i) => {
+      const header = {}
+      header.id = status.code + '_number'
+      header.title = status.title + ' - number'
+      headers.push(header)
+    })
 
     const csv = csvWriter({
       path: filePath,
-      header: [
-        { id: 'course', title: 'Course' },
-        { id: 'code', title: 'Course code' },
-        { id: 'provider', title: 'Provider' },
-        { id: 'data1', title: 'Received' },
-        { id: 'data2', title: 'Interviewing' },
-        { id: 'data3', title: 'Offered' },
-        { id: 'data4', title: 'Awaiting conditions' },
-        { id: 'data5', title: 'Ready to enroll' }
-      ]
+      header: headers
     })
-
-    const statusData = StatisticsHelper.statusData
 
     const records = []
 
@@ -158,76 +145,70 @@ module.exports = router => {
       data.course = item.title
       data.code = item.code
       data.provider = item.provider
-      data.data1 = item.counts.received
-      data.data2 = item.counts.interviewing
-      data.data3 = item.counts.offered
-      data.data4 = item.counts.awaiting_conditions
-      data.data5 = item.counts.ready_to_enroll
+
+      statuses.forEach((status, i) => {
+        data[status.code + '_number'] = item[status.code].number
+      })
+
+      // data.data1 = item.counts.received
+      // data.data2 = item.counts.interviewing
+      // data.data3 = item.counts.offered
+      // data.data4 = item.counts.awaiting_conditions
+      // data.data5 = item.counts.ready_to_enroll
 
       records.push(data)
     })
 
     csv.writeRecords(records)
       .then(() => {
-        console.log('...Done')
-        res.download(filePath,'Status of applications (2020 to 2021)')
+        // res.download(filePath,'Status of applications (2020 to 2021)')
       })
   })
 
   router.get('/reports/progress-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/progress-of-applications.csv'
+    const conversionData = StatisticsHelper.conversionData
+
+    // headers for the CSV file
+    const headers = []
+    headers.push({ id: 'course', title: 'Course' })
+    headers.push({ id: 'code', title: 'Course code' })
+    headers.push({ id: 'provider', title: 'Provider' })
+
+    stages.forEach((stage, i) => {
+      const headerNumber = {}
+      headerNumber.id = stage.code + '_number'
+      headerNumber.title = stage.title + ' - number'
+      headers.push(headerNumber)
+
+      const headerPercentage = {}
+      headerPercentage.id = stage.code + '_percentage'
+      headerPercentage.title = stage.title + ' - percentage'
+      headers.push(headerPercentage)
+    })
 
     const csv = csvWriter({
       path: filePath,
-      header: [
-        { id: 'course', title: 'Course' },
-        { id: 'code', title: 'Course code' },
-        { id: 'provider', title: 'Provider' },
-        { id: 'total_count', title: 'Total number of applications' },
-        { id: 'data1_count', title: 'Shortlist for interview (number)' },
-        { id: 'data1_percentage', title: 'Shortlist for interview rate (percentage)' },
-        { id: 'data2_count', title: 'Interview success (number)' },
-        { id: 'data2_percentage', title: 'Interview success rate (percentage)' },
-        { id: 'data3_count', title: 'Offer (number)' },
-        { id: 'data3_percentage', title: 'Offer rate (percentage)' },
-        { id: 'data4_count', title: 'Acceptance (number)' },
-        { id: 'data4_percentage', title: 'Acceptance rate (percentage)' },
-        { id: 'data5_count', title: 'Conditions met (number)' },
-        { id: 'data5_percentage', title: 'Conditions met rate (percentage)' },
-        { id: 'data6_count', title: 'Offer conversion (number)' },
-        { id: 'data6_percentage', title: 'Offer conversion rate (percentage)' },
-        { id: 'data7_count', title: 'Overall conversion (number)' },
-        { id: 'data7_percentage', title: 'Overall conversion rate (percentage)' }
-      ]
+      header: headers
     })
 
     const records = []
 
-    const description = {
-      course: '',
-      code: '',
-      provider: '',
-      total_count: '',
-      data1_count: 'Number of applications received offered an interview',
-      data1_percentage: 'Percentage of applications received offered an interview',
-      data2_count: 'Number interviewed that are made an offer',
-      data2_percentage: 'Percentage interviewed that are made an offer',
-      data3_count: 'Number of applications received that are made an offer',
-      data3_percentage: 'Percentage o fapplications received that are made an offer',
-      data4_count: 'Number of offers made that are accepted',
-      data4_percentage: 'Percentage of offers made that are accepted',
-      data5_count: 'Number of accepted offers that go on to meet their conditions',
-      data5_percentage: 'Percentage of accepted offers that go on to meet their conditions',
-      data6_count: 'Number of offers made lead to successful enrollment',
-      data6_percentage: 'Percentage of offers made lead to successful enrollment',
-      data7_count: 'Number of received applications that lead to successful enrollment',
-      data7_percentage: 'Percentage of received applications that lead to successful enrollment'
-    }
+    // the first row for the records is a description
+    const description = {}
+    description.course = ''
+    description.code = ''
+    description.provider = ''
+    description.total_count = ''
+
+    stages.forEach((stage, i) => {
+      description[stage.code + '_number'] = stage.description
+      description[stage.code + '_percentage'] = stage.description
+    })
 
     records.push(description)
 
-    const conversionData = StatisticsHelper.conversionData
-
+    // iterate over the conversion data to populate the CSV
     conversionData.forEach((item, i) => {
       const data = {}
 
@@ -235,24 +216,16 @@ module.exports = router => {
       data.code = item.code
       data.provider = item.provider
       data.total_count = item.total_count
-      data.data1_count = item.shortlist_for_interview.count
-      data.data1_percentage = item.shortlist_for_interview.percentage
-      data.data2_count = item.interview_success.count
-      data.data2_percentage = item.interview_success.percentage
-      data.data3_count = item.offer.count
-      data.data3_percentage = item.offer.percentage
-      data.data4_count = item.acceptance.count
-      data.data4_percentage = item.acceptance.percentage
-      data.data5_count = item.conditions_met.count
-      data.data5_percentage = item.conditions_met.percentage
-      data.data6_count = item.offer_conversion.count
-      data.data6_percentage = item.offer_conversion.percentage
-      data.data7_count = item.overall_conversion.count
-      data.data7_percentage = item.overall_conversion.percentage
+
+      stages.forEach((stage, i) => {
+        data[stage.code + '_number'] = item[stage.code].number
+        data[stage.code + '_percentage'] = item[stage.code].percentage
+      })
 
       records.push(data)
     })
 
+    // write the CSV file and send to browser
     csv.writeRecords(records)
       .then(() => {
         res.download(filePath,'Progress of applications (2020 to 2021)')
