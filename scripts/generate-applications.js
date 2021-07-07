@@ -9,12 +9,9 @@ const user = require('../app/data/user')
 const relationships = require('../app/data/relationships-leicester.js')
 let partners = relationships.map(relationship => relationship.org2)
 
-// Fake data generators: general
 const generateSubject = require('../app/data/generators/subject')
 const generateCycle = require('../app/data/generators/cycle')
 const generateTrainingLocation = require('../app/data/generators/training-location')
-
-// Fake data generators: application
 const generatePersonalDetails = require('../app/data/generators/personal-details')
 const generateContactDetails = require('../app/data/generators/contact-details')
 const generateDegree = require('../app/data/generators/degree')
@@ -29,8 +26,6 @@ const generateInterviewNeeds = require('../app/data/generators/interview-needs')
 const generateSafeguarding = require('../app/data/generators/safeguarding')
 const generateDisability = require('../app/data/generators/disability')
 const generateAssignedUsers = require('../app/data/generators/assigned-users')
-
-// Fake data generators: application management
 const generateOffer = require('../app/data/generators/offer')
 const generateRejection = require('../app/data/generators/rejection')
 const generateWithdrawal = require('../app/data/generators/withdrawal')
@@ -39,18 +34,18 @@ const generateEvents = require('../app/data/generators/events')
 const generateInterviews = require('../app/data/generators/interviews')
 const generateSubmittedDate = require('../app/data/generators/submittedDate')
 
-// Populate application data object with fake data
 const generateFakeApplication = (params = {}) => {
   if (!params.status.length) {
     return null
   }
 
+
   const organisations = user.organisations
   const status = params.status
-  const cycle = params.cycle || generateCycle(faker, { status })
+  const cycle = params.cycle || generateCycle({ status })
   const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
   const submittedDate = params.submittedDate || generateSubmittedDate({ status })
-  const personalDetails = { ...generatePersonalDetails(faker), ...params.personalDetails }
+  const personalDetails = { ...generatePersonalDetails(), ...params.personalDetails }
 
   let accreditedBody
   let provider
@@ -63,10 +58,10 @@ const generateFakeApplication = (params = {}) => {
     accreditedBody = faker.helpers.randomize(partners)
   }
 
-  const subject = generateSubject(faker)
+  const subject = generateSubject()
   const courseCode = faker.random.alphaNumeric(4).toUpperCase()
   const course = `${subject.name} (${courseCode})`
-  const location = generateTrainingLocation(faker)
+  const location = generateTrainingLocation()
   const studyMode = faker.helpers.randomize(['Full time', 'Part time'])
 
   let offer = null
@@ -82,7 +77,7 @@ const generateFakeApplication = (params = {}) => {
     })
   }
 
-  const notes = generateNotes(faker)
+  const notes = generateNotes()
 
   const interviews = params.interviews || generateInterviews({
     status,
@@ -112,14 +107,13 @@ const generateFakeApplication = (params = {}) => {
     })
   })
 
-
   let rejectedDate
   let rejectedFeedbackDate
   let rejectedReasons
   if(status === 'Rejected') {
     rejectedDate = faker.date.past()
     rejectedReasons = generateRejection(status)
-    // might be null to singal automatic rejection
+    // this might be null to signal an automatic rejection
     if(rejectedReasons) {
       rejectedFeedbackDate = rejectedDate
     }
@@ -159,19 +153,19 @@ const generateFakeApplication = (params = {}) => {
     notes,
     events,
     personalDetails,
-    contactDetails: params.contactDetails || generateContactDetails(faker, personalDetails),
-    interviewNeeds: params.interviewNeeds || generateInterviewNeeds(faker),
+    contactDetails: params.contactDetails || generateContactDetails(personalDetails),
+    interviewNeeds: params.interviewNeeds || generateInterviewNeeds(),
     workHistory: params.workHistory || generateWorkHistory(),
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
-    degree: params.degree || generateDegree(faker, personalDetails.isInternationalCandidate),
-    gcse: params.gcse || generateGcse(faker, personalDetails.isInternationalCandidate),
-    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(faker),
-    otherQualifications: params.otherQualifications || generateOtherQualifications(faker),
-    personalStatement: params.personalStatement || generatePersonalStatement(faker),
-    references: params.references || generateReferences(faker),
+    degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
+    gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate),
+    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(),
+    otherQualifications: params.otherQualifications || generateOtherQualifications(),
+    personalStatement: params.personalStatement || generatePersonalStatement(),
+    references: params.references || generateReferences(),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
-    safeguarding: params.safeguarding || generateSafeguarding(faker),
-    disability: params.disability || generateDisability(faker)
+    safeguarding: params.safeguarding || generateSafeguarding(),
+    disability: params.disability || generateDisability()
   }
 }
 

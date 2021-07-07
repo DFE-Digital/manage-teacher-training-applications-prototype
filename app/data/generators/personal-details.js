@@ -1,7 +1,9 @@
+const faker = require('faker')
+faker.locale = 'en_GB'
 const weighted = require('weighted')
 const generatorHelpers = require('../helpers/generators')
 
-module.exports = faker => {
+module.exports = () => {
   const nationalities = {
     british: ['British'],
     irish: ['Irish'],

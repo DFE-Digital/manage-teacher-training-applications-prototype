@@ -1,4 +1,4 @@
-module.exports = (faker) => ({
+module.exports = () => ({
   1: {
     type: 'GCSE',
     subject: 'Resistant Materials',
