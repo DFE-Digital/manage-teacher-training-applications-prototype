@@ -6,7 +6,7 @@ let userOrg = OrgHelper.findOrg("University of Leicester")
 let userOrgs = [];
 userOrgs.push(userOrg)
 // For each additional org add this line
-userOrgs.push(OrgHelper.findOrg('additional org'))
+// userOrgs.push(OrgHelper.findOrg('additional org'))
 
 // create user object
 let user = users[0] // we know the first one is the test participant
