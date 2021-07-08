@@ -22,7 +22,7 @@
         {{ title }}
       </h1>
 
-      {% if assignedApplicationCount %}
+      <!-- {#% if assignedApplicationCount %}
         <p class="govuk-body">
           There are applications assigned to this user which:
         </p>
@@ -37,7 +37,7 @@
         <p class="govuk-body">
           You can <a class="govuk-link" href="/?assignedUser={{ user.id }}&status=Received&status=Interviewing&status=Offered&status=Awaiting+conditions">check a list of all applications assigned to the user</a> before you delete them.
         </p>
-      {% endif %}
+      {% endif %#} -->
 
       <form method="post" novalidate>
         {{ govukButton({
