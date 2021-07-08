@@ -589,6 +589,21 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: true,
     domain: "bennett.kent.sch.uk"
   }))
+  organisations.push(generateFakeOrganisation({
+    name: "Chiltern Training Group",
+    isAccreditedBody: true,
+    domain: "ctg.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Chiltern Training Group part of the Chiltern Learning trust",
+    isAccreditedBody: false,
+    domain: "ctg.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The Acorn Teaching School",
+    isAccreditedBody: false,
+    domain: "ctg.ac.uk"
+  }))
 
   return organisations
 }
