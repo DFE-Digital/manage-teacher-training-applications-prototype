@@ -81,6 +81,11 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: true,
     domain: "uel.ac.uk"
   }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of Cambridge",
+    isAccreditedBody: true,
+    domain: "cam.ac.uk"
+  }))
 
   // ---------------------------------------------------------------------------
   // Others
