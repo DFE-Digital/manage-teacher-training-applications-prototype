@@ -4,7 +4,7 @@
   "version": "9.0.0",
   "private": true,
   "engines": {
-    "node": "^10.0.0"
+    "node": ">=10.0.0 <15.0.0"
   },
   "scripts": {
     "generate-data": "node ./scripts/generate-organisations.js && node ./scripts/generate-users.js && node ./scripts/generate-applications.js ",
@@ -46,7 +46,7 @@
     "portscanner": "^2.1.1",
     "prompt": "^1.1.0",
     "require-dir": "^1.0.0",
-    "sass": "^1.35.1",
+    "sass": "^1.35.2",
     "sync-request": "^6.1.0",
     "universal-analytics": "^0.4.16",
     "uuid": "^8.3.2",

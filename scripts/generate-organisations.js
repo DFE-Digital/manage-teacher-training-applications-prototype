@@ -12,10 +12,98 @@ const generateFakeOrganisation = (params = {}) => {
 const generateFakeOrganisations = (count) => {
   const organisations = []
 
+  // ---------------------------------------------------------------------------
+  // Higher education instutions
+  // ---------------------------------------------------------------------------
+
   organisations.push(generateFakeOrganisation({
     name: "University of Leicester",
     isAccreditedBody: true,
     domain: "le.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Kingston University",
+    isAccreditedBody: true,
+    domain: "kingstonuniversity.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of Bedfordshire",
+    isAccreditedBody: true,
+    domain: "beds.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The University of Gloucestershire",
+    isAccreditedBody: true,
+    domain: "glos.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Goldsmiths, University of London",
+    isAccreditedBody: true,
+    domain: "gold.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Coventry University",
+    isAccreditedBody: true,
+    domain: "coventry.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University College London",
+    isAccreditedBody: true,
+    domain: "ucl.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of Birmingham",
+    isAccreditedBody: true,
+    domain: "birmingham.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of Derby",
+    isAccreditedBody: true,
+    domain: "derby.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of East Anglia",
+    isAccreditedBody: true,
+    domain: "uea.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of Greenwich",
+    isAccreditedBody: true,
+    domain: "greenwich.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The University of Warwick",
+    isAccreditedBody: true,
+    domain: "thomasestley.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "University of East London",
+    isAccreditedBody: true,
+    domain: "uel.ac.uk"
+  }))
+
+  // ---------------------------------------------------------------------------
+  // Others
+  // ---------------------------------------------------------------------------
+  organisations.push(generateFakeOrganisation({
+    name: "The Compton School",
+    isAccreditedBody: false,
+    domain: "thecompton.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Beal High School (NELTA)",
+    isAccreditedBody: false,
+    domain: "bealhighschool.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Waltham Forest Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "willowfield-school.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Kingston School Direct",
+    isAccreditedBody: false,
+    domain: "coombe.org.uk"
   }))
   organisations.push(generateFakeOrganisation({
     name: "Ashlawn Teaching School",
@@ -43,24 +131,9 @@ const generateFakeOrganisations = (count) => {
     domain: "springbank.org.uk"
   }))
   organisations.push(generateFakeOrganisation({
-    name: "Kingston University",
-    isAccreditedBody: true,
-    domain: "kingstonuniversity.org.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of Bedfordshire",
-    isAccreditedBody: true,
-    domain: "beds.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
     name: "Gorse SCITT",
     isAccreditedBody: true,
     domain: "gorsescitt.org"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "The University of Gloucestershire",
-    isAccreditedBody: true,
-    domain: "glos.ac.uk"
   }))
   organisations.push(generateFakeOrganisation({
     name: "Construct SCITT",
@@ -192,17 +265,7 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "example.net"
   }))
-  organisations.push(generateFakeOrganisation({
-    name: "Goldsmiths, University of London",
-    isAccreditedBody: true,
-    domain: "gold.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "Coventry University",
-    isAccreditedBody: true,
-    domain: "coventry.ac.uk"
-  }))
-  // Goldsmiths partners
+
   organisations.push(generateFakeOrganisation({
     name: "Academies Enterprise Trust: London",
     isAccreditedBody: false,
@@ -293,13 +356,6 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "wandletsa.com"
   }))
-
-  // The rest
-  organisations.push(generateFakeOrganisation({
-    name: "Greenwood Academies Trust",
-    isAccreditedBody: false,
-    domain: "greenwoodacademies.org"
-  }))
   organisations.push(generateFakeOrganisation({
     name: "Greenwood Academies Trust",
     isAccreditedBody: false,
@@ -380,7 +436,6 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "exeterconsortium.com"
   }))
-  // Essex Teacher Training and partners
   organisations.push(generateFakeOrganisation({
     name: "Essex Teacher Training",
     isAccreditedBody: true,
@@ -441,33 +496,6 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "essexteachertraining.co.uk"
   }))
-  // Endeavour TSA partners
-organisations.push(generateFakeOrganisation({
-    name: "University College London",
-    isAccreditedBody: true,
-    domain: "essexteachertraining.co.uk"
-  }))
-organisations.push(generateFakeOrganisation({
-    name: "University of Birmingham",
-    isAccreditedBody: true,
-    domain: "essexteachertraining.co.uk"
-  }))
-organisations.push(generateFakeOrganisation({
-    name: "University of Derby",
-    isAccreditedBody: true,
-    domain: "essexteachertraining.co.uk"
-  }))
-organisations.push(generateFakeOrganisation({
-    name: "University of East Anglia",
-    isAccreditedBody: true,
-    domain: "essexteachertraining.co.uk"
-  }))
-organisations.push(generateFakeOrganisation({
-    name: "University of Greenwich",
-    isAccreditedBody: true,
-    domain: "essexteachertraining.co.uk"
-  }))
-  // Tes Institute
   organisations.push(generateFakeOrganisation({
     name: "Tes Institute",
     isAccreditedBody: true,
@@ -529,21 +557,11 @@ organisations.push(generateFakeOrganisation({
     isAccreditedBody: true,
     domain: "thomasestley.org.uk"
   }))
-  organisations.push(generateFakeOrganisation({
-    name: "The University of Warwick",
-    isAccreditedBody: true,
-    domain: "thomasestley.org.uk"
-  }))
   // Riverly Primary School
   organisations.push(generateFakeOrganisation({
     name: "Riverley Primary School",
     isAccreditedBody: false,
     domain: "griffinschoolstrust.org."
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of East London",
-    isAccreditedBody: true,
-    domain: "tes.com"
   }))
   // Teach Kent and Sussex SCITT
   organisations.push(generateFakeOrganisation({
