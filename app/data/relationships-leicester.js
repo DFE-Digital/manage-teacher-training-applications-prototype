@@ -63,15 +63,32 @@ relationships.push({
   }
 })
 
+// if the user belongs to multiple orgs for each additional org set up relationships like his
 // relationships.push({
 //   id: 5,
-//   org1: OrgHelper.findOrg("Ashlawn Teaching School"),
+//   org1: OrgHelper.findOrg("Second org name"),
 //   org1Permissions: {
 //     makeDecisions: true,
 //     viewSafeguardingInformation: false,
 //     viewDiversityInformation: true
 //   },
 //   org2: OrgHelper.findOrg("Southam Teaching Alliance"),
+//   org2Permissions: {
+//     makeDecisions: true,
+//     viewSafeguardingInformation: true,
+//     viewDiversityInformation: true
+//   }
+// })
+
+// relationships.push({
+//   id: 5,
+//   org1: OrgHelper.findOrg("Second org name"),
+//   org1Permissions: {
+//     makeDecisions: true,
+//     viewSafeguardingInformation: false,
+//     viewDiversityInformation: true
+//   },
+//   org2: OrgHelper.findOrg("Southam Teaching Alliance x"),
 //   org2Permissions: {
 //     makeDecisions: true,
 //     viewSafeguardingInformation: true,
