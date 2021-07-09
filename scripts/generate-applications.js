@@ -6,7 +6,7 @@ const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
 const user = require('../app/data/user')
-const relationships = require('../app/data/relationships-ucl.js')
+const relationships = require('../app/data/relationships-goldsmiths.js')
 let partners = relationships.map(relationship => relationship.org2)
 
 const generateSubject = require('../app/data/generators/subject')
@@ -38,7 +38,6 @@ const generateFakeApplication = (params = {}) => {
   if (!params.status.length) {
     return null
   }
-
 
   const organisations = user.organisations
   const status = params.status
