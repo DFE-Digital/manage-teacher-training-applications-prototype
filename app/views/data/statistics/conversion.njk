@@ -1,15 +1,15 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "data" %}
-{% set pageName = "Progress of applications (2020 to 2021) - Alternative" %}
+{% set primaryNavId = "reports" %}
+{% set pageName = "Progress of applications" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/reports-and-export-data",
-    text: "Reports and export data"
+    href: "/reports",
+    text: "Reports"
   }, {
-    text: pageName + (" - " + organisation.name if organisation)
+    text: pageName
   }]
 }) }}
 {% endblock %}
@@ -30,49 +30,79 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <!-- <p class="govuk-body">
-        <a class="govuk-link" href="#">Export data</a>
-      </p> -->
-
       {{ govukButton({
-        text: "Export data",
-        classes: "govuk-button--secondary"
+        text: "Export report",
+        href: "/reports/" + organisation.id + "/progress-of-applications/download",
+        classes: "govuk-button--secondary",
+        attributes: {
+          download: true
+        }
       }) }}
 
-      <table class="govuk-table">
+      {% set headingDescriptionHtml %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column 1"
+            },
+            value: {
+              text: "Item value"
+            }
+          },
+          {
+            key: {
+              text: "Column 2"
+            },
+            value: {
+              text: "Item value"
+            }
+          }
+        ]
+      }) }}
+
+      {% endset %}
+
+      {#{ govukDetails({
+        summaryText: "Learn about what these headings mean",
+        html: headingDescriptionHtml
+      }) }#}
+
+      <table class="govuk-table app-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" rowspan="2">Course</th>
             {% for stage in stages %}
-              <th scope="col" class="govuk-table__header">{{ stage.title }}</th>
+              <th scope="col" class="govuk-table__header">{{ stage.description }}</th>
             {% endfor %}
           </tr>
-          <tr class="govuk-table__row">
+          <!-- <tr class="govuk-table__row">
             {% for stage in stages %}
               <td class="govuk-table__cell govuk-!-font-size-16">{{ stage.description }}</td>
             {% endfor %}
-          </tr>
+          </tr> -->
         </thead>
         <tbody class="govuk-table__body">
 
           {% for row in conversionData %}
 
             <tr class="govuk-table__row">
-              {% if row.code == "AVERAGE" %}
+              {% if row.code | upper == "AVERAGE" %}
                 <th scope="row" class="govuk-table__header">
                   Averages
                 </th>
               {% else %}
                 <td class="govuk-table__cell">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ partners | random }}</span>
+                  <span class="govuk-hint govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 </td>
               {% endif %}
               {% for stage in stages %}
-                <td class="{{ 'govuk-table__header' if row.code == 'AVERAGE' else 'govuk-table__cell'}}">
-                  {% set code = (stage.title | replace(" ","_") | lower) %}
-                  {{ row['percentages'][code] | numeral('0') + "%" }}
+                <td class="{{ 'govuk-table__header' if row.code | upper == 'AVERAGE' else 'govuk-table__cell'}}">
+                  {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
+                  <span class="govuk-hint govuk-!-font-size-16">({{ row[stage.code]['number'] | numeral('0') }})</span>
                 </td>
               {% endfor %}
             </tr>

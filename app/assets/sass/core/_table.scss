@@ -1,3 +1,7 @@
+.app-table {
+  @include govuk-font($size: 16);
+}
+
 .app-table__cell--no-border-bottom {
   border-bottom: 0 !important;
 }

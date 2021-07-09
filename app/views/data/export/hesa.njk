@@ -1,13 +1,13 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "data" %}
+{% set primaryNavId = "reports" %}
 {% set pageName = "Export data for Higher Education Statistics Agency (HESA)" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/reports-and-export-data",
-    text: "Reports and export data"
+    href: "/reports",
+    text: "Reports"
   }, {
     text: pageName
   }]
@@ -20,13 +20,16 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
+        {% if organisation %}
+          <span class="govuk-caption-l">{{ organisation.name }}</span>
+        {% endif %}
         {{ pageName }}
       </h1>
 
-      <p class="govuk-body">The data will include all candidates who have accepted an offer from any of your organisations since 13 October 2020.</p>
+      <p class="govuk-body">The data will include all candidates who have accepted an offer since 13 October 2020.</p>
 
       <!-- they dont have permission to see diversity information for one of their orgs -->
-      {# <p class="govuk-body">Diversity information will be marked confidential if you or your organisation do not have permission to view it.</p> #}
+      <!-- {# <p class="govuk-body">Diversity information will be marked confidential if you or your organisation do not have permission to view it.</p> #} -->
 
       <p class="govuk-body">Sex, disability and ethnicity information will be marked as confidential if you do not have permission to view it.</p>
 

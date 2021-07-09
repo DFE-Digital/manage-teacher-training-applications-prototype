@@ -15,5 +15,6 @@ node_modules/*
 app/data/applications.json
 app/data/organisations.json
 app/data/users.json
+app/data/downloads/*
 lib/extensions/_extensions.scss
 public
