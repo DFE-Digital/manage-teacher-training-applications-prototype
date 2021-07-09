@@ -5,6 +5,8 @@ faker.locale = 'en_GB'
 
 const generateOrganisation = require('../app/data/generators/organisation')
 
+const universities = require('../app/data/seed/universities')
+
 const generateFakeOrganisation = (params = {}) => {
   return generateOrganisation(params)
 }
@@ -13,74 +15,16 @@ const generateFakeOrganisations = (count) => {
   const organisations = []
 
   // ---------------------------------------------------------------------------
-  // Higher education instutions
+  // Higher education instutions / universities
   // ---------------------------------------------------------------------------
 
-  organisations.push(generateFakeOrganisation({
-    name: "University of Leicester",
-    isAccreditedBody: true,
-    domain: "le.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "Kingston University",
-    isAccreditedBody: true,
-    domain: "kingstonuniversity.org.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of Bedfordshire",
-    isAccreditedBody: true,
-    domain: "beds.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "The University of Gloucestershire",
-    isAccreditedBody: true,
-    domain: "glos.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "Goldsmiths, University of London",
-    isAccreditedBody: true,
-    domain: "gold.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "Coventry University",
-    isAccreditedBody: true,
-    domain: "coventry.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University College London",
-    isAccreditedBody: true,
-    domain: "ucl.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of Birmingham",
-    isAccreditedBody: true,
-    domain: "birmingham.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of Derby",
-    isAccreditedBody: true,
-    domain: "derby.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of East Anglia",
-    isAccreditedBody: true,
-    domain: "uea.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of Greenwich",
-    isAccreditedBody: true,
-    domain: "greenwich.ac.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "The University of Warwick",
-    isAccreditedBody: true,
-    domain: "thomasestley.org.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "University of East London",
-    isAccreditedBody: true,
-    domain: "uel.ac.uk"
-  }))
+  universities.forEach((university, i) => {
+    organisations.push(generateFakeOrganisation({
+      name: university.name,
+      isAccreditedBody: university.isAccreditedBody,
+      domain: university.domain
+    }))
+  })
 
   // ---------------------------------------------------------------------------
   // Others
