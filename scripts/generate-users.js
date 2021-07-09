@@ -13,7 +13,7 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = OrgHelper.findOrg("University College London")
+  const mainOrg = OrgHelper.findOrg("UCL, University College London")
 
   users.push({
     id: faker.datatype.uuid(),
