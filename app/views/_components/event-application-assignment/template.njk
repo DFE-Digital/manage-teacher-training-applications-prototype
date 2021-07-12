@@ -1,0 +1,26 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set assignedUsersHtml %}
+{% if params.assignedUsers.length %}
+<ul class="govuk-list">
+  {% for user in params.assignedUsers %}
+    <li>{{ user.firstName + ' ' + user.lastName }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="govuk-body">Not assigned to any users</p>
+{% endif %}
+{% endset %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Assigned users"
+      },
+      value: {
+        html: assignedUsersHtml
+      }
+    }
+  ]
+}) }}
