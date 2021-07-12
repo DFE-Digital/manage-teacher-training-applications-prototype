@@ -1,0 +1,524 @@
+[
+  {
+    "code": "A60",
+    "name": "Anglia Ruskin University",
+    "isAccreditedBody": true,
+    "domain": "aru.ac.uk"
+  },
+  {
+    "code": "B20",
+    "name": "Bath Spa University",
+    "isAccreditedBody": true,
+    "domain": "bathspa.ac.uk"
+  },
+  {
+    "code": "B25",
+    "name": "Birmingham City University",
+    "isAccreditedBody": true,
+    "domain": "bcu.ac.uk"
+  },
+  {
+    "code": "B38",
+    "name": "Bishop Grosseteste University",
+    "isAccreditedBody": true,
+    "domain": "bishopg.ac.uk"
+  },
+  {
+    "code": "B84",
+    "name": "Brunel University London",
+    "isAccreditedBody": true,
+    "domain": "brunel.ac.uk"
+  },
+  {
+    "code": "C10",
+    "name": "Canterbury Christ Church University",
+    "isAccreditedBody": true,
+    "domain": "canterbury.ac.uk"
+  },
+  {
+    "code": "C85",
+    "name": "Coventry University",
+    "isAccreditedBody": true,
+    "domain": "coventry.ac.uk"
+  },
+  {
+    "code": "D86",
+    "name": "University of Durham",
+    "isAccreditedBody": true,
+    "domain": "durham.ac.uk"
+  },
+  {
+    "code": "E42",
+    "name": "Edge Hill University",
+    "isAccreditedBody": true,
+    "domain": "edgehill.ac.uk"
+  },
+  {
+    "code": "G56",
+    "name": "Goldsmiths, University of London",
+    "isAccreditedBody": true,
+    "domain": "gold.ac.uk"
+  },
+  {
+    "code": "K12",
+    "name": "University of Keele",
+    "isAccreditedBody": true,
+    "domain": "keele.ac.uk"
+  },
+  {
+    "code": "K60",
+    "name": "King’s College London (University of London)",
+    "isAccreditedBody": true,
+    "domain": "kcl.ac.uk"
+  },
+  {
+    "code": "K84",
+    "name": "Kingston University",
+    "isAccreditedBody": true,
+    "domain": "kingston.ac.uk"
+  },
+  {
+    "code": "L27",
+    "name": "Leeds Beckett University",
+    "isAccreditedBody": true,
+    "domain": "leedsbeckett.ac.uk"
+  },
+  {
+    "code": "L24",
+    "name": "Leeds Trinity University",
+    "isAccreditedBody": true,
+    "domain": "leedstrinity.ac.uk"
+  },
+  {
+    "code": "L46",
+    "name": "Liverpool Hope University",
+    "isAccreditedBody": true,
+    "domain": "hope.ac.uk"
+  },
+  {
+    "code": "L51",
+    "name": "Liverpool John Moores University",
+    "isAccreditedBody": true,
+    "domain": "ljmu.ac.uk"
+  },
+  {
+    "code": "L68",
+    "name": "London Metropolitan University",
+    "isAccreditedBody": true,
+    "domain": "londonmet.ac.uk"
+  },
+  {
+    "code": "L75",
+    "name": "London South Bank University",
+    "isAccreditedBody": true,
+    "domain": "lsbu.ac.uk"
+  },
+  {
+    "code": "L79",
+    "name": "Loughborough University",
+    "isAccreditedBody": true,
+    "domain": "lboro.ac.uk"
+  },
+  {
+    "code": "M80",
+    "name": "Middlesex University",
+    "isAccreditedBody": true,
+    "domain": "mdx.ac.uk"
+  },
+  {
+    "code": "N36",
+    "name": "Newman University",
+    "isAccreditedBody": true,
+    "domain": "newman.ac.uk"
+  },
+  {
+    "code": "N91",
+    "name": "Nottingham Trent University",
+    "isAccreditedBody": true,
+    "domain": "ntu.ac.uk"
+  },
+  {
+    "code": "O66",
+    "name": "Oxford Brookes University",
+    "isAccreditedBody": true,
+    "domain": "brookes.ac.uk"
+  },
+  {
+    "code": "O33",
+    "name": "Oxford University",
+    "isAccreditedBody": true,
+    "domain": "ox.ac.uk"
+  },
+  {
+    "code": "P63",
+    "name": "Plymouth Marjon University",
+    "isAccreditedBody": true,
+    "domain": "marjon.ac.uk"
+  },
+  {
+    "code": "R48",
+    "name": "Roehampton University",
+    "isAccreditedBody": true,
+    "domain": "roehampton.ac.uk"
+  },
+  {
+    "code": "S06",
+    "name": "Selby College",
+    "isAccreditedBody": true,
+    "domain": "selby.ac.uk"
+  },
+  {
+    "code": "S21",
+    "name": "Sheffield Hallam University",
+    "isAccreditedBody": true,
+    "domain": "shu.ac.uk"
+  },
+  {
+    "code": "S64",
+    "name": "St Mary’s University, Twickenham",
+    "isAccreditedBody": true,
+    "domain": "stmarys.ac.uk"
+  },
+  {
+    "code": "S72",
+    "name": "Staffordshire University",
+    "isAccreditedBody": true,
+    "domain": "staffs.ac.uk"
+  },
+  {
+    "code": "M40",
+    "name": "The Manchester Metropolitan University",
+    "isAccreditedBody": true,
+    "domain": "mmu.ac.uk"
+  },
+  {
+    "code": "O11",
+    "name": "The Open University",
+    "isAccreditedBody": true,
+    "domain": "open.ac.uk"
+  },
+  {
+    "code": "C35",
+    "name": "The Royal Central School of Speech and Drama",
+    "isAccreditedBody": true,
+    "domain": "cssd.ac.uk"
+  },
+  {
+    "code": "A20",
+    "name": "The University of Aberdeen",
+    "isAccreditedBody": true,
+    "domain": "abdn.ac.uk"
+  },
+  {
+    "code": "B90",
+    "name": "The University of Buckingham",
+    "isAccreditedBody": true,
+    "domain": "buckingham.ac.uk"
+  },
+  {
+    "code": "E56",
+    "name": "The University of Edinburgh",
+    "isAccreditedBody": true,
+    "domain": "ed.ac.uk"
+  },
+  {
+    "code": "G50",
+    "name": "The University of Gloucestershire",
+    "isAccreditedBody": true,
+    "domain": "glos.ac.uk"
+  },
+  {
+    "code": "H72",
+    "name": "The University of Hull",
+    "isAccreditedBody": true,
+    "domain": "hull.ac.uk"
+  },
+  {
+    "code": "M20",
+    "name": "The University of Manchester",
+    "isAccreditedBody": true,
+    "domain": "manchester.ac.uk"
+  },
+  {
+    "code": "N84",
+    "name": "The University of Nottingham",
+    "isAccreditedBody": true,
+    "domain": "nottingham.ac.uk"
+  },
+  {
+    "code": "R12",
+    "name": "The University of Reading",
+    "isAccreditedBody": true,
+    "domain": "reading.ac.uk"
+  },
+  {
+    "code": "S18",
+    "name": "The University of Sheffield",
+    "isAccreditedBody": true,
+    "domain": "sheffield.ac.uk"
+  },
+  {
+    "code": "S78",
+    "name": "The University of Strathclyde",
+    "isAccreditedBody": true,
+    "domain": "strath.ac.uk"
+  },
+  {
+    "code": "W20",
+    "name": "The University of Warwick",
+    "isAccreditedBody": true,
+    "domain": "warwick.ac.uk"
+  },
+  {
+    "code": "Y50",
+    "name": "The University of York",
+    "isAccreditedBody": true,
+    "domain": "york.ac.uk"
+  },
+  {
+    "code": "U80",
+    "name": "UCL, University College London",
+    "isAccreditedBody": true,
+    "domain": "ucl.ac.uk"
+  },
+  {
+    "code": "KG8",
+    "name": "University Campus Oldham",
+    "isAccreditedBody": true,
+    "domain": "uco.oldham.ac.uk"
+  },
+  {
+    "code": "B35",
+    "name": "University College Birmingham",
+    "isAccreditedBody": true,
+    "domain": "ucb.ac.uk"
+  },
+  {
+    "code": "B16",
+    "name": "University of Bath",
+    "isAccreditedBody": true,
+    "domain": "bath.ac.uk"
+  },
+  {
+    "code": "B22",
+    "name": "University of Bedfordshire",
+    "isAccreditedBody": true,
+    "domain": "beds.ac.uk"
+  },
+  {
+    "code": "B32",
+    "name": "University of Birmingham",
+    "isAccreditedBody": true,
+    "domain": "birmingham.ac.uk"
+  },
+  {
+    "code": "8N5",
+    "name": "University of Bolton",
+    "isAccreditedBody": true,
+    "domain": "bolton.ac.uk"
+  },
+  {
+    "code": "B72",
+    "name": "University of Brighton",
+    "isAccreditedBody": true,
+    "domain": "brighton.ac.uk"
+  },
+  {
+    "code": "B78",
+    "name": "University of Bristol",
+    "isAccreditedBody": true,
+    "domain": "bristol.ac.uk"
+  },
+  {
+    "code": "C05",
+    "name": "University of Cambridge",
+    "isAccreditedBody": true,
+    "domain": "cam.ac.uk"
+  },
+  {
+    "code": "C30",
+    "name": "University of Central Lancashire",
+    "isAccreditedBody": true,
+    "domain": "uclan.ac.uk"
+  },
+  {
+    "code": "C55",
+    "name": "University of Chester",
+    "isAccreditedBody": true,
+    "domain": "chester.ac.uk"
+  },
+  {
+    "code": "C58",
+    "name": "University of Chichester",
+    "isAccreditedBody": true,
+    "domain": "chi.ac.uk"
+  },
+  {
+    "code": "C99",
+    "name": "University of Cumbria",
+    "isAccreditedBody": true,
+    "domain": "cumbria.ac.uk"
+  },
+  {
+    "code": "D39",
+    "name": "University of Derby",
+    "isAccreditedBody": true,
+    "domain": "derby.ac.uk"
+  },
+  {
+    "code": "D65",
+    "name": "University of Dundee",
+    "isAccreditedBody": true,
+    "domain": "dundee.ac.uk"
+  },
+  {
+    "code": "E14",
+    "name": "University of East Anglia",
+    "isAccreditedBody": true,
+    "domain": "uea.ac.uk"
+  },
+  {
+    "code": "E28",
+    "name": "University of East London",
+    "isAccreditedBody": true,
+    "domain": "uel.ac.uk"
+  },
+  {
+    "code": "E84",
+    "name": "University of Exeter",
+    "isAccreditedBody": true,
+    "domain": "exeter.ac.uk"
+  },
+  {
+    "code": "G28",
+    "name": "University of Glasgow",
+    "isAccreditedBody": true,
+    "domain": "gla.ac.uk"
+  },
+  {
+    "code": "G70",
+    "name": "University of Greenwich",
+    "isAccreditedBody": true,
+    "domain": "gre.ac.uk"
+  },
+  {
+    "code": "H36",
+    "name": "University of Hertfordshire",
+    "isAccreditedBody": true,
+    "domain": "herts.ac.uk"
+  },
+  {
+    "code": "H60",
+    "name": "University of Huddersfield",
+    "isAccreditedBody": true,
+    "domain": "hud.ac.uk"
+  },
+  {
+    "code": "L34",
+    "name": "University of Leicester",
+    "isAccreditedBody": true,
+    "domain": "le.ac.uk"
+  },
+  {
+    "code": "N21",
+    "name": "University of Newcastle Upon Tyne",
+    "isAccreditedBody": true,
+    "domain": "ncl.ac.uk"
+  },
+  {
+    "code": "N38",
+    "name": "University of Northampton",
+    "isAccreditedBody": true,
+    "domain": "northampton.ac.uk"
+  },
+  {
+    "code": "N77",
+    "name": "University of Northumbria at Newcastle",
+    "isAccreditedBody": true,
+    "domain": "northumbria.ac.uk"
+  },
+  {
+    "code": "P60",
+    "name": "University of Plymouth",
+    "isAccreditedBody": true,
+    "domain": "plymouth.ac.uk"
+  },
+  {
+    "code": "P80",
+    "name": "University of Portsmouth",
+    "isAccreditedBody": true,
+    "domain": "port.ac.uk"
+  },
+  {
+    "code": "N37",
+    "name": "University of South Wales (formerly University of Wales, Newport)",
+    "isAccreditedBody": true,
+    "domain": "southwales.ac.uk"
+  },
+  {
+    "code": "S27",
+    "name": "University of Southampton",
+    "isAccreditedBody": true,
+    "domain": "southampton.ac.uk"
+  },
+  {
+    "code": "S84",
+    "name": "University of Sunderland",
+    "isAccreditedBody": true,
+    "domain": "sunderland.ac.uk"
+  },
+  {
+    "code": "S90",
+    "name": "University of Sussex",
+    "isAccreditedBody": true,
+    "domain": "sussex.ac.uk"
+  },
+  {
+    "code": "H49",
+    "name": "University of the Highlands and Islands",
+    "isAccreditedBody": true,
+    "domain": "uhi.ac.uk"
+  },
+  {
+    "code": "B80",
+    "name": "University of the West of England, Bristol",
+    "isAccreditedBody": true,
+    "domain": "uwe.ac.uk"
+  },
+  {
+    "code": "U40",
+    "name": "University of the West of Scotland",
+    "isAccreditedBody": true,
+    "domain": "uws.ac.uk"
+  },
+  {
+    "code": "S96",
+    "name": "University of Wales Trinity Saint David (UWTSD Swansea)",
+    "isAccreditedBody": true,
+    "domain": "uwtsd.ac.uk"
+  },
+  {
+    "code": "W76",
+    "name": "University of Winchester",
+    "isAccreditedBody": true,
+    "domain": "winchester.ac.uk"
+  },
+  {
+    "code": "W75",
+    "name": "University of Wolverhampton",
+    "isAccreditedBody": true,
+    "domain": "wlv.ac.uk"
+  },
+  {
+    "code": "W80",
+    "name": "University of Worcester",
+    "isAccreditedBody": true,
+    "domain": "worc.ac.uk"
+  },
+  {
+    "code": "Y75",
+    "name": "York St John University",
+    "isAccreditedBody": true,
+    "domain": "yorksj.ac.uk"
+  }
+]
