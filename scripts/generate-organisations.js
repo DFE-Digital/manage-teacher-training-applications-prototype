@@ -597,6 +597,11 @@ const generateFakeOrganisations = (count) => {
     isAccreditedBody: false,
     domain: "example.com"
   }))
+  organisations.push(generateFakeOrganisation({
+    name: "Mercia Learning Alliance",
+    isAccreditedBody: false,
+    domain: "example.com"
+  }))
 
   return organisations
 }
