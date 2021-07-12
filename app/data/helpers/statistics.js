@@ -4,7 +4,7 @@ const fs = require('fs')
 const dataDirectoryPath = path.join(__dirname, '../statistics')
 
 const getStatusData = () => {
-  const filePath = dataDirectoryPath + '/status.json'
+  const filePath = dataDirectoryPath + '/status-cambridge.json'
   const rawData = fs.readFileSync(filePath)
   const data = JSON.parse(rawData)
   // .sort((a, b) => a.title.localeCompare(b.title))
@@ -14,7 +14,7 @@ const getStatusData = () => {
 exports.statusData = getStatusData()
 
 const getConversionData = () => {
-  const filePath = dataDirectoryPath + '/conversion.json'
+  const filePath = dataDirectoryPath + '/conversion-cambridge.json'
   const rawData = fs.readFileSync(filePath)
   const data = JSON.parse(rawData)
   return data
