@@ -61,7 +61,7 @@
             <tr class="govuk-table__row">
               {% if row.code | upper == "AVERAGE" %}
                 <th scope="row" class="govuk-table__header">
-                  Averages
+                  Average
                 </th>
               {% else %}
                 <td class="govuk-table__cell">
@@ -72,7 +72,9 @@
               {% for stage in stages %}
                 <td class="{{ 'govuk-table__header' if row.code | upper == 'AVERAGE' else 'govuk-table__cell'}}">
                   {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
-                  <span class="govuk-hint govuk-!-font-size-16">({{ row[stage.code]['number'] | numeral('0') }})</span>
+                  {% if row.code | upper != "AVERAGE" %}
+                    <span class="govuk-hint govuk-!-font-size-16">({{ row[stage.code]['number'] | numeral('0') }})</span>
+                  {% endif %}
                 </td>
               {% endfor %}
             </tr>
