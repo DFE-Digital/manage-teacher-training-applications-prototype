@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const EventHelper = require('../data/helpers/events')
 
 const parseUsers = (users, assignedUsers = [], you = {}) => {
   if (!(users)) {
@@ -56,10 +57,11 @@ module.exports = router => {
   router.get('/applications/:applicationId/assign', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const user = req.session.data.user
 
     // get all the users for our organisation
-    let users = req.session.data.users.filter(user => {
-      return user.organisation.id == req.session.data.user.organisation.id
+    let users = req.session.data.users.filter(u => {
+      return u.organisation.id == user.organisation.id
     })
 
     // parse users to an array we can use in the checkbox component
@@ -79,11 +81,13 @@ module.exports = router => {
   router.post('/applications/:applicationId/assign', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const user = req.session.data.user
+
     let currentAssignedUsers = []
 
     // get assigned users in user's organisations
     if (application.assignedUsers && application.assignedUsers.length) {
-      currentAssignedUsers = application.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+      currentAssignedUsers = application.assignedUsers.filter(u => u.organisation.id === user.organisation.id)
     }
 
     // boolean used to check if application has been previously assigned
@@ -94,8 +98,8 @@ module.exports = router => {
     const assignedUserIds = req.session.data.assignedUsers
 
     // get all the users for the current user's organisation
-    let users = req.session.data.users.filter(user => {
-      return user.organisation.id == req.session.data.user.organisation.id
+    let users = req.session.data.users.filter(u => {
+      return u.organisation.id == user.organisation.id
     })
 
     // clone the users so we can clean the data and only use what we need
@@ -105,29 +109,38 @@ module.exports = router => {
 
     // get assigned users not in the user's current organisation and populate the array
     if (application.assignedUsers && application.assignedUsers.length) {
-      assignedUsers = application.assignedUsers.filter(user => user.organisation.id !== req.session.data.user.organisation.id)
+      assignedUsers = application.assignedUsers.filter(u => u.organisation.id !== user.organisation.id)
     }
 
     // populate the changes to the assigned users in user's organisation
     if (assignedUserIds) {
       assignedUserIds.forEach((assignedUserId, i) => {
-        let user = {}
+        let assignedUser = {}
         // get the user's details
-        user = users.find(u => u.id === assignedUserId)
+        assignedUser = users.find(u => u.id === assignedUserId)
 
         // remove data that's not needed for the assignment
-        delete user.organisations
-        delete user.permissions
+        delete assignedUser.organisations
+        delete assignedUser.permissions
 
         // put the user details into the assigned users array
-        assignedUsers.push(user)
+        assignedUsers.push(assignedUser)
       })
     }
 
     // add the assignedUsers to the application
     application.assignedUsers = assignedUsers
 
-    // only show a flash message based on where assigned users have been chosen
+    EventHelper.saveEvent(
+      application,
+      event = {
+        title: 'Assigned users updated',
+        user: user.firstName + ' ' + user.lastName,
+        assignedUsers
+      }
+    )
+
+    // only show a flash message based on whether assigned users have been chosen
     // or if there was previously assigned users (for when they're removed)
     // i.e., don't flash a message if there hasn't be a change
     // if ((assignedUserIds && assignedUserIds.length) || hasPreviousAssignedUsers) {

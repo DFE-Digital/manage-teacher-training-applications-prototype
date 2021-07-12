@@ -243,7 +243,7 @@ module.exports = router => {
     req.session.data.users = req.session.data.users.filter(user => user.id !== req.params.userId)
 
     // delete all assignments
-    req.session.data.applications = ApplicationHelper.deleteAssignedUser(req.session.data.applications, req.params.userId)
+    req.session.data.applications = ApplicationHelper.deleteAssignedUser(req.session.data.applications, req.params.userId, req.session.data.user)
 
     // remove user from selected assignedUser filter
     if (req.session.data.assignedUser) {

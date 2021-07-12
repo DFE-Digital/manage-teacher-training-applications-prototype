@@ -1,5 +1,6 @@
 const { DateTime } = require('luxon')
 const SystemHelper = require('./system')
+const EventHelper = require('./events')
 
 exports.getApplicationWithdrawnReasons = (data) => {
   return {
@@ -182,8 +183,8 @@ exports.getAssignedUsers = (application, userId, userOrganisationId) => {
   return assignedUsers
 }
 
-exports.deleteAssignedUser = (applications, userId) => {
-  if (!applications || !userId) {
+exports.deleteAssignedUser = (applications, userId, user) => {
+  if (!applications || !userId || !user) {
     return null
   }
 
@@ -192,7 +193,20 @@ exports.deleteAssignedUser = (applications, userId) => {
   applications.forEach((application, i) => {
     let app = {}
     app = application
+
+    // remove the user from the list of assigned users
     app.assignedUsers = application.assignedUsers.filter(assignedUser => assignedUser.id !== userId)
+
+    // save the activity to the log
+    EventHelper.saveEvent(
+      application = app,
+      event = {
+        title: 'Assigned users updated',
+        user: user.firstName + ' ' + user.lastName,
+        assignedUsers: app.assignedUsers
+      }
+    )
+
     apps.push(app)
   })
 
