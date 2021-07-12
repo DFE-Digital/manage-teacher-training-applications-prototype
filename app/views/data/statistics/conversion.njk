@@ -39,36 +39,6 @@
         }
       }) }}
 
-      {% set headingDescriptionHtml %}
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Column 1"
-            },
-            value: {
-              text: "Item value"
-            }
-          },
-          {
-            key: {
-              text: "Column 2"
-            },
-            value: {
-              text: "Item value"
-            }
-          }
-        ]
-      }) }}
-
-      {% endset %}
-
-      {#{ govukDetails({
-        summaryText: "Learn about what these headings mean",
-        html: headingDescriptionHtml
-      }) }#}
-
       <table class="govuk-table app-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
