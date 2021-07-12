@@ -1,0 +1,421 @@
+[
+  {
+    "code": "2SKV",
+    "title": "Art and Design",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 68
+    },
+    "interviewing": {
+      "number": 4
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 16
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "27Q7",
+    "title": "Biology",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 49
+    },
+    "interviewing": {
+      "number": 21
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 16
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "245T",
+    "title": "Chemistry",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 36
+    },
+    "interviewing": {
+      "number": 8
+    },
+    "offered": {
+      "number": 16
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2SKS",
+    "title": "Design and Technology",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 27
+    },
+    "interviewing": {
+      "number": 24
+    },
+    "offered": {
+      "number": 12
+    },
+    "awaiting_conditions": {
+      "number": 2
+    },
+    "ready_to_enroll": {
+      "number": 4
+    }
+  },
+  {
+    "code": "2ZBY",
+    "title": "Design and Technology (Food and Product Design)",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 53
+    },
+    "interviewing": {
+      "number": 28
+    },
+    "offered": {
+      "number": 12
+    },
+    "awaiting_conditions": {
+      "number": 2
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2SKR",
+    "title": "Drama",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 59
+    },
+    "interviewing": {
+      "number": 8
+    },
+    "offered": {
+      "number": 17
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "245X",
+    "title": "English",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 71
+    },
+    "interviewing": {
+      "number": 19
+    },
+    "offered": {
+      "number": 7
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2G9D",
+    "title": "Geography",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 33
+    },
+    "interviewing": {
+      "number": 32
+    },
+    "offered": {
+      "number": 16
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2G9K",
+    "title": "History",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 58
+    },
+    "interviewing": {
+      "number": 17
+    },
+    "offered": {
+      "number": 13
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "245W",
+    "title": "Mathematics",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 70
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2YKC",
+    "title": "Modern Languages",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 56
+    },
+    "interviewing": {
+      "number": 13
+    },
+    "offered": {
+      "number": 17
+    },
+    "awaiting_conditions": {
+      "number": 14
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2PTW",
+    "title": "Modern Languages (French and German)",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 61
+    },
+    "interviewing": {
+      "number": 17
+    },
+    "offered": {
+      "number": 18
+    },
+    "awaiting_conditions": {
+      "number": 13
+    },
+    "ready_to_enroll": {
+      "number": 3
+    }
+  },
+  {
+    "code": "2SKQ",
+    "title": "Music",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 25
+    },
+    "interviewing": {
+      "number": 30
+    },
+    "offered": {
+      "number": 14
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "26QZ",
+    "title": "Physical Education",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 29
+    },
+    "interviewing": {
+      "number": 9
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 14
+    },
+    "ready_to_enroll": {
+      "number": 3
+    }
+  },
+  {
+    "code": "245R",
+    "title": "Physics",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 45
+    },
+    "interviewing": {
+      "number": 13
+    },
+    "offered": {
+      "number": 4
+    },
+    "awaiting_conditions": {
+      "number": 18
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2C9X",
+    "title": "Primary",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 54
+    },
+    "interviewing": {
+      "number": 5
+    },
+    "offered": {
+      "number": 20
+    },
+    "awaiting_conditions": {
+      "number": 1
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "F988",
+    "title": "Primary (3-7)",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 63
+    },
+    "interviewing": {
+      "number": 16
+    },
+    "offered": {
+      "number": 4
+    },
+    "awaiting_conditions": {
+      "number": 3
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "F559",
+    "title": "Primary with mathematics",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 35
+    },
+    "interviewing": {
+      "number": 10
+    },
+    "offered": {
+      "number": 7
+    },
+    "awaiting_conditions": {
+      "number": 14
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2XBT",
+    "title": "Religious Education",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 58
+    },
+    "interviewing": {
+      "number": 3
+    },
+    "offered": {
+      "number": 15
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "336K",
+    "title": "Social Sciences",
+    "provider": "University of Cambridge",
+    "received": {
+      "number": 57
+    },
+    "interviewing": {
+      "number": 27
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 1
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "TOTAL",
+    "title": "All courses",
+    "received": {
+      "number": 1007
+    },
+    "interviewing": {
+      "number": 330
+    },
+    "offered": {
+      "number": 207
+    },
+    "awaiting_conditions": {
+      "number": 246
+    },
+    "ready_to_enroll": {
+      "number": 108
+    }
+  }
+]
