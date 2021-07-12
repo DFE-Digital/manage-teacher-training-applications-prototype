@@ -16,6 +16,21 @@ module.exports = (params) => {
     date: date
   })
 
+  if (params.assignedUsers.length) {
+    date = DateHelper.getFutureDate(date)
+    const assignedUsers = params.assignedUsers
+      .sort((a, b) => a.firstName.localeCompare(b.firstName)
+        || a.lastName.localeCompare(b.lastName)
+        || a.emailAddress.localeCompare(b.emailAddress))
+
+    events.items.push({
+      title: 'Assigned users updated',
+      user: faker.name.findName(),
+      date: date,
+      assignedUsers: assignedUsers
+    })
+  }
+
   // we know there are currently 2 interviews set up
 
   if (params.interviews && params.interviews.items[0]) {
