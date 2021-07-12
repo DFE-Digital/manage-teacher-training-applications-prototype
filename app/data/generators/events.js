@@ -16,19 +16,24 @@ module.exports = (params) => {
     date: date
   })
 
-  if (params.assignedUsers.length) {
-    date = DateHelper.getFutureDate(date)
-    const assignedUsers = params.assignedUsers
-      .sort((a, b) => a.firstName.localeCompare(b.firstName)
-        || a.lastName.localeCompare(b.lastName)
-        || a.emailAddress.localeCompare(b.emailAddress))
+  // if the application is not received, assign a user from the
+  // accredited body and training provider
+  if (params.status.toLowerCase() !== 'received') {
+    if (params.assignedUsers.length) {
+      date = DateHelper.getFutureDate(date)
 
-    events.items.push({
-      title: 'Assigned users updated',
-      user: faker.name.findName(),
-      date: date,
-      assignedUsers: assignedUsers
-    })
+      const assignedUsers = params.assignedUsers
+        .sort((a, b) => a.firstName.localeCompare(b.firstName)
+          || a.lastName.localeCompare(b.lastName)
+          || a.emailAddress.localeCompare(b.emailAddress))
+
+      events.items.push({
+        title: 'Assigned users updated',
+        user: faker.name.findName(),
+        date: date,
+        assignedUsers: assignedUsers
+      })
+    }
   }
 
   // we know there are currently 2 interviews set up
