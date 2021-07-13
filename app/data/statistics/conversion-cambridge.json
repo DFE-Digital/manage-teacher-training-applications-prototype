@@ -1,0 +1,715 @@
+[
+  {
+    "code": "2SKV",
+    "title": "Art and Design",
+    "provider": "University of Cambridge",
+    "total_applications": 166,
+    "shortlist_for_interview": {
+      "percentage": 67,
+      "number":111
+    },
+    "interview_success": {
+      "percentage": 60,
+      "number":67
+    },
+    "offer": {
+      "percentage": 40,
+      "number":67
+    },
+    "acceptance": {
+      "percentage": 80,
+      "number":54
+    },
+    "conditions_met": {
+      "percentage": 81,
+      "number":44
+    },
+    "offer_conversion": {
+      "percentage": 65,
+      "number":44
+    },
+    "overall_conversion": {
+      "percentage": 26,
+      "number":44
+    }
+  },
+  {
+    "code": "27Q7",
+    "title": "Biology",
+    "provider": "University of Cambridge",
+    "total_applications": 141,
+    "shortlist_for_interview": {
+      "percentage": 51,
+      "number":72
+    },
+    "interview_success": {
+      "percentage": 57,
+      "number":41
+    },
+    "offer": {
+      "percentage": 29,
+      "number":41
+    },
+    "acceptance": {
+      "percentage": 85,
+      "number":35
+    },
+    "conditions_met": {
+      "percentage": 87,
+      "number":30
+    },
+    "offer_conversion": {
+      "percentage": 74,
+      "number":30
+    },
+    "overall_conversion": {
+      "percentage": 21,
+      "number":30
+    }
+  },
+  {
+    "code": "245T",
+    "title": "Chemistry",
+    "provider": "University of Cambridge",
+    "total_applications": 264,
+    "shortlist_for_interview": {
+      "percentage": 25,
+      "number":66
+    },
+    "interview_success": {
+      "percentage": 28,
+      "number":18
+    },
+    "offer": {
+      "percentage": 7,
+      "number":18
+    },
+    "acceptance": {
+      "percentage": 80,
+      "number":14
+    },
+    "conditions_met": {
+      "percentage": 84,
+      "number":12
+    },
+    "offer_conversion": {
+      "percentage": 67,
+      "number":12
+    },
+    "overall_conversion": {
+      "percentage": 5,
+      "number":12
+    }
+  },
+  {
+    "code": "2SKS",
+    "title": "Design and Technology",
+    "provider": "University of Cambridge",
+    "total_applications": 254,
+    "shortlist_for_interview": {
+      "percentage": 68,
+      "number":173
+    },
+    "interview_success": {
+      "percentage": 33,
+      "number":57
+    },
+    "offer": {
+      "percentage": 22,
+      "number":57
+    },
+    "acceptance": {
+      "percentage": 83,
+      "number":47
+    },
+    "conditions_met": {
+      "percentage": 82,
+      "number":39
+    },
+    "offer_conversion": {
+      "percentage": 68,
+      "number":39
+    },
+    "overall_conversion": {
+      "percentage": 15,
+      "number":39
+    }
+  },
+  {
+    "code": "2ZBY",
+    "title": "Design and Technology (Food and Product Design)",
+    "provider": "University of Cambridge",
+    "total_applications": 233,
+    "shortlist_for_interview": {
+      "percentage": 48,
+      "number":112
+    },
+    "interview_success": {
+      "percentage": 59,
+      "number":66
+    },
+    "offer": {
+      "percentage": 28,
+      "number":66
+    },
+    "acceptance": {
+      "percentage": 80,
+      "number":53
+    },
+    "conditions_met": {
+      "percentage": 90,
+      "number":48
+    },
+    "offer_conversion": {
+      "percentage": 72,
+      "number":48
+    },
+    "overall_conversion": {
+      "percentage": 20,
+      "number":48
+    }
+  },
+  {
+    "code": "2SKR",
+    "title": "Drama",
+    "provider": "University of Cambridge",
+    "total_applications": 160,
+    "shortlist_for_interview": {
+      "percentage": 48,
+      "number":77
+    },
+    "interview_success": {
+      "percentage": 47,
+      "number":36
+    },
+    "offer": {
+      "percentage": 23,
+      "number":36
+    },
+    "acceptance": {
+      "percentage": 83,
+      "number":30
+    },
+    "conditions_met": {
+      "percentage": 90,
+      "number":27
+    },
+    "offer_conversion": {
+      "percentage": 75,
+      "number":27
+    },
+    "overall_conversion": {
+      "percentage": 17,
+      "number":27
+    }
+  },
+  {
+    "code": "245X",
+    "title": "English",
+    "provider": "University of Cambridge",
+    "total_applications": 159,
+    "shortlist_for_interview": {
+      "percentage": 41,
+      "number":65
+    },
+    "interview_success": {
+      "percentage": 59,
+      "number":38
+    },
+    "offer": {
+      "percentage": 24,
+      "number":38
+    },
+    "acceptance": {
+      "percentage": 61,
+      "number":23
+    },
+    "conditions_met": {
+      "percentage": 83,
+      "number":19
+    },
+    "offer_conversion": {
+      "percentage": 51,
+      "number":19
+    },
+    "overall_conversion": {
+      "percentage": 12,
+      "number":19
+    }
+  },
+  {
+    "code": "2G9D",
+    "title": "Geography",
+    "provider": "University of Cambridge",
+    "total_applications": 127,
+    "shortlist_for_interview": {
+      "percentage": 41,
+      "number":52
+    },
+    "interview_success": {
+      "percentage": 43,
+      "number":22
+    },
+    "offer": {
+      "percentage": 17,
+      "number":22
+    },
+    "acceptance": {
+      "percentage": 63,
+      "number":14
+    },
+    "conditions_met": {
+      "percentage": 88,
+      "number":12
+    },
+    "offer_conversion": {
+      "percentage": 55,
+      "number":12
+    },
+    "overall_conversion": {
+      "percentage": 10,
+      "number":12
+    }
+  },
+  {
+    "code": "2G9K",
+    "title": "History",
+    "provider": "University of Cambridge",
+    "total_applications": 133,
+    "shortlist_for_interview": {
+      "percentage": 45,
+      "number":60
+    },
+    "interview_success": {
+      "percentage": 56,
+      "number":34
+    },
+    "offer": {
+      "percentage": 26,
+      "number":34
+    },
+    "acceptance": {
+      "percentage": 68,
+      "number":23
+    },
+    "conditions_met": {
+      "percentage": 83,
+      "number":19
+    },
+    "offer_conversion": {
+      "percentage": 56,
+      "number":19
+    },
+    "overall_conversion": {
+      "percentage": 14,
+      "number":19
+    }
+  },
+  {
+    "code": "245W",
+    "title": "Mathematics",
+    "provider": "University of Cambridge",
+    "total_applications": 162,
+    "shortlist_for_interview": {
+      "percentage": 65,
+      "number":105
+    },
+    "interview_success": {
+      "percentage": 47,
+      "number":49
+    },
+    "offer": {
+      "percentage": 30,
+      "number":49
+    },
+    "acceptance": {
+      "percentage": 66,
+      "number":32
+    },
+    "conditions_met": {
+      "percentage": 83,
+      "number":27
+    },
+    "offer_conversion": {
+      "percentage": 55,
+      "number":27
+    },
+    "overall_conversion": {
+      "percentage": 17,
+      "number":27
+    }
+  },
+  {
+    "code": "2YKC",
+    "title": "Modern Languages",
+    "provider": "University of Cambridge",
+    "total_applications": 138,
+    "shortlist_for_interview": {
+      "percentage": 61,
+      "number":84
+    },
+    "interview_success": {
+      "percentage": 26,
+      "number":22
+    },
+    "offer": {
+      "percentage": 16,
+      "number":22
+    },
+    "acceptance": {
+      "percentage": 85,
+      "number":19
+    },
+    "conditions_met": {
+      "percentage": 83,
+      "number":16
+    },
+    "offer_conversion": {
+      "percentage": 71,
+      "number":16
+    },
+    "overall_conversion": {
+      "percentage": 11,
+      "number":16
+    }
+  },
+  {
+    "code": "2PTW",
+    "title": "Modern Languages (French and German)",
+    "provider": "University of Cambridge",
+    "total_applications": 240,
+    "shortlist_for_interview": {
+      "percentage": 75,
+      "number":180
+    },
+    "interview_success": {
+      "percentage": 28,
+      "number":50
+    },
+    "offer": {
+      "percentage": 21,
+      "number":50
+    },
+    "acceptance": {
+      "percentage": 64,
+      "number":32
+    },
+    "conditions_met": {
+      "percentage": 90,
+      "number":29
+    },
+    "offer_conversion": {
+      "percentage": 58,
+      "number":29
+    },
+    "overall_conversion": {
+      "percentage": 12,
+      "number":29
+    }
+  },
+  {
+    "code": "2SKQ",
+    "title": "Music",
+    "provider": "University of Cambridge",
+    "total_applications": 215,
+    "shortlist_for_interview": {
+      "percentage": 72,
+      "number":155
+    },
+    "interview_success": {
+      "percentage": 30,
+      "number":47
+    },
+    "offer": {
+      "percentage": 22,
+      "number":47
+    },
+    "acceptance": {
+      "percentage": 73,
+      "number":34
+    },
+    "conditions_met": {
+      "percentage": 84,
+      "number":29
+    },
+    "offer_conversion": {
+      "percentage": 61,
+      "number":29
+    },
+    "overall_conversion": {
+      "percentage": 13,
+      "number":29
+    }
+  },
+  {
+    "code": "26QZ",
+    "title": "Physical Education",
+    "provider": "University of Cambridge",
+    "total_applications": 174,
+    "shortlist_for_interview": {
+      "percentage": 43,
+      "number":75
+    },
+    "interview_success": {
+      "percentage": 34,
+      "number":26
+    },
+    "offer": {
+      "percentage": 15,
+      "number":26
+    },
+    "acceptance": {
+      "percentage": 72,
+      "number":19
+    },
+    "conditions_met": {
+      "percentage": 90,
+      "number":17
+    },
+    "offer_conversion": {
+      "percentage": 65,
+      "number":17
+    },
+    "overall_conversion": {
+      "percentage": 9,
+      "number":17
+    }
+  },
+  {
+    "code": "245R",
+    "title": "Physics",
+    "provider": "University of Cambridge",
+    "total_applications": 252,
+    "shortlist_for_interview": {
+      "percentage": 66,
+      "number":166
+    },
+    "interview_success": {
+      "percentage": 33,
+      "number":55
+    },
+    "offer": {
+      "percentage": 22,
+      "number":55
+    },
+    "acceptance": {
+      "percentage": 75,
+      "number":41
+    },
+    "conditions_met": {
+      "percentage": 81,
+      "number":33
+    },
+    "offer_conversion": {
+      "percentage": 61,
+      "number":33
+    },
+    "overall_conversion": {
+      "percentage": 13,
+      "number":33
+    }
+  },
+  {
+    "code": "2C9X",
+    "title": "Primary",
+    "provider": "University of Cambridge",
+    "total_applications": 128,
+    "shortlist_for_interview": {
+      "percentage": 61,
+      "number":78
+    },
+    "interview_success": {
+      "percentage": 51,
+      "number":40
+    },
+    "offer": {
+      "percentage": 31,
+      "number":40
+    },
+    "acceptance": {
+      "percentage": 84,
+      "number":34
+    },
+    "conditions_met": {
+      "percentage": 89,
+      "number":30
+    },
+    "offer_conversion": {
+      "percentage": 75,
+      "number":30
+    },
+    "overall_conversion": {
+      "percentage": 23,
+      "number":30
+    }
+  },
+  {
+    "code": "F988",
+    "title": "Primary (3-7)",
+    "provider": "University of Cambridge",
+    "total_applications": 127,
+    "shortlist_for_interview": {
+      "percentage": 64,
+      "number":81
+    },
+    "interview_success": {
+      "percentage": 64,
+      "number":52
+    },
+    "offer": {
+      "percentage": 41,
+      "number":52
+    },
+    "acceptance": {
+      "percentage": 72,
+      "number":37
+    },
+    "conditions_met": {
+      "percentage": 85,
+      "number":31
+    },
+    "offer_conversion": {
+      "percentage": 61,
+      "number":31
+    },
+    "overall_conversion": {
+      "percentage": 25,
+      "number":31
+    }
+  },
+  {
+    "code": "F559",
+    "title": "Primary with mathematics",
+    "provider": "University of Cambridge",
+    "total_applications": 204,
+    "shortlist_for_interview": {
+      "percentage": 46,
+      "number":94
+    },
+    "interview_success": {
+      "percentage": 35,
+      "number":33
+    },
+    "offer": {
+      "percentage": 16,
+      "number":33
+    },
+    "acceptance": {
+      "percentage": 71,
+      "number":23
+    },
+    "conditions_met": {
+      "percentage": 85,
+      "number":20
+    },
+    "offer_conversion": {
+      "percentage": 60,
+      "number":20
+    },
+    "overall_conversion": {
+      "percentage": 10,
+      "number":20
+    }
+  },
+  {
+    "code": "2XBT",
+    "title": "Religious Education",
+    "provider": "University of Cambridge",
+    "total_applications": 254,
+    "shortlist_for_interview": {
+      "percentage": 54,
+      "number":137
+    },
+    "interview_success": {
+      "percentage": 63,
+      "number":86
+    },
+    "offer": {
+      "percentage": 34,
+      "number":86
+    },
+    "acceptance": {
+      "percentage": 68,
+      "number":58
+    },
+    "conditions_met": {
+      "percentage": 81,
+      "number":47
+    },
+    "offer_conversion": {
+      "percentage": 55,
+      "number":47
+    },
+    "overall_conversion": {
+      "percentage": 19,
+      "number":47
+    }
+  },
+  {
+    "code": "336K",
+    "title": "Social Sciences",
+    "provider": "University of Cambridge",
+    "total_applications": 230,
+    "shortlist_for_interview": {
+      "percentage": 60,
+      "number":138
+    },
+    "interview_success": {
+      "percentage": 58,
+      "number":80
+    },
+    "offer": {
+      "percentage": 35,
+      "number":80
+    },
+    "acceptance": {
+      "percentage": 81,
+      "number":65
+    },
+    "conditions_met": {
+      "percentage": 89,
+      "number":58
+    },
+    "offer_conversion": {
+      "percentage": 72,
+      "number":58
+    },
+    "overall_conversion": {
+      "percentage": 25,
+      "number":58
+    }
+  },
+  {
+    "code": "AVERAGE",
+    "title": "All courses",
+    "total_applications": 188,
+    "shortlist_for_interview": {
+      "percentage": 55,
+      "number":104
+    },
+    "interview_success": {
+      "percentage": 46,
+      "number":46
+    },
+    "offer": {
+      "percentage": 25,
+      "number":46
+    },
+    "acceptance": {
+      "percentage": 75,
+      "number":34
+    },
+    "conditions_met": {
+      "percentage": 85,
+      "number":29
+    },
+    "offer_conversion": {
+      "percentage": 64,
+      "number":29
+    },
+    "overall_conversion": {
+      "percentage": 16,
+      "number":29
+    }
+  }
+]
