@@ -6,7 +6,8 @@ const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
 const user = require('../app/data/user')
-const relationships = require('../app/data/relationships-bishop-grosseteste.js')
+const relationships = require('../app/data/relationships-chiltern-training.js')
+
 let partners = relationships.map(relationship => relationship.org2)
 
 const generateSubject = require('../app/data/generators/subject')
