@@ -39,7 +39,7 @@
 
         {% endif %}
 
-        {% if event.event.title == "Assigned users updated" %}
+        {% if event.event.title in ["Assigned users updated", "Users assigned"] %}
           <div class="app-activity-log__box">
             {% if event.event.assignedUsers.length %}
               {{ appEventApplicationAssignment({ assignedUsers: event.event.assignedUsers }) }}

@@ -131,10 +131,17 @@ module.exports = router => {
     // add the assignedUsers to the application
     application.assignedUsers = assignedUsers
 
+    const hasApplicationAssignmentEvents = EventHelper.hasApplicationAssignmentEvents(application)
+
+    let eventTitle = 'Users assigned'
+    if (hasApplicationAssignmentEvents) {
+      eventTitle = 'Assigned users updated'
+    }
+
     EventHelper.saveEvent(
       application,
       event = {
-        title: 'Assigned users updated',
+        title: eventTitle,
         user: user.firstName + ' ' + user.lastName,
         assignedUsers
       }
@@ -144,7 +151,7 @@ module.exports = router => {
     // or if there was previously assigned users (for when they're removed)
     // i.e., don't flash a message if there hasn't be a change
     // if ((assignedUserIds && assignedUserIds.length) || hasPreviousAssignedUsers) {
-      req.flash('success', 'Assigned users updated')
+      req.flash('success', eventTitle)
     // }
 
     // get the referrer for routing

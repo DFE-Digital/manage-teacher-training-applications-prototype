@@ -139,7 +139,7 @@
                 {% if event.meta.note.exists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/notes/{{event.meta.note.id}}">View note <span class="govuk-visually-hidden">{{event.meta.note.date | govukDateAtTime}}</span></a></p>
                 {% endif %}
-              {% elseif event.title == "Assigned users updated" %}
+              {% elseif event.title in ["Assigned users updated", "Users assigned"] %}
                 <div class="app-activity-log__box">
                   {#% if event.assignedUsers.length %#}
                     {{ appEventApplicationAssignment({ assignedUsers: event.assignedUsers }) }}

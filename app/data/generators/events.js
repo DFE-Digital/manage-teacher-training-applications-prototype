@@ -28,7 +28,7 @@ module.exports = (params) => {
           || a.emailAddress.localeCompare(b.emailAddress))
 
       events.items.push({
-        title: 'Assigned users updated',
+        title: 'Users assigned',
         user: faker.name.findName(),
         date: date,
         assignedUsers: assignedUsers
