@@ -32,26 +32,33 @@ module.exports = router => {
     const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
     const events = application.events.items.map(item => {
+      let interview = null;
 
       // interview
       if(item.title == 'Interview set up') {
-        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        console.log(item.meta)
+        interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
         if(interview) {
-          item.meta.interview.exists = true
+          item.meta.interviewExists = true
+        } else {
+          item.meta.interviewExists = false
         }
+        console.log(item.meta)
       }
 
       // interview
       if(item.title == 'Interview changed') {
-        var interview = application.interviews.items.find(interview => interview.id === item.meta.interview.id)
+        interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
         if(interview) {
-          item.meta.interview.exists = true
+          item.meta.interviewExists = true
+        } else {
+          item.meta.interviewExists = false
         }
       }
 
       // note
       if(item.title == 'Note added') {
-        var note = application.notes.items.find(note => note.id === item.meta.note.id)
+        let note = application.notes.items.find(note => note.id === item.meta.note.id)
         if(note) {
           item.meta.note.exists = true
         }

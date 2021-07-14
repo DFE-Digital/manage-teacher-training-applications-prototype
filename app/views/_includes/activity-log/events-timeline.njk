@@ -57,6 +57,12 @@
             {{appEventInterview({ interview: event.event.meta.interview })}}
           </div>
 
+          {{event | log}}
+
+          {% if event.event.meta.interviewExists %}
+            <p class="app-log-card__note--link"><a href="/applications/{{event.application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
+          {% endif %}
+
         {% endif %}
 
         {% if event.event.title == "Conditions marked as met" or event.event.title == "Conditions marked as not met" or event.event.title == "Status of conditions updated"  %}
