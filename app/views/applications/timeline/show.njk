@@ -49,7 +49,7 @@
                   {{appEventInterview({ interview: event.meta.interview })}}
                 </div>
 
-                {% if event.meta.interview.exists %}
+                {% if event.meta.interviewExists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
                 {% endif %}
               {% elseif event.title == "Interview changed" %}
@@ -58,7 +58,7 @@
                   {{appEventInterview({ interview: event.meta.interview })}}
                 </div>
 
-                {% if event.meta.interview.exists %}
+                {% if event.meta.interviewExists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
                 {% endif %}
               {% elseif event.title == "Interview cancelled" %}

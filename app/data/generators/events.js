@@ -26,7 +26,8 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interview: params.interviews.items[0]
+        interview: params.interviews.items[0],
+        interviewId: params.interviews.items[0].id
       }
     })
   }
@@ -39,7 +40,8 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interview: params.interviews.items[1]
+        interview: params.interviews.items[1],
+        interviewId: params.interviews.items[0].id
       }
     })
 
@@ -54,7 +56,8 @@ module.exports = (params) => {
         user: faker.name.findName(),
         date: date,
         meta: {
-          interview: interview
+          interview: interview,
+          interviewId: interview.id
         }
       })
 
@@ -69,6 +72,7 @@ module.exports = (params) => {
         date: date,
         meta: {
           interview: interview,
+          interviewId: interview.id,
           cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
         }
       })
