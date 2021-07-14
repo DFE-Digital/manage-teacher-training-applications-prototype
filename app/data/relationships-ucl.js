@@ -1,6 +1,6 @@
 const OrgHelper = require('./helpers/organisation')
 const relationships = []
-const userOrg = OrgHelper.findOrg("University College London")
+const userOrg = OrgHelper.findOrg("UCL, University College London")
 
 relationships.push({
   id: 1,
