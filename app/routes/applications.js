@@ -36,14 +36,12 @@ module.exports = router => {
 
       // interview
       if(item.title == 'Interview set up') {
-        console.log(item.meta)
         interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
         if(interview) {
           item.meta.interviewExists = true
         } else {
           item.meta.interviewExists = false
         }
-        console.log(item.meta)
       }
 
       // interview
