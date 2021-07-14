@@ -4,7 +4,7 @@ const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
 let applications = require('./applications.json')
 const users = require('./users.json')
-const relationships = require('./relationships-goldsmiths.js')
+const relationships = require('./relationships-ignite-teaching-school.js')
 const user = require('./user')
 
 // get related training providers
