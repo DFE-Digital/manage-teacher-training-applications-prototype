@@ -5,7 +5,7 @@ exports.hasApplicationAssignmentEvents = (application) => {
     return null
   }
 
-  const events = application.events.items.filter(item => item.title === 'Users assigned' || item.title === 'Assigned users updated')
+  const events = application.events.items.filter(item => item.title === 'User assigned' || item.title === 'Users assigned' || item.title === 'Assigned users updated')
 
   return events.length > 0 ? true : false
 }
