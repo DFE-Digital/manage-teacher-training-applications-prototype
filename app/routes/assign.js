@@ -133,7 +133,10 @@ module.exports = router => {
 
     const hasApplicationAssignmentEvents = EventHelper.hasApplicationAssignmentEvents(application)
 
-    let eventTitle = 'Users assigned'
+    let eventTitle = 'User assigned'
+    if (assignedUsers.length > 1) {
+      eventTitle = 'Users assigned'
+    }
     if (hasApplicationAssignmentEvents) {
       eventTitle = 'Assigned users updated'
     }
