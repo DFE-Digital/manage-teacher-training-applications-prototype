@@ -1,6 +1,6 @@
 const OrgHelper = require('./helpers/organisation')
 const users = require('./users.json')
-let userOrg = OrgHelper.findOrg("Goldsmiths, University of London")
+let userOrg = OrgHelper.findOrg("GLF School’s Teacher Training")
 
 // set up user orgs
 let userOrgs = [];
