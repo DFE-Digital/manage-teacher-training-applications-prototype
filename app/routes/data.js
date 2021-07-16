@@ -46,7 +46,7 @@ module.exports = router => {
 
   router.get('/reports/:organisationId/status-of-applications', (req, res) => {
     // console.log(req.session.data.user.organisations);
-    const organisation = req.session.data.user.organisations.find(org => org.id = req.params.organisationId)
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     // console.log(organisation);
     const fileName = slugify(organisation.name)
 
@@ -60,7 +60,7 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/progress-of-applications', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id = req.params.organisationId)
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
     const fileName = slugify(organisation.name)
 
@@ -74,14 +74,14 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/export', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id = req.params.organisationId)
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     res.render('data/export/index', {
       organisation
     })
   })
 
   router.get('/reports/:organisationId/hesa', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id = req.params.organisationId)
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     res.render('data/export/hesa', {
       organisation
     })
@@ -90,7 +90,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/status-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/status-of-applications.csv'
 
-    const organisation = req.session.data.user.organisations.find(org => org.id = req.params.organisationId)
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
     const fileName = slugify(organisation.name)
 
@@ -139,7 +139,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/progress-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/progress-of-applications.csv'
 
-    const organisation = req.session.data.user.organisations.find(org => org.id = req.params.organisationId)
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
     const fileName = slugify(organisation.name)
 
