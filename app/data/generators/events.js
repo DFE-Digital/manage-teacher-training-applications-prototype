@@ -27,8 +27,10 @@ module.exports = (params) => {
           || a.lastName.localeCompare(b.lastName)
           || a.emailAddress.localeCompare(b.emailAddress))
 
+      const eventTitle = (assignedUsers.length > 1) ? 'Users assigned' : 'User assigned'
+
       events.items.push({
-        title: 'Users assigned',
+        title: eventTitle,
         user: faker.name.findName(),
         date: date,
         assignedUsers: assignedUsers
