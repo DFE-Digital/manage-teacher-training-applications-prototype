@@ -11,9 +11,9 @@
       {{ pageName }}
     </h1>
 
-    {% for organisation in userOrganisations %}
+    {% for organisation in organisations %}
 
-      {% if userOrganisations.length > 1 %}
+      {% if organisations.length > 1 %}
         <h2 class="govuk-heading-m">{{ organisation.name }}</h2>
       {% endif %}
 

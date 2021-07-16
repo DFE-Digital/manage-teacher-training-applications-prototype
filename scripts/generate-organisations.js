@@ -620,7 +620,7 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "The OAKS Norfolk",
     isAccreditedBody: false,
-    domain: "ormistonventureacademy.co.uk"
+    domain: "theoaks.org.uk"
   }))
   organisations.push(generateFakeOrganisation({
     name: "The OAKS (Ormiston and Keele SCITT)",
