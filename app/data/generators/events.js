@@ -16,6 +16,28 @@ module.exports = (params) => {
     date: date
   })
 
+  // if the application is not received, assign a user from the
+  // accredited body and training provider
+  if (params.status.toLowerCase() !== 'received') {
+    if (params.assignedUsers.length) {
+      date = DateHelper.getFutureDate(date)
+
+      const assignedUsers = params.assignedUsers
+        .sort((a, b) => a.firstName.localeCompare(b.firstName)
+          || a.lastName.localeCompare(b.lastName)
+          || a.emailAddress.localeCompare(b.emailAddress))
+
+      const eventTitle = (assignedUsers.length > 1) ? 'Users assigned' : 'User assigned'
+
+      events.items.push({
+        title: eventTitle,
+        user: faker.name.findName(),
+        date: date,
+        assignedUsers: assignedUsers
+      })
+    }
+  }
+
   // we know there are currently 2 interviews set up
 
   if (params.interviews && params.interviews.items[0]) {
