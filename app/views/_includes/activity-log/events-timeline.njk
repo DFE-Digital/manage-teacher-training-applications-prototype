@@ -39,6 +39,19 @@
 
         {% endif %}
 
+        {% if event.event.title in ["Assigned users updated", "User assigned", "Users assigned"] %}
+          <div class="app-activity-log__box">
+            {% if event.event.assignedUsers.length %}
+              {{ appEventApplicationAssignment({ assignedUsers: event.event.assignedUsers }) }}
+            {% else %}
+              <p class="govuk-body"></p>
+            {% endif %}
+          </div>
+          <p class="app-log-card__note--link">
+            <a class="govuk-link" href="/applications/{{event.application.id}}">View application</a>
+          </p>
+        {% endif %}
+
         {% if event.event.title == 'Interview cancelled' %}
 
           <div class="app-activity-log__box">
@@ -56,6 +69,12 @@
           <div class="app-activity-log__box">
             {{appEventInterview({ interview: event.event.meta.interview })}}
           </div>
+
+          {{event | log}}
+
+          {% if event.event.meta.interviewExists %}
+            <p class="app-log-card__note--link"><a href="/applications/{{event.application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
+          {% endif %}
 
         {% endif %}
 

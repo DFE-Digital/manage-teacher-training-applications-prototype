@@ -83,6 +83,8 @@ const generateFakeApplication = (params = {}) => {
     submittedDate
   })
 
+  const assignedUsers = generateAssignedUsers(accreditedBody, provider, status)
+
   const events = generateEvents({
     offer,
     status,
@@ -93,11 +95,12 @@ const generateFakeApplication = (params = {}) => {
     course,
     location,
     studyMode,
-    accreditedBody: accreditedBody.name
+    accreditedBody: accreditedBody.name,
+    assignedUsers
   })
 
   // delete any interviews that have been cancelled
-  var cancelledInterviewEvents = events.items
+  let cancelledInterviewEvents = events.items
     .filter(event => event.title == 'Interview cancelled')
 
   cancelledInterviewEvents.forEach(event => {
@@ -131,7 +134,7 @@ const generateFakeApplication = (params = {}) => {
 
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
-    assignedUsers: params.assignedUsers || generateAssignedUsers(accreditedBody, provider, status),
+    assignedUsers: params.assignedUsers || assignedUsers,
     offerCanNotBeReconfirmed,
     cycle,
     provider: provider.name,

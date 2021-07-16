@@ -134,7 +134,7 @@ filters.minusDays = (date, days) => {
 
 filters.arrayToGovukDate = (array) => {
   let dateObject = filters.arrayToDateObject(array)
-  let govukDate = filters.dateToGovukDate(dateObject)
+  let govukDate = filters.dateToGovukDate(dateObject.toISOString())
   return govukDate
 }
 

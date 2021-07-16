@@ -12,7 +12,7 @@
     <p class="govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
     {% if assignedUsers.length %}
       <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1">
-      Assigned to
+      Users assigned:
       {% for assignedUser in assignedUsers %}
         {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
         {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}

@@ -6,8 +6,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% if (relationships | length) == "1" %}
-        <p>Candidates can now apply through GOV.​UK for courses you work on with:</p>
+        <p>Candidates can now apply through GOV.​UK for courses {{data.user.organisations[0].name}} work on with:</p>
       {% else %}
         <p>Candidates can now apply through GOV.​UK for courses you work on with partner organisations.</p>
 
