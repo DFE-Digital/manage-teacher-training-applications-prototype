@@ -2,7 +2,7 @@ const PaginationHelper = require('../data/helpers/pagination')
 const _ = require("lodash")
 const { DateTime } = require('luxon')
 
-function getActivity(applications) {
+function getActivity(applications, userOrganisationId) {
   let activity = []
 
   applications.forEach(application => {
@@ -34,6 +34,11 @@ function getActivity(applications) {
         if(note) {
           item.meta.note.exists = true
         }
+      }
+
+      // get assigned users for the user's organisation
+      if (item.title === 'User assigned' || item.title === 'Users assigned' || item.title === 'Assigned users updated') {
+        item.assignedUsers = item.assignedUsers.filter(user => user.organisation.id === userOrganisationId)
       }
 
       return item;
@@ -76,7 +81,7 @@ module.exports = router => {
     })
 
     // Get the activity
-    let activity = getActivity(apps)
+    let activity = getActivity(apps, req.session.data.user.organisation.id)
 
     activity = activity.filter(item => {
       const itemDate = DateTime.fromISO(item.event.date)
