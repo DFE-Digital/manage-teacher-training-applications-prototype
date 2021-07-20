@@ -1,0 +1,1241 @@
+[
+  {
+    "code": "2SKV",
+    "title": "Art and Design",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 68
+    },
+    "interviewing": {
+      "number": 4
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 16
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2XCC",
+    "title": "Art and Design",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 65
+    },
+    "interviewing": {
+      "number": 21
+    },
+    "offered": {
+      "number": 18
+    },
+    "awaiting_conditions": {
+      "number": 6
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "2YKF",
+    "title": "Art and Design",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 69
+    },
+    "interviewing": {
+      "number": 31
+    },
+    "offered": {
+      "number": 15
+    },
+    "awaiting_conditions": {
+      "number": 11
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "2ZC4",
+    "title": "Art and Design",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 51
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 4
+    },
+    "awaiting_conditions": {
+      "number": 1
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "27Q7",
+    "title": "Biology",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 37
+    },
+    "interviewing": {
+      "number": 9
+    },
+    "offered": {
+      "number": 10
+    },
+    "awaiting_conditions": {
+      "number": 18
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "2G9N",
+    "title": "Biology",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 31
+    },
+    "interviewing": {
+      "number": 9
+    },
+    "offered": {
+      "number": 2
+    },
+    "awaiting_conditions": {
+      "number": 6
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "2SKC",
+    "title": "Biology",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 49
+    },
+    "interviewing": {
+      "number": 21
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 16
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "2XC9",
+    "title": "Biology",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 33
+    },
+    "interviewing": {
+      "number": 9
+    },
+    "offered": {
+      "number": 2
+    },
+    "awaiting_conditions": {
+      "number": 4
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "245T",
+    "title": "Chemistry",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 65
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 19
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "27Q9",
+    "title": "Chemistry",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 35
+    },
+    "interviewing": {
+      "number": 20
+    },
+    "offered": {
+      "number": 15
+    },
+    "awaiting_conditions": {
+      "number": 19
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2PT2",
+    "title": "Chemistry",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 53
+    },
+    "interviewing": {
+      "number": 35
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 3
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "2SK6",
+    "title": "Chemistry",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 55
+    },
+    "interviewing": {
+      "number": 21
+    },
+    "offered": {
+      "number": 13
+    },
+    "awaiting_conditions": {
+      "number": 18
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "2SKS",
+    "title": "Design and Technology",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 64
+    },
+    "interviewing": {
+      "number": 21
+    },
+    "offered": {
+      "number": 13
+    },
+    "awaiting_conditions": {
+      "number": 18
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2ZHD",
+    "title": "Design and Technology",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 36
+    },
+    "interviewing": {
+      "number": 8
+    },
+    "offered": {
+      "number": 16
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "34T2",
+    "title": "Design and Technology",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 37
+    },
+    "interviewing": {
+      "number": 25
+    },
+    "offered": {
+      "number": 9
+    },
+    "awaiting_conditions": {
+      "number": 19
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "39K3",
+    "title": "Design and Technology",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 45
+    },
+    "interviewing": {
+      "number": 1
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 11
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2ZBY",
+    "title": "Design and Technology (Food and Product Design)",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 26
+    },
+    "interviewing": {
+      "number": 29
+    },
+    "offered": {
+      "number": 8
+    },
+    "awaiting_conditions": {
+      "number": 3
+    },
+    "ready_to_enroll": {
+      "number": 4
+    }
+  },
+  {
+    "code": "2SKR",
+    "title": "Drama",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 51
+    },
+    "interviewing": {
+      "number": 20
+    },
+    "offered": {
+      "number": 18
+    },
+    "awaiting_conditions": {
+      "number": 4
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2ZBX",
+    "title": "Drama",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 29
+    },
+    "interviewing": {
+      "number": 7
+    },
+    "offered": {
+      "number": 2
+    },
+    "awaiting_conditions": {
+      "number": 6
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2ZHF",
+    "title": "Drama",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 58
+    },
+    "interviewing": {
+      "number": 4
+    },
+    "offered": {
+      "number": 12
+    },
+    "awaiting_conditions": {
+      "number": 2
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "245X",
+    "title": "English",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 67
+    },
+    "interviewing": {
+      "number": 27
+    },
+    "offered": {
+      "number": 8
+    },
+    "awaiting_conditions": {
+      "number": 10
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "27HK",
+    "title": "English",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 27
+    },
+    "interviewing": {
+      "number": 24
+    },
+    "offered": {
+      "number": 12
+    },
+    "awaiting_conditions": {
+      "number": 2
+    },
+    "ready_to_enroll": {
+      "number": 4
+    }
+  },
+  {
+    "code": "2SJW",
+    "title": "English",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 60
+    },
+    "interviewing": {
+      "number": 32
+    },
+    "offered": {
+      "number": 3
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 3
+    }
+  },
+  {
+    "code": "2YK7",
+    "title": "English",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 74
+    },
+    "interviewing": {
+      "number": 7
+    },
+    "offered": {
+      "number": 17
+    },
+    "awaiting_conditions": {
+      "number": 8
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2G9D",
+    "title": "Geography",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 35
+    },
+    "interviewing": {
+      "number": 29
+    },
+    "offered": {
+      "number": 18
+    },
+    "awaiting_conditions": {
+      "number": 12
+    },
+    "ready_to_enroll": {
+      "number": 3
+    }
+  },
+  {
+    "code": "2RX7",
+    "title": "Geography",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 71
+    },
+    "interviewing": {
+      "number": 10
+    },
+    "offered": {
+      "number": 13
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2SKL",
+    "title": "Geography",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 53
+    },
+    "interviewing": {
+      "number": 28
+    },
+    "offered": {
+      "number": 12
+    },
+    "awaiting_conditions": {
+      "number": 2
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2XBS",
+    "title": "Geography",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 59
+    },
+    "interviewing": {
+      "number": 8
+    },
+    "offered": {
+      "number": 17
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2G9K",
+    "title": "History",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 50
+    },
+    "interviewing": {
+      "number": 20
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 8
+    },
+    "ready_to_enroll": {
+      "number": 4
+    }
+  },
+  {
+    "code": "2SKM",
+    "title": "History",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 30
+    },
+    "interviewing": {
+      "number": 28
+    },
+    "offered": {
+      "number": 18
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2ZBT",
+    "title": "History",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 26
+    },
+    "interviewing": {
+      "number": 23
+    },
+    "offered": {
+      "number": 17
+    },
+    "awaiting_conditions": {
+      "number": 6
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2ZHJ",
+    "title": "History",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 31
+    },
+    "interviewing": {
+      "number": 22
+    },
+    "offered": {
+      "number": 16
+    },
+    "awaiting_conditions": {
+      "number": 18
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "245W",
+    "title": "Mathematics",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 71
+    },
+    "interviewing": {
+      "number": 19
+    },
+    "offered": {
+      "number": 7
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "27HL",
+    "title": "Mathematics",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 68
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 5
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "2PTS",
+    "title": "Mathematics",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 61
+    },
+    "interviewing": {
+      "number": 14
+    },
+    "offered": {
+      "number": 5
+    },
+    "awaiting_conditions": {
+      "number": 13
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2SJY",
+    "title": "Mathematics",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 38
+    },
+    "interviewing": {
+      "number": 29
+    },
+    "offered": {
+      "number": 14
+    },
+    "awaiting_conditions": {
+      "number": 5
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2YKC",
+    "title": "Modern Languages",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 39
+    },
+    "interviewing": {
+      "number": 5
+    },
+    "offered": {
+      "number": 3
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2ZHL",
+    "title": "Modern Languages",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 52
+    },
+    "interviewing": {
+      "number": 2
+    },
+    "offered": {
+      "number": 3
+    },
+    "awaiting_conditions": {
+      "number": 9
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2PTW",
+    "title": "Modern Languages (French and German)",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 62
+    },
+    "interviewing": {
+      "number": 18
+    },
+    "offered": {
+      "number": 9
+    },
+    "awaiting_conditions": {
+      "number": 8
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "2ZBR",
+    "title": "Modern Languages (French and Spanish)",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 50
+    },
+    "interviewing": {
+      "number": 3
+    },
+    "offered": {
+      "number": 20
+    },
+    "awaiting_conditions": {
+      "number": 17
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2SKQ",
+    "title": "Music",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 33
+    },
+    "interviewing": {
+      "number": 32
+    },
+    "offered": {
+      "number": 16
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "2YKB",
+    "title": "Music",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 52
+    },
+    "interviewing": {
+      "number": 17
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 5
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "2ZBQ",
+    "title": "Music",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 68
+    },
+    "interviewing": {
+      "number": 11
+    },
+    "offered": {
+      "number": 4
+    },
+    "awaiting_conditions": {
+      "number": 3
+    },
+    "ready_to_enroll": {
+      "number": 9
+    }
+  },
+  {
+    "code": "34T3",
+    "title": "Music",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 57
+    },
+    "interviewing": {
+      "number": 15
+    },
+    "offered": {
+      "number": 8
+    },
+    "awaiting_conditions": {
+      "number": 1
+    },
+    "ready_to_enroll": {
+      "number": 7
+    }
+  },
+  {
+    "code": "26QZ",
+    "title": "Physical Education",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 74
+    },
+    "interviewing": {
+      "number": 10
+    },
+    "offered": {
+      "number": 11
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "2G9L",
+    "title": "Physical Education",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 30
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 11
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 3
+    }
+  },
+  {
+    "code": "2SKP",
+    "title": "Physical Education",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 62
+    },
+    "interviewing": {
+      "number": 23
+    },
+    "offered": {
+      "number": 12
+    },
+    "awaiting_conditions": {
+      "number": 18
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2ZBP",
+    "title": "Physical Education",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 48
+    },
+    "interviewing": {
+      "number": 15
+    },
+    "offered": {
+      "number": 20
+    },
+    "awaiting_conditions": {
+      "number": 12
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "245R",
+    "title": "Physics",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 58
+    },
+    "interviewing": {
+      "number": 17
+    },
+    "offered": {
+      "number": 13
+    },
+    "awaiting_conditions": {
+      "number": 20
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "27HM",
+    "title": "Physics",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 51
+    },
+    "interviewing": {
+      "number": 13
+    },
+    "offered": {
+      "number": 19
+    },
+    "awaiting_conditions": {
+      "number": 16
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "2PTX",
+    "title": "Physics",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 71
+    },
+    "interviewing": {
+      "number": 29
+    },
+    "offered": {
+      "number": 14
+    },
+    "awaiting_conditions": {
+      "number": 1
+    },
+    "ready_to_enroll": {
+      "number": 6
+    }
+  },
+  {
+    "code": "2SKB",
+    "title": "Physics",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 51
+    },
+    "interviewing": {
+      "number": 2
+    },
+    "offered": {
+      "number": 15
+    },
+    "awaiting_conditions": {
+      "number": 2
+    },
+    "ready_to_enroll": {
+      "number": 10
+    }
+  },
+  {
+    "code": "2YK8",
+    "title": "Physics",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 58
+    },
+    "interviewing": {
+      "number": 2
+    },
+    "offered": {
+      "number": 11
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "2C9X",
+    "title": "Primary",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 29
+    },
+    "interviewing": {
+      "number": 12
+    },
+    "offered": {
+      "number": 7
+    },
+    "awaiting_conditions": {
+      "number": 11
+    },
+    "ready_to_enroll": {
+      "number": 10
+    }
+  },
+  {
+    "code": "2C9Y",
+    "title": "Primary",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 70
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2GKB",
+    "title": "Primary",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 72
+    },
+    "interviewing": {
+      "number": 34
+    },
+    "offered": {
+      "number": 20
+    },
+    "awaiting_conditions": {
+      "number": 12
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "2SJS",
+    "title": "Primary",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 47
+    },
+    "interviewing": {
+      "number": 34
+    },
+    "offered": {
+      "number": 1
+    },
+    "awaiting_conditions": {
+      "number": 15
+    },
+    "ready_to_enroll": {
+      "number": 8
+    }
+  },
+  {
+    "code": "F988",
+    "title": "Primary (3-7)",
+    "provider": "University of East Anglia",
+    "received": {
+      "number": 27
+    },
+    "interviewing": {
+      "number": 26
+    },
+    "offered": {
+      "number": 11
+    },
+    "awaiting_conditions": {
+      "number": 1
+    },
+    "ready_to_enroll": {
+      "number": 2
+    }
+  },
+  {
+    "code": "F559",
+    "title": "Primary with mathematics",
+    "provider": "Suffolk and Norfolk Primary SCITT",
+    "received": {
+      "number": 54
+    },
+    "interviewing": {
+      "number": 2
+    },
+    "offered": {
+      "number": 6
+    },
+    "awaiting_conditions": {
+      "number": 16
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "2XBT",
+    "title": "Religious Education",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "received": {
+      "number": 28
+    },
+    "interviewing": {
+      "number": 2
+    },
+    "offered": {
+      "number": 13
+    },
+    "awaiting_conditions": {
+      "number": 7
+    },
+    "ready_to_enroll": {
+      "number": 5
+    }
+  },
+  {
+    "code": "336K",
+    "title": "Social Sciences",
+    "provider": "Suffolk and Norfolk Secondary SCITT",
+    "received": {
+      "number": 75
+    },
+    "interviewing": {
+      "number": 7
+    },
+    "offered": {
+      "number": 20
+    },
+    "awaiting_conditions": {
+      "number": 5
+    },
+    "ready_to_enroll": {
+      "number": 1
+    }
+  },
+  {
+    "code": "TOTAL",
+    "title": "All courses",
+    "received": {
+      "number": 3096
+    },
+    "interviewing": {
+      "number": 1076
+    },
+    "offered": {
+      "number": 652
+    },
+    "awaiting_conditions": {
+      "number": 631
+    },
+    "ready_to_enroll": {
+      "number": 332
+    }
+  }
+]

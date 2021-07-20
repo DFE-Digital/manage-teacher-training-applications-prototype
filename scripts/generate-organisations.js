@@ -528,6 +528,21 @@ const generateFakeOrganisations = (count) => {
     domain: "bennett.kent.sch.uk"
   }))
   organisations.push(generateFakeOrganisation({
+    name: "Chiltern Training Group",
+    isAccreditedBody: true,
+    domain: "ctg.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Chiltern Training Group part of the Chiltern Learning trust",
+    isAccreditedBody: false,
+    domain: "ctg.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The Acorn Teaching School",
+    isAccreditedBody: false,
+    domain: "ctg.ac.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
     name: "Eastgate Academy",
     isAccreditedBody: false,
     domain: "example.com"
@@ -601,6 +616,41 @@ const generateFakeOrganisations = (count) => {
     name: "Mercia Learning Alliance",
     isAccreditedBody: false,
     domain: "example.com"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Ignite Teaching School",
+    isAccreditedBody: false,
+    domain: "ormistonventureacademy.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The OAKS Norfolk",
+    isAccreditedBody: false,
+    domain: "theoaks.org.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "The OAKS (Ormiston and Keele SCITT)",
+    isAccreditedBody: true,
+    domain: "ormistonventureacademy.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Suffolk and Norfolk Secondary SCITT",
+    isAccreditedBody: true,
+    domain: "ormistonventureacademy.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Suffolk and Norfolk Primary SCITT",
+    isAccreditedBody: true,
+    domain: "ormistonventureacademy.co.uk"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "GLF School’s Teacher Training",
+    isAccreditedBody: true,
+    domain: "glfschools.org"
+  }))
+  organisations.push(generateFakeOrganisation({
+    name: "Glyn School",
+    isAccreditedBody: false,
+    domain: "glfschools.org"
   }))
 
   return organisations

@@ -183,20 +183,23 @@ module.exports = router => {
 
     var date = DateTime.local(parseInt(req.session.data.interview.date.year, 10), parseInt(req.session.data.interview.date.month, 10), parseInt(req.session.data.interview.date.day, 10), parseInt(time.hours, 10), parseInt(time.mins, 10));
 
-    application.interviews.items.push({
+    var interview = {
       id,
       date: date.toISO(),
       details: req.session.data.interview.details,
       location: req.session.data.interview.location,
       organisation: req.session.data.interview.organisation
-    })
+    }
+
+    application.interviews.items.push(interview)
 
     application.events.items.push({
       title: "Interview set up",
       user: "Angela Mode",
       date: new Date().toISOString(),
       meta: {
-        interviewId: id
+        interviewId: id,
+        interview: _.clone(interview)
       }
     })
 
@@ -254,7 +257,8 @@ module.exports = router => {
       user: "Angela Mode",
       date: new Date().toISOString(),
       meta: {
-        interviewId: interview.id
+        interviewId: interview.id,
+        interview: _.clone(interview)
       }
     })
 

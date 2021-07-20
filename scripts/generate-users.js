@@ -31,23 +31,6 @@ const generateFakeUsers = (count) => {
     }
   })
 
-  // for each extra org the user belongs to...
-  // users.push({
-  //   id: faker.datatype.uuid(),
-  //   firstName: "Louise",
-  //   lastName: "Whaley",
-  //   emailAddress: "louise.whaley@" + OrgHelper.findOrg("Other org name").domain,
-  //   organisation: OrgHelper.findOrg("Other org name"),
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
-
   organisations.forEach(organisation => {
     for(var i = 0; i < 5; i++) {
       let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
@@ -69,11 +52,6 @@ const generateFakeUsers = (count) => {
       })
     }
   })
-
-
-
-
-
 
   return users
 }

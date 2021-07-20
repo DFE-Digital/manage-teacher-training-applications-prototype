@@ -5,6 +5,17 @@ const downloadDirectoryPath = path.join(__dirname, '../data/downloads')
 
 const StatisticsHelper = require('../data/helpers/statistics')
 
+const slugify = (text) => {
+  return text.trim()
+    .toLowerCase()
+    // remove non-word [a-z0-9_], non-whitespace, non-hyphen characters
+    .replace(/[^\w\s-]/g, '')
+    // swap any length of whitespace, underscore, hyphen characters with a single -
+    .replace(/[\s_-]+/g, '-')
+    // remove leading, trailing -
+    .replace(/^-+|-+$/g, '')
+}
+
 const statuses = [
   { code: 'received', title: 'Received' },
   { code: 'interviewing', title: 'Interviewing' },
@@ -26,66 +37,51 @@ const stages = [
 module.exports = router => {
 
   router.get('/reports', (req, res) => {
-    const userOrganisations = req.session.data.user.organisations
+    const organisations = req.session.data.user.organisations
 
     res.render('data/index', {
-      userOrganisations
+      organisations
     })
   })
 
   router.get('/reports/:organisationId/status-of-applications', (req, res) => {
-    const userOrganisations = req.session.data.user.organisations
-    const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
+    // console.log(req.session.data.user.organisations);
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    // console.log(organisation);
+    const fileName = slugify(organisation.name)
 
-    // const partners = req.session.data.relationships
-    //                 .filter(rel => rel.org1.id = req.params.organisationId)
-    //                 .map((relationship) => {
-    //                   return relationship.org2.name
-    //                 })
-
-    const statusData = StatisticsHelper.statusData
+    const statusData = StatisticsHelper.getStatusData(fileName)
 
     res.render('data/statistics/status', {
-      userOrganisations,
       organisation,
       statuses,
       statusData
-      // ,
-      // partners
     })
   })
 
   router.get('/reports/:organisationId/progress-of-applications', (req, res) => {
-    const userOrganisations = req.session.data.user.organisations
-    const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    // const partners = req.session.data.relationships
-    //                 .filter(rel => rel.org1.id = req.params.organisationId)
-    //                 .map((relationship) => {
-    //                   return relationship.org2.name
-    //                 })
+    const fileName = slugify(organisation.name)
 
-    const conversionData = StatisticsHelper.conversionData
+    const conversionData = StatisticsHelper.getConversionData(fileName)
 
     res.render('data/statistics/conversion', {
-      userOrganisations,
       organisation,
       stages,
       conversionData
-      // ,
-      // partners
     })
   })
 
   router.get('/reports/:organisationId/export', (req, res) => {
-    const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     res.render('data/export/index', {
       organisation
     })
   })
 
   router.get('/reports/:organisationId/hesa', (req, res) => {
-    const organisation = req.session.data.user.organisations.filter(organisation => organisation.id = req.params.organisationId)[0]
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     res.render('data/export/hesa', {
       organisation
     })
@@ -93,7 +89,12 @@ module.exports = router => {
 
   router.get('/reports/:organisationId/status-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/status-of-applications.csv'
-    const statusData = StatisticsHelper.statusData
+
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const statusData = StatisticsHelper.getStatusData(fileName)
 
     // headers for the CSV file
     const headers = []
@@ -137,7 +138,12 @@ module.exports = router => {
 
   router.get('/reports/:organisationId/progress-of-applications/download', (req, res) => {
     const filePath = downloadDirectoryPath + '/progress-of-applications.csv'
-    const conversionData = StatisticsHelper.conversionData
+
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const conversionData = StatisticsHelper.getConversionData(fileName)
 
     // headers for the CSV file
     const headers = []

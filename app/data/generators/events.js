@@ -16,6 +16,28 @@ module.exports = (params) => {
     date: date
   })
 
+  // if the application is not received, assign a user from the
+  // accredited body and training provider
+  if (params.status.toLowerCase() !== 'received') {
+    if (params.assignedUsers.length) {
+      date = DateHelper.getFutureDate(date)
+
+      const assignedUsers = params.assignedUsers
+        .sort((a, b) => a.firstName.localeCompare(b.firstName)
+          || a.lastName.localeCompare(b.lastName)
+          || a.emailAddress.localeCompare(b.emailAddress))
+
+      const eventTitle = (assignedUsers.length > 1) ? 'Users assigned' : 'User assigned'
+
+      events.items.push({
+        title: eventTitle,
+        user: faker.name.findName(),
+        date: date,
+        assignedUsers: assignedUsers
+      })
+    }
+  }
+
   // we know there are currently 2 interviews set up
 
   if (params.interviews && params.interviews.items[0]) {
@@ -26,7 +48,8 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interview: params.interviews.items[0]
+        interview: params.interviews.items[0],
+        interviewId: params.interviews.items[0].id
       }
     })
   }
@@ -39,7 +62,8 @@ module.exports = (params) => {
       user: faker.name.findName(),
       date: date,
       meta: {
-        interview: params.interviews.items[1]
+        interview: params.interviews.items[1],
+        interviewId: params.interviews.items[0].id
       }
     })
 
@@ -54,7 +78,8 @@ module.exports = (params) => {
         user: faker.name.findName(),
         date: date,
         meta: {
-          interview: interview
+          interview: interview,
+          interviewId: interview.id
         }
       })
 
@@ -69,6 +94,7 @@ module.exports = (params) => {
         date: date,
         meta: {
           interview: interview,
+          interviewId: interview.id,
           cancellationReason: "We cannot interview you this week. We’ll call you to reschedule."
         }
       })
