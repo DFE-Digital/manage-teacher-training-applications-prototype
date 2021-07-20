@@ -7,7 +7,6 @@ exports.getStatusData = (fileName) => {
   if (!fileName) {
     return null
   }
-  console.log(fileName);
   const filePath = dataDirectoryPath + '/status-' + fileName + '.json'
   const rawData = fs.readFileSync(filePath)
   const data = JSON.parse(rawData)

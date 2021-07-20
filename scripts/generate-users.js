@@ -13,31 +13,14 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = OrgHelper.findOrg("Ignite Teaching School")
+  const mainOrg = OrgHelper.findOrg("The University of Sheffield")
 
   users.push({
     id: faker.datatype.uuid(),
-    firstName: "Dave",
-    lastName: "Richards",
-    emailAddress: "DRichards@" + mainOrg.domain,
+    firstName: "Lorraine",
+    lastName: "Roe",
+    emailAddress: "l.roe@" + mainOrg.domain,
     organisation: mainOrg,
-    permissions: {
-      manageOrganisation: true,
-      manageUsers: true,
-      setupInterviews: true,
-      makeDecisions: true,
-      viewSafeguardingInformation: true,
-      viewDiversityInformation: true
-    }
-  })
-
-  // for each extra org the user belongs to...
-  users.push({
-    id: faker.datatype.uuid(),
-    firstName: "Dave",
-    lastName: "Richards",
-    emailAddress: "DRichards@ormistonventureacademy.co.uk",
-    organisation: OrgHelper.findOrg("The OAKS Norfolk"),
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
@@ -69,11 +52,6 @@ const generateFakeUsers = (count) => {
       })
     }
   })
-
-
-
-
-
 
   return users
 }

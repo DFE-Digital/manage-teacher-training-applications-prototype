@@ -1,12 +1,10 @@
 const OrgHelper = require('./helpers/organisation')
 const users = require('./users.json')
-const userOrg1 = OrgHelper.findOrg("Ignite Teaching School")
-const userOrg2 = OrgHelper.findOrg("The OAKS Norfolk")
+let userOrg = OrgHelper.findOrg("The University of Sheffield")
 
 // set up user orgs
 let userOrgs = [];
-userOrgs.push(userOrg1)
-userOrgs.push(userOrg2)
+userOrgs.push(userOrg)
 
 // create user object
 let user = users[0] // we know the first one is the test participant
