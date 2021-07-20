@@ -80,7 +80,7 @@ module.exports = router => {
 
     activity = activity.filter(item => {
       const itemDate = DateTime.fromISO(item.event.date)
-      return itemDate.startOf('day') <= DateTime.now().startOf('day')
+      return itemDate <= DateTime.now()
     })
 
     // Get the pagination data
