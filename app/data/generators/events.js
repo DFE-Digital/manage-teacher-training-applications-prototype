@@ -20,10 +20,12 @@ module.exports = (params) => {
   // accredited body and training provider
   if (params.status.toLowerCase() !== 'received') {
     if (params.assignedUsers.length) {
+
       date = DateHelper.getFutureDate(date)
 
-      const assignedUsers = params.assignedUsers
-        .sort((a, b) => a.firstName.localeCompare(b.firstName)
+      let assignedUsers = params.assignedUsers.filter(user => user.organisation.id === params.organisation.id)
+
+      assignedUsers = assignedUsers.sort((a, b) => a.firstName.localeCompare(b.firstName)
           || a.lastName.localeCompare(b.lastName)
           || a.emailAddress.localeCompare(b.emailAddress))
 

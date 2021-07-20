@@ -44,7 +44,7 @@
             {% if event.event.assignedUsers.length %}
               {{ appEventApplicationAssignment({ assignedUsers: event.event.assignedUsers }) }}
             {% else %}
-              <p class="govuk-body"></p>
+              <p class="govuk-body">No users assigned</p>
             {% endif %}
           </div>
           <p class="app-log-card__note--link">

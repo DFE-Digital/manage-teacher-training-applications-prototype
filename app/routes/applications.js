@@ -62,6 +62,11 @@ module.exports = router => {
         }
       }
 
+      // get assigned users for the user's organisation
+      if (item.title === 'User assigned' || item.title === 'Users assigned' || item.title === 'Assigned users updated') {
+        item.assignedUsers = item.assignedUsers.filter(user => user.organisation.id === req.session.data.user.organisation.id)
+      }
+
       return item;
     })
 
