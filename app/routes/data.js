@@ -78,7 +78,7 @@ module.exports = router => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
     const stages = [
-      { code: 'shortlist_for_interview', title: 'Invited to interview', description: 'Received applications that led to rejection' },
+      { code: 'shortlist_for_interview', title: 'Invited to interview', description: 'Applications that led to rejection' },
       { code: 'interview_success', title: 'Made offer after interview', description: 'Interviews that led to rejection'},
       { code: 'offer', title: 'Made offer', description: 'Applications that led to being withdrawn'},
       { code: 'acceptance', title: 'Accepted offer', description: 'Offers that were withdrawn'},
