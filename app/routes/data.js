@@ -17,6 +17,7 @@ const slugify = (text) => {
 }
 
 const statuses = [
+  { code: 'total', title: 'Total' },
   { code: 'received', title: 'Received' },
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
@@ -67,6 +68,20 @@ module.exports = router => {
     const conversionData = StatisticsHelper.getConversionData(fileName)
 
     res.render('data/statistics/conversion', {
+      organisation,
+      stages,
+      conversionData
+    })
+  })
+
+  router.get('/reports/:organisationId/progress-of-applications-v2', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const conversionData = StatisticsHelper.getConversionData(fileName)
+
+    res.render('data/statistics/conversion-v2', {
       organisation,
       stages,
       conversionData

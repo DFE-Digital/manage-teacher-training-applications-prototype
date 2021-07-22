@@ -17,6 +17,9 @@
     },
     "ready_to_enroll": {
       "number": 8
+    },
+    "total": {
+      "number": 266
     }
   },
   {
@@ -37,6 +40,9 @@
     },
     "ready_to_enroll": {
       "number": 7
+    },
+    "total": {
+      "number": 245
     }
   },
   {
@@ -57,6 +63,9 @@
     },
     "ready_to_enroll": {
       "number": 9
+    },
+    "total": {
+      "number": 278
     }
   },
   {
@@ -77,6 +86,9 @@
     },
     "ready_to_enroll": {
       "number": 4
+    },
+    "total": {
+      "number": 197
     }
   },
   {
@@ -97,6 +109,9 @@
     },
     "ready_to_enroll": {
       "number": 6
+    },
+    "total": {
+      "number": 265
     }
   },
   {
@@ -117,6 +132,9 @@
     },
     "ready_to_enroll": {
       "number": 9
+    },
+    "total": {
+      "number": 339
     }
   },
   {
@@ -137,6 +155,9 @@
     },
     "ready_to_enroll": {
       "number": 1
+    },
+    "total": {
+      "number": 347
     }
   },
   {
@@ -157,6 +178,9 @@
     },
     "ready_to_enroll": {
       "number": 9
+    },
+    "total": {
+      "number": 294
     }
   },
   {
@@ -177,6 +201,9 @@
     },
     "ready_to_enroll": {
       "number": 8
+    },
+    "total": {
+      "number": 281
     }
   },
   {
@@ -197,6 +224,9 @@
     },
     "ready_to_enroll": {
       "number": 1
+    },
+    "total": {
+      "number": 332
     }
   },
   {
@@ -217,6 +247,9 @@
     },
     "ready_to_enroll": {
       "number": 6
+    },
+    "total": {
+      "number": 235
     }
   },
   {
@@ -237,6 +270,9 @@
     },
     "ready_to_enroll": {
       "number": 3
+    },
+    "total": {
+      "number": 294
     }
   },
   {
@@ -257,6 +293,9 @@
     },
     "ready_to_enroll": {
       "number": 1
+    },
+    "total": {
+      "number": 280
     }
   },
   {
@@ -277,6 +316,9 @@
     },
     "ready_to_enroll": {
       "number": 3
+    },
+    "total": {
+      "number": 181
     }
   },
   {
@@ -297,6 +339,9 @@
     },
     "ready_to_enroll": {
       "number": 6
+    },
+    "total": {
+      "number": 262
     }
   },
   {
@@ -317,6 +362,9 @@
     },
     "ready_to_enroll": {
       "number": 9
+    },
+    "total": {
+      "number": 243
     }
   },
   {
@@ -337,6 +385,9 @@
     },
     "ready_to_enroll": {
       "number": 8
+    },
+    "total": {
+      "number": 250
     }
   },
   {
@@ -357,6 +408,9 @@
     },
     "ready_to_enroll": {
       "number": 1
+    },
+    "total": {
+      "number": 224
     }
   },
   {
@@ -377,6 +431,9 @@
     },
     "ready_to_enroll": {
       "number": 2
+    },
+    "total": {
+      "number": 240
     }
   },
   {
@@ -397,6 +454,9 @@
     },
     "ready_to_enroll": {
       "number": 7
+    },
+    "total": {
+      "number": 272
     }
   },
   {
@@ -416,6 +476,9 @@
     },
     "ready_to_enroll": {
       "number": 108
+    },
+    "total": {
+      "number": 1898
     }
   }
 ]

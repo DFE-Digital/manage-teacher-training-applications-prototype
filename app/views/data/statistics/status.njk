@@ -56,7 +56,7 @@
             <tr class="govuk-table__row">
               {% if row.code | upper == "TOTAL" %}
                 <th scope="row" class="govuk-table__header">
-                  Totals
+                  Total
                 </th>
               {% else %}
                 <td class="govuk-table__cell">
@@ -66,7 +66,7 @@
               {% endif %}
               {% for status in statuses %}
                 <td class="{{ 'govuk-table__header' if row.code | upper == 'TOTAL' else 'govuk-table__cell'}}">
-                  {{ row[status.code]['number'] | numeral('0') }}
+                  {{ row[status.code]['number'] | numeral('0,0') }}
                 </td>
               {% endfor %}
             </tr>
