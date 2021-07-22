@@ -77,6 +77,15 @@ module.exports = router => {
   router.get('/reports/:organisationId/progress-of-applications-v2', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
+    const stages = [
+      { code: 'shortlist_for_interview', title: 'Invited to interview', description: 'Received appliocations which led to rejection' },
+      { code: 'interview_success', title: 'Made offer after interview', description: 'Interviews which led to rejection'},
+      { code: 'offer', title: 'Made offer', description: 'Applications which led to being withdrawn'},
+      { code: 'acceptance', title: 'Accepted offer', description: 'Offers that were withdrawn'},
+      { code: 'conditions_met', title: 'Met offer conditions', description: 'Offers that were declined'},
+      { code: 'offer_conversion', title: 'Successful offer', description: 'Accepted offers that led to candidates not meeting one or more conditions'}
+    ]
+
     const fileName = slugify(organisation.name)
 
     const conversionData = StatisticsHelper.getConversionData(fileName)

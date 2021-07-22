@@ -25,16 +25,18 @@
         {{ pageName }}
       </h1>
 
-      {{ govukButton({
+      {#{ govukButton({
         text: "Export report",
         href: "/reports/" + organisation.id + "/progress-of-applications/download",
         classes: "govuk-button--secondary",
         attributes: {
           download: true
         }
-      }) }}
+      }) }#}
 
       {% for row in conversionData %}
+
+        {% if row.code | upper != "AVERAGE" %}
 
         <h3 class="govuk-heading-m {{- ' govuk-!-margin-top-9' if loop.index > 1 }}">
           <span class="govuk-caption-m">{{ row.provider }}</span>
@@ -44,7 +46,7 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half">
-              Stage
+              <!-- Stage -->
             </dt>
             <dd class="govuk-summary-list__key govuk-!-width-one-quarter">
               Number
@@ -55,7 +57,7 @@
           </div>
           {% for stage in stages %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__value govuk-!-width-one-half">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half">
               {{ stage.description }}
             </dt>
             <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
@@ -67,6 +69,8 @@
           </div>
           {% endfor %}
         </dl>
+
+        {% endif %}
 
       {% endfor %}
 
