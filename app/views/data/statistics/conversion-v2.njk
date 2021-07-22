@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Progress of applications" %}
+{% set pageName = "Candidate drop out from the application process" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -51,9 +51,9 @@
             <dd class="govuk-summary-list__key govuk-!-width-one-quarter">
               Number
             </dd>
-            <!-- <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+            <dd class="govuk-summary-list__key govuk-!-width-one-quarter">
               Percentage
-            </dd> -->
+            </dd>
           </div>
           {% for stage in stages %}
           <div class="govuk-summary-list__row">
@@ -63,9 +63,9 @@
             <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
               {{ row[stage.code]['number'] | numeral('0') }}
             </dd>
-            <!-- <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
               {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
-            </dd> -->
+            </dd>
           </div>
           {% endfor %}
         </dl>
