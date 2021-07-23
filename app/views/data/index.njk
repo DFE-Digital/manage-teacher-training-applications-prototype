@@ -20,17 +20,22 @@
       <ul class="govuk-list govuk-list--spaced">
         <li>
           <a class="govuk-link" href="/reports/{{ organisation.id }}/status-of-applications">
-            Status of applications <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
+            Status of active applications <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
           </a>
         </li>
-        <li>
-          <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out">
-            Candidate drop out from the application process <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
-          </a>
-        </li>
-        <li>
+        <!-- <li>
           <a class="govuk-link" href="/reports/{{ organisation.id }}/progress-of-applications">
             Progress of applications <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
+          </a>
+        </li> -->
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out">
+            Candidate drop out rate <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-success">
+            Candidate success rate <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
           </a>
         </li>
         <li>

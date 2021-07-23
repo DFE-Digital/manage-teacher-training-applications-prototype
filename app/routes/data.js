@@ -17,12 +17,12 @@ const slugify = (text) => {
 }
 
 const statuses = [
-  { code: 'total', title: 'Total applications' },
   { code: 'received', title: 'Received' },
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
   { code: 'awaiting_conditions', title: 'Awaiting conditions' },
-  { code: 'ready_to_enroll', title: 'Ready to enroll' }
+  { code: 'ready_to_enroll', title: 'Ready to enroll' },
+  { code: 'total', title: 'Total' }
 ]
 
 const stages = [
@@ -31,7 +31,7 @@ const stages = [
   { code: 'offer', title: 'Made offer', description: 'Applications which led to offers'},
   { code: 'acceptance', title: 'Accepted offer', description: 'Offers which led to candidate accepting'},
   { code: 'conditions_met', title: 'Met offer conditions', description: 'Accepted offers which led to conditions being met'},
-  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being ready to enroll'},
+  { code: 'conditions_not_met', title: 'Successful offer', description: 'Offers which led to candidate being ready to enroll'},
   { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being ready to enroll'}
 ]
 
@@ -67,6 +67,20 @@ module.exports = router => {
 
     const conversionData = StatisticsHelper.getConversionData(fileName)
 
+    res.render('data/statistics/progress', {
+      organisation,
+      stages,
+      conversionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-success', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const conversionData = StatisticsHelper.getConversionData(fileName)
+
     res.render('data/statistics/conversion', {
       organisation,
       stages,
@@ -77,23 +91,38 @@ module.exports = router => {
   router.get('/reports/:organisationId/candidate-drop-out', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const stages = [
-      { code: 'shortlist_for_interview', title: 'Invited to interview', description: 'Applications that led to rejection' },
-      { code: 'interview_success', title: 'Made offer after interview', description: 'Interviews that led to rejection'},
-      { code: 'offer', title: 'Made offer', description: 'Applications that led to being withdrawn'},
-      { code: 'acceptance', title: 'Accepted offer', description: 'Offers that were withdrawn'},
-      { code: 'conditions_met', title: 'Met offer conditions', description: 'Offers that were declined'},
-      { code: 'offer_conversion', title: 'Successful offer', description: 'Accepted offers that led to candidates not meeting one or more conditions'}
+    const fileName = slugify(organisation.name)
+
+    const attritionData = StatisticsHelper.getAttritionData(fileName)
+
+    res.render('data/statistics/attrition', {
+      organisation,
+      stages,
+      attritionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-drop-out/:courseId', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const labels = [
+      { code: 'rejection', title: 'Applications that led to rejection', description: '' },
+      { code: 'interview_rejection', title: 'Interviews that led to rejection', description: ''},
+      { code: 'application_withdrawn', title: 'Applications that led to being withdrawn', description: ''},
+      { code: 'offer_withdrawn', title: 'Offers that were withdrawn', description: ''},
+      { code: 'offer_declined', title: 'Offers that were declined', description: ''},
+      { code: 'conditions_not_met', title: 'Accepted offers that led to candidates not meeting one or more conditions', description: ''}
     ]
 
     const fileName = slugify(organisation.name)
 
-    const conversionData = StatisticsHelper.getConversionData(fileName)
+    let course = StatisticsHelper.getAttritionData(fileName)
+    course = course.find(course => course.code === req.params.courseId)
 
-    res.render('data/statistics/conversion-v2', {
+    res.render('data/statistics/course-attrition', {
       organisation,
-      stages,
-      conversionData
+      course,
+      labels
     })
   })
 

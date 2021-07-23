@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Status of active applications" %}
+{% set pageName = "Progress of applications" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -32,41 +32,49 @@
 
       {#{ govukButton({
         text: "Export report",
-        href: "/reports/" + organisation.id + "/status-of-applications/download",
+        href: "/reports/" + organisation.id + "/progress-of-applications/download",
         classes: "govuk-button--secondary",
         attributes: {
           download: true
         }
       }) }#}
 
-      <table class="govuk-table">
+      <table class="govuk-table app-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Course</th>
-              {% for status in statuses %}
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 12%">{{ status.title }}</th>
-              {% endfor %}
+            <th scope="col" class="govuk-table__header" rowspan="2">Course</th>
+            {% for stage in stages %}
+              <th scope="col" class="govuk-table__header">{{ stage.description }}</th>
+            {% endfor %}
           </tr>
+          <!-- <tr class="govuk-table__row">
+            {% for stage in stages %}
+              <td class="govuk-table__cell govuk-!-font-size-16">{{ stage.description }}</td>
+            {% endfor %}
+          </tr> -->
         </thead>
         <tbody class="govuk-table__body">
 
-          {% for row in statusData %}
+          {% for row in conversionData %}
 
             <tr class="govuk-table__row">
-              {% if row.code | upper == "TOTAL" %}
+              {% if row.code | upper == "AVERAGE" %}
                 <th scope="row" class="govuk-table__header">
-                  Total
+                  Average
                 </th>
               {% else %}
                 <td class="govuk-table__cell">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
+                  <span class="govuk-hint govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 </td>
               {% endif %}
-              {% for status in statuses %}
-                <td class="{{ 'govuk-table__header govuk-table__header--numeric' if row.code | upper == 'TOTAL' else 'govuk-table__cell govuk-table__cell--numeric'}}">
-                  {{ row[status.code]['number'] | numeral('0,0') }}
+              {% for stage in stages %}
+                <td class="{{ 'govuk-table__header' if row.code | upper == 'AVERAGE' else 'govuk-table__cell'}}">
+                  {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
+                  {% if row.code | upper != "AVERAGE" %}
+                    <span class="govuk-hint govuk-!-font-size-16">({{ row[stage.code]['number'] | numeral('0') }})</span>
+                  {% endif %}
                 </td>
               {% endfor %}
             </tr>

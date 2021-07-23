@@ -22,3 +22,13 @@ exports.getConversionData = (fileName) => {
   const data = JSON.parse(rawData)
   return data
 }
+
+exports.getAttritionData = (fileName) => {
+  if (!fileName) {
+    return null
+  }
+  const filePath = dataDirectoryPath + '/attrition-' + fileName + '.json'
+  const rawData = fs.readFileSync(filePath)
+  const data = JSON.parse(rawData)
+  return data
+}
