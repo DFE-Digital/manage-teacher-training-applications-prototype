@@ -17,7 +17,7 @@ const slugify = (text) => {
 }
 
 const statuses = [
-  { code: 'total', title: 'Total' },
+  { code: 'total', title: 'Total applications' },
   { code: 'received', title: 'Received' },
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
@@ -74,7 +74,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/:organisationId/progress-of-applications-v2', (req, res) => {
+  router.get('/reports/:organisationId/candidate-drop-out', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
     const stages = [
