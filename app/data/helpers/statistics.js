@@ -3,21 +3,22 @@ const fs = require('fs')
 
 const dataDirectoryPath = path.join(__dirname, '../statistics')
 
-const getStatusData = () => {
-  const filePath = dataDirectoryPath + '/status-glf-scitt.json'
-  const rawData = fs.readFileSync(filePath)
-  const data = JSON.parse(rawData)
-  // .sort((a, b) => a.title.localeCompare(b.title))
-  return data
-}
-
-exports.statusData = getStatusData()
-
-const getConversionData = () => {
-  const filePath = dataDirectoryPath + '/conversion-glf-scitt.json'
+exports.getStatusData = (fileName) => {
+  if (!fileName) {
+    return null
+  }
+  const filePath = dataDirectoryPath + '/status-' + fileName + '.json'
   const rawData = fs.readFileSync(filePath)
   const data = JSON.parse(rawData)
   return data
 }
 
-exports.conversionData = getConversionData()
+exports.getConversionData = (fileName) => {
+  if (!fileName) {
+    return null
+  }
+  const filePath = dataDirectoryPath + '/conversion-' + fileName + '.json'
+  const rawData = fs.readFileSync(filePath)
+  const data = JSON.parse(rawData)
+  return data
+}

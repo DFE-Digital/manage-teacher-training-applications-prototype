@@ -13,13 +13,13 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = OrgHelper.findOrg("GLF School’s Teacher Training")
+  const mainOrg = OrgHelper.findOrg("The University of Sheffield")
 
   users.push({
     id: faker.datatype.uuid(),
-    firstName: "Pip",
-    lastName: "Winter",
-    emailAddress: "p.winter@" + mainOrg.domain,
+    firstName: "Lorraine",
+    lastName: "Roe",
+    emailAddress: "l.roe@" + mainOrg.domain,
     organisation: mainOrg,
     permissions: {
       manageOrganisation: true,
@@ -30,23 +30,6 @@ const generateFakeUsers = (count) => {
       viewDiversityInformation: true
     }
   })
-
-  // for each extra org the user belongs to...
-  // users.push({
-  //   id: faker.datatype.uuid(),
-  //   firstName: "Louise",
-  //   lastName: "Whaley",
-  //   emailAddress: "louise.whaley@" + OrgHelper.findOrg("Other org name").domain,
-  //   organisation: OrgHelper.findOrg("Other org name"),
-  //   permissions: {
-  //     manageOrganisation: true,
-  //     manageUsers: true,
-  //     setupInterviews: true,
-  //     makeDecisions: true,
-  //     viewSafeguardingInformation: true,
-  //     viewDiversityInformation: true
-  //   }
-  // })
 
   organisations.forEach(organisation => {
     for(var i = 0; i < 5; i++) {
@@ -69,11 +52,6 @@ const generateFakeUsers = (count) => {
       })
     }
   })
-
-
-
-
-
 
   return users
 }

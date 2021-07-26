@@ -31,7 +31,7 @@ module.exports = (accreditedBody, provider, status) => {
       delete accreditedBodyUser.organisations
       delete accreditedBodyUser.permissions
 
-      const hasAssignedUser = assignedUsers.filter(user => user.id === accreditedBodyUser.id).length > 0 ? true : false
+      const hasAssignedUser = assignedUsers.find(user => user.id === accreditedBodyUser.id) ? true : false
 
       if (!hasAssignedUser) {
         assignedUsers.push(accreditedBodyUser)
@@ -57,7 +57,7 @@ module.exports = (accreditedBody, provider, status) => {
       delete providerUser.organisations
       delete providerUser.permissions
 
-      const hasAssignedUser = assignedUsers.filter(user => user.id === providerUser.id).length > 0 ? true : false
+      const hasAssignedUser = assignedUsers.find(user => user.id === providerUser.id) ? true : false
 
       if (!hasAssignedUser) {
         assignedUsers.push(providerUser)

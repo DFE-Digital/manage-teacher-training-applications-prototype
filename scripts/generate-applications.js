@@ -6,7 +6,7 @@ const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
 const user = require('../app/data/user')
-const relationships = require('../app/data/relationships-glf-scitt.js')
+const relationships = require('../app/data/relationships-sheffield.js')
 let partners = relationships.map(relationship => relationship.org2)
 
 const generateSubject = require('../app/data/generators/subject')
@@ -83,6 +83,8 @@ const generateFakeApplication = (params = {}) => {
     submittedDate
   })
 
+  const assignedUsers = generateAssignedUsers(accreditedBody, provider, status)
+
   const events = generateEvents({
     offer,
     status,
@@ -93,11 +95,13 @@ const generateFakeApplication = (params = {}) => {
     course,
     location,
     studyMode,
-    accreditedBody: accreditedBody.name
+    accreditedBody: accreditedBody.name,
+    organisation,
+    assignedUsers
   })
 
   // delete any interviews that have been cancelled
-  var cancelledInterviewEvents = events.items
+  let cancelledInterviewEvents = events.items
     .filter(event => event.title == 'Interview cancelled')
 
   cancelledInterviewEvents.forEach(event => {
@@ -131,7 +135,7 @@ const generateFakeApplication = (params = {}) => {
 
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
-    assignedUsers: params.assignedUsers || generateAssignedUsers(accreditedBody, provider, status),
+    assignedUsers: params.assignedUsers || assignedUsers,
     offerCanNotBeReconfirmed,
     cycle,
     provider: provider.name,
