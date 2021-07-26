@@ -30,10 +30,10 @@
         <div class="govuk-grid-column-one-third">
           {{ appMetric({
             label: {
-              text: "Drop out rate"
+              text: "Applications withdrawn"
             },
             metric: {
-              text: "80%"
+              text: course['applications_withdrawn']['percentage'] + "%"
             },
             classes: "app-metric--blue govuk-!-margin-bottom-6"
           }) }}
@@ -41,10 +41,10 @@
         <div class="govuk-grid-column-one-third">
           {{ appMetric({
             label: {
-              text: "Second rate"
+              text: "Offers declined"
             },
             metric: {
-              text: "81%"
+              text: course['offers_declined']['percentage'] + "%"
             },
             classes: "app-metric--blue govuk-!-margin-bottom-6"
           }) }}
@@ -52,10 +52,10 @@
         <div class="govuk-grid-column-one-third">
           {{ appMetric({
             label: {
-              text: "Third rate"
+              text: "Conditions not met"
             },
             metric: {
-              text: "65%"
+              text: course['conditions_not_met']['percentage'] + "%"
             },
             classes: "app-metric--blue govuk-!-margin-bottom-6"
           }) }}
@@ -104,14 +104,14 @@
           </tr>
         </thead> -->
         <tbody class="govuk-table__body">
-          {% for label in labels %}
+          {% for status in statuses %}
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__cell">{{ label.title }}</th>
+              <th scope="row" class="govuk-table__cell">{{ status.title }}</th>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ course[label.code]['percentage'] | numeral('0') + "%" }}
+                {{ course[status.code]['percentage'] | numeral('0') + "%" }}
 
-                {% set total = (course[label.code]['number'] / course[label.code]['percentage']) * 100 %}
-                <span class="govuk-hint">{{ course[label.code]['number'] | numeral('0') }} of {{ total | numeral('0')}}</span>
+                {% set total = (course[status.code]['number'] / course[status.code]['percentage']) * 100 %}
+                <span class="govuk-hint">{{ course[status.code]['number'] | numeral('0') }} of {{ total | numeral('0')}}</span>
               </td>
             </tr>
           {% endfor %}

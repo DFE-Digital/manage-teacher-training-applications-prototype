@@ -33,15 +33,22 @@
           download: true
         }
       }) }#}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
       <table id="attrition" class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Number</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Percentage</th>
+            <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
+            <!-- <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Number</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Percentage</th> -->
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%">Applications withdrawn</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%">Offers declined</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:12.5%">Conditions not met</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -53,15 +60,25 @@
                 <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
                 </a>
+                <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
               </td>
-              <td class="govuk-table__cell">
+              <!-- <td class="govuk-table__cell">
                 {{ row.provider }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['number'] }}">
+              </td> -->
+              <!-- <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['number'] }}">
                 {{ row['rejection']['number'] | numeral('0,0') }}
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['percentage'] }}">
                 {{ row['rejection']['percentage'] | numeral('0') + "%" }}
+              </td> -->
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['application_withdrawn']['percentage'] }}">
+                {{ row['applications_withdrawn']['percentage'] | numeral('0,0') }}%
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['offer_declined']['percentage'] }}">
+                {{ row['offers_declined']['percentage'] | numeral('0,0') }}%
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['conditions_not_met']['percentage'] }}">
+                {{ row['conditions_not_met']['percentage'] | numeral('0,0') }}%
               </td>
             </tr>
 
@@ -78,7 +95,7 @@
 {% block pageScripts %}
 <script>
   new AppFrontend.SortableTable({
-    table: $('table')[0]
+    table: $('#attrition')
   });
 </script>
 {% endblock %}

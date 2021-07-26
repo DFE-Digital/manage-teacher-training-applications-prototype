@@ -34,7 +34,44 @@
         }
       }) }#}
 
-      {% for row in conversionData %}
+      <table id="conversion" class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
+            <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Number</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Percentage</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          {% for row in conversionData %}
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" data-sort-value="{{ row.title }} {{ row.code }}">
+                <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-success/{{ row.code }}">
+                  {{ row.title }} {{ "(" + row.code + ")" if row.code }}
+                </a>
+                <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
+              </td>
+              <!-- <td class="govuk-table__cell">
+                {{ row.provider }}
+              </td> -->
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['number'] }}">
+                {{ row['overall_conversion']['number'] | numeral('0,0') }}
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['percentage'] }}">
+                {{ row['overall_conversion']['percentage'] | numeral('0') + "%" }}
+              </td>
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+      {#% for row in conversionData %}
 
         {% if row.code | upper != "AVERAGE" %}
 
@@ -74,7 +111,7 @@
 
         {% endif %}
 
-      {% endfor %}
+      {% endfor %#}
 
     </div>
   </div>
@@ -82,5 +119,9 @@
 {% endblock %}
 
 {% block pageScripts %}
-
+<script>
+  new AppFrontend.SortableTable({
+    table: $('#conversion')
+  });
+</script>
 {% endblock %}

@@ -21,8 +21,9 @@ const statuses = [
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
   { code: 'awaiting_conditions', title: 'Awaiting conditions' },
-  { code: 'ready_to_enroll', title: 'Ready to enroll' },
-  { code: 'total', title: 'Total' }
+  { code: 'ready_to_enroll', title: 'Ready to enroll' }
+  // ,
+  // { code: 'total', title: 'Total' }
 ]
 
 const stages = [
@@ -31,7 +32,7 @@ const stages = [
   { code: 'offer', title: 'Made offer', description: 'Applications which led to offers'},
   { code: 'acceptance', title: 'Accepted offer', description: 'Offers which led to candidate accepting'},
   { code: 'conditions_met', title: 'Met offer conditions', description: 'Accepted offers which led to conditions being met'},
-  { code: 'conditions_not_met', title: 'Successful offer', description: 'Offers which led to candidate being ready to enroll'},
+  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being ready to enroll'},
   { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being ready to enroll'}
 ]
 
@@ -53,7 +54,7 @@ module.exports = router => {
 
     const statusData = StatisticsHelper.getStatusData(fileName)
 
-    res.render('data/statistics/status', {
+    res.render('data/statistics/status/index', {
       organisation,
       statuses,
       statusData
@@ -81,10 +82,35 @@ module.exports = router => {
 
     const conversionData = StatisticsHelper.getConversionData(fileName)
 
-    res.render('data/statistics/conversion', {
+    res.render('data/statistics/conversion/index', {
       organisation,
       stages,
       conversionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-success/:courseId', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const stages = [
+      { code: 'shortlist_for_interview', title: 'Applications which led to interviews', description: '' },
+      { code: 'interview_success', title: 'Interviews which led to offers', description: ''},
+      { code: 'offer', title: 'Applications which led to offers', description: ''},
+      { code: 'acceptance', title: 'Offers which led to candidate acceptingr', description: ''},
+      { code: 'conditions_met', title: 'Accepted offers which led to conditions being met', description: ''},
+      { code: 'offer_conversion', title: 'Offers which led to candidate being ready to enroll', description: ''},
+      { code: 'overall_conversion', title: 'Applications which led to candidate being ready to enroll', description: ''}
+    ]
+
+    const fileName = slugify(organisation.name)
+
+    let course = StatisticsHelper.getConversionData(fileName)
+    course = course.find(course => course.code === req.params.courseId)
+
+    res.render('data/statistics/conversion/show', {
+      organisation,
+      course,
+      stages
     })
   })
 
@@ -95,7 +121,7 @@ module.exports = router => {
 
     const attritionData = StatisticsHelper.getAttritionData(fileName)
 
-    res.render('data/statistics/attrition', {
+    res.render('data/statistics/attrition/index', {
       organisation,
       stages,
       attritionData
@@ -105,12 +131,12 @@ module.exports = router => {
   router.get('/reports/:organisationId/candidate-drop-out/:courseId', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const labels = [
-      { code: 'rejection', title: 'Applications that led to rejection', description: '' },
-      { code: 'interview_rejection', title: 'Interviews that led to rejection', description: ''},
-      { code: 'application_withdrawn', title: 'Applications that led to being withdrawn', description: ''},
-      { code: 'offer_withdrawn', title: 'Offers that were withdrawn', description: ''},
-      { code: 'offer_declined', title: 'Offers that were declined', description: ''},
+    const statuses = [
+      { code: 'rejections', title: 'Applications that led to rejection', description: '' },
+      { code: 'interview_rejections', title: 'Interviews that led to rejection', description: ''},
+      { code: 'applications_withdrawn', title: 'Applications that led to being withdrawn', description: ''},
+      { code: 'offers_withdrawn', title: 'Offers that were withdrawn', description: ''},
+      { code: 'offers_declined', title: 'Offers that were declined', description: ''},
       { code: 'conditions_not_met', title: 'Accepted offers that led to candidates not meeting one or more conditions', description: ''}
     ]
 
@@ -119,10 +145,10 @@ module.exports = router => {
     let course = StatisticsHelper.getAttritionData(fileName)
     course = course.find(course => course.code === req.params.courseId)
 
-    res.render('data/statistics/course-attrition', {
+    res.render('data/statistics/attrition/show', {
       organisation,
       course,
-      labels
+      statuses
     })
   })
 
