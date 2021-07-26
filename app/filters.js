@@ -381,5 +381,21 @@ filters.falsify = (input) => {
     return assignedUsers
   }
 
+  /* ------------------------------------------------------------------
+  utility function to turn text into a slug
+  example: {{ "Manage teacher training application" | slugify }}
+  output: "manage-teacher-training-applications"
+  ------------------------------------------------------------------ */
+  filters.slugify = (text) => {
+    return text.trim()
+      .toLowerCase()
+      // remove non-word [a-z0-9_], non-whitespace, non-hyphen characters
+      .replace(/[^\w\s-]/g, '')
+      // swap any length of whitespace, underscore, hyphen characters with a single -
+      .replace(/[\s_-]+/g, '-')
+      // remove leading, trailing -
+      .replace(/^-+|-+$/g, '')
+  }
+
   return filters
 }
