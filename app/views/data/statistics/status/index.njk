@@ -59,12 +59,12 @@
                   Total
                 </th>
               {% else %}
-                <td class="govuk-table__cell">
+                <th scope="row" class="govuk-table__header">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
                   {% if organisation.name != row.provider %}
                     <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
                   {% endif %}
-                </td>
+                </th>
               {% endif %}
               {% for status in statuses %}
                 <td class="{{ 'govuk-table__header govuk-table__header--numeric' if row.code | upper == 'TOTAL' else 'govuk-table__cell govuk-table__cell--numeric'}}">
