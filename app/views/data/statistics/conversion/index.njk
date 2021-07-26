@@ -27,7 +27,7 @@
 
       {#{ govukButton({
         text: "Export report",
-        href: "/reports/" + organisation.id + "/progress-of-applications/download",
+        href: "/reports/" + organisation.id + "/candidate-success/download",
         classes: "govuk-button--secondary",
         attributes: {
           download: true
@@ -49,12 +49,14 @@
           {% for row in conversionData %}
 
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell" data-sort-value="{{ row.title }} {{ row.code }}">
-                <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-success/{{ row.code }}">
+              <th scope="row" class="govuk-table__header" data-sort-value="{{ row.title }} {{ row.code }}">
+                <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
                 </a>
-                <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
-              </td>
+                {% if organisation.name != row.provider %}
+                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
+                {% endif %}
+              </th>
               <!-- <td class="govuk-table__cell">
                 {{ row.provider }}
               </td> -->
@@ -70,48 +72,6 @@
 
         </tbody>
       </table>
-
-      {#% for row in conversionData %}
-
-        {% if row.code | upper != "AVERAGE" %}
-
-        {% set courseName = row.title + (" (" + row.code + ")") if row.code %}
-
-        <h3 id="{{ courseName | slugify }}" class="govuk-heading-m {{- ' govuk-!-margin-top-9' if loop.index > 1 }}">
-          <span class="govuk-caption-m">{{ row.provider }}</span>
-          {{ courseName }}
-        </h3>
-
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half">
-              <!-- Label -->
-            </dt>
-            <dd class="govuk-summary-list__key govuk-!-width-one-quarter">
-              Number
-            </dd>
-            <dd class="govuk-summary-list__key govuk-!-width-one-quarter">
-              Percentage
-            </dd>
-          </div>
-          {% for stage in stages %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half">
-              {{ stage.description }}
-            </dt>
-            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
-              {{ row[stage.code]['number'] | numeral('0') }}
-            </dd>
-            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
-              {{ row[stage.code]['percentage'] | numeral('0') + "%" }}
-            </dd>
-          </div>
-          {% endfor %}
-        </dl>
-
-        {% endif %}
-
-      {% endfor %#}
 
     </div>
   </div>

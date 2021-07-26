@@ -39,14 +39,14 @@
         }
       }) }#}
 
-      <table class="govuk-table">
+      <table id="status" class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Course</th>
-              {% for status in statuses %}
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 12%">{{ status.title }}</th>
-              {% endfor %}
+            {% for status in statuses %}
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 12%">{{ status.title }}</th>
+            {% endfor %}
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -61,7 +61,9 @@
               {% else %}
                 <td class="govuk-table__cell">
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
+                  {% if organisation.name != row.provider %}
+                    <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
+                  {% endif %}
                 </td>
               {% endif %}
               {% for status in statuses %}
