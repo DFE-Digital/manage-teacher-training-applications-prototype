@@ -56,7 +56,7 @@ function getNextEventList(event){
       return [OFFER_MADE, NOTE_ADDED]
 
     case REJECTED:
-      return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED, NOTE_ADDED ]
+      return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED, NOTE_ADDED]
 
     case WITHDRAWN:
       return [OFFER_MADE, OFFER_CHANGED]
@@ -69,6 +69,18 @@ function getNextEventList(event){
 
     case CONDITIONS_NOT_MET:
       return [OFFER_CONDITIONS_UPDATED, OFFER_ACCEPTED]
+
+    case OFFER_ACCEPTED:
+      return [OFFER_MADE, OFFER_CHANGED, NOTE_ADDED]
+
+    case OFFER_WITHDRAWN:
+      return [OFFER_MADE]
+
+    case OFFER_DECLINED:
+      return [OFFER_MADE, NOTE_ADDED]
+
+    case OFFER_DEFERRED:
+      return [OFFER_ACCEPTED, NOTE_ADDED]
   }
 }
 
@@ -120,6 +132,15 @@ function generateLastEvent({ metadata, status }){
       ])
     case STATUS.APPLICATION_WITHDRAWN:
       return createRootEvent([WITHDRAWN]);
+
+    case STATUS.DECLINED:
+      return createRootEvent([OFFER_DECLINED])
+
+    case STATUS.DEFERRED:
+      return createRootEvent([OFFER_DEFERRED])
+
+    case STATUS.OFFER_WITHDRAWN:
+      return createRootEvent([OFFER_WITHDRAWN])
   }
 }
 
