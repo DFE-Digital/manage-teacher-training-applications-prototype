@@ -35,7 +35,7 @@
               text: "Training provider"
             },
             value: {
-              text: course.provider
+              text: course.provider if organisation.isAccreditedBody else organisation.name
             }
           },
           {
@@ -51,7 +51,7 @@
               text: "Accredited body"
             },
             value: {
-              text: organisation.name
+              text: organisation.name if organisation.isAccreditedBody else course.provider
             }
           }
         ]
