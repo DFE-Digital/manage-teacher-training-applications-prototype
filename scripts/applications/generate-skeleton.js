@@ -27,42 +27,31 @@ const {
 } = EVENTS;
 
 
-
-function checkForThreshold(events, nextEvents){
-  const noteEvents = events.filter((item) => item.title === NOTE_ADDED);
-
-  if( noteEvents.length > 1 ){
-    nextEvents = nextEvents.filter((item) => item.title !== NOTE_ADDED);
-  }
-
-  return nextEvents;
-}
-
 function getNextEventList(event){
   switch(event){
     case INTERVIEW_SET_UP:
-      return [SUBMITTED, INTERVIEW_SET_UP, NOTE_ADDED]
+      return [SUBMITTED, INTERVIEW_SET_UP]
 
     case INTERVIEW_CHANGED:
-      return [INTERVIEW_SET_UP, NOTE_ADDED];
+      return [INTERVIEW_SET_UP];
 
     case INTERVIEW_CANCELLED:
-      return[ INTERVIEW_CHANGED, INTERVIEW_SET_UP, NOTE_ADDED];
+      return[ INTERVIEW_CHANGED, INTERVIEW_SET_UP];
 
     case OFFER_MADE:
-      return [INTERVIEW_SET_UP, INTERVIEW_CHANGED, INTERVIEW_CANCELLED, NOTE_ADDED];
+      return [INTERVIEW_SET_UP, INTERVIEW_CHANGED, INTERVIEW_CANCELLED];
 
     case OFFER_CHANGED:
-      return [OFFER_MADE, NOTE_ADDED]
+      return [OFFER_MADE]
 
     case REJECTED:
-      return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED, NOTE_ADDED]
+      return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED]
 
     case WITHDRAWN:
       return [OFFER_MADE, OFFER_CHANGED]
 
     case FEEDBACK_SENT:
-      return [REJECTED, NOTE_ADDED]
+      return [REJECTED]
 
     case OFFER_CONDITIONS_UPDATED:
       return [OFFER_ACCEPTED, OFFER_CONDITIONS_UPDATED]
@@ -84,7 +73,19 @@ function getNextEventList(event){
   }
 }
 
-function generateEvents(currentEvents, event, previousEvent){
+function generateNextEventList(event, currentEvents, metadata){
+  const list = getNextEventList(event);
+  const existingNotes = currentEvents.filter((ev) => ev.title === NOTE_ADDED);
+  const numberOfNotes = existingNotes && existingNotes.length || 0;
+
+  if( list && numberOfNotes < metadata.maxNotes){
+    list.push(NOTE_ADDED);
+  }
+
+  return list;
+}
+
+function generateEvents(currentEvents, event, metadata, previousEvent){
   const nextEvents = [];
 
   currentEvents.push({
@@ -96,29 +97,35 @@ function generateEvents(currentEvents, event, previousEvent){
     case NOTE_ADDED:
       if(previousEvent){
         // Get previous event to work out next event, so the note is effectivly skipped
-        const nextEventsList = getNextEventList(previousEvent).filter((item) => item !== NOTE_ADDED);
-        nextEventsList && nextEvents.push(...nextEventsList);
+        let nextEventsList = generateNextEventList(previousEvent, currentEvents, metadata);
+
+        if( nextEventsList ){
+          nextEventsList = nextEventsList.filter((item) => item !== NOTE_ADDED);
+        }
+
+        if( nextEventsList ){
+          nextEvents.push(...nextEventsList);
+        }
       } else {
         nextEvents.push(SUBMITTED);
       }
       break;
 
     default:
-      const nextEventsList = getNextEventList(event);
+      const nextEventsList = generateNextEventList(event, currentEvents, metadata);
       if( nextEventsList ){
         nextEvents.push(...nextEventsList);
       }
       break;
   }
 
-  const eventsToGenerate = checkForThreshold(currentEvents, nextEvents);
-  eventsToGenerate.length && generateEvents(currentEvents, randomize(eventsToGenerate), event);
+  nextEvents.length && generateEvents(currentEvents, randomize(nextEvents), metadata, event);
 
   return currentEvents;
 }
 
 function generateLastEvent({ metadata, status }){
-  const createRootEvent = (events) => generateEvents([], randomize(events));
+  const createRootEvent = (events) => generateEvents([], randomize(events), metadata);
 
   switch(status){
     case STATUS.REJECTED:
