@@ -46,9 +46,9 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
             <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%">Applications withdrawn</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%">Offers declined</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:12.5%">Conditions not met</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%;">Applications withdrawn</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%;">Offers declined</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:12.5%;">Conditions not met</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -70,17 +70,23 @@
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['application_withdrawn']['percentage'] }}">
                 {{ row['applications_withdrawn']['percentage'] | numeral('0,0') }}%
                 {% set withdrawnTotal = (row['applications_withdrawn']['number'] / row['applications_withdrawn']['percentage']) * 100 %}
-                <span class="govuk-hint govuk-!-margin-bottom-0">{{ row['applications_withdrawn']['number'] | numeral('0') }} of {{ withdrawnTotal | numeral('0')}}</span>
+                <span class="govuk-hint govuk-!-margin-bottom-0">
+                  {{ row['applications_withdrawn']['number'] | numeral('0') }} of {{ withdrawnTotal | numeral('0')}}
+                </span>
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['offer_declined']['percentage'] }}">
                 {{ row['offers_declined']['percentage'] | numeral('0,0') }}%
                 {% set declinedTotal = (row['offers_declined']['number'] / row['offers_declined']['percentage']) * 100 %}
-                <span class="govuk-hint govuk-!-margin-bottom-0">{{ row['offers_declined']['number'] | numeral('0') }} of {{ declinedTotal | numeral('0')}}</span>
+                <span class="govuk-hint govuk-!-margin-bottom-0">
+                  {{ row['offers_declined']['number'] | numeral('0') }} of {{ declinedTotal | numeral('0')}}
+                </span>
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['conditions_not_met']['percentage'] }}">
                 {{ row['conditions_not_met']['percentage'] | numeral('0,0') }}%
                 {% set conditionsTotal = (row['conditions_not_met']['number'] / row['conditions_not_met']['percentage']) * 100 %}
-                <span class="govuk-hint govuk-!-margin-bottom-0">{{ row['conditions_not_met']['number'] | numeral('0') }} of {{ conditionsTotal | numeral('0')}}</span>
+                <span class="govuk-hint govuk-!-margin-bottom-0">
+                  {{ row['conditions_not_met']['number'] | numeral('0') }} of {{ conditionsTotal | numeral('0')}}
+                </span>
               </td>
             </tr>
 
