@@ -40,8 +40,7 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
             <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Number</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Percentage</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:25%;">Overall success</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -60,11 +59,12 @@
               <!-- <td class="govuk-table__cell">
                 {{ row.provider }}
               </td> -->
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['number'] }}">
-                {{ row['overall_conversion']['number'] | numeral('0,0') }}
-              </td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['rejection']['percentage'] }}">
                 {{ row['overall_conversion']['percentage'] | numeral('0') + "%" }}
+                {% set overallTotal = (row['overall_conversion']['number'] / row['overall_conversion']['percentage']) * 100 %}
+                <span class="govuk-hint govuk-!-margin-bottom-0">
+                  {{ row['overall_conversion']['number'] | numeral('0') }} of {{ overallTotal | numeral('0')}}
+                </span>
               </td>
             </tr>
 
