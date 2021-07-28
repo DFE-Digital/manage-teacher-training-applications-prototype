@@ -27,19 +27,25 @@ const {
 } = EVENTS;
 
 
-function getNextEventList(event){
+function getNextEventList(event, currentEvents){
   switch(event){
     case INTERVIEW_SET_UP:
+      const interviewsSetup = currentEvents.filter((ev) => ev.title === INTERVIEW_SET_UP);
+
+      if(interviewsSetup.length === 2 || Math.random() < 0.8){ // allow a max of 2 INTERVIEW_SET_UP events, randomly reduce the chance of a second INTERVIEW_SET_UP event
+        return [SUBMITTED];
+      }
+
       return [SUBMITTED, INTERVIEW_SET_UP]
 
     case INTERVIEW_CHANGED:
-      return [INTERVIEW_SET_UP];
+      return [INTERVIEW_SET_UP]
 
     case INTERVIEW_CANCELLED:
-      return[ INTERVIEW_CHANGED, INTERVIEW_SET_UP];
+      return[INTERVIEW_CHANGED, INTERVIEW_SET_UP]
 
     case OFFER_MADE:
-      return [INTERVIEW_SET_UP, INTERVIEW_CHANGED, INTERVIEW_CANCELLED];
+      return [INTERVIEW_SET_UP, INTERVIEW_CHANGED, INTERVIEW_CANCELLED]
 
     case OFFER_CHANGED:
       return [OFFER_MADE]
@@ -73,53 +79,14 @@ function getNextEventList(event){
   }
 }
 
-function generateNextEventList(event, currentEvents, metadata){
-  const list = getNextEventList(event);
-  const existingNotes = currentEvents.filter((ev) => ev.title === NOTE_ADDED);
-  const numberOfNotes = existingNotes && existingNotes.length || 0;
-
-  if( list && numberOfNotes < metadata.maxNotes){
-    list.push(NOTE_ADDED);
-  }
-
-  return list;
-}
-
-function generateEvents(currentEvents, event, metadata, previousEvent){
-  const nextEvents = [];
+function generateEvents(currentEvents, event, metadata){
 
   currentEvents.push({
     title: event,
   });
 
-  switch(event){
-
-    case NOTE_ADDED:
-      if(previousEvent){
-        // Get previous event to work out next event, so the note is effectivly skipped
-        let nextEventsList = generateNextEventList(previousEvent, currentEvents, metadata);
-
-        if( nextEventsList ){
-          nextEventsList = nextEventsList.filter((item) => item !== NOTE_ADDED);
-        }
-
-        if( nextEventsList ){
-          nextEvents.push(...nextEventsList);
-        }
-      } else {
-        nextEvents.push(SUBMITTED);
-      }
-      break;
-
-    default:
-      const nextEventsList = generateNextEventList(event, currentEvents, metadata);
-      if( nextEventsList ){
-        nextEvents.push(...nextEventsList);
-      }
-      break;
-  }
-
-  nextEvents.length && generateEvents(currentEvents, randomize(nextEvents), metadata, event);
+  const nextEvents = getNextEventList(event, currentEvents);
+  nextEvents && generateEvents(currentEvents, randomize(nextEvents), metadata);
 
   return currentEvents;
 }
@@ -155,14 +122,29 @@ function createMetadata(){
   return {
     isAutomaticRejection: faker.datatype.boolean(),
     isAutomaticDecline: faker.datatype.boolean(),
-    maxNotes: randomNumber(0,3),
     numberOfConditions: randomNumber(0,2),
     numberOfStandardConditions: randomNumber(0,2)
   }
 }
 
+function addNotes(events){
+  const numberOfEvents = events ? events.length : 0;
+  const maxNotes = numberOfEvents < 4 ? 1 : numberOfEvents < 8 ? 2 : 3;
+  const numberOfNotes = randomNumber(0,maxNotes);
+
+  if(numberOfNotes === 0 || numberOfEvents <= 1){
+    return events;
+  }
+
+  for(i = 0; i < numberOfNotes; i++){
+    events.splice(randomNumber(1, events.length - 1), 0, { title: NOTE_ADDED } );
+  }
+
+  return events;
+}
+
 exports.generateSkeleton = () => FINAL_STATUS_VALUES.reduce((config, status) => {
-  const totalStatusItems = randomNumber(1, 3);
+  const totalStatusItems = randomNumber(2, 5);
   for(let i = 0; i < totalStatusItems; i++){
 
     const date = randomDate(1,100);
@@ -171,8 +153,9 @@ exports.generateSkeleton = () => FINAL_STATUS_VALUES.reduce((config, status) => 
       status,
       date,
       metadata,
-      events: generateLastEvent({status, metadata})
+      events: addNotes(generateLastEvent({status, metadata}))
     });
   }
+
   return config;
 }, [])

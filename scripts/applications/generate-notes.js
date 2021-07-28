@@ -9,10 +9,10 @@ exports.generateNotes = (applications) => applications.map((application) => {
 
   if(application.events){
     application.events = application.events.map((event) => {
+
       if(event.title === NOTE_ADDED){
 
         const { date } = event;
-
         const newNote = {
           id: faker.datatype.uuid(),
           message: faker.lorem.paragraph(),
@@ -33,7 +33,7 @@ exports.generateNotes = (applications) => applications.map((application) => {
   }
 
   if(notes.length){
-    application.notes = notes;
+    application.notes = notes.reverse();
   }
 
   return application;
