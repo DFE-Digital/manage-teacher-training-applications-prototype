@@ -21,7 +21,7 @@ const statuses = [
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
   { code: 'awaiting_conditions', title: 'Awaiting conditions' },
-  { code: 'ready_to_enroll', title: 'Ready to enroll' }
+  { code: 'ready_to_enroll', title: 'Ready to enrol' }
   // ,
   // { code: 'total', title: 'Total' }
 ]
