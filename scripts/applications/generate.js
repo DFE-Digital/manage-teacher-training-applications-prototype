@@ -1,6 +1,7 @@
 const { generateSkeleton } = require('./generate-skeleton');
 const { generateDates } = require('./generate-dates');
 const { generateNotes } = require('./generate-notes');
+const { generateInterviews } = require('./generate-interviews');
 
 const args = process.argv.slice(2);
 
@@ -18,6 +19,12 @@ if( args.includes('--dates') ){
 
 const withNotes = generateNotes(withDates);
 
-if( !args.includes('--no-final-output') ){
+if( args.includes('--notes') ){
   console.log( JSON.stringify( withNotes, null, 2 ) );
+}
+
+const withInterviews = generateInterviews(withNotes);
+
+if( !args.includes('--no-final-output') ){
+  console.log( JSON.stringify( withInterviews, null, 2 ) );
 }

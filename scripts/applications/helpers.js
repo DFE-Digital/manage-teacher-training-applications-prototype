@@ -6,11 +6,11 @@ const SystemHelper = require('../../app/data/helpers/system');
 const randomNumber = ( min, max ) => faker.datatype.number({ min, max });
 const dateFrom = (date, days) => DateTime.fromISO(date).minus({days}).toISO();
 const randomDateFrom = (date, min, max) => dateFrom(date, randomNumber(min, max));
-const randomDateTo = exports.randomDateFrom = (date, min, max) => (date, days) => DateTime.fromISO(date).plus({days}).toISO();
 
 exports.randomDateFrom = randomDateFrom;
 exports.randomNumber = randomNumber;
 exports.dateFrom = dateFrom;
+exports.randomDateTo = (date, days) => DateTime.fromISO(date).plus({days}).toISO();
 exports.randomDate = (min, max) => SystemHelper.now().minus({ days: randomNumber(min, max) }).toISO();
 exports.generateDatesFrom = ({ startDate, days, totalDates }) => {
   const maxInterval = Math.floor(days / totalDates);

@@ -10,7 +10,7 @@ const {
   INTERVIEW_SET_UP,
   INTERVIEW_CHANGED,
   INTERVIEW_CANCELLED,
-  OFFER_MADE,
+  OFFER_MADE,// affects interview date
   OFFER_CHANGED,
   OFFER_ACCEPTED,
   OFFER_DECLINED,
@@ -53,7 +53,7 @@ function getNextEventList(event, currentEvents){
     case REJECTED:
       return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED]
 
-    case WITHDRAWN:
+    case OFFER_WITHDRAWN:
       return [OFFER_MADE, OFFER_CHANGED]
 
     case FEEDBACK_SENT:
