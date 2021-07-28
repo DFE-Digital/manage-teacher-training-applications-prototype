@@ -1,0 +1,602 @@
+[
+  {
+    "code": "2SKV",
+    "title": "Art and Design",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 166,
+    "rejections": {
+      "percentage": 67,
+      "number": 111
+    },
+    "interview_rejections": {
+      "percentage": 60,
+      "number": 67
+    },
+    "applications_withdrawn": {
+      "percentage": 40,
+      "number": 67
+    },
+    "offers_withdrawn": {
+      "percentage": 80,
+      "number": 54
+    },
+    "offers_declined": {
+      "percentage": 81,
+      "number": 44
+    },
+    "conditions_not_met": {
+      "percentage": 65,
+      "number": 44
+    }
+  },
+  {
+    "code": "27Q7",
+    "title": "Biology",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 141,
+    "rejections": {
+      "percentage": 51,
+      "number": 72
+    },
+    "interview_rejections": {
+      "percentage": 57,
+      "number": 41
+    },
+    "applications_withdrawn": {
+      "percentage": 29,
+      "number": 41
+    },
+    "offers_withdrawn": {
+      "percentage": 85,
+      "number": 35
+    },
+    "offers_declined": {
+      "percentage": 87,
+      "number": 30
+    },
+    "conditions_not_met": {
+      "percentage": 74,
+      "number": 30
+    }
+  },
+  {
+    "code": "245T",
+    "title": "Chemistry",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 264,
+    "rejections": {
+      "percentage": 25,
+      "number": 66
+    },
+    "interview_rejections": {
+      "percentage": 28,
+      "number": 18
+    },
+    "applications_withdrawn": {
+      "percentage": 7,
+      "number": 18
+    },
+    "offers_withdrawn": {
+      "percentage": 80,
+      "number": 14
+    },
+    "offers_declined": {
+      "percentage": 84,
+      "number": 12
+    },
+    "conditions_not_met": {
+      "percentage": 67,
+      "number": 12
+    }
+  },
+  {
+    "code": "2SKS",
+    "title": "Design and Technology",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 254,
+    "rejections": {
+      "percentage": 68,
+      "number": 173
+    },
+    "interview_rejections": {
+      "percentage": 33,
+      "number": 57
+    },
+    "applications_withdrawn": {
+      "percentage": 22,
+      "number": 57
+    },
+    "offers_withdrawn": {
+      "percentage": 83,
+      "number": 47
+    },
+    "offers_declined": {
+      "percentage": 82,
+      "number": 39
+    },
+    "conditions_not_met": {
+      "percentage": 68,
+      "number": 39
+    }
+  },
+  {
+    "code": "2ZBY",
+    "title": "Design and Technology (Food and Product Design)",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 233,
+    "rejections": {
+      "percentage": 48,
+      "number": 112
+    },
+    "interview_rejections": {
+      "percentage": 59,
+      "number": 66
+    },
+    "applications_withdrawn": {
+      "percentage": 28,
+      "number": 66
+    },
+    "offers_withdrawn": {
+      "percentage": 80,
+      "number": 53
+    },
+    "offers_declined": {
+      "percentage": 90,
+      "number": 48
+    },
+    "conditions_not_met": {
+      "percentage": 72,
+      "number": 48
+    }
+  },
+  {
+    "code": "2SKR",
+    "title": "Drama",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 160,
+    "rejections": {
+      "percentage": 48,
+      "number": 77
+    },
+    "interview_rejections": {
+      "percentage": 47,
+      "number": 36
+    },
+    "applications_withdrawn": {
+      "percentage": 23,
+      "number": 36
+    },
+    "offers_withdrawn": {
+      "percentage": 83,
+      "number": 30
+    },
+    "offers_declined": {
+      "percentage": 90,
+      "number": 27
+    },
+    "conditions_not_met": {
+      "percentage": 75,
+      "number": 27
+    }
+  },
+  {
+    "code": "245X",
+    "title": "English",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 159,
+    "rejections": {
+      "percentage": 41,
+      "number": 65
+    },
+    "interview_rejections": {
+      "percentage": 59,
+      "number": 38
+    },
+    "applications_withdrawn": {
+      "percentage": 24,
+      "number": 38
+    },
+    "offers_withdrawn": {
+      "percentage": 61,
+      "number": 23
+    },
+    "offers_declined": {
+      "percentage": 83,
+      "number": 19
+    },
+    "conditions_not_met": {
+      "percentage": 51,
+      "number": 19
+    }
+  },
+  {
+    "code": "2G9D",
+    "title": "Geography",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 127,
+    "rejections": {
+      "percentage": 41,
+      "number": 52
+    },
+    "interview_rejections": {
+      "percentage": 43,
+      "number": 22
+    },
+    "applications_withdrawn": {
+      "percentage": 17,
+      "number": 22
+    },
+    "offers_withdrawn": {
+      "percentage": 63,
+      "number": 14
+    },
+    "offers_declined": {
+      "percentage": 88,
+      "number": 12
+    },
+    "conditions_not_met": {
+      "percentage": 55,
+      "number": 12
+    }
+  },
+  {
+    "code": "2G9K",
+    "title": "History",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 133,
+    "rejections": {
+      "percentage": 45,
+      "number": 60
+    },
+    "interview_rejections": {
+      "percentage": 56,
+      "number": 34
+    },
+    "applications_withdrawn": {
+      "percentage": 26,
+      "number": 34
+    },
+    "offers_withdrawn": {
+      "percentage": 68,
+      "number": 23
+    },
+    "offers_declined": {
+      "percentage": 83,
+      "number": 19
+    },
+    "conditions_not_met": {
+      "percentage": 56,
+      "number": 19
+    }
+  },
+  {
+    "code": "245W",
+    "title": "Mathematics",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 162,
+    "rejections": {
+      "percentage": 65,
+      "number": 105
+    },
+    "interview_rejections": {
+      "percentage": 47,
+      "number": 49
+    },
+    "applications_withdrawn": {
+      "percentage": 30,
+      "number": 49
+    },
+    "offers_withdrawn": {
+      "percentage": 66,
+      "number": 32
+    },
+    "offers_declined": {
+      "percentage": 83,
+      "number": 27
+    },
+    "conditions_not_met": {
+      "percentage": 55,
+      "number": 27
+    }
+  },
+  {
+    "code": "2YKC",
+    "title": "Modern Languages",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 138,
+    "rejections": {
+      "percentage": 61,
+      "number": 84
+    },
+    "interview_rejections": {
+      "percentage": 26,
+      "number": 22
+    },
+    "applications_withdrawn": {
+      "percentage": 16,
+      "number": 22
+    },
+    "offers_withdrawn": {
+      "percentage": 85,
+      "number": 19
+    },
+    "offers_declined": {
+      "percentage": 83,
+      "number": 16
+    },
+    "conditions_not_met": {
+      "percentage": 71,
+      "number": 16
+    }
+  },
+  {
+    "code": "2PTW",
+    "title": "Modern Languages (French and German)",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 240,
+    "rejections": {
+      "percentage": 75,
+      "number": 180
+    },
+    "interview_rejections": {
+      "percentage": 28,
+      "number": 50
+    },
+    "applications_withdrawn": {
+      "percentage": 21,
+      "number": 50
+    },
+    "offers_withdrawn": {
+      "percentage": 64,
+      "number": 32
+    },
+    "offers_declined": {
+      "percentage": 90,
+      "number": 29
+    },
+    "conditions_not_met": {
+      "percentage": 58,
+      "number": 29
+    }
+  },
+  {
+    "code": "2SKQ",
+    "title": "Music",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 215,
+    "rejections": {
+      "percentage": 72,
+      "number": 155
+    },
+    "interview_rejections": {
+      "percentage": 30,
+      "number": 47
+    },
+    "applications_withdrawn": {
+      "percentage": 22,
+      "number": 47
+    },
+    "offers_withdrawn": {
+      "percentage": 73,
+      "number": 34
+    },
+    "offers_declined": {
+      "percentage": 84,
+      "number": 29
+    },
+    "conditions_not_met": {
+      "percentage": 61,
+      "number": 29
+    }
+  },
+  {
+    "code": "26QZ",
+    "title": "Physical Education",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 174,
+    "rejections": {
+      "percentage": 43,
+      "number": 75
+    },
+    "interview_rejections": {
+      "percentage": 34,
+      "number": 26
+    },
+    "applications_withdrawn": {
+      "percentage": 15,
+      "number": 26
+    },
+    "offers_withdrawn": {
+      "percentage": 72,
+      "number": 19
+    },
+    "offers_declined": {
+      "percentage": 90,
+      "number": 17
+    },
+    "conditions_not_met": {
+      "percentage": 65,
+      "number": 17
+    }
+  },
+  {
+    "code": "245R",
+    "title": "Physics",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 252,
+    "rejections": {
+      "percentage": 66,
+      "number": 166
+    },
+    "interview_rejections": {
+      "percentage": 33,
+      "number": 55
+    },
+    "applications_withdrawn": {
+      "percentage": 22,
+      "number": 55
+    },
+    "offers_withdrawn": {
+      "percentage": 75,
+      "number": 41
+    },
+    "offers_declined": {
+      "percentage": 81,
+      "number": 33
+    },
+    "conditions_not_met": {
+      "percentage": 61,
+      "number": 33
+    }
+  },
+  {
+    "code": "2C9X",
+    "title": "Primary",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 128,
+    "rejections": {
+      "percentage": 61,
+      "number": 78
+    },
+    "interview_rejections": {
+      "percentage": 51,
+      "number": 40
+    },
+    "applications_withdrawn": {
+      "percentage": 31,
+      "number": 40
+    },
+    "offers_withdrawn": {
+      "percentage": 84,
+      "number": 34
+    },
+    "offers_declined": {
+      "percentage": 89,
+      "number": 30
+    },
+    "conditions_not_met": {
+      "percentage": 75,
+      "number": 30
+    }
+  },
+  {
+    "code": "F988",
+    "title": "Primary (3-7)",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 127,
+    "rejections": {
+      "percentage": 64,
+      "number": 81
+    },
+    "interview_rejections": {
+      "percentage": 64,
+      "number": 52
+    },
+    "applications_withdrawn": {
+      "percentage": 41,
+      "number": 52
+    },
+    "offers_withdrawn": {
+      "percentage": 72,
+      "number": 37
+    },
+    "offers_declined": {
+      "percentage": 85,
+      "number": 31
+    },
+    "conditions_not_met": {
+      "percentage": 61,
+      "number": 31
+    }
+  },
+  {
+    "code": "F559",
+    "title": "Primary with mathematics",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 204,
+    "rejections": {
+      "percentage": 46,
+      "number": 94
+    },
+    "interview_rejections": {
+      "percentage": 35,
+      "number": 33
+    },
+    "applications_withdrawn": {
+      "percentage": 16,
+      "number": 33
+    },
+    "offers_withdrawn": {
+      "percentage": 71,
+      "number": 23
+    },
+    "offers_declined": {
+      "percentage": 85,
+      "number": 20
+    },
+    "conditions_not_met": {
+      "percentage": 60,
+      "number": 20
+    }
+  },
+  {
+    "code": "2XBT",
+    "title": "Religious Education",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 254,
+    "rejections": {
+      "percentage": 54,
+      "number": 137
+    },
+    "interview_rejections": {
+      "percentage": 63,
+      "number": 86
+    },
+    "applications_withdrawn": {
+      "percentage": 34,
+      "number": 86
+    },
+    "offers_withdrawn": {
+      "percentage": 68,
+      "number": 58
+    },
+    "offers_declined": {
+      "percentage": 81,
+      "number": 47
+    },
+    "conditions_not_met": {
+      "percentage": 55,
+      "number": 47
+    }
+  },
+  {
+    "code": "336K",
+    "title": "Social Sciences",
+    "provider": "The OAKS (Ormiston and Keele SCITT)",
+    "total_applications": 230,
+    "rejections": {
+      "percentage": 60,
+      "number": 138
+    },
+    "interview_rejections": {
+      "percentage": 58,
+      "number": 80
+    },
+    "applications_withdrawn": {
+      "percentage": 35,
+      "number": 80
+    },
+    "offers_withdrawn": {
+      "percentage": 81,
+      "number": 65
+    },
+    "offers_declined": {
+      "percentage": 89,
+      "number": 58
+    },
+    "conditions_not_met": {
+      "percentage": 72,
+      "number": 58
+    }
+  }
+]

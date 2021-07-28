@@ -22,6 +22,8 @@ const statuses = [
   { code: 'offered', title: 'Offered' },
   { code: 'awaiting_conditions', title: 'Awaiting conditions' },
   { code: 'ready_to_enroll', title: 'Ready to enroll' }
+  // ,
+  // { code: 'total', title: 'Total' }
 ]
 
 const stages = [
@@ -52,7 +54,7 @@ module.exports = router => {
 
     const statusData = StatisticsHelper.getStatusData(fileName)
 
-    res.render('data/statistics/status', {
+    res.render('data/statistics/status/index', {
       organisation,
       statuses,
       statusData
@@ -66,10 +68,87 @@ module.exports = router => {
 
     const conversionData = StatisticsHelper.getConversionData(fileName)
 
-    res.render('data/statistics/conversion', {
+    res.render('data/statistics/progress', {
       organisation,
       stages,
       conversionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-success', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const conversionData = StatisticsHelper.getConversionData(fileName)
+
+    res.render('data/statistics/conversion/index', {
+      organisation,
+      stages,
+      conversionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-success/:courseId', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const stages = [
+      { code: 'shortlist_for_interview', title: 'Applications which led to interviews', description: '' },
+      { code: 'interview_success', title: 'Interviews which led to offers', description: ''},
+      { code: 'offer', title: 'Applications which led to offers', description: ''},
+      { code: 'acceptance', title: 'Offers which led to candidate acceptingr', description: ''},
+      { code: 'conditions_met', title: 'Accepted offers which led to conditions being met', description: ''},
+      { code: 'offer_conversion', title: 'Offers which led to candidate being ready to enroll', description: ''},
+      { code: 'overall_conversion', title: 'Applications which led to candidate being ready to enroll', description: ''}
+    ]
+
+    const fileName = slugify(organisation.name)
+
+    let course = StatisticsHelper.getConversionData(fileName)
+    course = course.find(course => course.code === req.params.courseId)
+
+    res.render('data/statistics/conversion/show', {
+      organisation,
+      course,
+      stages
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-drop-out', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const attritionData = StatisticsHelper.getAttritionData(fileName)
+
+    res.render('data/statistics/attrition/index', {
+      organisation,
+      stages,
+      attritionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-drop-out/:courseId', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const statuses = [
+      { code: 'rejections', title: 'Applications that led to rejection', description: '' },
+      { code: 'interview_rejections', title: 'Interviews that led to rejection', description: ''},
+      { code: 'applications_withdrawn', title: 'Applications that led to being withdrawn', description: ''},
+      { code: 'offers_withdrawn', title: 'Offers that were withdrawn', description: ''},
+      { code: 'offers_declined', title: 'Offers that were declined', description: ''},
+      { code: 'conditions_not_met', title: 'Accepted offers that led to candidates not meeting one or more conditions', description: ''}
+    ]
+
+    const fileName = slugify(organisation.name)
+
+    let course = StatisticsHelper.getAttritionData(fileName)
+    course = course.find(course => course.code === req.params.courseId)
+
+    res.render('data/statistics/attrition/show', {
+      organisation,
+      course,
+      statuses
     })
   })
 

@@ -1,0 +1,128 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "reports" %}
+{% set pageName = course.title + (" (" + course.code + ")") if course.code %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/reports",
+    text: "Reports"
+  }, {
+    href: "/reports/" + organisation.id + "/candidate-drop-out",
+    text: "Candidate drop out rate"
+  }, {
+    text: pageName
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Candidate drop out rate</span>
+        {{ pageName }}
+      </h1>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+          {{ appMetric({
+            label: {
+              text: "Applications withdrawn"
+            },
+            metric: {
+              text: course['applications_withdrawn']['percentage'] + "%"
+            },
+            classes: "app-metric--blue govuk-!-margin-bottom-6"
+          }) }}
+        </div>
+        <div class="govuk-grid-column-one-third">
+          {{ appMetric({
+            label: {
+              text: "Offers declined"
+            },
+            metric: {
+              text: course['offers_declined']['percentage'] + "%"
+            },
+            classes: "app-metric--blue govuk-!-margin-bottom-6"
+          }) }}
+        </div>
+        <div class="govuk-grid-column-one-third">
+          {{ appMetric({
+            label: {
+              text: "Conditions not met"
+            },
+            metric: {
+              text: course['conditions_not_met']['percentage'] + "%"
+            },
+            classes: "app-metric--blue govuk-!-margin-bottom-6"
+          }) }}
+        </div>
+      </div>
+
+      <h2 class="govuk-heading-m">Course details</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Training provider"
+            },
+            value: {
+              text: course.provider if organisation.isAccreditedBody else organisation.name
+            }
+          },
+          {
+            key: {
+              text: "Location"
+            },
+            value: {
+              text: "Main site"
+            }
+          },
+          {
+            key: {
+              text: "Accredited body"
+            },
+            value: {
+              text: organisation.name if organisation.isAccreditedBody else course.provider
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">Breakdown</h2>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+        <!-- <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Description</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Rate</th>
+          </tr>
+        </thead> -->
+        <tbody class="govuk-table__body">
+          {% for status in statuses %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">{{ status.title }}</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ course[status.code]['percentage'] | numeral('0') + "%" }}
+
+                {% set total = (course[status.code]['number'] / course[status.code]['percentage']) * 100 %}
+                <span class="govuk-hint">{{ course[status.code]['number'] | numeral('0') }} of {{ total | numeral('0')}}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+{% endblock %}
