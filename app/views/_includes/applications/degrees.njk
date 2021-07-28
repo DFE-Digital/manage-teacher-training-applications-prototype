@@ -14,26 +14,18 @@
                 {{ item.country }}
               </dd>
             {% endif %}
-              <dt class="app-qualification__key govuk-visually-hidden">Started and graduated</dt>
-              <dd class="app-qualification__value app-qualification__value--caption">
-                {{ item.startDate }} to {{ item.endDate }}
-              </dd>
-              <dt class="app-qualification__key">Grade</dt>
-              <dd class="app-qualification__value">
-                {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
-              </dd>
-
-            {% if item.country != "United Kingdom" or (application.status == "Accepted" or application.status == "Conditions met") %}
-              <dt class="app-qualification__key">Institution</dt>
-              <dd class="app-qualification__value">
-                {{item.org}}
-              </dd>
-            {% else %}
-              <dt class="app-qualification__key">Institution</dt>
-              <dd class="app-qualification__value app-qualification__value--grey">
-                Only available once an offer has been accepted
-              </dd>
-            {% endif %}
+            <dt class="app-qualification__key govuk-visually-hidden">Started and graduated</dt>
+            <dd class="app-qualification__value app-qualification__value--caption">
+              {{ item.startDate }} to {{ item.endDate }}
+            </dd>
+            <dt class="app-qualification__key">Grade</dt>
+            <dd class="app-qualification__value">
+              {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
+            </dd>
+            <dt class="app-qualification__key">Institution</dt>
+            <dd class="app-qualification__value">
+              {{item.org}}
+            </dd>
 
             {% if item.naric %}
               <dt class="app-qualification__key">Comparability</dt>
