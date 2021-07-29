@@ -141,11 +141,7 @@
                 {% endif %}
               {% elseif event.title in ["Assigned users updated", "User assigned", "Users assigned"] %}
                 <div class="app-activity-log__box">
-                  {#% if event.assignedUsers.length %#}
-                    {{ appEventApplicationAssignment({ assignedUsers: event.assignedUsers }) }}
-                  {#% else %}
-                    <p class="govuk-body govuk-!-margin-bottom-1">No users assigned</p>
-                  {% endif %#}
+                  {{ appEventApplicationAssignment({ assignedUsers: event.assignedUsers }) }}
                 </div>
                 <p class="app-log-card__note--link">
                   <a class="govuk-link" href="/applications/{{application.id}}">View application</a>
