@@ -52,12 +52,15 @@ module.exports = router => {
     // console.log(organisation);
     const fileName = slugify(organisation.name)
 
-    const statusData = StatisticsHelper.getStatusData(fileName)
+    let statusData = StatisticsHelper.getStatusData(fileName)
+    const statusTotals = statusData.find(data => data.code === 'TOTAL')
+    statusData = statusData.filter(data => data.code !== 'TOTAL')
 
     res.render('data/statistics/status/index', {
       organisation,
       statuses,
-      statusData
+      statusData,
+      statusTotals
     })
   })
 
