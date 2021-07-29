@@ -10,7 +10,7 @@ const {
   INTERVIEW_SET_UP,
   INTERVIEW_CHANGED,
   INTERVIEW_CANCELLED,
-  OFFER_MADE,
+  OFFER_MADE,// affects interview date
   OFFER_CHANGED,
   OFFER_ACCEPTED,
   OFFER_DECLINED,
@@ -27,42 +27,37 @@ const {
 } = EVENTS;
 
 
-
-function checkForThreshold(events, nextEvents){
-  const noteEvents = events.filter((item) => item.title === NOTE_ADDED);
-
-  if( noteEvents.length > 1 ){
-    nextEvents = nextEvents.filter((item) => item.title !== NOTE_ADDED);
-  }
-
-  return nextEvents;
-}
-
-function getNextEventList(event){
+function getNextEventList(event, currentEvents){
   switch(event){
     case INTERVIEW_SET_UP:
-      return [SUBMITTED, INTERVIEW_SET_UP, NOTE_ADDED]
+      const interviewsSetup = currentEvents.filter((ev) => ev.title === INTERVIEW_SET_UP);
+
+      if(interviewsSetup.length === 2 || Math.random() < 0.8){ // allow a max of 2 INTERVIEW_SET_UP events, randomly reduce the chance of a second INTERVIEW_SET_UP event
+        return [SUBMITTED];
+      }
+
+      return [SUBMITTED, INTERVIEW_SET_UP]
 
     case INTERVIEW_CHANGED:
-      return [INTERVIEW_SET_UP, NOTE_ADDED];
+      return [INTERVIEW_SET_UP]
 
     case INTERVIEW_CANCELLED:
-      return[ INTERVIEW_CHANGED, INTERVIEW_SET_UP, NOTE_ADDED];
+      return[INTERVIEW_CHANGED, INTERVIEW_SET_UP]
 
     case OFFER_MADE:
-      return [INTERVIEW_SET_UP, INTERVIEW_CHANGED, INTERVIEW_CANCELLED, NOTE_ADDED];
+      return [INTERVIEW_SET_UP, INTERVIEW_CHANGED, INTERVIEW_CANCELLED]
 
     case OFFER_CHANGED:
-      return [OFFER_MADE, NOTE_ADDED]
+      return [OFFER_MADE]
 
     case REJECTED:
-      return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED, NOTE_ADDED]
+      return [SUBMITTED, INTERVIEW_CHANGED, INTERVIEW_SET_UP, INTERVIEW_CANCELLED]
 
-    case WITHDRAWN:
+    case OFFER_WITHDRAWN:
       return [OFFER_MADE, OFFER_CHANGED]
 
     case FEEDBACK_SENT:
-      return [REJECTED, NOTE_ADDED]
+      return [REJECTED]
 
     case OFFER_CONDITIONS_UPDATED:
       return [OFFER_ACCEPTED, OFFER_CONDITIONS_UPDATED]
@@ -84,41 +79,20 @@ function getNextEventList(event){
   }
 }
 
-function generateEvents(currentEvents, event, previousEvent){
-  const nextEvents = [];
+function generateEvents(currentEvents, event, metadata){
 
   currentEvents.push({
     title: event,
   });
 
-  switch(event){
-
-    case NOTE_ADDED:
-      if(previousEvent){
-        // Get previous event to work out next event, so the note is effectivly skipped
-        const nextEventsList = getNextEventList(previousEvent).filter((item) => item !== NOTE_ADDED);
-        nextEventsList && nextEvents.push(...nextEventsList);
-      } else {
-        nextEvents.push(SUBMITTED);
-      }
-      break;
-
-    default:
-      const nextEventsList = getNextEventList(event);
-      if( nextEventsList ){
-        nextEvents.push(...nextEventsList);
-      }
-      break;
-  }
-
-  const eventsToGenerate = checkForThreshold(currentEvents, nextEvents);
-  eventsToGenerate.length && generateEvents(currentEvents, randomize(eventsToGenerate), event);
+  const nextEvents = getNextEventList(event, currentEvents);
+  nextEvents && generateEvents(currentEvents, randomize(nextEvents), metadata);
 
   return currentEvents;
 }
 
 function generateLastEvent({ metadata, status }){
-  const createRootEvent = (events) => generateEvents([], randomize(events));
+  const createRootEvent = (events) => generateEvents([], randomize(events), metadata);
 
   switch(status){
     case STATUS.REJECTED:
@@ -148,14 +122,29 @@ function createMetadata(){
   return {
     isAutomaticRejection: faker.datatype.boolean(),
     isAutomaticDecline: faker.datatype.boolean(),
-    maxNotes: randomNumber(0,3),
     numberOfConditions: randomNumber(0,2),
     numberOfStandardConditions: randomNumber(0,2)
   }
 }
 
+function addNotes(events){
+  const numberOfEvents = events ? events.length : 0;
+  const maxNotes = numberOfEvents < 4 ? 1 : numberOfEvents < 8 ? 2 : 3;
+  const numberOfNotes = randomNumber(0,maxNotes);
+
+  if(numberOfNotes === 0 || numberOfEvents <= 1){
+    return events;
+  }
+
+  for(i = 0; i < numberOfNotes; i++){
+    events.splice(randomNumber(1, events.length - 1), 0, { title: NOTE_ADDED } );
+  }
+
+  return events;
+}
+
 exports.generateSkeleton = () => FINAL_STATUS_VALUES.reduce((config, status) => {
-  const totalStatusItems = randomNumber(1, 3);
+  const totalStatusItems = randomNumber(2, 5);
   for(let i = 0; i < totalStatusItems; i++){
 
     const date = randomDate(1,100);
@@ -164,8 +153,9 @@ exports.generateSkeleton = () => FINAL_STATUS_VALUES.reduce((config, status) => 
       status,
       date,
       metadata,
-      events: generateLastEvent({status, metadata})
+      events: addNotes(generateLastEvent({status, metadata}))
     });
   }
+
   return config;
 }, [])
