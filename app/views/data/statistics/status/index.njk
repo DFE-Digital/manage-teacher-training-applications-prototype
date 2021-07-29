@@ -70,7 +70,7 @@
         </tbody>
         <tfoot class="govuk-table__foot">
           <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__header">Total</td>
+            <th scope="row" class="govuk-table__header">Total</th>
             {% for status in statuses %}
               <td class="govuk-table__header govuk-table__header--numeric">
                 {{ statusTotals[status.code]['number'] | numeral('0,0') }}
