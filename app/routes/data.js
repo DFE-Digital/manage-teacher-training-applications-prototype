@@ -1,5 +1,6 @@
 const csvWriter = require('csv-writer').createObjectCsvWriter
 const path = require('path')
+const { DateTime } = require('luxon')
 
 const downloadDirectoryPath = path.join(__dirname, '../data/downloads')
 
@@ -130,13 +131,14 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/candidate-drop-out/download', (req, res) => {
+    const fileName = '/candidate-drop-out-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + '/candidate-drop-out.csv'
 
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const fileName = slugify(organisation.name)
+    const organisationSlug = slugify(organisation.name)
 
-    const attritionData = StatisticsHelper.getAttritionData(fileName)
+    const attritionData = StatisticsHelper.getAttritionData(organisationSlug)
 
     // headers for the CSV file
     const headers = []
@@ -189,7 +191,7 @@ module.exports = router => {
     // write the CSV file and send to browser
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'candidate-drop-out.csv')
+        res.download(filePath,fileName)
       })
   })
 
@@ -232,13 +234,14 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/status-of-applications/download', (req, res) => {
-    const filePath = downloadDirectoryPath + '/status-of-applications.csv'
+    const fileName = '/status-of-applications-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const filePath = downloadDirectoryPath + fileName
 
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const fileName = slugify(organisation.name)
+    const organisationName = slugify(organisation.name)
 
-    const statusData = StatisticsHelper.getStatusData(fileName)
+    const statusData = StatisticsHelper.getStatusData(organisationName)
 
     // headers for the CSV file
     const headers = []
@@ -276,18 +279,19 @@ module.exports = router => {
 
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'status-of-applications.csv')
+        res.download(filePath,fileName)
       })
   })
 
   router.get('/reports/:organisationId/progress-of-applications/download', (req, res) => {
-    const filePath = downloadDirectoryPath + '/progress-of-applications.csv'
+    const fileName = '/progress-of-applications-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const filePath = downloadDirectoryPath + fileName
 
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const fileName = slugify(organisation.name)
+    const organisationName = slugify(organisation.name)
 
-    const conversionData = StatisticsHelper.getConversionData(fileName)
+    const conversionData = StatisticsHelper.getConversionData(organisationName)
 
     // headers for the CSV file
     const headers = []
@@ -350,7 +354,7 @@ module.exports = router => {
     // write the CSV file and send to browser
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'progress-of–applications.csv')
+        res.download(filePath,fileName)
       })
   })
 
