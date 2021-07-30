@@ -150,8 +150,8 @@ module.exports = router => {
     headers.push({ id: 'offers_declined_percentage', title: 'Offers declined - percentage'})
     headers.push({ id: 'offers_declined_number', title: 'Offers declined - number'})
     headers.push({ id: 'offers_accepted_total', title: 'Offers accepted total'})
-    headers.push({ id: 'conditions_not_met_percentage', title: 'Conditions not met - percentage'})
-    headers.push({ id: 'conditions_not_met_number', title: 'Conditions not met - number'})
+    headers.push({ id: 'conditions_not_met_percentage', title: 'Accepted offers with conditions not met - percentage'})
+    headers.push({ id: 'conditions_not_met_number', title: 'Accepted offers with conditions not met - number'})
 
     const csv = csvWriter({
       path: filePath,
@@ -189,7 +189,7 @@ module.exports = router => {
     // write the CSV file and send to browser
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'Candidate drop out')
+        res.download(filePath,'candidate-drop-out.csv')
       })
   })
 
@@ -276,7 +276,7 @@ module.exports = router => {
 
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'Status of applications')
+        res.download(filePath,'status-of-applications.csv')
       })
   })
 
@@ -350,10 +350,8 @@ module.exports = router => {
     // write the CSV file and send to browser
     csv.writeRecords(records)
       .then(() => {
-        res.download(filePath,'Progress of applications')
+        res.download(filePath,'progress-of–applications.csv')
       })
   })
-
-
 
 }
