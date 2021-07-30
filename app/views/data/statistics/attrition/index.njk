@@ -25,14 +25,7 @@
         {{ pageName }}
       </h1>
 
-      {#{ govukButton({
-        text: "Export report",
-        href: "/reports/" + organisation.id + "/candidate-drop-out/download",
-        classes: "govuk-button--secondary",
-        attributes: {
-          download: true
-        }
-      }) }#}
+      <p class="govuk-body"><a class="govuk-link" href="/reports/{{organisation.id }}/candidate-drop-out/download" download>Export data (CSV)</a></p>
 
     </div>
   </div>
@@ -57,9 +50,9 @@
 
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header" data-sort-value="{{ row.title }} {{ row.code }}">
-                <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}">
+                <!-- <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}"> -->
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                </a>
+                <!-- </a> -->
                 {% if organisation.name != row.provider %}
                   <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 {% endif %}
@@ -100,10 +93,10 @@
 
 {% endblock %}
 
-{% block pageScripts %}
+{#% block pageScripts %}
 <script>
   new AppFrontend.SortableTable({
     table: $('#attrition')
   });
 </script>
-{% endblock %}
+{% endblock %#}

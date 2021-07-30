@@ -22,8 +22,6 @@ const statuses = [
   { code: 'offered', title: 'Offered' },
   { code: 'awaiting_conditions', title: 'Awaiting conditions' },
   { code: 'ready_to_enroll', title: 'Ready to enrol' }
-  // ,
-  // { code: 'total', title: 'Total' }
 ]
 
 const stages = [
@@ -129,6 +127,70 @@ module.exports = router => {
       stages,
       attritionData
     })
+  })
+
+  router.get('/reports/:organisationId/candidate-drop-out/download', (req, res) => {
+    const filePath = downloadDirectoryPath + '/candidate-drop-out.csv'
+
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const attritionData = StatisticsHelper.getAttritionData(fileName)
+
+    // headers for the CSV file
+    const headers = []
+    headers.push({ id: 'course', title: 'Course' })
+    headers.push({ id: 'code', title: 'Course code' })
+    headers.push({ id: 'provider', title: 'Partner organisation' })
+    headers.push({ id: 'applications_total', title: 'Applications total'})
+    headers.push({ id: 'applications_withdrawn_percentage', title: 'Applications withdrawn - percentage'})
+    headers.push({ id: 'applications_withdrawn_number', title: 'Applications withdrawn - number'})
+    headers.push({ id: 'offers_total', title: 'Offers total'})
+    headers.push({ id: 'offers_declined_percentage', title: 'Offers declined - percentage'})
+    headers.push({ id: 'offers_declined_number', title: 'Offers declined - number'})
+    headers.push({ id: 'offers_accepted_total', title: 'Offers accepted total'})
+    headers.push({ id: 'conditions_not_met_percentage', title: 'Conditions not met - percentage'})
+    headers.push({ id: 'conditions_not_met_number', title: 'Conditions not met - number'})
+
+    const csv = csvWriter({
+      path: filePath,
+      header: headers
+    })
+
+    const records = []
+
+    // iterate over the data to populate the CSV
+    attritionData.forEach((item, i) => {
+      const data = {}
+
+      data.course = item.title
+      data.code = item.code
+      data.provider = item.provider
+
+      data.applications_total = Math.round((item.applications_withdrawn.number / item.applications_withdrawn.percentage) * 100)
+
+      data.applications_withdrawn_number = item.applications_withdrawn.number
+      data.applications_withdrawn_percentage = item.applications_withdrawn.percentage + '%'
+
+      data.offers_total = Math.round((item.offers_declined.number / item.offers_declined.percentage) * 100)
+
+      data.offers_declined_number = item.offers_declined.number
+      data.offers_declined_percentage = item.offers_declined.percentage + '%'
+
+      data.offers_accepted_total = Math.round((item.conditions_not_met.number / item.conditions_not_met.percentage) * 100)
+
+      data.conditions_not_met_number = item.conditions_not_met.number
+      data.conditions_not_met_percentage = item.conditions_not_met.percentage + '%'
+
+      records.push(data)
+    })
+
+    // write the CSV file and send to browser
+    csv.writeRecords(records)
+      .then(() => {
+        res.download(filePath,'Candidate drop out')
+      })
   })
 
   router.get('/reports/:organisationId/candidate-drop-out/:courseId', (req, res) => {
@@ -291,5 +353,7 @@ module.exports = router => {
         res.download(filePath,'Progress of applications')
       })
   })
+
+
 
 }
