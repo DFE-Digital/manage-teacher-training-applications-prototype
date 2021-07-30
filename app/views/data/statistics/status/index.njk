@@ -42,8 +42,17 @@
             {% endfor %}
           </tr>
         </thead>
+        <tfoot class="govuk-table__foot">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Total</th>
+            {% for status in statuses %}
+              <td class="govuk-table__header govuk-table__header--numeric">
+                {{ statusTotals[status.code]['number'] | numeral('0,0') }}
+              </td>
+            {% endfor %}
+          </tr>
+        </tfoot>
         <tbody class="govuk-table__body">
-
           {% for row in statusData %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">
@@ -57,20 +66,9 @@
                   {{ row[status.code]['number'] | numeral('0,0') }}
                 </td>
               {% endfor %}
-          </tr>
+            </tr>
           {% endfor %}
-
         </tbody>
-        <tfoot class="govuk-table__foot">
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Total</th>
-            {% for status in statuses %}
-              <td class="govuk-table__header govuk-table__header--numeric">
-                {{ statusTotals[status.code]['number'] | numeral('0,0') }}
-              </td>
-            {% endfor %}
-          </tr>
-        </tfoot>
       </table>
 
     </div>
