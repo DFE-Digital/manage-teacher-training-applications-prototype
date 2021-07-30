@@ -25,14 +25,7 @@
         {{ pageName }}
       </h1>
 
-      {#{ govukButton({
-        text: "Export report",
-        href: "/reports/" + organisation.id + "/candidate-drop-out/download",
-        classes: "govuk-button--secondary",
-        attributes: {
-          download: true
-        }
-      }) }#}
+      <p class="govuk-body"><a class="govuk-link" href="/reports/{{organisation.id }}/candidate-drop-out/download" download>Export data (CSV)</a></p>
 
     </div>
   </div>
@@ -46,9 +39,15 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
             <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%;">Applications withdrawn</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:15%;">Offers declined</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:12.5%;">Conditions not met</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:22%;">
+              Applications withdrawn
+            </th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:22%;">
+              Offers declined
+            </th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:19.5%;">
+              Accepted offers with conditions not met
+            </th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -57,9 +56,9 @@
 
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header" data-sort-value="{{ row.title }} {{ row.code }}">
-                <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}">
+                <!-- <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}"> -->
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
-                </a>
+                <!-- </a> -->
                 {% if organisation.name != row.provider %}
                   <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 {% endif %}
@@ -100,10 +99,10 @@
 
 {% endblock %}
 
-{% block pageScripts %}
+{#% block pageScripts %}
 <script>
   new AppFrontend.SortableTable({
     table: $('#attrition')
   });
 </script>
-{% endblock %}
+{% endblock %#}
