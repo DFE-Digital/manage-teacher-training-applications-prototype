@@ -219,14 +219,14 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/:organisationId/export', (req, res) => {
+  router.get('/reports/export', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     res.render('data/export/index', {
       organisation
     })
   })
 
-  router.get('/reports/:organisationId/hesa', (req, res) => {
+  router.get('/reports/hesa', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     res.render('data/export/hesa', {
       organisation
