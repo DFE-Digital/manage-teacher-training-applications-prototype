@@ -21,7 +21,7 @@ const statuses = [
   { code: 'received', title: 'Received' },
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
-  { code: 'awaiting_conditions', title: 'Awaiting conditions' },
+  { code: 'awaiting_conditions', title: 'Conditions pending' },
   { code: 'ready_to_enroll', title: 'Ready to enrol' }
 ]
 
@@ -31,8 +31,8 @@ const stages = [
   { code: 'offer', title: 'Made offer', description: 'Applications which led to offers'},
   { code: 'acceptance', title: 'Accepted offer', description: 'Offers which led to candidate accepting'},
   { code: 'conditions_met', title: 'Met offer conditions', description: 'Accepted offers which led to conditions being met'},
-  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being ready to enroll'},
-  { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being ready to enroll'}
+  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being Recruited'},
+  { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being Recruited'}
 ]
 
 module.exports = router => {
@@ -100,8 +100,8 @@ module.exports = router => {
       { code: 'offer', title: 'Applications which led to offers', description: ''},
       { code: 'acceptance', title: 'Offers which led to candidate acceptingr', description: ''},
       { code: 'conditions_met', title: 'Accepted offers which led to conditions being met', description: ''},
-      { code: 'offer_conversion', title: 'Offers which led to candidate being ready to enroll', description: ''},
-      { code: 'overall_conversion', title: 'Applications which led to candidate being ready to enroll', description: ''}
+      { code: 'offer_conversion', title: 'Offers which led to candidate being Recruited', description: ''},
+      { code: 'overall_conversion', title: 'Applications which led to candidate being Recruited', description: ''}
     ]
 
     const fileName = slugify(organisation.name)

@@ -18,7 +18,7 @@ module.exports = (params) => {
     submittedDate = SystemHelper.now().minus({
       days: faker.datatype.number({ 'min': 60, 'max': 180 })
     })
-  } else if(params.status == "Ready to enroll") {
+  } else if(params.status == "Recruited") {
     submittedDate = SystemHelper.now().minus({
       days: faker.datatype.number({ 'min': 60, 'max': 180 })
     })

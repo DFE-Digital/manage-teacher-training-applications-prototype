@@ -15,7 +15,7 @@ module.exports = router => {
         }
       })
       .filter(app => {
-        if (app.status === 'Awaiting conditions' && app.cycle === '2019 to 2020') {
+        if (app.status === 'Conditions pending' && app.cycle === '2019 to 2020') {
           return false;
         } else {
           return true;
@@ -29,15 +29,15 @@ module.exports = router => {
 
       let acceptedPast = applications
         .filter(app => app.cycle == "2019 to 2020")
-        .filter(app => (app.status == 'Awaiting conditions'))
+        .filter(app => (app.status == 'Conditions pending'))
 
       let other = applications
         .filter(app => app.status !== 'Received')
         .filter(app => app.status !== 'Interviewing')
         .filter(app => app.status !== 'Deferred')
         .filter(app => app.status !== 'Offered')
-        .filter(app => app.status !== 'Awaiting conditions')
-        .filter(app => app.status !== 'Ready to enroll')
+        .filter(app => app.status !== 'Conditions pending')
+        .filter(app => app.status !== 'Recruited')
 
       req.session.data.applications = deferredPast.concat(acceptedPast).concat(other);
 

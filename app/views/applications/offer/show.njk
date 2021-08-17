@@ -30,7 +30,7 @@
           } if application.status == "Offered" or application.status == "Deferred",
           defer: {
             href: "/applications/" + application.id + "/offer/defer/check"
-          } if application.status == "Awaiting conditions" or application.status == "Ready to enroll",
+          } if application.status == "Conditions pending" or application.status == "Recruited",
           provider: {
             value: application.offer.provider,
             href: "/applications/"+application.id+"/offer/edit/provider?referrer=offer" if application.status == "Offered" and not query.transferred
@@ -53,7 +53,7 @@
 
           changeStatus: {
             href: "/applications/" + application.id + "/offer/edit-condition-statuses"
-          } if application.status == "Awaiting conditions",
+          } if application.status == "Conditions pending",
 
           conditions: {
             items: conditions

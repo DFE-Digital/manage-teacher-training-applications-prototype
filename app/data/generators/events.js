@@ -179,7 +179,7 @@ module.exports = (params) => {
     })
   }
 
-  if (params.status === 'Awaiting conditions') {
+  if (params.status === 'Conditions pending') {
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
@@ -217,7 +217,7 @@ module.exports = (params) => {
     })
   }
 
-  if (params.status === 'Ready to enroll') {
+  if (params.status === 'Recruited') {
     if(conditions.length) {
       date = DateHelper.getFutureDate(date)
       events.items.push({
