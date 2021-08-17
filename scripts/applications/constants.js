@@ -2,7 +2,7 @@ exports.STATUS = {
   RECEIVED: 'Received',
   INTERVIEWING: 'Interviewing',
   OFFERED: 'Offered',
-  AWAITING_CONDITIONS: 'Conditions pending',
+  CONDITIONS_PENDING: 'Conditions pending',
   RECRUITED: 'Recruited',
   APPLICATION_WITHDRAWN: 'Application withdrawn',
   REJECTED: 'Rejected',

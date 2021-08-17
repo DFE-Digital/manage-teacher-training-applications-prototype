@@ -21,7 +21,7 @@ const statuses = [
   { code: 'received', title: 'Received' },
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
-  { code: 'awaiting_conditions', title: 'Conditions pending' },
+  { code: 'conditions_pending', title: 'Conditions pending' },
   { code: 'recruited', title: 'Recruited' }
 ]
 

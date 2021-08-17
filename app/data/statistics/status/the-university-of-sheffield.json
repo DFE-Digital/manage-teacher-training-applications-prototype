@@ -12,7 +12,7 @@
     "offered": {
       "number": 1
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 16
     },
     "recruited": {
@@ -35,7 +35,7 @@
     "offered": {
       "number": 1
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 16
     },
     "recruited": {
@@ -58,7 +58,7 @@
     "offered": {
       "number": 16
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 20
     },
     "recruited": {
@@ -81,7 +81,7 @@
     "offered": {
       "number": 12
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 2
     },
     "recruited": {
@@ -104,7 +104,7 @@
     "offered": {
       "number": 12
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 2
     },
     "recruited": {
@@ -127,7 +127,7 @@
     "offered": {
       "number": 17
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 15
     },
     "recruited": {
@@ -150,7 +150,7 @@
     "offered": {
       "number": 7
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 20
     },
     "recruited": {
@@ -173,7 +173,7 @@
     "offered": {
       "number": 16
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 15
     },
     "recruited": {
@@ -196,7 +196,7 @@
     "offered": {
       "number": 13
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 20
     },
     "recruited": {
@@ -219,7 +219,7 @@
     "offered": {
       "number": 6
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 7
     },
     "recruited": {
@@ -242,7 +242,7 @@
     "offered": {
       "number": 17
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 14
     },
     "recruited": {
@@ -265,7 +265,7 @@
     "offered": {
       "number": 18
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 13
     },
     "recruited": {
@@ -288,7 +288,7 @@
     "offered": {
       "number": 14
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 20
     },
     "recruited": {
@@ -311,7 +311,7 @@
     "offered": {
       "number": 1
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 14
     },
     "recruited": {
@@ -334,7 +334,7 @@
     "offered": {
       "number": 4
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 18
     },
     "recruited": {
@@ -357,7 +357,7 @@
     "offered": {
       "number": 20
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 1
     },
     "recruited": {
@@ -380,7 +380,7 @@
     "offered": {
       "number": 4
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 3
     },
     "recruited": {
@@ -403,7 +403,7 @@
     "offered": {
       "number": 7
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 14
     },
     "recruited": {
@@ -426,7 +426,7 @@
     "offered": {
       "number": 15
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 15
     },
     "recruited": {
@@ -449,7 +449,7 @@
     "offered": {
       "number": 6
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 1
     },
     "recruited": {
@@ -471,7 +471,7 @@
     "offered": {
       "number": 207
     },
-    "awaiting_conditions": {
+    "conditions_pending": {
       "number": 246
     },
     "recruited": {
