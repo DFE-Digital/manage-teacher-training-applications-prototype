@@ -22,7 +22,7 @@ const statuses = [
   { code: 'interviewing', title: 'Interviewing' },
   { code: 'offered', title: 'Offered' },
   { code: 'awaiting_conditions', title: 'Conditions pending' },
-  { code: 'ready_to_enroll', title: 'Ready to enrol' }
+  { code: 'recruited', title: 'Recruited' }
 ]
 
 const stages = [
