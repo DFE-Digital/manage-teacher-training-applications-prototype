@@ -31,8 +31,8 @@ const stages = [
   { code: 'offer', title: 'Made offer', description: 'Applications which led to offers'},
   { code: 'acceptance', title: 'Accepted offer', description: 'Offers which led to candidate accepting'},
   { code: 'conditions_met', title: 'Met offer conditions', description: 'Accepted offers which led to conditions being met'},
-  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being Recruited'},
-  { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being Recruited'}
+  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being recruited'},
+  { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being recruited'}
 ]
 
 module.exports = router => {
@@ -100,8 +100,8 @@ module.exports = router => {
       { code: 'offer', title: 'Applications which led to offers', description: ''},
       { code: 'acceptance', title: 'Offers which led to candidate acceptingr', description: ''},
       { code: 'conditions_met', title: 'Accepted offers which led to conditions being met', description: ''},
-      { code: 'offer_conversion', title: 'Offers which led to candidate being Recruited', description: ''},
-      { code: 'overall_conversion', title: 'Applications which led to candidate being Recruited', description: ''}
+      { code: 'offer_conversion', title: 'Offers which led to candidate being recruited', description: ''},
+      { code: 'overall_conversion', title: 'Applications which led to candidate being recruited', description: ''}
     ]
 
     const fileName = slugify(organisation.name)
