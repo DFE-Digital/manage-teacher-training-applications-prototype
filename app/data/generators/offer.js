@@ -9,7 +9,7 @@ module.exports = (params) => {
   let madeDate = DateTime.fromISO(submittedDate).plus({ days: faker.datatype.number({ min: 3, max: 19 }) }).toISO()
 
   let conditionStatus = 'Pending'
-  if (status === 'Ready to enroll') {
+  if (status === 'Recruited') {
     conditionStatus = 'Met'
   }
   if (status === 'Conditions not met') {
@@ -27,14 +27,14 @@ module.exports = (params) => {
   }
 
   let acceptedDate = null
-  if(status === 'Awaiting conditions' || status === 'Ready to enroll' || status === 'Conditions not met' || status === 'Deferred') {
+  if(status === 'Conditions pending' || status === 'Recruited' || status === 'Conditions not met' || status === 'Deferred') {
     acceptedDate = DateTime.fromISO(madeDate).plus({ days: faker.datatype.number({ min: 1, max: 3 })}).toISO()
   }
 
   let standardConditions
   let conditions
 
-  if(params.status == 'Awaiting conditions' || faker.helpers.randomize([true, false])) {
+  if(params.status == 'Conditions pending' || faker.helpers.randomize([true, false])) {
     standardConditions = [{
       id: faker.datatype.uuid(),
       description: 'Fitness to teach check',
