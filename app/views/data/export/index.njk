@@ -148,7 +148,7 @@
           ]
         }) }}
 
-        {#{ govukCheckboxes({
+        {{ govukCheckboxes({
           idPrefix: "export_orgs",
           name: "export_orgs",
           fieldset: {
@@ -167,14 +167,14 @@
               text: data.organisations[1].name
             }
           ]
-        }) }#}
+        }) if data.organisations.length > 1 }}
 
         {{ govukInsetText({
           text: "Sex, disability and ethnicity information will be marked as confidential if you do not have permission to view it, or if the candidate has not accepted your offer."
         }) }}
 
         {{ govukButton({
-          text: "Export data (CSV)"
+          text: "Export application data (CSV)"
         }) }}
 
       </form>
