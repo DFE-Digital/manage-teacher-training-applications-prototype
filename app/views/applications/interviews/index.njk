@@ -22,11 +22,13 @@
 
       {% if not query.transferred %}
         {% if application.status == "Interviewing" %}
-          {{ govukButton({
-            text: "Set up interview",
-            href: "/applications/" + application.id + "/interviews/new",
-            classes: "govuk-button--secondary"
-          }) }}
+          {% if canSetupInterviews %}
+            {{ govukButton({
+              text: "Set up interview",
+              href: "/applications/" + application.id + "/interviews/new",
+              classes: "govuk-button--secondary"
+            }) }}
+          {% endif %}
         {% endif %}
       {% endif %}
 
@@ -108,7 +110,7 @@
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
                 html: 'Cancel interview <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
               } if application.status == "Received" or application.status == "Interviewing"]
-            },
+            } if canSetupInterviews,
             html: interviewSummaryListHtml
           })}}
 
@@ -192,7 +194,7 @@
               href: '/applications/' + application.id + '/interviews/'+ interview.id + '/delete',
               html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
             } if application.status == "Received" or application.status == "Interviewing"]
-          },
+          } if canSetupInterviews,
           html: interviewSummaryListHtml
         })}}
 
