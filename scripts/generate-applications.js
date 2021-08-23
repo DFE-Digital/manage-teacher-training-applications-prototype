@@ -64,7 +64,7 @@ const generateFakeApplication = (params = {}) => {
   const studyMode = faker.helpers.randomize(['Full time', 'Part time'])
 
   let offer = null
-  if (['Deferred', 'Offered', 'Awaiting conditions', 'Ready to enroll', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
+  if (['Deferred', 'Offered', 'Conditions pending', 'Recruited', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
     offer = generateOffer({
       status,
       submittedDate,
@@ -584,7 +584,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting conditions',
+    status: 'Conditions pending',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Trent',
@@ -594,7 +594,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Awaiting conditions',
+    status: 'Conditions pending',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Ed',
@@ -604,7 +604,7 @@ const generateFakeApplications = () => {
   }))
 
  applications.push(generateFakeApplication({
-    status: 'Awaiting conditions',
+    status: 'Conditions pending',
     cycle: '2020 to 2021',
     personalDetails: {
       givenName: 'Audree',
@@ -614,7 +614,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Ready to enroll',
+    status: 'Recruited',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 60 }).toISO(),
     personalDetails: {
@@ -625,7 +625,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Ready to enroll',
+    status: 'Recruited',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 70 }).toISO(),
     personalDetails: {
@@ -636,7 +636,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Ready to enroll',
+    status: 'Recruited',
     cycle: '2020 to 2021',
     submittedDate: SystemHelper.now().minus({ days: 65 }).toISO(),
     personalDetails: {
@@ -923,14 +923,14 @@ const generateFakeApplications = () => {
 
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
-      status: 'Awaiting conditions'
+      status: 'Conditions pending'
     })
     applications.push(application)
   }
 
   for (var i = 0; i < 20; i++) {
     const application = generateFakeApplication({
-      status: 'Ready to enroll'
+      status: 'Recruited'
     })
     applications.push(application)
   }

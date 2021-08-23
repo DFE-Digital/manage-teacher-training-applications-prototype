@@ -230,7 +230,7 @@ module.exports = router => {
       req.session.data.applications,
       req.params.userId,
       req.params.orgId,
-      ['Received','Interviewing','Offered','Awaiting conditions'],
+      ['Received','Interviewing','Offered','Conditions pending'],
       true
     )
 

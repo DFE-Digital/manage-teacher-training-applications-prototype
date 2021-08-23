@@ -58,7 +58,7 @@ module.exports = router => {
     var flash
 
     if (ApplicationHelper.hasMetAllConditions(application.offer)) {
-      application.status = 'Ready to enroll';
+      application.status = 'Recruited';
       flash = "Conditions marked as met";
       ApplicationHelper.addEvent(application, {
         title: "Conditions marked as met",

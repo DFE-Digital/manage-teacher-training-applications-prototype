@@ -74,7 +74,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     application.offer.madeDate = new Date().toISOString()
-    application.status = 'Awaiting conditions' // work this out
+    application.status = 'Conditions pending' // work this out
     application.cycle = '2020 to 2021'
 
     ApplicationHelper.addEvent(application, {
@@ -210,7 +210,7 @@ module.exports = router => {
     application.offer.course = 'Primary (5-11) (X100)'
     application.offer.location = req.session.data.location
 
-    application.status = 'Ready to enroll' // work this out
+    application.status = 'Recruited' // work this out
     application.cycle = '2020 to 2021'
     application.events.items.push({
       date: new Date().toISOString(),
@@ -349,7 +349,7 @@ module.exports = router => {
     application.offer.course = 'Primary (5-11) (X100)';
     application.offer.location = req.session.data.location;
 
-    application.status = 'Ready to enroll' // work this out
+    application.status = 'Recruited' // work this out
     application.cycle = '2020 to 2021'
     application.events.items.push({
       date: new Date().toISOString(),
