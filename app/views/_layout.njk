@@ -65,19 +65,19 @@
   {% set canManageUsers = false %}
 {% endif %}
 
-{% set canManageOrgPermissions = true %}
-{% if query.canManageOrgPermissions %}
-  {% set canManageOrgPermissions = false %}
+{% set canManageOrganisationPermissions = true %}
+{% if query.canManageOrganisationPermissions %}
+  {% set canManageOrganisationPermissions = false %}
 {% endif %}
 
-{% set canSetupInterviews = true %}
-{% if query.canSetupInterviews %}
-  {% set canSetupInterviews = false %}
+{% set canManageInterviews = true %}
+{% if query.canManageInterviews %}
+  {% set canManageInterviews = false %}
 {% endif %}
 
-{% set canMakeDecisions = true %}
-{% if query.canMakeDecisions %}
-  {% set canMakeDecisions = false %}
+{% set canMakeOffersAndRejectApplications = true %}
+{% if query.canMakeOffersAndRejectApplications %}
+  {% set canMakeOffersAndRejectApplications = false %}
 {% endif %}
 
 
@@ -195,6 +195,7 @@
       </div>
     </div>
   </div>
+
 {% endset %}
 {% block footer %}
 {# {{ appFooter({
@@ -221,17 +222,14 @@
         href: "?canManageUsers=false",
         text: "Disable permission: manage users"
       }, {
-        href: "?canManageOrgPermissions=false",
+        href: "?canManageOrganisationPermissions=false",
         text: "Disable permission: manage org permissions"
       }, {
-        href: "?canSetupInterviews=false",
+        href: "?canManageInterviews=false",
         text: "Disable permission: set up interviews"
       }, {
-        href: "?canMakeDecisions=false",
+        href: "?canMakeOffersAndRejectApplications=false",
         text: "Disable permission: make offers"
-      }, {
-        href: "/reports-and-export-data/conversion",
-        text: "Report: Progress of applications (alternative)"
       }]
     }
   }) }} #}
@@ -259,6 +257,21 @@
       }, {
         href: "#",
         text: "Roadmap"
+      }, {
+        href: "?transferred=true",
+        text: "transferred=true"
+      }, {
+        href: "?canManageUsers=false",
+        text: "canManageUsers=false"
+      }, {
+        href: "?canManageOrganisationPermissions=false",
+        text: "canManageOrganisationPermissions=false"
+      }, {
+        href: "?canManageInterviews=false",
+        text: "canManageInterviews=false"
+      }, {
+        href: "?canMakeOffersAndRejectApplications=false",
+        text: "canMakeOffersAndRejectApplications=false"
       }]
     }
   }) }}

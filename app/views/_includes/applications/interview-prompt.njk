@@ -1,6 +1,6 @@
 {% if application.status == 'Interviewing' %}
   {% set promptHtml %}
-    {% if canMakeDecisions %}
+    {% if canMakeOffersAndRejectApplications %}
       <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% endif %}
     {% if application.daysToRespond == 0 %}
@@ -10,7 +10,7 @@
     {% else %}
       <p>This application will be automatically rejected if a decision has not been made within {{application.daysToRespond}} days ({{application.respondByDate | govukDate }} at 11:59pm).</p>
     {% endif %}
-    {% if canMakeDecisions %}
+    {% if canMakeOffersAndRejectApplications %}
       {{ govukButton({
         text: "Make decision",
         classes: "govuk-!-margin-bottom-0 ",

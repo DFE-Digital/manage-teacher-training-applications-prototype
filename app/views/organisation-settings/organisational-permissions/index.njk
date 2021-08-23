@@ -27,7 +27,7 @@
       <span class="govuk-caption-l">{{org.name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if not canManageOrgPermissions %}
+      {% if not canManageOrganisationPermissions %}
         <p>You cannot change these permissions because you do not have permission to manage organisations.</p>
       {% endif %}
 
@@ -43,7 +43,7 @@
               {% endif %}
             </ul>
           {% else %}
-            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrganisationPermissions %}- you can change permissions to allow it{% endif %}</p>
           {% endif %}
         {% endset %}
 
@@ -58,7 +58,7 @@
               {% endif %}
             </ul>
           {% else %}
-            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrganisationPermissions %}- you can change permissions to allow it{% endif %}</p>
           {% endif %}
         {% endset %}
 
@@ -73,7 +73,7 @@
               {% endif %}
             </ul>
           {% else %}
-            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrgPermissions %}- you can change permissions to allow it{% endif %}</p>
+            <p class="govuk-!-margin-bottom-0">Neither organisation can do this {% if canManageOrganisationPermissions %}- you can change permissions to allow it{% endif %}</p>
           {% endif %}
         {% endset %}
 
@@ -117,7 +117,7 @@
               href: "/organisation-settings/"+org.id+"/organisational-permissions/"+relationship.id+"/edit",
               text: "Change"
             }]
-          } if canManageOrgPermissions
+          } if canManageOrganisationPermissions
         })}}
 
       {% endfor %}
