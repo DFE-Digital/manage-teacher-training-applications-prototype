@@ -80,6 +80,10 @@
   {% set canMakeOffersAndRejectApplications = false %}
 {% endif %}
 
+{% set canViewSexDisabilityEthnicityInformation = true %}
+{% if query.canViewSexDisabilityEthnicityInformation %}
+  {% set canViewSexDisabilityEthnicityInformation = false %}
+{% endif %}
 
 {% block head %}
   {% include "_includes/head.njk" %}
@@ -272,6 +276,9 @@
       }, {
         href: "?canMakeOffersAndRejectApplications=false",
         text: "canMakeOffersAndRejectApplications=false"
+      }, {
+        href: "?canViewSexDisabilityEthnicityInformation=false",
+        text: "canViewSexDisabilityEthnicityInformation=false"
       }]
     }
   }) }}
