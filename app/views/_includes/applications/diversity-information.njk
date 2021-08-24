@@ -93,27 +93,92 @@
 
   {% if providerHasViewDiversityInformationPermission %}
 
-    {% if applicationAccepted %}
+    {# {% if applicationAccepted %}
       {{ diversityInformationSummaryList | safe}}
     {% else %}
       <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
       <p class="govuk-body">You’ll be able to view this when {{offerContext}} offer has been accepted.</p>
-    {% endif %}
+    {% endif %} #}
 
   {% else %}
 
-     <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
+     {# <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
      {% if applicationAccepted %}
         <p class="govuk-body">This section is only available to users with permission to ‘view sex, disability and ethnicity information’.</p>
       {% else %}
         <p class="govuk-body">This will become available to users with permission to ‘view sex, disability and ethnicity information’ when {{offerContext}} offer has been accepted.</p>
-    {% endif %}
+    {% endif %} #}
 
   {% endif %}
 
 {% else %}
-  <p class="govuk-body">{{appNoInformationShared()}}</p>
+  {# <p class="govuk-body">{{appNoInformationShared()}}</p> #}
 {% endif %}
+
+{% set providedInformation = "No" %}
+{% if application.personalDetails.diversityQuestionnaireAnswered%}
+  {% set providedInformation = "Yes" %}
+{% endif %}
+
+{% set sexInformation = "Unavailable: you cannot view this" %}
+{% if providedInformation and applicationAccepted %}
+  {% set sexInformation = application.personalDetails.sex %}
+{% endif %}
+
+{% set isDisabled = true if application.personalDetails.disabledAnswer == "Yes" %}
+{% set disablitiesInformation = "Unavailable: you cannot view this" %}
+{% if providedInformation and applicationAccepted and isDisabled and application.personalDetails.disabilities.length %}
+  {% set disablitiesInformation %}
+      <ul class="govuk-list govuk-list--bullet">
+      {% for disability in disabilities %}
+        <li>{{disability}}</li>
+      {% endfor %}
+    </ul>
+  {% endset %}
+{% endif %}
+
+{{ govukSummaryList({
+    rows: [{
+      key: {
+        text: "Do you want to complete our questionnaire about equality and diversity?"
+      },
+      value: {
+        html: providedInformation
+      }
+    },{
+      key: {
+        text: "What is your sex?"
+      },
+      value: {
+        html: sexInformation
+      }
+    } if providedInformation, {
+      key: {
+        text: "Are you disabled?"
+      },
+      value: {
+        html: application.personalDetails.disabledAnswer
+      }
+    } if providedInformation and applicationAccepted, {
+      key: {
+        text: "Disabilities"
+      },
+      value: {
+        html: disablitiesInformation
+      }
+    } if isDisabled and providedInformation and applicationAccepted,
+    {
+      key: {
+        text: "Ethnic group"
+      },
+      value: {
+        html: application.personalDetails.ethnicGroup
+      }
+    } if providedInformation and applicationAccepted]
+  }) }}
+
+
+
 
 
 
