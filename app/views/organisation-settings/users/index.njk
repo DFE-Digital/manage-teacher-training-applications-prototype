@@ -31,8 +31,6 @@
           text: 'Invite user',
           href: '/organisation-settings/' + org.id + '/users/new'
         })}}
-      {% else %}
-        <p>You cannot invite users to the service because you do not have permission to manage users.</p>
       {% endif %}
 
       {% for user in users %}

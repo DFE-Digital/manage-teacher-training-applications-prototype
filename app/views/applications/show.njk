@@ -44,7 +44,7 @@
             {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
               <p>{{ application.safeguarding.details | nl2br }}</p>
             {% else %}
-              <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
+              <span class="app-permission-text">Unavailable: you cannot view this because you or your organisation can not view criminal conviction and professional misconduct information.</span>
             {% endif %}
           {% endif %}
         {% endset %}
@@ -53,10 +53,10 @@
           rows: [
             {
               key: {
-                text: "Do you want to share any safeguarding issues?"
+                text: "Do you want to declare any safeguarding issues such as a criminal record or professional misconduct?"
               },
               value: {
-                text: "Yes, I want to share something" if application.safeguarding.response else "No"
+                text: "Yes, I want to declare something" if application.safeguarding.response else "No"
               }
             },
             {
