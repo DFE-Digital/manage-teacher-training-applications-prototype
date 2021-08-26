@@ -1,14 +1,18 @@
-{% if application.status == 'Rejected' and not application.rejectedReasons and canMakeOffersAndRejectApplications %}
+{% if application.status == 'Rejected' and not application.rejectedReasons %}
   {% set promptHtml %}
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
-     Give feedback
-    </h2>
-    <p class="govuk-body">You did not make a decision about the application within 40 working days. Tell the candidate why their application was unsuccessful.</p>
-    {{ govukButton({
-      text: "Give feedback",
-      classes: "govuk-!-margin-bottom-0",
-      href: "/applications/" + application.id + "/reject"
-    }) }}
+    {% if canMakeOffersAndRejectApplications %}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+      Give feedback
+      </h2>
+      <p class="govuk-body">You did not make a decision about the application within 40 working days. Tell the candidate why their application was unsuccessful.</p>
+      {{ govukButton({
+        text: "Give feedback",
+        classes: "govuk-!-margin-bottom-0",
+        href: "/applications/" + application.id + "/reject"
+      }) }}
+    {% else %}
+      <p class="govuk-body">This application was automatically rejected on {{ application.rejectedDate | govukDate }}. Feedback has not been sent to the candidate.</p>
+    {% endif %}
   {% endset %}
 
   {{govukInsetText({
