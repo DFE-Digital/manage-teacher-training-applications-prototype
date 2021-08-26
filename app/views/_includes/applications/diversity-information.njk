@@ -12,21 +12,33 @@
 
 {% set sexValue = application.personalDetails.sex %}
 {% if sexValue and not offerAccepted %}
-  {% set sexValue = 'You’ll only be able to view this once any offer is accepted and you have permission to view sex, disability and ethnicity information.' %}
+  {% if not canViewSexDisabilityEthnicityInformation %}
+    {% set sexValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+  {% else %}
+    {% set sexValue = 'You’ll be able to view this if the candidate accepts an offer for this application.' %}
+  {% endif %}
 {% elseif sexValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
   {% set sexValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
 {% endif %}
 
 {% set disabledValue = application.personalDetails.disabled %}
 {% if disabledValue and not offerAccepted %}
-  {% set disabledValue = 'You’ll only be able to view this once any offer is accepted and you have permission to view sex, disability and ethnicity information.' %}
+  {% if not canViewSexDisabilityEthnicityInformation %}
+    {% set disabledValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+  {% else %}
+    {% set disabledValue = 'You’ll be able to view this if the candidate accepts an offer for this application.' %}
+  {% endif %}
 {% elseif disabledValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
   {% set disabledValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
 {% endif %}
 
 {% set ethnicValue = application.personalDetails.ethnicGroup %}
 {% if ethnicValue and not offerAccepted %}
-  {% set ethnicValue = 'You’ll only be able to view this once any offer is accepted and you have permission to view sex, disability and ethnicity information.' %}
+  {% if not canViewSexDisabilityEthnicityInformation %}
+    {% set ethnicValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+  {% else %}
+    {% set ethnicValue = 'You’ll be able to view this if the candidate accepts an offer for this application.' %}
+  {% endif %}
 {% elseif ethnicValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
   {% set ethnicValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
 {% endif %}

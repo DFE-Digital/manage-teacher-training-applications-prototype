@@ -1,4 +1,4 @@
-{% if application.status == 'Rejected' and not application.rejectedReasons %}
+{% if application.status == 'Rejected' and not application.rejectedReasons and canMakeOffersAndRejectApplications %}
   {% set promptHtml %}
     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
      Give feedback
