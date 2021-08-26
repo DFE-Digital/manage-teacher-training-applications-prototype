@@ -41,10 +41,10 @@
 
         {% set safeguardingValueHtml %}
           {% if application.safeguarding.response %}
-            {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
+            {% if canViewCriminalRecordAndProfessionalMisconductInformation %}
               <p>{{ application.safeguarding.details | nl2br }}</p>
             {% else %}
-              <span class="app-permission-text">Unavailable: you cannot view this because you or your organisation can not view criminal conviction and professional misconduct information.</span>
+              You cannot view this because you or your organisation does not have permissions to view criminal record and professional misconduct information.
             {% endif %}
           {% endif %}
         {% endset %}
@@ -157,7 +157,7 @@
           ]
         }) }}
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Sex, disability and ethnicity information</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Sex, disability and ethnicity</h2>
         {% include "_includes/applications/diversity-information.njk" %}
       {% endif %}
     </div>

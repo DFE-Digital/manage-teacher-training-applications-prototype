@@ -12,30 +12,30 @@
 
 {% set sexValue = application.personalDetails.sex %}
 {% if sexValue and not offerAccepted %}
-  {% set sexValue = '<span class="app-permission-text">Unavailable: you can only view this information once the candidate has accepted your offer and you have permission to view sex, disability and ethnicity information</span>' %}
+  {% set sexValue = 'You can only view this information once the candidate has accepted your offer and you have permission to view sex, disability and ethnicity information' %}
 {% elseif sexValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
-  {% set sexValue = '<span class="app-permission-text">Unavailable: you can only view this information if you have permission to view sex, disability and ethnicity information</span>' %}
+  {% set sexValue = 'You can only view this information if you have permission to view sex, disability and ethnicity information' %}
 {% endif %}
 
 {% set disabledValue = application.personalDetails.disabled %}
 {% if disabledValue and not offerAccepted %}
-  {% set disabledValue = '<span class="app-permission-text">Unavailable: you can only view this information once the candidate has accepted your offer and you have permission to view sex, disability and ethnicity information</span>' %}
+  {% set disabledValue = 'You can only view this information once the candidate has accepted your offer and you have permission to view sex, disability and ethnicity information' %}
 {% elseif disabledValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
-  {% set disabledValue = '<span class="app-permission-text">Unavailable: you can only view this information if you have permission to view sex, disability and ethnicity information</span>' %}
+  {% set disabledValue = 'You can only view this information if you have permission to view sex, disability and ethnicity information' %}
 {% endif %}
 
 {% set ethnicValue = application.personalDetails.ethnicGroup %}
 {% if ethnicValue and not offerAccepted %}
-  {% set ethnicValue = '<span class="app-permission-text">Unavailable: you can only view this information once the candidate has accepted your offer and you have permission to view sex, disability and ethnicity information</span>' %}
+  {% set ethnicValue = 'You can only view this information once the candidate has accepted your offer and you have permission to view sex, disability and ethnicity information' %}
 {% elseif ethnicValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
-  {% set ethnicValue = '<span class="app-permission-text">Unavailable: you can only view this information if you have permission to view sex, disability and ethnicity information</span>' %}
+  {% set ethnicValue = 'You can only view this information if you have permission to view sex, disability and ethnicity information' %}
 {% endif %}
 
 {{ govukSummaryList({
   rows: [
     {
       key: {
-        text: "Do you want to provide details about your sex, disability and ethnicity?"
+        text: "Do you want to answer a few questions about your sex, disability and ethnicity?"
       },
       value: {
         text: application.personalDetails.diversityQuestionnaireAnswered

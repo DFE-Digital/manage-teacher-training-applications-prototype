@@ -85,6 +85,11 @@
   {% set canViewSexDisabilityEthnicityInformation = false %}
 {% endif %}
 
+{% set canViewCriminalRecordAndProfessionalMisconductInformation = true %}
+{% if query.canViewCriminalRecordAndProfessionalMisconductInformation %}
+  {% set canViewCriminalRecordAndProfessionalMisconductInformation = false %}
+{% endif %}
+
 {% block head %}
   {% include "_includes/head.njk" %}
 {% endblock %}
@@ -279,6 +284,9 @@
       }, {
         href: "?canViewSexDisabilityEthnicityInformation=false",
         text: "canViewSexDisabilityEthnicityInformation=false"
+      },{
+        href: "?canViewCriminalRecordAndProfessionalMisconductInformation=false",
+        text: "canViewCriminalRecordAndProfessionalMisconductInformation=false"
       }]
     }
   }) }}
