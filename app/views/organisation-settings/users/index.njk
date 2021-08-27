@@ -31,8 +31,6 @@
           text: 'Invite user',
           href: '/organisation-settings/' + org.id + '/users/new'
         })}}
-      {% else %}
-        <p>You cannot invite users to the service because you do not have permission to manage users.</p>
       {% endif %}
 
       {% for user in users %}
@@ -59,7 +57,7 @@
                       <li>manage interviews</li>
                     {% endif %}
                     {%- if key == "viewSafeguardingInformation" -%}
-                      <li>view criminal convictions and professional misconduct</li>
+                      <li>view criminal record and professional misconduct information</li>
                     {% endif %}
                     {%- if key == "viewDiversityInformation" -%}
                       <li>view sex, disability and ethnicity information</li>

@@ -54,33 +54,77 @@ module.exports = () => {
   }
 
   // Equality and diversity
-  const diversityQuestionnaireAnswered=faker.helpers.randomize([true, true, false])
-
-  let diversityQuestionnaire
+  const diversityQuestionnaireAnswered = faker.helpers.randomize(["Yes", "Yes", "No"])
 
   const sexInteger = faker.helpers.randomize([0, 1])
 
   let sex
-  let ethnicGroup
-  let disabledAnswer
+  let disabled
   let disabilities
+  let ethnicGroup
+  let ethnicGroupDescription
 
-  if (diversityQuestionnaireAnswered){
+  let ethnicGroups = [
+    {
+      name: "Asian or Asian British",
+      descriptions: [
+        "Bangladeshi",
+        "Chinese",
+        "Indian",
+        "Pakastani",
+        // "Another Asian background",
+        "Prefer not to say",
+      ]
+    },
+    {
+      name: "Black, African, Black British or Caribbean",
+      descriptions: [
+        "African",
+        "Caribbean",
+        // "Another Black background",
+        "Prefer not to say",
+      ]
+    },
+    {
+      name: "Mixed or multiple ethnic groups",
+      descriptions: [
+        "Asian and White",
+        "Black African and White",
+        "Black Caribbean and White",
+        // "Another Mixed background",
+        "Prefer not to say",
+      ]
+    },
+    {
+      name: "White",
+      descriptions: [
+        "British, English, Northern Irish, Scottish, or Welsh",
+        "Irish",
+        "Irish Traveller or Gypsy",
+        // "Another White background",
+        "Prefer not to say",
+      ]
+    },
+    {
+      name: "Another ethnic group",
+      descriptions: [
+        "Arab",
+        // "Another ethnic background",
+        "Prefer not to say",
+      ]
+    },
+    {
+      name: "Prefer not to say"
+    }
+  ]
+
+  if (diversityQuestionnaireAnswered == "Yes"){
 
     sex = { 0: "Male", 1: "Female" }[sexInteger]
 
-    ethnicGroup = faker.helpers.randomize([
-      "Asian or Asian British",
-      "Black, African, Black British or Caribbean",
-      "Mixed or multiple ethnic groups",
-      "White",
-      "Another ethnic group",
-      "Prefer not to say"
-    ])
+    disabled = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
 
-    disabledAnswer = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
-
-    disabilityCount = faker.datatype.number(3); // up to 3 disabilities
+    let disabilityCount = faker.datatype.number(3); // up to 3 disabilities
 
     let disabilityChoices = [
       "Blind",
@@ -94,9 +138,15 @@ module.exports = () => {
     ]
     let shuffledDisabilities = disabilityChoices.sort(() => 0.5 - Math.random());
 
-    if ((disabledAnswer=="Yes") && disabilityCount){
+    if (disabled == "Yes" && disabilityCount){
       disabilities = shuffledDisabilities.slice(0, disabilityCount).sort();
     }
+
+    ethnicGroup = faker.helpers.randomize(ethnicGroups)
+    if(ethnicGroup.descriptions) {
+      ethnicGroupDescription = faker.helpers.randomize(ethnicGroup.descriptions)
+    }
+    ethnicGroup = ethnicGroup.name
 
   }
 
@@ -109,8 +159,9 @@ module.exports = () => {
     isInternationalCandidate,
     diversityQuestionnaireAnswered,
     sex,
+    disabled,
+    disabilities,
     ethnicGroup,
-    disabledAnswer,
-    disabilities
+    ethnicGroupDescription
   }
 }

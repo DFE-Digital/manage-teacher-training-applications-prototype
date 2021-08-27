@@ -27,10 +27,6 @@
       <span class="govuk-caption-l">{{org.name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if not canManageOrganisationPermissions %}
-        <p>You cannot change these permissions because you do not have permission to manage organisations.</p>
-      {% endif %}
-
       {% for relationship in relationships %}
         {% set makeDecisionsHtml %}
           {% if relationship.orgPermissions.makeDecisions or relationship.partnerPermissions.makeDecisions %}
@@ -91,7 +87,7 @@
               },
               {
                 key: {
-                  text: "View criminal convictions and professional misconduct"
+                  text: "View criminal record and professional misconduct information"
                 },
                 value: {
                   html: viewSafeguardingHtml

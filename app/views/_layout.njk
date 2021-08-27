@@ -80,6 +80,15 @@
   {% set canMakeOffersAndRejectApplications = false %}
 {% endif %}
 
+{% set canViewSexDisabilityEthnicityInformation = true %}
+{% if query.canViewSexDisabilityEthnicityInformation %}
+  {% set canViewSexDisabilityEthnicityInformation = false %}
+{% endif %}
+
+{% set canViewCriminalRecordAndProfessionalMisconductInformation = true %}
+{% if query.canViewCriminalRecordAndProfessionalMisconductInformation %}
+  {% set canViewCriminalRecordAndProfessionalMisconductInformation = false %}
+{% endif %}
 
 {% block head %}
   {% include "_includes/head.njk" %}
@@ -226,7 +235,7 @@
         text: "Disable permission: manage org permissions"
       }, {
         href: "?canManageInterviews=false",
-        text: "Disable permission: set up interviews"
+        text: "Disable permission: manage interviews"
       }, {
         href: "?canMakeOffersAndRejectApplications=false",
         text: "Disable permission: make offers"
@@ -272,6 +281,12 @@
       }, {
         href: "?canMakeOffersAndRejectApplications=false",
         text: "canMakeOffersAndRejectApplications=false"
+      }, {
+        href: "?canViewSexDisabilityEthnicityInformation=false",
+        text: "canViewSexDisabilityEthnicityInformation=false"
+      },{
+        href: "?canViewCriminalRecordAndProfessionalMisconductInformation=false",
+        text: "canViewCriminalRecordAndProfessionalMisconductInformation=false"
       }]
     }
   }) }}

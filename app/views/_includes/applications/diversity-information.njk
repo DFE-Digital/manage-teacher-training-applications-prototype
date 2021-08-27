@@ -1,119 +1,97 @@
-{% set providerHasViewDiversityInformationPermission = [true, false] | random %}
+{% set offerAccepted = (application.status == "Conditions pending" or application.status == "Recruited") %}
 
-{# Whether candidate has completed diversity questionnaire #}
-{% set diversityQuestionnaireCompleted = application.personalDetails.diversityQuestionnaireAnswered %}
-
-{% set applicationAccepted = (application.status == "Conditions pending" or application.status == "Conditions met") %}
-
-{% set offerContext = 'your' if application.status=='Offered' else 'an' %}
-
-
-{% set diversityInformationSummaryList %}
-
-  {% set isDisabled = true if application.personalDetails.disabledAnswer == "Yes" %}
-
-  {% set disabledText %}
-    {% if isDisabled %}
-      {% set disabilities =application.personalDetails.disabilities %}
-        {# Don't think 0 is possible with current survey questions #}
-        {% if (disabilities | length == 0) %}
-          No disabilities disclosed
-        {% else %}
-        <p class="govuk-body">
-          The candidate disclosed the following {{ 'disability' | pluralise(disabilities | length) }}:
-        </p>
-        <ul class="govuk-list govuk-list--bullet">
-          {% for disability in disabilities %}
-            <li>{{disability}}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-    {% else %}
-      No
-    {% endif %}
-
-
-  {%  endset %}
-
-  {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Sex"
-      },
-      value: {
-        html: application.personalDetails.sex
-      }
-    }, {
-      key: {
-        text: "Disabled"
-      },
-      value: {
-        html: application.personalDetails.disabledAnswer
-      }
-    }, {
-      key: {
-        text: "Disabilities"
-      },
-      value: {
-        html: disabledText
-      }
-    } if isDisabled,
-    {
-      key: {
-        text: "Ethnic group"
-      },
-      value: {
-        html: application.personalDetails.ethnicGroup
-      }
-    }]
-  }) }}
-{% endset %}
-
-{# {% set diversityInformationGuidanceHtml %}
-  <h2 class="govuk-heading-m">Equality and diversity</h2>
-  <p class="govuk-body">
-    The equality and diversity questionnaire is optional and has no impact on the progress of your application.
-  </p>
-  <p class="govuk-body">
-    We collect this data to reduce discrimination on the basis of sex, disability and ethnicity.
-  </p>
-  <p class="govuk-body">
-    Your data will only be shared with training providers when you are enrolled on a course.
-  </p>
-{% endset %}
-
-{{ govukDetails({
-  summaryText: "View guidance given to candidate",
-  html: diversityInformationGuidanceHtml
-}) }} #}
-
-
-{% if diversityQuestionnaireCompleted %}
-
-  {% if providerHasViewDiversityInformationPermission %}
-
-    {% if applicationAccepted %}
-      {{ diversityInformationSummaryList | safe}}
-    {% else %}
-      <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
-      <p class="govuk-body">You’ll be able to view this when {{offerContext}} offer has been accepted.</p>
-    {% endif %}
-
-  {% else %}
-
-     <p class="govuk-body">The candidate disclosed information in the equality and diversity questionnaire.</p>
-     {% if applicationAccepted %}
-        <p class="govuk-body">This section is only available to users with permission to ‘view sex, disability and ethnicity information’.</p>
-      {% else %}
-        <p class="govuk-body">This will become available to users with permission to ‘view sex, disability and ethnicity information’ when {{offerContext}} offer has been accepted.</p>
-    {% endif %}
-
+{% set disabilitiesList %}
+  {% if application.personalDetails.disabilities and application.personalDetails.disabilities.length %}
+    <ul class="govuk-list">
+      {% for disability in application.personalDetails.disabilities %}
+        <li>{{disability}}</li>
+      {% endfor %}
+    </ul>
   {% endif %}
+{% endset %}
 
-{% else %}
-  <p class="govuk-body">{{appNoInformationShared()}}</p>
+{% set sexValue = application.personalDetails.sex %}
+{% if sexValue and not offerAccepted %}
+  {% if not canViewSexDisabilityEthnicityInformation %}
+    {% set sexValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+  {% else %}
+    {% set sexValue = 'You’ll be able to view this if the candidate accepts an offer for this application.' %}
+  {% endif %}
+{% elseif sexValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
+  {% set sexValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
 {% endif %}
 
+{% set disabledValue = application.personalDetails.disabled %}
+{% if disabledValue and not offerAccepted %}
+  {% if not canViewSexDisabilityEthnicityInformation %}
+    {% set disabledValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+  {% else %}
+    {% set disabledValue = 'You’ll be able to view this if the candidate accepts an offer for this application.' %}
+  {% endif %}
+{% elseif disabledValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
+  {% set disabledValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+{% endif %}
 
+{% set ethnicValue = application.personalDetails.ethnicGroup %}
+{% if ethnicValue and not offerAccepted %}
+  {% if not canViewSexDisabilityEthnicityInformation %}
+    {% set ethnicValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+  {% else %}
+    {% set ethnicValue = 'You’ll be able to view this if the candidate accepts an offer for this application.' %}
+  {% endif %}
+{% elseif ethnicValue and offerAccepted and not canViewSexDisabilityEthnicityInformation %}
+  {% set ethnicValue = 'You cannot view this because you do not have permission to view sex, disability and ethnicity information.' %}
+{% endif %}
 
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Do you want to answer a few questions about your sex, disability and ethnicity?"
+      },
+      value: {
+        text: application.personalDetails.diversityQuestionnaireAnswered
+      }
+    },
+    {
+      key: {
+        text: "What is your sex?"
+      },
+      value: {
+        html: sexValue
+      }
+    } if sexValue,
+    {
+      key: {
+        text: "Are you disabled?"
+      },
+      value: {
+        html: disabledValue
+      }
+    } if disabledValue,
+    {
+      key: {
+        text: "What disabilities do you have?"
+      },
+      value: {
+        html: disabilitiesList
+      }
+    } if application.personalDetails.disabilities and canViewSexDisabilityEthnicityInformation and offerAccepted,
+    {
+      key: {
+        text: "What is your ethnic group?"
+      },
+      value: {
+        html: ethnicValue
+      }
+    } if ethnicValue,
+    {
+      key: {
+        text: "Which of the following best describes your " + application.personalDetails.ethnicGroup + " background?"
+      },
+      value: {
+        text: application.personalDetails.ethnicGroupDescription
+      }
+    } if application.personalDetails.ethnicGroupDescription and canViewSexDisabilityEthnicityInformation and offerAccepted
+  ]
+}) }}
