@@ -177,13 +177,13 @@ module.exports = router => {
 
     application.interviews.items = application.interviews.items || [];
 
-    var id = uuidv4();
+    const id = uuidv4();
 
-    var time = getTimeObject(req.session.data.interview.time);
+    const time = getTimeObject(req.session.data.interview.time);
 
-    var date = DateTime.local(parseInt(req.session.data.interview.date.year, 10), parseInt(req.session.data.interview.date.month, 10), parseInt(req.session.data.interview.date.day, 10), parseInt(time.hours, 10), parseInt(time.mins, 10));
+    const date = DateTime.local(parseInt(req.session.data.interview.date.year, 10), parseInt(req.session.data.interview.date.month, 10), parseInt(req.session.data.interview.date.day, 10), parseInt(time.hours, 10), parseInt(time.mins, 10));
 
-    var interview = {
+    const interview = {
       id,
       date: date.toISO(),
       details: req.session.data.interview.details,
@@ -202,6 +202,9 @@ module.exports = router => {
         interview: _.clone(interview)
       }
     })
+
+    // set the new status
+    application.status = 'Interviewing'
 
     delete req.session.data.interview
 
@@ -306,6 +309,9 @@ module.exports = router => {
       interview,
       cancellationReason: req.session.data.cancelInterview.reason
     })
+
+    // rollback the status
+    application.status = 'Received'
 
     req.flash('success', 'Interview cancelled')
 
