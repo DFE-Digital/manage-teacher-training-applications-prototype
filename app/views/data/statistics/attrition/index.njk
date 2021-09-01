@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Candidate drop out rates" %}
+{% set pageName = "Where candidates choose to leave the application process" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -25,7 +25,9 @@
         {{ pageName }}
       </h1>
 
-      <p class="govuk-body"><a class="govuk-link" href="/reports/{{organisation.id }}/candidate-drop-out/download" download>Export data (CSV)</a></p>
+      <p class="govuk-body">
+        <a class="govuk-link" href="/reports/{{organisation.id }}/candidate-drop-out/download" download>Export data (CSV)</a>
+      </p>
 
     </div>
   </div>
@@ -37,16 +39,12 @@
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
-            <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:22%;">
-              Applications that were withdrawn at any time
+            <th scope="col" class="govuk-table__header">Course</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:22%;">
+              Applications withdrawn before offer made
             </th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:22%;">
-              Offers that were declined
-            </th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:19.5%;">
-              Accepted offers where conditions were not met
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:22%;">
+              Offers declined and applications withdrawn after offer made
             </th>
           </tr>
         </thead>
@@ -55,7 +53,7 @@
           {% for row in attritionData %}
 
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header" data-sort-value="{{ row.title }} {{ row.code }}">
+              <th scope="row" class="govuk-table__header">
                 <!-- <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out/{{ row.code }}"> -->
                   {{ row.title }} {{ "(" + row.code + ")" if row.code }}
                 <!-- </a> -->
@@ -63,28 +61,16 @@
                   <span class="govuk-hint govuk-!-margin-bottom-0">{{ row.provider }}</span>
                 {% endif %}
               </th>
-              <!-- <td class="govuk-table__cell" data-sort-value="{{ row.provider }}">
-                {{ row.provider }}
-              </td> -->
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['applications_withdrawn']['percentage'] }}">
-                {{ row['applications_withdrawn']['percentage'] | numeral('0,0') }}%
-                {% set withdrawnTotal = (row['applications_withdrawn']['number'] / row['applications_withdrawn']['percentage']) * 100 %}
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ row['applications_withdrawn_before']['percentage'] | numeral('0,0') }}%
                 <span class="govuk-hint govuk-!-margin-bottom-0">
-                  {{ row['applications_withdrawn']['number'] | numeral('0') }} of {{ withdrawnTotal | numeral('0')}}
+                  {{ row['applications_withdrawn_before']['number'] | numeral('0') }} of {{ row['total_applications'] | numeral('0')}}
                 </span>
               </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['offers_declined']['percentage'] }}">
-                {{ row['offers_declined']['percentage'] | numeral('0,0') }}%
-                {% set declinedTotal = (row['offers_declined']['number'] / row['offers_declined']['percentage']) * 100 %}
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ row['applications_withdrawn_after']['percentage'] | numeral('0,0') }}%
                 <span class="govuk-hint govuk-!-margin-bottom-0">
-                  {{ row['offers_declined']['number'] | numeral('0') }} of {{ declinedTotal | numeral('0')}}
-                </span>
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['conditions_not_met']['percentage'] }}">
-                {{ row['conditions_not_met']['percentage'] | numeral('0,0') }}%
-                {% set conditionsTotal = (row['conditions_not_met']['number'] / row['conditions_not_met']['percentage']) * 100 %}
-                <span class="govuk-hint govuk-!-margin-bottom-0">
-                  {{ row['conditions_not_met']['number'] | numeral('0') }} of {{ conditionsTotal | numeral('0')}}
+                  {{ row['applications_withdrawn_after']['number'] | numeral('0') }} of {{ row['total_offers']['number'] | numeral('0')}}
                 </span>
               </td>
             </tr>
@@ -98,11 +84,3 @@
   </div>
 
 {% endblock %}
-
-{#% block pageScripts %}
-<script>
-  new AppFrontend.SortableTable({
-    table: $('#attrition')
-  });
-</script>
-{% endblock %#}

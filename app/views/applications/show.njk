@@ -41,10 +41,10 @@
 
         {% set safeguardingValueHtml %}
           {% if application.safeguarding.response %}
-            {% if (["canViewSafeguardingInformation", ""] | random) == "canViewSafeguardingInformation" %}
+            {% if canViewCriminalRecordAndProfessionalMisconductInformation %}
               <p>{{ application.safeguarding.details | nl2br }}</p>
             {% else %}
-              <span class="app-permission-text">Unavailable: you and your organisation both need permission to view these safeguarding issues.</span>
+              You cannot view this because you do not have permission to view criminal record and professional misconduct information.
             {% endif %}
           {% endif %}
         {% endset %}
@@ -53,10 +53,10 @@
           rows: [
             {
               key: {
-                text: "Do you want to share any safeguarding issues?"
+                text: "Do you want to declare any safeguarding issues such as a criminal record or professional misconduct?"
               },
               value: {
-                text: "Yes, I want to share something" if application.safeguarding.response else "No"
+                text: "Yes, I want to declare something" if application.safeguarding.response else "No"
               }
             },
             {
@@ -157,7 +157,7 @@
           ]
         }) }}
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Sex, disability and ethnicity information</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Sex, disability and ethnicity</h2>
         {% include "_includes/applications/diversity-information.njk" %}
       {% endif %}
     </div>

@@ -25,16 +25,6 @@ const statuses = [
   { code: 'recruited', title: 'Recruited' }
 ]
 
-const stages = [
-  { code: 'shortlist_for_interview', title: 'Invited to interview', description: 'Applications which led to interviews' },
-  { code: 'interview_success', title: 'Made offer after interview', description: 'Interviews which led to offers'},
-  { code: 'offer', title: 'Made offer', description: 'Applications which led to offers'},
-  { code: 'acceptance', title: 'Accepted offer', description: 'Offers which led to candidate accepting'},
-  { code: 'conditions_met', title: 'Met offer conditions', description: 'Accepted offers which led to conditions being met'},
-  { code: 'offer_conversion', title: 'Successful offer', description: 'Offers which led to candidate being recruited'},
-  { code: 'overall_conversion', title: 'Successful application', description: 'Applications which led to candidate being recruited'}
-]
-
 module.exports = router => {
 
   router.get('/reports', (req, res) => {
@@ -60,198 +50,6 @@ module.exports = router => {
       statuses,
       statusData,
       statusTotals
-    })
-  })
-
-  router.get('/reports/:organisationId/progress-of-applications', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const fileName = slugify(organisation.name)
-
-    const conversionData = StatisticsHelper.getConversionData(fileName)
-
-    res.render('data/statistics/progress', {
-      organisation,
-      stages,
-      conversionData
-    })
-  })
-
-  router.get('/reports/:organisationId/candidate-success', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const fileName = slugify(organisation.name)
-
-    const conversionData = StatisticsHelper.getConversionData(fileName)
-
-    res.render('data/statistics/conversion/index', {
-      organisation,
-      stages,
-      conversionData
-    })
-  })
-
-  router.get('/reports/:organisationId/candidate-success/:courseId', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const stages = [
-      { code: 'shortlist_for_interview', title: 'Applications which led to interviews', description: '' },
-      { code: 'interview_success', title: 'Interviews which led to offers', description: ''},
-      { code: 'offer', title: 'Applications which led to offers', description: ''},
-      { code: 'acceptance', title: 'Offers which led to candidate acceptingr', description: ''},
-      { code: 'conditions_met', title: 'Accepted offers which led to conditions being met', description: ''},
-      { code: 'offer_conversion', title: 'Offers which led to candidate being recruited', description: ''},
-      { code: 'overall_conversion', title: 'Applications which led to candidate being recruited', description: ''}
-    ]
-
-    const fileName = slugify(organisation.name)
-
-    let course = StatisticsHelper.getConversionData(fileName)
-    course = course.find(course => course.code === req.params.courseId)
-
-    res.render('data/statistics/conversion/show', {
-      organisation,
-      course,
-      stages
-    })
-  })
-
-  router.get('/reports/:organisationId/candidate-drop-out', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const fileName = slugify(organisation.name)
-
-    const attritionData = StatisticsHelper.getAttritionData(fileName)
-
-    res.render('data/statistics/attrition/index', {
-      organisation,
-      stages,
-      attritionData
-    })
-  })
-
-  router.get('/reports/:organisationId/candidate-drop-out/download', (req, res) => {
-    const fileName = '/candidate-drop-out-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
-    const filePath = downloadDirectoryPath + '/candidate-drop-out.csv'
-
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const organisationSlug = slugify(organisation.name)
-
-    const attritionData = StatisticsHelper.getAttritionData(organisationSlug)
-
-    // headers for the CSV file
-    const headers = []
-    headers.push({ id: 'course', title: 'Course' })
-    headers.push({ id: 'code', title: 'Course code' })
-    headers.push({ id: 'provider', title: 'Partner organisation' })
-    headers.push({ id: 'applications_total', title: 'Applications total'})
-    headers.push({ id: 'applications_withdrawn_percentage', title: 'Applications withdrawn - percentage'})
-    headers.push({ id: 'applications_withdrawn_number', title: 'Applications withdrawn - number'})
-    headers.push({ id: 'offers_total', title: 'Offers total'})
-    headers.push({ id: 'offers_declined_percentage', title: 'Offers declined - percentage'})
-    headers.push({ id: 'offers_declined_number', title: 'Offers declined - number'})
-    headers.push({ id: 'offers_accepted_total', title: 'Offers accepted total'})
-    headers.push({ id: 'conditions_not_met_percentage', title: 'Accepted offers with conditions not met - percentage'})
-    headers.push({ id: 'conditions_not_met_number', title: 'Accepted offers with conditions not met - number'})
-
-    const csv = csvWriter({
-      path: filePath,
-      header: headers
-    })
-
-    const records = []
-
-    // iterate over the data to populate the CSV
-    attritionData.forEach((item, i) => {
-      const data = {}
-
-      data.course = item.title
-      data.code = item.code
-      data.provider = item.provider
-
-      data.applications_total = Math.round((item.applications_withdrawn.number / item.applications_withdrawn.percentage) * 100)
-
-      data.applications_withdrawn_number = item.applications_withdrawn.number
-      data.applications_withdrawn_percentage = item.applications_withdrawn.percentage + '%'
-
-      data.offers_total = Math.round((item.offers_declined.number / item.offers_declined.percentage) * 100)
-
-      data.offers_declined_number = item.offers_declined.number
-      data.offers_declined_percentage = item.offers_declined.percentage + '%'
-
-      data.offers_accepted_total = Math.round((item.conditions_not_met.number / item.conditions_not_met.percentage) * 100)
-
-      data.conditions_not_met_number = item.conditions_not_met.number
-      data.conditions_not_met_percentage = item.conditions_not_met.percentage + '%'
-
-      records.push(data)
-    })
-
-    // write the CSV file and send to browser
-    csv.writeRecords(records)
-      .then(() => {
-        res.download(filePath,fileName)
-      })
-  })
-
-  router.get('/reports/:organisationId/candidate-drop-out/:courseId', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const statuses = [
-      { code: 'rejections', title: 'Applications that led to rejection', description: '' },
-      { code: 'interview_rejections', title: 'Interviews that led to rejection', description: ''},
-      { code: 'applications_withdrawn', title: 'Applications that led to being withdrawn', description: ''},
-      { code: 'offers_withdrawn', title: 'Offers that were withdrawn', description: ''},
-      { code: 'offers_declined', title: 'Offers that were declined', description: ''},
-      { code: 'conditions_not_met', title: 'Accepted offers that led to candidates not meeting one or more conditions', description: ''}
-    ]
-
-    const fileName = slugify(organisation.name)
-
-    let course = StatisticsHelper.getAttritionData(fileName)
-    course = course.find(course => course.code === req.params.courseId)
-
-    res.render('data/statistics/attrition/show', {
-      organisation,
-      course,
-      statuses
-    })
-  })
-
-  router.get('/reports/export', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    res.render('data/export/index', {
-      organisation
-    })
-  })
-
-  router.get('/reports/hesa', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    res.render('data/export/hesa', {
-      organisation
-    })
-  })
-
-  router.get('/reports/:organisationId/diversity', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-
-    const ethnicityData = [
-      {title: 'All'},
-      {title: 'Asian', items: ['Bangladeshi', 'Indian', 'Pakistani', 'Asian other']},
-      {title: 'Black', items: ['Black african', 'Black Caribbean', 'Black other']},
-      {title: 'Mixed', items: ['Mixed White/Asian', 'Mixed White/Black African', 'Mixed White/Black Caribbean', 'Mixed other']},
-      {title: 'White', items: ['White British', 'White Irish', 'White other']},
-      {title: 'Other', items: ['Arab', 'Any other']}
-    ]
-    const ageData = ['18 to 24', '25 to 34', '35 to 44', '45 to 54', '55 to 64', '65 and older', 'Prefer not to say']
-    const sexData = ['Female', 'Male', 'Prefer not to say']
-
-    res.render('data/statistics/diversity/index', {
-      organisation,
-      ethnicityData,
-      ageData,
-      sexData
     })
   })
 
@@ -305,35 +103,41 @@ module.exports = router => {
       })
   })
 
-  router.get('/reports/:organisationId/progress-of-applications/download', (req, res) => {
-    const fileName = '/progress-of-applications-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
-    const filePath = downloadDirectoryPath + fileName
+  router.get('/reports/:organisationId/candidate-drop-out', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    const attritionData = StatisticsHelper.getAttritionData(fileName)
+
+    res.render('data/statistics/attrition/index', {
+      organisation,
+      attritionData
+    })
+  })
+
+  router.get('/reports/:organisationId/candidate-drop-out/download', (req, res) => {
+    const fileName = '/candidate-drop-out-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const filePath = downloadDirectoryPath + '/candidate-drop-out.csv'
 
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const organisationName = slugify(organisation.name)
+    const organisationSlug = slugify(organisation.name)
 
-    const conversionData = StatisticsHelper.getConversionData(organisationName)
+    const attritionData = StatisticsHelper.getAttritionData(organisationSlug)
 
     // headers for the CSV file
     const headers = []
     headers.push({ id: 'course', title: 'Course' })
     headers.push({ id: 'code', title: 'Course code' })
     headers.push({ id: 'provider', title: 'Partner organisation' })
-
-    stages.forEach((stage, i) => {
-      const headerNumber = {}
-      headerNumber.id = stage.code + '_number'
-      // headerNumber.title = stage.title + ' - number'
-      headerNumber.title = stage.description + ' - number'
-      headers.push(headerNumber)
-
-      const headerPercentage = {}
-      headerPercentage.id = stage.code + '_percentage'
-      // headerPercentage.title = stage.title + ' - percentage'
-      headerPercentage.title = stage.description + ' - percentage'
-      headers.push(headerPercentage)
-    })
+    headers.push({ id: 'applications_total', title: 'Applications total'})
+    headers.push({ id: 'applications_withdrawn_before_percentage', title: 'Applications withdrawn before offer made - percentage'})
+    headers.push({ id: 'applications_withdrawn_before_number', title: 'Applications withdrawn before offer made - number'})
+    headers.push({ id: 'offers_total_percentage', title: 'Offers total - percentage'})
+    headers.push({ id: 'offers_total_number', title: 'Offers total - number'})
+    headers.push({ id: 'applications_withdrawn_after_percentage', title: 'Offers declined and applications withdrawn after offer made - percentage'})
+    headers.push({ id: 'applications_withdrawn_after_number', title: 'Offers declined and applications withdrawn after offer made - number'})
 
     const csv = csvWriter({
       path: filePath,
@@ -342,33 +146,24 @@ module.exports = router => {
 
     const records = []
 
-    // the first row for the records is a description
-    // const description = {}
-    // description.course = ''
-    // description.code = ''
-    // description.provider = ''
-    // description.total_count = ''
-    //
-    // stages.forEach((stage, i) => {
-    //   description[stage.code + '_number'] = stage.description
-    //   description[stage.code + '_percentage'] = stage.description
-    // })
-    //
-    // records.push(description)
-
-    // iterate over the conversion data to populate the CSV
-    conversionData.forEach((item, i) => {
+    // iterate over the data to populate the CSV
+    attritionData.forEach((item, i) => {
       const data = {}
 
       data.course = item.title
       data.code = item.code
       data.provider = item.provider
-      data.total_count = item.total_count
 
-      stages.forEach((stage, i) => {
-        data[stage.code + '_number'] = item[stage.code].number
-        data[stage.code + '_percentage'] = item[stage.code].percentage + '%'
-      })
+      data.applications_total = item.total_applications
+
+      data.applications_withdrawn_before_number = item.applications_withdrawn_before.number
+      data.applications_withdrawn_before_percentage = item.applications_withdrawn_before.percentage + '%'
+
+      data.offers_total_number = item.total_offers.number
+      data.offers_total_percentage = item.total_offers.percentage + '%'
+
+      data.applications_withdrawn_after_number = item.applications_withdrawn_after.number
+      data.applications_withdrawn_after_percentage = item.applications_withdrawn_after.percentage + '%'
 
       records.push(data)
     })
@@ -378,6 +173,57 @@ module.exports = router => {
       .then(() => {
         res.download(filePath,fileName)
       })
+  })
+
+  router.get('/reports/:organisationId/candidate-drop-out/:courseId', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const fileName = slugify(organisation.name)
+
+    let course = StatisticsHelper.getAttritionData(fileName)
+    course = course.find(course => course.code === req.params.courseId)
+
+    res.render('data/statistics/attrition/show', {
+      organisation,
+      course,
+      statuses
+    })
+  })
+
+  router.get('/reports/:organisationId/diversity', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    const ethnicityData = [
+      {title: 'All'},
+      {title: 'Asian', items: ['Bangladeshi', 'Indian', 'Pakistani', 'Asian other']},
+      {title: 'Black', items: ['Black african', 'Black Caribbean', 'Black other']},
+      {title: 'Mixed', items: ['Mixed White/Asian', 'Mixed White/Black African', 'Mixed White/Black Caribbean', 'Mixed other']},
+      {title: 'White', items: ['White British', 'White Irish', 'White other']},
+      {title: 'Other', items: ['Arab', 'Any other']}
+    ]
+    const ageData = ['18 to 24', '25 to 34', '35 to 44', '45 to 54', '55 to 64', '65 and older', 'Prefer not to say']
+    const sexData = ['Female', 'Male', 'Prefer not to say']
+
+    res.render('data/statistics/diversity/index', {
+      organisation,
+      ethnicityData,
+      ageData,
+      sexData
+    })
+  })
+
+  router.get('/reports/export', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    res.render('data/export/index', {
+      organisation
+    })
+  })
+
+  router.get('/reports/hesa', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    res.render('data/export/hesa', {
+      organisation
+    })
   })
 
 }
