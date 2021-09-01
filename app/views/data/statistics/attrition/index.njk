@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Candidate drop out rates" %}
+{% set pageName = "Where candidates choose to leave the application process" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -40,14 +40,14 @@
             <th scope="col" class="govuk-table__header" aria-sort="ascending">Course</th>
             <!-- <th scope="col" class="govuk-table__header" aria-sort="none">Partner</th> -->
             <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:22%;">
-              Applications that were withdrawn at any time
+              Application withdrawn before offer made
             </th>
             <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:22%;">
-              Offers that were declined
+              Offer declined or application withdrawn after offer made
             </th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:19.5%;">
+            {# <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none" style="width:19.5%;">
               Accepted offers where conditions were not met
-            </th>
+            </th> #}
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -80,13 +80,13 @@
                   {{ row['offers_declined']['number'] | numeral('0') }} of {{ declinedTotal | numeral('0')}}
                 </span>
               </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['conditions_not_met']['percentage'] }}">
+              {# <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ row['conditions_not_met']['percentage'] }}">
                 {{ row['conditions_not_met']['percentage'] | numeral('0,0') }}%
                 {% set conditionsTotal = (row['conditions_not_met']['number'] / row['conditions_not_met']['percentage']) * 100 %}
                 <span class="govuk-hint govuk-!-margin-bottom-0">
                   {{ row['conditions_not_met']['number'] | numeral('0') }} of {{ conditionsTotal | numeral('0')}}
                 </span>
-              </td>
+              </td> #}
             </tr>
 
           {% endfor %}
