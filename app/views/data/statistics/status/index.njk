@@ -30,7 +30,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <p class="govuk-body"><a class="govuk-link" href="/reports/{{organisation.id }}/status-of-applications/download" download>Export data (CSV)</a></p>
+      <p class="govuk-body">
+        <a class="govuk-link" href="/reports/{{organisation.id }}/status-of-applications/download" download>Export data (CSV)</a>
+      </p>
 
       <table id="status" class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
@@ -73,9 +75,5 @@
 
     </div>
   </div>
-
-{% endblock %}
-
-{% block pageScripts %}
 
 {% endblock %}
