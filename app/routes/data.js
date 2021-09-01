@@ -146,14 +146,12 @@ module.exports = router => {
     headers.push({ id: 'code', title: 'Course code' })
     headers.push({ id: 'provider', title: 'Partner organisation' })
     headers.push({ id: 'applications_total', title: 'Applications total'})
-    headers.push({ id: 'applications_withdrawn_percentage', title: 'Applications withdrawn - percentage'})
-    headers.push({ id: 'applications_withdrawn_number', title: 'Applications withdrawn - number'})
-    headers.push({ id: 'offers_total', title: 'Offers total'})
-    headers.push({ id: 'offers_declined_percentage', title: 'Offers declined - percentage'})
-    headers.push({ id: 'offers_declined_number', title: 'Offers declined - number'})
-    headers.push({ id: 'offers_accepted_total', title: 'Offers accepted total'})
-    headers.push({ id: 'conditions_not_met_percentage', title: 'Accepted offers with conditions not met - percentage'})
-    headers.push({ id: 'conditions_not_met_number', title: 'Accepted offers with conditions not met - number'})
+    headers.push({ id: 'applications_withdrawn_before_percentage', title: 'Applications withdrawn before offer made - percentage'})
+    headers.push({ id: 'applications_withdrawn_before_number', title: 'Applications withdrawn before offer made - number'})
+    headers.push({ id: 'offers_total_percentage', title: 'Offers total - percentage'})
+    headers.push({ id: 'offers_total_number', title: 'Offers total - number'})
+    headers.push({ id: 'applications_withdrawn_after_percentage', title: 'Offers declined and applications withdrawn after offer made - percentage'})
+    headers.push({ id: 'applications_withdrawn_after_number', title: 'Offers declined and applications withdrawn after offer made - number'})
 
     const csv = csvWriter({
       path: filePath,
@@ -170,20 +168,16 @@ module.exports = router => {
       data.code = item.code
       data.provider = item.provider
 
-      data.applications_total = Math.round((item.applications_withdrawn.number / item.applications_withdrawn.percentage) * 100)
+      data.applications_total = item.total_applications
 
-      data.applications_withdrawn_number = item.applications_withdrawn.number
-      data.applications_withdrawn_percentage = item.applications_withdrawn.percentage + '%'
+      data.applications_withdrawn_before_number = item.applications_withdrawn_before.number
+      data.applications_withdrawn_before_percentage = item.applications_withdrawn_before.percentage + '%'
 
-      data.offers_total = Math.round((item.offers_declined.number / item.offers_declined.percentage) * 100)
+      data.offers_total_number = item.total_offers.number
+      data.offers_total_percentage = item.total_offers.percentage + '%'
 
-      data.offers_declined_number = item.offers_declined.number
-      data.offers_declined_percentage = item.offers_declined.percentage + '%'
-
-      data.offers_accepted_total = Math.round((item.conditions_not_met.number / item.conditions_not_met.percentage) * 100)
-
-      data.conditions_not_met_number = item.conditions_not_met.number
-      data.conditions_not_met_percentage = item.conditions_not_met.percentage + '%'
+      data.applications_withdrawn_after_number = item.applications_withdrawn_after.number
+      data.applications_withdrawn_after_percentage = item.applications_withdrawn_after.percentage + '%'
 
       records.push(data)
     })
