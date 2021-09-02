@@ -72,7 +72,7 @@ module.exports = () => {
         "Chinese",
         "Indian",
         "Pakastani",
-        // "Another Asian background",
+        // "Any other Asian background",
         "Prefer not to say",
       ]
     },
@@ -81,7 +81,7 @@ module.exports = () => {
       descriptions: [
         "African",
         "Caribbean",
-        // "Another Black background",
+        // "Any other Black, African or Caribbean background",
         "Prefer not to say",
       ]
     },
@@ -91,7 +91,7 @@ module.exports = () => {
         "Asian and White",
         "Black African and White",
         "Black Caribbean and White",
-        // "Another Mixed background",
+        // "Any other Mixed or Multiple ethnic background",
         "Prefer not to say",
       ]
     },
@@ -101,7 +101,7 @@ module.exports = () => {
         "British, English, Northern Irish, Scottish, or Welsh",
         "Irish",
         "Irish Traveller or Gypsy",
-        // "Another White background",
+        // "Any other White background",
         "Prefer not to say",
       ]
     },
@@ -109,7 +109,7 @@ module.exports = () => {
       name: "Another ethnic group",
       descriptions: [
         "Arab",
-        // "Another ethnic background",
+        // "Any other ethnic background",
         "Prefer not to say",
       ]
     },
@@ -120,7 +120,7 @@ module.exports = () => {
 
   if (diversityQuestionnaireAnswered == "Yes"){
 
-    sex = { 0: "Male", 1: "Female" }[sexInteger]
+    sex = { 0: "Male", 1: "Female", 2: "Intersex" }[sexInteger]
 
     disabled = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
 
@@ -134,7 +134,8 @@ module.exports = () => {
       "Mental health condition",
       "Physical disability or mobility issue",
       "Social or communication impairment",
-      "Other"
+      "Other",
+      "Prefer not to say"
     ]
     let shuffledDisabilities = disabilityChoices.sort(() => 0.5 - Math.random());
 
@@ -153,7 +154,7 @@ module.exports = () => {
   return {
     givenName: generatorHelpers.firstName(sex),
     familyName: generatorHelpers.lastName(),
-    dateOfBirth: faker.date.between('1958-01-01', '1998-01-01'),
+    dateOfBirth: faker.date.between('1958-01-01', '1998-12-31'),
     nationality,
     residency,
     isInternationalCandidate,

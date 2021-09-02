@@ -193,22 +193,19 @@ module.exports = router => {
   router.get('/reports/:organisationId/diversity', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const ethnicityData = [
-      {title: 'All'},
-      {title: 'Asian', items: ['Bangladeshi', 'Indian', 'Pakistani', 'Asian other']},
-      {title: 'Black', items: ['Black african', 'Black Caribbean', 'Black other']},
-      {title: 'Mixed', items: ['Mixed White/Asian', 'Mixed White/Black African', 'Mixed White/Black Caribbean', 'Mixed other']},
-      {title: 'White', items: ['White British', 'White Irish', 'White other']},
-      {title: 'Other', items: ['Arab', 'Any other']}
-    ]
-    const ageData = ['18 to 24', '25 to 34', '35 to 44', '45 to 54', '55 to 64', '65 and older', 'Prefer not to say']
-    const sexData = ['Female', 'Male', 'Prefer not to say']
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+
+    const ethnicityData = StatisticsHelper.getEthnicityData(applications)
+    const ageData = StatisticsHelper.getAgeData(applications)
+    const sexData = StatisticsHelper.getSexData(applications)
+    const disabilityData = StatisticsHelper.getDisabilityData(applications)
 
     res.render('data/statistics/diversity/index', {
       organisation,
       ethnicityData,
       ageData,
-      sexData
+      sexData,
+      disabilityData
     })
   })
 
