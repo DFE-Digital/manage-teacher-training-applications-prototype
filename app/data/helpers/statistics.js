@@ -58,15 +58,15 @@ exports.getEthnicityData = (applications) => {
 
   const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
 
-  data.push(
-    {
-      title: 'All',
-      counts: {
-        received: apps.length,
-        recruited: apps.filter(app => app.status === status).length
-      }
-    }
-  )
+  // data.push(
+  //   {
+  //     title: 'All',
+  //     counts: {
+  //       received: apps.length,
+  //       recruited: apps.filter(app => app.status === status).length
+  //     }
+  //   }
+  // )
 
   ethnicGroups.forEach((group, i) => {
     const parent = {}
@@ -147,6 +147,20 @@ exports.getDisabilityData = (applications) => {
       && app.personalDetails.disabilities.includes(option)
       && app.status === status).length
     data.push(item)
+  })
+
+  data.push({
+    title: 'None',
+    description: '',
+    counts: {
+      received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
+        && app.personalDetails.disabled !== undefined
+        && app.personalDetails.disabled === 'No').length,
+      recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
+        && app.personalDetails.disabled !== undefined
+        && app.personalDetails.disabled === 'No'
+        && app.status === 'Recruited').length
+    }
   })
 
   return data

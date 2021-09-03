@@ -73,7 +73,7 @@ module.exports = () => {
         "Indian",
         "Pakistani",
         // "Any other Asian background",
-        "Prefer not to say",
+        "Prefer not to say"
       ]
     },
     {
@@ -82,7 +82,7 @@ module.exports = () => {
         "African",
         "Caribbean",
         // "Any other Black, African or Caribbean background",
-        "Prefer not to say",
+        "Prefer not to say"
       ]
     },
     {
@@ -92,7 +92,7 @@ module.exports = () => {
         "Black African and White",
         "Black Caribbean and White",
         // "Any other Mixed or Multiple ethnic background",
-        "Prefer not to say",
+        "Prefer not to say"
       ]
     },
     {
@@ -102,7 +102,7 @@ module.exports = () => {
         "Irish",
         "Irish Traveller or Gypsy",
         // "Any other White background",
-        "Prefer not to say",
+        "Prefer not to say"
       ]
     },
     {
@@ -110,7 +110,7 @@ module.exports = () => {
       descriptions: [
         "Arab",
         // "Any other ethnic background",
-        "Prefer not to say",
+        "Prefer not to say"
       ]
     },
     {
