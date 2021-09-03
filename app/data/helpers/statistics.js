@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const { DateTime } = require('luxon')
+const _ = require('lodash')
 const System = require('./system')
 
 const dataDirectoryPath = path.join(__dirname, '../statistics')
@@ -121,14 +122,19 @@ exports.getDisabilityData = (applications) => {
   const status = 'Recruited'
   const data = []
 
-  data.push({
-    title: 'All',
-    description: '',
-    counts: {
-      received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes').length,
-      recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes' && app.status === 'Recruited').length
-    }
-  })
+  // data.push({
+  //   title: 'All',
+  //   description: '',
+  //   counts: {
+  //     received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
+  //       && app.personalDetails.disabled !== undefined
+  //       && app.personalDetails.disabled === 'Yes').length,
+  //     recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
+  //       && app.personalDetails.disabled !== undefined
+  //       && app.personalDetails.disabled === 'Yes'
+  //       && app.status === 'Recruited').length
+  //   }
+  // })
 
   options.forEach((option, i) => {
     const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
@@ -146,56 +152,55 @@ exports.getDisabilityData = (applications) => {
   return data
 }
 
-exports.getAgeData = (applications) => {
-  const status = 'Recruited'
-  const data = []
+const getAgeCounts = (applications) => {
+  const counts = []
 
-  const recruited = applications.filter(app => app.status === status)
-
-  const count = []
-  // counts.received = 0
-  // counts.recruited = 0
-
-  count['18_less'] = 0
-  count['18_to_24'] = 0
-  count['25_to_34'] = 0
-  count['35_to_44'] = 0
-  count['45_to_54'] = 0
-  count['55_to_64'] = 0
-  count['65_plus'] = 0
+  counts['18_less'] = 0
+  counts['18_to_24'] = 0
+  counts['25_to_34'] = 0
+  counts['35_to_44'] = 0
+  counts['45_to_54'] = 0
+  counts['55_to_64'] = 0
+  counts['65_plus'] = 0
 
   applications.forEach((app, i) => {
     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
     const years = Math.round(DateTime.now().diff(dateOfBirth, 'years').toObject().years)
 
-
     if (years < 18) {
-      count['18_less'] += 1
+      counts['18_less'] += 1
     } else if (years >= 18 && years <= 24) {
-      count['18_to_24'] += 1
+      counts['18_to_24'] += 1
     } else if (years >= 25 && years <= 34) {
-      count['25_to_34'] += 1
+      counts['25_to_34'] += 1
     } else if (years >= 35 && years <= 44) {
-      count['35_to_44'] += 1
+      counts['35_to_44'] += 1
     } else if (years >= 45 && years <= 54) {
-      count['45_to_54'] += 1
+      counts['45_to_54'] += 1
     } else if (years >= 55 && years <= 64) {
-      count['55_to_64'] += 1
+      counts['55_to_64'] += 1
     } else if (years >= 65) {
-      count['65_plus'] += 1
+      counts['65_plus'] += 1
     }
 
-    console.log(years);
-  });
+  })
 
-  console.log(count);
+  return counts
+}
+
+exports.getAgeData = (applications) => {
+  const status = 'Recruited'
+  const data = []
+
+  const receivedCounts = getAgeCounts(applications)
+  const recruitedCounts = getAgeCounts(applications.filter(app => app.status === status))
 
   return [
-    { title: '18 to 24', counts: { received: 0, recruited: 0 } },
-    { title: '25 to 34', counts: { received: 0, recruited: 0 } },
-    { title: '35 to 44', counts: { received: 0, recruited: 0 } },
-    { title: '45 to 54', counts: { received: 0, recruited: 0 } },
-    { title: '55 to 64', counts: { received: 0, recruited: 0 } },
-    { title: '65 and older', counts: { received: 0, recruited: 0 } }
+    { title: '18 to 24', counts: { received: receivedCounts['18_to_24'], recruited: recruitedCounts['18_to_24'] } },
+    { title: '25 to 34', counts: { received: receivedCounts['25_to_34'], recruited: recruitedCounts['25_to_34'] } },
+    { title: '35 to 44', counts: { received: receivedCounts['35_to_44'], recruited: recruitedCounts['35_to_44'] } },
+    { title: '45 to 54', counts: { received: receivedCounts['45_to_54'], recruited: recruitedCounts['45_to_54'] } },
+    { title: '55 to 64', counts: { received: receivedCounts['55_to_64'], recruited: recruitedCounts['55_to_64'] } },
+    { title: '65 and older', counts: { received: receivedCounts['65_plus'], recruited: recruitedCounts['65_plus'] } }
   ]
 }
