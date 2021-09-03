@@ -189,11 +189,8 @@ const getAgeCounts = (applications) => {
 }
 
 exports.getAgeData = (applications) => {
-  const status = 'Recruited'
-  const data = []
-
   const receivedCounts = getAgeCounts(applications)
-  const recruitedCounts = getAgeCounts(applications.filter(app => app.status === status))
+  const recruitedCounts = getAgeCounts(applications.filter(app => app.status === 'Recruited'))
 
   return [
     { title: '18 to 24', counts: { received: receivedCounts['18_to_24'], recruited: recruitedCounts['18_to_24'] } },
