@@ -71,7 +71,7 @@ module.exports = () => {
         "Bangladeshi",
         "Chinese",
         "Indian",
-        "Pakastani",
+        "Pakistani",
         // "Any other Asian background",
         "Prefer not to say",
       ]
