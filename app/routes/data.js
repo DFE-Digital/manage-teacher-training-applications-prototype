@@ -290,8 +290,6 @@ module.exports = router => {
     const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
     const ethnicityData = StatisticsHelper.getEthnicityData(applications)
 
-    console.log(ethnicityData);
-
     // headers for the CSV file
     const headers = []
     headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
@@ -325,7 +323,6 @@ module.exports = router => {
           records.push(data)
         })
       }
-
     })
 
     // write the CSV file and send to browser
@@ -341,6 +338,9 @@ module.exports = router => {
     const fileName = '/candidate-diversity-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+    const ageData = StatisticsHelper.getAgeData(applications)
+
     // headers for the CSV file
     const headers = []
     headers.push({ id: 'age', title: 'Age' })
@@ -354,6 +354,14 @@ module.exports = router => {
 
     // content for the CSV file
     const records = []
+
+    ageData.forEach((item, i) => {
+      const data = {}
+      data.age = item.title
+      data.received = item.counts.received
+      data.recruited = item.counts.recruited
+      records.push(data)
+    })
 
     // write the CSV file and send to browser
     csv.writeRecords(records)
