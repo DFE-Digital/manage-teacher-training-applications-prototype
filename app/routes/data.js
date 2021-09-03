@@ -1,4 +1,6 @@
+const archiver = require('archiver')
 const csvWriter = require('csv-writer').createObjectCsvWriter
+const fs = require('fs')
 const path = require('path')
 const { DateTime } = require('luxon')
 
@@ -24,6 +26,163 @@ const statuses = [
   { code: 'conditions_pending', title: 'Conditions pending' },
   { code: 'recruited', title: 'Recruited' }
 ]
+
+const writeSexData = (organisation, applications) => {
+  const organisationName = slugify(organisation.name)
+  const fileName = '/candidate-diversity-sex-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const filePath = downloadDirectoryPath + fileName
+
+  const apps = applications.filter(app => app.provider === organisation.name)
+  const sexData = StatisticsHelper.getSexData(apps)
+
+  // headers for the CSV file
+  const headers = []
+  headers.push({ id: 'sex', title: 'Sex' })
+  headers.push({ id: 'received', title: 'Received' })
+  headers.push({ id: 'recruited', title: 'Recruited' })
+
+  const csv = csvWriter({
+    path: filePath,
+    header: headers
+  })
+
+  // content for the CSV file
+  const records = []
+
+  sexData.forEach((item, i) => {
+    const data = {}
+    data.sex = item.title
+    data.received = item.counts.received
+    data.recruited = item.counts.recruited
+    records.push(data)
+  })
+
+  // write the CSV file and send to browser
+  csv.writeRecords(records)
+
+  return { filePath, fileName }
+}
+
+const writeDisabilityData = (organisation, applications) => {
+  const organisationName = slugify(organisation.name)
+  const fileName = '/candidate-diversity-disability-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const filePath = downloadDirectoryPath + fileName
+
+  const apps = applications.filter(app => app.provider === organisation.name)
+  const disabilityData = StatisticsHelper.getDisabilityData(apps)
+
+  // headers for the CSV file
+  const headers = []
+  headers.push({ id: 'disability', title: 'Disability' })
+  headers.push({ id: 'received', title: 'Received' })
+  headers.push({ id: 'recruited', title: 'Recruited' })
+
+  const csv = csvWriter({
+    path: filePath,
+    header: headers
+  })
+
+  // content for the CSV file
+  const records = []
+
+  disabilityData.forEach((item, i) => {
+    const data = {}
+    data.disability = item.title
+    data.received = item.counts.received
+    data.recruited = item.counts.recruited
+    records.push(data)
+  })
+
+  // write the CSV file and send to browser
+  csv.writeRecords(records)
+
+  return { filePath, fileName }
+}
+
+const writeEthnicityData = (organisation, applications) => {
+  const organisationName = slugify(organisation.name)
+  const fileName = '/candidate-diversity-ethnicity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const filePath = downloadDirectoryPath + fileName
+
+  const apps = applications.filter(app => app.provider === organisation.name)
+  const ethnicityData = StatisticsHelper.getEthnicityData(apps)
+
+  // headers for the CSV file
+  const headers = []
+  headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
+  headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
+  headers.push({ id: 'received', title: 'Received' })
+  headers.push({ id: 'recruited', title: 'Recruited' })
+
+  const csv = csvWriter({
+    path: filePath,
+    header: headers
+  })
+
+  // content for the CSV file
+  const records = []
+
+  ethnicityData.forEach((parent, i) => {
+    let data = {}
+    data.ethnicGroup = parent.title
+    data.ethnicBackground = ''
+    data.received = parent.counts.received
+    data.recruited = parent.counts.recruited
+    records.push(data)
+
+    if (parent.items !== undefined) {
+      parent.items.forEach((child, i) => {
+        data = {}
+        data.ethnicGroup = parent.title
+        data.ethnicBackground = child.title
+        data.received = child.counts.received
+        data.recruited = child.counts.recruited
+        records.push(data)
+      })
+    }
+  })
+
+  // write the CSV file and send to browser
+  csv.writeRecords(records)
+
+  return { filePath, fileName }
+}
+
+const writeAgeData = (organisation, applications) => {
+  const organisationName = slugify(organisation.name)
+  const fileName = '/candidate-diversity-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const filePath = downloadDirectoryPath + fileName
+
+  const apps = applications.filter(app => app.provider === organisation.name)
+  const ageData = StatisticsHelper.getAgeData(apps)
+
+  // headers for the CSV file
+  const headers = []
+  headers.push({ id: 'age', title: 'Age' })
+  headers.push({ id: 'received', title: 'Received' })
+  headers.push({ id: 'recruited', title: 'Recruited' })
+
+  const csv = csvWriter({
+    path: filePath,
+    header: headers
+  })
+
+  // content for the CSV file
+  const records = []
+
+  ageData.forEach((item, i) => {
+    const data = {}
+    data.age = item.title
+    data.received = item.counts.received
+    data.recruited = item.counts.recruited
+    records.push(data)
+  })
+
+  // write the CSV file and send to browser
+  csv.writeRecords(records)
+
+  return { filePath, fileName }
+}
 
 module.exports = router => {
 
@@ -203,6 +362,73 @@ module.exports = router => {
       sexData,
       disabilityData
     })
+  })
+
+  router.get('/reports/:organisationId/diversity/download', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    const organisationName = slugify(organisation.name)
+    const fileName = '/candidate-diversity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.zip'
+    const filePath = downloadDirectoryPath + fileName
+
+    const sexData = writeSexData(organisation, req.session.data.applications)
+    const disabilityData = writeDisabilityData(organisation, req.session.data.applications)
+    const ethnicityData = writeEthnicityData(organisation, req.session.data.applications)
+    const ageData = writeAgeData(organisation, req.session.data.applications)
+
+    // create a file to stream archive data to.
+    const output = fs.createWriteStream(filePath)
+    const archive = archiver('zip', {
+      zlib: { level: 9 } // Sets the compression level.
+    })
+
+    // listen for all archive data to be written
+    // 'close' event is fired only when a file descriptor is involved
+    output.on('close', () => {
+      console.log(archive.pointer() + ' total bytes')
+      console.log('archiver has been finalized and the output file descriptor has closed.')
+    })
+
+    // This event is fired when the data source is drained no matter what was the data source.
+    // It is not part of this library but rather from the NodeJS Stream API.
+    // @see: https://nodejs.org/api/stream.html#stream_event_end
+    output.on('end', () => {
+      console.log('Data has been drained')
+    })
+
+    // catch warnings (ie stat failures and other non-blocking errors)
+    archive.on('warning', (err) => {
+      if (err.code === 'ENOENT') {
+        // log warning
+      } else {
+        // throw error
+        throw err
+      }
+    })
+
+    // catch this error explicitly
+    archive.on('error', (err) => {
+      throw err
+    })
+
+    // pipe archive data to the file
+    archive.pipe(output)
+
+    // append files
+    // archive.append(fs.createReadStream(sexData.filePath), { name: sexData.fileName })
+    // archive.append(fs.createReadStream(disabilityData.filePath), { name: disabilityData.fileName })
+    // archive.append(fs.createReadStream(ethnicityData.filePath), { name: ethnicityData.fileName })
+    // archive.append(fs.createReadStream(ageData.filePath), { name: ageData.fileName })
+
+    archive.file(sexData.filePath, { name: sexData.fileName })
+    archive.file(disabilityData.filePath, { name: disabilityData.fileName })
+    archive.file(ethnicityData.filePath, { name: ethnicityData.fileName })
+    archive.file(ageData.filePath, { name: ageData.fileName })
+
+    // finalize the archive (ie we are done appending files but streams have to finish yet)
+    // 'close', 'end' or 'finish' may be fired right after calling this method so register to them beforehand
+    archive.finalize()
+
+    res.download(filePath,fileName)
   })
 
   router.get('/reports/:organisationId/diversity/download/sex', (req, res) => {
