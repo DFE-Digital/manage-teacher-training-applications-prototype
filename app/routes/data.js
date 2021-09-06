@@ -350,6 +350,11 @@ module.exports = router => {
 
     const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
 
+    // use application count as a proxy for candidate count
+    const candidateCount = applications.length
+    const questionnaireCount = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes').length
+    const questionnairePercentage = Math.round((questionnaireCount/candidateCount) * 100)
+
     const ethnicityData = StatisticsHelper.getEthnicityData(applications)
     const ageData = StatisticsHelper.getAgeData(applications)
     const sexData = StatisticsHelper.getSexData(applications)
@@ -360,7 +365,10 @@ module.exports = router => {
       ethnicityData,
       ageData,
       sexData,
-      disabilityData
+      disabilityData,
+      candidateCount,
+      questionnaireCount,
+      questionnairePercentage
     })
   })
 
