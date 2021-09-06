@@ -1,4 +1,4 @@
-const archiver = require('archiver')
+const archiver = require('archiver-promise')
 const csvWriter = require('csv-writer').createObjectCsvWriter
 const fs = require('fs')
 const path = require('path')
@@ -375,60 +375,24 @@ module.exports = router => {
     const ethnicityData = writeEthnicityData(organisation, req.session.data.applications)
     const ageData = writeAgeData(organisation, req.session.data.applications)
 
-    // create a file to stream archive data to.
-    const output = fs.createWriteStream(filePath)
-    const archive = archiver('zip', {
-      zlib: { level: 9 } // Sets the compression level.
+    // create archive file
+    const archive = archiver(filePath, {
+      store: true
     })
 
-    // listen for all archive data to be written
-    // 'close' event is fired only when a file descriptor is involved
-    output.on('close', () => {
-      console.log(archive.pointer() + ' total bytes')
-      console.log('archiver has been finalized and the output file descriptor has closed.')
-    })
-
-    // This event is fired when the data source is drained no matter what was the data source.
-    // It is not part of this library but rather from the NodeJS Stream API.
-    // @see: https://nodejs.org/api/stream.html#stream_event_end
-    output.on('end', () => {
-      console.log('Data has been drained')
-    })
-
-    // catch warnings (ie stat failures and other non-blocking errors)
-    archive.on('warning', (err) => {
-      if (err.code === 'ENOENT') {
-        // log warning
-      } else {
-        // throw error
-        throw err
-      }
-    })
-
-    // catch this error explicitly
-    archive.on('error', (err) => {
-      throw err
-    })
-
-    // pipe archive data to the file
-    archive.pipe(output)
-
-    // append files
-    // archive.append(fs.createReadStream(sexData.filePath), { name: sexData.fileName })
-    // archive.append(fs.createReadStream(disabilityData.filePath), { name: disabilityData.fileName })
-    // archive.append(fs.createReadStream(ethnicityData.filePath), { name: ethnicityData.fileName })
-    // archive.append(fs.createReadStream(ageData.filePath), { name: ageData.fileName })
-
+    // populate the archive with data
     archive.file(sexData.filePath, { name: sexData.fileName })
     archive.file(disabilityData.filePath, { name: disabilityData.fileName })
     archive.file(ethnicityData.filePath, { name: ethnicityData.fileName })
     archive.file(ageData.filePath, { name: ageData.fileName })
 
-    // finalize the archive (ie we are done appending files but streams have to finish yet)
-    // 'close', 'end' or 'finish' may be fired right after calling this method so register to them beforehand
+    // send archive to browser
     archive.finalize()
+      .then(() => {
+        res.download(filePath,fileName)
+        console.log('Done')
+      })
 
-    res.download(filePath,fileName)
   })
 
   router.get('/reports/:organisationId/diversity/download/sex', (req, res) => {
