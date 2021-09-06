@@ -348,7 +348,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/diversity', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
 
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) //  && app.cycle === '2020 to 2021'
 
     // use application count as a proxy for candidate count
     const candidateCount = applications.length

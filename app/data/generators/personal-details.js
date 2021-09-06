@@ -118,7 +118,7 @@ module.exports = () => {
     }
   ]
 
-  if (diversityQuestionnaireAnswered == "Yes"){
+  if (diversityQuestionnaireAnswered === "Yes") {
 
     sex = { 0: "Male", 1: "Female", 2: "Intersex" }[sexInteger]
 

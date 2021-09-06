@@ -58,16 +58,6 @@ exports.getEthnicityData = (applications) => {
 
   const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
 
-  // data.push(
-  //   {
-  //     title: 'All',
-  //     counts: {
-  //       received: apps.length,
-  //       recruited: apps.filter(app => app.status === status).length
-  //     }
-  //   }
-  // )
-
   ethnicGroups.forEach((group, i) => {
     const parent = {}
     parent.title = group.name
@@ -75,7 +65,9 @@ exports.getEthnicityData = (applications) => {
     parent.items = []
 
     parent.counts.received = apps.filter(app => app.personalDetails.ethnicGroup === group.name).length
-    parent.counts.recruited = apps.filter(app => app.personalDetails.ethnicGroup === group.name && app.status === status).length
+    parent.counts.recruited = apps.filter(app => app.personalDetails.ethnicGroup === group.name
+        && app.status === status).length
+
 
     if (group.items !== undefined) {
       group.items.forEach((item, i) => {
@@ -105,12 +97,16 @@ exports.getSexData = (applications) => {
   const status = 'Recruited'
   const data = []
 
+  const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
+    && app.personalDetails.sex !== undefined)
+
   options.forEach((option, i) => {
     const item = {}
     item.title = option
     item.counts = {}
-    item.counts.received = applications.filter(app => app.personalDetails.sex === option).length
-    item.counts.recruited = applications.filter(app => app.personalDetails.sex === option && app.status === status).length
+    item.counts.received = apps.filter(app => app.personalDetails.sex === option).length
+    item.counts.recruited = apps.filter(app => app.personalDetails.sex === option
+      && app.status === status).length
     data.push(item)
   })
 
@@ -118,26 +114,13 @@ exports.getSexData = (applications) => {
 }
 
 exports.getDisabilityData = (applications) => {
-  const options = ['Blind','Deaf','Learning difficulty','Long-standing illness','Mental health condition','Physical disability or mobility issue','Social or communication impairment','Other','Prefer not to say']
+  const options = ['Blind','Deaf','Learning difficulty','Long-standing illness','Mental health condition','Physical disability or mobility issue','Social or communication impairment','Other']
   const status = 'Recruited'
   const data = []
 
-  // data.push({
-  //   title: 'All',
-  //   description: '',
-  //   counts: {
-  //     received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
-  //       && app.personalDetails.disabled !== undefined
-  //       && app.personalDetails.disabled === 'Yes').length,
-  //     recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
-  //       && app.personalDetails.disabled !== undefined
-  //       && app.personalDetails.disabled === 'Yes'
-  //       && app.status === 'Recruited').length
-  //   }
-  // })
+  const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
 
   options.forEach((option, i) => {
-    const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
     const item = {}
     item.title = option
     item.counts = {}
@@ -149,19 +132,17 @@ exports.getDisabilityData = (applications) => {
     data.push(item)
   })
 
-  data.push({
-    title: 'None',
-    description: '',
-    counts: {
-      received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
-        && app.personalDetails.disabled !== undefined
-        && app.personalDetails.disabled === 'No').length,
-      recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
-        && app.personalDetails.disabled !== undefined
-        && app.personalDetails.disabled === 'No'
-        && app.status === 'Recruited').length
-    }
-  })
+  // data.push({
+  //   title: 'None',
+  //   description: '',
+  //   counts: {
+  //     received: apps.filter(app => app.personalDetails.disabled !== undefined
+  //       && app.personalDetails.disabled === 'No').length,
+  //     recruited: apps.filter(app => app.personalDetails.disabled !== undefined
+  //       && app.personalDetails.disabled === 'No'
+  //       && app.status === status).length
+  //   }
+  // })
 
   return data
 }
