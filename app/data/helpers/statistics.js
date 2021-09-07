@@ -113,8 +113,49 @@ exports.getSexData = (applications) => {
   return data
 }
 
+exports.getDisabilityQuestionResponseCounts = (applications) => {
+  const status = 'Recruited'
+  const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
+
+  return [
+    {
+      title: 'Yes',
+      counts: {
+        received: apps.filter(app => app.personalDetails.disabled === 'Yes').length,
+        recruited: apps.filter(app => app.personalDetails.disabled === 'Yes'
+          && app.status === status).length
+      }
+    },
+    {
+      title: 'No',
+      counts: {
+        received: apps.filter(app => app.personalDetails.disabled === 'No').length,
+        recruited: apps.filter(app => app.personalDetails.disabled === 'No'
+          && app.status === status).length
+      }
+    },
+    {
+      title: 'Prefer not to say',
+      counts: {
+        received: apps.filter(app => app.personalDetails.disabled === 'Prefer not to say').length,
+        recruited: apps.filter(app => app.personalDetails.disabled === 'Prefer not to say'
+          && app.status === status).length
+      }
+    }
+  ]
+}
+
 exports.getDisabilityData = (applications) => {
-  const options = ['Blind','Deaf','Learning difficulty','Long-standing illness','Mental health condition','Physical disability or mobility issue','Social or communication impairment','Other']
+  const options = [
+    { title: 'Blind', description: 'Includes serious visual impairments which are not corrected by glasses' },
+    { title: 'Deaf', description: 'Includes serious hearing impairments' },
+    { title: 'Learning difficulty', description: 'For example, dyslexia, dyspraxia or ADHD' },
+    { title: 'Long-standing illness', description: 'For example, cancer, HIV, diabetes, chronic heart disease or epilepsy' },
+    { title: 'Mental health condition', description: 'For example, depression, schizophrenia or anxiety disorder' },
+    { title: 'Physical disability or mobility issue', description: 'For example, impaired use of arms or legs, use of a wheelchair or crutches' },
+    { title: 'Social or communication impairment', description: 'For example, Asperger’s or another autistic spectrum disorder' },
+    { title: 'Other', description: '' }
+  ]
   const status = 'Recruited'
   const data = []
 
@@ -122,12 +163,13 @@ exports.getDisabilityData = (applications) => {
 
   options.forEach((option, i) => {
     const item = {}
-    item.title = option
+    item.title = option.title
+    item.description = option.description
     item.counts = {}
     item.counts.received = apps.filter(app => app.personalDetails.disabilities !== undefined
-      && app.personalDetails.disabilities.includes(option)).length
+      && app.personalDetails.disabilities.includes(option.title)).length
     item.counts.recruited = apps.filter(app => app.personalDetails.disabilities !== undefined
-      && app.personalDetails.disabilities.includes(option)
+      && app.personalDetails.disabilities.includes(option.title)
       && app.status === status).length
     data.push(item)
   })
@@ -188,11 +230,34 @@ exports.getAgeData = (applications) => {
   const recruitedCounts = getAgeCounts(applications.filter(app => app.status === 'Recruited'))
 
   return [
+    // { title: 'Less than 18', counts: { received: receivedCounts['18_less'], recruited: recruitedCounts['18_less'] } },
     { title: '18 to 24', counts: { received: receivedCounts['18_to_24'], recruited: recruitedCounts['18_to_24'] } },
     { title: '25 to 34', counts: { received: receivedCounts['25_to_34'], recruited: recruitedCounts['25_to_34'] } },
     { title: '35 to 44', counts: { received: receivedCounts['35_to_44'], recruited: recruitedCounts['35_to_44'] } },
     { title: '45 to 54', counts: { received: receivedCounts['45_to_54'], recruited: recruitedCounts['45_to_54'] } },
     { title: '55 to 64', counts: { received: receivedCounts['55_to_64'], recruited: recruitedCounts['55_to_64'] } },
     { title: '65 and older', counts: { received: receivedCounts['65_plus'], recruited: recruitedCounts['65_plus'] } }
+  ]
+}
+
+exports.getDiversityQuestionnaireResponseCounts = (applications) => {
+  const status = 'Recruited'
+  return [
+    {
+      title: 'Yes',
+      counts: {
+        received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes').length,
+        recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
+          && app.status === status).length
+      }
+    },
+    {
+      title: 'No',
+      counts: {
+        received: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'No').length,
+        recruited: applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'No'
+          && app.status === status).length
+      }
+    }
   ]
 }

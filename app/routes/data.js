@@ -38,8 +38,8 @@ const writeSexData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'sex', title: 'Sex' })
-  headers.push({ id: 'received', title: 'Received' })
-  headers.push({ id: 'recruited', title: 'Recruited' })
+  headers.push({ id: 'received', title: 'Candidates applied' })
+  headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -74,8 +74,9 @@ const writeDisabilityData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'disability', title: 'Disability' })
-  headers.push({ id: 'received', title: 'Received' })
-  headers.push({ id: 'recruited', title: 'Recruited' })
+  headers.push({ id: 'description', title: 'Description' })
+  headers.push({ id: 'received', title: 'Candidates applied' })
+  headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -88,6 +89,7 @@ const writeDisabilityData = (organisation, applications) => {
   disabilityData.forEach((item, i) => {
     const data = {}
     data.disability = item.title
+    data.description = item.description
     data.received = item.counts.received
     data.recruited = item.counts.recruited
     records.push(data)
@@ -111,8 +113,8 @@ const writeEthnicityData = (organisation, applications) => {
   const headers = []
   headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
   headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
-  headers.push({ id: 'received', title: 'Received' })
-  headers.push({ id: 'recruited', title: 'Recruited' })
+  headers.push({ id: 'received', title: 'Candidates applied' })
+  headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -159,8 +161,8 @@ const writeAgeData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'age', title: 'Age' })
-  headers.push({ id: 'received', title: 'Received' })
-  headers.push({ id: 'recruited', title: 'Recruited' })
+  headers.push({ id: 'received', title: 'Candidates applied' })
+  headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -359,13 +361,17 @@ module.exports = router => {
     const ageData = StatisticsHelper.getAgeData(applications)
     const sexData = StatisticsHelper.getSexData(applications)
     const disabilityData = StatisticsHelper.getDisabilityData(applications)
+    const questionnaireResponseData = StatisticsHelper.getDiversityQuestionnaireResponseCounts(applications)
+    const disabilityResponseData = StatisticsHelper.getDisabilityQuestionResponseCounts(applications)
 
     res.render('data/statistics/diversity/index', {
       organisation,
+      questionnaireResponseData,
       ethnicityData,
       ageData,
       sexData,
       disabilityData,
+      disabilityResponseData,
       candidateCount,
       questionnaireCount,
       questionnairePercentage
@@ -415,8 +421,8 @@ module.exports = router => {
     // headers for the CSV file
     const headers = []
     headers.push({ id: 'sex', title: 'Sex' })
-    headers.push({ id: 'received', title: 'Received' })
-    headers.push({ id: 'recruited', title: 'Recruited' })
+    headers.push({ id: 'received', title: 'Candidates applied' })
+    headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
     const csv = csvWriter({
       path: filePath,
@@ -453,8 +459,9 @@ module.exports = router => {
     // headers for the CSV file
     const headers = []
     headers.push({ id: 'disability', title: 'Disability' })
-    headers.push({ id: 'received', title: 'Received' })
-    headers.push({ id: 'recruited', title: 'Recruited' })
+    headers.push({ id: 'description', title: 'Description' })
+    headers.push({ id: 'received', title: 'Candidates applied' })
+    headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
     const csv = csvWriter({
       path: filePath,
@@ -467,6 +474,7 @@ module.exports = router => {
     disabilityData.forEach((item, i) => {
       const data = {}
       data.disability = item.title
+      data.description = item.description
       data.received = item.counts.received
       data.recruited = item.counts.recruited
       records.push(data)
@@ -492,8 +500,8 @@ module.exports = router => {
     const headers = []
     headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
     headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
-    headers.push({ id: 'received', title: 'Received' })
-    headers.push({ id: 'recruited', title: 'Recruited' })
+    headers.push({ id: 'received', title: 'Candidates applied' })
+    headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
     const csv = csvWriter({
       path: filePath,
@@ -542,8 +550,8 @@ module.exports = router => {
     // headers for the CSV file
     const headers = []
     headers.push({ id: 'age', title: 'Age' })
-    headers.push({ id: 'received', title: 'Received' })
-    headers.push({ id: 'recruited', title: 'Recruited' })
+    headers.push({ id: 'received', title: 'Candidates applied' })
+    headers.push({ id: 'recruited', title: 'Candidates recruited' })
 
     const csv = csvWriter({
       path: filePath,
