@@ -9,7 +9,7 @@ exports.STATUS = {
   OFFER_WITHDRAWN: 'Offer withdrawn',
   DECLINED: 'Declined',
   CONDITIONS_NOT_MET: 'Conditions not met',
-  DEFERRED: 'Deferred',
+  DEFERRED: 'Deferred'
 }
 
 exports.EVENTS = {
@@ -30,5 +30,5 @@ exports.EVENTS = {
   FEEDBACK_SENT: 'Feedback sent',
   WITHDRAWN: 'Application withdrawn',
   OFFER_CONDITIONS_UPDATED: 'Status of conditions updated',
-  NOTE_ADDED: 'Note added',
+  NOTE_ADDED: 'Note added'
 }
