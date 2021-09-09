@@ -53,101 +53,181 @@ module.exports = () => {
     residency.rightToWorkStudyDetails += nationality[0] + ' citizen'
   }
 
+  // ---------------------------------------------------------------------------
   // Equality and diversity
-  const diversityQuestionnaireAnswered = faker.helpers.randomize(["Yes", "Yes", "No"])
-
-  const sexInteger = faker.helpers.randomize([0, 1])
-
+  // ---------------------------------------------------------------------------
   let sex
   let disabled
   let disabilities
   let ethnicGroup
-  let ethnicGroupDescription
+  let ethnicBackground
 
-  let ethnicGroups = [
-    {
-      name: "Asian or Asian British",
-      descriptions: [
-        "Bangladeshi",
-        "Chinese",
-        "Indian",
-        "Pakistani",
-        // "Any other Asian background",
-        "Prefer not to say"
-      ]
+  const diversityQuestionnaireAnswered = faker.helpers.randomize(['Yes', 'Yes', 'No'])
+
+  // Candidate's sex
+  const sexOptions = {
+    female: 'Female',
+    male: 'Male',
+    intersex: 'Intersex',
+    preferNotToSay: 'Prefer not to say'
+  }
+
+  const selectedSex = weighted.select({
+    female: 0.4,
+    male: 0.4,
+    intersex: 0.01,
+    preferNotToSay: 0.19
+  })
+
+  // Candidate disability
+  const disabledOptions = {
+    yes: 'Yes',
+    no: 'No',
+    preferNotToSay: 'Prefer not to say'
+  }
+
+  const selectedDisabled = weighted.select({
+    yes: 0.2,
+    no: 0.75,
+    preferNotToSay: 0.05
+  })
+
+  // Ethnic groups
+  const ethnicGroupOptions = {
+    asian: 'Asian or Asian British',
+    black: 'Black, African, Black British or Caribbean',
+    mixed: 'Mixed or multiple ethnic groups',
+    white: 'White',
+    other: 'Another ethnic group',
+    preferNotToSay: 'Prefer not to say'
+  }
+
+  const selectedEthnicGroup = weighted.select({
+    asian: 0.15,
+    black: 0.12,
+    mixed: 0.03,
+    white: 0.66,
+    other: 0.03,
+    preferNotToSay: 0.01
+  })
+
+  // Ethnic backgrounds (subset of groups)
+  const ethnicBackgroundOptions = {
+    asian: {
+      bangladeshi: 'Bangladeshi',
+      chinese: 'Chinese',
+      indian: 'Indian',
+      pakistani: 'Pakistani',
+      other: 'Any other Asian background',
+      preferNotToSay: 'Prefer not to say'
     },
-    {
-      name: "Black, African, Black British or Caribbean",
-      descriptions: [
-        "African",
-        "Caribbean",
-        // "Any other Black, African or Caribbean background",
-        "Prefer not to say"
-      ]
+    black: {
+      african: 'African',
+      caribbean: 'Caribbean',
+      other: 'Any other Black, African or Caribbean background',
+      preferNotToSay: 'Prefer not to say'
     },
-    {
-      name: "Mixed or multiple ethnic groups",
-      descriptions: [
-        "Asian and White",
-        "Black African and White",
-        "Black Caribbean and White",
-        // "Any other Mixed or Multiple ethnic background",
-        "Prefer not to say"
-      ]
+    mixed: {
+      asian: 'Asian and White',
+      african: 'Black African and White',
+      caribbean: 'Black Caribbean and White',
+      other: 'Any other Mixed or Multiple ethnic background',
+      preferNotToSay: 'Prefer not to say'
     },
-    {
-      name: "White",
-      descriptions: [
-        "British, English, Northern Irish, Scottish, or Welsh",
-        "Irish",
-        "Irish Traveller or Gypsy",
-        // "Any other White background",
-        "Prefer not to say"
-      ]
+    white: {
+      british: 'British, English, Northern Irish, Scottish, or Welsh',
+      irish: 'Irish',
+      traveller: 'Irish Traveller or Gypsy',
+      other: 'Any other White background',
+      preferNotToSay: 'Prefer not to say'
     },
-    {
-      name: "Another ethnic group",
-      descriptions: [
-        "Arab",
-        // "Any other ethnic background",
-        "Prefer not to say"
-      ]
-    },
-    {
-      name: "Prefer not to say"
+    other: {
+      arab: 'Arab',
+      other: 'Any other ethnic background',
+      preferNotToSay: 'Prefer not to say'
     }
-  ]
+  }
 
-  if (diversityQuestionnaireAnswered === "Yes") {
+  const selectedEthnicBackground = {
+    asian: weighted.select({
+      bangladeshi: 0.1,
+      chinese: 0.05,
+      indian: 0.29,
+      pakistani: 0.43,
+      other: 0.03,
+      preferNotToSay: 0.1
+    }),
+    black: weighted.select({
+      african: 0.8,
+      caribbean: 0.16,
+      other: 0.03,
+      preferNotToSay: 0.01
+    }),
+    mixed: weighted.select({
+      asian: 0.24,
+      african: 0.15,
+      caribbean: 0.3,
+      other: 0.29,
+      preferNotToSay: 0.02
+    }),
+    white: weighted.select({
+      british: 0.9,
+      irish: 0.01,
+      traveller: 0,
+      other: 0,
+      preferNotToSay: 0.09
+    }),
+    other: weighted.select({
+      arab: 0.45,
+      other: 0.51,
+      preferNotToSay: 0.04
+    })
+  }
 
-    sex = { 0: "Male", 1: "Female", 2: "Intersex" }[sexInteger]
+  if (diversityQuestionnaireAnswered === 'Yes') {
 
-    disabled = faker.helpers.randomize(["Yes", "No", "Prefer not to say"])
+    sex = sexOptions[selectedSex]
 
-    let disabilityCount = faker.datatype.number(3); // up to 3 disabilities
+    disabled = disabledOptions[selectedDisabled]
+
+    let disabilityCount = faker.datatype.number(3) // up to 3 disabilities
 
     let disabilityChoices = [
-      "Blind",
-      "Deaf",
-      "Learning difficulty",
-      "Long-standing illness",
-      "Mental health condition",
-      "Physical disability or mobility issue",
-      "Social or communication impairment",
-      "Other",
-      "Prefer not to say"
+      'Blind',
+      'Deaf',
+      'Learning difficulty',
+      'Long-standing illness',
+      'Mental health condition',
+      'Physical disability or mobility issue',
+      'Social or communication impairment',
+      'Other'
     ]
-    let shuffledDisabilities = disabilityChoices.sort(() => 0.5 - Math.random());
 
-    if (disabled == "Yes" && disabilityCount){
-      disabilities = shuffledDisabilities.slice(0, disabilityCount).sort();
+    let shuffledDisabilities = disabilityChoices.sort(() => 0.5 - Math.random())
+
+    if (disabled === 'Yes' && disabilityCount) {
+      disabilities = shuffledDisabilities.slice(0, disabilityCount).sort()
     }
 
-    ethnicGroup = faker.helpers.randomize(ethnicGroups)
-    if(ethnicGroup.descriptions) {
-      ethnicGroupDescription = faker.helpers.randomize(ethnicGroup.descriptions)
+    ethnicGroup = ethnicGroupOptions[selectedEthnicGroup]
+
+    switch (ethnicGroup) {
+      case 'Asian or Asian British':
+        ethnicBackground = ethnicBackgroundOptions.asian[selectedEthnicBackground.asian]
+        break
+      case 'Black, African, Black British or Caribbean':
+        ethnicBackground = ethnicBackgroundOptions.black[selectedEthnicBackground.black]
+        break
+      case 'Mixed or multiple ethnic groups':
+        ethnicBackground = ethnicBackgroundOptions.mixed[selectedEthnicBackground.mixed]
+        break
+      case 'White':
+        ethnicBackground = ethnicBackgroundOptions.white[selectedEthnicBackground.white]
+        break
+      case 'Another ethnic group':
+        ethnicBackground = ethnicBackgroundOptions.other[selectedEthnicBackground.other]
+        break
     }
-    ethnicGroup = ethnicGroup.name
 
   }
 
@@ -163,6 +243,6 @@ module.exports = () => {
     disabled,
     disabilities,
     ethnicGroup,
-    ethnicGroupDescription
+    ethnicBackground
   }
 }

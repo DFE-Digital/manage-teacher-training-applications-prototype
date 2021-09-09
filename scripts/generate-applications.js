@@ -34,6 +34,8 @@ const generateEvents = require('../app/data/generators/events')
 const generateInterviews = require('../app/data/generators/interviews')
 const generateSubmittedDate = require('../app/data/generators/submittedDate')
 
+const { STATUS } = require('./applications/constants')
+
 const generateFakeApplication = (params = {}) => {
   if (!params.status.length) {
     return null
@@ -899,82 +901,23 @@ const generateFakeApplications = () => {
     otherQualifications: {}
   }))
 
-  for (var i = 0; i < 5; i++) {
-    const application = generateFakeApplication({
-      status: 'Received'
-    })
-    applications.push(application)
-  }
+  for (const [key, value] of Object.entries(STATUS)) {
+    const count = faker.datatype.number({ 'min': 30, 'max': 75 })
+    let application
 
-  for (var i = 0; i < 10; i++) {
-    const application = generateFakeApplication({
-      status: 'Interviewing'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 20; i++) {
-    const application = generateFakeApplication({
-      status: 'Offered',
-      cycle: '2020 to 2021'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 20; i++) {
-    const application = generateFakeApplication({
-      status: 'Conditions pending'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 20; i++) {
-    const application = generateFakeApplication({
-      status: 'Recruited'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 20; i++) {
-    const application = generateFakeApplication({
-      status: 'Conditions not met'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 2; i++) {
-    const application = generateFakeApplication({
-      status: 'Deferred'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 30; i++) {
-    const application = generateFakeApplication({
-      status: 'Declined'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 30; i++) {
-    const application = generateFakeApplication({
-      status: 'Rejected'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 30; i++) {
-    const application = generateFakeApplication({
-      status: 'Application withdrawn'
-    })
-    applications.push(application)
-  }
-
-  for (var i = 0; i < 30; i++) {
-    const application = generateFakeApplication({
-      status: 'Offer withdrawn'
-    })
-    applications.push(application)
+    for (let i = 0; i < count; i++) {
+      if (value === 'Offered') {
+        application = generateFakeApplication({
+          status: value,
+          cycle: '2020 to 2021'
+        })
+      } else {
+        application = generateFakeApplication({
+          status: value
+        })
+      }
+      applications.push(application)
+    }
   }
 
   return applications

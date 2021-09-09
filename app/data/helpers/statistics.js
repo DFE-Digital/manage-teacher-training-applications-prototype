@@ -76,10 +76,10 @@ exports.getEthnicityData = (applications) => {
         child.counts = {}
 
         child.counts.received = apps.filter(app => app.personalDetails.ethnicGroup === group.name
-          && app.personalDetails.ethnicGroupDescription === item).length
+          && app.personalDetails.ethnicBackground === item).length
 
         child.counts.recruited = apps.filter(app => app.personalDetails.ethnicGroup === group.name
-          && app.personalDetails.ethnicGroupDescription === item
+          && app.personalDetails.ethnicBackground === item
           && app.status === status).length
 
         parent.items.push(child)
