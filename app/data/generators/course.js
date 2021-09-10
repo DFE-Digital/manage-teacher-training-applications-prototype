@@ -1,3 +1,4 @@
+
 // [
 //   {
 //     "name": "Business studies with economics",
@@ -34,7 +35,6 @@
 //   }
 // ]
 
-
 const faker = require('faker')
 faker.locale = 'en_GB'
 const weighted = require('weighted')
@@ -67,49 +67,49 @@ module.exports = () => {
 
   const subjectOptions = {
     primary: {
-      P01: { code: "00", name: "Primary" },
-      P02: { code: "01", name: "Primary with English" },
-      P03: { code: "02", name: "Primary with geography and history" },
-      P04: { code: "03", name: "Primary with mathematics" },
-      P05: { code: "04", name: "Primary with modern languages" },
-      P06: { code: "06", name: "Primary with physical education" },
-      P07: { code: "07", name: "Primary with science" }
+      P01: { code: '00', name: 'Primary' },
+      P02: { code: '01', name: 'Primary with English' },
+      P03: { code: '02', name: 'Primary with geography and history' },
+      P04: { code: '03', name: 'Primary with mathematics' },
+      P05: { code: '04', name: 'Primary with modern languages' },
+      P06: { code: '06', name: 'Primary with physical education' },
+      P07: { code: '07', name: 'Primary with science' }
     },
     secondary: {
-      S01: { code: "W1", name: "Art and design" },
-      S02: { code: "C1", name: "Biology" },
-      S03: { code: "08", name: "Business studies" },
-      S04: { code: "F1", name: "Chemistry" },
-      S05: { code: "09", name: "Citizenship" },
-      S06: { code: "Q8", name: "Classics" },
-      S07: { code: "P3", name: "Communications and media studies" },
-      S08: { code: "11", name: "Computer science" },
-      S09: { code: "12", name: "Dance" },
-      S10: { code: "DT", name: "Design and technology" },
-      S11: { code: "Q3", name: "Drama" },
-      S12: { code: "L1", name: "Economics" },
-      S13: { code: "13", name: "English" },
-      S14: { code: "16", name: "English as a second or other language" },
-      S15: { code: "15", name: "French" },
-      S16: { code: "F8", name: "Geography" },
-      S17: { code: "17", name: "German" },
-      S18: { code: "L5", name: "Health and social care" },
-      S19: { code: "V1", name: "History" },
-      S20: { code: "18", name: "Italian" },
-      S21: { code: "19", name: "Japanese" },
-      S22: { code: "20", name: "Mandarin" },
-      S23: { code: "G1", name: "Mathematics" },
-      S24: { code: "24", name: "Modern languages" },
-      S25: { code: "W3", name: "Music" },
-      S26: { code: "P1", name: "Philosophy" },
-      S27: { code: "C6", name: "Physical education" },
-      S28: { code: "F3", name: "Physics" },
-      S29: { code: "C8", name: "Psychology" },
-      S30: { code: "V6", name: "Religious education" },
-      S31: { code: "21", name: "Russian" },
-      S32: { code: "F0", name: "Science" },
-      S33: { code: "14", name: "Social sciences" },
-      S34: { code: "22", name: "Spanish" }
+      S01: { code: 'W1', name: 'Art and design' },
+      S02: { code: 'C1', name: 'Biology' },
+      S03: { code: '08', name: 'Business studies' },
+      S04: { code: 'F1', name: 'Chemistry' },
+      S05: { code: '09', name: 'Citizenship' },
+      S06: { code: 'Q8', name: 'Classics' },
+      S07: { code: 'P3', name: 'Communications and media studies' },
+      S08: { code: '11', name: 'Computing' },
+      S09: { code: '12', name: 'Dance' },
+      S10: { code: 'DT', name: 'Design and technology' },
+      S11: { code: 'Q3', name: 'Drama' },
+      S12: { code: 'L1', name: 'Economics' },
+      S13: { code: '13', name: 'English' },
+      S14: { code: '16', name: 'English as a second or other language' },
+      S15: { code: '15', name: 'French' },
+      S16: { code: 'F8', name: 'Geography' },
+      S17: { code: '17', name: 'German' },
+      S18: { code: 'L5', name: 'Health and social care' },
+      S19: { code: 'V1', name: 'History' },
+      S20: { code: '18', name: 'Italian' },
+      S21: { code: '19', name: 'Japanese' },
+      S22: { code: '20', name: 'Mandarin' },
+      S23: { code: 'G1', name: 'Mathematics' },
+      S24: { code: '24', name: 'Modern languages' },
+      S25: { code: 'W3', name: 'Music' },
+      S26: { code: 'P1', name: 'Philosophy' },
+      S27: { code: 'C6', name: 'Physical education' },
+      S28: { code: 'F3', name: 'Physics' },
+      S29: { code: 'C8', name: 'Psychology' },
+      S30: { code: 'V6', name: 'Religious education' },
+      S31: { code: '21', name: 'Russian' },
+      S32: { code: 'F0', name: 'Science' },
+      S33: { code: '14', name: 'Social sciences' },
+      S34: { code: '22', name: 'Spanish' }
     },
     further: {
       F01: { code: '41', name: 'Further education'}
