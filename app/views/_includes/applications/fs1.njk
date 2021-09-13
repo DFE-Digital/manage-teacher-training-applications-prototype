@@ -1,0 +1,56 @@
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Personal details</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "First name"
+    },
+    value: {
+      text: "Patrick"
+    }
+  }, {
+    key: {
+      text: "Last name"
+    },
+    value: {
+      text: "O’Connell"
+    }
+  },  {
+    key: {
+      text: "Date of birth"
+    },
+    value: {
+      text: "19 June 1991"
+    }
+  },{
+    key: {
+      text: "Nationality"
+    },
+    value: {
+      text: "Irish"
+    }
+  },{
+    key: {
+      text: "Have you lived in the UK or Ireland for 3 years or more?"
+    },
+    value: {
+      text: "Yes"
+    }
+  }, {
+    key: {
+      text: "Contact address"
+    },
+    value: {
+      text: "15 Ava Gardens, Ormeau, Belfast BT7 3BW
+Northern Ireland
+"
+    }
+  }, {
+    key: {
+      text: "Permanent address"
+    },
+    value: {
+      html: "Same as contact address"
+    }
+  }]
+}) }}

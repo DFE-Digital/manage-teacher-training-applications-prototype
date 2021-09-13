@@ -1,0 +1,62 @@
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Personal details</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "First name"
+    },
+    value: {
+      text: "Maria"
+    }
+  }, {
+    key: {
+      text: "Last name"
+    },
+    value: {
+      text: "Flavia"
+    }
+  },  {
+    key: {
+      text: "Date of birth"
+    },
+    value: {
+      text: "8 March 2000"
+    }
+  },{
+    key: {
+      text: "Nationality"
+    },
+    value: {
+      text: "British"
+    }
+  },{
+    key: {
+      text: "Have you lived in the UK or Ireland for 3 years or more?"
+    },
+    value: {
+      text: "No"
+    }
+  }, {
+    key: {
+      text: "Date entered the UK"
+    },
+    value: {
+      text: "2 February 2020"
+    }
+  }, {
+    key: {
+      text: "Contact address"
+    },
+    value: {
+      text: "5 Taylor Rd, Mitcham, London, CR4 3JR
+"
+    }
+  }, {
+    key: {
+      text: "Permanent address"
+    },
+    value: {
+      html: "Same as contact address"
+    }
+  }]
+}) }}

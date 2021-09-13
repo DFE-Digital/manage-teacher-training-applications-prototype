@@ -32,7 +32,12 @@
 
       {% include "_includes/applications/application-details.njk" %}
       {% if not query.transferred %}
-        {% include "_includes/applications/personal-details.njk" %}
+
+        {% if query.fs %}
+          {% include "_includes/applications/fs"+query.fs+".njk" %}
+        {% else %}
+          {% include "_includes/applications/personal-details.njk" %}
+        {% endif %}
       {% endif %}
       {% include "_includes/applications/course-details.njk" %}
 
