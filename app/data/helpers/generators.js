@@ -1,10 +1,8 @@
-
-
 const faker = require('faker')
 faker.locale = 'en_GB'
 
 exports.firstName = (sex) => {
-  if(sex === 'male') {
+  if (sex === 'male') {
     return faker.helpers.randomize([
       'Bruce',
       'Clinton',

@@ -3,7 +3,6 @@
 //   {
 //     "name": "Business studies with economics",
 //     "code": "B123",
-//     "providerId": "B25",
 //     "subjects": [
 //       {
 //         "name": "Business studies",
@@ -39,9 +38,19 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 const weighted = require('weighted')
 
-module.exports = () => {
+const arrayToList = (array, join = ', ', final = ' and ') => {
+  const arr = array.slice(0)
 
-  const course = {}
+  const last = arr.pop()
+
+  if (array.length > 1) {
+    return arr.join(join) + final + last
+  }
+
+  return last
+}
+
+module.exports = (params = {}) => {
 
   // ---------------------------------------------------------------------------
   // Subject level
@@ -175,11 +184,25 @@ module.exports = () => {
       break
     case 'Secondary':
       subjects.push(subjectOptions.secondary[selectedSubject.secondary])
+      // TODO: compound course subjects, for example:
+      //    Business studies and Economics
+      //    Science (Biology, Chemistry and Physics)
+      //    Modern languages (French and Spanish)
+      //    Modern languages (French and German)
+      //    Art and Design and Design and Technology
+      //    English and Drama
+      //    Humanities (Geography and History)
+      // TODO: set a subject name from compound courses
       break
     case 'Further education':
       subjects.push(subjectOptions.further[selectedSubject.further])
       break
   }
+
+  // ---------------------------------------------------------------------------
+  // Course name
+  // ---------------------------------------------------------------------------
+  const courseName = arrayToList(subjects)
 
   // ---------------------------------------------------------------------------
   // Funding type
@@ -201,6 +224,8 @@ module.exports = () => {
   // ---------------------------------------------------------------------------
   // Programme type
   // ---------------------------------------------------------------------------
+  // TODO: programme type based on provider type
+
   const programmeTypeOptions = {
     ss: { code: 'SS', name: 'School direct salaried training programme' },
     ta: { code: 'TA', name: 'Teaching apprenticeship' },
@@ -234,7 +259,7 @@ module.exports = () => {
     both: 0.041
   })
 
-  const studyMode = studyModeOptions[selectedStudyMode]
+  const studyModes = studyModeOptions[selectedStudyMode]
 
   // ---------------------------------------------------------------------------
   // Financial support
@@ -335,19 +360,53 @@ module.exports = () => {
   }
 
   // ---------------------------------------------------------------------------
+  // Training provider
+  // ---------------------------------------------------------------------------
+  const trainingProvider = {}
+  trainingProvider.id = params.trainingProvider.id
+  trainingProvider.name = params.trainingProvider.name
+
+  // ---------------------------------------------------------------------------
+  // Accredited body
+  // ---------------------------------------------------------------------------
+  const accreditedBody = {}
+  accreditedBody.id = params.accreditedBody.id
+  accreditedBody.name = params.accreditedBody.name
+
+  // ---------------------------------------------------------------------------
+  // Locations
+  // ---------------------------------------------------------------------------
+  const locations = [{
+    name: 'Main site',
+    address: {
+      address1: '123 Main Street',
+      address2: '',
+      address3: '',
+      town: 'Some town',
+      postcode: 'AB1 2CD'
+    }
+  }]
+
+  // ---------------------------------------------------------------------------
   // Course details
   // ---------------------------------------------------------------------------
+  const course = {}
+
   course.code = faker.random.alphaNumeric(4).toUpperCase()
   course.name = subjects[0].name
 
   course.subjects = subjects
   course.fundingType = fundingType
-  course.studyMode = studyMode
+  course.studyModes = studyModes
   course.financialSupport = financialSupport
   course.courseLength = courseLength
   course.qualifications = qualifications
   // course.programmeType = programmeType
   course.ageRange = ageRange
+
+  course.trainingProvider = trainingProvider
+  course.accreditedBody = accreditedBody
+  course.locations = locations
 
   return course
 }
