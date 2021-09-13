@@ -376,7 +376,9 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   // Locations
   // ---------------------------------------------------------------------------
-  const locations = [{
+  const locationCount = faker.datatype.number(2)
+
+  const locationChoices = [{
     name: 'Main site',
     address: {
       address1: '123 Main Street',
@@ -385,7 +387,20 @@ module.exports = (params = {}) => {
       town: 'Some town',
       postcode: 'AB1 2CD'
     }
+  }, {
+    name: 'Other site',
+    address: {
+      address1: 'Long Avenue',
+      address2: '',
+      address3: '',
+      town: 'Big City',
+      postcode: 'SW1A 4AA'
+    }
   }]
+
+  const shuffledLocations = locationChoices.sort(() => 0.5 - Math.random())
+
+  const locations = shuffledLocations.slice(0, locationCount).sort()
 
   // ---------------------------------------------------------------------------
   // Course details
