@@ -1,0 +1,61 @@
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Personal details</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "First name"
+    },
+    value: {
+      text: application.personalDetails.givenName
+    }
+  }, {
+    key: {
+      text: "Last name"
+    },
+    value: {
+      text: application.personalDetails.familyName
+    }
+  }, {
+    key: {
+      text: "Date of birth"
+    },
+    value: {
+      text: "6 January 1979"
+    }
+  }, {
+    key: {
+      text: "Nationality"
+    },
+    value: {
+      text: "Zimbabwean"
+    }
+  }, {
+    key: {
+      text: "Do you have the right to work or study in the UK?"
+    },
+    value: {
+      text: "Not yet"
+    }
+  }, {
+    key: {
+      text: "How will you gain the right to work or study in the UK?"
+    },
+    value: {
+      text: "A visa sponsored by the course provider."
+    }
+  }, {
+    key: {
+      text: "Contact address"
+    },
+    value: {
+      text: "Via Pietro Cartoni, 10, 00152 Roma RM, Italy"
+    }
+  }, {
+    key: {
+      text: "Permanent address"
+    },
+    value: {
+      html: "2 Lancaster Ave, Harare, Zimbabwe"
+    }
+  }]
+}) }}
