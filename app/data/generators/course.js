@@ -178,31 +178,74 @@ module.exports = (params = {}) => {
 
   const subjects = []
 
-  switch (subjectLevel) {
-    case 'Primary':
-      subjects.push(subjectOptions.primary[selectedSubject.primary])
-      break
-    case 'Secondary':
-      subjects.push(subjectOptions.secondary[selectedSubject.secondary])
-      // TODO: compound course subjects, for example:
-      //    Business studies and Economics
-      //    Science (Biology, Chemistry and Physics)
-      //    Modern languages (French and Spanish)
-      //    Modern languages (French and German)
-      //    Art and Design and Design and Technology
-      //    English and Drama
-      //    Humanities (Geography and History)
-      // TODO: set a subject name from compound courses
-      break
-    case 'Further education':
-      subjects.push(subjectOptions.further[selectedSubject.further])
-      break
+  // Primary -------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  if (subjectLevel === 'Primary') {
+    subjects.push(subjectOptions.primary[selectedSubject.primary])
   }
 
+  // Secondary -----------------------------------------------------------------
   // ---------------------------------------------------------------------------
-  // Course name
+
+  // TODO: compound course subjects, for example:
+  // Business studies and Economics
+  // Science (Biology, Chemistry and Physics)
+  // Modern languages (French and Spanish)
+  // Modern languages (French and German)
+  // Art and Design and Design and Technology
+  // English and Drama
+  // Humanities (Geography and History)
+
+  if (subjectLevel === 'Secondary') {
+    const subject = subjectOptions.secondary[selectedSubject.secondary]
+    subjects.push(subject)
+
+    if (subject.name === 'Business studies') {
+      subjects.push({ code: 'L1', name: 'Economics' })
+    }
+
+    if (subject.name === 'Geography') {
+      subjects.push({ code: 'V1', name: 'History' })
+    }
+
+    if (subject.name === 'Physical education') {
+      subjects.push({ code: 'C1', name: 'Biology' })
+    }
+
+    if (subject.name === 'Science') {
+      subjects.push({ code: 'C1', name: 'Biology' })
+      subjects.push({ code: 'F1', name: 'Chemistry' })
+      subjects.push({ code: 'F3', name: 'Physics' })
+    }
+
+  }
+
+  // Further education ---------------------------------------------------------
   // ---------------------------------------------------------------------------
-  const courseName = arrayToList(subjects)
+  if (subjectLevel === 'Further education') {
+    subjects.push(subjectOptions.further[selectedSubject.further])
+  }
+
+
+// TODO: compound course subjects, for example:
+//    Business studies and Economics
+//    Science (Biology, Chemistry and Physics)
+//    Modern languages (French and Spanish)
+//    Modern languages (French and German)
+//    Art and Design and Design and Technology
+//    English and Drama
+//    Humanities (Geography and History)
+
+// TODO: set a subject name from compound courses
+// Music (with Specialist Instrument Training)
+// Science (Biology, Chemistry and Physics)
+// Modern languages (French and Spanish)
+// Modern languages (French and German)
+// Physical education with Biology
+// Physical education with Geography
+// Physical education with Science
+// Physics with Mathematics
+
 
   // ---------------------------------------------------------------------------
   // Funding type
@@ -224,7 +267,7 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   // Programme type
   // ---------------------------------------------------------------------------
-  // TODO: programme type based on provider type
+  // TODO: programme type based on provider type and funding type
 
   const programmeTypeOptions = {
     ss: { code: 'SS', name: 'School direct salaried training programme' },
@@ -289,7 +332,12 @@ module.exports = (params = {}) => {
     two: 0.05
   })
 
-  const courseLength = courseLengthOptions[selectedCourseLength]
+  let courseLength = courseLengthOptions[selectedCourseLength]
+
+  // Override the course length if the course is only full time
+  if (studyModes[0] === 'Full time') {
+    courseLength === courseLengthOptions.one
+  }
 
   // ---------------------------------------------------------------------------
   // Qualifications
@@ -376,7 +424,7 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   // Locations
   // ---------------------------------------------------------------------------
-  const locationCount = faker.datatype.number(2)
+  const locationCount = faker.datatype.number({ 'min': 1, 'max': 2 })
 
   const locationChoices = [{
     name: 'Main site',
@@ -388,13 +436,22 @@ module.exports = (params = {}) => {
       postcode: 'AB1 2CD'
     }
   }, {
-    name: 'Other site',
+    name: 'Second site',
     address: {
       address1: 'Long Avenue',
       address2: '',
       address3: '',
       town: 'Big City',
       postcode: 'SW1A 4AA'
+    }
+  }, {
+    name: 'Third site',
+    address: {
+      address1: 'Short Avenue',
+      address2: '',
+      address3: '',
+      town: 'Small City',
+      postcode: 'BA2 3DC'
     }
   }]
 
@@ -403,12 +460,34 @@ module.exports = (params = {}) => {
   const locations = shuffledLocations.slice(0, locationCount).sort()
 
   // ---------------------------------------------------------------------------
+  // Course name
+  // ---------------------------------------------------------------------------
+  const subjectNames = subjects.map(subject => { return subject.name })
+  let courseName = arrayToList(subjectNames)
+
+  if (subjectNames.includes('Geography') && subjectNames.includes('History')) {
+    courseName = `Humanities (${courseName})`
+  }
+
+  if (subjectNames.includes('Primary')) {
+    courseName += ` (${ageRange})`
+  }
+
+  if (subjectNames.includes('Communications and media studies')) {
+    courseName = 'Media studies'
+  }
+
+  if (subjectNames.includes('Psychology')) {
+    courseName = 'Sociology and Psychology'
+  }
+
+  // ---------------------------------------------------------------------------
   // Course details
   // ---------------------------------------------------------------------------
   const course = {}
 
   course.code = faker.random.alphaNumeric(4).toUpperCase()
-  course.name = subjects[0].name
+  course.name = courseName
 
   course.subjects = subjects
   course.fundingType = fundingType
