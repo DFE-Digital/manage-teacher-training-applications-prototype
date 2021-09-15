@@ -70,8 +70,8 @@ const generateFakeApplication = (params = {}) => {
   const courseCode = tempCourse.code
   const course = `${tempCourse.name} (${tempCourse.code})`
   const subjects = tempCourse.subjects
-  const location = tempCourse.locations[0]
-  const studyMode = tempCourse.studyModes[0]
+  const location = faker.helpers.randomize(tempCourse.locations)
+  const studyMode = faker.helpers.randomize(tempCourse.studyModes)
   const subjectLevel = tempCourse.subjectLevel
   const fundingType = tempCourse.fundingType
 
