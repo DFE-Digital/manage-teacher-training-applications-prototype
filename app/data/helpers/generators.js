@@ -1,5 +1,7 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
+const fs = require('fs')
+const path = require('path')
 
 exports.firstName = (sex) => {
   if (sex === 'male') {
@@ -77,4 +79,12 @@ exports.lastName = () => {
     'Walters',
     'Wilson'
   ])
+}
+
+exports.getCourseData = (provider) => {
+  const filePath = path.join(__dirname, '../courses.json')
+  const rawData = fs.readFileSync(filePath)
+  let courses = JSON.parse(rawData)
+  courses = courses.filter(course => course.trainingProvider.name === provider.name)
+  return courses
 }

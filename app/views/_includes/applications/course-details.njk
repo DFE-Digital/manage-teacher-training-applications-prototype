@@ -1,46 +1,67 @@
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Course applied for</h2>
-      {{ govukSummaryList({
-        rows: [{
-          key: {
-            text: "Training provider"
-          },
-          value: {
-            text: application["provider"]
-          }
-        }, {
-          key: {
-            text: "Course"
-          },
-          value: {
-            text: application["course"]
-          }
-        }, {
-          key: {
-            text: "Full time or part time"
-          },
-          value: {
-            text: application.studyMode
-          }
-        }, {
-          key: {
-            text: "Location"
-          },
-          value: {
-            html: application.location + '<br> SCIL, Dillington House, Ilminster, Somerset, TA19 9DT '
-          }
-        }, {
-          key: {
-            text: "Accredited body"
-          },
-          value: {
-            html: application.accreditedBody
-          }
-        } if application.accreditedBody != application.provider, {
-          key: {
-            text: "Funding type"
-          },
-          value: {
-            text: application.fundingType
-          }
-        }]
-      }) }}
+{% set locationHtml %}
+<ol class="govuk-list">
+  <li>{{ application.location.name }}</li>
+  {% if application.location.address.address1.length %}
+    <li>{{ application.location.address.address1 }}</li>
+  {% endif %}
+  {% if application.location.address.address2.length %}
+    <li>{{ application.location.address.address2 }}</li>
+  {% endif %}
+  {% if application.location.address.address3.length %}
+    <li>{{ application.location.address.address3 }}</li>
+  {% endif %}
+  {% if application.location.address.town.length %}
+    <li>{{ application.location.address.town }}</li>
+  {% endif %}
+  {% if application.location.address.postcode.length %}
+    <li>{{ application.location.address.postcode }}</li>
+  {% endif %}
+</ol>
+{% endset %}
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Course applied for</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Training provider"
+    },
+    value: {
+      text: application["provider"]
+    }
+  }, {
+    key: {
+      text: "Course"
+    },
+    value: {
+      text: application["course"]
+    }
+  }, {
+    key: {
+      text: "Full time or part time"
+    },
+    value: {
+      text: application.studyMode
+    }
+  }, {
+    key: {
+      text: "Location"
+    },
+    value: {
+      html: locationHtml
+    }
+  }, {
+    key: {
+      text: "Accredited body"
+    },
+    value: {
+      html: application.accreditedBody
+    }
+  } if application.accreditedBody != application.provider, {
+    key: {
+      text: "Funding type"
+    },
+    value: {
+      text: application.fundingType
+    }
+  }]
+}) }}

@@ -443,7 +443,14 @@ module.exports = router => {
         }
 
         if (subjects && subjects.length) {
-          subjectValid = subjects.includes(app.subject)
+          const appSubjects = app.subject.map(subject => { return subject.name })
+
+          for (let i = 0; i < subjects.length; i++) {
+            subjectValid = appSubjects.includes(subjects[i])
+            if (subjectValid) {
+              break
+            }
+          }
         }
 
         if (studyModes && studyModes.length) {

@@ -637,6 +637,7 @@ module.exports = (params = {}) => {
   course.name = courseName
 
   course.subjects = subjects
+  course.subjectLevel = subjectLevel
   course.fundingType = fundingType
   course.studyModes = studyModes
   course.financialSupport = financialSupport

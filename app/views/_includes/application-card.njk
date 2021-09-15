@@ -8,7 +8,7 @@
       </a>
       <span class="app-application-card__caption">{{ a.id }}</span>
     </h3>
-    <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location | replace(' - training location','') }}</p>
+    <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
     <p class="govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
     {% if assignedUsers.length %}
       <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1">
