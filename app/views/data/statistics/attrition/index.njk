@@ -40,11 +40,14 @@
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Course</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:22%;">
-              Applications withdrawn before offer made
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%;">
+              Before offer made (application withdrawn)
             </th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:22%;">
-              Offers declined and applications withdrawn after offer made
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%;">
+              While offer being considered (offer declined or application withdrawn)
+            </th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%;">
+              After offer accepted (application withdrawn)
             </th>
           </tr>
         </thead>
@@ -62,15 +65,21 @@
                 {% endif %}
               </th>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ row['applications_withdrawn_before']['percentage'] | numeral('0,0') }}%
+                {{ row['before_offer']['percentage'] | numeral('0,0') }}%
                 <span class="govuk-hint govuk-!-margin-bottom-0">
-                  {{ row['applications_withdrawn_before']['number'] | numeral('0') }} of {{ row['total_applications'] | numeral('0')}}
+                  {{ row['before_offer']['number'] | numeral('0') }} of {{ row['total_applications'] | numeral('0')}}
                 </span>
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ row['applications_withdrawn_after']['percentage'] | numeral('0,0') }}%
+                {{ row['during_offer']['percentage'] | numeral('0,0') }}%
                 <span class="govuk-hint govuk-!-margin-bottom-0">
-                  {{ row['applications_withdrawn_after']['number'] | numeral('0') }} of {{ row['total_offers']['number'] | numeral('0')}}
+                  {{ row['during_offer']['number'] | numeral('0') }} of {{ row['total_offers']['number'] | numeral('0')}}
+                </span>
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ row['after_offer']['percentage'] | numeral('0,0') }}%
+                <span class="govuk-hint govuk-!-margin-bottom-0">
+                  {{ row['after_offer']['number'] | numeral('0') }} of {{ row['total_offers']['number'] | numeral('0')}}
                 </span>
               </td>
             </tr>
