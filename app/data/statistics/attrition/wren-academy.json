@@ -4,17 +4,21 @@
     "title": "Art and Design",
     "provider": "Goldsmiths, University of London",
     "total_applications": 166,
-    "applications_withdrawn_before": {
-      "number": 22,
-      "percentage": 13
+    "before_offer": {
+      "number": 13,
+      "percentage": 8
     },
     "total_offers": {
-      "number": 20,
-      "percentage": 12
+      "number": 23,
+      "percentage": 14
     },
-    "applications_withdrawn_after": {
-      "number": 2,
-      "percentage": 10
+    "during_offer": {
+      "number": 0,
+      "percentage": 0
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -22,17 +26,21 @@
     "title": "Biology",
     "provider": "UCL, University College London",
     "total_applications": 141,
-    "applications_withdrawn_before": {
-      "number": 19,
-      "percentage": 13
+    "before_offer": {
+      "number": 17,
+      "percentage": 12
     },
     "total_offers": {
       "number": 16,
       "percentage": 11
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
+      "number": 4,
+      "percentage": 25
+    },
+    "after_offer": {
       "number": 1,
-      "percentage": 6
+      "percentage": 8
     }
   },
   {
@@ -40,17 +48,21 @@
     "title": "Chemistry",
     "provider": "UCL, University College London",
     "total_applications": 264,
-    "applications_withdrawn_before": {
-      "number": 18,
-      "percentage": 7
+    "before_offer": {
+      "number": 6,
+      "percentage": 2
     },
     "total_offers": {
       "number": 13,
       "percentage": 5
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
       "number": 5,
       "percentage": 38
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -58,17 +70,21 @@
     "title": "Design and Technology",
     "provider": "Goldsmiths, University of London",
     "total_applications": 254,
-    "applications_withdrawn_before": {
-      "number": 1,
-      "percentage": 0
+    "before_offer": {
+      "number": 12,
+      "percentage": 5
     },
     "total_offers": {
-      "number": 28,
-      "percentage": 11
+      "number": 13,
+      "percentage": 5
     },
-    "applications_withdrawn_after": {
-      "number": 5,
-      "percentage": 18
+    "during_offer": {
+      "number": 4,
+      "percentage": 31
+    },
+    "after_offer": {
+      "number": 2,
+      "percentage": 22
     }
   },
   {
@@ -76,15 +92,19 @@
     "title": "Design and Technology (Food and Product Design)",
     "provider": "Goldsmiths, University of London",
     "total_applications": 233,
-    "applications_withdrawn_before": {
-      "number": 5,
-      "percentage": 2
+    "before_offer": {
+      "number": 8,
+      "percentage": 3
     },
     "total_offers": {
-      "number": 21,
-      "percentage": 9
+      "number": 23,
+      "percentage": 10
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
+      "number": 3,
+      "percentage": 13
+    },
+    "after_offer": {
       "number": 2,
       "percentage": 10
     }
@@ -94,17 +114,21 @@
     "title": "Drama",
     "provider": "Goldsmiths, University of London",
     "total_applications": 160,
-    "applications_withdrawn_before": {
-      "number": 12,
-      "percentage": 8
+    "before_offer": {
+      "number": 17,
+      "percentage": 11
     },
     "total_offers": {
-      "number": 22,
-      "percentage": 14
+      "number": 11,
+      "percentage": 7
     },
-    "applications_withdrawn_after": {
-      "number": 4,
-      "percentage": 18
+    "during_offer": {
+      "number": 3,
+      "percentage": 27
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -112,17 +136,21 @@
     "title": "English",
     "provider": "Goldsmiths, University of London",
     "total_applications": 159,
-    "applications_withdrawn_before": {
-      "number": 7,
-      "percentage": 4
+    "before_offer": {
+      "number": 4,
+      "percentage": 3
     },
     "total_offers": {
-      "number": 16,
-      "percentage": 10
-    },
-    "applications_withdrawn_after": {
-      "number": 1,
+      "number": 10,
       "percentage": 6
+    },
+    "during_offer": {
+      "number": 5,
+      "percentage": 50
+    },
+    "after_offer": {
+      "number": 2,
+      "percentage": 40
     }
   },
   {
@@ -130,15 +158,19 @@
     "title": "Geography",
     "provider": "UCL, University College London",
     "total_applications": 127,
-    "applications_withdrawn_before": {
-      "number": 7,
-      "percentage": 6
+    "before_offer": {
+      "number": 9,
+      "percentage": 7
     },
     "total_offers": {
-      "number": 17,
-      "percentage": 13
+      "number": 10,
+      "percentage": 8
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
+      "number": 1,
+      "percentage": 10
+    },
+    "after_offer": {
       "number": 0,
       "percentage": 0
     }
@@ -148,15 +180,19 @@
     "title": "History",
     "provider": "UCL, University College London",
     "total_applications": 133,
-    "applications_withdrawn_before": {
-      "number": 7,
-      "percentage": 5
+    "before_offer": {
+      "number": 2,
+      "percentage": 2
     },
     "total_offers": {
-      "number": 16,
-      "percentage": 12
+      "number": 12,
+      "percentage": 9
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
+      "number": 4,
+      "percentage": 33
+    },
+    "after_offer": {
       "number": 0,
       "percentage": 0
     }
@@ -166,17 +202,21 @@
     "title": "Mathematics",
     "provider": "UCL, University College London",
     "total_applications": 162,
-    "applications_withdrawn_before": {
-      "number": 8,
-      "percentage": 5
-    },
-    "total_offers": {
-      "number": 15,
+    "before_offer": {
+      "number": 14,
       "percentage": 9
     },
-    "applications_withdrawn_after": {
-      "number": 2,
-      "percentage": 13
+    "total_offers": {
+      "number": 23,
+      "percentage": 14
+    },
+    "during_offer": {
+      "number": 5,
+      "percentage": 22
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -184,17 +224,21 @@
     "title": "Modern Languages",
     "provider": "UCL, University College London",
     "total_applications": 138,
-    "applications_withdrawn_before": {
-      "number": 0,
-      "percentage": 0
+    "before_offer": {
+      "number": 4,
+      "percentage": 3
     },
     "total_offers": {
-      "number": 8,
-      "percentage": 6
+      "number": 10,
+      "percentage": 7
     },
-    "applications_withdrawn_after": {
-      "number": 3,
-      "percentage": 38
+    "during_offer": {
+      "number": 4,
+      "percentage": 40
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -202,17 +246,21 @@
     "title": "Modern Languages (French and German)",
     "provider": "UCL, University College London",
     "total_applications": 240,
-    "applications_withdrawn_before": {
-      "number": 6,
-      "percentage": 3
+    "before_offer": {
+      "number": 13,
+      "percentage": 5
     },
     "total_offers": {
       "number": 24,
       "percentage": 10
     },
-    "applications_withdrawn_after": {
-      "number": 4,
-      "percentage": 17
+    "during_offer": {
+      "number": 1,
+      "percentage": 4
+    },
+    "after_offer": {
+      "number": 1,
+      "percentage": 4
     }
   },
   {
@@ -220,17 +268,21 @@
     "title": "Music",
     "provider": "Goldsmiths, University of London",
     "total_applications": 215,
-    "applications_withdrawn_before": {
-      "number": 13,
-      "percentage": 6
+    "before_offer": {
+      "number": 6,
+      "percentage": 3
     },
     "total_offers": {
-      "number": 22,
-      "percentage": 10
-    },
-    "applications_withdrawn_after": {
-      "number": 3,
+      "number": 30,
       "percentage": 14
+    },
+    "during_offer": {
+      "number": 5,
+      "percentage": 17
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -238,17 +290,21 @@
     "title": "Physical Education",
     "provider": "Goldsmiths, University of London",
     "total_applications": 174,
-    "applications_withdrawn_before": {
-      "number": 7,
-      "percentage": 4
+    "before_offer": {
+      "number": 6,
+      "percentage": 3
     },
     "total_offers": {
-      "number": 12,
-      "percentage": 7
+      "number": 10,
+      "percentage": 6
     },
-    "applications_withdrawn_after": {
-      "number": 5,
-      "percentage": 42
+    "during_offer": {
+      "number": 2,
+      "percentage": 20
+    },
+    "after_offer": {
+      "number": 0,
+      "percentage": 0
     }
   },
   {
@@ -256,17 +312,21 @@
     "title": "Physics",
     "provider": "UCL, University College London",
     "total_applications": 252,
-    "applications_withdrawn_before": {
-      "number": 12,
-      "percentage": 5
+    "before_offer": {
+      "number": 6,
+      "percentage": 2
     },
     "total_offers": {
-      "number": 13,
-      "percentage": 5
-    },
-    "applications_withdrawn_after": {
-      "number": 1,
+      "number": 20,
       "percentage": 8
+    },
+    "during_offer": {
+      "number": 5,
+      "percentage": 25
+    },
+    "after_offer": {
+      "number": 2,
+      "percentage": 13
     }
   },
   {
@@ -274,17 +334,21 @@
     "title": "Primary",
     "provider": "Goldsmiths, University of London",
     "total_applications": 128,
-    "applications_withdrawn_before": {
-      "number": 19,
-      "percentage": 15
+    "before_offer": {
+      "number": 15,
+      "percentage": 12
     },
     "total_offers": {
-      "number": 18,
-      "percentage": 14
+      "number": 13,
+      "percentage": 10
     },
-    "applications_withdrawn_after": {
-      "number": 3,
-      "percentage": 17
+    "during_offer": {
+      "number": 4,
+      "percentage": 31
+    },
+    "after_offer": {
+      "number": 2,
+      "percentage": 22
     }
   },
   {
@@ -292,17 +356,21 @@
     "title": "Primary (3-7)",
     "provider": "Goldsmiths, University of London",
     "total_applications": 127,
-    "applications_withdrawn_before": {
-      "number": 18,
-      "percentage": 14
+    "before_offer": {
+      "number": 12,
+      "percentage": 9
     },
     "total_offers": {
-      "number": 13,
-      "percentage": 10
+      "number": 6,
+      "percentage": 5
     },
-    "applications_withdrawn_after": {
-      "number": 5,
-      "percentage": 38
+    "during_offer": {
+      "number": 1,
+      "percentage": 17
+    },
+    "after_offer": {
+      "number": 1,
+      "percentage": 20
     }
   },
   {
@@ -310,17 +378,21 @@
     "title": "Primary with mathematics",
     "provider": "Goldsmiths, University of London",
     "total_applications": 204,
-    "applications_withdrawn_before": {
-      "number": 8,
-      "percentage": 4
+    "before_offer": {
+      "number": 22,
+      "percentage": 11
     },
     "total_offers": {
-      "number": 12,
-      "percentage": 6
+      "number": 20,
+      "percentage": 10
     },
-    "applications_withdrawn_after": {
-      "number": 4,
-      "percentage": 33
+    "during_offer": {
+      "number": 1,
+      "percentage": 5
+    },
+    "after_offer": {
+      "number": 1,
+      "percentage": 5
     }
   },
   {
@@ -328,17 +400,21 @@
     "title": "Religious Education",
     "provider": "Goldsmiths, University of London",
     "total_applications": 254,
-    "applications_withdrawn_before": {
-      "number": 12,
-      "percentage": 5
+    "before_offer": {
+      "number": 2,
+      "percentage": 1
     },
     "total_offers": {
-      "number": 18,
-      "percentage": 7
+      "number": 38,
+      "percentage": 15
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
       "number": 4,
-      "percentage": 22
+      "percentage": 11
+    },
+    "after_offer": {
+      "number": 2,
+      "percentage": 6
     }
   },
   {
@@ -346,17 +422,21 @@
     "title": "Social Sciences",
     "provider": "UCL, University College London",
     "total_applications": 230,
-    "applications_withdrawn_before": {
-      "number": 10,
-      "percentage": 4
+    "before_offer": {
+      "number": 1,
+      "percentage": 0
     },
     "total_offers": {
       "number": 16,
       "percentage": 7
     },
-    "applications_withdrawn_after": {
+    "during_offer": {
+      "number": 2,
+      "percentage": 13
+    },
+    "after_offer": {
       "number": 1,
-      "percentage": 6
+      "percentage": 7
     }
   }
 ]
