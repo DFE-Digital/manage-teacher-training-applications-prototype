@@ -1,39 +1,3 @@
-
-// [
-//   {
-//     "name": "Business studies with economics",
-//     "code": "B123",
-//     "subjects": [
-//       {
-//         "name": "Business studies",
-//         "code": "B234"
-//       },
-//       {
-//         "name": "Economics",
-//         "code": "E345"
-//       }
-//     ],
-//     "level": "secondary",
-//     "fundingType": "salaried",
-//     "studyMode": "full_time",
-//     "courseLength": "one_year",
-//     "ageRange": "11-18",
-//     "qualifications": ["qts","pgce"]
-//     "locations": [
-//       {
-//         "name": "Main site",
-//         "address": {
-//           "address_1": "123 Main Street",
-//           "address_2": "",
-//           "address_3": "",
-//           "town": "Some town",
-//           "postcode": "AB1 2CD"
-//         }
-//       }
-//     ]
-//   }
-// ]
-
 const faker = require('faker')
 faker.locale = 'en_GB'
 const weighted = require('weighted')
@@ -72,8 +36,6 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   // Subjects
   // ---------------------------------------------------------------------------
-  // const subjects = require('../subjects.json')
-
   const subjectOptions = {
     primary: {
       P01: { code: '00', name: 'Primary' },
