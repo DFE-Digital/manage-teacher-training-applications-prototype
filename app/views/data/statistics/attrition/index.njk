@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Where candidates choose to leave the application process" %}
+{% set pageName = "When candidates choose to leave the application process" %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -79,7 +79,7 @@
               <td class="govuk-table__cell govuk-table__cell--numeric">
                 {{ row['after_offer']['percentage'] | numeral('0,0') }}%
                 <span class="govuk-hint govuk-!-margin-bottom-0">
-                  {{ row['after_offer']['number'] | numeral('0') }} of {{ row['total_offers']['number'] | numeral('0')}}
+                  {{ row['after_offer']['number'] | numeral('0') }} of {{ (row['total_offers']['number'] - row['during_offer']['number']) | numeral('0')}}
                 </span>
               </td>
             </tr>
