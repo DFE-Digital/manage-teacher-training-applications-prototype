@@ -11,8 +11,7 @@
       {{ pageName }}
     </h1>
 
-    {% if organisations.length == 1 %}
-
+    {% if organisations.length > 1 %}
       <ul class="govuk-list govuk-list--spaced">
         <li>
           <a class="govuk-link" href="/reports/export">
@@ -24,6 +23,28 @@
             Export data for Higher Education Statistics Agency (HESA)
           </a>
         </li>
+      </ul>
+    {% endif %}
+
+    {% for organisation in organisations %}
+
+      {% if organisations.length > 1 %}
+        <h2 class="govuk-heading-m">{{ organisation.name }}</h2>
+      {% endif %}
+
+      <ul class="govuk-list govuk-list--spaced">
+        {% if organisations.length == 1 %}
+          <li>
+            <a class="govuk-link" href="/reports/export">
+              Export application data
+            </a>
+          </li>
+          <li>
+            <a class="govuk-link" href="/reports/hesa">
+              Export data for Higher Education Statistics Agency (HESA)
+            </a>
+          </li>
+        {% endif %}
         <li>
           <a class="govuk-link" href="/reports/{{ organisation.id }}/status-of-applications">
             Status of active applications <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
@@ -41,48 +62,7 @@
         </li>
       </ul>
 
-    {% else %}
-
-      <ul class="govuk-list govuk-list--spaced">
-        <li>
-          <a class="govuk-link" href="/reports/export">
-            Export application data
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="/reports/hesa">
-            Export data for Higher Education Statistics Agency (HESA)
-          </a>
-        </li>
-      </ul>
-
-      {% for organisation in organisations %}
-
-        {% if organisations.length > 1 %}
-          <h2 class="govuk-heading-m">{{ organisation.name }}</h2>
-        {% endif %}
-
-        <ul class="govuk-list govuk-list--spaced">
-          <li>
-            <a class="govuk-link" href="/reports/{{ organisation.id }}/status-of-applications">
-              Status of active applications <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
-            </a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out">
-              Where candidates choose to leave the application process <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
-            </a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity">
-              Sex, disability, ethnicity and age of candidates <span class="govuk-visually-hidden">for {{ organisation.name }}</span>
-            </a>
-          </li>
-        </ul>
-
-      {% endfor %}
-
-    {% endif %}
+    {% endfor %}
 
   </div>
 </div>

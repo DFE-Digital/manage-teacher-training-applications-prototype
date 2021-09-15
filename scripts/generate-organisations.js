@@ -27,6 +27,15 @@ const generateFakeOrganisations = (count) => {
   })
 
   // ---------------------------------------------------------------------------
+  // USed for prototype default
+  // ---------------------------------------------------------------------------
+  organisations.push(generateFakeOrganisation({
+    name: "Wren Academy",
+    isAccreditedBody: false,
+    domain: "wrenacademy.co.uk"
+  }))
+
+  // ---------------------------------------------------------------------------
   // Others
   // ---------------------------------------------------------------------------
   organisations.push(generateFakeOrganisation({
@@ -83,11 +92,6 @@ const generateFakeOrganisations = (count) => {
     name: "Construct SCITT",
     isAccreditedBody: true,
     domain: "constructscitt.org.uk"
-  }))
-  organisations.push(generateFakeOrganisation({
-    name: "Wren Academy",
-    isAccreditedBody: false,
-    domain: "wrenacademy.co.uk"
   }))
   organisations.push(generateFakeOrganisation({
     name: "The Royal Borough Teaching School Alliance",
