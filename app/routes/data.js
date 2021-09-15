@@ -288,13 +288,16 @@ module.exports = router => {
     headers.push({ id: 'course', title: 'Course' })
     headers.push({ id: 'code', title: 'Course code' })
     headers.push({ id: 'provider', title: 'Partner organisation' })
-    headers.push({ id: 'applications_total', title: 'Applications total'})
-    headers.push({ id: 'applications_withdrawn_before_percentage', title: 'Applications withdrawn before offer made - percentage'})
-    headers.push({ id: 'applications_withdrawn_before_number', title: 'Applications withdrawn before offer made - number'})
-    headers.push({ id: 'offers_total_percentage', title: 'Offers total - percentage'})
-    headers.push({ id: 'offers_total_number', title: 'Offers total - number'})
-    headers.push({ id: 'applications_withdrawn_after_percentage', title: 'Offers declined and applications withdrawn after offer made - percentage'})
-    headers.push({ id: 'applications_withdrawn_after_number', title: 'Offers declined and applications withdrawn after offer made - number'})
+    headers.push({ id: 'applications_total', title: 'Total applications'})
+    headers.push({ id: 'before_offer_percentage', title: 'Before offer made (applications withdrawn) - percentage'})
+    headers.push({ id: 'before_offer_number', title: 'Before offer made (applications withdrawn) - number'})
+    // headers.push({ id: 'offers_total_percentage', title: 'Offers total - percentage'})
+    headers.push({ id: 'offers_total_number', title: 'Total offers'})
+    headers.push({ id: 'during_offer_percentage', title: 'While offer being considered (offers declined and applications withdrawn) - percentage'})
+    headers.push({ id: 'during_offer_number', title: 'While offer being considered (offers declined and applications withdrawn) - number'})
+    headers.push({ id: 'accepted_offers_total_number', title: 'Total accepted offers'})
+    headers.push({ id: 'after_offer_percentage', title: 'After offer accepted (applications withdrawn) - percentage'})
+    headers.push({ id: 'after_offer_number', title: 'After offer accepted (applications withdrawn) - number'})
 
     const csv = csvWriter({
       path: filePath,
@@ -313,14 +316,19 @@ module.exports = router => {
 
       data.applications_total = item.total_applications
 
-      data.applications_withdrawn_before_number = item.applications_withdrawn_before.number
-      data.applications_withdrawn_before_percentage = item.applications_withdrawn_before.percentage + '%'
+      data.before_offer_number = item.before_offer.number
+      data.before_offer_percentage = item.before_offer.percentage + '%'
 
       data.offers_total_number = item.total_offers.number
-      data.offers_total_percentage = item.total_offers.percentage + '%'
+      // data.offers_total_percentage = item.total_offers.percentage + '%'
 
-      data.applications_withdrawn_after_number = item.applications_withdrawn_after.number
-      data.applications_withdrawn_after_percentage = item.applications_withdrawn_after.percentage + '%'
+      data.during_offer_number = item.during_offer.number
+      data.during_offer_percentage = item.during_offer.percentage + '%'
+
+      data.accepted_offers_total_number = item.total_offers.number - item.during_offer.number
+
+      data.after_offer_number = item.after_offer.number
+      data.after_offer_percentage = item.after_offer.percentage + '%'
 
       records.push(data)
     })
