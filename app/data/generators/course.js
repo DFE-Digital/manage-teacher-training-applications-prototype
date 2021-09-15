@@ -186,26 +186,6 @@ module.exports = (params = {}) => {
 
   // Secondary -----------------------------------------------------------------
   // ---------------------------------------------------------------------------
-
-  // TODO: compound course subjects, for example:
-  // Business studies and Economics
-  // Science (Biology, Chemistry and Physics)
-  // Modern languages (French and Spanish)
-  // Modern languages (French and German)
-  // Art and Design and Design and Technology
-  // English and Drama
-  // Humanities (Geography and History)
-  // Music (with Specialist Instrument Training)
-  // Science (Biology, Chemistry and Physics)
-  // Modern languages (French and Spanish)
-  // Modern languages (French and German)
-  // Physical education with Biology
-  // Physical education with Geography
-  // Physical education with Science
-  // Physics with Mathematics
-  // Pyschology with Biology
-  // Primary (SEND)
-
   if (subjectLevel === 'Secondary') {
     const subject = subjectOptions.secondary[selectedSubject.secondary]
     subjects.push(subject)
@@ -214,18 +194,80 @@ module.exports = (params = {}) => {
       subjects.push({ code: 'L1', name: 'Economics' })
     }
 
+    if (subject.name === 'Drama') {
+      const additionalSubjectOptions = {
+        a: null,
+        b: { code: '12', name: 'Dance' },
+        c: { code: '13', name: 'English' },
+        d: { code: 'W3', name: 'Music' }
+      }
+
+      const selectedSubject = weighted.select({
+        a: 0.6,
+        b: 0.2,
+        c: 0.2,
+        d: 0.2
+      })
+
+      const subject = additionalSubjectOptions[selectedSubject]
+
+      if (subject) {
+        subjects.push(subject)
+      }
+    }
+
     if (subject.name === 'Geography') {
-      subjects.push({ code: 'V1', name: 'History' })
+      const additionalSubjectOptions = {
+        a: null,
+        b: { code: 'V1', name: 'History' }
+      }
+
+      const selectedSubject = weighted.select({
+        a: 0.8,
+        b: 0.2
+      })
+
+      const subject = additionalSubjectOptions[selectedSubject]
+
+      if (subject) {
+        subjects.push(subject)
+      }
+    }
+
+    if (subject.name === 'Psychology') {
+      const additionalSubjectOptions = {
+        a: null,
+        b: { code: 'C1', name: 'Biology' }
+      }
+
+      const selectedSubject = weighted.select({
+        a: 0.8,
+        b: 0.2
+      })
+
+      const subject = additionalSubjectOptions[selectedSubject]
+
+      if (subject) {
+        subjects.push(subject)
+      }
     }
 
     if (subject.name === 'Physical education') {
-      subjects.push({ code: 'C1', name: 'Biology' })
-    }
+      const additionalSubjectOptions = {
+        a: null,
+        b: { code: 'C1', name: 'Biology' }
+      }
 
-    if (subject.name === 'Science') {
-      subjects.push({ code: 'C1', name: 'Biology' })
-      subjects.push({ code: 'F1', name: 'Chemistry' })
-      subjects.push({ code: 'F3', name: 'Physics' })
+      const selectedSubject = weighted.select({
+        a: 0.75,
+        b: 0.25
+      })
+
+      const subject = additionalSubjectOptions[selectedSubject]
+
+      if (subject) {
+        subjects.push(subject)
+      }
     }
 
     if (['French','German','Italian','Spanish'].includes(subject.name)) {
@@ -267,10 +309,27 @@ module.exports = (params = {}) => {
           subjects.push(language)
         }
       })
-      console.log(subjects);
     }
 
+    if (['Biology','Chemistry','Physics'].includes(subject.name)) {
+      const scienceCount = faker.datatype.number({ 'min': 1, 'max': 2 })
 
+      const scienceChoices = [
+        { code: 'C1', name: 'Biology' },
+        { code: 'F1', name: 'Chemistry' },
+        { code: 'F3', name: 'Physics' }
+      ]
+
+      const shuffledSciences = scienceChoices.sort(() => 0.5 - Math.random())
+
+      const sciences = shuffledSciences.slice(0, scienceCount).sort()
+
+      sciences.forEach((science, i) => {
+        if (!subjects.filter( subject => subject.name === science.name ).length) {
+          subjects.push(science)
+        }
+      })
+    }
   }
 
   // Further education ---------------------------------------------------------
@@ -500,7 +559,17 @@ module.exports = (params = {}) => {
   let courseName = arrayToList(subjectNames)
 
   if (subjectNames.includes('Geography') && subjectNames.includes('History')) {
-    courseName = `Humanities (${courseName})`
+    const courseNameOptions = {
+      a: 'Geography and History',
+      b: 'Humanities (Geography and History)'
+    }
+
+    const selectedCourseName = weighted.select({
+      a: 0.9,
+      b: 0.1
+    })
+
+    courseName = courseNameOptions[selectedCourseName]
   }
 
   if (subjectNames.includes('Primary')) {
@@ -508,19 +577,55 @@ module.exports = (params = {}) => {
   }
 
   if (subjectNames.includes('Communications and media studies')) {
-    courseName = 'Media studies'
+    const courseNameOptions = {
+      a: 'Media Studies',
+      b: 'Communications and Media Studies'
+    }
+
+    const selectedCourseName = weighted.select({
+      a: 0.9,
+      b: 0.1
+    })
+
+    courseName = courseNameOptions[selectedCourseName]
   }
 
   if (subjectNames.includes('Modern languages (other)')) {
     courseName = 'Modern Languages'
   }
 
-  // if (subjectNames.includes('Psychology')) {
-  //   courseName = 'Sociology and Psychology'
-  // }
+  if (subjectNames.includes('Psychology') && subjectNames.includes('Social sciences')) {
+    courseName = 'Sociology and Psychology'
+  }
 
   if (subjectNames.length === 1 && subjectNames.includes('Social sciences')) {
-    courseName = 'Sociology'
+    const courseNameOptions = {
+      a: 'Social Sciences',
+      b: 'Sociology'
+    }
+
+    const selectedCourseName = weighted.select({
+      a: 0.9,
+      b: 0.1
+    })
+
+    courseName = courseNameOptions[selectedCourseName]
+  }
+
+  if (subjectNames.length === 1 && subjectNames.includes('Design and technology')) {
+    const courseNameOptions = {
+      a: 'Design and Technology',
+      b: 'Design and Technology (Food)',
+      c: 'Design and Technology (Product Design)'
+    }
+
+    const selectedCourseName = weighted.select({
+      a: 0.830,
+      b: 0.085,
+      c: 0.085
+    })
+
+    courseName = courseNameOptions[selectedCourseName]
   }
 
   // ---------------------------------------------------------------------------
