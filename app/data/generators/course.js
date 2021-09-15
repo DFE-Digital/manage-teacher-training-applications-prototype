@@ -108,7 +108,7 @@ module.exports = (params = {}) => {
       S21: { code: '19', name: 'Japanese' },
       S22: { code: '20', name: 'Mandarin' },
       S23: { code: 'G1', name: 'Mathematics' },
-      S24: { code: '24', name: 'Modern languages' },
+      S24: { code: '24', name: 'Modern languages (other)' },
       S25: { code: 'W3', name: 'Music' },
       S26: { code: 'P1', name: 'Philosophy' },
       S27: { code: 'C6', name: 'Physical education' },
@@ -195,6 +195,16 @@ module.exports = (params = {}) => {
   // Art and Design and Design and Technology
   // English and Drama
   // Humanities (Geography and History)
+  // Music (with Specialist Instrument Training)
+  // Science (Biology, Chemistry and Physics)
+  // Modern languages (French and Spanish)
+  // Modern languages (French and German)
+  // Physical education with Biology
+  // Physical education with Geography
+  // Physical education with Science
+  // Physics with Mathematics
+  // Pyschology with Biology
+  // Primary (SEND)
 
   if (subjectLevel === 'Secondary') {
     const subject = subjectOptions.secondary[selectedSubject.secondary]
@@ -218,6 +228,49 @@ module.exports = (params = {}) => {
       subjects.push({ code: 'F3', name: 'Physics' })
     }
 
+    if (['French','German','Italian','Spanish'].includes(subject.name)) {
+      const languageCount = faker.datatype.number({ 'min': 1, 'max': 2 })
+
+      const languageChoices = [
+        { code: '15', name: 'French' },
+        { code: '17', name: 'German' },
+        { code: '18', name: 'Italian' },
+        { code: '22', name: 'Spanish' }
+      ]
+
+      const shuffledLanguages = languageChoices.sort(() => 0.5 - Math.random())
+
+      const languages = shuffledLanguages.slice(0, languageCount).sort()
+
+      languages.forEach((language, i) => {
+        if (!subjects.filter( subject => subject.name === language.name ).length) {
+          subjects.push(language)
+        }
+      })
+    }
+
+    if (['Japanese','Mandarin','Russian'].includes(subject.name)) {
+      const languageCount = faker.datatype.number({ 'min': 1, 'max': 2 })
+
+      const languageChoices = [
+        { code: '19', name: 'Japanese' },
+        { code: '20', name: 'Mandarin' },
+        { code: '21', name: 'Russian' }
+      ]
+
+      const shuffledLanguages = languageChoices.sort(() => 0.5 - Math.random())
+
+      const languages = shuffledLanguages.slice(0, languageCount).sort()
+
+      languages.forEach((language, i) => {
+        if (!subjects.filter( subject => subject.name === language.name ).length) {
+          subjects.push(language)
+        }
+      })
+      console.log(subjects);
+    }
+
+
   }
 
   // Further education ---------------------------------------------------------
@@ -225,27 +278,6 @@ module.exports = (params = {}) => {
   if (subjectLevel === 'Further education') {
     subjects.push(subjectOptions.further[selectedSubject.further])
   }
-
-
-// TODO: compound course subjects, for example:
-//    Business studies and Economics
-//    Science (Biology, Chemistry and Physics)
-//    Modern languages (French and Spanish)
-//    Modern languages (French and German)
-//    Art and Design and Design and Technology
-//    English and Drama
-//    Humanities (Geography and History)
-
-// TODO: set a subject name from compound courses
-// Music (with Specialist Instrument Training)
-// Science (Biology, Chemistry and Physics)
-// Modern languages (French and Spanish)
-// Modern languages (French and German)
-// Physical education with Biology
-// Physical education with Geography
-// Physical education with Science
-// Physics with Mathematics
-
 
   // ---------------------------------------------------------------------------
   // Funding type
@@ -462,7 +494,9 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   // Course name
   // ---------------------------------------------------------------------------
-  const subjectNames = subjects.map(subject => { return subject.name })
+  let subjectNames = subjects.map(subject => { return subject.name })
+  subjectNames.sort((a, b) => a.localeCompare(b))
+
   let courseName = arrayToList(subjectNames)
 
   if (subjectNames.includes('Geography') && subjectNames.includes('History')) {
@@ -477,8 +511,16 @@ module.exports = (params = {}) => {
     courseName = 'Media studies'
   }
 
-  if (subjectNames.includes('Psychology')) {
-    courseName = 'Sociology and Psychology'
+  if (subjectNames.includes('Modern languages (other)')) {
+    courseName = 'Modern Languages'
+  }
+
+  // if (subjectNames.includes('Psychology')) {
+  //   courseName = 'Sociology and Psychology'
+  // }
+
+  if (subjectNames.length === 1 && subjectNames.includes('Social sciences')) {
+    courseName = 'Sociology'
   }
 
   // ---------------------------------------------------------------------------
