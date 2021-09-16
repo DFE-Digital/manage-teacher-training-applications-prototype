@@ -1,22 +1,22 @@
 {% set locationHtml %}
-<ol class="govuk-list">
-  <li>{{ application.location.name }}</li>
+<p class="govuk-body">
+  {{ application.location.name }}<br>
   {% if application.location.address.address1.length %}
-    <li>{{ application.location.address.address1 }}</li>
+    {{ application.location.address.address1 }}<br>
   {% endif %}
   {% if application.location.address.address2.length %}
-    <li>{{ application.location.address.address2 }}</li>
+    {{ application.location.address.address2 }}<br>
   {% endif %}
   {% if application.location.address.address3.length %}
-    <li>{{ application.location.address.address3 }}</li>
+    {{ application.location.address.address3 }}<br>
   {% endif %}
   {% if application.location.address.town.length %}
-    <li>{{ application.location.address.town }}</li>
+    {{ application.location.address.town }}<br>
   {% endif %}
   {% if application.location.address.postcode.length %}
-    <li>{{ application.location.address.postcode }}</li>
+    {{ application.location.address.postcode }}<br>
   {% endif %}
-</ol>
+</p>
 {% endset %}
 <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Course applied for</h2>
 

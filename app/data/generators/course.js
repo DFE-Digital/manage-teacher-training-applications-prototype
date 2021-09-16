@@ -489,18 +489,18 @@ module.exports = (params = {}) => {
       postcode: 'AB1 2CD'
     }
   }, {
-    name: 'Second site',
+    name: 'Queen’s campus',
     address: {
-      address1: 'Long Avenue',
-      address2: '',
+      address1: 'Amory Building',
+      address2: 'Rennes Drive',
       address3: '',
       town: 'Big City',
       postcode: 'SW1A 4AA'
     }
   }, {
-    name: 'Third site',
+    name: 'Malet Place',
     address: {
-      address1: 'Short Avenue',
+      address1: 'Gordon Square',
       address2: '',
       address3: '',
       town: 'Small City',
