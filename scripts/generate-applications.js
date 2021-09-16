@@ -7,7 +7,7 @@ const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
 const GeneratorsHelper = require('../app/data/helpers/generators')
 const user = require('../app/data/user')
-const relationships = require('../app/data/relationships-single-default.js')
+const relationships = require('../app/data/relationships-wren-academy.js')
 let partners = relationships.map(relationship => relationship.org2)
 
 const generateSubject = require('../app/data/generators/subject')
