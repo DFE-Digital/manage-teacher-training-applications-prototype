@@ -5,6 +5,7 @@ faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
+const GeneratorsHelper = require('../app/data/helpers/generators')
 const user = require('../app/data/user')
 const relationships = require('../app/data/relationships-single-default.js')
 let partners = relationships.map(relationship => relationship.org2)
@@ -59,11 +60,21 @@ const generateFakeApplication = (params = {}) => {
     accreditedBody = faker.helpers.randomize(partners)
   }
 
-  const subject = generateSubject()
-  const courseCode = faker.random.alphaNumeric(4).toUpperCase()
-  const course = `${subject.name} (${courseCode})`
-  const location = generateTrainingLocation()
-  const studyMode = faker.helpers.randomize(['Full time', 'Part time'])
+  // ---------------------------------------------------------------------------
+  // Get the course data
+  // TODO: get course data into the app in a proper structure
+  // ---------------------------------------------------------------------------
+  const courses = GeneratorsHelper.getCourseData(provider)
+  const tempCourse = faker.helpers.randomize(courses)
+
+  const courseCode = tempCourse.code
+  const course = `${tempCourse.name} (${tempCourse.code})`
+  const subjects = tempCourse.subjects
+  const location = faker.helpers.randomize(tempCourse.locations)
+  const studyMode = faker.helpers.randomize(tempCourse.studyModes)
+  const subjectLevel = tempCourse.subjectLevel
+  const fundingType = tempCourse.fundingType
+
 
   let offer = null
   if (['Deferred', 'Offered', 'Conditions pending', 'Recruited', 'Declined', 'Offer withdrawn', 'Conditions not met'].includes(status)) {
@@ -143,9 +154,9 @@ const generateFakeApplication = (params = {}) => {
     provider: provider.name,
     accreditedBody: accreditedBody.name,
     studyMode: params.studyMode || studyMode,
-    fundingType: params.fundingType || faker.helpers.randomize(['Salaried', 'Fee paying']),
-    subject: params.subject || subject.name,
-    subjectLevel: params.subjectLevel || subject.level,
+    fundingType: params.fundingType || fundingType,
+    subject: params.subject || subjects,
+    subjectLevel: params.subjectLevel || subjectLevel,
     course: params.course || course,
     location: params.location || location,
     status,
