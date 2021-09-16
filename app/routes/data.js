@@ -411,10 +411,27 @@ module.exports = router => {
     // send archive to browser
     archive.finalize()
       .then(() => {
-        res.download(filePath,fileName)
+        res.download(filePath, fileName, (error) => {
+          if (error) {
+            console.error(error)
+          }
+          const filePaths = []
+          filePaths.push(sexData.filePath)
+          filePaths.push(disabilityData.filePath)
+          filePaths.push(ethnicityData.filePath)
+          filePaths.push(ageData.filePath)
+          filePaths.push(filePath)
+
+          filePaths.forEach((filePath, i) => {
+            try {
+              fs.unlinkSync(filePath)
+            } catch (error) {
+              console.error(error)
+            }
+          })
+        })
         console.log('Done')
       })
-
   })
 
   // router.get('/reports/:organisationId/diversity/download/sex', (req, res) => {
