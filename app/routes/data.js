@@ -29,7 +29,7 @@ const statuses = [
 
 const writeSexData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-sex-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-sex-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -65,7 +65,7 @@ const writeSexData = (organisation, applications) => {
 
 const writeDisabilityData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-disability-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-disability-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -103,7 +103,7 @@ const writeDisabilityData = (organisation, applications) => {
 
 const writeEthnicityData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-ethnicity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-ethnicity-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -152,7 +152,7 @@ const writeEthnicityData = (organisation, applications) => {
 
 const writeAgeData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-age-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -217,7 +217,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/status-of-applications/download', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = '/status-of-applications-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const fileName = '/status-of-active-applications-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
     const statusData = StatisticsHelper.getStatusData(organisationName)
@@ -278,7 +278,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/candidate-drop-out/download', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-drop-out-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const fileName = '/when-candidates-choose-to-leave-the-application-process-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
     const attritionData = StatisticsHelper.getAttritionData(organisationName)
@@ -389,7 +389,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/diversity/download', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-sex-disability-ethnicity-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.zip'
+    const fileName = '/sex-disability-ethnicity-and-age-of-candidates-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.zip'
     const filePath = downloadDirectoryPath + fileName
 
     const sexData = writeSexData(organisation, req.session.data.applications)
