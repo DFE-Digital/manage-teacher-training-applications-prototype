@@ -29,7 +29,7 @@ const statuses = [
 
 const writeSexData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-diversity-sex-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-sex-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -65,7 +65,7 @@ const writeSexData = (organisation, applications) => {
 
 const writeDisabilityData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-diversity-disability-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-disability-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -103,7 +103,7 @@ const writeDisabilityData = (organisation, applications) => {
 
 const writeEthnicityData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-diversity-ethnicity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-ethnicity-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -152,7 +152,7 @@ const writeEthnicityData = (organisation, applications) => {
 
 const writeAgeData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
-  const fileName = '/candidate-diversity-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  const fileName = '/candidate-age-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -217,7 +217,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/status-of-applications/download', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = '/status-of-applications-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const fileName = '/status-of-active-applications-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
     const statusData = StatisticsHelper.getStatusData(organisationName)
@@ -278,7 +278,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/candidate-drop-out/download', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-drop-out-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+    const fileName = '/when-candidates-choose-to-leave-the-application-process-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
     const attritionData = StatisticsHelper.getAttritionData(organisationName)
@@ -389,7 +389,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/diversity/download', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-diversity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.zip'
+    const fileName = '/sex-disability-ethnicity-and-age-of-candidates-2020-to-2021-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.zip'
     const filePath = downloadDirectoryPath + fileName
 
     const sexData = writeSexData(organisation, req.session.data.applications)
@@ -411,178 +411,195 @@ module.exports = router => {
     // send archive to browser
     archive.finalize()
       .then(() => {
-        res.download(filePath,fileName)
+        res.download(filePath, fileName, (error) => {
+          if (error) {
+            console.error(error)
+          }
+          const filePaths = []
+          filePaths.push(sexData.filePath)
+          filePaths.push(disabilityData.filePath)
+          filePaths.push(ethnicityData.filePath)
+          filePaths.push(ageData.filePath)
+          filePaths.push(filePath)
+
+          filePaths.forEach((filePath, i) => {
+            try {
+              fs.unlinkSync(filePath)
+            } catch (error) {
+              console.error(error)
+            }
+          })
+        })
         console.log('Done')
       })
-
   })
 
-  router.get('/reports/:organisationId/diversity/download/sex', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-diversity-sex-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
-    const filePath = downloadDirectoryPath + fileName
+  // router.get('/reports/:organisationId/diversity/download/sex', (req, res) => {
+  //   const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+  //   const organisationName = slugify(organisation.name)
+  //   const fileName = '/candidate-diversity-sex-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  //   const filePath = downloadDirectoryPath + fileName
+  //
+  //   const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+  //   const sexData = StatisticsHelper.getSexData(applications)
+  //
+  //   // headers for the CSV file
+  //   const headers = []
+  //   headers.push({ id: 'sex', title: 'Sex' })
+  //   headers.push({ id: 'received', title: 'Candidates applied' })
+  //   headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  //
+  //   const csv = csvWriter({
+  //     path: filePath,
+  //     header: headers
+  //   })
+  //
+  //   // content for the CSV file
+  //   const records = []
+  //
+  //   sexData.forEach((item, i) => {
+  //     const data = {}
+  //     data.sex = item.title
+  //     data.received = item.counts.received
+  //     data.recruited = item.counts.recruited
+  //     records.push(data)
+  //   })
+  //
+  //   // write the CSV file and send to browser
+  //   csv.writeRecords(records)
+  //     .then(() => {
+  //       res.download(filePath,fileName)
+  //     })
+  // })
 
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
-    const sexData = StatisticsHelper.getSexData(applications)
+  // router.get('/reports/:organisationId/diversity/download/disability', (req, res) => {
+  //   const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+  //   const organisationName = slugify(organisation.name)
+  //   const fileName = '/candidate-diversity-disability-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  //   const filePath = downloadDirectoryPath + fileName
+  //
+  //   const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+  //   const disabilityData = StatisticsHelper.getDisabilityData(applications)
+  //
+  //   // headers for the CSV file
+  //   const headers = []
+  //   headers.push({ id: 'disability', title: 'Disability' })
+  //   headers.push({ id: 'description', title: 'Description' })
+  //   headers.push({ id: 'received', title: 'Candidates applied' })
+  //   headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  //
+  //   const csv = csvWriter({
+  //     path: filePath,
+  //     header: headers
+  //   })
+  //
+  //   // content for the CSV file
+  //   const records = []
+  //
+  //   disabilityData.forEach((item, i) => {
+  //     const data = {}
+  //     data.disability = item.title
+  //     data.description = item.description
+  //     data.received = item.counts.received
+  //     data.recruited = item.counts.recruited
+  //     records.push(data)
+  //   })
+  //
+  //   // write the CSV file and send to browser
+  //   csv.writeRecords(records)
+  //     .then(() => {
+  //       res.download(filePath,fileName)
+  //     })
+  // })
 
-    // headers for the CSV file
-    const headers = []
-    headers.push({ id: 'sex', title: 'Sex' })
-    headers.push({ id: 'received', title: 'Candidates applied' })
-    headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  // router.get('/reports/:organisationId/diversity/download/ethnicity', (req, res) => {
+  //   const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+  //   const organisationName = slugify(organisation.name)
+  //   const fileName = '/candidate-diversity-ethnicity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  //   const filePath = downloadDirectoryPath + fileName
+  //
+  //   const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+  //   const ethnicityData = StatisticsHelper.getEthnicityData(applications)
+  //
+  //   // headers for the CSV file
+  //   const headers = []
+  //   headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
+  //   headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
+  //   headers.push({ id: 'received', title: 'Candidates applied' })
+  //   headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  //
+  //   const csv = csvWriter({
+  //     path: filePath,
+  //     header: headers
+  //   })
+  //
+  //   // content for the CSV file
+  //   const records = []
+  //
+  //   ethnicityData.forEach((parent, i) => {
+  //     let data = {}
+  //     data.ethnicGroup = parent.title
+  //     data.ethnicBackground = ''
+  //     data.received = parent.counts.received
+  //     data.recruited = parent.counts.recruited
+  //     records.push(data)
+  //
+  //     if (parent.items !== undefined) {
+  //       parent.items.forEach((child, i) => {
+  //         data = {}
+  //         data.ethnicGroup = parent.title
+  //         data.ethnicBackground = child.title
+  //         data.received = child.counts.received
+  //         data.recruited = child.counts.recruited
+  //         records.push(data)
+  //       })
+  //     }
+  //   })
+  //
+  //   // write the CSV file and send to browser
+  //   csv.writeRecords(records)
+  //     .then(() => {
+  //       res.download(filePath,fileName)
+  //     })
+  // })
 
-    const csv = csvWriter({
-      path: filePath,
-      header: headers
-    })
-
-    // content for the CSV file
-    const records = []
-
-    sexData.forEach((item, i) => {
-      const data = {}
-      data.sex = item.title
-      data.received = item.counts.received
-      data.recruited = item.counts.recruited
-      records.push(data)
-    })
-
-    // write the CSV file and send to browser
-    csv.writeRecords(records)
-      .then(() => {
-        res.download(filePath,fileName)
-      })
-  })
-
-  router.get('/reports/:organisationId/diversity/download/disability', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-diversity-disability-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
-    const filePath = downloadDirectoryPath + fileName
-
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
-    const disabilityData = StatisticsHelper.getDisabilityData(applications)
-
-    // headers for the CSV file
-    const headers = []
-    headers.push({ id: 'disability', title: 'Disability' })
-    headers.push({ id: 'description', title: 'Description' })
-    headers.push({ id: 'received', title: 'Candidates applied' })
-    headers.push({ id: 'recruited', title: 'Candidates recruited' })
-
-    const csv = csvWriter({
-      path: filePath,
-      header: headers
-    })
-
-    // content for the CSV file
-    const records = []
-
-    disabilityData.forEach((item, i) => {
-      const data = {}
-      data.disability = item.title
-      data.description = item.description
-      data.received = item.counts.received
-      data.recruited = item.counts.recruited
-      records.push(data)
-    })
-
-    // write the CSV file and send to browser
-    csv.writeRecords(records)
-      .then(() => {
-        res.download(filePath,fileName)
-      })
-  })
-
-  router.get('/reports/:organisationId/diversity/download/ethnicity', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-diversity-ethnicity-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
-    const filePath = downloadDirectoryPath + fileName
-
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
-    const ethnicityData = StatisticsHelper.getEthnicityData(applications)
-
-    // headers for the CSV file
-    const headers = []
-    headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
-    headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
-    headers.push({ id: 'received', title: 'Candidates applied' })
-    headers.push({ id: 'recruited', title: 'Candidates recruited' })
-
-    const csv = csvWriter({
-      path: filePath,
-      header: headers
-    })
-
-    // content for the CSV file
-    const records = []
-
-    ethnicityData.forEach((parent, i) => {
-      let data = {}
-      data.ethnicGroup = parent.title
-      data.ethnicBackground = ''
-      data.received = parent.counts.received
-      data.recruited = parent.counts.recruited
-      records.push(data)
-
-      if (parent.items !== undefined) {
-        parent.items.forEach((child, i) => {
-          data = {}
-          data.ethnicGroup = parent.title
-          data.ethnicBackground = child.title
-          data.received = child.counts.received
-          data.recruited = child.counts.recruited
-          records.push(data)
-        })
-      }
-    })
-
-    // write the CSV file and send to browser
-    csv.writeRecords(records)
-      .then(() => {
-        res.download(filePath,fileName)
-      })
-  })
-
-  router.get('/reports/:organisationId/diversity/download/age', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const organisationName = slugify(organisation.name)
-    const fileName = '/candidate-diversity-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
-    const filePath = downloadDirectoryPath + fileName
-
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
-    const ageData = StatisticsHelper.getAgeData(applications)
-
-    // headers for the CSV file
-    const headers = []
-    headers.push({ id: 'age', title: 'Age' })
-    headers.push({ id: 'received', title: 'Candidates applied' })
-    headers.push({ id: 'recruited', title: 'Candidates recruited' })
-
-    const csv = csvWriter({
-      path: filePath,
-      header: headers
-    })
-
-    // content for the CSV file
-    const records = []
-
-    ageData.forEach((item, i) => {
-      const data = {}
-      data.age = item.title
-      data.received = item.counts.received
-      data.recruited = item.counts.recruited
-      records.push(data)
-    })
-
-    // write the CSV file and send to browser
-    csv.writeRecords(records)
-      .then(() => {
-        res.download(filePath,fileName)
-      })
-  })
+  // router.get('/reports/:organisationId/diversity/download/age', (req, res) => {
+  //   const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+  //   const organisationName = slugify(organisation.name)
+  //   const fileName = '/candidate-diversity-age-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
+  //   const filePath = downloadDirectoryPath + fileName
+  //
+  //   const applications = req.session.data.applications.filter(app => app.provider === organisation.name)
+  //   const ageData = StatisticsHelper.getAgeData(applications)
+  //
+  //   // headers for the CSV file
+  //   const headers = []
+  //   headers.push({ id: 'age', title: 'Age' })
+  //   headers.push({ id: 'received', title: 'Candidates applied' })
+  //   headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  //
+  //   const csv = csvWriter({
+  //     path: filePath,
+  //     header: headers
+  //   })
+  //
+  //   // content for the CSV file
+  //   const records = []
+  //
+  //   ageData.forEach((item, i) => {
+  //     const data = {}
+  //     data.age = item.title
+  //     data.received = item.counts.received
+  //     data.recruited = item.counts.recruited
+  //     records.push(data)
+  //   })
+  //
+  //   // write the CSV file and send to browser
+  //   csv.writeRecords(records)
+  //     .then(() => {
+  //       res.download(filePath,fileName)
+  //     })
+  // })
 
   router.get('/reports/export', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
