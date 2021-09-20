@@ -5,13 +5,13 @@ const _ = require('lodash')
 
 const subjects = require('../data/subjects')
 
-function getCheckboxValues (name, data) {
+const getCheckboxValues = (name, data) => {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
     return name !== '_unchecked'
   })) || data
 }
 
-function getApplicationsByGroup (applications) {
+const getApplicationsByGroup = (applications) => {
 
   const previousCyclePendingConditions = applications
     .filter(app => app.status === "Conditions pending")
@@ -96,8 +96,8 @@ function getApplicationsByGroup (applications) {
   }
 }
 
-function flattenGroup (grouped) {
-  var array = []
+const flattenGroup = (grouped) => {
+  let array = []
   array = array.concat(grouped.deferredOffersPendingReconfirmation)
   array = array.concat(grouped.previousCyclePendingConditions)
   array = array.concat(grouped.aboutToBeRejectedAutomatically)
@@ -112,8 +112,8 @@ function flattenGroup (grouped) {
   return array
 }
 
-function addHeadings (grouped) {
-  var array = []
+const addHeadings = (grouped) => {
+  let array = []
   if (grouped.deferredOffersPendingReconfirmation.length) {
     array.push({
       heading: 'Deferred offers: review and confirm'
@@ -195,7 +195,7 @@ function addHeadings (grouped) {
   return array
 }
 
-function getSubjectItems (answerValues) {
+const getSubjectItems = (answerValues) => {
   const items = []
 
   subjects.forEach((item) => {
@@ -215,7 +215,7 @@ function getSubjectItems (answerValues) {
   return items
 }
 
-function getSelectedSubjectItems (selectedItems) {
+const getSelectedSubjectItems = (selectedItems) => {
   const items = []
 
   selectedItems.forEach((item) => {
@@ -229,7 +229,7 @@ function getSelectedSubjectItems (selectedItems) {
   return items
 }
 
-function getUserItems (users, assignedUsers = [], you = {}) {
+const getUserItems = (users, assignedUsers = [], you = {}) => {
   let options = []
 
   // sort the users alphabetically
@@ -288,7 +288,7 @@ function getUserItems (users, assignedUsers = [], you = {}) {
   return options
 }
 
-function getSelectedUserItems (selectedItems) {
+const getSelectedUserItems = (selectedItems) => {
   const items = []
 
   selectedItems.forEach((item) => {
@@ -302,7 +302,7 @@ function getSelectedUserItems (selectedItems) {
   return items
 }
 
-function getUserFullName (users, assignedUserId) {
+const getUserFullName = (users, assignedUserId) => {
   let name = ''
 
   if (assignedUserId === 'unassigned') {
@@ -315,7 +315,7 @@ function getUserFullName (users, assignedUserId) {
   return name
 }
 
-function getTrainingProviderItems (providers, selectedProviders) {
+const getTrainingProviderItems = (providers, selectedProviders) => {
   return providers
     .sort((a,b) => {
       return a.name.localeCompare(b.name)
@@ -329,7 +329,7 @@ function getTrainingProviderItems (providers, selectedProviders) {
     })
 }
 
-function getAccreditedBodyItems (accreditedBodies, selectedAccreditedBodies) {
+const getAccreditedBodyItems = (accreditedBodies, selectedAccreditedBodies) => {
   return accreditedBodies
     .sort((a,b) => {
       return a.name.localeCompare(b.name)
