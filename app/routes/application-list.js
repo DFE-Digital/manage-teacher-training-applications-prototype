@@ -3,8 +3,6 @@ const ApplicationHelper = require('../data/helpers/application')
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 
-const subjects = require('../data/subjects')
-
 const getCheckboxValues = (name, data) => {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
     return name !== '_unchecked'
@@ -195,24 +193,30 @@ const addHeadings = (grouped) => {
   return array
 }
 
-const getSubjectItems = (answerValues) => {
-  const items = []
+const getSubjectItems = (applications, selectedItems) => {
+  const subjects = []
 
-  subjects.forEach((item) => {
-    const subject = {}
-    subject.text = item.name
-    subject.value = item.name
-    subject.id = item.code
+  applications.forEach((app, i) => {
 
-    subject.checked = false
-    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
-      subject.checked = true
-    }
+    app.subject.forEach((subject, i) => {
+      if (!subjects.filter(s => s.value === subject.name).length) {
+        const item = {}
 
-    items.push(subject)
+        item.id = subject.code
+        item.value = subject.name
+        item.text = subject.name
+        item.checked = (selectedItems && selectedItems.includes(subject.name)) ? 'checked' : ''
+
+        subjects.push(item)
+      }
+    })
   })
 
-  return items
+  subjects.sort((a,b) => {
+    return a.text.localeCompare(b.text)
+  })
+
+  return subjects
 }
 
 const getSelectedSubjectItems = (selectedItems) => {
@@ -324,7 +328,7 @@ const getTrainingProviderItems = (providers, selectedProviders) => {
       return {
         value: org.name,
         text: org.name,
-        checked: selectedProviders && selectedProviders.includes(org.name) ?  "checked": ""
+        checked: selectedProviders && selectedProviders.includes(org.name) ? 'checked' : ''
       }
     })
 }
@@ -338,7 +342,7 @@ const getAccreditedBodyItems = (accreditedBodies, selectedAccreditedBodies) => {
       return {
         value: org.name,
         text: org.name,
-        checked: selectedAccreditedBodies && selectedAccreditedBodies.includes(org.name) ?  "checked": ""
+        checked: selectedAccreditedBodies && selectedAccreditedBodies.includes(org.name) ? 'checked' : ''
       }
     })
 }
@@ -612,8 +616,8 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
-    const subjectItems = getSubjectItems(req.session.data.subject)
-    const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === true))
+    const subjectItems = getSubjectItems(req.session.data.applications, req.session.data.subject)
+    const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
     const userItems = getUserItems(users, req.session.data.assignedUser, req.session.data.user)
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
