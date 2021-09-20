@@ -125,6 +125,11 @@
     "level": "Secondary"
   },
   {
+    "code": "P1",
+    "name": "Philosophy",
+    "level": "Secondary"
+  },
+  {
     "code": "C6",
     "name": "Physical education",
     "level": "Secondary"

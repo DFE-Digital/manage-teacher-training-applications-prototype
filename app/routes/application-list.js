@@ -4,14 +4,15 @@ const { DateTime } = require('luxon')
 const _ = require('lodash')
 
 const subjects = require('../data/subjects')
+const locations = require('../data/locations')
 
-function getCheckboxValues (name, data) {
+const getCheckboxValues = (name, data) => {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
     return name !== '_unchecked'
   })) || data
 }
 
-function getApplicationsByGroup (applications) {
+const getApplicationsByGroup = (applications) => {
 
   const previousCyclePendingConditions = applications
     .filter(app => app.status === "Conditions pending")
@@ -96,8 +97,8 @@ function getApplicationsByGroup (applications) {
   }
 }
 
-function flattenGroup (grouped) {
-  var array = []
+const flattenGroup = (grouped) => {
+  let array = []
   array = array.concat(grouped.deferredOffersPendingReconfirmation)
   array = array.concat(grouped.previousCyclePendingConditions)
   array = array.concat(grouped.aboutToBeRejectedAutomatically)
@@ -112,8 +113,8 @@ function flattenGroup (grouped) {
   return array
 }
 
-function addHeadings (grouped) {
-  var array = []
+const addHeadings = (grouped) => {
+  let array = []
   if (grouped.deferredOffersPendingReconfirmation.length) {
     array.push({
       heading: 'Deferred offers: review and confirm'
@@ -195,27 +196,28 @@ function addHeadings (grouped) {
   return array
 }
 
-function getSubjectItems (answerValues) {
+const getSubjectItems = (selectedItems) => {
   const items = []
 
-  subjects.forEach((item) => {
-    const subject = {}
-    subject.text = item.name
-    subject.value = item.name
-    subject.id = item.code
+  subjects.forEach((subject, i) => {
+    const item = {}
 
-    subject.checked = false
-    if (answerValues !== undefined && answerValues !== null && answerValues.includes(item.name)) {
-      subject.checked = true
-    }
+    item.text = subject.name
+    item.value = subject.name
+    item.id = subject.code
+    item.checked = (selectedItems && selectedItems.includes(subject.name)) ? 'checked' : ''
 
-    items.push(subject)
+    items.push(item)
+  })
+
+  items.sort((a,b) => {
+    return a.text.localeCompare(b.text)
   })
 
   return items
 }
 
-function getSelectedSubjectItems (selectedItems) {
+const getSelectedSubjectItems = (selectedItems) => {
   const items = []
 
   selectedItems.forEach((item) => {
@@ -229,7 +231,7 @@ function getSelectedSubjectItems (selectedItems) {
   return items
 }
 
-function getUserItems (users, assignedUsers = [], you = {}) {
+const getUserItems = (users, assignedUsers = [], you = {}) => {
   let options = []
 
   // sort the users alphabetically
@@ -288,7 +290,7 @@ function getUserItems (users, assignedUsers = [], you = {}) {
   return options
 }
 
-function getSelectedUserItems (selectedItems) {
+const getSelectedUserItems = (selectedItems) => {
   const items = []
 
   selectedItems.forEach((item) => {
@@ -302,7 +304,7 @@ function getSelectedUserItems (selectedItems) {
   return items
 }
 
-function getUserFullName (users, assignedUserId) {
+const getUserFullName = (users, assignedUserId) => {
   let name = ''
 
   if (assignedUserId === 'unassigned') {
@@ -315,7 +317,7 @@ function getUserFullName (users, assignedUserId) {
   return name
 }
 
-function getTrainingProviderItems (providers, selectedProviders) {
+const getTrainingProviderItems = (providers, selectedProviders) => {
   return providers
     .sort((a,b) => {
       return a.name.localeCompare(b.name)
@@ -324,12 +326,12 @@ function getTrainingProviderItems (providers, selectedProviders) {
       return {
         value: org.name,
         text: org.name,
-        checked: selectedProviders && selectedProviders.includes(org.name) ?  "checked": ""
+        checked: selectedProviders && selectedProviders.includes(org.name) ? 'checked' : ''
       }
     })
 }
 
-function getAccreditedBodyItems (accreditedBodies, selectedAccreditedBodies) {
+const getAccreditedBodyItems = (accreditedBodies, selectedAccreditedBodies) => {
   return accreditedBodies
     .sort((a,b) => {
       return a.name.localeCompare(b.name)
@@ -338,9 +340,30 @@ function getAccreditedBodyItems (accreditedBodies, selectedAccreditedBodies) {
       return {
         value: org.name,
         text: org.name,
-        checked: selectedAccreditedBodies && selectedAccreditedBodies.includes(org.name) ?  "checked": ""
+        checked: selectedAccreditedBodies && selectedAccreditedBodies.includes(org.name) ? 'checked' : ''
       }
     })
+}
+
+const getLocationItems = (selectedItems) => {
+  const items = []
+
+  locations.forEach((location, i) => {
+    const item = {}
+
+    item.text = location.name
+    item.value = location.name
+    item.id = location.code
+    item.checked = (selectedItems && selectedItems.includes(location.name)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  items.sort((a,b) => {
+    return a.text.localeCompare(b.text)
+  })
+
+  return items
 }
 
 module.exports = router => {
@@ -408,7 +431,7 @@ module.exports = router => {
         }
 
         if (locations && locations.length) {
-          locationValid = locations.includes(app.location)
+          locationValid = locations.includes(app.location.name)
         }
 
         if (providers && providers.length) {
@@ -439,7 +462,6 @@ module.exports = router => {
               }
             }
           }
-
         }
 
         if (subjects && subjects.length) {
@@ -501,7 +523,8 @@ module.exports = router => {
 
       if (locations && locations.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Training locations for ' + req.session.data.trainingProviders[1].name },
+          // TODO: check this works for multi-organisation user relationships
+          heading: { text: 'Training locations for ' + req.session.data.trainingProviders[0].name },
           items: locations.map((location) => {
             return {
               text: location,
@@ -590,7 +613,7 @@ module.exports = router => {
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
     const subjectItems = getSubjectItems(req.session.data.subject)
-    const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === true))
+    const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
     const userItems = getUserItems(users, req.session.data.assignedUser, req.session.data.user)
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
@@ -601,6 +624,7 @@ module.exports = router => {
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
+    const locationItems = getLocationItems(req.session.data.location)
 
     res.render('index', {
       allApplications,
@@ -611,6 +635,7 @@ module.exports = router => {
       subjectItems,
       trainingProviderItems,
       accreditedBodyItems,
+      locationItems,
       subjectItemsDisplayLimit: 15,
       selectedSubjects,
       userItems,

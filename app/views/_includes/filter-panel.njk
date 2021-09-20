@@ -112,7 +112,6 @@
   {% endif %}
 
   {% if checked(data.provider, data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
-
     {{ govukCheckboxes({
       name: 'location',
       classes: "govuk-checkboxes--small",
@@ -122,28 +121,7 @@
           classes: 'govuk-fieldset__legend--s'
         }
       },
-      items: [
-        {
-          value: 'Main site',
-          text: 'Main site',
-          checked: checked(data.location, "Main site") == 'checked'
-        },
-        {
-          value: 'Camberley - training location',
-          text: 'Camberley - training location',
-          checked: checked(data.location, "Camberley - training location") == 'checked'
-        },
-        {
-          value: 'Epsom Grinstead - training location',
-          text: 'Epsom Grinstead - training location',
-          checked: checked(data.location, "Epsom Grinstead - training location") == 'checked'
-        },
-        {
-          value: 'Lingfield - training location',
-          text: 'Lingfield - training location',
-          checked: checked(data.location, "Lingfield - training location") == 'checked'
-        }
-      ]
+      items: locationItems
     }) }}
   {% endif %}
 
@@ -265,7 +243,6 @@
             <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear filters</a></p>
           </div>
         </div>
-
         {% for category in selectedFilters.categories %}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
           <ul class="app-filter-tags">
