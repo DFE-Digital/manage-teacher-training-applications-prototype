@@ -343,6 +343,28 @@ function getAccreditedBodyItems (accreditedBodies, selectedAccreditedBodies) {
     })
 }
 
+const getLocationItems = (applications, selectedLocations) => {
+  const locations = []
+
+  applications.forEach((app, i) => {
+    if (!locations.filter(location => location.value === app.location.name).length) {
+      const item = {}
+
+      item.value = app.location.name
+      item.text = app.location.name
+      item.checked = (selectedLocations && selectedLocations.includes(app.location.name)) ? 'checked' : ''
+
+      locations.push(item)
+    }
+  })
+
+  locations.sort((a,b) => {
+    return a.text.localeCompare(b.text)
+  })
+
+  return locations
+}
+
 module.exports = router => {
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
@@ -408,7 +430,7 @@ module.exports = router => {
         }
 
         if (locations && locations.length) {
-          locationValid = locations.includes(app.location)
+          locationValid = locations.includes(app.location.name)
         }
 
         if (providers && providers.length) {
@@ -501,7 +523,8 @@ module.exports = router => {
 
       if (locations && locations.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Training locations for ' + req.session.data.trainingProviders[1].name },
+          // TODO: check this works for multi-organisation user relationships
+          heading: { text: 'Training locations for ' + req.session.data.trainingProviders[0].name },
           items: locations.map((location) => {
             return {
               text: location,
@@ -601,6 +624,7 @@ module.exports = router => {
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
+    const locationItems = getLocationItems(req.session.data.applications, req.session.data.location)
 
     res.render('index', {
       allApplications,
@@ -611,6 +635,7 @@ module.exports = router => {
       subjectItems,
       trainingProviderItems,
       accreditedBodyItems,
+      locationItems,
       subjectItemsDisplayLimit: 15,
       selectedSubjects,
       userItems,
