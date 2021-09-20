@@ -3,6 +3,9 @@ const ApplicationHelper = require('../data/helpers/application')
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 
+const subjects = require('../data/subjects')
+const locations = require('../data/locations')
+
 const getCheckboxValues = (name, data) => {
   return name && (Array.isArray(name) ? name : [name].filter((name) => {
     return name !== '_unchecked'
@@ -193,30 +196,26 @@ const addHeadings = (grouped) => {
   return array
 }
 
-const getSubjectItems = (applications, selectedItems) => {
-  const subjects = []
+const getSubjectItems = (selectedItems) => {
+  const items = []
 
-  applications.forEach((app, i) => {
+  subjects.forEach((subject, i) => {
+    const item = {}
 
-    app.subject.forEach((subject, i) => {
-      if (!subjects.filter(s => s.value === subject.name).length) {
-        const item = {}
+    item.text = subject.name
+    item.value = subject.name
+    item.id = subject.code
+    item.checked = (selectedItems && selectedItems.includes(subject.name)) ? 'checked' : ''
 
-        item.id = subject.code
-        item.value = subject.name
-        item.text = subject.name
-        item.checked = (selectedItems && selectedItems.includes(subject.name)) ? 'checked' : ''
-
-        subjects.push(item)
-      }
-    })
+    items.push(item)
   })
 
-  subjects.sort((a,b) => {
+
+  items.sort((a,b) => {
     return a.text.localeCompare(b.text)
   })
 
-  return subjects
+  return items
 }
 
 const getSelectedSubjectItems = (selectedItems) => {
@@ -347,26 +346,26 @@ const getAccreditedBodyItems = (accreditedBodies, selectedAccreditedBodies) => {
     })
 }
 
-const getLocationItems = (applications, selectedLocations) => {
-  const locations = []
+const getLocationItems = (selectedItems) => {
+  const items = []
 
-  applications.forEach((app, i) => {
-    if (!locations.filter(location => location.value === app.location.name).length) {
-      const item = {}
+  locations.forEach((location, i) => {
+    const item = {}
 
-      item.value = app.location.name
-      item.text = app.location.name
-      item.checked = (selectedLocations && selectedLocations.includes(app.location.name)) ? 'checked' : ''
+    item.text = location.name
+    item.value = location.name
+    item.id = location.code
+    item.checked = (selectedItems && selectedItems.includes(location.name)) ? 'checked' : ''
 
-      locations.push(item)
-    }
+    items.push(item)
   })
 
-  locations.sort((a,b) => {
+
+  items.sort((a,b) => {
     return a.text.localeCompare(b.text)
   })
 
-  return locations
+  return items
 }
 
 module.exports = router => {
@@ -616,7 +615,7 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
-    const subjectItems = getSubjectItems(req.session.data.applications, req.session.data.subject)
+    const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
     const userItems = getUserItems(users, req.session.data.assignedUser, req.session.data.user)
@@ -628,7 +627,7 @@ module.exports = router => {
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
-    const locationItems = getLocationItems(req.session.data.applications, req.session.data.location)
+    const locationItems = getLocationItems(req.session.data.location)
 
     res.render('index', {
       allApplications,
