@@ -210,7 +210,6 @@ const getSubjectItems = (selectedItems) => {
     items.push(item)
   })
 
-
   items.sort((a,b) => {
     return a.text.localeCompare(b.text)
   })
@@ -360,7 +359,6 @@ const getLocationItems = (selectedItems) => {
     items.push(item)
   })
 
-
   items.sort((a,b) => {
     return a.text.localeCompare(b.text)
   })
@@ -464,7 +462,6 @@ module.exports = router => {
               }
             }
           }
-
         }
 
         if (subjects && subjects.length) {
