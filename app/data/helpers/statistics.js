@@ -198,7 +198,7 @@ const getAgeCounts = (applications) => {
   counts['35_to_44'] = 0
   counts['45_to_54'] = 0
   counts['55_to_64'] = 0
-  counts['65_plus'] = 0
+  counts['65_over'] = 0
 
   applications.forEach((app, i) => {
     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
@@ -217,7 +217,7 @@ const getAgeCounts = (applications) => {
     } else if (years >= 55 && years <= 64) {
       counts['55_to_64'] += 1
     } else if (years >= 65) {
-      counts['65_plus'] += 1
+      counts['65_over'] += 1
     }
 
   })
@@ -230,13 +230,13 @@ exports.getAgeData = (applications) => {
   const recruitedCounts = getAgeCounts(applications.filter(app => app.status === 'Recruited'))
 
   return [
-    // { title: 'Less than 18', counts: { received: receivedCounts['18_less'], recruited: recruitedCounts['18_less'] } },
+    // { title: 'Under 18', counts: { received: receivedCounts['18_less'], recruited: recruitedCounts['18_less'] } },
     { title: '18 to 24', counts: { received: receivedCounts['18_to_24'], recruited: recruitedCounts['18_to_24'] } },
     { title: '25 to 34', counts: { received: receivedCounts['25_to_34'], recruited: recruitedCounts['25_to_34'] } },
     { title: '35 to 44', counts: { received: receivedCounts['35_to_44'], recruited: recruitedCounts['35_to_44'] } },
     { title: '45 to 54', counts: { received: receivedCounts['45_to_54'], recruited: recruitedCounts['45_to_54'] } },
     { title: '55 to 64', counts: { received: receivedCounts['55_to_64'], recruited: recruitedCounts['55_to_64'] } },
-    { title: '65 and older', counts: { received: receivedCounts['65_plus'], recruited: recruitedCounts['65_plus'] } }
+    { title: '65 and over', counts: { received: receivedCounts['65_over'], recruited: recruitedCounts['65_over'] } }
   ]
 }
 
