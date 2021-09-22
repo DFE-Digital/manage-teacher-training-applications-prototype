@@ -202,7 +202,8 @@ const getAgeCounts = (applications) => {
 
   applications.forEach((app, i) => {
     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
-    const years = Math.round(DateTime.now().diff(dateOfBirth, 'years').toObject().years)
+    const currentYear = DateTime.now().year
+    const years = Math.round(DateTime.fromISO(currentYear + '-08-31').diff(dateOfBirth, 'years').toObject().years)
 
     if (years < 18) {
       counts['18_less'] += 1
