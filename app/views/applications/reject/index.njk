@@ -19,14 +19,96 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      {# <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1> #}
 
-      <p>This feedback will be sent to the candidate.</p>
+      {# <p>This feedback will be sent to the candidate.</p> #}
+
+      {% set h1 %}
+        <span class="govuk-caption-l">{{name}}</span>
+        {{title}}
+      {% endset %}
 
       <form method="post">
-        {% include "_includes/reasons/conditions.njk" %}
-        {% include "_includes/reasons/actions.njk" %}
+
+        {% set qualificationReasonsHtml %}
+          {% include "_includes/reasons/n-qualifications.njk" %}
+        {% endset %}
+
+        {% set personalStatementReasonsHtml %}
+          {% include "_includes/reasons/n-personal-statement.njk" %}
+        {% endset %}
+
+        {% set workHistoryReasonsHtml %}
+          {% include "_includes/reasons/n-work-history.njk" %}
+        {% endset %}
+
+        {{ govukCheckboxes({
+          idPrefix: "rejection-categories",
+          name: "rejection[categories]",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Qualifications",
+              text: "Qualifications",
+              conditional: {
+                html: qualificationReasonsHtml
+              }
+            },
+            {
+              value: "Personal statement",
+              text: "Personal statement",
+              conditional: {
+                html: personalStatementReasonsHtml
+              }
+            },
+            {
+              value: "Work history and experience",
+              text: "Work history and experience",
+              checked: checked(data['rejection']['categories'], "Work history and experience"),
+              conditional: {
+                html: workHistoryReasonsHtml
+              }
+            },
+            {
+              value: "References",
+              text: "References"
+            },
+            {
+              value: "Interview",
+              text: "Interview"
+            },
+            {
+              value: "Did not reply to messages",
+              text: "Did not reply to messages"
+            },
+            {
+              value: "Cannot sponsor visa",
+              text: "Cannot sponsor visa"
+            },
+            {
+              value: "Course full",
+              text: "Course full"
+            },
+            {
+              value: "Criminal record and professional misconduct",
+              text: "Criminal record and professional misconduct"
+            },
+            {
+              value: "Other",
+              text: "Other"
+            }
+          ]
+        }) }}
+
+
+        {# {% include "_includes/reasons/actions.njk" %}
         {% include "_includes/reasons/application-quality.njk" %}
         {% include "_includes/reasons/missing-qualifications.njk" %}
         {% include "_includes/reasons/interview-performance.njk" %}
@@ -34,7 +116,7 @@
         {% include "_includes/reasons/safeguarding.njk" %}
         {% include "_includes/reasons/other-offer.njk" %}
         {% include "_includes/reasons/course-full.njk" %}
-        {% include "_includes/reasons/sponsor-visa.njk" %}
+        {% include "_includes/reasons/sponsor-visa.njk" %} #}
 
         {{ govukButton({
           text: "Continue"

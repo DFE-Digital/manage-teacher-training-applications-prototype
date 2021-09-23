@@ -1,0 +1,55 @@
+{% macro appDetailsField(params) %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details"
+    },
+    id: "rejection-" + params.category + "-reasons-" + params.reason,
+    name: 'rejectionReasons[' + params.category + '-reasons-' + params.reason +']',
+    value: data['rejectionReasons'][params.category + '-reasons-' + params.reason]
+  }) }}
+{% endmacro %}
+
+{% set category = 'work-history' %}
+{% set unexplainedGapHtml %}
+  {{appDetailsField({ category: category, reason: 'unexpained-work-gap' })}}
+{% endset %}
+{% set experienceHtml %}
+  {{appDetailsField({ category: category, reason: 'lack-of-experience' })}}
+{% endset %}
+{% set otherHtml %}
+  {{appDetailsField({ category: category, reason: 'other' })}}
+{% endset %}
+
+{{ govukCheckboxes({
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
+  fieldset: {
+    legend: {
+      text: "Reasons",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [{
+    value: "Unexplained gap in work history",
+    html: "Unexplained gap in work history",
+    checked: checked(data['rejection'][category + '-reasons'], "Unexplained gap in work history"),
+    conditional: {
+      html: unexplainedGapHtml
+    }
+  }, {
+    value: "Lack of school or teaching experience",
+    text: "Lack of school or teaching experience",
+    checked: checked(data['rejection'][category + '-reasons'], "Lack of school or teaching experience"),
+    conditional: {
+      html: experienceHtml
+    }
+  }, {
+      value: "Other",
+      text: "Other",
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      conditional: {
+        html: otherHtml
+      }
+    }]
+}) }}

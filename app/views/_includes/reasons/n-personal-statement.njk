@@ -1,0 +1,71 @@
+{% set personalStatementReasonsSpellingAndGrammarHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details"
+    },
+    id: "rejection-personal-statement-reasons-spelling-and-grammar",
+    name: "rejectionReasons[personal-statement-reasons-spelling-and-grammar]",
+    value: data['rejectionReasons']['personal-statement-reasons-spelling-and-grammar']
+  }) }}
+{% endset %}
+
+
+{% set personalStatementReasonsEvidenceOfPlagiarismHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details"
+    },
+    id: "rejection-personal-statement-reasons-evidence-of-plagiarism",
+    name: "rejectionReasons[personal-statement-reasons-evidence-of-plagiarism]",
+    value: data['rejectionReasons']['personal-statement-reasons-evidence-of-plagiarism']
+  }) }}
+{% endset %}
+
+
+{% set personalStatementReasonsOtherHtml %}
+  {{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details"
+    },
+    id: "rejection-personal-statement-reasons-other",
+    name: "rejectionReasons[personal-statement-reasons-other]",
+    value: data['rejectionReasons']['personal-statement-reasons-other']
+  }) }}
+{% endset %}
+
+
+{{ govukCheckboxes({
+  idPrefix: "rejection-personal-statement-reasons",
+  name: "rejectionReasons[personal-statement-reasons]",
+  fieldset: {
+    legend: {
+      text: "Reasons",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [{
+    value: "Spelling and grammar",
+    html: "Spelling and grammar",
+    checked: checked(data['rejectionReasons']['personal-statement-reasons'], "Spelling and grammar"),
+    conditional: {
+      html: personalStatementReasonsSpellingAndGrammarHtml
+    }
+  }, {
+    value: "Evidence of plagiarism",
+    text: "Evidence of plagiarism",
+    checked: checked(data['rejectionReasons']['personal-statement-reasons'], "Evidence of plagiarism"),
+    conditional: {
+      html: personalStatementReasonsEvidenceOfPlagiarismHtml
+    }
+  }, {
+      value: "Other",
+      text: "Other",
+      checked: checked(data['rejectionReasons']['personal-statement-reasons'], "Other"),
+      conditional: {
+        html: personalStatementReasonsOtherHtml
+      }
+    }]
+}) }}
