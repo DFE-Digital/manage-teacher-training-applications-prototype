@@ -1,24 +1,13 @@
-{% macro appDetailsField(params) %}
-  {{ govukCharacterCount({
-    maxwords: 100,
-    label: {
-      text: "Give details"
-    },
-    id: "rejection-" + params.category + "-reasons-" + params.reason,
-    name: 'rejectionReasons[' + params.category + '-reasons-' + params.reason +']',
-    value: data['rejectionReasons'][params.category + '-reasons-' + params.reason]
-  }) }}
-{% endmacro %}
-
 {% set category = 'work-history' %}
+
 {% set unexplainedGapHtml %}
-  {{appDetailsField({ category: category, reason: 'unexpained-work-gap' })}}
+  {{appRejectionDetails({ category: category, reason: 'unexpained-work-gap', data: data })}}
 {% endset %}
 {% set experienceHtml %}
-  {{appDetailsField({ category: category, reason: 'lack-of-experience' })}}
+  {{appRejectionDetails({ category: category, reason: 'lack-of-experience', data: data })}}
 {% endset %}
 {% set otherHtml %}
-  {{appDetailsField({ category: category, reason: 'other' })}}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
 {% endset %}
 
 {{ govukCheckboxes({

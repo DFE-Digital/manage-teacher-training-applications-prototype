@@ -1,50 +1,44 @@
-{% set missingQualificationsReasonsOtherHtml %}
-  {{ govukCharacterCount({
-    maxwords: 100,
-    label: {
-      text: "Give details"
-    },
-    id: "rejection-missing-qualifications-reasons-other",
-    name: "rejectionReasons[missing-qualifications-reasons-other]",
-    value: data["rejectionReasons"]["missing-qualifications-reasons-other"]
-  }) }}
+{% set category = 'qualifications' %}
+
+{% set otherHtml %}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
 {% endset %}
 
 {{ govukCheckboxes({
-  name: "rejectionReasons[missing-qualifications-reasons]",
-  idPrefix: "rejection-missing-qualification-reasons",
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
   fieldset: {
     legend: {
-      text: "Reason",
+      text: "Reasons",
       classes: "govuk-fieldset__legend--s"
     }
   },
   items: [{
     value: "No maths GCSE grade 4 (C) or above, or accepted equivalent",
     html: "No maths GCSE grade 4 (C) or above, or accepted equivalent",
-    checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No maths GCSE grade 4 (C) or above, or accepted equivalent")
+    checked: checked(data['rejection'][category + '-reasons'], "No maths GCSE grade 4 (C) or above, or accepted equivalent")
   }, {
     value: "No English GCSE grade 4 (C) or above, or accepted equivalent",
     text: "No English GCSE grade 4 (C) or above, or accepted equivalent",
-    checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No English GCSE grade 4 (C) or above, or accepted equivalent")
+    checked: checked(data['rejection'][category + '-reasons'], "No English GCSE grade 4 (C) or above, or accepted equivalent")
   }, {
     value: "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)",
     text: "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)",
-    checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)")
+    checked: checked(data['rejection'][category + '-reasons'], "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)")
   }, {
     value: "No degree",
     text: "No degree",
-    checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "No degree")
+    checked: checked(data['rejection'][category + '-reasons'], "No degree")
   }, {
     value: "Degree does not meet course requirements",
     text: "Degree does not meet course requirements",
-    checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "Degree does not meet course requirements")
+    checked: checked(data['rejection'][category + '-reasons'], "Degree does not meet course requirements")
   }, {
       value: "Other",
       text: "Other",
-      checked: checked(data['rejectionReasons']['missing-qualifications-reasons'], "Other"),
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
       conditional: {
-        html: missingQualificationsReasonsOtherHtml
+        html: otherHtml
       }
     }]
 }) }}

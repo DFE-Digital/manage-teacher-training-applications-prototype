@@ -1,45 +1,18 @@
-{% set personalStatementReasonsSpellingAndGrammarHtml %}
-  {{ govukCharacterCount({
-    maxwords: 100,
-    label: {
-      text: "Give details"
-    },
-    id: "rejection-personal-statement-reasons-spelling-and-grammar",
-    name: "rejectionReasons[personal-statement-reasons-spelling-and-grammar]",
-    value: data['rejectionReasons']['personal-statement-reasons-spelling-and-grammar']
-  }) }}
+{% set category = 'personal-statement' %}
+
+{% set spellingHtml %}
+  {{appRejectionDetails({ category: category, reason: 'spelling', data: data })}}
 {% endset %}
-
-
-{% set personalStatementReasonsEvidenceOfPlagiarismHtml %}
-  {{ govukCharacterCount({
-    maxwords: 100,
-    label: {
-      text: "Give details"
-    },
-    id: "rejection-personal-statement-reasons-evidence-of-plagiarism",
-    name: "rejectionReasons[personal-statement-reasons-evidence-of-plagiarism]",
-    value: data['rejectionReasons']['personal-statement-reasons-evidence-of-plagiarism']
-  }) }}
+{% set plagiarismHtml %}
+  {{appRejectionDetails({ category: category, reason: 'plagiarism', data: data })}}
 {% endset %}
-
-
-{% set personalStatementReasonsOtherHtml %}
-  {{ govukCharacterCount({
-    maxwords: 100,
-    label: {
-      text: "Give details"
-    },
-    id: "rejection-personal-statement-reasons-other",
-    name: "rejectionReasons[personal-statement-reasons-other]",
-    value: data['rejectionReasons']['personal-statement-reasons-other']
-  }) }}
+{% set otherHtml %}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
 {% endset %}
-
 
 {{ govukCheckboxes({
-  idPrefix: "rejection-personal-statement-reasons",
-  name: "rejectionReasons[personal-statement-reasons]",
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
   fieldset: {
     legend: {
       text: "Reasons",
@@ -49,23 +22,23 @@
   items: [{
     value: "Spelling and grammar",
     html: "Spelling and grammar",
-    checked: checked(data['rejectionReasons']['personal-statement-reasons'], "Spelling and grammar"),
+    checked: checked(data['rejection'][category + '-reasons'], "Spelling and grammar"),
     conditional: {
-      html: personalStatementReasonsSpellingAndGrammarHtml
+      html: spellingHtml
     }
   }, {
     value: "Evidence of plagiarism",
     text: "Evidence of plagiarism",
-    checked: checked(data['rejectionReasons']['personal-statement-reasons'], "Evidence of plagiarism"),
+    checked: checked(data['rejection'][category + '-reasons'], "Evidence of plagiarism"),
     conditional: {
-      html: personalStatementReasonsEvidenceOfPlagiarismHtml
+      html: plagiarismHtml
     }
   }, {
       value: "Other",
       text: "Other",
-      checked: checked(data['rejectionReasons']['personal-statement-reasons'], "Other"),
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
       conditional: {
-        html: personalStatementReasonsOtherHtml
+        html: otherHtml
       }
     }]
 }) }}

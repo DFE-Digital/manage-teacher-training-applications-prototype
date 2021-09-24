@@ -19,11 +19,6 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {# <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1> #}
-
-      {# <p>This feedback will be sent to the candidate.</p> #}
-
       {% set h1 %}
         <span class="govuk-caption-l">{{name}}</span>
         {{title}}
@@ -43,6 +38,10 @@
           {% include "_includes/reasons/n-work-history.njk" %}
         {% endset %}
 
+        {% set teachingKnowledgeReasonsHtml %}
+          {% include "_includes/reasons/n-teaching-knowledge.njk" %}
+        {% endset %}
+
         {{ govukCheckboxes({
           idPrefix: "rejection-categories",
           name: "rejection[categories]",
@@ -57,15 +56,9 @@
             {
               value: "Qualifications",
               text: "Qualifications",
+              checked: checked(data['rejection']['categories'], "Qualifications"),
               conditional: {
                 html: qualificationReasonsHtml
-              }
-            },
-            {
-              value: "Personal statement",
-              text: "Personal statement",
-              conditional: {
-                html: personalStatementReasonsHtml
               }
             },
             {
@@ -77,28 +70,42 @@
               }
             },
             {
+              value: "Personal statement",
+              text: "Personal statement",
+              checked: checked(data['rejection']['categories'], "Personal statement"),
+              conditional: {
+                html: personalStatementReasonsHtml
+              }
+            },
+            {
+              value: "Knowledge about teaching",
+              text: "Knowledge about teaching",
+              checked: checked(data['rejection']['categories'], "Knowledge about teaching"),
+              conditional: {
+                html: teachingKnowledgeReasonsHtml
+              }
+            },
+            {
               value: "References",
-              text: "References"
+              text: "References",
+              checked: checked(data['rejection']['categories'], "References")
             },
             {
-              value: "Interview",
-              text: "Interview"
+              value: "Professionalism",
+              text: "Professionalism",
+              checked: checked(data['rejection']['categories'], "References")
             },
             {
-              value: "Did not reply to messages",
-              text: "Did not reply to messages"
-            },
-            {
-              value: "Cannot sponsor visa",
-              text: "Cannot sponsor visa"
-            },
-            {
-              value: "Course full",
-              text: "Course full"
+              value: "Visa sponsorship",
+              text: "Visa sponsorship"
             },
             {
               value: "Criminal record and professional misconduct",
               text: "Criminal record and professional misconduct"
+            },
+            {
+              value: "Course full",
+              text: "Course full"
             },
             {
               value: "Other",
@@ -106,17 +113,6 @@
             }
           ]
         }) }}
-
-
-        {# {% include "_includes/reasons/actions.njk" %}
-        {% include "_includes/reasons/application-quality.njk" %}
-        {% include "_includes/reasons/missing-qualifications.njk" %}
-        {% include "_includes/reasons/interview-performance.njk" %}
-        {% include "_includes/reasons/honesty.njk" %}
-        {% include "_includes/reasons/safeguarding.njk" %}
-        {% include "_includes/reasons/other-offer.njk" %}
-        {% include "_includes/reasons/course-full.njk" %}
-        {% include "_includes/reasons/sponsor-visa.njk" %} #}
 
         {{ govukButton({
           text: "Continue"
