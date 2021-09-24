@@ -34,19 +34,16 @@
           {% include "_includes/reasons/n-personal-statement.njk" %}
         {% endset %}
 
-        {% set workHistoryReasonsHtml %}
-          {% include "_includes/reasons/n-work-history.njk" %}
-        {% endset %}
-
         {% set teachingKnowledgeReasonsHtml %}
           {% include "_includes/reasons/n-teaching-knowledge.njk" %}
         {% endset %}
+
 
         {% set referencesHtml %}
           {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set professionalismReasonsHtml %}
+        {% set communicationIssueReasonsHtml %}
           {% include "_includes/reasons/n-professionalism.njk" %}
         {% endset %}
 
@@ -56,6 +53,10 @@
 
         {% set criminalHtml %}
           {{appRejectionDetails({ category: 'criminal', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set courseFullHtml %}
+          {{appRejectionDetails({ category: 'course-full', reason: 'details', data: data })}}
         {% endset %}
 
         {% set otherDetailsHtml %}
@@ -82,14 +83,6 @@
               }
             },
             {
-              value: "Work history and experience",
-              text: "Work history and experience",
-              checked: checked(data['rejection']['categories'], "Work history and experience"),
-              conditional: {
-                html: workHistoryReasonsHtml
-              }
-            },
-            {
               value: "Personal statement",
               text: "Personal statement",
               checked: checked(data['rejection']['categories'], "Personal statement"),
@@ -98,9 +91,9 @@
               }
             },
             {
-              value: "Knowledge about teaching",
-              text: "Knowledge about teaching",
-              checked: checked(data['rejection']['categories'], "Knowledge about teaching"),
+              value: "Teaching knowledge and ability",
+              text: "Teaching knowledge and ability",
+              checked: checked(data['rejection']['categories'], "Teaching knowledge and ability"),
               conditional: {
                 html: teachingKnowledgeReasonsHtml
               }
@@ -114,11 +107,11 @@
               }
             },
             {
-              value: "Professionalism",
-              text: "Professionalism",
-              checked: checked(data['rejection']['categories'], "References"),
+              value: "Communication issue",
+              text: "Communication issue",
+              checked: checked(data['rejection']['categories'], "Communication issue"),
               conditional: {
-                html: professionalismReasonsHtml
+                html: communicationIssueReasonsHtml
               }
             },
             {
@@ -130,9 +123,9 @@
               }
             },
             {
-              value: "Criminal record and professional misconduct",
-              text: "Criminal record and professional misconduct",
-              checked: checked(data['rejection']['categories'], "Criminal record and professional misconduct"),
+              value: "Criminal record or professional misconduct",
+              text: "Criminal record or professional misconduct",
+              checked: checked(data['rejection']['categories'], "Criminal record or professional misconduct"),
               conditional: {
                 html: criminalHtml
               }
@@ -140,7 +133,10 @@
             {
               value: "Course full",
               text: "Course full",
-              checked: checked(data['rejection']['categories'], "Course full")
+              checked: checked(data['rejection']['categories'], "Course full"),
+              conditional: {
+                html: courseFullHtml
+              }
             },
             {
               value: "Other",
