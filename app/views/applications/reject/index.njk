@@ -42,6 +42,10 @@
           {% include "_includes/reasons/n-teaching-knowledge.njk" %}
         {% endset %}
 
+        {% set otherDetailsHtml %}
+          {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
+        {% endset %}
+
         {{ govukCheckboxes({
           idPrefix: "rejection-categories",
           name: "rejection[categories]",
@@ -97,19 +101,26 @@
             },
             {
               value: "Visa sponsorship",
-              text: "Visa sponsorship"
+              text: "Visa sponsorship",
+              checked: checked(data['rejection']['categories'], "Visa sponsorship")
             },
             {
               value: "Criminal record and professional misconduct",
-              text: "Criminal record and professional misconduct"
+              text: "Criminal record and professional misconduct",
+              checked: checked(data['rejection']['categories'], "Criminal record and professional misconduct")
             },
             {
               value: "Course full",
-              text: "Course full"
+              text: "Course full",
+              checked: checked(data['rejection']['categories'], "Course full")
             },
             {
               value: "Other",
-              text: "Other"
+              text: "Other",
+              checked: checked(data['rejection']['categories'], "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              }
             }
           ]
         }) }}
