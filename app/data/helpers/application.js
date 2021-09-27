@@ -12,16 +12,27 @@ exports.getApplicationWithdrawnReasons = (data) => {
 
 exports.getRejectReasons = (data) => {
   return {
+
+    // top level
+    'categories': data.categories,
+
+    // Qualifications
+    'qualifications-reasons': data['qualifications-reasons'],
+    'qualifications-reasons-other': data['qualifications-reasons-other'],
+
+    // Personal statement
+    'personal-statement-reasons': data['personal-statement-reasons'],
+    'personal-statement-reasons-quality-of-writing': data['personal-statement-reasons-quality-of-writing'],
+    'personal-statement-reasons-plagiarism': data['personal-statement-reasons-plagiarism'],
+    'personal-statement-reasons-other': data['personal-statement-reasons-other'],
+
     // Candidate actions
     actions: data.actions,
     'actions-reasons': data['actions-reasons'],
     'actions-reasons-other': data['actions-reasons-other'],
     'actions-reasons-other-improve': data['actions-reasons-other-improve'],
 
-    // Missing qualifications
-    'missing-qualifications': data['missing-qualifications'],
-    'missing-qualifications-reasons': data['missing-qualifications-reasons'],
-    'missing-qualifications-reasons-other': data['missing-qualifications-reasons-other'],
+
 
     // Application quality
     'application-quality': data['application-quality'],

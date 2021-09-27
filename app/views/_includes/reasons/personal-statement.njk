@@ -1,7 +1,7 @@
 {% set category = 'personal-statement' %}
 
-{% set spellingHtml %}
-  {{appRejectionDetails({ category: category, reason: 'spelling', data: data })}}
+{% set qualityOfWritingHtml %}
+  {{appRejectionDetails({ category: category, reason: 'quality-of-writing', data: data })}}
 {% endset %}
 {% set plagiarismHtml %}
   {{appRejectionDetails({ category: category, reason: 'plagiarism', data: data })}}
@@ -20,11 +20,11 @@
     }
   },
   items: [{
-    value: "Spelling and grammar",
-    html: "Spelling and grammar",
-    checked: checked(data['rejection'][category + '-reasons'], "Spelling and grammar"),
+    value: "Quality of writing",
+    html: "Quality of writing",
+    checked: checked(data['rejection'][category + '-reasons'], "Quality of writing"),
     conditional: {
-      html: spellingHtml
+      html: qualityOfWritingHtml
     }
   }, {
     value: "Evidence of plagiarism",

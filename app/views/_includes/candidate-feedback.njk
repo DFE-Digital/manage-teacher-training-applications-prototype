@@ -8,6 +8,123 @@
 
   <div class="app-feedback">
 
+    {% set checkboxValue = 'Qualifications' %}
+    {% if checked(rejectionReasons.categories, checkboxValue) %}
+      <div class="app-feedback__section">
+        <h2 class="govuk-heading-s">
+          {{checkboxValue}}
+        </h2>
+
+        <ul class="govuk-list app-list--spaced">
+
+          {% set category = 'qualifications' %}
+          {% set groupName = category + '-reasons' %}
+
+          {% set checkboxValue = "No maths GCSE grade 4 (C) or above, or accepted equivalent" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>{{checkboxValue}}.</li>
+          {% endif %}
+
+          {% set checkboxValue = "No English GCSE grade 4 (C) or above, or accepted equivalent" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>{{checkboxValue}}.</li>
+          {% endif %}
+
+          {% set checkboxValue = "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>{{checkboxValue}}.</li>
+          {% endif %}
+
+          {% set checkboxValue = "No degree" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>{{checkboxValue}}.</li>
+          {% endif %}
+
+          {% set checkboxValue = "Degree does not meet course requirements" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>{{checkboxValue}}.</li>
+          {% endif %}
+
+          {% set checkboxValue = "Other" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              Other:
+              <p>{{rejectionReasons[groupName + '-other']}}</p>
+            </li>
+          {% endif %}
+
+        </ul>
+
+        {% if rejectionChangeLinks %}
+          <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+
+
+
+
+    {% set checkboxValue = 'Personal statement' %}
+    {% if checked(rejectionReasons.categories, checkboxValue) %}
+      <div class="app-feedback__section">
+        <h2 class="govuk-heading-s">
+          {{checkboxValue}}
+        </h2>
+
+        <ul class="govuk-list app-list--spaced">
+
+          {% set category = 'personal-statement' %}
+          {% set groupName = category + '-reasons' %}
+
+          {% set checkboxValue = "Quality of writing" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              {{checkboxValue}}:
+              <p>{{rejectionReasons[groupName + '-quality-of-writing']}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Evidence of plagiarism" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              {{checkboxValue}}:
+              <p>{{rejectionReasons[groupName + '-plagiarism']}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Other" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              Other:
+              <p>{{rejectionReasons[groupName + '-other']}}</p>
+            </li>
+          {% endif %}
+
+        </ul>
+
+        {% if rejectionChangeLinks %}
+          <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {% if rejectionReasons['actions'] == "Yes" %}
       <div class="app-feedback__section">
       <h2 class="govuk-heading-s">
@@ -88,66 +205,6 @@
       </div>
     {% endif %}
 
-    {% if rejectionReasons['missing-qualifications'] == "Yes" %}
-      <div class="app-feedback__section">
-      <h2 class="govuk-heading-s">
-        Qualifications
-      </h2>
-
-      <ul class="govuk-list app-list--spaced">
-
-        {% set checkboxValue = "No maths GCSE grade 4 (C) or above, or accepted equivalent" %}
-        {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
-
-        {% set checkboxValue = "No English GCSE grade 4 (C) or above, or accepted equivalent" %}
-        {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
-
-        {% set checkboxValue = "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)" %}
-        {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
-
-        {% set checkboxValue = "No degree" %}
-        {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
-
-        {% set checkboxValue = "Degree does not meet course requirements" %}
-        {% if checked(rejectionReasons["missing-qualifications-reasons"], checkboxValue) %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
-
-        {% set checkboxValue = "Other" %}
-        {% if checked(rejectionReasons["missing-qualifications-reasons"], "Other") %}
-          <li>{{rejectionReasons['missing-qualifications-reasons-other']}}</p>
-        {% endif %}
-
-      </ul>
-
-      {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
-      {% endif %}
-      </div>
-    {% endif %}
-
-    {% if rejectionReasons['interview-performance'] == "Yes" %}
-      <div class="app-feedback__section">
-      <h2 class="govuk-heading-s">
-        Performance at interview
-      </h2>
-
-      <p>{{rejectionReasons['interview-performance-advice']}}</p>
-
-      {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
-      {% endif %}
-      </div>
-    {% endif %}
-
     {% if rejectionReasons['course-full'] == "Yes" %}
       <div class="app-feedback__section">
       <h2 class="govuk-heading-s">
@@ -168,19 +225,6 @@
       </h2>
 
       <p>{{ rejectionReasons["sponsor-visa-details"] }}</p>
-
-      {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
-      {% endif %}
-      </div>
-    {% endif %}
-
-    {% if rejectionReasons['other-offer'] == "Yes" %}
-      <div class="app-feedback__section">
-      <h2 class="govuk-heading-s">
-        {{application["provider"]}} offered you a place on another course
-      </h2>
-      <p>{{rejectionReasons["other-offer-details"]}}</p>
 
       {% if rejectionChangeLinks %}
         <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
@@ -294,17 +338,6 @@
       </div>
     {% endif %}
 
-    {% if rejectionReasons['other-feedback'] == "Yes" %}
-      <div class="app-feedback__section">
-        <h2 class="govuk-heading-s">
-          Additional feedback
-        </h2>
-        <p>{{rejectionReasons['other-feedback-details']}}</p>
-        {% if rejectionChangeLinks %}
-          <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}/other-reasons-for-rejection/">Change</a></p>
-        {% endif %}
-      </div>
-    {% endif %}
   </div>
 {% endset %}
 
