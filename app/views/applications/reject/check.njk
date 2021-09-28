@@ -25,8 +25,9 @@
 
       <p>Your feedback will be given to the candidate in the format below.</p>
 
+      <p>You can <a href="/applications/{{application.id}}/reject">change your reasons</a>.</p>
+
       {% set rejectionReasons = data.rejection %}
-      {% set rejectionChangeLinks = true %}
       {% include "_includes/candidate-feedback.njk" %}
 
       {% if upcomingInterviews.length == 1 %}
