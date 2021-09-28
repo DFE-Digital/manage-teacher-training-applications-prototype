@@ -1,6 +1,6 @@
 .app-feedback__section {
   position: relative;
-  padding-right: 70px;
+  // padding-right: 70px;
   margin-bottom: 20px;
 
   p {
@@ -19,3 +19,9 @@
     margin-bottom: 0 !important;
   }
 }
+
+.app-summary-card__body .govuk-inset-text {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
