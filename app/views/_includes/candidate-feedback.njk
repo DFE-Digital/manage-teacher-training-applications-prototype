@@ -235,6 +235,24 @@
 
 
 
+    {% set checkboxValue = 'Visa sponsorship' %}
+    {% if checked(rejectionReasons.categories, checkboxValue) %}
+      <div class="app-feedback__section">
+        <h2 class="govuk-heading-s">
+          {{checkboxValue}}
+        </h2>
+
+        {% set category = 'sponsorship' %}
+        {% set groupName = category + '-reasons' %}
+
+        <p>{{rejectionReasons[groupName + '-details']}}</p>
+      </div>
+    {% endif %}
+
+
+
+
+
 
     {% set checkboxValue = 'Course full' %}
     {% if checked(rejectionReasons.categories, checkboxValue) %}
@@ -277,18 +295,6 @@
 
 
 
-    {% if rejectionReasons['course-full'] == "Yes" %}
-      <div class="app-feedback__section">
-      <h2 class="govuk-heading-s">
-        Course full
-      </h2>
-      <p>The course you applied to was full.</p>
-
-      {% if rejectionChangeLinks %}
-        <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
-      {% endif %}
-      </div>
-    {% endif %}
 
     {% if rejectionReasons['sponsor-visa'] == "Yes" %}
       <div class="app-feedback__section">
