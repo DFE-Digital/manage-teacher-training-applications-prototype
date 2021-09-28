@@ -26,25 +26,15 @@ exports.getRejectReasons = (data) => {
     'personal-statement-reasons-plagiarism': data['personal-statement-reasons-plagiarism'],
     'personal-statement-reasons-other': data['personal-statement-reasons-other'],
 
-    // Candidate actions
-    actions: data.actions,
-    'actions-reasons': data['actions-reasons'],
-    'actions-reasons-other': data['actions-reasons-other'],
-    'actions-reasons-other-improve': data['actions-reasons-other-improve'],
+    // Teaching knowledge
+    'teaching-knowledge-reasons': data['teaching-knowledge-reasons'],
+    'teaching-knowledge-reasons-subject': data['teaching-knowledge-reasons-subject'],
+    'teaching-knowledge-reasons-safeguarding': data['teaching-knowledge-reasons-safeguarding'],
+    'teaching-knowledge-reasons-teaching-method': data['teaching-knowledge-reasons-teaching-method'],
+    'teaching-knowledge-reasons-other': data['teaching-knowledge-reasons-other'],
 
 
 
-    // Application quality
-    'application-quality': data['application-quality'],
-    'application-quality-reasons': data['application-quality-reasons'],
-    'application-quality-reasons-other': data['application-quality-reasons-other'],
-    'application-quality-reasons-other-improve': data['application-quality-reasons-other-improve'],
-    'application-quality-reasons-subject-knowledge': data['application-quality-reasons-subject-knowledge'],
-    'application-quality-reasons-personal-statement': data['application-quality-reasons-personal-statement'],
-
-    // interview performance
-    'interview-performance': data['interview-performance'],
-    'interview-performance-advice': data['interview-performance-advice'],
 
     // Course full
     'course-full': data['course-full'],
