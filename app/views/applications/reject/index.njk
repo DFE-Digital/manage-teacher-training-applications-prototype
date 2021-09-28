@@ -38,21 +38,20 @@
           {% include "_includes/reasons/teaching-knowledge.njk" %}
         {% endset %}
 
+        {% set communicationReasonsHtml %}
+          {% include "_includes/reasons/communication.njk" %}
+        {% endset %}
 
         {% set referencesHtml %}
           {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set communicationIssueReasonsHtml %}
-          {% include "_includes/reasons/professionalism.njk" %}
+        {% set safeguardingHtml %}
+          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
         {% endset %}
 
         {% set sponsorshipHtml %}
           {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
-        {% endset %}
-
-        {% set criminalHtml %}
-          {{appRejectionDetails({ category: 'criminal', reason: 'details', data: data })}}
         {% endset %}
 
         {% set courseFullHtml %}
@@ -103,7 +102,7 @@
               text: "Communication issue",
               checked: checked(data['rejection']['categories'], "Communication issue"),
               conditional: {
-                html: communicationIssueReasonsHtml
+                html: communicationReasonsHtml
               }
             },
             {
@@ -115,19 +114,19 @@
               }
             },
             {
+              value: "Safeguarding",
+              text: "Safeguarding",
+              checked: checked(data['rejection']['categories'], "Safeguarding"),
+              conditional: {
+                html: safeguardingHtml
+              }
+            },
+            {
               value: "Visa sponsorship",
               text: "Visa sponsorship",
               checked: checked(data['rejection']['categories'], "Visa sponsorship"),
               conditional: {
                 html: sponsorshipHtml
-              }
-            },
-            {
-              value: "Criminal record or professional misconduct",
-              text: "Criminal record or professional misconduct",
-              checked: checked(data['rejection']['categories'], "Criminal record or professional misconduct"),
-              conditional: {
-                html: criminalHtml
               }
             },
             {

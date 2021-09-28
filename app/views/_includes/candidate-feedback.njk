@@ -165,6 +165,50 @@
       </div>
     {% endif %}
 
+    {% set checkboxValue = 'Communication issue' %}
+    {% if checked(rejectionReasons.categories, checkboxValue) %}
+      <div class="app-feedback__section">
+        <h2 class="govuk-heading-s">
+          {{checkboxValue}}
+        </h2>
+
+        <ul class="govuk-list app-list--spaced">
+
+          {% set category = 'communication' %}
+          {% set groupName = category + '-reasons' %}
+
+          {% set checkboxValue = "Did not reply to messages" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              {{checkboxValue}}:
+              <p>{{rejectionReasons[groupName + '-did-not-reply-to-messages']}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Did not attend interview" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              {{checkboxValue}}:
+              <p>{{rejectionReasons[groupName + '-did-not-attend-interview']}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Other" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              Other:
+              <p>{{rejectionReasons[groupName + '-other']}}</p>
+            </li>
+          {% endif %}
+
+        </ul>
+
+        {% if rejectionChangeLinks %}
+          <p class="app-rejection-change-link"><a class="govuk-link govuk-link--no-visited-state" href="{{baseUrl}}">Change</a></p>
+        {% endif %}
+      </div>
+    {% endif %}
+
 
 
 

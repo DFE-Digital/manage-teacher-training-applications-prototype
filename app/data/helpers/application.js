@@ -33,8 +33,11 @@ exports.getRejectReasons = (data) => {
     'teaching-knowledge-reasons-teaching-method': data['teaching-knowledge-reasons-teaching-method'],
     'teaching-knowledge-reasons-other': data['teaching-knowledge-reasons-other'],
 
-
-
+    // Comms
+    'communication-reasons': data['communication-reasons'],
+    'communication-reasons-did-not-reply-to-messages': data['communication-reasons-did-not-reply-to-messages'],
+    'communication-reasons-did-not-attend-interview': data['communication-reasons-did-not-attend-interview'],
+    'communication-reasons-other': data['communication-reasons-other'],
 
     // Course full
     'course-full': data['course-full'],
