@@ -38,7 +38,10 @@
 
           {% set checkboxValue = "Degree does not meet course requirements" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
-            <li>{{checkboxValue}}</li>
+            <li>
+              {{checkboxValue}}
+              <p>{{rejectionReasons[groupName + '-degree-does-not-meet-course-requirements']}}</p>
+            </li>
           {% endif %}
 
           {% set checkboxValue = "Other" %}

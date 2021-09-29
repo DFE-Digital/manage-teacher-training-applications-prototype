@@ -1,5 +1,9 @@
 {% set category = 'qualifications' %}
 
+{% set degreeDoesNotMeetRequirementsHtml %}
+  {{appRejectionDetails({ category: category, reason: 'degree-does-not-meet-course-requirements', data: data })}}
+{% endset%}
+
 {% set otherHtml %}
   {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
 {% endset %}
@@ -32,7 +36,10 @@
   }, {
     value: "Degree does not meet course requirements",
     text: "Degree does not meet course requirements",
-    checked: checked(data['rejection'][category + '-reasons'], "Degree does not meet course requirements")
+    checked: checked(data['rejection'][category + '-reasons'], "Degree does not meet course requirements"),
+    conditional: {
+      html: degreeDoesNotMeetRequirementsHtml
+    }
   }, {
       value: "Other",
       text: "Other",

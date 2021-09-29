@@ -12,8 +12,14 @@ function buildReasons(params) {
 
     o['qualifications-reasons'] = [
       'No English GCSE grade 4 (C) or above, or accepted equivalent',
+      'Degree does not meet course requirements',
       'Other'
     ]
+
+    if(o['qualifications-reasons'].find(item => 'Degree does not meet course requirements')) {
+      o['qualifications-reasons-degree-does-not-meet-course-requirements'] = faker.lorem.paragraph(1)
+    }
+
 
     if(o['qualifications-reasons'].find(item => 'Other')) {
       o['qualifications-reasons-other'] = faker.lorem.paragraph(1)
@@ -58,7 +64,7 @@ module.exports = () => {
     personalStatement: true
   })
 
-  return faker.helpers.randomize([all, qualifications, personalStatement])
+  return faker.helpers.randomize([all, qualifications, personalStatement, null])
 
 
 }
