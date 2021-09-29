@@ -6,12 +6,12 @@
 {% set safeguardingHtml %}
   {{appRejectionDetails({ category: category, reason: 'safeguarding', data: data })}}
 {% endset %}
-{# {% set teachingMethodHtml %}
+{% set teachingMethodHtml %}
   {{appRejectionDetails({ category: category, reason: 'teaching-method', data: data })}}
 {% endset %}
 {% set teachingRoleHtml %}
   {{appRejectionDetails({ category: category, reason: 'teaching-role', data: data })}}
-{% endset %} #}
+{% endset %}
 {% set presentationSkillsHtml %}
   {{appRejectionDetails({ category: category, reason: 'presentation-skills', data: data })}}
 {% endset %}
@@ -48,6 +48,13 @@
     checked: checked(data['rejection'][category + '-reasons'], "Understanding of teaching methods"),
     conditional: {
       html: teachingMethodHtml
+    }
+  }, {
+    value: "Understanding of teaching role",
+    text: "Understanding of teaching role",
+    checked: checked(data['rejection'][category + '-reasons'], "Understanding of teaching role"),
+    conditional: {
+      html: teachingRoleHtml
     }
   }, {
     value: "Presentation skills",

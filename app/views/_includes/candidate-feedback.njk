@@ -140,6 +140,14 @@
             </li>
           {% endif %}
 
+          {% set checkboxValue = "Understanding of teaching role" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              {{checkboxValue}}:
+              <p>{{rejectionReasons[groupName + '-teaching-role']}}</p>
+            </li>
+          {% endif %}
+
           {% set checkboxValue = "Presentation skills" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
             <li>
