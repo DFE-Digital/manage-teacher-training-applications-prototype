@@ -5,6 +5,7 @@ const pluralize = require('pluralize')
 const { DateTime } = require('luxon')
 const individualFiltersFolder = path.join(__dirname, './filters')
 const numeral = require('numeral')
+const marked = require('marked')
 
 module.exports = (env) => {
   /**
@@ -395,6 +396,25 @@ filters.falsify = (input) => {
       .replace(/[\s_-]+/g, '-')
       // remove leading, trailing -
       .replace(/^-+|-+$/g, '')
+  }
+
+  /*
+  ====================================================================
+  markdownToHtml
+  --------------------------------------------------------------------
+  Create HTML from markdown
+  ====================================================================
+    Usage:
+    {{ "**Enter a title**" | markdownToHtml }}
+    = "<strong>Enter a title</strong>"
+  */
+
+  filters.markdownToHtml = (markdown) => {
+    if (!markdown) {
+      return null
+    }
+    const html = marked(markdown)
+    return html
   }
 
   return filters
