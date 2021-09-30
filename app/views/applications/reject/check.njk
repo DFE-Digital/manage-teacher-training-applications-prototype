@@ -28,21 +28,8 @@
       <p>You can <a href="/applications/{{application.id}}/reject">change your reasons</a>.</p> #}
 
       {% set rejectionReasons = data.rejection %}
-      {% set previewHtml %}
-        {% include "_includes/candidate-feedback.njk" %}
-      {% endset %}
+      {% include "_includes/candidate-feedback.njk" %}
 
-       {{appSummaryCard({
-          titleText: "Preview of what the candidate will see",
-          classes: "govuk-!-margin-bottom-6",
-          actions: {
-            items: [{
-              href: '/applications/' + application.id + '/reject',
-              html: 'Change'
-            }]
-          },
-          html: previewHtml
-        })}}
 
 
       {% if upcomingInterviews.length == 1 %}
