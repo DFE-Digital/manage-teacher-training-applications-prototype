@@ -3,7 +3,12 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "Tell the candidate why you’re rejecting their application" %}
+{% if application.status == "Rejected" %}
+  {% set title = "Tell the candidate why you did not offer them a place on the course" %}
+{% else %}
+  {% set title = "Tell the candidate why you’re rejecting their application" %}
+{% endif %}
+
 
 {% block pageNavigation %}
   {% set backUrl = "/applications/" + application.id + "/decision" %}

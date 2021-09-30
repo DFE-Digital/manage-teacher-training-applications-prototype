@@ -23,19 +23,19 @@
 
       {% if application.status == "Rejected" %}
         {% if application.rejectedDate == application.rejectedFeedbackDate %}
-          <p>This application was rejected on  {{ application.rejectedDate | govukDate }}.</p>
+          <p>This application was rejected on  {{ application.rejectedDate | govukDate }}. The following feedback was sent to the candidate.</p>
         {% else %}
           <p>This application was automatically rejected on {{ application.rejectedDate | govukDate }}. Feedback was sent on {{ application.rejectedFeedbackDate | govukDate }}.</p>
         {% endif %}
         {% set rejectionReasons = application.rejectedReasons %}
         {% include "_includes/candidate-feedback.njk" %}
       {% elseif application.status == "Offer withdrawn" %}
-        <p>The offer was withdrawn on {{application.offer.withdrawalDate | govukDate}}.</p>
+        <p>The offer was withdrawn on {{application.offer.withdrawalDate | govukDate}}. The following feedback was sent to the candidate.</p>
         {% set rejectionReasons = application.offer.withdrawalReasons %}
         {% set whyHeading = "Why your offer was withdrawn" %}
         {% include "_includes/candidate-feedback.njk" %}
       {% elseif application.status == "Application withdrawn" %}
-        <p>The application was withdrawn on {{application.withdrawalDate | govukDate}}.</p>
+        <p>The application was withdrawn on {{application.withdrawalDate | govukDate}}. The following feedback was sent to the candidate.</p>
         {% set withdraw = application.withdrawalReasons %}
         {% set withdrawApplicationChangeLinks = true %}
         {% include "_includes/withdraw-application-feedback.njk" %}
