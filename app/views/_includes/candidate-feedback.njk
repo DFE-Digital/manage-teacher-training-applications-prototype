@@ -1,6 +1,14 @@
 {% from "govuk/components/inset-text/macro.njk"       import govukInsetText %}
 
-{% set changeLinkUrl %}/applications/{{application.id}}/reject{% endset %}
+{% if showChangeLinks %}
+{% set changeHtml %}
+  <dd class="govuk-summary-list__actions">
+    <a class="govuk-link" href="/applications/{{application.id}}/reject">
+      Change<span class="govuk-visually-hidden"> name</span>
+    </a>
+  </dd>
+{% endset %}
+{% endif %}
 
 <div class="app-feedbac">
 
@@ -53,11 +61,7 @@
 
         </ul>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -104,11 +108,7 @@
 
           </ul>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -176,11 +176,7 @@
             {% endif %}
           </ul>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -226,11 +222,7 @@
 
           </ul>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -249,11 +241,7 @@
         <dd class="govuk-summary-list__value">
           <p>{{rejectionReasons[groupName + '-details']}}</p>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -273,11 +261,7 @@
         <dd class="govuk-summary-list__value">
           <p>{{rejectionReasons[groupName + '-details']}}</p>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -297,11 +281,7 @@
         <dd class="govuk-summary-list__value">
           <p>{{rejectionReasons[groupName + '-details']}}</p>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -321,11 +301,7 @@
         <dd class="govuk-summary-list__value">
           <p>{{rejectionReasons[groupName + '-details']}}</p>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
 
@@ -344,11 +320,7 @@
         <dd class="govuk-summary-list__value">
           <p>{{rejectionReasons[groupName + '-details']}}</p>
         </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="{{changeLinkUrl}}">
-            Change<span class="govuk-visually-hidden"> name</span>
-          </a>
-        </dd>
+        {{changeHtml | safe}}
       </div>
     {% endif %}
   </dl>

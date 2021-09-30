@@ -28,6 +28,7 @@
       <p>You can <a href="/applications/{{application.id}}/reject">change your reasons</a>.</p> #}
 
       {% set rejectionReasons = data.rejection %}
+      {% set showChangeLinks = true %}
       {% include "_includes/candidate-feedback.njk" %}
 
 
