@@ -19,6 +19,7 @@ exports.getRejectReasons = (data) => {
     // Qualifications
     'qualifications-reasons': data['qualifications-reasons'],
     'qualifications-reasons-degree-does-not-meet-course-requirements': data['qualifications-reasons-degree-does-not-meet-course-requirements'],
+    'qualifications-reasons-could-not-verify-qualifications': data['qualifications-reasons-could-not-verify-qualifications'],
     'qualifications-reasons-other': data['qualifications-reasons-other'],
 
     // Personal statement

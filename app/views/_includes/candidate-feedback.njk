@@ -46,15 +46,23 @@
           {% set checkboxValue = "Degree does not meet course requirements" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
             <li>
-              {{checkboxValue}}
+              <p>{{checkboxValue}}:</p>
               <p>{{rejectionReasons[groupName + '-degree-does-not-meet-course-requirements']}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Could not verify qualifications" %}
+          {% if checked(rejectionReasons[groupName], checkboxValue) %}
+            <li>
+              <p>{{checkboxValue}}:</p>
+              <p>{{rejectionReasons[groupName + '-could-not-verify-qualifications']}}</p>
             </li>
           {% endif %}
 
           {% set checkboxValue = "Other" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
             <li>
-              Other:
+              <p>Other:</p>
               <p>{{rejectionReasons[groupName + '-other']}}</p>
             </li>
           {% endif %}
@@ -85,23 +93,15 @@
             {% set checkboxValue = "Quality of writing" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-quality-of-writing']}}</p>
-              </li>
-            {% endif %}
-
-            {% set checkboxValue = "Evidence of plagiarism" %}
-            {% if checked(rejectionReasons[groupName], checkboxValue) %}
-              <li>
-                {{checkboxValue}}:
-                <p>{{rejectionReasons[groupName + '-plagiarism']}}</p>
               </li>
             {% endif %}
 
             {% set checkboxValue = "Other" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                Other:
+                <p>Other:</p>
                 <p>{{rejectionReasons[groupName + '-other']}}</p>
               </li>
             {% endif %}
@@ -130,7 +130,7 @@
             {% set checkboxValue = "Understanding of subject" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-subject']}}</p>
               </li>
             {% endif %}
@@ -138,7 +138,7 @@
             {% set checkboxValue = "Understanding of safeguarding" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-safeguarding']}}</p>
               </li>
             {% endif %}
@@ -146,7 +146,7 @@
             {% set checkboxValue = "Understanding of teaching methods" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-teaching-method']}}</p>
               </li>
             {% endif %}
@@ -154,7 +154,7 @@
             {% set checkboxValue = "Understanding of teaching role" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-teaching-role']}}</p>
               </li>
             {% endif %}
@@ -162,7 +162,7 @@
             {% set checkboxValue = "Presentation skills" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-presentation-skills']}}</p>
               </li>
             {% endif %}
@@ -199,7 +199,7 @@
             {% set checkboxValue = "Did not reply to messages" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-did-not-reply-to-messages']}}.</p>
               </li>
             {% endif %}
@@ -207,7 +207,7 @@
             {% set checkboxValue = "Did not attend interview" %}
             {% if checked(rejectionReasons[groupName], checkboxValue) %}
               <li>
-                {{checkboxValue}}:
+                <p>{{checkboxValue}}:</p>
                 <p>{{rejectionReasons[groupName + '-did-not-attend-interview']}}</p>
               </li>
             {% endif %}
