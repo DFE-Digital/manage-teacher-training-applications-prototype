@@ -71,16 +71,10 @@
     </div>
   {% endif %}
 
-
-
-
-
-
   {% set checkboxValue = 'Personal statement' %}
   {% set category = 'personal-statement' %}
   {% set groupName = category + '-reasons' %}
   {% if checked(rejectionReasons.categories, checkboxValue) %}
-
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         {{checkboxValue}}
@@ -109,10 +103,6 @@
       {{changeHtml | safe}}
     </div>
   {% endif %}
-
-
-
-
 
   {% set checkboxValue = 'Teaching knowledge and ability' %}
   {% set category = 'teaching-knowledge' %}
@@ -178,21 +168,16 @@
     </div>
   {% endif %}
 
-
-
-
-
-
-    {% set checkboxValue = 'Communication and scheduling' %}
-    {% set category = 'communication' %}
-    {% set groupName = category + '-reasons' %}
-    {% if checked(rejectionReasons.categories, checkboxValue) %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          {{checkboxValue}}
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <ul class="govuk-list app-list--spaced">
+  {% set checkboxValue = 'Communication and scheduling' %}
+  {% set category = 'communication' %}
+  {% set groupName = category + '-reasons' %}
+  {% if checked(rejectionReasons.categories, checkboxValue) %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        {{checkboxValue}}
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <ul class="govuk-list app-list--spaced">
 
           {% set checkboxValue = "Did not reply to messages" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
@@ -224,10 +209,6 @@
     </div>
   {% endif %}
 
-
-
-
-
   {% set checkboxValue = 'References' %}
   {% set category = 'references' %}
   {% set groupName = category + '-reasons' %}
@@ -242,11 +223,6 @@
       {{changeHtml | safe}}
     </div>
   {% endif %}
-
-
-
-
-
 
   {% set checkboxValue = 'Safeguarding' %}
   {% set category = 'safeguarding' %}
@@ -263,11 +239,6 @@
     </div>
   {% endif %}
 
-
-
-
-
-
   {% set checkboxValue = 'Visa sponsorship' %}
   {% set category = 'sponsorship' %}
   {% set groupName = category + '-reasons' %}
@@ -282,11 +253,6 @@
       {{changeHtml | safe}}
     </div>
   {% endif %}
-
-
-
-
-
 
   {% set checkboxValue = 'Course full' %}
   {% set category = 'course-full' %}
@@ -303,10 +269,6 @@
     </div>
   {% endif %}
 
-
-
-
-
   {% set checkboxValue = 'Other' %}
   {% set category = 'other' %}
   {% set groupName = category + '-reasons' %}
@@ -322,4 +284,3 @@
     </div>
   {% endif %}
 </dl>
-
