@@ -3,49 +3,49 @@ faker.locale = 'en_GB'
 
 function buildReasons(params) {
 
-  let o = {
+  let reasons = {
     categories: []
   }
 
   if(params.qualifications) {
-    o.categories.push('Qualifications')
+    reasons.categories.push('Qualifications')
 
-    o['qualifications-reasons'] = [
+    reasons['qualifications-reasons'] = [
       'No English GCSE grade 4 (C) or above, or accepted equivalent',
       'Degree does not meet course requirements',
       'Other'
     ]
 
-    if(o['qualifications-reasons'].find(item => 'Degree does not meet course requirements')) {
-      o['qualifications-reasons-degree-does-not-meet-course-requirements'] = faker.lorem.paragraph(1)
+    if(reasons['qualifications-reasons'].find(item => 'Degree does not meet course requirements')) {
+      reasons['qualifications-reasons-degree-does-not-meet-course-requirements'] = faker.lorem.paragraph(1)
     }
 
 
-    if(o['qualifications-reasons'].find(item => 'Other')) {
-      o['qualifications-reasons-other'] = faker.lorem.paragraph(1)
+    if(reasons['qualifications-reasons'].find(item => 'Other')) {
+      reasons['qualifications-reasons-other'] = faker.lorem.paragraph(1)
     }
 
   }
 
   if(params.personalStatement) {
-    o.categories.push('Personal statement')
+    reasons.categories.push('Personal statement')
 
-    o['personal-statement-reasons'] = [
+    reasons['personal-statement-reasons'] = [
       'Quality of writing',
       'Other'
     ]
 
-    if(o['personal-statement-reasons'].find(item => 'Quality of writing')) {
-      o['personal-statement-reasons-quality-of-writing'] = faker.lorem.paragraph(1)
+    if(reasons['personal-statement-reasons'].find(item => 'Quality of writing')) {
+      reasons['personal-statement-reasons-quality-of-writing'] = faker.lorem.paragraph(1)
     }
 
-    if(o['personal-statement-reasons'].find(item => 'Other')) {
-      o['personal-statement-reasons-other'] = faker.lorem.paragraph(1)
+    if(reasons['personal-statement-reasons'].find(item => 'Other')) {
+      reasons['personal-statement-reasons-other'] = faker.lorem.paragraph(1)
     }
 
   }
 
-  return o;
+  return reasons;
 
 }
 
