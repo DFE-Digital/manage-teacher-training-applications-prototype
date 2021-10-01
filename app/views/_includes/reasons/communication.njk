@@ -1,0 +1,44 @@
+{% set category = 'communication' %}
+
+{% set didNotReplyToMessagesHtml %}
+  {{appRejectionDetails({ category: category, reason: 'did-not-reply-to-messages', data: data })}}
+{% endset %}
+{% set didNotAttendInterviewHtml %}
+  {{appRejectionDetails({ category: category, reason: 'did-not-attend-interview', data: data })}}
+{% endset %}
+{% set otherHtml %}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
+{% endset %}
+
+{{ govukCheckboxes({
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
+  fieldset: {
+    legend: {
+      text: "Reasons",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [{
+    value: "Did not reply to messages",
+    html: "Did not reply to messages",
+    checked: checked(data['rejection'][category + '-reasons'], "Did not reply to messages"),
+    conditional: {
+      html: didNotReplyToMessagesHtml
+    }
+  }, {
+    value: "Did not attend interview",
+    text: "Did not attend interview",
+    checked: checked(data['rejection'][category + '-reasons'], "Did not attend interview"),
+    conditional: {
+      html: didNotAttendInterviewHtml
+    }
+  }, {
+      value: "Other",
+      text: "Other",
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      conditional: {
+        html: otherHtml
+      }
+    }]
+}) }}

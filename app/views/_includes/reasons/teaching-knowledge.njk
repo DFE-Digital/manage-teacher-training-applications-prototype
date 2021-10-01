@@ -1,0 +1,74 @@
+{% set category = 'teaching-knowledge' %}
+
+{% set subjectHtml %}
+  {{appRejectionDetails({ category: category, reason: 'subject', data: data })}}
+{% endset %}
+{% set safeguardingHtml %}
+  {{appRejectionDetails({ category: category, reason: 'safeguarding', data: data })}}
+{% endset %}
+{% set teachingMethodHtml %}
+  {{appRejectionDetails({ category: category, reason: 'teaching-method', data: data })}}
+{% endset %}
+{% set teachingRoleHtml %}
+  {{appRejectionDetails({ category: category, reason: 'teaching-role', data: data })}}
+{% endset %}
+{% set presentationSkillsHtml %}
+  {{appRejectionDetails({ category: category, reason: 'presentation-skills', data: data })}}
+{% endset %}
+{% set otherHtml %}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
+{% endset %}
+
+{{ govukCheckboxes({
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
+  fieldset: {
+    legend: {
+      text: "Reasons",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [{
+    value: "Understanding of subject",
+    html: "Understanding of subject",
+    checked: checked(data['rejection'][category + '-reasons'], "Understanding of subject"),
+    conditional: {
+      html: subjectHtml
+    }
+  }, {
+    value: "Understanding of safeguarding",
+    text: "Understanding of safeguarding",
+    checked: checked(data['rejection'][category + '-reasons'], "Understanding of safeguarding"),
+    conditional: {
+      html: safeguardingHtml
+    }
+  }, {
+    value: "Understanding of teaching methods",
+    text: "Understanding of teaching methods",
+    checked: checked(data['rejection'][category + '-reasons'], "Understanding of teaching methods"),
+    conditional: {
+      html: teachingMethodHtml
+    }
+  }, {
+    value: "Understanding of teaching role",
+    text: "Understanding of teaching role",
+    checked: checked(data['rejection'][category + '-reasons'], "Understanding of teaching role"),
+    conditional: {
+      html: teachingRoleHtml
+    }
+  }, {
+    value: "Presentation skills",
+    text: "Presentation skills",
+    checked: checked(data['rejection'][category + '-reasons'], "Presentation skills"),
+    conditional: {
+      html: presentationSkillsHtml
+    }
+  }, {
+      value: "Other",
+      text: "Other",
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      conditional: {
+        html: otherHtml
+      }
+    }]
+}) }}

@@ -1,0 +1,37 @@
+{% set category = 'personal-statement' %}
+
+{% set qualityOfWritingHtml %}
+  {{appRejectionDetails({ category: category, reason: 'quality-of-writing', data: data })}}
+{% endset %}
+{% set plagiarismHtml %}
+  {{appRejectionDetails({ category: category, reason: 'plagiarism', data: data })}}
+{% endset %}
+{% set otherHtml %}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
+{% endset %}
+
+{{ govukCheckboxes({
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
+  fieldset: {
+    legend: {
+      text: "Reasons",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [{
+    value: "Quality of writing",
+    html: "Quality of writing",
+    checked: checked(data['rejection'][category + '-reasons'], "Quality of writing"),
+    conditional: {
+      html: qualityOfWritingHtml
+    }
+  }, {
+      value: "Other",
+      text: "Other",
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      conditional: {
+        html: otherHtml
+      }
+    }]
+}) }}

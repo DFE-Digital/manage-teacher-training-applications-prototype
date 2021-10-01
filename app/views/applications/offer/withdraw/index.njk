@@ -18,8 +18,12 @@
       <p>This feedback will be sent to the candidate.</p>
 
       <form method="post">
-        {% include "_includes/reasons/actions.njk" %}
-        {% include "_includes/reasons/course-full.njk" %}
+
+        {# Comms
+        Course full
+        Safeguarding
+        Other #}
+
         {{ govukButton({
           text: "Continue"
         }) }}

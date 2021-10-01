@@ -1,0 +1,62 @@
+{% set category = 'qualifications' %}
+
+{% set degreeDoesNotMeetRequirementsHtml %}
+  {{appRejectionDetails({ category: category, reason: 'degree-does-not-meet-course-requirements', data: data })}}
+{% endset%}
+
+{% set couldNotVertifyQualificationsHtml %}
+  {{appRejectionDetails({ category: category, reason: 'could-not-verify-qualifications', data: data })}}
+{% endset%}
+
+{% set otherHtml %}
+  {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
+{% endset %}
+
+{{ govukCheckboxes({
+  idPrefix: "rejection-" + category + "-reasons",
+  name: "rejection[" + category + "-reasons]",
+  fieldset: {
+    legend: {
+      text: "Reasons",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [{
+    value: "No maths GCSE grade 4 (C) or above, or accepted equivalent",
+    html: "No maths GCSE grade 4 (C) or above, or accepted equivalent",
+    checked: checked(data['rejection'][category + '-reasons'], "No maths GCSE grade 4 (C) or above, or accepted equivalent")
+  }, {
+    value: "No English GCSE grade 4 (C) or above, or accepted equivalent",
+    text: "No English GCSE grade 4 (C) or above, or accepted equivalent",
+    checked: checked(data['rejection'][category + '-reasons'], "No English GCSE grade 4 (C) or above, or accepted equivalent")
+  }, {
+    value: "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)",
+    text: "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)",
+    checked: checked(data['rejection'][category + '-reasons'], "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)")
+  }, {
+    value: "No degree",
+    text: "No degree",
+    checked: checked(data['rejection'][category + '-reasons'], "No degree")
+  }, {
+    value: "Degree does not meet course requirements",
+    text: "Degree does not meet course requirements",
+    checked: checked(data['rejection'][category + '-reasons'], "Degree does not meet course requirements"),
+    conditional: {
+      html: degreeDoesNotMeetRequirementsHtml
+    }
+  }, {
+    value: "Could not verify qualifications",
+    text: "Could not verify qualifications",
+    checked: checked(data['rejection'][category + '-reasons'], "Could not verify qualifications"),
+    conditional: {
+      html: couldNotVertifyQualificationsHtml
+    }
+  }, {
+      value: "Other",
+      text: "Other",
+      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      conditional: {
+        html: otherHtml
+      }
+    }]
+}) }}

@@ -1,0 +1,11 @@
+{% from "govuk/components/character-count/macro.njk"              import govukCharacterCount %}
+
+{{ govukCharacterCount({
+    maxwords: 100,
+    label: {
+      text: "Give details"
+    },
+    id: "rejection-" + params.category + "-reasons-" + params.reason,
+    name: 'rejection[' + params.category + '-reasons-' + params.reason +']',
+    value: params.data['rejection'][params.category + '-reasons-' + params.reason]
+  }) }}
