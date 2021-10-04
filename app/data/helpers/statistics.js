@@ -226,12 +226,67 @@ const getAgeCounts = (applications) => {
   return counts
 }
 
+// const getAgeCounts = (applications) => {
+//   const counts = []
+//
+//   counts['21_under'] = 0
+//   counts['22'] = 0
+//   counts['23'] = 0
+//   counts['24'] = 0
+//   counts['25_to_29'] = 0
+//   counts['30_to_34'] = 0
+//   counts['35_to_39'] = 0
+//   counts['40_to_44'] = 0
+//   counts['45_to_49'] = 0
+//   counts['50_to_54'] = 0
+//   counts['55_to_59'] = 0
+//   counts['60_to_64'] = 0
+//   counts['65_over'] = 0
+//
+//   applications.forEach((app, i) => {
+//     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
+//     const currentYear = DateTime.now().year
+//     const years = Math.round(DateTime.fromISO(currentYear + '-08-31').diff(dateOfBirth, 'years').toObject().years)
+//
+//     if (years <= 21) {
+//       counts['21_under'] += 1
+//     } else if (years == 22) {
+//       counts['22'] += 1
+//     } else if (years == 23) {
+//       counts['23'] += 1
+//     } else if (years == 24) {
+//       counts['24'] += 1
+//     } else if (years >= 25 && years <= 29) {
+//       counts['25_to_29'] += 1
+//     } else if (years >= 30 && years <= 34) {
+//       counts['30_to_34'] += 1
+//     } else if (years >= 35 && years <= 39) {
+//       counts['35_to_39'] += 1
+//     } else if (years >= 40 && years <= 44) {
+//       counts['40_to_44'] += 1
+//     } else if (years >= 45 && years <= 49) {
+//       counts['45_to_49'] += 1
+//     } else if (years >= 50 && years <= 54) {
+//       counts['50_to_54'] += 1
+//     } else if (years >= 55 && years <= 59) {
+//       counts['55_to_59'] += 1
+//     } else if (years >= 60 && years <= 64) {
+//       counts['60_to_64'] += 1
+//     } else if (years >= 65) {
+//       counts['65_over'] += 1
+//     }
+//
+//   })
+//
+//   return counts
+// }
+
 exports.getAgeData = (applications) => {
   const receivedCounts = getAgeCounts(applications)
   const recruitedCounts = getAgeCounts(applications.filter(app => app.status === 'Recruited'))
 
   return [
-    // { title: 'Under 18', counts: { received: receivedCounts['18_less'], recruited: recruitedCounts['18_less'] } },
+    { title: 'Under 18', counts: { received: receivedCounts['18_less'], recruited: recruitedCounts['18_less'] } },
     { title: '18 to 24', counts: { received: receivedCounts['18_to_24'], recruited: recruitedCounts['18_to_24'] } },
     { title: '25 to 34', counts: { received: receivedCounts['25_to_34'], recruited: recruitedCounts['25_to_34'] } },
     { title: '35 to 44', counts: { received: receivedCounts['35_to_44'], recruited: recruitedCounts['35_to_44'] } },
@@ -240,6 +295,27 @@ exports.getAgeData = (applications) => {
     { title: '65 and over', counts: { received: receivedCounts['65_over'], recruited: recruitedCounts['65_over'] } }
   ]
 }
+
+// exports.getAgeData = (applications) => {
+//   const receivedCounts = getAgeCounts(applications)
+//   const recruitedCounts = getAgeCounts(applications.filter(app => app.status === 'Recruited'))
+//
+//   return [
+//     { title: '21 and under', counts: { received: receivedCounts['21_under'], recruited: recruitedCounts['21_under'] } },
+//     { title: '22', counts: { received: receivedCounts['22'], recruited: recruitedCounts['22'] } },
+//     { title: '23', counts: { received: receivedCounts['23'], recruited: recruitedCounts['23'] } },
+//     { title: '24', counts: { received: receivedCounts['24'], recruited: recruitedCounts['24'] } },
+//     { title: '25 to 29', counts: { received: receivedCounts['25_to_29'], recruited: recruitedCounts['25_to_29'] } },
+//     { title: '30 to 34', counts: { received: receivedCounts['30_to_34'], recruited: recruitedCounts['30_to_34'] } },
+//     { title: '35 to 39', counts: { received: receivedCounts['35_to_39'], recruited: recruitedCounts['35_to_39'] } },
+//     { title: '40 to 44', counts: { received: receivedCounts['40_to_44'], recruited: recruitedCounts['40_to_44'] } },
+//     { title: '45 to 49', counts: { received: receivedCounts['45_to_49'], recruited: recruitedCounts['45_to_49'] } },
+//     { title: '50 to 54', counts: { received: receivedCounts['50_to_54'], recruited: recruitedCounts['50_to_54'] } },
+//     { title: '55 to 59', counts: { received: receivedCounts['55_to_59'], recruited: recruitedCounts['55_to_59'] } },
+//     { title: '60 to 64', counts: { received: receivedCounts['60_to_64'], recruited: recruitedCounts['60_to_64'] } },
+//     { title: '65 and over', counts: { received: receivedCounts['65_over'], recruited: recruitedCounts['65_over'] } }
+//   ]
+// }
 
 exports.getDiversityQuestionnaireResponseCounts = (applications) => {
   const status = 'Recruited'
