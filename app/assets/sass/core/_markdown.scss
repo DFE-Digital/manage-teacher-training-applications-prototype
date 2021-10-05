@@ -57,12 +57,14 @@
     border-bottom: 1px solid $govuk-border-colour;
     padding: govuk-em(govuk-spacing(2), 19px) govuk-em(govuk-spacing(4), 19px) govuk-em(govuk-spacing(2), 19px) 0;
     text-align: left;
+    vertical-align: text-top;
   }
 
   td {
     border-bottom: 1px solid $govuk-border-colour;
     padding: govuk-em(govuk-spacing(2), 19px) govuk-em(govuk-spacing(4), 19px) govuk-em(govuk-spacing(2), 19px) 0;
     text-align: left;
+    vertical-align: text-top;
   }
 
   th:last-child,
