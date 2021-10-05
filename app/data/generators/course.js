@@ -479,34 +479,7 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   const locationCount = faker.datatype.number({ 'min': 1, 'max': 2 })
 
-  const locationChoices = [{
-    name: 'Main site',
-    address: {
-      address1: '123 Main Street',
-      address2: '',
-      address3: '',
-      town: 'Some town',
-      postcode: 'AB1 2CD'
-    }
-  }, {
-    name: 'Queen’s campus',
-    address: {
-      address1: 'Amory Building',
-      address2: 'Rennes Drive',
-      address3: '',
-      town: 'Big City',
-      postcode: 'SW1A 4AA'
-    }
-  }, {
-    name: 'Malet Place',
-    address: {
-      address1: 'Gordon Square',
-      address2: '',
-      address3: '',
-      town: 'Small City',
-      postcode: 'BA2 3DC'
-    }
-  }]
+  const locationChoices = require('../locations')
 
   const shuffledLocations = locationChoices.sort(() => 0.5 - Math.random())
 
