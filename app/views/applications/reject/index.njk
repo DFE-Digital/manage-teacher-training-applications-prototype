@@ -3,7 +3,12 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "Reasons for rejecting this application" %}
+{% if application.status == "Rejected" %}
+  {% set title = "Tell the candidate why you did not offer them a place on the course" %}
+{% else %}
+  {% set title = "Tell the candidate why you’re rejecting their application" %}
+{% endif %}
+
 
 {% block pageNavigation %}
   {% set backUrl = "/applications/" + application.id + "/decision" %}
@@ -19,22 +24,134 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
-
-      <p>This feedback will be sent to the candidate.</p>
+      {% set h1 %}
+        <span class="govuk-caption-l">{{name}}</span>
+        {{title}}
+      {% endset %}
 
       <form method="post">
-        {% include "_includes/reasons/conditions.njk" %}
-        {% include "_includes/reasons/actions.njk" %}
-        {% include "_includes/reasons/application-quality.njk" %}
-        {% include "_includes/reasons/missing-qualifications.njk" %}
-        {% include "_includes/reasons/interview-performance.njk" %}
-        {% include "_includes/reasons/honesty.njk" %}
-        {% include "_includes/reasons/safeguarding.njk" %}
-        {% include "_includes/reasons/other-offer.njk" %}
-        {% include "_includes/reasons/course-full.njk" %}
-        {% include "_includes/reasons/sponsor-visa.njk" %}
+
+        {% set qualificationReasonsHtml %}
+          {% include "_includes/reasons/qualifications.njk" %}
+        {% endset %}
+
+        {% set personalStatementReasonsHtml %}
+          {% include "_includes/reasons/personal-statement.njk" %}
+        {% endset %}
+
+        {% set teachingKnowledgeReasonsHtml %}
+          {% include "_includes/reasons/teaching-knowledge.njk" %}
+        {% endset %}
+
+        {% set communicationReasonsHtml %}
+          {% include "_includes/reasons/communication.njk" %}
+        {% endset %}
+
+        {% set referencesHtml %}
+          {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set safeguardingHtml %}
+          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set sponsorshipHtml %}
+          {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set courseFullHtml %}
+          {{appRejectionDetails({ category: 'course-full', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set otherDetailsHtml %}
+          {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
+        {% endset %}
+
+        {{ govukCheckboxes({
+          idPrefix: "rejection-categories",
+          name: "rejection[categories]",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Qualifications",
+              text: "Qualifications",
+              checked: checked(data['rejection']['categories'], "Qualifications"),
+              conditional: {
+                html: qualificationReasonsHtml
+              }
+            },
+            {
+              value: "Personal statement",
+              text: "Personal statement",
+              checked: checked(data['rejection']['categories'], "Personal statement"),
+              conditional: {
+                html: personalStatementReasonsHtml
+              }
+            },
+            {
+              value: "Teaching knowledge and ability",
+              text: "Teaching knowledge and ability",
+              checked: checked(data['rejection']['categories'], "Teaching knowledge and ability"),
+              conditional: {
+                html: teachingKnowledgeReasonsHtml
+              }
+            },
+            {
+              value: "Communication and scheduling",
+              text: "Communication and scheduling",
+              checked: checked(data['rejection']['categories'], "Communication and scheduling"),
+              conditional: {
+                html: communicationReasonsHtml
+              }
+            },
+            {
+              value: "References",
+              text: "References",
+              checked: checked(data['rejection']['categories'], "References"),
+              conditional: {
+                html: referencesHtml
+              }
+            },
+            {
+              value: "Safeguarding",
+              text: "Safeguarding",
+              checked: checked(data['rejection']['categories'], "Safeguarding"),
+              conditional: {
+                html: safeguardingHtml
+              }
+            },
+            {
+              value: "Visa sponsorship",
+              text: "Visa sponsorship",
+              checked: checked(data['rejection']['categories'], "Visa sponsorship"),
+              conditional: {
+                html: sponsorshipHtml
+              }
+            },
+            {
+              value: "Course full",
+              text: "Course full",
+              checked: checked(data['rejection']['categories'], "Course full"),
+              conditional: {
+                html: courseFullHtml
+              }
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked(data['rejection']['categories'], "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              }
+            }
+          ]
+        }) }}
 
         {{ govukButton({
           text: "Continue"

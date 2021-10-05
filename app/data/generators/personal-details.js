@@ -54,6 +54,39 @@ module.exports = () => {
   }
 
   // ---------------------------------------------------------------------------
+  // Date of birth
+  // ---------------------------------------------------------------------------
+  const dateOfBirthOptions = {
+    y21_under: faker.date.between('2000-01-01', '2001-12-31'),
+    y22_to_24: faker.date.between('1997-01-01', '1999-12-31'),
+    y25_to_29: faker.date.between('1992-01-01', '1996-12-31'),
+    y30_to_34: faker.date.between('1987-01-01', '1991-12-31'),
+    y35_to_39: faker.date.between('1982-01-01', '1986-12-31'),
+    y40_to_44: faker.date.between('1977-01-01', '1981-12-31'),
+    y45_to_49: faker.date.between('1972-01-01', '1976-12-31'),
+    y50_to_54: faker.date.between('1967-01-01', '1971-12-31'),
+    y55_to_59: faker.date.between('1962-01-01', '1966-12-31'),
+    y60_to_64: faker.date.between('1957-01-01', '1961-12-31'),
+    y65_over: faker.date.between('1950-01-01', '1956-12-31')
+  }
+
+  const selectedDateOfBirth = weighted.select({
+    y21_under: 0.18,
+    y22_to_24: 0.23,
+    y25_to_29: 0.20,
+    y30_to_34: 0.12,
+    y35_to_39: 0.10,
+    y40_to_44: 0.08,
+    y45_to_49: 0.05,
+    y50_to_54: 0.03,
+    y55_to_59: 0.01,
+    y60_to_64: 0,
+    y65_over: 0
+  })
+
+  const dateOfBirth = dateOfBirthOptions[selectedDateOfBirth]
+
+  // ---------------------------------------------------------------------------
   // Equality and diversity
   // ---------------------------------------------------------------------------
   let sex
@@ -234,7 +267,7 @@ module.exports = () => {
   return {
     givenName: generatorHelpers.firstName(sex),
     familyName: generatorHelpers.lastName(),
-    dateOfBirth: faker.date.between('1958-01-01', '1998-12-31'),
+    dateOfBirth,
     nationality,
     residency,
     isInternationalCandidate,

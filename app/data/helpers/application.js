@@ -12,65 +12,52 @@ exports.getApplicationWithdrawnReasons = (data) => {
 
 exports.getRejectReasons = (data) => {
   return {
-    // Candidate actions
-    actions: data.actions,
-    'actions-reasons': data['actions-reasons'],
-    'actions-reasons-other': data['actions-reasons-other'],
-    'actions-reasons-other-improve': data['actions-reasons-other-improve'],
 
-    // Missing qualifications
-    'missing-qualifications': data['missing-qualifications'],
-    'missing-qualifications-reasons': data['missing-qualifications-reasons'],
-    'missing-qualifications-reasons-other': data['missing-qualifications-reasons-other'],
+    // top level
+    'categories': data.categories,
 
-    // Application quality
-    'application-quality': data['application-quality'],
-    'application-quality-reasons': data['application-quality-reasons'],
-    'application-quality-reasons-other': data['application-quality-reasons-other'],
-    'application-quality-reasons-other-improve': data['application-quality-reasons-other-improve'],
-    'application-quality-reasons-subject-knowledge': data['application-quality-reasons-subject-knowledge'],
-    'application-quality-reasons-personal-statement': data['application-quality-reasons-personal-statement'],
+    // Qualifications
+    'qualifications-reasons': data['qualifications-reasons'],
+    'qualifications-reasons-degree-does-not-meet-course-requirements': data['qualifications-reasons-degree-does-not-meet-course-requirements'],
+    'qualifications-reasons-could-not-verify-qualifications': data['qualifications-reasons-could-not-verify-qualifications'],
+    'qualifications-reasons-other': data['qualifications-reasons-other'],
 
-    // interview performance
-    'interview-performance': data['interview-performance'],
-    'interview-performance-advice': data['interview-performance-advice'],
+    // Personal statement
+    'personal-statement-reasons': data['personal-statement-reasons'],
+    'personal-statement-reasons-quality-of-writing': data['personal-statement-reasons-quality-of-writing'],
+    'personal-statement-reasons-plagiarism': data['personal-statement-reasons-plagiarism'],
+    'personal-statement-reasons-other': data['personal-statement-reasons-other'],
 
-    // Course full
-    'course-full': data['course-full'],
+    // Teaching knowledge
+    'teaching-knowledge-reasons': data['teaching-knowledge-reasons'],
+    'teaching-knowledge-reasons-subject': data['teaching-knowledge-reasons-subject'],
+    'teaching-knowledge-reasons-safeguarding': data['teaching-knowledge-reasons-safeguarding'],
+    'teaching-knowledge-reasons-teaching-method': data['teaching-knowledge-reasons-teaching-method'],
+    'teaching-knowledge-reasons-teaching-role': data['teaching-knowledge-reasons-teaching-role'],
+    'teaching-knowledge-reasons-presentation-skills': data['teaching-knowledge-reasons-presentation-skills'],
+    'teaching-knowledge-reasons-other': data['teaching-knowledge-reasons-other'],
 
-    // Sponsor visa
-    'sponsor-visa': data['sponsor-visa'],
-    'sponsor-visa-details': data['sponsor-visa-details'],
+    // Comms
+    'communication-reasons': data['communication-reasons'],
+    'communication-reasons-did-not-reply-to-messages': data['communication-reasons-did-not-reply-to-messages'],
+    'communication-reasons-did-not-attend-interview': data['communication-reasons-did-not-attend-interview'],
+    'communication-reasons-other': data['communication-reasons-other'],
 
-    // Other offer
-    'other-offer': data['other-offer'],
-    'other-offer-details': data['other-offer-details'],
-
-    // Honesty
-    honesty: data.honesty,
-    'honesty-reasons': data['honesty-reasons'],
-    'honesty-reasons-false-information': data['honesty-reasons-false-information'],
-    'honesty-reasons-plagiarism': data['honesty-reasons-plagiarism'],
-    'honesty-reasons-reference-information': data['honesty-reasons-reference-information'],
-    'honesty-reasons-other': data['honesty-reasons-other'],
+    // References
+    'references-reasons-details': data['references-reasons-details'],
 
     // Safeguarding
-    safeguarding: data.safeguarding,
-    'safeguarding-reasons': data['safeguarding-reasons'],
-    'safeguarding-reasons-disclosed-information': data['safeguarding-reasons-disclosed-information'],
-    'safeguarding-reasons-vetting-information': data['safeguarding-reasons-vetting-information'],
-    'safeguarding-reasons-other': data['safeguarding-reasons-other'],
+    'safeguarding-reasons-details': data['safeguarding-reasons-details'],
 
-    // Another issue
-    why: data.why,
+    // Visa sponsorship
+    'sponsorship-reasons-details': data['sponsorship-reasons-details'],
 
-    // Other feedback
-    'other-feedback': data['other-feedback'],
-    'other-feedback-details': data['other-feedback-details'],
+    // Course full
+    'course-full-reasons-details': data['course-full-reasons-details'],
 
-    // withdraw application
-    'asked': data.asked,
-    'asked-reason': data['asked-reason']
+    // Other
+    'other-reasons-details': data['other-reasons-details'],
+
   }
 }
 
