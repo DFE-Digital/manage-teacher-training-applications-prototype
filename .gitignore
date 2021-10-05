@@ -14,6 +14,7 @@ node_modules/*
 # Dynamically generated files
 app/data/applications.json
 app/data/courses.json
+app/data/locations.json
 app/data/organisations.json
 app/data/users.json
 app/data/downloads/*
