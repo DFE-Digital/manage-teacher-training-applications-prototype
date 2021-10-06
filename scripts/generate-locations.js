@@ -2,15 +2,11 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 const fs = require('fs')
 const path = require('path')
-const _ = require('lodash')
 
 const OrgHelper = require('../app/data/helpers/organisation')
 
 const generateFakeLocations = (count) => {
-  let organisation = OrgHelper.findOrg('Wren Academy')
-
-  // clone the organisation so we can clean the data and only use what we need
-  organisation = _.cloneDeep(organisation)
+  const organisation = OrgHelper.findOrg('Wren Academy')
 
   // remove unnecessary data
   delete organisation.isAccreditedBody
