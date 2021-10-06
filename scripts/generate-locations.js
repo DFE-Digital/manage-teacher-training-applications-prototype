@@ -6,12 +6,6 @@ const _ = require('lodash')
 
 const OrgHelper = require('../app/data/helpers/organisation')
 
-// const generateLocation = require('../app/data/generators/location')
-
-// const generateFakeLocation = (params = {}) => {
-//   return generateLocation(params)
-// }
-
 const generateFakeLocations = (count) => {
   let organisation = OrgHelper.findOrg('Wren Academy')
 
