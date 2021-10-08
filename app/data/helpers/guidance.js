@@ -28,9 +28,9 @@ exports.getListOfFiles = () => {
   })
 
   // sort files alphabetically by title
-  files = files.sort((a, b) => {
-    return a.title.localeCompare(b.title)
-  })
+  // files = files.sort((a, b) => {
+  //   return a.title.localeCompare(b.title)
+  // })
 
   return files
 }
