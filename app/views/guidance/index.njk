@@ -1,0 +1,25 @@
+{% extends "_layout.njk" %}
+
+{% set title = "How to use this service" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {% if links.length %}
+        <ul class="govuk-list govuk-list--spaced">
+          {% for link in links %}
+            <li>
+              <a href="/how-to-use-this-service/{{ link.slug }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
