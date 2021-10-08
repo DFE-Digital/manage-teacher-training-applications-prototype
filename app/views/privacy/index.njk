@@ -1,0 +1,25 @@
+{% extends "_layout.njk" %}
+
+{% set title = "Privacy policies" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {% if links.length %}
+        <ul class="govuk-list govuk-list--spaced">
+          {% for link in links %}
+            <li>
+              <a href="/privacy/{{ link.slug }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

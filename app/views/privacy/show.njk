@@ -1,0 +1,33 @@
+{% extends "_layout.njk" %}
+
+{% set sectionTitle = "Privacy policies" %}
+{% set title = title %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: sectionTitle,
+      href: "/privacy"
+    }, {
+      text: title
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <div class="app-markdown">
+        {{ content | markdownToHtml | safe }}
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
