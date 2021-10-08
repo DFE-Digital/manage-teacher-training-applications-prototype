@@ -1,5 +1,6 @@
 ---
 title: How we look after your personal data
+updated: 2021-10-08
 ---
 Apply for teacher training and Manage teacher training applications are run by the Department for Education (‘we’).
 
