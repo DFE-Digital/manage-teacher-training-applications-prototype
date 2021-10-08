@@ -1,6 +1,5 @@
 ---
 title: Zendesk chat privacy notice for manage teacher training providers
-updated: 2021-10-08
 ---
 
 We are the Department for Education (DfE), 20 Great Smith St, London SW1P 3BT. We are the Data Controller for your personal data.
@@ -90,3 +89,5 @@ If we can’t resolve your issue or query, you have the right to raise it with t
 ## Keeping our privacy policy up to date
 
 We will update this privacy notice  as required. Please review the privacy notice from time to time for any updates.
+
+This version was last updated on 8 October 2021.
