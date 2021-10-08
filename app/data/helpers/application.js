@@ -52,9 +52,6 @@ exports.getRejectReasons = (data) => {
     // Visa sponsorship
     'sponsorship-reasons-details': data['sponsorship-reasons-details'],
 
-    // Course full
-    'course-full-reasons-details': data['course-full-reasons-details'],
-
     // Other
     'other-reasons-details': data['other-reasons-details'],
 

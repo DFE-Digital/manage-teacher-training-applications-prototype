@@ -158,7 +158,7 @@
           {% set checkboxValue = "Other" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
             <li>
-              Other:
+              <p>Other:</p>
               <p>{{rejectionReasons[groupName + '-other']}}</p>
             </li>
           {% endif %}
@@ -198,7 +198,7 @@
           {% set checkboxValue = "Other" %}
           {% if checked(rejectionReasons[groupName], checkboxValue) %}
             <li>
-              Other:
+              <p>Other:</p>
               <p>{{rejectionReasons[groupName + '-other']}}</p>
             </li>
           {% endif %}
@@ -256,14 +256,13 @@
 
   {% set checkboxValue = 'Course full' %}
   {% set category = 'course-full' %}
-  {% set groupName = category + '-reasons' %}
   {% if checked(rejectionReasons.categories, checkboxValue) %}
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         {{checkboxValue}}
       </dt>
       <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details']}}</p>
+        <p>The course you applied to is full.</p>
       </dd>
       {{changeHtml | safe}}
     </div>
