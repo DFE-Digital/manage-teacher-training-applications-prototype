@@ -59,10 +59,6 @@
           {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set courseFullHtml %}
-          {{appRejectionDetails({ category: 'course-full', reason: 'details', data: data })}}
-        {% endset %}
-
         {% set otherDetailsHtml %}
           {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
         {% endset %}
@@ -137,10 +133,7 @@
             {
               value: "Course full",
               text: "Course full",
-              checked: checked(data['rejection']['categories'], "Course full"),
-              conditional: {
-                html: courseFullHtml
-              }
+              checked: checked(data['rejection']['categories'], "Course full")
             },
             {
               value: "Other",
