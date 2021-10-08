@@ -1,26 +1,30 @@
-{% set alertsLinkHtml %}
-  <span class="app-notification-link">
-    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
-  </span>
-{% endset %}
+{% if pageId == "start" %}
+{% set navigationItems = [{
+    href: "/start",
+    text: "Sign out"
+  }]
+%}
+{% else %}
+{% set navigationItems = [
+  {
+    href: "/organisation-settings",
+    text: "Organisation settings",
+    active: primaryNavId == 'organisation-settings'
+  }, {
+    href: "/account",
+    text: "Your account",
+    active: primaryNavId == 'account'
+  }, {
+    href: "/start",
+    text: "Sign out"
+  }]
+%}
+{% endif %}
 
 {{ govukHeader({
   containerClasses: "govuk-width-container",
   navigationLabel: "Account menu",
   "navigationClasses": "govuk-header__navigation--end",
   "productName": serviceName,
-  "navigation": [
-    {
-      href: "/organisation-settings",
-      text: "Organisation settings",
-      active: primaryNavId == 'organisation-settings'
-    }, {
-      href: "/account",
-      text: "Your account",
-      active: primaryNavId == 'account'
-    }, {
-      href: "/",
-      text: "Sign out"
-    }
-  ]
+  "navigation": navigationItems
 }) }}

@@ -1,5 +1,7 @@
 {% extends "_layout.njk" %}
 
+{% set pageId = "start" %}
+
 {% set title = "Sign in to manage teacher training applications" %}
 
 {% block header %}
@@ -8,9 +10,9 @@
 
 {% block content %}
 
-  {{ govukNotificationBanner({
+  {# {{ govukNotificationBanner({
     text: "Candidates will be able to apply for courses starting in 2022 to 2023 from 12 October 2021 at 9am"
-  }) }}
+  }) }} #}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
