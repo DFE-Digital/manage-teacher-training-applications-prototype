@@ -1,0 +1,77 @@
+{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
+{%- set assetPath = "/govuk/assets" -%}
+
+{% extends "govuk/template.njk" %}
+
+{% from "_components/cookie-banner/macro.njk" import appCookieBanner %}
+{% from "_components/footer/macro.njk" import appFooter %}
+
+{% block head %}
+  {% include "_includes/head.njk" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {% if title %}{{ title }} - {% endif %}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block header %}
+  {% if shouldShowCookieMessage %}
+  {{ appCookieBanner({
+    text: cookieText
+  }) }}
+  {% endif %}
+
+  {{ govukHeader({
+    containerClasses: "govuk-width-container",
+    navigationClasses: "govuk-header__navigation--end",
+    productName: serviceName
+  }) }}
+
+  {% block afterHeader %}
+
+  {% endblock %}
+
+{% endblock %}
+
+{% block bodyStart %}
+  <div data-module="edge">
+{% endblock %}
+
+{% block beforeContent %}
+  {% block pageNavigation %}
+  {% endblock %}
+  {% block pageBanner %}
+  {% endblock %}
+{% endblock %}
+
+{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
+
+{% block footer %}
+{% set footerHtml %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+      Email
+    </h3>
+    <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1"><a class="govuk-footer__link" href="#">becomingateacher@digital.education.gov.uk</a></p>
+    <p class="govuk-!-font-size-16">You’ll get a response within 5 working days, or one working day for urgent requests.</p>
+  </div>
+</div>
+{% endset %}
+
+{{ appFooter({
+  classes: "govuk-footer--app",
+  meta: {
+    title: "Get help",
+    html: footerHtml
+  }
+}) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  </div>
+
+  {% block scripts %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+{% endblock %}
