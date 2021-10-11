@@ -3,13 +3,20 @@
 {% set title = "Page not found" %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">
-    {{title}}
-  </h1>
-  <p class="govuk-body">
-    If you entered a web address please check it was correct.
-  </p>
-  <p class="govuk-body">
-    If you believe you are seeing this message in error, please email us at <a class="govuk-link" href="mailto:mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.
-  </p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+      <p class="govuk-body">
+        If you typed the web address, check it is correct.
+      </p>
+      <p class="govuk-body">
+        If you pasted the web address, check you copied the entire address.
+      </p>
+      <p class="govuk-body">
+        If you believe you are seeing this message in error, email <a class="govuk-link" href="mailto:mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.
+      </p>
+    </div>
+  </div>
 {% endblock %}
