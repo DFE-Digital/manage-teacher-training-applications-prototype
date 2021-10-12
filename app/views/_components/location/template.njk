@@ -1,0 +1,20 @@
+<p class="govuk-body {{- ' ' + params.classes if params.classes }}" {%- for attribute, value in params.attributes -%} {{ attribute }}="{{ value }}"{% endfor %}>
+  {% if params.name.length %}
+    {{ params.name }}<br>
+  {% endif %}
+  {% if params.address.address1.length %}
+    {{ params.address.address1 }}<br>
+  {% endif %}
+  {% if params.address.address2.length %}
+    {{ params.address.address2 }}<br>
+  {% endif %}
+  {% if params.address.address3.length %}
+    {{ params.address.address3 }}<br>
+  {% endif %}
+  {% if params.address.town.length %}
+    {{ params.address.town }}<br>
+  {% endif %}
+  {% if params.address.postcode.length %}
+    {{ params.address.postcode }}<br>
+  {% endif %}
+</p>
