@@ -7,31 +7,6 @@
 {% set pageName = 'Offer' %}
 {% set title = pageName + ' - ' + application.personalDetails.name %}
 
-{% set locationHtml %}
-<p class="govuk-body">
-  {% if application.offer.location.name.length %}
-    {{ application.offer.location.name }}<br>
-    {% if application.offer.location.address.address1.length %}
-      {{ application.offer.location.address.address1 }}<br>
-    {% endif %}
-    {% if application.offer.location.address.address2.length %}
-      {{ application.offer.location.address.address2 }}<br>
-    {% endif %}
-    {% if application.offer.location.address.address3.length %}
-      {{ application.offer.location.address.address3 }}<br>
-    {% endif %}
-    {% if application.offer.location.address.town.length %}
-      {{ application.offer.location.address.town }}<br>
-    {% endif %}
-    {% if application.offer.location.address.postcode.length %}
-      {{ application.offer.location.address.postcode }}<br>
-    {% endif %}
-  {% else %}
-    {{ application.offer.location }}
-  {% endif %}
-</p>
-{% endset %}
-
 {% block content %}
   {{ govukNotificationBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
@@ -65,7 +40,7 @@
             href: "/applications/"+application.id+"/offer/edit/course?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           location: {
-            value: locationHtml,
+            value: application.offer.location,
             href: "/applications/"+application.id+"/offer/edit/location?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           accreditedBody: {

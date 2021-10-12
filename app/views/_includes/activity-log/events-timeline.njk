@@ -17,7 +17,7 @@
       </div>
       <div class="app-activity-log__description">
 
-         {% if event.event.title == 'Note added' %}
+         {% if event.event.title == "Note added" %}
 
           <div class="app-activity-log__box">
             {{appEventNote({
@@ -48,7 +48,7 @@
           </p>
         {% endif %}
 
-        {% if event.event.title == 'Interview cancelled' %}
+        {% if event.event.title == "Interview cancelled" %}
 
           <div class="app-activity-log__box">
             {{appEventInterview({
@@ -60,7 +60,7 @@
         {% endif %}
 
 
-        {% if event.event.title == 'Interview changed' or event.event.title == 'Interview set up' %}
+        {% if event.event.title in ["Interview changed", "Interview set up"] %}
 
           <div class="app-activity-log__box">
             {{appEventInterview({ interview: event.event.meta.interview })}}
@@ -74,7 +74,7 @@
 
         {% endif %}
 
-        {% if event.event.title == "Conditions marked as met" or event.event.title == "Conditions marked as not met" or event.event.title == "Status of conditions updated"  %}
+        {% if event.event.title in ["Conditions marked as met", "Conditions marked as not met", "Status of conditions updated"]  %}
           <div class="app-activity-log__box">
             {{appConditionsPanel({
               conditions: event.event.meta.offer.conditions
@@ -89,8 +89,7 @@
             </a></p>
         {% endif %}
 
-
-        {% if event.event.title == "Offer withdrawn" or event.event.title == "Offer accepted" or event.event.title == "Offer made" or event.event.title == "Offer declined" or event.event.title == "Offer changed" or event.event.title == "Offer deferred" or event.event.title == "Offer reconfirmed" %}
+        {% if event.event.title in ["Offer made", "Offer changed", "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Offer reconfirmed"]%}
 
           <div class="app-activity-log__box">
             {{appEventOffer({ offer: event.event.meta.offer })}}
@@ -116,7 +115,32 @@
 
         {% endif %}
 
-        {% if event.event.title == "Application submitted" or event.event.title == "Application withdrawn" or event.event.title == "Application rejected" %}
+        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected"] %}
+
+          {% set locationHtml %}
+            <p class="govuk-body">
+              {% if event.application.location.name %}
+                {{ event.application.location.name }}<br>
+                {% if event.application.location.address.address1.length %}
+                  {{ event.application.location.address.address1 }}<br>
+                {% endif %}
+                {% if event.application.location.address.address2.length %}
+                  {{ event.application.location.address.address2 }}<br>
+                {% endif %}
+                {% if event.application.location.address.address3.length %}
+                  {{ event.application.location.address.address3 }}<br>
+                {% endif %}
+                {% if event.application.location.address.town.length %}
+                  {{ event.application.location.address.town }}<br>
+                {% endif %}
+                {% if event.application.location.address.postcode.length %}
+                  {{ event.application.location.address.postcode }}<br>
+                {% endif %}
+              {% else %}
+                {{ event.application.location }}
+              {% endif %}
+            </p>
+          {% endset %}
 
           <div class="app-activity-log__box">
           {{ govukSummaryList({
@@ -142,7 +166,8 @@
                   text: "Location"
                 },
                 value: {
-                  text: event.application.location
+                  html: locationHtml
+
                 }
               },
               {
