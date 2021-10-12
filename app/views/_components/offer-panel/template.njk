@@ -1,31 +1,7 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 {% from "_components/conditions-panel/macro.njk" import appConditionsPanel %}
-
-{% set locationHtml %}
-  <p class="govuk-body">
-    {% if params.location.value.name %}
-      {{ params.location.value.name }}<br>
-      {% if params.location.value.address.address1.length %}
-        {{ params.location.value.address.address1 }}<br>
-      {% endif %}
-      {% if params.location.value.address.address2.length %}
-        {{ params.location.value.address.address2 }}<br>
-      {% endif %}
-      {% if params.location.value.address.address3.length %}
-        {{ params.location.value.address.address3 }}<br>
-      {% endif %}
-      {% if params.location.value.address.town.length %}
-        {{ params.location.value.address.town }}<br>
-      {% endif %}
-      {% if params.location.value.address.postcode.length %}
-        {{ params.location.value.address.postcode }}<br>
-      {% endif %}
-    {% else %}
-      {{ params.location.value }}
-    {% endif %}
-  </p>
-{% endset %}
+{% from "_components/location/macro.njk" import appLocation %}
 
 <div class="app-offer-panel">
   {% if not params.transferred %}
@@ -98,7 +74,7 @@
         text: "Location"
       },
       value: {
-        html: locationHtml
+        html: appLocation(params.location.value) if params.location.value.name else params.location.value
       },
       actions: {
         items: [

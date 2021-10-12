@@ -1,29 +1,5 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-{% set locationHtml %}
-  <p class="govuk-body">
-    {% if params.application.location.name %}
-      {{ params.application.location.name }}<br>
-      {% if params.application.location.address.address1.length %}
-        {{ params.application.location.address.address1 }}<br>
-      {% endif %}
-      {% if params.application.location.address.address2.length %}
-        {{ params.application.location.address.address2 }}<br>
-      {% endif %}
-      {% if params.application.location.address.address3.length %}
-        {{ params.application.location.address.address3 }}<br>
-      {% endif %}
-      {% if params.application.location.address.town.length %}
-        {{ params.application.location.address.town }}<br>
-      {% endif %}
-      {% if params.application.location.address.postcode.length %}
-        {{ params.application.location.address.postcode }}<br>
-      {% endif %}
-    {% else %}
-      {{ params.application.location }}
-    {% endif %}
-  </p>
-{% endset %}
+{% from "_components/location/macro.njk" import appLocation %}
 
 {{ govukSummaryList({
   rows: [
@@ -56,7 +32,7 @@
         text: "Location"
       },
       value: {
-        html: locationHtml
+        html: appLocation(params.application.location) if params.application.location.name else params.application.location
       }
     },
     {
