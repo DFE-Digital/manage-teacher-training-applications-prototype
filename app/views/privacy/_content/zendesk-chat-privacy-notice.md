@@ -1,5 +1,5 @@
 ---
-title: Zendesk chat privacy notice for manage teacher training providers
+title: Zendesk chat privacy notice
 ---
 
 We are the Department for Education (DfE), 20 Great Smith St, London SW1P 3BT. We are the Data Controller for your personal data.
@@ -84,7 +84,7 @@ If you have any concerns or queries you can email us in the first instance at:
 
 becomingateacher@digital.education.gov.uk
 
-If we can’t resolve your issue or query, you have the right to raise it with the Information Commissioner's Office (ICO). You can visit their website here: Information Commissioner’s Office (ICO).
+If we can’t resolve your issue or query, you have the right to raise it with the [Information Commissioner's Office (ICO)](https://ico.org.uk/).
 
 ## Keeping our privacy policy up to date
 
