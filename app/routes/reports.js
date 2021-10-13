@@ -6,7 +6,7 @@ const { DateTime } = require('luxon')
 
 const downloadDirectoryPath = path.join(__dirname, '../data/downloads')
 
-const StatisticsHelper = require('../data/helpers/statistics')
+const ReportsHelper = require('../data/helpers/reports')
 
 const slugify = (text) => {
   return text.trim()
@@ -33,7 +33,7 @@ const writeSexData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const sexData = StatisticsHelper.getSexData(apps)
+  const sexData = ReportsHelper.getSexData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -69,7 +69,7 @@ const writeDisabilityData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const disabilityData = StatisticsHelper.getDisabilityData(apps)
+  const disabilityData = ReportsHelper.getDisabilityData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -107,7 +107,7 @@ const writeEthnicityData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const ethnicityData = StatisticsHelper.getEthnicityData(apps)
+  const ethnicityData = ReportsHelper.getEthnicityData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -156,7 +156,7 @@ const writeAgeData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const ageData = StatisticsHelper.getAgeData(apps)
+  const ageData = ReportsHelper.getAgeData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -202,7 +202,7 @@ module.exports = router => {
     // console.log(organisation);
     const fileName = slugify(organisation.name)
 
-    let statusData = StatisticsHelper.getStatusData(fileName)
+    let statusData = ReportsHelper.getStatusData(fileName)
     const statusTotals = statusData.find(data => data.code === 'TOTAL')
     statusData = statusData.filter(data => data.code !== 'TOTAL')
 
@@ -220,7 +220,7 @@ module.exports = router => {
     const fileName = '/status-of-active-applications-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
-    const statusData = StatisticsHelper.getStatusData(organisationName)
+    const statusData = ReportsHelper.getStatusData(organisationName)
 
     // headers for the CSV file
     const headers = []
@@ -267,7 +267,7 @@ module.exports = router => {
 
     const fileName = slugify(organisation.name)
 
-    const attritionData = StatisticsHelper.getAttritionData(fileName)
+    const attritionData = ReportsHelper.getAttritionData(fileName)
 
     res.render('reports/attrition/index', {
       organisation,
@@ -281,7 +281,7 @@ module.exports = router => {
     const fileName = '/when-candidates-choose-to-leave-the-application-process-' + organisationName + '-' + DateTime.now().toFormat('yyyy-LL-dd-HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
-    const attritionData = StatisticsHelper.getAttritionData(organisationName)
+    const attritionData = ReportsHelper.getAttritionData(organisationName)
 
     // headers for the CSV file
     const headers = []
@@ -345,7 +345,7 @@ module.exports = router => {
 
     const fileName = slugify(organisation.name)
 
-    let course = StatisticsHelper.getAttritionData(fileName)
+    let course = ReportsHelper.getAttritionData(fileName)
     course = course.find(course => course.code === req.params.courseId)
 
     res.render('reports/attrition/show', {
@@ -362,15 +362,16 @@ module.exports = router => {
 
     // use application count as a proxy for candidate count
     const candidateCount = applications.length
+    const recruitedCount = applications.filter(app => app.status === 'Recruited').length
     const questionnaireCount = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes').length
     const questionnairePercentage = Math.round((questionnaireCount/candidateCount) * 100)
 
-    const ethnicityData = StatisticsHelper.getEthnicityData(applications)
-    const ageData = StatisticsHelper.getAgeData(applications)
-    const sexData = StatisticsHelper.getSexData(applications)
-    const disabilityData = StatisticsHelper.getDisabilityData(applications)
-    const questionnaireResponseData = StatisticsHelper.getDiversityQuestionnaireResponseCounts(applications)
-    const disabilityResponseData = StatisticsHelper.getDisabilityQuestionResponseCounts(applications)
+    const ethnicityData = ReportsHelper.getEthnicityData(applications)
+    const ageData = ReportsHelper.getAgeData(applications)
+    const sexData = ReportsHelper.getSexData(applications)
+    const disabilityData = ReportsHelper.getDisabilityData(applications)
+    const questionnaireResponseData = ReportsHelper.getDiversityQuestionnaireResponseCounts(applications)
+    const disabilityResponseData = ReportsHelper.getDisabilityQuestionResponseCounts(applications)
 
     res.render('reports/diversity/index', {
       organisation,
@@ -381,6 +382,7 @@ module.exports = router => {
       disabilityData,
       disabilityResponseData,
       candidateCount,
+      recruitedCount,
       questionnaireCount,
       questionnairePercentage
     })
