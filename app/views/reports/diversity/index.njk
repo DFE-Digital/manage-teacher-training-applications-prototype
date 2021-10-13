@@ -30,226 +30,19 @@
         <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download" download>Export data (ZIP)</a>
       </p>
 
-    <!-- </div>
+    </div>
   </div>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full"> -->
+    <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">
-        Sex
-      </h2>
+      {% include "./_sex.njk" %}
 
-      <!-- <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download/sex" download>
-          Export data (CSV) <span class="govuk-visually-hidden">for candidate sexes</span>
-        </a>
-      </p> -->
+      {% include "./_disability.njk" %}
 
-      <table id="sex" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Sex</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates applied</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates recruited</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
+      {% include "./_ethnicity.njk" %}
 
-          {% for sex in sexData %}
-
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-                {{ sex.title }}
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ sex.counts.received }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ sex.counts.recruited }}
-              </td>
-            </tr>
-
-          {% endfor %}
-
-        </tbody>
-      </table>
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-9">
-        Disability
-      </h2>
-
-      <!-- <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download/disability" download>
-          Export data (CSV) <span class="govuk-visually-hidden">for candidate disabilities</span>
-        </a>
-      </p> -->
-
-      <table id="sex" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Candidate is disabled</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates applied</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates recruited</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-
-          {% for response in disabilityResponseData %}
-
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-                {{ response.title }}
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ response.counts.received }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ response.counts.recruited }}
-              </td>
-            </tr>
-
-          {% endfor %}
-
-        </tbody>
-      </table>
-
-      <table id="disability" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Disability</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates applied</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates recruited</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-
-          {% for disability in disabilityData %}
-
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-                {{ disability.title }}
-                {% if disability.description.length %}
-                  <span class="govuk-hint govuk-!-margin-bottom-0">{{ disability.description }}</span>
-                {% endif %}
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ disability.counts.received }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ disability.counts.recruited }}
-              </td>
-            </tr>
-
-          {% endfor %}
-
-        </tbody>
-      </table>
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-9">
-        Ethnicity
-      </h2>
-
-      <!-- <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download/ethnicity" download>
-          Export data (CSV) <span class="govuk-visually-hidden">for candidate ethnicities</span>
-        </a>
-      </p> -->
-
-      <table id="ethnicity" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Ethnicity</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates applied</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates recruited</th>
-          </tr>
-        </thead>
-
-        {% for ethnicity in ethnicityData %}
-
-          <tbody class="govuk-table__body" scope="rowgroup">
-
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">
-                {{ ethnicity.title }}
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ ethnicity.counts.received }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ ethnicity.counts.recruited }}
-              </td>
-            </tr>
-
-            {% if ethnicity.items %}
-
-              {% for item in ethnicity.items %}
-
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__cell govuk-!-padding-left-5 govuk-!-font-weight-regular">
-                    {{ item.title }}
-                  </th>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">
-                    {{ item.counts.received }}
-                  </td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">
-                    {{ item.counts.recruited }}
-                  </td>
-                </tr>
-
-              {% endfor %}
-
-            {% endif %}
-
-          </tbody>
-
-        {% endfor %}
-
-      </table>
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-9">
-        Age
-      </h2>
-
-      <!-- <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download/age" download>
-          Export data (CSV) <span class="govuk-visually-hidden">for candidate ages</span>
-        </a>
-      </p> -->
-
-      <table id="age" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Age</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates applied</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates recruited</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-
-          {% for age in ageData %}
-
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-                {{ age.title }}
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ age.counts.received }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ age.counts.recruited }}
-              </td>
-            </tr>
-
-          {% endfor %}
-
-        </tbody>
-      </table>
+      {% include "./_age.njk" %}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-9">
         Where this data comes from
@@ -263,13 +56,20 @@
         The age data is from all {{ candidateCount | numeral('0') }} candidates.
       </p>
 
-      <table id="sex" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+      <table id="responses" class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }} - response data</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Candidate responded to questionnaire</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates applied</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">Candidates recruited</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+              Number of candidates who applied
+            </th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+              Number of candidates who were recruited
+            </th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+              Percentage of candidates recruited in the category
+            </th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -285,6 +85,9 @@
               </td>
               <td class="govuk-table__cell govuk-table__cell--numeric">
                 {{ response.counts.recruited }}
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ response.rates.group | numeral('0.0') }}%
               </td>
             </tr>
 
