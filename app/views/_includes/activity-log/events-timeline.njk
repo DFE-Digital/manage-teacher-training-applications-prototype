@@ -117,31 +117,6 @@
 
         {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected"] %}
 
-          {% set locationHtml %}
-            <p class="govuk-body">
-              {% if event.application.location.name %}
-                {{ event.application.location.name }}<br>
-                {% if event.application.location.address.address1.length %}
-                  {{ event.application.location.address.address1 }}<br>
-                {% endif %}
-                {% if event.application.location.address.address2.length %}
-                  {{ event.application.location.address.address2 }}<br>
-                {% endif %}
-                {% if event.application.location.address.address3.length %}
-                  {{ event.application.location.address.address3 }}<br>
-                {% endif %}
-                {% if event.application.location.address.town.length %}
-                  {{ event.application.location.address.town }}<br>
-                {% endif %}
-                {% if event.application.location.address.postcode.length %}
-                  {{ event.application.location.address.postcode }}<br>
-                {% endif %}
-              {% else %}
-                {{ event.application.location }}
-              {% endif %}
-            </p>
-          {% endset %}
-
           <div class="app-activity-log__box">
           {{ govukSummaryList({
             rows: [
@@ -166,8 +141,7 @@
                   text: "Location"
                 },
                 value: {
-                  html: locationHtml
-
+                  html: appLocation(event.application.location) if event.application.location.name else event.application.location
                 }
               },
               {

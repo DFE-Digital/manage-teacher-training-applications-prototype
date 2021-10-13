@@ -1,4 +1,5 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "_components/location/macro.njk" import appLocation %}
 
 {% set conditionsHtml %}
   {% if params.offer.conditions.length %}
@@ -12,31 +13,6 @@
   {% else %}
     <p>No conditions have been set for this offer.</p>
   {% endif %}
-{% endset %}
-
-{% set locationHtml %}
-  <p class="govuk-body">
-    {% if params.offer.location.name %}
-      {{ params.offer.location.name }}<br>
-      {% if params.offer.location.address.address1.length %}
-        {{ params.offer.location.address.address1 }}<br>
-      {% endif %}
-      {% if params.offer.location.address.address2.length %}
-        {{ params.offer.location.address.address2 }}<br>
-      {% endif %}
-      {% if params.offer.location.address.address3.length %}
-        {{ params.offer.location.address.address3 }}<br>
-      {% endif %}
-      {% if params.offer.location.address.town.length %}
-        {{ params.offer.location.address.town }}<br>
-      {% endif %}
-      {% if params.offer.location.address.postcode.length %}
-        {{ params.offer.location.address.postcode }}<br>
-      {% endif %}
-    {% else %}
-      {{ params.offer.location }}
-    {% endif %}
-  </p>
 {% endset %}
 
 {{ govukSummaryList({
@@ -70,7 +46,7 @@
         text: "Location"
       },
       value: {
-        html: locationHtml
+        html: appLocation(params.offer.location) if params.offer.location.name else params.offer.location
       }
     },
     {
