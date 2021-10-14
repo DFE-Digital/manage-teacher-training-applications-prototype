@@ -30,11 +30,11 @@
           {{ item.title }}
         </th>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.group | numeral('0.0') }}%
+          {{ item.rates.group | numeral('0.[0]') }}%
           <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ item.counts.received | numeral('0,0') }}</span>
         </td>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.recruited | numeral('0.0') }}%
+            {{ item.rates.recruited | numeral('0.[0]') }}%
           <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ recruitedCount | numeral('0,0') }}</span>
         </td>
       </tr>
@@ -66,11 +66,11 @@
           {{ item.title }}
         </th>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.group | numeral('0.0') }}%
+          {{ item.rates.group | numeral('0.[0]') }}%
           <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ item.counts.received | numeral('0,0') }}</span>
         </td>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.recruited | numeral('0.0') }}%
+          {{ item.rates.recruited | numeral('0.[0]') }}%
           <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ recruitedCount | numeral('0,0') }}</span>
         </td>
       </tr>
