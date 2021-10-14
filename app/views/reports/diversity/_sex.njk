@@ -13,39 +13,29 @@
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Sex</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Number of candidates applied
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
+        Candidates recruited, out of those who applied in the group
       </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Number of candidates recruited
-      </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Percentage of candidates recruited in the category
-      </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Percentage of all candidates recruited
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
+        Candidates recruited, out of the total recruited
       </th>
     </tr>
   </thead>
   <tbody class="govuk-table__body">
 
-    {% for sex in sexData %}
+    {% for item in sexData %}
 
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-          {{ sex.title }}
+          {{ item.title }}
         </th>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ sex.counts.received }}
+          {{ item.rates.group | numeral('0.0') }}%
+          <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ item.counts.received | numeral('0,0') }}</span>
         </td>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ sex.counts.recruited }}
-        </td>
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ sex.rates.group | numeral('0.0') }}%
-        </td>
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ sex.rates.recruited | numeral('0.0') }}%
+          {{ item.rates.recruited | numeral('0.0') }}%
+          <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ recruitedCount | numeral('0,0') }}</span>
         </td>
       </tr>
 
