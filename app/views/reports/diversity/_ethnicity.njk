@@ -9,12 +9,12 @@
 </p> -->
 
 <table id="ethnicity" class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }} - ethnicity data</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }} - ethnicity data</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Ethnicity</th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
-        Candidates recruited, out of those who applied in the group
+        Candidates recruited, out of those who applied in the ethnic group
       </th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
         Candidates recruited, out of the total recruited
@@ -45,7 +45,7 @@
         {% for item in ethnicity.items %}
 
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular govuk-!-padding-left-3">
               {{ item.title }}
             </th>
             <td class="govuk-table__cell govuk-table__cell--numeric">

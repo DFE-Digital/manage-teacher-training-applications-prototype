@@ -1,7 +1,11 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Sex, disability, ethnicity and age of candidates" %}
+{% set pageTitle = "Sex, disability, ethnicity and age of candidates" + ((" - " + organisation.name) if organisation) %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -9,7 +13,7 @@
     href: "/reports",
     text: "Reports"
   }, {
-    text: pageName
+    text: pageTitle
   }]
 }) }}
 {% endblock %}
@@ -23,7 +27,7 @@
         {% if organisation %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
-        {{ pageName }}
+        {{ pageTitle }}
       </h1>
 
       <p class="govuk-body">
