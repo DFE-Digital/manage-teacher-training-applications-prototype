@@ -1,7 +1,11 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = course.title + (" (" + course.code + ")") if course.code %}
+{% set pageTitle = course.title + (" (" + course.code + ")") if course.code %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -12,7 +16,7 @@
     href: "/reports/" + organisation.id + "/candidate-drop-out",
     text: "Candidate drop out rate"
   }, {
-    text: pageName
+    text: pageTitle
   }]
 }) }}
 {% endblock %}
@@ -23,7 +27,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">Candidate drop out rate</span>
-        {{ pageName }}
+        {{ pageTitle }}
       </h1>
 
       <div class="govuk-grid-row">
@@ -96,7 +100,7 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-9">Breakdown</h2>
 
       <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }}</caption>
         <!-- <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Description</th>
