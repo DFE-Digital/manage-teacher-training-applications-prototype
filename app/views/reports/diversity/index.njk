@@ -1,10 +1,10 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageTitle = "Sex, disability, ethnicity and age of candidates" + ((" - " + organisation.name) if organisation) %}
+{% set pageTitle = "Sex, disability, ethnicity and age of candidates" %}
 
 {% block pageTitle %}
-{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{{ pageTitle + ((" - " + organisation.name) if organisation) }} – {{ serviceName }} – GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
