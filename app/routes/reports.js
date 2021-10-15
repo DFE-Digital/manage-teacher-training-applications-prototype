@@ -67,6 +67,46 @@ const writeSexData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
+const writeDisabilityReponseCountsData = (organisation, applications) => {
+  const organisationName = slugify(organisation.name)
+  const fileName = 'candidate-disability-reponse-counts_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+  const filePath = downloadDirectoryPath + fileName
+
+  const apps = applications.filter(app => app.provider === organisation.name)
+  const disabilityData = ReportsHelper.getDisabilityQuestionResponseCounts(apps)
+
+  // headers for the CSV file
+  const headers = []
+  headers.push({ id: 'disability', title: 'Candidate is disabled' })
+  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
+  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
+  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+
+  const csv = csvWriter({
+    path: filePath,
+    header: headers
+  })
+
+  // content for the CSV file
+  const records = []
+
+  disabilityData.forEach((item, i) => {
+    const data = {}
+    data.disability = item.title
+    data.receivedNumber = item.counts.received
+    data.recruitedNumber = item.counts.recruited
+    data.recruitedGroupPercent = item.rates.group
+    data.recruitedPercent = item.rates.recruited
+    records.push(data)
+  })
+
+  // write the CSV file and send to browser
+  csv.writeRecords(records)
+
+  return { filePath, fileName }
+}
+
 const writeDisabilityData = (organisation, applications) => {
   const organisationName = slugify(organisation.name)
   const fileName = 'candidate-disability_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
@@ -415,6 +455,7 @@ module.exports = router => {
     const filePath = downloadDirectoryPath + fileName
 
     const sexData = writeSexData(organisation, req.session.data.applications)
+    const disabilityResponseCountsData = writeDisabilityReponseCountsData(organisation, req.session.data.applications)
     const disabilityData = writeDisabilityData(organisation, req.session.data.applications)
     const ethnicityData = writeEthnicityData(organisation, req.session.data.applications)
     const ageData = writeAgeData(organisation, req.session.data.applications)
@@ -426,6 +467,7 @@ module.exports = router => {
 
     // populate the archive with data
     archive.file(sexData.filePath, { name: sexData.fileName })
+    archive.file(disabilityResponseCountsData.filePath, { name: disabilityResponseCountsData.fileName })
     archive.file(disabilityData.filePath, { name: disabilityData.fileName })
     archive.file(ethnicityData.filePath, { name: ethnicityData.fileName })
     archive.file(ageData.filePath, { name: ageData.fileName })
@@ -439,6 +481,7 @@ module.exports = router => {
           }
           const filePaths = []
           filePaths.push(sexData.filePath)
+          filePaths.push(disabilityResponseCountsData.filePath)
           filePaths.push(disabilityData.filePath)
           filePaths.push(ethnicityData.filePath)
           filePaths.push(ageData.filePath)
