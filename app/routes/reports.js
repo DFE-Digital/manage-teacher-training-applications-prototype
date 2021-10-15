@@ -38,8 +38,10 @@ const writeSexData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'sex', title: 'Sex' })
-  headers.push({ id: 'received', title: 'Candidates applied' })
-  headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
+  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
+  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -52,8 +54,10 @@ const writeSexData = (organisation, applications) => {
   sexData.forEach((item, i) => {
     const data = {}
     data.sex = item.title
-    data.received = item.counts.received
-    data.recruited = item.counts.recruited
+    data.receivedNumber = item.counts.received
+    data.recruitedNumber = item.counts.recruited
+    data.recruitedGroupPercent = item.rates.group
+    data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
 
@@ -74,9 +78,11 @@ const writeDisabilityData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'disability', title: 'Disability' })
-  headers.push({ id: 'description', title: 'Description' })
-  headers.push({ id: 'received', title: 'Candidates applied' })
-  headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  headers.push({ id: 'description', title: 'Description of disability' })
+  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
+  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
+  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -90,8 +96,10 @@ const writeDisabilityData = (organisation, applications) => {
     const data = {}
     data.disability = item.title
     data.description = item.description
-    data.received = item.counts.received
-    data.recruited = item.counts.recruited
+    data.receivedNumber = item.counts.received
+    data.recruitedNumber = item.counts.recruited
+    data.recruitedGroupPercent = item.rates.group
+    data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
 
@@ -113,8 +121,10 @@ const writeEthnicityData = (organisation, applications) => {
   const headers = []
   headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
   headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
-  headers.push({ id: 'received', title: 'Candidates applied' })
-  headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
+  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
+  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -128,8 +138,11 @@ const writeEthnicityData = (organisation, applications) => {
     let data = {}
     data.ethnicGroup = parent.title
     data.ethnicBackground = ''
-    data.received = parent.counts.received
-    data.recruited = parent.counts.recruited
+    data.receivedNumber = parent.counts.received
+    data.recruitedNumber = parent.counts.recruited
+    data.recruitedGroupPercent = parent.rates.group
+    data.recruitedPercent = parent.rates.recruited
+
     records.push(data)
 
     if (parent.items !== undefined) {
@@ -137,8 +150,10 @@ const writeEthnicityData = (organisation, applications) => {
         data = {}
         data.ethnicGroup = parent.title
         data.ethnicBackground = child.title
-        data.received = child.counts.received
-        data.recruited = child.counts.recruited
+        data.receivedNumber = child.counts.received
+        data.recruitedNumber = child.counts.recruited
+        data.recruitedGroupPercent = child.rates.group
+        data.recruitedPercent = child.rates.recruited
         records.push(data)
       })
     }
@@ -161,8 +176,10 @@ const writeAgeData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'age', title: 'Age' })
-  headers.push({ id: 'received', title: 'Candidates applied' })
-  headers.push({ id: 'recruited', title: 'Candidates recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
+  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
+  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -175,8 +192,10 @@ const writeAgeData = (organisation, applications) => {
   ageData.forEach((item, i) => {
     const data = {}
     data.age = item.title
-    data.received = item.counts.received
-    data.recruited = item.counts.recruited
+    data.receivedNumber = item.counts.received
+    data.recruitedNumber = item.counts.recruited
+    data.recruitedGroupPercent = item.rates.group
+    data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
 

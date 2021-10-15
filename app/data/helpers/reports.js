@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const { DateTime } = require('luxon')
 const _ = require('lodash')
+const numeral = require('numeral')
 const System = require('./system')
 
 const dataDirectoryPath = path.join(__dirname, '../statistics')
@@ -74,6 +75,10 @@ exports.getEthnicityData = (applications) => {
     parent.rates.group = parent.counts.received ? ((parent.counts.recruited / parent.counts.received) * 100) : 0
     parent.rates.recruited = parent.counts.received ? ((parent.counts.recruited / totalRecruited) * 100) : 0
 
+    // format the data
+    parent.rates.group = numeral(parent.rates.group).format('0.[0]')
+    parent.rates.recruited = numeral(parent.rates.recruited).format('0.[0]')
+
     if (group.items !== undefined) {
       group.items.forEach((item, i) => {
         const child = {}
@@ -90,6 +95,10 @@ exports.getEthnicityData = (applications) => {
         child.rates = {}
         child.rates.group = child.counts.received ? ((child.counts.recruited / child.counts.received) * 100) : 0
         child.rates.recruited = child.counts.received ? ((child.counts.recruited / totalRecruited) * 100) : 0
+
+        // format the data
+        child.rates.group = numeral(child.rates.group).format('0.[0]')
+        child.rates.recruited = numeral(child.rates.recruited).format('0.[0]')
 
         parent.items.push(child)
       })
@@ -115,6 +124,7 @@ exports.getSexData = (applications) => {
     const item = {}
 
     item.title = option
+    item.totalRecruited = totalRecruited
 
     item.counts = {}
     item.counts.received = apps.filter(app => app.personalDetails.sex === option).length
@@ -125,10 +135,12 @@ exports.getSexData = (applications) => {
     item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
     item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
 
+    // format the data
+    item.rates.group = numeral(item.rates.group).format('0.[0]')
+    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+
     data.push(item)
   })
-
-  // console.log(data);
 
   return data
 }
@@ -157,10 +169,12 @@ exports.getDisabilityQuestionResponseCounts = (applications) => {
     item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
     item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
 
+    // format the data
+    item.rates.group = numeral(item.rates.group).format('0.[0]')
+    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+
     data.push(item)
   })
-
-  // console.log(data);
 
   return data
 }
@@ -195,14 +209,17 @@ exports.getDisabilityData = (applications) => {
     item.counts.recruited = apps.filter(app => app.personalDetails.disabilities !== undefined
       && app.personalDetails.disabilities.includes(option.title)
       && app.status === status).length
+
     item.rates = {}
     item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
     item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
 
+    // format the data
+    item.rates.group = numeral(item.rates.group).format('0.[0]')
+    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+
     data.push(item)
   })
-
-  // console.log(data);
 
   return data
 }
@@ -276,6 +293,10 @@ exports.getAgeData = (applications) => {
     item.rates = {}
     item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
     item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
+
+    // format the data
+    item.rates.group = numeral(item.rates.group).format('0.[0]')
+    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
 
     data.push(item)
   })
