@@ -78,12 +78,26 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         {% include "_includes/applications/degrees.njk" %}
-        {% include "_includes/applications/gcses.njk" %}
-        {% if application.personalDetails.isInternationalCandidate %}
-          {% include "_includes/applications/english-language-qualification.njk" %}
-        {% endif %}
       </div>
     </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {% include "_includes/applications/gcses.njk" %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    {% if application.personalDetails.isInternationalCandidate %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {% include "_includes/applications/english-language-qualification.njk" %}
+        </div>
+      </div>
+    {% endif %}
   {% endif %}
 
   {% if not query.transferred %}
