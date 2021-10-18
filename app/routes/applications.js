@@ -19,9 +19,12 @@ module.exports = router => {
       return new Date(b.startDate) - new Date(a.startDate);
     })
 
+    const hasOtherNonUkQualifications = application.otherQualifications && application.otherQualifications.find(qualification => qualification.country != 'United Kingdom')
+
     res.render('applications/show', {
       experience,
       application,
+      hasOtherNonUkQualifications,
       assignedUsers
     })
   })

@@ -1,26 +1,34 @@
-{% set otherQualifications = application.otherQualifications
-  | toArray
-%}
-{% if otherQualifications.length >= 1 %}
-  <h3 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-2">Other qualifications</h3>
-  {% set rowData = [] %}
-  {% for item in otherQualifications %}
-    {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %}
-    {% set qualificationHtml %}
-      {{ item.type }}
-      {# {% if item.provenance != "international" %}
-      <span class="govuk-caption-m govuk-!-font-size-16">
-      {{ item.country }}
-      </span>
-      {% endif %} #}
-    {% endset %}
+<h3 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-2">Other qualifications</h3>
+
+{{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Do you want to add any A levels or other qualifications?"
+        },
+        value: {
+          text: "No" if not application.otherQualifications else "Yes"
+        }
+      }
+    ]
+  }) }}
+
+{% if application.otherQualifications %}
+
+  <h4 class="govuk-heading-m">
+    Details of other qualifications
+  </h4>
+
+   {% set rowData = [] %}
+  {% for item in application.otherQualifications %}
+    {# {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %} #}
     {% set rows = rowData.push([{
-      html: qualificationHtml
+      html: item.type
     }, {
       html: item.subject
     },{
       html: item.country
-    }, {
+    } if hasOtherNonUkQualifications, {
       html: item.year
     }, {
       html: item.grade
@@ -33,7 +41,7 @@
       text: "Subject"
     }, {
       text: "Country"
-    }, {
+    } if hasOtherNonUkQualifications, {
       text: "Awarded"
     }, {
       text: "Grade"
