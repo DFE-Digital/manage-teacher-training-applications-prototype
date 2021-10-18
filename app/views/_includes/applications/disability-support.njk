@@ -1,22 +1,22 @@
 <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
 
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Do you want to ask for help to become a teacher?"
-              },
-              value: {
-              text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
-              }
-            },
-            {
-              key: {
-                text: "Give any relevant information"
-              },
-              value: {
-                html: application.disability.details
-              }
-            } if application.disability.details
-          ]
-        }) }}
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Do you want to ask for help to become a teacher?"
+      },
+      value: {
+      text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
+      }
+    },
+    {
+      key: {
+        text: "Give any relevant information"
+      },
+      value: {
+        html: application.disability.details
+      }
+    } if application.disability.details
+  ]
+}) }}
