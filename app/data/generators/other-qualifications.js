@@ -9,8 +9,6 @@ module.exports = () => {
     qualifications.push({
       type: 'GCSE',
       subject: 'Resistant Materials',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: 'B',
       year: '2012'
@@ -21,8 +19,6 @@ module.exports = () => {
     qualifications.push({
       type: 'GCSE',
       subject: 'Graphics',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'France',
       grade: 'A',
       year: '2012'
@@ -33,8 +29,6 @@ module.exports = () => {
     qualifications.push({
       type: 'GCSE',
       subject: 'Religious Studies',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: 'A',
       year: '2012'
@@ -45,8 +39,6 @@ module.exports = () => {
     qualifications.push({
       type: 'AS level',
       subject: 'Maths',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: 'B',
       year: '2013'
@@ -57,8 +49,6 @@ module.exports = () => {
     qualifications.push({
       type: 'A level',
       subject: 'French',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: 'A',
       year: '2014'
@@ -69,8 +59,6 @@ module.exports = () => {
     qualifications.push({
       type: 'A level',
       subject: 'Religious Studies',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: 'A',
       year: '2014'
@@ -81,9 +69,18 @@ module.exports = () => {
     qualifications.push({
       type: 'A level',
       subject: 'English',
-      org: 'Marshfield High School',
-      provenance: 'domestic',
       country: 'United Kingdom',
+      grade: 'A',
+      year: '2014'
+    })
+  }
+
+  if(faker.helpers.randomize([true])) {
+    qualifications.push({
+      type: 'National certificate',
+      subject: 'Not entered',
+      provenance: 'international',
+      country: 'France',
       grade: 'A',
       year: '2014'
     })
@@ -93,8 +90,6 @@ module.exports = () => {
     qualifications.push({
       type: 'ABRSM',
       subject: 'Music Theory',
-      org: '',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: '5',
       year: '2010'
@@ -105,11 +100,19 @@ module.exports = () => {
     qualifications.push({
       type: 'ABRSM',
       subject: 'Piano (practical)',
-      org: '',
-      provenance: 'domestic',
       country: 'United Kingdom',
       grade: '8',
       year: '2015'
+    })
+  }
+
+  if(faker.helpers.randomize([true])) {
+    qualifications.push({
+      type: 'High School Diploma',
+      subject: 'Design',
+      country: 'United States',
+      grade: 'Not entered',
+      year: '2013'
     })
   }
 

@@ -1,27 +1,13 @@
-<h3 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-2">Other qualifications</h3>
+<h3 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-2">A levels and other qualifications</h3>
 
-{{ govukSummaryList({
-    rows: [
-      {
-        key: {
-          text: "Do you want to add any A levels or other qualifications?"
-        },
-        value: {
-          text: "No" if not application.otherQualifications else "Yes"
-        }
-      }
-    ]
-  }) }}
+{% if not application.otherQualifications %}
+  <p>The candidate did not add A levels or other qualifications.</p>
+{% endif %}
 
 {% if application.otherQualifications %}
 
-  <h4 class="govuk-heading-m">
-    Details of other qualifications
-  </h4>
-
-   {% set rowData = [] %}
+  {% set rowData = [] %}
   {% for item in application.otherQualifications %}
-    {# {% set institution = item.org if item.provenance == "domestic" else [item.org, item.country] | join(", ") %} #}
     {% set rows = rowData.push([{
       html: item.type
     }, {
@@ -35,6 +21,7 @@
     }]) %}
   {% endfor %}
   {{ govukTable({
+    classes: "govuk-!-margin-top-" if application.otherQualifications,
     head: [{
       text: "Qualification"
     }, {
@@ -42,7 +29,7 @@
     }, {
       text: "Country"
     } if hasOtherNonUkQualifications, {
-      text: "Awarded"
+      text: "Date awarded"
     }, {
       text: "Grade"
     }],
