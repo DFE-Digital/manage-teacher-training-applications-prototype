@@ -5,15 +5,13 @@ module.exports = () => {
 
   let qualifications = []
 
-  if(faker.helpers.randomize([true])) {
-    qualifications.push({
-      type: 'GCSE',
-      subject: 'Resistant Materials',
-      country: 'United Kingdom',
-      grade: 'B',
-      year: '2012'
-    })
-  }
+  qualifications.push({
+    type: 'GCSE',
+    subject: 'Resistant Materials',
+    country: 'United Kingdom',
+    grade: 'B',
+    year: '2012'
+  })
 
   if(faker.helpers.randomize([true, false])) {
     qualifications.push({
@@ -75,16 +73,14 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true])) {
-    qualifications.push({
-      type: 'National certificate',
-      subject: 'Not entered',
-      provenance: 'international',
-      country: 'France',
-      grade: 'A',
-      year: '2014'
-    })
-  }
+  qualifications.push({
+    type: 'National certificate',
+    subject: 'Not entered',
+    provenance: 'international',
+    country: 'France',
+    grade: 'A',
+    year: '2014'
+  })
 
   if(faker.helpers.randomize([true, false])) {
     qualifications.push({
@@ -106,15 +102,13 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true])) {
-    qualifications.push({
-      type: 'High School Diploma',
-      subject: 'Design',
-      country: 'United States',
-      grade: 'Not entered',
-      year: '2013'
-    })
-  }
+  qualifications.push({
+    type: 'High School Diploma',
+    subject: 'Design',
+    country: 'United States',
+    grade: 'Not entered',
+    year: '2013'
+  })
 
   return faker.helpers.randomize([qualifications,qualifications, qualifications, qualifications, qualifications, qualifications, null])
 
