@@ -1,10 +1,27 @@
 <h3 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-2">A levels and other qualifications</h3>
 
-{% if not application.otherQualifications %}
-  <p>The candidate did not add A levels or other qualifications.</p>
-{% endif %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Do you want to add A levels and other qualifications?"
+          },
+          value: {
+            text: "Yes" if application.otherQualifications else "No"
+          }
+        }
+      ]
+    }) }}
+  </div>
+</div>
 
 {% if application.otherQualifications %}
+
+  <h4 class="govuk-heading-s">
+    Details of A levels and other qualifications
+  </h4>
 
   {% set rowData = [] %}
   {% for item in application.otherQualifications %}
@@ -29,7 +46,7 @@
     }, {
       text: "Country"
     } if hasOtherNonUkQualifications, {
-      text: "Date awarded"
+      text: "Year awarded"
     }, {
       text: "Grade"
     }],
