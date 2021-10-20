@@ -34,6 +34,7 @@ const generateInterviews = require('../app/data/generators/interviews')
 const generateSubmittedDate = require('../app/data/generators/submittedDate')
 
 const { STATUS } = require('./applications/constants')
+const otherQualifications = require('../app/data/generators/other-qualifications')
 
 const generateFakeApplication = (params = {}) => {
   if (!params.status.length) {
@@ -144,6 +145,14 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
+  let otherQualifications
+
+  if(params.otherQualifications === null) {
+    otherQualifications = null
+  } else {
+    otherQualifications = generateOtherQualifications()
+  }
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     assignedUsers: params.assignedUsers || assignedUsers,
@@ -174,7 +183,7 @@ const generateFakeApplication = (params = {}) => {
     degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
     gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(),
-    otherQualifications: params.otherQualifications || generateOtherQualifications(),
+    otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
     references: params.references || generateReferences(),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
@@ -221,7 +230,8 @@ const generateFakeApplications = () => {
         organisation: 'Kingston University',
         location: 'https://zoom.us/z1234/'
       }]
-    }
+    },
+    otherQualifications: null
   }))
 
   applications.push(generateFakeApplication({
@@ -288,9 +298,7 @@ const generateFakeApplications = () => {
         "year": 1982
       }
     },
-    otherQualifications:
-      [
-    ],
+    otherQualifications: null,
     englishLanguageQualification: {
       hasQualification: "Not needed",
       status: "English is not a foreign language to the candidate"
