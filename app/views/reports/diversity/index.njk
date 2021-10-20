@@ -1,0 +1,100 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "reports" %}
+{% set pageTitle = "Sex, disability, ethnicity and age of candidates" %}
+
+{% block pageTitle %}
+{{ pageTitle + ((" - " + organisation.name) if organisation) }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/reports",
+    text: "Reports"
+  }, {
+    text: pageTitle
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {% if organisation %}
+          <span class="govuk-caption-l">{{ organisation.name }}</span>
+        {% endif %}
+        {{ pageTitle }}
+      </h1>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycle }}/download" download>Export data (ZIP)</a>
+      </p>
+
+    <!-- </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full"> -->
+
+      {% include "_includes/reports/diversity/sex.njk" %}
+
+      {% include "_includes/reports/diversity/disability.njk" %}
+
+      {% include "_includes/reports/diversity/ethnicity.njk" %}
+
+      {% include "_includes/reports/diversity/age.njk" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">
+        Where this data comes from
+      </h2>
+
+      <p class="govuk-body">
+        The sex, disability and ethnicity data comes from {{ questionnaireCount | numeral('0') }} candidates who filled in a questionnaire when they applied. This is {{ questionnairePercentage | numeral('0') }}% of the total candidates.
+      </p>
+
+      <p class="govuk-body">
+        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on 31 August 2022.
+      </p>
+
+      {# <table id="responses" class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }} - response data</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Candidate responded to questionnaire</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+              Candidates who applied
+            </th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+              Candidates who were recruited
+            </th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          {% for response in questionnaireResponseData %}
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
+                {{ response.title }}
+              </th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ response.counts.received }}
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                {{ response.counts.recruited }}
+              </td>
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table> #}
+
+    </div>
+  </div>
+
+{% endblock %}

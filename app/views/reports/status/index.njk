@@ -1,7 +1,11 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageName = "Status of active applications" %}
+{% set pageTitle = "Status of active applications" %}
+
+{% block pageTitle %}
+{{ pageTitle + ((" - " + organisation.name) if organisation) }} – {{ serviceName }} – GOV.UK
+{% endblock %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -9,7 +13,7 @@
     href: "/reports",
     text: "Reports"
   }, {
-    text: pageName
+    text: pageTitle
   }]
 }) }}
 {% endblock %}
@@ -22,7 +26,7 @@
         {% if organisation %}
           <span class="govuk-caption-l">{{ organisation.name }}</span>
         {% endif %}
-        {{ pageName }}
+        {{ pageTitle }}
       </h1>
     </div>
   </div>
@@ -35,7 +39,7 @@
       </p>
 
       <table id="status" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }}</caption>
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }}</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Course</th>

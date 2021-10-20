@@ -1,0 +1,99 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "reports" %}
+{% set pageTitle = "Reports" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% macro _sectionHeading(params) %}
+<h{{ params.headingLevel if params.headingLevel.length else '2' }} class="{{ params.classes if params.classes.length else 'govuk-heading-m' }}">
+  {{ params.html | safe if params.html else params.text}}
+</h{{ params.headingLevel if params.headingLevel.length else '2' }}>
+{% endmacro %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">
+      {{ pageTitle }}
+    </h1>
+
+    {% if organisations.length > 1 %}
+      <ul class="govuk-list govuk-list--spaced">
+        <li>
+          <a class="govuk-link" href="/reports/export">
+            Export application data
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/hesa">
+            Export data for Higher Education Statistics Agency (HESA)
+          </a>
+        </li>
+      </ul>
+    {% endif %}
+
+    {% for organisation in organisations %}
+
+      {{ _sectionHeading({
+        text: organisation.name
+      }) if organisations.length > 1 }}
+
+      <ul class="govuk-list govuk-list--spaced">
+        {% if organisations.length == 1 %}
+          <li>
+            <a class="govuk-link" href="/reports/export">
+              Export application data
+            </a>
+          </li>
+          <li>
+            <a class="govuk-link" href="/reports/hesa">
+              Export data for Higher Education Statistics Agency (HESA)
+            </a>
+          </li>
+        {% endif %}
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/status-of-applications">
+            Status of active applications <span class="govuk-visually-hidden"> for {{ organisation.name }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/candidate-drop-out">
+            When candidates choose to leave the application process <span class="govuk-visually-hidden"> for {{ organisation.name }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/2022">
+            Sex, disability, ethnicity and age of candidates <span class="govuk-visually-hidden"> for {{ organisation.name }}</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- {#{ _sectionHeading({
+        html: 'Sex, disability, ethnicity and age of candidates <span class="govuk-visually-hidden"> for ' + organisation.name + '</span>',
+        headingLevel: '3' if organisations.length > 1,
+        classes: 'govuk-heading-s' if organisations.length > 1
+      }) }#} -->
+
+      <!-- <ul class="govuk-list govuk-list--spaced">
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/2022">
+            2021 to 2022 (starts 2022) - current
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/2021">
+            2020 to 2021 (starts 2021)
+          </a>
+        </li>
+      </ul> -->
+
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}
