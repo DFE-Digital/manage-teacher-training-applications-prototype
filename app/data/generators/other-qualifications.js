@@ -5,6 +5,16 @@ module.exports = () => {
 
   let qualifications = []
 
+  if(faker.helpers.randomize([true, false])) {
+    qualifications.push({
+      type: 'ABRSM',
+      subject: 'Piano (practical)',
+      country: 'United Kingdom',
+      grade: '8',
+      year: '2015'
+    })
+  }
+
   qualifications.push({
     type: 'GCSE',
     subject: 'Resistant Materials',
@@ -92,15 +102,7 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true, false])) {
-    qualifications.push({
-      type: 'ABRSM',
-      subject: 'Piano (practical)',
-      country: 'United Kingdom',
-      grade: '8',
-      year: '2015'
-    })
-  }
+
 
   qualifications.push({
     type: 'High School Diploma',
