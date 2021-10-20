@@ -18,9 +18,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
-
       {% if not query.transferred %}
         <p>
           {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" and application.status != "Conditions not met" %}
@@ -29,140 +27,114 @@
           <a href="#" download>Download application (PDF)</a>
         </p>
       {% endif %}
-
-      {% include "_includes/applications/application-details.njk" %}
-      {% if not query.transferred %}
-
-        {% if query.fs %}
-          {% include "_includes/applications/fs"+query.fs+".njk" %}
-        {% else %}
-          {% include "_includes/applications/personal-details.njk" %}
-        {% endif %}
-      {% endif %}
-      {% include "_includes/applications/course-details.njk" %}
-
-      {% if not query.transferred %}
-        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Criminal record and professional misconduct</h2>
-
-        {% set safeguardingValueHtml %}
-          {% if application.safeguarding.response %}
-            {% if canViewCriminalRecordAndProfessionalMisconductInformation %}
-              <p>{{ application.safeguarding.details | nl2br }}</p>
-            {% else %}
-              You cannot view this because you do not have permission to view criminal record and professional misconduct information.
-            {% endif %}
-          {% endif %}
-        {% endset %}
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Do you want to declare any safeguarding issues such as a criminal record or professional misconduct?"
-              },
-              value: {
-                text: "Yes, I want to declare something" if application.safeguarding.response else "No"
-              }
-            },
-            {
-              key: {
-                text: "Give any relevant information"
-              },
-              value: {
-                html: safeguardingValueHtml
-              }
-            } if application.safeguarding.details
-          ]
-        }) }}
-
-        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">Work history and unpaid experience</h2>
-        {% include "_includes/applications/experience.njk" %}
-      {% endif %}
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      {% if not query.transferred %}
-        <h2 class="govuk-heading-m govuk-!-margin-top-2 govuk-!-font-size-27">Qualifications</h2>
-        {% include "_includes/applications/degrees.njk" %}
-        {% include "_includes/applications/gcses.njk" %}
-        {% if application.personalDetails.isInternationalCandidate %}
-          {% include "_includes/applications/english-language-qualification.njk" %}
-        {% endif %}
-      {% endif %}
     </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if not query.transferred %}
+      {% include "_includes/applications/application-details.njk" %}
+    </div>
+  </div>
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% if query.fs %}
+          {% include "_includes/applications/fs"+query.fs+".njk" %}
+        {% else %}
+          {% include "_includes/applications/personal-details.njk" %}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "_includes/applications/course-details.njk" %}
+    </div>
+  </div>
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/criminal-record-and-professional-misconduct.njk" %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/experience.njk" %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    <h2 class="govuk-heading-m govuk-!-margin-top-2 govuk-!-font-size-27">Qualifications</h2>
+  {% endif %}
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {% include "_includes/applications/degrees.njk" %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {% include "_includes/applications/gcses.njk" %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    {% if application.personalDetails.isInternationalCandidate %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {% include "_includes/applications/english-language-qualification.njk" %}
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
         {% include "_includes/applications/other-qualifications.njk" %}
+      </div>
+    </div>
+  {% endif %}
 
-        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-3 govuk-!-margin-bottom-2">Personal statement</h2>
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/personal-statement.njk" %}
+      </div>
+    </div>
+  {% endif %}
 
-        <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">Why do you want to become a teacher?</h3>
-        <p>{{ application.personalStatement.vocation | safe | nl2br or "—" }}</p>
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/references.njk" %}
+      </div>
+    </div>
+  {% endif %}
 
-        <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">What do you know about the subject you want to teach?</h3>
-        <p>{{ application.personalStatement.subjectKnowledge | safe | nl2br or "—" }}</p>
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/disability-support.njk" %}
+      </div>
+    </div>
+  {% endif %}
 
-        <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7">References</h2>
-
-        <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
-        {% set referenceId = "first" %}
-        {% include "_includes/applications/reference.njk" %}
-
-        <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
-        {% set referenceId = "second" %}
-        {% include "_includes/applications/reference.njk" %}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Disability support</h2>
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Do you want to ask for help to become a teacher?"
-              },
-              value: {
-              text: "Yes, I want to share information about myself so my provider can take steps to support me" if application.disability.response else "No"
-              }
-            },
-            {
-              key: {
-                text: "Give any relevant information"
-              },
-              value: {
-                html: application.disability.details
-              }
-            } if application.disability.details
-          ]
-        }) }}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Do you have any interview needs?"
-              },
-              value: {
-                text: "Yes" if application.interviewNeeds.response else "No"
-              }
-            },
-            {
-              key: {
-                text: "What are your interview needs?"
-              },
-              value: {
-                html: application.interviewNeeds.details
-              }
-            } if application.interviewNeeds.details
-          ]
-        }) }}
-
-        <h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2">Sex, disability and ethnicity</h2>
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         {% include "_includes/applications/diversity-information.njk" %}
       {% endif %}
     </div>

@@ -16,12 +16,21 @@ module.exports = router => {
     }
 
     experience.sort((a, b) => {
-      return new Date(b.startDate) - new Date(a.startDate);
+      return new Date(b.startDate) - new Date(a.startDate)
     })
+
+    const hasOtherNonUkQualifications = application.otherQualifications && application.otherQualifications.find(qualification => qualification.country != 'United Kingdom')
+
+    if(application.otherQualifications) {
+      application.otherQualifications = application.otherQualifications.sort((a, b) => {
+        return b.year - a.year
+      })
+    }
 
     res.render('applications/show', {
       experience,
       application,
+      hasOtherNonUkQualifications,
       assignedUsers
     })
   })

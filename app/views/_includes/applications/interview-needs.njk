@@ -1,0 +1,22 @@
+<h2 class="govuk-heading-m govuk-!-margin-top-7 govuk-!-margin-bottom-2 govuk-!-font-size-27">Interview needs</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Do you have any interview needs?"
+      },
+      value: {
+        text: "Yes" if application.interviewNeeds.response else "No"
+      }
+    },
+    {
+      key: {
+        text: "What are your interview needs?"
+      },
+      value: {
+        html: application.interviewNeeds.details
+      }
+    } if application.interviewNeeds.details
+  ]
+}) }}
