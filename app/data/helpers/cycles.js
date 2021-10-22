@@ -69,7 +69,7 @@ const getCurrentCycle = () => {
     let fromYear = DateTime.fromJSDate(CYCLES[year].findOpens).year
     let toYear = fromYear
 
-    if (CYCLES[nextYear] !== undefined) {
+    if (CYCLES[nextYear]) {
       toYear = DateTime.fromJSDate(CYCLES[nextYear].findOpens).year
     } else {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
@@ -96,7 +96,7 @@ const getPreviousCycle = () => {
     let fromYear = DateTime.fromJSDate(CYCLES[year].findOpens).year
     let toYear = fromYear
 
-    if (CYCLES[nextYear] !== undefined) {
+    if (CYCLES[nextYear]) {
       toYear = DateTime.fromJSDate(CYCLES[nextYear].findOpens).year
     } else {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
@@ -123,7 +123,7 @@ const getNextCycle = () => {
     let fromYear = DateTime.fromJSDate(CYCLES[year].findOpens).year
     let toYear = fromYear
 
-    if (CYCLES[nextYear] !== undefined) {
+    if (CYCLES[nextYear]) {
       toYear = DateTime.fromJSDate(CYCLES[nextYear].findOpens).year
     } else {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year

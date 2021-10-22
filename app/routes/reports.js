@@ -6,6 +6,7 @@ const { DateTime } = require('luxon')
 
 const downloadDirectoryPath = path.join(__dirname, '../data/downloads/')
 
+const CyclesHelper = require('../data/helpers/cycles')
 const ReportsHelper = require('../data/helpers/reports')
 
 const slugify = (text) => {
@@ -245,6 +246,34 @@ const writeAgeData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
+const getCycleItems = (selectedItems) => {
+  const items = []
+
+  const cycles = [
+    {
+      code: CyclesHelper.CURRENT_CYCLE.code,
+      text: CyclesHelper.CURRENT_CYCLE.text
+    },
+    {
+      code: CyclesHelper.PREVIOUS_CYCLE.code,
+      text: CyclesHelper.PREVIOUS_CYCLE.text
+    }
+  ]
+
+  cycles.forEach((cycle, i) => {
+    const item = {}
+
+    item.text = cycle.text
+    item.value = cycle.code
+    item.id = cycle.code
+    item.checked = (selectedItems && selectedItems.includes(cycle.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
 module.exports = router => {
 
   router.get('/reports', (req, res) => {
@@ -417,7 +446,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/diversity/cycle/:cycle', (req, res) => {
     const cycle = req.params.cycle
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) //  && app.cycle === '2020 to 2021'
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) // && app.cycle === CyclesHelper.CURRENT_CYCLE.code
 
     // use application count as a proxy for candidate count
     const candidateCount = applications.length
@@ -501,8 +530,10 @@ module.exports = router => {
 
   router.get('/reports/export', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    const cycleItems = getCycleItems(req.session.data.export_cycle)
     res.render('reports/applications/index', {
-      organisation
+      organisation,
+      cycleItems
     })
   })
 

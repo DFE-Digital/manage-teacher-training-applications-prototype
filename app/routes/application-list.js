@@ -54,14 +54,14 @@ const getApplicationsByGroup = (applications) => {
 
   const pendingConditions = applications
     .filter(app => app.status === 'Conditions pending')
-    .filter(app => app.cycle === '2020 to 2021')
+    .filter(app => app.cycle === CyclesHelper.CURRENT_CYCLE.code)
 
   const conditionsMet = applications
     .filter(app => app.status === 'Recruited')
 
   const deferredOffers = applications
     .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === '2020 to 2021')
+    .filter(app => app.cycle === CyclesHelper.CURRENT_CYCLE.code)
 
   let other = applications
     .filter(app => app.status !== 'Received')
@@ -222,20 +222,6 @@ const getCycleItems = (selectedItems) => {
 
   return items
 }
-
-// const getSelectedCycleItems = (selectedItems) => {
-//   const items = []
-//
-//   selectedItems.forEach((item) => {
-//     const cycle = {}
-//     cycle.text = item.text
-//     cycle.href = `/remove-cycle-filter/${item.text}`
-//
-//     items.push(cycle)
-//   })
-//
-//   return items
-// }
 
 const getSubjectItems = (selectedItems) => {
   const items = []
@@ -654,7 +640,6 @@ module.exports = router => {
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
     const cycleItems = getCycleItems(req.session.data.cycle)
-    // const selectedCycles = getSelectedCycleItems(cycleItems.filter(cycle => cycle.checked === 'checked'))
 
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
