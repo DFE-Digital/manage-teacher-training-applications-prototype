@@ -38,7 +38,9 @@
         {{ data.currentCycle.code }} (current)
       </h2>
 
-      <p class="govuk-body">The data will include all candidates who have accepted an offer since 6 October 2020.</p>
+      <p class="govuk-body">
+        The data will include all candidates who have accepted an offer since {{ data.currentCycle.findOpens | date('d MMMM yyyy') }}.
+      </p>
 
       <p class="govuk-body">
         <a href="#" download>Export data for {{ data.currentCycle.code }} (CSV)</a>
@@ -49,7 +51,7 @@
       </h2>
 
       <p class="govuk-body">
-        The data will include all candidates who accepted an offer from 6 October 2019 to 3 October 2020.
+        The data will include all candidates who accepted an offer from {{ data.previousCycle.findOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.findCloses | date('d MMMM yyyy') }}.
       </p>
 
       <p class="govuk-body">
