@@ -1,7 +1,6 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
-const { DateTime } = require('luxon')
-const _ = require('lodash')
+const CyclesHelper = require('../data/helpers/cycles')
 
 const subjects = require('../data/subjects')
 const locations = require('../data/locations')
@@ -195,6 +194,48 @@ const addHeadings = (grouped) => {
   }
   return array
 }
+
+const getCycleItems = (selectedItems) => {
+  const items = []
+
+  const cycles = [
+    {
+      code: CyclesHelper.CURRENT_CYCLE.code,
+      text: CyclesHelper.CURRENT_CYCLE.text
+    },
+    {
+      code: CyclesHelper.PREVIOUS_CYCLE.code,
+      text: CyclesHelper.PREVIOUS_CYCLE.text
+    }
+  ]
+
+  cycles.forEach((cycle, i) => {
+    const item = {}
+
+    item.text = cycle.text
+    item.value = cycle.code
+    item.id = cycle.code
+    item.checked = (selectedItems && selectedItems.includes(cycle.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+// const getSelectedCycleItems = (selectedItems) => {
+//   const items = []
+//
+//   selectedItems.forEach((item) => {
+//     const cycle = {}
+//     cycle.text = item.text
+//     cycle.href = `/remove-cycle-filter/${item.text}`
+//
+//     items.push(cycle)
+//   })
+//
+//   return items
+// }
 
 const getSubjectItems = (selectedItems) => {
   const items = []
@@ -612,6 +653,9 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
+    const cycleItems = getCycleItems(req.session.data.cycle)
+    // const selectedCycles = getSelectedCycleItems(cycleItems.filter(cycle => cycle.checked === 'checked'))
+
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
@@ -640,7 +684,8 @@ module.exports = router => {
       selectedSubjects,
       userItems,
       userItemsDisplayLimit: 15,
-      selectedUsers
+      selectedUsers,
+      cycleItems
     })
   })
 
