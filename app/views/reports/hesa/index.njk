@@ -35,7 +35,7 @@
       </p>
 
       <h2 class="govuk-heading-m">
-        {{ data.currentCycle.code }} (current)
+        {{ data.currentCycle.shortDesc }} (current)
       </h2>
 
       <p class="govuk-body">
@@ -43,11 +43,11 @@
       </p>
 
       <p class="govuk-body">
-        <a href="#" download>Export data for {{ data.currentCycle.code }} (CSV)</a>
+        <a href="#" download>Export data for {{ data.currentCycle.shortDesc }} (CSV)</a>
       </p>
 
       <h2 class="govuk-heading-m">
-        {{ data.previousCycle.code }}
+        {{ data.previousCycle.shortDesc }}
       </h2>
 
       <p class="govuk-body">
@@ -55,7 +55,7 @@
       </p>
 
       <p class="govuk-body">
-        <a href="#" download>Export data for {{ data.previousCycle.code }} (CSV)</a>
+        <a href="#" download>Export data for {{ data.previousCycle.shortDesc }} (CSV)</a>
       </p>
 
     </div>

@@ -1,5 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
-const CyclesHelper = require('../data/helpers/cycles')
+const CycleHelper = require('../data/helpers/cycles')
 
 module.exports = router => {
 
@@ -76,7 +76,7 @@ module.exports = router => {
 
     application.offer.madeDate = new Date().toISOString()
     application.status = 'Conditions pending' // work this out
-    application.cycle = CyclesHelper.CURRENT_CYCLE.code
+    application.cycle = CycleHelper.CURRENT_CYCLE.code
 
     ApplicationHelper.addEvent(application, {
       date: new Date().toISOString(),
@@ -212,7 +212,7 @@ module.exports = router => {
     application.offer.location = req.session.data.location
 
     application.status = 'Recruited' // work this out
-    application.cycle = CyclesHelper.CURRENT_CYCLE.code
+    application.cycle = CycleHelper.CURRENT_CYCLE.code
     application.events.items.push({
       date: new Date().toISOString(),
       user: "Alicia Grenada",
@@ -351,7 +351,7 @@ module.exports = router => {
     application.offer.location = req.session.data.location;
 
     application.status = 'Recruited' // work this out
-    application.cycle = CyclesHelper.CURRENT_CYCLE.code
+    application.cycle = CycleHelper.CURRENT_CYCLE.code
     application.events.items.push({
       date: new Date().toISOString(),
       user: "Alicia Grenada",

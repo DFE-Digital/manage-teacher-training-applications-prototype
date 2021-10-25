@@ -6,8 +6,8 @@ const { DateTime } = require('luxon')
 
 const downloadDirectoryPath = path.join(__dirname, '../data/downloads/')
 
-const CyclesHelper = require('../data/helpers/cycles')
-const ReportsHelper = require('../data/helpers/reports')
+const CycleHelper = require('../data/helpers/cycles')
+const ReportHelper = require('../data/helpers/reports')
 
 const slugify = (text) => {
   return text.trim()
@@ -34,7 +34,7 @@ const writeSexData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const sexData = ReportsHelper.getSexData(apps)
+  const sexData = ReportHelper.getSexData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -74,7 +74,7 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const disabilityData = ReportsHelper.getDisabilityQuestionResponseCounts(apps)
+  const disabilityData = ReportHelper.getDisabilityQuestionResponseCounts(apps)
 
   // headers for the CSV file
   const headers = []
@@ -114,7 +114,7 @@ const writeDisabilityData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const disabilityData = ReportsHelper.getDisabilityData(apps)
+  const disabilityData = ReportHelper.getDisabilityData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -156,7 +156,7 @@ const writeEthnicityData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const ethnicityData = ReportsHelper.getEthnicityData(apps)
+  const ethnicityData = ReportHelper.getEthnicityData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -212,7 +212,7 @@ const writeAgeData = (organisation, applications) => {
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
-  const ageData = ReportsHelper.getAgeData(apps)
+  const ageData = ReportHelper.getAgeData(apps)
 
   // headers for the CSV file
   const headers = []
@@ -246,34 +246,6 @@ const writeAgeData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const getCycleItems = (selectedItems) => {
-  const items = []
-
-  const cycles = [
-    {
-      code: CyclesHelper.CURRENT_CYCLE.code,
-      text: CyclesHelper.CURRENT_CYCLE.text
-    },
-    {
-      code: CyclesHelper.PREVIOUS_CYCLE.code,
-      text: CyclesHelper.PREVIOUS_CYCLE.text
-    }
-  ]
-
-  cycles.forEach((cycle, i) => {
-    const item = {}
-
-    item.text = cycle.text
-    item.value = cycle.code
-    item.id = cycle.code
-    item.checked = (selectedItems && selectedItems.includes(cycle.code)) ? 'checked' : ''
-
-    items.push(item)
-  })
-
-  return items
-}
-
 module.exports = router => {
 
   router.get('/reports', (req, res) => {
@@ -290,7 +262,7 @@ module.exports = router => {
     // console.log(organisation);
     const fileName = slugify(organisation.name)
 
-    let statusData = ReportsHelper.getStatusData(fileName)
+    let statusData = ReportHelper.getStatusData(fileName)
     const statusTotals = statusData.find(data => data.code === 'TOTAL')
     statusData = statusData.filter(data => data.code !== 'TOTAL')
 
@@ -308,7 +280,7 @@ module.exports = router => {
     const fileName = 'status-of-active-applications_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
-    const statusData = ReportsHelper.getStatusData(organisationName)
+    const statusData = ReportHelper.getStatusData(organisationName)
 
     // headers for the CSV file
     const headers = []
@@ -355,7 +327,7 @@ module.exports = router => {
 
     const fileName = slugify(organisation.name)
 
-    const attritionData = ReportsHelper.getAttritionData(fileName)
+    const attritionData = ReportHelper.getAttritionData(fileName)
 
     res.render('reports/attrition/index', {
       organisation,
@@ -369,7 +341,7 @@ module.exports = router => {
     const fileName = 'when-candidates-choose-to-leave-the-application-process_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
     const filePath = downloadDirectoryPath + fileName
 
-    const attritionData = ReportsHelper.getAttritionData(organisationName)
+    const attritionData = ReportHelper.getAttritionData(organisationName)
 
     // headers for the CSV file
     const headers = []
@@ -433,7 +405,7 @@ module.exports = router => {
 
     const fileName = slugify(organisation.name)
 
-    let course = ReportsHelper.getAttritionData(fileName)
+    let course = ReportHelper.getAttritionData(fileName)
     course = course.find(course => course.code === req.params.courseId)
 
     res.render('reports/attrition/show', {
@@ -446,7 +418,7 @@ module.exports = router => {
   router.get('/reports/:organisationId/diversity/cycle/:cycle', (req, res) => {
     const cycle = req.params.cycle
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) // && app.cycle === CyclesHelper.CURRENT_CYCLE.code
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) // && app.cycle === CycleHelper.CURRENT_CYCLE.code
 
     // use application count as a proxy for candidate count
     const candidateCount = applications.length
@@ -454,12 +426,12 @@ module.exports = router => {
     const questionnaireCount = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes').length
     const questionnairePercentage = Math.round((questionnaireCount/candidateCount) * 100)
 
-    const ethnicityData = ReportsHelper.getEthnicityData(applications)
-    const ageData = ReportsHelper.getAgeData(applications)
-    const sexData = ReportsHelper.getSexData(applications)
-    const disabilityData = ReportsHelper.getDisabilityData(applications)
-    const questionnaireResponseData = ReportsHelper.getDiversityQuestionnaireResponseCounts(applications)
-    const disabilityResponseData = ReportsHelper.getDisabilityQuestionResponseCounts(applications)
+    const ethnicityData = ReportHelper.getEthnicityData(applications)
+    const ageData = ReportHelper.getAgeData(applications)
+    const sexData = ReportHelper.getSexData(applications)
+    const disabilityData = ReportHelper.getDisabilityData(applications)
+    const questionnaireResponseData = ReportHelper.getDiversityQuestionnaireResponseCounts(applications)
+    const disabilityResponseData = ReportHelper.getDisabilityQuestionResponseCounts(applications)
 
     res.render('reports/diversity/index', {
       organisation,
@@ -530,7 +502,7 @@ module.exports = router => {
 
   router.get('/reports/export', (req, res) => {
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const cycleItems = getCycleItems(req.session.data.export_cycle)
+    const cycleItems = CycleHelper.getCycleOptions(req.session.data.export_cycle)
     res.render('reports/applications/index', {
       organisation,
       cycleItems

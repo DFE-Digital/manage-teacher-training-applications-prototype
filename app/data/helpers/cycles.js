@@ -5,7 +5,8 @@ const now = DateTime.now()
 const CYCLES = {
   2019: {
     code: '2018 to 2019',
-    text: '2018 to 2019 (starts 2019)',
+    shortDesc: '2018 to 2019',
+    longDesc: '2018 to 2019 (starts 2019)',
     findOpens: DateTime.fromISO('2018-10-06T09:00:00').toJSDate(),
     applyOpens: DateTime.fromISO('2018-10-13T09:00:00').toJSDate(),
     apply1Deadline: DateTime.fromISO('2019-08-24T18:00:00').toJSDate(),
@@ -15,7 +16,8 @@ const CYCLES = {
   },
   2020: {
     code: '2019 to 2020',
-    text: '2019 to 2020 (starts 2020)',
+    shortDesc: '2019 to 2020',
+    longDesc: '2019 to 2020 (starts 2020)',
     findOpens: DateTime.fromISO('2019-10-06T09:00:00').toJSDate(),
     applyOpens: DateTime.fromISO('2019-10-13T09:00:00').toJSDate(),
     showDeadlineBanner: DateTime.fromISO('2020-08-01T09:00:00').toJSDate(),
@@ -26,7 +28,8 @@ const CYCLES = {
   },
   2021: {
     code: '2020 to 2021',
-    text: '2020 to 2021 (starts 2021)',
+    shortDesc: '2020 to 2021',
+    longDesc: '2020 to 2021 (starts 2021)',
     findOpens: DateTime.fromISO('2020-10-06T09:00:00').toJSDate(),
     applyOpens: DateTime.fromISO('2020-10-13T09:00:00').toJSDate(),
     showDeadlineBanner: DateTime.fromISO('2021-08-01T09:00:00').toJSDate(),
@@ -37,7 +40,8 @@ const CYCLES = {
   },
   2022: {
     code: '2021 to 2022',
-    text: '2021 to 2022 (starts 2022)',
+    shortDesc: '2021 to 2022',
+    longDesc: '2021 to 2022 (starts 2022)',
     findOpens: DateTime.fromISO('2021-10-05T09:00:00').toJSDate(),
     applyOpens: DateTime.fromISO('2021-10-12T09:00:00').toJSDate(),
     showDeadlineBanner: DateTime.fromISO('2022-08-01T09:00:00').toJSDate(),
@@ -48,7 +52,8 @@ const CYCLES = {
   },
   2023: {
     code: '2022 to 2023',
-    text: '2022 to 2023 (starts 2023)',
+    shortDesc: '2022 to 2023',
+    longDesc: '2022 to 2023 (starts 2023)',
     findOpens: DateTime.fromISO('2022-10-05T09:00:00').toJSDate(),
     applyOpens: DateTime.fromISO('2022-10-12T09:00:00').toJSDate(),
     showDeadlineBanner: DateTime.fromISO('2023-08-01T09:00:00').toJSDate(),
@@ -139,3 +144,38 @@ const getNextCycle = () => {
 }
 
 exports.NEXT_CYCLE = getNextCycle()
+
+exports.getCycleOptions = (selectedItems) => {
+  const currentCycleYear = now.year
+  const previousCycleYear = now.year - 1
+  const items = []
+
+  for (const [year, data] of Object.entries(CYCLES)) {
+    const item = {}
+    let nextYear = parseInt(year) + 1
+    let fromYear = DateTime.fromJSDate(CYCLES[year].findOpens).year
+    let toYear = fromYear
+
+    if (CYCLES[nextYear]) {
+      toYear = DateTime.fromJSDate(CYCLES[nextYear].findOpens).year
+    } else {
+      toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
+    }
+
+    if ((currentCycleYear >= fromYear && currentCycleYear < toYear)
+      || (previousCycleYear >= fromYear && previousCycleYear < toYear)) {
+      item.text = data.longDesc
+      item.value = data.code
+      item.id = data.code
+      item.checked = (selectedItems && selectedItems.includes(data.code)) ? 'checked' : ''
+
+      items.push(item)
+    }
+  }
+
+  items.sort((a,b) => {
+    return b.text.localeCompare(a.text)
+  })
+
+  return items
+}

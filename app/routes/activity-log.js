@@ -1,4 +1,4 @@
-const CyclesHelper = require('../data/helpers/cycles')
+const CycleHelper = require('../data/helpers/cycles')
 const PaginationHelper = require('../data/helpers/pagination')
 const _ = require("lodash")
 const { DateTime } = require('luxon')
@@ -78,7 +78,7 @@ module.exports = router => {
 
     // Clone and turn into an array
     const apps = req.session.data.applications.filter(app => {
-      return app.cycle === CyclesHelper.CURRENT_CYCLE.code
+      return app.cycle === CycleHelper.CURRENT_CYCLE.code
     })
 
     // Get the activity

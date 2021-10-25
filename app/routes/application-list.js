@@ -1,6 +1,6 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
-const CyclesHelper = require('../data/helpers/cycles')
+const CycleHelper = require('../data/helpers/cycles')
 
 const subjects = require('../data/subjects')
 const locations = require('../data/locations')
@@ -54,14 +54,14 @@ const getApplicationsByGroup = (applications) => {
 
   const pendingConditions = applications
     .filter(app => app.status === 'Conditions pending')
-    .filter(app => app.cycle === CyclesHelper.CURRENT_CYCLE.code)
+    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
 
   const conditionsMet = applications
     .filter(app => app.status === 'Recruited')
 
   const deferredOffers = applications
     .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CyclesHelper.CURRENT_CYCLE.code)
+    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
 
   let other = applications
     .filter(app => app.status !== 'Received')
@@ -193,34 +193,6 @@ const addHeadings = (grouped) => {
     array = array.concat(grouped.other)
   }
   return array
-}
-
-const getCycleItems = (selectedItems) => {
-  const items = []
-
-  const cycles = [
-    {
-      code: CyclesHelper.CURRENT_CYCLE.code,
-      text: CyclesHelper.CURRENT_CYCLE.text
-    },
-    {
-      code: CyclesHelper.PREVIOUS_CYCLE.code,
-      text: CyclesHelper.PREVIOUS_CYCLE.text
-    }
-  ]
-
-  cycles.forEach((cycle, i) => {
-    const item = {}
-
-    item.text = cycle.text
-    item.value = cycle.code
-    item.id = cycle.code
-    item.checked = (selectedItems && selectedItems.includes(cycle.code)) ? 'checked' : ''
-
-    items.push(item)
-  })
-
-  return items
 }
 
 const getSubjectItems = (selectedItems) => {
@@ -639,7 +611,7 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
-    const cycleItems = getCycleItems(req.session.data.cycle)
+    const cycleItems = CycleHelper.getCycleOptions(req.session.data.cycle)
 
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
