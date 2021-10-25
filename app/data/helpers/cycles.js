@@ -179,3 +179,17 @@ exports.getCycleOptions = (selectedItems) => {
 
   return items
 }
+
+exports.getCycleLabel = (code) => {
+  let label = code
+
+  for (const [year, data] of Object.entries(CYCLES)) {
+
+    if (data.code === code) {
+      label = data.longDesc
+    }
+
+  }
+
+  return label
+}
