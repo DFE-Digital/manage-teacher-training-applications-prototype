@@ -1,5 +1,5 @@
 ---
-title: How we look after your personal data
+title: Service privacy notice
 ---
 Apply for teacher training and Manage teacher training applications are run by the Department for Education (‘we’).
 

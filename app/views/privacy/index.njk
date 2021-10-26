@@ -1,6 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set title = "Privacy policies" %}
+{% set title = "Privacy notices" %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -14,7 +14,7 @@
         <ul class="govuk-list govuk-list--spaced">
           {% for link in links %}
             <li>
-              <a href="/privacy/{{ link.slug }}">{{ link.title }}</a>
+              <a class="govuk-link" href="/privacy/{{ link.slug }}">{{ link.title }}</a>
             </li>
           {% endfor %}
         </ul>
