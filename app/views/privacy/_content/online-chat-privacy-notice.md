@@ -45,8 +45,6 @@ We’ll also analyse and consolidate data from support requests to help us under
 
 ## How we protect your data
 
-We host our services on GOV.UK Platform as a Service (PaaS), an accredited secure government service.
-
 The Zendesk customer service management system is hosted in accordance with its [regional data hosting policy](https://support.zendesk.com/hc/en-us/articles/360022185194?_ga=2.9135733.1989263323.1628099773-531922291.1627980374).
 
 Zendesk is required to process and protect your personal data under strict conditions. These are stated in a written agreement between us and Zendesk, as required by the UK General Data Protection Regulation (GDPR) and UK Data Protection Act 2018 (DPA 2018).
@@ -78,8 +76,8 @@ If you have any concerns or queries, email us at becomingateacher@digital.educat
 
 If we cannot resolve your issue, you have the right to raise it with the [Information Commissioner's Office (ICO)](https://ico.org.uk/).
 
-## Keeping our privacy policy up to date
+## Keeping this privacy policy up to date
 
-We may update this privacy notice. Please review the privacy notice from time to time for any updates.
+We may update this privacy notice. Any changes will apply to you and your data immediately.
 
-This version was last updated on 25 October 2021.
+This privacy notice was published on 26 October 2021.
