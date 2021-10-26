@@ -4,14 +4,14 @@ faker.locale = 'en_GB'
 const CycleHelper = require('../helpers/cycles')
 
 module.exports = (params = {}) => {
-  let cycle = faker.helpers.randomize([
+  let cycleCode = faker.helpers.randomize([
     CycleHelper.PREVIOUS_CYCLE.code,
     CycleHelper.CURRENT_CYCLE.code
   ])
 
   if (params.status === 'Received' || params.status === 'Interviewing') {
-    cycle = CycleHelper.CURRENT_CYCLE.code
+    cycleCode = CycleHelper.CURRENT_CYCLE.code
   }
 
-  return cycle
+  return cycleCode
 }
