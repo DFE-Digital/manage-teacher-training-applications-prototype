@@ -7,6 +7,8 @@ const individualFiltersFolder = path.join(__dirname, './filters')
 const numeral = require('numeral')
 const marked = require('marked')
 
+const CycleHelper = require('./data/helpers/cycles')
+
 module.exports = (env) => {
   /**
    * Instantiate object used to store the methods registered as a
@@ -121,12 +123,10 @@ module.exports = (env) => {
     }
   }
 
-  filters.cycleText = (cycle) => {
-    if(cycle == "2020 to 2021") {
-      return "2020 to 2021 (starts 2021)"
-    } else {
-      return "2019 to 2020 (starts 2020)"
-    }
+  filters.cycleLabel = (cycle) => {
+    let label = cycle
+    label = CycleHelper.getCycleLabel(cycle)
+    return label
   }
 
   filters.statusClass = (status) => {

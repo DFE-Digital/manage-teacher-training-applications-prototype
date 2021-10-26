@@ -11,18 +11,7 @@
         classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [
-      {
-        value: "2020 to 2021",
-        text: "2020 to 2021" | cycleText,
-        checked: checked(data.cycle, "2020 to 2021")
-      },
-      {
-        value: "2019 to 2020",
-        text: "2019 to 2020" | cycleText,
-        checked: checked(data.cycle, "2019 to 2020")
-      }
-    ]
+    items: cycleItems
   }) }}
 
   {{ govukCheckboxes({

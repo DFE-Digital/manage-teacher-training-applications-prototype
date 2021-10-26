@@ -1,7 +1,6 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
-const { DateTime } = require('luxon')
-const _ = require('lodash')
+const CycleHelper = require('../data/helpers/cycles')
 
 const subjects = require('../data/subjects')
 const locations = require('../data/locations')
@@ -55,14 +54,14 @@ const getApplicationsByGroup = (applications) => {
 
   const pendingConditions = applications
     .filter(app => app.status === 'Conditions pending')
-    .filter(app => app.cycle === '2020 to 2021')
+    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
 
   const conditionsMet = applications
     .filter(app => app.status === 'Recruited')
 
   const deferredOffers = applications
     .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === '2020 to 2021')
+    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
 
   let other = applications
     .filter(app => app.status !== 'Received')
@@ -612,6 +611,8 @@ module.exports = router => {
     // Get a slice of the data to display
     applications = PaginationHelper.getDataByPage(applications, pagination.pageNumber)
 
+    const cycleItems = CycleHelper.getCycleOptions(req.session.data.cycle)
+
     const subjectItems = getSubjectItems(req.session.data.subject)
     const selectedSubjects = getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
@@ -640,7 +641,8 @@ module.exports = router => {
       selectedSubjects,
       userItems,
       userItemsDisplayLimit: 15,
-      selectedUsers
+      selectedUsers,
+      cycleItems
     })
   })
 

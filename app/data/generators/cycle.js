@@ -1,14 +1,17 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
 
+const CycleHelper = require('../helpers/cycles')
+
 module.exports = (params = {}) => {
-  if(params.status === 'Received' || params.status === 'Interviewing') {
-    return '2020 to 2021'
-  } else {
-    return faker.helpers.randomize([
-      '2019 to 2020',
-      '2020 to 2021'
-    ])
+  let cycleCode = faker.helpers.randomize([
+    CycleHelper.PREVIOUS_CYCLE.code,
+    CycleHelper.CURRENT_CYCLE.code
+  ])
+
+  if (params.status === 'Received' || params.status === 'Interviewing') {
+    cycleCode = CycleHelper.CURRENT_CYCLE.code
   }
 
+  return cycleCode
 }

@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const CycleHelper = require('../data/helpers/cycles')
 const SystemHelper = require('../data/helpers/system')
 const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
@@ -85,6 +86,9 @@ applications = applications
     }
   })
 
+const currentCycle = CycleHelper.CURRENT_CYCLE
+const previousCycle = CycleHelper.PREVIOUS_CYCLE
+
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],
   settings: [],
@@ -104,5 +108,7 @@ module.exports = {
   trainingProviders,
   accreditedBodies,
   organisations,
-  users
+  users,
+  currentCycle,
+  previousCycle
 }

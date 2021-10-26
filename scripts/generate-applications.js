@@ -5,6 +5,7 @@ faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
+const CycleHelper = require('../app/data/helpers/cycles')
 const GeneratorsHelper = require('../app/data/helpers/generators')
 const user = require('../app/data/user')
 const relationships = require('../app/data/relationships-wren-academy.js')
@@ -209,7 +210,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: 'P6RGOZC',
     status: 'Interviewing',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 36 }).toISO(),
     personalDetails: {
       givenName: 'Sarah',
@@ -237,7 +238,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: 'PBNF7WM',
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 38 }).toISO(),
     personalDetails: {
       givenName: 'Rachael',
@@ -428,7 +429,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: 'YD3TMD2L',
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 40 }).toISO(),
     personalDetails: {
       givenName: 'Alex',
@@ -458,7 +459,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: 'ABC15F25',
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 30 }).toISO(),
     personalDetails: {
       givenName: 'Barbara',
@@ -525,7 +526,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Interviewing',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
     personalDetails: {
       givenName: 'James',
@@ -545,7 +546,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 37 }).toISO(),
     personalDetails: {
       givenName: 'Umar',
@@ -572,7 +573,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Offered',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 19 }).toISO(),
     personalDetails: {
       givenName: 'Sally',
@@ -583,7 +584,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Offered',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 18 }).toISO(),
     personalDetails: {
       givenName: 'Rachael',
@@ -594,7 +595,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Offered',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Louise',
       familyName: 'Jenkins',
@@ -604,7 +605,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Conditions pending',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Trent',
       familyName: 'Skipp',
@@ -614,7 +615,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Conditions pending',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Ed',
       familyName: 'Lloyd',
@@ -624,7 +625,7 @@ const generateFakeApplications = () => {
 
  applications.push(generateFakeApplication({
     status: 'Conditions pending',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Audree',
       familyName: 'Bowen',
@@ -634,7 +635,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Recruited',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 60 }).toISO(),
     personalDetails: {
       givenName: 'Bill',
@@ -645,7 +646,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Recruited',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 70 }).toISO(),
     personalDetails: {
       givenName: 'Amy',
@@ -656,7 +657,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Recruited',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 65 }).toISO(),
     personalDetails: {
       givenName: 'Tony',
@@ -667,7 +668,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 33 }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
@@ -784,7 +785,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 34 }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
@@ -862,7 +863,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Received',
-    cycle: '2020 to 2021',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
@@ -926,7 +927,7 @@ const generateFakeApplications = () => {
       if (value === 'Offered') {
         application = generateFakeApplication({
           status: value,
-          cycle: '2020 to 2021'
+          cycle: CycleHelper.CURRENT_CYCLE.code
         })
       } else {
         application = generateFakeApplication({
