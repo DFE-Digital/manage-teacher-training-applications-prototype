@@ -160,9 +160,9 @@ exports.getEthnicityData = (applications) => {
     statuses.forEach((status, i) => {
       status = status.toLowerCase()
 
-      if (status === 'application withdrawn') {
-        status = 'withdrawn'
-      }
+      // if (status === 'application withdrawn') {
+      //   status = 'withdrawn'
+      // }
 
       parent.counts[status] = apps.filter(app => app.personalDetails.ethnicGroup === group.name
         && app.status === statuses[i]).length
@@ -186,9 +186,9 @@ exports.getEthnicityData = (applications) => {
         statuses.forEach((status, i) => {
           status = status.toLowerCase()
 
-          if (status === 'application withdrawn') {
-            status = 'withdrawn'
-          }
+          // if (status === 'application withdrawn') {
+          //   status = 'withdrawn'
+          // }
 
           child.counts[status] = apps.filter(app => app.personalDetails.ethnicGroup === group.name
             && app.personalDetails.ethnicBackground === item
@@ -231,9 +231,9 @@ exports.getSexData = (applications) => {
     statuses.forEach((status, i) => {
       status = status.toLowerCase()
 
-      if (status === 'application withdrawn') {
-        status = 'withdrawn'
-      }
+      // if (status === 'application withdrawn') {
+      //   status = 'withdrawn'
+      // }
 
       item.counts[status] = apps.filter(app => app.personalDetails.sex === option
         && app.status === statuses[i]).length
@@ -271,9 +271,9 @@ exports.getDisabilityQuestionResponseCounts = (applications) => {
     statuses.forEach((status, i) => {
       status = status.toLowerCase()
 
-      if (status === 'application withdrawn') {
-        status = 'withdrawn'
-      }
+      // if (status === 'application withdrawn') {
+      //   status = 'withdrawn'
+      // }
 
       item.counts[status] = apps.filter(app => app.personalDetails.disabled === option
         && app.status === statuses[i]).length
@@ -322,9 +322,9 @@ exports.getDisabilityData = (applications) => {
     statuses.forEach((status, i) => {
       status = status.toLowerCase()
 
-      if (status === 'application withdrawn') {
-        status = 'withdrawn'
-      }
+      // if (status === 'application withdrawn') {
+      //   status = 'withdrawn'
+      // }
 
       item.counts[status] = apps.filter(app => app.personalDetails.disabilities !== undefined
         && app.personalDetails.disabilities.includes(option.title)
@@ -378,7 +378,7 @@ const getAgeCounts = (applications) => {
   applications.forEach((app, i) => {
     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
     const currentYear = DateTime.now().year
-    const years = Math.round(DateTime.fromJSDate(CURRENT_CYCLE.ageOnDate).diff(dateOfBirth, 'years').toObject().years)
+    const years = Math.round(DateTime.fromJSDate(CURRENT_CYCLE.ageCalculationDate).diff(dateOfBirth, 'years').toObject().years)
 
     AGES.forEach((age, i) => {
       if (years >= age.lower && years <= age.upper) {
@@ -448,9 +448,9 @@ exports.getDiversityQuestionnaireResponseCounts = (applications) => {
     statuses.forEach((status, i) => {
       status = status.toLowerCase()
 
-      if (status === 'application withdrawn') {
-        status = 'withdrawn'
-      }
+      // if (status === 'application withdrawn') {
+      //   status = 'withdrawn'
+      // }
 
       item.counts[status] = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === option
         && app.status === statuses[i]).length

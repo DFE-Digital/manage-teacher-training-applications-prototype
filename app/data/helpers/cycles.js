@@ -13,7 +13,7 @@ const CYCLES = {
     apply2Deadline: DateTime.fromISO('2019-09-18T18:00:00').toJSDate(),
     rejectByDefault: DateTime.fromISO('2021-09-29T23:59:59').toJSDate(),
     findCloses: DateTime.fromISO('2019-10-03T23:59:59').toJSDate(),
-    ageOnDate: DateTime.fromISO('2019-08-31T23:59:59').toJSDate()
+    ageCalculationDate: DateTime.fromISO('2019-08-31T23:59:59').toJSDate()
   },
   2020: {
     code: '2019 to 2020',
@@ -26,7 +26,7 @@ const CYCLES = {
     apply2Deadline: DateTime.fromISO('2020-09-18T18:00:00').toJSDate(),
     rejectByDefault: DateTime.fromISO('2021-09-29T23:59:59').toJSDate(),
     findCloses: DateTime.fromISO('2020-10-03T23:59:59').toJSDate(),
-    ageOnDate: DateTime.fromISO('2020-08-31T23:59:59').toJSDate()
+    ageCalculationDate: DateTime.fromISO('2020-08-31T23:59:59').toJSDate()
   },
   2021: {
     code: '2020 to 2021',
@@ -39,7 +39,7 @@ const CYCLES = {
     apply2Deadline: DateTime.fromISO('2021-09-21T18:00:00').toJSDate(),
     rejectByDefault: DateTime.fromISO('2021-09-29T23:59:59').toJSDate(),
     findCloses: DateTime.fromISO('2021-10-04T23:59:59').toJSDate(),
-    ageOnDate: DateTime.fromISO('2021-08-31T23:59:59').toJSDate()
+    ageCalculationDate: DateTime.fromISO('2021-08-31T23:59:59').toJSDate()
   },
 2022: {
   code: '2021 to 2022',
@@ -52,7 +52,7 @@ const CYCLES = {
   apply2Deadline: DateTime.fromISO('2022-09-21T18:00:00').toJSDate(),
   rejectByDefault: DateTime.fromISO('2022-09-29T23:59:59').toJSDate(),
   findCloses: DateTime.fromISO('2022-10-04T23:59:59').toJSDate(),
-  ageOnDate: DateTime.fromISO('2022-08-31T23:59:59').toJSDate()
+  ageCalculationDate: DateTime.fromISO('2022-08-31T23:59:59').toJSDate()
 },
   2023: {
     code: '2022 to 2023',
@@ -65,7 +65,7 @@ const CYCLES = {
     apply2Deadline: DateTime.fromISO('2023-09-21T18:00:00').toJSDate(),
     rejectByDefault: DateTime.fromISO('2023-09-29T23:59:59').toJSDate(),
     findCloses: DateTime.fromISO('2023-10-04T23:59:59').toJSDate(),
-    ageOnDate: DateTime.fromISO('2023-08-31T23:59:59').toJSDate()
+    ageCalculationDate: DateTime.fromISO('2023-08-31T23:59:59').toJSDate()
   }
 }
 
