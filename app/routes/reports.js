@@ -28,9 +28,15 @@ const statuses = [
   { code: 'recruited', title: 'Recruited' }
 ]
 
-const writeSexData = (organisation, applications) => {
+const writeSexData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-sex_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-sex_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -41,8 +47,7 @@ const writeSexData = (organisation, applications) => {
   headers.push({ id: 'sex', title: 'Sex' })
   headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
   headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
 
   const csv = csvWriter({
     path: filePath,
@@ -57,7 +62,6 @@ const writeSexData = (organisation, applications) => {
     data.sex = item.title
     data.receivedNumber = item.counts.received
     data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
     data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
@@ -68,9 +72,15 @@ const writeSexData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeDisabilityReponseCountsData = (organisation, applications) => {
+const writeDisabilityReponseCountsData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-disability-reponse-counts_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-disability-response-counts_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -81,8 +91,7 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
   headers.push({ id: 'disability', title: 'Candidate is disabled' })
   headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
   headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
 
   const csv = csvWriter({
     path: filePath,
@@ -97,7 +106,6 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
     data.disability = item.title
     data.receivedNumber = item.counts.received
     data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
     data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
@@ -108,9 +116,15 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeDisabilityData = (organisation, applications) => {
+const writeDisabilityData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-disability_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-disability_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -122,8 +136,7 @@ const writeDisabilityData = (organisation, applications) => {
   headers.push({ id: 'description', title: 'Description of disability' })
   headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
   headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
 
   const csv = csvWriter({
     path: filePath,
@@ -139,7 +152,6 @@ const writeDisabilityData = (organisation, applications) => {
     data.description = item.description
     data.receivedNumber = item.counts.received
     data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
     data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
@@ -150,9 +162,15 @@ const writeDisabilityData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeEthnicityData = (organisation, applications) => {
+const writeEthnicityData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-ethnicity_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-ethnicity_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -164,8 +182,7 @@ const writeEthnicityData = (organisation, applications) => {
   headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
   headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
   headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
 
   const csv = csvWriter({
     path: filePath,
@@ -181,7 +198,6 @@ const writeEthnicityData = (organisation, applications) => {
     data.ethnicBackground = ''
     data.receivedNumber = parent.counts.received
     data.recruitedNumber = parent.counts.recruited
-    data.recruitedGroupPercent = parent.rates.group
     data.recruitedPercent = parent.rates.recruited
 
     records.push(data)
@@ -193,7 +209,6 @@ const writeEthnicityData = (organisation, applications) => {
         data.ethnicBackground = child.title
         data.receivedNumber = child.counts.received
         data.recruitedNumber = child.counts.recruited
-        data.recruitedGroupPercent = child.rates.group
         data.recruitedPercent = child.rates.recruited
         records.push(data)
       })
@@ -206,9 +221,15 @@ const writeEthnicityData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeAgeData = (organisation, applications) => {
+const writeAgeData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-age_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-age_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -219,8 +240,7 @@ const writeAgeData = (organisation, applications) => {
   headers.push({ id: 'age', title: 'Age' })
   headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
   headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
 
   const csv = csvWriter({
     path: filePath,
@@ -235,7 +255,6 @@ const writeAgeData = (organisation, applications) => {
     data.age = item.title
     data.receivedNumber = item.counts.received
     data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
     data.recruitedPercent = item.rates.recruited
     records.push(data)
   })
@@ -257,9 +276,7 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/status-of-applications', (req, res) => {
-    // console.log(req.session.data.user.organisations);
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    // console.log(organisation);
     const fileName = slugify(organisation.name)
 
     let statusData = ReportHelper.getStatusData(fileName)
@@ -416,9 +433,13 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/diversity/cycle/:cycle', (req, res) => {
-    const cycle = req.params.cycle
+    let cycleData = req.session.data.currentCycle
+    if (req.session.data.previousCycle.code === req.params.cycle) {
+      cycleData = req.session.data.previousCycle
+    }
+
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) // && app.cycle === CycleHelper.CURRENT_CYCLE.code
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name && app.cycle === cycleData.code)
 
     // use application count as a proxy for candidate count
     const candidateCount = applications.length
@@ -435,7 +456,7 @@ module.exports = router => {
 
     res.render('reports/diversity/index', {
       organisation,
-      cycle,
+      cycleData,
       questionnaireResponseData,
       ethnicityData,
       ageData,
@@ -450,16 +471,33 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/diversity/cycle/:cycle/download', (req, res) => {
+    let cycleData = req.session.data.currentCycle
+    if (req.session.data.previousCycle.code === req.params.cycle) {
+      cycleData = req.session.data.previousCycle
+    }
+
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = 'sex-disability-ethnicity-and-age-of-candidates_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.zip'
+
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name && app.cycle === cycleData.code)
+
+    const cycleName = slugify(req.params.cycle)
+
+    let fileName = 'sex-disability-ethnicity-and-age-of-candidates_'
+    fileName += cycleName + '_'
+    fileName += organisationName + '_'
+    fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+    fileName += '.zip'
+
+    console.log(fileName);
+
     const filePath = downloadDirectoryPath + fileName
 
-    const sexData = writeSexData(organisation, req.session.data.applications)
-    const disabilityResponseCountsData = writeDisabilityReponseCountsData(organisation, req.session.data.applications)
-    const disabilityData = writeDisabilityData(organisation, req.session.data.applications)
-    const ethnicityData = writeEthnicityData(organisation, req.session.data.applications)
-    const ageData = writeAgeData(organisation, req.session.data.applications)
+    const sexData = writeSexData(organisation, applications, cycleName)
+    const disabilityResponseCountsData = writeDisabilityReponseCountsData(organisation, applications, cycleName)
+    const disabilityData = writeDisabilityData(organisation, applications, cycleName)
+    const ethnicityData = writeEthnicityData(organisation, applications, cycleName)
+    const ageData = writeAgeData(organisation, applications, cycleName)
 
     // create archive file
     const archive = archiver(filePath, {

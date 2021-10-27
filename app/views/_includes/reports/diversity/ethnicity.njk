@@ -8,7 +8,7 @@
   </a>
 </p> -->
 
-<table id="ethnicity" class="govuk-table">
+<!-- <table id="ethnicity" class="govuk-table">
   <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }} - ethnicity data</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
@@ -55,6 +55,71 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">
               {{ item.rates.recruited | numeral('0.[0]') }}%
               <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ recruitedCount | numeral('0,0') }}</span>
+            </td>
+          </tr>
+
+        {% endfor %}
+
+      {% endif %}
+
+    </tbody>
+
+  {% endfor %}
+
+</table> -->
+
+<table id="ethnicity" class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }} - ethnicity data</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Ethnicity</th>
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+        Candidates applied
+      </th>
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+        Candidates recruited
+      </th>
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+        Percentage of candidates recruited
+      </th>
+    </tr>
+  </thead>
+
+  {% for ethnicity in ethnicityData %}
+
+    <tbody class="govuk-table__body" scope="rowgroup">
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          {{ ethnicity.title }}
+        </th>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          {{ ethnicity.counts.received | numeral('0,0') }}
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          {{ ethnicity.counts.recruited | numeral('0,0') }}
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          {{ ethnicity.rates.recruited | numeral('0.[0]') }}%
+        </td>
+      </tr>
+
+      {% if ethnicity.items %}
+
+        {% for item in ethnicity.items %}
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular govuk-!-padding-left-5">
+              {{ item.title }}
+            </th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              {{ item.counts.received | numeral('0,0') }}
+            </td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              {{ item.counts.recruited | numeral('0,0') }}
+            </td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              {{ item.rates.recruited | numeral('0.[0]') }}%
             </td>
           </tr>
 

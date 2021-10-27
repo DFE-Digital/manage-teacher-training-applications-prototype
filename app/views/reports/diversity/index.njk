@@ -31,14 +31,14 @@
       </h1>
 
       <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycle }}/download" download>Export data (ZIP)</a>
+        <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycleData.code }}/download" download>Export data (ZIP)</a>
       </p>
 
-    <!-- </div>
+    </div>
   </div>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full"> -->
+    <div class="govuk-grid-column-full">
 
       {% include "_includes/reports/diversity/sex.njk" %}
 
@@ -47,6 +47,12 @@
       {% include "_includes/reports/diversity/ethnicity.njk" %}
 
       {% include "_includes/reports/diversity/age.njk" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-m govuk-!-margin-top-9">
         Where this data comes from
@@ -57,7 +63,7 @@
       </p>
 
       <p class="govuk-body">
-        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on 31 August 2022.
+        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageComparison | date('d MMMM yyyy') }}.
       </p>
 
       {# <table id="responses" class="govuk-table">
