@@ -3,6 +3,8 @@ const fs = require('fs')
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const numeral = require('numeral')
+
+const { CURRENT_CYCLE } = require('./cycles')
 const System = require('./system')
 
 const dataDirectoryPath = path.join(__dirname, '../statistics')
@@ -376,7 +378,7 @@ const getAgeCounts = (applications) => {
   applications.forEach((app, i) => {
     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
     const currentYear = DateTime.now().year
-    const years = Math.round(DateTime.fromISO(currentYear + '-08-31').diff(dateOfBirth, 'years').toObject().years)
+    const years = Math.round(DateTime.fromJSDate(CURRENT_CYCLE.ageOnDate).diff(dateOfBirth, 'years').toObject().years)
 
     AGES.forEach((age, i) => {
       if (years >= age.lower && years <= age.upper) {
