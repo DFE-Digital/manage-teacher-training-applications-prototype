@@ -1,5 +1,6 @@
 ---
 title: Service privacy notice
+position: 1
 ---
 Apply for teacher training and Manage teacher training applications are run by the Department for Education (‘we’).
 

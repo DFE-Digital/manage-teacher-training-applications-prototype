@@ -24,8 +24,11 @@ exports.getListOfFiles = () => {
     const file = {}
     file.slug = filename.replace(/.(md)/,'')
     file.title = content.data.title
+    file.position = content.data.position
     files.push(file)
   })
+
+  files.sort((a, b) => a.position - b.position)
 
   return files
 }

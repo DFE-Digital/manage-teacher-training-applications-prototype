@@ -1,5 +1,6 @@
 ---
 title: Online chat privacy notice
+position: 2
 ---
 We are the Department for Education (DfE), 20 Great Smith Street, London SW1P 3BT. We are the data controller for your personal data.
 This privacy notice about online chat sets out:
