@@ -1,13 +1,17 @@
 {% extends "_layout.njk" %}
 
-{% set title = "Privacy notices" %}
+{% set pageTitle = "Privacy notices" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        {{ title }}
+        {{ pageTitle }}
       </h1>
 
       {% if links.length %}

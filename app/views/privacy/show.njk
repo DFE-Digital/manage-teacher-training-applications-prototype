@@ -1,7 +1,11 @@
 {% extends "_layout.njk" %}
 
-{% set sectionTitle = "Privacy policies" %}
-{% set title = title %}
+{% set sectionTitle = "Privacy notices" %}
+{% set pageTitle = title %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
 
 {% block beforeContent %}
 {{ govukBreadcrumbs({
@@ -21,7 +25,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        {{ title }}
+        {{ pageTitle }}
       </h1>
 
       <div class="app-markdown">
