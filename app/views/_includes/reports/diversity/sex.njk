@@ -1,48 +1,6 @@
 <h2 class="govuk-heading-m">
-  Sex
+  Sex of candidates
 </h2>
-
-<!-- <p class="govuk-body">
-  <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download/sex" download>
-    Export data (CSV) <span class="govuk-visually-hidden">for candidate sexes</span>
-  </a>
-</p> -->
-
-<!-- <table id="sex" class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }} - sex data</caption>
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Sex</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
-        Candidates recruited, out of those who gave this answer
-      </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
-        Candidates recruited who gave this answer, out of the total recruited
-      </th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-
-    {% for item in sexData %}
-
-      <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-          {{ item.title }}
-        </th>
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.group | numeral('0.[0]') }}%
-          <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ item.counts.received | numeral('0,0') }}</span>
-        </td>
-        <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.recruited | numeral('0.[0]') }}%
-          <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ recruitedCount | numeral('0,0') }}</span>
-        </td>
-      </tr>
-
-    {% endfor %}
-
-  </tbody>
-</table> -->
 
 <table id="sex" class="govuk-table">
   <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }} - sex data</caption>
@@ -50,19 +8,36 @@
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Sex</th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Candidates applied
+        <!-- Candidates who applied and gave this answer -->
+        Applied
       </th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Candidates recruited
+        <!-- Candidates who were recruited and gave this answer -->
+        Recruited
       </th>
       <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-        Percentage of candidates recruited
+        <!-- Percentage of candidates who were recruited and gave this answer -->
+        Percentage recruited
       </th>
     </tr>
   </thead>
+  <tfoot class="govuk-table__foot">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">All answers</th>
+      <td class="govuk-table__header govuk-table__header--numeric">
+        {{ sexData.totals.received | numeral('0,0') }}
+      </td>
+      <td class="govuk-table__header govuk-table__header--numeric">
+        {{ sexData.totals['Recruited'] | numeral('0,0') }}
+      </td>
+      <td class="govuk-table__header govuk-table__header--numeric">
+        {{ sexData.rates['Recruited'] | numeral('0.[0]') }}%
+      </td>
+    </tr>
+  </tfoot>
   <tbody class="govuk-table__body">
 
-    {% for item in sexData %}
+    {% for item in sexData.items %}
 
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
@@ -72,10 +47,10 @@
           {{ item.counts.received | numeral('0,0') }}
         </td>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.counts.recruited | numeral('0,0') }}
+          {{ item.counts['Recruited'] | numeral('0,0') }}
         </td>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.recruited | numeral('0.[0]') }}%
+          {{ item.rates['Recruited'] | numeral('0.[0]') }}%
         </td>
       </tr>
 
