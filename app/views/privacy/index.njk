@@ -1,0 +1,29 @@
+{% extends "_layout.njk" %}
+
+{% set pageTitle = "Privacy notices" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ pageTitle }}
+      </h1>
+
+      {% if links.length %}
+        <ul class="govuk-list govuk-list--spaced">
+          {% for link in links %}
+            <li>
+              <a class="govuk-link" href="/privacy/{{ link.slug }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
