@@ -29,9 +29,11 @@
 
       <form method="post">
 
+      {{interview | log}}
+      {{interview.date | toDateArray | log}}
+
         {{ govukDateInput({
-          id: "interview[date]",
-          name: "interview[date]",
+          id: "interview",
           fieldset: {
             legend: {
               text: "Date",
@@ -59,17 +61,19 @@
           }]
         }) }}
 
-        <div class="govuk-form-group">
-          <label class="govuk-label govuk-label--m" for="interview[time]">
-            Time
-          </label>
-          <span id="interview[time]-hint" class="govuk-hint">
-            For example, 9am or 2:30pm - enter 12pm for midday
-          </span>
-          <div class="app-time">
-            <input class="govuk-input govuk-input--width-5" id="interview[time]" name="interview[time]" type="text" aria-describedby="interview[time]-hint" value="{{interview.date | time}}">
-          </div>
-        </div>
+        {{ govukInput({
+          id: "interview[time]",
+          name: "interview[time]",
+          label: {
+            text: "Start time",
+            classes: 'govuk-label--m'
+          },
+          classes: 'govuk-input--width-5',
+          hint: {
+            text: "For example, 2pm or 14:30"
+          },
+          value: interview.date | time
+        }) }}
 
         {{ govukRadios({
           idPrefix: "interview[organisation]",
@@ -92,7 +96,7 @@
               checked: checked(interview.organisation, "Kingston University")
             }
           ]
-        }) }}
+      }) }}
 
         {{ govukTextarea({
           id: "interview[location]",

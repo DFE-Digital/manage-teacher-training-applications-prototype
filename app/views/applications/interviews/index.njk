@@ -165,7 +165,7 @@
                   text: "Address or online meeting details"
                 },
                 value: {
-                  text: interview.location | nl2br
+                  text: interview.location | nl2br | safe
                 }
               },
               {
@@ -173,7 +173,7 @@
                   text: "Additional details"
                 },
                 value: {
-                  text: interview.details | nl2br or 'None'
+                  text: interview.details | nl2br | safe or 'None'
                 }
               }
             ]

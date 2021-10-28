@@ -218,9 +218,19 @@ module.exports = router => {
     const interviewId = req.params.interviewId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
+    let interview;
+
+    if(req.session.data.interview) {
+      let time = getTimeObject(req.session.data.interview.time)
+      interview = req.session.data.interview
+      interview.date = DateTime.local(parseInt(req.session.data.interview.date.year, 10), parseInt(req.session.data.interview.date.month, 10), parseInt(req.session.data.interview.date.day, 10), parseInt(time.hours, 10), parseInt(time.mins, 10))
+    } else {
+      interview = application.interviews.items.find(interview => interview.id === interviewId)
+    }
+
     res.render('applications/interviews/edit/index', {
       application,
-      interview: application.interviews.items.find(interview => interview.id === interviewId)
+      interview
     })
   })
 
