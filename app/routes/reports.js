@@ -57,12 +57,12 @@ const writeSexData = (organisation, applications, cycleName) => {
   // content for the CSV file
   const records = []
 
-  sexData.forEach((item, i) => {
+  sexData.items.forEach((item, i) => {
     const data = {}
     data.sex = item.title
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
@@ -101,12 +101,12 @@ const writeDisabilityReponseCountsData = (organisation, applications, cycleName)
   // content for the CSV file
   const records = []
 
-  disabilityData.forEach((item, i) => {
+  disabilityData.items.forEach((item, i) => {
     const data = {}
     data.disability = item.title
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
@@ -146,13 +146,13 @@ const writeDisabilityData = (organisation, applications, cycleName) => {
   // content for the CSV file
   const records = []
 
-  disabilityData.forEach((item, i) => {
+  disabilityData.items.forEach((item, i) => {
     const data = {}
     data.disability = item.title
     data.description = item.description
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
@@ -192,7 +192,7 @@ const writeEthnicityData = (organisation, applications, cycleName) => {
   // content for the CSV file
   const records = []
 
-  ethnicityData.forEach((parent, i) => {
+  ethnicityData.items.forEach((parent, i) => {
     let data = {}
     data.ethnicGroup = parent.title
     data.ethnicBackground = ''
@@ -250,12 +250,12 @@ const writeAgeData = (organisation, applications, cycleName) => {
   // content for the CSV file
   const records = []
 
-  ageData.forEach((item, i) => {
+  ageData.items.forEach((item, i) => {
     const data = {}
     data.age = item.title
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
