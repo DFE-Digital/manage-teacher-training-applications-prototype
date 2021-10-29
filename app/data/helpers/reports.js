@@ -3,6 +3,8 @@ const fs = require('fs')
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const numeral = require('numeral')
+
+const { CURRENT_CYCLE } = require('./cycles')
 const System = require('./system')
 
 const dataDirectoryPath = path.join(__dirname, '../statistics')
@@ -54,12 +56,23 @@ exports.getEthnicityData = (applications) => {
     }
   ]
 
-  const status = 'Recruited'
-  const totalRecruited = applications.filter(app => app.status === status).length
-
-  const data = []
+  const statuses = ['Recruited','Rejected','Application withdrawn','Declined']
 
   const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
+
+  let data = {}
+  data.items = []
+  data.totals = {}
+  data.rates = {}
+
+  data.totals.received = apps.length
+
+  statuses.forEach((status, i) => {
+    data.totals[status] = apps.filter(app => app.status === status).length
+
+    data.rates[status] = data.totals.received ? ((data.totals[status] / data.totals.received) * 100) : 0
+    data.rates[status] = numeral(data.rates[status]).format('0.[0]')
+  })
 
   ethnicGroups.forEach((group, i) => {
     const parent = {}
@@ -67,44 +80,45 @@ exports.getEthnicityData = (applications) => {
     parent.items = []
 
     parent.counts = {}
+    parent.rates = {}
+
     parent.counts.received = apps.filter(app => app.personalDetails.ethnicGroup === group.name).length
-    parent.counts.recruited = apps.filter(app => app.personalDetails.ethnicGroup === group.name
+
+    statuses.forEach((status, i) => {
+      parent.counts[status] = apps.filter(app => app.personalDetails.ethnicGroup === group.name
         && app.status === status).length
 
-    parent.rates = {}
-    parent.rates.group = parent.counts.received ? ((parent.counts.recruited / parent.counts.received) * 100) : 0
-    parent.rates.recruited = parent.counts.received ? ((parent.counts.recruited / totalRecruited) * 100) : 0
+      parent.rates[status] = parent.counts.received ? ((parent.counts[status] / parent.counts.received) * 100) : 0
 
-    // format the data
-    parent.rates.group = numeral(parent.rates.group).format('0.[0]')
-    parent.rates.recruited = numeral(parent.rates.recruited).format('0.[0]')
+      parent.rates[status] = numeral(parent.rates[status]).format('0.[0]')
+    })
 
     if (group.items !== undefined) {
       group.items.forEach((item, i) => {
         const child = {}
         child.title = item
+
         child.counts = {}
+        child.rates = {}
 
         child.counts.received = apps.filter(app => app.personalDetails.ethnicGroup === group.name
           && app.personalDetails.ethnicBackground === item).length
 
-        child.counts.recruited = apps.filter(app => app.personalDetails.ethnicGroup === group.name
-          && app.personalDetails.ethnicBackground === item
-          && app.status === status).length
+        statuses.forEach((status, i) => {
+          child.counts[status] = apps.filter(app => app.personalDetails.ethnicGroup === group.name
+            && app.personalDetails.ethnicBackground === item
+            && app.status === status).length
 
-        child.rates = {}
-        child.rates.group = child.counts.received ? ((child.counts.recruited / child.counts.received) * 100) : 0
-        child.rates.recruited = child.counts.received ? ((child.counts.recruited / totalRecruited) * 100) : 0
+          child.rates[status] = child.counts.received ? ((child.counts[status] / child.counts.received) * 100) : 0
 
-        // format the data
-        child.rates.group = numeral(child.rates.group).format('0.[0]')
-        child.rates.recruited = numeral(child.rates.recruited).format('0.[0]')
+          child.rates[status] = numeral(child.rates[status]).format('0.[0]')
+        })
 
         parent.items.push(child)
       })
     }
 
-    data.push(parent)
+    data.items.push(parent)
   })
 
   return data
@@ -112,34 +126,45 @@ exports.getEthnicityData = (applications) => {
 
 exports.getSexData = (applications) => {
   const options = ['Female','Male','Intersex','Prefer not to say']
-  const status = 'Recruited'
-  const totalRecruited = applications.filter(app => app.status === status).length
-
-  const data = []
+  const statuses = ['Recruited','Rejected','Application withdrawn','Declined']
 
   const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
     && app.personalDetails.sex !== undefined)
+
+  let data = {}
+  data.items = []
+  data.totals = {}
+  data.rates = {}
+
+  data.totals.received = apps.length
+
+  statuses.forEach((status, i) => {
+    data.totals[status] = apps.filter(app => app.status === status).length
+
+    data.rates[status] = data.totals.received ? ((data.totals[status] / data.totals.received) * 100) : 0
+    data.rates[status] = numeral(data.rates[status]).format('0.[0]')
+  })
 
   options.forEach((option, i) => {
     const item = {}
 
     item.title = option
-    item.totalRecruited = totalRecruited
 
     item.counts = {}
-    item.counts.received = apps.filter(app => app.personalDetails.sex === option).length
-    item.counts.recruited = apps.filter(app => app.personalDetails.sex === option
-      && app.status === status).length
-
     item.rates = {}
-    item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
-    item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
 
-    // format the data
-    item.rates.group = numeral(item.rates.group).format('0.[0]')
-    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+    item.counts.received = apps.filter(app => app.personalDetails.sex === option).length
 
-    data.push(item)
+    statuses.forEach((status, i) => {
+      item.counts[status] = apps.filter(app => app.personalDetails.sex === option
+        && app.status === status).length
+
+      item.rates[status] = item.counts.received ? ((item.counts[status] / item.counts.received) * 100) : 0
+
+      item.rates[status] = numeral(item.rates[status]).format('0.[0]')
+    })
+
+    data.items.push(item)
   })
 
   return data
@@ -147,13 +172,24 @@ exports.getSexData = (applications) => {
 
 exports.getDisabilityQuestionResponseCounts = (applications) => {
   const options = ['Yes','No','Prefer not to say']
-  const status = 'Recruited'
-  const totalRecruited = applications.filter(app => app.status === status).length
-
-  const data = []
+  const statuses = ['Recruited','Rejected','Application withdrawn','Declined']
 
   const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes'
     && app.personalDetails.disabled !== undefined)
+
+  let data = {}
+  data.items = []
+  data.totals = {}
+  data.rates = {}
+
+  data.totals.received = apps.length
+
+  statuses.forEach((status, i) => {
+    data.totals[status] = apps.filter(app => app.status === status).length
+
+    data.rates[status] = data.totals.received ? ((data.totals[status] / data.totals.received) * 100) : 0
+    data.rates[status] = numeral(data.rates[status]).format('0.[0]')
+  })
 
   options.forEach((option, i) => {
     const item = {}
@@ -161,19 +197,20 @@ exports.getDisabilityQuestionResponseCounts = (applications) => {
     item.title = option
 
     item.counts = {}
-    item.counts.received = apps.filter(app => app.personalDetails.disabled === option).length
-    item.counts.recruited = apps.filter(app => app.personalDetails.disabled === option
-      && app.status === status).length
-
     item.rates = {}
-    item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
-    item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
 
-    // format the data
-    item.rates.group = numeral(item.rates.group).format('0.[0]')
-    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+    item.counts.received = apps.filter(app => app.personalDetails.disabled === option).length
 
-    data.push(item)
+    statuses.forEach((status, i) => {
+      item.counts[status] = apps.filter(app => app.personalDetails.disabled === option
+        && app.status === status).length
+
+      item.rates[status] = item.counts.received ? ((item.counts[status] / item.counts.received) * 100) : 0
+
+      item.rates[status] = numeral(item.rates[status]).format('0.[0]')
+    })
+
+    data.items.push(item)
   })
 
   return data
@@ -190,10 +227,13 @@ exports.getDisabilityData = (applications) => {
     { title: 'Social or communication impairment', description: 'For example, Asperger’s or another autistic spectrum disorder' },
     { title: 'Other', description: '' }
   ]
-  const status = 'Recruited'
-  const totalRecruited = applications.filter(app => app.status === status).length
 
-  const data = []
+  const statuses = ['Recruited','Rejected','Application withdrawn','Declined']
+
+  let data = {}
+  data.items = []
+  data.totals = {}
+  data.rates = {}
 
   const apps = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes')
 
@@ -204,21 +244,22 @@ exports.getDisabilityData = (applications) => {
     item.description = option.description
 
     item.counts = {}
+    item.rates = {}
+
     item.counts.received = apps.filter(app => app.personalDetails.disabilities !== undefined
       && app.personalDetails.disabilities.includes(option.title)).length
-    item.counts.recruited = apps.filter(app => app.personalDetails.disabilities !== undefined
-      && app.personalDetails.disabilities.includes(option.title)
-      && app.status === status).length
 
-    item.rates = {}
-    item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
-    item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
+    statuses.forEach((status, i) => {
+      item.counts[status] = apps.filter(app => app.personalDetails.disabilities !== undefined
+        && app.personalDetails.disabilities.includes(option.title)
+        && app.status === status).length
 
-    // format the data
-    item.rates.group = numeral(item.rates.group).format('0.[0]')
-    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+      item.rates[status] = item.counts.received ? ((item.counts[status] / item.counts.received) * 100) : 0
 
-    data.push(item)
+      item.rates[status] = numeral(item.rates[status]).format('0.[0]')
+    })
+
+    data.items.push(item)
   })
 
   return data
@@ -261,7 +302,7 @@ const getAgeCounts = (applications) => {
   applications.forEach((app, i) => {
     const dateOfBirth = DateTime.fromISO(app.personalDetails.dateOfBirth)
     const currentYear = DateTime.now().year
-    const years = Math.round(DateTime.fromISO(currentYear + '-08-31').diff(dateOfBirth, 'years').toObject().years)
+    const years = Math.round(DateTime.fromJSDate(CURRENT_CYCLE.ageCalculationDate).diff(dateOfBirth, 'years').toObject().years)
 
     AGES.forEach((age, i) => {
       if (years >= age.lower && years <= age.upper) {
@@ -275,11 +316,27 @@ const getAgeCounts = (applications) => {
 }
 
 exports.getAgeData = (applications) => {
-  const receivedCounts = getAgeCounts(applications)
-  const recruitedCounts = getAgeCounts(applications.filter(app => app.status === 'Recruited'))
-  const totalRecruited = applications.filter(app => app.status === 'Recruited').length
+  const statuses = ['Recruited','Rejected','Application withdrawn','Declined']
+  const counts = {}
+  counts.received = getAgeCounts(applications)
 
-  const data = []
+  statuses.forEach((status, i) => {
+    counts[status] = getAgeCounts(applications.filter(app => app.status === status))
+  })
+
+  let data = {}
+  data.items = []
+  data.totals = {}
+  data.rates = {}
+
+  data.totals.received = applications.length
+
+  statuses.forEach((status, i) => {
+    data.totals[status] = applications.filter(app => app.status === status).length
+
+    data.rates[status] = data.totals.received ? ((data.totals[status] / data.totals.received) * 100) : 0
+    data.rates[status] = numeral(data.rates[status]).format('0.[0]')
+  })
 
   AGES.forEach((age, i) => {
     const item = {}
@@ -287,18 +344,17 @@ exports.getAgeData = (applications) => {
     item.title = age.value
 
     item.counts = {}
-    item.counts.received = receivedCounts[age.key]
-    item.counts.recruited = recruitedCounts[age.key]
-
     item.rates = {}
-    item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
-    item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
 
-    // format the data
-    item.rates.group = numeral(item.rates.group).format('0.[0]')
-    item.rates.recruited = numeral(item.rates.recruited).format('0.[0]')
+    item.counts.received = counts.received[age.key]
 
-    data.push(item)
+    statuses.forEach((status, i) => {
+      item.counts[status] = counts[status][age.key]
+      item.rates[status] = item.counts.received ? ((item.counts[status] / item.counts.received) * 100) : 0
+      item.rates[status] = numeral(item.rates[status]).format('0.[0]')
+    })
+
+    data.items.push(item)
   })
 
   return data
@@ -306,8 +362,7 @@ exports.getAgeData = (applications) => {
 
 exports.getDiversityQuestionnaireResponseCounts = (applications) => {
   const options = ['Yes','No']
-  const status = 'Recruited'
-  const totalRecruited = applications.filter(app => app.status === status).length
+  const statuses = ['Recruited','Rejected','Application withdrawn','Declined']
   const data = []
 
   options.forEach((option, i) => {
@@ -316,13 +371,24 @@ exports.getDiversityQuestionnaireResponseCounts = (applications) => {
     item.title = option
 
     item.counts = {}
-    item.counts.received = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === option).length
-    item.counts.recruited = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === option
-      && app.status === status).length
-
     item.rates = {}
-    item.rates.group = item.counts.received ? ((item.counts.recruited / item.counts.received) * 100) : 0
-    item.rates.recruited = item.counts.received ? ((item.counts.recruited / totalRecruited) * 100) : 0
+
+    item.counts.received = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === option).length
+
+    statuses.forEach((status, i) => {
+      status = status.toLowerCase()
+
+      // if (status === 'application withdrawn') {
+      //   status = 'withdrawn'
+      // }
+
+      item.counts[status] = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === option
+        && app.status === statuses[i]).length
+
+      item.rates[status] = item.counts.received ? ((item.counts[status] / item.counts.received) * 100) : 0
+
+      item.rates[status] = numeral(item.rates[status]).format('0.[0]')
+    })
 
     data.push(item)
   })

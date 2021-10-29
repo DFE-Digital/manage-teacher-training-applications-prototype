@@ -28,9 +28,15 @@ const statuses = [
   { code: 'recruited', title: 'Recruited' }
 ]
 
-const writeSexData = (organisation, applications) => {
+const writeSexData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-sex_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-sex_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -39,10 +45,9 @@ const writeSexData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'sex', title: 'Sex' })
-  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
-  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Applied' })
+  headers.push({ id: 'recruitedNumber', title: 'Recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -52,13 +57,12 @@ const writeSexData = (organisation, applications) => {
   // content for the CSV file
   const records = []
 
-  sexData.forEach((item, i) => {
+  sexData.items.forEach((item, i) => {
     const data = {}
     data.sex = item.title
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
@@ -68,9 +72,15 @@ const writeSexData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeDisabilityReponseCountsData = (organisation, applications) => {
+const writeDisabilityReponseCountsData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-disability-reponse-counts_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-disability-response-counts_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -79,10 +89,9 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'disability', title: 'Candidate is disabled' })
-  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
-  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Applied' })
+  headers.push({ id: 'recruitedNumber', title: 'Recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -92,13 +101,12 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
   // content for the CSV file
   const records = []
 
-  disabilityData.forEach((item, i) => {
+  disabilityData.items.forEach((item, i) => {
     const data = {}
     data.disability = item.title
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
@@ -108,9 +116,15 @@ const writeDisabilityReponseCountsData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeDisabilityData = (organisation, applications) => {
+const writeDisabilityData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-disability_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-disability_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -120,10 +134,9 @@ const writeDisabilityData = (organisation, applications) => {
   const headers = []
   headers.push({ id: 'disability', title: 'Disability' })
   headers.push({ id: 'description', title: 'Description of disability' })
-  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
-  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Applied' })
+  headers.push({ id: 'recruitedNumber', title: 'Recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -133,14 +146,13 @@ const writeDisabilityData = (organisation, applications) => {
   // content for the CSV file
   const records = []
 
-  disabilityData.forEach((item, i) => {
+  disabilityData.items.forEach((item, i) => {
     const data = {}
     data.disability = item.title
     data.description = item.description
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
@@ -150,9 +162,15 @@ const writeDisabilityData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeEthnicityData = (organisation, applications) => {
+const writeEthnicityData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-ethnicity_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-ethnicity_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -162,10 +180,9 @@ const writeEthnicityData = (organisation, applications) => {
   const headers = []
   headers.push({ id: 'ethnicGroup', title: 'Ethnic group' })
   headers.push({ id: 'ethnicBackground', title: 'Ethnic background' })
-  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
-  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Applied' })
+  headers.push({ id: 'recruitedNumber', title: 'Recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -175,14 +192,13 @@ const writeEthnicityData = (organisation, applications) => {
   // content for the CSV file
   const records = []
 
-  ethnicityData.forEach((parent, i) => {
+  ethnicityData.items.forEach((parent, i) => {
     let data = {}
     data.ethnicGroup = parent.title
     data.ethnicBackground = ''
     data.receivedNumber = parent.counts.received
-    data.recruitedNumber = parent.counts.recruited
-    data.recruitedGroupPercent = parent.rates.group
-    data.recruitedPercent = parent.rates.recruited
+    data.recruitedNumber = parent.counts['Recruited']
+    data.recruitedPercent = parent.rates['Recruited']
 
     records.push(data)
 
@@ -192,9 +208,8 @@ const writeEthnicityData = (organisation, applications) => {
         data.ethnicGroup = parent.title
         data.ethnicBackground = child.title
         data.receivedNumber = child.counts.received
-        data.recruitedNumber = child.counts.recruited
-        data.recruitedGroupPercent = child.rates.group
-        data.recruitedPercent = child.rates.recruited
+        data.recruitedNumber = child.counts['Recruited']
+        data.recruitedPercent = child.rates['Recruited']
         records.push(data)
       })
     }
@@ -206,9 +221,15 @@ const writeEthnicityData = (organisation, applications) => {
   return { filePath, fileName }
 }
 
-const writeAgeData = (organisation, applications) => {
+const writeAgeData = (organisation, applications, cycleName) => {
   const organisationName = slugify(organisation.name)
-  const fileName = 'candidate-age_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.csv'
+
+  let fileName = 'candidate-age_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.csv'
+
   const filePath = downloadDirectoryPath + fileName
 
   const apps = applications.filter(app => app.provider === organisation.name)
@@ -217,10 +238,9 @@ const writeAgeData = (organisation, applications) => {
   // headers for the CSV file
   const headers = []
   headers.push({ id: 'age', title: 'Age' })
-  headers.push({ id: 'receivedNumber', title: 'Number of candidates who applied in the group' })
-  headers.push({ id: 'recruitedNumber', title: 'Number of candidates who were recruited in the group' })
-  headers.push({ id: 'recruitedGroupPercent', title: 'Percentage of candidates recruited, out of those who applied in the group' })
-  headers.push({ id: 'recruitedPercent', title: 'Percentage of candidates recruited, out of the total recruited' })
+  headers.push({ id: 'receivedNumber', title: 'Applied' })
+  headers.push({ id: 'recruitedNumber', title: 'Recruited' })
+  headers.push({ id: 'recruitedPercent', title: 'Percentage recruited' })
 
   const csv = csvWriter({
     path: filePath,
@@ -230,18 +250,52 @@ const writeAgeData = (organisation, applications) => {
   // content for the CSV file
   const records = []
 
-  ageData.forEach((item, i) => {
+  ageData.items.forEach((item, i) => {
     const data = {}
     data.age = item.title
     data.receivedNumber = item.counts.received
-    data.recruitedNumber = item.counts.recruited
-    data.recruitedGroupPercent = item.rates.group
-    data.recruitedPercent = item.rates.recruited
+    data.recruitedNumber = item.counts['Recruited']
+    data.recruitedPercent = item.rates['Recruited']
     records.push(data)
   })
 
   // write the CSV file and send to browser
   csv.writeRecords(records)
+
+  return { filePath, fileName }
+}
+
+const writeDiversityReadMe = (organisation, applications, cycleName) => {
+  const organisationName = slugify(organisation.name)
+
+  let fileName = 'about-this-data_'
+  fileName += cycleName + '_'
+  fileName += organisationName + '_'
+  fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+  fileName += '.txt'
+
+  const candidateCount = applications.filter(app => app.provider === organisation.name).length
+  const questionnaireCount = applications.filter(app => app.personalDetails.diversityQuestionnaireAnswered === 'Yes').length
+  const questionnairePercentage = Math.round((questionnaireCount/candidateCount) * 100)
+
+  const filePath = downloadDirectoryPath + fileName
+
+  let content = 'Sex, disability, ethnicity and age of candidates\n\n'
+  content += 'The sex, disability and ethnicity data comes from ' + questionnaireCount + ' candidates who filled in a questionnaire when they applied. This is ' + questionnairePercentage + '% of the total candidates.\n\n'
+  content += 'The age data is from all ' + candidateCount + ' candidates. It’s based on each candidate’s age on ' + DateTime.fromJSDate(CycleHelper.CURRENT_CYCLE.ageCalculationDate).toFormat('d MMMM yyyy') + '.\n\n'
+  content += 'How candidates are asked about their ethnicity\n\n'
+  content += 'Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.\n\n'
+  content += 'If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.\n\n'
+  content += 'How candidates are asked about their disabilities\n\n'
+  content += 'Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.\n\n'
+
+
+  fs.writeFile(filePath, content, err => {
+    if (err) {
+      console.error(err)
+      return
+    }
+  })
 
   return { filePath, fileName }
 }
@@ -257,9 +311,7 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/status-of-applications', (req, res) => {
-    // console.log(req.session.data.user.organisations);
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    // console.log(organisation);
     const fileName = slugify(organisation.name)
 
     let statusData = ReportHelper.getStatusData(fileName)
@@ -416,9 +468,13 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/diversity/cycle/:cycle', (req, res) => {
-    const cycle = req.params.cycle
+    let cycleData = req.session.data.currentCycle
+    if (req.session.data.previousCycle.code === req.params.cycle) {
+      cycleData = req.session.data.previousCycle
+    }
+
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
-    const applications = req.session.data.applications.filter(app => app.provider === organisation.name) // && app.cycle === CycleHelper.CURRENT_CYCLE.code
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name && app.cycle === cycleData.code)
 
     // use application count as a proxy for candidate count
     const candidateCount = applications.length
@@ -435,7 +491,7 @@ module.exports = router => {
 
     res.render('reports/diversity/index', {
       organisation,
-      cycle,
+      cycleData,
       questionnaireResponseData,
       ethnicityData,
       ageData,
@@ -450,16 +506,35 @@ module.exports = router => {
   })
 
   router.get('/reports/:organisationId/diversity/cycle/:cycle/download', (req, res) => {
+    let cycleData = req.session.data.currentCycle
+    if (req.session.data.previousCycle.code === req.params.cycle) {
+      cycleData = req.session.data.previousCycle
+    }
+
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
     const organisationName = slugify(organisation.name)
-    const fileName = 'sex-disability-ethnicity-and-age-of-candidates_2020-to-2021_' + organisationName + '_' + DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss') + '.zip'
+
+    const applications = req.session.data.applications.filter(app => app.provider === organisation.name && app.cycle === cycleData.code)
+
+    const cycleName = slugify(req.params.cycle)
+
+    let fileName = 'sex-disability-ethnicity-and-age-of-candidates_'
+    fileName += cycleName + '_'
+    fileName += organisationName + '_'
+    fileName += DateTime.now().toFormat('yyyy-LL-dd_HH-mm-ss')
+    fileName += '.zip'
+
+    console.log(fileName);
+
     const filePath = downloadDirectoryPath + fileName
 
-    const sexData = writeSexData(organisation, req.session.data.applications)
-    const disabilityResponseCountsData = writeDisabilityReponseCountsData(organisation, req.session.data.applications)
-    const disabilityData = writeDisabilityData(organisation, req.session.data.applications)
-    const ethnicityData = writeEthnicityData(organisation, req.session.data.applications)
-    const ageData = writeAgeData(organisation, req.session.data.applications)
+    const sexData = writeSexData(organisation, applications, cycleName)
+    const disabilityResponseCountsData = writeDisabilityReponseCountsData(organisation, applications, cycleName)
+    const disabilityData = writeDisabilityData(organisation, applications, cycleName)
+    const ethnicityData = writeEthnicityData(organisation, applications, cycleName)
+    const ageData = writeAgeData(organisation, applications, cycleName)
+
+    const readme = writeDiversityReadMe(organisation, applications, cycleName)
 
     // create archive file
     const archive = archiver(filePath, {
@@ -472,6 +547,7 @@ module.exports = router => {
     archive.file(disabilityData.filePath, { name: disabilityData.fileName })
     archive.file(ethnicityData.filePath, { name: ethnicityData.fileName })
     archive.file(ageData.filePath, { name: ageData.fileName })
+    archive.file(readme.filePath, { name: readme.fileName })
 
     // send archive to browser
     archive.finalize()
@@ -486,6 +562,7 @@ module.exports = router => {
           filePaths.push(disabilityData.filePath)
           filePaths.push(ethnicityData.filePath)
           filePaths.push(ageData.filePath)
+          filePaths.push(readme.filePath)
           filePaths.push(filePath)
 
           filePaths.forEach((filePath, i) => {

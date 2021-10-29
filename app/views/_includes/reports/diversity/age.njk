@@ -1,41 +1,56 @@
 <h2 class="govuk-heading-m govuk-!-margin-top-9">
-  Age
+  Age of candidates
 </h2>
-
-<!-- <p class="govuk-body">
-  <a class="govuk-link" href="/reports/{{organisation.id }}/diversity/download/age" download>
-    Export data (CSV) <span class="govuk-visually-hidden">for candidate ages</span>
-  </a>
-</p> -->
 
 <table id="age" class="govuk-table">
   <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageTitle }} - age data</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Age group</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
-        Candidates recruited, out of those in this age group
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+        <!-- Candidates who applied and gave this answer -->
+        Applied
       </th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:30%">
-        Candidates recruited in this age group, out of the total recruited
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+        <!-- Candidates who were recruited and gave this answer -->
+        Recruited
+      </th>
+      <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+        <!-- Percentage of candidates who were recruited and gave this answer -->
+        Percentage recruited
       </th>
     </tr>
   </thead>
+  <tfoot class="govuk-table__foot">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">All answers</th>
+      <td class="govuk-table__header govuk-table__header--numeric">
+        {{ ageData.totals.received | numeral('0,0') }}
+      </td>
+      <td class="govuk-table__header govuk-table__header--numeric">
+        {{ ageData.totals['Recruited'] | numeral('0,0') }}
+      </td>
+      <td class="govuk-table__header govuk-table__header--numeric">
+        {{ ageData.rates['Recruited'] | numeral('0.[0]') }}%
+      </td>
+    </tr>
+  </tfoot>
   <tbody class="govuk-table__body">
 
-    {% for item in ageData %}
+    {% for item in ageData.items %}
 
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
           {{ item.title }}
         </th>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.group | numeral('0.[0]') }}%
-          <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ item.counts.received | numeral('0,0') }}</span>
+          {{ item.counts.received | numeral('0,0') }}
         </td>
         <td class="govuk-table__cell govuk-table__cell--numeric">
-          {{ item.rates.recruited | numeral('0.[0]') }}%
-          <span class="govuk-hint govuk-!-margin-bottom-0">{{ item.counts.recruited | numeral('0,0') }} of {{ recruitedCount | numeral('0,0') }}</span>
+          {{ item.counts['Recruited'] | numeral('0,0') }}
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          {{ item.rates['Recruited'] | numeral('0.[0]') }}%
         </td>
       </tr>
 

@@ -31,14 +31,14 @@
       </h1>
 
       <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycle }}/download" download>Export data (ZIP)</a>
+        <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycleData.code }}/download" download>Export data (ZIP)</a>
       </p>
 
-    <!-- </div>
+    </div>
   </div>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full"> -->
+    <div class="govuk-grid-column-two-thirds">
 
       {% include "_includes/reports/diversity/sex.njk" %}
 
@@ -48,8 +48,14 @@
 
       {% include "_includes/reports/diversity/age.njk" %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-9">
-        Where this data comes from
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">
+        About this data
       </h2>
 
       <p class="govuk-body">
@@ -57,7 +63,27 @@
       </p>
 
       <p class="govuk-body">
-        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on 31 August 2022.
+        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageCalculationDate | date('d MMMM yyyy') }}.
+      </p>
+
+      <h3 class="govuk-heading-s">
+        How candidates are asked about their ethnicity
+      </h3>
+
+      <p class="govuk-body">
+        Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.
+      </p>
+
+      <p class="govuk-body">
+        If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.
+      </p>
+
+      <h3 class="govuk-heading-s">
+        How candidates are asked about their disabilities
+      </h3>
+
+      <p class="govuk-body">
+        Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.
       </p>
 
       {# <table id="responses" class="govuk-table">
