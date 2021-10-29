@@ -65,18 +65,18 @@
             When candidates choose to leave the application process <span class="govuk-visually-hidden"> for {{ organisation.name }}</span>
           </a>
         </li>
-        <!-- <li>
+        <li>
           <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ data.currentCycle.code }}">
             Sex, disability, ethnicity and age of candidates <span class="govuk-visually-hidden"> for {{ organisation.name }}</span>
           </a>
-        </li> -->
+        </li>
       </ul>
 
-      {{ _sectionHeading({
+      <!-- {#{ _sectionHeading({
         html: 'Sex, disability, ethnicity and age of candidates <span class="govuk-visually-hidden"> for ' + organisation.name + '</span>',
         headingLevel: '3' if organisations.length > 1,
         classes: 'govuk-heading-s' if organisations.length > 1
-      }) }}
+      }) }#}
 
       <ul class="govuk-list govuk-list--spaced">
         <li>
@@ -89,7 +89,7 @@
             {{ data.previousCycle.longDesc }}
           </a>
         </li>
-      </ul>
+      </ul> -->
 
     {% endfor %}
 
