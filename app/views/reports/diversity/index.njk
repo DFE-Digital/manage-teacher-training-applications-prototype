@@ -63,15 +63,27 @@
       </p>
 
       <p class="govuk-body">
-        Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’. If they select a general group then they can also select a more specific group such as ‘Bangladeshi’.
+        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageCalculationDate | date('d MMMM yyyy') }}.
       </p>
+
+      <h3 class="govuk-heading-s">
+        How candidates report their ethnicity
+      </h3>
+
+      <p class="govuk-body">
+        Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.
+      </p>
+
+      <p class="govuk-body">
+        If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.
+      </p>
+
+      <h3 class="govuk-heading-s">
+        How candidates report disabilities
+      </h3>
 
       <p class="govuk-body">
         Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.
-      </p>
-
-      <p class="govuk-body">
-        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageCalculationDate | date('d MMMM yyyy') }}.
       </p>
 
       {# <table id="responses" class="govuk-table">

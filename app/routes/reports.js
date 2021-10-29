@@ -281,11 +281,14 @@ const writeDiversityReadMe = (organisation, applications, cycleName) => {
   const filePath = downloadDirectoryPath + fileName
 
   let content = 'Sex, disability, ethnicity and age of candidates\n\n'
-  content += 'About this data\n\n'
   content += 'The sex, disability and ethnicity data comes from ' + questionnaireCount + ' candidates who filled in a questionnaire when they applied. This is ' + questionnairePercentage + '% of the total candidates.\n\n'
-  content += 'Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’. If they select a general group then they can also select a more specific group such as ‘Bangladeshi’.\n\n'
+  content += 'The age data is from all ' + candidateCount + ' candidates. It’s based on each candidate’s age on ' + DateTime.fromJSDate(CycleHelper.CURRENT_CYCLE.ageCalculationDate).toFormat('d MMMM yyyy') + '.\n\n'
+  content += 'How candidates report their ethnicity\n\n'
+  content += 'Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.\n\n'
+  content += 'If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.\n\n'
+  content += 'How candidates report disabilities\n\n'
   content += 'Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.\n\n'
-  content += 'The age data is from all ' + candidateCount + ' candidates. It’s based on each candidate’s age on ' + DateTime.fromJSDate(CycleHelper.CURRENT_CYCLE.ageCalculationDate).toFormat('d MMMM yyyy') + '.'
+
 
   fs.writeFile(filePath, content, err => {
     if (err) {
