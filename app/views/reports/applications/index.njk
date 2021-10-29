@@ -10,8 +10,8 @@
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/reports",
-    text: "Reports"
+    href: "/applications",
+    text: "Applications"
   }, {
     text: pageTitle
   }]
@@ -34,6 +34,25 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="#" method="post" accept-charset="UTF-8" novalidate>
+
+        <p>You last exported data on 28 October 2021.</p>
+
+        {{ govukCheckboxes({
+          idPrefix: "onlyinclude",
+          name: "onlyinclude",
+          fieldset: {
+            legend: {
+              text: "Only include applications which have changed",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Value",
+              text: "Yes, only include applications which have changed"
+            }
+          ]
+        }) }}
 
         {{ govukCheckboxes({
           idPrefix: 'export_cycle',

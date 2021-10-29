@@ -703,4 +703,8 @@ module.exports = router => {
     res.redirect('/')
   })
 
+  router.get('/applications', (req, res) => {
+    res.redirect('/')
+  })
+
 }
