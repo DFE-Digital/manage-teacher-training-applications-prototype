@@ -283,10 +283,10 @@ const writeDiversityReadMe = (organisation, applications, cycleName) => {
   let content = 'Sex, disability, ethnicity and age of candidates\n\n'
   content += 'The sex, disability and ethnicity data comes from ' + questionnaireCount + ' candidates who filled in a questionnaire when they applied. This is ' + questionnairePercentage + '% of the total candidates.\n\n'
   content += 'The age data is from all ' + candidateCount + ' candidates. It’s based on each candidate’s age on ' + DateTime.fromJSDate(CycleHelper.CURRENT_CYCLE.ageCalculationDate).toFormat('d MMMM yyyy') + '.\n\n'
-  content += 'How candidates report their ethnicity\n\n'
+  content += 'How candidates are asked about their ethnicity\n\n'
   content += 'Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.\n\n'
   content += 'If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.\n\n'
-  content += 'How candidates report disabilities\n\n'
+  content += 'How candidates are asked about their disabilities\n\n'
   content += 'Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.\n\n'
 
 
