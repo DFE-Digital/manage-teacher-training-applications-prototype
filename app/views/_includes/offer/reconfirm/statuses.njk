@@ -17,6 +17,9 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      {{conditions | log}}
+
+
       <form method="post">
         <div class="app-box govuk-!-margin-bottom-7">
           <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
