@@ -114,9 +114,7 @@ module.exports = () => {
   if (isInternationalCandidate) {
 
     dateEnteredUK = faker.date.between('2007-01-01','2021-08-31')
-    dateEnteredUK = DateTime.fromJSDate(dateEnteredUK, {
-        locale: 'en-GB'
-      }).toFormat('yyyy-LL-dd')
+    dateEnteredUK = DateTime.fromJSDate(dateEnteredUK).toFormat('yyyy-LL-dd')
 
   }
 
@@ -151,7 +149,8 @@ module.exports = () => {
     y65_over: 0
   })
 
-  const dateOfBirth = dateOfBirthOptions[selectedDateOfBirth]
+  let dateOfBirth = dateOfBirthOptions[selectedDateOfBirth]
+  dateOfBirth = DateTime.fromJSDate(dateOfBirth).toFormat('yyyy-LL-dd')
 
   // ---------------------------------------------------------------------------
   // Equality and diversity

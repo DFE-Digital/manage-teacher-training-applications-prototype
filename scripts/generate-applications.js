@@ -684,9 +684,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -704,9 +703,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -724,9 +722,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -744,9 +741,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -764,9 +760,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -784,9 +779,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -804,9 +798,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -824,9 +817,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -845,9 +837,8 @@ const generateFakeApplications = () => {
       immigrationStatus: 'Other',
       immigrationStatusDetails: 'I have a family visa',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -865,9 +856,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -885,9 +875,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -905,9 +894,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -925,9 +913,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -946,9 +933,8 @@ const generateFakeApplications = () => {
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a permanent residence card',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -967,9 +953,8 @@ const generateFakeApplications = () => {
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a visa',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     }
   }))
 
@@ -990,9 +975,8 @@ const generateFakeApplications = () => {
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a visa',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     },
     contactDetails: {
       tel: '07700 900978',
@@ -1110,9 +1094,8 @@ const generateFakeApplications = () => {
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a visa',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -1191,9 +1174,8 @@ const generateFakeApplications = () => {
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a visa',
       dateEnteredUK: DateTime.fromJSDate(
-        faker.date.between('2007-01-01','2021-08-31'), {
-          locale: 'en-GB'
-        }).toFormat('yyyy-LL-dd')
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     },
     degree: [{
       type: 'BCA',
