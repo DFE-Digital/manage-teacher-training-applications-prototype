@@ -1,9 +1,15 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
+const { DateTime } = require('luxon')
 const weighted = require('weighted')
+
 const generatorHelpers = require('../helpers/generators')
 
 module.exports = () => {
+
+  // ---------------------------------------------------------------------------
+  // Nationality
+  // ---------------------------------------------------------------------------
   const nationalities = {
     british: ['British'],
     irish: ['Irish'],
@@ -11,6 +17,7 @@ module.exports = () => {
     dual: ['French', 'Swiss'],
     multiple: ['British', 'French', 'Swiss']
   }
+
   const selectedNationality = weighted.select({
     british: 0.65,
     irish: 0.05,
@@ -18,40 +25,125 @@ module.exports = () => {
     dual: 0.1,
     multiple: 0.1
   })
+
   const nationality = nationalities[selectedNationality]
 
+  // ---------------------------------------------------------------------------
+  // International candidate
   // Flag international candidate (does not have British/Irish nationality)
-  const isInternationalCandidate = !(nationality.includes('British') || nationality.includes('Irish'))
+  // ---------------------------------------------------------------------------
+  const isInternationalCandidate = !(nationality.includes('British')
+    || nationality.includes('Irish'))
 
-  const rightToWorkStudyOptions = {
-    yes: 'Yes',
-    unsure: 'Not yet, or not sure'
-  }
-  const selectedRightToWorkStudy = weighted.select({
-    yes: 0.6,
-    unsure: 0.4
-  })
-  const rightToWorkStudy = rightToWorkStudyOptions[selectedRightToWorkStudy]
+  // ---------------------------------------------------------------------------
+  // Right to work or study
+  // ---------------------------------------------------------------------------
+  let rightToWorkStudy
+  let rightToWorkStudyDetails
+  let rightToWorkStudyHow
+  let rightToWorkStudyHowDetails
 
-  const residency = {}
   if (isInternationalCandidate) {
-    residency.rightToWorkStudy = rightToWorkStudy
-    if (rightToWorkStudy === 'Yes') {
-      residency.rightToWorkStudyDetails = faker.helpers.randomize([
-        'I have settled status',
-        'I have pre-settled status',
-        'I have a permanent residence card',
-        'I have a spousal visa',
-        'I have a student visa'
-      ])
-    } else {
-      residency.rightToWorkStudyDetails = 'Candidate needs to apply for permission to work and study in the UK'
+
+    const rightToWorkStudyOptions = {
+      yes: 'Yes',
+      no: 'Not yet'
     }
-  } else {
-    residency.rightToWorkStudy = 'Yes'
-    residency.rightToWorkStudyDetails = nationality[0] === 'Irish' ? 'I am an ' : 'I am a '
-    residency.rightToWorkStudyDetails += nationality[0] + ' citizen'
+
+    const selectedRightToWorkStudy = weighted.select({
+      yes: 0.6,
+      no: 0.4
+    })
+
+    rightToWorkStudy = rightToWorkStudyOptions[selectedRightToWorkStudy]
+
+    if (rightToWorkStudy === 'Not yet') {
+      const rightToWorkStudyHowOptions = {
+        visa: 'A visa sponsored by a course provider',
+        other: 'Another route'
+      }
+
+      const selectedRightToWorkStudyHow = weighted.select({
+        visa: 0.6,
+        other: 0.4
+      })
+
+      rightToWorkStudyHow = rightToWorkStudyHowOptions[selectedRightToWorkStudyHow]
+
+      if (rightToWorkStudyHow === 'Other') {
+        rightToWorkStudyHowDetails = faker.lorem.sentence()
+      }
+    }
   }
+
+  // ---------------------------------------------------------------------------
+  // Immigration status
+  // ---------------------------------------------------------------------------
+  let immigrationStatus
+  let immigrationStatusDetails
+
+  if (isInternationalCandidate) {
+
+    if (rightToWorkStudy === 'Yes') {
+
+      const immigrationStatusOptions = {
+        settled: 'EU settled status',
+        presettled: 'EU pre-settled status',
+        other: 'Other'
+      }
+
+      const selectedImmigrationStatus = weighted.select({
+        settled: 0.6,
+        presettled: 0.35,
+        other: 0.05
+      })
+
+      immigrationStatus = immigrationStatusOptions[selectedImmigrationStatus]
+
+      if (immigrationStatus === 'Other') {
+        immigrationStatusDetails = faker.lorem.sentence()
+      }
+    }
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Date entered UK
+  // ---------------------------------------------------------------------------
+  let dateEnteredUK
+
+  if (isInternationalCandidate) {
+
+    dateEnteredUK = faker.date.between('2021-08-31','2001-01-01')
+    dateEnteredUK = DateTime.fromJSDate(dateEnteredUK, {
+        locale: 'en-GB'
+      }).toFormat('yyyy-LL-dd')
+
+  }
+
+  // ---------------------------------------------------------------------------
+  // Residency
+  // ---------------------------------------------------------------------------
+  // const residency = {}
+  //
+  // if (isInternationalCandidate) {
+  //   residency.rightToWorkStudy = rightToWorkStudy
+  //   if (rightToWorkStudy === 'Yes') {
+  //     residency.rightToWorkStudyDetails = faker.helpers.randomize([
+  //       'I have settled status',
+  //       'I have pre-settled status',
+  //       'I have a permanent residence card',
+  //       'I have a spousal visa',
+  //       'I have a student visa'
+  //     ])
+  //   } else {
+  //     residency.rightToWorkStudyDetails = 'Candidate needs to apply for permission to work and study in the UK'
+  //   }
+  // } else {
+  //   residency.rightToWorkStudy = 'Yes'
+  //   residency.rightToWorkStudyDetails = nationality[0] === 'Irish' ? 'I am an ' : 'I am a '
+  //   residency.rightToWorkStudyDetails += nationality[0] + ' citizen'
+  // }
 
   // ---------------------------------------------------------------------------
   // Date of birth
@@ -269,13 +361,20 @@ module.exports = () => {
     familyName: generatorHelpers.lastName(),
     dateOfBirth,
     nationality,
-    residency,
     isInternationalCandidate,
+    immigrationStatus,
+    immigrationStatusDetails,
+    rightToWorkStudy,
+    rightToWorkStudyDetails,
+    rightToWorkStudyHow,
+    rightToWorkStudyHowDetails,
+    dateEnteredUK,
+    // residency,
     diversityQuestionnaireAnswered,
     sex,
     disabled,
     disabilities,
     ethnicGroup,
-    ethnicBackground
+    ethnicBackground,
   }
 }
