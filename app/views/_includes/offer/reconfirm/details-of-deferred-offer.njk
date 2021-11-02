@@ -4,64 +4,9 @@
     Course details
   </h2>
 
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "boom"
-      },
-      value: {
-        text: "boom"
-      },
-      actions: {
-        items: [
-          {
-            href: "boom",
-            text: "Change",
-            visuallyHiddenText: "boom"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "boom"
-      },
-      value: {
-        text: "boom"
-      },
-      actions: {
-        items: [
-          {
-            href: "boom",
-            text: "Change",
-            visuallyHiddenText: "boom"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "boom"
-      },
-      value: {
-        text: "Item value"
-      },
-      actions: {
-        items: [
-          {
-            href: "Item URL",
-            text: "Change",
-            visuallyHiddenText: "boom"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
-
-  {# {{ govukSummaryList({
-    rows: [{
+  {{ govukSummaryList({
+    rows: [
+      {
       key: {
         text: "Training provider"
       },
@@ -76,29 +21,34 @@
           html: application.offer.course
         }
       }, {
-      key: {
-        text: "Full time or part time"
+        key: {
+          text: "Full time or part time"
+        },
+        value: {
+          html: "Full time"
+        }
       },
-      value: {
-        html: "Full time"
-      }
-    }, {
-      key: {
-        text: "Location"
+      {
+        key: {
+          text: "Location"
+        },
+        value: {
+          html: appLocation({
+            name: application.offer.location.name,
+            address: application.offer.location.address
+          })
+        }
       },
-      value: {
-        html: application.offer.location
+      {
+        key: {
+          text: "Accredited body"
+        },
+        value: {
+          html: application.offer.accreditedBody
+        }
       }
-    },{
-      key: {
-        text: "Accredited body"
-      },
-      value: {
-        html: application.offer.accreditedBody
-      }
-    }
-    ]})
-  }} #}
+    ]
+  }) }}
 
   <h2 class="govuk-heading-m">
     Conditions of offer
