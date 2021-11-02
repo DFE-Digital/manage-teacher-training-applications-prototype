@@ -25,14 +25,16 @@
       value: {
         text: application.cycle | cycleLabel
       }
-    },
-    {
-      key: {
-        text: "Initial assessment of tuition fee status"
-      },
-      value: {
-        text: application.personalDetails.feeStatus
-      }
-    } if application.personalDetails.feeStatus and not query.fs
+    }
   ]
 }) }}
+
+<!-- ,
+{
+  key: {
+    text: "Initial assessment of tuition fee status"
+  },
+  value: {
+    text: application.personalDetails.feeStatus
+  }
+} if application.personalDetails.feeStatus and not query.fs -->
