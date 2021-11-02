@@ -682,7 +682,11 @@ const generateFakeApplications = () => {
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU settled status'
+      immigrationStatus: 'EU settled status',
+      dateEnteredUK: DateTime.fromJSDate(
+        faker.date.between('2021-08-31','2001-01-01'), {
+          locale: 'en-GB'
+        }).toFormat('yyyy-LL-dd')
     }
   }))
 
