@@ -7,19 +7,15 @@
 
 <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Personal details</h2>
 
-{% set rightToWorkStudyHowHTML %}
+<!-- {% set rightToWorkStudyHowHTML %}
 <p class="govuk-body">{{ application.personalDetails.rightToWorkStudyHow }}</p>
 <p class="govuk-body">{{ application.personalDetails.rightToWorkStudyHowDetails }}</p>
-{% endset %}
+{% endset %} -->
 
-<!-- text: application.personalDetails.rightToWorkStudyHow + ' - ' + application.personalDetails.rightToWorkStudyHowDetails -->
-
-{% set immigrationStatusHTML %}
+<!-- {% set immigrationStatusHTML %}
 <p class="govuk-body">{{application.personalDetails.immigrationStatus}}</p>
 <p class="govuk-body">{{application.personalDetails.immigrationStatusDetails}}</p>
-{% endset %}
-
-<!-- text: application.personalDetails.immigrationStatus + ' - ' + application.personalDetails.immigrationStatusDetails -->
+{% endset %} -->
 
 {{ govukSummaryList({
   rows: [{
@@ -67,7 +63,7 @@
       text: "Right to work or study how?"
     },
     value: {
-      html: rightToWorkStudyHowHTML
+      text: application.personalDetails.rightToWorkStudyHowDetails if application.personalDetails.rightToWorkStudyHowDetails.length else application.personalDetails.rightToWorkStudyHow
     }
   } if application.personalDetails.rightToWorkStudyHow.length,
   {
@@ -75,7 +71,7 @@
       text: "Immigration status"
     },
     value: {
-      html: immigrationStatusHTML
+      text: application.personalDetails.immigrationStatusDetails if application.personalDetails.immigrationStatusDetails.length else application.personalDetails.immigrationStatus
     }
   } if application.personalDetails.immigrationStatus.length,
   {
