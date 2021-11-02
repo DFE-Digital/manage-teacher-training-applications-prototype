@@ -113,7 +113,7 @@ module.exports = () => {
 
   if (isInternationalCandidate) {
 
-    dateEnteredUK = faker.date.between('2021-08-31','2001-01-01')
+    dateEnteredUK = faker.date.between('2007-01-01','2021-08-31')
     dateEnteredUK = DateTime.fromJSDate(dateEnteredUK, {
         locale: 'en-GB'
       }).toFormat('yyyy-LL-dd')
