@@ -39,7 +39,6 @@ module.exports = () => {
   // Right to work or study
   // ---------------------------------------------------------------------------
   let rightToWorkStudy
-  let rightToWorkStudyDetails
   let rightToWorkStudyHow
   let rightToWorkStudyHowDetails
 
@@ -64,8 +63,8 @@ module.exports = () => {
       }
 
       const selectedRightToWorkStudyHow = weighted.select({
-        visa: 0.6,
-        other: 0.4
+        visa: 0.7,
+        other: 0.3
       })
 
       rightToWorkStudyHow = rightToWorkStudyHowOptions[selectedRightToWorkStudyHow]
@@ -120,30 +119,6 @@ module.exports = () => {
       }).toFormat('yyyy-LL-dd')
 
   }
-
-  // ---------------------------------------------------------------------------
-  // Residency
-  // ---------------------------------------------------------------------------
-  // const residency = {}
-  //
-  // if (isInternationalCandidate) {
-  //   residency.rightToWorkStudy = rightToWorkStudy
-  //   if (rightToWorkStudy === 'Yes') {
-  //     residency.rightToWorkStudyDetails = faker.helpers.randomize([
-  //       'I have settled status',
-  //       'I have pre-settled status',
-  //       'I have a permanent residence card',
-  //       'I have a spousal visa',
-  //       'I have a student visa'
-  //     ])
-  //   } else {
-  //     residency.rightToWorkStudyDetails = 'Candidate needs to apply for permission to work and study in the UK'
-  //   }
-  // } else {
-  //   residency.rightToWorkStudy = 'Yes'
-  //   residency.rightToWorkStudyDetails = nationality[0] === 'Irish' ? 'I am an ' : 'I am a '
-  //   residency.rightToWorkStudyDetails += nationality[0] + ' citizen'
-  // }
 
   // ---------------------------------------------------------------------------
   // Date of birth
@@ -365,7 +340,6 @@ module.exports = () => {
     immigrationStatus,
     immigrationStatusDetails,
     rightToWorkStudy,
-    rightToWorkStudyDetails,
     rightToWorkStudyHow,
     rightToWorkStudyHowDetails,
     dateEnteredUK,
