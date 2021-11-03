@@ -10,6 +10,7 @@ usage-data-config.json
 .port.tmp
 package-lock.json
 node_modules/*
+.DS_Store
 
 # Dynamically generated files
 app/data/applications.json
