@@ -209,7 +209,7 @@
 
 {% endset %}
 {% block footer %}
-{# {{ appFooter({
+{{ appFooter({
     classes: "govuk-footer--app",
     meta: {
       title: "Support and guidance",
@@ -243,9 +243,9 @@
         text: "Disable permission: make offers"
       }]
     }
-  }) }} #}
+  }) }}
 
-  {{ appFooter({
+  {# {{ appFooter({
     classes: "govuk-footer--app",
     meta: {
       title: "Get help",
@@ -270,7 +270,7 @@
         text: "Roadmap"
       }]
     }
-  }) }}
+  }) }} #}
 
 {% endblock %}
 

@@ -23,7 +23,7 @@
     {% endset %}
   {% else %}
     {% set promptHtml %}
-      <p class="govuk-body">You’ll be able to confirm this offer at the start of the next recruitment cycle on BLAH.</p>
+      <p class="govuk-body">You’ll be able to confirm this offer at the start of the next recruitment cycle on {{data.nextCycle.findOpens | govukDate}}.</p>
     {% endset %}
   {% endif %}
 

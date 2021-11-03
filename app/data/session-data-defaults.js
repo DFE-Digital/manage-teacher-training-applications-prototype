@@ -88,6 +88,7 @@ applications = applications
 
 const currentCycle = CycleHelper.CURRENT_CYCLE
 const previousCycle = CycleHelper.PREVIOUS_CYCLE
+const nextCycle = CycleHelper.NEXT_CYCLE
 
 module.exports = {
   emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],
@@ -110,5 +111,6 @@ module.exports = {
   organisations,
   users,
   currentCycle,
-  previousCycle
+  previousCycle,
+  nextCycle
 }
