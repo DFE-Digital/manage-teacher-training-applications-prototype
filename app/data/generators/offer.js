@@ -34,7 +34,7 @@ module.exports = (params) => {
   let standardConditions
   let conditions
 
-  if(params.status == 'Conditions pending' || faker.helpers.randomize([true, false])) {
+  if(params.status == 'Deferred' || params.status == 'Conditions pending' || faker.helpers.randomize([true, false])) {
     standardConditions = [{
       id: faker.datatype.uuid(),
       description: 'Fitness to teach check',

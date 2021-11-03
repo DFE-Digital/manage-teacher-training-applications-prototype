@@ -1,0 +1,49 @@
+{% set footerHtml %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <div class="govuk-!-padding-right-1">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Online chat
+        </h3>
+        <p class="govuk-!-font-size-16"><span class="app-web-chat">You cannot use online chat because there’s a problem. Send an email if you keep seeing this message.</span></p>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-half">
+      <div class="govuk-!-padding-left-1">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Email
+        </h3>
+        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1"><a class="govuk-footer__link" href="#">becomingateacher@digital.education.gov.uk</a></p>
+        <p class="govuk-!-font-size-16">You’ll get a response within 5 working days, or one working day for urgent requests.</p>
+      </div>
+    </div>
+  </div>
+
+{% endset %}
+
+{{ appFooter({
+  classes: "govuk-footer--app",
+  meta: {
+    title: "Get help",
+    html: footerHtml,
+    items: [{
+      href: "/how-to-use-this-service",
+      text: "How to use this service"
+    }, {
+      href: "#",
+      text: "Complaints"
+    }, {
+      href: "#",
+      text: "Accessibility"
+    }, {
+      href: "#",
+      text: "Cookies"
+    }, {
+      href: "/privacy",
+      text: "Privacy"
+    }, {
+      href: "#",
+      text: "Roadmap"
+    }]
+  }
+}) }}

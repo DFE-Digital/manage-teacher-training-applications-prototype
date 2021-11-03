@@ -35,7 +35,17 @@ module.exports = router => {
   router.get('/applications/:applicationId/offer/reconfirm/statuses', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const conditions = application.offer.standardConditions.concat(application.offer.conditions)
+
+    let conditions = []
+
+    if(application.offer.standardConditions) {
+      conditions = conditions.concat(application.offer.standardConditions)
+    }
+
+    if(application.offer.conditions) {
+      conditions = conditions.concat(application.offer.conditions)
+    }
+
     res.render('applications/offer/reconfirm/statuses', {
       application,
       conditions

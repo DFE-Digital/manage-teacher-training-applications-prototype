@@ -186,92 +186,9 @@
 
 {% set chatOfflineHtml %}<span class="app-web-chat__offline">Available Monday to Friday,  10am to midday (except public holidays).</span>{% endset %}
 
-{% set footerHtml %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      <div class="govuk-!-padding-right-1">
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
-          Online chat
-        </h3>
-        <p class="govuk-!-font-size-16"><span class="app-web-chat">You cannot use online chat because there’s a problem. Send an email if you keep seeing this message.</span></p>
-      </div>
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <div class="govuk-!-padding-left-1">
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
-          Email
-        </h3>
-        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1"><a class="govuk-footer__link" href="#">becomingateacher@digital.education.gov.uk</a></p>
-        <p class="govuk-!-font-size-16">You’ll get a response within 5 working days, or one working day for urgent requests.</p>
-      </div>
-    </div>
-  </div>
-
-{% endset %}
 {% block footer %}
-{# {{ appFooter({
-    classes: "govuk-footer--app",
-    meta: {
-      title: "Support and guidance",
-      html: "If you have a question, or you’ve had a problem using this service, please email us at <a href=\"mailto:becomingateacher@digital.education.gov.uk\">becomingateacher@digital.education.gov.uk</a>",
-      items: [{
-        href: "/admin/settings",
-        text: "Settings"
-      }, {
-        href: "/admin/clear-data",
-        text: "Clear data"
-      } if not urStudy, {
-        href: "/onboard-notifications",
-        text: "Sign in notification prompt"
-      }, {
-        href: "/onboard",
-        text: "Sign in permissions prompt"
-      }, {
-        href: "?transferred=true",
-        text: "Enable transferred mode"
-      }, {
-        href: "?canManageUsers=false",
-        text: "Disable permission: manage users"
-      }, {
-        href: "?canManageOrganisationPermissions=false",
-        text: "Disable permission: manage org permissions"
-      }, {
-        href: "?canManageInterviews=false",
-        text: "Disable permission: manage interviews"
-      }, {
-        href: "?canMakeOffersAndRejectApplications=false",
-        text: "Disable permission: make offers"
-      }]
-    }
-  }) }} #}
-
-  {{ appFooter({
-    classes: "govuk-footer--app",
-    meta: {
-      title: "Get help",
-      html: footerHtml,
-      items: [{
-        href: "/how-to-use-this-service",
-        text: "How to use this service"
-      }, {
-        href: "#",
-        text: "Complaints"
-      }, {
-        href: "#",
-        text: "Accessibility"
-      }, {
-        href: "#",
-        text: "Cookies"
-      }, {
-        href: "/privacy",
-        text: "Privacy"
-      }, {
-        href: "#",
-        text: "Roadmap"
-      }]
-    }
-  }) }}
-
+  {% include "_includes/footer.njk" %}
+  {% include "_includes/footer-settings.njk" %}
 {% endblock %}
 
 {% block bodyEnd %}
