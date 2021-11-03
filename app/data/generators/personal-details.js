@@ -36,6 +36,27 @@ module.exports = () => {
     || nationality.includes('Irish'))
 
   // ---------------------------------------------------------------------------
+  // Length of stay
+  // Lived in UK longer than 3 years
+  // ---------------------------------------------------------------------------
+  let lengthOfStay
+
+  if (!isInternationalCandidate) {
+
+    const lengthOfStayOptions = {
+      yes: 'Yes',
+      no: 'No'
+    }
+
+    const selectedLengthOfStay = weighted.select({
+      yes: 0.95,
+      no: 0.05
+    })
+
+    lengthOfStay = lengthOfStayOptions[selectedLengthOfStay]
+  }
+
+  // ---------------------------------------------------------------------------
   // Right to work or study
   // ---------------------------------------------------------------------------
   let rightToWorkStudy
@@ -69,8 +90,14 @@ module.exports = () => {
 
       rightToWorkStudyHow = rightToWorkStudyHowOptions[selectedRightToWorkStudyHow]
 
-      if (rightToWorkStudyHow === 'Other') {
-        rightToWorkStudyHowDetails = faker.lorem.sentence()
+      if (rightToWorkStudyHow === 'Another route') {
+
+        let rightToWorkStudyHowChoices = [
+          'I am applying for a permanent residence card',
+          'I am applying for a visa'
+        ]
+
+        let rightToWorkStudyHowDetails = rightToWorkStudyHowChoices.sort(() => 0.5 - Math.random())
       }
     }
   }
@@ -105,7 +132,6 @@ module.exports = () => {
     }
   }
 
-
   // ---------------------------------------------------------------------------
   // Date entered UK
   // ---------------------------------------------------------------------------
@@ -113,9 +139,10 @@ module.exports = () => {
 
   if (isInternationalCandidate) {
 
-    dateEnteredUK = faker.date.between('2007-01-01','2021-08-31')
-    dateEnteredUK = DateTime.fromJSDate(dateEnteredUK).toFormat('yyyy-LL-dd')
-
+    if (rightToWorkStudy === 'Yes') {
+      dateEnteredUK = faker.date.between('2000-01-01','2016-08-31')
+      dateEnteredUK = DateTime.fromJSDate(dateEnteredUK).toFormat('yyyy-LL-dd')
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -327,7 +354,6 @@ module.exports = () => {
         ethnicBackground = ethnicBackgroundOptions.other[selectedEthnicBackground.other]
         break
     }
-
   }
 
   return {
@@ -335,6 +361,7 @@ module.exports = () => {
     familyName: generatorHelpers.lastName(),
     dateOfBirth,
     nationality,
+    lengthOfStay,
     isInternationalCandidate,
     immigrationStatus,
     immigrationStatusDetails,

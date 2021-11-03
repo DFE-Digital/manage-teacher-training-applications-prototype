@@ -677,15 +677,14 @@ const generateFakeApplications = () => {
       givenName: 'Pip',
       familyName: 'Love',
       sex: 'Female',
+      dateOfBirth: '1998-01-25',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2015-10-26'
     }
   }))
 
@@ -696,15 +695,14 @@ const generateFakeApplications = () => {
       givenName: 'Te Kura',
       familyName: 'Ngata-Aerengamate',
       sex: 'Female',
+      dateOfBirth: '1986-04-08',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2008-03-26'
     }
   }))
 
@@ -715,15 +713,14 @@ const generateFakeApplications = () => {
       givenName: 'Aleisha',
       familyName: 'Pearl-Nelson',
       sex: 'Female',
+      dateOfBirth: '1995-05-18',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2016-06-29'
     }
   }))
 
@@ -734,15 +731,14 @@ const generateFakeApplications = () => {
       givenName: 'Eloise',
       familyName: 'Blackwell',
       sex: 'Female',
+      dateOfBirth: '1987-06-10',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2014-10-21'
     }
   }))
 
@@ -753,15 +749,14 @@ const generateFakeApplications = () => {
       givenName: 'Kelsie',
       familyName: 'Wills',
       sex: 'Female',
+      dateOfBirth: '1992-08-21',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2008-10-12'
     }
   }))
 
@@ -772,15 +767,14 @@ const generateFakeApplications = () => {
       givenName: 'Alana',
       familyName: 'Bremner',
       sex: 'Female',
+      dateOfBirth: '1989-11-21',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2009-12-07'
     }
   }))
 
@@ -791,15 +785,14 @@ const generateFakeApplications = () => {
       givenName: 'Les',
       familyName: 'Elder',
       sex: 'Female',
+      dateOfBirth: '1976-04-09',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2002-12-07'
     }
   }))
 
@@ -810,15 +803,14 @@ const generateFakeApplications = () => {
       givenName: 'Dhys',
       familyName: 'Faleafaga',
       sex: 'Female',
+      dateOfBirth: '1998-07-26',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2016-01-04'
     }
   }))
 
@@ -829,6 +821,7 @@ const generateFakeApplications = () => {
       givenName: 'Kendra',
       familyName: 'Cocksedge',
       sex: 'Female',
+      dateOfBirth: '1989-05-31',
       nationality: [
         'French'
       ],
@@ -836,9 +829,7 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'Other',
       immigrationStatusDetails: 'I have a family visa',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      dateEnteredUK: '2010-10-05'
     }
   }))
 
@@ -849,15 +840,13 @@ const generateFakeApplications = () => {
       givenName: 'Ruahei',
       familyName: 'Demant',
       sex: 'Female',
+      dateOfBirth: '1993-08-12',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      rightToWorkStudyHow: 'A visa sponsored by a course provider'
     }
   }))
 
@@ -868,15 +857,13 @@ const generateFakeApplications = () => {
       givenName: 'Ayesha',
       familyName: 'Leti-I’iga',
       sex: 'Female',
+      dateOfBirth: '2000-11-01',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      rightToWorkStudyHow: 'A visa sponsored by a course provider'
     }
   }))
 
@@ -887,15 +874,13 @@ const generateFakeApplications = () => {
       givenName: 'Chelsea',
       familyName: 'Alley',
       sex: 'Female',
+      dateOfBirth: '2000-01-03',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      rightToWorkStudyHow: 'A visa sponsored by a course provider'
     }
   }))
 
@@ -906,15 +891,13 @@ const generateFakeApplications = () => {
       givenName: 'Stacey',
       familyName: 'Fluhler',
       sex: 'Female',
+      dateOfBirth: '1981-01-25',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      rightToWorkStudyHow: 'A visa sponsored by a course provider'
     }
   }))
 
@@ -925,16 +908,14 @@ const generateFakeApplications = () => {
       givenName: 'Renee',
       familyName: 'Wickliffe',
       sex: 'Female',
+      dateOfBirth: '1994-05-24',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a permanent residence card',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      rightToWorkStudyHowDetails: 'I am applying for a permanent residence card'
     }
   }))
 
@@ -945,16 +926,14 @@ const generateFakeApplications = () => {
       givenName: 'Renee',
       familyName: 'Holmes',
       sex: 'Female',
+      dateOfBirth: '1999-05-25',
       nationality: [
         'French'
       ],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a visa',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      rightToWorkStudyHowDetails: 'I am applying for a visa'
     }
   }))
 
