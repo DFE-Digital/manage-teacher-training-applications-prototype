@@ -780,7 +780,7 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2009-12-07'
+      dateEnteredUK: '2019-12-07'
     }
   }))
 
@@ -799,7 +799,7 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2002-12-07'
+      dateEnteredUK: '2020-07-12'
     }
   }))
 
@@ -818,7 +818,7 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2016-01-04'
+      dateEnteredUK: '2020-01-04'
     }
   }))
 
@@ -857,6 +857,8 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
       dateEnteredUK: ''
     }
   }))
@@ -876,6 +878,8 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
       dateEnteredUK: ''
     }
   }))
@@ -895,6 +899,8 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
       dateEnteredUK: ''
     }
   }))
@@ -914,6 +920,8 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
       dateEnteredUK: ''
     }
   }))
@@ -934,6 +942,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a permanent residence card',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
       dateEnteredUK: ''
     }
   }))
@@ -954,6 +964,8 @@ const generateFakeApplications = () => {
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
       rightToWorkStudyHowDetails: 'I am applying for a visa',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
       dateEnteredUK: ''
     }
   }))

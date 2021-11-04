@@ -94,7 +94,10 @@ module.exports = () => {
 
         let rightToWorkStudyHowChoices = [
           'I am applying for a permanent residence card',
-          'I am applying for a visa'
+          'I am applying for a visa',
+          'I have refugee status',
+          'I’m applying for a student visa',
+          'I’m applying for a spousal visa'
         ]
 
         let rightToWorkStudyHowDetails = rightToWorkStudyHowChoices.sort(() => 0.5 - Math.random())
