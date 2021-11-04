@@ -5,19 +5,9 @@
   {%- endfor -%}
 {% endset %}
 
-<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2">
   Personal information
 </h2>
-
-{% set rightToWorkStudyHowHTML %}
-<p class="govuk-body">{{ application.personalDetails.rightToWorkStudyHow }}</p>
-<p class="govuk-body">{{ application.personalDetails.rightToWorkStudyHowDetails }}</p>
-{% endset %}
-
-{% set immigrationStatusHTML %}
-<p class="govuk-body">{{application.personalDetails.immigrationStatus}}</p>
-<p class="govuk-body">{{application.personalDetails.immigrationStatusDetails}}</p>
-{% endset %}
 
 {{ govukSummaryList({
   rows: [
@@ -60,7 +50,7 @@
       value: {
         text: application.personalDetails.lengthOfStay
       }
-    } if application.personalDetails.lengthOfStay.length,
+    } if (not application.personalDetails.isInternationalCandidate) and application.personalDetails.lengthOfStay.length,
     {
       key: {
         text: "Do you have the right to work or study in the UK for the length of the teacher training course?"
@@ -76,7 +66,7 @@
       value: {
         text: application.personalDetails.rightToWorkStudyHowDetails if application.personalDetails.rightToWorkStudyHowDetails.length else application.personalDetails.rightToWorkStudyHow
       }
-    } if application.personalDetails.rightToWorkStudyHow.length,
+    } if application.personalDetails.rightToWorkStudy == 'Not yet' and application.personalDetails.rightToWorkStudyHow.length,
     {
       key: {
         text: "What is your immigration status?"
@@ -84,7 +74,7 @@
       value: {
         text: application.personalDetails.immigrationStatusDetails if application.personalDetails.immigrationStatusDetails.length else application.personalDetails.immigrationStatus
       }
-    } if application.personalDetails.immigrationStatus.length,
+    } if application.personalDetails.rightToWorkStudy == 'Yes' and application.personalDetails.immigrationStatus.length,
     {
       key: {
         text: "When did you enter the UK?"
@@ -92,6 +82,6 @@
       value: {
         text: application.personalDetails.dateEnteredUK | govukDate
       }
-    } if application.personalDetails.dateEnteredUK.length
+    } if application.personalDetails.rightToWorkStudy == 'Yes' and application.personalDetails.dateEnteredUK.length
   ]
 }) }}
