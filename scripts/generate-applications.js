@@ -682,6 +682,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: '2015-10-26'
@@ -700,6 +701,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: '2008-03-26'
@@ -718,6 +720,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: '2016-06-29'
@@ -736,6 +739,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: '2014-10-21'
@@ -754,6 +758,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU settled status',
       dateEnteredUK: '2008-10-12'
@@ -772,6 +777,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
       dateEnteredUK: '2009-12-07'
@@ -790,6 +796,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
       dateEnteredUK: '2002-12-07'
@@ -808,6 +815,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'EU pre-settled status',
       dateEnteredUK: '2016-01-04'
@@ -826,6 +834,7 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Yes',
       immigrationStatus: 'Other',
       immigrationStatusDetails: 'I have a family visa',
@@ -845,8 +854,10 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider'
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      dateEnteredUK: ''
     }
   }))
 
@@ -862,8 +873,10 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider'
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      dateEnteredUK: ''
     }
   }))
 
@@ -879,8 +892,10 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider'
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      dateEnteredUK: ''
     }
   }))
 
@@ -896,8 +911,10 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider'
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      dateEnteredUK: ''
     }
   }))
 
@@ -913,9 +930,11 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a permanent residence card'
+      rightToWorkStudyHowDetails: 'I am applying for a permanent residence card',
+      dateEnteredUK: ''
     }
   }))
 
@@ -931,9 +950,11 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: true,
+      lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a visa'
+      rightToWorkStudyHowDetails: 'I am applying for a visa',
+      dateEnteredUK: ''
     }
   }))
 
