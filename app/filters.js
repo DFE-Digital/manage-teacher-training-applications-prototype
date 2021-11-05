@@ -413,7 +413,7 @@ filters.falsify = (input) => {
     if (!markdown) {
       return null
     }
-    const html = marked(markdown)
+    const html = marked.parse(markdown)
     return html
   }
 
