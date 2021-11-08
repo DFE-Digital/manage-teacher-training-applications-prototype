@@ -930,7 +930,7 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a permanent residence card',
+      rightToWorkStudyHowDetails: 'I’m applying for a permanent residence card',
       immigrationStatus: '',
       immigrationStatusDetails: '',
       dateEnteredUK: ''
@@ -952,7 +952,7 @@ const generateFakeApplications = () => {
       lengthOfStay: '',
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a visa',
+      rightToWorkStudyHowDetails: 'I’m applying for a visa',
       immigrationStatus: '',
       immigrationStatusDetails: '',
       dateEnteredUK: ''
