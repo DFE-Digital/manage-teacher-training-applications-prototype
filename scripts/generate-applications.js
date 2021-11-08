@@ -135,17 +135,6 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
-  // British and Irish students are always eligible
-  personalDetails.feeStatus = 'Eligible for home tuition fee funding (automated assessment - check details with candidate)'
-
-  // International student eligibility depends on right to work/study and address
-  if (personalDetails.isInternationalCandidate) {
-    personalDetails.feeStatus = 'Not eligible for home tuition fee funding (automated assessment - check details with candidate)'
-    if (personalDetails.rightToWorkStudy === 'Yes' && contactDetails.addressType === 'uk') {
-      personalDetails.feeStatus = 'Eligible for home tuition fee funding (automated assessment - check details with candidate)'
-    }
-  }
-
   let otherQualifications
 
   if(params.otherQualifications === null) {
@@ -666,6 +655,314 @@ const generateFakeApplications = () => {
     }
   }))
 
+  // ---------------------------------------------------------------------------
+  // International candidates
+  // ---------------------------------------------------------------------------
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Pip',
+      familyName: 'Love',
+      sex: 'Female',
+      dateOfBirth: '1998-01-25',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU settled status',
+      dateEnteredUK: '2015-10-26'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Te Kura',
+      familyName: 'Ngata-Aerengamate',
+      sex: 'Female',
+      dateOfBirth: '1986-04-08',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU settled status',
+      dateEnteredUK: '2008-03-26'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Aleisha',
+      familyName: 'Pearl-Nelson',
+      sex: 'Female',
+      dateOfBirth: '1995-05-18',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU settled status',
+      dateEnteredUK: '2016-06-29'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Eloise',
+      familyName: 'Blackwell',
+      sex: 'Female',
+      dateOfBirth: '1987-06-10',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU settled status',
+      dateEnteredUK: '2014-10-21'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Kelsie',
+      familyName: 'Wills',
+      sex: 'Female',
+      dateOfBirth: '1992-08-21',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU settled status',
+      dateEnteredUK: '2008-10-12'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Alana',
+      familyName: 'Bremner',
+      sex: 'Female',
+      dateOfBirth: '1989-11-21',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2019-12-07'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Les',
+      familyName: 'Elder',
+      sex: 'Female',
+      dateOfBirth: '1976-04-09',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-07-12'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Dhys',
+      familyName: 'Faleafaga',
+      sex: 'Female',
+      dateOfBirth: '1998-07-26',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Kendra',
+      familyName: 'Cocksedge',
+      sex: 'Female',
+      dateOfBirth: '1989-05-31',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'Other',
+      immigrationStatusDetails: 'I have a family visa',
+      dateEnteredUK: '2010-10-05'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Ruahei',
+      familyName: 'Demant',
+      sex: 'Female',
+      dateOfBirth: '1993-08-12',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
+      dateEnteredUK: ''
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Ayesha',
+      familyName: 'Leti-I’iga',
+      sex: 'Female',
+      dateOfBirth: '2000-11-01',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
+      dateEnteredUK: ''
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Chelsea',
+      familyName: 'Alley',
+      sex: 'Female',
+      dateOfBirth: '2000-01-03',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
+      dateEnteredUK: ''
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Stacey',
+      familyName: 'Fluhler',
+      sex: 'Female',
+      dateOfBirth: '1981-01-25',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'A visa sponsored by a course provider',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
+      dateEnteredUK: ''
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Renee',
+      familyName: 'Wickliffe',
+      sex: 'Female',
+      dateOfBirth: '1994-05-24',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'Another route',
+      rightToWorkStudyHowDetails: 'I’m applying for a permanent residence card',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
+      dateEnteredUK: ''
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Renee',
+      familyName: 'Holmes',
+      sex: 'Female',
+      dateOfBirth: '1999-05-25',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      lengthOfStay: '',
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'Another route',
+      rightToWorkStudyHowDetails: 'I’m applying for a visa',
+      immigrationStatus: '',
+      immigrationStatusDetails: '',
+      dateEnteredUK: ''
+    }
+  }))
+
+  // ---------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+
   applications.push(generateFakeApplication({
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
@@ -674,12 +971,13 @@ const generateFakeApplications = () => {
       isInternationalCandidate: true,
       givenName: 'Tiago',
       familyName: 'Pereyra',
-      nationality: ['Spanish', 'Argentinian'],
-      residency: {
-        rightToWorkStudy: 'Yes',
-        rightToWorkStudyDetails: 'I have settled status'
-      },
-      feeStatus: 'Eligible for home student funding'
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'Another route',
+      rightToWorkStudyHowDetails: 'I am applying for a visa',
+      dateEnteredUK: DateTime.fromJSDate(
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     },
     contactDetails: {
       tel: '07700 900978',
@@ -791,12 +1089,14 @@ const generateFakeApplications = () => {
       isInternationalCandidate: true,
       givenName: 'Kung',
       familyName: 'Ha-Sun',
-      nationality: ['South Korean', 'Australian'],
-      residency: {
-        rightToWorkStudy: 'Not yet, or not sure',
-        rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
-      },
-      feeStatus: 'Not eligible for home student funding'
+      nationalities: ['South Korean', 'Australian'],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'Another route',
+      rightToWorkStudyHowDetails: 'I am applying for a visa',
+      dateEnteredUK: DateTime.fromJSDate(
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     },
     contactDetails: {
       tel: '+61 (08) 7225 5825',
@@ -869,12 +1169,14 @@ const generateFakeApplications = () => {
       isInternationalCandidate: true,
       givenName: 'Chitprem',
       familyName: 'Sra',
-      nationality: ['Indian'],
-      residency: {
-        rightToWorkStudy: 'Not yet, or not sure',
-        rightToWorkStudyDetails: 'Candidate needs to apply for permission to work and study in the UK'
-      },
-      feeStatus: 'Not eligible for home student funding'
+      nationalities: ['Indian'],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Not yet',
+      rightToWorkStudyHow: 'Another route',
+      rightToWorkStudyHowDetails: 'I am applying for a visa',
+      dateEnteredUK: DateTime.fromJSDate(
+          faker.date.between('2007-01-01','2021-08-31')
+        ).toFormat('yyyy-LL-dd')
     },
     degree: [{
       type: 'BCA',
