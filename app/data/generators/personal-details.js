@@ -8,9 +8,9 @@ const generatorHelpers = require('../helpers/generators')
 module.exports = () => {
 
   // ---------------------------------------------------------------------------
-  // Nationality
+  // Nationalities
   // ---------------------------------------------------------------------------
-  const nationalities = {
+  const nationalityOptions = {
     british: ['British'],
     irish: ['Irish'],
     french: ['French'],
@@ -26,14 +26,14 @@ module.exports = () => {
     multiple: 0.1
   })
 
-  const nationality = nationalities[selectedNationality]
+  const nationalities = nationalityOptions[selectedNationality]
 
   // ---------------------------------------------------------------------------
   // International candidate
   // Flag international candidate (does not have British/Irish nationality)
   // ---------------------------------------------------------------------------
-  const isInternationalCandidate = !(nationality.includes('British')
-    || nationality.includes('Irish'))
+  const isInternationalCandidate = !(nationalities.includes('British')
+    || nationalities.includes('Irish'))
 
   // ---------------------------------------------------------------------------
   // Length of stay
@@ -93,14 +93,14 @@ module.exports = () => {
       if (rightToWorkStudyHow === 'Another route') {
 
         let rightToWorkStudyHowChoices = [
-          'I am applying for a permanent residence card',
-          'I am applying for a visa',
+          'I’m applying for a permanent residence card',
+          'I’m applying for a visa',
           'I have refugee status',
           'I’m applying for a student visa',
           'I’m applying for a spousal visa'
         ]
 
-        let rightToWorkStudyHowDetails = rightToWorkStudyHowChoices.sort(() => 0.5 - Math.random())
+        let rightToWorkStudyHowDetails = faker.helpers.randomize(rightToWorkStudyHowChoices)
       }
     }
   }
@@ -144,6 +144,7 @@ module.exports = () => {
 
     if (rightToWorkStudy === 'Yes') {
       dateEnteredUK = faker.date.between('2000-01-01','2016-08-31')
+      // faker creates a time, which isn't necessary, so we remove it
       dateEnteredUK = DateTime.fromJSDate(dateEnteredUK).toFormat('yyyy-LL-dd')
     }
   }
@@ -180,6 +181,7 @@ module.exports = () => {
   })
 
   let dateOfBirth = dateOfBirthOptions[selectedDateOfBirth]
+  // faker creates a time, which isn't necessary, so we remove it
   dateOfBirth = DateTime.fromJSDate(dateOfBirth).toFormat('yyyy-LL-dd')
 
   // ---------------------------------------------------------------------------
@@ -363,7 +365,7 @@ module.exports = () => {
     givenName: generatorHelpers.firstName(sex),
     familyName: generatorHelpers.lastName(),
     dateOfBirth,
-    nationality,
+    nationalities,
     lengthOfStay,
     isInternationalCandidate,
     immigrationStatus,

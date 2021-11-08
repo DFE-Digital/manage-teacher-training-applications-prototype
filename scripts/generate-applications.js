@@ -667,7 +667,7 @@ const generateFakeApplications = () => {
       familyName: 'Love',
       sex: 'Female',
       dateOfBirth: '1998-01-25',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -686,7 +686,7 @@ const generateFakeApplications = () => {
       familyName: 'Ngata-Aerengamate',
       sex: 'Female',
       dateOfBirth: '1986-04-08',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -705,7 +705,7 @@ const generateFakeApplications = () => {
       familyName: 'Pearl-Nelson',
       sex: 'Female',
       dateOfBirth: '1995-05-18',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -724,7 +724,7 @@ const generateFakeApplications = () => {
       familyName: 'Blackwell',
       sex: 'Female',
       dateOfBirth: '1987-06-10',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -743,7 +743,7 @@ const generateFakeApplications = () => {
       familyName: 'Wills',
       sex: 'Female',
       dateOfBirth: '1992-08-21',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -762,7 +762,7 @@ const generateFakeApplications = () => {
       familyName: 'Bremner',
       sex: 'Female',
       dateOfBirth: '1989-11-21',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -781,7 +781,7 @@ const generateFakeApplications = () => {
       familyName: 'Elder',
       sex: 'Female',
       dateOfBirth: '1976-04-09',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -800,7 +800,7 @@ const generateFakeApplications = () => {
       familyName: 'Faleafaga',
       sex: 'Female',
       dateOfBirth: '1998-07-26',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -819,7 +819,7 @@ const generateFakeApplications = () => {
       familyName: 'Cocksedge',
       sex: 'Female',
       dateOfBirth: '1989-05-31',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -839,7 +839,7 @@ const generateFakeApplications = () => {
       familyName: 'Demant',
       sex: 'Female',
       dateOfBirth: '1993-08-12',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -860,7 +860,7 @@ const generateFakeApplications = () => {
       familyName: 'Leti-I’iga',
       sex: 'Female',
       dateOfBirth: '2000-11-01',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -881,7 +881,7 @@ const generateFakeApplications = () => {
       familyName: 'Alley',
       sex: 'Female',
       dateOfBirth: '2000-01-03',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -902,7 +902,7 @@ const generateFakeApplications = () => {
       familyName: 'Fluhler',
       sex: 'Female',
       dateOfBirth: '1981-01-25',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -923,7 +923,7 @@ const generateFakeApplications = () => {
       familyName: 'Wickliffe',
       sex: 'Female',
       dateOfBirth: '1994-05-24',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -945,7 +945,7 @@ const generateFakeApplications = () => {
       familyName: 'Holmes',
       sex: 'Female',
       dateOfBirth: '1999-05-25',
-      nationality: [
+      nationalities: [
         'French'
       ],
       isInternationalCandidate: true,
@@ -1089,7 +1089,7 @@ const generateFakeApplications = () => {
       isInternationalCandidate: true,
       givenName: 'Kung',
       familyName: 'Ha-Sun',
-      nationality: ['South Korean', 'Australian'],
+      nationalities: ['South Korean', 'Australian'],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',
@@ -1169,7 +1169,7 @@ const generateFakeApplications = () => {
       isInternationalCandidate: true,
       givenName: 'Chitprem',
       familyName: 'Sra',
-      nationality: ['Indian'],
+      nationalities: ['Indian'],
       isInternationalCandidate: true,
       rightToWorkStudy: 'Not yet',
       rightToWorkStudyHow: 'Another route',

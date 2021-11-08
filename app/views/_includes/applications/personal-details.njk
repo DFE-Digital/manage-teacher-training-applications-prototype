@@ -1,5 +1,5 @@
 {% set nationalityText %}
-  {% set nationalities = application.personalDetails.nationality %}
+  {% set nationalities = application.personalDetails.nationalities %}
   {%- for nationality in nationalities -%}
     {{ (" and " if loop.last else ", ") if not loop.first }}{{ nationality }}
   {%- endfor -%}
