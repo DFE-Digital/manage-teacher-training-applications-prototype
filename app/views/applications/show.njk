@@ -20,11 +20,11 @@
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
       {% if not query.transferred %}
-        <p>
-          {% if application.status != "Rejected" and application.status != "Declined" and application.status != "Offer withdrawn" and application.status != "Application withdrawn" and application.status != "Conditions not met" %}
-            <a class="govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
+        <p class="govuk-body">
+          {% if application.status not in ["Rejected","Declined","Offer withdrawn","Application withdrawn","Conditions not met"] %}
+            <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
           {% endif %}
-          <a href="#" download>Download application (PDF)</a>
+          <a class="govuk-link" href="#" download>Download application (PDF)</a>
         </p>
       {% endif %}
     </div>
@@ -39,11 +39,13 @@
   {% if not query.transferred %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        {% if query.fs %}
-          {% include "_includes/applications/fs"+query.fs+".njk" %}
-        {% else %}
-          {% include "_includes/applications/personal-details.njk" %}
-        {% endif %}
+        {% include "_includes/applications/personal-details.njk" %}
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/contact-details.njk" %}
       </div>
     </div>
   {% endif %}

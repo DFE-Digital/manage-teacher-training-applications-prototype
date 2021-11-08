@@ -1,0 +1,30 @@
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">
+  Contact information
+</h2>
+
+{{ govukSummaryList({
+  rows: [{
+    key: {
+      text: "Phone number"
+    },
+    value: {
+      html: "<a href=\"tel:" + application.contactDetails.tel | replace(" ", "") + "\">" + application.contactDetails.tel + "</a>"
+    }
+  },
+  {
+    key: {
+      text: "Email address"
+    },
+    value: {
+      html: "<a href=\"mailto:" + application.contactDetails.email + "\">" + application.contactDetails.email + "</a>"
+    }
+  },
+  {
+    key: {
+      text: "Contact address"
+    },
+    value: {
+      html: application.contactDetails.address | toArray | join("<br>")
+    }
+  }]
+}) }}
