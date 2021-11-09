@@ -1,4 +1,4 @@
-<h3 class="govuk-heading-m govuk-!-margin-top-5">GCSEs or equivalent</h3>
+<!-- <h3 class="govuk-heading-m govuk-!-margin-top-5">GCSEs or equivalent</h3>
 <div class="govuk-!-margin-bottom-2">
   <div class="govuk-grid">
     <div class="govuk-grid-row app-grid-row--flex">
@@ -42,5 +42,78 @@
         </div>
       {% endfor %}
     </div>
+  </div>
+</div> -->
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% for item in application.gcse | toArray %}
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-5">{{ item.subject }} GCSE or equivalent</h3>
+
+      {% if item.missing == 'false' %}
+
+        {% set gradesHtml %}
+          <ul class="govuk-list">
+          {% for item in item.grade %}
+            <li>{{ item.grade }}{% if item.exam %} ({{ item.exam }}){% endif %}</li>
+          {% endfor %}
+          </ul>
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Qualification"
+              },
+              value: {
+                text: item.type
+              }
+            },
+            {
+              key: {
+                text: "Country"
+              },
+              value: {
+                text: item.country
+              }
+            } if item.country != 'United Kingdom',
+            {
+              key: {
+                text: "Grade"
+              },
+              value: {
+                html: gradesHtml
+              }
+            },
+            {
+              key: {
+                text: "Year"
+              },
+              value: {
+                text: item.year
+              }
+            },
+            {
+              key: {
+                text: "Comparability"
+              },
+              value: {
+                text: 'UK ENIC or NARIC statement #' + item.naric.reference + ' says this is comparable to a ' + item.naric.comparable + '.'
+              }
+            } if item.naric
+          ]
+        }) }}
+
+      {% else %}
+
+        <p>{{item.missing}}</p>
+
+      {% endif %}
+
+    {% endfor %}
+
   </div>
 </div>
