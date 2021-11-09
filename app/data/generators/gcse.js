@@ -16,10 +16,14 @@ module.exports = (isInternationCandidate, subjectLevel) => {
   // Qualification type
   // GCSEs were only awarded from 1988 onwards
   // ---------------------------------------------------------------------------
-  const type = (year <= 1988) ? 'O level' : weighted.select({
+  let type = (year <= 1988) ? 'O level' : weighted.select({
     GCSE: 0.9,
     'Scottish National 5': 0.1
   })
+
+  if (isInternationCandidate) {
+    type = 'Baccalauréat Général'
+  }
 
   // ---------------------------------------------------------------------------
   // Grades
@@ -75,6 +79,8 @@ module.exports = (isInternationCandidate, subjectLevel) => {
   // ---------------------------------------------------------------------------
   // Science
   // ---------------------------------------------------------------------------
+  let scienceGrade
+
   if (subjectLevel === 'Primary') {
     const scienceGradeOptions = {
       singleAwardScience: [{
@@ -103,62 +109,124 @@ module.exports = (isInternationCandidate, subjectLevel) => {
       tripleAwardScience: 0.2
     })
 
-    const scienceGrade = scienceGradeOptions[selectedScienceGrade]
+    scienceGrade = scienceGradeOptions[selectedScienceGrade]
+  }
+
+  // ---------------------------------------------------------------------------
+  // Has missing qualification
+  // ---------------------------------------------------------------------------
+  let hasEnglishQualification
+  let hasMathsQualification
+  let hasScienceQualification
+
+  // Missing English GCSE
+  const hasEnglishQualificationOptions = {
+    yes: 'Yes',
+    no: 'I don’t have an English qualification yet'
+  }
+
+  const selectedEnglishQualification = weighted.select({
+    yes: 0.8,
+    no: 0.2
+  })
+
+  hasEnglishQualification = hasEnglishQualificationOptions[selectedEnglishQualification]
+
+  // Missing maths GCSE
+  const hasMathsQualificationOptions = {
+    yes: 'Yes',
+    no: 'I don’t have an maths qualification yet'
+  }
+
+  const selectedMathsQualification = weighted.select({
+    yes: 0.8,
+    no: 0.2
+  })
+
+  hasMathsQualification = hasMathsQualificationOptions[selectedMathsQualification]
+
+  // Missing science GCSE
+  if (subjectLevel === 'Primary') {
+    const hasScienceQualificationOptions = {
+      yes: 'Yes',
+      no: 'I don’t have a science qualification yet'
+    }
+
+    const selectedScienceQualification = weighted.select({
+      yes: 0.8,
+      no: 0.2
+    })
+
+    hasScienceQualification = hasScienceQualificationOptions[selectedScienceQualification]
   }
 
   // ---------------------------------------------------------------------------
   // Missing reason
   // ---------------------------------------------------------------------------
-  let missingEnglishReasons
-  let missingMathsReasons
-  let missingScienceReasons
+  let missingEnglishReasonOptions
+  let missingMathsReasonOptions
+  let missingScienceReasonOptions
+
+  let missingEnglishReason
+  let missingMathsReason
+  let missingScienceReason
 
   if (isInternationCandidate) {
-    missingEnglishReasons = [
+    missingEnglishReasonOptions = [
       'I am planning to take an English equivalency test',
       'I am a native English speaker, I would prefer to demonstrate the required skills',
-      'I have a certificate confirming that the medium of instruction and examination at undergraduate was in English',
-      'I plan to come to England to learn English for six months before starting to train',
-      'I am going to do an English as a foreign language assessment to validate my level of English'
+      'I have a certificate confirming that the medium of instruction and examination at undergraduate was in English'
     ]
 
-    missingMathsReasons = []
+    missingMathsReasonOptions = [
+      'I am planning to take a maths equivalency test',
+      'I applied to NARIC for the equivalent',
+      'I have a high school transcript for maths'
+    ]
 
     if (subjectLevel === 'Primary') {
-      missingScienceReasons = []
+      missingScienceReasonOptions = [
+        'I am planning to take a science equivalency test',
+        'I completed the International Baccalaureate programme and studied science',
+        'I completed my High School Certificate in biology, chemistry and physics'
+      ]
     }
   } else {
-    missingEnglishReasons = [
+    missingEnglishReasonOptions = [
       'I have key skills level 2 in English',
       'I will be undertaking equivalency tests within the next few months',
-      'I am going to sit an equivalency test to prove my skills in English',
       'I studied at degree level, worked as teaching assistant for 6 years'
     ]
 
-    missingMathsReasons = []
+    missingMathsReasonOptions = [
+      'I am planning to take a maths equivalency test',
+      'I have a functional skills level 2 in maths however I am willing to take an equivalent exam',
+      'I will be studying towards attaining my equivalency once I have been accepted on the programme'
+    ]
 
     if (subjectLevel === 'Primary') {
-      missingScienceReasons = []
+      missingScienceReasonOptions = [
+        'I am planning to take a science equivalency test',
+        'I am currently looking for a course',
+        'I completed my Access To Higher Education Diploma (equivalent to A-Levels) in Social Science'
+      ]
     }
   }
 
-  const missingEnglishReason = weighted.select({
-    faker.helpers.randomize(missingEnglishReasons): 0.2,
-    false: 0.8
-  })
-
-  const missingMathsReason = weighted.select({
-    faker.helpers.randomize(missingMathsReasons): 0.2,
-    false: 0.8
-  })
-
-  if (subjectLevel === 'Primary') {
-    const missingScienceReason = weighted.select({
-      faker.helpers.randomize(missingScienceReasons): 0.2,
-      false: 0.8
-    })
+  if (hasEnglishQualification !== 'Yes') {
+    missingEnglishReason = faker.helpers.randomize(missingEnglishReasonOptions)
   }
 
+  if (hasMathsQualification !== 'Yes') {
+    missingMathsReason = faker.helpers.randomize(missingMathsReasonOptions)
+  }
+
+  if (subjectLevel === 'Primary') {
+    if (hasScienceQualification !== 'Yes') {
+      missingScienceReason = faker.helpers.randomize(missingScienceReasonOptions)
+    }
+
+  }
 
   // ---------------------------------------------------------------------------
   // GCSE details
@@ -168,42 +236,12 @@ module.exports = (isInternationCandidate, subjectLevel) => {
   let science
 
   if (isInternationCandidate) {
-    english = {
-      type: 'Baccalauréat Général',
-      subject: 'English',
-      country: 'France',
-      missing: missingEnglishReason,
-      naric: {
-        reference: '4000228363',
-        comparable: 'GCSE (grades A*-C / 9-4)'
-      },
-      grade: [{
-        grade: faker.datatype.number({ min: 10, max: 20 })
-      }],
-      year
-    }
 
-    maths = {
-      type: 'Baccalauréat Général',
-      subject: 'Maths',
-      country: 'France',
-      missing: missingMathsReason,
-      naric: {
-        reference: '4000228363',
-        comparable: 'GCSE grades A*-C/9-4'
-      },
-      grade: [{
-        grade: faker.datatype.number({ min: 10, max: 20 })
-      }],
-      year
-    }
-
-    if (subjectLevel === 'Primary') {
-      science = {
-        type: 'Baccalauréat Général',
-        subject: 'Science',
+    if (hasEnglishQualification === 'Yes') {
+      english = {
+        type,
+        subject: 'English',
         country: 'France',
-        missing: missingScienceReason,
         naric: {
           reference: '4000228363',
           comparable: 'GCSE (grades A*-C / 9-4)'
@@ -213,36 +251,124 @@ module.exports = (isInternationCandidate, subjectLevel) => {
         }],
         year
       }
-    }
-  } else {
-    english = {
-      type,
-      subject: 'English',
-      country: 'United Kingdom',
-      missing: missingEnglishReason,
-      grade: englishGrade,
-      year
-    }
-
-    maths = {
-      type,
-      subject: 'Maths',
-      country: 'United Kingdom',
-      missing: missingMathsReason,
-      grade: mathsGrade,
-      year
-    }
-
-    if (subjectLevel === 'Primary') {
-      science = {
+    } else {
+      english = {
         type,
-        subject: 'Science',
-        country: 'United Kingdom',
-        missing: missingScienceReason,
-        grade: scienceGrade,
+        subject: 'English',
+        country: 'France',
+        missing: missingEnglishReason,
         year
       }
     }
+
+    if (hasMathsQualification === 'Yes') {
+      maths = {
+        type,
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [{
+          grade: faker.datatype.number({ min: 10, max: 20 })
+        }],
+        year
+      }
+    } else {
+      maths = {
+        type,
+        subject: 'Maths',
+        country: 'France',
+        missing: missingMathsReason,
+        year
+      }
+    }
+
+    if (subjectLevel === 'Primary') {
+      if (hasScienceQualification === 'Yes') {
+        science = {
+          type,
+          subject: 'Science',
+          country: 'France',
+          naric: {
+            reference: '4000228363',
+            comparable: 'GCSE (grades A*-C / 9-4)'
+          },
+          grade: [{
+            grade: faker.datatype.number({ min: 10, max: 20 })
+          }],
+          year
+        }
+      } else {
+        science = {
+          type,
+          subject: 'Science',
+          country: 'France',
+          missing: missingScienceReason,
+          year
+        }
+      }
+    }
+
+  } else {
+
+    if (hasEnglishQualification === 'Yes') {
+      english = {
+        type,
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: englishGrade,
+        year
+      }
+    } else {
+      english = {
+        type,
+        subject: 'English',
+        country: 'United Kingdom',
+        missing: missingEnglishReason,
+        year
+      }
+    }
+
+    if (hasMathsQualification === 'Yes') {
+      maths = {
+        type,
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: mathsGrade,
+        year
+      }
+    } else {
+      maths = {
+        type,
+        subject: 'Maths',
+        country: 'United Kingdom',
+        missing: missingMathsReason,
+        year
+      }
+    }
+
+    if (subjectLevel === 'Primary') {
+      if (hasScienceQualification === 'Yes') {
+        science = {
+          type,
+          subject: 'Science',
+          country: 'United Kingdom',
+          grade: scienceGrade,
+          year
+        }
+      } else {
+        science = {
+          type,
+          subject: 'Science',
+          country: 'United Kingdom',
+          missing: missingScienceReason,
+          year
+        }
+      }
+    }
+
   }
 
   return {
