@@ -52,7 +52,38 @@
 
       <h3 class="govuk-heading-m govuk-!-margin-top-5">{{ item.subject }} GCSE or equivalent</h3>
 
-      {% if item.missing == 'false' %}
+      {% if item.missing %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "What type of English qualification do you have?"
+              },
+              value: {
+                text: item.missing.hasQualification
+              }
+            },
+            {
+              key: {
+                text: "Are you currently studying for this qualification?"
+              },
+              value: {
+                text: item.missing.isStudying + (" - " + item.missing.studyingDetails if item.missing.studyingDetails.length)
+              }
+            },
+            {
+              key: {
+                text: "Other evidence of having English skills at the required standard"
+              },
+              value: {
+                html: item.missing.otherReason
+              }
+            } if item.missing.otherReason.length
+          ]
+        }) }}
+
+      {% else %}
 
         {% set gradesHtml %}
           <ul class="govuk-list">
@@ -106,10 +137,6 @@
             } if item.naric
           ]
         }) }}
-
-      {% else %}
-
-        <p>{{item.missing}}</p>
 
       {% endif %}
 
