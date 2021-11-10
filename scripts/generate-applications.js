@@ -171,7 +171,7 @@ const generateFakeApplication = (params = {}) => {
     workHistory: params.workHistory || generateWorkHistory(),
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
     degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
-    gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate, subjectLevel),
+    gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth, subjectLevel),
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(),
     otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
