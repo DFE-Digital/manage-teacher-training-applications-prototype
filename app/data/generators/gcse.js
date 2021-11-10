@@ -9,6 +9,7 @@ module.exports = (isInternationCandidate, subjectLevel) => {
   // ---------------------------------------------------------------------------
   // Qualification year
   // ---------------------------------------------------------------------------
+  // TODO: base this on the candidate's date of birth
   let year = faker.date.between('1970', '2016')
   year = year.getFullYear()
 
@@ -161,6 +162,81 @@ module.exports = (isInternationCandidate, subjectLevel) => {
   }
 
   // ---------------------------------------------------------------------------
+  // Is studying the subject
+  // ---------------------------------------------------------------------------
+  let isStudyingEnglish
+  let isStudyingMaths
+  let isStudyingScience
+
+  // Missing English GCSE
+  if (hasEnglishQualification !== 'Yes') {
+    const isStudyingEnglishOptions = {
+      yes: 'Yes',
+      no: 'No'
+    }
+
+    const selectedStudyingEnglish = weighted.select({
+      yes: 0.8,
+      no: 0.2
+    })
+
+    isStudyingEnglish = isStudyingEnglishOptions[selectedStudyingEnglish]
+  }
+
+  // Missing maths GCSE
+  if (hasMathsQualification !== 'Yes') {
+    const isStudyingMathsOptions = {
+      yes: 'Yes',
+      no: 'No'
+    }
+
+    const selectedStudyingMaths = weighted.select({
+      yes: 0.8,
+      no: 0.2
+    })
+
+    isStudyingMaths = isStudyingMathsOptions[selectedStudyingMaths]
+  }
+
+  // Missing science GCSE
+  if (subjectLevel === 'Primary') {
+    if (hasScienceQualification !== 'Yes') {
+      const isStudyingScienceOptions = {
+        yes: 'Yes',
+        no: 'No'
+      }
+
+      const selectedStudyingScience = weighted.select({
+        yes: 0.8,
+        no: 0.2
+      })
+
+      isStudyingScience = isStudyingScienceOptions[selectedStudyingScience]
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Studying details
+  // ---------------------------------------------------------------------------
+  let studyingEnglishDetails
+  let studyingMathsDetails
+  let studyingScienceDetails
+
+  if (hasEnglishQualification !== 'Yes' && isStudyingEnglish === 'Yes') {
+    studyingEnglishDetails = 'I am planning to take an English equivalency test'
+  }
+
+  if (hasMathsQualification !== 'Yes' && isStudyingMaths === 'Yes') {
+    studyingMathsDetails = 'I am planning to take a maths equivalency test'
+  }
+
+  if (subjectLevel === 'Primary') {
+    if (hasScienceQualification !== 'Yes' && isStudyingScience === 'Yes') {
+      studyingScienceDetails = 'I am planning to take a science equivalency test'
+    }
+  }
+
+  // ---------------------------------------------------------------------------
   // Missing reason
   // ---------------------------------------------------------------------------
   let missingEnglishReasonOptions
@@ -173,20 +249,17 @@ module.exports = (isInternationCandidate, subjectLevel) => {
 
   if (isInternationCandidate) {
     missingEnglishReasonOptions = [
-      'I am planning to take an English equivalency test',
       'I am a native English speaker, I would prefer to demonstrate the required skills',
       'I have a certificate confirming that the medium of instruction and examination at undergraduate was in English'
     ]
 
     missingMathsReasonOptions = [
-      'I am planning to take a maths equivalency test',
       'I applied to NARIC for the equivalent',
       'I have a high school transcript for maths'
     ]
 
     if (subjectLevel === 'Primary') {
       missingScienceReasonOptions = [
-        'I am planning to take a science equivalency test',
         'I completed the International Baccalaureate programme and studied science',
         'I completed my High School Certificate in biology, chemistry and physics'
       ]
@@ -194,38 +267,83 @@ module.exports = (isInternationCandidate, subjectLevel) => {
   } else {
     missingEnglishReasonOptions = [
       'I have key skills level 2 in English',
-      'I will be undertaking equivalency tests within the next few months',
       'I studied at degree level, worked as teaching assistant for 6 years'
     ]
 
     missingMathsReasonOptions = [
-      'I am planning to take a maths equivalency test',
       'I have a functional skills level 2 in maths however I am willing to take an equivalent exam',
       'I will be studying towards attaining my equivalency once I have been accepted on the programme'
     ]
 
     if (subjectLevel === 'Primary') {
       missingScienceReasonOptions = [
-        'I am planning to take a science equivalency test',
         'I am currently looking for a course',
         'I completed my Access To Higher Education Diploma (equivalent to A-Levels) in Social Science'
       ]
     }
   }
 
-  if (hasEnglishQualification !== 'Yes') {
+  if (hasEnglishQualification !== 'Yes' && isStudyingEnglish !== 'Yes') {
     missingEnglishReason = faker.helpers.randomize(missingEnglishReasonOptions)
   }
 
-  if (hasMathsQualification !== 'Yes') {
+  if (hasMathsQualification !== 'Yes' && isStudyingMaths !== 'Yes') {
     missingMathsReason = faker.helpers.randomize(missingMathsReasonOptions)
   }
 
   if (subjectLevel === 'Primary') {
-    if (hasScienceQualification !== 'Yes') {
+    if (hasScienceQualification !== 'Yes' && isStudyingScience !== 'Yes') {
       missingScienceReason = faker.helpers.randomize(missingScienceReasonOptions)
     }
+  }
 
+  // ---------------------------------------------------------------------------
+  // Missing details
+  // ---------------------------------------------------------------------------
+  let missingEnglish
+  let missingMaths
+  let missingScience
+
+  if (hasEnglishQualification !== 'Yes') {
+    missingEnglish = {}
+    missingEnglish.hasQualification = hasEnglishQualification
+    missingEnglish.isStudying = isStudyingEnglish
+
+    if (studyingEnglishDetails) {
+      missingEnglish.studyingDetails = studyingEnglishDetails
+    }
+
+    if (missingEnglishReason) {
+      missingEnglish.otherReason = missingEnglishReason
+    }
+  }
+
+  if (hasMathsQualification !== 'Yes') {
+    missingMaths = {}
+    missingMaths.hasQualification = hasMathsQualification
+    missingMaths.isStudying = isStudyingMaths
+
+    if (studyingMathsDetails) {
+      missingMaths.studyingDetails = studyingMathsDetails
+    }
+
+    if (missingMathsReason) {
+      missingMaths.otherReason = missingMathsReason
+    }
+  }
+
+  if (subjectLevel === 'Primary' && hasScienceQualification !== 'Yes') {
+    missingScience = {}
+    missingScience.hasQualification = hasScienceQualification
+    missingScience.isStudying = isStudyingScience
+
+    if (studyingScienceDetails) {
+      missingScience.studyingDetails = studyingScienceDetails
+    }
+
+    if (missingScienceReason) {
+      missingScience.otherReason = missingScienceReason
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -253,11 +371,8 @@ module.exports = (isInternationCandidate, subjectLevel) => {
       }
     } else {
       english = {
-        type,
         subject: 'English',
-        country: 'France',
-        missing: missingEnglishReason,
-        year
+        missing: missingEnglish
       }
     }
 
@@ -277,11 +392,8 @@ module.exports = (isInternationCandidate, subjectLevel) => {
       }
     } else {
       maths = {
-        type,
         subject: 'Maths',
-        country: 'France',
-        missing: missingMathsReason,
-        year
+        missing: missingMaths
       }
     }
 
@@ -302,11 +414,8 @@ module.exports = (isInternationCandidate, subjectLevel) => {
         }
       } else {
         science = {
-          type,
           subject: 'Science',
-          country: 'France',
-          missing: missingScienceReason,
-          year
+          missing: missingScience
         }
       }
     }
