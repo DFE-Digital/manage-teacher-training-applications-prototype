@@ -479,7 +479,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    cycle: '2019 to 2020',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Eloise',
       familyName: 'Wells',
@@ -492,7 +492,7 @@ const generateFakeApplications = () => {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: '2019 to 2020',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Becky',
       familyName: 'Brother',
@@ -500,12 +500,16 @@ const generateFakeApplications = () => {
     }
   }))
 
+  // console.log(CycleHelper.PREVIOUS_CYCLE.code)
+  // console.log("2019 to 2020")
+  // console.log(CycleHelper.PREVIOUS_CYCLE.code === "2019 to 2020")
+
   applications.push(generateFakeApplication({
     status: 'Deferred',
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: '2019 to 2020',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Laura',
       familyName: 'Say',
