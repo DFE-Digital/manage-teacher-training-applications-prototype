@@ -363,6 +363,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
 
     if (hasEnglishQualification === 'Yes') {
       english = {
+        hasQualification: 'Yes',
         type,
         subject: 'English',
         country: 'France',
@@ -377,6 +378,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       }
     } else {
       english = {
+        hasQualification: 'No',
         subject: 'English',
         missing: missingEnglish
       }
@@ -384,6 +386,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
 
     if (hasMathsQualification === 'Yes') {
       maths = {
+        hasQualification: 'Yes',
         type,
         subject: 'Maths',
         country: 'France',
@@ -398,6 +401,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       }
     } else {
       maths = {
+        hasQualification: 'No',
         subject: 'Maths',
         missing: missingMaths
       }
@@ -406,6 +410,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
     if (subjectLevel === 'Primary') {
       if (hasScienceQualification === 'Yes') {
         science = {
+          hasQualification: 'Yes',
           type,
           subject: 'Science',
           country: 'France',
@@ -420,6 +425,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
         }
       } else {
         science = {
+          hasQualification: 'No',
           subject: 'Science',
           missing: missingScience
         }
@@ -430,6 +436,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
 
     if (hasEnglishQualification === 'Yes') {
       english = {
+        hasQualification: 'Yes',
         type,
         subject: 'English',
         country: 'United Kingdom',
@@ -438,16 +445,15 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       }
     } else {
       english = {
-        type,
+        hasQualification: 'No',
         subject: 'English',
-        country: 'United Kingdom',
-        missing: missingEnglishReason,
-        year
+        missing: missingEnglish
       }
     }
 
     if (hasMathsQualification === 'Yes') {
       maths = {
+        hasQualification: 'Yes',
         type,
         subject: 'Maths',
         country: 'United Kingdom',
@@ -456,17 +462,16 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       }
     } else {
       maths = {
-        type,
+        hasQualification: 'No',
         subject: 'Maths',
-        country: 'United Kingdom',
-        missing: missingMathsReason,
-        year
+        missing: missingMaths
       }
     }
 
     if (subjectLevel === 'Primary') {
       if (hasScienceQualification === 'Yes') {
         science = {
+          hasQualification: 'Yes',
           type,
           subject: 'Science',
           country: 'United Kingdom',
@@ -475,20 +480,28 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
         }
       } else {
         science = {
-          type,
+          hasQualification: 'No',
           subject: 'Science',
-          country: 'United Kingdom',
-          missing: missingScienceReason,
-          year
+          missing: missingScience
         }
       }
     }
 
   }
 
-  return {
-    english,
-    maths,
-    science
+  let data
+  if (subjectLevel === 'Primary') {
+    data = {
+      english,
+      maths,
+      science
+    }
+  } else {
+    data = {
+      english,
+      maths
+    }
   }
+
+  return data
 }
