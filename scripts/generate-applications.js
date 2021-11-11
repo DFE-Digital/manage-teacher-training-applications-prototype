@@ -143,6 +143,8 @@ const generateFakeApplication = (params = {}) => {
     otherQualifications = generateOtherQualifications()
   }
 
+  const gcse = generateGcse(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth, subjectLevel)
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     assignedUsers: params.assignedUsers || assignedUsers,
@@ -171,8 +173,8 @@ const generateFakeApplication = (params = {}) => {
     workHistory: params.workHistory || generateWorkHistory(),
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
     degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
-    gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth, subjectLevel),
-    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(),
+    gcse: params.gcse || gcse,
+    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(gcse.english),
     otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
     references: params.references || generateReferences(),
@@ -238,54 +240,51 @@ const generateFakeApplications = () => {
     },
     degree: [
       {
-        "type": "BA",
-        "subject": "History",
-        "org": "Aston University",
-        "country": "United Kingdom",
-        "grade": "Distinction",
-        "predicted": true,
-        "startDate": "2017",
-        "endDate": "2020"
+        type: 'BA',
+        subject: 'History',
+        org: 'Aston University',
+        country: 'United Kingdom',
+        grade: 'Distinction',
+        predicted: true,
+        startDate: '2017',
+        endDate: '2020'
       }
     ],
     gcse: {
-      "maths": {
-        "type": "O level",
-        "subject": "Maths",
-        "country": "United Kingdom",
-        "missing": "false",
-        "grade": [
+      maths: {
+        type: 'O level',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
           {
-            "grade": "C"
+            grade: 'C'
           }
         ],
-        "year": 1982
+        year: 1982
       },
-      "english": {
-        "type": "O level",
-        "subject": "English",
-        "country": "United Kingdom",
-        "missing": "false",
-        "grade": [
+      english: {
+        type: 'O level',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
           {
-            "exam": "English",
-            "grade": "B"
+            exam: 'English',
+            grade: 'B'
           }
         ],
-        "year": 1982
+        year: 1982
       },
-      "science": {
-        "type": "O level",
-        "subject": "Science",
-        "country": "United Kingdom",
-        "missing": "false",
-        "grade": [
+      science: {
+        type: 'O level',
+        subject: 'Science',
+        country: 'United Kingdom',
+        grade: [
           {
-            "exam": "Science",
-            "grade": "B"
+            exam: 'Science',
+            grade: 'B'
           }
         ],
-        "year": 1982
+        year: 1982
       }
     },
     otherQualifications: null,
