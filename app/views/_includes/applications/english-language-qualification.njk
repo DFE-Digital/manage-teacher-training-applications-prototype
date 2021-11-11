@@ -1,31 +1,10 @@
 {% set item = application.englishLanguageQualification %}
 <h2 class="govuk-heading-m govuk-!-margin-top-5">English as a foreign language</h2>
+
 <div class="govuk-!-margin-bottom-2">
 
-{# {{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Do you have an English as a foreign language qualification?"
-      },
-      value: {
-        text: item.hasQualification
-      }
-    },
-    {
-      key: {
-        text: "Do you have an English as a foreign language qualification?"
-      },
-      value: {
-        text: item.type
-      }
-    } if application.englishLanguageQualification.hasQualification == "Yes"
-  ]
-}) }} #}
-
-
-
   <p class="govuk-body">{{ item.status }}.</p>
+
   {% if item.hasQualification == "Yes" %}
     <div class="govuk-grid">
       <div class="govuk-grid-row">
@@ -52,8 +31,9 @@
         </div>
       </div>
     </div>
-  {% elif item.missing %}
+  {% elif item.reason %}
     <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Reason given</h3>
     <p class="govuk-body">{{ item.reason }}</p>
   {% endif %}
+
 </div>
