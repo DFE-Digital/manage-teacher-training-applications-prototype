@@ -1,0 +1,63 @@
+{% extends "_layout.njk" %}
+
+{% set name = application.personalDetails.name %}
+{% set title = "Select location" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "javascript: window.history.go(-1)"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
+        {{title}}
+      {% endset %}
+      <form method="post">
+
+        {{ govukRadios({
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [{
+            value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
+            text: "Alliance Academy",
+            hint: { text: 'Edgeware, Road Name, SW1 1AA' }
+          }, {
+            value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
+            text: "Bruntcliffe Academy",
+            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' }
+          }]
+        } | decorateAttributes(data, 'data["confirm-deferral"]["location"]') ) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete({
+      name: "course",
+      element: document.querySelector('#course-autocomplete-container'),
+      id: 'course',
+      showAllValues: true,
+      source: [
+        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
+      ]
+    })
+  </script>
+{% endblock %}
