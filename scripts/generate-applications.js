@@ -1225,9 +1225,12 @@ const generateFakeApplications = () => {
     otherQualifications: {}
   }))
 
+
   for (const [key, value] of Object.entries(STATUS)) {
     const count = faker.datatype.number({ 'min': 30, 'max': 45 })
     let application
+
+    if(key === "DEFERRED") continue;
 
     for (let i = 0; i < count; i++) {
       if (value === 'Offered') {
