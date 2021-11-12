@@ -49,6 +49,3 @@ exports.getStartOfCycleApplications = (applications) => {
     .concat(other);
 }
 
-
-
-
