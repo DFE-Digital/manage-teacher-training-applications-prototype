@@ -5,16 +5,28 @@
       <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
       Confirm deferred offer
       </h2>
+      <p>You need to confirm the deferred offer for this recruitment cycle.</p>
 
-      {% if application.offerCanNotBeReconfirmed.reason == "course" %}
+      {% if application.deferredOfferUnavailable.course %}
         {# <p>{{application.course}} at {{application.provider}} is no longer available. You need to choose a different course.</p> #}
         {# <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p> #}
-      {% elseif application.offerCanNotBeReconfirmed.reason == "location" %}
+        <p>No course.</p>
+        {{ govukButton({
+          text: "Confirm deferred offer",
+          classes: "govuk-!-margin-bottom-0",
+          href: "/applications/" + application.id + "/offer/reconfirm/unavailable"
+        }) }}
+      {% elseif application.deferredOfferUnavailable.location %}
         {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p> #}
         {# <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p> #}
+        <p>No location.</p>
+        {{ govukButton({
+          text: "Confirm deferred offer",
+          classes: "govuk-!-margin-bottom-0",
+          href: "/applications/" + application.id + "/offer/reconfirm/unavailable"
+        }) }}
       {% else %}
         {# <p>The course offered to the candidate in the previous cycle is available in the current cycle.</p> #}
-        <p>You need to confirm the deferred offer for this recruitment cycle.</p>
         {{ govukButton({
           text: "Confirm deferred offer",
           classes: "govuk-!-margin-bottom-0",

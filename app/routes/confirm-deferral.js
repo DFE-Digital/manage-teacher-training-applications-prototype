@@ -55,6 +55,14 @@ module.exports = router => {
     res.redirect(`/applications/${req.params.applicationId}/offer/reconfirm/check`)
   })
 
+  router.get('/applications/:applicationId/offer/reconfirm/unavailable', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    res.render('applications/offer/confirm-deferral/unavailable', {
+      application
+    })
+  })
+
   router.get('/applications/:applicationId/offer/reconfirm/conditions', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)

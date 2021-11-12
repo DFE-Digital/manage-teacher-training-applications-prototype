@@ -45,7 +45,7 @@ const generateFakeApplication = (params = {}) => {
   const organisations = user.organisations
   const status = params.status
   const cycle = params.cycle || generateCycle({ status })
-  const offerCanNotBeReconfirmed = params.offerCanNotBeReconfirmed || null
+  const deferredOfferUnavailable = params.deferredOfferUnavailable || null
   const submittedDate = params.submittedDate || generateSubmittedDate({ status })
   const personalDetails = { ...generatePersonalDetails(), ...params.personalDetails }
 
@@ -146,7 +146,7 @@ const generateFakeApplication = (params = {}) => {
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     assignedUsers: params.assignedUsers || assignedUsers,
-    offerCanNotBeReconfirmed,
+    deferredOfferUnavailable,
     cycle,
     provider: provider.name,
     accreditedBody: accreditedBody.name,
@@ -489,8 +489,8 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    offerCanNotBeReconfirmed: {
-      reason: 'location'
+    deferredOfferUnavailable: {
+      location: true
     },
     cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
@@ -502,8 +502,8 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    offerCanNotBeReconfirmed: {
-      reason: 'course'
+    deferredOfferUnavailable: {
+      course: true
     },
     cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {

@@ -1,0 +1,32 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set title = "Change offer details" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "javascript: window.history.go(-1)"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% if x %}
+      {% else %}
+        <p>The location for this offer is not available.</p>
+      {% endif %}
+      {{ govukButton({
+        text: "Continue",
+        href: ""
+      }) }}
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
