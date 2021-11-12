@@ -2,7 +2,9 @@
 
 {% block content %}
 
-  <h1 class="govuk-heading-l">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
     Settings
   </h1>
 
@@ -12,7 +14,7 @@
       Turn on start of new cycle
     </h2>
 
-    <p>Will show deferred offers that need confirming, pending conditions from previous cycle and the rest.</p>
+    <p>This will show deferred offers that need confirming and applications with pending conditions from previous cycle and then the rest.</p>
 
     {% if checked(data.settings, 'new-cycle') %}
       {{ govukButton({
@@ -25,26 +27,8 @@
     {% endif %}
 
   </form>
-
-  <form method="post" action="/admin/settings/combine-conditions">
-
-    <h2 class="govuk-heading-m">
-      Track conditions in bulk
-    </h2>
-
-    <p>Will show deferred offers that need confirming, pending conditions from previous cycle and the rest.</p>
-
-    {% if checked(data.settings, 'hasCombinedConditions') %}
-      {{ govukButton({
-        text: "Turn off"
-      }) }}
-    {% else %}
-      {{ govukButton({
-        text: "Turn on"
-      }) }}
-    {% endif %}
-
-  </form>
+    </div>
+  </div>
 
 
 

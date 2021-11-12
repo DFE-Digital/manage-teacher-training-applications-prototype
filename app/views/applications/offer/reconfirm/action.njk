@@ -7,7 +7,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/"
+    "href": "javascript: window.history.go(-1)"
   }) }}
 {% endblock %}
 

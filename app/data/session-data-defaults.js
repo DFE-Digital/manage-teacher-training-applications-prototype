@@ -1,12 +1,14 @@
 const ApplicationHelper = require('../data/helpers/application')
 const CycleHelper = require('../data/helpers/cycles')
 const SystemHelper = require('../data/helpers/system')
-const OrgHelper = require('../data/helpers/organisation')
+const SettingsHelper = require('../data/helpers/settings')
+// const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
-let applications = require('./applications.json')
 const users = require('./users.json')
 const relationships = require('./relationships-wren-academy.js')
 const user = require('./user')
+let applications = require('./applications.json')
+let defaults = {}
 
 // get related training providers
 const trainingProviders = []
@@ -70,47 +72,45 @@ applications = applications.map(application => {
   return application
 })
 
-applications = applications
-  .filter(app => {
-    if (app.status === 'Deferred' && app.cycle === '2019 to 2020') {
-      return false;
-    } else {
-      return true;
-    }
-  })
-  .filter(app => {
-    if (app.status === 'Conditions pending' && app.cycle === '2019 to 2020') {
-      return false;
-    } else {
-      return true;
-    }
-  })
+applications = SettingsHelper.getMidCycleApplications(applications)
+defaults.settings = []
 
-const currentCycle = CycleHelper.CURRENT_CYCLE
-const previousCycle = CycleHelper.PREVIOUS_CYCLE
-const nextCycle = CycleHelper.NEXT_CYCLE
+// Uncomment this to make new cycle the default setting
+// applications = SettingsHelper.getStartOfCycleApplications(applications);
+// defaults.settings = ['new-cycle']
 
-module.exports = {
-  emailsettings: ['Application submitted', 'Application withdrawn', 'Application automatically rejected', 'Offer accepted', 'Offer declined automatically', 'Offer declined'],
-  settings: [],
-  user,
-  "standard-conditions" : [
+defaults.emailsettings = [
+  'Application submitted',
+  'Application withdrawn',
+  'Application automatically rejected',
+  'Offer accepted',
+  'Offer declined automatically',
+  'Offer declined'
+]
+
+defaults.user = user
+
+defaults["standard-conditions"] = [
+  "Fitness to teach check",
+  "Disclosure and barring service check"
+]
+
+
+defaults['new-offer'] = {
+  'standard-conditions': [
     "Fitness to teach check",
     "Disclosure and barring service check"
-  ],
-  'new-offer': {
-    'standard-conditions': [
-      "Fitness to teach check",
-      "Disclosure and barring service check"
-    ]
-  },
-  relationships,
-  applications,
-  trainingProviders,
-  accreditedBodies,
-  organisations,
-  users,
-  currentCycle,
-  previousCycle,
-  nextCycle
+  ]
 }
+
+defaults.relationships = relationships
+defaults.applications = applications
+defaults.trainingProviders = trainingProviders
+defaults.accreditedBodies = accreditedBodies
+defaults.organisations = organisations
+defaults.users = users
+defaults.currentCycle = CycleHelper.CURRENT_CYCLE
+defaults.previousCycle = CycleHelper.PREVIOUS_CYCLE
+defaults.nextCycle = CycleHelper.NEXT_CYCLE
+
+module.exports = defaults

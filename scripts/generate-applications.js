@@ -479,7 +479,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Deferred',
-    cycle: '2019 to 2020',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Eloise',
       familyName: 'Wells',
@@ -492,7 +492,7 @@ const generateFakeApplications = () => {
     offerCanNotBeReconfirmed: {
       reason: 'location'
     },
-    cycle: '2019 to 2020',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Becky',
       familyName: 'Brother',
@@ -505,7 +505,7 @@ const generateFakeApplications = () => {
     offerCanNotBeReconfirmed: {
       reason: 'course'
     },
-    cycle: '2019 to 2020',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Laura',
       familyName: 'Say',
@@ -1221,9 +1221,12 @@ const generateFakeApplications = () => {
     otherQualifications: {}
   }))
 
+
   for (const [key, value] of Object.entries(STATUS)) {
-    const count = faker.datatype.number({ 'min': 30, 'max': 75 })
+    const count = faker.datatype.number({ 'min': 30, 'max': 45 })
     let application
+
+    if(key === "DEFERRED") continue;
 
     for (let i = 0; i < count; i++) {
       if (value === 'Offered') {
