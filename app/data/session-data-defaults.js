@@ -72,12 +72,12 @@ applications = applications.map(application => {
   return application
 })
 
-// applications = SettingsHelper.getMidCycleApplications(applications)
-// defaults.settings = []
+applications = SettingsHelper.getMidCycleApplications(applications)
+defaults.settings = []
 
 // Uncomment this to make new cycle the default setting
-applications = SettingsHelper.getStartOfCycleApplications(applications);
-defaults.settings = ['new-cycle']
+// applications = SettingsHelper.getStartOfCycleApplications(applications);
+// defaults.settings = ['new-cycle']
 
 defaults.emailsettings = [
   'Application submitted',

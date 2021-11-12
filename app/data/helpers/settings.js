@@ -4,9 +4,7 @@ const CycleHelper = require('./cycles')
 
 exports.getMidCycleApplications = (applications) => {
   return applications.filter(app => {
-    // remove any deferred applications from last cycle
-
-
+    // Remove any applications that are deferred from the previous cycle
     if (app.status === 'Deferred' && app.cycle === CycleHelper.PREVIOUS_CYCLE.code) {
       return false;
     } else {
@@ -14,7 +12,8 @@ exports.getMidCycleApplications = (applications) => {
     }
   })
   .filter(app => {
-    // remove any applications that are pending conditions from last cycle???
+    // Remove any applications that are pending conditions from the previous cycle
+    // Because when we're mid cycle these should have pretty much been dealt with
     if (app.status === 'Conditions pending' && app.cycle === CycleHelper.PREVIOUS_CYCLE.code) {
       return false;
     } else {

@@ -1226,7 +1226,7 @@ const generateFakeApplications = () => {
   }))
 
   for (const [key, value] of Object.entries(STATUS)) {
-    const count = faker.datatype.number({ 'min': 30, 'max': 75 })
+    const count = faker.datatype.number({ 'min': 30, 'max': 45 })
     let application
 
     for (let i = 0; i < count; i++) {
