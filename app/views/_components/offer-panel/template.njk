@@ -102,16 +102,16 @@
     {% if params.changeStatus or params.changeConditions %}
       <p>
         {% if params.changeStatus %}
-          <a href="{{params.changeStatus.href}}">Update status of conditions</a>
+
+          {% if params.changeConditions %}
+            <a class="govuk-!-margin-right-2" href="{{params.changeStatus.href}}">Update status of conditions</a>
+          {% else %}
+            <a href="{{params.changeStatus.href}}">Update status of conditions</a>
+          {% endif %}
         {% endif %}
 
-        {% if params.changeConditions and not params.changeStatus %}
+        {% if params.changeConditions %}
           <a href="{{params.changeConditions.href}}">Add or change conditions</a>
-        {% endif %}
-
-        {% if params.changeConditions and params.changeStatus %}
-          or
-          <a href="{{params.changeConditions.href}}">add or change conditions</a>
         {% endif %}
       </p>
     {% endif %}
