@@ -500,10 +500,6 @@ const generateFakeApplications = () => {
     }
   }))
 
-  // console.log(CycleHelper.PREVIOUS_CYCLE.code)
-  // console.log("2019 to 2020")
-  // console.log(CycleHelper.PREVIOUS_CYCLE.code === "2019 to 2020")
-
   applications.push(generateFakeApplication({
     status: 'Deferred',
     offerCanNotBeReconfirmed: {
