@@ -1,42 +1,97 @@
 {% set degrees = application.degree %}
-<h3 class="govuk-heading-m govuk-!-margin-top-5">Degree{{ 's' if degrees.length > 1 }}</h3>
-<div class="govuk-!-margin-bottom-2">
-  <div class="govuk-grid">
-    <div class="govuk-grid-row app-grid-row--flex">
-      {% for item in degrees %}
-        <div class="govuk-grid-column-one-third">
-          <div class="app-card">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }} {{ item.subject }}</h3>
-            <dl class="app-qualification">
-            {% if item.country != "United Kingdom" %}
-              <dt class="app-qualification__key govuk-visually-hidden">Country</dt>
-              <dd class="app-qualification__value govuk-!-margin-bottom-1">
-                {{ item.country }}
-              </dd>
-            {% endif %}
-            <dt class="app-qualification__key govuk-visually-hidden">Started and graduated</dt>
-            <dd class="app-qualification__value app-qualification__value--caption">
-              {{ item.startDate }} to {{ item.endDate }}
-            </dd>
-            <dt class="app-qualification__key">Grade</dt>
-            <dd class="app-qualification__value">
-              {% if item.predicted %}Predicted: {% endif %}{{ item.grade }}
-            </dd>
-            <dt class="app-qualification__key">Institution</dt>
-            <dd class="app-qualification__value">
-              {{item.org}}
-            </dd>
 
-            {% if item.naric %}
-              <dt class="app-qualification__key">Comparability</dt>
-              <dd class="app-qualification__value govuk-body-s">
-                UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
-              </dd>
-            {% endif %}
-            </dl>
-          </div>
-        </div>
-      {% endfor %}
+{% macro _degree(params) %}
+<dl class="govuk-summary-list">
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Qualification
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ params.type }}
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Subject
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ params.subject }}
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Grade
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% if params.predicted %}Predicted: {% endif %}{{ params.grade }}
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Institution
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ params.org }}
+    </dd>
+  </div>
+
+  {% if params.country != "United Kingdom" %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Country
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ params.country }}
+      </dd>
     </div>
+  {% endif %}
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Start date
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ params.startDate }}
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      End date
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ params.endDate }}
+    </dd>
+  </div>
+
+  {% if params.naric %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Comparability
+      </dt>
+      <dd class="govuk-summary-list__value">
+        UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
+      </dd>
+    </div>
+  {% endif %}
+
+</dl>
+{% endmacro %}
+
+<h3 class="govuk-heading-m govuk-!-margin-top-5">Degree{{ 's' if degrees.length > 1 }}</h3>
+
+{% for item in degrees %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ _degree(item) }}
+
   </div>
 </div>
+
+{% endfor %}
