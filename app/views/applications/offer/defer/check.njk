@@ -4,7 +4,7 @@
 
 {% set name = application.personalDetails.name %}
 
-{% set title = "Check and confirm offer deferral" %}
+{% set title = "Check and defer offer" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -23,15 +23,13 @@
         {{title}}
       </h1>
 
-      <p>This application will be marked as deferred.</p>
+      <p>You’ll need to confirm the deferred offer at the start of the next recruitment cycle.</p>
 
-      <p>You must review and confirm your offer again at the start of the next cycle (2021 to 2022).</p>
-
-      <p>We’ll email the candidate notifying them of the deferral after you confirm below.</p>
+      <p>The candidate will be sent an email to confirm that their offer has been deferred.</p>
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm offer deferral"
+          text: "Defer offer"
         }) }}
       </form>
 
