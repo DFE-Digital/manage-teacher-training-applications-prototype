@@ -2,10 +2,14 @@
 
   {% if data.settings == 'new-cycle' %}
     {% set promptHtml %}
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
-      Confirm deferred offer
-      </h2>
-      <p>You need to confirm the deferred offer.</p>
+      {% if canMakeOffersAndRejectApplications %}
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+          Confirm deferred offer
+        </h2>
+        <p>You need to confirm the deferred offer.</p>
+      {% else %}
+        <p>The deferred offer needs to be confirmed.</p>
+      {% endif %}
 
       {% if application.deferredOfferUnavailable.course or application.deferredOfferUnavailable.location %}
         {{ govukButton({
@@ -14,12 +18,13 @@
           href: "/applications/" + application.id + "/offer/confirm-deferred-offer/unavailable"
         }) }}
       {% else %}
-        {# <p>The course offered to the candidate in the previous cycle is available in the current cycle.</p> #}
-        {{ govukButton({
-          text: "Confirm deferred offer",
-          classes: "govuk-!-margin-bottom-0",
-          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/check"
-        }) }}
+        {% if canMakeOffersAndRejectApplications %}
+          {{ govukButton({
+            text: "Confirm deferred offer",
+            classes: "govuk-!-margin-bottom-0",
+            href: "/applications/" + application.id + "/offer/confirm-deferred-offer/check"
+          }) }}
+        {% endif %}
       {% endif %}
     {% endset %}
   {% else %}
