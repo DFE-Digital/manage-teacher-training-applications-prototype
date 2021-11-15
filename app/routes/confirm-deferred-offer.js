@@ -6,21 +6,21 @@ module.exports = router => {
 
 
 
-  router.get('/applications/:applicationId/offer/reconfirm/check', (req, res) => {
+  router.get('/applications/:applicationId/offer/confirm-deferred-offer/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     var conditions = []
 
     // if it's been submitted then build conditions from data
-    if(req.session.data['confirm-offer'] && req.session.data['confirm-offer']['submitted-conditions-page'] == 'true') {
+    if(req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer']['submitted-conditions-page'] == 'true') {
 
       // standard conditions
-      if(req.session.data['confirm-offer']['standard-conditions'] && req.session.data['confirm-offer']['standard-conditions'].length) {
-        conditions = conditions.concat(req.session.data['confirm-offer']['standard-conditions'])
+      if(req.session.data['confirm-deferred-offer']['standard-conditions'] && req.session.data['confirm-deferred-offer']['standard-conditions'].length) {
+        conditions = conditions.concat(req.session.data['confirm-deferred-offer']['standard-conditions'])
       }
 
-      if(req.session.data['confirm-offer']['conditions'] && req.session.data['confirm-offer']['conditions'].length) {
-        req.session.data['confirm-offer']['conditions'].filter(c => c != '').forEach(c => {
+      if(req.session.data['confirm-deferred-offer']['conditions'] && req.session.data['confirm-deferred-offer']['conditions'].length) {
+        req.session.data['confirm-deferred-offer']['conditions'].filter(c => c != '').forEach(c => {
           conditions.push(c)
         })
       }
@@ -37,27 +37,27 @@ module.exports = router => {
       conditions = ApplicationHelper.getConditions(application.offer)
     }
 
-    res.render('applications/offer/confirm-deferral/check', {
+    res.render('applications/offer/confirm-deferred-offer/check', {
       application,
       conditions
     })
   })
 
-  router.post('/applications/:applicationId/offer/reconfirm/check', (req, res) => {
+  router.post('/applications/:applicationId/offer/confirm-deferred-offer/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    application.offer.provider = req.session.data['confirm-offer'].provider || application.offer.provider
-    application.offer.course = req.session.data['confirm-offer'].course || application.offer.course
-    application.offer.location = req.session.data['confirm-offer'].location || application.offer.location
-    application.offer.studyMode = req.session.data['confirm-offer'].studyMode || application.offer.studyMode
+    application.offer.provider = req.session.data['confirm-deferred-offer'].provider || application.offer.provider
+    application.offer.course = req.session.data['confirm-deferred-offer'].course || application.offer.course
+    application.offer.location = req.session.data['confirm-deferred-offer'].location || application.offer.location
+    application.offer.studyMode = req.session.data['confirm-deferred-offer'].studyMode || application.offer.studyMode
 
     // if it's been submitted then save conditions from data
-    if(req.session.data['confirm-offer'] && req.session.data['confirm-offer']['submitted-conditions-page'] == 'true') {
+    if(req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer']['submitted-conditions-page'] == 'true') {
       // save standard conditions
       application.offer.standardConditions = [];
-      if(req.session.data['confirm-offer']['standard-conditions'] && req.session.data['confirm-offer']['standard-conditions'].length) {
-        req.session.data['confirm-offer']['standard-conditions'].forEach(condition => {
+      if(req.session.data['confirm-deferred-offer']['standard-conditions'] && req.session.data['confirm-deferred-offer']['standard-conditions'].length) {
+        req.session.data['confirm-deferred-offer']['standard-conditions'].forEach(condition => {
           application.offer.standardConditions.push({
             id: uuidv4(),
             description: condition,
@@ -69,7 +69,7 @@ module.exports = router => {
       // save further conditions
       application.offer.conditions = [];
 
-      req.session.data['confirm-offer']['conditions'].filter(c => c != '').forEach(c => {
+      req.session.data['confirm-deferred-offer']['conditions'].filter(c => c != '').forEach(c => {
         application.offer.conditions.push({
           id: uuidv4(),
           description: c,
@@ -98,43 +98,43 @@ module.exports = router => {
     application.status = 'Conditions pending' // work this out
     application.cycle = CycleHelper.CURRENT_CYCLE.code
 
-    delete req.session.data['confirm-offer']
+    delete req.session.data['confirm-deferred-offer']
 
     req.flash('success', 'Deferred offer confirmed')
     res.redirect(`/applications/${applicationId}/offer`)
   })
 
 
-  router.get('/applications/:applicationId/offer/reconfirm/location', (req, res) => {
+  router.get('/applications/:applicationId/offer/confirm-deferred-offer/location', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const conditions = application.offer.standardConditions.concat(application.offer.conditions)
 
-    res.render('applications/offer/confirm-deferral/location', {
+    res.render('applications/offer/confirm-deferred-offer/location', {
       application: application,
       conditions: conditions
     })
   })
 
-  router.post('/applications/:applicationId/offer/reconfirm/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/reconfirm/check`)
+  router.post('/applications/:applicationId/offer/confirm-deferred-offer/location', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/offer/confirm-deferred-offer/check`)
   })
 
-  router.get('/applications/:applicationId/offer/reconfirm/unavailable', (req, res) => {
+  router.get('/applications/:applicationId/offer/confirm-deferred-offer/unavailable', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    res.render('applications/offer/confirm-deferral/unavailable', {
+    res.render('applications/offer/confirm-deferred-offer/unavailable', {
       application,
       conditions: ApplicationHelper.getConditions(application.offer)
     })
   })
 
-  router.get('/applications/:applicationId/offer/reconfirm/conditions', (req, res) => {
+  router.get('/applications/:applicationId/offer/confirm-deferred-offer/conditions', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let standardConditions;
     let conditions;
 
-    if(!req.session.data['confirm-offer'] || !req.session.data['confirm-offer']['standard-conditions']) {
+    if(!req.session.data['confirm-deferred-offer'] || !req.session.data['confirm-deferred-offer']['standard-conditions']) {
 
       if(application.offer.standardConditions) {
         standardConditions = application.offer.standardConditions.map(condition => {
@@ -145,13 +145,13 @@ module.exports = router => {
     }
 
     // cleanse data gah
-    if(req.session.data['confirm-offer'] && req.session.data['confirm-offer']['conditions']) {
-      req.session.data['confirm-offer']['conditions'] = req.session.data['confirm-offer']['conditions'].filter(c => c != '')
+    if(req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer']['conditions']) {
+      req.session.data['confirm-deferred-offer']['conditions'] = req.session.data['confirm-deferred-offer']['conditions'].filter(c => c != '')
     }
 
     // if the form has been used in some way
-    if(req.session.data['confirm-offer'] && req.session.data['confirm-offer']['submitted-conditions-page'] == 'true') {
-      conditions = req.session.data['confirm-offer']['conditions']
+    if(req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer']['submitted-conditions-page'] == 'true') {
+      conditions = req.session.data['confirm-deferred-offer']['conditions']
     } else {
       if(application.offer.conditions) {
         conditions = application.offer.conditions.map(c => {
@@ -160,18 +160,18 @@ module.exports = router => {
       }
     }
 
-    res.render('applications/offer/confirm-deferral/conditions', {
+    res.render('applications/offer/confirm-deferred-offer/conditions', {
       application,
       standardConditions,
       conditions
     })
   })
 
-  router.post('/applications/:applicationId/offer/reconfirm/conditions', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/reconfirm/check`)
+  router.post('/applications/:applicationId/offer/confirm-deferred-offer/conditions', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/offer/confirm-deferred-offer/check`)
   })
 
-  router.get('/applications/:applicationId/offer/reconfirm/statuses', (req, res) => {
+  router.get('/applications/:applicationId/offer/confirm-deferred-offer/statuses', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
@@ -185,13 +185,13 @@ module.exports = router => {
       conditions = conditions.concat(application.offer.conditions)
     }
 
-    res.render('applications/offer/confirm-deferral/statuses', {
+    res.render('applications/offer/confirm-deferred-offer/statuses', {
       application,
       conditions
     })
   })
 
-  router.post('/applications/:applicationId/offer/reconfirm/statuses', (req, res) => {
+  router.post('/applications/:applicationId/offer/confirm-deferred-offer/statuses', (req, res) => {
     const applicationId = req.params.applicationId
     const data = req.session.data
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -206,7 +206,7 @@ module.exports = router => {
       delete data.conditionStatus
       conditions.forEach( (condition, index) => condition.status = newConditionStatuses[index])
     }
-    res.redirect(`/applications/${applicationId}/offer/reconfirm/check`)
+    res.redirect(`/applications/${applicationId}/offer/confirm-deferred-offer/check`)
   })
 
 

@@ -45,8 +45,8 @@
 
         {% for condition in conditions %}
           {{ govukRadios({
-              idPrefix: "[confirm-offer][conditions]["+ condition.id +"]",
-              name: "[confirm-offer][conditions]["+ condition.id +"]",
+              idPrefix: "[confirm-deferred-offer][conditions]["+ condition.id +"]",
+              name: "[confirm-deferred-offer][conditions]["+ condition.id +"]",
               fieldset: {
                 legend: {
                   text: "Status of ‘" + condition.description + "’",

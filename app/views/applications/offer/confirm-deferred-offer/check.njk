@@ -46,12 +46,12 @@
         },
         course: {
           value: application.offer.course,
-          href: "/applications/" + application.id + "/offer/reconfirm/course"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/course"
         },
         location: {
           value: appLocation(application.location) if application.location.name else application.offer.location,
           value: data['edit-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location),
-          href: "/applications/" + application.id + "/offer/reconfirm/location"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/location"
         },
         studyMode: {
           value: "Full time",
@@ -64,10 +64,10 @@
           items: conditions
         },
         changeConditions: {
-          href: "/applications/" + application.id + "/offer/reconfirm/conditions"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/conditions"
         },
         changeStatus: {
-          href: "/applications/" + application.id + "/offer/reconfirm/statuses"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/statuses"
         }
       })}}
 

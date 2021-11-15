@@ -6,11 +6,11 @@
 {% block pageNavigation %}
   {% if referrer == 'check' %}
     {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/reconfirm/check'
+      href: '/applications/' + application.id + '/offer/confirm-deferred-offer/check'
     }) }}
   {% else %}
     {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/reconfirm/provider'
+      href: '/applications/' + application.id + '/offer/confirm-deferred-offer/provider'
     }) }}
   {% endif %}
 {% endblock %}
@@ -49,7 +49,7 @@
             },
             checked: checked(data.course, "Primary (X121)")
           }]
-        } | decorateAttributes(data, 'data["confirm-offer"]["course"]') ) }}
+        } | decorateAttributes(data, 'data["confirm-deferred-offer"]["course"]') ) }}
 
         {{ govukButton({
           text: "Continue"

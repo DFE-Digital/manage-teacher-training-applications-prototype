@@ -18,9 +18,9 @@
       {% endset %}
       <form method="post">
 
-        <input type="hidden" name="[confirm-offer][submitted-provider-page]" value="true">
+        <input type="hidden" name="[confirm-deferred-offer][submitted-provider-page]" value="true">
 
-        {% if data['confirm-offer']['submitted-provider-page'] == 'true' %}
+        {% if data['confirm-deferred-offer']['submitted-provider-page'] == 'true' %}
 
           {{ govukRadios({
             fieldset: {
@@ -37,7 +37,7 @@
               value: data.user.organisations[1].name,
               text: data.user.organisations[1].name
             }]
-          } | decorateAttributes(data, 'data["confirm-offer"]["provider"]')
+          } | decorateAttributes(data, 'data["confirm-deferred-offer"]["provider"]')
           ) }}
         {% else %}
           {{ govukRadios({
@@ -48,7 +48,7 @@
                 classes: "govuk-fieldset__legend--l"
               }
             },
-            name: '[confirm-offer][provider]',
+            name: '[confirm-deferred-offer][provider]',
             items: [{
               value: data.user.organisations[0].name,
               text: data.user.organisations[0].name

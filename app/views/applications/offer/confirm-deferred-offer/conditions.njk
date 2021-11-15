@@ -7,7 +7,7 @@
 {% block pageNavigation %}
   {% if referrer == 'check' %}
     {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/reconfirm/check'
+      href: '/applications/' + application.id + '/offer/confirm-deferred-offer/check'
     }) }}
   {% else %}
     {{ govukBackLink({
@@ -22,20 +22,20 @@
       <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if data['confirm-offer']['submitted-conditions-page'] == 'true' %}
-        {% set fitnessChecked = checked(data['confirm-offer']['standard-conditions'], "Fitness to teach check") %}
-        {% set dbsChecked = checked(data['confirm-offer']['standard-conditions'], "Disclosure and barring service check") %}
+      {% if data['confirm-deferred-offer']['submitted-conditions-page'] == 'true' %}
+        {% set fitnessChecked = checked(data['confirm-deferred-offer']['standard-conditions'], "Fitness to teach check") %}
+        {% set dbsChecked = checked(data['confirm-deferred-offer']['standard-conditions'], "Disclosure and barring service check") %}
       {% else %}
         {% set fitnessChecked = checked(standardConditions,"Fitness to teach check") %}
         {% set dbsChecked = checked(standardConditions,"Disclosure and barring service check") %}
       {% endif %}
 
       <form method="post">
-        <input type="hidden" name="[confirm-offer][submitted-conditions-page]" value="true">
+        <input type="hidden" name="[confirm-deferred-offer][submitted-conditions-page]" value="true">
 
         {{ govukCheckboxes({
-          idPrefix: "[confirm-offer][standard-conditions]",
-          name: "[confirm-offer][standard-conditions]",
+          idPrefix: "[confirm-deferred-offer][standard-conditions]",
+          name: "[confirm-deferred-offer][standard-conditions]",
           fieldset: {
             legend: {
               text: "Standard conditions",
@@ -66,8 +66,8 @@
 
               <div class="app-add-another__item">
                 {{ govukTextarea({
-                  id: "[confirm-offer][conditions]["+loop.index0+"]",
-                  name: "[confirm-offer][conditions]["+loop.index0+"]",
+                  id: "[confirm-deferred-offer][conditions]["+loop.index0+"]",
+                  name: "[confirm-deferred-offer][conditions]["+loop.index0+"]",
                   rows: 3,
                   label: {
                     text: "Condition " + loop.index,
@@ -75,8 +75,8 @@
                   },
                   value: condition,
                   attributes: {
-                    'data-name': '[confirm-offer][conditions][%index%]',
-                    'data-id': '[confirm-offer][conditions][%index%]',
+                    'data-name': '[confirm-deferred-offer][conditions][%index%]',
+                    'data-id': '[confirm-deferred-offer][conditions][%index%]',
                     'data-label': 'Condition %index%'
                   }
                 }) }}
@@ -86,16 +86,16 @@
           {% else %}
             <div class="app-add-another__item govuk-!-display-none">
               {{ govukTextarea({
-                id: "[confirm-offer][conditions][0]",
-                name: "[confirm-offer][conditions][0]",
+                id: "[confirm-deferred-offer][conditions][0]",
+                name: "[confirm-deferred-offer][conditions][0]",
                 rows: 3,
                 label: {
                   text: "Condition " + 1,
                   classes: "govuk-label--s"
                 },
                 attributes: {
-                  'data-name': '[confirm-offer][conditions][%index%]',
-                  'data-id': '[confirm-offer][conditions][%index%]',
+                  'data-name': '[confirm-deferred-offer][conditions][%index%]',
+                  'data-id': '[confirm-deferred-offer][conditions][%index%]',
                   'data-label': 'Condition %index%'
                 }
               }) }}

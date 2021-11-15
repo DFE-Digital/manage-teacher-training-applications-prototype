@@ -32,7 +32,7 @@
         },
         location: {
           value: appLocation(application.location) if application.location.name else application.offer.location,
-          value: data['confirm-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location)
+          value: data['confirm-deferred-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location)
         },
         studyMode: {
           value: "Full time"

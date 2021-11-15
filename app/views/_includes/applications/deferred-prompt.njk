@@ -14,7 +14,7 @@
         {{ govukButton({
           text: "Confirm deferred offer",
           classes: "govuk-!-margin-bottom-0",
-          href: "/applications/" + application.id + "/offer/reconfirm/unavailable"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/unavailable"
         }) }}
       {% elseif application.deferredOfferUnavailable.location %}
         {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p> #}
@@ -23,14 +23,14 @@
         {{ govukButton({
           text: "Confirm deferred offer",
           classes: "govuk-!-margin-bottom-0",
-          href: "/applications/" + application.id + "/offer/reconfirm/unavailable"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/unavailable"
         }) }}
       {% else %}
         {# <p>The course offered to the candidate in the previous cycle is available in the current cycle.</p> #}
         {{ govukButton({
           text: "Confirm deferred offer",
           classes: "govuk-!-margin-bottom-0",
-          href: "/applications/" + application.id + "/offer/reconfirm/check"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/check"
         }) }}
       {% endif %}
     {% endset %}
