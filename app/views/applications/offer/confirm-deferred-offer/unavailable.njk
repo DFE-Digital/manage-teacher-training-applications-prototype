@@ -3,7 +3,11 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "Change offer details" %}
+{% if application.deferredOfferUnavailable.course  %}
+  {% set title = "Course unavailable" %}
+{% elseif application.deferredOfferUnavailable.location %}
+  {% set title = "Location unavailable" %}
+{% endif %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,24 +22,29 @@
       <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if x %}
-      {% else %}
-        <p>The location for this offer is not available.</p>
+      {% if application.deferredOfferUnavailable.course  %}
+        <p>The course you offered is no longer available in this recruitment cycle.</p>
+      {% elseif application.deferredOfferUnavailable.location %}
+        <p>The location you offered is no longer available in this recruitment cycle.</p>
       {% endif %}
 
-       {{appOfferPanel({
+      {{appOfferPanel({
         provider: {
-          value: application.offer.provider
+          value: application.offer.provider,
+          href: "#" if 1 == 2
         },
         course: {
-          value: application.offer.course
+          value: application.offer.course,
+          href: "#" if 1 == 2
         },
         location: {
           value: appLocation(application.location) if application.location.name else application.offer.location,
-          value: data['confirm-deferred-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location)
+          value: data['confirm-deferred-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location),
+          href: "#" if 1 == 2
         },
         studyMode: {
-          value: "Full time"
+          value: "Full time",
+          href: "#" if 1 == 2
         },
         accreditedBody: {
           value: application.offer.accreditedBody
@@ -46,6 +55,34 @@
       })}}
 
 
+      {{ govukRadios({
+        idPrefix: "[confirm-deferred-offer]",
+        name: "[confirm-deferred-offer]",
+        fieldset: {
+          legend: {
+            text: "Select what you want to change",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Change training provider",
+            text: "Change training provider"
+          } if 1==1,
+          {
+            value: "Change course",
+            text: "Change course"
+          },
+          {
+            value: "Change location",
+            text: "Change location"
+          },
+          {
+            value: "Change full time or part time",
+            text: "Change full time or part time"
+          }
+        ]
+      }) }}
 
       {{ govukButton({
         text: "Continue",
