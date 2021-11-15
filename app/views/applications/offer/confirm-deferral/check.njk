@@ -42,12 +42,11 @@
 
       {{appOfferPanel({
         provider: {
-          value: application.offer.provider,
-          href: "#"
+          value: application.offer.provider
         },
         course: {
           value: application.offer.course,
-          href: "#"
+          href: "/applications/" + application.id + "/offer/reconfirm/course"
         },
         location: {
           value: appLocation(application.location) if application.location.name else application.offer.location,

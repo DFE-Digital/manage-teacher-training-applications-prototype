@@ -22,6 +22,31 @@
       {% else %}
         <p>The location for this offer is not available.</p>
       {% endif %}
+
+       {{appOfferPanel({
+        provider: {
+          value: application.offer.provider
+        },
+        course: {
+          value: application.offer.course
+        },
+        location: {
+          value: appLocation(application.location) if application.location.name else application.offer.location,
+          value: data['confirm-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location)
+        },
+        studyMode: {
+          value: "Full time"
+        },
+        accreditedBody: {
+          value: application.offer.accreditedBody
+        },
+        conditions: {
+          items: conditions
+        }
+      })}}
+
+
+
       {{ govukButton({
         text: "Continue",
         href: ""

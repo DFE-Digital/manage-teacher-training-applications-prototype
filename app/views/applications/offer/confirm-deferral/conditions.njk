@@ -1,4 +1,129 @@
-{% set backLinkDestination = "/applications/" + application.id + "/offer/reconfirm/check" %}
-{% set cancelLinkDestination = backLinkDestination %}
+{% extends "_layout.njk" %}
 
-{% include "_includes/offer/reconfirm/conditions.njk" %}
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Conditions of offer" %}
+
+{% block pageNavigation %}
+  {% if referrer == 'check' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/reconfirm/check'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/reconfirm'
+    }) }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% if data['confirm-offer']['submitted-conditions-page'] == 'true' %}
+        {% set fitnessChecked = checked(data['confirm-offer']['standard-conditions'], "Fitness to teach check") %}
+        {% set dbsChecked = checked(data['confirm-offer']['standard-conditions'], "Disclosure and barring service check") %}
+      {% else %}
+        {% set fitnessChecked = checked(standardConditions,"Fitness to teach check") %}
+        {% set dbsChecked = checked(standardConditions,"Disclosure and barring service check") %}
+      {% endif %}
+
+      <form method="post">
+        <input type="hidden" name="[confirm-offer][submitted-conditions-page]" value="true">
+
+        {{ govukCheckboxes({
+          idPrefix: "[confirm-offer][standard-conditions]",
+          name: "[confirm-offer][standard-conditions]",
+          fieldset: {
+            legend: {
+              text: "Standard conditions",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "Fitness to teach check",
+            text: "Fitness to teach check",
+            checked: fitnessChecked
+          }, {
+            value: "Disclosure and barring service check",
+            text: "Disclosure and barring service check",
+            hint: {
+              text: "We’ll email the candidate to tell them that they’ll need to provide ID"
+            },
+            checked: dbsChecked
+          }]
+        }) }}
+
+        <div class="app-add-another">
+
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1 app-add-another__heading">Further conditions</h2>
+          <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
+
+          {% if conditions.length %}
+            {% for condition in conditions %}
+
+              <div class="app-add-another__item">
+                {{ govukTextarea({
+                  id: "[confirm-offer][conditions]["+loop.index0+"]",
+                  name: "[confirm-offer][conditions]["+loop.index0+"]",
+                  rows: 3,
+                  label: {
+                    text: "Condition " + loop.index,
+                    classes: "govuk-label--s"
+                  },
+                  value: condition,
+                  attributes: {
+                    'data-name': '[confirm-offer][conditions][%index%]',
+                    'data-id': '[confirm-offer][conditions][%index%]',
+                    'data-label': 'Condition %index%'
+                  }
+                }) }}
+                <button type="button" class="govuk-button govuk-button--secondary app-add-another__remove-button">Remove</button>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="app-add-another__item govuk-!-display-none">
+              {{ govukTextarea({
+                id: "[confirm-offer][conditions][0]",
+                name: "[confirm-offer][conditions][0]",
+                rows: 3,
+                label: {
+                  text: "Condition " + 1,
+                  classes: "govuk-label--s"
+                },
+                attributes: {
+                  'data-name': '[confirm-offer][conditions][%index%]',
+                  'data-id': '[confirm-offer][conditions][%index%]',
+                  'data-label': 'Condition %index%'
+                }
+              }) }}
+            </div>
+          {% endif %}
+
+          <div class="app-button-action">
+            {{ govukButton({
+              text: 'Add another condition',
+              classes: 'govuk-button--secondary app-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}

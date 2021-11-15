@@ -13,31 +13,52 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
+        <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
         {{title}}
       {% endset %}
       <form method="post">
 
-        {{ govukRadios({
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          idPrefix: "trainingprovider",
-          name: "trainingprovider",
-          items: [{
-            value: data.user.organisations[0].name,
-            text: data.user.organisations[0].name,
-            checked: checked(data.trainingprovider, data.user.organisations[0].name)
-          }, {
-            value: data.user.organisations[1].name,
-            text: data.user.organisations[1].name,
-            checked: checked(data.trainingprovider, data.user.organisations[1].name)
-          }]
-        }) }}
+        <input type="hidden" name="[confirm-offer][submitted-provider-page]" value="true">
+
+        {% if data['confirm-offer']['submitted-provider-page'] == 'true' %}
+
+          {{ govukRadios({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [{
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name
+            }, {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }]
+          } | decorateAttributes(data, 'data["confirm-offer"]["provider"]')
+          ) }}
+        {% else %}
+          {{ govukRadios({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            name: '[confirm-offer][provider]',
+            items: [{
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name
+            }, {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }]
+          } | decorateAttributes(application, 'application.offer.provider')
+          ) }}
+        {% endif %}
 
         {{ govukButton({
           text: "Continue"
