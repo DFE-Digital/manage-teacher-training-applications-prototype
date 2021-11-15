@@ -16,7 +16,7 @@
 
     <p>This will show deferred offers that need confirming and applications with pending conditions from previous cycle and then the rest.</p>
 
-    {% if checked(data.settings, 'new-cycle') %}
+    {% if checked("settings", 'new-cycle') %}
       {{ govukButton({
         text: "Turn off"
       }) }}
