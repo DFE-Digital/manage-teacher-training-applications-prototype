@@ -28,57 +28,57 @@
       {
         value: 'Received',
         text: 'Received',
-        checked: checked(data.status, "Received") == 'checked'
+        checked: checked("status", "Received") == 'checked'
       },
       {
         value: 'Interviewing',
         text: 'Interviewing',
-        checked: checked(data.status, "Interviewing") == 'checked'
+        checked: checked("status", "Interviewing") == 'checked'
       },
       {
         value: 'Offered',
         text: 'Offered',
-        checked: checked(data.status, "Offered") == 'checked'
+        checked: checked("status", "Offered") == 'checked'
       },
       {
         value: 'Conditions pending',
         text: 'Conditions pending',
-        checked: checked(data.status, "Conditions pending") == 'checked'
+        checked: checked("status", "Conditions pending") == 'checked'
       },
       {
         value: 'Recruited',
         text: 'Recruited',
-        checked: checked(data.status, "Recruited") == 'checked'
+        checked: checked("status", "Recruited") == 'checked'
       },
        {
         value: 'Conditions not met',
         text: 'Conditions not met',
-        checked: checked(data.status, "Conditions not met") == 'checked'
+        checked: checked("status", "Conditions not met") == 'checked'
       },
       {
         value: 'Deferred',
         text: 'Deferred',
-        checked: checked(data.status, "Deferred") == 'checked'
+        checked: checked("status", "Deferred") == 'checked'
       },
       {
         value: 'Declined',
         text: 'Declined',
-        checked: checked(data.status, "Declined") == 'checked'
+        checked: checked("status", "Declined") == 'checked'
       },
       {
         value: 'Rejected',
         text: 'Rejected',
-        checked: checked(data.status, "Rejected") == 'checked'
+        checked: checked("status", "Rejected") == 'checked'
       },
       {
         value: 'Application withdrawn',
         text: 'Application withdrawn',
-        checked: checked(data.status, "Application withdrawn") == 'checked'
+        checked: checked("status", "Application withdrawn") == 'checked'
       },
       {
         value: 'Offer withdrawn',
         text: 'Offer withdrawn',
-        checked: checked(data.status, "Offer withdrawn") == 'checked'
+        checked: checked("status", "Offer withdrawn") == 'checked'
       }
     ]
   }) }}
@@ -100,7 +100,7 @@
 
   {% endif %}
 
-  {% if checked(data.provider, data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
+  {% if checked("provider", data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
     {{ govukCheckboxes({
       name: 'location',
       classes: "govuk-checkboxes--small",
@@ -203,12 +203,12 @@
       {
         value: 'Full time',
         text: 'Full time',
-        checked: checked(data.studyMode, 'Full time') == 'checked'
+        checked: checked("studyMode", 'Full time') == 'checked'
       },
       {
         value: 'Part time',
         text: 'Part time',
-        checked: checked(data.studyMode, 'Part time') == 'checked'
+        checked: checked("studyMode", 'Part time') == 'checked'
       }
     ]
   }) }}

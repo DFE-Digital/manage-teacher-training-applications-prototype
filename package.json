@@ -1,10 +1,10 @@
 {
   "name": "manage-teacher-training-applications-prototype",
   "description": "Prototype for the ‘Manage teacher training applications’ service",
-  "version": "9.0.0",
+  "version": "11.0.0",
   "private": true,
   "engines": {
-    "node": ">=10.0.0 <15.0.0"
+    "node": ">=12.0.0 <17.0.0"
   },
   "scripts": {
     "generate-data": "node ./scripts/generate-organisations.js && node ./scripts/generate-users.js && node ./scripts/generate-locations.js && node ./scripts/generate-courses.js && node ./scripts/generate-applications.js ",
@@ -17,8 +17,8 @@
     "generate-data-2-skeleton": "node ./scripts/applications/generate.js --skeleton --no-final-output"
   },
   "dependencies": {
-    "acorn": "^8.0.1",
-    "ansi-colors": "^4.0.0",
+    "acorn": "^8.5.0",
+    "ansi-colors": "^4.1.1",
     "archiver-promise": "^1.0.0",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
@@ -42,6 +42,7 @@
     "gulp-nodemon": "^2.5.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
+    "inquirer": "^8.2.0",
     "keypather": "^3.1.0",
     "luxon": "^2.0.1",
     "marked": "^4.0.0",
@@ -50,7 +51,6 @@
     "nunjucks": "^3.2.2",
     "pluralize": "^8.0.0",
     "portscanner": "^2.1.1",
-    "prompt": "^1.1.0",
     "require-dir": "^1.0.0",
     "sass": "~1.32.13",
     "sync-request": "^6.1.0",
@@ -64,8 +64,12 @@
     ]
   },
   "devDependencies": {
-    "jest": "^27.0.4",
+    "glob": "^7.1.4",
+    "jest": "^27.3.1",
     "standard": "^16.0.0",
-    "supertest": "^6.1.1"
+    "supertest": "^6.1.6"
+  },
+  "jest": {
+    "testRunner": "jest-jasmine2"
   }
 }

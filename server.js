@@ -81,7 +81,7 @@ app.set('view engine', 'njk')
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
-// Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
+// Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // Support for parsing data in POSTs
@@ -163,6 +163,7 @@ app.get('/robots.txt', function (req, res) {
 
 // Load routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
+  console.log(routes.bind)
   console.log('Warning: the use of bind in routes is deprecated - please check the Prototype Kit documentation for writing routes.')
   routes.bind(app)
 } else {

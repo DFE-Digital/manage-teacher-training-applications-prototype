@@ -22,14 +22,14 @@
   items: [{
     value: "Quality of writing",
     html: "Quality of writing",
-    checked: checked(data['rejection'][category + '-reasons'], "Quality of writing"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Quality of writing"),
     conditional: {
       html: qualityOfWritingHtml
     }
   }, {
       value: "Other",
       text: "Other",
-      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      checked: checked("['rejection']['" + category + "-reasons']", "Other"),
       conditional: {
         html: otherHtml
       }

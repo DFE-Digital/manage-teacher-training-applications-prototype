@@ -60,7 +60,7 @@
                 Manage users
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if checked(data.editpermissions.permissions, 'manageUsers') == 'checked' %}
+                {% if checked("editpermissions.permissions", 'manageUsers') == 'checked' %}
                   Yes
                 {% else %}
                   No
@@ -77,7 +77,7 @@
                 Manage organisation permissions
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if checked(data.editpermissions.permissions, 'manageOrganisation') == 'checked' %}
+                {% if checked("editpermissions.permissions", 'manageOrganisation') == 'checked' %}
                   Yes
                 {% else %}
                   No
@@ -94,7 +94,7 @@
                 Manage interviews
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if checked(data.editpermissions.permissions, 'setupInterviews') == 'checked' %}
+                {% if checked("editpermissions.permissions", 'setupInterviews') == 'checked' %}
                   Yes
                 {% else %}
                   No
@@ -111,7 +111,7 @@
                 Make offers and reject applications
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if checked(data.editpermissions.permissions, 'makeDecisions') == 'checked' %}
+                {% if checked("editpermissions.permissions", 'makeDecisions') == 'checked' %}
                   Yes
                 {% else %}
                   No
@@ -128,7 +128,7 @@
                 View criminal record and professional misconduct information
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if checked(data.editpermissions.permissions, 'viewSafeguardingInformation') == 'checked' %}
+                {% if checked("editpermissions.permissions", 'viewSafeguardingInformation') == 'checked' %}
                   Yes
                 {% else %}
                   No
@@ -145,7 +145,7 @@
                 View sex, disability and ethnicity information
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if checked(data.editpermissions.permissions, 'viewDiversityInformation') == 'checked' %}
+                {% if checked("editpermissions.permissions", 'viewDiversityInformation') == 'checked' %}
                   Yes
                 {% else %}
                   No

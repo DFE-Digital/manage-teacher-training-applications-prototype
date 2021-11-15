@@ -32,8 +32,8 @@
       <form method="post">
 
         {{ govukRadios({
-          idPrefix: "blah",
-          name: "blah",
+          idPrefix: "notification1",
+          name: "notification1",
           fieldset: {
             legend: {
               text: "Application received",
@@ -45,18 +45,19 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification1", "On") == "checked" or not data.notification1
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification1", "Off") == "checked"
             }
           ]
         }) }}
 
         {{ govukRadios({
-          idPrefix: "blah6",
-          name: "blah6",
+          idPrefix: "notification2",
+          name: "notification2",
           fieldset: {
             legend: {
               text: "Application received from another organisation",
@@ -68,18 +69,19 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification2", "On") == "checked" or not data.notification2
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification2", "Off") == "checked"
             }
           ]
         }) }}
 
         {{ govukRadios({
-          idPrefix: "blah3",
-          name: "blah3",
+          idPrefix: "notification3",
+          name: "notification3",
           fieldset: {
             legend: {
               text: "Application automatically rejected",
@@ -91,18 +93,19 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification3", "On") == "checked" or not data.notification3
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification3", "Off") == "checked"
             }
           ]
         }) }}
 
         {{ govukRadios({
-          idPrefix: "blah2",
-          name: "blah2",
+          idPrefix: "notification4",
+          name: "notification4",
           fieldset: {
             legend: {
               text: "Application withdrawn by candidate",
@@ -114,11 +117,12 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification4", "On") == "checked" or not data.notification4
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification4", "Off") == "checked"
             }
           ]
         }) }}
@@ -126,8 +130,8 @@
 
 
         {{ govukRadios({
-          idPrefix: "blah7",
-          name: "blah7",
+          idPrefix: "notification5",
+          name: "notification5",
           fieldset: {
             legend: {
               text: "Application transferred to another organisation",
@@ -139,18 +143,19 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification5", "On") == "checked" or not data.notification5
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification5", "Off") == "checked"
             }
           ]
         }) }}
 
         {{ govukRadios({
-          idPrefix: "blah4",
-          name: "blah4",
+          idPrefix: "notification6",
+          name: "notification6",
           fieldset: {
             legend: {
               text: "Offer accepted",
@@ -162,18 +167,19 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification6", "On") == "checked" or not data.notification6
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification6", "Off") == "checked"
             }
           ]
         }) }}
 
         {{ govukRadios({
-          idPrefix: "blah5",
-          name: "blah5",
+          idPrefix: "notification7",
+          name: "notification7",
           fieldset: {
             legend: {
               text: "Offer declined",
@@ -185,11 +191,12 @@
             {
               value: "On",
               text: "On",
-              checked: checked
+              checked: checked("notification7", "On") == "checked" or not data.notification7
             },
             {
               value: "Off",
-              text: "Off"
+              text: "Off",
+              checked: checked("notification7", "Off") == "checked"
             }
           ]
         }) }}
@@ -208,32 +215,32 @@
             {
               value: "Application submitted",
               text: "Application submitted",
-              checked: checked(data.emailsettings, 'Application submitted')
+              checked: checked("emailsettings", 'Application submitted')
             },
             {
               value: "Application withdrawn",
               text: "Application withdrawn",
-              checked: checked(data.emailsettings, 'Application withdrawn')
+              checked: checked("emailsettings", 'Application withdrawn')
             },
             {
               value: "Application automatically rejected",
               text: "Application automatically rejected",
-              checked: checked(data.emailsettings, 'Application automatically rejected')
+              checked: checked("emailsettings", 'Application automatically rejected')
             },
             {
               value: "Offer accepted",
               text: "Offer accepted",
-              checked: checked(data.emailsettings, 'Offer accepted')
+              checked: checked("emailsettings", 'Offer accepted')
             },
             {
               value: "Offer declined automatically",
               text: "Offer declined automatically",
-              checked: checked(data.emailsettings, 'Offer declined automatically')
+              checked: checked("emailsettings", 'Offer declined automatically')
             },
             {
               value: "Offer declined",
               text: "Offer declined",
-              checked: checked(data.emailsettings, 'Offer declined')
+              checked: checked("emailsettings", 'Offer declined')
             }
           ]
         }) }} #}
