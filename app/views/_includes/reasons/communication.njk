@@ -22,21 +22,21 @@
   items: [{
     value: "Did not reply to messages",
     html: "Did not reply to messages",
-    checked: checked(data['rejection'][category + '-reasons'], "Did not reply to messages"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Did not reply to messages"),
     conditional: {
       html: didNotReplyToMessagesHtml
     }
   }, {
     value: "Did not attend interview",
     text: "Did not attend interview",
-    checked: checked(data['rejection'][category + '-reasons'], "Did not attend interview"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Did not attend interview"),
     conditional: {
       html: didNotAttendInterviewHtml
     }
   }, {
       value: "Other",
       text: "Other",
-      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      checked: checked("['rejection']['" + category + "-reasons']", "Other"),
       conditional: {
         html: otherHtml
       }
