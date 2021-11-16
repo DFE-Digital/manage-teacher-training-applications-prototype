@@ -311,47 +311,6 @@ filters.falsify = (input) => {
   }
 
   /* ------------------------------------------------------------------
-  utility function to get the statistics option label
-  example: {{ "cycle" | getStatisticsOptionLabel }}
-  outputs: "Year received"
-  ------------------------------------------------------------------ */
-  filters.getStatisticsOptionLabel = (option) => {
-    let label = option
-    switch (option) {
-      case 'cycle':
-        label = 'Year received'
-        break
-      case 'status':
-        label = 'Status'
-        break
-      case 'subject':
-        label = 'Subject'
-        break
-      case 'studyMode':
-        label = 'Full time or part time'
-        break
-      case 'fundingType':
-        label = 'Fee paying or salaried'
-        break
-      case 'subjectLevel':
-        label = 'Primary or secondary'
-        break
-      case 'location':
-      case 'trainingLocation':
-        label = 'Location'
-        break
-      case 'provider':
-      case 'trainingProvider':
-        label = 'Training provider'
-        break
-      case 'accreditedBody':
-        label = 'Accredited body'
-        break
-    }
-    return label
-  }
-
-  /* ------------------------------------------------------------------
   utility function to get the assigned users list
   example: {{ assignedUsers | getAssignedUsers(userId, organisationId) }}
   ------------------------------------------------------------------ */
