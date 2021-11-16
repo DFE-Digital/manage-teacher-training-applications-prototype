@@ -4,9 +4,6 @@ faker.locale = 'en_GB'
 const weighted = require('weighted')
 
 module.exports = (englishGcseQualification) => {
-
-  // console.log(englishGcseQualification);
-
   const type = faker.helpers.randomize([
     'IELTS',
     'TOEFL',
@@ -42,12 +39,6 @@ module.exports = (englishGcseQualification) => {
     reference = false
   }
 
-  // const hasQualification = faker.helpers.randomize([
-  //   'Yes',
-  //   'No', // No, I have not done an English as a foreign language assessment
-  //   'Not needed' // No, English is not a foreign language to me
-  // ])
-
   const hasQualificationOptions = {
     yes: 'Yes',
     no: 'No',
@@ -75,31 +66,6 @@ module.exports = (englishGcseQualification) => {
 
   let data
 
-  // switch (hasQualification) {
-  //   case 'Yes':
-  //     data = {
-  //       hasQualification,
-  //       status: 'Candidate has an English as a foreign language qualification',
-  //       type,
-  //       grade,
-  //       gradeLabel,
-  //       reference,
-  //       referenceLabel,
-  //       year: faker.date.between('2010', '2020')
-  //     }
-  //   case 'No':
-  //     data = {
-  //       hasQualification,
-  //       status: 'Candidate does not have an English as a foreign language qualification yet',
-  //       missing: 'I have booked to take an IELTS test next month.'
-  //     }
-  //   case 'Not needed':
-  //     data = {
-  //       hasQualification,
-  //       status: 'English is not a foreign language to the candidate'
-  //     }
-  // }
-
   if (hasQualification === 'Yes') {
     data = {
       hasQualification,
@@ -123,8 +89,6 @@ module.exports = (englishGcseQualification) => {
       status: 'English is not a foreign language to the candidate'
     }
   }
-
-  console.log(data);
 
   return data
 }

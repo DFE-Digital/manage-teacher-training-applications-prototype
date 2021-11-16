@@ -10,14 +10,8 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   // ---------------------------------------------------------------------------
   // Qualification year
   // ---------------------------------------------------------------------------
-  // TODO: base this on the candidate's date of birth
-  // let year = faker.date.between('1970', '2016')
-  // year = year.getFullYear()
-
   let year = DateTime.fromISO(dateOfBirth).toObject().year
   year += 16 // add 16 years to DOB for GCSE age
-
-  // console.log(year);
 
   // ---------------------------------------------------------------------------
   // Qualification type
