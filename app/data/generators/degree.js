@@ -1,15 +1,20 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
 
+const { DateTime } = require('luxon')
 const weighted = require('weighted')
 const degreeData = require('../degree')
 
-module.exports = (isInternationCandidate) => {
+module.exports = (isInternationCandidate, dateOfBirth) => {
+
+  let year = DateTime.fromISO(dateOfBirth).toObject().year
+  year += 18
+
   const item = () => {
     const subject = faker.helpers.randomize(degreeData().subjects)
     const predicted = faker.datatype.boolean()
-    const startDate = '2017'
-    const endDate = '2020'
+    const startYear = year
+    const graduationYear = startYear + faker.datatype.number({ 'min': 3, 'max': 4 })
 
     if (isInternationCandidate) {
       return {
@@ -23,8 +28,8 @@ module.exports = (isInternationCandidate) => {
           reference: '4000228363',
           comparable: 'Bachelor (Honours) degree'
         },
-        startDate,
-        endDate
+        startYear,
+        graduationYear
       }
     } else {
       const type = faker.helpers.randomize(degreeData().types.all)
@@ -44,12 +49,12 @@ module.exports = (isInternationCandidate) => {
       return {
         type: type.value + (grade.includes('honours') ? ' (Hons)' : ''),
         subject,
-        org: faker.helpers.randomize(degreeData().orgs),
+        institution: faker.helpers.randomize(degreeData().orgs),
         country: 'United Kingdom',
         grade,
         predicted,
-        startDate,
-        endDate
+        startYear,
+        graduationYear
       }
     }
   }

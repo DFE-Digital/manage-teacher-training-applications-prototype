@@ -144,6 +144,7 @@ const generateFakeApplication = (params = {}) => {
   }
 
   const gcse = generateGcse(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth, subjectLevel)
+  const degree = generateDegree(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth)
 
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
@@ -172,7 +173,7 @@ const generateFakeApplication = (params = {}) => {
     interviewNeeds: params.interviewNeeds || generateInterviewNeeds(),
     workHistory: params.workHistory || generateWorkHistory(),
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
-    degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
+    degree: params.degree || degree,
     gcse: params.gcse || gcse,
     englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(gcse.english),
     otherQualifications,
@@ -242,12 +243,12 @@ const generateFakeApplications = () => {
       {
         type: 'BA',
         subject: 'History',
-        org: 'Aston University',
+        institution: 'Aston University',
         country: 'United Kingdom',
         grade: 'Distinction',
         predicted: true,
-        startDate: '2017',
-        endDate: '2020'
+        startYear: '2017',
+        graduationYear: '2020'
       }
     ],
     gcse: {
@@ -992,11 +993,11 @@ const generateFakeApplications = () => {
     degree: [{
       type: 'Licenciatura',
       subject: 'History of Contemporary Art and Visual Culture',
-      org: 'Complutense University of Madrid',
+      institution: 'Complutense University of Madrid',
       country: 'Spain',
       grade: 'Pass',
-      startDate: '2004',
-      endDate: '2009'
+      startYear: '2004',
+      graduationYear: '2009'
     }],
     gcse: {
       maths: {
@@ -1112,11 +1113,11 @@ const generateFakeApplications = () => {
     degree: [{
       type: 'Degree',
       subject: 'Applied sociology',
-      org: 'University of Adelaide',
+      institution: 'University of Adelaide',
       country: 'Australia',
       grade: '81% (Distinction)',
-      startDate: '2014',
-      endDate: '2017'
+      startYear: '2014',
+      graduationYear: '2017'
     }],
     gcse: {
       maths: {
@@ -1180,11 +1181,11 @@ const generateFakeApplications = () => {
     degree: [{
       type: 'BCA',
       subject: 'System Analysis & Design',
-      org: 'Panjab University',
+      institution: 'Panjab University',
       country: 'India',
       grade: 'A',
-      startDate: '2012',
-      endDate: '2016'
+      startYear: '2012',
+      graduationYear: '2016'
     }],
     gcse: {
       maths: {
