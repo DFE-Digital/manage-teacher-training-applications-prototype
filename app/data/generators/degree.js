@@ -7,31 +7,50 @@ const degreeData = require('../degree')
 
 module.exports = (isInternationCandidate, dateOfBirth) => {
 
+  // Start year - 18 years after date of birth
   let year = DateTime.fromISO(dateOfBirth).toObject().year
   year += 18
 
-  const item = () => {
-    const subject = faker.helpers.randomize(degreeData().subjects)
-    const predicted = faker.datatype.boolean()
-    const startYear = year
-    const graduationYear = startYear + faker.datatype.number({ 'min': 3, 'max': 4 })
+  const nowYear = DateTime.now().year
+
+  // 80% of candidates have 1 degree
+  const count = weighted.select({
+    1: 0.8,
+    2: 0.2
+  })
+
+  const degrees = []
+
+  // TODO: start year for second degree must be after first
+  for (let i = 0; i < count; i++) {
+    let degree = {}
+
+    degree.subject = faker.helpers.randomize(degreeData().subjects)
+
+    if (i > 0) {
+      degree.startYear = degrees[i-1].startYear + faker.datatype.number({ 'min': 1, 'max': 10 })
+    } else {
+      degree.startYear = year
+    }
+
+    degree.graduationYear = degree.startYear + faker.datatype.number({ 'min': 3, 'max': 4 })
+
+    // If graduationYear after this year, set predicted true
+    degree.predicted = (degree.graduationYear > nowYear) ? true : false
 
     if (isInternationCandidate) {
-      return {
-        type: 'Diplôme',
-        subject,
-        org: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        predicted,
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        },
-        startYear,
-        graduationYear
-      }
+
+      degree.type = 'Diplôme'
+      degree.institution = 'University of Paris'
+      degree.country = 'France'
+      degree.grade = 'Pass'
+
+      degree.naric = {}
+      degree.naric.reference = '4000228363'
+      degree.naric.comparable = 'Bachelor (Honours) degree'
+
     } else {
+
       const type = faker.helpers.randomize(degreeData().types.all)
       const level = type.level
       const grade = faker.helpers.randomize([
@@ -46,27 +65,13 @@ module.exports = (isInternationCandidate, dateOfBirth) => {
         ...(level !== 6) ? ['Unknown'] : []
       ])
 
-      return {
-        type: type.value + (grade.includes('honours') ? ' (Hons)' : ''),
-        subject,
-        institution: faker.helpers.randomize(degreeData().orgs),
-        country: 'United Kingdom',
-        grade,
-        predicted,
-        startYear,
-        graduationYear
-      }
+      degree.type = type.value + (grade.includes('honours') ? ' (Hons)' : '')
+      degree.institution = faker.helpers.randomize(degreeData().orgs)
+      degree.country = 'United Kingdom'
     }
+
+    degrees.push(degree)
   }
 
-  const count = weighted.select({
-    1: 0.8,
-    2: 0.2
-  })
-  const items = []
-  for (var i = 0; i < count; i++) {
-    items.push(item(faker))
-  }
-
-  return items
+  return degrees
 }
