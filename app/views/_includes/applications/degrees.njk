@@ -1,11 +1,16 @@
 {% set degrees = application.degree %}
 
 {% macro _degree(params) %}
+
+<!-- <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
+  Degree: {{ params.type }} {{ params.subject }}
+</h3> -->
+
 <dl class="govuk-summary-list">
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Qualification
+      Degree type
     </dt>
     <dd class="govuk-summary-list__value">
       {{ params.type }}
@@ -23,19 +28,19 @@
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Grade
+      Institution
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if params.predicted %}Predicted: {% endif %}{{ params.grade }}
+      {{ params.org }}
     </dd>
   </div>
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Institution
+      {{ 'Predicted grade' if params.predicted else 'Grade' }}
     </dt>
     <dd class="govuk-summary-list__value">
-      {{ params.org }}
+      {{ params.grade }}
     </dd>
   </div>
 
@@ -52,7 +57,7 @@
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Start date
+      Start year
     </dt>
     <dd class="govuk-summary-list__value">
       {{ params.startDate }}
@@ -61,7 +66,7 @@
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      End date
+      Graduation year
     </dt>
     <dd class="govuk-summary-list__value">
       {{ params.endDate }}
@@ -74,7 +79,7 @@
         Comparability
       </dt>
       <dd class="govuk-summary-list__value">
-        UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
+        UK ENIC or NARIC statement #{{ params.naric.reference }} says this is comparable to a {{ params.naric.comparable }}.
       </dd>
     </div>
   {% endif %}
@@ -82,14 +87,21 @@
 </dl>
 {% endmacro %}
 
-<h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
+<!-- <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
   Degree{{ 's' if degrees.length > 1 }}
-</h3>
+</h3> -->
 
 {% for item in degrees %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    {% if degrees.length > 1 %}
+      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
+        {{ loop.revindex | ordinal | capitalize }} degree
+        <!-- {{ item.type }} {{ item.subject }} -->
+      </h3>
+    {% endif %}
 
     {{ _degree(item) }}
 

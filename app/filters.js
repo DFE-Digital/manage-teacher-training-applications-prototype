@@ -179,6 +179,17 @@ module.exports = (env) => {
     else return numbers[number -1]
   }
 
+  filters.ordinal = (number) => {
+    const ordinals = [ 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth' ];
+    let ordinal = number
+
+    if (number >= 1 && number <= 9) {
+      ordinal = ordinals[number-1]
+    }
+
+    return ordinal
+  }
+
   // Pluralise content
 
   // Pass in string and count
