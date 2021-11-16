@@ -4,8 +4,6 @@ const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
 
-
-
   router.get('/applications/:applicationId/offer/confirm-deferred-offer/check', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
