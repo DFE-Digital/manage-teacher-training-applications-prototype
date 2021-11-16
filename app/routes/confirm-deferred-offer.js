@@ -47,10 +47,10 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    application.offer.provider = req.session.data['confirm-deferred-offer'].provider || application.offer.provider
-    application.offer.course = req.session.data['confirm-deferred-offer'].course || application.offer.course
-    application.offer.location = req.session.data['confirm-deferred-offer'].location || application.offer.location
-    application.offer.studyMode = req.session.data['confirm-deferred-offer'].studyMode || application.offer.studyMode
+    application.offer.provider = req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer'].provider || application.offer.provider
+    application.offer.course = req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer'].course || application.offer.course
+    application.offer.location = req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer'].location || application.offer.location
+    application.offer.studyMode = req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer'].studyMode || application.offer.studyMode
 
     // if it's been submitted then save conditions from data
     if(req.session.data['confirm-deferred-offer'] && req.session.data['confirm-deferred-offer']['submitted-conditions-page'] == 'true') {
@@ -95,7 +95,13 @@ module.exports = router => {
     })
 
     application.offer.madeDate = new Date().toISOString()
-    application.status = 'Conditions pending' // work this out
+
+    if(ApplicationHelper.hasMetAllConditions(application.offer)) {
+      application.status = 'Recruited'
+    } else {
+      application.status = 'Conditions pending'
+    }
+
     application.cycle = CycleHelper.CURRENT_CYCLE.code
 
     delete req.session.data['confirm-deferred-offer']
