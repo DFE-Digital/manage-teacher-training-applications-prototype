@@ -36,14 +36,14 @@
           items: [{
             value: "Fitness to teach check",
             text: "Fitness to teach check",
-            checked: checked(data['new-offer']['standard-conditions'], "Fitness to teach check")
+            checked: checked("['new-offer']['standard-conditions']", "Fitness to teach check")
           }, {
             value: "Disclosure and barring service check",
             text: "Disclosure and barring service check",
             hint: {
               text: "We’ll email the candidate to tell them that they’ll need to provide ID"
             },
-            checked: checked(data['new-offer']['standard-conditions'], "Disclosure and barring service check")
+            checked: checked("['new-offer']['standard-conditions']", "Disclosure and barring service check")
           }]
         }) }}
 

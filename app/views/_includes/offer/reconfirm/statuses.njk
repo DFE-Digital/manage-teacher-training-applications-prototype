@@ -19,7 +19,7 @@
 
       <form method="post">
         <div class="app-box govuk-!-margin-bottom-7">
-          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked(data.settings, "hasCombinedConditions") %}app-condition-list--combined {% endif %}">
+          <dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0 {% if checked('settings', 'hasCombinedConditions') %}app-condition-list--combined {% endif %}">
             {% for condition in conditions %}
               <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
                 <dt class="govuk-summary-list__key">
@@ -40,7 +40,7 @@
           </dl>
         </div>
 
-        {% if checked(data.settings, "hasCombinedConditions") %}
+        {% if checked("settings", "hasCombinedConditions") %}
           {% set allConditionsMet = true %}
           {% for condition in conditions %}
             {% if condition.status == 'Pending' %}

@@ -23,11 +23,15 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if data['edit-offer']['submitted-conditions-page'] == 'true' %}
-        {% set fitnessChecked = checked(data['edit-offer']['standard-conditions'], "Fitness to teach check") %}
-        {% set dbsChecked = checked(data['edit-offer']['standard-conditions'], "Disclosure and barring service check") %}
+        {% set fitnessChecked = checked("['edit-offer']['standard-conditions']", "Fitness to teach check") %}
+        {% set dbsChecked = checked("['edit-offer']['standard-conditions']", "Disclosure and barring service check") %}
       {% else %}
-        {% set fitnessChecked = checked(standardConditions,"Fitness to teach check") %}
-        {% set dbsChecked = checked(standardConditions,"Disclosure and barring service check") %}
+        {% if "Fitness to teach check" in standardConditions %}
+          {% set fitnessChecked = true %}
+        {% endif%}
+        {% if "Disclosure and barring service check" in standardConditions %}
+          {% set dbsChecked = true %}
+        {% endif %}
       {% endif %}
 
       <form method="post">

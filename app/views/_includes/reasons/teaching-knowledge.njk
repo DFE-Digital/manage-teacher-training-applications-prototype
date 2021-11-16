@@ -31,42 +31,42 @@
   items: [{
     value: "Understanding of subject",
     html: "Understanding of subject",
-    checked: checked(data['rejection'][category + '-reasons'], "Understanding of subject"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Understanding of subject"),
     conditional: {
       html: subjectHtml
     }
   }, {
     value: "Understanding of safeguarding",
     text: "Understanding of safeguarding",
-    checked: checked(data['rejection'][category + '-reasons'], "Understanding of safeguarding"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Understanding of safeguarding"),
     conditional: {
       html: safeguardingHtml
     }
   }, {
     value: "Understanding of teaching methods",
     text: "Understanding of teaching methods",
-    checked: checked(data['rejection'][category + '-reasons'], "Understanding of teaching methods"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Understanding of teaching methods"),
     conditional: {
       html: teachingMethodHtml
     }
   }, {
     value: "Understanding of teaching role",
     text: "Understanding of teaching role",
-    checked: checked(data['rejection'][category + '-reasons'], "Understanding of teaching role"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Understanding of teaching role"),
     conditional: {
       html: teachingRoleHtml
     }
   }, {
     value: "Presentation skills",
     text: "Presentation skills",
-    checked: checked(data['rejection'][category + '-reasons'], "Presentation skills"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Presentation skills"),
     conditional: {
       html: presentationSkillsHtml
     }
   }, {
       value: "Other",
       text: "Other",
-      checked: checked(data['rejection'][category + '-reasons'], "Other"),
+      checked: checked("['rejection']['" + category + "-reasons']", "Other"),
       conditional: {
         html: otherHtml
       }
