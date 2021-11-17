@@ -71,7 +71,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What type of English qualification do you have?
+              What type of {{ item.subject if item.subject == 'English' else item.subject | lower }} qualification do you have?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ item.missing.hasQualification }}
@@ -90,7 +90,7 @@
           {% if item.missing.otherReason %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Other evidence of having English skills at the required standard
+                Other evidence of having {{ item.subject if item.subject == 'English' else item.subject | lower }} skills at the required standard
               </dt>
               <dd class="govuk-summary-list__value">
                 {{ item.missing.otherReason }}
