@@ -1,4 +1,3 @@
-
 const QUALIFICATIONS = [{
   value: 'BA Education',
   text: 'BA Education',
