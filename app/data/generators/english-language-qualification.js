@@ -7,8 +7,7 @@ module.exports = (englishGcseQualification) => {
   const type = faker.helpers.randomize([
     'IELTS',
     'TOEFL',
-    'Pearson Test of English (Academic)',
-    'Cambridge IGCSE English as a Second Language'
+    'Other'
   ])
 
   const reason = faker.helpers.randomize([
@@ -36,7 +35,11 @@ module.exports = (englishGcseQualification) => {
   } else {
     grade = 'B'
     gradeLabel = 'Score or grade'
-    reference = false
+    reference = faker.helpers.randomize([
+      'Pearson Test of English (Academic)',
+      'Cambridge IGCSE English as a Second Language'
+    ])
+    referenceLabel = 'Assessment name'
   }
 
   const hasQualificationOptions = {
@@ -69,7 +72,7 @@ module.exports = (englishGcseQualification) => {
   if (hasQualification === 'Yes') {
     data = {
       hasQualification,
-      status: 'Candidate has an English as a foreign language qualification',
+      status: 'Yes',
       type,
       grade,
       gradeLabel,
@@ -80,13 +83,13 @@ module.exports = (englishGcseQualification) => {
   } else if (hasQualification === 'No') {
     data = {
       hasQualification,
-      status: 'Candidate does not have an English as a foreign language qualification yet',
+      status: 'No, I have not done an English as a foreign language assessment',
       reason
     }
   } else {
     data = {
       hasQualification,
-      status: 'English is not a foreign language to the candidate'
+      status: 'No, English is not a foreign language to me'
     }
   }
 

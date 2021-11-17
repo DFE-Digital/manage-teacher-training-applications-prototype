@@ -146,6 +146,11 @@ const generateFakeApplication = (params = {}) => {
   const gcse = generateGcse(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth, subjectLevel)
   const degree = generateDegree(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth)
 
+  let englishLanguageQualification
+  if (!(personalDetails.nationalities.includes('British') || personalDetails.nationalities.includes('Irish'))) {
+    englishLanguageQualification = (params.englishLanguageQualification) ? params.englishLanguageQualification : generateEnglishLanguageQualification(gcse.english)
+  }
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     assignedUsers: params.assignedUsers || assignedUsers,
@@ -175,7 +180,7 @@ const generateFakeApplication = (params = {}) => {
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
     degree: params.degree || degree,
     gcse: params.gcse || gcse,
-    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(gcse.english),
+    englishLanguageQualification,
     otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
     references: params.references || generateReferences(),
@@ -253,6 +258,7 @@ const generateFakeApplications = () => {
     ],
     gcse: {
       maths: {
+        hasQualification: 'Yes',
         type: 'O level',
         subject: 'Maths',
         country: 'United Kingdom',
@@ -264,6 +270,7 @@ const generateFakeApplications = () => {
         year: 1982
       },
       english: {
+        hasQualification: 'Yes',
         type: 'O level',
         subject: 'English',
         country: 'United Kingdom',
@@ -276,6 +283,7 @@ const generateFakeApplications = () => {
         year: 1982
       },
       science: {
+        hasQualification: 'Yes',
         type: 'O level',
         subject: 'Science',
         country: 'United Kingdom',
@@ -290,8 +298,8 @@ const generateFakeApplications = () => {
     },
     otherQualifications: null,
     englishLanguageQualification: {
-      hasQualification: "Not needed",
-      status: "English is not a foreign language to the candidate"
+      hasQualification: 'Not needed',
+      status: 'No, English is not a foreign language to me'
     },
     schoolExperience: [
       {
