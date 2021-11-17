@@ -3,7 +3,7 @@ faker.locale = 'en_GB'
 
 const { DateTime } = require('luxon')
 const weighted = require('weighted')
-const gcseData = require('../gcse')
+const GcseHelper = require('../helpers/gcses')
 
 module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
 
@@ -30,8 +30,8 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   // Grades
   // GCSE grade values changed to numbers after 2017
   // ---------------------------------------------------------------------------
-  const singleGrades = (type === 'GCSE' && year >= 2017) ? gcseData().singleGrades2017 : gcseData().singleGrades
-  const doubleGrades = (type === 'GCSE' && year >= 2017) ? gcseData().doubleGrades2017 : gcseData().doubleGrades
+  const singleGrades = (type === 'GCSE' && year >= 2017) ? GcseHelper.SINGLE_GRADES_2017 : GcseHelper.SINGLE_GRADES
+  const doubleGrades = (type === 'GCSE' && year >= 2017) ? GcseHelper.DOUBLE_GRADES_2017 : GcseHelper.DOUBLE_GRADES
 
   // ---------------------------------------------------------------------------
   // English
