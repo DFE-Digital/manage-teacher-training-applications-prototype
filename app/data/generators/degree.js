@@ -3,7 +3,7 @@ faker.locale = 'en_GB'
 
 const { DateTime } = require('luxon')
 const weighted = require('weighted')
-const degreeData = require('../degree')
+const DegreeHelper = require('../helpers/degrees')
 
 module.exports = (isInternationCandidate, dateOfBirth) => {
 
@@ -24,7 +24,7 @@ module.exports = (isInternationCandidate, dateOfBirth) => {
   for (let i = 0; i < count; i++) {
     let degree = {}
 
-    degree.subject = faker.helpers.randomize(degreeData().subjects)
+    degree.subject = faker.helpers.randomize(DegreeHelper.getSubjects())
 
     // Start year for second degree must be after first
     if (i > 0) {
@@ -52,9 +52,9 @@ module.exports = (isInternationCandidate, dateOfBirth) => {
 
     } else {
 
-      const type = faker.helpers.randomize(degreeData().types.all)
+      const qualification = faker.helpers.randomize(DegreeHelper.getQualifications())
 
-      degree.level = type.level
+      degree.level = qualification.level
 
       degree.grade = faker.helpers.randomize([
         'First-class honours',
@@ -68,9 +68,9 @@ module.exports = (isInternationCandidate, dateOfBirth) => {
         ...(degree.level !== 6) ? ['Unknown'] : []
       ])
 
-      degree.type = type.text + (degree.grade.includes('honours') ? ' (Hons)' : '')
+      degree.type = qualification.text + (degree.grade.includes('honours') ? ' (Hons)' : '')
 
-      degree.institution = faker.helpers.randomize(degreeData().orgs)
+      degree.institution = faker.helpers.randomize(DegreeHelper.getInstitutions())
       degree.country = 'United Kingdom'
     }
 
