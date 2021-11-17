@@ -1,39 +1,61 @@
 {% set item = application.englishLanguageQualification %}
-<h2 class="govuk-heading-m govuk-!-margin-top-5">English as a foreign language</h2>
 
-<div class="govuk-!-margin-bottom-2">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-  <p class="govuk-body">{{ item.status }}.</p>
+  <h2 class="govuk-heading-m govuk-!-margin-top-5">English as a foreign language</h2>
 
-  {% if item.hasQualification == "Yes" %}
-    <div class="govuk-grid">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third">
-          <div class="app-card">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ item.type }}</h3>
-            <dl class="app-qualification">
-              <dt class="app-qualification__key govuk-visually-hidden">Awarded</dt>
-              <dd class="app-qualification__value app-qualification__value--caption">
-                {{ item.year | date("y") }}
-              </dd>
-              <dt class="app-qualification__key">{{ item.gradeLabel }}</dt>
-              <dd class="app-qualification__value">
-                {{ item.grade }}
-              </dd>
-            {% if item.reference %}
-              <dt class="app-qualification__key">{{ item.referenceLabel }}</dt>
-              <dd class="app-qualification__value">
-                {{ item.reference }}
-              </dd>
-            {% endif %}
-            </dl>
-          </div>
+    <p class="govuk-body">{{ item.status }}.</p>
+
+    {% if item.hasQualification == "Yes" %}
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.type }}
+          </dd>
         </div>
-      </div>
-    </div>
-  {% elif item.reason %}
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Reason given</h3>
-    <p class="govuk-body">{{ item.reason }}</p>
-  {% endif %}
 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Year awarded
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.year }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ item.gradeLabel }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.grade }}
+          </dd>
+        </div>
+
+        {% if item.reference %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ item.referenceLabel }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.reference }}
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+
+    {% elif item.reason %}
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Reason given</h3>
+      <p class="govuk-body">{{ item.reason }}</p>
+
+    {% endif %}
+
+  </div>
 </div>

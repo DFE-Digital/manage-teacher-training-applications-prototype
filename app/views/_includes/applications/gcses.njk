@@ -1,110 +1,105 @@
-{% macro _GCSE(params) %}
-
-{% set gradesHtml %}
-  <ul class="govuk-list">
-  {% for item in params.grade %}
-    <li>{{ item.grade }}{% if item.exam %} ({{ item.exam }}){% endif %}</li>
-  {% endfor %}
-  </ul>
-{% endset %}
-
-<h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
-  {{ params.subject }} GCSE or equivalent
-</h3>
-
-<dl class="govuk-summary-list">
-  {% if params.hasQualification == "Yes" %}
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Qualification
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ params.type }}
-      </dd>
-    </div>
-
-    {% if params.country != "United Kingdom" %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Country
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ params.country }}
-        </dd>
-      </div>
-    {% endif %}
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ gradesHtml | safe }}
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Year awarded
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ params.year }}
-      </dd>
-    </div>
-
-    {% if params.naric %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Comparability
-        </dt>
-        <dd class="govuk-summary-list__value">
-          UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
-        </dd>
-      </div>
-    {% endif %}
-
-  {% else %}
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        What type of English qualification do you have?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ params.missing.hasQualification }}
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Are you currently studying for this qualification?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ params.missing.isStudying }}{{ ' - ' + params.missing.studyingDetails if params.missing.studyingDetails.length }}
-      </dd>
-    </div>
-
-    {% if params.missing.otherReason %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Other evidence of having English skills at the required standard
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ params.missing.otherReason }}
-        </dd>
-      </div>
-    {% endif %}
-
-  {% endif %}
-</dl>
-{% endmacro %}
-
 {% for item in application.gcse | toArray %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ _GCSE(item) }}
+      {% set gradesHtml %}
+        <ul class="govuk-list">
+        {% for grade in item.grade %}
+          <li>{{ grade.grade }}{% if grade.exam %} ({{ grade.exam }}){% endif %}</li>
+        {% endfor %}
+        </ul>
+      {% endset %}
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
+        {{ item.subject }} GCSE or equivalent
+      </h3>
+
+      <dl class="govuk-summary-list">
+        {% if item.hasQualification == "Yes" %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Qualification
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.type }}
+            </dd>
+          </div>
+
+          {% if item.country != "United Kingdom" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Country
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ item.country }}
+              </dd>
+            </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Grade
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ gradesHtml | safe }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Year awarded
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.year }}
+            </dd>
+          </div>
+
+          {% if item.naric %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Comparability
+              </dt>
+              <dd class="govuk-summary-list__value">
+                UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
+              </dd>
+            </div>
+          {% endif %}
+
+        {% else %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What type of English qualification do you have?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.missing.hasQualification }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Are you currently studying for this qualification?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.missing.isStudying }}{{ ' - ' + item.missing.studyingDetails if item.missing.studyingDetails.length }}
+            </dd>
+          </div>
+
+          {% if item.missing.otherReason %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Other evidence of having English skills at the required standard
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ item.missing.otherReason }}
+              </dd>
+            </div>
+          {% endif %}
+
+        {% endif %}
+      </dl>
 
     </div>
   </div>
