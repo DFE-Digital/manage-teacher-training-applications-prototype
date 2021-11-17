@@ -3,38 +3,27 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-  <h2 class="govuk-heading-m govuk-!-margin-top-5">English as a foreign language</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-5">English as a foreign language</h2>
 
-    <p class="govuk-body">{{ item.status }}.</p>
+    <dl class="govuk-summary-list">
 
-    {% if item.hasQualification == "Yes" %}
+      {% if item.hasQualification == "Yes" %}
 
-      <dl class="govuk-summary-list">
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ item.type }}
-          </dd>
-        </div>
+      {% if item.type != 'Other' %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Year awarded
+            <!-- What English language assessment did you do? -->
+            Assessment
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ item.year }}
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            {{ item.gradeLabel }}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ item.grade }}
+            {% if item.type == 'IELTS' %}
+              International English Language Testing System (IELTS)
+            {% elif item.type == 'TOEFL' %}
+              Test of English as a Foreign Language (TOEFL)
+            {% else %}
+              Other
+            {% endif %}
           </dd>
         </div>
 
@@ -48,14 +37,78 @@
             </dd>
           </div>
         {% endif %}
-      </dl>
 
-    {% elif item.reason %}
+      {% else %}
 
-      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Reason given</h3>
-      <p class="govuk-body">{{ item.reason }}</p>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Assessment
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Other - {{ item.reference }}
+          </dd>
+        </div>
 
-    {% endif %}
+      {% endif %}
+
+        <!-- {#% if item.reference %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ item.referenceLabel }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.reference }}
+            </dd>
+          </div>
+        {% endif %#} -->
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ item.gradeLabel }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.grade }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <!-- When did you complete the assessment? -->
+            Assessment year
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.year | date('y') }}
+          </dd>
+        </div>
+
+      {% else %}
+
+        <!--
+        TODO: if we replay questions verbatim, move this out of conditional
+        and display for both positive and negative answers
+        -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Have you done an English as a foreign language assessment?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.status }}
+          </dd>
+        </div>
+
+        {% if item.reason %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              If you’re planning on doing an assessment, give details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.reason }}
+            </dd>
+          </div>
+        {% endif %}
+
+      {% endif %}
+    </dl>
 
   </div>
 </div>
