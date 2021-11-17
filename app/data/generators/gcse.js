@@ -136,7 +136,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   // Missing maths GCSE
   const hasMathsQualificationOptions = {
     yes: 'Yes',
-    no: 'I don’t have an maths qualification yet'
+    no: 'I don’t have a maths qualification yet'
   }
 
   const selectedMathsQualification = weighted.select({
