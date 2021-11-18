@@ -9,58 +9,46 @@
 
       {% if item.hasQualification == "Yes" %}
 
-      {% if item.type != 'Other' %}
+        {% if item.type != 'Other' %}
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <!-- What English language assessment did you do? -->
-            Assessment
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if item.type == 'IELTS' %}
-              International English Language Testing System (IELTS)
-            {% elif item.type == 'TOEFL' %}
-              Test of English as a Foreign Language (TOEFL)
-            {% else %}
-              Other
-            {% endif %}
-          </dd>
-        </div>
-
-        {% if item.reference %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              {{ item.referenceLabel }}
+              Assessment
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if item.type == 'IELTS' %}
+                International English Language Testing System (IELTS)
+              {% elif item.type == 'TOEFL' %}
+                Test of English as a Foreign Language (TOEFL)
+              {% else %}
+                Other
+              {% endif %}
+            </dd>
+          </div>
+
+          {% if item.reference %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {{ item.referenceLabel }}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ item.reference }}
+              </dd>
+            </div>
+          {% endif %}
+
+        {% else %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Assessment
             </dt>
             <dd class="govuk-summary-list__value">
               {{ item.reference }}
             </dd>
           </div>
+
         {% endif %}
-
-      {% else %}
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Assessment
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Other - {{ item.reference }}
-          </dd>
-        </div>
-
-      {% endif %}
-
-        <!-- {#% if item.reference %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              {{ item.referenceLabel }}
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ item.reference }}
-            </dd>
-          </div>
-        {% endif %#} -->
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -73,7 +61,6 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            <!-- When did you complete the assessment? -->
             Assessment year
           </dt>
           <dd class="govuk-summary-list__value">
@@ -83,10 +70,6 @@
 
       {% else %}
 
-        <!--
-        TODO: if we replay questions verbatim, move this out of conditional
-        and display for both positive and negative answers
-        -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Have you done an English as a foreign language assessment?

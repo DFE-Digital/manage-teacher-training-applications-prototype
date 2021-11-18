@@ -83,9 +83,20 @@
               Are you currently studying for this qualification?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ item.missing.isStudying }}{{ ' - ' + item.missing.studyingDetails if item.missing.studyingDetails.length }}
+              {{ item.missing.isStudying }}
             </dd>
           </div>
+
+          {% if item.missing.studyingDetails %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of the qualification you’re studying for
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ item.missing.studyingDetails }}
+              </dd>
+            </div>
+          {% endif %}
 
           {% if item.missing.otherReason %}
             <div class="govuk-summary-list__row">

@@ -1,19 +1,17 @@
 {% set degrees = application.degree %}
 
-<!-- <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
-  Degree{{ 's' if degrees.length > 1 }}
-</h3> -->
-
 {% for item in degrees %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% if degrees.length > 1 %}
-      <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
+    <h3 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2">
+      {% if degrees.length > 1 %}
         {{ loop.index | ordinal | capitalize }} degree
-      </h3>
-    {% endif %}
+      {% else %}
+        Degree
+      {% endif %}
+    </h3>
 
     <dl class="govuk-summary-list">
 
@@ -31,7 +29,7 @@
           Subject
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ item.subject | title }}
+          {{ item.subject }}
         </dd>
       </div>
 
