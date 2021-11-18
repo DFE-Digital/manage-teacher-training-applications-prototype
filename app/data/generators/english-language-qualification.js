@@ -1,9 +1,21 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
 
+const { DateTime } = require('luxon')
 const weighted = require('weighted')
 
-module.exports = (englishGcseQualification) => {
+module.exports = (englishGcseQualification, dateOfBirth) => {
+
+  const currentYear = DateTime.now().year
+
+  // To create qaulification year add n years after date of birth
+  let year = DateTime.fromISO(dateOfBirth).toObject().year
+  year += faker.helpers.randomize([18,19,20,21,22])
+
+  if (year > currentYear) {
+    year = currentYear
+  }
+
   const type = faker.helpers.randomize([
     'IELTS',
     'TOEFL',
@@ -78,7 +90,7 @@ module.exports = (englishGcseQualification) => {
       gradeLabel,
       reference,
       referenceLabel,
-      year: faker.date.between('2010', '2020')
+      year
     }
   } else if (hasQualification === 'No') {
     data = {

@@ -147,8 +147,8 @@ const generateFakeApplication = (params = {}) => {
   const degree = generateDegree(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth)
 
   let englishLanguageQualification
-  if (!(personalDetails.nationalities.includes('British') || personalDetails.nationalities.includes('Irish'))) {
-    englishLanguageQualification = (params.englishLanguageQualification) ? params.englishLanguageQualification : generateEnglishLanguageQualification(gcse.english)
+  if (personalDetails.isInternationalCandidate) {
+    englishLanguageQualification = (params.englishLanguageQualification) ? params.englishLanguageQualification : generateEnglishLanguageQualification(gcse.english, personalDetails.dateOfBirth)
   }
 
   return {
