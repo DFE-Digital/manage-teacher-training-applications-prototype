@@ -179,7 +179,15 @@ module.exports = (env) => {
     else return numbers[number -1]
   }
 
+  // Ordinal numbers
+  // Spell out first to ninth. After that use 10th, 11th and so on.
+  // In tables, use numerals throughout.
+  // https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style#ordinal-numbers
   filters.ordinal = (number) => {
+    if (!number) {
+      return null
+    }
+
     const ordinals = [ 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth' ];
     let ordinal = number
 
