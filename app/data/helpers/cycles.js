@@ -169,7 +169,10 @@ exports.getCycleOptions = (selectedItems) => {
 
     if ((currentCycleYear >= fromYear && currentCycleYear < toYear)
       || (previousCycleYear >= fromYear && previousCycleYear < toYear)) {
-      item.text = data.longDesc
+      item.text = data.shortDesc
+      if(data.code == getCurrentCycle().code) {
+        item.text += ' - current'
+      }
       item.value = data.code
       item.id = data.code
       item.checked = (selectedItems && selectedItems.includes(data.code)) ? 'checked' : ''
@@ -190,9 +193,16 @@ exports.getCycleLabel = (code) => {
 
   for (const [year, data] of Object.entries(CYCLES)) {
     if (data.code === code) {
-      label = data.longDesc
+      label = data.shortDesc
+
+      if(data.code == getCurrentCycle().code) {
+        label += ' - current'
+      }
+
     }
   }
+
+
 
   return label
 }

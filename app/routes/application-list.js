@@ -123,7 +123,7 @@ const addHeadings = (grouped) => {
 
   if (grouped.previousCyclePendingConditions.length) {
     array.push({
-      heading: 'Offers pending conditions (previous cycle)'
+      heading: 'Offers pending conditions (previous recruitment cycle)'
     })
     array = array.concat(grouped.previousCyclePendingConditions)
   }
@@ -165,7 +165,7 @@ const addHeadings = (grouped) => {
 
   if (grouped.pendingConditions.length) {
     array.push({
-      heading: 'Offers pending conditions (current cycle)'
+      heading: 'Offers pending conditions (current recruitment cycle)'
     })
     array = array.concat(grouped.pendingConditions)
   }
@@ -498,10 +498,10 @@ module.exports = router => {
 
       if (cycles && cycles.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Year received' },
+          heading: { text: 'Recruitment cycle' },
           items: cycles.map((cycle) => {
             return {
-              text: cycle,
+              text: CycleHelper.getCycleLabel(cycle),
               href: `/remove-cycle-filter/${cycle}`
             }
           })
