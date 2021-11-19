@@ -102,8 +102,6 @@ module.exports = () => {
     })
   }
 
-
-
   qualifications.push({
     type: 'High School Diploma',
     subject: 'Design',
@@ -112,6 +110,5 @@ module.exports = () => {
     year: '2013'
   })
 
-  return faker.helpers.randomize([qualifications,qualifications, qualifications, qualifications, qualifications, qualifications, null])
-
+  return faker.helpers.randomize([qualifications, qualifications, qualifications, qualifications, qualifications, qualifications, null])
 }
