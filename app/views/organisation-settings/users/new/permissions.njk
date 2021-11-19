@@ -18,22 +18,47 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
+      {# <h1 class="govuk-heading-l"> #}
+      {% set h1 %}
         <span class="govuk-caption-l">
           Add user - {{org.name}}
         </span>
         User permissions
-      </h1>
+      {% endset %}
+      {# </h1> #}
 
-      {% include "_includes/users/organisational-permissions-content.njk" %}
+      {# {% include "_includes/users/organisational-permissions-content.njk" %} #}
+
+      {% set partnersCheckboxes %}
+        {{ govukCheckboxes({
+          idPrefix: "blah",
+          name: "blah",
+          fieldset: {
+            legend: {
+              text: "Partners",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "UCL, University College London",
+              text: "UCL, University College London"
+            },
+            {
+              value: "Goldsmiths, University of London",
+              text: "Goldsmiths, University of London"
+            }
+          ]
+        }) }}
+      {% endset %}
 
       <form novalidate method="post">
         {{ govukCheckboxes({
           fieldset: {
             legend: {
-              html: "Choose user permissions",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
@@ -54,7 +79,10 @@
             },
             {
               value: "makeDecisions",
-              html: "Make offers and reject applications"
+              html: "Make offers and reject applications",
+              conditional: {
+                html: partnersCheckboxes
+              }
             },
             {
               value: "viewSafeguardingInformation",
