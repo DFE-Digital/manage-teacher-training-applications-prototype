@@ -982,7 +982,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1067,7 +1070,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1145,7 +1151,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1223,7 +1232,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1294,7 +1306,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1395,7 +1410,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1489,7 +1507,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1570,7 +1591,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1659,7 +1683,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1741,7 +1768,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1830,7 +1860,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -1925,7 +1958,10 @@ const generateFakeApplications = () => {
       nationalities: [
         'French'
       ],
-      isInternationalCandidate: true
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -2029,7 +2065,10 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: false,
-      lengthOfStay: 'Yes'
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -2098,7 +2137,10 @@ const generateFakeApplications = () => {
         'British'
       ],
       isInternationalCandidate: false,
-      lengthOfStay: 'Yes'
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
@@ -2178,7 +2220,10 @@ const generateFakeApplications = () => {
         'French'
       ],
       isInternationalCandidate: false,
-      lengthOfStay: 'Yes'
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
     },
     studyMode: 'Full time',
     fundingType: 'Fee paying',
