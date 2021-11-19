@@ -4,12 +4,12 @@ faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const weighted = require('weighted')
 
-module.exports = (englishGcseQualification, dateOfBirth) => {
+module.exports = (params) => {
 
   const currentYear = DateTime.now().year
 
   // To create qaulification year add n years after date of birth
-  let year = DateTime.fromISO(dateOfBirth).toObject().year
+  let year = DateTime.fromISO(params.dateOfBirth).toObject().year
   year += faker.helpers.randomize([18,19,20,21,22])
 
   if (year > currentYear) {
@@ -69,12 +69,12 @@ module.exports = (englishGcseQualification, dateOfBirth) => {
   let hasQualification = hasQualificationOptions[selectedOption]
 
   // Override the qualification choice to correlate with English GCSE answers
-  if (englishGcseQualification.missing) {
-    if (englishGcseQualification.missing.isStudying === 'Yes') {
+  if (params.englishGcseQualification.missing) {
+    if (params.englishGcseQualification.missing.isStudying === 'Yes') {
       hasQualification = 'No'
     }
-    if (englishGcseQualification.missing.otherReason
-      && englishGcseQualification.missing.otherReason.includes('I am a native English speaker')) {
+    if (params.englishGcseQualification.missing.otherReason
+      && params.englishGcseQualification.missing.otherReason.includes('I am a native English speaker')) {
       hasQualification = 'Not needed'
     }
   }

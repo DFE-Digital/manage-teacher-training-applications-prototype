@@ -5,10 +5,10 @@ const { DateTime } = require('luxon')
 const weighted = require('weighted')
 const DegreeHelper = require('../helpers/degrees')
 
-module.exports = (isInternationCandidate, dateOfBirth) => {
+module.exports = (params) => {
 
-  // Start year - 18/19 years after date of birth
-  let year = DateTime.fromISO(dateOfBirth).toObject().year
+  // Start year - 18 or 19 years after date of birth
+  let year = DateTime.fromISO(params.dateOfBirth).toObject().year
   year += faker.helpers.randomize([18,19])
 
   const currentYear = DateTime.now().year
@@ -39,7 +39,7 @@ module.exports = (isInternationCandidate, dateOfBirth) => {
     // If graduation year is after the current year, set predicted to true
     degree.predicted = (degree.graduationYear > currentYear) ? true : false
 
-    if (isInternationCandidate) {
+    if (params.isInternationalCandidate) {
 
       degree.type = 'Diplôme'
       degree.institution = 'University of Paris'

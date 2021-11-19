@@ -5,12 +5,12 @@ const { DateTime } = require('luxon')
 const weighted = require('weighted')
 const GcseHelper = require('../helpers/gcses')
 
-module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
+module.exports = (params) => {
 
   // ---------------------------------------------------------------------------
   // Qualification year
   // ---------------------------------------------------------------------------
-  let year = DateTime.fromISO(dateOfBirth).toObject().year
+  let year = DateTime.fromISO(params.dateOfBirth).toObject().year
   year += 16 // add 16 years to DOB for GCSE age
 
   // ---------------------------------------------------------------------------
@@ -22,7 +22,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
     'Scottish National 5': 0.1
   })
 
-  if (isInternationCandidate) {
+  if (params.isInternationalCandidate) {
     type = 'Baccalauréat Général'
   }
 
@@ -82,7 +82,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   // ---------------------------------------------------------------------------
   let scienceGrade
 
-  if (subjectLevel === 'Primary') {
+  if (params.subjectLevel === 'Primary') {
     const scienceGradeOptions = {
       singleAwardScience: [{
         exam: 'Single award',
@@ -147,7 +147,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   hasMathsQualification = hasMathsQualificationOptions[selectedMathsQualification]
 
   // Missing science GCSE
-  if (subjectLevel === 'Primary') {
+  if (params.subjectLevel === 'Primary') {
     const hasScienceQualificationOptions = {
       yes: 'Yes',
       no: 'I don’t have a science qualification yet'
@@ -199,7 +199,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   }
 
   // Missing science GCSE
-  if (subjectLevel === 'Primary') {
+  if (params.subjectLevel === 'Primary') {
     if (hasScienceQualification !== 'Yes') {
       const isStudyingScienceOptions = {
         yes: 'Yes',
@@ -230,7 +230,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
     studyingMathsDetails = 'I am planning to take a maths equivalency test'
   }
 
-  if (subjectLevel === 'Primary') {
+  if (params.subjectLevel === 'Primary') {
     if (hasScienceQualification !== 'Yes' && isStudyingScience === 'Yes') {
       studyingScienceDetails = 'I am planning to take a science equivalency test'
     }
@@ -247,7 +247,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   let missingMathsReason
   let missingScienceReason
 
-  if (isInternationCandidate) {
+  if (params.isInternationalCandidate) {
     missingEnglishReasonOptions = [
       'I am a native English speaker, I would prefer to demonstrate the required skills',
       'I have a certificate confirming that the medium of instruction and examination at undergraduate was in English',
@@ -260,7 +260,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       'Not provided'
     ]
 
-    if (subjectLevel === 'Primary') {
+    if (params.subjectLevel === 'Primary') {
       missingScienceReasonOptions = [
         'I completed the International Baccalaureate programme and studied science',
         'I completed my High School Certificate in biology, chemistry and physics',
@@ -280,7 +280,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       'Not provided'
     ]
 
-    if (subjectLevel === 'Primary') {
+    if (params.subjectLevel === 'Primary') {
       missingScienceReasonOptions = [
         'I am currently looking for a course',
         'I completed my Access To Higher Education Diploma (equivalent to A-Levels) in Social Science',
@@ -297,7 +297,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
     missingMathsReason = faker.helpers.randomize(missingMathsReasonOptions)
   }
 
-  if (subjectLevel === 'Primary') {
+  if (params.subjectLevel === 'Primary') {
     if (hasScienceQualification !== 'Yes' && isStudyingScience !== 'Yes') {
       missingScienceReason = faker.helpers.randomize(missingScienceReasonOptions)
     }
@@ -338,7 +338,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
     }
   }
 
-  if (subjectLevel === 'Primary' && hasScienceQualification !== 'Yes') {
+  if (params.subjectLevel === 'Primary' && hasScienceQualification !== 'Yes') {
     missingScience = {}
     missingScience.hasQualification = hasScienceQualification
     missingScience.isStudying = isStudyingScience
@@ -359,7 +359,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   let maths
   let science
 
-  if (isInternationCandidate) {
+  if (params.isInternationalCandidate) {
 
     if (hasEnglishQualification === 'Yes') {
       english = {
@@ -407,7 +407,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       }
     }
 
-    if (subjectLevel === 'Primary') {
+    if (params.subjectLevel === 'Primary') {
       if (hasScienceQualification === 'Yes') {
         science = {
           hasQualification: 'Yes',
@@ -468,7 +468,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
       }
     }
 
-    if (subjectLevel === 'Primary') {
+    if (params.subjectLevel === 'Primary') {
       if (hasScienceQualification === 'Yes') {
         science = {
           hasQualification: 'Yes',
@@ -490,7 +490,7 @@ module.exports = (isInternationCandidate, dateOfBirth, subjectLevel) => {
   }
 
   let data
-  if (subjectLevel === 'Primary') {
+  if (params.subjectLevel === 'Primary') {
     data = {
       english,
       maths,

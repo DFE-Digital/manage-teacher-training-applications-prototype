@@ -143,12 +143,22 @@ const generateFakeApplication = (params = {}) => {
     otherQualifications = generateOtherQualifications()
   }
 
-  const gcse = generateGcse(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth, subjectLevel)
-  const degree = generateDegree(personalDetails.isInternationalCandidate, personalDetails.dateOfBirth)
+  const gcse = generateGcse({
+    isInternationalCandidate: personalDetails.isInternationalCandidate,
+    dateOfBirth: personalDetails.dateOfBirth,
+    subjectLevel
+  })
+  const degree = generateDegree({
+    isInternationalCandidate: personalDetails.isInternationalCandidate,
+    dateOfBirth: personalDetails.dateOfBirth
+  })
 
   let englishLanguageQualification
   if (personalDetails.isInternationalCandidate) {
-    englishLanguageQualification = (params.englishLanguageQualification) ? params.englishLanguageQualification : generateEnglishLanguageQualification(gcse.english, personalDetails.dateOfBirth)
+    englishLanguageQualification = (params.englishLanguageQualification) ? params.englishLanguageQualification : generateEnglishLanguageQualification({
+      englishGcseQualification: gcse.english,
+      dateOfBirth: personalDetails.dateOfBirth
+    })
   }
 
   return {
