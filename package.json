@@ -4,7 +4,7 @@
   "version": "11.0.0",
   "private": true,
   "engines": {
-    "node": "^16.13.0"
+    "node": ">=14.0.0 <17.0.0"
   },
   "scripts": {
     "generate-data": "node ./scripts/generate-organisations.js && node ./scripts/generate-users.js && node ./scripts/generate-locations.js && node ./scripts/generate-courses.js && node ./scripts/generate-applications.js ",
