@@ -56,7 +56,7 @@
     "sync-request": "^6.1.0",
     "universal-analytics": "^0.5.1",
     "uuid": "^8.3.2",
-    "weighted": "^0.3.0"
+    "weighted": "^1.0.0"
   },
   "greenkeeper": {
     "ignore": [
