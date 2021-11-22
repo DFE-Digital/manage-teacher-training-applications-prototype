@@ -94,10 +94,18 @@
       {% if item.naric %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Comparability
+            UK ENIC reference number
           </dt>
           <dd class="govuk-summary-list__value">
-            UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
+            {{ item.naric.reference }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Comparable UK qualification
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ item.naric.comparable }}
           </dd>
         </div>
       {% else %}
