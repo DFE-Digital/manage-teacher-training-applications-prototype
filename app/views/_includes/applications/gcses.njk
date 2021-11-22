@@ -65,6 +65,15 @@
                 UK ENIC or NARIC statement #{{ item.naric.reference }} says this is comparable to a {{ item.naric.comparable }}.
               </dd>
             </div>
+          {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Do you have a UK ENIC statement of comparability?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                No
+              </dd>
+            </div>
           {% endif %}
 
         {% else %}
