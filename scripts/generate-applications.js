@@ -1729,7 +1729,7 @@ const generateFakeApplications = () => {
         hasQualification: 'No',
         subject: 'English',
         missing: {
-          hasQualification: 'I don’t have an english qualification yet',
+          hasQualification: 'I don’t have an English qualification yet',
           isStudying: 'No',
           otherReason: 'I applied to NARIC for the equivalent'
         }
@@ -1920,7 +1920,7 @@ const generateFakeApplications = () => {
         hasQualification: 'No',
         subject: 'English',
         missing: {
-          hasQualification: 'I don’t have an english qualification yet',
+          hasQualification: 'I don’t have an English qualification yet',
           isStudying: 'No',
           otherReason: 'I applied to NARIC for the equivalent'
         }
