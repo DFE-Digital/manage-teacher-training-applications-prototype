@@ -109,14 +109,16 @@
           </dd>
         </div>
       {% else %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Do you have a UK ENIC statement of comparability?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            No
-          </dd>
-        </div>
+        {% if application.personalDetails.isInternationalCandidate %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have a UK ENIC statement of comparability?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              No
+            </dd>
+          </div>
+        {% endif %}
       {% endif %}
 
     </dl>
