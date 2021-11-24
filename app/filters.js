@@ -179,6 +179,25 @@ module.exports = (env) => {
     else return numbers[number -1]
   }
 
+  // Ordinal numbers
+  // Spell out first to ninth. After that use 10th, 11th and so on.
+  // In tables, use numerals throughout.
+  // https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style#ordinal-numbers
+  filters.ordinal = (number) => {
+    if (!number) {
+      return null
+    }
+
+    const ordinals = [ 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth' ];
+    let ordinal = number
+
+    if (number >= 1 && number <= 9) {
+      ordinal = ordinals[number-1]
+    }
+
+    return ordinal
+  }
+
   // Pluralise content
 
   // Pass in string and count
@@ -308,47 +327,6 @@ filters.falsify = (input) => {
   ------------------------------------------------------------------ */
   filters.numeral = (number, format) => {
    return numeral(number).format(format)
-  }
-
-  /* ------------------------------------------------------------------
-  utility function to get the statistics option label
-  example: {{ "cycle" | getStatisticsOptionLabel }}
-  outputs: "Year received"
-  ------------------------------------------------------------------ */
-  filters.getStatisticsOptionLabel = (option) => {
-    let label = option
-    switch (option) {
-      case 'cycle':
-        label = 'Year received'
-        break
-      case 'status':
-        label = 'Status'
-        break
-      case 'subject':
-        label = 'Subject'
-        break
-      case 'studyMode':
-        label = 'Full time or part time'
-        break
-      case 'fundingType':
-        label = 'Fee paying or salaried'
-        break
-      case 'subjectLevel':
-        label = 'Primary or secondary'
-        break
-      case 'location':
-      case 'trainingLocation':
-        label = 'Location'
-        break
-      case 'provider':
-      case 'trainingProvider':
-        label = 'Training provider'
-        break
-      case 'accreditedBody':
-        label = 'Accredited body'
-        break
-    }
-    return label
   }
 
   /* ------------------------------------------------------------------

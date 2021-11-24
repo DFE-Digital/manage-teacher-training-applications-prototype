@@ -4,7 +4,7 @@
   "version": "11.0.0",
   "private": true,
   "engines": {
-    "node": ">=12.0.0 <17.0.0"
+    "node": ">=14.0.0 <17.0.0"
   },
   "scripts": {
     "generate-data": "node ./scripts/generate-organisations.js && node ./scripts/generate-users.js && node ./scripts/generate-locations.js && node ./scripts/generate-courses.js && node ./scripts/generate-applications.js ",
@@ -46,17 +46,17 @@
     "keypather": "^3.1.0",
     "luxon": "^2.0.1",
     "marked": "^4.0.0",
+    "node-sass": "^6.0.1",
     "notifications-node-client": "^5.1.0",
     "numeral": "^2.0.6",
     "nunjucks": "^3.2.2",
     "pluralize": "^8.0.0",
     "portscanner": "^2.1.1",
     "require-dir": "^1.0.0",
-    "sass": "~1.32.13",
     "sync-request": "^6.1.0",
-    "universal-analytics": "^0.4.16",
+    "universal-analytics": "^0.5.1",
     "uuid": "^8.3.2",
-    "weighted": "^0.3.0"
+    "weighted": "^1.0.0"
   },
   "greenkeeper": {
     "ignore": [

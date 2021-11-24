@@ -143,6 +143,24 @@ const generateFakeApplication = (params = {}) => {
     otherQualifications = generateOtherQualifications()
   }
 
+  const gcse = generateGcse({
+    isInternationalCandidate: personalDetails.isInternationalCandidate,
+    dateOfBirth: personalDetails.dateOfBirth,
+    subjectLevel
+  })
+  const degree = generateDegree({
+    isInternationalCandidate: personalDetails.isInternationalCandidate,
+    dateOfBirth: personalDetails.dateOfBirth
+  })
+
+  let englishLanguageQualification
+  if (personalDetails.isInternationalCandidate) {
+    englishLanguageQualification = (params.englishLanguageQualification) ? params.englishLanguageQualification : generateEnglishLanguageQualification({
+      englishGcseQualification: gcse.english,
+      dateOfBirth: personalDetails.dateOfBirth
+    })
+  }
+
   return {
     id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
     assignedUsers: params.assignedUsers || assignedUsers,
@@ -170,9 +188,9 @@ const generateFakeApplication = (params = {}) => {
     interviewNeeds: params.interviewNeeds || generateInterviewNeeds(),
     workHistory: params.workHistory || generateWorkHistory(),
     schoolExperience:  params.schoolExperience || generateSchoolExperience(),
-    degree: params.degree || generateDegree(personalDetails.isInternationalCandidate),
-    gcse: params.gcse || generateGcse(personalDetails.isInternationalCandidate),
-    englishLanguageQualification: params.englishLanguageQualification || generateEnglishLanguageQualification(),
+    degree: params.degree || degree,
+    gcse: params.gcse || gcse,
+    englishLanguageQualification,
     otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
     references: params.references || generateReferences(),
@@ -238,60 +256,60 @@ const generateFakeApplications = () => {
     },
     degree: [
       {
-        "type": "BA",
-        "subject": "History",
-        "org": "Aston University",
-        "country": "United Kingdom",
-        "grade": "Distinction",
-        "predicted": true,
-        "startDate": "2017",
-        "endDate": "2020"
+        type: 'BA',
+        subject: 'History',
+        institution: 'Aston University',
+        country: 'United Kingdom',
+        grade: 'Distinction',
+        predicted: true,
+        startYear: '2017',
+        graduationYear: '2020'
       }
     ],
     gcse: {
-      "maths": {
-        "type": "O level",
-        "subject": "Maths",
-        "country": "United Kingdom",
-        "missing": "false",
-        "grade": [
+      maths: {
+        hasQualification: 'Yes',
+        type: 'O level',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
           {
-            "grade": "C"
+            grade: 'C'
           }
         ],
-        "year": 1982
+        year: 1982
       },
-      "english": {
-        "type": "O level",
-        "subject": "English",
-        "country": "United Kingdom",
-        "missing": "false",
-        "grade": [
+      english: {
+        hasQualification: 'Yes',
+        type: 'O level',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
           {
-            "exam": "English",
-            "grade": "B"
+            exam: 'English',
+            grade: 'B'
           }
         ],
-        "year": 1982
+        year: 1982
       },
-      "science": {
-        "type": "O level",
-        "subject": "Science",
-        "country": "United Kingdom",
-        "missing": "false",
-        "grade": [
+      science: {
+        hasQualification: 'Yes',
+        type: 'O level',
+        subject: 'Science',
+        country: 'United Kingdom',
+        grade: [
           {
-            "exam": "Science",
-            "grade": "B"
+            exam: 'Science',
+            grade: 'B'
           }
         ],
-        "year": 1982
+        year: 1982
       }
     },
     otherQualifications: null,
     englishLanguageQualification: {
-      hasQualification: "Not needed",
-      status: "English is not a foreign language to the candidate"
+      hasQualification: 'Not needed',
+      status: 'No, English is not a foreign language to me'
     },
     schoolExperience: [
       {
@@ -960,6 +978,1312 @@ const generateFakeApplications = () => {
   }))
 
   // ---------------------------------------------------------------------------
+  // Qualifications
+  // ---------------------------------------------------------------------------
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Audrey',
+      familyName: 'Abadie',
+      sex: 'Female',
+      dateOfBirth: '1998-01-25',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational Psychology',
+        startYear: 2016,
+        graduationYear: 2019,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 18
+          }
+        ],
+        year: 2014
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [
+          {
+            grade: 20
+          }
+        ],
+        year: 2014
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Yes',
+      type: 'IELTS',
+      grade: 7.5,
+      gradeLabel: 'Overall band score',
+      reference: '02GB0674SOOM599A',
+      referenceLabel: 'Test report form (TRF) number',
+      year: 2020
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Julie',
+      familyName: 'Annery',
+      sex: 'Female',
+      dateOfBirth: '1986-04-08',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational Psychology',
+        startYear: 2004,
+        graduationYear: 2006,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 18
+          }
+        ],
+        year: 2002
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a maths equivalency test'
+        }
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Yes',
+      type: 'IELTS',
+      grade: 7.5,
+      gradeLabel: 'Overall band score',
+      reference: '02GB0674SOOM599A',
+      referenceLabel: 'Test report form (TRF) number',
+      year: 2009
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Lise',
+      familyName: 'Arricastre',
+      sex: 'Female',
+      dateOfBirth: '1995-05-18',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational Psychology',
+        startYear: 2013,
+        graduationYear: 2015,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take an English equivalency test'
+        }
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [
+          {
+            grade: 20
+          }
+        ],
+        year: 2011
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Yes',
+      type: 'IELTS',
+      grade: 7.5,
+      gradeLabel: 'Overall band score',
+      reference: '02GB0674SOOM599A',
+      referenceLabel: 'Test report form (TRF) number',
+      year: 2015
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Cyrielle',
+      familyName: 'Banet',
+      sex: 'Female',
+      dateOfBirth: '1987-06-10',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational Psychology',
+        startYear: 2006,
+        graduationYear: 2008,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take an English equivalency test'
+        }
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a maths equivalency test'
+        }
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Yes',
+      type: 'TOEFL',
+      grade: 92,
+      gradeLabel: 'Total score',
+      reference: '0000 0000 2500 2147',
+      referenceLabel: 'TOEFL registration number',
+      year: 2014
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Clara',
+      familyName: 'Joyeaux',
+      sex: 'Female',
+      dateOfBirth: '1998-07-26',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2016,
+        graduationYear: 2019,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 18
+          }
+        ],
+        year: 2014
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 20
+          }
+        ],
+        year: 2014
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Science',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 13
+          }
+        ],
+        year: 2014
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Yes',
+      type: 'Other',
+      grade: 'B',
+      gradeLabel: 'Score or grade',
+      reference: 'Pearson Test of English (Academic)',
+      referenceLabel: 'Assessment name',
+      year: 2021
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Gaelle',
+      familyName: 'Hermet',
+      sex: 'Female',
+      dateOfBirth: '1989-05-31',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2007,
+        graduationYear: 2009,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 18
+          }
+        ],
+        year: 2005
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a maths equivalency test'
+        }
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Science',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 13
+          }
+        ],
+        year: 2005
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Yes',
+      status: 'Yes',
+      type: 'Other',
+      grade: 'B',
+      gradeLabel: 'Score or grade',
+      reference: 'Pearson Test of English (Academic)',
+      referenceLabel: 'Assessment name',
+      year: 2020
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Morgane',
+      familyName: 'Peyronnet',
+      sex: 'Female',
+      dateOfBirth: '1993-08-12',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2012,
+        graduationYear: 2014,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 18
+          }
+        ],
+        year: 2011
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'No',
+          otherReason: 'I applied to NARIC for the equivalent'
+        }
+      },
+      science: {
+        hasQualification: 'No',
+        subject: 'Science',
+        missing: {
+          hasQualification: 'I don’t have a science qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a science equivalency test'
+        }
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Not needed',
+      status: 'No, English is not a foreign language to me'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Elise',
+      familyName: 'Pignot',
+      sex: 'Female',
+      dateOfBirth: '2000-11-01',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2019,
+        graduationYear: 2022,
+        predicted: true,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take an English equivalency test'
+        }
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [
+          {
+            grade: 20
+          }
+        ],
+        year: 2017
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Science',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 13
+          }
+        ],
+        year: 2017
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'No',
+      status: 'No, I have not done an English as a foreign language assessment',
+      reason: 'I will take a Pearson English test'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Yanna',
+      familyName: 'Rivoalen',
+      sex: 'Female',
+      dateOfBirth: '2000-01-03',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2018,
+        graduationYear: 2020,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'No',
+          otherReason: 'I applied to NARIC for the equivalent'
+        }
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'No',
+          otherReason: 'I applied to NARIC for the equivalent'
+        }
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Science',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 13
+          }
+        ],
+        year: 2016
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'No',
+      status: 'No, I have not done an English as a foreign language assessment',
+      reason: 'I will take a Pearson English test'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Laure',
+      familyName: 'Sansus',
+      sex: 'Female',
+      dateOfBirth: '1981-01-25',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 1999,
+        graduationYear: 2002,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      },
+      {
+        subject: 'Sports coaching',
+        startYear: 2005,
+        graduationYear: 2008,
+        predicted: true,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take an English equivalency test'
+        }
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a maths equivalency test'
+        }
+      },
+      science: {
+        hasQualification: 'No',
+        subject: 'Science',
+        missing: {
+          hasQualification: 'I don’t have a science qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a science equivalency test'
+        }
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'No',
+      status: 'No, I have not done an English as a foreign language assessment',
+      reason: 'I will take a Pearson English test'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Agathe',
+      familyName: 'Sochat',
+      sex: 'Female',
+      dateOfBirth: '1994-05-24',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2012,
+        graduationYear: 2015,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      },
+      {
+        subject: 'Sports coaching',
+        startYear: 2020,
+        graduationYear: 2023,
+        predicted: true,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'No',
+          otherReason: 'I applied to NARIC for the equivalent'
+        }
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [
+          {
+            grade: 20
+          }
+        ],
+        year: 2010
+      },
+      science: {
+        hasQualification: 'No',
+        subject: 'Science',
+        missing: {
+          hasQualification: 'I don’t have a science qualification yet',
+          isStudying: 'No',
+          otherReason: 'Not provided'
+        }
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Not needed',
+      status: 'No, English is not a foreign language to me'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Dhia',
+      familyName: 'Traore',
+      sex: 'Female',
+      dateOfBirth: '1997-05-25',
+      nationalities: [
+        'French'
+      ],
+      isInternationalCandidate: true,
+      rightToWorkStudy: 'Yes',
+      immigrationStatus: 'EU pre-settled status',
+      dateEnteredUK: '2020-01-04'
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'History of Art',
+        startYear: 2015,
+        graduationYear: 2018,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      },
+      {
+        subject: 'Sports coaching',
+        startYear: 2019,
+        graduationYear: 2022,
+        predicted: true,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'English',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE (grades A*-C / 9-4)'
+        },
+        grade: [
+          {
+            grade: 18
+          }
+        ],
+        year: 2013
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'Baccalauréat Général',
+        subject: 'Maths',
+        country: 'France',
+        naric: {
+          reference: '4000228363',
+          comparable: 'GCSE grades A*-C/9-4'
+        },
+        grade: [
+          {
+            grade: 20
+          }
+        ],
+        year: 2013
+      },
+      science: {
+        hasQualification: 'No',
+        subject: 'Science',
+        missing: {
+          hasQualification: 'I don’t have a science qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a science equivalency test'
+        }
+      }
+    },
+    englishLanguageQualification: {
+      hasQualification: 'Not needed',
+      status: 'No, English is not a foreign language to me'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Axelle',
+      familyName: 'Berthoumieu',
+      sex: 'Female',
+      dateOfBirth: '1992-08-21',
+      nationalities: [
+        'British',
+        'French'
+      ],
+      isInternationalCandidate: false,
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational Psychology',
+        startYear: 2010,
+        graduationYear: 2012,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'AA'
+          }
+        ],
+        year: 2008
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'A'
+          }
+        ],
+        year: 2008
+      }
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Coralie',
+      familyName: 'Bertrand',
+      sex: 'Female',
+      dateOfBirth: '1989-11-21',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false,
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: 'W1',
+        name: 'Art and design'
+      }
+    ],
+    subjectLevel: 'Secondary',
+    course: 'Art and design (1NBJ)',
+    degree: [
+      {
+        subject: 'Art and Design',
+        startYear: 2007,
+        graduationYear: 2010,
+        predicted: false,
+        level: 6,
+        grade: 'First-class honours',
+        type: 'BA - Art and Design',
+        institution: 'Loughborough College of Art and Design',
+        country: 'United Kingdom'
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'CC'
+          }
+        ],
+        year: 2005
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'B'
+          }
+        ],
+        year: 2005
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Science',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'Double award',
+            grade: 'BC'
+          }
+        ],
+        year: 2005
+      }
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Madoussou',
+      familyName: 'Fall',
+      sex: 'Female',
+      dateOfBirth: '1976-04-09',
+      nationalities: [
+        'British',
+        'French'
+      ],
+      isInternationalCandidate: false,
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational Psychology',
+        startYear: 1994,
+        graduationYear: 1997,
+        predicted: false,
+        type: 'Diplôme',
+        institution: 'University of Paris',
+        country: 'France',
+        grade: 'Pass',
+        naric: {
+          reference: '4000228363',
+          comparable: 'Bachelor (Honours) degree'
+        }
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'No',
+        subject: 'English',
+        missing: {
+          hasQualification: 'I don’t have an English qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take an English equivalency test'
+        }
+      },
+      maths: {
+        hasQualification: 'No',
+        subject: 'Maths',
+        missing: {
+          hasQualification: 'I don’t have an maths qualification yet',
+          isStudying: 'Yes',
+          studyingDetails: 'I am planning to take a maths equivalency test'
+        }
+      }
+    }
+  }))
+
+  // ---------------------------------------------------------------------------
   // ---------------------------------------------------------------------------
   // ---------------------------------------------------------------------------
 
@@ -993,11 +2317,11 @@ const generateFakeApplications = () => {
     degree: [{
       type: 'Licenciatura',
       subject: 'History of Contemporary Art and Visual Culture',
-      org: 'Complutense University of Madrid',
+      institution: 'Complutense University of Madrid',
       country: 'Spain',
       grade: 'Pass',
-      startDate: '2004',
-      endDate: '2009'
+      startYear: '2004',
+      graduationYear: '2009'
     }],
     gcse: {
       maths: {
@@ -1113,11 +2437,11 @@ const generateFakeApplications = () => {
     degree: [{
       type: 'Degree',
       subject: 'Applied sociology',
-      org: 'University of Adelaide',
+      institution: 'University of Adelaide',
       country: 'Australia',
       grade: '81% (Distinction)',
-      startDate: '2014',
-      endDate: '2017'
+      startYear: '2014',
+      graduationYear: '2017'
     }],
     gcse: {
       maths: {
@@ -1181,11 +2505,11 @@ const generateFakeApplications = () => {
     degree: [{
       type: 'BCA',
       subject: 'System Analysis & Design',
-      org: 'Panjab University',
+      institution: 'Panjab University',
       country: 'India',
       grade: 'A',
-      startDate: '2012',
-      endDate: '2016'
+      startYear: '2012',
+      graduationYear: '2016'
     }],
     gcse: {
       maths: {
