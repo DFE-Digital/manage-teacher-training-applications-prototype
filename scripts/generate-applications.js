@@ -2283,6 +2283,189 @@ const generateFakeApplications = () => {
     }
   }))
 
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Connie',
+      familyName: 'Allen',
+      sex: 'Female',
+      dateOfBirth: '1992-08-21',
+      nationalities: [
+        'British',
+        'French'
+      ],
+      isInternationalCandidate: false,
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational psychology',
+        startYear: 2010,
+        graduationYear: 2013,
+        predicted: false,
+        type: 'BSc - Bachelor of Science',
+        institution: 'University College London',
+        country: 'United Kingdom',
+        grade: 'Upper second-class honours (2:1)'
+      },
+      {
+        subject: 'Child psychology',
+        startYear: 2014,
+        graduationYear: 2015,
+        predicted: false,
+        type: 'MSc - Master of Science',
+        institution: 'King’s College London',
+        country: 'United Kingdom',
+        grade: 'Distinction'
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'AA'
+          }
+        ],
+        year: 2008
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'A'
+          }
+        ],
+        year: 2008
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Science',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'Double award',
+            grade: 'AA'
+          }
+        ],
+        year: 2008
+      }
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Received',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Ronnie',
+      familyName: 'Riley',
+      sex: 'Male',
+      dateOfBirth: '1992-08-21',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false,
+      lengthOfStay: 'Yes',
+      rightToWorkStudy: '',
+      immigrationStatus: '',
+      dateEnteredUK: ''
+    },
+    studyMode: 'Full time',
+    fundingType: 'Fee paying',
+    subject: [
+      {
+        code: '00',
+        name: 'Primary'
+      }
+    ],
+    subjectLevel: 'Primary',
+    course: 'Primary (5 to 11) (C1AH)',
+    degree: [
+      {
+        subject: 'Educational psychology',
+        startYear: 2010,
+        graduationYear: 2013,
+        predicted: false,
+        type: 'BSc - Bachelor of Science',
+        institution: 'University College London',
+        country: 'United Kingdom',
+        grade: 'Upper second-class honours (2:1)'
+      },
+      {
+        subject: 'Child psychology',
+        startYear: 2014,
+        graduationYear: 2015,
+        predicted: false,
+        type: 'MSc - Master of Science',
+        institution: 'King’s College London',
+        country: 'United Kingdom',
+        grade: 'Distinction'
+      }
+    ],
+    gcse: {
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'CD'
+          }
+        ],
+        year: 2008
+      },
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'D'
+          }
+        ],
+        year: 2008
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Science',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'Double award',
+            grade: 'DD'
+          }
+        ],
+        year: 2008
+      }
+    }
+  }))
+
   // ---------------------------------------------------------------------------
   // ---------------------------------------------------------------------------
   // ---------------------------------------------------------------------------

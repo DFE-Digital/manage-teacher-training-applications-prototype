@@ -123,7 +123,7 @@ module.exports = (params) => {
   // Missing English GCSE
   const hasEnglishQualificationOptions = {
     yes: 'Yes',
-    no: 'I don’t have an English qualification yet'
+    no: 'I do not have a GCSE in English (or equivalent) yet'
   }
 
   const selectedEnglishQualification = weighted.select({
@@ -136,7 +136,7 @@ module.exports = (params) => {
   // Missing maths GCSE
   const hasMathsQualificationOptions = {
     yes: 'Yes',
-    no: 'I don’t have a maths qualification yet'
+    no: 'I do not have a GCSE in maths (or equivalent) yet'
   }
 
   const selectedMathsQualification = weighted.select({
@@ -150,7 +150,7 @@ module.exports = (params) => {
   if (params.subjectLevel === 'Primary') {
     const hasScienceQualificationOptions = {
       yes: 'Yes',
-      no: 'I don’t have a science qualification yet'
+      no: 'I do not have a GCSE in science (or equivalent) yet'
     }
 
     const selectedScienceQualification = weighted.select({
@@ -353,6 +353,102 @@ module.exports = (params) => {
   }
 
   // ---------------------------------------------------------------------------
+  // GCSE retakes
+  // ---------------------------------------------------------------------------
+  let isRetakingEnglish
+  let evidenceRetakingEnglish
+
+  const hasToRetakeEnglish = englishGrade.filter(grade => grade.grade.includes('D')
+    || grade.grade.includes('E')
+    || grade.grade.includes('F')).length ? true : false
+
+  if (hasToRetakeEnglish) {
+    const isRetakingEnglishOptions = {
+      yes: 'Yes',
+      no: 'No'
+    }
+
+    const selectedRetakingEnglish = weighted.select({
+      yes: 0.85,
+      no: 0.15
+    })
+
+    isRetakingEnglish = isRetakingEnglishOptions[selectedRetakingEnglish]
+
+    const evidenceRetakingEnglishOptions = [
+      'I’m planning to retake my English exam',
+      'Not provided'
+    ]
+
+    if (isRetakingEnglish === 'No') {
+      evidenceRetakingEnglish = faker.helpers.randomize(evidenceRetakingEnglishOptions)
+    }
+  }
+
+  let isRetakingMaths
+  let evidenceRetakingMaths
+
+  const hasToRetakeMaths = mathsGrade.filter(grade => grade.grade.includes('D')
+    || grade.grade.includes('E')
+    || grade.grade.includes('F')).length ? true : false
+
+  if (hasToRetakeMaths) {
+    const isRetakingMathsOptions = {
+      yes: 'Yes',
+      no: 'No'
+    }
+
+    const selectedRetakingMaths = weighted.select({
+      yes: 0.9,
+      no: 0.1
+    })
+
+    isRetakingMaths = isRetakingMathsOptions[selectedRetakingMaths]
+
+    const evidenceRetakingMathsOptions = [
+      'I’m planning to retake my Maths exam',
+      'Not provided'
+    ]
+
+    if (isRetakingMaths === 'No') {
+      evidenceRetakingMaths = faker.helpers.randomize(evidenceRetakingMathsOptions)
+    }
+  }
+
+  let hasToRetakeScience
+  let isRetakingScience
+  let evidenceRetakingScience
+
+  if (params.subjectLevel === 'Primary') {
+    hasToRetakeScience = scienceGrade.filter(grade => grade.grade.includes('D')
+      || grade.grade.includes('E')
+      || grade.grade.includes('F')).length ? true : false
+
+    if (hasToRetakeScience) {
+      const isRetakingScienceOptions = {
+        yes: 'Yes',
+        no: 'No'
+      }
+
+      const selectedRetakingScience = weighted.select({
+        yes: 0.8,
+        no: 0.2
+      })
+
+      isRetakingScience = isRetakingScienceOptions[selectedRetakingScience]
+
+      const evidenceRetakingScienceOptions = [
+        'I’m planning to retake my Science exam',
+        'Not provided'
+      ]
+
+      if (isRetakingScience === 'No') {
+        evidenceRetakingScience = faker.helpers.randomize(evidenceRetakingScienceOptions)
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
   // GCSE details
   // ---------------------------------------------------------------------------
   let english
@@ -443,6 +539,13 @@ module.exports = (params) => {
         grade: englishGrade,
         year
       }
+
+      if (hasToRetakeEnglish) {
+        english.retake = {
+          isRetaking: isRetakingEnglish,
+          evidence: evidenceRetakingEnglish
+        }
+      }
     } else {
       english = {
         hasQualification: 'No',
@@ -459,6 +562,13 @@ module.exports = (params) => {
         country: 'United Kingdom',
         grade: mathsGrade,
         year
+      }
+
+      if (hasToRetakeMaths) {
+        maths.retake = {
+          isRetaking: isRetakingMaths,
+          evidence: evidenceRetakingMaths
+        }
       }
     } else {
       maths = {
@@ -477,6 +587,13 @@ module.exports = (params) => {
           country: 'United Kingdom',
           grade: scienceGrade,
           year
+        }
+
+        if (hasToRetakeScience) {
+          science.retake = {
+            isRetaking: isRetakingScience,
+            evidence: evidenceRetakingScience
+          }
         }
       } else {
         science = {
