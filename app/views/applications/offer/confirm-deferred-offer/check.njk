@@ -3,11 +3,11 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 
-{% set title = "Review offer" %}
+{% set title = "Check and confirm deferred offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/reconfirm/statuses"
+    href: "javascript: window.history.go(-1)"
   }) }}
 {% endblock %}
 
@@ -42,16 +42,16 @@
 
       {{appOfferPanel({
         provider: {
-          value: application.offer.provider,
-          href: "#"
+          value: application.offer.provider
         },
         course: {
           value: application.offer.course,
-          href: "#"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/course"
         },
         location: {
           value: appLocation(application.location) if application.location.name else application.offer.location,
-          href: "#"
+          value: data['confirm-deferred-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location),
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/location"
         },
         studyMode: {
           value: "Full time",
@@ -64,20 +64,20 @@
           items: conditions
         },
         changeConditions: {
-          href: "/applications/" + application.id + "/offer/reconfirm/conditions"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/conditions"
         },
         changeStatus: {
-          href: "/applications/" + application.id + "/offer/reconfirm/statuses"
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/statuses"
         }
       })}}
 
-      {{govukWarningText({
+      {# {{govukWarningText({
         text: "We’ll email the candidate to confirm their new offer and remind them of the conditions for it."
-      })}}
+      })}} #}
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm offer"
+          text: "Confirm deferred offer and tell candidate"
         }) }}
       </form>
       <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>

@@ -72,13 +72,6 @@ applications = applications.map(application => {
   return application
 })
 
-applications = SettingsHelper.getMidCycleApplications(applications)
-defaults.settings = []
-
-// Uncomment this to make new cycle the default setting
-// applications = SettingsHelper.getStartOfCycleApplications(applications);
-// defaults.settings = ['new-cycle']
-
 defaults.emailsettings = [
   'Application submitted',
   'Application withdrawn',
@@ -95,7 +88,6 @@ defaults["standard-conditions"] = [
   "Disclosure and barring service check"
 ]
 
-
 defaults['new-offer'] = {
   'standard-conditions': [
     "Fitness to teach check",
@@ -104,7 +96,6 @@ defaults['new-offer'] = {
 }
 
 defaults.relationships = relationships
-defaults.applications = applications
 defaults.trainingProviders = trainingProviders
 defaults.accreditedBodies = accreditedBodies
 defaults.organisations = organisations
@@ -112,5 +103,13 @@ defaults.users = users
 defaults.currentCycle = CycleHelper.CURRENT_CYCLE
 defaults.previousCycle = CycleHelper.PREVIOUS_CYCLE
 defaults.nextCycle = CycleHelper.NEXT_CYCLE
+
+// Uncomment this to put the prototype into a mid cycle state
+defaults.applications = SettingsHelper.getMidCycleApplications(applications)
+defaults.settings = []
+
+// Uncomment this to put the prototype into a start of cycle state
+// defaults.applications = SettingsHelper.getStartOfCycleApplications(applications);
+// defaults.settings = ['new-cycle']
 
 module.exports = defaults

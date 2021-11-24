@@ -2,28 +2,34 @@
 
   {% if data.settings == 'new-cycle' %}
     {% set promptHtml %}
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
-      Review and confirm the deferred offer
-      </h2>
-
-      {% if application.offerCanNotBeReconfirmed.reason == "course" %}
-        {# <p>{{application.course}} at {{application.provider}} is no longer available. You need to choose a different course.</p> #}
-        <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p>
-      {% elseif application.offerCanNotBeReconfirmed.reason == "location" %}
-        {# <p>{{application.course}} is not available at Alliance Academy, Edgeware, Road Name, SW1 1AA. You need to choose another location or course.</p> #}
-        <p>The course you offered the candidate in the previous cycle is not available in the current cycle.</p>
+      {% if canMakeOffersAndRejectApplications %}
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+          Confirm deferred offer
+        </h2>
+        <p>You need to confirm your deferred offer.</p>
       {% else %}
-        <p>The course offered to the candidate in the previous cycle is available in the current cycle.</p>
+        <p>The deferred offer needs to be confirmed.</p>
       {% endif %}
-      {{ govukButton({
-        text: "Review deferred offer",
-        classes: "govuk-!-margin-bottom-0",
-        href: "/applications/" + application.id + "/offer/reconfirm"
-      }) }}
+
+      {% if application.deferredOfferUnavailable.course or application.deferredOfferUnavailable.location %}
+        {{ govukButton({
+          text: "Confirm deferred offer",
+          classes: "govuk-!-margin-bottom-0",
+          href: "/applications/" + application.id + "/offer/confirm-deferred-offer/unavailable"
+        }) }}
+      {% else %}
+        {% if canMakeOffersAndRejectApplications %}
+          {{ govukButton({
+            text: "Confirm deferred offer",
+            classes: "govuk-!-margin-bottom-0",
+            href: "/applications/" + application.id + "/offer/confirm-deferred-offer/check"
+          }) }}
+        {% endif %}
+      {% endif %}
     {% endset %}
   {% else %}
     {% set promptHtml %}
-      <p class="govuk-body">This offer will need to be confirmed at the start of the next recruitment cycle.</p>
+      <p class="govuk-body">Your offer will need to be confirmed at the start of the next recruitment cycle.</p>
     {% endset %}
   {% endif %}
 

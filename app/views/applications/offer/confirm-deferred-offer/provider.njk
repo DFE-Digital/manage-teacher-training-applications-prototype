@@ -1,0 +1,70 @@
+{% extends "_layout.njk" %}
+
+{% set name = application.personalDetails.name %}
+{% set title = "Select training provider" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
+        {{title}}
+      {% endset %}
+      <form method="post">
+
+        <input type="hidden" name="[confirm-deferred-offer][submitted-provider-page]" value="true">
+
+        {% if data['confirm-deferred-offer']['submitted-provider-page'] == 'true' %}
+
+          {{ govukRadios({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [{
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name
+            }, {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }]
+          } | decorateAttributes(data, 'data["confirm-deferred-offer"]["provider"]')
+          ) }}
+        {% else %}
+          {{ govukRadios({
+            fieldset: {
+              legend: {
+                html: h1,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            name: '[confirm-deferred-offer][provider]',
+            items: [{
+              value: data.user.organisations[0].name,
+              text: data.user.organisations[0].name
+            }, {
+              value: data.user.organisations[1].name,
+              text: data.user.organisations[1].name
+            }]
+          } | decorateAttributes(application, 'application.offer.provider')
+          ) }}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

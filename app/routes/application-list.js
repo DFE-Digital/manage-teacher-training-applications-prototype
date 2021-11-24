@@ -116,7 +116,7 @@ const addHeadings = (grouped) => {
   let array = []
   if (grouped.deferredOffersPendingReconfirmation.length) {
     array.push({
-      heading: 'Deferred offers: review and confirm'
+      heading: 'Confirm deferred offers'
     })
     array = array.concat(grouped.deferredOffersPendingReconfirmation)
   }

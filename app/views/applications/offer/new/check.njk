@@ -51,23 +51,6 @@
         <p>Upcoming interviews will be cancelled.</p>
       {% endif %}
 
-
-      {# {% set currentProvider = application.provider %}
-      {% set newProvider = data['new-offer']['provider'] %}
-      {% if conditions.length %}
-        <p>By sending this offer, you’re guaranteeing the candidate a place on the course as long as they meet the conditions.</p>
-      {% else %}
-        <p>By sending this offer, you’re guaranteeing the candidate a place on the course.</p>
-      {% endif %} #}
-
-      {# {% if newProvider and currentProvider != newProvider %}
-        <p>Notifications will also be sent to users at:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>{{currentProvider}} to tell them that they can no longer view the application</li>
-          <li>{{newProvider}} to tell them that they have a new application</li>
-        </ul>
-      {% endif %} #}
-
       <form method="post">
         {{ govukButton({
           text: "Send offer"

@@ -5,7 +5,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/reconfirm/unavailable-course/course"
+    href: "javascript: window.history.go(-1)"
   }) }}
 {% endblock %}
 
@@ -13,37 +13,30 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+      {% set h1 %}
+        <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
         {{title}}
-      </h1>
-
-      <div class="app-offer-pane govuk-!-margin-bottom-4">
-        {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
-      </div>
-
+      {% endset %}
       <form method="post">
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              classes: "govuk-visually-hidden"
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
-          idPrefix: "location",
-          name: "location",
           items: [{
             value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
             text: "Alliance Academy",
-            hint: { text: 'Edgeware, Road Name, SW1 1AA' },
-            checked: checked("location", "Alliance Academy, Edgeware, Road Name, SW1 1AA")
+            hint: { text: 'Edgeware, Road Name, SW1 1AA' }
           }, {
             value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
             text: "Bruntcliffe Academy",
-            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' },
-            checked: checked("location", "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ")
+            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' }
           }]
-        }) }}
+        } | decorateAttributes(data, 'data["confirm-deferred-offer"]["location"]') ) }}
 
         {{ govukButton({
           text: "Continue"

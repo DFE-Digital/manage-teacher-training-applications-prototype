@@ -1,0 +1,104 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+{% set title = "Confirm deferred offer" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "javascript: window.history.go(-1)"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>The course you offered the candidate in the previous recruitment cycle is not available in the current recruitment cycle.</p>
+
+      <p>To confirm the deferred offer, send an email to <a href="mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.</a>
+
+      <p>You need to provide the following details in the email:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          training provider, subject, location and whether it’s full time or part time
+        </li>
+        <li>
+          any offer conditions that are pending or met
+        </li>
+      </ul>
+
+      <p>We’ll contact you within one working day to tell you that your offer has been confirmed. We’ll also email the candidate about their new offer.</p>
+
+      <h2 class="govuk-heading-m">
+        Details of deferred offer
+      </h2>
+
+      {{appOfferPanel({
+        provider: {
+          value: application.offer.provider,
+          href: "#" if 1 == 2
+        },
+        course: {
+          value: application.offer.course,
+          href: "#" if 1 == 2
+        },
+        location: {
+          value: appLocation(application.location) if application.location.name else application.offer.location,
+          value: data['confirm-deferred-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location),
+          href: "#" if 1 == 2
+        },
+        studyMode: {
+          value: "Full time",
+          href: "#" if 1 == 2
+        },
+        accreditedBody: {
+          value: application.offer.accreditedBody
+        },
+        conditions: {
+          items: conditions
+        }
+      })}}
+
+
+      {# {{ govukRadios({
+        idPrefix: "[confirm-deferred-offer]",
+        name: "[confirm-deferred-offer]",
+        fieldset: {
+          legend: {
+            text: "Select what you want to change",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Change training provider",
+            text: "Change training provider"
+          } if 1==1,
+          {
+            value: "Change course",
+            text: "Change course"
+          },
+          {
+            value: "Change location",
+            text: "Change location"
+          },
+          {
+            value: "Change full time or part time",
+            text: "Change full time or part time"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        href: ""
+      }) }}
+      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p> #}
+    </div>
+  </div>
+{% endblock %}

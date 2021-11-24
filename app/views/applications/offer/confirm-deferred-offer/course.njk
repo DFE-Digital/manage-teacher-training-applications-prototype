@@ -1,53 +1,55 @@
 {% extends "_layout.njk" %}
 
 {% set name = application.personalDetails.name %}
-{% set title = "Select new course" %}
+{% set title = "Select course" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/reconfirm/unavailable-course"
-  }) }}
+  {% if referrer == 'check' %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/confirm-deferred-offer/check'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      href: '/applications/' + application.id + '/offer/confirm-deferred-offer/provider'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+      {% set h1 %}
+        <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
         {{title}}
-      </h1>
+      {% endset %}
 
       <form method="post">
-
-      <div class="app-offer-pane govuk-!-margin-bottom-4">
-        {% include "_includes/offer/reconfirm/details-of-deferred-offer.njk" %}
-      </div>
 
         {{ govukRadios({
           fieldset: {
             legend: {
-              text: title,
-              classes: "govuk-visually-hidden"
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
-          idPrefix: "course",
-          name: "course",
           items: [{
             value: "Primary (X100)",
             text: "Primary (X100)",
             hint: {
-              text: 'PGCE with QTS full time'
+              text: 'PGCE with QTS full time - ratified by Kingston University'
             },
             checked: checked("course", "Primary (X100)")
           }, {
             value: "Primary (X121)",
             text: "Primary (X121)",
             hint: {
-              text: 'QTS full time'
+              text: 'QTS full time - Springbank SCITT'
             },
             checked: checked("course", "Primary (X121)")
           }]
-        }) }}
+        } | decorateAttributes(data, 'data["confirm-deferred-offer"]["course"]') ) }}
 
         {{ govukButton({
           text: "Continue"
