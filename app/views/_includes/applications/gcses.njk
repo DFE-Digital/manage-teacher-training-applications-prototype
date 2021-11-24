@@ -56,6 +56,27 @@
             </dd>
           </div>
 
+          {% if item.retake %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are you currently studying to retake this qualification?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ item.retake.isRetaking }}
+              </dd>
+            </div>
+            {% if item.retake.isRetaking == "No" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Other evidence I have the skills required (optional)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ item.retake.evidence }}
+                </dd>
+              </div>
+            {% endif %}
+          {% endif %}
+
           {% if item.naric %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
