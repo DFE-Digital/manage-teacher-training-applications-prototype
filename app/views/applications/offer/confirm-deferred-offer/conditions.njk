@@ -23,11 +23,11 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if data['confirm-deferred-offer']['submitted-conditions-page'] == 'true' %}
-        {% set fitnessChecked = checked(data['confirm-deferred-offer']['standard-conditions'], "Fitness to teach check") %}
-        {% set dbsChecked = checked(data['confirm-deferred-offer']['standard-conditions'], "Disclosure and barring service check") %}
+        {% set fitnessChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Fitness to teach check") %}
+        {% set dbsChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Disclosure and barring service check") %}
       {% else %}
-        {% set fitnessChecked = checked(standardConditions,"Fitness to teach check") %}
-        {% set dbsChecked = checked(standardConditions,"Disclosure and barring service check") %}
+        {% set fitnessChecked = ("Fitness to teach check" in standardConditions) %}
+        {% set dbsChecked = ("Disclosure and barring service check" in standardConditions) %}
       {% endif %}
 
       <form method="post">
