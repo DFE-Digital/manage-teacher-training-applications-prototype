@@ -415,11 +415,12 @@ module.exports = (params) => {
     }
   }
 
-  if (params.subjectLevel === 'Primary') {
-    let isRetakingScience
-    let evidenceRetakingScience
+  let hasToRetakeScience
+  let isRetakingScience
+  let evidenceRetakingScience
 
-    const hasToRetakeScience = scienceGrade.filter(grade => grade.grade.includes('D')
+  if (params.subjectLevel === 'Primary') {
+    hasToRetakeScience = scienceGrade.filter(grade => grade.grade.includes('D')
       || grade.grade.includes('E')
       || grade.grade.includes('F')).length ? true : false
 
