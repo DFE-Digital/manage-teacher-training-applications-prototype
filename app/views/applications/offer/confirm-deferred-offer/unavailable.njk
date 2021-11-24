@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Course unavailable in the the current recruitment cycle" %}
+{% set title = "Confirm deferred offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -14,12 +14,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
+      <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       <p>The course you offered the candidate in the previous recruitment cycle is not available in the current recruitment cycle.</p>
 
-      <p>To confirm the deferred offer, contact us at <a href="mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.</a>
+      <p>To confirm the deferred offer, send an email to <a href="mailto:becomingateacher@digital.education.gov.uk">becomingateacher@digital.education.gov.uk</a>.</a>
 
       <p>You need to provide the following details in the email:</p>
 
