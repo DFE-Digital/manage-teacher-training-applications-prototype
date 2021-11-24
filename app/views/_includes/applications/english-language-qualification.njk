@@ -13,7 +13,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Assessment
+              Assessment type
             </dt>
             <dd class="govuk-summary-list__value">
               {% if item.type == 'IELTS' %}
@@ -41,7 +41,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Assessment
+              Assessment type
             </dt>
             <dd class="govuk-summary-list__value">
               {{ item.reference }}
@@ -61,7 +61,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Assessment year
+            Year completed
           </dt>
           <dd class="govuk-summary-list__value">
             {{ item.year | date('y') }}

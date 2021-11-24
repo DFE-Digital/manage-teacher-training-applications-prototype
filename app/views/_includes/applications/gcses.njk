@@ -20,7 +20,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Qualification
+              Qualification type
             </dt>
             <dd class="govuk-summary-list__value">
               {{ item.type }}
@@ -68,7 +68,7 @@
             {% if item.retake.isRetaking == "No" %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Other evidence I have the skills required (optional)
+                  Evidence of having {{ item.subject if item.subject == 'English' else item.subject | lower }} skills at the required standard
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ item.retake.evidence }}

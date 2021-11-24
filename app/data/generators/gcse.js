@@ -123,7 +123,7 @@ module.exports = (params) => {
   // Missing English GCSE
   const hasEnglishQualificationOptions = {
     yes: 'Yes',
-    no: 'I don’t have an English qualification yet'
+    no: 'I do not have a GCSE in English (or equivalent) yet'
   }
 
   const selectedEnglishQualification = weighted.select({
@@ -136,7 +136,7 @@ module.exports = (params) => {
   // Missing maths GCSE
   const hasMathsQualificationOptions = {
     yes: 'Yes',
-    no: 'I don’t have a maths qualification yet'
+    no: 'I do not have a GCSE in maths (or equivalent) yet'
   }
 
   const selectedMathsQualification = weighted.select({
@@ -150,7 +150,7 @@ module.exports = (params) => {
   if (params.subjectLevel === 'Primary') {
     const hasScienceQualificationOptions = {
       yes: 'Yes',
-      no: 'I don’t have a science qualification yet'
+      no: 'I do not have a GCSE in science (or equivalent) yet'
     }
 
     const selectedScienceQualification = weighted.select({
