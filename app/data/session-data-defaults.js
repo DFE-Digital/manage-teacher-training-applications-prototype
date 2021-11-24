@@ -96,7 +96,6 @@ defaults['new-offer'] = {
 }
 
 defaults.relationships = relationships
-defaults.applications = applications
 defaults.trainingProviders = trainingProviders
 defaults.accreditedBodies = accreditedBodies
 defaults.organisations = organisations
@@ -106,11 +105,11 @@ defaults.previousCycle = CycleHelper.PREVIOUS_CYCLE
 defaults.nextCycle = CycleHelper.NEXT_CYCLE
 
 // Uncomment this to put the prototype into a mid cycle state
-// applications = SettingsHelper.getMidCycleApplications(applications)
-// defaults.settings = []
+defaults.applications = SettingsHelper.getMidCycleApplications(applications)
+defaults.settings = []
 
 // Uncomment this to put the prototype into a start of cycle state
-applications = SettingsHelper.getStartOfCycleApplications(applications);
-defaults.settings = ['new-cycle']
+// defaults.applications = SettingsHelper.getStartOfCycleApplications(applications);
+// defaults.settings = ['new-cycle']
 
 module.exports = defaults
