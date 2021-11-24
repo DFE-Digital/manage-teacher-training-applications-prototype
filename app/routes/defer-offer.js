@@ -15,7 +15,10 @@ module.exports = router => {
     application.events.items.push({
       date: new Date().toISOString(),
       user: "Alicia Grenada",
-      title: "Offer deferred"
+      title: "Offer deferred",
+      meta: {
+        offer: application.offer
+      }
     })
 
     req.flash('success', 'Offer deferred')

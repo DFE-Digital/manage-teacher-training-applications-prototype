@@ -92,6 +92,7 @@
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Offer deferred" %}
                 <div class="app-activity-log__box">
+
                   {{appEventOffer({ offer: event.meta.offer })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View offer</a></p>
