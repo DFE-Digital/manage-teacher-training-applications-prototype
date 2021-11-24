@@ -4,7 +4,7 @@
 
 {% set name = application.personalDetails.name %}
 
-{% set title = "Confirm that you want to defer this offer" %}
+{% set title = "Confirm that you want to defer your offer" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -23,9 +23,9 @@
         {{title}}
       </h1>
 
-      <p>You’ll need to confirm the deferred offer at the start of the next recruitment cycle.</p>
+      <p>You’ll need to confirm your deferred offer at the start of the next recruitment cycle.</p>
 
-      <p>The candidate will be sent an email to confirm that their offer has been deferred.</p>
+      <p>The candidate will be sent an email to confirm that your offer has been deferred.</p>
 
       <form method="post">
         {{ govukButton({
