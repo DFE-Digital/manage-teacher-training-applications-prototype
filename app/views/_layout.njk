@@ -167,7 +167,10 @@
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
-{% set chatStatus = ["online", "offline", "unavailable"] | random %}
+{% if not chatStatus %}
+  {% set chatStatus = ["online", "offline", "unavailable"] | random %}
+{% endif %}
+
 
 {% set chatOnlineHtml %}<a href="#" class="app-web-chat__button govuk-footer__link">Speak to an adviser now (opens in new window)</a>{% endset %}
 
