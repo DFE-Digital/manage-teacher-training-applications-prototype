@@ -166,7 +166,7 @@
     </div>
   {% endif %}
 
-  {% set checkboxValue = 'Communication and scheduling' %}
+  {% set checkboxValue = 'Communication, attendance and scheduling' %}
   {% set category = 'communication' %}
   {% set groupName = category + '-reasons' %}
   {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
@@ -190,6 +190,14 @@
             <li>
               <p>{{checkboxValue}}:</p>
               <p>{{rejectionReasons[groupName + '-did-not-attend-interview']}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Could not arrange interview" %}
+          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
+            <li>
+              <p>{{checkboxValue}}:</p>
+              <p>{{rejectionReasons[groupName + '-could-not-arrange-interview']}}</p>
             </li>
           {% endif %}
 

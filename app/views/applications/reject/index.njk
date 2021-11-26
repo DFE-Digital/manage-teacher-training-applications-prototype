@@ -6,7 +6,7 @@
 {% if application.status == "Rejected" %}
   {% set title = "Tell the candidate why you did not offer them a place on the course" %}
 {% else %}
-  {% set title = "Tell the candidate why you’re rejecting their application" %}
+  {% set title = "Tell the candidate why you’re not offering them a place on the course" %}
 {% endif %}
 
 
@@ -99,9 +99,9 @@
               }
             },
             {
-              value: "Communication and scheduling",
-              text: "Communication and scheduling",
-              checked: checked("['rejection']['categories']", "Communication and scheduling"),
+              value: "Communication, attendance and scheduling",
+              text: "Communication, attendance and scheduling",
+              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
               conditional: {
                 html: communicationReasonsHtml
               }

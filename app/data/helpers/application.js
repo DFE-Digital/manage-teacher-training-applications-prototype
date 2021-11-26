@@ -41,6 +41,7 @@ exports.getRejectReasons = (data) => {
     'communication-reasons': data['communication-reasons'],
     'communication-reasons-did-not-reply-to-messages': data['communication-reasons-did-not-reply-to-messages'],
     'communication-reasons-did-not-attend-interview': data['communication-reasons-did-not-attend-interview'],
+    'communication-reasons-could-not-arrange-interview': data['communication-reasons-could-not-arrange-interview'],
     'communication-reasons-other': data['communication-reasons-other'],
 
     // References
