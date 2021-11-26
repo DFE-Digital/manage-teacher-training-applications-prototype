@@ -1,7 +1,7 @@
 {% set footerHtml %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
-      <div class="app-footer__cha">
+      <div class="app-footer__chat">
         <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
           Online chat
         </h3>
@@ -9,16 +9,19 @@
       </div>
     </div>
     <div class="govuk-grid-column-one-half">
-      <div class="app-footer__emai">
+      <div class="app-footer__email">
         <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
           Email
         </h3>
-        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1"><a class="govuk-footer__link" href="#">becomingateacher@digital.education.gov.uk</a></p>
+        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">
+          <a class="govuk-footer__link" href="mailto:becomingateacher@digital.education.gov.uk">
+            becomingateacher@digital.education.gov.uk
+          </a>
+        </p>
         <p class="govuk-!-font-size-16">You’ll get a response within 5 working days, or one working day for urgent requests.</p>
       </div>
     </div>
   </div>
-
 {% endset %}
 
 {{ appFooter({
