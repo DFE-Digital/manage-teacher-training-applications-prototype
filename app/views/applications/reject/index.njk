@@ -4,9 +4,9 @@
 {% set name = application.personalDetails.name %}
 
 {% if application.status == "Rejected" %}
-  {% set title = "Tell the candidate why you did not offer them a place on the course" %}
+  {% set title = "Tell the candidate why their application was unsuccessful" %}
 {% else %}
-  {% set title = "Tell the candidate why you’re not offering them a place on the course" %}
+  {% set title = "Tell the candidate why their application was unsuccessful" %}
 {% endif %}
 
 
@@ -25,7 +25,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
+        <span class="govuk-caption-l">Reject application - {{name}}</span>
         {{title}}
       {% endset %}
 

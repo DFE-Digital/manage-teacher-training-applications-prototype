@@ -12,8 +12,8 @@
 {% set teachingRoleHtml %}
   {{appRejectionDetails({ category: category, reason: 'teaching-role', data: data })}}
 {% endset %}
-{% set presentationSkillsHtml %}
-  {{appRejectionDetails({ category: category, reason: 'presentation-skills', data: data })}}
+{% set teachingPerformanceHtml %}
+  {{appRejectionDetails({ category: category, reason: 'teaching-performance', data: data })}}
 {% endset %}
 {% set otherHtml %}
   {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
@@ -57,11 +57,11 @@
       html: teachingRoleHtml
     }
   }, {
-    value: "Presentation skills",
-    text: "Presentation skills",
-    checked: checked("['rejection']['" + category + "-reasons']", "Presentation skills"),
+    value: "Teaching demonstration",
+    text: "Teaching demonstration",
+    checked: checked("['rejection']['" + category + "-reasons']", "Teaching demonstration"),
     conditional: {
-      html: presentationSkillsHtml
+      html: teachingPerformanceHtml
     }
   }, {
       value: "Other",
