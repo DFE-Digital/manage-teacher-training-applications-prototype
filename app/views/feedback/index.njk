@@ -1,0 +1,23 @@
+{% extends "_layout.njk" %}
+
+{% set pageTitle = title %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ pageTitle }}
+      </h1>
+
+      <div class="app-markdown">
+        {{ content | markdownToHtml | safe }}
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

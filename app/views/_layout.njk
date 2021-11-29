@@ -109,20 +109,7 @@
 
   {% include "_includes/header.njk" %}
 
-<div class="app-phase-banner__wrapper">
-
-  <div class="govuk-phase-banner app-phase-banner govuk-width-container">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="/get-in-touch">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
-</div>
+  {% include "_includes/phase-banner.njk" %}
 
 {% set alertsLinkHtml %}
   <span class="app-notification-link">
@@ -180,7 +167,10 @@
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
-{% set chatStatus = ["online", "offline", "unavailable"] | random %}
+{% if not chatStatus %}
+  {% set chatStatus = ["online", "offline", "unavailable"] | random %}
+{% endif %}
+
 
 {% set chatOnlineHtml %}<a href="#" class="app-web-chat__button govuk-footer__link">Speak to an adviser now (opens in new window)</a>{% endset %}
 
