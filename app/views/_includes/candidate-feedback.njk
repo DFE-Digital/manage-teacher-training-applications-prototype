@@ -145,11 +145,11 @@
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Presentation skills" %}
+          {% set checkboxValue = "Teaching demonstration" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-presentation-skills']}}</p>
+              <p>{{rejectionReasons[groupName + '-teaching-demonstration']}}</p>
             </li>
           {% endif %}
 

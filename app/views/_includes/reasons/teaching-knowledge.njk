@@ -1,21 +1,21 @@
 {% set category = 'teaching-knowledge' %}
 
-{% set subjectHtml %}
+{% set subject %}
   {{appRejectionDetails({ category: category, reason: 'subject', data: data })}}
 {% endset %}
-{% set safeguardingHtml %}
+{% set safeguarding %}
   {{appRejectionDetails({ category: category, reason: 'safeguarding', data: data })}}
 {% endset %}
-{% set teachingMethodHtml %}
+{% set teachingMethod %}
   {{appRejectionDetails({ category: category, reason: 'teaching-method', data: data })}}
 {% endset %}
-{% set teachingRoleHtml %}
+{% set teachingRole %}
   {{appRejectionDetails({ category: category, reason: 'teaching-role', data: data })}}
 {% endset %}
-{% set teachingPerformanceHtml %}
-  {{appRejectionDetails({ category: category, reason: 'teaching-performance', data: data })}}
+{% set teachingDemonstration %}
+  {{appRejectionDetails({ category: category, reason: 'teaching-demonstration', data: data })}}
 {% endset %}
-{% set otherHtml %}
+{% set other %}
   {{appRejectionDetails({ category: category, reason: 'other', data: data })}}
 {% endset %}
 
@@ -33,42 +33,42 @@
     html: "Understanding of subject",
     checked: checked("['rejection']['" + category + "-reasons']", "Understanding of subject"),
     conditional: {
-      html: subjectHtml
+      html: subject
     }
   }, {
     value: "Understanding of safeguarding",
     text: "Understanding of safeguarding",
     checked: checked("['rejection']['" + category + "-reasons']", "Understanding of safeguarding"),
     conditional: {
-      html: safeguardingHtml
+      html: safeguarding
     }
   }, {
     value: "Understanding of teaching methods",
     text: "Understanding of teaching methods",
     checked: checked("['rejection']['" + category + "-reasons']", "Understanding of teaching methods"),
     conditional: {
-      html: teachingMethodHtml
+      html: teachingMethod
     }
   }, {
     value: "Understanding of teaching role",
     text: "Understanding of teaching role",
     checked: checked("['rejection']['" + category + "-reasons']", "Understanding of teaching role"),
     conditional: {
-      html: teachingRoleHtml
+      html: teachingRole
     }
   }, {
     value: "Teaching demonstration",
     text: "Teaching demonstration",
     checked: checked("['rejection']['" + category + "-reasons']", "Teaching demonstration"),
     conditional: {
-      html: teachingPerformanceHtml
+      html: teachingDemonstration
     }
   }, {
       value: "Other",
       text: "Other",
       checked: checked("['rejection']['" + category + "-reasons']", "Other"),
       conditional: {
-        html: otherHtml
+        html: other
       }
     }]
 }) }}

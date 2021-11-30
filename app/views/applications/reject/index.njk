@@ -4,11 +4,12 @@
 {% set name = application.personalDetails.name %}
 
 {% if application.status == "Rejected" %}
-  {% set title = "Tell the candidate why their application was unsuccessful" %}
+  {% set title = "Tell the candidate why their application was rejected" %}
+  {% set caption = "Give feedback - " + name %}
 {% else %}
-  {% set title = "Tell the candidate why their application was unsuccessful" %}
+  {% set title = "Tell the candidate why you’re rejecting their application" %}
+  {% set caption = name %}
 {% endif %}
-
 
 {% block pageNavigation %}
   {% set backUrl = "/applications/" + application.id + "/decision" %}
@@ -25,7 +26,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-l">Reject application - {{name}}</span>
+        <span class="govuk-caption-l">{{caption}}</span>
         {{title}}
       {% endset %}
 
