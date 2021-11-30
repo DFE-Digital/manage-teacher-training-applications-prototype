@@ -7,41 +7,95 @@
     },
     value: {
       text: application["provider"]
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "training provider"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   }, {
     key: {
       text: "Course"
     },
     value: {
       text: application["course"]
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "Item URL",
+          text: "Change",
+          visuallyHiddenText: "course"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   }, {
     key: {
       text: "Full time or part time"
     },
     value: {
       text: application.studyMode
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "full time or part time"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   }, {
     key: {
       text: "Location"
     },
     value: {
       html: appLocation(application.location) if application.location.name else application.location
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "Item URL",
+          text: "Change",
+          visuallyHiddenText: "location"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   }, {
     key: {
       text: "Accredited body"
     },
     value: {
       html: application.accreditedBody
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "accredited body"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   } if application.accreditedBody != application.provider, {
     key: {
       text: "Funding type"
     },
     value: {
       text: application.fundingType
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "funding type"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   }]
 }) }}
