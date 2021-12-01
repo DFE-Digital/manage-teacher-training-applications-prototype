@@ -27,8 +27,8 @@
       <form action="/applications/{{ application.id }}/course/edit/funding-type" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
-          idPrefix: "edit-funding-type",
-          name: "edit-course[funding-type]",
+          idPrefix: "edit-fundingType",
+          name: "edit-course[fundingType]",
           fieldset: {
             legend: {
               html: headingHtml,
@@ -39,11 +39,11 @@
           items: [{
             value: "Fee paying",
             text: "Fee paying",
-            checked: checked("['edit-course']['funding-type']", "Fee paying")
+            checked: checked("['edit-course']['fundingType']", "Fee paying")
           }, {
             value: "Salaried",
             text: "Salaried",
-            checked: checked("['edit-course']['funding-type']", "Salaried")
+            checked: checked("['edit-course']['fundingType']", "Salaried")
           }]
         }) }}
 

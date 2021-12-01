@@ -27,8 +27,8 @@
       <form action="/applications/{{ application.id }}/course/edit/study-mode" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
-          idPrefix: "edit-study-mode",
-          name: "edit-course[study-mode]",
+          idPrefix: "edit-studyMode",
+          name: "edit-course[studyMode]",
           fieldset: {
             legend: {
               html: headingHtml,
@@ -39,11 +39,11 @@
           items: [{
             value: "Full time",
             text: "Full time",
-            checked: checked("['edit-course']['study-mode']", "Full time")
+            checked: checked("['edit-course']['studyMode']", "Full time")
           }, {
             value: "Part time",
             text: "Part time",
-            checked: checked("['edit-course']['study-mode']", "Part time")
+            checked: checked("['edit-course']['studyMode']", "Part time")
           }]
         }) }}
 
