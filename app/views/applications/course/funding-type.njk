@@ -9,10 +9,17 @@
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-  text: "Back",
-  href: "/applications/" + application.id + "/course/edit/location"
-}) }}
+{% if referrer == "location" %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/applications/" + application.id + "/course/edit/location"
+  }) }}
+{% else %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/applications/" + application.id
+  }) }}
+{% endif %}
 {% endblock %}
 
 {% block content %}

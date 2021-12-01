@@ -42,18 +42,17 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/course', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/study-mode`)
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/study-mode?referrer=course`)
   })
 
   router.get('/applications/:applicationId/course/edit/study-mode', (req, res) => {
-
     res.render('applications/course/study-mode', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
   router.post('/applications/:applicationId/course/edit/study-mode', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/location`)
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/location?referrer=study-mode`)
   })
 
   router.get('/applications/:applicationId/course/edit/location', (req, res) => {
@@ -69,7 +68,7 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/funding-type`)
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/funding-type?referrer=location`)
   })
 
   router.get('/applications/:applicationId/course/edit/funding-type', (req, res) => {
