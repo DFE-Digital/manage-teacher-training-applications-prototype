@@ -1,0 +1,62 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
+{% set title = "Select full time or part time" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/applications/" + application.id + "/course/edit/course"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      {% endset %}
+
+      <form action="/applications/{{ application.id }}/course/edit/study-mode" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "edit-study-mode",
+          name: "edit-course[study-mode]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [{
+            value: "Full time",
+            text: "Full time",
+            checked: checked("['edit-course']['study-mode']", "Full time")
+          }, {
+            value: "Part time",
+            text: "Part time",
+            checked: checked("['edit-course']['study-mode']", "Part time")
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="/applications/{{ application.id }}/">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

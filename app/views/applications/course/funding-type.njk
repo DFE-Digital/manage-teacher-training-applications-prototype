@@ -1,0 +1,62 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
+{% set title = "Select funding type" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/applications/" + application.id + "/course/edit/location"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      {% endset %}
+
+      <form action="/applications/{{ application.id }}/course/edit/funding-type" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "edit-funding-type",
+          name: "edit-course[funding-type]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [{
+            value: "Fee paying",
+            text: "Fee paying",
+            checked: checked("['edit-course']['funding-type']", "Fee paying")
+          }, {
+            value: "Salaried",
+            text: "Salaried",
+            checked: checked("['edit-course']['funding-type']", "Salaried")
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="/applications/{{ application.id }}/">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

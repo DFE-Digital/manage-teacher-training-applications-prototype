@@ -1,0 +1,77 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
+{% set title = "Select location" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/applications/" + application.id + "/course/edit/study-mode"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      {% endset %}
+
+      <form action="/applications/{{ application.id }}/course/edit/location" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "edit-location",
+          name: "edit-course[location]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: locations
+        }) }}
+
+<!-- items: [{
+  value: "Location 1",
+  text: "Location 1",
+  hint: {
+    text: "123 Main Street"
+  },
+  checked: checked("['edit-course']['location']", "Location 1")
+}, {
+  value: "Location 2",
+  text: "Location 2",
+  hint: {
+    text: "123 Main Street"
+  },
+  checked: checked("['edit-course']['location']", "Location 2")
+}, {
+  value: "Location 3",
+  text: "Location 3",
+  hint: {
+    text: "123 Main Street"
+  },
+  checked: checked("['edit-course']['location']", "Location 3")
+}] -->
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="/applications/{{ application.id }}/">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
+{% set title = "Select course" %}
+
+{% block pageTitle %}
+{{ pageTitle }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/applications/" + application.id + "/"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      {% endset %}
+
+      <form action="/applications/{{ application.id }}/course/edit/course" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "edit-course",
+          name: "edit-course[course]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [{
+            value: "Primary (X100)",
+            text: "Primary (X100)",
+            hint: {
+              text: 'PGCE with QTS full time - Goldsmiths, University of London'
+            },
+            checked: checked("['edit-course']['course']", "Primary (X100)")
+          }, {
+            value: "Primary (X121)",
+            text: "Primary (X121)",
+            hint: {
+              text: 'QTS full time - UCL, University College London'
+            },
+            checked: checked("['edit-course']['course']", "Primary (X121)")
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="/applications/{{ application.id }}/">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}
