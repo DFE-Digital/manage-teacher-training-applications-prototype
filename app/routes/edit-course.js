@@ -2,7 +2,7 @@ const Utils = require('../data/helpers/utils')
 
 const locations = require('../data/locations')
 
-const getLocationItems = (selectedItems) => {
+const getLocationItems = (selectedItem) => {
   const items = []
 
   locations.forEach((location, i) => {
@@ -11,17 +11,14 @@ const getLocationItems = (selectedItems) => {
     let address = Object.values(location.address)
     // hack to remove empty items from address
     address = address.filter(item => item !== '')
-    address = Utils.arrayToList(array = address, join = ', ', final = ', ')
-
-    const value = location.name + ', ' + address
 
     item.text = location.name
-    item.value = value
-    item.id = location.code
-    item.checked = (selectedItems && selectedItems.includes(value)) ? 'checked' : ''
+    item.value = location.id
+    item.id = location.id
+    item.checked = (selectedItem && selectedItem.includes(location.id)) ? 'checked' : ''
 
     item.hint = {}
-    item.hint.text = address
+    item.hint.text = Utils.arrayToList(array = address, join = ', ', final = ', ')
 
     items.push(item)
   })
@@ -33,18 +30,11 @@ const getLocationItems = (selectedItems) => {
   return items
 }
 
+const getLocation = (locationId) => {
+  return locations.find(location => location.id === locationId)
+}
+
 module.exports = router => {
-
-  // router.get('/applications/:applicationId/course/edit/provider', (req, res) => {
-  //   res.render('applications/course/provider', {
-  //     application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-  //   })
-  // })
-  //
-  // router.post('/applications/:applicationId/course/edit/provider', (req, res) => {
-  //   res.redirect(`/applications/${req.params.applicationId}/course/edit/course`)
-  // })
-
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
@@ -52,24 +42,23 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/course', (req, res) => {
-    console.log(req.session.data['edit-course'])
     res.redirect(`/applications/${req.params.applicationId}/course/edit/study-mode`)
   })
 
   router.get('/applications/:applicationId/course/edit/study-mode', (req, res) => {
+
     res.render('applications/course/study-mode', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
   router.post('/applications/:applicationId/course/edit/study-mode', (req, res) => {
-    console.log(req.session.data['edit-course'])
     res.redirect(`/applications/${req.params.applicationId}/course/edit/location`)
   })
 
   router.get('/applications/:applicationId/course/edit/location', (req, res) => {
     let location
-    if (req.session.data['edit-course'].location) {
+    if (req.session.data['edit-course'] && req.session.data['edit-course'].location) {
       location = req.session.data['edit-course'].location
     }
 
@@ -80,7 +69,6 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/location', (req, res) => {
-    console.log(req.session.data['edit-course'])
     res.redirect(`/applications/${req.params.applicationId}/course/edit/funding-type`)
   })
 
@@ -91,14 +79,30 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/funding-type', (req, res) => {
-    console.log(req.session.data['edit-course'])
     res.redirect(`/applications/${req.params.applicationId}/course/edit/save`)
   })
 
   router.get('/applications/:applicationId/course/edit/save', (req, res) => {
-
     console.log(req.session.data['edit-course'])
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
+    if (req.session.data['edit-course'].course) {
+      application.course = req.session.data['edit-course'].course
+    }
+
+    if (req.session.data['edit-course'].studyMode) {
+      application.studyMode = req.session.data['edit-course'].studyMode
+    }
+
+    if (req.session.data['edit-course'].location) {
+      application.location = getLocation(req.session.data['edit-course'].location)
+    }
+
+    if (req.session.data['edit-course'].fundingType) {
+      application.fundingType = req.session.data['edit-course'].fundingType
+    }
+
+    delete req.session.data['edit-course']
 
     res.redirect(`/applications/${req.params.applicationId}`)
   })
