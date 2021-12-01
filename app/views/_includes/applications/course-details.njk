@@ -11,12 +11,12 @@
     actions: {
       items: [
         {
-          href: "#",
+          href: "/applications/" + application.id + "/course/edit/provider",
           text: "Change",
           visuallyHiddenText: "training provider"
         }
       ]
-    } if application.status in ["Received","Interviewing"]
+    } if application.status in ["Received","Interviewing"] and 1 == 0
   }, {
     key: {
       text: "Course"
@@ -27,7 +27,7 @@
     actions: {
       items: [
         {
-          href: "Item URL",
+          href: "/applications/" + application.id + "/course/edit/course",
           text: "Change",
           visuallyHiddenText: "course"
         }
@@ -43,7 +43,7 @@
     actions: {
       items: [
         {
-          href: "#",
+          href: "/applications/" + application.id + "/course/edit/study-mode",
           text: "Change",
           visuallyHiddenText: "full time or part time"
         }
@@ -59,7 +59,7 @@
     actions: {
       items: [
         {
-          href: "Item URL",
+          href: "/applications/" + application.id + "/course/edit/location",
           text: "Change",
           visuallyHiddenText: "location"
         }
@@ -80,7 +80,7 @@
           visuallyHiddenText: "accredited body"
         }
       ]
-    } if application.status in ["Received","Interviewing"]
+    } if application.status in ["Received","Interviewing"] and 1 == 0
   } if application.accreditedBody != application.provider, {
     key: {
       text: "Funding type"
@@ -91,7 +91,7 @@
     actions: {
       items: [
         {
-          href: "#",
+          href: "/applications/" + application.id + "/course/edit/funding-type",
           text: "Change",
           visuallyHiddenText: "funding type"
         }
