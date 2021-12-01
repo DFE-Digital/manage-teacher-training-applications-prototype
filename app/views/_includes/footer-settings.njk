@@ -1,4 +1,6 @@
 
+{% if not query.hideFooter %}
+
 <div class="govuk-footer">
   <div class="govuk-width-container">
     <div class="govuk-footer__meta">
@@ -59,8 +61,15 @@
               </a>
             </li>
 
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="?hideFooter=true">
+                Hide footer
+              </a>
+            </li>
+
         </ul>
       </div>
     </div>
   </div>
 </div>
+{% endif %}
