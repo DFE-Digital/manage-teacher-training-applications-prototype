@@ -102,6 +102,7 @@ module.exports = router => {
 
     delete req.session.data['edit-course']
 
+    req.flash('success', 'Course applied for updated')
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 
