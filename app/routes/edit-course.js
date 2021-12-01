@@ -82,7 +82,6 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/course/edit/save', (req, res) => {
-    console.log(req.session.data['edit-course'])
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     if (req.session.data['edit-course'].course) {
@@ -103,6 +102,11 @@ module.exports = router => {
 
     delete req.session.data['edit-course']
 
+    res.redirect(`/applications/${req.params.applicationId}`)
+  })
+
+  router.get('/applications/:applicationId/course/edit/cancel', (req, res) => {
+    delete req.session.data['edit-course']
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 
