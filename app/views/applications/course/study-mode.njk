@@ -4,10 +4,6 @@
 {% set caption = "Change course applied for - " + application.personalDetails.name %}
 {% set title = "Select full time or part time" %}
 
-{% block pageTitle %}
-{{ pageTitle }} – {{ serviceName }} – GOV.UK
-{% endblock %}
-
 {% block beforeContent %}
 {% if referrer == "course" %}
   {{ govukBackLink({

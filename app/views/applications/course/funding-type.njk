@@ -4,10 +4,6 @@
 {% set caption = "Change course applied for - " + application.personalDetails.name %}
 {% set title = "Select funding type" %}
 
-{% block pageTitle %}
-{{ pageTitle }} – {{ serviceName }} – GOV.UK
-{% endblock %}
-
 {% block beforeContent %}
 {% if referrer == "location" %}
   {{ govukBackLink({

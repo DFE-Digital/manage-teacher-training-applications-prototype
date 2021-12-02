@@ -4,10 +4,6 @@
 {% set caption = "Change course applied for - " + application.personalDetails.name %}
 {% set title = "Select course" %}
 
-{% block pageTitle %}
-{{ pageTitle }} – {{ serviceName }} – GOV.UK
-{% endblock %}
-
 {% block beforeContent %}
 {{ govukBackLink({
   text: "Back",
