@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set name = application.personalDetails.name %}
+{% set caption = application.personalDetails.name %}
 {% set title = "Check and send offer" %}
 
 {% block pageNavigation %}
@@ -14,41 +14,49 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {{appOfferPanel({
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      </h1>
+
+      {{ appOfferPanel({
         provider: {
-          value: data["new-offer"].provider or application.provider,
-          href: "/applications/" + application.id + "/offer/new/provider?referrer=/check"
+          value: data['new-offer'].provider or application.provider,
+          href: "/applications/" + application.id + "/offer/new/provider?referrer=check" if 1 == 0
         },
         course: {
-          value: data["new-offer"].course or application.course,
-          href: "/applications/" + application.id + "/offer/new/course?referrer=/check"
-        },
-        location: {
-          value: data['new-offer'].location or (appLocation(application.location) if application.location.name else application.location),
-          href: "/applications/" + application.id + "/offer/new/location?referrer=/check"
-        },
-        accreditedBody: {
-          value: application.accreditedBody
+          value: data['new-offer'].course or application.course,
+          href: "/applications/" + application.id + "/offer/new/course?referrer=check"
         },
         studyMode: {
-          value: "Full time",
-          href: "#"
+          value: data['new-offer'].studyMode or application.studyMode,
+          href: "/applications/" + application.id + "/offer/new/study-mode?referrer=check"
+        },
+        location: {
+          value: location or (appLocation(application.location) if application.location.name else application.location),
+          href: "/applications/" + application.id + "/offer/new/location?referrer=check"
+        },
+        accreditedBody: {
+          value: application.accreditedBody,
+          href: "/applications/" + application.id + "/offer/new/accredited-body?referrer=check" if 1 == 0
+        },
+        fundingType: {
+          value: data['new-offer'].fundingType or application.fundingType,
+          href: "/applications/" + application.id + "/offer/new/funding-type?referrer=check"
         },
         conditions: {
           items: conditions
         },
         changeConditions: {
-          href: "/applications/" + application.id + "/offer/new?referrer=/check"
+          href: "/applications/" + application.id + "/offer/new?referrer=check"
         }
-      })}}
+      }) }}
 
       {% if upcomingInterviews.length == 1 %}
-        <p>The upcoming interview will be cancelled.</p>
+        <p class="govuk-body">The upcoming interview will be cancelled.</p>
       {% elseif upcomingInterviews.length > 1 %}
-        <p>Upcoming interviews will be cancelled.</p>
+        <p class="govuk-body">Upcoming interviews will be cancelled.</p>
       {% endif %}
 
       <form method="post">
@@ -56,7 +64,10 @@
           text: "Send offer"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/applications/{{ application.id }}">Cancel</a>
+      </p>
     </div>
   </div>
 {% endblock %}

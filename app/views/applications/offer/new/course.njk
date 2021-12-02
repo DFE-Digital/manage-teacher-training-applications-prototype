@@ -1,16 +1,17 @@
 {% extends "_layout.njk" %}
 
-{% set name = application.personalDetails.name %}
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
 {% set title = "Select course" %}
 
 {% block pageNavigation %}
-  {% if query.referrer == '/check' %}
+  {% if query.referrer == "provider" %}
     {{ govukBackLink({
-      href: "/applications/" + application.id + "/offer/new/check"
+      href: "/applications/" + application.id + "/offer/new/provider"
     }) }}
   {% else %}
     {{ govukBackLink({
-      href: "/applications/" + application.id + "/offer/new/provider"
+      href: "/applications/" + application.id + "/offer/new/check"
     }) }}
   {% endif %}
 {% endblock %}
@@ -19,49 +20,51 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
+
+      {% set headingHtml %}
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
       {% endset %}
-      <form method="post">
+
+      <form action="/applications/{{ application.id }}/offer/new/course" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
+          idPrefix: "edit-course",
+          name: "[new-offer][course]",
           fieldset: {
             legend: {
-              html: h1,
+              html: headingHtml,
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [{
             value: "Primary (X100)",
-            text: "Primary (X100)"
+            text: "Primary (X100)",
+            hint: {
+              text: 'PGCE with QTS full time - Goldsmiths, University of London'
+            },
+            checked: checked("['new-offer']['course']", "Primary (X100)")
           }, {
             value: "Primary (X121)",
-            text: "Primary (X121)"
+            text: "Primary (X121)",
+            hint: {
+              text: 'QTS full time - UCL, University College London'
+            },
+            checked: checked("['new-offer']['course']", "Primary (X121)")
           }]
-        } | decorateAttributes(data, 'data["new-offer"]["course"]')) }}
+        }) }}
 
         {{ govukButton({
           text: "Continue"
         }) }}
+
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/applications/{{ application.id }}/offer/new/course/cancel">Cancel</a>
+      </p>
+
     </div>
   </div>
-{% endblock %}
-
-{% block pageScripts %}
-  <script src="/public/javascripts/autocomplete.min.js"></script>
-  <script>
-    accessibleAutocomplete({
-      name: "course",
-      element: document.querySelector('#course-autocomplete-container'),
-      id: 'course',
-      showAllValues: true,
-      source: [
-        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
-      ]
-    })
-  </script>
 {% endblock %}

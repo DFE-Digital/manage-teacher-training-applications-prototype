@@ -1,10 +1,11 @@
 {% extends "_layout.njk" %}
 
-{% set name = application.personalDetails.name %}
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
 {% set title = "Select training provider" %}
 
 {% block pageNavigation %}
-  {% if query.referrer == '/check' %}
+  {% if query.referrer == "check" %}
     {{ govukBackLink({
       href: "/applications/" + application.id + "/offer/new/check"
     }) }}
@@ -16,38 +17,45 @@
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
-      {% endset %}
+    {% set headingHtml %}
+      <span class="govuk-caption-l">{{ caption }}</span>
+      {{ title }}
+    {% endset %}
 
-      <form method="post">
+    <form action="/applications/{{ application.id }}/offer/new/provider" method="post" accept-charset="UTF-8" novalidate>
 
-        {{ govukRadios({
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [{
-            value: data.user.organisations[0].name,
-            text: data.user.organisations[0].name
-          }, {
-            value: data.user.organisations[1].name,
-            text: data.user.organisations[1].name
-          }]
-        } | decorateAttributes(data, 'data["new-offer"]["provider"]')) }}
+      {{ govukRadios({
+        idPrefix: "edit-provider",
+        name: "[new-offer][provider]",
+        fieldset: {
+          legend: {
+            html: headingHtml,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [{
+          value: data.user.organisations[0].name,
+          text: data.user.organisations[0].name
+        }, {
+          value: data.user.organisations[1].name,
+          text: data.user.organisations[1].name
+        }]
+      } | decorateAttributes(data, 'data["new-offer"]["provider"]')) }}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
-    </div>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/applications/{{ application.id }}/offer/new/course/cancel">Cancel</a>
+    </p>
+
   </div>
+</div>
 {% endblock %}
