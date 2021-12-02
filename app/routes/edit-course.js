@@ -37,7 +37,6 @@ const getLocation = (locationId) => {
 
 module.exports = router => {
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
-    console.log(req.session.data.user);
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
@@ -80,6 +79,26 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/funding-type', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/check`)
+  })
+
+  router.get('/applications/:applicationId/course/edit/check', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let location
+    if (req.session.data['edit-course'] && req.session.data['edit-course'].location) {
+      location = getLocation(req.session.data['edit-course'].location)
+    } else {
+      location = application.location
+    }
+
+    res.render('applications/course/check', {
+      application,
+      location
+    })
+  })
+
+  router.post('/applications/:applicationId/course/edit/check', (req, res) => {
     res.redirect(`/applications/${req.params.applicationId}/course/edit/save`)
   })
 
@@ -104,7 +123,7 @@ module.exports = router => {
 
     // log the change of course as an event
     ApplicationHelper.addEvent(application, {
-      title: "Course applied for updated",
+      title: "Course changed",
       user: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
       date: new Date().toISOString(),
       meta: {
@@ -121,7 +140,7 @@ module.exports = router => {
 
     delete req.session.data['edit-course']
 
-    req.flash('success', 'Course applied for updated')
+    req.flash('success', 'New course details sent')
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 

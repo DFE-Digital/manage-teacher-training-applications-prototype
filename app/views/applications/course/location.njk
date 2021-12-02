@@ -1,14 +1,19 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Change course applied for - " + application.personalDetails.name %}
-{% set title = "Select location" %}
+{% set caption = "Change course - " + application.personalDetails.name %}
+{% set title = "Location" %}
 
 {% block beforeContent %}
-{% if referrer == "study-mode" %}
+{% if query.referrer == "study-mode" %}
   {{ govukBackLink({
     text: "Back",
     href: "/applications/" + application.id + "/course/edit/study-mode"
+  }) }}
+{% elif query.referrer == "check" %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/applications/" + application.id + "/course/edit/check"
   }) }}
 {% else %}
   {{ govukBackLink({
