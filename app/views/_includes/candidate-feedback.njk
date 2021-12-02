@@ -113,7 +113,7 @@
       <dd class="govuk-summary-list__value">
         <ul class="govuk-list app-list--spaced">
 
-          {% set checkboxValue = "Understanding of subject" %}
+          {% set checkboxValue = "Subject knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
@@ -121,7 +121,7 @@
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Understanding of safeguarding" %}
+          {% set checkboxValue = "Safeguarding knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
@@ -129,7 +129,7 @@
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Understanding of teaching methods" %}
+          {% set checkboxValue = "Teaching method knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
@@ -137,7 +137,7 @@
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Understanding of teaching role" %}
+          {% set checkboxValue = "Teaching role knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
