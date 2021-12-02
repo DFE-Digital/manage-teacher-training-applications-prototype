@@ -115,10 +115,9 @@
 
         {% endif %}
 
-        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected", "Course applied for updated"] %}
-
+        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected", "Course changed"] %}
           <div class="app-activity-log__box">
-            {{ appEventApplication({ application: event.application }) }}
+            {{ appEventApplication({ application: event.event.meta.course }) }}
           </div>
 
           {% if event.application.rejectedReasons %}

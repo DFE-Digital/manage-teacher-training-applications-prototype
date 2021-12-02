@@ -40,7 +40,7 @@
             <div class="app-activity-log__description">
               {% if event.title == "Application submitted" %}
                 <div class="app-activity-log__box">
-                  {{appEventApplication({ application: application })}}
+                  {{appEventApplication({ application: event.meta.course })}}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}">View application</a></p>
               {% elseif event.title == "Interview set up" %}
@@ -128,9 +128,9 @@
                 </div>
               {% elseif event.title == "Status of conditions updated" %}
                 <div class="app-activity-log__box">
-                  {{appConditionsPanel({
+                  {{ appConditionsPanel({
                     conditions: event.meta.offer.conditions
-                  })}}
+                  }) }}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{application.id}}/offer">View conditions</a></p>
               {% elseif event.title == "Note added" and event.meta.note %}
@@ -147,9 +147,9 @@
                 <p class="app-log-card__note--link">
                   <a class="govuk-link" href="/applications/{{application.id}}">View application</a>
                 </p>
-              {% elseif event.title == "Course applied for updated" %}
+              {% elseif event.title == "Course changed" %}
                 <div class="app-activity-log__box">
-                  {{ appEventApplication({ application: application }) }}
+                  {{ appEventApplication({ application: event.meta.course }) }}
                 </div>
                 <p class="app-log-card__note--link">
                   <a class="govuk-link" href="/applications/{{ application.id }}">View application</a>
