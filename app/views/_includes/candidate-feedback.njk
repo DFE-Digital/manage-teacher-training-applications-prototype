@@ -19,22 +19,22 @@
       </dt>
       <dd class="govuk-summary-list__value">
         <ul class="govuk-list app-list--spaced">
-        {% set checkboxValue = "No maths GCSE grade 4 (C) or above, or accepted equivalent" %}
+        {% set checkboxValue = "No maths GCSE at minimum grade 4 or C, or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
 
-        {% set checkboxValue = "No English GCSE grade 4 (C) or above, or accepted equivalent" %}
+        {% set checkboxValue = "No English GCSE at minimum grade 4 or C, or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
 
-        {% set checkboxValue = "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)" %}
+        {% set checkboxValue = "No science GCSE at minimum grade 4 or C, or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
 
-        {% set checkboxValue = "No degree" %}
+        {% set checkboxValue = "No bachelor’s degree or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}

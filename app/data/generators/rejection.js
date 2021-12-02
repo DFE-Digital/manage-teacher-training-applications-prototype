@@ -11,7 +11,7 @@ function buildReasons(params) {
     reasons.categories.push('Qualifications')
 
     reasons['qualifications-reasons'] = [
-      'No English GCSE grade 4 (C) or above, or accepted equivalent',
+      'No English GCSE at minimum grade 4 or C, or equivalent',
       'Degree does not meet course requirements',
       'Other'
     ]
