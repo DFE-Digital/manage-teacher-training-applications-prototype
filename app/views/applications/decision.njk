@@ -1,6 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
+{% set primaryNavId = "applications" %}
 {% set name = application.personalDetails.name %}
 {% set title = "Make a decision" %}
 
@@ -72,25 +72,24 @@
         }}
       </div>
 
-      <form method="post">
+      <form action="/applications/{{ application.id }}/decision" method="post" accept-charset="UTF-8" novalidate>
+
         {{ govukRadios({
+          idPrefix: "decision",
+          name: "decision",
           fieldset: {
             legend: {
               text: "Select decision",
               classes: "govuk-fieldset__legend--m"
             }
           },
-          idPrefix: "decision",
-          name: "decision",
           items: [{
             value: "1",
             text: "Make an offer"
-          },
-          {
+          }, {
             value: "2",
             text: "Change course details and make an offer"
-          },
-          {
+          }, {
             value: "3",
             text: "Reject application"
           }]
@@ -99,8 +98,12 @@
         {{ govukButton({
           text: "Continue"
         }) }}
+
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/applications/{{ application.id }}">Cancel</a>
+      </p>
 
     </div>
   </div>

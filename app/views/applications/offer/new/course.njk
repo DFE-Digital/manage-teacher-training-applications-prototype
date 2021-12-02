@@ -5,7 +5,11 @@
 {% set title = "Select course" %}
 
 {% block pageNavigation %}
-  {% if query.referrer == "provider" %}
+  {% if query.referrer == "decision" %}
+    {{ govukBackLink({
+      href: "/applications/" + application.id + "/decision"
+    }) }}
+  {% elif query.referrer == "provider" %}
     {{ govukBackLink({
       href: "/applications/" + application.id + "/offer/new/provider"
     }) }}
