@@ -21,79 +21,106 @@
     Course details
   </h2>
   {{ govukSummaryList({
-    rows: [{
-      key: {
-        text: "Training provider"
-      },
-      value: {
-        html: params.provider.value
-      },
-      actions: {
-        items: [
-          {
-            href: params.provider.href or "#",
-            text: "Change",
-            visuallyHiddenText: "training provider"
-          }
-        ]
-      } if params.provider.href
-    }, {
-      key: {
-        text: "Course"
-      },
-      value: {
-        html: params.course.value
-      },
-      actions: {
-        items: [
-          {
-            href: params.course.href or "#",
-            text: "Change",
-            visuallyHiddenText: "course"
-          }
-        ]
-      } if params.course.href
-    }, {
-      key: {
-        text: "Full time or part time"
-      },
-      value: {
-        html: params.studyMode.value or "Full time"
-      },
-      actions: {
-        items: [
-          {
-            href: params.studyMode.href or "#",
-            text: "Change",
-            visuallyHiddenText: "mode of study"
-          }
-        ]
-      } if params.studyMode.href
-    }, {
-      key: {
-        text: "Location"
-      },
-      value: {
-        html: appLocation(params.location.value) if params.location.value.name else params.location.value
-      },
-      actions: {
-        items: [
-          {
-            href: params.location.href or "#",
-            text: "Change",
-            visuallyHiddenText: "location"
-          }
-        ]
-      } if params.location.href
-    }, {
-      key: {
-        text: "Accredited body"
-      },
-      value: {
-        html: params.accreditedBody.value
+    rows: [
+      {
+        key: {
+          text: "Training provider"
+        },
+        value: {
+          html: params.provider.value
+        },
+        actions: {
+          items: [
+            {
+              href: params.provider.href or "#",
+              text: "Change",
+              visuallyHiddenText: "training provider"
+            }
+          ]
+        } if params.provider.href
+      }, {
+        key: {
+          text: "Course"
+        },
+        value: {
+          html: params.course.value
+        },
+        actions: {
+          items: [
+            {
+              href: params.course.href or "#",
+              text: "Change",
+              visuallyHiddenText: "course"
+            }
+          ]
+        } if params.course.href
+      }, {
+        key: {
+          text: "Full time or part time"
+        },
+        value: {
+          html: params.studyMode.value or "Full time"
+        },
+        actions: {
+          items: [
+            {
+              href: params.studyMode.href or "#",
+              text: "Change",
+              visuallyHiddenText: "mode of study"
+            }
+          ]
+        } if params.studyMode.href
+      }, {
+        key: {
+          text: "Location"
+        },
+        value: {
+          html: appLocation(params.location.value) if params.location.value.name else params.location.value
+        },
+        actions: {
+          items: [
+            {
+              href: params.location.href or "#",
+              text: "Change",
+              visuallyHiddenText: "location"
+            }
+          ]
+        } if params.location.href
+      }, {
+        key: {
+          text: "Accredited body"
+        },
+        value: {
+          html: params.accreditedBody.value
+        },
+        actions: {
+          items: [
+            {
+              href: params.accreditedBody.href or "#",
+              text: "Change",
+              visuallyHiddenText: "accredited body"
+            }
+          ]
+        } if params.accreditedBody.href
+      } if params.accreditedBody.value != params.provider.value, {
+        key: {
+          text: "Funding type"
+        },
+        value: {
+          html: params.fundingType.value
+        },
+        actions: {
+          items: [
+            {
+              href: params.fundingType.href,
+              text: "Change",
+              visuallyHiddenText: "funding type"
+            }
+          ]
+        } if params.fundingType.href
       }
-    } if params.accreditedBody.value != params.provider.value
-  ]})}}
+    ]
+  }) }}
 
   <h2 class="govuk-heading-m">
     Conditions of offer
