@@ -85,7 +85,8 @@ const generateFakeApplication = (params = {}) => {
       provider: provider.name,
       course,
       location,
-      studyMode
+      studyMode,
+      fundingType
     })
   }
 

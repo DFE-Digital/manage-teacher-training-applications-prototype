@@ -58,6 +58,7 @@ module.exports = (params) => {
     location: params.location,
     studyMode: params.studyMode,
     accreditedBody: params.accreditedBody,
+    fundingType: params.fundingType,
     madeDate,
     acceptedDate,
     standardConditions,
