@@ -1,3 +1,4 @@
+const ApplicationHelper = require('../data/helpers/application')
 const Utils = require('../data/helpers/utils')
 
 const locations = require('../data/locations')
@@ -8,17 +9,17 @@ const getLocationItems = (selectedItem) => {
   locations.forEach((location, i) => {
     const item = {}
 
-    let address = Object.values(location.address)
-    // hack to remove empty items from address
-    address = address.filter(item => item !== '')
-
     item.text = location.name
     item.value = location.id
     item.id = location.id
     item.checked = (selectedItem && selectedItem.includes(location.id)) ? 'checked' : ''
 
     item.hint = {}
-    item.hint.text = Utils.arrayToList(array = address, join = ', ', final = ', ')
+    item.hint.text = Utils.arrayToList(
+        array = Object.values(location.address),
+        join = ', ',
+        final = ', '
+      )
 
     items.push(item)
   })
@@ -36,6 +37,7 @@ const getLocation = (locationId) => {
 
 module.exports = router => {
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
+    console.log(req.session.data.user);
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
@@ -99,6 +101,23 @@ module.exports = router => {
     if (req.session.data['edit-course'].fundingType) {
       application.fundingType = req.session.data['edit-course'].fundingType
     }
+
+    // log the change of course as an event
+    ApplicationHelper.addEvent(application, {
+      title: "Course applied for updated",
+      user: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
+      date: new Date().toISOString(),
+      meta: {
+        course: {
+          provider: application.provider,
+          course: application.course,
+          studyMode: application.studyMode,
+          location: application.location,
+          accreditedBody: application.accreditedBody,
+          fundingType: application.fundingType
+        }
+      }
+    })
 
     delete req.session.data['edit-course']
 

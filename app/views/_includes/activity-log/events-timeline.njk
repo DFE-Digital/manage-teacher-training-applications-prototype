@@ -115,45 +115,10 @@
 
         {% endif %}
 
-        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected"] %}
+        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected", "Course applied for updated"] %}
 
           <div class="app-activity-log__box">
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Training provider"
-                },
-                value: {
-                  text: event.application.provider
-                }
-              },
-              {
-                key: {
-                  text: "Course"
-                },
-                value: {
-                  text: event.application.course
-                }
-              },
-              {
-                key: {
-                  text: "Location"
-                },
-                value: {
-                  html: appLocation(event.application.location) if event.application.location.name else event.application.location
-                }
-              },
-              {
-                key: {
-                  text: "Accredited body"
-                },
-                value: {
-                  text: event.application.accreditedBody
-                }
-              }
-            ]
-          }) }}
+            {{ appEventApplication({ application: event.application }) }}
           </div>
 
           {% if event.application.rejectedReasons %}
