@@ -110,6 +110,7 @@ const generateFakeApplication = (params = {}) => {
     location,
     studyMode,
     accreditedBody: accreditedBody.name,
+    fundingType,
     organisation,
     assignedUsers
   })
