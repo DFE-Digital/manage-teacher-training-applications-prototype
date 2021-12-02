@@ -40,11 +40,12 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/new', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    let conditions;
+    let conditions
 
     // cleanse data gah
-    if(req.session.data['new-offer'] && req.session.data['new-offer']['conditions']) {
-      req.session.data['new-offer']['conditions'] = req.session.data['new-offer']['conditions'].filter(c => c != '')
+    if (req.session.data['new-offer']
+      && req.session.data['new-offer']['conditions']) {
+      req.session.data['new-offer']['conditions'] = req.session.data['new-offer']['conditions'].filter(condition => condition != '')
     }
 
     conditions = req.session.data['new-offer']['conditions']
@@ -56,8 +57,7 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/offer/new', (req, res) => {
-    const applicationId = req.params.applicationId
-    res.redirect(`/applications/${applicationId}/offer/new/check`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
   })
 
   router.get('/applications/:applicationId/offer/new/check', (req, res) => {
@@ -204,14 +204,14 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/new/location', (req, res) => {
-    let location
+    let selectedLocation
     if (req.session.data['new-offer'] && req.session.data['new-offer'].location) {
-      location = req.session.data['new-offer'].location
+      selectedLocation = req.session.data['new-offer'].location
     }
 
     res.render('applications/offer/new/location', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      locations: getLocationItems(location)
+      locations: getLocationItems(selectedLocation)
     })
   })
 

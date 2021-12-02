@@ -5,15 +5,15 @@
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
-  {% if query.referrer == "check" %}
-    {{ govukBackLink({
-      href: "/applications/" + application.id + "/offer/new/check"
-    }) }}
-  {% else %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/decision'
-    }) }}
-  {% endif %}
+{% if query.referrer == "check" %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer/new/check"
+  }) }}
+{% else %}
+  {{ govukBackLink({
+    href: '/applications/' + application.id + '/decision'
+  }) }}
+{% endif %}
 {% endblock %}
 
 {% block content %}

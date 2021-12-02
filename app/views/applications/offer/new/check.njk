@@ -5,9 +5,9 @@
 {% set title = "Check and send offer" %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
-    href: '/applications/' + application.id + '/offer/new'
-  }) }}
+{{ govukBackLink({
+  href: '/applications/' + application.id + '/offer/new'
+}) }}
 {% endblock %}
 
 {% block content %}
