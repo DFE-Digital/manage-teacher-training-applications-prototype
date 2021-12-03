@@ -1,46 +1,54 @@
 {% extends "_layout.njk" %}
 
-{% set name = application.personalDetails.name %}
-
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
 {% set title = "Check and send new offer" %}
 
 {% block pageNavigation %}
-  {% if referrer == 'location' %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/location'
-    }) }}
-  {% else %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/conditions'
-    }) }}
-  {% endif %}
+{% if referrer == "location" %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer/edit/location"
+  }) }}
+{% else %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer/edit/conditions"
+  }) }}
+{% endif %}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {{appOfferPanel({
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      </h1>
+
+      {{ appOfferPanel({
         provider: {
           value: data['edit-offer']['provider'] or application.offer.provider,
-          href: "/applications/" + application.id + "/offer/edit/provider?referrer=check"
+          href: "/applications/" + application.id + "/offer/edit/provider?referrer=check" if 1 == 0
         },
         course: {
           value: data['edit-offer']['course'] or application.offer.course,
           href: "/applications/" + application.id + "/offer/edit/course?referrer=check"
         },
         location: {
-          value: data['edit-offer']['location'] or (appLocation(application.offer.location) if application.offer.location.name else application.offer.location),
+          value: location or (appLocation(application.location) if application.location.name else application.location),
           href: "/applications/" + application.id + "/offer/edit/location?referrer=check"
         },
         studyMode: {
-          value: "Full time",
-          href: "#"
+          value: application.offer.studyMode,
+          href: "/applications/" + application.id + "/offer/edit/study-mode?referrer=check"
         },
         accreditedBody: {
-          value: application.offer.accreditedBody
+          value: application.offer.accreditedBody,
+          href: "/applications/" + application.id + "/offer/edit/accredited-body?referrer=check" if 1 == 0
+        },
+        fundingType: {
+          value: application.offer.fundingType,
+          href: "/applications/" + application.id + "/offer/edit/funding-type?referrer=check"
         },
         conditions: {
           items: conditions
@@ -48,15 +56,18 @@
         changeConditions: {
           href: "/applications/" + application.id + "/offer/edit/conditions?referrer=check"
         }
-      })}}
+      }) }}
 
-      <form method="post">
+      <form action="/applications/{{ application.id }}/offer/edit/check" method="post" accept-charset="UTF-8" novalidate>
         {{ govukButton({
           text: "Send new offer"
         }) }}
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/applications/{{ application.id }}/offer/edit/cancel">Cancel</a>
+      </p>
+
     </div>
   </div>
-
 {% endblock %}

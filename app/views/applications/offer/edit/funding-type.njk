@@ -2,18 +2,13 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = application.personalDetails.name %}
-{% set title = "Location" %}
+{% set title = "Full time or part time" %}
 
 {% block pageNavigation %}
-{% if query.referrer == "study-mode" %}
+{% if query.referrer == "location" %}
   {{ govukBackLink({
     text: "Back",
-    href: "/applications/" + application.id + "/offer/edit/study-mode"
-  }) }}
-{% elif query.referrer == "offer" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/offer"
+    href: "/applications/" + application.id + "/offer/edit/location"
   }) }}
 {% elif query.referrer == "check" %}
   {{ govukBackLink({
@@ -23,7 +18,7 @@
 {% else %}
   {{ govukBackLink({
     text: "Back",
-    href: "/applications/" + application.id + "offer/edit/check"
+    href: "/applications/" + application.id + "/offer"
   }) }}
 {% endif %}
 {% endblock %}
@@ -37,11 +32,11 @@
       {{ title }}
     {% endset %}
 
-    <form action="/applications/{{ application.id }}/offer/edit/location" method="post" accept-charset="UTF-8" novalidate>
+    <form action="/applications/{{ application.id }}/offer/edit/funding-type" method="post" accept-charset="UTF-8" novalidate>
 
       {{ govukRadios({
-        idPrefix: "edit-location",
-        name: "[edit-offer][location]",
+        idPrefix: "edit-fundingType",
+        name: "[edit-offer][fundingType]",
         fieldset: {
           legend: {
             html: headingHtml,
@@ -49,7 +44,15 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        items: locations
+        items: [{
+          value: "Fee paying",
+          text: "Fee paying",
+          checked: checked("['edit-offer']['fundingType']", "Fee paying")
+        }, {
+          value: "Salaried",
+          text: "Salaried",
+          checked: checked("['edit-offer']['fundingType']", "Salaried")
+        }]
       }) }}
 
       {{ govukButton({

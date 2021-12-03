@@ -1,65 +1,77 @@
 {% extends "_layout.njk" %}
 
-{% set name = application.personalDetails.name %}
-{% set title = "Select course" %}
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
+{% set title = "Course" %}
 
 {% block pageNavigation %}
-  {% if referrer == 'check' %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/check'
-    }) }}
-  {% elseif referrer == 'offer' %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer'
-    }) }}
-  {% else %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/provider'
-    }) }}
-  {% endif %}
+{% if query.referrer == "check" %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer/edit/check"
+  }) }}
+{% elif query.referrer == "offer" %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer"
+  }) }}
+{% else %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/offer/edit/provider"
+  }) }}
+{% endif %}
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
-      {% endset %}
+    {% set headingHtml %}
+      <span class="govuk-caption-l">{{ caption }}</span>
+      {{ title }}
+    {% endset %}
 
-      <form method="post">
+    <form action="/applications/{{ application.id }}/offer/edit/course" method="post" accept-charset="UTF-8" novalidate>
 
-        {{ govukRadios({
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+      {{ govukRadios({
+        idPrefix: "edit-course",
+        name: "[edit-offer][course]",
+        fieldset: {
+          legend: {
+            html: headingHtml,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [{
+          value: "Primary (X100)",
+          text: "Primary (X100)",
+          hint: {
+            text: 'PGCE with QTS full time - Goldsmiths, University of London'
           },
-          items: [{
-            value: "Primary (X100)",
-            text: "Primary (X100)",
-            hint: {
-              text: 'PGCE with QTS full time - Kingston University'
-            },
-            checked: checked("course", "Primary (X100)")
-          }, {
-            value: "Primary (X121)",
-            text: "Primary (X121)",
-            hint: {
-              text: 'QTS full time - Springbank SCITT'
-            },
-            checked: checked("course", "Primary (X121)")
-          }]
-        } | decorateAttributes(data, 'data["edit-offer"]["course"]') ) }}
+          checked: checked("['edit-offer']['course']", "Primary (X100)")
+        }, {
+          value: "Primary (X121)",
+          text: "Primary (X121)",
+          hint: {
+            text: 'QTS full time - UCL, University College London'
+          },
+          checked: checked("['edit-offer']['course']", "Primary (X121)")
+        }]
+      }) }}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
-    </div>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      {#% if query.referrer == "check" %#}
+        <a class="govuk-link" href="/applications/{{ application.id }}/offer/edit/course/cancel">Cancel</a>
+      {#% else %}
+        <a class="govuk-link" href="/applications/{{ application.id }}/offer">Cancel</a>
+      {% endif %#}
+    </p>
+
   </div>
+</div>
 {% endblock %}
