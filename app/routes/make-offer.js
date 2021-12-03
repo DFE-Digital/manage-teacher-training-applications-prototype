@@ -45,7 +45,7 @@ module.exports = router => {
     // cleanse data gah
     if (req.session.data['new-offer']
       && req.session.data['new-offer']['conditions']) {
-      req.session.data['new-offer']['conditions'] = req.session.data['new-offer']['conditions'].filter(condition => condition != '')
+      req.session.data['new-offer']['conditions'] = req.session.data['new-offer']['conditions'].filter(condition => condition !== '')
     }
 
     conditions = req.session.data['new-offer']['conditions']
@@ -72,7 +72,7 @@ module.exports = router => {
 
     if (req.session.data['new-offer']['conditions']) {
       req.session.data['new-offer']['conditions']
-        .filter(condition => condition != '')
+        .filter(condition => condition !== '')
         .forEach(condition => {
         conditions.push(condition)
       })
@@ -94,8 +94,7 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/offer/new/check', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     ApplicationHelper.getUpcomingInterviews(application).forEach((interview) => {
       ApplicationHelper.cancelInterview({ application, interview, cancellationReason: "We made you an offer." })

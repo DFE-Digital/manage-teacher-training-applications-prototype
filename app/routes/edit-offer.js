@@ -106,13 +106,12 @@ module.exports = router => {
           return condition.description
         })
       }
-
     }
 
     // cleanse data gah
     if (req.session.data['edit-offer']
       && req.session.data['edit-offer']['conditions']) {
-      req.session.data['edit-offer']['conditions'] = req.session.data['edit-offer']['conditions'].filter(condition => condition != '')
+      req.session.data['edit-offer']['conditions'] = req.session.data['edit-offer']['conditions'].filter(condition => condition !== '')
     }
 
     // if the form has been used in some way
