@@ -175,6 +175,7 @@ const generateFakeApplication = (params = {}) => {
     subject: params.subject || subjects,
     subjectLevel: params.subjectLevel || subjectLevel,
     course: params.course || course,
+    courseCode: params.courseCode || courseCode,
     location: params.location || location,
     status,
     submittedDate,
