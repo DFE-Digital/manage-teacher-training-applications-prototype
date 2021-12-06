@@ -42,7 +42,7 @@
             text: "Course"
           },
           value: {
-            html: data['edit-course'].course or application.course
+            html: course.name + " (" + course.code + ")"
           },
           actions: {
             items: [
@@ -90,7 +90,7 @@
             text: "Accredited body"
           },
           value: {
-            html: data['edit-course'].accreditedBody or application.accreditedBody
+            html: course.accreditedBody.name or application.accreditedBody
           }
         }, {
           key: {

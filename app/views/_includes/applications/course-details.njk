@@ -11,7 +11,7 @@
     actions: {
       items: [
         {
-          href: "/applications/" + application.id + "/course/edit/provider",
+          href: "/applications/" + application.id + "/course/edit/provider?referrer=details",
           text: "Change",
           visuallyHiddenText: "training provider"
         }
@@ -22,12 +22,12 @@
       text: "Course"
     },
     value: {
-      text: application["course"]
+      text: application.course
     },
     actions: {
       items: [
         {
-          href: "/applications/" + application.id + "/course/edit/course",
+          href: "/applications/" + application.id + "/course/edit/course?referrer=details",
           text: "Change",
           visuallyHiddenText: "course"
         }
@@ -43,7 +43,7 @@
     actions: {
       items: [
         {
-          href: "/applications/" + application.id + "/course/edit/study-mode",
+          href: "/applications/" + application.id + "/course/edit/study-mode?referrer=details",
           text: "Change",
           visuallyHiddenText: "full time or part time"
         }
@@ -59,7 +59,7 @@
     actions: {
       items: [
         {
-          href: "/applications/" + application.id + "/course/edit/location",
+          href: "/applications/" + application.id + "/course/edit/location?referrer=details",
           text: "Change",
           visuallyHiddenText: "location"
         }
@@ -87,15 +87,6 @@
     },
     value: {
       text: application.fundingType
-    },
-    actions: {
-      items: [
-        {
-          href: "/applications/" + application.id + "/course/edit/funding-type",
-          text: "Change",
-          visuallyHiddenText: "funding type"
-        }
-      ]
-    } if application.status in ["Received","Interviewing"]
+    }
   }]
 }) }}

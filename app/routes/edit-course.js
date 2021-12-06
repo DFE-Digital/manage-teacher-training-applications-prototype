@@ -2,6 +2,7 @@ const ApplicationHelper = require('../data/helpers/application')
 const Utils = require('../data/helpers/utils')
 
 const locations = require('../data/locations')
+const courses = require('../data/courses')
 
 const getLocationItems = (selectedItem) => {
   const items = []
@@ -35,10 +36,50 @@ const getLocation = (locationId) => {
   return locations.find(location => location.id === locationId)
 }
 
+const getCourseItems = (selectedItem) => {
+  const items = []
+
+  courses.forEach((course, i) => {
+    const item = {}
+
+    item.text = course.name
+    item.text += ' (' + course.code + ')'
+    item.value = course.code
+    item.id = course.code
+    item.checked = (selectedItem && selectedItem.includes(course.code)) ? 'checked' : ''
+
+    item.hint = {}
+    item.hint.text = Utils.arrayToList(
+        array = course.qualifications,
+        join = ', ',
+        final = ' with '
+      )
+    item.hint.text += ' - ' + course.accreditedBody.name
+
+    items.push(item)
+  })
+
+  items.sort((a,b) => {
+    return a.text.localeCompare(b.text)
+  })
+
+  return items
+}
+
+const getCourse = (courseId) => {
+  return courses.find(course => course.code === courseId)
+}
+
 module.exports = router => {
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
+    let course
+    if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
+      course = req.session.data['edit-course'].course
+    }
+
     res.render('applications/course/course', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      courses: getCourseItems(course)
     })
   })
 
@@ -48,7 +89,8 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/course/edit/study-mode', (req, res) => {
     res.render('applications/course/study-mode', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+
     })
   })
 
@@ -82,9 +124,17 @@ module.exports = router => {
       location = application.location
     }
 
+    let course
+    if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
+      course = getCourse(req.session.data['edit-course'].course)
+    } else {
+      course = application.course
+    }
+
     res.render('applications/course/check', {
       application,
-      location
+      location,
+      course
     })
   })
 
@@ -96,7 +146,11 @@ module.exports = router => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     if (req.session.data['edit-course'].course) {
-      application.course = req.session.data['edit-course'].course
+      const course = getCourse(req.session.data['edit-course'].course)
+      application.course = course.name + ' (' + course.code + ')'
+
+      application.accreditedBody = course.accreditedBody.name
+      application.fundingType = course.fundingType
     }
 
     if (req.session.data['edit-course'].studyMode) {
