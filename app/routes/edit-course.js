@@ -69,17 +69,7 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/funding-type?referrer=location`)
-  })
-
-  router.get('/applications/:applicationId/course/edit/funding-type', (req, res) => {
-    res.render('applications/course/funding-type', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/applications/:applicationId/course/edit/funding-type', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/check`)
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=location`)
   })
 
   router.get('/applications/:applicationId/course/edit/check', (req, res) => {
@@ -115,10 +105,6 @@ module.exports = router => {
 
     if (req.session.data['edit-course'].location) {
       application.location = getLocation(req.session.data['edit-course'].location)
-    }
-
-    if (req.session.data['edit-course'].fundingType) {
-      application.fundingType = req.session.data['edit-course'].fundingType
     }
 
     // log the change of course as an event

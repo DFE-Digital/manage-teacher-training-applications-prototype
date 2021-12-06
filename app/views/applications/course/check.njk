@@ -7,7 +7,7 @@
 {% block beforeContent %}
 {{ govukBackLink({
   text: "Back",
-  href: "/applications/" + application.id + "/course/edit/funding-type"
+  href: "/applications/" + application.id + "/course/edit/location"
 }) }}
 {% endblock %}
 
@@ -91,31 +91,13 @@
           },
           value: {
             html: data['edit-course'].accreditedBody or application.accreditedBody
-          },
-          actions: {
-            items: [
-              {
-                href: "/applications/" + application.id + "/course/edit/accredited-body?referrer=check",
-                text: "Change",
-                visuallyHiddenText: "accredited body"
-              }
-            ]
-          } if 1 == 0
+          }
         }, {
           key: {
             text: "Funding type"
           },
           value: {
             html: data['edit-course'].fundingType or application.fundingType
-          },
-          actions: {
-            items: [
-              {
-                href: "/applications/" + application.id + "/course/edit/funding-type?referrer=check",
-                text: "Change",
-                visuallyHiddenText: "funding type"
-              }
-            ]
           }
         }
         ]})
