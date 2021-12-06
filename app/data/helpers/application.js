@@ -34,13 +34,14 @@ exports.getRejectReasons = (data) => {
     'teaching-knowledge-reasons-safeguarding': data['teaching-knowledge-reasons-safeguarding'],
     'teaching-knowledge-reasons-teaching-method': data['teaching-knowledge-reasons-teaching-method'],
     'teaching-knowledge-reasons-teaching-role': data['teaching-knowledge-reasons-teaching-role'],
-    'teaching-knowledge-reasons-presentation-skills': data['teaching-knowledge-reasons-presentation-skills'],
+    'teaching-knowledge-reasons-teaching-demonstration': data['teaching-knowledge-reasons-teaching-demonstration'],
     'teaching-knowledge-reasons-other': data['teaching-knowledge-reasons-other'],
 
     // Comms
     'communication-reasons': data['communication-reasons'],
     'communication-reasons-did-not-reply-to-messages': data['communication-reasons-did-not-reply-to-messages'],
     'communication-reasons-did-not-attend-interview': data['communication-reasons-did-not-attend-interview'],
+    'communication-reasons-could-not-arrange-interview': data['communication-reasons-could-not-arrange-interview'],
     'communication-reasons-other': data['communication-reasons-other'],
 
     // References

@@ -19,22 +19,22 @@
       </dt>
       <dd class="govuk-summary-list__value">
         <ul class="govuk-list app-list--spaced">
-        {% set checkboxValue = "No maths GCSE grade 4 (C) or above, or accepted equivalent" %}
+        {% set checkboxValue = "No maths GCSE at minimum grade 4 or C, or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
 
-        {% set checkboxValue = "No English GCSE grade 4 (C) or above, or accepted equivalent" %}
+        {% set checkboxValue = "No English GCSE at minimum grade 4 or C, or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
 
-        {% set checkboxValue = "No science GCSE grade 4 (C) or above, or accepted equivalent (for primary applicants)" %}
+        {% set checkboxValue = "No science GCSE at minimum grade 4 or C, or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
 
-        {% set checkboxValue = "No degree" %}
+        {% set checkboxValue = "No bachelor’s degree or equivalent" %}
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>{{checkboxValue}}.</li>
         {% endif %}
@@ -43,7 +43,7 @@
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>
             <p>{{checkboxValue}}:</p>
-            <p>{{rejectionReasons[groupName + '-degree-does-not-meet-course-requirements']}}</p>
+            <p>{{rejectionReasons[groupName + '-degree-does-not-meet-course-requirements'] | nl2br | safe}}</p>
           </li>
         {% endif %}
 
@@ -51,7 +51,7 @@
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>
             <p>{{checkboxValue}}:</p>
-            <p>{{rejectionReasons[groupName + '-could-not-verify-qualifications']}}</p>
+            <p>{{rejectionReasons[groupName + '-could-not-verify-qualifications'] | nl2br | safe}}</p>
           </li>
         {% endif %}
 
@@ -59,7 +59,7 @@
         {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
           <li>
             <p>Other:</p>
-            <p>{{rejectionReasons[groupName + '-other']}}</p>
+            <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
           </li>
         {% endif %}
 
@@ -84,7 +84,7 @@
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-quality-of-writing']}}</p>
+              <p>{{rejectionReasons[groupName + '-quality-of-writing'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
@@ -92,7 +92,7 @@
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>Other:</p>
-              <p>{{rejectionReasons[groupName + '-other']}}</p>
+              <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
@@ -113,43 +113,43 @@
       <dd class="govuk-summary-list__value">
         <ul class="govuk-list app-list--spaced">
 
-          {% set checkboxValue = "Understanding of subject" %}
+          {% set checkboxValue = "Subject knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-subject']}}</p>
+              <p>{{rejectionReasons[groupName + '-subject'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Understanding of safeguarding" %}
+          {% set checkboxValue = "Safeguarding knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-safeguarding']}}</p>
+              <p>{{rejectionReasons[groupName + '-safeguarding'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Understanding of teaching methods" %}
+          {% set checkboxValue = "Teaching method knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-teaching-method']}}</p>
+              <p>{{rejectionReasons[groupName + '-teaching-method'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Understanding of teaching role" %}
+          {% set checkboxValue = "Teaching role knowledge" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-teaching-role']}}</p>
+              <p>{{rejectionReasons[groupName + '-teaching-role'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
-          {% set checkboxValue = "Presentation skills" %}
+          {% set checkboxValue = "Teaching demonstration" %}
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-presentation-skills']}}</p>
+              <p>{{rejectionReasons[groupName + '-teaching-demonstration'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
@@ -157,7 +157,7 @@
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>Other:</p>
-              <p>{{rejectionReasons[groupName + '-other']}}</p>
+              <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
             </li>
           {% endif %}
         </ul>
@@ -166,7 +166,7 @@
     </div>
   {% endif %}
 
-  {% set checkboxValue = 'Communication and scheduling' %}
+  {% set checkboxValue = 'Communication, attendance and scheduling' %}
   {% set category = 'communication' %}
   {% set groupName = category + '-reasons' %}
   {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
@@ -181,7 +181,7 @@
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-did-not-reply-to-messages']}}.</p>
+              <p>{{rejectionReasons[groupName + '-did-not-reply-to-messages'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
@@ -189,7 +189,15 @@
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-did-not-attend-interview']}}</p>
+              <p>{{rejectionReasons[groupName + '-did-not-attend-interview'] | nl2br | safe}}</p>
+            </li>
+          {% endif %}
+
+          {% set checkboxValue = "Could not arrange interview" %}
+          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
+            <li>
+              <p>{{checkboxValue}}:</p>
+              <p>{{rejectionReasons[groupName + '-could-not-arrange-interview'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
@@ -197,7 +205,7 @@
           {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
             <li>
               <p>Other:</p>
-              <p>{{rejectionReasons[groupName + '-other']}}</p>
+              <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
             </li>
           {% endif %}
 
@@ -231,7 +239,7 @@
         {{checkboxValue}}
       </dt>
       <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details']}}</p>
+        <p>{{rejectionReasons[groupName + '-details'] | nl2br | safe}}</p>
       </dd>
       {{changeHtml | safe}}
     </div>
@@ -246,7 +254,7 @@
         {{checkboxValue}}
       </dt>
       <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details']}}</p>
+        <p>{{rejectionReasons[groupName + '-details'] | nl2br | safe}}</p>
       </dd>
       {{changeHtml | safe}}
     </div>
@@ -275,7 +283,7 @@
         {{checkboxValue}}
       </dt>
       <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details']}}</p>
+        <p>{{rejectionReasons[groupName + '-details'] | nl2br | safe}}</p>
       </dd>
       {{changeHtml | safe}}
     </div>
