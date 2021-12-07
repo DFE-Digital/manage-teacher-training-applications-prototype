@@ -1,5 +1,7 @@
 const { v4: uuidv4 } = require('uuid')
 const ApplicationHelper = require('../data/helpers/application')
+const CourseHelper = require('../data/helpers/courses')
+
 const Utils = require('../data/helpers/utils')
 
 const locations = require('../data/locations')
@@ -61,7 +63,7 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/new/check', (req, res) => {
-    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let conditions = []
 
     if (req.session.data['new-offer']
@@ -85,9 +87,17 @@ module.exports = router => {
       }
     })
 
+    let course
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['new-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.courseCode)
+    }
+
     res.render('applications/offer/new/check', {
       upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application,
+      course,
       conditions,
       location: getLocation(req.session.data['new-offer'].location)
     })
@@ -100,12 +110,20 @@ module.exports = router => {
       ApplicationHelper.cancelInterview({ application, interview, cancellationReason: "We made you an offer." })
     })
 
+    let course
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['new-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.courseCode)
+    }
+
     application.status = 'Offered'
 
     application.offer = {
       madeDate: new Date().toISOString(),
       provider: req.session.data['new-offer'].provider || application.provider,
-      course: req.session.data['new-offer'].course || application.course,
+      course: course.name + ' (' + course.code + ')',
+      courseCode: course.code,
       location: getLocation(req.session.data['new-offer'].location) || application.location,
       studyMode: req.session.data['new-offer'].studyMode || application.studyMode,
       accreditedBody: application.accreditedBody,
@@ -183,8 +201,15 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/new/course', (req, res) => {
+
+    let course
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
+      course = req.session.data['new-offer'].course
+    }
+
     res.render('applications/offer/new/course', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      courses: CourseHelper.getCourses(course)
     })
   })
 
@@ -222,6 +247,10 @@ module.exports = router => {
       res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
     }
   })
+
+  // ---------------------------------------------------------------------------
+  // Cancel links
+  // ---------------------------------------------------------------------------
 
   router.get('/applications/:applicationId/offer/new/course/cancel', (req, res) => {
     // delete data we don't need

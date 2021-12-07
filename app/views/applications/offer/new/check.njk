@@ -26,7 +26,7 @@
           href: "/applications/" + application.id + "/offer/new/provider?referrer=check" if 1 == 0
         },
         course: {
-          value: data['new-offer'].course or application.course,
+          value: course.name + " (" + course.code + ")",
           href: "/applications/" + application.id + "/offer/new/course?referrer=check"
         },
         studyMode: {

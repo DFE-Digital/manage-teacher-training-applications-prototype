@@ -41,21 +41,7 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        items: [{
-          value: "Primary (X100)",
-          text: "Primary (X100)",
-          hint: {
-            text: 'PGCE with QTS full time - Goldsmiths, University of London'
-          },
-          checked: checked("['edit-offer']['course']", "Primary (X100)")
-        }, {
-          value: "Primary (X121)",
-          text: "Primary (X121)",
-          hint: {
-            text: 'QTS full time - UCL, University College London'
-          },
-          checked: checked("['edit-offer']['course']", "Primary (X121)")
-        }]
+        items: courses
       }) }}
 
       {{ govukButton({

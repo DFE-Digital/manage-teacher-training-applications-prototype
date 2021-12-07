@@ -1,5 +1,7 @@
 const { v4: uuidv4 } = require('uuid')
 const ApplicationHelper = require('../data/helpers/application')
+const CourseHelper = require('../data/helpers/courses')
+
 const Utils = require('../data/helpers/utils')
 
 const locations = require('../data/locations')
@@ -48,8 +50,15 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/edit/course', (req, res) => {
+
+    let course
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].course) {
+      course = req.session.data['edit-offer'].course
+    }
+
     res.render('applications/offer/edit/course', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      courses: CourseHelper.getCourses(course)
     })
   })
 
@@ -163,8 +172,16 @@ module.exports = router => {
       conditions = ApplicationHelper.getConditions(application.offer)
     }
 
+    let course
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.courseCode)
+    }
+
     res.render('applications/offer/edit/check', {
       application,
+      course,
       conditions,
       location: getLocation(req.session.data['new-offer'].location)
     })
@@ -173,12 +190,20 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/edit/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
-    application.offer.provider = req.session.data['edit-offer'].provider || application.offer.provider
-    application.offer.course = req.session.data['edit-offer'].course || application.offer.course
+    if (req.session.data['edit-offer'].course) {
+      const course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
+      // application.offer.provider = course.trainingProvider.name
+      application.offer.course = course.name + ' (' + course.code + ')'
+      application.offer.courseCode = course.code
+      application.offer.accreditedBody = course.accreditedBody.name
+      application.offer.fundingType = course.fundingType
+    }
+
+    // application.offer.provider = req.session.data['edit-offer'].provider || application.offer.provider
     application.offer.studyMode = req.session.data['edit-offer'].studyMode || application.offer.studyMode
-    application.offer.location = getLocation(req.session.data['edit-offer'].location) || application.offer.location,
-    application.offer.accreditedBody = req.session.data['edit-offer'].accreditedBody || application.offer.accreditedBody
-    application.offer.fundingType = req.session.data['edit-offer'].fundingType || application.offer.fundingType
+    application.offer.location = getLocation(req.session.data['edit-offer'].location) || application.offer.location
+    // application.offer.accreditedBody = req.session.data['edit-offer'].accreditedBody || application.offer.accreditedBody
+    // application.offer.fundingType = req.session.data['edit-offer'].fundingType || application.offer.fundingType
 
     // if it's been submitted then save conditions from data
     if (req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {

@@ -31,7 +31,7 @@
           href: "/applications/" + application.id + "/offer/edit/provider?referrer=check" if 1 == 0
         },
         course: {
-          value: data['edit-offer']['course'] or application.offer.course,
+          value: course.name + " (" + course.code + ")",
           href: "/applications/" + application.id + "/offer/edit/course?referrer=check"
         },
         location: {
