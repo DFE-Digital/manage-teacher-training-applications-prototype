@@ -38,12 +38,10 @@
           href: "/applications/" + application.id + "/offer/new/location?referrer=check"
         },
         accreditedBody: {
-          value: application.accreditedBody,
-          href: "/applications/" + application.id + "/offer/new/accredited-body?referrer=check" if 1 == 0
+          value: application.accreditedBody
         },
         fundingType: {
-          value: data['new-offer'].fundingType or application.fundingType,
-          href: "/applications/" + application.id + "/offer/new/funding-type?referrer=check"
+          value: data['new-offer'].fundingType or application.fundingType
         },
         conditions: {
           items: conditions

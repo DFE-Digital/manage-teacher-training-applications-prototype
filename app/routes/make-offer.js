@@ -215,16 +215,6 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/offer/new/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/new/funding-type?referrer=location`)
-  })
-
-  router.get('/applications/:applicationId/offer/new/funding-type', (req, res) => {
-    res.render('applications/offer/new/funding-type', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/applications/:applicationId/offer/new/funding-type', (req, res) => {
     if (!(req.session.data['new-offer']['standard-conditions']
       || req.session.data['new-offer'].conditions)) {
       res.redirect(`/applications/${req.params.applicationId}/offer/new`)

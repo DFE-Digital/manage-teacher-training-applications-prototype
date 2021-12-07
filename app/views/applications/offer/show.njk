@@ -50,12 +50,10 @@
             href: "/applications/" + application.id + "/offer/edit/location?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           accreditedBody: {
-            value: application.offer.accreditedBody,
-            href: "/applications/" + application.id + "/offer/edit/accredited-body?referrer=offer" if application.status == "Offered" and not query.transferred and 1 == 0
+            value: application.offer.accreditedBody
           },
           fundingType: {
-            value: application.offer.fundingType,
-            href: "/applications/" + application.id + "/offer/edit/funding-type?referrer=offer" if application.status == "Offered" and not query.transferred
+            value: application.offer.fundingType
           },
           changeConditions: {
             href: "/applications/" + application.id + "/offer/edit/conditions?referrer=offer"

@@ -80,17 +80,7 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/offer/edit/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/edit/funding-type?referrer=location`)
-  })
-
-  router.get('/applications/:applicationId/offer/edit/funding-type', (req, res) => {
-    res.render('applications/offer/edit/funding-type', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
-    })
-  })
-
-  router.post('/applications/:applicationId/offer/edit/funding-type', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/edit/conditions?referrer=funding-type`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/edit/conditions?referrer=location`)
   })
 
   router.get('/applications/:applicationId/offer/edit/conditions', (req, res) => {
