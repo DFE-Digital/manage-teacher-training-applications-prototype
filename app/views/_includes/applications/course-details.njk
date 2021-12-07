@@ -48,7 +48,7 @@
           visuallyHiddenText: "full time or part time"
         }
       ]
-    } if application.status in ["Received","Interviewing"]
+    } if application.status in ["Received","Interviewing"] and course.studyModes.length > 1
   }, {
     key: {
       text: "Location"
@@ -64,7 +64,7 @@
           visuallyHiddenText: "location"
         }
       ]
-    } if application.status in ["Received","Interviewing"]
+    } if application.status in ["Received","Interviewing"] and course.locations.length > 1
   }, {
     key: {
       text: "Accredited body"

@@ -1,10 +1,12 @@
 const ApplicationHelper = require('../data/helpers/application')
+const courses = require('../data/courses')
 
 module.exports = router => {
   router.get('/applications/:applicationId', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
+    const course = courses.find(course => course.code === application.courseCode)
 
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
@@ -30,6 +32,7 @@ module.exports = router => {
     res.render('applications/show', {
       experience,
       application,
+      course,
       hasOtherNonUkQualifications,
       assignedUsers
     })
