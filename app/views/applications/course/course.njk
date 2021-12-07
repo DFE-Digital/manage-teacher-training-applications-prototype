@@ -5,7 +5,7 @@
 {% set title = "Course" %}
 
 {% block beforeContent %}
-{% if query.referrer == "check" %}
+{#% if query.referrer == "check" %}
   {{ govukBackLink({
     text: "Back",
     href: "/applications/" + application.id + "/course/edit/check"
@@ -15,7 +15,11 @@
     text: "Back",
     href: "/applications/" + application.id + "/"
   }) }}
-{% endif %}
+{% endif %#}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -27,7 +31,7 @@
         {{ title }}
       {% endset %}
 
-      <form action="/applications/{{ application.id }}/course/edit/course" method="post" accept-charset="UTF-8" novalidate>
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
           idPrefix: "edit-course",
@@ -49,7 +53,7 @@
       </form>
 
       <p class="govuk-body">
-        <a href="/applications/{{ application.id }}/course/edit/cancel">Cancel</a>
+        <a href="{{ actions.cancel }}">Cancel</a>
       </p>
 
     </div>

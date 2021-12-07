@@ -5,9 +5,13 @@
 {% set title = "Check and send new course details" %}
 
 {% block beforeContent %}
-{{ govukBackLink({
+{#{ govukBackLink({
   text: "Back",
   href: "/applications/" + application.id + "/course/edit/location"
+}) }#}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
 }) }}
 {% endblock %}
 
@@ -97,13 +101,13 @@
             text: "Funding type"
           },
           value: {
-            html: data['edit-course'].fundingType or application.fundingType
+            html: course.fundingType or application.fundingType
           }
         }
         ]})
       }}
 
-      <form action="/applications/{{ application.id }}/course/edit/check" method="post" accept-charset="UTF-8" novalidate>
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukButton({
           text: "Send new course details"
@@ -112,7 +116,7 @@
       </form>
 
       <p class="govuk-body">
-        <a href="/applications/{{ application.id }}/course/edit/cancel">Cancel</a>
+        <a href="{{ actions.cancel }}">Cancel</a>
       </p>
 
     </div>

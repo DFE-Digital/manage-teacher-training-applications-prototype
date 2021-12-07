@@ -91,6 +91,12 @@ const getCourseLocation = (locationId) => {
 
 module.exports = router => {
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
+    let back = `/applications/${req.params.applicationId}`
+
+    if (req.query.referrer === 'check') {
+      back += '/course/edit/check'
+    }
+
     let course
     if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
       course = req.session.data['edit-course'].course
@@ -98,7 +104,12 @@ module.exports = router => {
 
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      courses: getCourses(course)
+      courses: getCourses(course),
+      actions: {
+        back: back,
+        cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
+        save: `/applications/${req.params.applicationId}/course/edit/course`
+      }
     })
   })
 
@@ -113,8 +124,24 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/course/edit/study-mode', (req, res) => {
+    let back = `/applications/${req.params.applicationId}`
+    let save = `/applications/${req.params.applicationId}/course/edit/study-mode`
+
+    if (req.query.referrer === 'check' || req.query.referrer === 'details') {
+      back += '/course/edit/check'
+      save += `?referrer=${req.query.referrer}`
+    } else if (req.query.referrer === 'course') {
+      back += '/course/edit/course'
+    }
+
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const course = req.session.data.course
+
+    let course
+    if (req.session.data.course) {
+      course = req.session.data.course
+    } else {
+      course = getCourse(application.courseCode)
+    }
 
     let studyMode
     if (req.session.data['edit-course'] && req.session.data['edit-course'].studyMode) {
@@ -123,25 +150,61 @@ module.exports = router => {
 
     res.render('applications/course/study-mode', {
       application,
-      studyModes: getCourseStudyModes(course.code, studyMode)
+      studyModes: getCourseStudyModes(course.code, studyMode),
+      actions: {
+        back: back,
+        cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
+        save: save
+      }
     })
   })
 
   router.post('/applications/:applicationId/course/edit/study-mode', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/location?referrer=study-mode`)
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    if (req.session.data['edit-course'].course) {
+      req.session.data.course = getCourse(req.session.data['edit-course'].course)
+    } else {
+      req.session.data.course = getCourse(application.courseCode)
+    }
+
+    if (req.query.referrer === 'check' || req.query.referrer === 'details') {
+      res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=study-mode`)
+    } else if (req.session.data.course.locations.length > 1) {
+      res.redirect(`/applications/${req.params.applicationId}/course/edit/location?referrer=study-mode`)
+    } else {
+      req.session.data['edit-course'].location = req.session.data.course.locations[0]
+      res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=study-mode`)
+    }
   })
 
   router.get('/applications/:applicationId/course/edit/location', (req, res) => {
+    let back = `/applications/${req.params.applicationId}`
+
+    if (req.query.referrer === 'check') {
+      back += '/course/edit/check'
+    } else if (req.query.referrer === 'course') {
+      back += '/course/edit/course'
+    } else if (req.query.referrer === 'study-mode') {
+      back += '/course/edit/study-mode'
+    }
+
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-    const course = req.session.data.course
+
+    let course
+    if (req.session.data.course) {
+      course = req.session.data.course
+    } else {
+      course = getCourse(application.courseCode)
+    }
 
     if (course.locations.length <= 1) {
 
       req.session.data['edit-course'].location = req.session.data.course.locations[0].id
-      res.redirect(`/applications/${req.params.applicationId}/course/edit/check`)
+      res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=${req.query.referrer}`)
 
     } else {
-      const courseCode = req.session.data.course.code
+      const courseCode = course.code
 
       let location
       if (req.session.data['edit-course'] && req.session.data['edit-course'].location) {
@@ -150,7 +213,12 @@ module.exports = router => {
 
       res.render('applications/course/location', {
         application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-        locations: getCourseLocations(course.code, location)
+        locations: getCourseLocations(course.code, location),
+        actions: {
+          back: back,
+          cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
+          save: `/applications/${req.params.applicationId}/course/edit/location?referrer=${req.query.referrer}`
+        }
       })
     }
   })
@@ -160,13 +228,23 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/course/edit/check', (req, res) => {
+    let back = `/applications/${req.params.applicationId}`
+
+    if (req.query.referrer === 'course') {
+      back += '/course/edit/course'
+    } else if (req.query.referrer === 'study-mode') {
+      back += '/course/edit/study-mode'
+    } else if (req.query.referrer === 'location') {
+      back += '/course/edit/location'
+    }
+
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     let course
     if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
       course = getCourse(req.session.data['edit-course'].course)
     } else {
-      course = application.course
+      course = getCourse(application.courseCode)
     }
 
     let studyMode
@@ -187,21 +265,22 @@ module.exports = router => {
       application,
       course,
       studyMode,
-      location
+      location,
+      actions: {
+        back: back,
+        cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
+        save: `/applications/${req.params.applicationId}/course/edit/check`
+      }
     })
   })
 
   router.post('/applications/:applicationId/course/edit/check', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/save`)
-  })
-
-  router.get('/applications/:applicationId/course/edit/save', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     if (req.session.data['edit-course'].course) {
       const course = getCourse(req.session.data['edit-course'].course)
       application.course = course.name + ' (' + course.code + ')'
-
+      application.courseCode = course.code
       application.accreditedBody = course.accreditedBody.name
       application.fundingType = course.fundingType
     }
@@ -232,6 +311,8 @@ module.exports = router => {
     })
 
     delete req.session.data['edit-course']
+    delete req.session.data.course
+    delete req.session.data.referrer
 
     req.flash('success', 'New course details sent')
     res.redirect(`/applications/${req.params.applicationId}`)
@@ -239,6 +320,8 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/course/edit/cancel', (req, res) => {
     delete req.session.data['edit-course']
+    delete req.session.data.course
+    delete req.session.data.referrer
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 
