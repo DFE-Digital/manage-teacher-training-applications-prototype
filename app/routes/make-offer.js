@@ -153,6 +153,7 @@ module.exports = router => {
           location: application.offer.location,
           studyMode: application.offer.studyMode,
           accreditedBody: application.offer.accreditedBody,
+          fundingType: application.offer.fundingType,
           conditions: ApplicationHelper.getConditions(application.offer)
         }
       }

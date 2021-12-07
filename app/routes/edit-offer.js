@@ -193,6 +193,8 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/edit/check', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
+    application.offer.madeDate = new Date().toISOString()
+
     if (req.session.data['edit-offer'].course) {
       const course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
       application.offer.course = course.name + ' (' + course.code + ')'
@@ -237,16 +239,16 @@ module.exports = router => {
     }
 
     ApplicationHelper.addEvent(application, {
-      title: "Offer changed",
+      title: 'Offer changed',
       user: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
-      date: new Date().toISOString(),
+      date: application.offer.madeDate,
       meta: {
         offer: {
           provider: application.offer.provider,
           course: application.offer.course,
           location: application.offer.location,
-          accreditedBody: application.offer.accreditedBody,
           studyMode: application.offer.studyMode,
+          accreditedBody: application.offer.accreditedBody,
           fundingType: application.offer.fundingType,
           conditions: ApplicationHelper.getConditions(application.offer)
         }
