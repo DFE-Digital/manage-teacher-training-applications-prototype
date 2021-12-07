@@ -39,15 +39,7 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        items: [{
-          value: "Full time",
-          text: "Full time",
-          checked: checked("['new-offer']['studyMode']", "Full time")
-        }, {
-          value: "Part time",
-          text: "Part time",
-          checked: checked("['new-offer']['studyMode']", "Part time")
-        }]
+        items: studyModes
       }) }}
 
       {{ govukButton({

@@ -67,8 +67,23 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/edit/study-mode', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let course
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.offer.courseCode)
+    }
+
+    let studyMode
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].studyMode) {
+      studyMode = req.session.data['edit-offer'].studyMode
+    }
+
     res.render('applications/offer/edit/study-mode', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application,
+      studyModes: CourseHelper.getCourseStudyModes(course.code, studyMode)
     })
   })
 
@@ -176,7 +191,7 @@ module.exports = router => {
     if (req.session.data['edit-offer'] && req.session.data['edit-offer'].course) {
       course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
     } else {
-      course = CourseHelper.getCourse(application.courseCode)
+      course = CourseHelper.getCourse(application.offer.courseCode)
     }
 
     res.render('applications/offer/edit/check', {
@@ -192,18 +207,15 @@ module.exports = router => {
 
     if (req.session.data['edit-offer'].course) {
       const course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
-      // application.offer.provider = course.trainingProvider.name
       application.offer.course = course.name + ' (' + course.code + ')'
       application.offer.courseCode = course.code
+      application.offer.provider = course.trainingProvider.name
       application.offer.accreditedBody = course.accreditedBody.name
       application.offer.fundingType = course.fundingType
     }
 
-    // application.offer.provider = req.session.data['edit-offer'].provider || application.offer.provider
     application.offer.studyMode = req.session.data['edit-offer'].studyMode || application.offer.studyMode
     application.offer.location = getLocation(req.session.data['edit-offer'].location) || application.offer.location
-    // application.offer.accreditedBody = req.session.data['edit-offer'].accreditedBody || application.offer.accreditedBody
-    // application.offer.fundingType = req.session.data['edit-offer'].fundingType || application.offer.fundingType
 
     // if it's been submitted then save conditions from data
     if (req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {

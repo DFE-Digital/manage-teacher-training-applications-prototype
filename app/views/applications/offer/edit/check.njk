@@ -27,7 +27,7 @@
 
       {{ appOfferPanel({
         provider: {
-          value: data['edit-offer']['provider'] or application.offer.provider,
+          value: data['edit-offer'].provider or application.offer.provider,
           href: "/applications/" + application.id + "/offer/edit/provider?referrer=check" if 1 == 0
         },
         course: {
@@ -39,7 +39,7 @@
           href: "/applications/" + application.id + "/offer/edit/location?referrer=check"
         },
         studyMode: {
-          value: application.offer.studyMode,
+          value: data['edit-offer'].studyMode or application.offer.studyMode,
           href: "/applications/" + application.id + "/offer/edit/study-mode?referrer=check"
         },
         accreditedBody: {

@@ -201,6 +201,7 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/new/course', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     let course
     if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
@@ -208,7 +209,7 @@ module.exports = router => {
     }
 
     res.render('applications/offer/new/course', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      application,
       courses: CourseHelper.getCourses(course)
     })
   })
@@ -218,8 +219,23 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/new/study-mode', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let course
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['new-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.courseCode)
+    }
+
+    let studyMode
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].studyMode) {
+      studyMode = req.session.data['new-offer'].studyMode
+    }
+
     res.render('applications/offer/new/study-mode', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application,
+      studyModes: CourseHelper.getCourseStudyModes(course.code, studyMode)
     })
   })
 
