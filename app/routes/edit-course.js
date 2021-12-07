@@ -207,7 +207,7 @@ module.exports = router => {
 
     // log the change of course as an event
     ApplicationHelper.addEvent(application, {
-      title: "Course changed",
+      title: "Course updated",
       user: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
       date: new Date().toISOString(),
       meta: {
@@ -226,7 +226,7 @@ module.exports = router => {
     delete req.session.data.course
     delete req.session.data.referrer
 
-    req.flash('success', 'New course details sent')
+    req.flash('success', 'Course updated')
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 

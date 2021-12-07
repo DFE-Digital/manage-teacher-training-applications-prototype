@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = "Change course - " + application.personalDetails.name %}
-{% set title = "Check and send new course details" %}
+{% set title = "Check and update course" %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -106,7 +106,7 @@
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukButton({
-          text: "Send new course details"
+          text: "Update course and tell candidate"
         }) }}
 
       </form>

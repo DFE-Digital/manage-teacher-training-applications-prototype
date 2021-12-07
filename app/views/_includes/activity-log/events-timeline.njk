@@ -5,11 +5,11 @@
     <div class="app-activity-log__item">
       <div class="app-activity-log__header">
         <h2 class="app-activity-log__title govuk-heading-s govuk-!-margin-bottom-1">
-          {{event.event.title}} ({{name}})
+          {{ event.event.title }} ({{ name }})
           <span class="govuk-visually-hidden">{{- event.event.date | govukDateAtTime -}}</span>
         </h2>
         <p class="app-activity-log__byline govuk-body-">
-          {{event.event.user}},
+          {{ event.event.user }},
           <time datetime="{{ event.event.date | formatDate }}">
             {{- event.event.date | govukDateAtTime -}}
           </time>
@@ -20,19 +20,19 @@
          {% if event.event.title == "Note added" %}
 
           <div class="app-activity-log__box">
-            {{appEventNote({
+            {{ appEventNote({
               application: event.application,
               offer: event.application.offer,
               note: event.event.meta.note
-            })}}
+            }) }}
           </div>
 
           <p class="app-log-card__note--link">
-            <a class="govuk-link" href="/applications/{{event.application.id}}/notes/{{event.event.meta.note.id}}">
+            <a class="govuk-link" href="/applications/{{ event.application.id}}/notes/{{ event.event.meta.note.id}}">
               View note
               <span class="govuk-visually-hidden">
-                Candidate {{event.application.personalDetails.name}}
-                Event date {{event.event.date | govukDateAtTime}}
+                Candidate {{ event.application.personalDetails.name }}
+                Event date {{ event.event.date | govukDateAtTime }}
               </span>
             </a>
           </p>
@@ -44,17 +44,17 @@
             {{ appEventApplicationAssignment({ assignedUsers: event.event.assignedUsers }) }}
           </div>
           <p class="app-log-card__note--link">
-            <a class="govuk-link" href="/applications/{{event.application.id}}">View application</a>
+            <a class="govuk-link" href="/applications/{{ event.application.id}}">View application</a>
           </p>
         {% endif %}
 
         {% if event.event.title == "Interview cancelled" %}
 
           <div class="app-activity-log__box">
-            {{appEventInterview({
+            {{ appEventInterview({
               interview: event.event.meta.interview,
               cancellationReason: event.event.meta.cancellationReason
-            })}}
+            }) }}
           </div>
 
         {% endif %}
@@ -63,28 +63,28 @@
         {% if event.event.title in ["Interview changed", "Interview set up"] %}
 
           <div class="app-activity-log__box">
-            {{appEventInterview({ interview: event.event.meta.interview })}}
+            {{ appEventInterview({ interview: event.event.meta.interview }) }}
           </div>
 
-          {{event | log}}
+          {{ event | log}}
 
           {% if event.event.meta.interviewExists %}
-            <p class="app-log-card__note--link"><a href="/applications/{{event.application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
+            <p class="app-log-card__note--link"><a href="/applications/{{ event.application.id}}/interviews/#interview{{ event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{ event.meta.interview.date | govukDateAtTime }}</span></a></p>
           {% endif %}
 
         {% endif %}
 
         {% if event.event.title in ["Conditions marked as met", "Conditions marked as not met", "Status of conditions updated"]  %}
           <div class="app-activity-log__box">
-            {{appConditionsPanel({
+            {{ appConditionsPanel({
               conditions: event.event.meta.offer.conditions
-            })}}
+            }) }}
           </div>
-          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/offer">
+          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/offer">
               View offer
               <span class="govuk-visually-hidden">
-                Candidate {{event.application.personalDetails.name}}
-                Event date {{event.event.date | govukDateAtTime}}
+                Candidate {{ event.application.personalDetails.name }}
+                Event date {{ event.event.date | govukDateAtTime }}
               </span>
             </a></p>
         {% endif %}
@@ -92,48 +92,48 @@
         {% if event.event.title in ["Offer made", "Offer changed", "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Deferred offer confirmed"]%}
 
           <div class="app-activity-log__box">
-            {{appEventOffer({ offer: event.event.meta.offer })}}
+            {{ appEventOffer({ offer: event.event.meta.offer }) }}
           </div>
 
           {% if event.event.title == "Offer withdrawn" %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/feedback">
               View feedback
               <span class="govuk-visually-hidden">
-                Candidate {{event.application.personalDetails.name}}
-                Event date {{event.event.date | govukDateAtTime}}
+                Candidate {{ event.application.personalDetails.name }}
+                Event date {{ event.event.date | govukDateAtTime }}
               </span>
             </a></p>
           {% else %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/offer">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/offer">
               View offer
               <span class="govuk-visually-hidden">
-                Candidate {{event.application.personalDetails.name}}
-                Event date {{event.event.date | govukDateAtTime}}
+                Candidate {{ event.application.personalDetails.name }}
+                Event date {{ event.event.date | govukDateAtTime }}
               </span>
             </a></p>
           {% endif %}
 
         {% endif %}
 
-        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected", "Course changed"] %}
+        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected", "Course updated"] %}
           <div class="app-activity-log__box">
             {{ appEventApplication({ application: event.event.meta.course }) }}
           </div>
 
           {% if event.application.rejectedReasons %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}/feedback">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/feedback">
               View feedback
               <span class="govuk-visually-hidden">
-                Candidate {{event.application.personalDetails.name}}
-                Event date {{event.event.date | govukDateAtTime}}
+                Candidate {{ event.application.personalDetails.name }}
+                Event date {{ event.event.date | govukDateAtTime }}
               </span>
             </a></p>
           {% else %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{event.application.id}}">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}">
               View application
               <span class="govuk-visually-hidden">
-                Candidate {{event.application.personalDetails.name}}
-                Event date {{event.event.date | govukDateAtTime}}
+                Candidate {{ event.application.personalDetails.name }}
+                Event date {{ event.event.date | govukDateAtTime }}
               </span>
             </a></p>
           {% endif %}
