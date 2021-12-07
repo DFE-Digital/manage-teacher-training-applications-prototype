@@ -28,7 +28,7 @@
           </div>
 
           <p class="app-log-card__note--link">
-            <a class="govuk-link" href="/applications/{{ event.application.id}}/notes/{{ event.event.meta.note.id}}">
+            <a class="govuk-link" href="/applications/{{ event.application.id }}/notes/{{ event.event.meta.note.id }}">
               View note
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
@@ -44,7 +44,7 @@
             {{ appEventApplicationAssignment({ assignedUsers: event.event.assignedUsers }) }}
           </div>
           <p class="app-log-card__note--link">
-            <a class="govuk-link" href="/applications/{{ event.application.id}}">View application</a>
+            <a class="govuk-link" href="/applications/{{ event.application.id }}">View application</a>
           </p>
         {% endif %}
 
@@ -69,7 +69,7 @@
           {{ event | log}}
 
           {% if event.event.meta.interviewExists %}
-            <p class="app-log-card__note--link"><a href="/applications/{{ event.application.id}}/interviews/#interview{{ event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{ event.meta.interview.date | govukDateAtTime }}</span></a></p>
+            <p class="app-log-card__note--link"><a href="/applications/{{ event.application.id }}/interviews/#interview{{ event.meta.interview.id }}">View interview <span class="govuk-visually-hidden">{{ event.meta.interview.date | govukDateAtTime }}</span></a></p>
           {% endif %}
 
         {% endif %}
@@ -80,7 +80,7 @@
               conditions: event.event.meta.offer.conditions
             }) }}
           </div>
-          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/offer">
+          <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id }}/offer">
               View offer
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
@@ -96,7 +96,7 @@
           </div>
 
           {% if event.event.title == "Offer withdrawn" %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/feedback">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id }}/feedback">
               View feedback
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
@@ -104,7 +104,7 @@
               </span>
             </a></p>
           {% else %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/offer">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id }}/offer">
               View offer
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
@@ -121,7 +121,7 @@
           </div>
 
           {% if event.application.rejectedReasons %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}/feedback">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id }}/feedback">
               View feedback
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
@@ -129,7 +129,7 @@
               </span>
             </a></p>
           {% else %}
-            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id}}">
+            <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id }}">
               View application
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
