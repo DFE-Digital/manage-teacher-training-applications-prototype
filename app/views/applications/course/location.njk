@@ -5,22 +5,6 @@
 {% set title = "Location" %}
 
 {% block beforeContent %}
-{#% if query.referrer == "study-mode" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/course/edit/study-mode"
-  }) }}
-{% elif query.referrer == "check" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/course/edit/check"
-  }) }}
-{% else %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id
-  }) }}
-{% endif %#}
 {{ govukBackLink({
   text: "Back",
   href: actions.back
