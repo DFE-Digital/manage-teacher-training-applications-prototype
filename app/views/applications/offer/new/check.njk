@@ -22,7 +22,7 @@
 
       {{ appOfferPanel({
         provider: {
-          value: data['new-offer'].provider or application.provider,
+          value: course.provider.name or application.provider,
           href: "/applications/" + application.id + "/offer/new/provider?referrer=check" if 1 == 0
         },
         course: {
@@ -30,18 +30,18 @@
           href: "/applications/" + application.id + "/offer/new/course?referrer=check"
         },
         studyMode: {
-          value: data['new-offer'].studyMode or application.studyMode,
+          value: studyMode,
           href: "/applications/" + application.id + "/offer/new/study-mode?referrer=check"
         },
         location: {
-          value: location or (appLocation(application.location) if application.location.name else application.location),
+          value: appLocation(location),
           href: "/applications/" + application.id + "/offer/new/location?referrer=check"
         },
         accreditedBody: {
-          value: application.accreditedBody
+          value: course.accreditedBody.name
         },
         fundingType: {
-          value: data['new-offer'].fundingType or application.fundingType
+          value: course.fundingType
         },
         conditions: {
           items: conditions

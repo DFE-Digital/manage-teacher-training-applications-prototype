@@ -2,42 +2,6 @@ const { v4: uuidv4 } = require('uuid')
 const ApplicationHelper = require('../data/helpers/application')
 const CourseHelper = require('../data/helpers/courses')
 
-const Utils = require('../data/helpers/utils')
-
-const locations = require('../data/locations')
-
-const getLocationItems = (selectedItem) => {
-  const items = []
-
-  locations.forEach((location, i) => {
-    const item = {}
-
-    item.text = location.name
-    item.value = location.id
-    item.id = location.id
-    item.checked = (selectedItem && selectedItem.includes(location.id)) ? 'checked' : ''
-
-    item.hint = {}
-    item.hint.text = Utils.arrayToList(
-        array = Object.values(location.address),
-        join = ', ',
-        final = ', '
-      )
-
-    items.push(item)
-  })
-
-  items.sort((a,b) => {
-    return a.text.localeCompare(b.text)
-  })
-
-  return items
-}
-
-const getLocation = (locationId) => {
-  return locations.find(location => location.id === locationId)
-}
-
 module.exports = router => {
 
   router.get('/applications/:applicationId/offer/new', (req, res) => {
@@ -94,12 +58,27 @@ module.exports = router => {
       course = CourseHelper.getCourse(application.courseCode)
     }
 
+    let studyMode
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].studyMode) {
+      studyMode = req.session.data['new-offer'].studyMode
+    } else {
+      studyMode = application.studyMode
+    }
+
+    let location
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].location) {
+      location = CourseHelper.getCourseLocation(req.session.data['new-offer'].location)
+    } else {
+      location = application.location
+    }
+
     res.render('applications/offer/new/check', {
       upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application,
       course,
-      conditions,
-      location: getLocation(req.session.data['new-offer'].location)
+      studyMode,
+      location,
+      conditions
     })
   })
 
@@ -121,13 +100,13 @@ module.exports = router => {
 
     application.offer = {
       madeDate: new Date().toISOString(),
-      provider: req.session.data['new-offer'].provider || application.provider,
+      provider: req.session.data['new-offer'].provider || course.provider.name,
       course: course.name + ' (' + course.code + ')',
       courseCode: course.code,
-      location: getLocation(req.session.data['new-offer'].location) || application.location,
+      location: CourseHelper.getCourseLocation(req.session.data['new-offer'].location) || application.location,
       studyMode: req.session.data['new-offer'].studyMode || application.studyMode,
-      accreditedBody: application.accreditedBody,
-      fundingType: req.session.data['new-offer'].fundingType || application.fundingType
+      accreditedBody: course.accreditedBody.name,
+      fundingType: course.fundingType
     }
 
     application.offer.declineByDate = ApplicationHelper.calculateDeclineDate(application)
@@ -244,14 +223,23 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/new/location', (req, res) => {
-    let selectedLocation
-    if (req.session.data['new-offer'] && req.session.data['new-offer'].location) {
-      selectedLocation = req.session.data['new-offer'].location
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let course
+    if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['new-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.courseCode)
+    }
+
+    let location
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].location) {
+      location = req.session.data['edit-offer'].location
     }
 
     res.render('applications/offer/new/location', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      locations: getLocationItems(selectedLocation)
+      locations: CourseHelper.getCourseLocations(course.code, location),
     })
   })
 

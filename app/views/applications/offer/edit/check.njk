@@ -35,11 +35,11 @@
           href: "/applications/" + application.id + "/offer/edit/course?referrer=check"
         },
         location: {
-          value: location or (appLocation(application.location) if application.location.name else application.location),
+          value: appLocation(location),
           href: "/applications/" + application.id + "/offer/edit/location?referrer=check"
         },
         studyMode: {
-          value: data['edit-offer'].studyMode or application.offer.studyMode,
+          value: studyMode,
           href: "/applications/" + application.id + "/offer/edit/study-mode?referrer=check"
         },
         accreditedBody: {

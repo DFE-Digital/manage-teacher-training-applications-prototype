@@ -2,42 +2,6 @@ const { v4: uuidv4 } = require('uuid')
 const ApplicationHelper = require('../data/helpers/application')
 const CourseHelper = require('../data/helpers/courses')
 
-const Utils = require('../data/helpers/utils')
-
-const locations = require('../data/locations')
-
-const getLocationItems = (selectedItem) => {
-  const items = []
-
-  locations.forEach((location, i) => {
-    const item = {}
-
-    item.text = location.name
-    item.value = location.id
-    item.id = location.id
-    item.checked = (selectedItem && selectedItem.includes(location.id)) ? 'checked' : ''
-
-    item.hint = {}
-    item.hint.text = Utils.arrayToList(
-        array = Object.values(location.address),
-        join = ', ',
-        final = ', '
-      )
-
-    items.push(item)
-  })
-
-  items.sort((a,b) => {
-    return a.text.localeCompare(b.text)
-  })
-
-  return items
-}
-
-const getLocation = (locationId) => {
-  return locations.find(location => location.id === locationId)
-}
-
 module.exports = router => {
   router.get('/applications/:applicationId/offer/edit/provider', (req, res) => {
     res.render('applications/offer/edit/provider', {
@@ -92,14 +56,23 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/offer/edit/location', (req, res) => {
-    let selectedLocation
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let course
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].course) {
+      course = CourseHelper.getCourse(req.session.data['edit-offer'].course)
+    } else {
+      course = CourseHelper.getCourse(application.offer.courseCode)
+    }
+
+    let location
     if (req.session.data['edit-offer'] && req.session.data['edit-offer'].location) {
-      selectedLocation = req.session.data['edit-offer'].location
+      location = req.session.data['edit-offer'].location
     }
 
     res.render('applications/offer/edit/location', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      locations: getLocationItems(selectedLocation)
+      application,
+      locations: CourseHelper.getCourseLocations(course.code, location)
     })
   })
 
@@ -194,11 +167,26 @@ module.exports = router => {
       course = CourseHelper.getCourse(application.offer.courseCode)
     }
 
+    let studyMode
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].studyMode) {
+      studyMode = req.session.data['edit-offer'].studyMode
+    } else {
+      studyMode = application.offer.studyMode
+    }
+
+    let location
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].location) {
+      location = CourseHelper.getCourseLocation(req.session.data['edit-offer'].location)
+    } else {
+      location = application.offer.location
+    }
+
     res.render('applications/offer/edit/check', {
       application,
       course,
-      conditions,
-      location: getLocation(req.session.data['new-offer'].location)
+      studyMode,
+      location,
+      conditions
     })
   })
 
@@ -215,10 +203,10 @@ module.exports = router => {
     }
 
     application.offer.studyMode = req.session.data['edit-offer'].studyMode || application.offer.studyMode
-    application.offer.location = getLocation(req.session.data['edit-offer'].location) || application.offer.location
+    application.offer.location = CourseHelper.getCourseLocation(req.session.data['edit-offer'].location) || application.offer.location
 
     // if it's been submitted then save conditions from data
-    if (req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] == 'true') {
+    if (req.session.data['edit-offer'] && req.session.data['edit-offer']['submitted-conditions-page'] === 'true') {
       // save standard conditions
       application.offer.standardConditions = []
 
@@ -270,6 +258,10 @@ module.exports = router => {
     req.flash('success', 'New offer sent')
     res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
+
+  // ---------------------------------------------------------------------------
+  // Cancel links
+  // ---------------------------------------------------------------------------
 
   router.get('/applications/:applicationId/offer/edit/course/cancel', (req, res) => {
     // delete data we don't need
