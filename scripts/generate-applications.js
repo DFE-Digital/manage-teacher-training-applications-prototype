@@ -84,6 +84,7 @@ const generateFakeApplication = (params = {}) => {
       accreditedBody: accreditedBody.name,
       provider: provider.name,
       course,
+      courseCode,
       location,
       studyMode,
       fundingType
