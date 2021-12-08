@@ -3,15 +3,15 @@ const CourseHelper = require('../data/helpers/courses')
 
 module.exports = router => {
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
+    let course
+    if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
+      course = req.session.data['edit-course'].course
+    }
+
     let back = `/applications/${req.params.applicationId}`
 
     if (req.query.referrer === 'check') {
       back += '/course/edit/check'
-    }
-
-    let course
-    if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
-      course = req.session.data['edit-course'].course
     }
 
     res.render('applications/course/course', {
@@ -36,16 +36,6 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/course/edit/study-mode', (req, res) => {
-    let back = `/applications/${req.params.applicationId}`
-    let save = `/applications/${req.params.applicationId}/course/edit/study-mode`
-
-    if (req.query.referrer === 'check' || req.query.referrer === 'details') {
-      back += '/course/edit/check'
-      save += `?referrer=${req.query.referrer}`
-    } else if (req.query.referrer === 'course') {
-      back += '/course/edit/course'
-    }
-
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     let course
@@ -58,6 +48,16 @@ module.exports = router => {
     let studyMode
     if (req.session.data['edit-course'] && req.session.data['edit-course'].studyMode) {
       studyMode = req.session.data['edit-course'].studyMode
+    }
+
+    let back = `/applications/${req.params.applicationId}`
+    let save = `/applications/${req.params.applicationId}/course/edit/study-mode`
+
+    if (req.query.referrer === 'check' || req.query.referrer === 'details') {
+      back += '/course/edit/check'
+      save += `?referrer=${req.query.referrer}`
+    } else if (req.query.referrer === 'course') {
+      back += '/course/edit/course'
     }
 
     res.render('applications/course/study-mode', {
@@ -91,16 +91,6 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/course/edit/location', (req, res) => {
-    let back = `/applications/${req.params.applicationId}`
-
-    if (req.query.referrer === 'check') {
-      back += '/course/edit/check'
-    } else if (req.query.referrer === 'course') {
-      back += '/course/edit/course'
-    } else if (req.query.referrer === 'study-mode') {
-      back += '/course/edit/study-mode'
-    }
-
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     let course
@@ -123,6 +113,16 @@ module.exports = router => {
         location = req.session.data['edit-course'].location
       }
 
+      let back = `/applications/${req.params.applicationId}`
+
+      if (req.query.referrer === 'check') {
+        back += '/course/edit/check'
+      } else if (req.query.referrer === 'course') {
+        back += '/course/edit/course'
+      } else if (req.query.referrer === 'study-mode') {
+        back += '/course/edit/study-mode'
+      }
+
       res.render('applications/course/location', {
         application: req.session.data.applications.find(app => app.id === req.params.applicationId),
         locations: CourseHelper.getCourseLocations(course.code, location),
@@ -140,16 +140,6 @@ module.exports = router => {
   })
 
   router.get('/applications/:applicationId/course/edit/check', (req, res) => {
-    let back = `/applications/${req.params.applicationId}`
-
-    if (req.query.referrer === 'course') {
-      back += '/course/edit/course'
-    } else if (req.query.referrer === 'study-mode') {
-      back += '/course/edit/study-mode'
-    } else if (req.query.referrer === 'location') {
-      back += '/course/edit/location'
-    }
-
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
     let course
@@ -171,6 +161,16 @@ module.exports = router => {
       location = CourseHelper.getCourseLocation(req.session.data['edit-course'].location)
     } else {
       location = application.location
+    }
+
+    let back = `/applications/${req.params.applicationId}`
+
+    if (req.query.referrer === 'course') {
+      back += '/course/edit/course'
+    } else if (req.query.referrer === 'study-mode') {
+      back += '/course/edit/study-mode'
+    } else if (req.query.referrer === 'location') {
+      back += '/course/edit/location'
     }
 
     res.render('applications/course/check', {
