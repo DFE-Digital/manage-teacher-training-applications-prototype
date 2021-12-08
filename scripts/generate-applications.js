@@ -406,7 +406,7 @@ const generateFakeApplications = () => {
       },
       {
         category: 'break',
-        description: 'Bringing up my 4 children',
+        // description: 'Bringing up my 4 children',
         duration: '10 years and 3 months',
         startDate: '1996-05-01',
         endDate: '2006-08-01',
