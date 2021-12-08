@@ -27,7 +27,7 @@
       {{ title }}
     {% endset %}
 
-    <form action="/applications/{{ application.id }}/offer/new/location" method="post" accept-charset="UTF-8" novalidate>
+    <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
       {{ govukRadios({
         idPrefix: "edit-location",
@@ -49,7 +49,7 @@
     </form>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="/applications/{{ application.id }}/offer/new/course/cancel">Cancel</a>
+      <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
     </p>
 
   </div>

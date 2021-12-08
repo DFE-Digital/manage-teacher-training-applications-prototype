@@ -18,7 +18,12 @@ module.exports = router => {
 
     res.render('applications/offer/new/index', {
       application,
-      conditions
+      conditions,
+      actions: {
+        back: `/applications/${req.params.applicationId}/`,
+        cancel: `/applications/${req.params.applicationId}/offer/new/cancel`,
+        save: `/applications/${req.params.applicationId}/offer/new`
+      }
     })
   })
 
@@ -78,7 +83,12 @@ module.exports = router => {
       course,
       studyMode,
       location,
-      conditions
+      conditions,
+      actions: {
+        back: `/applications/${req.params.applicationId}/offer/new`,
+        cancel: `/applications/${req.params.applicationId}/offer/new/cancel`,
+        save: `/applications/${req.params.applicationId}/offer/new/check`
+      }
     })
   })
 
@@ -100,7 +110,7 @@ module.exports = router => {
 
     application.offer = {
       madeDate: new Date().toISOString(),
-      provider: req.session.data['new-offer'].provider || course.provider.name,
+      provider: req.session.data['new-offer'].provider || course.trainingProvider.name,
       course: course.name + ' (' + course.code + ')',
       courseCode: course.code,
       location: CourseHelper.getCourseLocation(req.session.data['new-offer'].location) || application.location,
@@ -172,7 +182,12 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/new/provider', (req, res) => {
     res.render('applications/offer/new/provider', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      actions: {
+        back: `/applications/${req.params.applicationId}/offer`,
+        cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
+        save: `/applications/${req.params.applicationId}/offer/new/provider`
+      }
     })
   })
 
@@ -190,7 +205,12 @@ module.exports = router => {
 
     res.render('applications/offer/new/course', {
       application,
-      courses: CourseHelper.getCourses(course)
+      courses: CourseHelper.getCourses(course),
+      actions: {
+        back: `/applications/${req.params.applicationId}/offer`,
+        cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
+        save: `/applications/${req.params.applicationId}/offer/new/course`
+      }
     })
   })
 
@@ -215,7 +235,12 @@ module.exports = router => {
 
     res.render('applications/offer/new/study-mode', {
       application,
-      studyModes: CourseHelper.getCourseStudyModes(course.code, studyMode)
+      studyModes: CourseHelper.getCourseStudyModes(course.code, studyMode),
+      actions: {
+        back: `/applications/${req.params.applicationId}/offer/course`,
+        cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
+        save: `/applications/${req.params.applicationId}/offer/new/study-mode`
+      }
     })
   })
 
@@ -241,6 +266,11 @@ module.exports = router => {
     res.render('applications/offer/new/location', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
       locations: CourseHelper.getCourseLocations(course.code, location),
+      actions: {
+        back: `/applications/${req.params.applicationId}/offer/study-mode`,
+        cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
+        save: `/applications/${req.params.applicationId}/offer/new/location`
+      }
     })
   })
 
