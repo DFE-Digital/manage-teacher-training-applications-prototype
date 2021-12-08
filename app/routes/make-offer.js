@@ -16,11 +16,20 @@ module.exports = router => {
 
     conditions = req.session.data['new-offer']['conditions']
 
+    let back = `/applications/${req.params.applicationId}/decision`
+    if (req.query.referrer === 'course') {
+      back = `/applications/${req.params.applicationId}/offer/new/course`
+    } else if (req.query.referrer === 'study-mode') {
+      back = `/applications/${req.params.applicationId}/offer/new/study-mode`
+    } else if (req.query.referrer === 'location') {
+      back = `/applications/${req.params.applicationId}/offer/new/location`
+    }
+
     res.render('applications/offer/new/index', {
       application,
       conditions,
       actions: {
-        back: `/applications/${req.params.applicationId}/`,
+        back: back,
         cancel: `/applications/${req.params.applicationId}/offer/new/cancel`,
         save: `/applications/${req.params.applicationId}/offer/new`
       }
@@ -181,8 +190,10 @@ module.exports = router => {
   // ---------------------------------------------------------------------------
 
   router.get('/applications/:applicationId/offer/new/provider', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
     res.render('applications/offer/new/provider', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      application,
       actions: {
         back: `/applications/${req.params.applicationId}/offer`,
         cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
@@ -198,16 +209,25 @@ module.exports = router => {
   router.get('/applications/:applicationId/offer/new/course', (req, res) => {
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
-    let course
+    let selectedCourse
     if (req.session.data['new-offer'] && req.session.data['new-offer'].course) {
-      course = req.session.data['new-offer'].course
+      selectedCourse = req.session.data['new-offer'].course
+    }
+
+    if (req.query.referrer === 'decision') {
+      req.session.data.flow = 'change-offer'
+    }
+
+    let back = `/applications/${req.params.applicationId}/decision`
+    if (req.query.referrer === 'check') {
+      back = `/applications/${req.params.applicationId}/offer/new/check`
     }
 
     res.render('applications/offer/new/course', {
       application,
-      courses: CourseHelper.getCourses(course),
+      courses: CourseHelper.getCourses(selectedCourse),
       actions: {
-        back: `/applications/${req.params.applicationId}/offer`,
+        back: back,
         cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
         save: `/applications/${req.params.applicationId}/offer/new/course`
       }
@@ -215,7 +235,13 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/offer/new/course', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/new/study-mode?referrer=course`)
+    req.session.data.course = CourseHelper.getCourse(req.session.data['new-offer'].course)
+    if (req.session.data.course.studyModes.length > 1) {
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/study-mode?referrer=course`)
+    } else {
+      req.session.data['new-offer'].studyMode = req.session.data.course.studyModes[0]
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/location?referrer=course`)
+    }
   })
 
   router.get('/applications/:applicationId/offer/new/study-mode', (req, res) => {
@@ -228,24 +254,47 @@ module.exports = router => {
       course = CourseHelper.getCourse(application.courseCode)
     }
 
-    let studyMode
+    let selectedStudyMode
     if (req.session.data['new-offer'] && req.session.data['new-offer'].studyMode) {
-      studyMode = req.session.data['new-offer'].studyMode
+      selectedStudyMode = req.session.data['new-offer'].studyMode
+    }
+
+    let back = `/applications/${req.params.applicationId}/offer/course`
+    let save = `/applications/${req.params.applicationId}/offer/new/study-mode`
+
+    if (req.query.referrer === 'check') {
+      back = `/applications/${req.params.applicationId}/offer/new/check`
+      save += `?referrer=${req.query.referrer}`
     }
 
     res.render('applications/offer/new/study-mode', {
       application,
-      studyModes: CourseHelper.getCourseStudyModes(course.code, studyMode),
+      studyModes: CourseHelper.getCourseStudyModes(course.code, selectedStudyMode),
       actions: {
-        back: `/applications/${req.params.applicationId}/offer/course`,
+        back: back,
         cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
-        save: `/applications/${req.params.applicationId}/offer/new/study-mode`
+        save: save
       }
     })
   })
 
   router.post('/applications/:applicationId/offer/new/study-mode', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/offer/new/location?referrer=study-mode`)
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    if (req.session.data['new-offer'].course) {
+      req.session.data.course = CourseHelper.getCourse(req.session.data['new-offer'].course)
+    } else {
+      req.session.data.course = CourseHelper.getCourse(application.courseCode)
+    }
+
+    if (req.query.referrer === 'check') {
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/check?referrer=study-mode`)
+    } else if (req.session.data.course.locations.length > 1) {
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/location?referrer=study-mode`)
+    } else {
+      req.session.data['new-offer'].location = req.session.data.course.locations[0]
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/check?referrer=study-mode`)
+    }
   })
 
   router.get('/applications/:applicationId/offer/new/location', (req, res) => {
@@ -258,28 +307,56 @@ module.exports = router => {
       course = CourseHelper.getCourse(application.courseCode)
     }
 
-    let location
-    if (req.session.data['edit-offer'] && req.session.data['edit-offer'].location) {
-      location = req.session.data['edit-offer'].location
-    }
+    if (course.locations.length <= 1) {
 
-    res.render('applications/offer/new/location', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      locations: CourseHelper.getCourseLocations(course.code, location),
-      actions: {
-        back: `/applications/${req.params.applicationId}/offer/study-mode`,
-        cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
-        save: `/applications/${req.params.applicationId}/offer/new/location`
+      req.session.data['new-offer'].location = req.session.data.course.locations[0].id
+
+      if (req.session.data.flow === 'change-offer') {
+        res.redirect(`/applications/${req.params.applicationId}/offer/new?referrer=${req.query.referrer}`)
+      } else {
+        res.redirect(`/applications/${req.params.applicationId}/offer/new/check?referrer=${req.query.referrer}`)
       }
-    })
+
+    } else {
+
+      let selectedLocation
+      if (req.session.data['new-offer'] && req.session.data['new-offer'].location) {
+        selectedLocation = req.session.data['new-offer'].location
+      }
+
+      let back = `/applications/${req.params.applicationId}/offer/new/study-mode`
+      let save = `/applications/${req.params.applicationId}/offer/new/location`
+
+      if (req.query.referrer === 'check') {
+        back = `/applications/${req.params.applicationId}/offer/new/check`
+        save += `?referrer=${req.query.referrer}`
+      } else if (req.query.referrer === 'course') {
+        back = `/applications/${req.params.applicationId}/offer/new/course`
+      }
+
+      if (course.studyModes.length <= 1) {
+        back = `/applications/${req.params.applicationId}/offer/new/course`
+      }
+
+      res.render('applications/offer/new/location', {
+        application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+        locations: CourseHelper.getCourseLocations(course.code, selectedLocation),
+        actions: {
+          back: back,
+          cancel: `/applications/${req.params.applicationId}/offer/new/course/cancel`,
+          save: save
+        }
+      })
+    }
   })
 
   router.post('/applications/:applicationId/offer/new/location', (req, res) => {
     if (!(req.session.data['new-offer']['standard-conditions']
-      || req.session.data['new-offer'].conditions)) {
-      res.redirect(`/applications/${req.params.applicationId}/offer/new`)
+      || req.session.data['new-offer'].conditions)
+      || req.session.data.flow === 'change-offer') {
+      res.redirect(`/applications/${req.params.applicationId}/offer/new?referrer=location`)
     } else {
-      res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
+      res.redirect(`/applications/${req.params.applicationId}/offer/new/check?referrer=location`)
     }
   })
 
@@ -296,6 +373,8 @@ module.exports = router => {
     delete req.session.data['new-offer'].accreditedBody
     delete req.session.data['new-offer'].fundingType
 
+    delete req.session.data.flow
+
     if (!(req.session.data['new-offer']['standard-conditions']
       || req.session.data['new-offer'].conditions)) {
       res.redirect(`/applications/${req.params.applicationId}/offer/new`)
@@ -306,6 +385,7 @@ module.exports = router => {
 
   router.get('/applications/:applicationId/offer/new/cancel', (req, res) => {
     delete req.session.data['new-offer']
+    delete req.session.data.flow
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 

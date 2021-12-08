@@ -5,19 +5,10 @@
 {% set title = "Course" %}
 
 {% block pageNavigation %}
-{% if query.referrer == "decision" %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/decision"
-  }) }}
-{% elif query.referrer == "provider" %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/new/provider"
-  }) }}
-{% else %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/new/check"
-  }) }}
-{% endif %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}

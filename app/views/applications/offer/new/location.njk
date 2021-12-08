@@ -5,17 +5,10 @@
 {% set title = "Location" %}
 
 {% block pageNavigation %}
-{% if referrer == "course" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/offer/new/study-mode"
-  }) }}
-{% else %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "offer/new/check"
-  }) }}
-{% endif %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}

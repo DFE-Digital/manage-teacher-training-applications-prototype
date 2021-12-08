@@ -31,11 +31,11 @@
         },
         studyMode: {
           value: studyMode,
-          href: "/applications/" + application.id + "/offer/new/study-mode?referrer=check"
+          href: "/applications/" + application.id + "/offer/new/study-mode?referrer=check" if course.studyModes.length > 1
         },
         location: {
           value: appLocation(location),
-          href: "/applications/" + application.id + "/offer/new/location?referrer=check"
+          href: "/applications/" + application.id + "/offer/new/location?referrer=check" if course.locations.length > 1
         },
         accreditedBody: {
           value: course.accreditedBody.name

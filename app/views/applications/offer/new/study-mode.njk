@@ -5,17 +5,10 @@
 {% set title = "Full time or part time" %}
 
 {% block pageNavigation %}
-{% if query.referrer == "course" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/offer/new/course"
-  }) }}
-{% else %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "offer/new/check"
-  }) }}
-{% endif %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}
