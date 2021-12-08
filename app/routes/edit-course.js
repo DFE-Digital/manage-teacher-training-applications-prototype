@@ -106,8 +106,6 @@ module.exports = router => {
       res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=${req.query.referrer}`)
 
     } else {
-      const courseCode = course.code
-
       let location
       if (req.session.data['edit-course'] && req.session.data['edit-course'].location) {
         location = req.session.data['edit-course'].location
@@ -124,7 +122,7 @@ module.exports = router => {
       }
 
       res.render('applications/course/location', {
-        application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+        application,
         locations: CourseHelper.getCourseLocations(course.code, location),
         actions: {
           back: back,
