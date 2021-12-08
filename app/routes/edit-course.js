@@ -3,9 +3,9 @@ const CourseHelper = require('../data/helpers/courses')
 
 module.exports = router => {
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
-    let course
+    let selectedCourse
     if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
-      course = req.session.data['edit-course'].course
+      selectedCourse = req.session.data['edit-course'].course
     }
 
     let back = `/applications/${req.params.applicationId}`
@@ -16,7 +16,7 @@ module.exports = router => {
 
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      courses: CourseHelper.getCourses(course),
+      courses: CourseHelper.getCourses(selectedCourse),
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
@@ -45,9 +45,9 @@ module.exports = router => {
       course = CourseHelper.getCourse(application.courseCode)
     }
 
-    let studyMode
+    let selectedStudyMode
     if (req.session.data['edit-course'] && req.session.data['edit-course'].studyMode) {
-      studyMode = req.session.data['edit-course'].studyMode
+      selectedStudyMode = req.session.data['edit-course'].studyMode
     }
 
     let back = `/applications/${req.params.applicationId}`
@@ -62,7 +62,7 @@ module.exports = router => {
 
     res.render('applications/course/study-mode', {
       application,
-      studyModes: CourseHelper.getCourseStudyModes(course.code, studyMode),
+      studyModes: CourseHelper.getCourseStudyModes(course.code, selectedStudyMode),
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
@@ -106,9 +106,9 @@ module.exports = router => {
       res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=${req.query.referrer}`)
 
     } else {
-      let location
+      let selectedLocation
       if (req.session.data['edit-course'] && req.session.data['edit-course'].location) {
-        location = req.session.data['edit-course'].location
+        selectedLocation = req.session.data['edit-course'].location
       }
 
       let back = `/applications/${req.params.applicationId}`
@@ -123,7 +123,7 @@ module.exports = router => {
 
       res.render('applications/course/location', {
         application,
-        locations: CourseHelper.getCourseLocations(course.code, location),
+        locations: CourseHelper.getCourseLocations(course.code, selectedLocation),
         actions: {
           back: back,
           cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
