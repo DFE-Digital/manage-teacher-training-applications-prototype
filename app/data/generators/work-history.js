@@ -23,8 +23,14 @@ module.exports = () => {
           isEndDateApproximate: false
         })
       } else {
+
+        let description = faker.helpers.randomize([
+          null,
+          'I volunteered with a marine conservation charity in the Seychelles as part of a career break.'
+        ])
+
         items.push({
-          description: 'I volunteered with a marine conservation charity in the Seychelles as part of a career break.',
+          description: description,
           category: 'break',
           duration: `${faker.datatype.number({ min: 1, max: 12 })} months`,
           startDate: faker.date.past(),
