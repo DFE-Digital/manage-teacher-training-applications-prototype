@@ -25,7 +25,7 @@
       {{ title }}
     {% endset %}
 
-    <form action="/applications/{{ application.id }}/offer/edit/provider" method="post" accept-charset="UTF-8" novalidate>
+    <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
       {{ govukRadios({
         idPrefix: "edit-provider",
@@ -37,14 +37,8 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        items: [{
-          value: data.user.organisations[0].name,
-          text: data.user.organisations[0].name
-        }, {
-          value: data.user.organisations[1].name,
-          text: data.user.organisations[1].name
-        }]
-      } | decorateAttributes(data, 'data["edit-offer"]["provider"]')) }}
+        items: providers
+      )) }}
 
       {{ govukButton({
         text: "Continue"
@@ -53,7 +47,7 @@
     </form>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="/applications/{{ application.id }}/offer/edit/course/cancel">Cancel</a>
+      <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
     </p>
 
   </div>

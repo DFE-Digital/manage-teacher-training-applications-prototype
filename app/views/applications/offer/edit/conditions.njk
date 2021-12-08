@@ -37,7 +37,7 @@
         {% endif %}
       {% endif %}
 
-      <form action="/applications/{{ application.id }}/offer/edit/conditions" method="post" accept-charset="UTF-8" novalidate>
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
         <input type="hidden" name="[edit-offer][submitted-conditions-page]" value="true">
 
@@ -125,7 +125,7 @@
       </form>
 
       <p class="govuk-body">
-        <a class="govuk-ling" href="/applications/{{ application.id }}/offer/edit/cancel">Cancel</a>
+        <a class="govuk-ling" href="{{ actions.cancel }}">Cancel</a>
       </p>
 
     </div>

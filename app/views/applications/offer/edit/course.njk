@@ -29,7 +29,7 @@
       {{ title }}
     {% endset %}
 
-    <form action="/applications/{{ application.id }}/offer/edit/course" method="post" accept-charset="UTF-8" novalidate>
+    <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
       {{ govukRadios({
         idPrefix: "edit-course",
@@ -51,11 +51,7 @@
     </form>
 
     <p class="govuk-body">
-      {#% if query.referrer == "check" %#}
-        <a class="govuk-link" href="/applications/{{ application.id }}/offer/edit/course/cancel">Cancel</a>
-      {#% else %}
-        <a class="govuk-link" href="/applications/{{ application.id }}/offer">Cancel</a>
-      {% endif %#}
+      <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
     </p>
 
   </div>

@@ -56,14 +56,14 @@
         }
       }) }}
 
-      <form action="/applications/{{ application.id }}/offer/edit/check" method="post" accept-charset="UTF-8" novalidate>
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
         {{ govukButton({
           text: "Send new offer"
         }) }}
       </form>
 
       <p class="govuk-body">
-        <a class="govuk-link" href="/applications/{{ application.id }}/offer/edit/cancel">Cancel</a>
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
       </p>
 
     </div>

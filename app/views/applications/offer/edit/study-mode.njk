@@ -32,7 +32,7 @@
       {{ title }}
     {% endset %}
 
-    <form action="/applications/{{ application.id }}/offer/edit/study-mode" method="post" accept-charset="UTF-8" novalidate>
+    <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
       {{ govukRadios({
         idPrefix: "edit-studyMode",
@@ -54,7 +54,7 @@
     </form>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="/applications/{{ application.id }}/offer/edit/course/cancel">Cancel</a>
+      <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
     </p>
 
   </div>
