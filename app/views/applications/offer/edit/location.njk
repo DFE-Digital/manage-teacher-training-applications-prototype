@@ -5,27 +5,9 @@
 {% set title = "Location" %}
 
 {% block pageNavigation %}
-{% if query.referrer == "study-mode" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/offer/edit/study-mode"
-  }) }}
-{% elif query.referrer == "offer" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/offer"
-  }) }}
-{% elif query.referrer == "check" %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "/offer/edit/check"
-  }) }}
-{% else %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/applications/" + application.id + "offer/edit/check"
-  }) }}
-{% endif %}
+{{ govukBackLink({
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}

@@ -5,15 +5,9 @@
 {% set title = "Training provider" %}
 
 {% block pageNavigation %}
-{% if query.referrer == "check" %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer/edit/check"
-  }) }}
-{% else %}
-  {{ govukBackLink({
-    href: "/applications/" + application.id + "/offer"
-  }) }}
-{% endif %}
+{{ govukBackLink({
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}
