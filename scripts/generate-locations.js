@@ -18,8 +18,8 @@ const generateFakeLocations = (count) => {
     name: 'Main site',
     address: {
       address1: '123 Main Street',
-      address2: '',
-      address3: '',
+      // address2: '',
+      // address3: '',
       town: 'Some town',
       postcode: 'AB1 2CD'
     },
@@ -30,7 +30,7 @@ const generateFakeLocations = (count) => {
     address: {
       address1: 'Amory Building',
       address2: 'Rennes Drive',
-      address3: '',
+      // address3: '',
       town: 'Big City',
       postcode: 'SW1A 4AA'
     },
@@ -40,8 +40,8 @@ const generateFakeLocations = (count) => {
     name: 'Malet Place',
     address: {
       address1: 'Gordon Square',
-      address2: '',
-      address3: '',
+      // address2: '',
+      // address3: '',
       town: 'Small City',
       postcode: 'BA2 3DC'
     },

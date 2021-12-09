@@ -84,8 +84,10 @@ const generateFakeApplication = (params = {}) => {
       accreditedBody: accreditedBody.name,
       provider: provider.name,
       course,
+      courseCode,
       location,
-      studyMode
+      studyMode,
+      fundingType
     })
   }
 
@@ -109,6 +111,7 @@ const generateFakeApplication = (params = {}) => {
     location,
     studyMode,
     accreditedBody: accreditedBody.name,
+    fundingType,
     organisation,
     assignedUsers
   })
@@ -173,6 +176,7 @@ const generateFakeApplication = (params = {}) => {
     subject: params.subject || subjects,
     subjectLevel: params.subjectLevel || subjectLevel,
     course: params.course || course,
+    courseCode: params.courseCode || courseCode,
     location: params.location || location,
     status,
     submittedDate,

@@ -7,35 +7,80 @@
     },
     value: {
       text: application["provider"]
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "/applications/" + application.id + "/course/edit/provider?referrer=details",
+          text: "Change",
+          visuallyHiddenText: "training provider"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"] and 1 == 0
   }, {
     key: {
       text: "Course"
     },
     value: {
-      text: application["course"]
-    }
+      text: application.course
+    },
+    actions: {
+      items: [
+        {
+          href: "/applications/" + application.id + "/course/edit/course?referrer=details",
+          text: "Change",
+          visuallyHiddenText: "course"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"]
   }, {
     key: {
       text: "Full time or part time"
     },
     value: {
       text: application.studyMode
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "/applications/" + application.id + "/course/edit/study-mode?referrer=details",
+          text: "Change",
+          visuallyHiddenText: "full time or part time"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"] and course.studyModes.length > 1
   }, {
     key: {
       text: "Location"
     },
     value: {
       html: appLocation(application.location) if application.location.name else application.location
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "/applications/" + application.id + "/course/edit/location?referrer=details",
+          text: "Change",
+          visuallyHiddenText: "location"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"] and course.locations.length > 1
   }, {
     key: {
       text: "Accredited body"
     },
     value: {
       html: application.accreditedBody
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "accredited body"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"] and 1 == 0
   } if application.accreditedBody != application.provider, {
     key: {
       text: "Funding type"

@@ -13,7 +13,17 @@ module.exports = (params) => {
   events.items.push({
     title: 'Application submitted',
     user: 'Candidate',
-    date: date
+    date: date,
+    meta: {
+      course: {
+        provider: params.provider,
+        course: params.course,
+        location: params.location,
+        studyMode: params.studyMode,
+        accreditedBody: params.accreditedBody,
+        fundingType: params.fundingType
+      }
+    }
   })
 
   // if the application is not received, assign a user from the
@@ -153,6 +163,7 @@ module.exports = (params) => {
           location: params.location,
           studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
+          fundingType: params.fundingType,
           conditions
         }
       }
@@ -173,6 +184,7 @@ module.exports = (params) => {
           location: params.location,
           studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
+          fundingType: params.fundingType,
           conditions
         }
       }
@@ -193,6 +205,7 @@ module.exports = (params) => {
           location: params.location,
           studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
+          fundingType: params.fundingType,
           conditions
         }
       }
@@ -211,6 +224,7 @@ module.exports = (params) => {
           location: params.location,
           studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
+          fundingType: params.fundingType,
           conditions
         }
       }
@@ -231,6 +245,7 @@ module.exports = (params) => {
             location: params.location,
             studyMode: params.studyMode,
             accreditedBody: params.accreditedBody,
+            fundingType: params.fundingType,
             conditions
           }
         }
@@ -247,6 +262,7 @@ module.exports = (params) => {
             location: params.location,
             studyMode: params.studyMode,
             accreditedBody: params.accreditedBody,
+            fundingType: params.fundingType,
             conditions
           }
         }
@@ -263,7 +279,8 @@ module.exports = (params) => {
             course: params.course,
             location: params.location,
             studyMode: params.studyMode,
-            accreditedBody: params.accreditedBody
+            accreditedBody: params.accreditedBody,
+            fundingType: params.fundingType,
           }
         }
       })
@@ -286,6 +303,7 @@ module.exports = (params) => {
           location: params.location,
           studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
+          fundingType: params.fundingType,
           conditions
         }
       }
@@ -306,6 +324,7 @@ module.exports = (params) => {
           location: params.location,
           studyMode: params.studyMode,
           accreditedBody: params.accreditedBody,
+          fundingType: params.fundingType,
           conditions
         }
       }

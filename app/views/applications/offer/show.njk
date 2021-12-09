@@ -1,11 +1,11 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
+{% set primaryNavId = "applications" %}
 {% set subNavId = "offer" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set pageName = 'Offer' %}
-{% set title = pageName + ' - ' + application.personalDetails.name %}
+{% set pageName = "Offer" %}
+{% set title = pageName + " - " + application.personalDetails.name %}
 
 {% block content %}
   {{ govukNotificationBanner({
@@ -20,10 +20,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">{{pageName}}</h2>
+      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
+        {{ pageName }}
+      </h2>
 
       <div class="app-temp-offer-wrapper">
-        {{appOfferPanel({
+        {{ appOfferPanel({
           transferred: query.transferred,
           withdraw: {
             href: "/applications/" + application.id + "/offer/withdraw"
@@ -33,28 +35,32 @@
           } if application.status == "Conditions pending" or application.status == "Recruited",
           provider: {
             value: application.offer.provider,
-            href: "/applications/"+application.id+"/offer/edit/provider?referrer=offer" if application.status == "Offered" and not query.transferred
+            href: "/applications/" + application.id + "/offer/edit/provider?referrer=offer" if application.status == "Offered" and not query.transferred and 1 == 0
           },
           course: {
             value: application.offer.course,
-            href: "/applications/"+application.id+"/offer/edit/course?referrer=offer" if application.status == "Offered" and not query.transferred
+            href: "/applications/" + application.id + "/offer/edit/course?referrer=offer" if application.status == "Offered" and not query.transferred
+          },
+          studyMode: {
+            value: application.offer.studyMode,
+            href: "/applications/" + application.id + "/offer/edit/study-mode?referrer=offer" if application.status == "Offered" and course.studyModes.length > 1 and not query.transferred
           },
           location: {
             value: application.offer.location,
-            href: "/applications/"+application.id+"/offer/edit/location?referrer=offer" if application.status == "Offered" and not query.transferred
+            href: "/applications/" + application.id + "/offer/edit/location?referrer=offer" if application.status == "Offered" and course.locations.length > 1 and not query.transferred
           },
           accreditedBody: {
             value: application.offer.accreditedBody
           },
-
+          fundingType: {
+            value: application.offer.fundingType
+          },
           changeConditions: {
-            href: "/applications/"+application.id+"/offer/edit/conditions?referrer=offer"
+            href: "/applications/" + application.id + "/offer/edit/conditions?referrer=offer"
           } if application.status == "Offered",
-
           changeStatus: {
             href: "/applications/" + application.id + "/offer/edit-condition-statuses"
           } if application.status == "Conditions pending",
-
           conditions: {
             items: conditions
           }

@@ -1,40 +1,38 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
-{% set name = application.personalDetails.name %}
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
 {% set title = "Conditions of offer" %}
 
 {% block pageNavigation %}
-  {% if referrer == 'check' %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/check'
-    }) }}
-  {% else %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer'
-    }) }}
-  {% endif %}
+{{ govukBackLink({
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if data['edit-offer']['submitted-conditions-page'] == 'true' %}
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      </h1>
+
+      {% if data['edit-offer']['submitted-conditions-page'] == "true" %}
         {% set fitnessChecked = checked("['edit-offer']['standard-conditions']", "Fitness to teach check") %}
         {% set dbsChecked = checked("['edit-offer']['standard-conditions']", "Disclosure and barring service check") %}
       {% else %}
-        {% if "Fitness to teach check" in standardConditions %}
+        {% if standardConditions and "Fitness to teach check" in standardConditions %}
           {% set fitnessChecked = true %}
         {% endif%}
-        {% if "Disclosure and barring service check" in standardConditions %}
+        {% if standardConditions and "Disclosure and barring service check" in standardConditions %}
           {% set dbsChecked = true %}
         {% endif %}
       {% endif %}
 
-      <form method="post">
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
+
         <input type="hidden" name="[edit-offer][submitted-conditions-page]" value="true">
 
         {{ govukCheckboxes({
@@ -117,8 +115,13 @@
         {{ govukButton({
           text: "Continue"
         }) }}
+
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+
+      <p class="govuk-body">
+        <a class="govuk-ling" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
     </div>
   </div>
 {% endblock %}

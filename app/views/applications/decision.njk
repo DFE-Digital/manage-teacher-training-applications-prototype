@@ -1,6 +1,6 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
+{% set primaryNavId = "applications" %}
 {% set name = application.personalDetails.name %}
 {% set title = "Make a decision" %}
 
@@ -13,9 +13,10 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
+        <span class="govuk-caption-l">{{ name }}</span>
+        {{ title }}
       </h1>
 
       <div class="app-box govuk-!-margin-bottom-7">
@@ -52,37 +53,43 @@
             value: {
               html: appLocation(application.location) if application.location.name else application.location
             }
-          },{
+          }, {
             key: {
               text: "Accredited body"
             },
             value: {
               html: application.accreditedBody
             }
+          }, {
+            key: {
+              text: "Funding type"
+            },
+            value: {
+              html: application.fundingType
+            }
           }
           ]})
         }}
       </div>
 
-      <form method="post">
+      <form action="/applications/{{ application.id }}/decision" method="post" accept-charset="UTF-8" novalidate>
+
         {{ govukRadios({
+          idPrefix: "decision",
+          name: "decision",
           fieldset: {
             legend: {
               text: "Select decision",
               classes: "govuk-fieldset__legend--m"
             }
           },
-          idPrefix: "decision",
-          name: "decision",
           items: [{
             value: "1",
             text: "Make an offer"
-          },
-          {
+          }, {
             value: "2",
             text: "Change course details and make an offer"
-          },
-          {
+          }, {
             value: "3",
             text: "Reject application"
           }]
@@ -91,8 +98,12 @@
         {{ govukButton({
           text: "Continue"
         }) }}
+
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/applications/{{ application.id }}">Cancel</a>
+      </p>
 
     </div>
   </div>

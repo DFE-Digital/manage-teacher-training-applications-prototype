@@ -1,73 +1,49 @@
 {% extends "_layout.njk" %}
 
-{% set name = application.personalDetails.name %}
-{% set title = "Select location" %}
+{% set primaryNavId = "applications" %}
+{% set caption = application.personalDetails.name %}
+{% set title = "Location" %}
 
 {% block pageNavigation %}
-  {% if referrer == 'check' %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/check'
-    }) }}
-  {% elseif referrer == 'offer' %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer'
-    }) }}
-  {% else %}
-    {{ govukBackLink({
-      href: '/applications/' + application.id + '/offer/edit/course'
-    }) }}
-  {% endif %}
+{{ govukBackLink({
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
-        {{title}}
-      {% endset %}
-      <form method="post">
+    {% set headingHtml %}
+      <span class="govuk-caption-l">{{ caption }}</span>
+      {{ title }}
+    {% endset %}
 
-        {{ govukRadios({
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [{
-            value: "Alliance Academy, Edgeware, Road Name, SW1 1AA",
-            text: "Alliance Academy",
-            hint: { text: 'Edgeware, Road Name, SW1 1AA' }
-          }, {
-            value: "Bruntcliffe Academy, Bruntcliffe Lane, Morley, Leeds, LS27 0LZ",
-            text: "Bruntcliffe Academy",
-            hint: { text: 'Bruntcliffe Lane, Morley, Leeds, LS27 0LZ' }
-          }]
-        } | decorateAttributes(data, 'data["edit-offer"]["location"]') ) }}
+    <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
-    </div>
+      {{ govukRadios({
+        idPrefix: "edit-location",
+        name: "[edit-offer][location]",
+        fieldset: {
+          legend: {
+            html: headingHtml,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: locations
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+    </p>
+
   </div>
-{% endblock %}
-
-{% block pageScripts %}
-  <script src="/public/javascripts/autocomplete.min.js"></script>
-  <script>
-    accessibleAutocomplete({
-      name: "course",
-      element: document.querySelector('#course-autocomplete-container'),
-      id: 'course',
-      showAllValues: true,
-      source: [
-        {% for course in courses %}"{{ course.name_and_code }}",{% endfor %}
-      ]
-    })
-  </script>
+</div>
 {% endblock %}

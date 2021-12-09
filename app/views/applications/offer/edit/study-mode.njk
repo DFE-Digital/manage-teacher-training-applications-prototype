@@ -2,11 +2,10 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = application.personalDetails.name %}
-{% set title = "Training provider" %}
+{% set title = "Full time or part time" %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
-  text: "Back",
   href: actions.back
 }) }}
 {% endblock %}
@@ -23,8 +22,8 @@
     <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
       {{ govukRadios({
-        idPrefix: "edit-provider",
-        name: "[new-offer][provider]",
+        idPrefix: "edit-studyMode",
+        name: "[edit-offer][studyMode]",
         fieldset: {
           legend: {
             html: headingHtml,
@@ -32,8 +31,8 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        items: providers
-      )} }}
+        items: studyModes
+      }) }}
 
       {{ govukButton({
         text: "Continue"

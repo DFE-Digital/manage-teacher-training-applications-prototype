@@ -1,0 +1,50 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = "Change course - " + application.personalDetails.name %}
+{% set title = "Full time or part time" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ title }}
+      {% endset %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "edit-studyMode",
+          name: "edit-course[studyMode]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: studyModes
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}
