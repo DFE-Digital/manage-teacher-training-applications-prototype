@@ -68,19 +68,32 @@
   {% for item in experience %}
     <div class="app-experience__item {% if loop.first %}app-experience__item--first{% endif%} {% if loop.last %}app-experience__item--last{% endif%}">
       {% if item.category == 'break' %}
-        <div class="govuk-inset-text govuk-!-margin-bottom-0 govuk-!-margin-top-0 govuk-!-padding-bottom-0 govuk-!-padding-top-0">
+        {% if not item.description %}
+          <div class="govuk-inset-text govuk-!-margin-bottom-0 govuk-!-margin-top-0 govuk-!-padding-bottom-0 govuk-!-padding-top-0">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Unexplained break ({{item.duration}})</h3>
+            <p class="govuk-caption-m govuk-!-margin-bottom-0">
+              {{item.startDate | date("LLLL yyyy")}}
+              to
+              {% if item.endDate  %}
+                {{item.endDate | date("LLLL yyyy")}}
+              {% else %}
+                Present
+              {% endif %}
+            </p>
+          </div>
+        {% else %}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Break ({{item.duration}})</h3>
-          <p class="govuk-caption-m govuk-!-margin-bottom-0">
-            {{item.startDate | date("LLLL yyyy")}}
-            to
-            {% if item.endDate  %}
-              {{item.endDate | date("LLLL yyyy")}}
-            {% else %}
-              Present
-            {% endif %}
-          </p>
-          <p class="govuk-body govuk-!-margin-bottom-0 govuk-!-margin-top-2">{{ item.description }}</p>
-        </div>
+            <p class="govuk-caption-m govuk-!-margin-bottom-0">
+              {{item.startDate | date("LLLL yyyy")}}
+              to
+              {% if item.endDate  %}
+                {{item.endDate | date("LLLL yyyy")}}
+              {% else %}
+                Present
+              {% endif %}
+            </p>
+            <p class="govuk-body govuk-!-margin-bottom-0 govuk-!-margin-top-2">{{ item.description }}</p>
+        {% endif %}
       {% elseif not item.category %}
         <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.role }} (unpaid)</h3>
         <p class="govuk-body govuk-!-margin-bottom-0">{{item.org}}</p>

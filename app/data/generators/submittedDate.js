@@ -5,7 +5,6 @@ faker.locale = 'en_GB'
 module.exports = (params) => {
   let submittedDate
 
-
   if(params.status == "Offered") {
     submittedDate = SystemHelper.now().minus({
       days: faker.datatype.number({ 'min': 60, 'max': 70 })
@@ -41,8 +40,8 @@ module.exports = (params) => {
   } else {
     submittedDate = SystemHelper.now().minus({
       days: faker.datatype.number({ 'min': 0, 'max': 40 })
-    }).toISO()
+    })
   }
 
-  return submittedDate
+  return submittedDate.toISO()
 }
