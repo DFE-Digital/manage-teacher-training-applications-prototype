@@ -22,8 +22,19 @@ module.exports = (submittedDate) => {
 
       const jobType = faker.helpers.randomize(['job', 'break'])
       if (jobType === 'job') {
+
         items.push({
-          role: faker.name.jobTitle(),
+          role: faker.helpers.randomize([
+            'Analyst',
+            'Consultant',
+            'Life coach',
+            'Sales assistant',
+            'Director',
+            'Manager',
+            'Supervisor',
+            'Legal executive',
+            'Planner',
+          ]),
           org: faker.company.companyName(),
           type: faker.helpers.randomize(['Full time', 'Part time']),
           relevantToTeaching: faker.helpers.randomize(['Yes', 'No']),
