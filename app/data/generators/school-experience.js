@@ -1,20 +1,35 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
+const DateHelper = require('../helpers/dates');
 
-module.exports = () => {
+module.exports = (submittedDate) => {
   const hasExperience = faker.helpers.randomize([true, false])
   if(hasExperience) {
     const count = faker.datatype.number({ min: 1, max: 4 })
     const items = []
+
+    // get a date previously to the application submitted date
+    let endDate = DateHelper.getPastDate(submittedDate, 30, 150)
+
     for (var i = 0; i < count; i++) {
+
+      // get an end date that is prior to the previous start date item
+      endDate = DateHelper.getPastDate(endDate)
+
+      // get a start date that is between 30 and 500 days prior to the end date
+      startDate = DateHelper.getPastDate(endDate, 30, 500)
+
       items.push({
         role: faker.name.jobTitle(),
         org: faker.company.companyName(),
         workedWithChildren: faker.helpers.randomize(['Yes', 'No']),
-        startDate: faker.date.past(),
-        endDate: faker.date.past(),
+        startDate: startDate,
+        endDate: endDate,
         timeCommitment: faker.lorem.sentences(1)
       })
+
+      // this make sure the next cycle of the loop makes a date prior to the previous event's start date
+      endDate = startDate
     }
     return items
   }
