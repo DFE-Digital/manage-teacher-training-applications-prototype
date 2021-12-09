@@ -21,7 +21,8 @@
         {{ title }}
       </h1>
 
-      <form method="post">
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
+
         {{ govukCheckboxes({
           idPrefix: "[new-offer][standard-conditions]",
           name: "[new-offer][standard-conditions]",
@@ -105,7 +106,7 @@
       </form>
 
       <p class="govuk-body">
-        <a class="govuk-link" href="/applications/{{ application.id }}">Cancel</a>
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
       </p>
     </div>
   </div>
