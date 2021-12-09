@@ -16,7 +16,7 @@ module.exports = router => {
 
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      courses: CourseHelper.getCourses(selectedCourse),
+      courses: CourseHelper.getCourseRadioOptions(selectedCourse),
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
@@ -62,7 +62,7 @@ module.exports = router => {
 
     res.render('applications/course/study-mode', {
       application,
-      studyModes: CourseHelper.getCourseStudyModes(course.code, selectedStudyMode),
+      studyModes: CourseHelper.getCourseStudyModeRadioOptions(course.code, selectedStudyMode),
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
@@ -123,7 +123,7 @@ module.exports = router => {
 
       res.render('applications/course/location', {
         application,
-        locations: CourseHelper.getCourseLocations(course.code, selectedLocation),
+        locations: CourseHelper.getCourseLocationRadioOptions(course.code, selectedLocation),
         actions: {
           back: back,
           cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,

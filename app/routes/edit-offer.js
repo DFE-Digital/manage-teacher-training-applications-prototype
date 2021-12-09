@@ -40,7 +40,7 @@ module.exports = router => {
 
     res.render('applications/offer/edit/course', {
       application,
-      courses: CourseHelper.getCourses(selectedCourse),
+      courses: CourseHelper.getCourseRadioOptions(selectedCourse),
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/offer/edit/course/cancel`,
@@ -77,7 +77,7 @@ module.exports = router => {
     let back = `/applications/${req.params.applicationId}/offer`
     let save = `/applications/${req.params.applicationId}/offer/edit/study-mode`
 
-    if (req.query.referrer === 'check') {
+    if (req.query.referrer === 'check' || req.query.referrer === 'offer') {
       back += '/edit/check'
       save += `?referrer=${req.query.referrer}`
     } else if (req.query.referrer === 'course') {
@@ -86,7 +86,7 @@ module.exports = router => {
 
     res.render('applications/offer/edit/study-mode', {
       application,
-      studyModes: CourseHelper.getCourseStudyModes(course.code, selectedStudyMode),
+      studyModes: CourseHelper.getCourseStudyModeRadioOptions(course.code, selectedStudyMode),
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/offer/edit/course/cancel`,
@@ -104,7 +104,7 @@ module.exports = router => {
       req.session.data.course = CourseHelper.getCourse(application.offer.courseCode)
     }
 
-    if (req.query.referrer === 'check') {
+    if (req.query.referrer === 'check' || req.query.referrer === 'offer') {
       res.redirect(`/applications/${req.params.applicationId}/offer/edit/check?referrer=study-mode`)
     } else if (req.session.data.course.locations.length > 1) {
       res.redirect(`/applications/${req.params.applicationId}/offer/edit/location?referrer=study-mode`)
@@ -139,7 +139,7 @@ module.exports = router => {
       let back = `/applications/${req.params.applicationId}/offer`
       let save = `/applications/${req.params.applicationId}/offer/edit/location`
 
-      if (req.query.referrer === 'check') {
+      if (req.query.referrer === 'check' || req.query.referrer === 'offer') {
         back += '/edit/check'
         save += `?referrer=${req.query.referrer}`
       } else if (req.query.referrer === 'course') {
@@ -150,7 +150,7 @@ module.exports = router => {
 
       res.render('applications/offer/edit/location', {
         application,
-        locations: CourseHelper.getCourseLocations(course.code, selectedLocation),
+        locations: CourseHelper.getCourseLocationRadioOptions(course.code, selectedLocation),
         actions: {
           back: back,
           cancel: `/applications/${req.params.applicationId}/offer/edit/course/cancel`,

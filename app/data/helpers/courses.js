@@ -1,9 +1,9 @@
-const Utils = require('./utils')
+const utils = require('./utils')
 
 const locations = require('../locations')
 const courses = require('../courses')
 
-exports.getCourses = (selectedItem) => {
+exports.getCourseRadioOptions = (selectedItem) => {
   const items = []
 
   courses.forEach((course, i) => {
@@ -16,7 +16,7 @@ exports.getCourses = (selectedItem) => {
     item.checked = (selectedItem && selectedItem.includes(course.code)) ? 'checked' : ''
 
     item.hint = {}
-    item.hint.text = Utils.arrayToList(
+    item.hint.text = utils.arrayToList(
         array = course.qualifications,
         join = ', ',
         final = ' with '
@@ -37,7 +37,7 @@ exports.getCourse = (courseId) => {
   return courses.find(course => course.code === courseId)
 }
 
-exports.getCourseStudyModes = (courseId, selectedItem) => {
+exports.getCourseStudyModeRadioOptions = (courseId, selectedItem) => {
   const items = []
   const course = courses.find(course => course.code === courseId)
 
@@ -55,7 +55,7 @@ exports.getCourseStudyModes = (courseId, selectedItem) => {
   return items
 }
 
-exports.getCourseLocations = (courseId, selectedItem) => {
+exports.getCourseLocationRadioOptions = (courseId, selectedItem) => {
   const items = []
   const course = courses.find(course => course.code === courseId)
 
@@ -68,7 +68,7 @@ exports.getCourseLocations = (courseId, selectedItem) => {
     item.checked = (selectedItem && selectedItem.includes(location.id)) ? 'checked' : ''
 
     item.hint = {}
-    item.hint.text = Utils.arrayToList(
+    item.hint.text = utils.arrayToList(
         array = Object.values(location.address),
         join = ', ',
         final = ', '
