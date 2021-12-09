@@ -25,7 +25,7 @@ module.exports = router => {
       back = `/applications/${req.params.applicationId}/offer/new/location`
     }
 
-    res.render('applications/offer/new/index', {
+    res.render('applications/offer/new/conditions', {
       application,
       conditions,
       actions: {
