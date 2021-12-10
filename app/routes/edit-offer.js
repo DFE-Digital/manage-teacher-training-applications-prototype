@@ -109,7 +109,7 @@ module.exports = router => {
     } else if (req.session.data.course.locations.length > 1) {
       res.redirect(`/applications/${req.params.applicationId}/offer/edit/location?referrer=study-mode`)
     } else {
-      req.session.data['edit-offer'].location = req.session.data.course.locations[0]
+      req.session.data['edit-offer'].location = req.session.data.course.locations[0].id
       res.redirect(`/applications/${req.params.applicationId}/offer/edit/check?referrer=study-mode`)
     }
   })
