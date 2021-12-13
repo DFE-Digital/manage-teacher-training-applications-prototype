@@ -85,7 +85,7 @@ module.exports = router => {
     } else if (req.session.data.course.locations.length > 1) {
       res.redirect(`/applications/${req.params.applicationId}/course/edit/location?referrer=study-mode`)
     } else {
-      req.session.data['edit-course'].location = req.session.data.course.locations[0]
+      req.session.data['edit-course'].location = req.session.data.course.locations[0].id
       res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=study-mode`)
     }
   })
@@ -192,7 +192,8 @@ module.exports = router => {
       application.course = course.name + ' (' + course.code + ')'
       application.courseCode = course.code
       application.accreditedBody = course.accreditedBody.name
-      application.fundingType = course.fundingType
+      application.fundingType = course.fundingType,
+      application.qualifications = course.qualifications
     }
 
     if (req.session.data['edit-course'].studyMode) {
@@ -215,7 +216,8 @@ module.exports = router => {
           studyMode: application.studyMode,
           location: application.location,
           accreditedBody: application.accreditedBody,
-          fundingType: application.fundingType
+          fundingType: application.fundingType,
+          qualifications: application.qualifications
         }
       }
     })

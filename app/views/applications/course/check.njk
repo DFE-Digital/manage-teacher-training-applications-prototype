@@ -92,6 +92,13 @@
           value: {
             html: course.accreditedBody.name or application.accreditedBody
           }
+        } if (course.accreditedBody.name or application.accreditedBody) != (data['edit-course'].provider or application.provider), {
+          key: {
+            text: "Qualification"
+          },
+          value: {
+            html: course.qualifications | arrayToList(', ',' with ')
+          }
         }, {
           key: {
             text: "Funding type"

@@ -395,5 +395,23 @@ filters.falsify = (input) => {
     return html
   }
 
+  /* ------------------------------------------------------------------
+  utility function to and array into a list
+  example: {{ ['PGCE','QTS'] | arrayToList(', ',' with ') }}
+  output: "PGCE with QTS"
+  ------------------------------------------------------------------ */
+
+  filters.arrayToList = (array, join = ', ', final = ' and ') => {
+    const arr = array.slice(0)
+
+    const last = arr.pop()
+
+    if (array.length > 1) {
+      return arr.join(join) + final + last
+    }
+
+    return last
+  }
+
   return filters
 }

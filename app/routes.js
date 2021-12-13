@@ -37,4 +37,7 @@ require('./routes/users')(router)
 require('./routes/withdraw-application')(router)
 require('./routes/withdraw-offer')(router)
 
+// examples
+require('./routes/examples')(router)
+
 module.exports = router

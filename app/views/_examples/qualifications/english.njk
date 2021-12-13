@@ -1,162 +1,171 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
+{% set primaryNavId = "examples" %}
 
 {% set title = "English as a foreign language" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/examples"
+}) }}
+{% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-  <h2 class="govuk-heading-l">
-    {{ title }}
-  </h2>
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">Qualification examples</span>
+      {{ title }}
+    </h1>
 
-  <hr class="govuk-section-break govuk-section-break--xl">
+    <hr class="govuk-section-break govuk-section-break--xl">
 
-  <h3 class="govuk-heading-m">
-    English as a foreign language
-  </h3>
+    <h2 class="govuk-heading-m">
+      English as a foreign language
+    </h2>
 
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Assessment type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        International English Language Testing System (IELTS)
-      </dd>
-    </div>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Assessment type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          International English Language Testing System (IELTS)
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Test report form (TRF) number
-      </dt>
-      <dd class="govuk-summary-list__value">
-        02GB0674SOOM599A
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Test report form (TRF) number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          02GB0674SOOM599A
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Overall band score
-      </dt>
-      <dd class="govuk-summary-list__value">
-        7.5
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Overall band score
+        </dt>
+        <dd class="govuk-summary-list__value">
+          7.5
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Year completed
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2020
-      </dd>
-    </div>
-  </dl>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Year completed
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2020
+        </dd>
+      </div>
+    </dl>
 
-  <hr class="govuk-section-break govuk-section-break--xl">
+    <hr class="govuk-section-break govuk-section-break--xl">
 
-  <h3 class="govuk-heading-m">
-    English as a foreign language
-  </h3>
+    <h2 class="govuk-heading-m">
+      English as a foreign language
+    </h2>
 
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Assessment type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Test of English as a Foreign Language (TOEFL)
-      </dd>
-    </div>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Assessment type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Test of English as a Foreign Language (TOEFL)
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        TOEFL registration number
-      </dt>
-      <dd class="govuk-summary-list__value">
-        0000 0000 2500 2147
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          TOEFL registration number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          0000 0000 2500 2147
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Total score
-      </dt>
-      <dd class="govuk-summary-list__value">
-        92
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Total score
+        </dt>
+        <dd class="govuk-summary-list__value">
+          92
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Year completed
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2020
-      </dd>
-    </div>
-  </dl>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Year completed
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2020
+        </dd>
+      </div>
+    </dl>
 
-  <hr class="govuk-section-break govuk-section-break--xl">
+    <hr class="govuk-section-break govuk-section-break--xl">
 
-  <h3 class="govuk-heading-m">
-    English as a foreign language
-  </h3>
+    <h2 class="govuk-heading-m">
+      English as a foreign language
+    </h2>
 
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Assessment type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Pearson Test of English
-      </dd>
-    </div>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Assessment type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Pearson Test of English
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Score or grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        85
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Score or grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          85
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Year completed
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2020
-      </dd>
-    </div>
-  </dl>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Year completed
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2020
+        </dd>
+      </div>
+    </dl>
 
-  <hr class="govuk-section-break govuk-section-break--xl">
+    <hr class="govuk-section-break govuk-section-break--xl">
 
-  <h3 class="govuk-heading-m">
-    English as a foreign language
-  </h3>
+    <h2 class="govuk-heading-m">
+      English as a foreign language
+    </h2>
 
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Have you done an English as a foreign language assessment?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        No, English is not a foreign language to me
-      </dd>
-    </div>
-  </dl>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Have you done an English as a foreign language assessment?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No, English is not a foreign language to me
+        </dd>
+      </div>
+    </dl>
 
-  <hr class="govuk-section-break govuk-section-break--xl">
+    <hr class="govuk-section-break govuk-section-break--xl">
 
-  <h3 class="govuk-heading-m">
-    English as a foreign language
+    <h2 class="govuk-heading-m">
+      English as a foreign language
+    </h2>
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
@@ -178,8 +187,7 @@
       </div>
     </dl>
 
-  <hr class="govuk-section-break govuk-section-break--xl">
-
+    <hr class="govuk-section-break govuk-section-break--xl">
 
   </div>
 </div>

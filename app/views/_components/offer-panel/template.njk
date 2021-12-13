@@ -104,6 +104,22 @@
         } if params.accreditedBody.href
       } if params.accreditedBody.value != params.provider.value, {
         key: {
+          text: "Qualification"
+        },
+        value: {
+          html: params.qualifications.value
+        },
+        actions: {
+          items: [
+            {
+              href: params.qualifications.href or "#",
+              text: "Change",
+              visuallyHiddenText: "qualification"
+            }
+          ]
+        } if params.qualifications.href
+      }, {
+        key: {
           text: "Funding type"
         },
         value: {

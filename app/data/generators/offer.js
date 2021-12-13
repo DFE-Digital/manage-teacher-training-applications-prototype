@@ -60,6 +60,7 @@ module.exports = (params) => {
     studyMode: params.studyMode,
     accreditedBody: params.accreditedBody,
     fundingType: params.fundingType,
+    qualifications: params.qualifications,
     madeDate,
     acceptedDate,
     standardConditions,

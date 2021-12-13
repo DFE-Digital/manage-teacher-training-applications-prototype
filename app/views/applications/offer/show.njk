@@ -41,6 +41,9 @@
             value: application.offer.course,
             href: "/applications/" + application.id + "/offer/edit/course?referrer=offer" if application.status == "Offered" and not query.transferred
           },
+          qualifications: {
+            value: application.offer.qualifications | arrayToList(', ',' with ')
+          },
           studyMode: {
             value: application.offer.studyMode,
             href: "/applications/" + application.id + "/offer/edit/study-mode?referrer=offer" if application.status == "Offered" and course.studyModes.length > 1 and not query.transferred
@@ -51,7 +54,7 @@
           },
           accreditedBody: {
             value: application.offer.accreditedBody
-          },
+          } if application.offer.accreditedBody != application.offer.provider,
           fundingType: {
             value: application.offer.fundingType
           },
