@@ -1,0 +1,30 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "examples" %}
+
+{% set title = "Qualifications" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <ul class="govuk-list">
+    <li>
+      <a class="govuk-link" href="/examples/qualifications/degrees">Degrees</a>
+    </li>
+    <li>
+      <a class="govuk-link" href="/examples/qualifications/gcse">GCSE or equivalent</a>
+    </li>
+    <li>
+      <a class="govuk-link" href="/examples/qualifications/english">English as a foreign language</a>
+    </li>
+  </ul>
+
+  </div>
+</div>
+{% endblock %}

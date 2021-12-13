@@ -1,8 +1,21 @@
 module.exports = router => {
+
+  router.get('/examples', (req, res) => {
+    res.render('_examples/index', {
+
+    })
+  })
+
   router.get('/examples/courses', (req, res) => {
     const courses = require('../data/courses')
     res.render('_examples/courses/index', {
       courses
+    })
+  })
+
+  router.get('/examples/qualifications', (req, res) => {
+    res.render('_examples/qualifications/index', {
+
     })
   })
 
