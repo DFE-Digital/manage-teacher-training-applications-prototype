@@ -74,6 +74,7 @@ const generateFakeApplication = (params = {}) => {
   const studyMode = faker.helpers.randomize(tempCourse.studyModes)
   const subjectLevel = tempCourse.subjectLevel
   const fundingType = tempCourse.fundingType
+  const qualifications = tempCourse.qualifications
 
 
   let offer = null
@@ -87,7 +88,8 @@ const generateFakeApplication = (params = {}) => {
       courseCode,
       location,
       studyMode,
-      fundingType
+      fundingType,
+      qualifications
     })
   }
 
@@ -112,6 +114,7 @@ const generateFakeApplication = (params = {}) => {
     studyMode,
     accreditedBody: accreditedBody.name,
     fundingType,
+    qualifications,
     organisation,
     assignedUsers
   })
@@ -176,6 +179,7 @@ const generateFakeApplication = (params = {}) => {
     subject: params.subject || subjects,
     subjectLevel: params.subjectLevel || subjectLevel,
     course: params.course || course,
+    qualifications: params.qualifications || qualifications,
     courseCode: params.courseCode || courseCode,
     location: params.location || location,
     status,
