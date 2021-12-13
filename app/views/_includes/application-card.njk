@@ -6,7 +6,7 @@
       <a href="/applications/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
         {{- a.personalDetails.givenName }} {{ a.personalDetails.familyName -}}
       </a>
-      <span class="app-application-card__caption">{{ a.id }}</span>
+      <span class="app-application-card__caption">{{ a.contactDetails.email }}</span>
     </h3>
     <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
     <p class="govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
