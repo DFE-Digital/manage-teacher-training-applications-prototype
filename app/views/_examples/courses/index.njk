@@ -31,9 +31,21 @@
       {% endfor %}
     {% endset %}
 
+    {% set applicationsLink -%}
+      {%- for subject in course.subjects -%}
+        subject={{ subject.name | urlencode }}{% if not loop.last %}&{% endif %}
+      {%- endfor -%}
+    {%- endset %}
+
     {{ appSummaryCard({
       classes: "govuk-!-margin-bottom-5",
       titleHtml: course.name + " (" + course.code + ")",
+      actions: {
+        items: [{
+          html: "View applications",
+          href: "/?" + applicationsLink
+        }]
+      },
       html: govukSummaryList({
         classes: "govuk-!-margin-bottom-0",
         rows: [{
