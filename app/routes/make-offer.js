@@ -125,7 +125,8 @@ module.exports = router => {
       location: CourseHelper.getCourseLocation(req.session.data['new-offer'].location) || application.location,
       studyMode: req.session.data['new-offer'].studyMode || application.studyMode,
       accreditedBody: course.accreditedBody.name,
-      fundingType: course.fundingType
+      fundingType: course.fundingType,
+      qualifications: course.qualifications
     }
 
     application.offer.declineByDate = ApplicationHelper.calculateDeclineDate(application)
@@ -173,6 +174,7 @@ module.exports = router => {
           studyMode: application.offer.studyMode,
           accreditedBody: application.offer.accreditedBody,
           fundingType: application.offer.fundingType,
+          qualifications: application.offer.qualifications,
           conditions: ApplicationHelper.getConditions(application.offer)
         }
       }
@@ -372,6 +374,7 @@ module.exports = router => {
     delete req.session.data['new-offer'].location
     delete req.session.data['new-offer'].accreditedBody
     delete req.session.data['new-offer'].fundingType
+    delete req.session.data['new-offer'].qualifications
 
     delete req.session.data.flow
 

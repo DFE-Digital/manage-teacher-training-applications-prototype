@@ -304,6 +304,7 @@ module.exports = router => {
       application.offer.provider = course.trainingProvider.name
       application.offer.accreditedBody = course.accreditedBody.name
       application.offer.fundingType = course.fundingType
+      application.offer.qualifications = course.qualifications
     }
 
     application.offer.studyMode = req.session.data['edit-offer'].studyMode || application.offer.studyMode
@@ -352,6 +353,7 @@ module.exports = router => {
           studyMode: application.offer.studyMode,
           accreditedBody: application.offer.accreditedBody,
           fundingType: application.offer.fundingType,
+          qualifications: application.offer.qualifications,
           conditions: ApplicationHelper.getConditions(application.offer)
         }
       }
