@@ -4,6 +4,13 @@
 
 {% set title = "Courses (" + courses.length + ")"  %}
 
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/examples"
+}) }}
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
