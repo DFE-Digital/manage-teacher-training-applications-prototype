@@ -1,0 +1,91 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "examples" %}
+
+{% set title = "Courses (" + courses.length + ")"  %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h2 class="govuk-heading-l">
+    {{ title }}
+  </h2>
+
+  {% for course in courses %}
+
+    {% set locationHtml %}
+      {% for location in course.locations %}
+        {{ appLocation(location) }}
+        {% if not loop.last %}
+          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+        {% endif %}
+      {% endfor %}
+    {% endset %}
+
+    {{ appSummaryCard({
+      classes: "govuk-!-margin-bottom-5",
+      titleHtml: course.name + " (" + course.code + ")",
+      html: govukSummaryList({
+        classes: "govuk-!-margin-bottom-0",
+        rows: [{
+          key: {
+            text: "Training provider"
+          },
+          value: {
+            html: course.trainingProvider.name
+          }
+        }, {
+          key: {
+            text: "Course"
+          },
+          value: {
+            html: course.name + " (" + course.code + ")"
+          }
+        }, {
+          key: {
+            text: "Full time or part time"
+          },
+          value: {
+            html: course.studyModes | arrayToList(', ',' or ')
+          }
+        }, {
+          key: {
+            text: "Location" + ("s" if course.locations.length > 1)
+          },
+          value: {
+            html: locationHtml
+          }
+        }, {
+          key: {
+            text: "Accredited body"
+          },
+          value: {
+            html: course.accreditedBody.name
+          }
+        }, {
+          key: {
+            text: "Qualification"
+          },
+          value: {
+            html: course.qualifications | arrayToList(', ',' with ')
+          }
+        }, {
+          key: {
+            text: "Funding type"
+          },
+          value: {
+            html: course.fundingType
+          }
+        }]
+      })
+    }) }}
+
+  {% endfor %}
+
+
+
+  </div>
+</div>
+{% endblock %}
