@@ -1,531 +1,539 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'applications' %}
+{% set primaryNavId = "examples" %}
 
 {% set title = "Degrees" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/examples"
+}) }}
+{% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-  <h2 class="govuk-heading-l">
-    {{ title }}
-  </h2>
-
-  <hr class="govuk-section-break govuk-section-break--xl">
-
-  <h3 class="govuk-heading-m">
-    Degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        BSc - Bachelor of Science (Hons)
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Educational psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        University College London
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Upper second-class honours (2:1)
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2016
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2020
-      </dd>
-    </div>
-  </dl>
-
-  <hr class="govuk-section-break govuk-section-break--xl">
-
-  <h3 class="govuk-heading-m">
-    First degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        BSc - Bachelor of Science (Hons)
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Educational psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        University College London
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Upper second-class honours (2:1)
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2010
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2013
-      </dd>
-    </div>
-  </dl>
-
-  <h3 class="govuk-heading-m govuk-!-margin-top-9">
-    Second degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        MSc - Master of Science
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Child psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        King’s College London
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Distinction
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2014
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2015
-      </dd>
-    </div>
-  </dl>
-
-  <hr class="govuk-section-break govuk-section-break--xl">
-
-  <h3 class="govuk-heading-m govuk-!-margin-top-9">
-    Degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Diplôme
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Educational psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        University of Paris
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Country or territory
-      </dt>
-      <dd class="govuk-summary-list__value">
-        France
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Distinction
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2016
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2019
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        UK ENIC reference number
-      </dt>
-      <dd class="govuk-summary-list__value">
-        4000228363
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Comparable UK degree
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Bachelor (Honours) degree
-      </dd>
-    </div>
-  </dl>
-
-  <hr class="govuk-section-break govuk-section-break--xl">
-
-  <h3 class="govuk-heading-m govuk-!-margin-top-9">
-    Degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Diplôme
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Educational psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        University of Paris
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Country or territory
-      </dt>
-      <dd class="govuk-summary-list__value">
-        France
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Distinction
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2016
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2019
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Do you have a UK ENIC statement of comparability?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        No
-      </dd>
-    </div>
-  </dl>
-
-  <hr class="govuk-section-break govuk-section-break--xl">
-
-  <h3 class="govuk-heading-m">
-    Degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        BSc - Bachelor of Science (Hons)
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Educational psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        University College London
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Have you completed this degree?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        No
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Predicted grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Upper second-class honours (2:1)
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2019
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2022
-      </dd>
-    </div>
-  </dl>
-
-  <hr class="govuk-section-break govuk-section-break--xl">
-
-  <h3 class="govuk-heading-m govuk-!-margin-top-9">
-    Degree
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Degree type
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Diplôme
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Subject
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Educational psychology
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Institution
-      </dt>
-      <dd class="govuk-summary-list__value">
-        University of Paris
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Country or territory
-      </dt>
-      <dd class="govuk-summary-list__value">
-        France
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Have you completed this degree?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        No
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Predicted grade
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Distinction
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Start year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2019
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Graduation year
-      </dt>
-      <dd class="govuk-summary-list__value">
-        2022
-      </dd>
-    </div>
-
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Do you have a UK ENIC statement of comparability?
-      </dt>
-      <dd class="govuk-summary-list__value">
-        No
-      </dd>
-    </div>
-  </dl>
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">Qualification examples</span>
+      {{ title }}
+    </h1>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h2 class="govuk-heading-m">
+      Degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          BSc - Bachelor of Science (Hons)
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Educational psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          University College London
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Upper second-class honours (2:1)
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2016
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2020
+        </dd>
+      </div>
+    </dl>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h2 class="govuk-heading-m">
+      First degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          BSc - Bachelor of Science (Hons)
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Educational psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          University College London
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Upper second-class honours (2:1)
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2010
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2013
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Second degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          MSc - Master of Science
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Child psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          King’s College London
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Distinction
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2014
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2015
+        </dd>
+      </div>
+    </dl>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Diplôme
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Educational psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          University of Paris
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Country or territory
+        </dt>
+        <dd class="govuk-summary-list__value">
+          France
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Distinction
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2016
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2019
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          UK ENIC reference number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          4000228363
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Comparable UK degree
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Bachelor (Honours) degree
+        </dd>
+      </div>
+    </dl>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Diplôme
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Educational psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          University of Paris
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Country or territory
+        </dt>
+        <dd class="govuk-summary-list__value">
+          France
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Distinction
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2016
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2019
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Do you have a UK ENIC statement of comparability?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+      </div>
+    </dl>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h2 class="govuk-heading-m">
+      Degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          BSc - Bachelor of Science (Hons)
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Educational psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          University College London
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Have you completed this degree?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Predicted grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Upper second-class honours (2:1)
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2019
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2022
+        </dd>
+      </div>
+    </dl>
+
+    <hr class="govuk-section-break govuk-section-break--xl">
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Degree
+    </h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Diplôme
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Educational psychology
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Institution
+        </dt>
+        <dd class="govuk-summary-list__value">
+          University of Paris
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Country or territory
+        </dt>
+        <dd class="govuk-summary-list__value">
+          France
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Have you completed this degree?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Predicted grade
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Distinction
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Start year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2019
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Graduation year
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2022
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Do you have a UK ENIC statement of comparability?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+      </div>
+    </dl>
 
   </div>
 </div>

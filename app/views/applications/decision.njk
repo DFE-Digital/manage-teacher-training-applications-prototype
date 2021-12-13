@@ -60,6 +60,13 @@
             value: {
               html: application.accreditedBody
             }
+          } if application.accreditedBody != application.provider, {
+            key: {
+              text: "Qualification"
+            },
+            value: {
+              html: application.qualifications | arrayToList(', ',' with ')
+            }
           }, {
             key: {
               text: "Funding type"
