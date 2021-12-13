@@ -83,10 +83,35 @@
     } if application.status in ["Received","Interviewing"] and 1 == 0
   } if application.accreditedBody != application.provider, {
     key: {
+      text: "Qualification"
+    },
+    value: {
+      text: application.qualifications | arrayToList(', ',' with ')
+    },
+    actions: {
+      items: [
+        {
+          href: "/applications/" + application.id + "/course/edit/qualifications?referrer=details",
+          text: "Change",
+          visuallyHiddenText: "qualification"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"] and 1 == 0
+  }, {
+    key: {
       text: "Funding type"
     },
     value: {
       text: application.fundingType
-    }
+    },
+    actions: {
+      items: [
+        {
+          href: "/applications/" + application.id + "/course/edit/funding-type?referrer=details",
+          text: "Change",
+          visuallyHiddenText: "funding type"
+        }
+      ]
+    } if application.status in ["Received","Interviewing"] and 1 == 0
   }]
 }) }}

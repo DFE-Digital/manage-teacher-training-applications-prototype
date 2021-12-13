@@ -6,7 +6,7 @@
 
 {% block pageNavigation %}
 {{ govukBackLink({
-  href: '/applications/' + application.id + '/offer/new'
+  href: actions.back
 }) }}
 {% endblock %}
 
@@ -39,6 +39,9 @@
         },
         accreditedBody: {
           value: course.accreditedBody.name
+        } if course.accreditedBody.name != course.provider.name,
+        qualifications: {
+          value: course.qualifications | arrayToList(', ',' with ')
         },
         fundingType: {
           value: course.fundingType
