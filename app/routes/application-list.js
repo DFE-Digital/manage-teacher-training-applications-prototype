@@ -395,17 +395,17 @@ module.exports = router => {
       apps = apps.filter((app) => {
 
         let candidateNameValid = true
-        let candidateIdValid = true
+        let candidateEmailValid = true
 
         const candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
-        const candidateId = app.id
+        const candidateEmail = app.contactDetails.email
 
         if (keywords) {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
-          candidateIdValid = candidateId.toLowerCase().includes(keywords.toLowerCase())
+          candidateEmailValid = candidateEmail.toLowerCase().includes(keywords.toLowerCase())
         }
 
-        return candidateNameValid || candidateIdValid
+        return candidateNameValid || candidateEmailValid
       })
     }
 
