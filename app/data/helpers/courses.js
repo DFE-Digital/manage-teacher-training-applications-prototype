@@ -3,6 +3,39 @@ const utils = require('./utils')
 const locations = require('../locations')
 const courses = require('../courses')
 
+exports.getProviderRadioOptions = (selectedItem) => {
+  const items = []
+
+  // TODO: replace dummy data with user's training providers
+  const providers = [
+    {
+      id: 'a92c5e82-5d22-48b5-b2fc-7aa80ff264a9',
+      name: 'Wren Academy'
+    },
+    {
+      id: '9d95e1dc-f87b-420b-8dca-5f5397ca4ea1',
+      name: 'Oates Academy'
+    }
+  ]
+
+  providers.forEach((provider, i) => {
+    const item = {}
+
+    item.text = provider.name
+    item.value = provider.id
+    item.id = provider.id
+    item.checked = (selectedItem && selectedItem.includes(provider.id)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  items.sort((a,b) => {
+    return a.text.localeCompare(b.text)
+  })
+
+  return items
+}
+
 exports.getCourseRadioOptions = (selectedItem) => {
   const items = []
 

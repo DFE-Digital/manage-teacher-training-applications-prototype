@@ -2,6 +2,35 @@ const ApplicationHelper = require('../data/helpers/application')
 const CourseHelper = require('../data/helpers/courses')
 
 module.exports = router => {
+
+  // TODO: implement changing provider - 12% chance a user has >1 provider
+  router.get('/applications/:applicationId/course/edit/provider', (req, res) => {
+    let selectedProvider
+    if (req.session.data['edit-course'] && req.session.data['edit-course'].provider) {
+      selectedProvider = req.session.data['edit-course'].provider
+    }
+
+    let back = `/applications/${req.params.applicationId}`
+
+    if (req.query.referrer === 'check') {
+      back += '/course/edit/check'
+    }
+
+    res.render('applications/course/provider', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      providers: CourseHelper.getProviderRadioOptions(selectedProvider),
+      actions: {
+        back: back,
+        cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
+        save: `/applications/${req.params.applicationId}/course/edit/course`
+      }
+    })
+  })
+
+  router.post('/applications/:applicationId/course/edit/provider', (req, res) => {
+
+  })
+
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
     let selectedCourse
     if (req.session.data['edit-course'] && req.session.data['edit-course'].course) {
