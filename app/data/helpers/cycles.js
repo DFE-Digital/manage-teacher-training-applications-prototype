@@ -85,7 +85,7 @@ const getCurrentCycle = () => {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
     }
 
-    if (currentCycleYear >= fromYear && currentCycleYear < toYear) {
+    if (currentCycleYear > fromYear && currentCycleYear <= toYear) {
       cycle = data
     }
 
@@ -112,7 +112,7 @@ const getPreviousCycle = () => {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
     }
 
-    if (previousCycleYear >= fromYear && previousCycleYear < toYear) {
+    if (previousCycleYear > fromYear && previousCycleYear <= toYear) {
       cycle = data
     }
 
@@ -139,7 +139,7 @@ const getNextCycle = () => {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
     }
 
-    if (nextCycleYear >= fromYear && nextCycleYear < toYear) {
+    if (nextCycleYear > fromYear && nextCycleYear <= toYear) {
       cycle = data
     }
 
@@ -167,8 +167,8 @@ exports.getCycleOptions = (selectedItems) => {
       toYear = DateTime.fromJSDate(CYCLES[year].findCloses).year
     }
 
-    if ((currentCycleYear >= fromYear && currentCycleYear < toYear)
-      || (previousCycleYear >= fromYear && previousCycleYear < toYear)) {
+    if ((currentCycleYear > fromYear && currentCycleYear <= toYear)
+      || (previousCycleYear > fromYear && previousCycleYear <= toYear)) {
       item.text = data.shortDesc
       if(data.code == getCurrentCycle().code) {
         item.text += ' - current'
