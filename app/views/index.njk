@@ -10,6 +10,41 @@
     {{title}}
   </h1>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      {{appMetric({
+        metric: {
+          text: "5"
+        },
+        label: {
+          html: 'Deferred offers need to be confirmed</p><p><a href="#">Confirm deferred offers</a>'
+        }
+      })}}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{appMetric({
+        metric: {
+          text: "2"
+        },
+        label: {
+          html: 'automatically rejected applications need feedback.</p><p><a href="#">Give feedback</a>'
+        }
+      })}}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{appMetric({
+        metric: {
+          text: "6"
+        },
+        label: {
+          html: 'offers from the last cycle have conditions pending.</p><p><a href="#">View applications</a>'
+        }
+      })}}
+    </div>
+  </div>
+
+  <br>
+
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
       {% include "_includes/filter-panel.njk" %}
