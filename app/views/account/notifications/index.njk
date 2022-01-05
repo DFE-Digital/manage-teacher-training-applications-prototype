@@ -80,6 +80,30 @@
         }) }}
 
         {{ govukRadios({
+          idPrefix: "notification_chaser",
+          name: "notification_chaser",
+          fieldset: {
+            legend: {
+              text: "Reminder to make a decision 20 working days before automatic rejection",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification_chaser", "On") == "checked" or not data.notification_chaser
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification_chaser", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
           idPrefix: "notification3",
           name: "notification3",
           fieldset: {
