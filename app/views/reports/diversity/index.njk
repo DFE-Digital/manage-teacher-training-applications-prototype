@@ -30,97 +30,109 @@
         {{ pageTitle }}
       </h1>
 
-      <p class="govuk-body">
-        <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycleData.code }}/download" download>Export data (ZIP)</a>
-      </p>
+      {% if query.hidden and query.hidden == "true" %}
+        <p class="govuk-body">
+          You’ll be able to see this report once {{ organisation.name }} has received applications from 10 candidates. This is to protect the privacy of candidates.
+        </p>
+      {% else %}
+        <p class="govuk-body">
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycleData.code }}/download" download>
+            Export data (ZIP)
+          </a>
+        </p>
+      {% endif %}
 
     </div>
   </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  {% if not (query.hidden and query.hidden == "true") %}
 
-      {% include "_includes/reports/diversity/sex.njk" %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-      {% include "_includes/reports/diversity/disability.njk" %}
+        {% include "_includes/reports/diversity/sex.njk" %}
 
-      {% include "_includes/reports/diversity/ethnicity.njk" %}
+        {% include "_includes/reports/diversity/disability.njk" %}
 
-      {% include "_includes/reports/diversity/age.njk" %}
+        {% include "_includes/reports/diversity/ethnicity.njk" %}
 
+        {% include "_includes/reports/diversity/age.njk" %}
+
+      </div>
     </div>
-  </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-5">
-        About this data
-      </h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-5">
+          About this data
+        </h2>
 
-      <p class="govuk-body">
-        The sex, disability and ethnicity data comes from {{ questionnaireCount | numeral('0') }} candidates who filled in a questionnaire when they applied. This is {{ questionnairePercentage | numeral('0') }}% of the total candidates.
-      </p>
+        <p class="govuk-body">
+          The sex, disability and ethnicity data comes from {{ questionnaireCount | numeral('0') }} candidates who filled in a questionnaire when they applied. This is {{ questionnairePercentage | numeral('0') }}% of the total candidates.
+        </p>
 
-      <p class="govuk-body">
-        The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageCalculationDate | date('d MMMM yyyy') }}.
-      </p>
+        <p class="govuk-body">
+          The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageCalculationDate | date('d MMMM yyyy') }}.
+        </p>
 
-      <h3 class="govuk-heading-s">
-        How candidates are asked about their ethnicity
-      </h3>
+        <h3 class="govuk-heading-s">
+          How candidates are asked about their ethnicity
+        </h3>
 
-      <p class="govuk-body">
-        Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.
-      </p>
+        <p class="govuk-body">
+          Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.
+        </p>
 
-      <p class="govuk-body">
-        If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.
-      </p>
+        <p class="govuk-body">
+          If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.
+        </p>
 
-      <h3 class="govuk-heading-s">
-        How candidates are asked about their disabilities
-      </h3>
+        <h3 class="govuk-heading-s">
+          How candidates are asked about their disabilities
+        </h3>
 
-      <p class="govuk-body">
-        Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.
-      </p>
+        <p class="govuk-body">
+          Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.
+        </p>
 
-      {# <table id="responses" class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }} - response data</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Candidate responded to questionnaire</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-              Candidates who applied
-            </th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
-              Candidates who were recruited
-            </th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-
-          {% for response in questionnaireResponseData %}
-
+        <!-- {# <table id="responses" class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">{{ pageName }} - response data</caption>
+          <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
-                {{ response.title }}
+              <th scope="col" class="govuk-table__header">Candidate responded to questionnaire</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+                Candidates who applied
               </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ response.counts.received }}
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
-                {{ response.counts.recruited }}
-              </td>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width:20%">
+                Candidates who were recruited
+              </th>
             </tr>
+          </thead>
+          <tbody class="govuk-table__body">
 
-          {% endfor %}
+            {% for response in questionnaireResponseData %}
 
-        </tbody>
-      </table> #}
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">
+                  {{ response.title }}
+                </th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">
+                  {{ response.counts.received }}
+                </td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">
+                  {{ response.counts.recruited }}
+                </td>
+              </tr>
 
+            {% endfor %}
+
+          </tbody>
+        </table> #} -->
+
+      </div>
     </div>
-  </div>
+
+  {% endif %}
 
 {% endblock %}
