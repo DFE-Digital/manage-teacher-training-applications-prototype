@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "reports" %}
-{% set pageTitle = "Sex, disability, ethnicity and age of candidates" %}
+{% set pageTitle = "Sex, disability, ethnicity and age of candidates" + (" (2021 to 2022 - current)" if not query.multiple) %}
 
 {% block pageTitle %}
 {{ pageTitle + ((" - " + organisation.name) if organisation) }} – {{ serviceName }} – GOV.UK
@@ -19,6 +19,57 @@
 {% endblock %}
 
 {% block content %}
+
+{% if query.multiple and query.multiple == "true" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {% if organisation %}
+          <span class="govuk-caption-l">{{ organisation.name }}</span>
+        {% endif %}
+        {{ pageTitle }}
+      </h1>
+
+      <p class="govuk-body">
+        Something
+      </p>
+
+      <h2 class="govuk-heading-m">
+        {{ data.currentCycle.shortDesc }} - current
+      </h2>
+
+      {% if query.hidden and query.hidden == "true" %}
+        <p class="govuk-body">
+          You’ll be able to see this report once {{ organisation.name }} has received applications from 10 candidates. This is to protect the privacy of candidates.
+        </p>
+      {% else %}
+        <p class="govuk-body">
+          The data will include all candidates who have accepted an offer since {{ data.currentCycle.findOpens | date('d MMMM yyyy') }}.
+        </p>
+
+        <p class="govuk-body">
+          <a class="govuk-link" href="#">See report for {{ data.currentCycle.shortDesc }}</a>
+        </p>
+      {% endif %}
+
+      <h2 class="govuk-heading-m">
+        {{ data.previousCycle.shortDesc }}
+      </h2>
+
+      <p class="govuk-body">
+        The data will include all candidates who applied between {{ data.previousCycle.findOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.findCloses | date('d MMMM yyyy') }}.
+      </p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="#">See report for {{ data.previousCycle.shortDesc }}</a>
+      </p>
+
+    </div>
+  </div>
+
+{% else %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -134,5 +185,7 @@
     </div>
 
   {% endif %}
+
+{% endif %}
 
 {% endblock %}
