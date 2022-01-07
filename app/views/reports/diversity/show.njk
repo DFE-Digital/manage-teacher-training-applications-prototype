@@ -1,0 +1,105 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "reports" %}
+{% set pageTitle = "Sex, disability, ethnicity and age of candidates" %}
+{% set pageTitle = pageTitle + " (" + cycleData.shortDesc + (" - current" if cycleData.current) + ")" %}
+
+{% block pageTitle %}
+{{ pageTitle + ((" - " + organisation.name) if organisation) }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    href: "/reports",
+    text: "Reports"
+  }, {
+    text: pageTitle
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {% if organisation %}
+          <span class="govuk-caption-l">{{ organisation.name }}</span>
+        {% endif %}
+        {{ pageTitle }}
+      </h1>
+
+      {% if query.hidden and query.hidden == "true" %}
+        <p class="govuk-body">
+          You’ll be able to see this report once it contains data from at least 10 candidates. This is to protect the privacy of candidates.
+        </p>
+      {% else %}
+        <p class="govuk-body">
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ cycleData.code }}/download" download>
+            Export data (ZIP)
+          </a>
+        </p>
+      {% endif %}
+
+    </div>
+  </div>
+
+  {% if not (query.hidden and query.hidden == "true") %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include "_includes/reports/diversity/sex.njk" %}
+
+        {% include "_includes/reports/diversity/disability.njk" %}
+
+        {% include "_includes/reports/diversity/ethnicity.njk" %}
+
+        {% include "_includes/reports/diversity/age.njk" %}
+
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-5">
+          About this data
+        </h2>
+
+        <p class="govuk-body">
+          The sex, disability and ethnicity data comes from {{ questionnaireCount | numeral('0') }} candidates who filled in a questionnaire when they applied. This is {{ questionnairePercentage | numeral('0') }}% of the total candidates.
+        </p>
+
+        <p class="govuk-body">
+          The age data is from all {{ candidateCount | numeral('0') }} candidates. It’s based on each candidate’s age on {{ cycleData.ageCalculationDate | date('d MMMM yyyy') }}.
+        </p>
+
+        <h3 class="govuk-heading-s">
+          How candidates are asked about their ethnicity
+        </h3>
+
+        <p class="govuk-body">
+          Candidates are asked to select a general ethnic group, such as ‘Asian or Asian British’. They can also select ‘prefer not to say’.
+        </p>
+
+        <p class="govuk-body">
+          If the candidate selects a general ethnic group then they can select a more specific ethnic background such as ‘Bangladeshi’. They can also select ‘prefer not to say’.
+        </p>
+
+        <h3 class="govuk-heading-s">
+          How candidates are asked about their disabilities
+        </h3>
+
+        <p class="govuk-body">
+          Candidates who say that they have a disability are asked about the type of disability. They can select more than one type.
+        </p>
+
+      </div>
+    </div>
+
+  {% endif %}
+
+{% endblock %}
