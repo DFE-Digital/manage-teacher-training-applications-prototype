@@ -70,6 +70,14 @@
         </h2>
 
         <p class="govuk-body">
+          {% if cycleData.current %}
+            This data comes from candidates who have submitted an application since {{ data.currentCycle.applyOpens | date('d MMMM yyyy') }}.
+          {% else %}
+            This data comes from candidates who submitted an application from {{ data.previousCycle.applyOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.apply2Deadline | date('d MMMM yyyy') }}.
+          {% endif %}
+        </p>
+
+        <p class="govuk-body">
           The sex, disability and ethnicity data comes from {{ questionnaireCount | numeral('0') }} candidates who filled in a questionnaire when they applied. This is {{ questionnairePercentage | numeral('0') }}% of the total candidates.
         </p>
 
