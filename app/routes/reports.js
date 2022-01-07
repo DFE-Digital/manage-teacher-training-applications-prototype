@@ -516,7 +516,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/:organisationId/diversity/cycle/:cycle/download', (req, res) => {
+  router.get('/reports/:organisationId/diversity/cycles/:cycle/download', (req, res) => {
     let cycleData = req.session.data.currentCycle
     if (req.session.data.previousCycle.code === req.params.cycle) {
       cycleData = req.session.data.previousCycle
