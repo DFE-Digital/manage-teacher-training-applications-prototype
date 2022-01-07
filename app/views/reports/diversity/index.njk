@@ -45,7 +45,7 @@
         </p>
       {% else %}
         <p class="govuk-body">
-          The report includes data from all candidates who have applied since {{ data.currentCycle.findOpens | date('d MMMM yyyy') }}.
+          The report includes data from all candidates who have applied since {{ data.currentCycle.applyOpens | date('d MMMM yyyy') }}.
         </p>
 
         <p class="govuk-body">
@@ -60,7 +60,7 @@
       </h2>
 
       <p class="govuk-body">
-        The report includes data from all candidates who applied from {{ data.previousCycle.findOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.findCloses | date('d MMMM yyyy') }}.
+        The report includes data from all candidates who applied from {{ data.previousCycle.applyOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.apply2Deadline | date('d MMMM yyyy') }}.
       </p>
 
       <p class="govuk-body">
