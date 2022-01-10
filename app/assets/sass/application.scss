@@ -192,7 +192,7 @@ h1 .govuk-tag {
 
 
 .app-box {
-  border: 5px solid govuk-colour('mid-grey');
+  border: 1px solid govuk-colour('mid-grey');
   padding: govuk-spacing(4);
   margin-bottom: govuk-spacing(4);
   p:last-child {
@@ -208,10 +208,6 @@ h1 .govuk-tag {
   .govuk-summary-list__row:last-child .govuk-summary-list__actions {
     border-bottom: none;
   }
-}
-
-.app-box--thin {
-  border-width: 1px;
 }
 
 .app-table__row--indent > td {

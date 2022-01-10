@@ -17,22 +17,28 @@
   {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
+  <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
+    {{ pageName }}
+  </h2>
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if application.status == "Conditions pending" or application.status == "Recruited" %}
+        <p>If you need to change any details of the offer, you’ll need to send proof of the candidate’s agreement to <a href="#">becomingateacher@digital.education.gov.uk</a>.</p>
+      {% endif %}
 
-      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
-        {{ pageName }}
-      </h2>
+      {% set offerHtml %}
 
-      <div class="app-temp-offer-wrapper">
+      <div class="app-box">
         {{ appOfferPanel({
           transferred: query.transferred,
+          showChangeOfferInstructions: application.status == "Conditions pending" or application.status == "Recruited",
           withdraw: {
             href: "/applications/" + application.id + "/offer/withdraw"
-          } if application.status == "Offered" or application.status == "Deferred",
+          } if 1 == 1 and application.status == "Offered" or application.status == "Deferred",
           defer: {
             href: "/applications/" + application.id + "/offer/defer/check"
-          } if application.status == "Conditions pending" or application.status == "Recruited",
+          } if 1 == 1 and application.status == "Conditions pending" or application.status == "Recruited",
           provider: {
             value: application.offer.provider,
             href: "/applications/" + application.id + "/offer/edit/provider?referrer=offer" if application.status == "Offered" and not query.transferred and 1 == 0
@@ -68,7 +74,30 @@
             items: conditions
           }
         })}}
+
+        {% endset %}
+
+        {# {{appSummaryCard({
+          titleText: application.offer.course,
+          classes: "govuk-!-margin-bottom-",
+          actions: {
+            items: [{
+              href: '/applications/' + application.id + '/offer/defer/check',
+              html: 'Defer offer'
+            } if application.status == "Conditions pending" or application.status == "Recruited", {
+              href: '/applications/' + application.id + '/offer/withdraw',
+              html: 'Withdraw offer'
+            } if application.status == "Offered" or application.status == "Deferred"]
+          },
+          html: offerHtml
+        })}} #}
+
+        {{offerHtml | safe}}
+
       </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
     </div>
   </div>
 {% endblock %}

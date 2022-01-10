@@ -19,6 +19,8 @@
         {{ title }}
       </h1>
 
+      <div class="app-box">
+
       {{ appOfferPanel({
         provider: {
           value: data['edit-offer'].provider or application.offer.provider,
@@ -52,6 +54,7 @@
           href: "/applications/" + application.id + "/offer/edit/conditions?referrer=check"
         }
       }) }}
+      </div>
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
         {{ govukButton({
