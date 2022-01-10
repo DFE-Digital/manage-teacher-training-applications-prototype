@@ -467,10 +467,21 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/:organisationId/diversity/cycle/:cycle', (req, res) => {
+  router.get('/reports/:organisationId/diversity/cycles', (req, res) => {
+    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+
+    res.render('reports/diversity/index', {
+      organisation
+    })
+  })
+
+  router.get('/reports/:organisationId/diversity/cycles/:cycle', (req, res) => {
     let cycleData = req.session.data.currentCycle
+    cycleData.current = true
+
     if (req.session.data.previousCycle.code === req.params.cycle) {
       cycleData = req.session.data.previousCycle
+      cycleData.current = false
     }
 
     const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
@@ -489,7 +500,7 @@ module.exports = router => {
     const questionnaireResponseData = ReportHelper.getDiversityQuestionnaireResponseCounts(applications)
     const disabilityResponseData = ReportHelper.getDisabilityQuestionResponseCounts(applications)
 
-    res.render('reports/diversity/index', {
+    res.render('reports/diversity/show', {
       organisation,
       cycleData,
       questionnaireResponseData,
@@ -505,7 +516,7 @@ module.exports = router => {
     })
   })
 
-  router.get('/reports/:organisationId/diversity/cycle/:cycle/download', (req, res) => {
+  router.get('/reports/:organisationId/diversity/cycles/:cycle/download', (req, res) => {
     let cycleData = req.session.data.currentCycle
     if (req.session.data.previousCycle.code === req.params.cycle) {
       cycleData = req.session.data.previousCycle

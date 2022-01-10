@@ -39,7 +39,7 @@
       </h2>
 
       <p class="govuk-body">
-        The data will include all candidates who have accepted an offer since {{ data.currentCycle.findOpens | date('d MMMM yyyy') }}.
+        The data will include all candidates who have accepted an offer since {{ data.currentCycle.applyOpens | date('d MMMM yyyy') }}.
       </p>
 
       <p class="govuk-body">
@@ -51,7 +51,7 @@
       </h2>
 
       <p class="govuk-body">
-        The data will include all candidates who accepted an offer from {{ data.previousCycle.findOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.findCloses | date('d MMMM yyyy') }}.
+        The data will include all candidates who accepted an offer from {{ data.previousCycle.applyOpens | date('d MMMM yyyy') }} to {{ data.previousCycle.apply2Deadline | date('d MMMM yyyy') }}.
       </p>
 
       <p class="govuk-body">

@@ -45,12 +45,12 @@
       <ul class="govuk-list govuk-list--spaced">
         {% if organisations.length == 1 %}
           <li>
-            <a class="govuk-link" href="/reports/export">
+            <a class="govuk-link govuk-link--no-visited-state" href="/reports/export">
               Export application data
             </a>
           </li>
           <li>
-            <a class="govuk-link" href="/reports/hesa">
+            <a class="govuk-link govuk-link--no-visited-state" href="/reports/hesa">
               Export data for Higher Education Statistics Agency (HESA)
             </a>
           </li>
@@ -66,7 +66,7 @@
           </a>
         </li>
         <li>
-          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ data.currentCycle.code }}">
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycles/{{ data.currentCycle.code }}">
             Sex, disability, ethnicity and age of candidates <span class="govuk-visually-hidden"> for {{ organisation.name }}</span>
           </a>
         </li>
@@ -80,13 +80,13 @@
 
       <ul class="govuk-list govuk-list--spaced">
         <li>
-          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ data.currentCycle.code }}">
-            {{ data.currentCycle.longDesc }} - current
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycles/{{ data.currentCycle.code }}">
+            {{ data.currentCycle.shortDesc }} - current
           </a>
         </li>
         <li>
-          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycle/{{ data.previousCycle.code }}">
-            {{ data.previousCycle.longDesc }}
+          <a class="govuk-link" href="/reports/{{ organisation.id }}/diversity/cycles/{{ data.previousCycle.code }}">
+            {{ data.previousCycle.shortDesc }}
           </a>
         </li>
       </ul> -->
