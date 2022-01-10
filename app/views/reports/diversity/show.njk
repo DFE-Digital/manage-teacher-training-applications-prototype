@@ -14,10 +14,8 @@
     href: "/reports",
     text: "Reports"
   }, {
-    href: "/reports/" + organisation.id + "/diversity/cycles",
+    href: "/reports/" + organisation.id + "/diversity/cycles" if 1 == 0,
     text: "Sex, disability, ethnicity and age of candidates"
-  }, {
-    text: cycleData.shortDesc + (" - current" if cycleData.current)
   }]
 }) }}
 {% endblock %}
