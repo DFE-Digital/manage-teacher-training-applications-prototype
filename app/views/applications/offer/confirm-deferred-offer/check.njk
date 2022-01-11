@@ -40,6 +40,7 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      <div class="app-box">
       {{appOfferPanel({
         provider: {
           value: application.offer.provider
@@ -70,10 +71,7 @@
           href: "/applications/" + application.id + "/offer/confirm-deferred-offer/statuses"
         }
       })}}
-
-      {# {{govukWarningText({
-        text: "We’ll email the candidate to confirm their new offer and remind them of the conditions for it."
-      })}} #}
+      </div>
 
       <form method="post">
         {{ govukButton({
