@@ -25,9 +25,14 @@
 
       <p>You’ll need to confirm your deferred offer at the start of the next recruitment cycle.</p>
 
+      {{ govukWarningText({
+        text: "WARNING TODO",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form method="post">
         {{ govukButton({
-          text: "Defer offer and tell candidate"
+          text: "Defer offer"
         }) }}
       </form>
 

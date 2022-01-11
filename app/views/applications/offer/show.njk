@@ -23,22 +23,26 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+
       {% if application.status == "Conditions pending" or application.status == "Recruited" %}
-        <p>If you need to change any details of the offer, you’ll need to send proof of the candidate’s agreement to <a href="#">becomingateacher@digital.education.gov.uk</a>.</p>
+        <div class="govuk-inset-text govuk-!-margin-top-0">
+          <p>To change this offer, send proof that the candidate agrees and details of the changes to <a href="#">becomingateacher@digital.education.gov.uk</a>.</p>
+        </div>
       {% endif %}
 
       {% set offerHtml %}
 
-      <div class="app-box">
+      <div class="app-bo">
         {{ appOfferPanel({
           transferred: query.transferred,
           showChangeOfferInstructions: application.status == "Conditions pending" or application.status == "Recruited",
           withdraw: {
             href: "/applications/" + application.id + "/offer/withdraw"
-          } if 1 == 1 and application.status == "Offered" or application.status == "Deferred",
+          } if application.status == "Offered" or application.status == "Deferred",
           defer: {
             href: "/applications/" + application.id + "/offer/defer/check"
-          } if 1 == 1 and application.status == "Conditions pending" or application.status == "Recruited",
+          } if application.status == "Conditions pending" or application.status == "Recruited",
           provider: {
             value: application.offer.provider,
             href: "/applications/" + application.id + "/offer/edit/provider?referrer=offer" if application.status == "Offered" and not query.transferred and 1 == 0

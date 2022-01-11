@@ -47,24 +47,36 @@
           href: "/applications/" + application.id + "/offer/edit-condition-statuses"
         }
       })}}
+      <br>
 
       <form method="post">
 
         {% if hasNotMetConditions %}
 
-          <p>The candidate will be told that their application was unsuccessful.</p>
+          {{ govukWarningText({
+          text: "WARNING TODO",
+          iconFallbackText: "Fallback text"
+        }) }}
+
+          {# <p>The candidate will be told that their application was unsuccessful.</p> #}
 
           {{ govukButton({
             text: "Mark conditions as not met",
             classes: "govuk-button--warning"
           }) }}
         {% elseif allConditionsMet %}
+
+          {{ govukWarningText({
+            text: "WARNING TODO",
+            iconFallbackText: "Fallback text"
+          }) }}
+
           {{ govukButton({
-            text: "Mark conditions as met and tell candidate"
+            text: "Mark conditions as met"
           }) }}
         {% else %}
           {{ govukButton({
-            text: "Update status and tell candidate"
+            text: "Update status"
           }) }}
         {% endif %}
       </form>

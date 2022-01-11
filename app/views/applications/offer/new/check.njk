@@ -20,6 +20,7 @@
         {{ title }}
       </h1>
 
+      <div class="app-bo">
       {{ appOfferPanel({
         provider: {
           value: course.provider.name or application.provider,
@@ -53,9 +54,17 @@
           href: "/applications/" + application.id + "/offer/new?referrer=check"
         }
       }) }}
+      </div>
+      <br>
 
-      {% if upcomingInterviews.length == 1 %}
-        <p class="govuk-body">The upcoming interview will be cancelled.</p>
+      {% if upcomingInterviews.length != 1 %}
+
+        {{ govukWarningText({
+          text: "The upcoming interview will be cancelled.",
+          iconFallbackText: "Fallback text"
+        }) }}
+
+        {# <p class="govuk-body">The upcoming interview will be cancelled.</p> #}
       {% elseif upcomingInterviews.length > 1 %}
         <p class="govuk-body">Upcoming interviews will be cancelled.</p>
       {% endif %}

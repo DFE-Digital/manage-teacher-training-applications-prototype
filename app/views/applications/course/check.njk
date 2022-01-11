@@ -112,8 +112,13 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
+        {{ govukWarningText({
+          text: "WARNING TODO",
+          iconFallbackText: "Fallback text"
+        }) }}
+
         {{ govukButton({
-          text: "Update course and tell candidate"
+          text: "Update course"
         }) }}
 
       </form>

@@ -1,8 +1,8 @@
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 
-<dl class="govuk-summary-list app-conditions-list govuk-!-margin-bottom-0">
+<dl class="govuk-summary-list app-conditions-list">
   {% for condition in params.conditions %}
-    <div class="govuk-summary-list__row {% if loop.last %}govuk-summary-list__row--no-border{% endif %}">
+    <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         {{condition.description}}
       </dt>
