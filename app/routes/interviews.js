@@ -324,7 +324,7 @@ module.exports = router => {
     // rollback the status
     application.status = 'Received'
 
-    req.flash('success', 'Interview cancelled')
+    req.flash('success', content.cancelInterview.successMessage)
 
     if(application.interviews.items.length) {
       res.redirect(`/applications/${req.params.applicationId}/interviews/`)

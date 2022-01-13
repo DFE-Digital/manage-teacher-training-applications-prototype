@@ -1,6 +1,7 @@
 const { DateTime } = require('luxon')
 const SystemHelper = require('./system')
 const EventHelper = require('./events')
+const content = require('../content')
 
 exports.getApplicationWithdrawnReasons = (data) => {
   return {
@@ -126,7 +127,7 @@ exports.getUpcomingInterviews = (application) => {
 
 exports.cancelInterview = (params) => {
   params.application.events.items.push({
-    title: "Interview cancelled",
+    title: content.cancelInterview.event.title,
     user: "Angela Mode",
     date: new Date().toISOString(),
     meta: {

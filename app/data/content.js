@@ -31,6 +31,17 @@ const content = {
     event: {
       title: 'Interview updated'
     }
+  },
+  cancelInterview: {
+    caption: 'Cancel interview',
+    successMessage: 'Interview cancelled',
+    checkAnswers: {
+      heading: 'Check details and cancel interview',
+      button: 'Cancel interview'
+    },
+    event: {
+      title: 'Interview cancelled'
+    }
   }
 }
 
