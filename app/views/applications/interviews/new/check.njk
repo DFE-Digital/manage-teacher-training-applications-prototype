@@ -3,8 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
-{% set name = application.personalDetails.name %}
-{% set title = "Set up an interview" %}
+{% set caption = content.createInterview.caption + ' - ' + application.personalDetails.name %}
+{% set title = content.createInterview.checkAnswers.heading %}
 
 {% set cancelUrl %}/applications/{{application.id}}{% endset %}
 {% if application.interviews.items > 0 %}
@@ -19,8 +19,8 @@
 
 {% block content %}
 
-  <span class="govuk-caption-l"> {{name}} </span>
-  <h1 class="govuk-heading-l">Check and send interview details</h1>
+  <span class="govuk-caption-l">{{caption}}</span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -122,7 +122,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Send interview details"
+          text: content.createInterview.checkAnswers.button
         }) }}
 
         <p class="govuk-body"><a href="{{cancelUrl}}">Cancel</a></p>

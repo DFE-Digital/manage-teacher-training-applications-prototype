@@ -1,6 +1,7 @@
 const PaginationHelper = require('../data/helpers/pagination')
 const ApplicationHelper = require('../data/helpers/application')
 const SystemHelper = require('../data/helpers/system')
+const content = require('../data/content')
 const _ = require('lodash');
 const { DateTime } = require('luxon')
 const { v4: uuidv4 } = require('uuid')
@@ -194,7 +195,7 @@ module.exports = router => {
     application.interviews.items.push(interview)
 
     application.events.items.push({
-      title: "Interview set up",
+      title: content.createInterview.event.title,
       user: "Angela Mode",
       date: new Date().toISOString(),
       meta: {
@@ -208,7 +209,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'Interview set up')
+    req.flash('success', content.createInterview.successMessage)
     res.redirect(`/applications/${applicationId}/interviews`)
 
   })
