@@ -1,8 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Change course - " + application.personalDetails.name %}
-{% set title = "Check and update course" %}
+{% set caption = content.updateCourse.caption + " - " + application.personalDetails.name %}
+{% set title = content.updateCourse.checkAnswers.heading %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -118,7 +118,7 @@
         }) }}
 
         {{ govukButton({
-          text: "Update course"
+          text: content.updateCourse.checkAnswers.button
         }) }}
 
       </form>

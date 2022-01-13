@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const content = require('./data/content')
 
 router.all('*', (req, res, next) => {
   const referrer = req.query.referrer
   res.locals.referrer = referrer
   res.locals.query = req.query
+  res.locals.content = content
   res.locals.flash = req.flash('success') // pass through 'success' messages only
   next()
 })
