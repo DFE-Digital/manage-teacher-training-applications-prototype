@@ -39,6 +39,11 @@
         </p>
       {% endif %#} -->
 
+      {{ govukWarningText({
+        text: "The user will be sent an email to tell them that they’ve been removed from your organisation.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form method="post" novalidate>
         {{ govukButton({
           text: "Remove user",

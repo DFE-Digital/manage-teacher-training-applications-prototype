@@ -211,6 +211,11 @@
           {% endif %}
         </dl>
 
+      {{ govukWarningText({
+        text: "The user will be sent an email to tell them that they’ve been added to your organisation and what permissions they’ve been given.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form novalidate method="post">
         {{govukButton({
           text: "Add user"

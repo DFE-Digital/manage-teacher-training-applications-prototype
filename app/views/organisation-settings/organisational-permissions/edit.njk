@@ -23,6 +23,12 @@
       <form novalidate method="post">
         {% set fieldName = 'data.orgpermissions'%}
         {% include "_includes/permissions-checkboxes.njk" %}
+
+        {{ govukWarningText({
+          text: "All users who can manage organisation permissions will be sent an email with the updated organisation permissions.",
+          iconFallbackText: "Fallback text"
+        }) }}
+
         {{govukButton({
           text: "Save organisation permissions"
         })}}

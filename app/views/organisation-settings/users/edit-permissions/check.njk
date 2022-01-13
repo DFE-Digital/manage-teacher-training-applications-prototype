@@ -160,6 +160,11 @@
           {% endif %}
         </dl>
 
+      {{ govukWarningText({
+        text: "The user will be sent an email with the details of their updated permissions.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form novalidate method="post">
         {{govukButton({
           text: "Save user permissions"
