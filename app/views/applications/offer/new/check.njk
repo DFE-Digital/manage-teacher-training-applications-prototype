@@ -1,8 +1,8 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set caption = "Make offer - " + application.personalDetails.name %}
-{% set title = "Check and send offer" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set title = content.makeOffer.checkAnswers.heading %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -76,7 +76,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Send offer"
+          text: content.makeOffer.checkAnswers.button
         }) }}
       </form>
 

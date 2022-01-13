@@ -64,6 +64,17 @@ const content = {
     event: {
       title: 'Feedback given'
     }
+  },
+  makeOffer: {
+    caption: 'Make offer',
+    successMessage: 'Offer made',
+    checkAnswers: {
+      heading: 'Check details and make offer',
+      button: 'Make offer'
+    },
+    event: {
+      title: 'Offer made'
+    }
   }
 }
 

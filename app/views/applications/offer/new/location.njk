@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Make offer - " + application.personalDetails.name %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
 {% set title = "Location" %}
 
 {% block pageNavigation %}

@@ -65,7 +65,7 @@
                 <div class="app-activity-log__box">
                   {{ appEventInterview({ interview: event.meta.interview, cancellationReason: event.meta.cancellationReason }) }}
                 </div>
-              {% elseif event.title == "Offer made" %}
+              {% elseif event.title == content.makeOffer.event.title %}
                 <div class="app-activity-log__box">
                 {{ appEventOffer({ offer: event.meta.offer }) }}
                 </div>
