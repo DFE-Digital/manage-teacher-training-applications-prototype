@@ -2,11 +2,10 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Check your feedback and withdraw offer" %}
+{% set caption = 'Withdraw offer' + ' - ' + name %}
 
-
-{% set title = "Check your feedback and withdraw offer" %}
-{% set buttonText = "Send feedback and withdraw offer" %}
+{% set title = "Check details and withdraw offer" %}
+{% set buttonText = "Withdraw offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -17,23 +16,25 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
+      <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>Your feedback will be given to the candidate in the format below.</p>
-
-      {% set rejectionReasons = data.rejectionReasons %}
-      {% set rejectionChangeLinks = true %}
-      {% set whyHeading = "Why your offer was withdrawn" %}
-      {% set baseUrl = "/applications/" + application.id + "/offer/withdraw" %}
+      {% set rejectionReasons = data.rejection %}
+      {% set showChangeLinks = true %}
       {% include "_includes/candidate-feedback.njk" %}
+
+      {{ govukWarningText({
+        text: "The candidate will be sent an email with details of why you’ve withdrawn your offer.",
+        iconFallbackText: "Fallback text"
+      }) }}
 
       <form method="post">
         {{ govukButton({
           text: buttonText
         }) }}
       </form>
-      <p class="govuk-body"><a href="/applications/{{ application.id }}/offer">Cancel</a></p>
+
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}/offer">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

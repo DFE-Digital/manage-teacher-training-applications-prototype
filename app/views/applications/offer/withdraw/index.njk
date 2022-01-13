@@ -2,7 +2,7 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Reasons for withdrawing your offer" %}
+{% set title = "Tell the candidate why you’re withdrawing their offer" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -15,7 +15,6 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>This feedback will be sent to the candidate.</p>
 
       <form method="post">
 
@@ -23,6 +22,121 @@
         Course full
         Safeguarding
         Other #}
+
+        {% set qualificationReasonsHtml %}
+          {% include "_includes/reasons/qualifications.njk" %}
+        {% endset %}
+
+        {% set personalStatementReasonsHtml %}
+          {% include "_includes/reasons/personal-statement.njk" %}
+        {% endset %}
+
+        {% set teachingKnowledgeReasonsHtml %}
+          {% include "_includes/reasons/teaching-knowledge.njk" %}
+        {% endset %}
+
+        {% set communicationReasonsHtml %}
+          {% include "_includes/reasons/communication.njk" %}
+        {% endset %}
+
+        {% set referencesHtml %}
+          {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set safeguardingHtml %}
+          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set sponsorshipHtml %}
+          {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set otherDetailsHtml %}
+          {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
+        {% endset %}
+
+        {{ govukCheckboxes({
+          idPrefix: "rejection-categories",
+          name: "rejection[categories]",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Qualifications",
+              text: "Qualifications",
+              checked: checked("['rejection']['categories']", "Qualifications"),
+              conditional: {
+                html: qualificationReasonsHtml
+              }
+            },
+            {
+              value: "Personal statement",
+              text: "Personal statement",
+              checked: checked("['rejection']['categories']", "Personal statement"),
+              conditional: {
+                html: personalStatementReasonsHtml
+              }
+            },
+            {
+              value: "Teaching knowledge and ability",
+              text: "Teaching knowledge and ability",
+              checked: checked("['rejection']['categories']", "Teaching knowledge and ability"),
+              conditional: {
+                html: teachingKnowledgeReasonsHtml
+              }
+            },
+            {
+              value: "Communication, attendance and scheduling",
+              text: "Communication, attendance and scheduling",
+              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
+              conditional: {
+                html: communicationReasonsHtml
+              }
+            },
+            {
+              value: "References",
+              text: "References",
+              checked: checked("['rejection']['categories']", "References"),
+              conditional: {
+                html: referencesHtml
+              }
+            },
+            {
+              value: "Safeguarding",
+              text: "Safeguarding",
+              checked: checked("['rejection']['categories']", "Safeguarding"),
+              conditional: {
+                html: safeguardingHtml
+              }
+            },
+            {
+              value: "Visa sponsorship",
+              text: "Visa sponsorship",
+              checked: checked("['rejection']['categories']", "Visa sponsorship"),
+              conditional: {
+                html: sponsorshipHtml
+              }
+            },
+            {
+              value: "Course full",
+              text: "Course full",
+              checked: checked("['rejection']['categories']", "Course full")
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked("['rejection']['categories']", "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              }
+            }
+          ]
+        }) }}
 
         {{ govukButton({
           text: "Continue"
