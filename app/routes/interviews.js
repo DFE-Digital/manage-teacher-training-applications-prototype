@@ -267,7 +267,7 @@ module.exports = router => {
     interview.organisation = req.session.data.interview.organisation
 
     application.events.items.push({
-      title: "Interview changed",
+      title: content.updateInterview.event.title,
       user: "Angela Mode",
       date: new Date().toISOString(),
       meta: {
@@ -278,7 +278,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', 'Interview changed')
+    req.flash('success', content.updateInterview.successMessage)
     res.redirect(`/applications/${applicationId}/interviews`)
 
   })

@@ -52,7 +52,7 @@
                 {% if event.meta.interviewExists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
                 {% endif %}
-              {% elseif event.title == "Interview changed" %}
+              {% elseif event.title == content.updateInterview.event.title %}
 
                 <div class="app-activity-log__box">
                   {{ appEventInterview({ interview: event.meta.interview }) }}

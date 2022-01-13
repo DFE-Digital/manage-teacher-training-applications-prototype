@@ -20,6 +20,17 @@ const content = {
     event: {
       title: 'Interview set up'
     }
+  },
+  updateInterview: {
+    caption: 'Update interview',
+    successMessage: 'Interview updated',
+    checkAnswers: {
+      heading: 'Check details and update interview',
+      button: 'Update interview'
+    },
+    event: {
+      title: 'Interview updated'
+    }
   }
 }
 

@@ -3,8 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
-{% set name = application.personalDetails.name %}
-{% set title = "Check and send new interview details" %}
+{% set caption = content.updateInterview.caption + ' - ' + application.personalDetails.name %}
+{% set title = content.updateInterview.checkAnswers.heading %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,7 +14,7 @@
 
 {% block content %}
 
-  <span class="govuk-caption-l"> {{name}} </span>
+  <span class="govuk-caption-l">{{caption}}</span>
   <h1 class="govuk-heading-l">{{title}}</h1>
 
   <div class="govuk-grid-row">
@@ -118,7 +118,7 @@
       <form method="post">
 
         {{ govukButton({
-          text: "Send new interview details"
+          text: content.updateInterview.checkAnswers.button
         }) }}
         <p class="govuk-body"><a href="/applications/{{ application.id }}/interviews">Cancel</a></p>
       </form>
