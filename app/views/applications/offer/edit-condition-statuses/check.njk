@@ -52,22 +52,17 @@
       <form method="post">
 
         {% if hasNotMetConditions %}
-
-          {{ govukWarningText({
-          text: "WARNING TODO",
-          iconFallbackText: "Fallback text"
-        }) }}
-
-          {# <p>The candidate will be told that their application was unsuccessful.</p> #}
-
+           {{ govukWarningText({
+            text: "The candidate will be sent an email to tell them that they did not meet their conditions and cannot enrol on the course.",
+            iconFallbackText: "Fallback text"
+          }) }}
           {{ govukButton({
             text: "Mark conditions as not met",
             classes: "govuk-button--warning"
           }) }}
         {% elseif allConditionsMet %}
-
           {{ govukWarningText({
-            text: "WARNING TODO",
+            text: "The candidate will be sent an email to tell them that they’ve met all their conditions and they’re ready to enrol.",
             iconFallbackText: "Fallback text"
           }) }}
 
@@ -75,6 +70,11 @@
             text: "Mark conditions as met"
           }) }}
         {% else %}
+          {{ govukWarningText({
+            text: "The candidate will be sent an email with the updated status of their conditions.",
+            iconFallbackText: "Fallback text"
+          }) }}
+
           {{ govukButton({
             text: "Update status"
           }) }}
