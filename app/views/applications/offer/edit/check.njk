@@ -53,6 +53,11 @@
         }
       }) }}
 
+      {{ govukWarningText({
+        text: "The candidate will be sent an email with details of your offer.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
         {{ govukButton({
           text: "Send new offer"

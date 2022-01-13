@@ -44,6 +44,11 @@
           ]
         }) }}
 
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that the interview has been cancelled.",
+          iconFallbackText: "Fallback text"
+        }) }}
+
         {{ govukButton({
           text: content.cancelInterview.checkAnswers.button
         }) }}

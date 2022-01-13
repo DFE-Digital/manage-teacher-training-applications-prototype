@@ -42,6 +42,17 @@ const content = {
     event: {
       title: 'Interview cancelled'
     }
+  },
+  rejectApplication: {
+    caption: 'Reject application',
+    successMessage: 'Application rejected',
+    checkAnswers: {
+      heading: 'Check details and reject application',
+      button: 'Reject application'
+    },
+    event: {
+      title: 'Application rejected'
+    }
   }
 }
 

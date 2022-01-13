@@ -4,11 +4,13 @@
 {% set name = application.personalDetails.name %}
 
 {% if application.status == "Rejected" %}
-  {% set title = "Check and send your feedback" %}
-  {% set buttonText = "Send feedback" %}
+  {% set caption = 'Give feedback' + ' - ' + name %}
+  {% set title = "Check details and give feedback" %}
+  {% set buttonText = "Give feedback" %}
 {% else %}
-  {% set title = "Check your feedback and reject application" %}
-  {% set buttonText = "Reject application and send feedback" %}
+  {% set caption = content.rejectApplication.caption + ' - ' + name %}
+  {% set title = content.rejectApplication.checkAnswers.heading %}
+  {% set buttonText = content.rejectApplication.checkAnswers.button %}
 {% endif %}
 
 {% block pageNavigation %}
@@ -20,7 +22,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
+      <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set rejectionReasons = data.rejection %}
@@ -28,9 +30,28 @@
       {% include "_includes/candidate-feedback.njk" %}
 
       {% if upcomingInterviews.length == 1 %}
-        <p>The upcoming interview will be cancelled.</p>
+         {{ govukWarningText({
+          text: "The candidate will be sent emails with details of why you’ve rejected their application and to cancel their upcoming interview.",
+          iconFallbackText: "Fallback text"
+        }) }}
       {% elseif upcomingInterviews.length > 1 %}
-        <p>Upcoming interviews will be cancelled.</p>
+        {{ govukWarningText({
+          text: "The candidate will be sent emails with details of why you’ve rejected their application and to cancel their upcoming interviews.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% else %}
+        {% if application.status == "Rejected" %}
+          {{ govukWarningText({
+          text: "The candidate will be sent an email with your feedback.",
+          iconFallbackText: "Fallback text"
+        }) }}
+        {% else %}
+          {{ govukWarningText({
+          text: "The candidate will be sent an email with details of why you’ve rejected their application.",
+          iconFallbackText: "Fallback text"
+        }) }}
+        {% endif %}
+
       {% endif %}
 
       <form method="post">

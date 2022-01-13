@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 
 module.exports = router => {
   router.get('/applications/:applicationId/reject', (req, res) => {
@@ -41,9 +42,9 @@ module.exports = router => {
       application.status = 'Rejected'
       application.rejectedDate = application.rejectedFeedbackDate = new Date().toISOString()
       application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
-      req.flash('success', 'Application rejected')
+      req.flash('success', content.rejectApplication.successMessage)
       ApplicationHelper.addEvent(application, {
-        "title": "Application rejected",
+        "title": content.rejectApplication.event.title,
         "user": "Ben Brown",
         "date": new Date().toISOString()
       })
