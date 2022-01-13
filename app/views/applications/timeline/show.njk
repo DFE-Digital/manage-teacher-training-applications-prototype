@@ -117,10 +117,11 @@
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/offer">View conditions</a></p>
               {% elseif event.title == content.rejectApplication.event.title and application.rejectedDate == application.rejectedFeedbackDate %}
                 <div class="app-activity-log__box">
+
                   {{ appEventApplication({ application: application }) }}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/feedback">View feedback</a></p>
-              {% elseif event.title == "Feedback sent" %}
+              {% elseif event.title == content.giveFeedback.event.title %}
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Application withdrawn" %}
                 <div class="app-activity-log__box">

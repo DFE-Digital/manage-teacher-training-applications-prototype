@@ -53,6 +53,17 @@ const content = {
     event: {
       title: 'Application rejected'
     }
+  },
+  giveFeedback: {
+    caption: 'Give feedback',
+    successMessage: 'Feedback given',
+    checkAnswers: {
+      heading: 'Check details and give feedback',
+      button: 'Give feedback'
+    },
+    event: {
+      title: 'Feedback given'
+    }
   }
 }
 

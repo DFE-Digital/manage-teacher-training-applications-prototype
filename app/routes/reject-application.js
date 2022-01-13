@@ -32,9 +32,9 @@ module.exports = router => {
     if(application.status == "Rejected") {
       application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
       application.rejectedFeedbackDate = new Date().toISOString()
-      req.flash('success', 'Feedback sent')
+      req.flash('success', content.giveFeedback.successMessage)
       ApplicationHelper.addEvent(application, {
-        "title": "Feedback sent",
+        "title": content.giveFeedback.event.title,
         "user": "Ben Brown",
         "date": new Date().toISOString()
       })

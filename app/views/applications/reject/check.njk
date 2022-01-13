@@ -4,9 +4,9 @@
 {% set name = application.personalDetails.name %}
 
 {% if application.status == "Rejected" %}
-  {% set caption = 'Give feedback' + ' - ' + name %}
-  {% set title = "Check details and give feedback" %}
-  {% set buttonText = "Give feedback" %}
+  {% set caption = content.giveFeedback.caption + ' - ' + name %}
+  {% set title = content.giveFeedback.checkAnswers.heading %}
+  {% set buttonText = content.giveFeedback.checkAnswers.button %}
 {% else %}
   {% set caption = content.rejectApplication.caption + ' - ' + name %}
   {% set title = content.rejectApplication.checkAnswers.heading %}
