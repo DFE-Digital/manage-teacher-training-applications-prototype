@@ -18,12 +18,22 @@
       <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>The candidate will be told that their application has been withdrawn.</p>
 
       {% if upcomingInterviews.length == 1 %}
-        <p>The upcoming interview will be cancelled.</p>
-      {% elseif upcomingInterviews.length > 1 %}
-        <p>Upcoming interviews will be cancelled.</p>
+        {{ govukWarningText({
+          text: "The candidate will be sent emails to tell them that their application has been withdrawn and to cancel their upcoming interview.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% elseif 1 == 1 or upcomingInterviews.length > 1 %}
+        {{ govukWarningText({
+          text: "The candidate will be sent emails to tell them that their application has been withdrawn and to cancel their upcoming interviews.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% else %}
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that their application has been withdrawn at their request.",
+          iconFallbackText: "Fallback text"
+        }) }}
       {% endif %}
 
       <form method="post">
