@@ -147,7 +147,7 @@
                 <p class="app-log-card__note--link">
                   <a class="govuk-link" href="/applications/{{ application.id}}">View application</a>
                 </p>
-              {% elseif event.title == "Course updated" %}
+              {% elseif event.title == content.updateCourse.event.title %}
                 <div class="app-activity-log__box">
                   {{ appEventApplication({ application: event.meta.course }) }}
                 </div>
