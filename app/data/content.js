@@ -75,6 +75,17 @@ const content = {
     event: {
       title: 'Offer made'
     }
+  },
+  updateOffer: {
+    caption: 'Update offer',
+    successMessage: 'Offer updated',
+    checkAnswers: {
+      heading: 'Check details and update offer',
+      button: 'Update offer'
+    },
+    event: {
+      title: 'Offer updated'
+    }
   }
 }
 

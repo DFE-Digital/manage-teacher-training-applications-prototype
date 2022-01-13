@@ -87,7 +87,7 @@
             </a></p>
         {% endif %}
 
-        {% if event.event.title in [content.makeOffer.event.title, "Offer changed", "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Deferred offer confirmed"]%}
+        {% if event.event.title in [content.makeOffer.event.title, content.updateOffer.event.title, "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Deferred offer confirmed"]%}
 
           <div class="app-activity-log__box">
             {{ appEventOffer({ offer: event.event.meta.offer }) }}
