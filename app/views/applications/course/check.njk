@@ -2,7 +2,8 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = content.updateCourse.caption + " - " + application.personalDetails.name %}
-{% set title = content.updateCourse.checkAnswers.heading %}
+{% set heading = content.updateCourse.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -17,7 +18,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{ heading }}
       </h1>
 
       {{ govukSummaryList({

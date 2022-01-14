@@ -2,7 +2,8 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = content.updateCourse.caption + " - " + application.personalDetails.name %}
-{% set title = "Full time or part time" %}
+{% set heading = 'Full time or part time' %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -17,7 +18,7 @@
 
       {% set headingHtml %}
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{ heading }}
       {% endset %}
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
