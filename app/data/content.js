@@ -168,6 +168,14 @@ const content = {
     checkAnswers: {
       button: 'Add note'
     }
+  },
+  createUser: {
+    caption: 'Add user',
+    successMessage: 'User added',
+    checkAnswers: {
+      heading: 'Check details and add user',
+      button: 'Add user'
+    }
   }
 }
 

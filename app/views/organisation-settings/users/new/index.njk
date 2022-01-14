@@ -1,7 +1,8 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = 'Personal details - Add user' %}
+{% set caption = content.createUser.caption + ' - ' + org.name %}
+{% set title = 'Personal details - ' + caption %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 {% set cancelLinkUrl %}{{backLinkUrl}}{% endset %}
@@ -17,7 +18,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
-          Add user - {{org.name}}
+          {{caption}}
         </span>
         Personal details
       </h1>

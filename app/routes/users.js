@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 const { v4: uuidv4 } = require('uuid')
 
 function getOrganisationPermission(org, relationships) {
@@ -124,7 +125,7 @@ module.exports = router => {
 
     delete req.session.data.newuser
 
-    req.flash('success', 'User added')
+    req.flash('success', content.createUser.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/users/`)
   })
 
@@ -146,11 +147,6 @@ module.exports = router => {
     let data = req.session.data.editpermissions
 
     if(!data || !data.permissions) {
-      // you're on additional permissions page so...
-      // req.session.data.editpermissions = {
-      //   access: "Additional permissions"
-      // }
-
       // get from user object
       res.locals.data.editpermissions = { permissions: [] }
 

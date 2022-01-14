@@ -1,8 +1,8 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-
-{% set title = 'User permissions - Add user' %}
+{% set caption = content.createUser.caption + ' - ' + org.name %}
+{% set title = 'User permissions - ' + caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users{% endset %}
@@ -20,7 +20,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
-          Add user - {{org.name}}
+          {{caption}}
         </span>
         User permissions
       </h1>
