@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 
 module.exports = router => {
 
@@ -24,12 +25,15 @@ module.exports = router => {
     application.status = 'Offer withdrawn'
     application.offer.withdrawalDate = new Date().toISOString()
     application.offer.withdrawalReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
-    req.flash('success', 'Offer withdrawn')
+    req.flash('success', content.withdrawOffer.successMessage)
 
     ApplicationHelper.addEvent(application, {
-      "title": "Offer withdrawn",
+      "title": content.withdrawOffer.event.title,
       "user": "Ben Brown",
-      "date": new Date().toISOString()
+      "date": new Date().toISOString(),
+      "meta": {
+        offer: application.offer
+      }
     })
 
     delete req.session.data.rejectionReasons

@@ -2,10 +2,10 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set caption = 'Withdraw offer' + ' - ' + name %}
+{% set caption = content.withdrawOffer.caption + ' - ' + name %}
 
-{% set title = "Check details and withdraw offer" %}
-{% set buttonText = "Withdraw offer" %}
+{% set title = content.withdrawOffer.checkAnswers.heading %}
+{% set buttonText = content.withdrawOffer.checkAnswers.button %}
 
 {% block pageNavigation %}
   {{ govukBackLink({

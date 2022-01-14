@@ -86,6 +86,17 @@ const content = {
     event: {
       title: 'Offer updated'
     }
+  },
+  withdrawOffer: {
+    caption: 'Withdraw offer',
+    successMessage: 'Offer withdrawn',
+    checkAnswers: {
+      heading: 'Check details and withdraw offer',
+      button: 'Withdraw offer'
+    },
+    event: {
+      title: 'Offer withdrawn'
+    }
   }
 }
 
