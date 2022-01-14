@@ -191,6 +191,7 @@ const content = {
     caption: 'Remove user',
     successMessage: 'User removed',
     checkAnswers: {
+      heading: 'Confirm that you want to remove this user',
       button: 'Remove user'
     }
   },

@@ -4,8 +4,8 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
-{% set caption = content.removeUser.caption + ' - ' + name %}
-{% set title = "Confirm that you want to remove this user from " + org.name %}
+{% set caption = content.removeUser.caption + ' - ' + name + ' - ' + org.name %}
+{% set title = "Confirm that you want to remove this user" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
