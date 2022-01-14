@@ -212,7 +212,7 @@ module.exports = router => {
 
     data = null
 
-    req.flash('success', 'User permissions updated')
+    req.flash('success', content.updateUserPermissions.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}`)
   })
 

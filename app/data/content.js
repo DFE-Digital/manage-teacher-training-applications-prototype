@@ -183,6 +183,14 @@ const content = {
     checkAnswers: {
       button: 'Remove user'
     }
+  },
+  updateUserPermissions: {
+    caption: 'Update user permissions',
+    successMessage: 'User permissions updated',
+    checkAnswers: {
+      heading: 'Check details and update user permissions',
+      button: 'Update user permissions'
+    }
   }
 }
 
