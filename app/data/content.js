@@ -119,6 +119,37 @@ const content = {
     event: {
       title: 'Deferred offer confirmed'
     }
+  },
+  updateStatusOfConditions: {
+    caption: 'Update status of conditions',
+    successMessage: 'Status of conditions updated',
+    checkAnswers: {
+      heading: 'Check details and update status of conditions',
+      button: 'Update status of conditions'
+    },
+    event: {
+      title: 'Status of conditions updated'
+    }
+  },
+  markConditionsAsMet: {
+    successMessage: 'Conditions marked as met',
+    checkAnswers: {
+      heading: 'Check details and mark conditions as met',
+      button: 'Mark conditions as met'
+    },
+    event: {
+      title: 'Conditions marked as met'
+    }
+  },
+  markConditionsAsNotMet: {
+    successMessage: 'Conditions marked as not met',
+    checkAnswers: {
+      heading: 'Check details and mark conditions as not met',
+      button: 'Mark conditions as not met'
+    },
+    event: {
+      title: 'Conditions marked as not met'
+    }
   }
 }
 

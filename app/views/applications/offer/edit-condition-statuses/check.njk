@@ -2,13 +2,14 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
+{% set caption = content.updateStatusOfConditions.caption + ' - ' + name %}
 
 {% if hasNotMetConditions %}
-  {% set title = "Check your changes and mark conditions as not met" %}
+  {% set title = content.markConditionsAsNotMet.checkAnswers.heading %}
 {% elseif allConditionsMet %}
-  {% set title = "Check your changes and mark conditions as met" %}
+  {% set title = content.markConditionsAsMet.checkAnswers.heading %}
 {% else %}
-  {% set title = "Check and update status of conditions" %}
+  {% set title = content.updateStatusOfConditions.checkAnswers.heading %}
 {% endif %}
 
 {% block pageNavigation %}
@@ -21,7 +22,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
+      <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {{appOfferPanel({
@@ -57,7 +58,7 @@
             iconFallbackText: "Fallback text"
           }) }}
           {{ govukButton({
-            text: "Mark conditions as not met",
+            text: content.markConditionsAsNotMet.checkAnswers.button,
             classes: "govuk-button--warning"
           }) }}
         {% elseif allConditionsMet %}
@@ -67,7 +68,7 @@
           }) }}
 
           {{ govukButton({
-            text: "Mark conditions as met"
+            text: content.markConditionsAsMet.checkAnswers.button
           }) }}
         {% else %}
           {{ govukWarningText({
@@ -76,7 +77,7 @@
           }) }}
 
           {{ govukButton({
-            text: "Update status"
+            text: content.updateStatusOfConditions.checkAnswers.button
           }) }}
         {% endif %}
       </form>
