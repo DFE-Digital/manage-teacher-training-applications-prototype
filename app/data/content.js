@@ -176,6 +176,13 @@ const content = {
       heading: 'Check details and add user',
       button: 'Add user'
     }
+  },
+  removeUser: {
+    caption: 'Remove user',
+    successMessage: 'User removed',
+    checkAnswers: {
+      button: 'Remove user'
+    }
   }
 }
 

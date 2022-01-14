@@ -246,7 +246,7 @@ module.exports = router => {
       req.session.data.assignedUser = req.session.data.assignedUser.filter(item => item !== req.params.userId)
     }
 
-    req.flash('success', 'User removed')
+    req.flash('success', content.removeUser.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/users`)
   })
 

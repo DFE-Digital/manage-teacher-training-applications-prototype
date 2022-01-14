@@ -4,6 +4,7 @@
 {% set firstName = user.firstName %}
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
+{% set caption = content.removeUser.caption + ' - ' + name %}
 {% set title = "Confirm that you want to remove this user from " + org.name %}
 
 {% block pageNavigation %}
@@ -18,26 +19,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">{{ name }}</span>
+        <span class="govuk-caption-l">{{ caption }}</span>
         {{ title }}
       </h1>
-
-      <!-- {#% if assignedApplicationCount %}
-        <p class="govuk-body">
-          There are applications assigned to this user which:
-        </p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            have a status of ‘received’, ‘interviewing’, ‘offered’ or ‘conditions pending’
-          </li>
-          <li>
-            are not assigned to any other user
-          </li>
-        </ul>
-        <p class="govuk-body">
-          You can <a class="govuk-link" href="/?assignedUser={{ user.id }}&status=Received&status=Interviewing&status=Offered&status=Conditions+pending">check a list of all applications assigned to the user</a> before you delete them.
-        </p>
-      {% endif %#} -->
 
       {{ govukWarningText({
         text: "The user will be sent an email to tell them that they’ve been removed from your organisation.",
@@ -46,7 +30,7 @@
 
       <form method="post" novalidate>
         {{ govukButton({
-          text: "Remove user",
+          text: content.removeUser.checkAnswers.button,
           classes: "govuk-button--warning"
         }) }}
       </form>
