@@ -169,6 +169,16 @@ const content = {
       button: 'Add note'
     }
   },
+  updateAssignedUsers: {
+    caption: 'Update assigned users',
+    successMessage: 'Assigned users updated',
+    checkAnswers: {
+      button: 'Update assigned users'
+    },
+    event: {
+      title: 'Assigned users updated'
+    }
+  },
   createUser: {
     caption: 'Add user',
     successMessage: 'User added',
