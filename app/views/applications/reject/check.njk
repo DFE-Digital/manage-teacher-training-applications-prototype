@@ -5,13 +5,14 @@
 
 {% if application.status == "Rejected" %}
   {% set caption = content.giveFeedback.caption + ' - ' + name %}
-  {% set title = content.giveFeedback.checkAnswers.heading %}
+  {% set heading = content.giveFeedback.checkAnswers.heading %}
   {% set buttonText = content.giveFeedback.checkAnswers.button %}
 {% else %}
   {% set caption = content.rejectApplication.caption + ' - ' + name %}
-  {% set title = content.rejectApplication.checkAnswers.heading %}
+  {% set heading = content.rejectApplication.checkAnswers.heading %}
   {% set buttonText = content.rejectApplication.checkAnswers.button %}
 {% endif %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -23,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {% set rejectionReasons = data.rejection %}
       {% set showChangeLinks = true %}
