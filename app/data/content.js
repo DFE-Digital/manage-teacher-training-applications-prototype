@@ -150,6 +150,17 @@ const content = {
     event: {
       title: 'Conditions marked as not met'
     }
+  },
+  withdrawApplication: {
+    caption: 'Withdraw at candidate’s request',
+    successMessage: 'Application withdrawn',
+    checkAnswers: {
+      heading: 'Confirm that the candidate wants to withdraw their application',
+      button: 'Withdraw application'
+    },
+    event: {
+      title: 'Application withdrawn'
+    }
   }
 }
 

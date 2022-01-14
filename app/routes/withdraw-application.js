@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 
 module.exports = router => {
   router.get('/applications/:applicationId/withdraw', (req, res) => {
@@ -15,7 +16,7 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Application withdrawn'
     application.withdrawalDate = new Date().toISOString()
-    req.flash('success', 'Application withdrawn')
+    req.flash('success', content.withdrawApplication.successMessage)
     delete req.session.data.withdraw
 
     ApplicationHelper.getUpcomingInterviews(application).forEach((interview) => {
@@ -23,7 +24,7 @@ module.exports = router => {
     })
 
     ApplicationHelper.addEvent(application, {
-      "title": "Application withdrawn",
+      "title": content.withdrawApplication.event.title,
       "user": "Ben Brown",
       "date": new Date().toISOString()
     })
