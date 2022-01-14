@@ -108,6 +108,17 @@ const content = {
     event: {
       title: 'Offer deferred'
     }
+  },
+  confirmDeferredOffer: {
+    caption: 'Confirm deferred offer',
+    successMessage: 'Deferred offer confirmed',
+    checkAnswers: {
+      heading: 'Check details and confirm deferred offer',
+      button: 'Confirm deferred offer'
+    },
+    event: {
+      title: 'Deferred offer confirmed'
+    }
   }
 }
 

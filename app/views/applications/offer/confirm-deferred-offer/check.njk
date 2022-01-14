@@ -2,8 +2,8 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-
-{% set title = "Check and confirm deferred offer" %}
+{% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
+{% set title = content.confirmDeferredOffer.checkAnswers.heading %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -37,7 +37,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <span class="govuk-caption-l">{{name}}</span>
+      <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {{appOfferPanel({
@@ -78,7 +78,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Confirm deferred offer"
+          text: content.confirmDeferredOffer.checkAnswers.button
         }) }}
       </form>
       <p class="govuk-body"><a href="/applications/{{ application.id }}">Cancel</a></p>
