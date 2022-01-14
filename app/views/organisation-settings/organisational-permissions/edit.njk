@@ -2,8 +2,8 @@
 
 {% set org = relationship.org1.name %}
 {% set partner = relationship.org2.name %}
-
-{% set title = 'Change permissions - ' + org + ' and ' + partner %}
+{% set caption = content.updateOrganisationPermission.caption + ' - ' + org + ' and ' + partner  %}
+{% set title = 'Organisation permissions - ' + caption %}
 
 {% set backLinkUrl %}/organisation-settings/{{relationship.org1.id}}/organisational-permissions{% endset %}
 {% block beforeContent %}
@@ -15,7 +15,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{org}} and {{partner}}</span>
+      <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">Organisation permissions</h1>
 
       <p>All users can view applications.</p>
@@ -30,7 +30,7 @@
         }) }}
 
         {{govukButton({
-          text: "Save organisation permissions"
+          text: content.updateOrganisationPermission.checkAnswers.button
         })}}
       </form>
       <p><a href="{{backLinkUrl}}">Cancel</a>

@@ -1,3 +1,5 @@
+const content = require('../data/content')
+
 function getRelationships(params) {
   let relationships = []
 
@@ -96,7 +98,7 @@ module.exports = router => {
 
     delete data
 
-    req.flash('success', 'Organisation permissions updated')
+    req.flash('success', content.updateOrganisationPermission.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/organisational-permissions`)
   })
 }

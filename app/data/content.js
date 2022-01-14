@@ -201,6 +201,13 @@ const content = {
       heading: 'Check details and update user permissions',
       button: 'Update user permissions'
     }
+  },
+  updateOrganisationPermission: {
+    caption: 'Update organisation permissions',
+    successMessage: 'Organisation permissions updated',
+    checkAnswers: {
+      button: 'Update organisation permissions'
+    }
   }
 }
 
