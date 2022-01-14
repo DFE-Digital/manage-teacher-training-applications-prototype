@@ -2,7 +2,8 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
-{% set title = "Conditions of offer" %}
+{% set heading = 'Conditions of offer' %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -18,7 +19,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{ heading }}
       </h1>
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
