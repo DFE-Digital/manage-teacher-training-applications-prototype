@@ -161,6 +161,13 @@ const content = {
     event: {
       title: 'Application withdrawn'
     }
+  },
+  createNote: {
+    caption: 'Add note',
+    successMessage: 'Noted added',
+    checkAnswers: {
+      button: 'Add note'
+    }
   }
 }
 
