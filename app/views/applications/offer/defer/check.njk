@@ -3,8 +3,8 @@
 {% set primaryNavId = 'applications' %}
 
 {% set name = application.personalDetails.name %}
-
-{% set title = "Confirm that you want to defer your offer" %}
+{% set caption = content.deferOffer.caption + ' - ' + name %}
+{% set title = content.deferOffer.checkAnswers.heading %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,9 +15,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <span class="govuk-caption-l">
-        {{name}}
+        {{caption}}
       </span>
       <h1 class="govuk-heading-l">
         {{title}}
@@ -32,7 +31,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Defer offer"
+          text: content.deferOffer.checkAnswers.button
         }) }}
       </form>
 

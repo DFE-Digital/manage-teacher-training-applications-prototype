@@ -97,6 +97,17 @@ const content = {
     event: {
       title: 'Offer withdrawn'
     }
+  },
+  deferOffer: {
+    caption: 'Defer offer',
+    successMessage: 'Offer deferred',
+    checkAnswers: {
+      heading: 'Confirm that you want to defer your offer',
+      button: 'Defer offer'
+    },
+    event: {
+      title: 'Offer deferred'
+    }
   }
 }
 

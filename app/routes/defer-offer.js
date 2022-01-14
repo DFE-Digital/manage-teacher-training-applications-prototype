@@ -1,4 +1,4 @@
-const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 
 module.exports = router => {
 
@@ -15,13 +15,13 @@ module.exports = router => {
     application.events.items.push({
       date: new Date().toISOString(),
       user: "Alicia Grenada",
-      title: "Offer deferred",
+      title: content.deferOffer.event.title,
       meta: {
         offer: application.offer
       }
     })
 
-    req.flash('success', 'Offer deferred')
+    req.flash('success', content.deferOffer.successMessage)
     res.redirect(`/applications/${applicationId}/offer`)
   })
 
