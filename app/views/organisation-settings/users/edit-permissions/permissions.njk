@@ -4,7 +4,8 @@
 
 {% set name = user.firstName + ' ' + user.lastName %}
 {% set caption = content.updateUserPermissions.caption + ' - ' + name + ' - ' + org.name  %}
-{% set title = 'User permissions - ' + caption %}
+{% set heading = 'User permissions' %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
@@ -24,7 +25,7 @@
         <span class="govuk-caption-l">
           {{caption}}
         </span>
-        User permissions
+        {{heading}}
       </h1>
 
       {% include "_includes/users/organisational-permissions-content.njk" %}

@@ -5,7 +5,8 @@
 {% set lastName = user.lastName %}
 {% set name = firstName + " " + lastName %}
 {% set caption = content.removeUser.caption + ' - ' + name + ' - ' + org.name %}
-{% set title = "Confirm that you want to remove this user" %}
+{% set heading = "Confirm that you want to remove this user" %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -20,7 +21,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{heading}}
       </h1>
 
       {{ govukWarningText({

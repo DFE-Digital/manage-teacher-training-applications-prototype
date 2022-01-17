@@ -2,7 +2,8 @@
 
 {% set primaryNavId = 'users' %}
 {% set caption = content.createUser.caption + ' - ' + org.name %}
-{% set title = 'Personal details - ' + caption %}
+{% set heading = 'Personal details' %}
+{% set title = heading + ' - ' + caption %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 {% set cancelLinkUrl %}{{backLinkUrl}}{% endset %}
@@ -20,7 +21,7 @@
         <span class="govuk-caption-l">
           {{caption}}
         </span>
-        Personal details
+        {{heading}}
       </h1>
 
       <form novalidate method="post">

@@ -2,8 +2,8 @@
 
 {% set primaryNavId = 'users' %}
 {% set caption = content.createUser.caption + ' - ' + org.name %}
-{% set title = content.createUser.checkAnswers.heading + ' - ' + caption  %}
 {% set heading = content.createUser.checkAnswers.heading %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/permissions{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
