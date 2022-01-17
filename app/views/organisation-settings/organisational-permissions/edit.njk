@@ -3,7 +3,8 @@
 {% set org = relationship.org1.name %}
 {% set partner = relationship.org2.name %}
 {% set caption = content.updateOrganisationPermission.caption + ' - ' + org + ' and ' + partner  %}
-{% set title = 'Organisation permissions - ' + caption %}
+{% set heading = 'Organisation permissions' %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{relationship.org1.id}}/organisational-permissions{% endset %}
 {% block beforeContent %}
@@ -16,7 +17,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">Organisation permissions</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <p>All users can view applications.</p>
 
