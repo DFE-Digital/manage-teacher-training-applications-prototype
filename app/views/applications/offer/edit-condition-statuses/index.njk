@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.updateStatusOfConditions.caption + ' - ' + name %}
-{% set title = "Status of conditions" %}
+{% set heading = "Status of conditions" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -16,7 +17,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {# <div class="app-box govuk-!-margin-bottom-7">
         <h2 class="govuk-heading-m govuk-!-margin-bottom-1">

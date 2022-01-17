@@ -5,12 +5,13 @@
 {% set caption = content.updateStatusOfConditions.caption + ' - ' + name %}
 
 {% if hasNotMetConditions %}
-  {% set title = content.markConditionsAsNotMet.checkAnswers.heading %}
+  {% set heading = content.markConditionsAsNotMet.checkAnswers.heading %}
 {% elseif allConditionsMet %}
-  {% set title = content.markConditionsAsMet.checkAnswers.heading %}
+  {% set heading = content.markConditionsAsMet.checkAnswers.heading %}
 {% else %}
-  {% set title = content.updateStatusOfConditions.checkAnswers.heading %}
+  {% set heading = content.updateStatusOfConditions.checkAnswers.heading %}
 {% endif %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -23,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {{appOfferPanel({
         provider: {
