@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
-{% set title = "Conditions of offer" %}
+{% set heading = "Conditions of offer" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {% if referrer == 'check' %}
@@ -21,7 +22,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {% if data['confirm-deferred-offer']['submitted-conditions-page'] == 'true' %}
         {% set fitnessChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Fitness to teach check") %}

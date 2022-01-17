@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
-{% set title = content.confirmDeferredOffer.checkAnswers.heading %}
+{% set heading = content.confirmDeferredOffer.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -38,7 +39,7 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {{appOfferPanel({
         provider: {

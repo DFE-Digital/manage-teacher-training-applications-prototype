@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
-{% set title = "Confirm deferred offer" %}
+{% set heading = "Confirm deferred offer" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -14,9 +15,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <p>The course you offered the candidate in the previous recruitment cycle is not available in the current recruitment cycle.</p>
 

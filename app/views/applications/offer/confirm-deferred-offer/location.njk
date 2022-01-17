@@ -2,7 +2,8 @@
 
 {% set name = application.personalDetails.name %}
 {% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
-{% set title = "Location" %}
+{% set heading = "Location" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -16,7 +17,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-l">{{caption}}</span>
-        {{title}}
+        {{heading}}
       {% endset %}
       <form method="post">
 
