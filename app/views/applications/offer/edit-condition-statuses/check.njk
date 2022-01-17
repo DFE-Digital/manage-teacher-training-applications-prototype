@@ -58,8 +58,7 @@
             iconFallbackText: "Fallback text"
           }) }}
           {{ govukButton({
-            text: content.markConditionsAsNotMet.checkAnswers.button,
-            classes: "govuk-button--warning"
+            text: content.markConditionsAsNotMet.checkAnswers.button
           }) }}
         {% elseif allConditionsMet %}
           {{ govukWarningText({
