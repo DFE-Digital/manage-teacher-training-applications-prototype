@@ -3,7 +3,8 @@
 {% set primaryNavId = "applications" %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.updateAssignedUsers.caption + ' - ' + name %}
-{% set title = "Assigned users - " + caption %}
+{% set heading = 'Assigned users' %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -19,8 +20,8 @@
 
         {% set titleHtml %}
           <h1 class="govuk-fieldset__heading">
-            <span class="govuk-caption-l">{{ caption }}</span>
-            Assigned users
+            <span class="govuk-caption-l">{{caption}}</span>
+            {{heading}}
           </h1>
         {% endset %}
 
