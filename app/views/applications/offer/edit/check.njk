@@ -2,7 +2,8 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = content.updateOffer.caption + ' - ' + application.personalDetails.name %}
-{% set title = content.updateOffer.checkAnswers.heading %}
+{% set heading = content.updateOffer.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -16,7 +17,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{heading}}
       </h1>
 
       {{ appOfferPanel({
