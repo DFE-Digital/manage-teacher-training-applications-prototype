@@ -4,7 +4,8 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set caption = content.updateInterview.caption + ' - ' + application.personalDetails.name %}
-{% set title = content.updateInterview.checkAnswers.heading %}
+{% set heading = content.updateInterview.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,7 +16,7 @@
 {% block content %}
 
   <span class="govuk-caption-l">{{caption}}</span>
-  <h1 class="govuk-heading-l">{{title}}</h1>
+  <h1 class="govuk-heading-l">{{heading}}</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

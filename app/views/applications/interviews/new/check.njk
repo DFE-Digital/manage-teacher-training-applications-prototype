@@ -4,7 +4,8 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set caption = content.createInterview.caption + ' - ' + application.personalDetails.name %}
-{% set title = content.createInterview.checkAnswers.heading %}
+{% set heading = content.createInterview.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% set cancelUrl %}/applications/{{application.id}}{% endset %}
 {% if application.interviews.items > 0 %}
@@ -20,7 +21,7 @@
 {% block content %}
 
   <span class="govuk-caption-l">{{caption}}</span>
-  <h1 class="govuk-heading-l">{{title}}</h1>
+  <h1 class="govuk-heading-l">{{heading}}</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

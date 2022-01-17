@@ -4,7 +4,8 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set caption = content.createInterview.caption + ' - ' + application.personalDetails.name %}
-{% set title = 'Interview details' %}
+{% set heading = 'Interview details' %}
+{% set title = heading + ' - ' + caption %}
 
 {% set backUrl %}/applications/{{application.id}}{% endset %}
 {% if application.interviews.items.length > 0 %}
@@ -23,7 +24,7 @@
 
   <h1 class="govuk-heading-l">
     <span class="govuk-caption-l">{{caption}}</span>
-    {{title}}
+    {{heading}}
   </h1>
 
   <div class="govuk-grid-row">

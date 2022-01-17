@@ -4,7 +4,8 @@
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
 {% set caption = content.cancelInterview.caption + ' - ' + application.personalDetails.name %}
-{% set title = "Reason for cancelling interview" %}
+{% set heading = "Reason for cancelling interview" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -16,7 +17,7 @@
 
   {% set h1 %}
     <span class="govuk-caption-l">{{caption}}</span>
-    {{title}}
+    {{heading}}
   {% endset %}
 
   <div class="govuk-grid-row">
