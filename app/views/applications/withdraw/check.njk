@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.withdrawApplication.caption + ' - ' + name %}
-{% set title = content.withdrawApplication.checkAnswers.heading %}
+{% set heading = content.withdrawApplication.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 {% set buttonText = content.withdrawApplication.checkAnswers.button %}
 
 {% block pageNavigation %}
@@ -16,7 +17,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
 
       {% if upcomingInterviews.length == 1 %}
