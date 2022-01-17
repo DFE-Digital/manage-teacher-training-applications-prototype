@@ -3,8 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.withdrawOffer.caption + ' - ' + name %}
-
-{% set title = content.withdrawOffer.checkAnswers.heading %}
+{% set heading = content.withdrawOffer.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 {% set buttonText = content.withdrawOffer.checkAnswers.button %}
 
 {% block pageNavigation %}
@@ -17,7 +17,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {% set rejectionReasons = data.rejection %}
       {% set showChangeLinks = true %}

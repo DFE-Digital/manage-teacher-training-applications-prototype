@@ -3,7 +3,8 @@
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
 {% set caption = content.withdrawOffer.caption + ' - ' + name %}
-{% set title = "Tell the candidate why you’re withdrawing their offer" %}
+{% set heading = "Tell the candidate why you’re withdrawing their offer" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -15,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <form method="post">
 
