@@ -2,7 +2,8 @@
 
 {% set primaryNavId = 'account' %}
 
-{% set title = "Your email notification settings" %}
+{% set heading = "Your email notification settings" %}
+{% set title = heading %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -24,7 +25,7 @@
   }) if flash | falsify }}
 
   <h1 class="govuk-heading-l">
-    {{title}}
+    {{heading}}
   </h1>
 
   <div class="govuk-grid-row">
@@ -224,51 +225,6 @@
             }
           ]
         }) }}
-
-        {# {{ govukCheckboxes({
-          idPrefix: "emailsettings",
-          name: "emailsettings",
-          fieldset: {
-            legend: {
-              text: "Which notificatons do you want to receive?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Application submitted",
-              text: "Application submitted",
-              checked: checked("emailsettings", 'Application submitted')
-            },
-            {
-              value: "Application withdrawn",
-              text: "Application withdrawn",
-              checked: checked("emailsettings", 'Application withdrawn')
-            },
-            {
-              value: "Application automatically rejected",
-              text: "Application automatically rejected",
-              checked: checked("emailsettings", 'Application automatically rejected')
-            },
-            {
-              value: "Offer accepted",
-              text: "Offer accepted",
-              checked: checked("emailsettings", 'Offer accepted')
-            },
-            {
-              value: "Offer declined automatically",
-              text: "Offer declined automatically",
-              checked: checked("emailsettings", 'Offer declined automatically')
-            },
-            {
-              value: "Offer declined",
-              text: "Offer declined",
-              checked: checked("emailsettings", 'Offer declined')
-            }
-          ]
-        }) }} #}
-
 
         {{ govukButton({
           text: "Update email notification settings"
