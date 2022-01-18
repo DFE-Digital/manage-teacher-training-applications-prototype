@@ -55,7 +55,7 @@
 
         {% if hasNotMetConditions %}
            {{ govukWarningText({
-            text: "The candidate will be sent an email to tell them that they did not meet their conditions and cannot enrol on the course.",
+            text: "The candidate will be sent an email to tell them that they did not meet the conditions and cannot enrol on the course.",
             iconFallbackText: "Fallback text"
           }) }}
           {{ govukButton({
@@ -72,7 +72,7 @@
           }) }}
         {% else %}
           {{ govukWarningText({
-            text: "The candidate will be sent an email with the updated status of their conditions.",
+            text: "The candidate will be sent an email about the update to the status of conditions.",
             iconFallbackText: "Fallback text"
           }) }}
 

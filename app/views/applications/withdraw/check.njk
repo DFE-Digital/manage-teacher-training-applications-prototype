@@ -22,12 +22,12 @@
 
       {% if upcomingInterviews.length == 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent emails to tell them that their application has been withdrawn and to cancel their upcoming interview.",
+          text: "The candidate will be sent emails to tell them that their application has been withdrawn at their request and to cancel the upcoming interview.",
           iconFallbackText: "Fallback text"
         }) }}
       {% elseif 1 == 1 or upcomingInterviews.length > 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent emails to tell them that their application has been withdrawn and to cancel their upcoming interviews.",
+          text: "The candidate will be sent emails to tell them that their application has been withdrawn at their request and to cancel the upcoming interviews.",
           iconFallbackText: "Fallback text"
         }) }}
       {% else %}
