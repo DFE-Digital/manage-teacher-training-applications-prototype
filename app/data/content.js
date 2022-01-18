@@ -1,13 +1,13 @@
 const content = {
   updateCourse: {
-    caption: 'Update course',
-    successMessage: 'Course updated',
+    caption: 'Update course applied for',
+    successMessage: 'Course applied for updated',
     checkAnswers: {
-      heading: 'Check details and update course',
-      button: 'Update course'
+      heading: 'Check details and update course applied for',
+      button: 'Update course applied for'
     },
     event: {
-      title: 'Course updated'
+      title: 'Course applied for updated'
     }
   },
   createInterview: {
