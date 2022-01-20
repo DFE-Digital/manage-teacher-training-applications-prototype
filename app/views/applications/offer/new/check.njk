@@ -60,17 +60,17 @@
 
       {% if 1 == 2 and upcomingInterviews.length != 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent emails about the offer and to cancel the upcoming interview.",
+          text: "The candidate will be sent an email to tell them that the offer has been made and to cancel the upcoming interview.",
           iconFallbackText: "Fallback text"
         }) }}
       {% elseif 1 == 2 and upcomingInterviews.length > 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent emails about the offer and to cancel the upcoming interviews.",
+          text: "The candidate will be sent an email to tell them that the offer has been made and to cancel the upcoming interviews.",
           iconFallbackText: "Fallback text"
         }) }}
       {% else %}
         {{ govukWarningText({
-          text: "The candidate will be sent an email about the offer.",
+          text: "The candidate will be sent an email to tell them that the offer has been made.",
           iconFallbackText: "Fallback text"
         }) }}
       {% endif %}
