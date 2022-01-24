@@ -1,8 +1,9 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Change course - " + application.personalDetails.name %}
-{% set title = "Check and update course" %}
+{% set caption = content.updateCourse.caption + " - " + application.personalDetails.name %}
+{% set heading = content.updateCourse.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -17,7 +18,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{ heading }}
       </h1>
 
       {{ govukSummaryList({
@@ -112,8 +113,13 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that the course they applied for has been updated.",
+          iconFallbackText: "Fallback text"
+        }) }}
+
         {{ govukButton({
-          text: "Update course and tell candidate"
+          text: content.updateCourse.checkAnswers.button
         }) }}
 
       </form>

@@ -2,7 +2,10 @@
 
 {% set primaryNavId = 'users' %}
 
-{% set title = 'User permissions - Add user' %}
+{% set name = user.firstName + ' ' + user.lastName %}
+{% set caption = content.updateUserPermissions.caption + ' - ' + name + ' - ' + org.name  %}
+{% set heading = 'User permissions' %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
@@ -20,9 +23,9 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
-          {{user.firstName}} {{user.lastName}} - {{org.name}}
+          {{caption}}
         </span>
-        User permissions
+        {{heading}}
       </h1>
 
       {% include "_includes/users/organisational-permissions-content.njk" %}

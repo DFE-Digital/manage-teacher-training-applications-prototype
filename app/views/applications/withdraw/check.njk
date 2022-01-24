@@ -2,9 +2,10 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-
-{% set title = "Confirm that the candidate wants to withdraw their application" %}
-{% set buttonText = "Withdraw application" %}
+{% set caption = content.withdrawApplication.caption + ' - ' + name %}
+{% set heading = content.withdrawApplication.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
+{% set buttonText = content.withdrawApplication.checkAnswers.button %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -15,15 +16,25 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
-      <p>The candidate will be told that their application has been withdrawn.</p>
 
       {% if upcomingInterviews.length == 1 %}
-        <p>The upcoming interview will be cancelled.</p>
-      {% elseif upcomingInterviews.length > 1 %}
-        <p>Upcoming interviews will be cancelled.</p>
+        {{ govukWarningText({
+          text: "The candidate will be sent emails to tell them that their application has been withdrawn at their request and to cancel the upcoming interview.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% elseif 1 == 1 or upcomingInterviews.length > 1 %}
+        {{ govukWarningText({
+          text: "The candidate will be sent emails to tell them that their application has been withdrawn at their request and to cancel the upcoming interviews.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% else %}
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that their application has been withdrawn at their request.",
+          iconFallbackText: "Fallback text"
+        }) }}
       {% endif %}
 
       <form method="post">

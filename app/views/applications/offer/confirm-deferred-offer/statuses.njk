@@ -2,7 +2,9 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set title = "Status of conditions" %}
+{% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
+{% set heading = "Status of conditions" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -14,11 +16,11 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <form method="post">
-        <div class="app-box govuk-!-margin-bottom-7">
+        {# <div class="app-box govuk-!-margin-bottom-7">
           <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
             Current status of conditions
           </h2>
@@ -41,7 +43,7 @@
               </div>
             {% endfor %}
           </dl>
-        </div>
+        </div> #}
 
         {% for condition in conditions %}
           {{ govukRadios({

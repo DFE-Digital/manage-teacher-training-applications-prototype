@@ -1,8 +1,9 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'applications' %}
-{% set caption = "Make offer - " + application.personalDetails.name %}
-{% set title = "Check and send offer" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = content.makeOffer.checkAnswers.heading%}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -17,9 +18,10 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{ heading }}
       </h1>
 
+      <div class="app-bo">
       {{ appOfferPanel({
         provider: {
           value: course.provider.name or application.provider,
@@ -53,16 +55,29 @@
           href: "/applications/" + application.id + "/offer/new?referrer=check"
         }
       }) }}
+      </div>
+      <br>
 
-      {% if upcomingInterviews.length == 1 %}
-        <p class="govuk-body">The upcoming interview will be cancelled.</p>
-      {% elseif upcomingInterviews.length > 1 %}
-        <p class="govuk-body">Upcoming interviews will be cancelled.</p>
+      {% if 1 == 2 and upcomingInterviews.length != 1 %}
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that the offer has been made and to cancel the upcoming interview.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% elseif 1 == 2 and upcomingInterviews.length > 1 %}
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that the offer has been made and to cancel the upcoming interviews.",
+          iconFallbackText: "Fallback text"
+        }) }}
+      {% else %}
+        {{ govukWarningText({
+          text: "The candidate will be sent an email to tell them that the offer has been made.",
+          iconFallbackText: "Fallback text"
+        }) }}
       {% endif %}
 
       <form method="post">
         {{ govukButton({
-          text: "Send offer"
+          text: content.makeOffer.checkAnswers.button
         }) }}
       </form>
 

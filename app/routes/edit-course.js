@@ -1,5 +1,6 @@
 const ApplicationHelper = require('../data/helpers/application')
 const CourseHelper = require('../data/helpers/courses')
+const content = require('../data/content')
 
 module.exports = router => {
 
@@ -235,7 +236,7 @@ module.exports = router => {
 
     // log the change of course as an event
     ApplicationHelper.addEvent(application, {
-      title: "Course updated",
+      title: content.updateCourse.event.title,
       user: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
       date: new Date().toISOString(),
       meta: {
@@ -255,7 +256,7 @@ module.exports = router => {
     delete req.session.data.course
     delete req.session.data.referrer
 
-    req.flash('success', 'Course updated')
+    req.flash('success', content.updateCourse.successMessage)
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 

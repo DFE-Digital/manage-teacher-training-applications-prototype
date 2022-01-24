@@ -20,7 +20,7 @@ function getActivity(applications, userOrganisationId) {
       }
 
       // interview
-      if(item.title == 'Interview changed') {
+      if(item.title == 'Interview updated') {
         interview = application.interviews.items.find(interview => interview.id === item.meta.interviewId)
         if(interview) {
           item.meta.interviewExists = true

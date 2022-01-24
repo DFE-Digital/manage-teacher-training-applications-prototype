@@ -48,7 +48,7 @@
           </p>
         {% endif %}
 
-        {% if event.event.title == "Interview cancelled" %}
+        {% if event.event.title == content.cancelInterview.event.title %}
 
           <div class="app-activity-log__box">
             {{ appEventInterview({
@@ -60,13 +60,11 @@
         {% endif %}
 
 
-        {% if event.event.title in ["Interview changed", "Interview set up"] %}
+        {% if event.event.title in [content.updateInterview.event.title, "Interview set up"] %}
 
           <div class="app-activity-log__box">
             {{ appEventInterview({ interview: event.event.meta.interview }) }}
           </div>
-
-          {{ event | log}}
 
           {% if event.event.meta.interviewExists %}
             <p class="app-log-card__note--link"><a href="/applications/{{ event.application.id }}/interviews/#interview{{ event.meta.interview.id }}">View interview <span class="govuk-visually-hidden">{{ event.meta.interview.date | govukDateAtTime }}</span></a></p>
@@ -89,7 +87,7 @@
             </a></p>
         {% endif %}
 
-        {% if event.event.title in ["Offer made", "Offer changed", "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Deferred offer confirmed"]%}
+        {% if event.event.title in [content.makeOffer.event.title, content.updateOffer.event.title, "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Deferred offer confirmed"]%}
 
           <div class="app-activity-log__box">
             {{ appEventOffer({ offer: event.event.meta.offer }) }}
@@ -115,9 +113,9 @@
 
         {% endif %}
 
-        {% if event.event.title in ["Application submitted", "Application withdrawn", "Application rejected", "Course updated"] %}
+        {% if event.event.title in ["Application submitted", "Application withdrawn", content.rejectApplication.event.title, content.updateCourse.event.title] %}
           <div class="app-activity-log__box">
-            {{ appEventApplication({ application: event.event.meta.course }) }}
+            {{ appEventApplication({ application: event.application }) }}
           </div>
 
           {% if event.application.rejectedReasons %}

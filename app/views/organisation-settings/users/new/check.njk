@@ -1,7 +1,9 @@
 {% extends "_content-wide.njk" %}
 
 {% set primaryNavId = 'users' %}
-{% set title = "Check permissions and add user" %}
+{% set caption = content.createUser.caption + ' - ' + org.name %}
+{% set heading = content.createUser.checkAnswers.heading %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/new/permissions{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{% endset %}
@@ -19,9 +21,9 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
-          Add user - {{org.name}}
+          {{caption}}
         </span>
-        {{title}}
+        {{heading}}
       </h1>
 
       <h2 class="govuk-heading-m">
@@ -211,9 +213,14 @@
           {% endif %}
         </dl>
 
+      {{ govukWarningText({
+        text: "The user will be sent an email to tell them that you’ve added them to the organisation and which permissions you’ve given them.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form novalidate method="post">
         {{govukButton({
-          text: "Add user"
+          text: content.createUser.checkAnswers.button
         })}}
       </form>
       <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>

@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid')
 const ApplicationHelper = require('../data/helpers/application')
 const CourseHelper = require('../data/helpers/courses')
+const content = require('../data/content')
 
 module.exports = router => {
 
@@ -342,7 +343,7 @@ module.exports = router => {
     }
 
     ApplicationHelper.addEvent(application, {
-      title: 'Offer changed',
+      title: content.updateOffer.event.title,
       user: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
       date: application.offer.madeDate,
       meta: {
@@ -361,7 +362,7 @@ module.exports = router => {
 
     delete req.session.data['edit-offer']
 
-    req.flash('success', 'New offer sent')
+    req.flash('success', content.updateOffer.successMessage)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 

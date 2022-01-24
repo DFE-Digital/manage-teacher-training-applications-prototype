@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 const _ = require('lodash');
 
 module.exports = router => {
@@ -59,9 +60,9 @@ module.exports = router => {
 
     if (ApplicationHelper.hasMetAllConditions(application.offer)) {
       application.status = 'Recruited';
-      flash = "Conditions marked as met";
+      flash = content.markConditionsAsMet.successMessage;
       ApplicationHelper.addEvent(application, {
-        title: "Conditions marked as met",
+        title: content.markConditionsAsMet.event.title,
         user: "Ben Brown",
         date: new Date().toISOString(),
         meta: {
@@ -76,9 +77,9 @@ module.exports = router => {
       })
     } else if(ApplicationHelper.getConditions(application.offer).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
-      flash = "Conditions marked as not met";
+      flash = content.markConditionsAsNotMet.successMessage;
       ApplicationHelper.addEvent(application, {
-        title: "Conditions marked as not met",
+        title: content.markConditionsAsNotMet.event.title,
         user: "Ben Brown",
         date: new Date().toISOString(),
         meta: {
@@ -94,7 +95,7 @@ module.exports = router => {
     } else {
       flash = "Status of conditions updated"
       ApplicationHelper.addEvent(application, {
-        title: "Status of conditions updated",
+        title: content.updateStatusOfConditions.event.title,
         user: "Ben Brown",
         date: new Date().toISOString(),
         meta: {
@@ -103,7 +104,7 @@ module.exports = router => {
             course: application.offer.course,
             location: application.offer.location,
             accreditedBody: application.offer.accreditedBody,
-            conditions: ApplicationHelper.getConditions(application.offer)
+            conditions: ApplicationHelper.getConditions(application.offer),
           }
         }
       })

@@ -1,8 +1,9 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Make offer - " + application.personalDetails.name %}
-{% set title = "Course" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Course' %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -17,7 +18,7 @@
 
     {% set headingHtml %}
       <span class="govuk-caption-l">{{ caption }}</span>
-      {{ title }}
+      {{ heading }}
     {% endset %}
 
     <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>

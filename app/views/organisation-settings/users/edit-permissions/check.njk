@@ -3,6 +3,11 @@
 {% set primaryNavId = 'users' %}
 {% set title = "Check and save user permissions" %}
 
+{% set name = user.firstName + ' ' + user.lastName %}
+{% set caption = content.updateUserPermissions.caption + ' - ' + name + ' - ' + org.name  %}
+{% set heading = content.updateUserPermissions.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
+
 {% set backLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}/permissions/edit/permissions{% endset %}
 {% set cancelLinkUrl %}/organisation-settings/{{org.id}}/users/{{user.id}}{% endset %}
 
@@ -19,9 +24,9 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">
-          {{user.firstName}} {{user.lastName}} - {{org.name}}
+         {{caption}}
         </span>
-        {{title}}
+        {{heading}}
       </h1>
 
       <p>All users can view applications.</p>
@@ -160,9 +165,14 @@
           {% endif %}
         </dl>
 
+      {{ govukWarningText({
+        text: "The user will be sent an email to tell them that you've updated their permissions.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form novalidate method="post">
         {{govukButton({
-          text: "Save user permissions"
+          text: content.updateUserPermissions.checkAnswers.button
         })}}
       </form>
       <p class="govuk-body"><a href="{{cancelLinkUrl}}">Cancel</a></p>

@@ -2,7 +2,9 @@
 
 {% set primaryNavId = "applications" %}
 {% set name = application.personalDetails.name %}
-{% set title = "Users assigned to application" %}
+{% set caption = content.updateAssignedUsers.caption + ' - ' + name %}
+{% set heading = 'Assigned users' %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,8 +20,8 @@
 
         {% set titleHtml %}
           <h1 class="govuk-fieldset__heading">
-            <span class="govuk-caption-l">{{ application.personalDetails.name }}</span>
-            {{ title }}
+            <span class="govuk-caption-l">{{caption}}</span>
+            {{heading}}
           </h1>
         {% endset %}
 
@@ -37,7 +39,7 @@
         }) }}
 
         {{ govukButton({
-          text: "Save assigned users"
+          text: content.updateAssignedUsers.checkAnswers.button
         }) }}
 
       </form>

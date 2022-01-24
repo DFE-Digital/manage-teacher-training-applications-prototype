@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const content = require('../data/content')
 
 module.exports = router => {
   router.get('/applications/:applicationId/notes', (req, res) => {
@@ -37,7 +38,7 @@ module.exports = router => {
 
   router.post('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
-    req.flash('success', 'Note added')
+    req.flash('success', content.createNote.successMessage)
     res.redirect(`/applications/${applicationId}/notes`)
   })
 

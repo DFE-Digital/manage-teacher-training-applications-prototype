@@ -1,7 +1,9 @@
 {% extends "_layout.njk" %}
 
 {% set name = application.personalDetails.name %}
-{% set title = "Select training provider" %}
+{% set caption = content.confirmDeferredOffer.caption + ' - ' + name %}
+{% set heading = "Training provider" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -13,8 +15,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-l">Confirm deferred offer - {{name}}</span>
-        {{title}}
+        <span class="govuk-caption-l">{{caption}}</span>
+        {{heading}}
       {% endset %}
       <form method="post">
 

@@ -52,7 +52,7 @@
                 {% if event.meta.interviewExists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
                 {% endif %}
-              {% elseif event.title == "Interview changed" %}
+              {% elseif event.title == content.updateInterview.event.title %}
 
                 <div class="app-activity-log__box">
                   {{ appEventInterview({ interview: event.meta.interview }) }}
@@ -61,16 +61,16 @@
                 {% if event.meta.interviewExists %}
                   <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/interviews/#interview{{event.meta.interview.id}}">View interview <span class="govuk-visually-hidden">{{event.meta.interview.date | govukDateAtTime}}</span></a></p>
                 {% endif %}
-              {% elseif event.title == "Interview cancelled" %}
+              {% elseif event.title == content.cancelInterview.event.title %}
                 <div class="app-activity-log__box">
                   {{ appEventInterview({ interview: event.meta.interview, cancellationReason: event.meta.cancellationReason }) }}
                 </div>
-              {% elseif event.title == "Offer made" %}
+              {% elseif event.title == content.makeOffer.event.title %}
                 <div class="app-activity-log__box">
                 {{ appEventOffer({ offer: event.meta.offer }) }}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/offer">View offer</a></p>
-              {% elseif event.title == "Offer changed" %}
+              {% elseif event.title == content.updateOffer.event.title %}
                 <div class="app-activity-log__box">
                   {{ appEventOffer({ offer: event.meta.offer }) }}
                 </div>
@@ -115,12 +115,13 @@
                   }) }}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/offer">View conditions</a></p>
-              {% elseif event.title == "Application rejected" and application.rejectedDate == application.rejectedFeedbackDate %}
+              {% elseif event.title == content.rejectApplication.event.title and application.rejectedDate == application.rejectedFeedbackDate %}
                 <div class="app-activity-log__box">
+
                   {{ appEventApplication({ application: application }) }}
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/feedback">View feedback</a></p>
-              {% elseif event.title == "Feedback sent" %}
+              {% elseif event.title == content.giveFeedback.event.title %}
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/feedback">View feedback</a></p>
               {% elseif event.title == "Application withdrawn" %}
                 <div class="app-activity-log__box">
@@ -147,7 +148,7 @@
                 <p class="app-log-card__note--link">
                   <a class="govuk-link" href="/applications/{{ application.id}}">View application</a>
                 </p>
-              {% elseif event.title == "Course updated" %}
+              {% elseif event.title == content.updateCourse.event.title %}
                 <div class="app-activity-log__box">
                   {{ appEventApplication({ application: event.meta.course }) }}
                 </div>

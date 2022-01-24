@@ -3,8 +3,9 @@
 {% set primaryNavId = 'applications' %}
 
 {% set name = application.personalDetails.name %}
-
-{% set title = "Confirm that you want to defer your offer" %}
+{% set caption = content.deferOffer.caption + ' - ' + name %}
+{% set heading = content.deferOffer.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,19 +16,19 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <span class="govuk-caption-l">
-        {{name}}
-      </span>
-      <h1 class="govuk-heading-l">
-        {{title}}
-      </h1>
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <p>You’ll need to confirm your deferred offer at the start of the next recruitment cycle.</p>
 
+      {{ govukWarningText({
+        text: "The candidate will be sent an email to tell them that the offer has been deferred.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form method="post">
         {{ govukButton({
-          text: "Defer offer and tell candidate"
+          text: content.deferOffer.checkAnswers.button
         }) }}
       </form>
 

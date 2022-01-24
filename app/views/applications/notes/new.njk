@@ -4,7 +4,9 @@
 {% set subNavId = "notes" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set title = 'Add note - ' + name %}
+{% set caption = content.createNote.caption + ' - ' + application.personalDetails.name %}
+{% set heading = content.createNote.caption %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -18,8 +20,8 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set h1 %}
-        <span class="govuk-caption-l">{{name}}</span>
-        Add note
+        <span class="govuk-caption-l">{{caption}}</span>
+        {{heading}}
       {% endset %}
       <form method="post">
         {{ govukCharacterCount({
@@ -35,7 +37,7 @@
         }) }}
 
         {{govukButton({
-          text: "Save note"
+          text: content.createNote.checkAnswers.button
         })}}
       </form>
 

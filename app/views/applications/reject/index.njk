@@ -4,12 +4,13 @@
 {% set name = application.personalDetails.name %}
 
 {% if application.status == "Rejected" %}
-  {% set title = "Tell the candidate why their application was rejected" %}
-  {% set caption = name %}
+  {% set caption = content.giveFeedback.caption + ' - ' + name %}
+  {% set heading = "Tell the candidate why their application was rejected" %}
 {% else %}
-  {% set title = "Tell the candidate why you’re rejecting their application" %}
-  {% set caption = name %}
+  {% set caption = content.rejectApplication.caption + ' - ' + name %}
+  {% set heading = "Tell the candidate why you’re rejecting their application" %}
 {% endif %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {% set backUrl = "/applications/" + application.id + "/decision" %}
@@ -27,7 +28,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
         <span class="govuk-caption-l">{{caption}}</span>
-        {{title}}
+        {{heading}}
       {% endset %}
 
       <form method="post">

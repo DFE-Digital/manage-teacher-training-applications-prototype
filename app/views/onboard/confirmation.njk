@@ -1,12 +1,13 @@
 {% extends "_layout.njk" %}
 
-{% set title = "Organisation permissions set up" %}
+{% set heading = 'Organisation permissions set up' %}
+{% set title = heading %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukPanel({
-        titleText: title
+        titleText: heading
       }) }}
 
       <p>You can change organisation permissions in <a href="/organisation-settings">organisation settings</a>.</p>

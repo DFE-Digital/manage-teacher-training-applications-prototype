@@ -2,8 +2,9 @@
 
 {% set org = relationship.org1.name %}
 {% set partner = relationship.org2.name %}
-
-{% set title = 'Change permissions - ' + org + ' and ' + partner %}
+{% set caption = content.updateOrganisationPermission.caption + ' - ' + org + ' and ' + partner  %}
+{% set heading = 'Organisation permissions' %}
+{% set title = heading + ' - ' +  caption  %}
 
 {% set backLinkUrl %}/organisation-settings/{{relationship.org1.id}}/organisational-permissions{% endset %}
 {% block beforeContent %}
@@ -15,16 +16,22 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{org}} and {{partner}}</span>
-      <h1 class="govuk-heading-l">Organisation permissions</h1>
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <p>All users can view applications.</p>
 
       <form novalidate method="post">
         {% set fieldName = 'data.orgpermissions'%}
         {% include "_includes/permissions-checkboxes.njk" %}
+
+        {{ govukWarningText({
+          text: "All users who can manage organisation permissions will be sent an email to tell them that you've updated the organisation permissions.",
+          iconFallbackText: "Fallback text"
+        }) }}
+
         {{govukButton({
-          text: "Save organisation permissions"
+          text: content.updateOrganisationPermission.checkAnswers.button
         })}}
       </form>
       <p><a href="{{backLinkUrl}}">Cancel</a>

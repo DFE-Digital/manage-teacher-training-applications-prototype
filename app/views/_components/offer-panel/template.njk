@@ -6,7 +6,7 @@
 <div class="app-offer-panel">
   {% if not params.transferred %}
     {% if params.withdraw or params.defer %}
-      <p class="govuk-body">
+      <p class="govuk-body govuk-!-margin-bottom-2">
         {% if params.withdraw %}
           <a class="govuk-!-margin-right-2" href="{{params.withdraw.href}}">Withdraw offer</a>
         {% endif %}
@@ -17,9 +17,14 @@
     {% endif %}
   {% endif %}
 
-  <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">
+  <h2 class="govuk-heading-m govuk-!-margin-top-0 govuk-!-margin-bottom-2">
     Course details
   </h2>
+
+  {# {% if params.showChangeOfferInstructions %}
+    <p>If you want to change the details of the offer, email <a href="#">becomingateacher@digital.education.gov.uk</a>.
+  {% endif %} #}
+
   {{ govukSummaryList({
     rows: [
       {
@@ -138,7 +143,7 @@
     ]
   }) }}
 
-  <h2 class="govuk-heading-m">
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">
     Conditions of offer
   </h2>
   {% if not params.transferred %}
@@ -168,15 +173,3 @@
     <p>No conditions have been set for this offer.</p>
   {% endif %}
 </div>
-
-{#
-{% if application.withdrawnReasons %}
-  <h2 class="govuk-heading-m">Reasons for withdrawal</h2>
-  {% set rejectedDate = application.withdrawnDate %}
-  {% set rejectionReasons = application.withdrawnReasons %}
-  {% set showRejectedDate = true %}
-
-  <p>You sent the following feedback to the candidate on {{rejectedDate | date("d LLL yyyy")}}.</p>
-
-  {% include "_includes/candidate-feedback.njk" %}
-{% endif %} #}

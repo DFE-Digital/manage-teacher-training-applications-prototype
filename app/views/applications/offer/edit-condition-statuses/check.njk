@@ -2,14 +2,16 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
+{% set caption = content.updateStatusOfConditions.caption + ' - ' + name %}
 
 {% if hasNotMetConditions %}
-  {% set title = "Check your changes and mark conditions as not met" %}
+  {% set heading = content.markConditionsAsNotMet.checkAnswers.heading %}
 {% elseif allConditionsMet %}
-  {% set title = "Check your changes and mark conditions as met" %}
+  {% set heading = content.markConditionsAsMet.checkAnswers.heading %}
 {% else %}
-  {% set title = "Check and update status of conditions" %}
+  {% set heading = content.updateStatusOfConditions.checkAnswers.heading %}
 {% endif %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -21,8 +23,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{name}}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {{appOfferPanel({
         provider: {
@@ -47,24 +49,35 @@
           href: "/applications/" + application.id + "/offer/edit-condition-statuses"
         }
       })}}
+      <br>
 
       <form method="post">
 
         {% if hasNotMetConditions %}
-
-          <p>The candidate will be told that their application was unsuccessful.</p>
-
+           {{ govukWarningText({
+            text: "The candidate will be sent an email to tell them that they did not meet the conditions and cannot enrol on the course.",
+            iconFallbackText: "Fallback text"
+          }) }}
           {{ govukButton({
-            text: "Mark conditions as not met",
-            classes: "govuk-button--warning"
+            text: content.markConditionsAsNotMet.checkAnswers.button
           }) }}
         {% elseif allConditionsMet %}
+          {{ govukWarningText({
+            text: "The candidate will be sent an email to tell them that they’ve met all the conditions and they’re ready to enrol.",
+            iconFallbackText: "Fallback text"
+          }) }}
+
           {{ govukButton({
-            text: "Mark conditions as met and tell candidate"
+            text: content.markConditionsAsMet.checkAnswers.button
           }) }}
         {% else %}
+          {{ govukWarningText({
+            text: "The candidate will be sent an email to tell them that the status of conditions has been updated.",
+            iconFallbackText: "Fallback text"
+          }) }}
+
           {{ govukButton({
-            text: "Update status and tell candidate"
+            text: content.updateStatusOfConditions.checkAnswers.button
           }) }}
         {% endif %}
       </form>

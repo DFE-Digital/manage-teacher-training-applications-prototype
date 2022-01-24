@@ -3,8 +3,9 @@
 {% set primaryNavId = 'applications' %}
 {% set subNavId = "interviews" %}
 {% set status = application.status %}
-{% set name = application.personalDetails.name %}
-{% set title = "Change interview details" %}
+{% set caption = content.updateInterview.caption + ' - ' + application.personalDetails.name %}
+{% set heading = "Interview details" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,8 +15,8 @@
 
 {% block content %}
 
-  <span class="govuk-caption-l"> {{name}} </span>
-  <h1 class="govuk-heading-l">{{title}}</h1>
+  <span class="govuk-caption-l">{{caption}}</span>
+  <h1 class="govuk-heading-l">{{heading}}</h1>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

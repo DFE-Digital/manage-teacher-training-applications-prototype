@@ -1,5 +1,6 @@
 const ApplicationHelper = require('../data/helpers/application')
 const CycleHelper = require('../data/helpers/cycles')
+const content = require('../data/content')
 const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
@@ -77,7 +78,7 @@ module.exports = router => {
     }
 
     ApplicationHelper.addEvent(application, {
-      title: "Deferred offer confirmed",
+      title: content.confirmDeferredOffer.event.title,
       user: "Ben Brown",
       date: new Date().toISOString(),
       meta: {
@@ -87,7 +88,9 @@ module.exports = router => {
           location: application.offer.location,
           studyMode: application.offer.studyMode,
           accreditedBody: application.offer.accreditedBody,
-          conditions: ApplicationHelper.getConditions(application.offer)
+          conditions: ApplicationHelper.getConditions(application.offer),
+          qualifications: application.offer.qualifications,
+          fundingType: application.offer.fundingType
         }
       }
     })
@@ -104,7 +107,7 @@ module.exports = router => {
 
     delete req.session.data['confirm-deferred-offer']
 
-    req.flash('success', 'Deferred offer confirmed')
+    req.flash('success', content.confirmDeferredOffer.successMessage)
     res.redirect(`/applications/${applicationId}/offer`)
   })
 

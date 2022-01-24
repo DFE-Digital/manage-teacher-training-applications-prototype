@@ -1,8 +1,9 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Change offer - " + application.personalDetails.name %}
-{% set title = "Check and send new offer" %}
+{% set caption = content.updateOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = content.updateOffer.checkAnswers.heading %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -16,7 +17,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{heading}}
       </h1>
 
       {{ appOfferPanel({
@@ -53,9 +54,14 @@
         }
       }) }}
 
+      {{ govukWarningText({
+        text: "The candidate will be sent an email about the update to the offer.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
         {{ govukButton({
-          text: "Send new offer"
+          text: content.updateOffer.checkAnswers.button
         }) }}
       </form>
 

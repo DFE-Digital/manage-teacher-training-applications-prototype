@@ -1,8 +1,9 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = "applications" %}
-{% set caption = "Change offer - " + application.personalDetails.name %}
-{% set title = "Conditions of offer" %}
+{% set caption = content.updateOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = "Conditions of offer" %}
+{% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
@@ -16,7 +17,7 @@
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">{{ caption }}</span>
-        {{ title }}
+        {{heading}}
       </h1>
 
       {% if data['edit-offer']['submitted-conditions-page'] == "true" %}

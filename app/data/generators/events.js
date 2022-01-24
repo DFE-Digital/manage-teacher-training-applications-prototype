@@ -87,7 +87,7 @@ module.exports = (params) => {
       interview.location = 'https://zoom.us/boom/town'
 
       events.items.push({
-        title: 'Interview changed',
+        title: 'Interview updated',
         user: faker.name.findName(),
         date: date,
         meta: {
