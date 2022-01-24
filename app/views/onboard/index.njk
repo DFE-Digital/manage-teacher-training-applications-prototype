@@ -1,11 +1,16 @@
-{% extends "_content-wide.njk" %}
+{% extends "_layout.njk" %}
 
-{% set title = "Set up organisation permissions" %}
+{% set heading = "Set up organisation permissions" %}
+{% set title = heading %}
 
-{% block primary %}
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{heading}}
+      </h1>
 
       {% if (relationships | length) == "1" %}
         <p>Candidates can now apply through GOV.​UK for courses {{data.user.organisations[0].name}} work on with:</p>

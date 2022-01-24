@@ -1,8 +1,8 @@
 {% extends "_layout.njk" %}
 
-{% set title %}
-  Check and save organisation permissions
-{% endset %}
+{% set caption = "Set up organisation permissions" %}
+{% set heading = 'Check details and set up organisation permissions' %}
+{% set title = heading + ' - ' + caption %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,8 +15,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Set up organisation permissions</span>
-      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
 
       <form method="post">
         {% for item in relationships %}
