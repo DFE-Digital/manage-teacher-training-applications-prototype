@@ -1,12 +1,12 @@
 {% extends "_layout.njk" %}
 
-{% set title = "Data sharing agreement signed" %}
+{% set title = "Data sharing agreement confirmed" %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukPanel({
-        titleText: "Data sharing agreement signed"
+        titleText: title
       }) }}
 
       {% if canManageOrganisationPermissions %}
