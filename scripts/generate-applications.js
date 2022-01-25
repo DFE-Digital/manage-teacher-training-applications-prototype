@@ -168,7 +168,7 @@ const generateFakeApplication = (params = {}) => {
   }
 
   return {
-    id: params.id || faker.random.alphaNumeric(7).toUpperCase(),
+    id: params.id || ('' + faker.datatype.number({min: 123456, max: 999999})),
     assignedUsers: params.assignedUsers || assignedUsers,
     deferredOfferUnavailable,
     cycle,
@@ -223,7 +223,7 @@ const generateFakeApplications = () => {
   })
 
   applications.push(generateFakeApplication({
-    id: 'P6RGOZC',
+    id: '111223',
     status: 'Interviewing',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 36 }).toISO(),
@@ -251,7 +251,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    id: 'PBNF7WM',
+    id: '111224',
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 38 }).toISO(),
@@ -442,7 +442,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    id: 'YD3TMD2L',
+    id: '111225',
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 40 }).toISO(),
@@ -472,7 +472,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    id: 'ABC15F25',
+    id: '111226',
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 30 }).toISO(),
@@ -556,8 +556,6 @@ const generateFakeApplications = () => {
       }]
     }
   }))
-
-
 
   applications.push(generateFakeApplication({
     status: 'Received',
