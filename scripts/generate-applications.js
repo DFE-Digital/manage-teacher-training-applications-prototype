@@ -1953,7 +1953,7 @@ const generateFakeApplications = () => {
         missing: {
           hasQualification: 'I don’t have a science qualification yet',
           isStudying: 'No',
-          otherReason: 'Not provided'
+          otherReason: 'Not entered'
         }
       }
     },
