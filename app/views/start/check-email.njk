@@ -1,8 +1,6 @@
 {% extends "_layout.njk" %}
 
 {% set heading = "Check your email" %}
-{# {% set heading = "Check your email" %} #}
-{# {% set heading = "Click the link in your email to sign in" %} #}
 {% set title = heading %}
 
 {% block header %}
@@ -18,10 +16,9 @@
         {{heading}}
       </h1>
 
-      {# <p class="govuk-body">Click the link in the email you’ve been sent to sign in.</p> #}
       <p class="govuk-body">Sign in by clicking the link in the email you’ve been sent.</p>
 
-      <p class="govuk-body">If you do not receive an email within 5 minutes, check your spam and trash folder, or <a href="/start/sign-in-with-email">try again</a>.</p>
+      <p class="govuk-body">If you cannot find the email, check your spam and trash folder. You can also <a href="/start/sign-in-with-email">request another link to sign in</a>.
 
     </div>
   </div>
