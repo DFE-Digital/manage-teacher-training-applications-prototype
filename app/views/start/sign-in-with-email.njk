@@ -1,0 +1,62 @@
+{% extends "_layout.njk" %}
+
+{% set heading = "Request a temporary link to sign in" %}
+{% set heading = "Sign in" %}
+{% set title = heading %}
+
+{% block header %}
+  {% include "_includes/header.njk" %}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    text: 'DfE Sign-in is currently unavailable - request a temporary sign in link to sign in.',
+    text: 'DfE Sign-in is currently unavailable so you have to sign in via email.',
+    text: 'DfE Sign-in is temporarily unavailable.',
+    text: 'DfE Sign-in is currently unavailable.'
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{heading}}
+      </h1>
+
+      <p class="govuk-body-l">You need to request an email with a link to sign in.</p>
+
+      <form action="/start/check-email">
+
+      {{ govukInput({
+        id: "email",
+        name: "email",
+        label: {
+          text: "Email address",
+          classes: "govuk-label--m"
+        },
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false
+      }) }}
+
+      {{ govukButton({
+        text: "Request sign in link",
+        text: 'Sign in',
+        text: 'Request link to sign in'
+      }) }}
+
+      </form>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">
+        Get an account
+      </h2>
+
+      <p>Ask a colleague within your organisation to add you if you do not have an account. They’ll need to have permission to manage users.</p>
+
+      <p>If your organisation has not been set up to manage teacher training applications, send an email to <a href="#">becomingateacher@digital.education.gov.uk</a>.</p>
+
+    </div>
+  </div>
+
+{% endblock %}

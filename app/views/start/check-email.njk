@@ -1,0 +1,26 @@
+{% extends "_layout.njk" %}
+
+{% set heading = "Check your email" %}
+{% set title = heading %}
+
+{% block header %}
+  {% include "_includes/header.njk" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{heading}}
+      </h1>
+
+      <p class="govuk-body">Sign in by clicking the link in the email you’ve been sent.</p>
+
+      <p class="govuk-body">Check your spam and trash folder if you cannot find the email. You can also <a href="/start/sign-in-with-email">request another link to sign in</a>.
+
+    </div>
+  </div>
+
+{% endblock %}
