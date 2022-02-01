@@ -116,7 +116,13 @@ module.exports = router => {
       res.redirect(`/applications/${req.params.applicationId}/course/edit/location?referrer=study-mode`)
     } else {
       req.session.data['edit-course'].location = req.session.data.course.locations[0].id
-      res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=study-mode`)
+
+      if(application.interviews.items.length > 0) {
+        res.redirect(`/applications/${req.params.applicationId}/course/edit/interviews?referrer=study-mode`)
+      } else {
+        res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=study-mode`)
+      }
+
     }
   })
 
@@ -164,7 +170,43 @@ module.exports = router => {
   })
 
   router.post('/applications/:applicationId/course/edit/location', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=location`)
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    if(application.interviews.items.length > 0) {
+      res.redirect(`/applications/${req.params.applicationId}/course/edit/interviews?referrer=location`)
+    } else {
+      res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=location`)
+    }
+  })
+
+  router.get('/applications/:applicationId/course/edit/interviews', (req, res) => {
+    const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    let back = `/applications/${req.params.applicationId}`
+
+    if (req.query.referrer === 'check') {
+      back += '/course/edit/check'
+    } else if (req.query.referrer === 'course') {
+      back += '/course/edit/course'
+    } else if (req.query.referrer === 'study-mode') {
+      back += '/course/edit/study-mode'
+    } else if (req.query.referrer === 'location') {
+      back += '/course/edit/location'
+    }
+
+    let upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
+
+    res.render('applications/course/interviews', {
+      application,
+      upcomingInterviews,
+      actions: {
+        back: back,
+        cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
+        save: `/applications/${req.params.applicationId}/course/edit/interviews?referrer=${req.query.referrer}`
+      }
+    })
+  })
+
+  router.post('/applications/:applicationId/course/edit/interviews', (req, res) => {
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/check?referrer=interviews`)
   })
 
   router.get('/applications/:applicationId/course/edit/check', (req, res) => {
@@ -199,6 +241,8 @@ module.exports = router => {
       back += '/course/edit/study-mode'
     } else if (req.query.referrer === 'location') {
       back += '/course/edit/location'
+    } else if (req.query.referrer === 'interviews') {
+      back += '/course/edit/interviews'
     }
 
     res.render('applications/course/check', {

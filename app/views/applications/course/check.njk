@@ -107,7 +107,23 @@
           value: {
             html: course.fundingType or application.fundingType
           }
-        }
+        }, {
+          key: {
+            text: "Do you want to update or cancel upcoming interviews?"
+          },
+          value: {
+            html: data['edit-course'].interviews
+          },
+          actions: {
+            items: [
+              {
+                href: "/applications/" + application.id + "/course/edit/interviews?referrer=check",
+                text: "Change",
+                visuallyHiddenText: "what you want to do about upcoming interviews"
+              }
+            ]
+          }
+        } if application.interviews.items.length > 0
         ]})
       }}
 

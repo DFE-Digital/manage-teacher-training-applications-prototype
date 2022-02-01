@@ -1,0 +1,120 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.updateCourse.caption + " - " + application.personalDetails.name %}
+{% set heading = 'Decide what to do about your upcoming interviews' %}
+{% set title = heading + ' - ' + caption %}
+
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">{{ caption }}</span>
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+
+      {% for interview in upcomingInterviews %}
+        {% set interviewSummaryListHtml %}
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Course"
+                },
+                value: {
+                  text: application.course
+                }
+              },
+              {
+                key: {
+                  text: "Funding type"
+                },
+                value: {
+                  text: application.fundingType
+                }
+              },
+              {
+                key: {
+                  text: "Interview preferences"
+                },
+                value: {
+                  text: application.interviewNeeds.details
+                }
+              } if application.interviewNeeds.details,
+              {
+                key: {
+                  text: "Organisation carrying out interview"
+                },
+                value: {
+                  text: interview.organisation
+                }
+              },
+              {
+                key: {
+                  text: "Address or online meeting details"
+                },
+                value: {
+                  text: interview.location | nl2br
+                }
+              },
+              {
+                key: {
+                  text: "Additional details"
+                },
+                value: {
+                  text: interview.details | nl2br or 'None'
+                }
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {{appSummaryCard({
+          titleText: interview.date | govukDateAtTime,
+          classes: "govuk-!-margin-bottom-6",
+          html: interviewSummaryListHtml
+        })}}
+
+      {% endfor %}
+
+
+      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "edit-interviews",
+          name: "edit-course[interviews]",
+          fieldset: {
+            legend: {
+              text: 'Do you want to update or cancel the upcoming interviews?',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: 'Update interview',
+            text: 'Update interview with new course details'
+          }, {
+            value: 'Cancel interview',
+            text: 'Cancel interview'
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}
