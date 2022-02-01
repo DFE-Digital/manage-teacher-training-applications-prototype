@@ -5,7 +5,7 @@ const path = require('path')
 
 const OrgHelper = require('../app/data/helpers/organisation')
 
-const relationships = require('../app/data/relationships-wren-academy.js')
+const relationships = require('../app/data/relationships-teach-kent-and-sussex-scitt.js')
 const partners = relationships.map(relationship => relationship.org2)
 
 const generateCourse = require('../app/data/generators/course')
@@ -16,25 +16,29 @@ const generateFakeCourse = (params = {}) => {
 
 const generateFakeCourses = (count) => {
   const courses = []
-  const organisations = ['Wren Academy']
+  const organisations = ['Teach Kent and Sussex SCITT']
 
   organisations.forEach((organisation, i) => {
     const org = OrgHelper.findOrg(organisation)
-    let trainingProvider = {}
-    let accreditedBody = {}
 
     if (org.isAccreditedBody) {
-      trainingProvider = faker.helpers.randomize(partners)
-      accreditedBody = org
+      partners.forEach((partner) => {
+        for (let i = 0; i < count; i++) {
+          const course = generateFakeCourse({ trainingProvider: partner, accreditedBody: org })
+          courses.push(course)
+        }
+      })
     } else {
-      trainingProvider = org
-      accreditedBody = faker.helpers.randomize(partners)
+      partners.forEach((partner) => {
+        for (let i = 0; i < count; i++) {
+          const course = generateFakeCourse({ trainingProvider: org, accreditedBody: partner })
+          courses.push(course)
+        }
+      })
+
     }
 
-    for (let i = 0; i < count; i++) {
-      const course = generateFakeCourse({ trainingProvider, accreditedBody })
-      courses.push(course)
-    }
+
   })
 
   return courses

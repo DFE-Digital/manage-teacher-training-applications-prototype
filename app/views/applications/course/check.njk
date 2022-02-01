@@ -113,8 +113,19 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
+        {% set warningText %}
+          {% if application.interviews.items.length > 0 %}
+            The candidate will be sent emails to tell them that the course they applied for and related interviews have been updated.
+          {% else %}
+            The candidate will be sent an email to tell them that the course they applied for has been updated.
+          {% endif %}
+
+          {% if application.provider != data['edit-course'].provider %}
+          {% endif %}
+        {% endset %}
+
         {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them that the course they applied for has been updated.",
+          text: warningText,
           iconFallbackText: "Fallback text"
         }) }}
 
