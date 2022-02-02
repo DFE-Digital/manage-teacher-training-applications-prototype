@@ -5,7 +5,7 @@ const path = require('path')
 
 const OrgHelper = require('../app/data/helpers/organisation')
 
-const relationships = require('../app/data/relationships-teach-kent-and-sussex-scitt.js')
+const relationships = require('../app/data/relationships-wren-academy.js')
 const partners = relationships.map(relationship => relationship.org2)
 
 const generateCourse = require('../app/data/generators/course')
@@ -16,7 +16,7 @@ const generateFakeCourse = (params = {}) => {
 
 const generateFakeCourses = (count) => {
   const courses = []
-  const organisations = ['Teach Kent and Sussex SCITT']
+  const organisations = ['Wren Academy']
 
   organisations.forEach((organisation, i) => {
     const org = OrgHelper.findOrg(organisation)

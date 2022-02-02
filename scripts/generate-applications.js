@@ -65,6 +65,7 @@ const generateFakeApplication = (params = {}) => {
   // TODO: get course data into the app in a proper structure
   // ---------------------------------------------------------------------------
   const courses = GeneratorsHelper.getCourseData(provider)
+
   const tempCourse = faker.helpers.randomize(courses)
 
   const courseCode = tempCourse.code
