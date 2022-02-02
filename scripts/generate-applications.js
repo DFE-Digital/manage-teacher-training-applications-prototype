@@ -8,7 +8,7 @@ const SystemHelper = require('../app/data/helpers/system')
 const CycleHelper = require('../app/data/helpers/cycles')
 const GeneratorsHelper = require('../app/data/helpers/generators')
 const user = require('../app/data/user')
-const relationships = require('../app/data/relationships-wren-academy.js')
+const relationships = user.relationships
 let partners = relationships.map(relationship => relationship.org2)
 
 const generateCycle = require('../app/data/generators/cycle')

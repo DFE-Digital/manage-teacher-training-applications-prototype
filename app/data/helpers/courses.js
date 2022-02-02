@@ -50,10 +50,11 @@ exports.getCourseRadioOptions = (selectedItem) => {
 
     item.hint = {}
     item.hint.text = utils.arrayToList(
-        array = course.qualifications,
-        join = ', ',
-        final = ' with '
-      )
+      array = course.qualifications,
+      join = ', ',
+      final = ' with '
+    )
+
     item.hint.text += ' - ' + course.accreditedBody.name
 
     items.push(item)

@@ -5,8 +5,8 @@ const SettingsHelper = require('../data/helpers/settings')
 // const OrgHelper = require('../data/helpers/organisation')
 const { DateTime } = require('luxon')
 const users = require('./users.json')
-const relationships = require('./relationships-wren-academy.js')
 const user = require('./user')
+const relationships = user.relationships
 let applications = require('./applications.json')
 let defaults = {}
 
