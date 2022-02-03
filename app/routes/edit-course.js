@@ -1,10 +1,10 @@
 const ApplicationHelper = require('../data/helpers/application')
+const OrgHelper = require('../data/helpers/organisation')
 const CourseHelper = require('../data/helpers/courses')
 const content = require('../data/content')
 
 module.exports = router => {
 
-  // TODO: implement changing provider - 12% chance a user has >1 provider
   router.get('/applications/:applicationId/course/edit/provider', (req, res) => {
     let selectedProvider
     if (req.session.data['edit-course'] && req.session.data['edit-course'].provider) {
@@ -23,13 +23,13 @@ module.exports = router => {
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
-        save: `/applications/${req.params.applicationId}/course/edit/course`
+        save: `/applications/${req.params.applicationId}/course/edit/provider`
       }
     })
   })
 
   router.post('/applications/:applicationId/course/edit/provider', (req, res) => {
-
+    res.redirect(`/applications/${req.params.applicationId}/course/edit/course?referrer=provider`)
   })
 
   router.get('/applications/:applicationId/course/edit/course', (req, res) => {
@@ -42,11 +42,20 @@ module.exports = router => {
 
     if (req.query.referrer === 'check') {
       back += '/course/edit/check'
+    } else if(req.query.referrer === 'provider') {
+      back += '/course/edit/provider'
     }
+
+    let providerId;
+    if(req.session.data['edit-course'] && req.session.data['edit-course'].provider) {
+      providerId = req.session.data['edit-course'].provider
+    }
+
+    let courses = CourseHelper.getCourseRadioOptions(selectedCourse, providerId)
 
     res.render('applications/course/course', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId),
-      courses: CourseHelper.getCourseRadioOptions(selectedCourse),
+      courses,
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,
@@ -201,11 +210,21 @@ module.exports = router => {
       back += '/course/edit/location'
     }
 
+    const upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
+
+    let provider = application.provider
+
+    if(req.session.data['edit-course'].provider) {
+      provider = OrgHelper.findOrgById(req.session.data['edit-course'].provider).name
+    }
+
     res.render('applications/course/check', {
       application,
+      provider,
       course,
       studyMode,
       location,
+      upcomingInterviews,
       actions: {
         back: back,
         cancel: `/applications/${req.params.applicationId}/course/edit/cancel`,

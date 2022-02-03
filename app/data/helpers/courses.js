@@ -1,22 +1,22 @@
 const utils = require('./utils')
 
 const locations = require('../locations')
-const courses = require('../courses')
+let courses = require('../courses')
+const user = require('../user')
+const { createUser } = require('../content')
 
 exports.getProviderRadioOptions = (selectedItem) => {
   const items = []
+  const providers = []
 
-  // TODO: replace dummy data with user's training providers
-  const providers = [
-    {
-      id: 'a92c5e82-5d22-48b5-b2fc-7aa80ff264a9',
-      name: 'Wren Academy'
-    },
-    {
-      id: '9d95e1dc-f87b-420b-8dca-5f5397ca4ea1',
-      name: 'Oates Academy'
+  user.organisations.forEach((org) => {
+    if(org.isAccreditedBody) {
+      let partners = user.relationships.map(relationship => relationship.org2)
+      partners.forEach((partner) => {
+        providers.push(partner)
+      })
     }
-  ]
+  })
 
   providers.forEach((provider, i) => {
     const item = {}
@@ -36,8 +36,16 @@ exports.getProviderRadioOptions = (selectedItem) => {
   return items
 }
 
-exports.getCourseRadioOptions = (selectedItem) => {
+exports.getCourseRadioOptions = (selectedItem, trainingProviderId) => {
   const items = []
+
+  let courses = require('../courses')
+
+  if(trainingProviderId) {
+    courses = courses.filter((course) => {
+      return course.trainingProvider.id == trainingProviderId
+    })
+  }
 
   courses.forEach((course, i) => {
     const item = {}

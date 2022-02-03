@@ -27,7 +27,7 @@
             text: "Training provider"
           },
           value: {
-            html: data['edit-course'].provider or application.provider
+            text: provider
           },
           actions: {
             items: [
@@ -114,19 +114,36 @@
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
         {% set warningText %}
-          {% if application.interviews.items.length > 0 %}
-            The candidate will be sent emails to tell them that the course they applied for and related interviews have been updated.
-          {% else %}
-            The candidate will be sent an email to tell them that the course they applied for has been updated.
+          {% if upcomingInterviews.length %}
+            {% if upcomingInterviews.length == 1 %}
+              <p class="govuk-!-font-weight-bold">The upcoming interview{{'s' if upcomingInterviews.length > 1}} will be updated with the new course details.</p>
+            {% endif %}
           {% endif %}
 
-          {% if application.provider != data['edit-course'].provider %}
+          {% if application.provider == provider %}
+            {% if upcomingInterviews.length %}
+              <p class="govuk-!-font-weight-bold">The candidate will be sent emails to tell them that the course and the upcoming interview{{'s' if upcomingInterviews.length > 1}} have been updated.</p>
+            {% else %}
+              <p class="govuk-!-font-weight-bold">The candidate will be sent an email to tell them that the course has been updated.</p>
+            {% endif %}
+          {% else %}
+            <p class="govuk-!-font-weight-bold">Emails will be sent to:</p>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-font-weight-bold">
+              {% if upcomingInterviews.length%}
+                <li>the candidate, to tell them that the course has been updated</li>
+              {% else %}
+                <li>the candidate, to tell them that the course and the upcoming interview{{'s' if upcomingInterviews.length > 1}} have been updated</li>
+              {% endif %}
+              <li>users at the new and old training providers, to tell them that the application has been transferred between organisations</li>
+            </ul>
+
           {% endif %}
+
         {% endset %}
 
         {{ govukWarningText({
-          text: warningText,
-          iconFallbackText: "Fallback text"
+          html: warningText | safe
         }) }}
 
         {{ govukButton({
