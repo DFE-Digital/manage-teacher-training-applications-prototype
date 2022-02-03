@@ -32,24 +32,20 @@
 
       {% if upcomingInterviews.length == 1 %}
          {{ govukWarningText({
-          text: "The candidate will be sent emails to tell them why you rejected their application and to cancel their upcoming interview.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent emails to tell them why you rejected their application and that the upcoming interview has been cancelled."
         }) }}
       {% elseif upcomingInterviews.length > 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent emails to tell them why you rejected their application and to cancel their upcoming interviews.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent emails to tell them why you rejected their application and that the upcoming interviews have been cancelled."
         }) }}
       {% else %}
         {% if application.status == "Rejected" %}
           {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them why their application was rejected.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent an email to tell them why their application was rejected."
         }) }}
         {% else %}
           {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them why you rejected their application.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent an email to tell them why you rejected their application."
         }) }}
         {% endif %}
 

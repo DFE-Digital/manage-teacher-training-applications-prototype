@@ -115,9 +115,7 @@
 
         {% set warningText %}
           {% if upcomingInterviews.length %}
-            {% if upcomingInterviews.length == 1 %}
-              <p class="govuk-!-font-weight-bold">The upcoming interview{{'s' if upcomingInterviews.length > 1}} will be updated with the new course details.</p>
-            {% endif %}
+            <p class="govuk-!-font-weight-bold">The upcoming interview{{'s' if upcomingInterviews.length > 1}} will be updated with the new course details.</p>
           {% endif %}
 
           {% if application.provider == provider %}
@@ -130,10 +128,10 @@
             <p class="govuk-!-font-weight-bold">Emails will be sent to:</p>
 
             <ul class="govuk-list govuk-list--bullet govuk-!-font-weight-bold govuk-!-margin-bottom-0">
-              {% if upcomingInterviews.length%}
-                <li>the candidate, to tell them that the course has been updated</li>
-              {% else %}
+              {% if upcomingInterviews.length %}
                 <li>the candidate, to tell them that the course and the upcoming interview{{'s' if upcomingInterviews.length > 1}} have been updated</li>
+              {% else %}
+                <li>the candidate, to tell them that the course has been updated</li>
               {% endif %}
               <li>users at the new and old training providers, to tell them that the application has been transferred between organisations</li>
             </ul>
