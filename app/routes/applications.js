@@ -90,6 +90,22 @@ module.exports = router => {
     })
   })
 
+  router.get('/applications/:applicationId/other-applications', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
+
+    const otherApplications = req.session.data.applications
+      .filter((app) => app.id != applicationId)
+      .filter((app) => app.contactDetails.email == application.contactDetails.email)
+
+    res.render('applications/other-applications/index', {
+      application,
+      assignedUsers,
+      otherApplications
+    })
+  })
+
   router.get('/applications/:applicationId/feedback', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)

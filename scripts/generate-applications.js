@@ -224,6 +224,50 @@ const generateFakeApplications = () => {
   })
 
   applications.push(generateFakeApplication({
+    status: 'Interviewing',
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Adam',
+      familyName: 'Silver',
+      sex: 'Male'
+    },
+    contactDetails: {
+      tel: '01649 13062',
+      email: 'adam.silver@hotmail.com',
+      address: {
+        line1: '7127 Moen Knolls',
+        line2: '',
+        level2: 'East Flavieborough',
+        level1: 'County Fermanagh',
+        postcode: 'IS49 7MF'
+      },
+      addressType: 'uk'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
+    personalDetails: {
+      givenName: 'Adam',
+      familyName: 'Silver',
+      sex: 'Male'
+    },
+    contactDetails: {
+      tel: '01649 13062',
+      email: 'adam.silver@hotmail.com',
+      address: {
+        line1: '7127 Moen Knolls',
+        line2: '',
+        level2: 'East Flavieborough',
+        level1: 'County Fermanagh',
+        postcode: 'IS49 7MF'
+      },
+      addressType: 'uk'
+    }
+  }))
+
+  applications.push(generateFakeApplication({
     id: '111223',
     status: 'Interviewing',
     cycle: CycleHelper.CURRENT_CYCLE.code,
@@ -2756,7 +2800,6 @@ const generateFakeApplications = () => {
       applications.push(application)
     }
   }
-
   return applications
 }
 
