@@ -251,40 +251,40 @@ module.exports = (params) => {
     missingEnglishReasonOptions = [
       'I am a native English speaker, I would prefer to demonstrate the required skills',
       'I have a certificate confirming that the medium of instruction and examination at undergraduate was in English',
-      'Not provided'
+      'Not entered'
     ]
 
     missingMathsReasonOptions = [
       'I applied to NARIC for the equivalent',
       'I have a high school transcript for maths',
-      'Not provided'
+      'Not entered'
     ]
 
     if (params.subjectLevel === 'Primary') {
       missingScienceReasonOptions = [
         'I completed the International Baccalaureate programme and studied science',
         'I completed my High School Certificate in biology, chemistry and physics',
-        'Not provided'
+        'Not entered'
       ]
     }
   } else {
     missingEnglishReasonOptions = [
       'I have key skills level 2 in English',
       'I studied at degree level, worked as teaching assistant for 6 years',
-      'Not provided'
+      'Not entered'
     ]
 
     missingMathsReasonOptions = [
       'I have a functional skills level 2 in maths however I am willing to take an equivalent exam',
       'I will be studying towards attaining my equivalency once I have been accepted on the programme',
-      'Not provided'
+      'Not entered'
     ]
 
     if (params.subjectLevel === 'Primary') {
       missingScienceReasonOptions = [
         'I am currently looking for a course',
         'I completed my Access To Higher Education Diploma (equivalent to A-Levels) in Social Science',
-        'Not provided'
+        'Not entered'
       ]
     }
   }
@@ -377,7 +377,7 @@ module.exports = (params) => {
 
     const evidenceRetakingEnglishOptions = [
       'I’m planning to retake my English exam',
-      'Not provided'
+      'Not entered'
     ]
 
     if (isRetakingEnglish === 'No') {
@@ -407,7 +407,7 @@ module.exports = (params) => {
 
     const evidenceRetakingMathsOptions = [
       'I’m planning to retake my Maths exam',
-      'Not provided'
+      'Not entered'
     ]
 
     if (isRetakingMaths === 'No') {
@@ -439,7 +439,7 @@ module.exports = (params) => {
 
       const evidenceRetakingScienceOptions = [
         'I’m planning to retake my Science exam',
-        'Not provided'
+        'Not entered'
       ]
 
       if (isRetakingScience === 'No') {
