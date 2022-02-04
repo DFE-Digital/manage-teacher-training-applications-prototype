@@ -6,7 +6,7 @@ const path = require('path')
 const OrgHelper = require('../app/data/helpers/organisation')
 
 const generateFakeLocations = (count) => {
-  const organisation = OrgHelper.findOrg('Wren Academy')
+  const organisation = OrgHelper.findOrg('Teach Kent and Sussex SCITT')
 
   // remove unnecessary data
   delete organisation.isAccreditedBody

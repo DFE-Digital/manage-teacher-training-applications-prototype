@@ -58,20 +58,19 @@
       </div>
       <br>
 
-      {% if 1 == 2 and upcomingInterviews.length != 1 %}
+      {{upcomingInterviews | log}}
+
+      {% if upcomingInterviews.length == 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them that the offer has been made and to cancel the upcoming interview.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent an email to tell them that the offer has been made and the upcoming interview has been cancelled."
         }) }}
-      {% elseif 1 == 2 and upcomingInterviews.length > 1 %}
+      {% elseif upcomingInterviews.length > 1 %}
         {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them that the offer has been made and to cancel the upcoming interviews.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent an email to tell them that the offer has been made and the upcoming interviews have been cancelled."
         }) }}
       {% else %}
         {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them that the offer has been made.",
-          iconFallbackText: "Fallback text"
+          text: "The candidate will be sent an email to tell them that the offer has been made."
         }) }}
       {% endif %}
 

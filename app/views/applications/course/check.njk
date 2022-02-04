@@ -27,7 +27,7 @@
             text: "Training provider"
           },
           value: {
-            html: data['edit-course'].provider or application.provider
+            text: provider
           },
           actions: {
             items: [
@@ -37,7 +37,7 @@
                 visuallyHiddenText: "training provider"
               }
             ]
-          } if 1 == 0
+          }
         }, {
           key: {
             text: "Course"
@@ -113,9 +113,35 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
+        {% set warningText %}
+          {% if upcomingInterviews.length %}
+            <p class="govuk-!-font-weight-bold">The upcoming interview{{'s' if upcomingInterviews.length > 1}} will be updated with the new course details.</p>
+          {% endif %}
+
+          {% if application.provider == provider %}
+            {% if upcomingInterviews.length %}
+              <p class="govuk-!-font-weight-bold">The candidate will be sent emails to tell them that the course and the upcoming interview{{'s' if upcomingInterviews.length > 1}} have been updated.</p>
+            {% else %}
+              <p class="govuk-!-font-weight-bold">The candidate will be sent an email to tell them that the course has been updated.</p>
+            {% endif %}
+          {% else %}
+            <p class="govuk-!-font-weight-bold">Emails will be sent to:</p>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-font-weight-bold govuk-!-margin-bottom-0">
+              {% if upcomingInterviews.length %}
+                <li>the candidate, to tell them that the course and the upcoming interview{{'s' if upcomingInterviews.length > 1}} have been updated</li>
+              {% else %}
+                <li>the candidate, to tell them that the course has been updated</li>
+              {% endif %}
+              <li>users at the new and old training providers, to tell them that the application has been transferred between organisations</li>
+            </ul>
+
+          {% endif %}
+
+        {% endset %}
+
         {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them that the course they applied for has been updated.",
-          iconFallbackText: "Fallback text"
+          html: warningText | safe
         }) }}
 
         {{ govukButton({

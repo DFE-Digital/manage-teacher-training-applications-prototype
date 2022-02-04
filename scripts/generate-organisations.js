@@ -27,7 +27,7 @@ const generateFakeOrganisations = (count) => {
   })
 
   // ---------------------------------------------------------------------------
-  // USed for prototype default
+  // Used for prototype default
   // ---------------------------------------------------------------------------
   organisations.push(generateFakeOrganisation({
     name: "Wren Academy",

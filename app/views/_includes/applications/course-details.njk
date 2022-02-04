@@ -1,4 +1,4 @@
-<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Course applied for</h2>
+<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7 govuk-!-margin-bottom-2 ">Course</h2>
 
 {{ govukSummaryList({
   rows: [{
@@ -16,7 +16,7 @@
           visuallyHiddenText: "training provider"
         }
       ]
-    } if application.status in ["Received","Interviewing"] and 1 == 0
+    } if application.status in ["Received","Interviewing"]
   }, {
     key: {
       text: "Course"
