@@ -34,7 +34,8 @@ module.exports = router => {
       application,
       course,
       hasOtherNonUkQualifications,
-      assignedUsers
+      assignedUsers,
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
 
@@ -86,7 +87,8 @@ module.exports = router => {
       application,
       events: events,
       conditions: ApplicationHelper.getConditions(application.offer),
-      assignedUsers
+      assignedUsers,
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
 
@@ -95,14 +97,10 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
-    const otherApplications = req.session.data.applications
-      .filter((app) => app.id != applicationId)
-      .filter((app) => app.contactDetails.email == application.contactDetails.email)
-
     res.render('applications/other-applications/index', {
       application,
       assignedUsers,
-      otherApplications
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
 
@@ -113,7 +111,8 @@ module.exports = router => {
 
     res.render('applications/feedback/show', {
       application,
-      assignedUsers
+      assignedUsers,
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
 
