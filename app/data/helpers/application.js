@@ -232,3 +232,9 @@ exports.getAssignedApplicationCount = (applications, userId, userOrganisationId,
 
   return count
 }
+
+exports.getOtherApplications = (application, applications) => {
+  return applications
+    .filter((app) => app.id != application.id)
+    .filter((app) => app.contactDetails.email == application.contactDetails.email)
+}
