@@ -32,13 +32,48 @@
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
 
+        <h2 class="govuk-heading-m">
+          Summary emails
+        </h2>
+
         {{ govukRadios({
+          idPrefix: "digest",
+          name: "digest",
+          fieldset: {
+            legend: {
+              text: "Weekly summary email",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          hint: {
+            text: "You’ll receive this email notification every Monday at 9am"
+          },
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("digest", "On") == "checked" or not data.digest
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("digest", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m">
+          Instant emails
+        </h2>
+
+         {{ govukRadios({
           idPrefix: "notification1",
           name: "notification1",
           fieldset: {
             legend: {
               text: "Application received",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -62,7 +97,7 @@
           fieldset: {
             legend: {
               text: "Application received from another organisation",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -86,7 +121,7 @@
           fieldset: {
             legend: {
               text: "Reminder to make a decision 20 working days before automatic rejection",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -110,7 +145,7 @@
           fieldset: {
             legend: {
               text: "Application automatically rejected",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -134,7 +169,7 @@
           fieldset: {
             legend: {
               text: "Application withdrawn by candidate",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -160,7 +195,7 @@
           fieldset: {
             legend: {
               text: "Application transferred to another organisation",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -184,7 +219,7 @@
           fieldset: {
             legend: {
               text: "Offer accepted",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -208,7 +243,7 @@
           fieldset: {
             legend: {
               text: "Offer declined",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
@@ -225,6 +260,190 @@
             }
           ]
         }) }}
+
+        {# {{ govukRadios({
+          idPrefix: "digest",
+          name: "digest",
+          fieldset: {
+            legend: {
+              text: "Weekly summary email",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          classes: "govuk-radios--inline",
+          hint: {
+            text: "You’ll receive this email notification every Monday at 9am"
+          },
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("digest", "On") == "checked" or not data.digest
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("digest", "Off") == "checked"
+            }
+          ]
+        }) }} #}
+
+
+        {# {{ govukCheckboxes({
+          idPrefix: "blah",
+          name: "blah",
+          fieldset: {
+            legend: {
+              text: "Weekly summary",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "You’ll receive a summary of the last week’s events every Monday at 9am."
+          },
+          items: [
+            {
+              value: "on",
+              text: "Weekly summary"
+            }
+          ]
+        }) }} #}
+
+        {# {{ govukCheckboxes({
+          idPrefix: "blah",
+          name: "blah",
+          fieldset: {
+            legend: {
+              text: "Individual emails",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "on",
+              text: "Application received"
+            },
+            {
+              value: "on",
+              text: "Application received"
+            },
+            {
+              value: "on",
+              text: "Application received"
+            },
+            {
+              value: "on",
+              text: "Application received"
+            }
+          ]
+        }) }} #}
+
+
+
+        {# {{ govukCheckboxes({
+          idPrefix: "how",
+          name: "how",
+          fieldset: {
+            legend: {
+              text: "How",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Hint text"
+          },
+          items: [
+            {
+              value: "Weekly",
+              text: "Weekly"
+            },
+            {
+              value: "Indivudal",
+              text: "Individual"
+            }
+          ]
+        }) }}
+
+
+
+        <h2 class="govuk-heading-m">
+          Some heading
+        </h2>
+
+        <p>This will include:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            blah
+          </li>
+          <li>
+            List item
+          </li>
+          <li>
+            List item
+          </li>
+        </ul>
+
+         #}
+
+
+
+        {# <h2 class="govuk-heading-m">
+          Individual emails
+        </h2>
+
+        <p>You can choose to receive certain email notifications.</p> #}
+
+
+        {# {{ govukRadios({
+          idPrefix: "blah",
+          name: "blah",
+          fieldset: {
+            legend: {
+              text: "Weekly digest",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "On",
+              text: "On"
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }} #}
+{#
+        {{ govukRadios({
+          idPrefix: "blah2",
+          name: "blah2",
+          fieldset: {
+            legend: {
+              text: "Individual emails",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: true,
+              conditional: {
+                html: optionsHtml
+              }
+            },
+            {
+              value: "Off",
+              text: "Off"
+            }
+          ]
+        }) }} #}
+
 
         {{ govukButton({
           text: "Update email notification settings"
