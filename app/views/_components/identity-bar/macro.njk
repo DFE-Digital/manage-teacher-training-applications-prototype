@@ -1,0 +1,16 @@
+<div class="app-identity-bar {{- ' ' + params.classes if params.classes}}" {%- for attribute, value in params.attributes -%} {{ attribute }}="{{ value }}"{% endfor %}>
+
+  <div class="app-identity-bar__container">
+
+    <div class="app-identity-bar__details">
+      {% if params.title %}
+        <span class="app-identity-bar__title">{{ params.title.html | safe if params.title.html else params.title.text }}</span>
+      {% endif %}
+    </div>
+
+    <div class="app-identity-bar__actions">
+
+    </div>
+  </div>
+
+</div>

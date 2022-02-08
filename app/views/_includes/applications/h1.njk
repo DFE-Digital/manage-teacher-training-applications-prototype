@@ -1,4 +1,27 @@
-<div class="govuk-grid-row">
+<div class="app-identity-bar">
+
+  <div class="app-identity-bar__container">
+
+    <div class="app-identity-bar__details">
+      <p class="govuk-!-margin-bottom-1"> <b>{{name}}</b> <span class="govuk-hint">{{application.id}}</span></span></p>
+      <p class="govuk-!-margin-bottom-0">{{application.course}}</p>
+      {# <p class="govuk-!-margin-bottom-1">{{application.course}} – {{ application.studyMode | lower }} at {{ application.location.name }}</p> #}
+      {# <p class="govuk-!-margin-bottom-1">{{ application.provider }} ({{application.accreditedBody}})</p> #}
+
+    </div>
+
+    <div class="app-identity-bar__actions">
+      <p style="text-align: right" class="govuk-!-margin-bottom-1">{{ govukTag({ classes: application.status | statusClass, text: application.status }) }}</p>
+      {# <p style="text-align: right" class="govuk-hint govuk-!-margin-bottom-0">{{application.cycle | cycleLabel}}</p> #}
+      {% include "_includes/applications/assigned-users.njk" %}
+    </div>
+
+  </div>
+
+</div>
+
+
+{# <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
     {% if not query.transferred %}
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
@@ -16,4 +39,4 @@
     {% endif %}
     {% include "_includes/applications/assigned-users.njk" %}
   </div>
-</div>
+</div> #}
