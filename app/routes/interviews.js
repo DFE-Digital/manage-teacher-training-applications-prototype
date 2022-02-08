@@ -145,7 +145,8 @@ module.exports = router => {
       application,
       upcomingInterviews,
       pastInterviews,
-      assignedUsers
+      assignedUsers,
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
 

@@ -9,7 +9,8 @@ module.exports = router => {
 
     res.render('applications/notes/index', {
       application,
-      assignedUsers
+      assignedUsers,
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
 
