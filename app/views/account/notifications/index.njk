@@ -33,7 +33,7 @@
       <form method="post">
 
         <h2 class="govuk-heading-m">
-          Summary emails
+          Weekly summaries
         </h2>
 
         {{ govukRadios({
@@ -41,13 +41,13 @@
           name: "digest",
           fieldset: {
             legend: {
-              text: "Weekly summary email",
+              text: "Weekly summary of notifications",
               classes: "govuk-fieldset__legend--"
             }
           },
           classes: "govuk-radios--inline",
           hint: {
-            text: "You’ll receive this email notification every Monday at 9am"
+            text: "This will be sent every Monday at 9am"
           },
           items: [
             {
@@ -64,7 +64,7 @@
         }) }}
 
         <h2 class="govuk-heading-m">
-          Instant emails
+          Individual email notifications
         </h2>
 
          {{ govukRadios({
