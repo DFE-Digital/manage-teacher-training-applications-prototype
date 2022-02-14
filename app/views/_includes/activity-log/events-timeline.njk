@@ -2,14 +2,25 @@
   {%- for event in events %}
     {% set name = event.application.personalDetails.name %}
 
+
+    {% set isAutomaticRejection = event.event.title == content.rejectApplication.event.title and event.application.rejectedDate != event.application.rejectedFeedbackDate %}
+    {% set isAutomaticDecline = event.event.title == 'Offer declined automatically' %}
+
     <div class="app-activity-log__item">
       <div class="app-activity-log__header">
         <h2 class="app-activity-log__title govuk-heading-s govuk-!-margin-bottom-1">
-          {{ event.event.title }} ({{ name }})
+          {% if isAutomaticRejection %}
+            Application rejected automatically
+          {% else %}
+            {{ event.event.title }}
+          {% endif %}
+          ({{ name }})
           <span class="govuk-visually-hidden">{{- event.event.date | govukDateAtTime -}}</span>
         </h2>
         <p class="app-activity-log__byline govuk-body-">
-          {{ event.event.user }},
+          {% if not isAutomaticRejection and not isAutomaticDecline %}
+            {{ event.event.user }},
+          {% endif %}
           <time datetime="{{ event.event.date | formatDate }}">
             {{- event.event.date | govukDateAtTime -}}
           </time>
@@ -87,7 +98,7 @@
             </a></p>
         {% endif %}
 
-        {% if event.event.title in [content.makeOffer.event.title, content.updateOffer.event.title, "Offer accepted", "Offer withdrawn", "Offer declined", "Offer deferred", "Deferred offer confirmed"]%}
+        {% if event.event.title in [content.makeOffer.event.title, content.updateOffer.event.title, "Offer accepted", "Offer withdrawn", "Offer declined", "Offer declined automatically", "Offer deferred", "Deferred offer confirmed"]%}
 
           <div class="app-activity-log__box">
             {{ appEventOffer({ offer: event.event.meta.offer }) }}
