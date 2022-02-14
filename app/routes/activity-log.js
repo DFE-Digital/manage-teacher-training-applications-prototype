@@ -8,7 +8,6 @@ function getActivity(applications, userOrganisationId) {
 
   applications.forEach(application => {
     const events = application.events.items
-      .filter((item) => item.title.indexOf('Offer declined') > -1)
       .map(item => {
       let interview = null
       // interview

@@ -4,13 +4,13 @@
 
 
     {% set isAutomaticRejection = event.event.title == content.rejectApplication.event.title and event.application.rejectedDate != event.application.rejectedFeedbackDate %}
-    {% set isAutomaticDecline = event.event.title == 'Offer declined automatically' %}
+    {% set isAutomaticDecline = event.event.title == 'Offer automatically declined' %}
 
     <div class="app-activity-log__item">
       <div class="app-activity-log__header">
         <h2 class="app-activity-log__title govuk-heading-s govuk-!-margin-bottom-1">
           {% if isAutomaticRejection %}
-            Application rejected automatically
+            Application automatically rejected
           {% else %}
             {{ event.event.title }}
           {% endif %}
@@ -98,7 +98,7 @@
             </a></p>
         {% endif %}
 
-        {% if event.event.title in [content.makeOffer.event.title, content.updateOffer.event.title, "Offer accepted", "Offer withdrawn", "Offer declined", "Offer declined automatically", "Offer deferred", "Deferred offer confirmed"]%}
+        {% if event.event.title in [content.makeOffer.event.title, content.updateOffer.event.title, "Offer accepted", "Offer withdrawn", "Offer declined", "Offer automatically declined", "Offer deferred", "Deferred offer confirmed"]%}
 
           <div class="app-activity-log__box">
             {{ appEventOffer({ offer: event.event.meta.offer }) }}

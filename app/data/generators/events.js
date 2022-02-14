@@ -226,7 +226,7 @@ module.exports = (params) => {
 
     if(faker.helpers.randomize([true, false])) {
       events.items.push({
-        title: 'Offer declined automatically',
+        title: 'Offer automatically declined',
         date: date,
         meta: {
           offer: {
