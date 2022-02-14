@@ -27,11 +27,21 @@
           <div class="app-activity-log__item">
             <div class="app-activity-log__header">
               <h2 class="app-activity-log__title govuk-heading-s govuk-!-font-size-24 govuk-!-margin-bottom-1">
-                {{ event.title }}
+                {% set isAutomaticRejection = event.title == content.rejectApplication.event.title and application.rejectedDate != application.rejectedFeedbackDate %}
+
+                {% set isAutomaticDecline = event.title == 'Offer automatically declined' %}
+
+                {% if isAutomaticRejection %}
+                  Application automatically rejected
+                {% else %}
+                  {{ event.title }}
+                {% endif %}
                 <span class="govuk-visually-hidden">{{- event.date | govukDateAtTime -}}</span>
               </h2>
               <p class="app-activity-log__byline">
-                {{ event.user }},
+                {% if not isAutomaticRejection and not isAutomaticDecline %}
+                  {{ event.user }},
+                {% endif %}
                 <time datetime="{{ event.date | formatDate }}">
                   {{- event.date | govukDateAtTime -}}
                 </time>
@@ -76,6 +86,11 @@
                 </div>
                 <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/offer">View offer</a></p>
               {% elseif event.title == "Offer accepted" %}
+                <div class="app-activity-log__box">
+                  {{ appEventOffer({ offer: event.meta.offer }) }}
+                </div>
+                <p class="app-log-card__note--link"><a href="/applications/{{ application.id}}/offer">View offer</a></p>
+              {% elseif event.title == "Offer automatically declined" %}
                 <div class="app-activity-log__box">
                   {{ appEventOffer({ offer: event.meta.offer }) }}
                 </div>

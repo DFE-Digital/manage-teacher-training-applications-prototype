@@ -77,7 +77,7 @@ defaults.emailsettings = [
   'Application withdrawn',
   'Application automatically rejected',
   'Offer accepted',
-  'Offer declined automatically',
+  'Offer automatically declined',
   'Offer declined'
 ]
 

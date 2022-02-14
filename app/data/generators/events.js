@@ -4,6 +4,7 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 const _ = require('lodash')
 const { DateTime } = require('luxon')
+const weighted = require('weighted')
 
 module.exports = (params) => {
   const events = { items: [] }
@@ -131,11 +132,12 @@ module.exports = (params) => {
   if (params.status === 'Rejected') {
     date = DateHelper.getFutureDate(date)
 
-    events.items.push({
+      events.items.push({
       title: 'Application rejected',
       user: faker.name.findName(),
       date: date
     })
+
   }
 
   if (params.status === 'Application withdrawn') {
@@ -175,9 +177,14 @@ module.exports = (params) => {
   if (params.status === 'Offer withdrawn') {
     date = DateHelper.getFutureDate(date)
 
+    let user = weighted.select({
+      'Sally Jones': 0.7,
+      'Support team': 0.3,
+    })
+
     events.items.push({
       title: 'Offer withdrawn',
-      user: faker.name.findName(),
+      user: user,
       date: date,
       meta: {
         offer: {
@@ -217,23 +224,44 @@ module.exports = (params) => {
   } else if (params.status === 'Declined') {
     date = DateHelper.getFutureDate(date)
 
-    events.items.push({
-      title: 'Offer declined',
-      user: 'Candidate',
-      date: date,
-      meta: {
-        offer: {
-          provider: params.provider,
-          course: params.course,
-          location: params.location,
-          studyMode: params.studyMode,
-          accreditedBody: params.accreditedBody,
-          fundingType: params.fundingType,
-          qualifications: params.qualifications,
-          conditions
+    if(faker.helpers.randomize([true, false])) {
+      events.items.push({
+        title: 'Offer automatically declined',
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            studyMode: params.studyMode,
+            accreditedBody: params.accreditedBody,
+            fundingType: params.fundingType,
+            qualifications: params.qualifications,
+            conditions
+          }
         }
-      }
-    })
+      })
+    } else {
+      events.items.push({
+        title: 'Offer declined',
+        user: 'Candidate',
+        date: date,
+        meta: {
+          offer: {
+            provider: params.provider,
+            course: params.course,
+            location: params.location,
+            studyMode: params.studyMode,
+            accreditedBody: params.accreditedBody,
+            fundingType: params.fundingType,
+            qualifications: params.qualifications,
+            conditions
+          }
+        }
+      })
+    }
+
+
   }
 
   if (params.status === 'Recruited') {
