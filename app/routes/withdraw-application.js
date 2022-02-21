@@ -46,12 +46,19 @@ module.exports = router => {
     })
   })
 
-  router.post('/applications/:applicationId/withdraw/confirm', (req, res) => {
+  router.post('/applications/:applicationId/withdraw/check', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Application withdrawn'
-    application.withdrawalDate = new Date().toISOString()
     req.flash('success', content.withdrawApplication.successMessage)
+
+    application.withdrawal = {
+      date: new Date().toISOString(),
+      feedback: {
+        reason: req.session.data['withdraw-application'].reason,
+        'other-reason-details': req.session.data['withdraw-application']['other-reason-details']
+      }
+    }
 
     // let reason = req.session.data['withdraw-application'].reason
     // TODO change reason on cancel interview
@@ -67,7 +74,7 @@ module.exports = router => {
       "date": new Date().toISOString()
     })
 
-    res.redirect(`/applications/${applicationId}`)
+    res.redirect(`/applications/${applicationId}/feedback`)
   })
 
 

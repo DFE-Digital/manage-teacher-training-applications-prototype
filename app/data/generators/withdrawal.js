@@ -4,7 +4,7 @@ faker.locale = 'en_GB'
 module.exports = () => {
 
   const defaults = {
-    actions: 'No',
+    reasons: 'No',
     'course-full': 'No',
     why: '',
     'other-feedback': 'No'
