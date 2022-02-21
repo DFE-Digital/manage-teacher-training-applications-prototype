@@ -4,6 +4,7 @@
 {% set name = application.personalDetails.name %}
 
 {% set caption = content.withdrawApplication.caption + ' - ' + name %}
+{% set heading = "Tell the candidate why you’re withdrawing the application" %}
 {% set heading = "Reason for withdrawing the application" %}
 
 {% set title = heading + ' - ' + caption %}
@@ -57,9 +58,9 @@
               checked: checked("['withdraw-application']['reason']", "Did not reply to messages")
             } if afterOfferMade,
             {
-              value: "Candidate asked to be withdrawn",
-              text: "Candidate asked to be withdrawn",
-              checked: checked("['withdraw-application']['reason']", "Candidate asked to be withdrawn")
+              value: "Candidate asked to withdraw the application",
+              text: "Candidate asked to withdraw the application",
+              checked: checked("['withdraw-application']['reason']", "Candidate asked to withdraw the application")
             },
             {
               value: "Other",

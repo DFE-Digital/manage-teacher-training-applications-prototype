@@ -5,6 +5,7 @@
 
 {% set caption = content.withdrawApplication.caption + ' - ' + name %}
 {% set heading = "You cannot withdraw the application" %}
+{% set heading = "You need to reject the application" %}
 
 {% set title = heading + ' - ' + caption %}
 
@@ -19,14 +20,16 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{caption}}</span>
+      <span class="govuk-caption-l">{{name}}</span>
       <h1 class="govuk-heading-l">{{heading}}</h1>
-      <p>You can only withdraw the application if the candidate asked you to.</p>
 
-      <p>If you want to withdraw the application for another reason, you’ll need to reject the application instead.</p>
+      <p>You can only withdraw an application before making an offer if the candidate asks you to.</p>
+
+      <p>You need to reject the application instead.</p>
 
       {{ govukButton({
-        text: "Reject application"
+        text: "Continue",
+        href: "/applications/" + application.id + "/reject"
       }) }}
     </div>
   </div>

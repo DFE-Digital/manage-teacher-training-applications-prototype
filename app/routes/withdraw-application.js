@@ -22,7 +22,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    if(application.status == 'Received' || application.status == 'Interviewing' && req.session.data['withdraw-application'].reason == 'Other') {
+    if((application.status == 'Received' || application.status == 'Interviewing') && req.session.data['withdraw-application'].reason == 'Other') {
       res.redirect(`/applications/${applicationId}/withdraw/exit`)
     } else {
       res.redirect(`/applications/${applicationId}/withdraw/check`)

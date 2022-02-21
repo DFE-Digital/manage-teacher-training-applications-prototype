@@ -8,7 +8,7 @@ module.exports = () => {
     feedback: {
       reason: faker.helpers.randomize([
         'Did not reply to messages',
-        'Candidate asked to be withdrawn',
+        'Candidate asked to withdraw their application',
         'Other'
       ])
     }
