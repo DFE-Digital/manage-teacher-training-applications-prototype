@@ -38,7 +38,7 @@
         {% endset %}
 
         {% set personalStatementReasonsHtml %}
-          {% include "_includes/reasons/personal-statement.njk" %}
+          {{appRejectionDetails({ category: 'personal-statement', reason: 'details', data: data })}}
         {% endset %}
 
         {% set teachingKnowledgeReasonsHtml %}
