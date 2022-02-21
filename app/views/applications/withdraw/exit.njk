@@ -1,0 +1,33 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set caption = content.withdrawApplication.caption + ' - ' + name %}
+{% set heading = "You cannot withdraw the application" %}
+
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id + "/withdraw" %}
+
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{caption}}</span>
+      <h1 class="govuk-heading-l">{{heading}}</h1>
+      <p>You can only withdraw the application if the candidate asked you to.</p>
+
+      <p>If you want to withdraw the application for another reason, you’ll need to reject the application instead.</p>
+
+      {{ govukButton({
+        text: "Reject application"
+      }) }}
+    </div>
+  </div>
+{% endblock %}

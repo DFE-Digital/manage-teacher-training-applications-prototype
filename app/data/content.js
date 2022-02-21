@@ -158,10 +158,6 @@ const content = {
       heading: 'Check details and withdraw application',
       button: 'Withdraw application'
     },
-    confirm: {
-      heading: 'Confirm that you want to withdraw the application',
-      button: 'Withdraw application'
-    },
     event: {
       title: 'Application withdrawn'
     }

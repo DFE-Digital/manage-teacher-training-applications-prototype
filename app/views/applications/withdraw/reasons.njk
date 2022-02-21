@@ -9,11 +9,7 @@
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
-  {% set backUrl = "/applications/" + application.id + "/decision" %}
-  {% if application.status == "Rejected" %}
-    {% set backUrl = "/applications/" + application.id %}
-  {% endif %}
-
+  {% set backUrl = "/applications/" + application.id + "/withdraw" %}
   {{ govukBackLink({
     href: backUrl
   }) }}
@@ -34,17 +30,19 @@
             text: "Details",
             classes: "govuk-label--s"
           },
-          id: 'withdraw-application-other-reasons-details',
-          name: 'withdraw-application[other-reasons-details]',
-          value: data['withdraw-application']['other-reasons-details']
+          id: 'withdraw-application-other-reason-details',
+          name: 'withdraw-application[other-reason-details]',
+          value: data['withdraw-application']['other-reason-details']
         }) }}
       {% endset %}
 
       <form method="post">
 
+        {% set afterOfferMade = application.status != 'Received' and application.status != 'Interviewing' %}
+
         {{ govukRadios({
-          idPrefix: "withdraw-application-reasons",
-          name: "withdraw-application[reasons]",
+          idPrefix: "withdraw-application-reason",
+          name: "withdraw-application[reason]",
           fieldset: {
             legend: {
               html: h1,
@@ -56,20 +54,20 @@
             {
               value: "Did not reply to messages",
               text: "Did not reply to messages",
-              checked: checked("['withdraw-application']['reasons']", "Did not reply to messages")
-            },
+              checked: checked("['withdraw-application']['reason']", "Did not reply to messages")
+            } if afterOfferMade,
             {
               value: "Candidate asked to be withdrawn",
               text: "Candidate asked to be withdrawn",
-              checked: checked("['withdraw-application']['reasons']", "Candidate asked to be withdrawn")
+              checked: checked("['withdraw-application']['reason']", "Candidate asked to be withdrawn")
             },
             {
               value: "Other",
               text: "Other",
-              checked: checked("['withdraw-application']['reasons']", "Other"),
+              checked: checked("['withdraw-application']['reason']", "Other"),
               conditional: {
                 html: otherDetailsHtml
-              }
+              } if afterOfferMade
             }
           ]
         }) }}

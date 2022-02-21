@@ -20,12 +20,12 @@
       <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{heading}}</h1>
 
-      {% set reason = data['withdraw-application']['reasons'] %}
+      {% set reason = data['withdraw-application']['reason'] %}
 
       {% set answer %}
         {{reason}}
         {% if reason == 'Other' %}
-          - {{ data['withdraw-application']['other-reasons-details']}}
+          - {{ data['withdraw-application']['other-reason-details']}}
         {% endif %}
       {% endset %}
       {{ govukSummaryList({
