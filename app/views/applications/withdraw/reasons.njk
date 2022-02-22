@@ -10,7 +10,7 @@
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
-  {% set backUrl = "/applications/" + application.id + "/withdraw" %}
+  {% set backUrl = "/applications/" + application.id %}
   {{ govukBackLink({
     href: backUrl
   }) }}
