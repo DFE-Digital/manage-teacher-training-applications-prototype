@@ -364,6 +364,11 @@ const getLocationItems = (selectedItems) => {
 }
 
 module.exports = router => {
+
+  router.get('/applications', (req, res) => {
+    res.redirect('/')
+  })
+
   router.all('/', (req, res) => {
     let apps = req.session.data.applications.map(app => app).reverse()
 
