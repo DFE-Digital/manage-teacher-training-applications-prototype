@@ -53,15 +53,15 @@
           },
           items: [
             {
-              value: "Did not reply to messages",
-              text: "Did not reply to messages",
-              checked: checked("['withdraw-application']['reason']", "Did not reply to messages")
-            } if afterOfferMade,
-            {
               value: "Candidate asked to withdraw the application",
               text: "Candidate asked to withdraw the application",
               checked: checked("['withdraw-application']['reason']", "Candidate asked to withdraw the application")
             },
+            {
+              value: "Did not reply to messages",
+              text: "Did not reply to messages",
+              checked: checked("['withdraw-application']['reason']", "Did not reply to messages")
+            } if afterOfferMade,
             {
               value: "Other",
               text: "Other",
