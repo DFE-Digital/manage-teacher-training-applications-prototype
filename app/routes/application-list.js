@@ -185,19 +185,9 @@ const addHeadings = (grouped) => {
   }
 
   if (grouped.other.length) {
-    if (  grouped.deferredOffersPendingReconfirmation.length ||
-          grouped.aboutToBeRejectedAutomatically.length ||
-          grouped.rejectedWithoutFeedback.length ||
-          grouped.awaitingDecision.length ||
-          grouped.waitingOn.length ||
-          grouped.pendingConditions.length ||
-          grouped.conditionsMet.length ||
-          grouped.pendingInterview.length
-    ) {
-      array.push({
-        heading: 'No action needed'
-      })
-    }
+    array.push({
+      heading: 'No action needed'
+    })
     array = array.concat(grouped.other)
   }
   return array
