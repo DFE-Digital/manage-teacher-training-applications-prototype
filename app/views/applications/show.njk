@@ -22,7 +22,7 @@
       {% if not query.transferred %}
         <p class="govuk-body">
           {% if application.status not in ["Rejected","Declined","Offer withdrawn","Application withdrawn","Conditions not met"] %}
-            <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw at candidate’s request</a>
+            <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw application</a>
           {% endif %}
           <a class="govuk-link" href="#" download>Download application (PDF)</a>
         </p>

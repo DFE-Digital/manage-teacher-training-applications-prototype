@@ -1,0 +1,84 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set caption = content.withdrawApplication.caption + ' - ' + name %}
+{% set heading = "Tell the candidate why you’re withdrawing the application" %}
+{% set heading = "Reason for withdrawing the application" %}
+
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id %}
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-l">{{caption}}</span>
+        {{heading}}
+      {% endset %}
+
+      {% set otherDetailsHtml %}
+        {{ govukCharacterCount({
+          maxwords: 100,
+          label: {
+            text: "Details",
+            classes: "govuk-label--s"
+          },
+          id: 'withdraw-application-other-reason-details',
+          name: 'withdraw-application[other-reason-details]',
+          value: data['withdraw-application']['other-reason-details']
+        }) }}
+      {% endset %}
+
+      <form method="post">
+
+        {% set afterOfferMade = application.status != 'Received' and application.status != 'Interviewing' %}
+
+        {{ govukRadios({
+          idPrefix: "withdraw-application-reason",
+          name: "withdraw-application[reason]",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Candidate asked to withdraw the application",
+              text: "Candidate asked to withdraw the application",
+              checked: checked("['withdraw-application']['reason']", "Candidate asked to withdraw the application")
+            },
+            {
+              value: "Candidate did not reply to messages",
+              text: "Candidate did not reply to messages",
+              checked: checked("['withdraw-application']['reason']", "Candidate did not reply to messages")
+            } if afterOfferMade,
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked("['withdraw-application']['reason']", "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              } if afterOfferMade
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

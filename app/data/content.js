@@ -152,10 +152,10 @@ const content = {
     }
   },
   withdrawApplication: {
-    caption: 'Withdraw at candidate’s request',
+    caption: 'Withdraw application',
     successMessage: 'Application withdrawn',
     checkAnswers: {
-      heading: 'Confirm that the candidate wants to withdraw their application',
+      heading: 'Check details and withdraw application',
       button: 'Withdraw application'
     },
     event: {

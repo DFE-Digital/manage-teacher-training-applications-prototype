@@ -35,10 +35,30 @@
         {% set whyHeading = "Why your offer was withdrawn" %}
         {% include "_includes/candidate-feedback.njk" %}
       {% elseif application.status == "Application withdrawn" %}
-        <p>The application was withdrawn on {{application.withdrawalDate | govukDate}}. The following feedback was sent to the candidate.</p>
-        {% set withdraw = application.withdrawalReasons %}
-        {% set withdrawApplicationChangeLinks = true %}
-        {% include "_includes/withdraw-application-feedback.njk" %}
+        <p>The application was withdrawn on {{application.withdrawal.date | govukDate}}. The following feedback was sent to the candidate.</p>
+
+        {% set reason = application.withdrawal.feedback.reason %}
+
+        {% set answer %}
+          {{reason}}
+          {% if reason == 'Other' %}
+            - {{ application.withdrawal.feedback['other-reason-details']}}
+          {% endif %}
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Reason for withdrawing the application"
+              },
+              value: {
+                text: answer
+              }
+            }
+          ]
+        }) }}
+
       {% endif%}
     </div>
   </div>

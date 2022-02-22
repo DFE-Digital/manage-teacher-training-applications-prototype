@@ -142,6 +142,11 @@ const generateFakeApplication = (params = {}) => {
     }
   }
 
+  let withdrawal
+  if(status === 'Application withdrawn') {
+    withdrawal = generateWithdrawal()
+  }
+
   let otherQualifications
 
   if(params.otherQualifications === null) {
@@ -173,6 +178,7 @@ const generateFakeApplication = (params = {}) => {
     assignedUsers: params.assignedUsers || assignedUsers,
     deferredOfferUnavailable,
     cycle,
+    withdrawal,
     provider: provider.name,
     accreditedBody: accreditedBody.name,
     studyMode: params.studyMode || studyMode,

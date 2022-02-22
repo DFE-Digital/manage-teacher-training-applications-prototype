@@ -3,40 +3,20 @@ faker.locale = 'en_GB'
 
 module.exports = () => {
 
-  const defaults = {
-    actions: 'No',
-    'course-full': 'No',
-    why: '',
-    'other-feedback': 'No'
+  let withdrawal = {
+    date: faker.date.past(),
+    feedback: {
+      reason: faker.helpers.randomize([
+        'Candidate asked to withdraw their application',
+        'Candidate did not reply to messages',
+        'Other'
+      ])
+    }
   }
 
-  const behaviour = {
-    actions: 'Yes',
-    'actions-reasons': [
-      'Did not reply to messages',
-      'Other'
-    ],
-    'actions-reasons-other': faker.lorem.paragraph(),
-    'actions-reasons-other-improve': faker.lorem.paragraph()
+  if(withdrawal.feedback.reason == 'Other') {
+    withdrawal.feedback['other-reason-details'] = faker.lorem.paragraph()
   }
 
-  const course = {
-    'course-full': 'Yes'
-  }
-
-  const why = {
-    why: faker.lorem.paragraph(5)
-  }
-
-  const additionalFeedback = {
-    'other-feedback': 'Yes',
-    'other-feedback-details': faker.lorem.paragraph(5)
-  }
-
-  // Withdrawal scenarios
-  const scenario1 = {...behaviour, ...additionalFeedback}
-  const scenario2 = {...course, ...additionalFeedback}
-  const scenario3 = {...why, ...additionalFeedback}
-
-  return faker.helpers.randomize([scenario1, scenario2, scenario3])
+  return withdrawal
 }

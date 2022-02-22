@@ -129,7 +129,7 @@
             {{ appEventApplication({ application: event.application }) }}
           </div>
 
-          {% if event.application.rejectedReasons %}
+          {% if event.application.rejectedReasons or event.application.withdrawal %}
             <p class="app-log-card__note--link"><a class="govuk-link" href="/applications/{{ event.application.id }}/feedback">
               View feedback
               <span class="govuk-visually-hidden">
