@@ -21,13 +21,13 @@
       </h1>
 
       {% if data['edit-offer']['submitted-conditions-page'] == "true" %}
-        {% set fitnessChecked = checked("['edit-offer']['standard-conditions']", "Fitness to teach check") %}
-        {% set dbsChecked = checked("['edit-offer']['standard-conditions']", "Disclosure and barring service check") %}
+        {% set fitnessChecked = checked("['edit-offer']['standard-conditions']", "Fitness to train to teach check") %}
+        {% set dbsChecked = checked("['edit-offer']['standard-conditions']", "Disclosure and Barring Service (DBS) check") %}
       {% else %}
-        {% if standardConditions and "Fitness to teach check" in standardConditions %}
+        {% if standardConditions and "Fitness to train to teach check" in standardConditions %}
           {% set fitnessChecked = true %}
         {% endif%}
-        {% if standardConditions and "Disclosure and barring service check" in standardConditions %}
+        {% if standardConditions and "Disclosure and Barring Service (DBS) check" in standardConditions %}
           {% set dbsChecked = true %}
         {% endif %}
       {% endif %}
@@ -46,15 +46,12 @@
             }
           },
           items: [{
-            value: "Fitness to teach check",
-            text: "Fitness to teach check",
+            value: "Fitness to train to teach check",
+            text: "Fitness to train to teach check",
             checked: fitnessChecked
           }, {
-            value: "Disclosure and barring service check",
-            text: "Disclosure and barring service check",
-            hint: {
-              text: "We’ll email the candidate to tell them that they’ll need to provide ID"
-            },
+            value: "Disclosure and Barring Service (DBS) check",
+            text: "Disclosure and Barring Service (DBS) check",
             checked: dbsChecked
           }]
         }) }}

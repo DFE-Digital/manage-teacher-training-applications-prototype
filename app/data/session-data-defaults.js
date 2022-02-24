@@ -84,14 +84,14 @@ defaults.emailsettings = [
 defaults.user = user
 
 defaults["standard-conditions"] = [
-  "Fitness to teach check",
-  "Disclosure and barring service check"
+  "Fitness to train to teach check",
+  "Disclosure and Barring Service (DBS) check"
 ]
 
 defaults['new-offer'] = {
   'standard-conditions': [
-    "Fitness to teach check",
-    "Disclosure and barring service check"
+    "Fitness to train to teach check",
+    "Disclosure and Barring Service (DBS) check"
   ]
 }
 
