@@ -27,7 +27,7 @@
         {% if not query.transferred %}
           {{govukButton({
             text: "Add note",
-            href: "/applications/" + application.id + "/notes/first-time",
+            href: "/applications/" + application.id + "/notes/new",
             classes: "govuk-button--secondary"
           })}}
         {% endif %}

@@ -131,8 +131,8 @@ module.exports = router => {
     delete data['further-conditions']
 
     data["standard-conditions"] = [
-      "Fitness to teach check",
-      "Disclosure and barring service check"
+      "Fitness to train to teach check",
+      "Disclosure and Barring Service (DBS) check"
     ]
 
     if (decision === '1') {

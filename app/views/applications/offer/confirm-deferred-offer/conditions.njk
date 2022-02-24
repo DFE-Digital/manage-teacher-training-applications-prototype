@@ -25,11 +25,11 @@
       <h1 class="govuk-heading-l">{{heading}}</h1>
 
       {% if data['confirm-deferred-offer']['submitted-conditions-page'] == 'true' %}
-        {% set fitnessChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Fitness to teach check") %}
-        {% set dbsChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Disclosure and barring service check") %}
+        {% set fitnessChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Fitness to train to teach check") %}
+        {% set dbsChecked = checked("['confirm-deferred-offer']['standard-conditions']", "Disclosure and Barring Service (DBS) check") %}
       {% else %}
-        {% set fitnessChecked = ("Fitness to teach check" in standardConditions) %}
-        {% set dbsChecked = ("Disclosure and barring service check" in standardConditions) %}
+        {% set fitnessChecked = ("Fitness to train to teach check" in standardConditions) %}
+        {% set dbsChecked = ("Disclosure and Barring Service (DBS) check" in standardConditions) %}
       {% endif %}
 
       <form method="post">
@@ -45,15 +45,12 @@
             }
           },
           items: [{
-            value: "Fitness to teach check",
-            text: "Fitness to teach check",
+            value: "Fitness to train to teach check",
+            text: "Fitness to train to teach check",
             checked: fitnessChecked
           }, {
-            value: "Disclosure and barring service check",
-            text: "Disclosure and barring service check",
-            hint: {
-              text: "We’ll email the candidate to tell them that they’ll need to provide ID"
-            },
+            value: "Disclosure and Barring Service (DBS) check",
+            text: "Disclosure and Barring Service (DBS) check",
             checked: dbsChecked
           }]
         }) }}

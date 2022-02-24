@@ -37,11 +37,11 @@ module.exports = (params) => {
   if(params.status == 'Deferred' || params.status == 'Conditions pending' || faker.helpers.randomize([true, false])) {
     standardConditions = [{
       id: faker.datatype.uuid(),
-      description: 'Fitness to teach check',
+      description: 'Fitness to train to teach check',
       status: conditionStatus
     }, {
       id: faker.datatype.uuid(),
-      description: 'Disclosure and barring service check',
+      description: 'Disclosure and Barring Service (DBS) check',
       status: conditionStatus
     }]
 
