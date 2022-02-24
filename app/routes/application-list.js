@@ -363,6 +363,26 @@ const getLocationItems = (selectedItems) => {
   return items
 }
 
+const sortApplications = (applications) => {
+  let newApplications = []
+
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received' || app.status == 'Interviewing').sort(function(a, b) {
+    return a.daysToRespond - b.daysToRespond
+  }))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offered'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions pending'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Recruited'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Deferred'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Rejected'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Application withdrawn'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offer withdrawn'))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions not met'))
+
+  return newApplications
+
+
+}
+
 module.exports = router => {
 
   router.get('/applications', (req, res) => {
@@ -600,13 +620,17 @@ module.exports = router => {
     // TODO: clean up
     let applications = apps;
 
-    let allApplications = applications;
+    // let allApplications = applications;
 
     // Whack all the grouped items into an array without headings
-    let grouped = getApplicationsByGroup(applications)
+    // let grouped = getApplicationsByGroup(applications)
 
     // Put groups into ordered array
-    applications = flattenGroup(grouped)
+    // applications = flattenGroup(grouped)
+
+    applications = sortApplications(applications)
+
+
 
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(applications, req.query.page)
@@ -623,15 +647,15 @@ module.exports = router => {
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
 
     // now mixin the headings
-    grouped = getApplicationsByGroup(applications)
-    applications = addHeadings(grouped)
+    // grouped = getApplicationsByGroup(applications)
+    // applications = addHeadings(grouped)
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
     const locationItems = getLocationItems(req.session.data.location)
 
     res.render('index', {
-      allApplications,
+      // allApplications,
       applications,
       pagination,
       selectedFilters,

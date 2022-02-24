@@ -100,7 +100,7 @@
 
   {% endif %}
 
-  {% if checked("provider", data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
+  {# {% if checked("provider", data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
     {{ govukCheckboxes({
       name: 'location',
       classes: "govuk-checkboxes--small",
@@ -112,7 +112,7 @@
       },
       items: locationItems
     }) }}
-  {% endif %}
+  {% endif %} #}
 
   {% if accreditedBodyItems.length > 1 %}
     {{ govukCheckboxes({
@@ -128,6 +128,38 @@
       items: accreditedBodyItems
     }) }}
   {% endif %}
+
+  {% for item in trainingProviderItems %}
+
+    {{ govukCheckboxes({
+      name: 'location',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Locations for ' + item.text,
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: locationItems
+    }) }}
+
+  {% endfor %}
+
+  {% for item in accreditedBodyItems %}
+
+    {{ govukCheckboxes({
+      name: 'location',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Locations for ' + item.text,
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: locationItems
+    }) }}
+
+  {% endfor %}
 
   {% if userItems.length >= userItemsDisplayLimit %}
 

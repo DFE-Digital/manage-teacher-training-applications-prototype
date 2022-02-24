@@ -2,13 +2,15 @@
 
 {% set primaryNavId = 'applications' %}
 
-{% set title = "Applications (" + allApplications.length + ")" %}
+{% set title = "Applications (" + applications.length + ")" %}
 
 {% block content %}
 
-  <h1 class="govuk-heading-l">
+  <h1 class="govuk-heading-l govuk-!-margin-bottom-2">
     {{title}}
   </h1>
+
+  <p class="govuk-body govuk-!-margin-bottom-6"><a class="govuk-link" href="/reports/export">Export data</a></p>
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
@@ -29,11 +31,9 @@
           <div class="app-application-cards">
             {%- for a in applications %}
 
-              {% if a.heading %}
-                <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
-              {% else %}
-                {% include "_includes/application-card.njk" %}
-              {% endif %}
+
+              {% include "_includes/application-card.njk" %}
+
 
             {% endfor -%}
           </div>
