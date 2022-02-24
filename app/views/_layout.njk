@@ -120,6 +120,11 @@
 {{ appPrimaryNavigation({
   items: [
     {
+      href: "/dashboard",
+      text: "Overview",
+      active: primaryNavId == 'dashboard'
+    },
+    {
       href: "/" + ('?keywords=' if data.keywords.length),
       text: "Applications",
       active: primaryNavId == 'applications'
