@@ -393,6 +393,12 @@ module.exports = router => {
               importantItemValid = true
             }
           }
+
+          if(importantItems.includes('Deferred offers to confirm')) {
+            if(app.status == 'Deferred' && req.session.data.settings == 'new-cycle') {
+              importantItemValid = true
+            }
+          }
         }
 
         return cycleValid
