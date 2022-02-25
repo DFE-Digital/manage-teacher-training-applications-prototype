@@ -27,6 +27,23 @@ const getSubjectItems = (selectedItems) => {
   return items
 }
 
+const getStatusItems = (selectedItems) => {
+  const items = []
+
+  const statuses = ['Received', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
+
+  statuses.forEach((status, i) => {
+    const item = {}
+
+    item.text = status
+    item.value = status
+    item.checked = (selectedItems && selectedItems.includes(status)) ? 'checked' : ''
+
+    items.push(item)
+  })
+  return items
+}
+
 const getSelectedSubjectItems = (selectedItems) => {
   const items = []
 
@@ -245,7 +262,6 @@ module.exports = router => {
         }
         req.query[filter] = null
       })
-
     }
 
     let apps = req.session.data.applications.map(app => app).reverse()
@@ -547,6 +563,7 @@ module.exports = router => {
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
     const locationItems = getLocationItems(req.session.data.location)
+    const statusItems = getStatusItems(req.session.data.status)
 
     res.render('index', {
       // allApplications,
@@ -563,7 +580,8 @@ module.exports = router => {
       userItems,
       userItemsDisplayLimit: 15,
       selectedUsers,
-      cycleItems
+      cycleItems,
+      statusItems
     })
   })
 

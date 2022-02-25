@@ -50,63 +50,7 @@
         classes: 'govuk-fieldset__legend--s'
       }
     },
-    items: [
-      {
-        value: 'Received',
-        text: 'Received',
-        checked: checked("status", "Received") == 'checked'
-      },
-      {
-        value: 'Interviewing',
-        text: 'Interviewing',
-        checked: checked("status", "Interviewing") == 'checked'
-      },
-      {
-        value: 'Offered',
-        text: 'Offered',
-        checked: checked("status", "Offered") == 'checked'
-      },
-      {
-        value: 'Conditions pending',
-        text: 'Conditions pending',
-        checked: checked("status", "Conditions pending") == 'checked'
-      },
-      {
-        value: 'Recruited',
-        text: 'Recruited',
-        checked: checked("status", "Recruited") == 'checked'
-      },
-      {
-        value: 'Deferred',
-        text: 'Deferred',
-        checked: checked("status", "Deferred") == 'checked'
-      },
-       {
-        value: 'Conditions not met',
-        text: 'Conditions not met',
-        checked: checked("status", "Conditions not met") == 'checked'
-      },
-      {
-        value: 'Declined',
-        text: 'Declined',
-        checked: checked("status", "Declined") == 'checked'
-      },
-      {
-        value: 'Rejected',
-        text: 'Rejected',
-        checked: checked("status", "Rejected") == 'checked'
-      },
-      {
-        value: 'Application withdrawn',
-        text: 'Application withdrawn',
-        checked: checked("status", "Application withdrawn") == 'checked'
-      },
-      {
-        value: 'Offer withdrawn',
-        text: 'Offer withdrawn',
-        checked: checked("status", "Offer withdrawn") == 'checked'
-      }
-    ]
+    items: statusItems
   }) }}
 
   {% if trainingProviderItems.length > 1 %}
