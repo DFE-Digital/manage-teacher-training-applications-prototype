@@ -2787,10 +2787,11 @@ const generateFakeApplications = () => {
 
 
   for (const [key, value] of Object.entries(STATUS)) {
-    const count = faker.datatype.number({ 'min': 30, 'max': 45 })
+    const count = faker.datatype.number({ 'min': 10, 'max': 15 })
     let application
 
     if(key === "DEFERRED") continue;
+    if(key === "RECEIVED") continue;
 
     for (let i = 0; i < count; i++) {
       if (value === 'Offered') {

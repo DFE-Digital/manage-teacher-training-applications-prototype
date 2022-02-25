@@ -34,6 +34,15 @@
             <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}} to make decision</p>
           {% endif %}
         {% endif %}
+
+        {% if a.status == 'Rejected' and not a.rejectedReasons %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Needs feedback</p>
+        {% endif %}
+
+        {% if a.status == 'Deferred' and data.settings == 'new-cycle' %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Ready to confirm</p>
+        {% endif %}
+
         {% if a.status == 'Offered' %}
           {% if a.offer.daysToDecline == 0 %}
             <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day for candidate to respond</p>

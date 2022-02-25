@@ -4,194 +4,7 @@ const CycleHelper = require('../data/helpers/cycles')
 
 const subjects = require('../data/subjects')
 const locations = require('../data/locations')
-
-const getCheckboxValues = (name, data) => {
-  return name && (Array.isArray(name) ? name : [name].filter((name) => {
-    return name !== '_unchecked'
-  })) || data
-}
-
-const getApplicationsByGroup = (applications) => {
-
-  const previousCyclePendingConditions = applications
-    .filter(app => app.status === "Conditions pending")
-    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
-
-  const deferredOffersPendingReconfirmation = applications
-    .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
-
-  const rejectedWithoutFeedback = applications
-    .filter(app => app.status === 'Rejected')
-    .filter(app => !app.rejectedReasons)
-
-  const aboutToBeRejectedAutomatically = applications
-    .filter(app => (app.status === 'Received' || app.status === 'Interviewing'))
-    .filter(app => app.daysToRespond < 5)
-    .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
-
-  const awaitingDecision = applications
-    .filter(app => (app.status === 'Received'))
-    .filter(app => app.daysToRespond >= 5)
-    .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
-
-  const pendingInterview = applications
-    .filter(app => (app.status === 'Interviewing'))
-    .filter(app => app.daysToRespond >= 5)
-    .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
-
-  const waitingOn = applications
-    .filter(app => app.status === 'Offered')
-    .sort(function(a, b) {
-      return a.offer.daysToDecline - b.offer.daysToDecline
-    })
-
-  const pendingConditions = applications
-    .filter(app => app.status === 'Conditions pending')
-    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
-
-  const conditionsMet = applications
-    .filter(app => app.status === 'Recruited')
-
-  const deferredOffers = applications
-    .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
-
-  let other = applications
-    .filter(app => app.status !== 'Received')
-    .filter(app => app.status !== 'Interviewing')
-    .filter(app => app.status !== 'Deferred')
-    .filter(app => app.status !== 'Offered')
-    .filter(app => app.status !== 'Conditions pending')
-    .filter(app => app.status !== 'Recruited')
-    .filter(app => app.status !== 'Rejected')
-
-  // we have 5 of these
-  const rejectedWithFeedback = applications
-    .filter(app => app.status === 'Rejected')
-    .filter(function (app) {
-      return app.rejectedReasons
-    })
-
-  other = other.concat(rejectedWithFeedback)
-
-  return {
-    deferredOffersPendingReconfirmation,
-    previousCyclePendingConditions,
-    rejectedWithoutFeedback,
-    aboutToBeRejectedAutomatically,
-    awaitingDecision,
-    pendingInterview,
-    waitingOn,
-    pendingConditions,
-    conditionsMet,
-    deferredOffers,
-    other
-  }
-}
-
-const flattenGroup = (grouped) => {
-  let array = []
-  array = array.concat(grouped.deferredOffersPendingReconfirmation)
-  array = array.concat(grouped.previousCyclePendingConditions)
-  array = array.concat(grouped.aboutToBeRejectedAutomatically)
-  array = array.concat(grouped.rejectedWithoutFeedback)
-  array = array.concat(grouped.awaitingDecision)
-  array = array.concat(grouped.pendingInterview)
-  array = array.concat(grouped.waitingOn)
-  array = array.concat(grouped.pendingConditions)
-  array = array.concat(grouped.conditionsMet)
-  array = array.concat(grouped.deferredOffers)
-  array = array.concat(grouped.other)
-  return array
-}
-
-const addHeadings = (grouped) => {
-  let array = []
-  if (grouped.deferredOffersPendingReconfirmation.length) {
-    array.push({
-      heading: 'Confirm deferred offers'
-    })
-    array = array.concat(grouped.deferredOffersPendingReconfirmation)
-  }
-
-  if (grouped.previousCyclePendingConditions.length) {
-    array.push({
-      heading: 'Offers pending conditions (previous recruitment cycle)'
-    })
-    array = array.concat(grouped.previousCyclePendingConditions)
-  }
-
-  if (grouped.aboutToBeRejectedAutomatically.length) {
-    array.push({
-      heading: 'Deadline approaching: make decision about application'
-    })
-    array = array.concat(grouped.aboutToBeRejectedAutomatically)
-  }
-
-  if (grouped.rejectedWithoutFeedback.length) {
-    array.push({
-      heading: 'Give feedback: you did not make a decision in time'
-    })
-    array = array.concat(grouped.rejectedWithoutFeedback)
-  }
-
-  if (grouped.awaitingDecision.length) {
-    array.push({
-      heading: 'Awaiting review'
-    })
-    array = array.concat(grouped.awaitingDecision)
-  }
-
-  if (grouped.pendingInterview.length) {
-    array.push({
-      heading: 'Interviewing'
-    })
-    array = array.concat(grouped.pendingInterview)
-  }
-
-  if (grouped.waitingOn.length) {
-    array.push({
-      heading: 'Waiting for candidate to respond to offer'
-    })
-    array = array.concat(grouped.waitingOn)
-  }
-
-  if (grouped.pendingConditions.length) {
-    array.push({
-      heading: 'Offers pending conditions (current recruitment cycle)'
-    })
-    array = array.concat(grouped.pendingConditions)
-  }
-
-  if (grouped.conditionsMet.length) {
-    array.push({
-      heading: 'Successful candidates'
-    })
-    array = array.concat(grouped.conditionsMet)
-  }
-
-  if (grouped.deferredOffers.length) {
-    array.push({
-      heading: 'Deferred offers'
-    })
-    array = array.concat(grouped.deferredOffers)
-  }
-
-  if (grouped.other.length) {
-    array.push({
-      heading: 'No action needed'
-    })
-    array = array.concat(grouped.other)
-  }
-  return array
-}
+const { default: request } = require('sync-request')
 
 const getSubjectItems = (selectedItems) => {
   const items = []
@@ -366,7 +179,10 @@ const getLocationItems = (selectedItems) => {
 const sortApplications = (applications) => {
   let newApplications = []
 
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received' || app.status == 'Interviewing').sort(function(a, b) {
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
+    return a.daysToRespond - b.daysToRespond
+  }))
+  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Interviewing').sort(function(a, b) {
     return a.daysToRespond - b.daysToRespond
   }))
   newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offered'))
@@ -383,6 +199,22 @@ const sortApplications = (applications) => {
 
 }
 
+const getCheckboxValues = (name, data) => {
+  return name && (Array.isArray(name) ? name : [name].filter((name) => {
+    return name !== '_unchecked'
+  })) || data && (Array.isArray(data) ? data : [data])
+}
+
+const removeFilter = (value, data) => {
+  // do this check because if coming from overview page for example,
+  // the query/param will be a string value, not an array containing a string
+  if(Array.isArray(data)) {
+    return data.filter(item => item !== value)
+  } else {
+    return null
+  }
+}
+
 module.exports = router => {
 
   router.get('/applications', (req, res) => {
@@ -390,6 +222,32 @@ module.exports = router => {
   })
 
   router.all('/', (req, res) => {
+
+    var filters = [
+      'cycle',
+      'status',
+      'provider',
+      'accreditedBody',
+      'keywords',
+      'location',
+      'studyMode',
+      'subject',
+      'assignedUser',
+      'importantItem'
+    ]
+
+    if(req.query.referrer === 'overview') {
+      filters.forEach(filter => {
+        if(req.query[filter]) {
+          req.session.data[filter] = req.query[filter]
+        } else {
+          req.session.data[filter] = null
+        }
+        req.query[filter] = null
+      })
+
+    }
+
     let apps = req.session.data.applications.map(app => app).reverse()
 
     // for use in the filters
@@ -397,7 +255,7 @@ module.exports = router => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
 
-    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser } = req.query
+    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, importantItem } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -409,16 +267,18 @@ module.exports = router => {
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
     const subjects = getCheckboxValues(subject, req.session.data.subject)
     const assignedUsers = getCheckboxValues(assignedUser, req.session.data.assignedUser)
+    const importantItems = getCheckboxValues(importantItem, req.session.data.importantItem)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (importantItems && importantItems.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
 
         let candidateNameValid = true
         let applicationReferenceValid = true
+        let noteValid = true
 
         const candidateName = `${app.personalDetails.givenName} ${app.personalDetails.familyName}`
         const applicationReference = '' + app.id
@@ -426,9 +286,10 @@ module.exports = router => {
         if (keywords) {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
           applicationReferenceValid = applicationReference.includes(keywords.toLowerCase())
+          noteValid = app.notes.items[0].message.toLowerCase().includes(keywords.toLowerCase())
         }
 
-        return candidateNameValid || applicationReferenceValid
+        return candidateNameValid || applicationReferenceValid || noteValid
       })
     }
 
@@ -443,6 +304,7 @@ module.exports = router => {
         let subjectValid = true
         let assignedUserValid = true
         let unassignedUserValid = true
+        let importantItemValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -501,6 +363,22 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
+        if (importantItems && importantItems.length) {
+          importantItemValid = false
+
+          if(importantItems.includes('5 days or fewer to make decision')) {
+            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond < 5) {
+              importantItemValid = true
+            }
+          }
+
+          if(importantItems.includes('Feedback needed')) {
+            if(app.status == 'Rejected' && !app.rejectedReasons) {
+              importantItemValid = true
+            }
+          }
+        }
+
         return cycleValid
           && statusValid
           && locationValid
@@ -510,6 +388,7 @@ module.exports = router => {
           && subjectValid
           && assignedUserValid
           && unassignedUserValid
+          && importantItemValid
       })
     }
 
@@ -526,6 +405,18 @@ module.exports = router => {
             return {
               text: CycleHelper.getCycleLabel(cycle),
               href: `/remove-cycle-filter/${cycle}`
+            }
+          })
+        })
+      }
+
+      if (importantItems && importantItems.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Important' },
+          items: importantItems.map((importantItem) => {
+            return {
+              text: importantItem,
+              href: `/remove-importantItem-filter/${importantItem}`
             }
           })
         })
@@ -615,6 +506,9 @@ module.exports = router => {
           })
         })
       }
+
+
+
     }
 
     // TODO: clean up
@@ -679,47 +573,53 @@ module.exports = router => {
   })
 
   router.get('/remove-cycle-filter/:cycle', (req, res) => {
-    req.session.data.cycle = req.session.data.cycle.filter(item => item !== req.params.cycle)
+    req.session.data.cycle = removeFilter(req.params.cycle, req.session.data.cycle)
     res.redirect('/')
   })
 
   router.get('/remove-status-filter/:status', (req, res) => {
-    req.session.data.status = req.session.data.status.filter(item => item !== req.params.status)
+    req.session.data.status = removeFilter(req.params.status, req.session.data.status)
     res.redirect('/')
   })
 
   router.get('/remove-provider-filter/:provider', (req, res) => {
-    req.session.data.provider = req.session.data.provider.filter(item => item !== req.params.provider)
+    req.session.data.provider = removeFilter(req.params.provider, req.session.data.provider)
     res.redirect('/')
   })
 
   router.get('/remove-location-filter/:location', (req, res) => {
-    req.session.data.location = req.session.data.location.filter(item => item !== req.params.location)
+    req.session.data.location = removeFilter(req.params.location, req.session.data.location)
     res.redirect('/')
   })
 
   router.get('/remove-accreditedBody-filter/:accreditedBody', (req, res) => {
-    req.session.data.accreditedBody = req.session.data.accreditedBody.filter(item => item !== req.params.accreditedBody)
+    req.session.data.accreditedBody = removeFilter(req.params.accreditedBody, req.session.data.accreditedBody)
     res.redirect('/')
   })
 
   router.get('/remove-subject-filter/:subject', (req, res) => {
-    req.session.data.subject = req.session.data.subject.filter(item => item !== req.params.subject)
+    req.session.data.subject = removeFilter(req.params.subject, req.session.data.subject)
     res.redirect('/')
   })
 
   router.get('/remove-studyMode-filter/:studyMode', (req, res) => {
-    req.session.data.studyMode = req.session.data.studyMode.filter(item => item !== req.params.studyMode)
+    req.session.data.studyMode = removeFilter(req.params.studyMode, req.session.data.studyMode)
     res.redirect('/')
   })
 
   router.get('/remove-assignedUser-filter/:assignedUser', (req, res) => {
-    req.session.data.assignedUser = req.session.data.assignedUser.filter(item => item !== req.params.assignedUser)
+    req.session.data.assignedUser = removeFilter(req.params.assignedUser, req.session.data.assignedUser)
+    res.redirect('/')
+  })
+
+  router.get('/remove-importantItem-filter/:importantItem', (req, res) => {
+    req.session.data.importantItem = removeFilter(req.params.importantItem, req.session.data.importantItem)
     res.redirect('/')
   })
 
   router.get('/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
+    req.session.data.importantItem = null
     req.session.data.status = null
     req.session.data.provider = null
     req.session.data.accreditedBody = null

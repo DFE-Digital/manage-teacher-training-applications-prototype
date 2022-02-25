@@ -1,0 +1,58 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'overview' %}
+
+{% set title = 'Overview' %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">
+    {{title}}
+  </h1>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&assignedUser={{data.user.id}}">15 applications are assigned to you</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&importantItem=5 days or fewer to make decision">5 applications are about to be automatically rejected</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&importantItem=Feedback needed">3 automatically rejected applications need feedback</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&status=Received&status=Interviewing">7 applications are awaiting a decision</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&status=Deferred">5 deferred offers need to be confirmed</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&status=Offered">17 offers are waiting on the candidate’s response</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview&status=Conditions pending">5 offers with pending conditions from the previous cycle</a>
+  </h2>
+
+  <h2 class="govuk-heading-m">
+    <a href="/?referrer=overview">2 offers have been deferred and will need confirming next cycle</a>
+  </h2>
+
+  {# <p><a href="#">3 of them are to School 1</a></p>
+  <p><a href="#">2 of them are to School 2</a></p>
+  <p><a href="#">4 have interviews set up</a></p>
+  <p><a href="#">2 do not have any notes</a></p>
+  <p><a href="#">1 has nobody assigned</a></p>
+  <p><a href="#">3 of them will be automatically rejected within the next 5 days</a></p> #}
+
+
+
+
+
+  <br>
+  <p><a href="#">View all applications</a></p>
+{% endblock %}
