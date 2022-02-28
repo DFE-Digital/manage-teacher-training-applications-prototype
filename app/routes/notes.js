@@ -47,7 +47,7 @@ module.exports = router => {
     application.notes.items.push({
       id: uuidv4(),
       message: req.body.note,
-      sender: req.session.data.user.firstName + req.session.data.user.lastName,
+      sender: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
       date: new Date().toISOString()
     })
 
