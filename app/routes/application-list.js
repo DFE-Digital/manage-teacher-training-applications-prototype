@@ -27,7 +27,7 @@ const getSubjectItems = (selectedItems) => {
   return items
 }
 
-const getStatusItems = (selectedItems) => {
+const getStatusCheckboxItems = (selectedItems) => {
   const items = []
 
   const statuses = ['Received', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
@@ -38,6 +38,23 @@ const getStatusItems = (selectedItems) => {
     item.text = status
     item.value = status
     item.checked = (selectedItems && selectedItems.includes(status)) ? 'checked' : ''
+
+    items.push(item)
+  })
+  return items
+}
+
+const getImportantCheckboxItems = (selectedItems) => {
+  const items = []
+
+  const importantItems = ['5 days or fewer to make decision', 'Feedback needed', 'Deferred offers to confirm']
+
+  importantItems.forEach((importantItem, i) => {
+    const item = {}
+
+    item.text = importantItem
+    item.value = importantItem
+    item.checked = (selectedItems && selectedItems.includes(importantItem)) ? 'checked' : ''
 
     items.push(item)
   })
@@ -569,7 +586,8 @@ module.exports = router => {
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
     const locationItems = getLocationItems(req.session.data.location)
-    const statusItems = getStatusItems(req.session.data.status)
+    const statusCheckboxItems = getStatusCheckboxItems(req.session.data.status)
+    const importantCheckboxItems = getImportantCheckboxItems(req.session.data.importantItem)
 
     res.render('index', {
       // allApplications,
@@ -587,7 +605,8 @@ module.exports = router => {
       userItemsDisplayLimit: 15,
       selectedUsers,
       cycleItems,
-      statusItems
+      statusCheckboxItems,
+      importantCheckboxItems
     })
   })
 

@@ -24,20 +24,7 @@
         classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [{
-      value: '5 days or fewer to make decision',
-      text: '5 days or fewer to make decision',
-      checked: checked("importantItem", "5 days or fewer to make decision") == 'checked'
-    },
-    {
-      value: 'Feedback needed',
-      text: 'Feedback needed',
-      checked: checked("importantItem", "Feedback needed") == 'checked'
-    }, {
-      value: 'Deferred offers to confirm',
-      text: 'Deferred offers to confirm',
-      checked: checked("importantItem", "Deferred offers to confirm") == 'checked'
-    }]
+    items: importantCheckboxItems
   }) }}
 
   {{ govukCheckboxes({
@@ -50,7 +37,7 @@
         classes: 'govuk-fieldset__legend--s'
       }
     },
-    items: statusItems
+    items: statusCheckboxItems
   }) }}
 
   {% if trainingProviderItems.length > 1 %}
