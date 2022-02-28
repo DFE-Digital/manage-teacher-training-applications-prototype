@@ -10,36 +10,50 @@
     {{title}}
   </h1>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&assignedUser={{data.user.id}}">15 applications are assigned to you</a>
-  </h2>
+  <div class="app-home-statuses govuk-!-margin-bottom-4">
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&importantItem=5 days or fewer to make decision">5 applications are about to be automatically rejected</a>
-  </h2>
+    <a href="/?referrer=overview&assignedUser={{data.user.id}}" class="status-card status-card--grey">
+      <span class="status-card__count">15</span>
+      <span class="status-card__status">applications assigned to you</span>
+    </a>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&importantItem=Feedback needed">3 automatically rejected applications need feedback</a>
-  </h2>
+    <a href="/?referrer=overview&importantItem=5 days or fewer to make decision" class="status-card status-card--red">
+      <span class="status-card__count">5</span>
+      <span class="status-card__status">applications close to automatic rejection</span>
+    </a>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&status=Received&status=Interviewing">7 applications are awaiting a decision</a>
-  </h2>
+    <a href="/?referrer=overview&importantItem=Feedback needed" class="status-card status-card--orange">
+      <span class="status-card__count">3</span>
+      <span class="status-card__status">applications need feedback</span>
+    </a>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&status=Deferred">5 deferred offers need to be confirmed</a>
-  </h2>
+    <a href="/?referrer=overview&status=Received&status=Interviewing" class="status-card status-card--purple">
+      <span class="status-card__count">7</span>
+      <span class="status-card__status">applications awaiting decision</span>
+    </a>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&status=Offered">17 offers are waiting on the candidate’s response</a>
-  </h2>
+    <a href="/?referrer=overview&status=Deferred" class="status-card status-card--yellow">
+      <span class="status-card__count">5</span>
+      <span class="status-card__status">deferred offers need to be confirmed</span>
+    </a>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&status=Conditions pending">5 offers with pending conditions from the previous cycle</a>
-  </h2>
+    <a href="/?referrer=overview&status=Offered" class="status-card status-card--green">
+      <span class="status-card__count">17</span>
+      <span class="status-card__status">offers waiting on candidate</span>
+    </a>
 
-  <h2 class="govuk-heading-m">
-    <a href="/?referrer=overview&status=Deferred">2 offers have been deferred and will need confirming next cycle</a>
-  </h2>
+    <a href="/?referrer=overview&status=Conditions pending" class="status-card status-card--blue">
+      <span class="status-card__count">5</span>
+      <span class="status-card__status">offers pending conditions (last cycle)</span>
+    </a>
+
+    <a href="/?referrer=overview&status=Deferred" class="status-card status-card--yellow">
+      <span class="status-card__count">2</span>
+      <span class="status-card__status">offers deferred to next cycle</span>
+    </a>
+
+
+  </div>
+
   <p><a href="#">View all applications</a></p>
 {% endblock %}

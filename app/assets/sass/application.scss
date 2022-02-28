@@ -278,3 +278,107 @@ h1 .govuk-tag {
   border-top: 1px solid govuk-colour('mid-grey');
   padding-top: 10px;
 }
+
+.app-home-statuses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include govuk-media-query($from: tablet) {
+    grid-template-columns: 1fr 1fr 1fr 1fr
+  }
+  gap: govuk-spacing(4);
+  grid-auto-rows: 1fr;
+}
+
+.status-card {
+  background-color: govuk-colour("light-grey");
+  padding: govuk-spacing(2);
+  text-decoration: none;
+
+  @include govuk-font($size: 19);
+
+  @include govuk-media-query($from: desktop) {
+    padding: govuk-spacing(4);
+  }
+
+  &:focus, &:link:focus, &:visited:focus {
+    color:  $govuk-text-colour;
+    background:  $govuk-focus-colour;
+  }
+
+}
+
+.status-card, .status-card:visited {
+  color: inherit;
+}
+
+// Colours sourced from here: https://github.com/alphagov/govuk-frontend/blob/61aabca3d440edee6bdecdd20ea54a241c7bbdd5/src/govuk/components/tag/_index.scss#L42
+
+$statuses: (
+  "grey": (
+    "colour":            govuk-shade(govuk-colour("dark-grey", $legacy: "grey-1"), 30),
+    "background-colour": govuk-tint(govuk-colour("dark-grey", $legacy: "grey-1"), 90),
+    "hover":             govuk-tint(govuk-colour("dark-grey", $legacy: "grey-1"), 80)
+  ),
+  "turquoise": (
+    "colour":            govuk-shade(govuk-colour("turquoise"), 60),
+    "background-colour": govuk-tint(govuk-colour("turquoise"), 70),
+    "hover":             govuk-tint(govuk-colour("turquoise"), 57),
+  ),
+  "blue": (
+    "colour":            govuk-shade(govuk-colour("blue"), 30),
+    "background-colour": govuk-tint(govuk-colour("blue"), 80),
+    "hover":             govuk-tint(govuk-colour("blue"), 70)
+  ),
+  "yellow": (
+    "colour":            govuk-shade(govuk-colour("yellow"), 65),
+    "background-colour": govuk-tint(govuk-colour("yellow"), 75),
+    "hover":             govuk-tint(govuk-colour("yellow"), 60)
+  ),
+  "red": (
+    "colour":            govuk-shade(govuk-colour("red"), 30),
+    "background-colour": govuk-tint(govuk-colour("red"), 80),
+    "hover":             govuk-tint(govuk-colour("red"), 70)
+  ),
+  "purple": (
+    "colour":            govuk-shade(govuk-colour("purple"), 20),
+    "background-colour": govuk-tint(govuk-colour("purple"), 80),
+    "hover":             govuk-tint(govuk-colour("purple"), 70)
+  ),
+  "orange": (
+    "colour":            govuk-shade(govuk-colour("orange"), 55),
+    "background-colour": govuk-tint(govuk-colour("orange"), 70),
+    "hover":             govuk-tint(govuk-colour("orange"), 55)
+  ),
+  "green": (
+    "colour":            govuk-shade(govuk-colour("green"), 20),
+    "background-colour": govuk-tint(govuk-colour("green"), 80),
+    "hover":             govuk-tint(govuk-colour("green"), 70)
+  )
+);
+
+@each $status, $data in $statuses
+{
+  .status-card--#{$status} {
+    &, &:link, &:visited {
+      color: map-get($data, "colour");
+      background: map-get($data, "background-colour");
+    }
+    &:hover {
+      background: map-get($data, "hover");
+    }
+  }
+}
+
+.status-card__count {
+  &, &:link, &:visited {
+    @include govuk-font($size: 36, $weight: bold, $tabular: true);
+  }
+  display: block;
+}
+
+.status-card__status {
+  // text-decoration: underline;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: none;
+}
