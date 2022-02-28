@@ -1,5 +1,19 @@
 {% set filterOptionsHtml %}
 
+  {{ govukCheckboxes({
+    idPrefix: "importantItem",
+    name: "importantItem",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Important",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: importantCheckboxItems
+  }) }}
+
   {% if userItems.length >= userItemsDisplayLimit %}
 
     {{ appCheckboxFilter({
@@ -29,34 +43,6 @@
     }) }}
 
   {% endif %}
-
-  {{ govukCheckboxes({
-    idPrefix: "cycle",
-    name: "[cycle]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Recruitment cycle",
-        isPageHeading: false,
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: cycleItems
-  }) }}
-
- {{ govukCheckboxes({
-    idPrefix: "importantItem",
-    name: "importantItem",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Important",
-        isPageHeading: false,
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: importantCheckboxItems
-  }) }}
 
   {{ govukCheckboxes({
     idPrefix: 'status',
@@ -203,6 +189,32 @@
         checked: checked("studyMode", 'Part time') == 'checked'
       }
     ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "cycle",
+    name: "[cycle]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Recruitment cycle",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: cycleItems
+  }) }}{{ govukCheckboxes({
+    idPrefix: "cycle",
+    name: "[cycle]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Recruitment cycle",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: cycleItems
   }) }}
 {% endset %}
 

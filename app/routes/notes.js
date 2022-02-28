@@ -1,5 +1,6 @@
 const ApplicationHelper = require('../data/helpers/application')
 const content = require('../data/content')
+const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
   router.get('/applications/:applicationId/notes', (req, res) => {
@@ -14,19 +15,19 @@ module.exports = router => {
     })
   })
 
-  router.get('/applications/:applicationId/notes/first-time', (req, res) => {
-    const applicationId = req.params.applicationId
-    const application = req.session.data.applications.find(app => app.id === applicationId)
+  // router.get('/applications/:applicationId/notes/first-time', (req, res) => {
+  //   const applicationId = req.params.applicationId
+  //   const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    res.render('applications/notes/first-time', {
-      application
-    })
-  })
+  //   res.render('applications/notes/first-time', {
+  //     application
+  //   })
+  // })
 
-  router.post('/applications/:applicationId/notes/first-time', (req, res) => {
-    const applicationId = req.params.applicationId
-    res.redirect(`/applications/${applicationId}/notes/new`)
-  })
+  // router.post('/applications/:applicationId/notes/first-time', (req, res) => {
+  //   const applicationId = req.params.applicationId
+  //   res.redirect(`/applications/${applicationId}/notes/new`)
+  // })
 
   router.get('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
@@ -39,6 +40,19 @@ module.exports = router => {
 
   router.post('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    console.log(req.body)
+
+    application.notes.items.push({
+      id: uuidv4(),
+      message: req.body.note,
+      sender: req.session.data.user.firstName + req.session.data.user.lastName,
+      date: new Date().toISOString()
+    })
+
+    req.session.data.note = null
+
     req.flash('success', content.createNote.successMessage)
     res.redirect(`/applications/${applicationId}/notes`)
   })

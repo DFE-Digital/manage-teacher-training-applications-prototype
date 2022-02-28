@@ -56,12 +56,13 @@
   </div>
   <div class="app-application-card__note">
     {% if a.notes.items.length %}
+      {% set note = a.notes.items | last %}
       {{ govukInsetText({
         classes: "govuk-!-padding-top-0 govuk-!-padding-bottom-0 govuk-!-padding-left-1 govuk-!-margin-top-1 govuk-!-margin-bottom-0",
-        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-top-0">'+a.notes.items[0].message+'</p>'
+        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-top-0">'+note.message+'</p>'
       }) }}
     {% else %}
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-1"><a href="">Add note</a></p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-1"><a href="/applications/{{a.id}}/notes/new">Add note</a></p>
     {% endif %}
   </div>
 </div>

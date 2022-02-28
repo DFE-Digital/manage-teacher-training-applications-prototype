@@ -10,11 +10,32 @@
     {{title}}
   </h1>
 
-  {# <h2 class="govuk-heading-m">
-    Org 1 that I belong to
-  </h2> #}
+  {% set promptHtml %}
 
-  {{data | log}}
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">17 automatically rejected applications have not been given feedback</h2>
+
+    <p>Give feedback to help candidates apply successfully next time.</p>
+
+    {{ govukButton({
+      text: "View applications",
+      href: "/?referrer=overview&importantItem=Feedback needed",
+      classes: "govuk-button--secondar"
+    }) }}
+
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{govukInsetText({
+        html: promptHtml,
+        classes: 'govuk-!-margin-top-0'
+      })}}
+    </div>
+  </div>
+
+
+
+
 
   {% for organisation in data.user.organisations %}
     <h3 class="govuk-heading-m">

@@ -12,26 +12,6 @@
 
   <p class="govuk-body govuk-!-margin-bottom-6"><a class="govuk-link" href="/reports/export">Export data</a></p>
 
-  {% set promptHtml %}
-
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">17 applications need feedback</h2>
-
-    <p>You did not make a decision in time. You should give feedback to candidates to give them a better chance of applying again successfully.</p>
-
-    {{ govukButton({
-      text: "Show in list",
-      href: "/?referrer=overview&importantItem=Feedback needed",
-      classes: "govuk-button--secondary"
-    }) }}
-  {% endset %}
-
-  {{govukInsetText({
-    html: promptHtml,
-    classes: 'govuk-!-margin-top-0'
-  })}}
-
-
-
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
       {% include "_includes/filter-panel.njk" %}
