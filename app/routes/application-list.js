@@ -67,7 +67,7 @@ const getSelectedSubjectItems = (selectedItems) => {
   selectedItems.forEach((item) => {
     const subject = {}
     subject.text = item.text
-    subject.href = `/remove-subject-filter/${item.text}`
+    subject.href = `/applications/remove-subject-filter/${item.text}`
 
     items.push(subject)
   })
@@ -140,7 +140,7 @@ const getSelectedUserItems = (selectedItems) => {
   selectedItems.forEach((item) => {
     const user = {}
     user.text = item.text
-    user.href = `/remove-assignedUser-filter/${item.value}`
+    user.href = `/applications/remove-assignedUser-filter/${item.value}`
 
     items.push(user)
   })
@@ -251,11 +251,7 @@ const removeFilter = (value, data) => {
 
 module.exports = router => {
 
-  router.get('/applications', (req, res) => {
-    res.redirect('/')
-  })
-
-  router.all('/', (req, res) => {
+  router.all('/applications', (req, res) => {
 
     var filters = [
       'cycle',
@@ -443,7 +439,7 @@ module.exports = router => {
           items: cycles.map((cycle) => {
             return {
               text: CycleHelper.getCycleLabel(cycle),
-              href: `/remove-cycle-filter/${cycle}`
+              href: `/applications/remove-cycle-filter/${cycle}`
             }
           })
         })
@@ -455,7 +451,7 @@ module.exports = router => {
           items: importantItems.map((importantItem) => {
             return {
               text: importantItem,
-              href: `/remove-importantItem-filter/${importantItem}`
+              href: `/applications/remove-importantItem-filter/${importantItem}`
             }
           })
         })
@@ -467,7 +463,7 @@ module.exports = router => {
           items: statuses.map((status) => {
             return {
               text: status,
-              href: `/remove-status-filter/${status}`
+              href: `/applications/remove-status-filter/${status}`
             }
           })
         })
@@ -480,7 +476,7 @@ module.exports = router => {
           items: locations.map((location) => {
             return {
               text: location,
-              href: `/remove-location-filter/${location}`
+              href: `/applications/remove-location-filter/${location}`
             }
           })
         })
@@ -492,7 +488,7 @@ module.exports = router => {
           items: providers.map((provider) => {
             return {
               text: provider,
-              href: `/remove-provider-filter/${provider}`
+              href: `/applications/remove-provider-filter/${provider}`
             }
           })
         })
@@ -504,7 +500,7 @@ module.exports = router => {
           items: accreditedBodies.map((accreditedBody) => {
             return {
               text: accreditedBody,
-              href: `/remove-accreditedBody-filter/${accreditedBody}`
+              href: `/applications/remove-accreditedBody-filter/${accreditedBody}`
             }
           })
         })
@@ -516,7 +512,7 @@ module.exports = router => {
           items: assignedUsers.map((assignedUser) => {
             return {
               text: getUserFullName(users, assignedUser),
-              href: `/remove-assignedUser-filter/${assignedUser}`
+              href: `/applications/remove-assignedUser-filter/${assignedUser}`
             }
           })
         })
@@ -528,7 +524,7 @@ module.exports = router => {
           items: subjects.map((subject) => {
             return {
               text: subject,
-              href: `/remove-subject-filter/${subject}`
+              href: `/applications/remove-subject-filter/${subject}`
             }
           })
         })
@@ -540,7 +536,7 @@ module.exports = router => {
           items: studyModes.map((studyMode) => {
             return {
               text: studyMode,
-              href: `/remove-studyMode-filter/${studyMode}`
+              href: `/applications/remove-studyMode-filter/${studyMode}`
             }
           })
         })
@@ -610,57 +606,57 @@ module.exports = router => {
     })
   })
 
-  router.get('/remove-keywords-search', (req, res) => {
+  router.get('/applications/remove-keywords-search', (req, res) => {
     req.session.data.keywords = ''
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-cycle-filter/:cycle', (req, res) => {
+  router.get('/applications/remove-cycle-filter/:cycle', (req, res) => {
     req.session.data.cycle = removeFilter(req.params.cycle, req.session.data.cycle)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-status-filter/:status', (req, res) => {
+  router.get('/applications/remove-status-filter/:status', (req, res) => {
     req.session.data.status = removeFilter(req.params.status, req.session.data.status)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-provider-filter/:provider', (req, res) => {
+  router.get('/applications/remove-provider-filter/:provider', (req, res) => {
     req.session.data.provider = removeFilter(req.params.provider, req.session.data.provider)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-location-filter/:location', (req, res) => {
+  router.get('/applications/remove-location-filter/:location', (req, res) => {
     req.session.data.location = removeFilter(req.params.location, req.session.data.location)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-accreditedBody-filter/:accreditedBody', (req, res) => {
+  router.get('/applications/remove-accreditedBody-filter/:accreditedBody', (req, res) => {
     req.session.data.accreditedBody = removeFilter(req.params.accreditedBody, req.session.data.accreditedBody)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-subject-filter/:subject', (req, res) => {
+  router.get('/applications/remove-subject-filter/:subject', (req, res) => {
     req.session.data.subject = removeFilter(req.params.subject, req.session.data.subject)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-studyMode-filter/:studyMode', (req, res) => {
+  router.get('/applications/remove-studyMode-filter/:studyMode', (req, res) => {
     req.session.data.studyMode = removeFilter(req.params.studyMode, req.session.data.studyMode)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-assignedUser-filter/:assignedUser', (req, res) => {
+  router.get('/applications/remove-assignedUser-filter/:assignedUser', (req, res) => {
     req.session.data.assignedUser = removeFilter(req.params.assignedUser, req.session.data.assignedUser)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-importantItem-filter/:importantItem', (req, res) => {
+  router.get('/applications/remove-importantItem-filter/:importantItem', (req, res) => {
     req.session.data.importantItem = removeFilter(req.params.importantItem, req.session.data.importantItem)
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
-  router.get('/remove-all-filters', (req, res) => {
+  router.get('/applications/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.importantItem = null
     req.session.data.status = null
@@ -670,7 +666,7 @@ module.exports = router => {
     req.session.data.subject = null
     req.session.data.studyMode = null
     req.session.data.assignedUser = null
-    res.redirect('/')
+    res.redirect('/applications')
   })
 
 }
