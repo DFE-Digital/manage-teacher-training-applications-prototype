@@ -47,7 +47,7 @@ const getStatusCheckboxItems = (selectedItems) => {
 const getImportantCheckboxItems = (selectedItems) => {
   const items = []
 
-  const importantItems = ['5 days or fewer to make decision', 'Feedback needed', 'Deferred offers to confirm']
+  const importantItems = ['5 days or fewer to make decision', 'Feedback needed', 'Deferred offers ready to confirm']
 
   importantItems.forEach((importantItem, i) => {
     const item = {}
@@ -407,7 +407,7 @@ module.exports = router => {
             }
           }
 
-          if(importantItems.includes('Deferred offers to confirm')) {
+          if(importantItems.includes('Deferred offers ready to confirm')) {
             if(app.status == 'Deferred' && req.session.data.settings == 'new-cycle') {
               importantItemValid = true
             }
