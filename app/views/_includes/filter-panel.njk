@@ -45,6 +45,25 @@
   {% endif %}
 
   {{ govukCheckboxes({
+    idPrefix: 'notes',
+    name: 'notes',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Notes',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [{
+      value: 'Has note',
+      text: 'Has note'
+    }, {
+      value: 'Does not have note',
+      text: 'Does not have note'
+    }]
+  }) }}
+
+  {{ govukCheckboxes({
     idPrefix: 'status',
     name: 'status',
     classes: "govuk-checkboxes--small",
@@ -192,18 +211,6 @@
   }) }}
 
   {{ govukCheckboxes({
-    idPrefix: "cycle",
-    name: "[cycle]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Recruitment cycle",
-        isPageHeading: false,
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: cycleItems
-  }) }}{{ govukCheckboxes({
     idPrefix: "cycle",
     name: "[cycle]",
     classes: "govuk-checkboxes--small",

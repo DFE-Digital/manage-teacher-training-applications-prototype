@@ -1,10 +1,32 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = 'overview' %}
+{# {% set primaryNavId = 'overview' %} #}
 
 {% set title = 'Overview' %}
 
 {% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">You need to give feedback for 5 automatically rejected applications</h1>
+
+      <p>Tell candidates how they can improve their applications. This is gives them the best chance of succeeding if they apply again.</p>
+
+      {{ govukButton({
+        text: "Give feedback",
+        classes: "govuk-!-margin-bottom-4"
+      }) }}
+
+      <p><a href="#">Skip</a></p>
+    </div>
+  </div>
+
+
+
+
+
+
+{#
 
   <h1 class="govuk-heading-l">
     {{title}}
@@ -12,15 +34,21 @@
 
   {% set promptHtml %}
 
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">17 automatically rejected applications have not been given feedback</h2>
+    <h2 class="govuk-heading-m">
+      Important
+    </h2>
 
-    <p>Give feedback to help candidates apply successfully next time.</p>
-
-    {{ govukButton({
-      text: "View applications",
-      href: "/?referrer=overview&importantItem=Feedback needed",
-      classes: "govuk-button--secondar"
-    }) }}
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="/">7 applications have 5 days or fewer until they’re automatically rejected</a>
+      </li>
+      <li>
+        <a href="/">6 applications were automatically rejected need feedback</a>
+      </li>
+      {# <li>
+        <a href="/">2 deferred offers need to be confirmed</a>
+      </li> #}
+    {# </ul>
 
   {% endset %}
 
@@ -33,23 +61,34 @@
     </div>
   </div>
 
-
-
-
-
-  {% for organisation in data.user.organisations %}
+{% for organisation in data.user.organisations %}
     <h3 class="govuk-heading-m">
       {{organisation.name}}
     </h3>
     <div class="app-home-statuses govuk-!-margin-bottom-4">
       {% for relationship in data.user.relationships %}
         <a href="/?referrer=overview" class="status-card status-card--grey">
-          <span class="status-card__count">{{[15, 7, 19] | random}}</span>
+          <span class="status-card__count">{{[15, 7, 19, 5, 3, 1, 4] | random}}</span>
           <span class="status-card__status">active applications to {{relationship.org2.name}}</span>
         </a>
       {% endfor %}
          </div>
-  {% endfor %}
+  {% endfor %}#}
+
+
+  {# <h1 class="govuk-heading-l">
+    {{title}}
+  </h1>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,5 +228,5 @@
 
   </div> #}
 
-  <p><a href="#">View all applications</a></p>
+  {# <p><a href="#">View all applications</a></p> #}
 {% endblock %}

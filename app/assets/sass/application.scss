@@ -382,3 +382,28 @@ $statuses: (
   word-wrap: break-word;
   hyphens: none;
 }
+
+
+
+.app-sort {
+
+  form {
+    display: flex;
+    // align-items: flex-end;
+  }
+
+  .govuk-form-group {
+    margin-bottom: 0;
+    vertical-align: top;
+  }
+
+  .govuk-button {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 10px;
+    position: relative;
+    vertical-align: bottom;
+    width: auto;
+    margin-bottom: govuk-spacing(6);
+  }
+}

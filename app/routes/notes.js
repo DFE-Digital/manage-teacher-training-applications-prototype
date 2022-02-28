@@ -42,8 +42,6 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    console.log(req.body)
-
     application.notes.items.push({
       id: uuidv4(),
       message: req.body.note,

@@ -23,32 +23,40 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
+      <div class="app-sort">
+        <form>
+          {{ govukSelect({
+            id: "sort",
+            name: "sort",
+            label: {
+              text: 'Sort by',
+              classes: 'govuk-label--m govuk-visually-hidden'
+            },
+            items: [
+              {
+                value: "Least recently updated",
+                text: "Least recently updated"
+              },
+              {
+                value: "Most recently updated",
+                text: "Most recently updated"
+              },
+              {
+                value: "Deadline approaching",
+                text: "Deadline approaching"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Sort"
+          }) }}
+        </form>
+      </div>
+
       {% include "_includes/search-panel.njk" %}
 
-      <p>Ordered by least recently updated</p>
 
-      {# {{ govukSelect({
-        id: "sort",
-        name: "sort",
-        items: [
-          {
-            value: "Most recently updated",
-            text: "Most recently updated"
-          },
-          {
-            value: "Least recently updated",
-            text: "Least recently updated"
-          },
-          {
-            value: "Soonest to be automatically rejected",
-            text: "Soonest to be automatically rejected"
-          },
-          {
-            value: "Longest before automatically rejected",
-            text: "Longest before automatically rejected"
-          }
-        ]
-      }) }} #}
 
       <div>
         {%- if applications.length %}
