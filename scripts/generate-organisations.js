@@ -39,6 +39,30 @@ const generateFakeOrganisations = (count) => {
   // Others
   // ---------------------------------------------------------------------------
   organisations.push(generateFakeOrganisation({
+    name: "Astra SCITT",
+    isAccreditedBody: true,
+    domain: "astra-alliance.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Astra Marlow Hub",
+    isAccreditedBody: false,
+    domain: "astra-marlow.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Astra Amersham Hub",
+    isAccreditedBody: false,
+    domain: "astra-amersham.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Astra Aylesbury Hub",
+    isAccreditedBody: false,
+    domain: "astra-aylesbury.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
     name: "The Compton School",
     isAccreditedBody: false,
     domain: "thecompton.org.uk"

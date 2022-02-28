@@ -10,9 +10,27 @@
     {{title}}
   </h1>
 
-  {{data | log}}
-
   <p class="govuk-body govuk-!-margin-bottom-6"><a class="govuk-link" href="/reports/export">Export data</a></p>
+
+  {% set promptHtml %}
+
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">17 applications need feedback</h2>
+
+    <p>You did not make a decision in time. You should give feedback to candidates to give them a better chance of applying again successfully.</p>
+
+    {{ govukButton({
+      text: "Show in list",
+      href: "/?referrer=overview&importantItem=Feedback needed",
+      classes: "govuk-button--secondary"
+    }) }}
+  {% endset %}
+
+  {{govukInsetText({
+    html: promptHtml,
+    classes: 'govuk-!-margin-top-0'
+  })}}
+
+
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
@@ -26,6 +44,31 @@
       </div>
 
       {% include "_includes/search-panel.njk" %}
+
+      <p>Ordered by least recently updated</p>
+
+      {# {{ govukSelect({
+        id: "sort",
+        name: "sort",
+        items: [
+          {
+            value: "Most recently updated",
+            text: "Most recently updated"
+          },
+          {
+            value: "Least recently updated",
+            text: "Least recently updated"
+          },
+          {
+            value: "Soonest to be automatically rejected",
+            text: "Soonest to be automatically rejected"
+          },
+          {
+            value: "Longest before automatically rejected",
+            text: "Longest before automatically rejected"
+          }
+        ]
+      }) }} #}
 
       <div>
         {%- if applications.length %}

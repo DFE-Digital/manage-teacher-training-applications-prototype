@@ -214,10 +214,10 @@ const sortApplications = (applications) => {
   let newApplications = []
 
   newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
-    return a.daysToRespond - b.daysToRespond
+    // return a.daysToRespond - b.daysToRespond
   }))
   newApplications = newApplications.concat(applications.filter((app) => app.status == 'Interviewing').sort(function(a, b) {
-    return a.daysToRespond - b.daysToRespond
+    // return a.daysToRespond - b.daysToRespond
   }))
   newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offered'))
   newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions pending'))
@@ -319,7 +319,7 @@ module.exports = router => {
         if (keywords) {
           candidateNameValid = candidateName.toLowerCase().includes(keywords.toLowerCase())
           applicationReferenceValid = applicationReference.includes(keywords.toLowerCase())
-          noteValid = app.notes.items[0].message.toLowerCase().includes(keywords.toLowerCase())
+          noteValid = app.notes.items.length && app.notes.items[0].message.toLowerCase().includes(keywords.toLowerCase())
         }
 
         return candidateNameValid || applicationReferenceValid || noteValid
