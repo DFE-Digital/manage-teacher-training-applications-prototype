@@ -117,17 +117,19 @@ module.exports = (params) => {
 
   date = DateHelper.getFutureDate(date)
 
-  // to align dates
-  params.notes.items[0].date = date
+  if(params.notes.items.length > 0) {
+    // to align dates
+    params.notes.items[0].date = date
 
-  events.items.push({
-    title: 'Note added',
-    user: params.notes.items[0].sender,
-    date: date,
-    meta: {
-      note: params.notes.items[0]
-    }
-  })
+    events.items.push({
+      title: 'Note added',
+      user: params.notes.items[0].sender,
+      date: date,
+      meta: {
+        note: params.notes.items[0]
+      }
+    })
+  }
 
   if (params.status === 'Rejected') {
     date = DateHelper.getFutureDate(date)
