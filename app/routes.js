@@ -11,6 +11,11 @@ router.all('*', (req, res, next) => {
   next()
 })
 
+router.get('/', (req, res) => {
+  res.redirect('/start')
+})
+
+
 require('./routes/activity-log')(router)
 require('./routes/application-list')(router)
 require('./routes/applications')(router)

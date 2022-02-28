@@ -585,7 +585,7 @@ module.exports = router => {
     const statusCheckboxItems = getStatusCheckboxItems(req.session.data.status)
     const importantCheckboxItems = getImportantCheckboxItems(req.session.data.importantItem)
 
-    res.render('index', {
+    res.render('applications', {
       // allApplications,
       applications,
       pagination,
