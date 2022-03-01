@@ -41,10 +41,10 @@
     </div>
   </div>
 
-{% for organisation in data.user.organisations %}
-    <h3 class="govuk-heading-m">
+  {% for organisation in data.user.organisations %}
+    {# <h3 class="govuk-heading-m">
       {{organisation.name}}
-    </h3>
+    </h3> #}
     <div class="app-home-statuses govuk-!-margin-bottom-4">
       {% for relationship in data.user.relationships %}
         <a href="/applications/?referrer=overview&provider={{relationship.org2.name}}" class="status-card status-card--grey">
