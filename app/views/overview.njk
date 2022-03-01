@@ -15,44 +15,89 @@
     {{title}}
   </h1>
 
-  {% set promptHtml %}
+  {# {% set promptHtml %} #}
 
-    <h2 class="govuk-heading-m">
+    {# <h2 class="govuk-heading-m">
       Important
-    </h2>
+    </h2> #}
 
-    <ul class="govuk-list govuk-list--bullet">
+    <div class="app-home-statuses govuk-!-margin-bottom-8">
+      <a href="/applications/?referrer=overview&importantItem=5 days or fewer to make decision" class="status-card status-card--purple">
+        <span class="status-card__count">{{aboutToBeAutomaticallyRejectedCount}}</span>
+        <span class="status-card__status">applications have 5 days or fewer to make a decision</span>
+      </a>
+      <a href="/applications/?referrer=overview&importantItem=Feedback needed" class="status-card status-card--orange">
+        <span class="status-card__count">{{needsFeedbackCount}}</span>
+        <span class="status-card__status"> applications need feedback after being automatically rejected</span>
+      </a>
+      <a href="/applications/?referrer=overview" class="status-card status-card--blue">
+        <span class="status-card__count">5</span>
+        <span class="status-card__status">notifications about new applications</span>
+      </a>
+    </div>
+
+    {# <h2 class="govuk-heading-m">
+      Notifications
+    </h2> #}
+
+    {# <div class="app-home-statuses govuk-!-margin-bottom-8">
+
+    </div> #}
+
+    {# <ul class="govuk-list govuk-list--bullet">
       <li>
-        <a href="/applications/?referrer=overview&importantItem=5 days or fewer to make decision">{{aboutToBeAutomaticallyRejectedCount}} applications have 5 days or fewer to make a decision</a>
+        <a href="/applications/?referrer=overview&importantItem=5 days or fewer to make decision"> </a>
       </li>
       <li>
-        <a href="/applications/?referrer=overview&importantItem=Feedback needed">{{needsFeedbackCount}} applications need feedback after being automatically rejected</a>
+        <a href="/applications/?referrer=overview&importantItem=Feedback needed"></a>
       </li>
-    </ul>
+    </ul> #}
 
-  {% endset %}
+  {# {% endset %} #}
 
-  <div class="govuk-grid-row">
+  {# <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{govukInsetText({
         html: promptHtml,
         classes: 'govuk-!-margin-top-0'
       })}}
     </div>
-  </div>
+  </div> #}
 
   {% for organisation in data.user.organisations %}
-    {# <h3 class="govuk-heading-m">
-      {{organisation.name}}
-    </h3> #}
-    <div class="app-home-statuses govuk-!-margin-bottom-4">
-      {% for relationship in data.user.relationships %}
-        <a href="/applications/?referrer=overview&provider={{relationship.org2.name}}" class="status-card status-card--grey">
-          <span class="status-card__count">{{[15, 7, 19, 5, 3, 0, 4] | random}}</span>
-          <span class="status-card__status">applications to {{relationship.org2.name}} need a decision</span>
+    <h3 class="govuk-heading-m">
+      Applications that need a decision
+    </h3>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Partner organisation</th>
+          <th scope="col" class="govuk-table__header">Number of applications</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for partner in partners %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <a href="/applications/?referrer=overview&provider={{partner.org}}&status=Received&status=Interviewing">{{partner.org}}</a>
+            </td>
+            <td class="govuk-table__cell">{{partner.apps.length}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+
+    {# <div class="app-home-statuses govuk-!-margin-bottom-4">
+      {% for partner in partners %}
+        <a href="/applications/?referrer=overview&provider={{partner.org}}&status=Received&status=Interviewing" class="status-card status-card--grey">
+          <span class="status-card__count">{{partner.apps.length}}</span>
+          <span class="status-card__status">applications to {{partner.org}} need a decision</span>
         </a>
       {% endfor %}
-    </div>
+    </div> #}
   {% endfor %}
 
    {# <h2 class="govuk-heading-s">
