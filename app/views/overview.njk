@@ -47,12 +47,12 @@
     </h3>
     <div class="app-home-statuses govuk-!-margin-bottom-4">
       {% for relationship in data.user.relationships %}
-        <a href="/?referrer=overview" class="status-card status-card--grey">
+        <a href="/applications/?referrer=overview&provider={{relationship.org2.name}}" class="status-card status-card--grey">
           <span class="status-card__count">{{[15, 7, 19, 5, 3, 0, 4] | random}}</span>
           <span class="status-card__status">applications to {{relationship.org2.name}} need a decision</span>
         </a>
       {% endfor %}
-         </div>
+    </div>
   {% endfor %}
 
    {# <h2 class="govuk-heading-s">
