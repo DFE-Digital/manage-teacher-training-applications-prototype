@@ -1,6 +1,5 @@
 ---
 title: How organisation permissions affect what users can do
-
 ---
 
 Users can view applications to courses if they belong to the training provider or accredited body.
@@ -30,16 +29,9 @@ For example, a user will only be able to make an offer if both:
 
 There are no organisation permissions for courses run without partner organisations. Users only need to have the appropriate user permissions.
 
-## Checking user and organisation permissions
+## Check how organisation permissions affect you and how they can be changed
 
-If you cannot do something which needs permissions, check:
+If you have the appropriate user permission but cannot do something, check your [organisation settings](/organisation-settings) to find out:
 
-- [your user permissions](/account/permissions)
-- the organisation permissions section of [organisation settings](/organisation-settings) - for courses run with a partner organisation
-
-If you need additional permissions, ask a colleague who has the user permission to:
-
-- manage users - for additional user permissions
-- manage organisations - for additional organisation permissions
-
-Check who has these permissions in the users section of [organisation settings](/organisation-settings).
+- what the organisation permissions are for courses run with partner organisations
+- which users have the user permission to manage organisations and can therefore change organisation permissions
