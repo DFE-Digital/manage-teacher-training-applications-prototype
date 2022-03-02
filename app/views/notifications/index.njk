@@ -7,9 +7,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-3">{{title}}</h1>
-
-      <p class="govuk-!-margin-bottom-8"><a href="/account/notifications">Change your notification settings</a></p>
+      <h1 class="govuk-heading-l">{{title}}</h1>
 
       {{appNotificationCard({
         classes: "app-notification-card--first",
@@ -26,7 +24,7 @@
         new: true
       })}}
 
-      {{appNotificationCard({
+      {# {{appNotificationCard({
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
@@ -38,13 +36,13 @@
           text: "View note"
         },
         new: true
-      })}}
+      })}} #}
 
       {{appNotificationCard({
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
-        title: "Kelly Jane Spears submitted their application",
+        title: "Kelly Jane Spears submitted an application",
         provider: data.user.organisations[0].name,
         dateText: "Today at 1:33pm",
         link: {
@@ -101,7 +99,7 @@
          settings: {
            href: "/account/notifications/edit/application-submitted"
          },
-        title: "Daniel James Jennings’ application was rejected by default",
+        title: "Daniel James Jennings’ application was automatically rejected",
         provider: data.user.organisations[0].name,
         dateText: "14 May 2020 at 7:19pm",
         link: {
@@ -111,7 +109,7 @@
         new: true
       })}}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Already seen</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Read notifications</h2>
 
       {{appNotificationCard({
         classes: "app-notification-card--first",
@@ -132,7 +130,7 @@
          settings: {
            href: "/account/notifications/edit/application-submitted"
          },
-        title: "Daniel James Jennings’ application was rejected by default",
+        title: "Daniel James Jennings’ application was automatically rejected",
         provider: data.user.organisations[0].name,
         dateText: "14 May 2020 at 7:19pm",
         link: {
