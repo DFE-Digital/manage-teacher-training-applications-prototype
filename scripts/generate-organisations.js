@@ -40,6 +40,31 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   organisations.push(generateFakeOrganisation({
+    name: "Partnership London SCITT",
+    isAccreditedBody: true,
+    domain: "sydneyrussellschool.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Sydney Russell Teacher Training Centre",
+    isAccreditedBody: false,
+    domain: "sydneyrussellschool.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "St Angela's Teacher Training Centre",
+    isAccreditedBody: false,
+    domain: "sydneyrussellschool.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "St. Edward’s Teacher Training Partnership",
+    isAccreditedBody: false,
+    domain: "sydneyrussellschool.com"
+  }))
+
+
+  organisations.push(generateFakeOrganisation({
     name: "Hillingdon SCITT",
     isAccreditedBody: true,
     domain: "bishopramsey.school"
