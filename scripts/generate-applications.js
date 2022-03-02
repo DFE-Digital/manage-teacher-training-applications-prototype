@@ -277,7 +277,7 @@ const generateFakeApplications = () => {
     id: '111223',
     status: 'Interviewing',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 36 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 36 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Sarah',
       familyName: 'Fisher',
@@ -305,7 +305,7 @@ const generateFakeApplications = () => {
     id: '111224',
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 38 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 38 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Rachael',
       familyName: 'Harvey',
@@ -496,7 +496,7 @@ const generateFakeApplications = () => {
     id: '111225',
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 40 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 40 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Alex',
       familyName: 'Roberts',
@@ -526,7 +526,7 @@ const generateFakeApplications = () => {
     id: '111226',
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 30 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 30 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Barbara',
       familyName: 'Kite',
@@ -593,7 +593,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Interviewing',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 35 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'James',
       familyName: 'Sully',
@@ -611,7 +611,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 37 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 37 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Umar',
       familyName: 'Smith',
@@ -624,7 +624,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Rejected',
     cycle: '2019 to 2020',
-    submittedDate: SystemHelper.now().minus({ days: 1 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 1 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     organisation: organisation,
     givenName: 'Emma',
     familyName: 'Hayes',
@@ -638,7 +638,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 19 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 19 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Sally',
       familyName: 'Harvey',
@@ -649,7 +649,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 18 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 18 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Rachael',
       familyName: 'Wayne',
@@ -700,7 +700,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Recruited',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 60 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 60 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Bill',
       familyName: 'Jones',
@@ -711,7 +711,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Recruited',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 70 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 70 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Amy',
       familyName: 'Black',
@@ -722,7 +722,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Recruited',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 65 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 65 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       givenName: 'Tony',
       familyName: 'Stark',
@@ -2530,7 +2530,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 33 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 33 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Tiago',
@@ -2648,7 +2648,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 34 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 34 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Kung',
@@ -2728,7 +2728,7 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     status: 'Received',
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 35 }).toISO(),
+    submittedDate: SystemHelper.now().minus({ days: 35 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
       isInternationalCandidate: true,
       givenName: 'Chitprem',

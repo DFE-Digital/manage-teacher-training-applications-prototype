@@ -105,6 +105,16 @@ filters.govukDate = (date) => {
   }
 }
 
+filters.dateToGovukShortDate = (date) => {
+  if (date) {
+    let theDate = DateTime.fromISO(date)
+    if (theDate.isValid) {
+      return theDate.toFormat('d MMM yyyy')
+    }
+  }
+  return ''
+}
+
 filters.govukExampleHintDate = (date) => {
   return DateTime.fromISO(date).toFormat('d M yyyy')
 }

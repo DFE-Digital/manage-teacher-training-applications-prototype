@@ -51,6 +51,7 @@
           {% endif %}
         {% endif %}
         <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ a.cycle | cycleLabel }}</p>
+        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
       </div>
     </div>
   </div>

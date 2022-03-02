@@ -30,9 +30,9 @@
         <span class="status-card__count">{{needsFeedbackCount}}</span>
         <span class="status-card__status"> applications need feedback after being automatically rejected</span>
       </a>
-      <a href="/applications/?referrer=overview" class="status-card status-card--blue">
+      <a href="/applications/?referrer=overview&status=Received&noteItem=Does not have note&assignedUser=unassigned" class="status-card status-card--blue">
         <span class="status-card__count">5</span>
-        <span class="status-card__status">applications received without notes and without assignment</span>
+        <span class="status-card__status">unassigned applications in the received status without notes</span>
       </a>
     </div>
 
@@ -66,7 +66,7 @@
 
   {% for organisation in data.user.organisations %}
     <h3 class="govuk-heading-m">
-      Applications that need a decision
+      Applications waiting for you to make a decision
     </h3>
 
     <table class="govuk-table">

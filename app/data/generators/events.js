@@ -10,7 +10,6 @@ module.exports = (params) => {
   const events = { items: [] }
 
   let date = DateTime.fromISO(params.submittedDate)
-
   events.items.push({
     title: 'Application submitted',
     user: 'Candidate',

@@ -60,6 +60,12 @@ module.exports = (env) => {
     return govukDate + " at " + time
   }
 
+  filters.govukShortDateAtTime = date => {
+    const govukDate = filters.dateToGovukShortDate(date)
+    const time = filters.time(date)
+    return govukDate + " at " + time
+  }
+
   /**
    * GOV.UK style times
    * @type {Date} date

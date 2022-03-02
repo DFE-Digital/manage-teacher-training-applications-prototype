@@ -230,6 +230,12 @@ const getLocationItems = (selectedItems) => {
 const sortApplications = (applications) => {
   let newApplications = []
 
+  applications = applications.sort((a, b) => {
+    let aEvents = a.events.items
+    let bEvents = b.events.items
+    return new Date(aEvents[aEvents.length-1].date) - new Date(bEvents[bEvents.length-1].date)
+  })
+
   newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
     // return a.daysToRespond - b.daysToRespond
   }))
@@ -353,7 +359,7 @@ module.exports = router => {
         let assignedUserValid = true
         let unassignedUserValid = true
         let importantItemValid = true
-        let noteValid = true
+        let noteItemValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)

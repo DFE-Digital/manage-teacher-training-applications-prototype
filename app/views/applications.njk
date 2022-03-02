@@ -23,9 +23,13 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
+
+
+      {% include "_includes/search-panel.njk" %}
+
       <div class="app-sort">
         <form>
-          {{ govukSelect({
+          {# {{ govukSelect({
             id: "sort",
             name: "sort",
             label: {
@@ -50,13 +54,11 @@
 
           {{ govukButton({
             text: "Sort"
-          }) }}
+          }) }} #}
+
+          {# <p>Ordered by status and least recently updated date.</p> #}
         </form>
       </div>
-
-      {% include "_includes/search-panel.njk" %}
-
-
 
       <div>
         {%- if applications.length %}
