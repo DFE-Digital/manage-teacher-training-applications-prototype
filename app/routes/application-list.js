@@ -61,6 +61,23 @@ const getImportantCheckboxItems = (selectedItems) => {
   return items
 }
 
+const getNoteCheckboxItems = (selectedItems) => {
+  const items = []
+
+  const noteItems = ['Has note', 'Does not have note']
+
+  noteItems.forEach((noteItem, i) => {
+    const item = {}
+
+    item.text = noteItem
+    item.value = noteItem
+    item.checked = (selectedItems && selectedItems.includes(noteItem)) ? 'checked' : ''
+
+    items.push(item)
+  })
+  return items
+}
+
 const getSelectedSubjectItems = (selectedItems) => {
   const items = []
 
@@ -263,7 +280,8 @@ module.exports = router => {
       'studyMode',
       'subject',
       'assignedUser',
-      'importantItem'
+      'importantItem',
+      'note'
     ]
 
     if(req.query.referrer === 'overview') {
@@ -284,7 +302,7 @@ module.exports = router => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
 
-    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, importantItem } = req.query
+    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, importantItem, note } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -297,10 +315,11 @@ module.exports = router => {
     const subjects = getCheckboxValues(subject, req.session.data.subject)
     const assignedUsers = getCheckboxValues(assignedUser, req.session.data.assignedUser)
     const importantItems = getCheckboxValues(importantItem, req.session.data.importantItem)
+    const notes = getCheckboxValues(note, req.session.data.note)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (importantItems && importantItems.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (importantItems && importantItems.length > 0) || (notes && notes.length > 0))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -334,6 +353,7 @@ module.exports = router => {
         let assignedUserValid = true
         let unassignedUserValid = true
         let importantItemValid = true
+        let noteValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -414,6 +434,18 @@ module.exports = router => {
           }
         }
 
+        if (notes && notes.length) {
+          noteValid = false
+
+          if(notes.includes('Has note') && app.notes.items.length) {
+            noteValid = true
+          }
+
+          if(note.includes('Does not have note') && app.notes.items.length == 0) {
+            noteValid = true
+          }
+        }
+
         return cycleValid
           && statusValid
           && locationValid
@@ -424,6 +456,7 @@ module.exports = router => {
           && assignedUserValid
           && unassignedUserValid
           && importantItemValid
+          && noteValid
       })
     }
 
@@ -542,7 +575,17 @@ module.exports = router => {
         })
       }
 
-
+      if (notes && notes.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Notes' },
+          items: notes.map((note) => {
+            return {
+              text: note,
+              href: `/applications/remove-note-filter/${note}`
+            }
+          })
+        })
+      }
 
     }
 
@@ -558,8 +601,6 @@ module.exports = router => {
     // applications = flattenGroup(grouped)
 
     applications = sortApplications(applications)
-
-
 
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(applications, req.query.page)
@@ -584,6 +625,7 @@ module.exports = router => {
     const locationItems = getLocationItems(req.session.data.location)
     const statusCheckboxItems = getStatusCheckboxItems(req.session.data.status)
     const importantCheckboxItems = getImportantCheckboxItems(req.session.data.importantItem)
+    const noteCheckboxItems = getNoteCheckboxItems(req.session.data.note)
 
     res.render('applications', {
       // allApplications,
@@ -602,7 +644,8 @@ module.exports = router => {
       selectedUsers,
       cycleItems,
       statusCheckboxItems,
-      importantCheckboxItems
+      importantCheckboxItems,
+      noteCheckboxItems
     })
   })
 
@@ -656,9 +699,15 @@ module.exports = router => {
     res.redirect('/applications')
   })
 
+  router.get('/applications/remove-note-filter/:note', (req, res) => {
+    req.session.data.note = removeFilter(req.params.note, req.session.data.note)
+    res.redirect('/applications')
+  })
+
   router.get('/applications/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.importantItem = null
+    req.session.data.note = null
     req.session.data.status = null
     req.session.data.provider = null
     req.session.data.accreditedBody = null

@@ -45,8 +45,8 @@
   {% endif %}
 
   {{ govukCheckboxes({
-    idPrefix: 'notes',
-    name: 'notes',
+    idPrefix: 'note',
+    name: 'note',
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
@@ -54,13 +54,7 @@
         classes: 'govuk-fieldset__legend--s'
       }
     },
-    items: [{
-      value: 'Has note',
-      text: 'Has note'
-    }, {
-      value: 'Does not have note',
-      text: 'Does not have note'
-    }]
+    items: noteCheckboxItems
   }) }}
 
   {{ govukCheckboxes({
