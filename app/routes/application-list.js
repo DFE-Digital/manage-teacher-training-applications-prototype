@@ -249,6 +249,7 @@ const sortApplications = (applications, sort) => {
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions pending'))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Recruited'))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Deferred'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Declined'))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Rejected'))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Application withdrawn'))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offer withdrawn'))
