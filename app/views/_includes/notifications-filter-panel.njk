@@ -12,51 +12,8 @@
         classes: 'govuk-fieldset__legend--s'
       }
     },
-    items: [{
-      text: 'Application received',
-      value: 'Application received'
-    }, {
-      text: 'Application received from another organisation',
-      value: 'Application received from another organisation'
-    }, {
-      text: 'Reminder to make a decision 20 working days before automatic rejection',
-      value: 'Reminder to make a decision 20 working days before automatic rejection'
-    }, {
-      text: 'Application automatically rejected',
-      value: 'Application automatically rejected'
-    }, {
-      text: 'Application withdrawn by candidate',
-      value: 'Application withdrawn by candidate'
-    }, {
-      text: 'Application transferred to another organisation',
-      value: 'Application transferred to another organisation'
-    }, {
-      text: 'Offer accepted',
-      value: 'Offer accepted'
-    }, {
-      text: 'Offer declined',
-      value: 'Offer declined'
-    }]
+    items: typeItems
   }) }}
-
-  {# {{ govukCheckboxes({
-    idPrefix: 'noteItem',
-    name: 'noteItem',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Status',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: [{
-      text: 'Unread',
-      value: 'Unread'
-    }, {
-      text: 'Read',
-      value: 'Read'
-    }]
-  }) }} #}
 
 {% endset %}
 
@@ -89,7 +46,7 @@
       </div>
     {% endif %}
     <div class="app-filter__options">
-      <form method="get" action="/applications" novalidate>
+      <form method="get" action="/notifications" novalidate>
         <button class="govuk-button" data-module="govuk-button">
           Apply filters
         </button>

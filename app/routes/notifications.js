@@ -76,8 +76,40 @@ function groupByDate(data) {
   })
 }
 
+const getTypeCheckboxItems = (selectedItems) => {
+  const items = []
+
+  const types = ['Application received', 'Application received from another organisation', 'Reminder to make a decision 20 working days before automatic rejection', 'Application automatically rejected', 'Application withdrawn by candidate', 'Application transferred to another organisation', 'Offer accepted', 'Offer declined'
+  ]
+
+  types.forEach((type, i) => {
+    const item = {}
+    item.text = type
+    item.value = type
+    item.checked = (selectedItems && selectedItems.includes(type)) ? 'checked' : ''
+
+    items.push(item)
+  })
+  return items
+}
+
 module.exports = router => {
   router.get('/notifications', (req, res) => {
+
+    var filters = [
+      'type'
+    ]
+
+    if(req.query.referrer === 'overview') {
+      filters.forEach(filter => {
+        if(req.query[filter]) {
+          req.session.data[filter] = req.query[filter]
+        } else {
+          req.session.data[filter] = null
+        }
+        req.query[filter] = null
+      })
+    }
 
     // Clone and turn into an array
     const apps = req.session.data.applications.filter(app => {
@@ -101,10 +133,13 @@ module.exports = router => {
 
     activity = groupByDate(activity)
 
+    let typeItems = getTypeCheckboxItems(req.session.data.type)
+
+    // activity: activity,
+    // now: SystemHelper.now(),
+    // pagination: pagination,
     res.render('notifications/index', {
-      activity: activity,
-      pagination: pagination,
-      now: SystemHelper.now()
+      typeItems
     })
   })
 }

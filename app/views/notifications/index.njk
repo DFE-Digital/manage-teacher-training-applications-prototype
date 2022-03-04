@@ -31,19 +31,34 @@
 
       <div>
         {{appNotificationCard({
-        classes: "app-notification-card--first",
-        settings: {
-          href: "/account/notifications/edit/application-submitted"
-        },
-        title: "Application received (Charlotte Campbel)",
-        provider: data.user.organisations[0].name,
-        dateText: "Today at 17:12pm",
-        link: {
-          href: "#",
-          text: "View application"
-        },
-        new: true
-      })}}
+          classes: "app-notification-card--first",
+          settings: {
+            href: "/account/notifications/edit/application-submitted"
+          },
+          title: "Application received (Adam Oates)",
+          provider: data.user.organisations[0].name,
+          dateText: "Today at 18:12pm",
+          link: {
+            href: "#",
+            text: "View application"
+          },
+          new: true
+        })}}
+
+
+        {{appNotificationCard({
+          settings: {
+            href: "/account/notifications/edit/application-submitted"
+          },
+          title: "Application received (Charlotte Campbel)",
+          provider: data.user.organisations[0].name,
+          dateText: "Today at 17:12pm",
+          link: {
+            href: "#",
+            text: "View application"
+          },
+          new: true
+        })}}
 
       {{appNotificationCard({
         settings: {
@@ -71,7 +86,7 @@
           text: "View application"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
       {{appNotificationCard({
         settings: {
@@ -85,7 +100,7 @@
           text: "View offer"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
       {{appNotificationCard({
         settings: {
@@ -99,7 +114,7 @@
           text: "View offer"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
        {{appNotificationCard({
 
@@ -111,7 +126,7 @@
           text: "View application"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Read notifications</h2>
 
@@ -127,12 +142,42 @@
           href: "#",
           text: "View offer"
         }
-      })}}
+      }) if not data.type or data.type != 'Application received' }}
 
-       {{appNotificationCard({
+      {{appNotificationCard({
         title: "Offer accepted (Daniel Mead)",
         provider: data.user.organisations[0].name,
-        dateText: "26 May 2022 at 7:19pm",
+        dateText: "26 February 2022 at 7:19pm",
+        link: {
+          href: "#",
+          text: "View offer"
+        }
+      }) if not data.type or data.type != 'Application received'}}
+
+      {{appNotificationCard({
+        title: "Application received (Mitch Mode)",
+        provider: data.user.organisations[0].name,
+        dateText: "25 February 2022 at 7:19pm",
+        link: {
+          href: "#",
+          text: "View offer"
+        }
+      })}}
+
+      {{appNotificationCard({
+        title: "Application received (Daniel Hope)",
+        provider: data.user.organisations[0].name,
+        dateText: "24 February 2022 at 7:19pm",
+        link: {
+          href: "#",
+          text: "View offer"
+        }
+      })}}
+
+      {{appNotificationCard({
+        title: "Application received (Claire Hughes)",
+        provider: data.user.organisations[0].name,
+        dateText: "23 February 2022 at 7:19pm",
         link: {
           href: "#",
           text: "View offer"
