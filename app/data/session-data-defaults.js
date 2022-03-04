@@ -108,6 +108,8 @@ defaults.nextCycle = CycleHelper.NEXT_CYCLE
 defaults.applications = SettingsHelper.getMidCycleApplications(applications)
 defaults.settings = []
 
+defaults.sort = 'Status'
+
 // Uncomment this to put the prototype into a start of cycle state
 // defaults.applications = SettingsHelper.getStartOfCycleApplications(applications);
 // defaults.settings = ['new-cycle']

@@ -111,47 +111,7 @@
 
   {% include "_includes/phase-banner.njk" %}
 
-{% set alertsLinkHtml %}
-  <span class="app-notification-link">
-    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
-  </span>
-{% endset %}
-
-{{ appPrimaryNavigation({
-  items: [
-    {
-      href: "/overview",
-      text: "Overview",
-      active: primaryNavId == 'overview'
-    },
-    {
-      href: "/applications" + ('?keywords=' if data.keywords.length),
-      text: "Applications",
-      active: primaryNavId == 'applications'
-    },
-    {
-      href: "/interviews",
-      text: "Interview schedule",
-      active: primaryNavId == 'interviews'
-    },
-    {
-      href: "/activity",
-      text: "Activity log",
-      active: primaryNavId == 'activity'
-    },
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    } if 1 == 1,
-    {
-      href: "/reports",
-      text: "Reports",
-      active: primaryNavId == 'reports',
-      classes: "app-primary-navigation__item--align-right"
-    }
-  ]
-}) }}
+  {% include "_includes/primary-navigation.njk" %}
 
   {% block afterHeader %}
 

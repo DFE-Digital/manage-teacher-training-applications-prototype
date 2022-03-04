@@ -1,0 +1,100 @@
+{% set filterOptionsHtml %}
+
+
+
+  {{ govukCheckboxes({
+    idPrefix: 'type',
+    name: 'type',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Type',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [{
+      text: 'Application received',
+      value: 'Application received'
+    }, {
+      text: 'Application received from another organisation',
+      value: 'Application received from another organisation'
+    }, {
+      text: 'Reminder to make a decision 20 working days before automatic rejection',
+      value: 'Reminder to make a decision 20 working days before automatic rejection'
+    }, {
+      text: 'Application automatically rejected',
+      value: 'Application automatically rejected'
+    }, {
+      text: 'Application withdrawn by candidate',
+      value: 'Application withdrawn by candidate'
+    }, {
+      text: 'Application transferred to another organisation',
+      value: 'Application transferred to another organisation'
+    }, {
+      text: 'Offer accepted',
+      value: 'Offer accepted'
+    }, {
+      text: 'Offer declined',
+      value: 'Offer declined'
+    }]
+  }) }}
+
+  {# {{ govukCheckboxes({
+    idPrefix: 'noteItem',
+    name: 'noteItem',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Status',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: [{
+      text: 'Unread',
+      value: 'Unread'
+    }, {
+      text: 'Read',
+      value: 'Read'
+    }]
+  }) }} #}
+
+{% endset %}
+
+<div class="app-filter">
+  <div class="app-filter__header">
+    <div class="app-filter__header-title">
+      <h2 class="govuk-heading-m">Filter</h2>
+    </div>
+    <div class="app-filter__header-action">
+
+    </div>
+  </div>
+  <div class="app-filter__content">
+    {% if selectedFilters %}
+      <div class="app-filter__selected">
+        <div class="app-filter__selected-heading">
+          <div class="app-filter__heading-title">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
+            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/applications/remove-all-filters">Clear filters</a></p>
+          </div>
+        </div>
+        {% for category in selectedFilters.categories %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
+          <ul class="app-filter-tags">
+            {% for item in category.items %}
+              <li><a class="app-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="app-filter__options">
+      <form method="get" action="/applications" novalidate>
+        <button class="govuk-button" data-module="govuk-button">
+          Apply filters
+        </button>
+        {{filterOptionsHtml | safe}}
+      </form>
+    </div>
+  </div>
+</div>

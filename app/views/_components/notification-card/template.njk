@@ -12,13 +12,13 @@
     <div>
       {% if params.new %}
         {{govukTag({
-          text: "New",
-          classes: "govuk-tag--blue"
+          text: "Unread",
+          classes: "govuk-tag--pink"
         })}}
       {% endif %}
     </div>
     {% if params.settings %}
-      <p class="govuk-body-s govuk-!-margin-bottom-0"><a class="govuk-link--no-visited-state" href="{{params.settings.href}}">Turn off notification</a>
+      {# <p class="govuk-body-s govuk-!-margin-bottom-0"><a class="govuk-link--no-visited-state" href="{{params.settings.href}}">Turn off notification</a> #}
     {% endif %}
   </div>
 </div>

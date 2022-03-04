@@ -227,32 +227,34 @@ const getLocationItems = (selectedItems) => {
   return items
 }
 
-const sortApplications = (applications) => {
+const sortApplications = (applications, sort) => {
   let newApplications = []
 
-  applications = applications.sort((a, b) => {
-    let aEvents = a.events.items
-    let bEvents = b.events.items
-    return new Date(aEvents[aEvents.length-1].date) - new Date(bEvents[bEvents.length-1].date)
-  })
-
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
-    // return a.daysToRespond - b.daysToRespond
-  }))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Interviewing').sort(function(a, b) {
-    // return a.daysToRespond - b.daysToRespond
-  }))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offered'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions pending'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Recruited'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Deferred'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Rejected'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Application withdrawn'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offer withdrawn'))
-  newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions not met'))
-
+  if(sort == 'Updated least recently') {
+    newApplications = applications.sort((a, b) => {
+      let aEvents = a.events.items
+      let bEvents = b.events.items
+      return new Date(aEvents[aEvents.length-1].date) - new Date(bEvents[bEvents.length-1].date)
+    })
+  } else {
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    }))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Interviewing').sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    }))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offered').sort((a, b) => {
+      return a.daysToDecline - b.daysToDecline
+    }))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions pending'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Recruited'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Deferred'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Rejected'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Application withdrawn'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Offer withdrawn'))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Conditions not met'))
+  }
   return newApplications
-
 
 }
 
@@ -275,6 +277,8 @@ const removeFilter = (value, data) => {
 module.exports = router => {
 
   router.all('/applications', (req, res) => {
+
+    var sort = req.session.data.sort = req.query.sort || req.session.data.sort
 
     var filters = [
       'cycle',
@@ -606,7 +610,7 @@ module.exports = router => {
     // Put groups into ordered array
     // applications = flattenGroup(grouped)
 
-    let allApplications = applications = sortApplications(apps)
+    let allApplications = applications = sortApplications(apps, sort)
 
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(applications, req.query.page)
@@ -633,10 +637,7 @@ module.exports = router => {
     const importantCheckboxItems = getImportantCheckboxItems(req.session.data.importantItem)
     const noteCheckboxItems = getNoteCheckboxItems(req.session.data.noteItem)
 
-
-
-
-    res.render('applications', {
+    res.render('applications/index', {
       allApplications,
       applications,
       pagination,

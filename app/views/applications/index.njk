@@ -28,36 +28,20 @@
       {% include "_includes/search-panel.njk" %}
 
       <div class="app-sort">
-        <form>
-          {# {{ govukSelect({
-            id: "sort",
-            name: "sort",
-            label: {
-              text: 'Sort by',
-              classes: 'govuk-label--m govuk-visually-hidden'
-            },
-            items: [
-              {
-                value: "Updated least recently",
-                text: "Updated least recently"
-              },
-              {
-                value: "Updated most recently",
-                text: "Updated most recently"
-              },
-              {
-                value: "Received longest ago",
-                text: "Received longest ago"
-              }
-            ]
-          }) }}
-
-          {{ govukButton({
-            text: "Sort"
-          }) }} #}
-
-          {# <p>Ordered by status and least recently updated date.</p> #}
-        </form>
+        <p>
+          <b>Sort by</b>:
+          {% if data.sort == 'Status' %}
+            <span>Status</span>
+          {% else %}
+            <a href="/applications/?sort=Status">Status</a>
+          {% endif %}
+          |
+          {% if data.sort == 'Updated least recently' %}
+            <span>Updated least recently</span>
+          {% else %}
+            <a href="/applications/?sort=Updated least recently">Updated least recently</a>
+          {% endif %}
+        </p>
       </div>
 
       <div>

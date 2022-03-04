@@ -353,7 +353,12 @@ $statuses: (
     "colour":            govuk-shade(govuk-colour("green"), 20),
     "background-colour": govuk-tint(govuk-colour("green"), 80),
     "hover":             govuk-tint(govuk-colour("green"), 70)
-  )
+  ),
+  "pink": (
+    "colour":            govuk-shade(govuk-colour("pink"), 30),
+    "background-colour": govuk-tint(govuk-colour("pink"), 80),
+    "hover":             govuk-tint(govuk-colour("pink"), 70)
+  ),
 );
 
 @each $status, $data in $statuses
