@@ -6,53 +6,23 @@
 
 {% block content %}
 
+  <h1 class="govuk-heading-l"> {{title}} </h1>
 
-
-
-
-
-  <h1 class="govuk-heading-l">
-    {{title}}
-  </h1>
-
-  {# {% set promptHtml %} #}
-
-    {# <h2 class="govuk-heading-m">
-      Important
-    </h2> #}
-
-{# <h2 class="govuk-heading-m">
-    Notifications
-  </h2>
 
   <div class="app-home-statuses govuk-!-margin-bottom-8">
-
-  </div> #}
-
-    {# <h2 class="govuk-heading-m">
-    Important
-  </h2> #}
-
-    <div class="app-home-statuses govuk-!-margin-bottom-8">
-        <a href="/notifications/?referrer=overview&type=Application received" class="status-card status-card--pink">
-        <span class="status-card__count">3</span>
-        <span class="status-card__status">unread notifications about received applications</span>
-      </a>
-      <a href="/applications/?referrer=overview&importantItem=5 days or fewer to make decision" class="status-card status-card--purple">
-        <span class="status-card__count">{{aboutToBeAutomaticallyRejectedCount}}</span>
-        <span class="status-card__status">applications have 5 days or fewer to make a decision</span>
-      </a>
-      <a href="/applications/?referrer=overview&importantItem=Feedback needed" class="status-card status-card--orange">
-        <span class="status-card__count">{{needsFeedbackCount}}</span>
-        <span class="status-card__status"> applications need feedback after being automatically rejected</span>
-      </a>
-      {# <a href="/applications/?referrer=overview&status=Received&noteItem=Does not have note&assignedUser=unassigned" class="status-card status-card--blue">
-        <span class="status-card__count">5</span>
-        <span class="status-card__status">unassigned applications in the received status without notes</span>
-      </a> #}
-    </div>
-
-
+      <a href="/notifications/?referrer=overview&type=Application received" class="status-card status-card--pink">
+      <span class="status-card__count">3</span>
+      <span class="status-card__status">unread notifications about received applications</span>
+    </a>
+    <a href="/applications/?referrer=overview&importantItem=5 days or fewer to make decision" class="status-card status-card--purple">
+      <span class="status-card__count">{{aboutToBeAutomaticallyRejectedCount}}</span>
+      <span class="status-card__status">applications have 5 days or fewer to make a decision</span>
+    </a>
+    <a href="/applications/?referrer=overview&importantItem=Feedback needed" class="status-card status-card--orange">
+      <span class="status-card__count">{{needsFeedbackCount}}</span>
+      <span class="status-card__status"> applications need feedback after being automatically rejected</span>
+    </a>
+  </div>
 
   {% for organisation in data.user.organisations %}
     <h3 class="govuk-heading-m">

@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
   res.redirect('/start')
 })
 
+require('./routes/interruption')(router)
 require('./routes/overview')(router)
 require('./routes/activity-log')(router)
 require('./routes/application-list')(router)
