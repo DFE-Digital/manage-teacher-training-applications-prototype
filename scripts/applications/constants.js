@@ -13,7 +13,7 @@ exports.STATUS = {
 }
 
 exports.EVENTS = {
-  SUBMITTED: 'Application submitted',
+  SUBMITTED: 'Application received',
   INTERVIEW_SET_UP: 'Interview set up',
   INTERVIEW_CHANGED: 'Interview updated',
   INTERVIEW_CANCELLED: 'Interview cancelled',

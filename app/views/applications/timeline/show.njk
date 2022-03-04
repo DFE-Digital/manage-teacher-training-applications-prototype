@@ -48,7 +48,7 @@
               </p>
             </div>
             <div class="app-activity-log__description">
-              {% if event.title == "Application submitted" %}
+              {% if event.title == "Application received" %}
                 <div class="app-activity-log__box">
                   {{ appEventApplication({ application: event.meta.course }) }}
                 </div>

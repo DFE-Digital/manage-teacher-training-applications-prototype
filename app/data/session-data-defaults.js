@@ -73,7 +73,7 @@ applications = applications.map(application => {
 })
 
 defaults.emailsettings = [
-  'Application submitted',
+  'Application received',
   'Application withdrawn',
   'Application automatically rejected',
   'Offer accepted',

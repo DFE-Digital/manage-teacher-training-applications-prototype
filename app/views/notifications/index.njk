@@ -23,8 +23,14 @@
       <h2 class="govuk-heading-m">Unread notifications (7)</h2>
       {# <h2 class="govuk-heading-m">Read notifications</h2> #}
 
+      {# <div class="app-activity-log">
+        {%- for day, events in activity %}
+          {% include "_includes/activity-log/events-timeline.njk" %}
+        {% endfor -%}
+      </div> #}
+
       <div>
-          {{appNotificationCard({
+        {{appNotificationCard({
         classes: "app-notification-card--first",
         settings: {
           href: "/account/notifications/edit/application-submitted"
@@ -38,20 +44,6 @@
         },
         new: true
       })}}
-
-      {# {{appNotificationCard({
-        settings: {
-          href: "/account/notifications/edit/application-submitted"
-        },
-        title: "Mike Ross added a note to Eloise Well’s application",
-        provider: data.user.organisations[0].name,
-        dateText: "Today at 3:32pm",
-        link: {
-          href: "#",
-          text: "View note"
-        },
-        new: true
-      })}} #}
 
       {{appNotificationCard({
         settings: {
@@ -87,7 +79,7 @@
         },
         title: "Application withdrawn (Esther Fairley)",
         provider: data.user.organisations[0].name,
-        dateText: "19 May 2020 at 9:55am",
+        dateText: "5 March 2022 at 9:55am",
         link: {
           href: "#",
           text: "View offer"
@@ -101,7 +93,7 @@
         },
         title: "Offer declined (Elizabeth Rose)",
         provider: data.user.organisations[0].name,
-        dateText: "17 May 2020 at 8:18am",
+        dateText: "3 March 2022 at 8:18am",
         link: {
           href: "#",
           text: "View offer"
@@ -113,7 +105,7 @@
 
         title: "Automatically rejected (Daniel James Jennings)",
         provider: data.user.organisations[0].name,
-        dateText: "14 May 2020 at 7:19pm",
+        dateText: "1 March 2022 at 7:19pm",
         link: {
           href: "#",
           text: "View application"
@@ -130,7 +122,7 @@
         },
         title: "Offer declined (Elizabeth Rose)",
         provider: data.user.organisations[0].name,
-        dateText: "17 May 2020 at 8:18am",
+        dateText: "27 February 2022 at 8:18am",
         link: {
           href: "#",
           text: "View offer"
@@ -140,7 +132,7 @@
        {{appNotificationCard({
         title: "Offer accepted (Daniel Mead)",
         provider: data.user.organisations[0].name,
-        dateText: "14 May 2020 at 7:19pm",
+        dateText: "26 May 2022 at 7:19pm",
         link: {
           href: "#",
           text: "View offer"
@@ -167,6 +159,7 @@
           }]
         }) }}
       </div>
+
     </div>
   </div>
 
