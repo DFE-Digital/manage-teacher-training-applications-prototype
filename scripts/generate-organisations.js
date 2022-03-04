@@ -40,6 +40,30 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   organisations.push(generateFakeOrganisation({
+    name: "University of Sussex",
+    isAccreditedBody: true,
+    domain: "universityofsussex.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "University of Chichester",
+    isAccreditedBody: true,
+    domain: "universityofchichester.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Coventry University",
+    isAccreditedBody: true,
+    domain: "conventryuniversity.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "University of Brighton",
+    isAccreditedBody: true,
+    domain: "universityofbrighton.com"
+  }))
+
+  organisations.push(generateFakeOrganisation({
     name: "Partnership London SCITT",
     isAccreditedBody: true,
     domain: "sydneyrussellschool.com"
