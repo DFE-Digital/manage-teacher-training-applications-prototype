@@ -20,7 +20,12 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-      <h2 class="govuk-heading-m">Unread notifications (7)</h2>
+      {% set unreadCount = 7 %}
+      {% if data.type == 'Application received'%}
+      {% set unreadCount = 3 %}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">Unread notifications ({{unreadCount}})</h2>
       {# <h2 class="govuk-heading-m">Read notifications</h2> #}
 
       {# <div class="app-activity-log">

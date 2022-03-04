@@ -93,6 +93,22 @@ const getTypeCheckboxItems = (selectedItems) => {
   return items
 }
 
+const getCheckboxValues = (name, data) => {
+  return name && (Array.isArray(name) ? name : [name].filter((name) => {
+    return name !== '_unchecked'
+  })) || data && (Array.isArray(data) ? data : [data])
+}
+
+const removeFilter = (value, data) => {
+  // do this check because if coming from overview page for example,
+  // the query/param will be a string value, not an array containing a string
+  if(Array.isArray(data)) {
+    return data.filter(item => item !== value)
+  } else {
+    return null
+  }
+}
+
 module.exports = router => {
   router.get('/notifications', (req, res) => {
 
@@ -124,7 +140,9 @@ module.exports = router => {
       return itemDate <= DateTime.now()
     })
 
+    let { type } = req.query
 
+    const types = getCheckboxValues(type, req.session.data.type)
 
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(activity, req.query.page, req.query.limit)
@@ -133,13 +151,50 @@ module.exports = router => {
 
     activity = groupByDate(activity)
 
+    const hasFilters = !!((types && types.length > 0))
+
+    let selectedFilters = null
+    if (hasFilters) {
+      selectedFilters = {
+        categories: []
+      }
+
+      if (types && types.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Types' },
+          items: types.map((type) => {
+            return {
+              text: type,
+              href: `/notifications/remove-type-filter/${type}`
+            }
+          })
+        })
+      }
+
+
+    }
+
+
     let typeItems = getTypeCheckboxItems(req.session.data.type)
 
     // activity: activity,
     // now: SystemHelper.now(),
     // pagination: pagination,
     res.render('notifications/index', {
-      typeItems
+      typeItems,
+      hasFilters,
+      selectedFilters
     })
   })
+
+  router.get('/notifications/remove-type-filter/:type', (req, res) => {
+    req.session.data.type = removeFilter(req.params.type, req.session.data.type)
+    res.redirect('/notifications')
+  })
+
+  router.get('/notifications/remove-all-filters', (req, res) => {
+    req.session.data.type = null
+    res.redirect('/notifications')
+  })
+
 }
