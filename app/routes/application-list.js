@@ -230,7 +230,13 @@ const getLocationItems = (selectedItems) => {
 const sortApplications = (applications, sort) => {
   let newApplications = []
 
-  if(sort == 'Updated least recently') {
+  if(sort == 'Updated most recently') {
+    newApplications = applications.sort((a, b) => {
+      let aEvents = a.events.items
+      let bEvents = b.events.items
+      return new Date(bEvents[bEvents.length-1].date) - new Date(aEvents[aEvents.length-1].date)
+    })
+  } else if(sort == 'Updated least recently') {
     newApplications = applications.sort((a, b) => {
       let aEvents = a.events.items
       let bEvents = b.events.items
