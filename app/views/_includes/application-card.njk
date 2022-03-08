@@ -9,17 +9,9 @@
         </a>
         <span class="app-application-card__caption">{{ a.id }}</span>
       </h3>
-      <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
-      <p class="govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
-      {% if assignedUsers.length %}
-        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1">
-        Users assigned:
-        {% for assignedUser in assignedUsers %}
-          {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
-          {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
-        {% endfor %}
-        </p>
-      {% endif %}
+      <p class="govuk-!-font-size-16 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
+      <p class="govuk-!-margin-top-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ a.provider }} ({{a.accreditedBody}})</p>
     </div>
     <div class="app-application-card__secondary">
       <div class="app-application-card__status">
@@ -27,11 +19,12 @@
           classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
           text: a.status
         }) }}
+        <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">{{ a.cycle | cycleLabel }}</p>
         {% if a.status == 'Received' or a.status == 'Interviewing' %}
           {% if a.daysToRespond == 0 %}
-            <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day to make decision</p>
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">Last day to make decision</p>
           {% else %}
-            <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}} to make decision</p>
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}} to make decision</p>
           {% endif %}
         {% endif %}
 
@@ -50,20 +43,46 @@
             <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.offer.daysToDecline}} day{{'s' if a.offer.daysToDecline > 1}} for candidate to respond</p>
           {% endif %}
         {% endif %}
-        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ a.cycle | cycleLabel }}</p>
-        <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
+        {# <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0"></p> #}
       </div>
     </div>
   </div>
+
+  {% if assignedUsers.length or a.notes.items.length %}
+
   <div class="app-application-card__note">
+    {% if assignedUsers.length %}
+        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+        Users assigned:
+        {% for assignedUser in assignedUsers %}
+          {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
+          {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
+        {% endfor %}
+        {# - <a href="/applications/{{a.id}}/assign">assign users</a> #}
+        </p>
+      {% else %}
+        {# <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+          Unassigned - <a href="/applications/{{a.id}}/assign">assign users</a>
+        </p> #}
+      {% endif %}
+
     {% if a.notes.items.length %}
       {% set note = a.notes.items | last %}
       {{ govukInsetText({
         classes: "govuk-!-padding-top-0 govuk-!-padding-bottom-0 govuk-!-padding-left-1 govuk-!-margin-top-1 govuk-!-margin-bottom-0",
-        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-top-0">'+note.message+'</p>'
+        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">'+note.message+' (<a href="">3 more notes</a>)</p>'
       }) }}
+
+      {# <p class="govuk-!-font-size-16 govuk-!-margin-top-0"><a href="/applications/{{a.id}}/notes/new">Add note</a></p> #}
     {% else %}
-      <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0 govuk-!-margin-top-1"><a href="/applications/{{a.id}}/notes/new">Add note</a></p>
+      {# {{ govukInsetText({
+        classes: "govuk-!-padding-top-0 govuk-!-padding-bottom-0 govuk-!-padding-left-1 govuk-!-margin-top-1 govuk-!-margin-bottom-0",
+        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0"><a href="/applications/{{a.id}}/notes/new">Add note</a></p>'
+      }) }} #}
+
+
+
     {% endif %}
   </div>
+  {% endif %}
 </div>

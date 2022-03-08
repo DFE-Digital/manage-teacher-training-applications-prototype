@@ -29,17 +29,23 @@
 
       <div class="app-sort">
         <p>
-          <b>Sort by</b>:
+          <b class="govuk-!-margin-right-1">Sort by:</b>
           {% if data.sort == 'Status' %}
-            <span>Status</span>
+            <span class="govuk-!-margin-right-1">Status</span>
           {% else %}
-            <a href="/applications/?sort=Status">Status</a>
+            <a class="govuk-!-margin-right-1" href="/applications/?sort=Status">Status</a>
+          {% endif %}
+          |
+          {% if data.sort == 'Updated most recently' %}
+            <span class="govuk-!-margin-right-1 govuk-!-margin-left-1">Updated most recently</span>
+          {% else %}
+            <a class="govuk-!-margin-right-1 govuk-!-margin-left-1" href="/applications/?sort=Updated most recently">Updated most recently</a>
           {% endif %}
           |
           {% if data.sort == 'Updated least recently' %}
-            <span>Updated least recently</span>
+            <span class="govuk-!-margin-right-1 govuk-!-margin-left-1">Updated least recently</span>
           {% else %}
-            <a href="/applications/?sort=Updated least recently">Updated least recently</a>
+            <a class="govuk-!-margin-right-1 govuk-!-margin-left-1" href="/applications/?sort=Updated longest ago">Updated least recently</a>
           {% endif %}
         </p>
       </div>
