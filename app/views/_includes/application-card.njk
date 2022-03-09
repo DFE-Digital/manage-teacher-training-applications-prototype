@@ -68,20 +68,19 @@
 
     {% if a.notes.items.length %}
       {% set note = a.notes.items | last %}
+
+      {% set noteHtml %}
+        <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">
+          {{note.message}}
+          {% if a.notes.items.length > 1 %}
+            (<a href="/applications/{{a.id}}/notes">{{a.notes.items.length-1}} more notes</a>)
+          {% endif %}
+        </p>
+      {% endset %}
       {{ govukInsetText({
         classes: "govuk-!-padding-top-0 govuk-!-padding-bottom-0 govuk-!-padding-left-1 govuk-!-margin-top-1 govuk-!-margin-bottom-0",
-        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">'+note.message+' (<a href="">3 more notes</a>)</p>'
+        html: noteHtml
       }) }}
-
-      {# <p class="govuk-!-font-size-16 govuk-!-margin-top-0"><a href="/applications/{{a.id}}/notes/new">Add note</a></p> #}
-    {% else %}
-      {# {{ govukInsetText({
-        classes: "govuk-!-padding-top-0 govuk-!-padding-bottom-0 govuk-!-padding-left-1 govuk-!-margin-top-1 govuk-!-margin-bottom-0",
-        html: '<p class="govuk-!-font-size-16 govuk-!-margin-top-0"><a href="/applications/{{a.id}}/notes/new">Add note</a></p>'
-      }) }} #}
-
-
-
     {% endif %}
   </div>
   {% endif %}
