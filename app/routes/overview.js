@@ -16,29 +16,39 @@ module.exports = router => {
     var partners = req.session.data.user.relationships.map((relationship) => {
 
       // org 2 is always the partner
-      var org = relationship.org2.name
+      var orgName = relationship.org2.name
 
       let apps = applications
-        .filter(app => (app.provider == org || app.accreditedBody == org))
+        .filter(app => (app.provider == orgName || app.accreditedBody == orgName))
         .filter(app => (app.status == 'Received' || app.status == 'Interviewing'))
 
       return {
-        org,
+        orgName,
         apps
       }
 
     })
 
     partners = partners.sort((a, b) => {
-      var textA = a.org.toUpperCase();
-      var textB = b.org.toUpperCase();
+      var textA = a.orgName.toUpperCase();
+      var textB = b.orgName.toUpperCase();
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     })
+
+    var org
+    if(req.session.data.user.organisation.isAccreditedBody) {
+      org = {}
+      org.name = req.session.data.user.organisation.name
+      org.apps = applications
+        .filter(app => app.accreditedBody == org.name)
+        .filter(app => (app.status == 'Received' || app.status == 'Interviewing'))
+    }
 
     res.render('overview', {
       aboutToBeAutomaticallyRejectedCount,
       needsFeedbackCount,
-      partners
+      partners,
+      org
     })
   })
 

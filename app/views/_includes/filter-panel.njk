@@ -1,6 +1,20 @@
 {% set filterOptionsHtml %}
 
   {{ govukCheckboxes({
+    idPrefix: "cycle",
+    name: "[cycle]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Recruitment cycle",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: cycleItems
+  }) }}
+
+  {{ govukCheckboxes({
     idPrefix: "importantItem",
     name: "importantItem",
     classes: "govuk-checkboxes--small",
@@ -202,20 +216,6 @@
         checked: checked("studyMode", 'Part time') == 'checked'
       }
     ]
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: "cycle",
-    name: "[cycle]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Recruitment cycle",
-        isPageHeading: false,
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: cycleItems
   }) }}
 {% endset %}
 

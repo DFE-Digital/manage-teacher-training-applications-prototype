@@ -32,32 +32,29 @@
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Partner organisation</th>
+          <th scope="col" class="govuk-table__header">Organisation</th>
           <th scope="col" class="govuk-table__header">Number of applications</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        {% for partner in partners %}
+        {% if org %}
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
-              <a href="/applications/?referrer=overview&provider={{partner.org}}&status=Received&status=Interviewing">{{partner.org}}</a>
+              <a href="/applications/?referrer=overview&status=Received&status=Interviewing">{{org.name}}</a>
+            </td>
+            <td class="govuk-table__cell">{{org.apps.length}}</td>
+          </tr>
+        {% endif %}
+        {% for partner in partners %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-!-padding-left-4">
+              <a href="/applications/?referrer=overview&provider={{partner.orgName}}&status=Received&status=Interviewing">{{partner.orgName}}</a>
             </td>
             <td class="govuk-table__cell">{{partner.apps.length}}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
-
-
-
-    {# <div class="app-home-statuses govuk-!-margin-bottom-4">
-      {% for partner in partners %}
-        <a href="/applications/?referrer=overview&provider={{partner.org}}&status=Received&status=Interviewing" class="status-card status-card--grey">
-          <span class="status-card__count">{{partner.apps.length}}</span>
-          <span class="status-card__status">applications to {{partner.org}} need a decision</span>
-        </a>
-      {% endfor %}
-    </div> #}
   {% endfor %}
 
    {# <h2 class="govuk-heading-s">
