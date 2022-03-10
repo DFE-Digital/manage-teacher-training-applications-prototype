@@ -25,6 +25,9 @@
   </div>
 
   {% for organisation in data.user.organisations %}
+    <span class="govuk-caption-m">
+      {{organisation.name}}
+    </span>
     <h3 class="govuk-heading-m">
       Applications waiting for you to make a decision
     </h3>
@@ -40,14 +43,14 @@
         {% if org %}
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
-              <a href="/applications/?referrer=overview&status=Received&status=Interviewing">{{org.name}}</a>
+              <a href="/applications/?referrer=overview&status=Received&status=Interviewing">{{org.name}}</a> (self ratified)
             </td>
             <td class="govuk-table__cell">{{org.apps.length}}</td>
           </tr>
         {% endif %}
         {% for partner in partners %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-padding-left-4">
+            <td class="govuk-table__cell govuk-!-padding-left-">
               <a href="/applications/?referrer=overview&provider={{partner.orgName}}&status=Received&status=Interviewing">{{partner.orgName}}</a>
             </td>
             <td class="govuk-table__cell">{{partner.apps.length}}</td>
