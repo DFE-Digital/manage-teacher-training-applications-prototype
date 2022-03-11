@@ -23,33 +23,28 @@
 
       <p>The candidate cannot view notes.</p>
 
-      {% if application.notes %}
+      {% if not query.transferred %}
+        {{govukButton({
+          text: "Add note",
+          href: "/applications/" + application.id + "/notes/new",
+          classes: "govuk-button--secondary"
+        })}}
+      {% endif %}
 
-        {% if not query.transferred %}
-          {{govukButton({
-            text: "Add note",
-            href: "/applications/" + application.id + "/notes/new",
-            classes: "govuk-button--secondary"
-          })}}
-        {% endif %}
-
+      {% if application.notes.items.length %}
         <div class="app-notes">
           {% for note in application.notes.items | reverse%}
             <div class="app-notes__note" id="note_{{note.id}}">
-              <p class="govuk-!-margin-bottom-1">{{note.message | nl2br}}</p>
-              <p class="app-notes__meta">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
-              <p><a href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a>
+              {{ govukInsetText({
+                classes: 'govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-top-0 govuk-!-padding-bottom-0',
+                html: note.message | safe | nl2br
+              }) }}
+
+              <p class="govuk-!-margin-bottom-2">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
+              <p class="govuk-!-margin-bottom-2"><a href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> | <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
             </div>
           {% endfor %}
         </div>
-      {% else %}
-        <p>Notes are only seen by you and colleagues. We'll guide you through note creation.</p>
-
-        {{govukButton({
-          text: "Add note",
-          href: "/applications/" + application.id + "/notes/first-time",
-          classes: "govuk-button--secondary"
-        })}}
       {% endif %}
 
     </div>
