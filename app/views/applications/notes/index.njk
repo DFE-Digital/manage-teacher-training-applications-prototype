@@ -35,9 +35,10 @@
 
         <div class="app-notes">
           {% for note in application.notes.items | reverse%}
-            <div class="app-notes__note">
+            <div class="app-notes__note" id="note_{{note.id}}">
               <p class="govuk-!-margin-bottom-1">{{note.message | nl2br}}</p>
               <p class="app-notes__meta">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
+              <p><a href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a>
             </div>
           {% endfor %}
         </div>

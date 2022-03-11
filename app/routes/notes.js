@@ -15,20 +15,6 @@ module.exports = router => {
     })
   })
 
-  // router.get('/applications/:applicationId/notes/first-time', (req, res) => {
-  //   const applicationId = req.params.applicationId
-  //   const application = req.session.data.applications.find(app => app.id === applicationId)
-
-  //   res.render('applications/notes/first-time', {
-  //     application
-  //   })
-  // })
-
-  // router.post('/applications/:applicationId/notes/first-time', (req, res) => {
-  //   const applicationId = req.params.applicationId
-  //   res.redirect(`/applications/${applicationId}/notes/new`)
-  // })
-
   router.get('/applications/:applicationId/notes/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
@@ -53,7 +39,7 @@ module.exports = router => {
 
     ApplicationHelper.addEvent(application, {
       title: content.createNote.event.title,
-      user: "Ben Brown",
+      user: note.sender,
       date: note.date,
       meta: {
         note
@@ -66,13 +52,46 @@ module.exports = router => {
     res.redirect(`/applications/${applicationId}/notes`)
   })
 
-  router.get('/applications/:applicationId/notes/:noteId', (req, res) => {
+  router.get('/applications/:applicationId/notes/:noteId/edit', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-
-    res.render('applications/notes/show', {
+    const note = application.notes.items.find(note => note.id === req.params.noteId)
+    res.render('applications/notes/edit', {
       application,
-      note: application.notes.items.filter(note => note.id === req.params.noteId)[0]
+      note
     })
   })
+
+  router.post('/applications/:applicationId/notes/:noteId/edit', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const note = application.notes.items.find(note => note.id === req.params.noteId)
+    note.sender = "Bob Smith"
+    note.message = req.body.note
+
+    ApplicationHelper.addEvent(application, {
+      title: content.updateNote.event.title,
+      user: note.sender,
+      date: note.date,
+      meta: {
+        note
+      }
+    })
+
+    req.session.data.note = null
+
+    req.flash('success', content.updateNote.successMessage)
+    res.redirect(`/applications/${applicationId}/notes`)
+  })
+
+
+  // router.get('/applications/:applicationId/notes/:noteId', (req, res) => {
+  //   const applicationId = req.params.applicationId
+  //   const application = req.session.data.applications.find(app => app.id === applicationId)
+
+  //   res.render('applications/notes/show', {
+  //     application,
+  //     note: application.notes.items.filter(note => note.id === req.params.noteId)[0]
+  //   })
+  // })
 }

@@ -7,9 +7,21 @@
 {% set title = name %}
 
 {% block pageNavigation %}
-  {{ govukBackLink({
+  {# {{ govukBackLink({
     text: "Back",
     href: "/applications/" + application.id + "/notes"
+  }) }} #}
+
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Application",
+      href: "/applications/" + application.id
+    }, {
+      text: "Notes",
+      href: "/applications/" + application.id + "/notes"
+    }, {
+      text: title
+    }]
   }) }}
 {% endblock %}
 
