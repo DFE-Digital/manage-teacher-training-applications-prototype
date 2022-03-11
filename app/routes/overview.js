@@ -1,4 +1,5 @@
 const ApplicationHelper = require('../data/helpers/application')
+const CycleHelper = require('../data/helpers/cycles')
 
 module.exports = router => {
 
@@ -11,6 +12,14 @@ module.exports = router => {
 
     let needsFeedbackCount = applications.filter((app)=> {
       return app.status == 'Rejected' && !app.rejectedReasons
+    }).length
+
+    let deferredOffersReadyToConfirm = applications.filter((app)=> {
+      return app.status == 'Deferred' && app.cycle == CycleHelper.PREVIOUS_CYCLE.code
+    }).length
+
+    let conditionsPending = applications.filter((app)=> {
+      return app.status == 'Conditions pending' && app.cycle == CycleHelper.PREVIOUS_CYCLE.code
     }).length
 
     var partners = req.session.data.user.relationships.map((relationship) => {
@@ -45,8 +54,12 @@ module.exports = router => {
     }
 
     res.render('overview', {
-      aboutToBeAutomaticallyRejectedCount,
-      needsFeedbackCount,
+      boxes: {
+        aboutToBeAutomaticallyRejectedCount,
+        needsFeedbackCount,
+        deferredOffersReadyToConfirm,
+        conditionsPending
+      },
       partners,
       org
     })

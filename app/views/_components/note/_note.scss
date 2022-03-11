@@ -15,3 +15,12 @@
   // color: govuk-colour("dark-grey");
   // margin-bottom: 0;
 }
+
+.app-notes {
+  :target {
+    .govuk-inset-text {
+
+      background: govuk-tint(govuk-colour("yellow"), 75)
+    }
+  }
+}

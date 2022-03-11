@@ -35,12 +35,13 @@
         <div class="app-notes">
           {% for note in application.notes.items | reverse%}
             <div class="app-notes__note" id="note_{{note.id}}">
-              {{ govukInsetText({
+              {# {{ govukInsetText({
                 classes: 'govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-top-0 govuk-!-padding-bottom-0',
                 html: note.message | safe | nl2br
-              }) }}
+              }) }} #}
+              <p>{{note.message | safe | nl2br}}</p>
 
-              <p class="govuk-!-margin-bottom-2">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
+              <p class="govuk-!-margin-bottom-2 govuk-hint">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
               <p class="govuk-!-margin-bottom-2"><a href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> | <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
             </div>
           {% endfor %}

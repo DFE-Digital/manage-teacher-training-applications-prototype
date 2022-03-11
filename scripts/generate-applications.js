@@ -669,7 +669,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     status: 'Conditions pending',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
+    cycle: CycleHelper.PREVIOUS_CYCLE.code,
     personalDetails: {
       givenName: 'Trent',
       familyName: 'Skipp',
