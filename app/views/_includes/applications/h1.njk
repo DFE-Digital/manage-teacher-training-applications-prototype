@@ -6,7 +6,11 @@
         <span class="govuk-visually-hidden">{{pageName}}</span>
         {{ govukTag({ classes: application.status | statusClass, text: application.status }) }}
       </h1>
-      {% include "_includes/applications/prompts.njk" %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          {% include "_includes/applications/prompts.njk" %}
+        </div>
+      </div>
     {% else %}
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
         {{name}} -

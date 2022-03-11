@@ -42,11 +42,22 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    application.notes.items.push({
+    let note = {
       id: uuidv4(),
       message: req.body.note,
       sender: req.session.data.user.firstName + ' ' + req.session.data.user.lastName,
       date: new Date().toISOString()
+    }
+
+    application.notes.items.push(note)
+
+    ApplicationHelper.addEvent(application, {
+      title: content.createNote.event.title,
+      user: "Ben Brown",
+      date: note.date,
+      meta: {
+        note
+      }
     })
 
     req.session.data.note = null

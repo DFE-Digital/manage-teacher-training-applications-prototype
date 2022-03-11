@@ -22,6 +22,14 @@
       <span class="status-card__count">{{needsFeedbackCount}}</span>
       <span class="status-card__status"> applications need feedback after being automatically rejected</span>
     </a>
+    <a href="/applications/?referrer=overview&status=Deferred" class="status-card status-card--yellow">
+      <span class="status-card__count">1</span>
+      <span class="status-card__status"> deffered offer ready to be confirmed</span>
+    </a>
+    <a href="/applications/?referrer=overview&status=Conditions pending" class="status-card status-card--blue">
+      <span class="status-card__count">7</span>
+      <span class="status-card__status"> accepted offers with pending conditions</span>
+    </a>
   </div>
 
   {% for organisation in data.user.organisations %}

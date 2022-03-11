@@ -167,6 +167,9 @@ const content = {
     successMessage: 'Noted added',
     checkAnswers: {
       button: 'Add note'
+    },
+    event: {
+      title: 'Note added'
     }
   },
   updateAssignedUsers: {
