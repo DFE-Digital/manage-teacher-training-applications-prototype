@@ -32,10 +32,12 @@ function getActivity(applications, userOrganisationId) {
       }
 
       // note
-      if(item.title == 'Note added') {
+      if(item.title == 'Note added' || item.title == 'Note updated') {
         let note = application.notes.items.find(note => note.id === item.meta.note.id)
         if(note) {
           item.meta.note.exists = true
+        } else {
+          item.meta.note.exists = false
         }
       }
 

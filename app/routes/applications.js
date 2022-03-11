@@ -72,6 +72,8 @@ module.exports = router => {
         let note = application.notes.items.find(note => note.id === item.meta.note.id)
         if(note) {
           item.meta.note.exists = true
+        } else {
+          item.meta.note.exists = false
         }
       }
 

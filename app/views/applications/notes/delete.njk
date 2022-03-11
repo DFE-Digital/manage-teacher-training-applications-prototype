@@ -1,0 +1,43 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "notes" %}
+{% set status = application.status %}
+{% set name = application.personalDetails.name %}
+{% set caption = content.deleteNote.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Confirm that you want to delete this note' %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id + "/notes"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{heading}}
+      </h1>
+
+      {{ govukInsetText({
+        html: note.message | safe | nl2br
+      }) }}
+
+      <form method="post" novalidate>
+        {{govukButton({
+          text: content.deleteNote.checkAnswers.button,
+          classes: "govuk-button--warning"
+        })}}
+        <p><a href="/applications/{{application.id}}/notes">Cancel</a></p>
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

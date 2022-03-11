@@ -85,13 +85,35 @@ module.exports = router => {
   })
 
 
-  // router.get('/applications/:applicationId/notes/:noteId', (req, res) => {
-  //   const applicationId = req.params.applicationId
-  //   const application = req.session.data.applications.find(app => app.id === applicationId)
+  router.get('/applications/:applicationId/notes/:noteId/delete', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const note = application.notes.items.find(note => note.id === req.params.noteId)
 
-  //   res.render('applications/notes/show', {
-  //     application,
-  //     note: application.notes.items.filter(note => note.id === req.params.noteId)[0]
-  //   })
-  // })
+    res.render('applications/notes/delete', {
+      application,
+      note
+    })
+  })
+
+  router.post('/applications/:applicationId/notes/:noteId/delete', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const note = application.notes.items.find(note => note.id === req.params.noteId)
+
+    ApplicationHelper.addEvent(application, {
+      title: content.deleteNote.event.title,
+      user: "Bob Brown",
+      date: new Date().toISOString(),
+      meta: {
+        note
+      }
+    })
+
+    // delete
+    application.notes.items = application.notes.items.filter(note => note.id !== req.params.noteId)
+
+    req.flash('success', content.deleteNote.successMessage)
+    res.redirect(`/applications/${applicationId}/notes`)
+  })
 }

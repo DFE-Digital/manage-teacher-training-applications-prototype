@@ -182,6 +182,16 @@ const content = {
       title: 'Note updated'
     }
   },
+  deleteNote: {
+    caption: 'Delete note',
+    successMessage: 'Noted deleted',
+    checkAnswers: {
+      button: 'Delete note'
+    },
+    event: {
+      title: 'Note deleted'
+    }
+  },
   updateAssignedUsers: {
     caption: 'Update assigned users',
     successMessage: 'Assigned users updated',
