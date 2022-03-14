@@ -40,6 +40,66 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   organisations.push(generateFakeOrganisation({
+    name: "Cambridge Training School Network, CTSN SCITT",
+    isAccreditedBody: true,
+    domain: "@camteach.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "The Lark Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "@lark.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Barrow CEVC Primary School",
+    isAccreditedBody: false,
+    domain: "@barrow.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "The Cambridge Training School Network Partnership, CTSN",
+    isAccreditedBody: false,
+    domain: "@ctsn.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Anglian Gateway Teaching Schools Alliance",
+    isAccreditedBody: false,
+    domain: "@anglian.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Morris Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "@morris.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Cambridge & Suffolk Schools Alliance (CASSA)",
+    isAccreditedBody: false,
+    domain: "@cands.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Catalyst Teaching School Alliance",
+    isAccreditedBody: false,
+    domain: "@ctsa.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Unity Teaching School Hub",
+    isAccreditedBody: false,
+    domain: "@utsh.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Saffron Walden County High School",
+    isAccreditedBody: false,
+    domain: "@swchs.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
     name: "Yorkshire and Humber Teacher Training",
     isAccreditedBody: true,
     domain: "yhtt.co.uk"
