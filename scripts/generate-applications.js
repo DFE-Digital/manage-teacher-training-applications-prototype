@@ -240,12 +240,12 @@ const generateFakeApplications = () => {
     cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Adam',
-      familyName: 'Silver',
+      familyName: 'Jenkins',
       sex: 'Male'
     },
     contactDetails: {
       tel: '01649 13062',
-      email: 'adam.silver@hotmail.com',
+      email: 'adam.jenkins@hotmail.com',
       address: {
         line1: '7127 Moen Knolls',
         line2: '',
@@ -281,254 +281,254 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    id: '111223',
-    status: 'Interviewing',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 36 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Sarah',
-      familyName: 'Fisher',
-      sex: 'Female'
-    },
-    interviews: {
-      items: [{
-        id: faker.datatype.uuid(),
-        date: future,
-        organisation: 'The Royal Borough Teaching School Alliance',
-        location: 'https://zoom.us/12345/'
-      }, {
-        id: faker.datatype.uuid(),
-        date: future.plus({
-          days: 1
-        }),
-        organisation: 'Kingston University',
-        location: 'https://zoom.us/z1234/'
-      }]
-    },
-    otherQualifications: null
-  }))
+  // applications.push(generateFakeApplication({
+  //   id: '111223',
+  //   status: 'Interviewing',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   submittedDate: SystemHelper.now().minus({ days: 36 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
+  //   personalDetails: {
+  //     givenName: 'Sarah',
+  //     familyName: 'Fisher',
+  //     sex: 'Female'
+  //   },
+  //   interviews: {
+  //     items: [{
+  //       id: faker.datatype.uuid(),
+  //       date: future,
+  //       organisation: 'The Royal Borough Teaching School Alliance',
+  //       location: 'https://zoom.us/12345/'
+  //     }, {
+  //       id: faker.datatype.uuid(),
+  //       date: future.plus({
+  //         days: 1
+  //       }),
+  //       organisation: 'Kingston University',
+  //       location: 'https://zoom.us/z1234/'
+  //     }]
+  //   },
+  //   otherQualifications: null
+  // }))
 
-  applications.push(generateFakeApplication({
-    id: '111224',
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 38 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Rachael',
-      familyName: 'Harvey',
-      sex: 'Female',
-      dateOfBirth: '1965-03-05',
-      isInternationalCandidate: false
-    },
-    degree: [
-      {
-        type: 'BA',
-        subject: 'History',
-        institution: 'Aston University',
-        country: 'United Kingdom',
-        grade: 'Distinction',
-        predicted: true,
-        startYear: '2017',
-        graduationYear: '2020'
-      }
-    ],
-    gcse: {
-      maths: {
-        hasQualification: 'Yes',
-        type: 'O level',
-        subject: 'Maths',
-        country: 'United Kingdom',
-        grade: [
-          {
-            grade: 'C'
-          }
-        ],
-        year: 1982
-      },
-      english: {
-        hasQualification: 'Yes',
-        type: 'O level',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'B'
-          }
-        ],
-        year: 1982
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'O level',
-        subject: 'Science',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'Science',
-            grade: 'B'
-          }
-        ],
-        year: 1982
-      }
-    },
-    otherQualifications: null,
-    englishLanguageQualification: {
-      hasQualification: 'Not needed',
-      status: 'No, English is not a foreign language to me'
-    },
-    schoolExperience: [
-      {
-        "role": "Holiday club staff",
-        "org": "Heathcote Primary School",
-        "workedWithChildren": "Yes",
-        "startDate": "2019-07-01T23:14:28.205Z",
-        "endDate": "2019-08-30T05:13:38.382Z",
-        "timeCommitment": "3 afternoons a week over the summer"
-      }
-    ],
-    "references": {
-      "first": {
-        "type": "Professional",
-        "name": "Braeden Schultz",
-        "email": "braeden.schultz@gmail.com",
-        "tel": "01189 388018",
-        "relationship": {
-          "summary": "Deputy head at the school where I currently volunteer",
-          "validated": true
-        },
-        "safeguarding": {
-          "response": "no"
-        },
-        "comments": "A charismatic talented and able person."
-      },
-      "second": {
-        "type": "Professional",
-        "name": "Yolanda Ferry",
-        "email": "yolanda.ferry@yahoo.com",
-        "tel": "0800 435003",
-        "relationship": {
-          "summary": "Manager at R & T Ltd where I worked for 3 years.",
-          "validated": true
-        },
-        "safeguarding": {
-          "response": "no"
-        },
-        "comments": "Tricia is great, and will be a good teacher."
-      }
-    },
-    "safeguarding": {
-      "response": false
-    },
-    "disability": {
-      "response": false
-    },
-    workHistory: {
-      answer: 'yes',
-      items: [
-      {
-        category: 'job',
-        role: 'Camp assistant',
-        org: 'XYZ Summer Camps Ltd',
-        type: 'Part time',
-        relevantToTeaching: 'Yes',
-        startDate: '1983-01-01',
-        endDate: '1985-10-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Retail assistant',
-        org: 'Jones’s Stores',
-        type: 'Part time',
-        relevantToTeaching: 'No',
-        startDate: '1985-11-01',
-        endDate: '1986-08-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Deputy Manager',
-        org: 'Jones’s Stores',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '1986-08-01',
-        endDate: '1991-11-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'job',
-        role: 'Deputy store manager',
-        org: 'Arnolds department store',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '1991-11-01',
-        endDate: '1996-05-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: true
-      },
-      {
-        category: 'break',
-        // description: 'Bringing up my 4 children',
-        duration: '10 years and 3 months',
-        startDate: '1996-05-01',
-        endDate: '2006-08-01',
-        isStartDateApproximate: true,
-        isEndDateApproximate: false
-      },
-      {
-        category: 'job',
-        role: 'Buyer',
-        org: 'R & T Ltd',
-        type: 'Full time',
-        relevantToTeaching: 'No',
-        startDate: '2006-08-01',
-        endDate: '2017-06-01'
-      },
-      {
-        category: 'break',
-        description: 'Degree course',
-        duration: '2 years and 10 months',
-        startDate: '2017-09-01',
-        endDate: '2020-07-01'
-      }
-    ]
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   id: '111224',
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   submittedDate: SystemHelper.now().minus({ days: 38 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
+  //   personalDetails: {
+  //     givenName: 'Rachael',
+  //     familyName: 'Harvey',
+  //     sex: 'Female',
+  //     dateOfBirth: '1965-03-05',
+  //     isInternationalCandidate: false
+  //   },
+  //   degree: [
+  //     {
+  //       type: 'BA',
+  //       subject: 'History',
+  //       institution: 'Aston University',
+  //       country: 'United Kingdom',
+  //       grade: 'Distinction',
+  //       predicted: true,
+  //       startYear: '2017',
+  //       graduationYear: '2020'
+  //     }
+  //   ],
+  //   gcse: {
+  //     maths: {
+  //       hasQualification: 'Yes',
+  //       type: 'O level',
+  //       subject: 'Maths',
+  //       country: 'United Kingdom',
+  //       grade: [
+  //         {
+  //           grade: 'C'
+  //         }
+  //       ],
+  //       year: 1982
+  //     },
+  //     english: {
+  //       hasQualification: 'Yes',
+  //       type: 'O level',
+  //       subject: 'English',
+  //       country: 'United Kingdom',
+  //       grade: [
+  //         {
+  //           exam: 'English',
+  //           grade: 'B'
+  //         }
+  //       ],
+  //       year: 1982
+  //     },
+  //     science: {
+  //       hasQualification: 'Yes',
+  //       type: 'O level',
+  //       subject: 'Science',
+  //       country: 'United Kingdom',
+  //       grade: [
+  //         {
+  //           exam: 'Science',
+  //           grade: 'B'
+  //         }
+  //       ],
+  //       year: 1982
+  //     }
+  //   },
+  //   otherQualifications: null,
+  //   englishLanguageQualification: {
+  //     hasQualification: 'Not needed',
+  //     status: 'No, English is not a foreign language to me'
+  //   },
+  //   schoolExperience: [
+  //     {
+  //       "role": "Holiday club staff",
+  //       "org": "Heathcote Primary School",
+  //       "workedWithChildren": "Yes",
+  //       "startDate": "2019-07-01T23:14:28.205Z",
+  //       "endDate": "2019-08-30T05:13:38.382Z",
+  //       "timeCommitment": "3 afternoons a week over the summer"
+  //     }
+  //   ],
+  //   "references": {
+  //     "first": {
+  //       "type": "Professional",
+  //       "name": "Braeden Schultz",
+  //       "email": "braeden.schultz@gmail.com",
+  //       "tel": "01189 388018",
+  //       "relationship": {
+  //         "summary": "Deputy head at the school where I currently volunteer",
+  //         "validated": true
+  //       },
+  //       "safeguarding": {
+  //         "response": "no"
+  //       },
+  //       "comments": "A charismatic talented and able person."
+  //     },
+  //     "second": {
+  //       "type": "Professional",
+  //       "name": "Yolanda Ferry",
+  //       "email": "yolanda.ferry@yahoo.com",
+  //       "tel": "0800 435003",
+  //       "relationship": {
+  //         "summary": "Manager at R & T Ltd where I worked for 3 years.",
+  //         "validated": true
+  //       },
+  //       "safeguarding": {
+  //         "response": "no"
+  //       },
+  //       "comments": "Tricia is great, and will be a good teacher."
+  //     }
+  //   },
+  //   "safeguarding": {
+  //     "response": false
+  //   },
+  //   "disability": {
+  //     "response": false
+  //   },
+  //   workHistory: {
+  //     answer: 'yes',
+  //     items: [
+  //     {
+  //       category: 'job',
+  //       role: 'Camp assistant',
+  //       org: 'XYZ Summer Camps Ltd',
+  //       type: 'Part time',
+  //       relevantToTeaching: 'Yes',
+  //       startDate: '1983-01-01',
+  //       endDate: '1985-10-01',
+  //       isStartDateApproximate: true,
+  //       isEndDateApproximate: true
+  //     },
+  //     {
+  //       category: 'job',
+  //       role: 'Retail assistant',
+  //       org: 'Jones’s Stores',
+  //       type: 'Part time',
+  //       relevantToTeaching: 'No',
+  //       startDate: '1985-11-01',
+  //       endDate: '1986-08-01',
+  //       isStartDateApproximate: true,
+  //       isEndDateApproximate: true
+  //     },
+  //     {
+  //       category: 'job',
+  //       role: 'Deputy Manager',
+  //       org: 'Jones’s Stores',
+  //       type: 'Full time',
+  //       relevantToTeaching: 'No',
+  //       startDate: '1986-08-01',
+  //       endDate: '1991-11-01',
+  //       isStartDateApproximate: true,
+  //       isEndDateApproximate: true
+  //     },
+  //     {
+  //       category: 'job',
+  //       role: 'Deputy store manager',
+  //       org: 'Arnolds department store',
+  //       type: 'Full time',
+  //       relevantToTeaching: 'No',
+  //       startDate: '1991-11-01',
+  //       endDate: '1996-05-01',
+  //       isStartDateApproximate: true,
+  //       isEndDateApproximate: true
+  //     },
+  //     {
+  //       category: 'break',
+  //       // description: 'Bringing up my 4 children',
+  //       duration: '10 years and 3 months',
+  //       startDate: '1996-05-01',
+  //       endDate: '2006-08-01',
+  //       isStartDateApproximate: true,
+  //       isEndDateApproximate: false
+  //     },
+  //     {
+  //       category: 'job',
+  //       role: 'Buyer',
+  //       org: 'R & T Ltd',
+  //       type: 'Full time',
+  //       relevantToTeaching: 'No',
+  //       startDate: '2006-08-01',
+  //       endDate: '2017-06-01'
+  //     },
+  //     {
+  //       category: 'break',
+  //       description: 'Degree course',
+  //       duration: '2 years and 10 months',
+  //       startDate: '2017-09-01',
+  //       endDate: '2020-07-01'
+  //     }
+  //   ]
+  //   }
+  // }))
 
-  applications.push(generateFakeApplication({
-    id: '111225',
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 40 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Alex',
-      familyName: 'Roberts',
-      sex: 'Female',
-      dateOfBirth: "1999-04-05"
-    },
-    safeguarding: {
-      "response": false
-    },
-    workHistory: {
-      answer: 'no--in-full-time-education',
-      items: []
-    },
-    schoolExperience: [
-      {
-        "role": "Volunteer",
-        "org": "Local nature reserve",
-        "workedWithChildren": "No",
-        "startDate": "2019-08-01T23:14:28.205Z",
-        "endDate": "2019-08-09T05:13:38.382Z",
-        "timeCommitment": "1 week"
-      }
-    ]
-  }))
+  // applications.push(generateFakeApplication({
+  //   id: '111225',
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   submittedDate: SystemHelper.now().minus({ days: 40 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
+  //   personalDetails: {
+  //     givenName: 'Alex',
+  //     familyName: 'Roberts',
+  //     sex: 'Female',
+  //     dateOfBirth: "1999-04-05"
+  //   },
+  //   safeguarding: {
+  //     "response": false
+  //   },
+  //   workHistory: {
+  //     answer: 'no--in-full-time-education',
+  //     items: []
+  //   },
+  //   schoolExperience: [
+  //     {
+  //       "role": "Volunteer",
+  //       "org": "Local nature reserve",
+  //       "workedWithChildren": "No",
+  //       "startDate": "2019-08-01T23:14:28.205Z",
+  //       "endDate": "2019-08-09T05:13:38.382Z",
+  //       "timeCommitment": "1 week"
+  //     }
+  //   ]
+  // }))
 
   applications.push(generateFakeApplication({
     id: '111226',
@@ -616,16 +616,16 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 37 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Umar',
-      familyName: 'Smith',
-      sex: 'Male'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   submittedDate: SystemHelper.now().minus({ days: 37 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
+  //   personalDetails: {
+  //     givenName: 'Umar',
+  //     familyName: 'Smith',
+  //     sex: 'Male'
+  //   }
+  // }))
 
   var organisation = organisations[0]
 
@@ -761,24 +761,24 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Te Kura',
-      familyName: 'Ngata-Aerengamate',
-      sex: 'Female',
-      dateOfBirth: '1986-04-08',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU settled status',
-      dateEnteredUK: '2008-03-26'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Te Kura',
+  //     familyName: 'Ngata-Aerengamate',
+  //     sex: 'Female',
+  //     dateOfBirth: '1986-04-08',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     lengthOfStay: '',
+  //     rightToWorkStudy: 'Yes',
+  //     immigrationStatus: 'EU settled status',
+  //     dateEnteredUK: '2008-03-26'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Received',
@@ -856,24 +856,24 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Les',
-      familyName: 'Elder',
-      sex: 'Female',
-      dateOfBirth: '1976-04-09',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-07-12'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Les',
+  //     familyName: 'Elder',
+  //     sex: 'Female',
+  //     dateOfBirth: '1976-04-09',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     lengthOfStay: '',
+  //     rightToWorkStudy: 'Yes',
+  //     immigrationStatus: 'EU pre-settled status',
+  //     dateEnteredUK: '2020-07-12'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Received',
@@ -894,25 +894,25 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Kendra',
-      familyName: 'Cocksedge',
-      sex: 'Female',
-      dateOfBirth: '1989-05-31',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'Other',
-      immigrationStatusDetails: 'I have a family visa',
-      dateEnteredUK: '2010-10-05'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Kendra',
+  //     familyName: 'Cocksedge',
+  //     sex: 'Female',
+  //     dateOfBirth: '1989-05-31',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     lengthOfStay: '',
+  //     rightToWorkStudy: 'Yes',
+  //     immigrationStatus: 'Other',
+  //     immigrationStatusDetails: 'I have a family visa',
+  //     dateEnteredUK: '2010-10-05'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Received',
@@ -977,70 +977,70 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Stacey',
-      familyName: 'Fluhler',
-      sex: 'Female',
-      dateOfBirth: '1981-01-25',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      immigrationStatus: '',
-      immigrationStatusDetails: '',
-      dateEnteredUK: ''
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Stacey',
+  //     familyName: 'Fluhler',
+  //     sex: 'Female',
+  //     dateOfBirth: '1981-01-25',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     lengthOfStay: '',
+  //     rightToWorkStudy: 'Not yet',
+  //     rightToWorkStudyHow: 'A visa sponsored by a course provider',
+  //     immigrationStatus: '',
+  //     immigrationStatusDetails: '',
+  //     dateEnteredUK: ''
+  //   }
+  // }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Renee',
-      familyName: 'Wickliffe',
-      sex: 'Female',
-      dateOfBirth: '1994-05-24',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I’m applying for a permanent residence card',
-      immigrationStatus: '',
-      immigrationStatusDetails: '',
-      dateEnteredUK: ''
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Renee',
+  //     familyName: 'Wickliffe',
+  //     sex: 'Female',
+  //     dateOfBirth: '1994-05-24',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     lengthOfStay: '',
+  //     rightToWorkStudy: 'Not yet',
+  //     rightToWorkStudyHow: 'Another route',
+  //     rightToWorkStudyHowDetails: 'I’m applying for a permanent residence card',
+  //     immigrationStatus: '',
+  //     immigrationStatusDetails: '',
+  //     dateEnteredUK: ''
+  //   }
+  // }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Renee',
-      familyName: 'Holmes',
-      sex: 'Female',
-      dateOfBirth: '1999-05-25',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I’m applying for a visa',
-      immigrationStatus: '',
-      immigrationStatusDetails: '',
-      dateEnteredUK: ''
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Renee',
+  //     familyName: 'Holmes',
+  //     sex: 'Female',
+  //     dateOfBirth: '1999-05-25',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     lengthOfStay: '',
+  //     rightToWorkStudy: 'Not yet',
+  //     rightToWorkStudyHow: 'Another route',
+  //     rightToWorkStudyHowDetails: 'I’m applying for a visa',
+  //     immigrationStatus: '',
+  //     immigrationStatusDetails: '',
+  //     dateEnteredUK: ''
+  //   }
+  // }))
 
   // ---------------------------------------------------------------------------
   // Qualifications
@@ -1370,109 +1370,109 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Clara',
-      familyName: 'Joyeaux',
-      sex: 'Female',
-      dateOfBirth: '1998-07-26',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2016,
-        graduationYear: 2019,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 18
-          }
-        ],
-        year: 2014
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 20
-          }
-        ],
-        year: 2014
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Science',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 13
-          }
-        ],
-        year: 2014
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Yes',
-      type: 'Other',
-      grade: 'B',
-      gradeLabel: 'Score or grade',
-      reference: 'Pearson Test of English (Academic)',
-      referenceLabel: 'Assessment name',
-      year: 2021
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Clara',
+  //     familyName: 'Joyeaux',
+  //     sex: 'Female',
+  //     dateOfBirth: '1998-07-26',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     rightToWorkStudy: 'Yes',
+  //     immigrationStatus: 'EU pre-settled status',
+  //     dateEnteredUK: '2020-01-04'
+  //   },
+  //   studyMode: 'Full time',
+  //   fundingType: 'Fee paying',
+  //   subject: [
+  //     {
+  //       code: 'W1',
+  //       name: 'Art and design'
+  //     }
+  //   ],
+  //   subjectLevel: 'Secondary',
+  //   course: 'Art and design (1NBJ)',
+  //   degree: [
+  //     {
+  //       subject: 'History of Art',
+  //       startYear: 2016,
+  //       graduationYear: 2019,
+  //       predicted: false,
+  //       type: 'Diplôme',
+  //       institution: 'University of Paris',
+  //       country: 'France',
+  //       grade: 'Pass',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'Bachelor (Honours) degree'
+  //       }
+  //     }
+  //   ],
+  //   gcse: {
+  //     english: {
+  //       hasQualification: 'Yes',
+  //       type: 'Baccalauréat Général',
+  //       subject: 'English',
+  //       country: 'France',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'GCSE (grades A*-C / 9-4)'
+  //       },
+  //       grade: [
+  //         {
+  //           grade: 18
+  //         }
+  //       ],
+  //       year: 2014
+  //     },
+  //     maths: {
+  //       hasQualification: 'Yes',
+  //       type: 'Baccalauréat Général',
+  //       subject: 'Maths',
+  //       country: 'France',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'GCSE (grades A*-C / 9-4)'
+  //       },
+  //       grade: [
+  //         {
+  //           grade: 20
+  //         }
+  //       ],
+  //       year: 2014
+  //     },
+  //     science: {
+  //       hasQualification: 'Yes',
+  //       type: 'Baccalauréat Général',
+  //       subject: 'Science',
+  //       country: 'France',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'GCSE (grades A*-C / 9-4)'
+  //       },
+  //       grade: [
+  //         {
+  //           grade: 13
+  //         }
+  //       ],
+  //       year: 2014
+  //     }
+  //   },
+  //   englishLanguageQualification: {
+  //     hasQualification: 'Yes',
+  //     status: 'Yes',
+  //     type: 'Other',
+  //     grade: 'B',
+  //     gradeLabel: 'Score or grade',
+  //     reference: 'Pearson Test of English (Academic)',
+  //     referenceLabel: 'Assessment name',
+  //     year: 2021
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Received',
@@ -1924,208 +1924,208 @@ const generateFakeApplications = () => {
     }
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Agathe',
-      familyName: 'Sochat',
-      sex: 'Female',
-      dateOfBirth: '1994-05-24',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2012,
-        graduationYear: 2015,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      },
-      {
-        subject: 'Sports coaching',
-        startYear: 2020,
-        graduationYear: 2023,
-        predicted: true,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'No',
-          otherReason: 'I applied to NARIC for the equivalent'
-        }
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE grades A*-C/9-4'
-        },
-        grade: [
-          {
-            grade: 20
-          }
-        ],
-        year: 2010
-      },
-      science: {
-        hasQualification: 'No',
-        subject: 'Science',
-        missing: {
-          hasQualification: 'I don’t have a science qualification yet',
-          isStudying: 'No',
-          otherReason: 'Not entered'
-        }
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Not needed',
-      status: 'No, English is not a foreign language to me'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Agathe',
+  //     familyName: 'Sochat',
+  //     sex: 'Female',
+  //     dateOfBirth: '1994-05-24',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     rightToWorkStudy: 'Yes',
+  //     immigrationStatus: 'EU pre-settled status',
+  //     dateEnteredUK: '2020-01-04'
+  //   },
+  //   studyMode: 'Full time',
+  //   fundingType: 'Fee paying',
+  //   subject: [
+  //     {
+  //       code: 'W1',
+  //       name: 'Art and design'
+  //     }
+  //   ],
+  //   subjectLevel: 'Secondary',
+  //   course: 'Art and design (1NBJ)',
+  //   degree: [
+  //     {
+  //       subject: 'History of Art',
+  //       startYear: 2012,
+  //       graduationYear: 2015,
+  //       predicted: false,
+  //       type: 'Diplôme',
+  //       institution: 'University of Paris',
+  //       country: 'France',
+  //       grade: 'Pass',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'Bachelor (Honours) degree'
+  //       }
+  //     },
+  //     {
+  //       subject: 'Sports coaching',
+  //       startYear: 2020,
+  //       graduationYear: 2023,
+  //       predicted: true,
+  //       type: 'Diplôme',
+  //       institution: 'University of Paris',
+  //       country: 'France',
+  //       grade: 'Pass',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'Bachelor (Honours) degree'
+  //       }
+  //     }
+  //   ],
+  //   gcse: {
+  //     english: {
+  //       hasQualification: 'No',
+  //       subject: 'English',
+  //       missing: {
+  //         hasQualification: 'I don’t have an English qualification yet',
+  //         isStudying: 'No',
+  //         otherReason: 'I applied to NARIC for the equivalent'
+  //       }
+  //     },
+  //     maths: {
+  //       hasQualification: 'Yes',
+  //       type: 'Baccalauréat Général',
+  //       subject: 'Maths',
+  //       country: 'France',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'GCSE grades A*-C/9-4'
+  //       },
+  //       grade: [
+  //         {
+  //           grade: 20
+  //         }
+  //       ],
+  //       year: 2010
+  //     },
+  //     science: {
+  //       hasQualification: 'No',
+  //       subject: 'Science',
+  //       missing: {
+  //         hasQualification: 'I don’t have a science qualification yet',
+  //         isStudying: 'No',
+  //         otherReason: 'Not entered'
+  //       }
+  //     }
+  //   },
+  //   englishLanguageQualification: {
+  //     hasQualification: 'Not needed',
+  //     status: 'No, English is not a foreign language to me'
+  //   }
+  // }))
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Dhia',
-      familyName: 'Traore',
-      sex: 'Female',
-      dateOfBirth: '1997-05-25',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2015,
-        graduationYear: 2018,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      },
-      {
-        subject: 'Sports coaching',
-        startYear: 2019,
-        graduationYear: 2022,
-        predicted: true,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 18
-          }
-        ],
-        year: 2013
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE grades A*-C/9-4'
-        },
-        grade: [
-          {
-            grade: 20
-          }
-        ],
-        year: 2013
-      },
-      science: {
-        hasQualification: 'No',
-        subject: 'Science',
-        missing: {
-          hasQualification: 'I don’t have a science qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a science equivalency test'
-        }
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Not needed',
-      status: 'No, English is not a foreign language to me'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Received',
+  //   cycle: CycleHelper.CURRENT_CYCLE.code,
+  //   personalDetails: {
+  //     givenName: 'Dhia',
+  //     familyName: 'Traore',
+  //     sex: 'Female',
+  //     dateOfBirth: '1997-05-25',
+  //     nationalities: [
+  //       'French'
+  //     ],
+  //     isInternationalCandidate: true,
+  //     rightToWorkStudy: 'Yes',
+  //     immigrationStatus: 'EU pre-settled status',
+  //     dateEnteredUK: '2020-01-04'
+  //   },
+  //   studyMode: 'Full time',
+  //   fundingType: 'Fee paying',
+  //   subject: [
+  //     {
+  //       code: 'W1',
+  //       name: 'Art and design'
+  //     }
+  //   ],
+  //   subjectLevel: 'Secondary',
+  //   course: 'Art and design (1NBJ)',
+  //   degree: [
+  //     {
+  //       subject: 'History of Art',
+  //       startYear: 2015,
+  //       graduationYear: 2018,
+  //       predicted: false,
+  //       type: 'Diplôme',
+  //       institution: 'University of Paris',
+  //       country: 'France',
+  //       grade: 'Pass',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'Bachelor (Honours) degree'
+  //       }
+  //     },
+  //     {
+  //       subject: 'Sports coaching',
+  //       startYear: 2019,
+  //       graduationYear: 2022,
+  //       predicted: true,
+  //       type: 'Diplôme',
+  //       institution: 'University of Paris',
+  //       country: 'France',
+  //       grade: 'Pass',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'Bachelor (Honours) degree'
+  //       }
+  //     }
+  //   ],
+  //   gcse: {
+  //     english: {
+  //       hasQualification: 'Yes',
+  //       type: 'Baccalauréat Général',
+  //       subject: 'English',
+  //       country: 'France',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'GCSE (grades A*-C / 9-4)'
+  //       },
+  //       grade: [
+  //         {
+  //           grade: 18
+  //         }
+  //       ],
+  //       year: 2013
+  //     },
+  //     maths: {
+  //       hasQualification: 'Yes',
+  //       type: 'Baccalauréat Général',
+  //       subject: 'Maths',
+  //       country: 'France',
+  //       naric: {
+  //         reference: '4000228363',
+  //         comparable: 'GCSE grades A*-C/9-4'
+  //       },
+  //       grade: [
+  //         {
+  //           grade: 20
+  //         }
+  //       ],
+  //       year: 2013
+  //     },
+  //     science: {
+  //       hasQualification: 'No',
+  //       subject: 'Science',
+  //       missing: {
+  //         hasQualification: 'I don’t have a science qualification yet',
+  //         isStudying: 'Yes',
+  //         studyingDetails: 'I am planning to take a science equivalency test'
+  //       }
+  //     }
+  //   },
+  //   englishLanguageQualification: {
+  //     hasQualification: 'Not needed',
+  //     status: 'No, English is not a foreign language to me'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Received',
