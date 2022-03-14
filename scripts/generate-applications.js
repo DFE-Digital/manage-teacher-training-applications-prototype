@@ -134,8 +134,14 @@ const generateFakeApplication = (params = {}) => {
   let rejectedFeedbackDate
   let rejectedReasons
   if(status === 'Rejected') {
-    rejectedDate = faker.date.past()
-    rejectedReasons = generateRejection(status)
+    rejectedDate = params.rejectedDate || faker.date.past()
+
+    if(typeof params.rejectedReasons !== 'undefined') {
+      rejectedReasons = params.rejectedReasons
+    } else {
+      rejectedReasons = generateRejection(status)
+    }
+
     // this might be null to signal an automatic rejection
     if(rejectedReasons) {
       rejectedFeedbackDate = rejectedDate
@@ -252,16 +258,18 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
+    rejectedDate: faker.date.past(),
+    rejectedReasons: null,
     status: 'Rejected',
-    cycle: CycleHelper.PREVIOUS_CYCLE.code,
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Adam',
-      familyName: 'Silver',
+      familyName: 'Jenkins',
       sex: 'Male'
     },
     contactDetails: {
       tel: '01649 13062',
-      email: 'adam.silver@hotmail.com',
+      email: 'adam.jenkins@hotmail.com',
       address: {
         line1: '7127 Moen Knolls',
         line2: '',
@@ -621,19 +629,19 @@ const generateFakeApplications = () => {
 
   var organisation = organisations[0]
 
-  applications.push(generateFakeApplication({
-    status: 'Rejected',
-    cycle: '2019 to 2020',
-    submittedDate: SystemHelper.now().minus({ days: 1 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    organisation: organisation,
-    givenName: 'Emma',
-    familyName: 'Hayes',
-    personalDetails: {
-      givenName: 'Emma',
-      familyName: 'Hayes',
-      sex: 'Female'
-    }
-  }))
+  // applications.push(generateFakeApplication({
+  //   status: 'Rejected',
+  //   cycle: '2019 to 2020',
+  //   submittedDate: SystemHelper.now().minus({ days: 1 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
+  //   organisation: organisation,
+  //   givenName: 'Emma',
+  //   familyName: 'Hayes',
+  //   personalDetails: {
+  //     givenName: 'Emma',
+  //     familyName: 'Hayes',
+  //     sex: 'Female'
+  //   }
+  // }))
 
   applications.push(generateFakeApplication({
     status: 'Offered',
