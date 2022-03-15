@@ -40,6 +40,24 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   organisations.push(generateFakeOrganisation({
+    name: "North Wiltshire SCITT",
+    isAccreditedBody: true,
+    domain: "@nwscitt.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Blue Kite Academy Trust",
+    isAccreditedBody: false,
+    domain: "@bkat.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
+    name: "Pickwick Learning",
+    isAccreditedBody: false,
+    domain: "@pl.org.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
     name: "Cambridge Training School Network, CTSN SCITT",
     isAccreditedBody: true,
     domain: "@camteach.org.uk"
