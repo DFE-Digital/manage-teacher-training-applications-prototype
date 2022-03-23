@@ -11,15 +11,15 @@ exports.getMidCycleApplications = (applications) => {
       return true;
     }
   })
-  .filter(app => {
-    // Remove any applications that are pending conditions from the previous cycle
-    // Because when we're mid cycle these should have pretty much been dealt with
-    if (app.status === 'Conditions pending' && app.cycle === CycleHelper.PREVIOUS_CYCLE.code) {
-      return false;
-    } else {
-      return true;
-    }
-  })
+  // .filter(app => {
+  //   // Remove any applications that are pending conditions from the previous cycle
+  //   // Because when we're mid cycle these should have pretty much been dealt with
+  //   if (app.status === 'Conditions pending' && app.cycle === CycleHelper.PREVIOUS_CYCLE.code) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // })
 }
 
 exports.getStartOfCycleApplications = (applications) => {

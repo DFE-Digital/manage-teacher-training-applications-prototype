@@ -11,6 +11,12 @@ router.all('*', (req, res, next) => {
   next()
 })
 
+router.get('/', (req, res) => {
+  res.redirect('/start')
+})
+
+require('./routes/interruption')(router)
+require('./routes/overview')(router)
 require('./routes/activity-log')(router)
 require('./routes/application-list')(router)
 require('./routes/applications')(router)
@@ -26,6 +32,7 @@ require('./routes/guidance')(router)
 require('./routes/interviews')(router)
 require('./routes/make-offer')(router)
 require('./routes/notes')(router)
+require('./routes/notification-settings')(router)
 require('./routes/notifications')(router)
 require('./routes/offer')(router)
 require('./routes/organisation-settings')(router)

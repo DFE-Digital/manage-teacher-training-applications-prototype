@@ -15,7 +15,10 @@ exports.generateNotes = (applications) => applications.map((application) => {
         const { date } = event;
         const newNote = {
           id: faker.datatype.uuid(),
-          message: faker.lorem.paragraph(),
+          message: faker.helpers.randomize([
+            'Waiting on candidate to send information about teaching skills aquired during their Saturday job.',
+            'Waiting on academic tutor to confirm availability before scheduling an interview'
+          ]),
           sender: faker.name.findName(),
           date,
         }

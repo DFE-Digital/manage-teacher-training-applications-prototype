@@ -1,46 +1,87 @@
 {% set assignedUsers = a.assignedUsers | getAssignedUsers(data.user.id, data.user.organisation.id) %}
 
 <div class="app-application-card">
-  <div class="app-application-card__primary">
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
-      <a href="/applications/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
-        {{- a.personalDetails.givenName }} {{ a.personalDetails.familyName -}}
-      </a>
-      <span class="app-application-card__caption">{{ a.id }}</span>
-    </h3>
-    <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
-    <p class="govuk-!-font-size-16">{{ a.provider }} ({{a.accreditedBody}})</p>
-    {% if assignedUsers.length %}
-      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1">
-      Users assigned:
-      {% for assignedUser in assignedUsers %}
-        {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
-        {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
-      {% endfor %}
-      </p>
-    {% endif %}
-  </div>
-  <div class="app-application-card__secondary">
-    <div class="app-application-card__status">
-      {{ govukTag({
-        classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
-        text: a.status
-      }) }}
-      {% if a.status == 'Received' or a.status == 'Interviewing' %}
-        {% if a.daysToRespond == 0 %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day to make decision</p>
-        {% else %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}} to make decision</p>
+  <div class="app-application-card__wrapper">
+    <div class="app-application-card__primary">
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+        <a href="/applications/{{ a.id }}" class="govuk-link govuk-link--no-visited-state">
+          {{- a.personalDetails.givenName }} {{ a.personalDetails.familyName -}}
+        </a>
+        <span class="app-application-card__caption">{{ a.id }}</span>
+      </h3>
+      <p class="govuk-!-font-size-16 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
+      <p class="govuk-!-margin-top-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ a.provider }} ({{a.accreditedBody}})</p>
+    </div>
+    <div class="app-application-card__secondary">
+      <div class="app-application-card__status">
+        {{ govukTag({
+          classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
+          text: a.status
+        }) }}
+        <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">{{ a.cycle | cycleLabel }}</p>
+        {% if a.status == 'Received' or a.status == 'Interviewing' %}
+          {% if a.daysToRespond == 0 %}
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">Last day to make decision</p>
+          {% else %}
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}} to make decision</p>
+          {% endif %}
         {% endif %}
-      {% endif %}
-      {% if a.status == 'Offered' %}
-        {% if a.offer.daysToDecline == 0 %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day for candidate to respond</p>
-        {% else %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.offer.daysToDecline}} day{{'s' if a.offer.daysToDecline > 1}} for candidate to respond</p>
+
+        {% if a.status == 'Rejected' and not a.rejectedReasons %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Feedback needed</p>
         {% endif %}
-      {% endif %}
-      <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0">{{ a.cycle | cycleLabel }}</p>
+
+        {% if a.status == 'Deferred' and data.settings == 'new-cycle' %}
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Ready to confirm</p>
+        {% endif %}
+
+        {% if a.status == 'Offered' %}
+          {% if a.offer.daysToDecline == 0 %}
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day for candidate to respond</p>
+          {% else %}
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.offer.daysToDecline}} day{{'s' if a.offer.daysToDecline > 1}} for candidate to respond</p>
+          {% endif %}
+        {% endif %}
+        {# <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-0"></p> #}
+      </div>
     </div>
   </div>
+
+  {% if assignedUsers.length or a.notes.items.length %}
+
+  <div class="app-application-card__note">
+    {% if assignedUsers.length %}
+        <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+        Users assigned:
+        {% for assignedUser in assignedUsers %}
+          {{ assignedUser.firstName + " " + assignedUser.lastName + (" (you)" if assignedUser.you) -}}
+          {% if loop.index != loop.length - 1 %}{% if loop.index != loop.length%}, {% endif %}{% else %} and {% endif %}
+        {% endfor %}
+        {# - <a href="/applications/{{a.id}}/assign">assign users</a> #}
+        </p>
+      {% else %}
+        {# <p class="govuk-caption-m govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+          Unassigned - <a href="/applications/{{a.id}}/assign">assign users</a>
+        </p> #}
+      {% endif %}
+
+    {% if a.notes.items.length %}
+      {% set note = a.notes.items | last %}
+
+      {% set noteHtml %}
+        <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">
+          {{note.message}}
+          {% if a.notes.items.length > 1 %}
+            (<a href="/applications/{{a.id}}/notes">{{a.notes.items.length-1}} more notes</a>)
+          {% endif %}
+        </p>
+      {% endset %}
+      {{ govukInsetText({
+        classes: "govuk-!-padding-top-0 govuk-!-padding-bottom-0 govuk-!-padding-left-1 govuk-!-margin-top-1 govuk-!-margin-bottom-0",
+        html: noteHtml
+      }) }}
+    {% endif %}
+  </div>
+  {% endif %}
 </div>

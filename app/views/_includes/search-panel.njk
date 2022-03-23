@@ -1,6 +1,6 @@
 {{ appSearch({
   label: {
-    text: 'Search by candidate name or application number',
+    text: 'Search by candidate name, application number or contents of latest note',
     classes: 'govuk-label--m'
   },
   input: {
@@ -8,15 +8,16 @@
     name: 'keywords',
     value: data.keywords
   },
+  action: '/applications',
   buttons: [{
     text: 'Search',
     classes: 'app-search__button'
   }],
-  classes: 'govuk-!-margin-bottom-7' if not data.keywords
+  classes: 'govuk-!-margin-bottom-4' if not data.keywords
 }) }}
 
 {% if data.keywords %}
-  <p class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-7">
-    <a class="govuk-link govuk-link--no-visited-state" href="/remove-keywords-search">Clear search</a>
+  <p class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-4">
+    <a class="govuk-link govuk-link--no-visited-state" href="/applications/remove-keywords-search">Clear search</a>
   </p>
 {% endif %}

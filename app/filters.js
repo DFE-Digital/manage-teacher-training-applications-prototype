@@ -60,6 +60,12 @@ module.exports = (env) => {
     return govukDate + " at " + time
   }
 
+  filters.govukShortDateAtTime = date => {
+    const govukDate = filters.dateToGovukShortDate(date)
+    const time = filters.time(date)
+    return govukDate + " at " + time
+  }
+
   /**
    * GOV.UK style times
    * @type {Date} date
@@ -153,8 +159,6 @@ module.exports = (env) => {
         return 'app-tag--purple'
       case 'Interviewing':
         return 'govuk-tag--yellow'
-      case 'Note added':
-        return 'govuk-tag--pink'
       case 'Closed':
         return 'app-tag--red'
     }

@@ -1,10 +1,10 @@
 const OrgHelper = require('./helpers/organisation')
 const users = require('./users.json')
-const relationships = require('./relationships-teach-kent-and-sussex-scitt')
+const relationships = require('./relationships-united-teaching-national-scitt')
 
 // set up user orgs
 let userOrgs = [];
-userOrgs.push(OrgHelper.findOrg('Teach Kent and Sussex SCITT'))
+userOrgs.push(OrgHelper.findOrg('United Teaching National SCITT'))
 
 // create user object
 let user = users[0] // we know the first one is the test participant

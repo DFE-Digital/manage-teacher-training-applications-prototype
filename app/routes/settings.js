@@ -16,6 +16,6 @@ module.exports = router => {
       req.session.data.applications = SettingsHelper.getStartOfCycleApplications(applications)
       settings.push('new-cycle')
     }
-    res.redirect('/')
+    res.redirect('/applications')
   })
 }

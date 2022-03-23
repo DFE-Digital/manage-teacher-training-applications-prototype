@@ -41,6 +41,8 @@ module.exports = (params) => {
     submittedDate = SystemHelper.now().minus({
       days: faker.datatype.number({ 'min': 0, 'max': 40 })
     })
+    .plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) })
+    .plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) })
   }
 
   return submittedDate.toISO()

@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
-{% set primaryNavId = "reports" %}
-{% set pageTitle = "Export application data" %}
+{% set primaryNavId = "applications" %}
+{% set pageTitle = "Export applications" %}
 
 {% block pageTitle %}
 {{ pageTitle + ((" - " + organisation.name) if organisation) }} – {{ serviceName }} – GOV.UK
@@ -10,8 +10,8 @@
 {% block beforeContent %}
 {{ govukBreadcrumbs({
   items: [{
-    href: "/reports",
-    text: "Reports"
+    href: "/applications",
+    text: "Applications"
   }, {
     text: pageTitle
   }]

@@ -2,7 +2,7 @@
 
   {{ govukCheckboxes({
     idPrefix: "cycle",
-    name: "cycle",
+    name: "[cycle]",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
@@ -15,119 +15,18 @@
   }) }}
 
   {{ govukCheckboxes({
-    idPrefix: 'status',
-    name: 'status',
+    idPrefix: "importantItem",
+    name: "importantItem",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: 'Status',
-        classes: 'govuk-fieldset__legend--s'
+        text: "Important",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [
-      {
-        value: 'Received',
-        text: 'Received',
-        checked: checked("status", "Received") == 'checked'
-      },
-      {
-        value: 'Interviewing',
-        text: 'Interviewing',
-        checked: checked("status", "Interviewing") == 'checked'
-      },
-      {
-        value: 'Offered',
-        text: 'Offered',
-        checked: checked("status", "Offered") == 'checked'
-      },
-      {
-        value: 'Conditions pending',
-        text: 'Conditions pending',
-        checked: checked("status", "Conditions pending") == 'checked'
-      },
-      {
-        value: 'Recruited',
-        text: 'Recruited',
-        checked: checked("status", "Recruited") == 'checked'
-      },
-      {
-        value: 'Deferred',
-        text: 'Deferred',
-        checked: checked("status", "Deferred") == 'checked'
-      },
-       {
-        value: 'Conditions not met',
-        text: 'Conditions not met',
-        checked: checked("status", "Conditions not met") == 'checked'
-      },
-      {
-        value: 'Declined',
-        text: 'Declined',
-        checked: checked("status", "Declined") == 'checked'
-      },
-      {
-        value: 'Rejected',
-        text: 'Rejected',
-        checked: checked("status", "Rejected") == 'checked'
-      },
-      {
-        value: 'Application withdrawn',
-        text: 'Application withdrawn',
-        checked: checked("status", "Application withdrawn") == 'checked'
-      },
-      {
-        value: 'Offer withdrawn',
-        text: 'Offer withdrawn',
-        checked: checked("status", "Offer withdrawn") == 'checked'
-      }
-    ]
+    items: importantCheckboxItems
   }) }}
-
-  {% if trainingProviderItems.length > 1 %}
-
-    {{ govukCheckboxes({
-      idPrefix: 'provider',
-      name: 'provider',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Training provider',
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: trainingProviderItems
-    }) }}
-
-  {% endif %}
-
-  {% if checked("provider", data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
-    {{ govukCheckboxes({
-      name: 'location',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Locations for ' + data.trainingProviders[0].name,
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: locationItems
-    }) }}
-  {% endif %}
-
-  {% if accreditedBodyItems.length > 1 %}
-    {{ govukCheckboxes({
-      idPrefix: 'accreditedBody',
-      name: 'accreditedBody',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Accredited body',
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: accreditedBodyItems
-    }) }}
-  {% endif %}
 
   {% if userItems.length >= userItemsDisplayLimit %}
 
@@ -158,6 +57,112 @@
     }) }}
 
   {% endif %}
+
+  {{ govukCheckboxes({
+    idPrefix: 'noteItem',
+    name: 'noteItem',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Notes',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: noteCheckboxItems
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'status',
+    name: 'status',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Status',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: statusCheckboxItems
+  }) }}
+
+  {% if trainingProviderItems.length > 1 %}
+
+    {{ govukCheckboxes({
+      idPrefix: 'provider',
+      name: 'provider',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Training provider',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: trainingProviderItems
+    }) }}
+
+  {% endif %}
+
+  {# {% if checked("provider", data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
+    {{ govukCheckboxes({
+      name: 'location',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Locations for ' + data.trainingProviders[0].name,
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: locationItems
+    }) }}
+  {% endif %} #}
+
+  {% if accreditedBodyItems.length > 1 %}
+    {{ govukCheckboxes({
+      idPrefix: 'accreditedBody',
+      name: 'accreditedBody',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Accredited body',
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: accreditedBodyItems
+    }) }}
+  {% endif %}
+
+  {% for item in trainingProviderItems %}
+
+    {{ govukCheckboxes({
+      name: 'location',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Locations for ' + item.text,
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: locationItems
+    }) }}
+
+  {% endfor %}
+
+  {% for item in accreditedBodyItems %}
+
+    {{ govukCheckboxes({
+      name: 'location',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Locations for ' + item.text,
+          classes: 'govuk-fieldset__legend--s'
+        }
+      },
+      items: locationItems
+    }) }}
+
+  {% endfor %}
+
+
 
   {% if subjectItems.length >= subjectItemsDisplayLimit %}
 
@@ -229,7 +234,7 @@
         <div class="app-filter__selected-heading">
           <div class="app-filter__heading-title">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
-            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/remove-all-filters">Clear filters</a></p>
+            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/applications/remove-all-filters">Clear filters</a></p>
           </div>
         </div>
         {% for category in selectedFilters.categories %}
@@ -243,7 +248,7 @@
       </div>
     {% endif %}
     <div class="app-filter__options">
-      <form method="get" action="/" novalidate>
+      <form method="get" action="/applications" novalidate>
         <button class="govuk-button" data-module="govuk-button">
           Apply filters
         </button>

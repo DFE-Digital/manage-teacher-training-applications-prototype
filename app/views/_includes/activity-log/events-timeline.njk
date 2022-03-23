@@ -28,7 +28,7 @@
       </div>
       <div class="app-activity-log__description">
 
-         {% if event.event.title == "Note added" %}
+         {% if (event.event.title == "Note added" or event.event.title == "Note updated" or event.event.title == "Note deleted") and event.event.meta.note %}
 
           <div class="app-activity-log__box">
             {{ appEventNote({
@@ -38,15 +38,17 @@
             }) }}
           </div>
 
-          <p class="app-log-card__note--link">
-            <a class="govuk-link" href="/applications/{{ event.application.id }}/notes/{{ event.event.meta.note.id }}">
-              View note
-              <span class="govuk-visually-hidden">
-                Candidate {{ event.application.personalDetails.name }}
-                Event date {{ event.event.date | govukDateAtTime }}
-              </span>
-            </a>
-          </p>
+          {% if event.event.meta.note.exists %}
+            <p class="app-log-card__note--link">
+              <a class="govuk-link" href="/applications/{{ event.application.id }}/notes/#note_{{ event.event.meta.note.id }}">
+                View note
+                <span class="govuk-visually-hidden">
+                  Candidate {{ event.application.personalDetails.name }}
+                  Event date {{ event.event.date | govukDateAtTime }}
+                </span>
+              </a>
+            </p>
+          {% endif %}
 
         {% endif %}
 
@@ -124,7 +126,7 @@
 
         {% endif %}
 
-        {% if event.event.title in ["Application submitted", "Application withdrawn", content.rejectApplication.event.title, content.updateCourse.event.title] %}
+        {% if event.event.title in ["Application received", "Application withdrawn", content.rejectApplication.event.title, content.updateCourse.event.title] %}
           <div class="app-activity-log__box">
             {{ appEventApplication({ application: event.application }) }}
           </div>

@@ -143,7 +143,7 @@ module.exports = router => {
 
     EventHelper.saveEvent(
       application,
-      event = {
+      {
         title: eventTitle,
         user: user.firstName + ' ' + user.lastName,
         assignedUsers

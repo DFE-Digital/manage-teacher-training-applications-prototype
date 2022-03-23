@@ -4,7 +4,7 @@
 {% set subNavId = "notes" %}
 {% set status = application.status %}
 {% set name = application.personalDetails.name %}
-{% set caption = content.createNote.caption + ' - ' + application.personalDetails.name %}
+{% set caption = content.updateNote.caption + ' - ' + application.personalDetails.name %}
 {% set heading = 'Note' %}
 {% set title = heading + ' - ' + caption %}
 
@@ -33,13 +33,13 @@
           maxlength: 500,
           id: "note",
           name: "note",
-          type: "text"
+          type: "text",
+          value: note.message
         }) }}
 
         {{govukButton({
-          text: content.createNote.checkAnswers.button
+          text: content.updateNote.checkAnswers.button
         })}}
-
         <p><a href="/applications/{{application.id}}/notes">Cancel</a></p>
       </form>
 

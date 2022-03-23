@@ -1,50 +1,75 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'notifications' %}
-{% set title = "Notifications (7)" %}
+{% set title = "Notifications" %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-3">{{title}}</h1>
+  <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p class="govuk-!-margin-bottom-8"><a href="/account/notifications">Change your notification settings</a></p>
+  <p><a href="/account/notifications/online">Notification settings</a></p>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "_includes/notifications-filter-panel.njk" %}
+    </div>
+
+    <div class="app-filter-layout__content">
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {% set unreadCount = 7 %}
+      {% if data.type == 'Application received'%}
+      {% set unreadCount = 3 %}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">Unread notifications ({{unreadCount}})</h2>
+      {# <h2 class="govuk-heading-m">Read notifications</h2> #}
+
+      {# <div class="app-activity-log">
+        {%- for day, events in activity %}
+          {% include "_includes/activity-log/events-timeline.njk" %}
+        {% endfor -%}
+      </div> #}
+
+      <div>
+        {{appNotificationCard({
+          classes: "app-notification-card--first",
+          settings: {
+            href: "/account/notifications/edit/application-submitted"
+          },
+          title: "Application received (Adam Oates)",
+          provider: data.user.organisations[0].name,
+          dateText: "Today at 18:12pm",
+          link: {
+            href: "#",
+            text: "View application"
+          },
+          new: true
+        })}}
+
+
+        {{appNotificationCard({
+          settings: {
+            href: "/account/notifications/edit/application-submitted"
+          },
+          title: "Application received (Charlotte Campbel)",
+          provider: data.user.organisations[0].name,
+          dateText: "Today at 17:12pm",
+          link: {
+            href: "#",
+            text: "View application"
+          },
+          new: true
+        })}}
 
       {{appNotificationCard({
-        classes: "app-notification-card--first",
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
-        title: "Charlotte Campbel’s application is going to be automatically rejected in 2 days",
-        provider: data.user.organisations[0].name,
-        dateText: "Today at 17:12pm",
-        link: {
-          href: "#",
-          text: "View application"
-        },
-        new: true
-      })}}
-
-      {{appNotificationCard({
-        settings: {
-          href: "/account/notifications/edit/application-submitted"
-        },
-        title: "Mike Ross added a note to Eloise Well’s application",
-        provider: data.user.organisations[0].name,
-        dateText: "Today at 3:32pm",
-        link: {
-          href: "#",
-          text: "View note"
-        },
-        new: true
-      })}}
-
-      {{appNotificationCard({
-        settings: {
-          href: "/account/notifications/edit/application-submitted"
-        },
-        title: "Kelly Jane Spears submitted their application",
+        title: "Application received (Barbara Clark)",
         provider: data.user.organisations[0].name,
         dateText: "Today at 1:33pm",
         link: {
@@ -58,7 +83,7 @@
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
-        title: "Eloise Well’s accepted your offer",
+        title: "Offer accepted (Tony Stark)",
         provider: data.user.organisations[0].name,
         dateText: "Yesterday at 9:57pm",
         link: {
@@ -66,81 +91,103 @@
           text: "View application"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
       {{appNotificationCard({
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
-        title: "Esther Fairley withdrew their application",
+        title: "Application withdrawn (Esther Fairley)",
         provider: data.user.organisations[0].name,
-        dateText: "19 May 2020 at 9:55am",
+        dateText: "5 March 2022 at 9:55am",
         link: {
           href: "#",
           text: "View offer"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
       {{appNotificationCard({
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
-        title: "Elizabeth Rose declined your offer",
+        title: "Offer declined (Elizabeth Rose)",
         provider: data.user.organisations[0].name,
-        dateText: "17 May 2020 at 8:18am",
+        dateText: "3 March 2022 at 8:18am",
         link: {
           href: "#",
           text: "View offer"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
        {{appNotificationCard({
 
-         settings: {
-           href: "/account/notifications/edit/application-submitted"
-         },
-        title: "Daniel James Jennings’ application was rejected by default",
+        title: "Automatically rejected (Daniel James Jennings)",
         provider: data.user.organisations[0].name,
-        dateText: "14 May 2020 at 7:19pm",
+        dateText: "1 March 2022 at 7:19pm",
         link: {
           href: "#",
           text: "View application"
         },
         new: true
-      })}}
+      }) if not data.type or data.type != 'Application received'}}
 
-      <h2 class="govuk-heading-l govuk-!-margin-top-8">Already seen</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Read notifications</h2>
 
       {{appNotificationCard({
         classes: "app-notification-card--first",
         settings: {
           href: "/account/notifications/edit/application-submitted"
         },
-        title: "Elizabeth Rose declined your offer",
+        title: "Offer declined (Elizabeth Rose)",
         provider: data.user.organisations[0].name,
-        dateText: "17 May 2020 at 8:18am",
+        dateText: "27 February 2022 at 8:18am",
+        link: {
+          href: "#",
+          text: "View offer"
+        }
+      }) if not data.type or data.type != 'Application received' }}
+
+      {{appNotificationCard({
+        title: "Offer accepted (Daniel Mead)",
+        provider: data.user.organisations[0].name,
+        dateText: "26 February 2022 at 7:19pm",
+        link: {
+          href: "#",
+          text: "View offer"
+        }
+      }) if not data.type or data.type != 'Application received'}}
+
+      {{appNotificationCard({
+        title: "Application received (Mitch Mode)",
+        provider: data.user.organisations[0].name,
+        dateText: "25 February 2022 at 7:19pm",
         link: {
           href: "#",
           text: "View offer"
         }
       })}}
 
-       {{appNotificationCard({
-
-         settings: {
-           href: "/account/notifications/edit/application-submitted"
-         },
-        title: "Daniel James Jennings’ application was rejected by default",
+      {{appNotificationCard({
+        title: "Application received (Daniel Hope)",
         provider: data.user.organisations[0].name,
-        dateText: "14 May 2020 at 7:19pm",
+        dateText: "24 February 2022 at 7:19pm",
         link: {
           href: "#",
-          text: "View application"
+          text: "View offer"
         }
       })}}
 
+      {{appNotificationCard({
+        title: "Application received (Claire Hughes)",
+        provider: data.user.organisations[0].name,
+        dateText: "23 February 2022 at 7:19pm",
+        link: {
+          href: "#",
+          text: "View offer"
+        }
+      })}}
 
       {{ appPagination({
           results: {
@@ -161,6 +208,7 @@
             href: '/page=2'
           }]
         }) }}
+      </div>
 
     </div>
   </div>

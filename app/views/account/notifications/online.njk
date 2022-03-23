@@ -1,0 +1,236 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'account' %}
+
+{% set heading = "Your online notification settings" %}
+{% set title = heading %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your account",
+      href: "/account"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  <h1 class="govuk-heading-l">
+    {{heading}}
+  </h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+         {{ govukRadios({
+          idPrefix: "notification1",
+          name: "notification1",
+          fieldset: {
+            legend: {
+              text: "Application received",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification1", "On") == "checked" or not data.notification1
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification1", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "notification2",
+          name: "notification2",
+          fieldset: {
+            legend: {
+              text: "Application received from another organisation",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification2", "On") == "checked" or not data.notification2
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification2", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "notification_chaser",
+          name: "notification_chaser",
+          fieldset: {
+            legend: {
+              text: "Reminder to make a decision 20 working days before automatic rejection",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification_chaser", "On") == "checked" or not data.notification_chaser
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification_chaser", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "notification3",
+          name: "notification3",
+          fieldset: {
+            legend: {
+              text: "Application automatically rejected",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification3", "On") == "checked" or not data.notification3
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification3", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "notification4",
+          name: "notification4",
+          fieldset: {
+            legend: {
+              text: "Application withdrawn by candidate",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification4", "On") == "checked" or not data.notification4
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification4", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukRadios({
+          idPrefix: "notification5",
+          name: "notification5",
+          fieldset: {
+            legend: {
+              text: "Application transferred to another organisation",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification5", "On") == "checked" or not data.notification5
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification5", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "notification6",
+          name: "notification6",
+          fieldset: {
+            legend: {
+              text: "Offer accepted",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification6", "On") == "checked" or not data.notification6
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification6", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "notification7",
+          name: "notification7",
+          fieldset: {
+            legend: {
+              text: "Offer declined",
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          classes: "govuk-radios--inline",
+          items: [
+            {
+              value: "On",
+              text: "On",
+              checked: checked("notification7", "On") == "checked" or not data.notification7
+            },
+            {
+              value: "Off",
+              text: "Off",
+              checked: checked("notification7", "Off") == "checked"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Update online notification settings"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

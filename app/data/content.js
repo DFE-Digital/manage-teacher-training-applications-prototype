@@ -167,6 +167,29 @@ const content = {
     successMessage: 'Noted added',
     checkAnswers: {
       button: 'Add note'
+    },
+    event: {
+      title: 'Note added'
+    }
+  },
+  updateNote: {
+    caption: 'Update note',
+    successMessage: 'Noted updated',
+    checkAnswers: {
+      button: 'Update note'
+    },
+    event: {
+      title: 'Note updated'
+    }
+  },
+  deleteNote: {
+    caption: 'Delete note',
+    successMessage: 'Noted deleted',
+    checkAnswers: {
+      button: 'Delete note'
+    },
+    event: {
+      title: 'Note deleted'
     }
   },
   updateAssignedUsers: {
