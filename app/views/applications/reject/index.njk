@@ -5,10 +5,10 @@
 
 {% if application.status == "Rejected" %}
   {% set caption = content.giveFeedback.caption + ' - ' + name %}
-  {% set heading = "Tell the candidate why their application was rejected" %}
+  {% set heading = "Reasons the application was rejected" %}
 {% else %}
   {% set caption = content.rejectApplication.caption + ' - ' + name %}
-  {% set heading = "Tell the candidate why you’re rejecting their application" %}
+  {% set heading = "Reasons for rejecting the application" %}
 {% endif %}
 {% set title = heading + ' - ' + caption %}
 
