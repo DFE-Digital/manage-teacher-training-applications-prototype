@@ -26,21 +26,21 @@
     {% if boxes.needsFeedbackCount > 0 %}
       <a href="/applications/?referrer=overview&importantItem=Feedback needed" class="status-card status-card--orange">
         <span class="status-card__count">{{boxes.needsFeedbackCount}}</span>
-        <span class="status-card__status"> applications need feedback after being automatically rejected</span>
+        <span class="status-card__status"> application needs feedback after being automatically rejected</span>
       </a>
     {% endif %}
 
-    {# {% if boxes.deferredOffersReadyToConfirm > 0 %} #}
+    {% if boxes.deferredOffersReadyToConfirm > 0 %}
       <a href="/applications/?referrer=overview&importantItem=Deferred offers ready to confirm" class="status-card status-card--yellow">
-        <span class="status-card__count">2</span>
-        <span class="status-card__status"> deferred offer ready to be confirmed</span>
+        <span class="status-card__count">{{boxes.deferredOffersReadyToConfirm}}</span>
+        <span class="status-card__status"> deferred offers are ready to be confirmed</span>
       </a>
-    {# {% endif %} #}
+    {% endif %}
 
     {% if boxes.conditionsPending > 0 %}
       <a href="/applications/?referrer=overview&status=Conditions pending&cycle=2020 to 2021" class="status-card status-card--blue">
         <span class="status-card__count">{{boxes.conditionsPending}}</span>
-        <span class="status-card__status">offers with conditions pending from the previous recruitment cycle</span>
+        <span class="status-card__status">offers have conditions pending from the previous recruitment cycle</span>
       </a>
     {% endif %}
   </div>
