@@ -23,7 +23,7 @@
         text: "Note"
       },
       value: {
-        text: params.note.message | nl2br
+        text: params.note.message | safe | nl2br
       }
     }
   ]

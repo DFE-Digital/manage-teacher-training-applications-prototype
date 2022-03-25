@@ -71,7 +71,7 @@
 
       {% set noteHtml %}
         <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-0">
-          {{note.message}}
+          {{note.message | safe | nl2br}}
           {% if a.notes.items.length > 1 %}
             (<a href="/applications/{{a.id}}/notes">{{a.notes.items.length-1}} more notes</a>)
           {% endif %}
