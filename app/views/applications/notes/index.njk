@@ -21,7 +21,11 @@
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">{{pageName}}</h2>
 
-      <p>The candidate cannot view notes.</p>
+      {{ govukInsetText({
+        text: "The candidate cannot view notes."
+      }) }}
+
+      {# <p></p> #}
 
       {% if not query.transferred %}
         {{govukButton({
@@ -39,10 +43,10 @@
                 classes: 'govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-top-0 govuk-!-padding-bottom-0',
                 html: note.message | safe | nl2br
               }) }} #}
-              <p>{{note.message | safe | nl2br}}</p>
+              <p class="govuk-!-margin-bottom-1">{{note.message | safe | nl2br}}</p>
 
-              <p class="govuk-!-margin-bottom-2 govuk-hint">{{note.sender}}, {{note.date | govukDateAtTime }}</p>
-              <p class="govuk-!-margin-bottom-2"><a href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> | <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
+              <p class="govuk-!-margin-bottom-1 govuk-hint govuk-!-font-size-16">Created by {{note.sender}} on {{note.date | govukDateAtTime }}. Most recently updated by John Oates on {{note.date | govukDateAtTime}}.</p>
+              <p class="govuk-!-margin-bottom-1"><a class="govuk-!-margin-right-1" href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
             </div>
           {% endfor %}
         </div>
