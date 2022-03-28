@@ -36,17 +36,27 @@
       {% endif %}
 
       {% if application.notes.items.length %}
+
+        {% set userName = application.notes.items[0].sender %}
+
         <div class="app-notes">
           {% for note in application.notes.items | reverse%}
             <div class="app-notes__note" id="note_{{note.id}}">
-              {# {{ govukInsetText({
-                classes: 'govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-top-0 govuk-!-padding-bottom-0',
-                html: note.message | safe | nl2br
-              }) }} #}
+              <p class="govuk-!-margin-bottom-1 ">
+                <span class="govuk-!-font-weight-bold govuk-!-font-size-16">
+                  {{note.sender}}
+                  {% if note.sender == data.user.firstName + ' ' + data.user.lastName %}
+                    (you)
+                  {% endif %}
+                </span>
+                <span class="govuk-!-margin-bottom-1 govuk-hint govuk-!-margin-left-1 govuk-!-font-size-16">{{note.date | govukShortDateAtTime }} (last updated {{note.date | govukShortDateAtTime}})</span>
+              </p>
               <p class="govuk-!-margin-bottom-1">{{note.message | safe | nl2br}}</p>
 
-              <p class="govuk-!-margin-bottom-1 govuk-hint govuk-!-font-size-16">Created by {{note.sender}} on {{note.date | govukDateAtTime }}. Most recently updated by John Oates on {{note.date | govukDateAtTime}}.</p>
-              <p class="govuk-!-margin-bottom-1"><a class="govuk-!-margin-right-1" href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
+              {% if note.sender == data.user.firstName + ' ' + data.user.lastName %}
+                <p class="govuk-!-margin-bottom-1"><a class="govuk-!-margin-right-1" href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
+              {% endif %}
+
             </div>
           {% endfor %}
         </div>

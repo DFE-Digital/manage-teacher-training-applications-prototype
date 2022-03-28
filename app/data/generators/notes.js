@@ -1,4 +1,5 @@
 const faker = require('faker')
+const user = require('../user')
 faker.locale = 'en_GB'
 
 module.exports = () => {
@@ -37,7 +38,10 @@ module.exports = () => {
     notes.items = [{
       id: faker.datatype.uuid(),
       message: message,
-      sender: faker.name.findName(),
+      sender: faker.helpers.randomize([
+        faker.name.findName(),
+        user.firstName + ' ' + user.lastName
+      ]),
       date: faker.date.past()
     }]
   }
