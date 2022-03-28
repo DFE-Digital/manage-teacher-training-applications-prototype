@@ -114,7 +114,7 @@ module.exports = router => {
 
     ApplicationHelper.addEvent(application, {
       title: content.deleteNote.event.title,
-      user: "Bob Brown",
+      user: note.sender,
       date: new Date().toISOString(),
       meta: {
         note
