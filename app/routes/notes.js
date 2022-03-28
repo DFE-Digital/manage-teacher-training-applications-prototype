@@ -8,6 +8,18 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
 
+    // for each note
+    const notes = application.notes.items.map(note => {
+      // see if the note has been updated by most recent
+      const event = application.events.items.find(event => event.title == content.updateNote.event.title && event.meta.note.id == note.id)
+
+      if(event) {
+        note.lastUpdatedDate = event.date
+      }
+      return note
+    })
+
+
     res.render('applications/notes/index', {
       application,
       assignedUsers,
@@ -66,13 +78,12 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const note = application.notes.items.find(note => note.id === req.params.noteId)
-    note.sender = "Bob Smith"
     note.message = req.body.note
 
     ApplicationHelper.addEvent(application, {
       title: content.updateNote.event.title,
       user: note.sender,
-      date: note.date,
+      date: new Date().toISOString(),
       meta: {
         note
       }

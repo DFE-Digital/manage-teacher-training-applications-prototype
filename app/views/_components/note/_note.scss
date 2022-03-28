@@ -1,6 +1,5 @@
 .app-notes {
   border-top: 1px solid govuk-colour('mid-grey');
-
 }
 
 .app-notes__note {
@@ -9,18 +8,8 @@
   padding-bottom: 10px;
 }
 
-
-.app-notes__meta {
-  // @include govuk-font($size: 16);
-  // color: govuk-colour("dark-grey");
-  // margin-bottom: 0;
-}
-
 .app-notes {
   :target {
-    .govuk-inset-text {
 
-      background: govuk-tint(govuk-colour("yellow"), 75)
-    }
   }
 }

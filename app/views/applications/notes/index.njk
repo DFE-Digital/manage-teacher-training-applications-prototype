@@ -49,12 +49,21 @@
                     (you)
                   {% endif %}
                 </span>
-                <span class="govuk-!-margin-bottom-1 govuk-hint govuk-!-margin-left-1 govuk-!-font-size-16">{{note.date | govukShortDateAtTime }} (last updated {{note.date | govukShortDateAtTime}})</span>
+                <span class="govuk-!-margin-bottom-1 govuk-hint govuk-!-margin-left-1 govuk-!-font-size-16">
+                  {{note.date | govukShortDateAtTime }}
+
+                  {% if note.lastUpdatedDate %}
+                    (last updated {{note.lastUpdatedDate | govukShortDateAtTime}})
+                  {% endif %}
+                </span>
               </p>
               <p class="govuk-!-margin-bottom-1">{{note.message | safe | nl2br}}</p>
 
               {% if note.sender == data.user.firstName + ' ' + data.user.lastName %}
-                <p class="govuk-!-margin-bottom-1"><a class="govuk-!-margin-right-1" href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a> <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
+                <p class="govuk-!-margin-bottom-1">
+                  <a class="govuk-!-margin-right-1" href="/applications/{{application.id}}/notes/{{note.id}}/edit">Change</a>
+                  <a href="/applications/{{application.id}}/notes/{{note.id}}/delete">Delete</a>
+                </p>
               {% endif %}
 
             </div>
