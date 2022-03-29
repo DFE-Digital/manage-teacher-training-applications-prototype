@@ -36,9 +36,6 @@
       {% endif %}
 
       {% if application.notes.items.length %}
-
-        {% set userName = application.notes.items[0].sender %}
-
         <div class="app-notes">
           {% for note in application.notes.items | reverse%}
             <div class="app-notes__note" id="note_{{note.id}}">
