@@ -41,7 +41,14 @@
     {% if boxes.deferredOffersReadyToConfirm > 0 %}
       <a href="/applications/?referrer=overview&cycle=2020+to+2021&status=Deferred" class="status-card status-card--yellow">
         <span class="status-card__count">{{boxes.deferredOffersReadyToConfirm}}</span>
-        <span class="status-card__status">deferred offers are ready to be confirmed</span>
+        <span class="status-card__status">
+          {% if boxes.deferredOffersReadyToConfirm == 1 %}
+            deferred offer is
+          {% else %}
+            deferred offers are
+          {% endif %}
+          ready to be confirmed
+        </span>
       </a>
     {% endif %}
 
