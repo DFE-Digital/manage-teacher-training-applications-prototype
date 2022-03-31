@@ -8,39 +8,47 @@
 
   <h1 class="govuk-heading-l"> {{title}} </h1>
 
-
   <div class="app-home-statuses govuk-!-margin-bottom-8">
 
-    {# <a href="/notifications/?referrer=overview&type=Application received" class="status-card status-card--pink">
-      <span class="status-card__count">3</span>
-      <span class="status-card__status">unread notifications about received applications</span>
-    </a> #}
-
     {% if boxes.aboutToBeAutomaticallyRejectedCount > 0 %}
-      <a href="/applications/?referrer=overview&importantItem=5 days or fewer to make decision" class="status-card status-card--purple">
+      <a href="/applications/?referrer=overview&daysLeftToMakeDecisionItem=5 days or fewer" class="status-card status-card--purple">
         <span class="status-card__count">{{boxes.aboutToBeAutomaticallyRejectedCount}}</span>
-        <span class="status-card__status">applications have 5 days or fewer to make a decision</span>
+        <span class="status-card__status">
+          {% if boxes.aboutToBeAutomaticallyRejectedCount == 1 %}
+            application has
+          {% else %}
+            applications have
+          {% endif %}
+          5 days or fewer to make a decision
+        </span>
       </a>
     {% endif %}
 
     {% if boxes.needsFeedbackCount > 0 %}
-      <a href="/applications/?referrer=overview&importantItem=Feedback needed" class="status-card status-card--orange">
+      <a href="/applications/?referrer=overview&feedbackItem=Needs feedback" class="status-card status-card--orange">
         <span class="status-card__count">{{boxes.needsFeedbackCount}}</span>
-        <span class="status-card__status"> application needs feedback after being automatically rejected</span>
+        <span class="status-card__status">
+          {% if boxes.needsFeedbackCount == 1 %}
+            application needs
+          {% else %}
+            applications need
+          {% endif %}
+          feedback after being automatically rejected
+        </span>
       </a>
     {% endif %}
 
     {% if boxes.deferredOffersReadyToConfirm > 0 %}
-      <a href="/applications/?referrer=overview&importantItem=Deferred offers ready to confirm" class="status-card status-card--yellow">
+      <a href="/applications/?referrer=overview&cycle=2020+to+2021&status=Deferred" class="status-card status-card--yellow">
         <span class="status-card__count">{{boxes.deferredOffersReadyToConfirm}}</span>
-        <span class="status-card__status"> deferred offers are ready to be confirmed</span>
+        <span class="status-card__status">deferred offers are ready to be confirmed</span>
       </a>
     {% endif %}
 
     {% if boxes.conditionsPending > 0 %}
-      <a href="/applications/?referrer=overview&status=Conditions pending&cycle=2020 to 2021" class="status-card status-card--blue">
+      <a href="/applications/?referrer=overview&status=Conditions pending" class="status-card status-card--blue">
         <span class="status-card__count">{{boxes.conditionsPending}}</span>
-        <span class="status-card__status">offers have conditions pending from the previous recruitment cycle</span>
+        <span class="status-card__status">offers have conditions pending</span>
       </a>
     {% endif %}
   </div>

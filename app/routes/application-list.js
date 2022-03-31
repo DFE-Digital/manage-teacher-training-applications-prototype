@@ -47,7 +47,7 @@ const getStatusCheckboxItems = (selectedItems) => {
 const getImportantCheckboxItems = (selectedItems) => {
   const items = []
 
-  const importantItems = ['5 days or fewer to make decision', 'Feedback needed', 'Deferred offers ready to confirm']
+  const importantItems = ['5 days or fewer to make decision', 'Feedback needed']
 
   importantItems.forEach((importantItem, i) => {
     const item = {}
@@ -55,6 +55,40 @@ const getImportantCheckboxItems = (selectedItems) => {
     item.text = importantItem
     item.value = importantItem
     item.checked = (selectedItems && selectedItems.includes(importantItem)) ? 'checked' : ''
+
+    items.push(item)
+  })
+  return items
+}
+
+const getDaysLeftToMakeDecisionCheckboxItems = (selectedItems) => {
+  const items = []
+
+  const daysLeftItems = ['5 days or fewer', 'More than 5 days']
+
+  daysLeftItems.forEach((daysLeftItem, i) => {
+    const item = {}
+
+    item.text = daysLeftItem
+    item.value = daysLeftItem
+    item.checked = (selectedItems && selectedItems.includes(daysLeftItem)) ? 'checked' : ''
+
+    items.push(item)
+  })
+  return items
+}
+
+const getFeedbackCheckboxItems = (selectedItems) => {
+  const items = []
+
+  const tempItems = ['Needs feedback', 'Does not need feedback']
+
+  tempItems.forEach((tempItem, i) => {
+    const item = {}
+
+    item.text = tempItem
+    item.value = tempItem
+    item.checked = (selectedItems && selectedItems.includes(tempItem)) ? 'checked' : ''
 
     items.push(item)
   })
@@ -297,7 +331,8 @@ module.exports = router => {
       'studyMode',
       'subject',
       'assignedUser',
-      'importantItem',
+      'daysLeftToMakeDecisionItem',
+      'feedbackItem',
       'note'
     ]
 
@@ -319,7 +354,7 @@ module.exports = router => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
 
-    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, importantItem, noteItem } = req.query
+    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, daysLeftToMakeDecisionItem, noteItem, feedbackItem } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -331,12 +366,13 @@ module.exports = router => {
     const studyModes = getCheckboxValues(studyMode, req.session.data.studyMode)
     const subjects = getCheckboxValues(subject, req.session.data.subject)
     const assignedUsers = getCheckboxValues(assignedUser, req.session.data.assignedUser)
-    const importantItems = getCheckboxValues(importantItem, req.session.data.importantItem)
+    const daysLeftToMakeDecisionItems = getCheckboxValues(daysLeftToMakeDecisionItem, req.session.data.daysLeftToMakeDecisionItem)
+    const feedbackItems = getCheckboxValues(feedbackItem, req.session.data.feedbackItem)
     const noteItems = getCheckboxValues(noteItem, req.session.data.noteItem)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (importantItems && importantItems.length > 0) || (noteItems && noteItems.length > 0))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (daysLeftToMakeDecisionItems && daysLeftToMakeDecisionItems.length > 0) || (noteItems && noteItems.length > 0 || (feedbackItems && feedbackItems.length > 0)))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -369,8 +405,9 @@ module.exports = router => {
         let subjectValid = true
         let assignedUserValid = true
         let unassignedUserValid = true
-        let importantItemValid = true
+        let daysLeftToMakeDecisionItemValid = true
         let noteItemValid = true
+        let feedbackItemValid = true
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
@@ -429,26 +466,37 @@ module.exports = router => {
           studyModeValid = studyModes.includes(app.studyMode)
         }
 
-        if (importantItems && importantItems.length) {
-          importantItemValid = false
+        if (daysLeftToMakeDecisionItems && daysLeftToMakeDecisionItems.length) {
+          daysLeftToMakeDecisionItemValid = false
 
-          if(importantItems.includes('5 days or fewer to make decision')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond < 5) {
-              importantItemValid = true
+          if(daysLeftToMakeDecisionItems.includes('5 days or fewer')) {
+            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond <= 5) {
+              daysLeftToMakeDecisionItemValid = true
             }
           }
 
-          if(importantItems.includes('Feedback needed')) {
+          if(daysLeftToMakeDecisionItems.includes('More than 5 days')) {
+            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond > 5) {
+              daysLeftToMakeDecisionItemValid = true
+            }
+          }
+        }
+
+        if (feedbackItems && feedbackItems.length) {
+          feedbackItemValid = false
+
+          if(feedbackItems.includes('Needs feedback')) {
             if(app.status == 'Rejected' && !app.rejectedReasons) {
-              importantItemValid = true
+              feedbackItemValid = true
             }
           }
 
-          if(importantItems.includes('Deferred offers ready to confirm')) {
-            if(app.status == 'Deferred' && req.session.data.settings == 'new-cycle') {
-              importantItemValid = true
+          if(feedbackItems.includes('Does not need feedback')) {
+            if(app.status == 'Rejected' && app.rejectedReasons) {
+              feedbackItemValid = true
             }
           }
+
         }
 
         if (noteItems && noteItems.length) {
@@ -472,8 +520,9 @@ module.exports = router => {
           && subjectValid
           && assignedUserValid
           && unassignedUserValid
-          && importantItemValid
+          && daysLeftToMakeDecisionItemValid
           && noteItemValid
+          && feedbackItemValid
       })
     }
 
@@ -495,13 +544,25 @@ module.exports = router => {
         })
       }
 
-      if (importantItems && importantItems.length) {
+      if (daysLeftToMakeDecisionItems && daysLeftToMakeDecisionItems.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Important' },
-          items: importantItems.map((importantItem) => {
+          heading: { text: 'Days left to make decision' },
+          items: daysLeftToMakeDecisionItems.map((daysLeftToMakeDecisionItem) => {
             return {
-              text: importantItem,
-              href: `/applications/remove-importantItem-filter/${importantItem}`
+              text: daysLeftToMakeDecisionItem,
+              href: `/applications/remove-daysLeftToMakeDecisionItem-filter/${daysLeftToMakeDecisionItem}`
+            }
+          })
+        })
+      }
+
+      if (feedbackItems && feedbackItems.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Feedback' },
+          items: feedbackItems.map((feedbackItem) => {
+            return {
+              text: feedbackItem,
+              href: `/applications/remove-feedbackItem-filter/${feedbackItem}`
             }
           })
         })
@@ -641,7 +702,8 @@ module.exports = router => {
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
     const locationItems = getLocationItems(req.session.data.location)
     const statusCheckboxItems = getStatusCheckboxItems(req.session.data.status)
-    const importantCheckboxItems = getImportantCheckboxItems(req.session.data.importantItem)
+    const daysLeftToMakeDecisionCheckboxItems = getDaysLeftToMakeDecisionCheckboxItems(req.session.data.daysLeftToMakeDecisionItem)
+    const feedbackCheckboxItems = getFeedbackCheckboxItems(req.session.data.feedbackItem)
     const noteCheckboxItems = getNoteCheckboxItems(req.session.data.noteItem)
 
     res.render('applications/index', {
@@ -661,7 +723,8 @@ module.exports = router => {
       selectedUsers,
       cycleItems,
       statusCheckboxItems,
-      importantCheckboxItems,
+      daysLeftToMakeDecisionCheckboxItems,
+      feedbackCheckboxItems,
       noteCheckboxItems
     })
   })
@@ -711,8 +774,8 @@ module.exports = router => {
     res.redirect('/applications')
   })
 
-  router.get('/applications/remove-importantItem-filter/:importantItem', (req, res) => {
-    req.session.data.importantItem = removeFilter(req.params.importantItem, req.session.data.importantItem)
+  router.get('/applications/remove-daysLeftToMakeDecisionItem-filter/:daysLeftToMakeDecisionItem', (req, res) => {
+    req.session.data.daysLeftToMakeDecisionItem = removeFilter(req.params.daysLeftToMakeDecisionItem, req.session.data.daysLeftToMakeDecisionItem)
     res.redirect('/applications')
   })
 
@@ -721,9 +784,15 @@ module.exports = router => {
     res.redirect('/applications')
   })
 
+  router.get('/applications/remove-feedbackItem-filter/:feedbackItem', (req, res) => {
+    req.session.data.feedbackItem = removeFilter(req.params.feedbackItem, req.session.data.feedbackItem)
+    res.redirect('/applications')
+  })
+
   router.get('/applications/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
-    req.session.data.importantItem = null
+    req.session.data.daysLeftToMakeDecisionItem = null
+    req.session.data.feedbackItem = null
     req.session.data.noteItem = null
     req.session.data.status = null
     req.session.data.provider = null

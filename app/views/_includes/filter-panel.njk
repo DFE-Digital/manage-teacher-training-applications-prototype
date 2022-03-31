@@ -15,6 +15,34 @@
   }) }}
 
   {{ govukCheckboxes({
+    idPrefix: "daysLeftToMakeDecisionItem",
+    name: "daysLeftToMakeDecisionItem",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Days left to make decision",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: daysLeftToMakeDecisionCheckboxItems
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "feedbackItem",
+    name: "feedbackItem",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Feedback",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: feedbackCheckboxItems
+  }) }}
+
+  {# {{ govukCheckboxes({
     idPrefix: "importantItem",
     name: "importantItem",
     classes: "govuk-checkboxes--small",
@@ -26,7 +54,7 @@
       }
     },
     items: importantCheckboxItems
-  }) }}
+  }) }} #}
 
   {% if userItems.length >= userItemsDisplayLimit %}
 
