@@ -25,7 +25,7 @@
     {% endif %}
 
     {% if boxes.needsFeedbackCount > 0 %}
-      <a href="/applications/?referrer=overview&feedbackItem=Needs feedback" class="status-card status-card--orange">
+      <a href="/applications/?referrer=overview&feedbackItem=Needs feedback" class="status-card status-card--red">
         <span class="status-card__count">{{boxes.needsFeedbackCount}}</span>
         <span class="status-card__status">
           {% if boxes.needsFeedbackCount == 1 %}

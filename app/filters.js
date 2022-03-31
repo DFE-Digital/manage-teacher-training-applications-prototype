@@ -142,13 +142,13 @@ module.exports = (env) => {
       case 'Offer withdrawn':
         return 'app-tag--orange'
       case 'Application withdrawn':
-        return 'app-tag--red'
-      case 'Declined':
-        return 'app-tag--red'
-      case 'Rejected':
         return 'app-tag--orange'
-      case 'Conditions not met':
+      case 'Declined':
+        return 'app-tag--orange'
+      case 'Rejected':
         return 'app-tag--red'
+      case 'Conditions not met':
+        return 'app-tag--orange'
       case 'Conditions pending':
         return 'app-tag--blue'
       case 'Recruited':
