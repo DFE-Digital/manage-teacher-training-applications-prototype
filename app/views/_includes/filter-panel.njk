@@ -6,7 +6,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Recruitment cycle",
+        text: "Recruitment cycle received",
         isPageHeading: false,
         classes: "govuk-fieldset__legend--s"
       }
@@ -56,6 +56,34 @@
     items: importantCheckboxItems
   }) }} #}
 
+
+
+  {{ govukCheckboxes({
+    idPrefix: 'status',
+    name: 'status',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Status',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: statusCheckboxItems
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'noteItem',
+    name: 'noteItem',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Notes',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: noteCheckboxItems
+  }) }}
+
   {% if userItems.length >= userItemsDisplayLimit %}
 
     {{ appCheckboxFilter({
@@ -85,32 +113,6 @@
     }) }}
 
   {% endif %}
-
-  {{ govukCheckboxes({
-    idPrefix: 'noteItem',
-    name: 'noteItem',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Notes',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: noteCheckboxItems
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: 'status',
-    name: 'status',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Status',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: statusCheckboxItems
-  }) }}
 
   {% if trainingProviderItems.length > 1 %}
 

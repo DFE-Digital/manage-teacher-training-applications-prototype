@@ -4,15 +4,15 @@
   rows: [
     {
       key: {
-        text: "Submitted"
+        text: "Date received"
       },
       value: {
-        text: application.submittedDate | govukDateAtTime
+        text: application.submittedDate | govukDate
       }
     },
     {
       key: {
-        text: "Recruitment cycle"
+        text: "Recruitment cycle received"
       },
       value: {
         text: application.cycle | cycleLabel
