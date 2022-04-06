@@ -54,7 +54,13 @@ const generateFakeApplication = (params = {}) => {
   let organisation = faker.helpers.randomize(organisations)
   if(organisation.isAccreditedBody) {
     accreditedBody = organisation
-    provider = faker.helpers.randomize(partners)
+    // we want to sometimes make the provider the accredited body for self ratified courses
+    // so lets sometimes use that
+    if(faker.helpers.randomize([true, false])) {
+      provider = organisation
+    } else {
+      provider = faker.helpers.randomize(partners)
+    }
   } else {
     provider = organisation
     accreditedBody = faker.helpers.randomize(partners)

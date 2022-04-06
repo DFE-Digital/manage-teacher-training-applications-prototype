@@ -11,7 +11,12 @@
       </h3>
       <p class="govuk-!-font-size-16 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
       <p class="govuk-!-margin-top-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ a.provider }} ({{a.accreditedBody}})</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+        {{ a.provider }}
+        {% if a.provider != a.accreditedBody %}
+          ({{a.accreditedBody}})
+        {% endif %}
+      </p>
     </div>
     <div class="app-application-card__secondary">
       <div class="app-application-card__status">

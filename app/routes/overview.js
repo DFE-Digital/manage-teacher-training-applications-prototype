@@ -1,5 +1,5 @@
-const ApplicationHelper = require('../data/helpers/application')
 const CycleHelper = require('../data/helpers/cycles')
+const OrgHelper = require('../data/helpers/organisation')
 
 module.exports = router => {
 
@@ -19,39 +19,52 @@ module.exports = router => {
     }).length
 
     let conditionsPending = applications.filter((app)=> {
-      return app.status == 'Conditions pending' && app.cycle == CycleHelper.PREVIOUS_CYCLE.code
+      return app.status == 'Conditions pending'
     }).length
 
-    var partners = req.session.data.user.relationships.map((relationship) => {
+    let activeApplicationsSections = []
+    let userOrganisations = req.session.data.user.organisations
+    userOrganisations.forEach(userOrganisation => {
 
-      // org 2 is always the partner
-      var orgName = relationship.org2.name
-
-      let apps = applications
-        .filter(app => (app.provider == orgName || app.accreditedBody == orgName))
-        .filter(app => (app.status == 'Received' || app.status == 'Interviewing'))
-
-      return {
-        orgName,
-        apps
+      let activeApplicationsSection = {
+        organisation: userOrganisation,
+        items: []
       }
 
+      // populate the user org if it's an accredited body
+
+      if(userOrganisation.isAccreditedBody) {
+        activeApplicationsSection.items.push({
+          organisation: userOrganisation,
+          received: applications.filter(app => app.provider == userOrganisation.name).filter(app => app.status == 'Received'),
+          interviewing: applications.filter(app => app.provider == userOrganisation.name).filter(app => app.status == 'Interviewing'),
+          offered: applications.filter(app => app.provider == userOrganisation.name).filter(app => app.status == 'Offered'),
+          conditionsPending: applications.filter(app => app.provider == userOrganisation.name).filter(app => app.status == 'Conditions pending'),
+          recruited: applications.filter(app => app.provider == userOrganisation.name).filter(app => app.status == 'Recruited')
+        })
+
+        // get partner data from relationships
+        req.session.data.user.relationships.forEach(relationship => {
+          // org 2 is always the partner
+          var partnerOrganisation = relationship.org2
+
+          activeApplicationsSection.items.push({
+            organisation: partnerOrganisation,
+            received: applications.filter(app => app.provider == partnerOrganisation.name).filter(app => app.status == 'Received'),
+            interviewing: applications.filter(app => app.provider == partnerOrganisation.name).filter(app => app.status == 'Interviewing'),
+            offered: applications.filter(app => app.provider == partnerOrganisation.name).filter(app => app.status == 'Offered'),
+            conditionsPending: applications.filter(app => app.provider == partnerOrganisation.name).filter(app => app.status == 'Conditions pending'),
+            recruited: applications.filter(app => app.provider == partnerOrganisation.name).filter(app => app.status == 'Recruited')
+          })
+        })
+
+        activeApplicationsSections.push(activeApplicationsSection)
+      }
+
+
+
     })
 
-    partners = partners.sort((a, b) => {
-      var textA = a.orgName.toUpperCase();
-      var textB = b.orgName.toUpperCase();
-      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    })
-
-    var org
-    if(req.session.data.user.organisation.isAccreditedBody) {
-      org = {}
-      org.name = req.session.data.user.organisation.name
-      org.apps = applications
-        .filter(app => app.accreditedBody == org.name)
-        .filter(app => (app.status == 'Received' || app.status == 'Interviewing'))
-    }
 
     res.render('overview', {
       boxes: {
@@ -60,8 +73,7 @@ module.exports = router => {
         deferredOffersReadyToConfirm,
         conditionsPending
       },
-      partners,
-      org
+      activeApplicationsSections
     })
   })
 

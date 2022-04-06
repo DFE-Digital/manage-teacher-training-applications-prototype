@@ -10,17 +10,23 @@ const relationships = user.relationships
 let applications = require('./applications.json')
 let defaults = {}
 
-// get related training providers
 const trainingProviders = []
 const accreditedBodies = []
+
 user.organisations.forEach(org => {
   if(org.isAccreditedBody) {
+
+    // An accredied body can also run its own courses (self ratified)
+    // And so they can also be considered the training provider
+    // So populate it
+    trainingProviders.push(org)
+
     accreditedBodies.push(org)
-      relationships
-        .filter(relationship => relationship.org1.id == org.id)
-        .map(relationship => relationship.org2).forEach(org => {
-          trainingProviders.push(org)
-        })
+    relationships
+      .filter(relationship => relationship.org1.id == org.id)
+      .map(relationship => relationship.org2).forEach(org => {
+        trainingProviders.push(org)
+      })
   } else {
     trainingProviders.push(org)
     relationships
