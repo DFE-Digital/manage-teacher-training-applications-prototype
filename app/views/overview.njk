@@ -39,7 +39,7 @@
     {% endif %}
 
     {% if boxes.deferredOffersReadyToConfirm > 0 %}
-      <a href="/applications/?referrer=overview&cycle=2020+to+2021&status=Deferred" class="status-card status-card--yellow">
+      <a href="/applications/?referrer=overview&cycle={{data.previousCycle.code}}&status=Deferred" class="status-card status-card--yellow">
         <span class="status-card__count">{{boxes.deferredOffersReadyToConfirm}}</span>
         <span class="status-card__status">
           {% if boxes.deferredOffersReadyToConfirm == 1 %}
@@ -61,65 +61,155 @@
   </div>
 
   {% for activeApplicationsSection in activeApplicationsSections %}
-    <span class="govuk-caption-m">
-      {{activeApplicationsSection.organisation.name}}
-    </span>
-    <h3 class="govuk-heading-m">
-      Active applications
-    </h3>
+    {# <span class="govuk-caption-m">
 
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header" width="39%">
-            {% if activeApplicationsSection.organisation.isAccreditedBody %}
-              Training provider
-            {% else %}
-              Accredited body
-            {% endif %}
-          </th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Recruited</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        {% for item in activeApplicationsSection.items %}
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              {{item.organisation.name}}
-            </td>
-            <td class="govuk-table__cell govuk-table__header--numeric">
-              <a href="/applications/?referrer=overview&status=Received&provider={{item.organisation.name}}">
-                {{item.received.length}}
-              </a>
-            </td>
-            <td class="govuk-table__cell govuk-table__header--numeric">
-              <a href="/applications/?referrer=overview&status=Interviewing&provider={{item.organisation.name}}">
-                {{item.interviewing.length}}
-              </a>
-            </td>
-            <td class="govuk-table__cell govuk-table__header--numeric">
-              <a href="/applications/?referrer=overview&status=Offered&provider={{item.organisation.name}}">
-                {{item.offered.length}}
-              </a>
-            </td>
-            <td class="govuk-table__cell govuk-table__header--numeric">
-              <a href="/applications/?referrer=overview&status=Conditions pending&provider={{item.organisation.name}}">
-                {{item.conditionsPending.length}}
-              </a>
-            </td>
-            <td class="govuk-table__cell govuk-table__header--numeric">
-              <a href="/applications/?referrer=overview&status=Recruited&provider={{item.organisation.name}}">
-                {{item.recruited.length}}
-              </a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    </span> #}
+    <h2 class="govuk-heading-m">
+      {# Active applications ({{data.currentCycle.shortDesc}} - current recruitment cycle) #}
+      Applications for {{activeApplicationsSection.organisation.name}}
+    </h2>
+
+    <p>
+      {% if data.showLocations == 'true' %}
+        <a class="govuk-!-margin-right-1" href="/overview/?showLocations=false">Hide locations</a>
+      {% else %}
+        <a class="govuk-!-margin-right-1" href="/overview/?showLocations=true">Show locations</a>
+      {% endif %}
+    </p>
+
+    <div class="app-scrollable-pane">
+      <div class="app-scrollable-pane__wrapper">
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header" width="39%">
+                {% if activeApplicationsSection.organisation.isAccreditedBody %}
+                  Training provider
+                  {% set orgType = 'provider'%}
+                {% else %}
+                  Accredited body
+                  {% set orgType = 'accreditedBody'%}
+                {% endif %}
+              </th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Recruited</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for item in activeApplicationsSection.items %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell govuk-table__header">
+                  {{item.organisation.name}}
+                </td>
+                <td class="govuk-table__cell govuk-table__header--numeric">
+                  {% if item.received.length %}
+                    <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Received&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                      {{item.received.length}}
+                    </a>
+                  {% else %}
+                    0
+                  {% endif%}
+                </td>
+                <td class="govuk-table__cell govuk-table__header--numeric">
+                  {% if item.interviewing.length %}
+                    <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Interviewing&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                      {{item.interviewing.length}}
+                    </a>
+                  {% else %}
+                    0
+                  {% endif%}
+                </td>
+                <td class="govuk-table__cell govuk-table__header--numeric">
+                  {% if item.offered.length %}
+                    <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Offered&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                      {{item.offered.length}}
+                    </a>
+                  {% else %}
+                    0
+                  {% endif%}
+                </td>
+                <td class="govuk-table__cell govuk-table__header--numeric">
+                  {% if item.conditionsPending.length %}
+                    <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Conditions pending&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                      {{item.conditionsPending.length}}
+                    </a>
+                  {% else %}
+                    0
+                  {% endif%}
+                </td>
+                <td class="govuk-table__cell govuk-table__header--numeric">
+                  {% if item.recruited.length %}
+                    <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Recruited&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                      {{item.recruited.length}}
+                    </a>
+                  {% else %}
+                    0
+                  {% endif%}
+                </td>
+              </tr>
+              {% if data.showLocations == 'true' %}
+                {% set locations = ['Main site', 'Malet Palace', 'Queen’s campus'] %}
+                  {% for location in locations %}
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell govuk-!-padding-left-4">
+                        {{location}}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.received.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{(item.received.length / 3) | round(0)}}
+                          </a>
+                        {% else %}
+                          0
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.interviewing.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Interviewing&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                            {{(item.interviewing.length / 3) | round(0)}}
+                          </a>
+                        {% else %}
+                          0
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.offered.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Offered&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                            {{(item.offered.length / 3) | round(0)}}
+                          </a>
+                        {% else %}
+                          0
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.conditionsPending.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Conditions pending&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                            {{(item.conditionsPending.length / 3) | round(0)}}
+                          </a>
+                        {% else %}
+                          0
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.recruited.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Recruited&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                            {{(item.recruited.length / 3) | round(0)}}
+                          </a>
+                        {% else %}
+                          0
+                        {% endif%}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   {% endfor %}
 
 {% endblock %}
