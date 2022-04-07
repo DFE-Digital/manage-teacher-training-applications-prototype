@@ -61,7 +61,7 @@
   </div>
 
   {% for activeApplicationsSection in activeApplicationsSections %}
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m {% if not loop.first %} govuk-!-margin-top-8 {% endif %}">
       Applications to {{activeApplicationsSection.organisation.name}}
     </h2>
 

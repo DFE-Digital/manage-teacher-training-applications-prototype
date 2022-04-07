@@ -20,13 +20,14 @@ function getBreakdown(params) {
     .filter(app => app.cycle == CycleHelper.CURRENT_CYCLE.code)
     .filter(app => app[orgType] == organisation.name)
 
-  if(location) {
+  if(location && location.name) {
     applications = applications
       .filter(app => app.location && app.location.name == location.name)
   }
 
   let received = applications.filter(app => app.status == 'Received')
   let interviewing = applications.filter(app => app.status == 'Interviewing')
+
   let offered = applications.filter(app => app.status == 'Offered')
   let conditionsPending = applications.filter(app => app.status == 'Conditions pending')
   let recruited = applications.filter(app => app.status == 'Recruited')
@@ -81,7 +82,7 @@ module.exports = router => {
       // Create locations table
       if(!userOrganisation.isAccreditedBody && userOrganisation.locations) {
         userOrganisation.locations.forEach(location => {
-          activeApplicationsSection.locationsTable.items.push(getBreakdown({ organisation: userOrganisation, applications, location }))
+          // activeApplicationsSection.locationsTable.items.push(getBreakdown({ organisation: userOrganisation, applications, location }))
         })
       }
 
@@ -96,7 +97,7 @@ module.exports = router => {
         // populate any locations as rows too
         if(userOrganisation.locations) {
           userOrganisation.locations.forEach(location => {
-            activeApplicationsSection.partnersTable.items.push(getBreakdown({ organisation: userOrganisation, applications, location }))
+            activeApplicationsSection.partnersTable.items.push(getBreakdown({ organisation: userOrganisation, applications, location, actingAsTrainingProvider: true }))
           })
         }
       }

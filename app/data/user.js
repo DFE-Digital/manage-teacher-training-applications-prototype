@@ -5,8 +5,8 @@ const relationships = require('./relationships-cambridge-training-school-network
 
 // set up user orgs
 let userOrgs = [];
-userOrgs.push(OrgHelper.findOrg('Cambridge Training School Network, CTSN SCITT'))
 // userOrgs.push(OrgHelper.findOrg('The Millais Alliance'))
+userOrgs.push(OrgHelper.findOrg('Cambridge Training School Network, CTSN SCITT'))
 
 // create user object
 let user = users[0] // we know the first one is the test participant
