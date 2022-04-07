@@ -131,20 +131,6 @@
 
   {% endif %}
 
-  {# {% if checked("provider", data.trainingProviders[0].name) or trainingProviderItems.length == 1 %}
-    {{ govukCheckboxes({
-      name: 'location',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Locations for ' + data.trainingProviders[0].name,
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: locationItems
-    }) }}
-  {% endif %} #}
-
   {% if accreditedBodyItems.length > 1 %}
     {{ govukCheckboxes({
       idPrefix: 'accreditedBody',
