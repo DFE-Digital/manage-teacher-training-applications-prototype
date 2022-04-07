@@ -67,13 +67,51 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "Cambridge Training School Network, CTSN SCITT",
     isAccreditedBody: true,
-    domain: "camteach.org.uk"
+    domain: "camteach.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'King’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "The Lark Teaching School Alliance",
     isAccreditedBody: false,
-    domain: "lark.org.uk"
+    domain: "lark.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
@@ -85,7 +123,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "The Cambridge Training School Network Partnership, CTSN",
     isAccreditedBody: false,
-    domain: "ctsn.org.uk"
+    domain: "ctsn.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Jack’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({

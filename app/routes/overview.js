@@ -4,21 +4,37 @@ const OrgHelper = require('../data/helpers/organisation')
 
 function getBreakdown(params) {
   let organisation = params.organisation
-  let applications = params.applications.filter(app => app.cycle == CycleHelper.CURRENT_CYCLE.code)
+  let location = params.location
 
   let orgType = 'provider'
+
+  let applications = params.applications
+    .filter(app => app.cycle == CycleHelper.CURRENT_CYCLE.code)
+    .filter(app => app[orgType] == organisation.name)
 
   if(organisation.isAccreditedBody) {
     orgType = 'accreditedBody'
   }
 
+  if(location) {
+    applications = applications
+      .filter(app => app.location.name == location.name)
+  }
+
+  let received = applications.filter(app => app.status == 'Received')
+  let interviewing = applications.filter(app => app.status == 'Interviewing')
+  let offered = applications.filter(app => app.status == 'Offered')
+  let conditionsPending = applications.filter(app => app.status == 'Conditions pending')
+  let recruited = applications.filter(app => app.status == 'Recruited')
+
   return {
     organisation: organisation,
-    received: applications.filter(app => app[orgType] == organisation.name).filter(app => app.status == 'Received'),
-    interviewing: applications.filter(app => app[orgType] == organisation.name).filter(app => app.status == 'Interviewing'),
-    offered: applications.filter(app => app[orgType] == organisation.name).filter(app => app.status == 'Offered'),
-    conditionsPending: applications.filter(app => app[orgType] == organisation.name).filter(app => app.status == 'Conditions pending'),
-    recruited: applications.filter(app => app[orgType] == organisation.name).filter(app => app.status == 'Recruited')
+    location,
+    received,
+    interviewing,
+    offered,
+    conditionsPending,
+    recruited
   }
 
 }
@@ -58,6 +74,13 @@ module.exports = router => {
         // populate the user org if it's an accredited body
         activeApplicationsSection.items.push(getBreakdown({ organisation: userOrganisation, applications }))
 
+        // populate any locations as rows too
+        if(userOrganisation.locations) {
+          userOrganisation.locations.forEach(location => {
+            activeApplicationsSection.items.push(getBreakdown({ organisation: userOrganisation, applications, location }))
+          })
+        }
+
       }
 
       // get partner data from relationships
@@ -65,6 +88,14 @@ module.exports = router => {
         // org 2 is always the partner
         var organisation = relationship.org2
         activeApplicationsSection.items.push(getBreakdown({ organisation, applications }))
+
+        // populate any locations as rows too
+        if(!organisation.isAccreditedBody && organisation.locations) {
+          organisation.locations.forEach(location => {
+            activeApplicationsSection.items.push(getBreakdown({ organisation, applications, location }))
+          })
+        }
+
       })
 
       activeApplicationsSections.push(activeApplicationsSection)
