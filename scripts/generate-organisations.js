@@ -19,11 +19,12 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   universities.forEach((university, i) => {
-    organisations.push(generateFakeOrganisation({
-      name: university.name,
-      isAccreditedBody: university.isAccreditedBody,
-      domain: university.domain
-    }))
+    // Commented out because it dupes the organisations created manually which may have locations
+    // organisations.push(generateFakeOrganisation({
+    //   name: university.name,
+    //   isAccreditedBody: university.isAccreditedBody,
+    //   domain: university.domain
+    // }))
   })
 
   // ---------------------------------------------------------------------------
@@ -42,85 +43,142 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "Goldsmiths, University of London",
     isAccreditedBody: true,
-    domain: "@gold.org.uk"
+    domain: "gold.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "North Wiltshire SCITT",
     isAccreditedBody: true,
-    domain: "@nwscitt.org.uk"
+    domain: "nwscitt.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Blue Kite Academy Trust",
     isAccreditedBody: false,
-    domain: "@bkat.org.uk"
+    domain: "bkat.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Pickwick Learning",
     isAccreditedBody: false,
-    domain: "@pl.org.uk"
+    domain: "pl.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Cambridge Training School Network, CTSN SCITT",
     isAccreditedBody: true,
-    domain: "@camteach.org.uk"
+    domain: "camteach.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'King’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "The Lark Teaching School Alliance",
     isAccreditedBody: false,
-    domain: "@lark.org.uk"
+    domain: "lark.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Barrow CEVC Primary School",
     isAccreditedBody: false,
-    domain: "@barrow.org.uk"
+    domain: "barrow.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "The Cambridge Training School Network Partnership, CTSN",
     isAccreditedBody: false,
-    domain: "@ctsn.org.uk"
+    domain: "ctsn.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Jack’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Anglian Gateway Teaching Schools Alliance",
     isAccreditedBody: false,
-    domain: "@anglian.org.uk"
+    domain: "anglian.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Morris Teaching School Alliance",
     isAccreditedBody: false,
-    domain: "@morris.org.uk"
+    domain: "morris.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Cambridge & Suffolk Schools Alliance (CASSA)",
     isAccreditedBody: false,
-    domain: "@cands.org.uk"
+    domain: "cands.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Catalyst Teaching School Alliance",
     isAccreditedBody: false,
-    domain: "@ctsa.org.uk"
+    domain: "ctsa.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Unity Teaching School Hub",
     isAccreditedBody: false,
-    domain: "@utsh.org.uk"
+    domain: "utsh.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Saffron Walden County High School",
     isAccreditedBody: false,
-    domain: "@swchs.org.uk"
+    domain: "swchs.org.uk"
   }))
 
   organisations.push(generateFakeOrganisation({
@@ -156,25 +214,101 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "University of Sussex",
     isAccreditedBody: true,
-    domain: "universityofsussex.com"
+    domain: "universityofsussex.com",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "University of Chichester",
     isAccreditedBody: true,
-    domain: "universityofchichester.com"
+    domain: "universityofchichester.com",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "Coventry University",
     isAccreditedBody: true,
-    domain: "conventryuniversity.com"
+    domain: "conventryuniversity.com",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
     name: "University of Brighton",
     isAccreditedBody: true,
-    domain: "universityofbrighton.com"
+    domain: "universityofbrighton.com",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
@@ -307,7 +441,7 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "President Kennedy Teaching School Alliance",
     isAccreditedBody: false,
-    domain: "@pks.coventry.sch.uk"
+    domain: "pks.coventry.sch.uk"
   }))
   organisations.push(generateFakeOrganisation({
     name: "Southam Teaching Alliance",
@@ -547,7 +681,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "The Millais Alliance",
     isAccreditedBody: false,
-    domain: "millais.org.uk"
+    domain: "millais.org.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
