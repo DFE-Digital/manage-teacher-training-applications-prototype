@@ -47,7 +47,7 @@ const getStatusCheckboxItems = (selectedItems) => {
 const getImportantCheckboxItems = (selectedItems) => {
   const items = []
 
-  const importantItems = ['5 days or fewer to make decision', 'Feedback needed']
+  const importantItems = ['5 days or fewer to make decision', 'Needs feedback']
 
   importantItems.forEach((importantItem, i) => {
     const item = {}
@@ -546,7 +546,7 @@ module.exports = router => {
 
       if (daysLeftToMakeDecisionItems && daysLeftToMakeDecisionItems.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Days left to make decision' },
+          heading: { text: 'Days to make decision' },
           items: daysLeftToMakeDecisionItems.map((daysLeftToMakeDecisionItem) => {
             return {
               text: daysLeftToMakeDecisionItem,
@@ -558,7 +558,7 @@ module.exports = router => {
 
       if (feedbackItems && feedbackItems.length) {
         selectedFilters.categories.push({
-          heading: { text: 'Feedback' },
+          heading: { text: 'Rejection feedback' },
           items: feedbackItems.map((feedbackItem) => {
             return {
               text: feedbackItem,

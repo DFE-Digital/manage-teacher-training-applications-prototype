@@ -39,7 +39,7 @@
         {% endif %}
 
         {% if a.status == 'Rejected' and not a.rejectedReasons %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Feedback needed</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Needs feedback</p>
         {% endif %}
 
         {% if a.status == 'Deferred' and data.settings == 'new-cycle' %}
