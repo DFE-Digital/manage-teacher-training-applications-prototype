@@ -82,7 +82,7 @@ module.exports = router => {
       // Create locations table
       if(!userOrganisation.isAccreditedBody && userOrganisation.locations) {
         userOrganisation.locations.forEach(location => {
-          // activeApplicationsSection.locationsTable.items.push(getBreakdown({ organisation: userOrganisation, applications, location }))
+          activeApplicationsSection.locationsTable.items.push(getBreakdown({ organisation: userOrganisation, applications, location }))
         })
       }
 
