@@ -140,23 +140,23 @@ module.exports = (env) => {
       case 'Deferred':
         return 'govuk-tag--yellow'
       case 'Offer withdrawn':
-        return 'app-tag--orange'
+        return 'govuk-tag--orange'
       case 'Application withdrawn':
-        return 'app-tag--orange'
+        return 'govuk-tag--orange'
       case 'Declined':
-        return 'app-tag--orange'
+        return 'govuk-tag--orange'
       case 'Rejected':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
       case 'Conditions not met':
-        return 'app-tag--orange'
+        return 'govuk-tag--orange'
       case 'Conditions pending':
-        return 'app-tag--blue'
+        return 'govuk-tag--blue'
       case 'Recruited':
-        return 'app-tag--green'
+        return 'govuk-tag--green'
       case 'Offered':
-        return 'app-tag--turquoise'
+        return 'govuk-tag--turquoise'
       case 'Received':
-        return 'app-tag--purple'
+        return 'govuk-tag--purple'
       case 'Interviewing':
         return 'govuk-tag--yellow'
     }
