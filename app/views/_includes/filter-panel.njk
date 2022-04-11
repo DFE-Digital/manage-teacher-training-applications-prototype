@@ -6,7 +6,7 @@
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Recruitment cycle received",
+        text: "Recruitment cycle",
         isPageHeading: false,
         classes: "govuk-fieldset__legend--s"
       }
@@ -146,39 +146,37 @@
     }) }}
   {% endif %}
 
-  {% for item in trainingProviderItems %}
+  {% if not data.user.organisation.isAccreditedBody %}
+    {% for item in trainingProviderItems %}
+      {{ govukCheckboxes({
+        name: 'location',
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: 'Locations for ' + item.text,
+            classes: 'govuk-fieldset__legend--s'
+          }
+        },
+        items: locationItems
+      }) }}
+    {% endfor %}
+  {% endif %}
 
-    {{ govukCheckboxes({
-      name: 'location',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Locations for ' + item.text,
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: locationItems
-    }) }}
-
-  {% endfor %}
-
-  {% for item in accreditedBodyItems %}
-
-    {{ govukCheckboxes({
-      name: 'location',
-      classes: "govuk-checkboxes--small",
-      fieldset: {
-        legend: {
-          text: 'Locations for ' + item.text,
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: locationItems
-    }) }}
-
-  {% endfor %}
-
-
+  {% if data.user.organisation.isAccreditedBody %}
+    {% for item in accreditedBodyItems %}
+      {{ govukCheckboxes({
+        name: 'location',
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: 'Locations for ' + item.text,
+            classes: 'govuk-fieldset__legend--s'
+          }
+        },
+        items: locationItems
+      }) }}
+    {% endfor %}
+  {% endif %}
 
   {% if subjectItems.length >= subjectItemsDisplayLimit %}
 
