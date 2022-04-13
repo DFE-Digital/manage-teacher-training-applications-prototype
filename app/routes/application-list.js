@@ -30,7 +30,7 @@ const getSubjectItems = (selectedItems) => {
 const getStatusCheckboxItems = (selectedItems) => {
   const items = []
 
-  const statuses = ['Received', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
+  const statuses = ['Received', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
 
   statuses.forEach((status, i) => {
     const item = {}
@@ -278,6 +278,9 @@ const sortApplications = (applications, sort) => {
     })
   } else {
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    }))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Shortlisted').sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
     }))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Interviewing').sort(function(a, b) {

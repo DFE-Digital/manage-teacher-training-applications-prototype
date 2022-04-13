@@ -637,22 +637,6 @@ const generateFakeApplications = () => {
   //   }
   // }))
 
-  var organisation = organisations[0]
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Rejected',
-  //   cycle: '2019 to 2020',
-  //   submittedDate: SystemHelper.now().minus({ days: 1 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-  //   organisation: organisation,
-  //   givenName: 'Emma',
-  //   familyName: 'Hayes',
-  //   personalDetails: {
-  //     givenName: 'Emma',
-  //     familyName: 'Hayes',
-  //     sex: 'Female'
-  //   }
-  // }))
-
   applications.push(generateFakeApplication({
     status: 'Offered',
     cycle: CycleHelper.CURRENT_CYCLE.code,
