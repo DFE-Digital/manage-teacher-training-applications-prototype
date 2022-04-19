@@ -2530,7 +2530,7 @@ const generateFakeApplications = () => {
   // ---------------------------------------------------------------------------
 
   applications.push(generateFakeApplication({
-    status: 'Received',
+    status: 'Shortlisted',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 33 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
@@ -2648,7 +2648,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Received',
+    status: 'Shortlisted',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 34 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
@@ -2728,7 +2728,7 @@ const generateFakeApplications = () => {
   }))
 
   applications.push(generateFakeApplication({
-    status: 'Received',
+    status: 'Shortlisted',
     cycle: CycleHelper.CURRENT_CYCLE.code,
     submittedDate: SystemHelper.now().minus({ days: 35 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
     personalDetails: {
@@ -2794,6 +2794,7 @@ const generateFakeApplications = () => {
 
     if(key === "DEFERRED") continue;
     if(key === "RECEIVED") continue;
+    if(key === "SHORTLISTED") continue;
 
     for (let i = 0; i < count; i++) {
       if (value === 'Offered') {

@@ -473,13 +473,13 @@ module.exports = router => {
           daysLeftToMakeDecisionItemValid = false
 
           if(daysLeftToMakeDecisionItems.includes('5 days or fewer')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond <= 5) {
+            if((app.status == 'Received' || app.status == 'Shortlisted' || app.status == 'Interviewing') && app.daysToRespond <= 5) {
               daysLeftToMakeDecisionItemValid = true
             }
           }
 
           if(daysLeftToMakeDecisionItems.includes('More than 5 days')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond > 5) {
+            if((app.status == 'Received' || app.status == 'Shortlisted' || app.status == 'Interviewing') && app.daysToRespond > 5) {
               daysLeftToMakeDecisionItemValid = true
             }
           }

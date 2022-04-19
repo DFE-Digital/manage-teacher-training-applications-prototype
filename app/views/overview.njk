@@ -76,10 +76,11 @@
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header" width="39%">
+                <th scope="col" class="govuk-table__header" width="26%">
                   Location
                 </th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Shortlisted</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
@@ -96,6 +97,15 @@
                       {% if item.received.length %}
                         <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
                           {{item.received.length}}
+                        </a>
+                      {% else %}
+                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                      {% endif%}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__header--numeric">
+                      {% if item.shortlisted.length %}
+                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                          {{item.shortlisted.length}}
                         </a>
                       {% else %}
                         <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
@@ -153,10 +163,11 @@
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header" width="39%">
+                <th scope="col" class="govuk-table__header" width="26%">
                     Accredited body
                 </th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Shortlisted</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
@@ -173,6 +184,15 @@
                     {% if item.received.length %}
                       <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Received&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
                         {{item.received.length}}
+                      </a>
+                    {% else %}
+                      <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                    {% endif%}
+                  </td>
+                  <td class="govuk-table__cell govuk-table__header--numeric">
+                    {% if item.shortlisted.length %}
+                      <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Shortlisted&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                        {{item.shortlisted.length}}
                       </a>
                     {% else %}
                       <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
@@ -238,6 +258,7 @@
                   Training provider
                 </th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Shortlisted</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
@@ -255,6 +276,15 @@
                       {% if item.received.length %}
                         <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Received&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
                           {{item.received.length}}
+                        </a>
+                      {% else %}
+                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                      {% endif%}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__header--numeric">
+                      {% if item.shortlisted.length %}
+                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="/applications/?referrer=overview&status=Shortlisted&{{orgType}}={{item.organisation.name}}&cycle={{data.currentCycle.code}}">
+                          {{item.shortlisted.length}}
                         </a>
                       {% else %}
                         <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>

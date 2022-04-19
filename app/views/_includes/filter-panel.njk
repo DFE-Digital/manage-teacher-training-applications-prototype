@@ -1,5 +1,7 @@
 {% set filterOptionsHtml %}
 
+
+
   {{ govukCheckboxes({
     idPrefix: "cycle",
     name: "[cycle]",
@@ -12,6 +14,29 @@
       }
     },
     items: cycleItems
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "thing",
+    name: "[thing]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Date received",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [{
+      text: 'Today',
+      value: 'Today'
+    }, {
+      text: 'Within the last 3 days',
+      value: 'Within the last 3 days'
+    }, {
+      text: 'Within the last 7 days',
+      value: 'Within the last 7 days'
+    }]
   }) }}
 
   {{ govukCheckboxes({
