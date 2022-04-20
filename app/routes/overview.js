@@ -1,6 +1,5 @@
 const CycleHelper = require('../data/helpers/cycles')
-const OrgHelper = require('../data/helpers/organisation')
-
+const { DateTime } = require('luxon')
 
 function getBreakdown(params) {
   let organisation = params.organisation
@@ -50,6 +49,10 @@ module.exports = router => {
 
   router.get('/overview', (req, res) => {
     let applications = req.session.data.applications.map(app => app).reverse()
+
+    let receivedTodayCount = applications.filter(app => {
+      return DateTime.fromISO(app.submittedDate).diffNow('days').days >= -1
+    }).length
 
     let aboutToBeAutomaticallyRejectedCount = applications.filter((app) => {
       return app.daysToRespond < 5 && (app.status == 'Received' || app.status == 'Shortlisted' || app.status == 'Interviewing')
@@ -129,7 +132,8 @@ module.exports = router => {
         aboutToBeAutomaticallyRejectedCount,
         needsFeedbackCount,
         deferredOffersReadyToConfirm,
-        conditionsPending
+        conditionsPending,
+        receivedTodayCount
       },
       activeApplicationsSections
     })

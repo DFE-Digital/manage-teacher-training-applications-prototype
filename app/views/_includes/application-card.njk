@@ -9,7 +9,7 @@
         </a>
         <span class="app-application-card__caption">{{ a.id }}</span>
       </h3>
-      <p class="govuk-!-font-size-16 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
+
       <p class="govuk-!-margin-top-1 govuk-!-font-size-16">
         {{ a.course }} – {{ a.studyMode | lower }}
         {% if a.location.name %}
@@ -21,6 +21,14 @@
         {% if a.provider != a.accreditedBody %}
           ({{a.accreditedBody}})
         {% endif %}
+      </p>
+
+      <p class="govuk-hint govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+        Received {{a.submittedDate | govukShortDateAtTime}}
+      </p>
+
+      <p class="govuk-hint govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+        Updated {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}
       </p>
     </div>
     <div class="app-application-card__secondary">
@@ -48,7 +56,7 @@
 
         {% if a.status == 'Offered' %}
           {% if a.offer.daysToDecline == 0 %}
-            <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Last day for candidate to respond</p>
+            <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">Last day for candidate to respond</p>
           {% else %}
             <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">{{a.offer.daysToDecline}} day{{'s' if a.offer.daysToDecline > 1}} for candidate to respond</p>
           {% endif %}

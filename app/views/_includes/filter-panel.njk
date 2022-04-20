@@ -16,9 +16,21 @@
     items: cycleItems
   }) }}
 
+  {# {{ govukDateInput({
+    id: "date",
+    name: "date",
+    fieldset: {
+      legend: {
+        text: "Received since",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }
+  }) }} #}
+
+
   {{ govukCheckboxes({
-    idPrefix: "thing",
-    name: "[thing]",
+    idPrefix: "dateReceivedItem",
+    name: "dateReceivedItem",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
@@ -27,16 +39,7 @@
         classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [{
-      text: 'Today',
-      value: 'Today'
-    }, {
-      text: 'Within the last 3 days',
-      value: 'Within the last 3 days'
-    }, {
-      text: 'Within the last 7 days',
-      value: 'Within the last 7 days'
-    }]
+    items: dateReceivedCheckboxItems
   }) }}
 
   {{ govukCheckboxes({
