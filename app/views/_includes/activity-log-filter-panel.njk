@@ -1,18 +1,74 @@
 {% set filterOptionsHtml %}
 
-
-
   {{ govukCheckboxes({
     idPrefix: 'type',
     name: 'type',
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: 'Type',
+        text: 'Event',
         classes: 'govuk-fieldset__legend--s'
       }
     },
-    items: typeItems
+    items: [{
+      text: 'Application received'
+    }, {
+      text: 'Application shortlisted'
+    }, {
+      text: 'Application withdrawn'
+    }, {
+      text: 'Interview set up'
+    }, {
+      text: 'Interview updated'
+    }, {
+      text: 'Interview cancelled'
+    }, {
+      text: 'Course updated'
+    }, {
+      text: 'Offer made'
+    }, {
+      text: 'Offer updated'
+    }, {
+      text: 'Offer withdrawn'
+    }, {
+      text: 'Offer declined'
+    }, {
+      text: 'Conditions marked as met'
+    }, {
+      text: 'Conditions marked as not met'
+    }, {
+      text: 'Note added'
+    }, {
+      text: 'Note updated'
+    }, {
+      text: 'Note deleted'
+    }, {
+      text: 'User assigned'
+    }, {
+      text: 'Assigned users updated'
+    }]
+  }) }}
+
+  {{ govukDateInput({
+    id: "date",
+    name: "date",
+    fieldset: {
+      legend: {
+        text: "Date from",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }
+  }) }}
+
+  {{ govukDateInput({
+    id: "date",
+    name: "date",
+    fieldset: {
+      legend: {
+        text: "Date to",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }
   }) }}
 
 {% endset %}
