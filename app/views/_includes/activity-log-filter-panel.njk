@@ -1,5 +1,27 @@
 {% set filterOptionsHtml %}
 
+  {{ govukDateInput({
+    id: "date",
+    name: "date",
+    fieldset: {
+      legend: {
+        text: "Date from",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }
+  }) }}
+
+  {{ govukDateInput({
+    id: "date",
+    name: "date",
+    fieldset: {
+      legend: {
+        text: "Date to",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }
+  }) }}
+
   {{ govukCheckboxes({
     idPrefix: 'type',
     name: 'type',
@@ -49,27 +71,7 @@
     }]
   }) }}
 
-  {{ govukDateInput({
-    id: "date",
-    name: "date",
-    fieldset: {
-      legend: {
-        text: "Date from",
-        classes: "govuk-fieldset__legend--s"
-      }
-    }
-  }) }}
 
-  {{ govukDateInput({
-    id: "date",
-    name: "date",
-    fieldset: {
-      legend: {
-        text: "Date to",
-        classes: "govuk-fieldset__legend--s"
-      }
-    }
-  }) }}
 
 {% endset %}
 
