@@ -1,10 +1,10 @@
 const PaginationHelper = require('../data/helpers/pagination')
-const ApplicationHelper = require('../data/helpers/application')
 const CycleHelper = require('../data/helpers/cycles')
 
 const subjects = require('../data/subjects')
 const locations = require('../data/locations')
 const { default: request } = require('sync-request')
+const { DateTime } = require('luxon')
 
 const getSubjectItems = (selectedItems) => {
   const items = []
@@ -30,7 +30,7 @@ const getSubjectItems = (selectedItems) => {
 const getStatusCheckboxItems = (selectedItems) => {
   const items = []
 
-  const statuses = ['Received', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
+  const statuses = ['Received', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
 
   statuses.forEach((status, i) => {
     const item = {}
@@ -44,10 +44,10 @@ const getStatusCheckboxItems = (selectedItems) => {
   return items
 }
 
-const getImportantCheckboxItems = (selectedItems) => {
+const getDateReceivedCheckboxItems = (selectedItems) => {
   const items = []
 
-  const importantItems = ['5 days or fewer to make decision', 'Needs feedback']
+  const importantItems = ['Today', 'Yesterday', '2 days ago', '3 days ago']
 
   importantItems.forEach((importantItem, i) => {
     const item = {}
@@ -280,6 +280,9 @@ const sortApplications = (applications, sort) => {
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Received').sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
     }))
+    newApplications = newApplications.concat(applications.filter((app) => app.status == 'Shortlisted').sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    }))
     newApplications = newApplications.concat(applications.filter((app) => app.status == 'Interviewing').sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
     }))
@@ -332,6 +335,7 @@ module.exports = router => {
       'subject',
       'assignedUser',
       'daysLeftToMakeDecisionItem',
+      'dateReceivedItem',
       'feedbackItem',
       'note'
     ]
@@ -354,7 +358,7 @@ module.exports = router => {
       return user.organisation.id == req.session.data.user.organisation.id
     })
 
-    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, daysLeftToMakeDecisionItem, noteItem, feedbackItem } = req.query
+    let { cycle, status, provider, accreditedBody, keywords, location, studyMode, subject, assignedUser, daysLeftToMakeDecisionItem, dateReceivedItem, noteItem, feedbackItem } = req.query
 
     keywords = keywords || req.session.data.keywords
 
@@ -367,12 +371,13 @@ module.exports = router => {
     const subjects = getCheckboxValues(subject, req.session.data.subject)
     const assignedUsers = getCheckboxValues(assignedUser, req.session.data.assignedUser)
     const daysLeftToMakeDecisionItems = getCheckboxValues(daysLeftToMakeDecisionItem, req.session.data.daysLeftToMakeDecisionItem)
+    const dateReceivedItems = getCheckboxValues(dateReceivedItem, req.session.data.dateReceivedItem)
     const feedbackItems = getCheckboxValues(feedbackItem, req.session.data.feedbackItem)
     const noteItems = getCheckboxValues(noteItem, req.session.data.noteItem)
 
     const hasSearch = !!((keywords))
 
-    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (daysLeftToMakeDecisionItems && daysLeftToMakeDecisionItems.length > 0) || (noteItems && noteItems.length > 0 || (feedbackItems && feedbackItems.length > 0)))
+    const hasFilters = !!((cycles && cycles.length > 0) || (statuses && statuses.length > 0) || (locations && locations.length > 0) || (providers && providers.length > 0) || (accreditedBodies && accreditedBodies.length > 0) || (studyModes && studyModes.length > 0) || (subjects && subjects.length > 0) || (assignedUsers && assignedUsers.length > 0) || (daysLeftToMakeDecisionItems && daysLeftToMakeDecisionItems.length > 0) || (dateReceivedItems && dateReceivedItems.length > 0) || (noteItems && noteItems.length > 0 || (feedbackItems && feedbackItems.length > 0)))
 
     if (hasSearch) {
       apps = apps.filter((app) => {
@@ -406,6 +411,7 @@ module.exports = router => {
         let assignedUserValid = true
         let unassignedUserValid = true
         let daysLeftToMakeDecisionItemValid = true
+        let dateReceivedItemValid = true
         let noteItemValid = true
         let feedbackItemValid = true
 
@@ -470,16 +476,51 @@ module.exports = router => {
           daysLeftToMakeDecisionItemValid = false
 
           if(daysLeftToMakeDecisionItems.includes('5 days or fewer')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond <= 5) {
+            if((app.status == 'Received' || app.status == 'Shortlisted' || app.status == 'Interviewing') && app.daysToRespond <= 5) {
               daysLeftToMakeDecisionItemValid = true
             }
           }
 
           if(daysLeftToMakeDecisionItems.includes('More than 5 days')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond > 5) {
+            if((app.status == 'Received' || app.status == 'Shortlisted' || app.status == 'Interviewing') && app.daysToRespond > 5) {
               daysLeftToMakeDecisionItemValid = true
             }
           }
+        }
+
+        if (dateReceivedItems && dateReceivedItems.length) {
+          dateReceivedItemValid = false
+
+          let submittedDate = DateTime.fromISO(app.submittedDate)
+
+          // Received today
+          if(dateReceivedItems.includes('Today')) {
+            if(submittedDate.diffNow('days').days >= -1) {
+              dateReceivedItemValid = true
+            }
+          }
+
+          // Received today
+          if(dateReceivedItems.includes('Yesterday')) {
+            if(submittedDate.diffNow('days').days >= -2) {
+              dateReceivedItemValid = true
+            }
+          }
+
+          // received within last 3 days
+          if(dateReceivedItems.includes('2 days ago')) {
+            if(submittedDate.diffNow('days').days >= -3) {
+              dateReceivedItemValid = true
+            }
+          }
+
+          // received within last 3 days
+          if(dateReceivedItems.includes('3 days ago')) {
+            if(submittedDate.diffNow('days').days >= -4) {
+              dateReceivedItemValid = true
+            }
+          }
+
         }
 
         if (feedbackItems && feedbackItems.length) {
@@ -521,6 +562,7 @@ module.exports = router => {
           && assignedUserValid
           && unassignedUserValid
           && daysLeftToMakeDecisionItemValid
+          && dateReceivedItemValid
           && noteItemValid
           && feedbackItemValid
       })
@@ -539,6 +581,18 @@ module.exports = router => {
             return {
               text: CycleHelper.getCycleLabel(cycle),
               href: `/applications/remove-cycle-filter/${cycle}`
+            }
+          })
+        })
+      }
+
+      if (dateReceivedItems && dateReceivedItems.length) {
+        selectedFilters.categories.push({
+          heading: { text: 'Date received' },
+          items: dateReceivedItems.map((dateReceivedItem) => {
+            return {
+              text: dateReceivedItem,
+              href: `/applications/remove-dateReceivedItem-filter/${dateReceivedItem}`
             }
           })
         })
@@ -703,6 +757,7 @@ module.exports = router => {
     const locationItems = getLocationItems(req.session.data.location)
     const statusCheckboxItems = getStatusCheckboxItems(req.session.data.status)
     const daysLeftToMakeDecisionCheckboxItems = getDaysLeftToMakeDecisionCheckboxItems(req.session.data.daysLeftToMakeDecisionItem)
+    const dateReceivedCheckboxItems = getDateReceivedCheckboxItems(req.session.data.dateReceivedItem)
     const feedbackCheckboxItems = getFeedbackCheckboxItems(req.session.data.feedbackItem)
     const noteCheckboxItems = getNoteCheckboxItems(req.session.data.noteItem)
 
@@ -723,6 +778,7 @@ module.exports = router => {
       selectedUsers,
       cycleItems,
       statusCheckboxItems,
+      dateReceivedCheckboxItems,
       daysLeftToMakeDecisionCheckboxItems,
       feedbackCheckboxItems,
       noteCheckboxItems
@@ -779,6 +835,11 @@ module.exports = router => {
     res.redirect('/applications')
   })
 
+  router.get('/applications/remove-dateReceivedItem-filter/:dateReceivedItem', (req, res) => {
+    req.session.data.dateReceivedItem = removeFilter(req.params.dateReceivedItem, req.session.data.dateReceivedItem)
+    res.redirect('/applications')
+  })
+
   router.get('/applications/remove-noteItem-filter/:noteItem', (req, res) => {
     req.session.data.noteItem = removeFilter(req.params.noteItem, req.session.data.noteItem)
     res.redirect('/applications')
@@ -792,6 +853,7 @@ module.exports = router => {
   router.get('/applications/remove-all-filters', (req, res) => {
     req.session.data.cycle = null
     req.session.data.daysLeftToMakeDecisionItem = null
+    req.session.data.dateReceivedItem = null
     req.session.data.feedbackItem = null
     req.session.data.noteItem = null
     req.session.data.status = null

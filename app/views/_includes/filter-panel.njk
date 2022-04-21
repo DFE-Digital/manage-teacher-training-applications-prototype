@@ -1,5 +1,7 @@
 {% set filterOptionsHtml %}
 
+
+
   {{ govukCheckboxes({
     idPrefix: "cycle",
     name: "[cycle]",
@@ -12,6 +14,32 @@
       }
     },
     items: cycleItems
+  }) }}
+
+  {# {{ govukDateInput({
+    id: "date",
+    name: "date",
+    fieldset: {
+      legend: {
+        text: "Received since",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }
+  }) }} #}
+
+
+  {{ govukCheckboxes({
+    idPrefix: "dateReceivedItem",
+    name: "dateReceivedItem",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Date received",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: dateReceivedCheckboxItems
   }) }}
 
   {{ govukCheckboxes({

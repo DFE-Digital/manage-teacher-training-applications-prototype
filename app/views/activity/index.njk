@@ -5,13 +5,22 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">{{title}}</h1>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "_includes/activity-log-filter-panel.njk" %}
+    </div>
+
+    <div class="app-filter-layout__content">
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
 
       <div class="app-activity-log">
         {%- for day, events in activity %}
-          <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">
+          <h2 class="govuk-heading-m {% if not loop.first%}govuk-!-margin-top-6{%endif%} govuk-!-margin-bottom-2">
             {%- if day | daysFromDate(now) == 0 %}
               Today ({{- day | govukDate -}})
             {% elseif day | daysFromDate(now) == 1 %}
@@ -23,16 +32,10 @@
           {% include "_includes/activity-log/events-timeline.njk" %}
         {% endfor -%}
       </div>
-
     </div>
   </div>
 
-  {%- if pagination %}
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        {% include "_includes/pagination.njk" %}
-      </div>
-    </div>
-  {% endif -%}
+
+
 
 {% endblock %}
