@@ -11,9 +11,9 @@ const content = {
     }
   },
   addToShortlist: {
-    successMessage: 'Shortlisted',
+    successMessage: 'Application shortlisted',
     event: {
-      title: 'Shortlisted'
+      title: 'Application shortlisted'
     }
   },
   createInterview: {
