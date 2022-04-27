@@ -1,5 +1,6 @@
 .app-primary-navigation {
   background-color: govuk-colour("light-grey");
+  // background-color: govuk-colour("black");
 }
 
 .app-primary-navigation__container {
@@ -54,6 +55,7 @@
   &:link,
   &:visited {
     color: govuk-colour("blue");
+    // color: govuk-colour("white");
   }
 
   &:focus {
@@ -69,11 +71,13 @@
 
   &[aria-current] {
     color: govuk-colour("blue");
+    // color: govuk-colour("white");
     position: relative;
     text-decoration: none;
     font-weight: bold;
     &:before {
       background-color: govuk-colour("blue");
+      // background-color: govuk-colour("white");
       content: "";
       display: block;
       height: 5px;

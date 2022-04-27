@@ -1,0 +1,54 @@
+
+{% set title %}
+  <span class="govuk-!-margin-right-1">{{application.id}}</span>
+  <b class="govuk-!-margin-right-1">{{name}}</b>
+  {{govukTag({ classes: application.status | statusClass, text: application.status })}}
+{% endset %}
+
+{% if application.status == 'Received' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Shortlist'
+      }]
+    }, {
+      items: [{
+        text: 'Reject',
+        classes: 'govuk-button--secondary'
+      }]
+    }, {
+      items: [{
+        text: 'Make offer',
+        classes: 'govuk-button--secondary',
+        href: "#"
+      }, {
+        text: 'Set up interview',
+        classes: 'govuk-button--secondary',
+        href: "#"
+      }, {
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: "#"
+      }, {
+        text: 'Assign users',
+        classes: 'govuk-button--secondary',
+        href: "#"
+      }, {
+        text: 'Download (PDF)',
+        classes: 'govuk-button--secondary',
+        href: "#"
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Offered' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    }
+  }) }}
+{% endif %}

@@ -6,6 +6,13 @@
 {% set name = application.personalDetails.name %}
 {% set pageName = "Offer" %}
 {% set title = pageName + " - " + application.personalDetails.name %}
+{% set mainClasses = 'govuk-!-padding-top-1' %}
+
+{% block afterHeader %}
+  {% include "_includes/applications/identity-bar.njk" %}
+  {# {% include "_includes/applications/assigned-users.njk" %} #}
+  {# {% include "_includes/applications/h1.njk" %} #}
+{% endblock %}
 
 {% block content %}
   {{ govukNotificationBanner({
@@ -14,7 +21,6 @@
     icon: false
   }) if flash | falsify }}
 
-  {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
   <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
@@ -30,8 +36,6 @@
           <p>To change this offer, send proof that the candidate agrees and details of the changes to <a href="#">becomingateacher@digital.education.gov.uk</a>.</p>
         </div>
       {% endif %}
-
-      {% set offerHtml %}
 
       <div class="app-bo">
         {{ appOfferPanel({
@@ -78,25 +82,6 @@
             items: conditions
           }
         })}}
-
-        {% endset %}
-
-        {# {{appSummaryCard({
-          titleText: application.offer.course,
-          classes: "govuk-!-margin-bottom-",
-          actions: {
-            items: [{
-              href: '/applications/' + application.id + '/offer/defer/check',
-              html: 'Defer offer'
-            } if application.status == "Conditions pending" or application.status == "Recruited", {
-              href: '/applications/' + application.id + '/offer/withdraw',
-              html: 'Withdraw offer'
-            } if application.status == "Offered" or application.status == "Deferred"]
-          },
-          html: offerHtml
-        })}} #}
-
-        {{offerHtml | safe}}
 
       </div>
     </div>
