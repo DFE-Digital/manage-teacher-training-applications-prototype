@@ -12,40 +12,96 @@
     },
     menus: [{
       items: [{
-        text: 'Shortlist'
+        text: 'Shortlist',
+        action: '/applications/'+application.id+'/shortlist'
       }]
     }, {
       items: [{
         text: 'Reject',
+        href: '/applications/' + application.id + '/reject',
         classes: 'govuk-button--secondary'
       }]
     }, {
       items: [{
         text: 'Make offer',
         classes: 'govuk-button--secondary',
-        href: "#"
+        href: '/applications/' + application.id + '/decision'
       }, {
         text: 'Set up interview',
         classes: 'govuk-button--secondary',
-        href: "#"
+        href: '/applications/' + application.id + '/interviews/new'
       }, {
         text: 'Withdraw application',
         classes: 'govuk-button--secondary',
-        href: "#"
-      }, {
-        text: 'Assign users',
-        classes: 'govuk-button--secondary',
-        href: "#"
-      }, {
-        text: 'Download (PDF)',
-        classes: 'govuk-button--secondary',
-        href: "#"
+        href: '/applications/' + application.id + '/withdraw'
       }]
     }]
   }) }}
 {% endif %}
 
-{% if application.status == 'Offered' %}
+{% if application.status == 'Shortlisted' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Set up interview',
+        href: '/applications/' + application.id + '/interviews/new'
+      }, {
+        text: 'Make offer',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/decision'
+      }]
+    }, {
+      items: [{
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Interviewing' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Make offer',
+        href: '/applications/' + application.id + '/decision'
+      }, {
+        text: 'Reject',
+        href: '/applications/' + application.id + '/reject',
+        classes: 'govuk-button--secondary'
+      }]
+    }, {
+      items: [{
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Rejected' and not application.rejectedReasons %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Give feedback',
+        href: '/applications/' + application.id + '/reject'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Offered' or application.status == 'Conditions pending' or application.status == 'Recruited' or application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' %}
   {{ appIdentityBar({
     title: {
       html: title

@@ -175,6 +175,32 @@
     </script>
   {% endif%}
 
+  {% if application.status == 'Shortlisted' %}
+    <script>
+      new AppFrontend.ButtonMenu({
+        container: $(".app-button-menu").eq(1),
+        mq: "(min-width: 1000em)",
+        buttonText: "More actions",
+        buttonClasses:
+          "govuk-button--secondary app-button-menu__toggle-button--secondary",
+        menuClasses: "app-button-menu__wrapper--right",
+      });
+    </script>
+  {% endif%}
+
+  {% if application.status == 'Interviewing' %}
+    <script>
+      new AppFrontend.ButtonMenu({
+        container: $(".app-button-menu").eq(1),
+        mq: "(min-width: 1000em)",
+        buttonText: "More actions",
+        buttonClasses:
+          "govuk-button--secondary app-button-menu__toggle-button--secondary",
+        menuClasses: "app-button-menu__wrapper--right",
+      });
+    </script>
+  {% endif%}
+
   {% if application.status == 'Offered' %}
     <script>
       new AppFrontend.ButtonMenu({
