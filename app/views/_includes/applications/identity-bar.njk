@@ -101,6 +101,14 @@
   }) }}
 {% endif %}
 
+{% if application.status == 'Rejected' and application.rejectedReasons %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    }
+  }) }}
+{% endif %}
+
 {% if application.status == 'Offered' or application.status == 'Conditions pending' or application.status == 'Recruited' or application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' %}
   {{ appIdentityBar({
     title: {
