@@ -6,9 +6,17 @@
 {% endset %}
 
 {% if application.status == 'Received' %}
+
+  {% set description %}
+    Will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm
+  {% endset %}
+
   {{ appIdentityBar({
     title: {
       html: title
+    },
+    description: {
+      text: description
     },
     menus: [{
       items: [{
@@ -40,9 +48,17 @@
 {% endif %}
 
 {% if application.status == 'Shortlisted' %}
+
+  {% set description %}
+    Will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm
+  {% endset %}
+
   {{ appIdentityBar({
     title: {
       html: title
+    },
+    description: {
+      text: description
     },
     menus: [{
       items: [{
@@ -55,6 +71,10 @@
         classes: 'govuk-button--secondary',
         href: '/applications/' + application.id + '/decision'
       }, {
+        text: 'Reject',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/reject'
+      }, {
         text: 'Withdraw at candidate’s request',
         classes: 'govuk-button--secondary',
         href: '/applications/' + application.id + '/withdraw'
@@ -64,9 +84,17 @@
 {% endif %}
 
 {% if application.status == 'Interviewing' %}
+
+  {% set description %}
+    Will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm
+  {% endset %}
+
   {{ appIdentityBar({
     title: {
       html: title
+    },
+    description: {
+      text: description
     },
     menus: [{
       items: [{
@@ -88,9 +116,17 @@
 {% endif %}
 
 {% if application.status == 'Rejected' and not application.rejectedReasons %}
+
+  {% set description %}
+    Tell candidate why their application was unsuccessful
+  {% endset %}
+
   {{ appIdentityBar({
     title: {
       html: title
+    },
+    description: {
+      text: description
     },
     menus: [{
       items: [{
@@ -155,10 +191,55 @@
   }) }}
 {% endif %}
 
-{% if application.status == 'Deferred' %}
+
+{% if application.status == 'Deferred' and data.settings == 'new-cycle' %}
+
+  {% set description %}
+    Deferred offer needs to be confirmed
+  {% endset %}
+
+  {% set confirmUrl %}
+    {% if application.deferredOfferUnavailable.course or application.deferredOfferUnavailable.location %}
+      /applications/{{application.id}}/offer/confirm-deferred-offer/unavailable
+    {% else%}
+      /applications/{{application.id}}/offer/confirm-deferred-offer/check
+    {% endif %}
+  {% endset %}
+
   {{ appIdentityBar({
     title: {
       html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Confirm deferred offer',
+        href: confirmUrl
+      }]
+    }, {
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Deferred' and data.settings != 'new-cycle' %}
+
+  {% set description %}
+    Offer will need to be confirmed next cycle
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
     },
     menus: [{
       items: [{
