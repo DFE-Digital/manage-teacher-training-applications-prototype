@@ -109,7 +109,68 @@
   }) }}
 {% endif %}
 
-{% if application.status == 'Offered' or application.status == 'Conditions pending' or application.status == 'Recruited' or application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' %}
+
+{% if application.status == 'Offered' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Conditions pending' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Recruited' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Deferred' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw application',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' %}
   {{ appIdentityBar({
     title: {
       html: title
