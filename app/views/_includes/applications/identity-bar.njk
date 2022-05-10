@@ -147,9 +147,17 @@
 
 
 {% if application.status == 'Offered' %}
+
+  {% set description %}
+    Offer will be automatically declined on {{application.offer.declineByDate | govukDate }} at 11:59pm
+  {% endset %}
+
   {{ appIdentityBar({
     title: {
       html: title
+    },
+    description: {
+      text: description
     },
     menus: [{
       items: [{
@@ -251,7 +259,7 @@
   }) }}
 {% endif %}
 
-{% if application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' %}
+{% if application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' or application.status == 'Conditions not met' %}
   {{ appIdentityBar({
     title: {
       html: title
