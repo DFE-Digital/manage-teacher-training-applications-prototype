@@ -40,7 +40,7 @@
           showChangeOfferInstructions: application.status == "Conditions pending" or application.status == "Recruited",
           withdraw: {
             href: "/applications/" + application.id + "/offer/withdraw"
-          } if application.status == "Offered" or application.status == "Deferred",
+          } if application.status == "Offered",
           defer: {
             href: "/applications/" + application.id + "/offer/defer/check"
           } if application.status == "Conditions pending" or application.status == "Recruited",
