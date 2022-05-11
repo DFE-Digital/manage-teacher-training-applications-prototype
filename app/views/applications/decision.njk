@@ -82,6 +82,42 @@
 
       <form action="/applications/{{ application.id }}/decision" method="post" accept-charset="UTF-8" novalidate>
 
+        {# {{ govukRadios({
+          idPrefix: "decision",
+          name: "decision",
+          fieldset: {
+            legend: {
+              text: "Course to offer to candidate",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "1",
+            text: "Course applied for"
+          }, {
+            value: "2",
+            text: "A different course"
+          }]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "decision",
+          name: "decision",
+          fieldset: {
+            legend: {
+              text: "Action",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "1",
+            text: "Make offer"
+          }, {
+            value: "2",
+            text: "Change course details and make offer"
+          }]
+        }) }} #}
+
         {{ govukRadios({
           idPrefix: "decision",
           name: "decision",
@@ -97,11 +133,46 @@
           }, {
             value: "2",
             text: "No, change course details and make offer"
-          }, {
-            value: "3",
-            text: "Reject application"
-          } if 1 == 2]
+          }]
         }) }}
+
+
+{#
+         {{ govukRadios({
+          idPrefix: "decision",
+          name: "decision",
+          fieldset: {
+            legend: {
+              text: "Make offer for this course or change course details",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "1",
+            text: "Make offer"
+          }, {
+            value: "2",
+            text: "Change course details and make offer"
+          }]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "decision",
+          name: "decision",
+          fieldset: {
+            legend: {
+              text: "Do you want to change the course first?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "1",
+            text: "Yes"
+          }, {
+            value: "2",
+            text: "No"
+          }]
+        }) }} #}
 
         {{ govukButton({
           text: "Continue"
