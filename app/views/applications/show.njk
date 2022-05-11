@@ -6,24 +6,38 @@
 {% set pageName = 'Application' %}
 {% set title = pageName + ' - ' + application.personalDetails.name %}
 
+{% set mainClasses = 'govuk-!-padding-top-1' %}
+
+{% block afterHeader %}
+  {% include "_includes/applications/identity-bar.njk" %}
+{% endblock %}
+
 {% block content %}
+  {# {% set flash = 'boom' %} #}
+
   {{ govukNotificationBanner({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-4',
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
   }) if flash | falsify }}
 
-  {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
+      <h1 class="govuk-heading-l govuk-!-font-size-36">Application</h1>
+
+
+      {# {% include "_includes/applications/h1.njk" %} #}
+
+
+
       {% if not query.transferred %}
         <p class="govuk-body">
-          {% if application.status not in ["Rejected","Declined","Offer withdrawn","Application withdrawn","Conditions not met"] %}
+          {# {% if application.status not in ["Rejected","Declined","Offer withdrawn","Application withdrawn","Conditions not met"] %}
             <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw application</a>
-          {% endif %}
+          {% endif %} #}
           <a class="govuk-link" href="#" download>Download application (PDF)</a>
         </p>
       {% endif %}
@@ -141,4 +155,10 @@
       {% endif %}
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+
+  {% include "_includes/applications/scripts.njk" %}
+
 {% endblock %}

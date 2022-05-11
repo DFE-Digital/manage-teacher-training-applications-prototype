@@ -1,0 +1,268 @@
+
+{% set title %}
+  <span class="govuk-!-margin-right-1">{{application.id}}</span>
+  <b class="govuk-!-margin-right-1">{{name}}</b>
+  {{govukTag({ classes: application.status | statusClass, text: application.status })}}
+{% endset %}
+
+{% if application.status == 'Received' %}
+
+  {% set description %}
+    Will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Shortlist',
+        action: '/applications/'+application.id+'/shortlist'
+      }]
+    }, {
+      items: [{
+        text: 'Reject',
+        href: '/applications/' + application.id + '/reject',
+        classes: 'govuk-button--secondary'
+      }]
+    }, {
+      items: [{
+        text: 'Make offer',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/decision'
+      }, {
+        text: 'Set up interview',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/interviews/new'
+      }, {
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Shortlisted' %}
+
+  {% set description %}
+    Will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Set up interview',
+        href: '/applications/' + application.id + '/interviews/new'
+      }]
+    }, {
+      items: [{
+        text: 'Make offer',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/decision'
+      }, {
+        text: 'Reject',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/reject'
+      }, {
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Interviewing' %}
+
+  {% set description %}
+    Will be automatically rejected on {{application.respondByDate | govukDate }} at 11:59pm
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Make offer',
+        href: '/applications/' + application.id + '/decision'
+      }, {
+        text: 'Reject',
+        href: '/applications/' + application.id + '/reject',
+        classes: 'govuk-button--secondary'
+      }]
+    }, {
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Rejected' and not application.rejectedReasons %}
+
+  {% set description %}
+    Tell candidate why their application was unsuccessful
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Give feedback',
+        href: '/applications/' + application.id + '/reject'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Rejected' and application.rejectedReasons %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    }
+  }) }}
+{% endif %}
+
+
+{% if application.status == 'Offered' %}
+
+  {% set description %}
+    Offer will be automatically declined on {{application.offer.declineByDate | govukDate }} at 11:59pm
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Conditions pending' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Recruited' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+
+{% if application.status == 'Deferred' and data.settings == 'new-cycle' %}
+
+  {% set description %}
+    Deferred offer needs to be confirmed
+  {% endset %}
+
+  {% set confirmUrl %}
+    {% if application.deferredOfferUnavailable.course or application.deferredOfferUnavailable.location %}
+      /applications/{{application.id}}/offer/confirm-deferred-offer/unavailable
+    {% else%}
+      /applications/{{application.id}}/offer/confirm-deferred-offer/check
+    {% endif %}
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Confirm deferred offer',
+        href: confirmUrl
+      }]
+    }, {
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Deferred' and data.settings != 'new-cycle' %}
+
+  {% set description %}
+    Offer will need to be confirmed next cycle
+  {% endset %}
+
+  {{ appIdentityBar({
+    title: {
+      html: title
+    },
+    description: {
+      text: description
+    },
+    menus: [{
+      items: [{
+        text: 'Withdraw at candidate’s request',
+        classes: 'govuk-button--secondary',
+        href: '/applications/' + application.id + '/withdraw'
+      }]
+    }]
+  }) }}
+{% endif %}
+
+{% if application.status == 'Declined' or application.status == 'Application withdrawn' or application.status == 'Offer withdrawn' or application.status == 'Conditions not met' %}
+  {{ appIdentityBar({
+    title: {
+      html: title
+    }
+  }) }}
+{% endif %}

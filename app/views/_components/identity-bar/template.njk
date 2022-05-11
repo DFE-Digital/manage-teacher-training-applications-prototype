@@ -1,0 +1,30 @@
+{%- from "_components/button-menu/macro.njk" import appButtonMenu %}
+
+<div class="app-identity-bar {{- ' ' + params.classes if params.classes}}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+
+  <div class="app-identity-bar__container">
+
+    <div class="app-identity-bar__details">
+      {% if params.title %}
+        <span class="app-identity-bar__title">{{ params.title.html | safe if params.title.html else params.title.text }}</span>
+      {% endif %}
+      {% if params.description %}
+        <p class="app-identity-bar__description">{{ params.description.html | safe if params.description.html else params.description.text }}</p>
+      {% endif %}
+
+        {# <p class="app-identity-bar__description govuk-hint" style="margin-top:3px;">Assigned to John Oates, Adam Silver - <a href="#">Change</a></p> #}
+    </div>
+
+    {% if params.menus %}
+      <div class="app-identity-bar__actions {% if params.description %} govuk-!-padding-top-2 {% endif %}">
+        {% for menu in params.menus %}
+          <div class="app-identity-bar__menu">
+            {{appButtonMenu({ items: menu.items, classes: menu.classes })}}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+
+</div>

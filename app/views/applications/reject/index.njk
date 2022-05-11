@@ -13,10 +13,7 @@
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
-  {% set backUrl = "/applications/" + application.id + "/decision" %}
-  {% if application.status == "Rejected" %}
-    {% set backUrl = "/applications/" + application.id %}
-  {% endif %}
+  {% set backUrl = "/applications/" + application.id %}
 
   {{ govukBackLink({
     href: backUrl
