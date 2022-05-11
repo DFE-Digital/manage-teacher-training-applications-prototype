@@ -11,6 +11,8 @@
       {% if params.description %}
         <p class="app-identity-bar__description">{{ params.description.html | safe if params.description.html else params.description.text }}</p>
       {% endif %}
+
+        {# <p class="app-identity-bar__description govuk-hint" style="margin-top:3px;">Assigned to John Oates, Adam Silver - <a href="#">Change</a></p> #}
     </div>
 
     {% if params.menus %}
