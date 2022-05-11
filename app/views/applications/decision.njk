@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "applications" %}
 {% set name = application.personalDetails.name %}
-{% set title = "Make offer" %}
+{% set title = "Make a decision" %}
 
 {% block pageNavigation %}
   {{ govukBackLink({
@@ -87,20 +87,20 @@
           name: "decision",
           fieldset: {
             legend: {
-              text: "Do you want to make an offer for this course?",
+              text: "Decision",
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [{
             value: "1",
-            text: "Yes"
+            text: "Make offer"
           }, {
             value: "2",
-            text: "No, change course details and make offer"
+            text: "Change course details and make offer"
           }, {
             value: "3",
             text: "Reject application"
-          } if 1 == 2]
+          }]
         }) }}
 
         {{ govukButton({
