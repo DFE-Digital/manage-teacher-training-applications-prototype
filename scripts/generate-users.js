@@ -13,14 +13,15 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = OrgHelper.findOrg('The Millais Alliance')
+  const mainOrg = OrgHelper.findOrg('Oxford University')
+  const org2 = OrgHelper.findOrg('The Millais Alliance')
   // const mainOrg = OrgHelper.findOrg('Cambridge Training School Network, CTSN SCITT')
 
   users.push({
     id: faker.datatype.uuid(),
-    firstName: "Lucy",
-    lastName: "Connelly",
-    emailAddress: "lucy.connelly@" + mainOrg.domain,
+    firstName: "Matt",
+    lastName: "Hurst",
+    emailAddress: "matt.hurst@" + mainOrg.domain,
     organisation: mainOrg,
     permissions: {
       manageOrganisation: true,
