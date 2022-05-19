@@ -2,7 +2,7 @@ const faker = require('faker')
 faker.locale = 'en_GB'
 
 module.exports = () => {
-  let response = faker.helpers.randomize([true])
+  let response = faker.helpers.randomize([true, false])
 
   let details;
 
