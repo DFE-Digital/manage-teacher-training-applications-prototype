@@ -143,6 +143,14 @@
   {% if not query.transferred %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+        {% include "_includes/applications/interview-needs.njk" %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if not query.transferred %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         {% include "_includes/applications/disability-support.njk" %}
       </div>
     </div>
