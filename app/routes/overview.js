@@ -1,5 +1,7 @@
 const CycleHelper = require('../data/helpers/cycles')
 const { DateTime } = require('luxon')
+const _ = require('lodash');
+const user = require('../data/generators/user');
 
 function getBreakdown(params) {
   let organisation = params.organisation
@@ -111,6 +113,7 @@ module.exports = router => {
       req.session.data.user.relationships.forEach(relationship => {
         // org 2 is always the partner
         var organisation = relationship.org2
+
         activeApplicationsSection.partnersTable.items.push(getBreakdown({ organisation, applications }))
 
         // populate any locations as rows too
@@ -119,12 +122,22 @@ module.exports = router => {
             activeApplicationsSection.partnersTable.items.push(getBreakdown({ organisation, applications, location }))
           })
         }
-
       })
+
+      activeApplicationsSection.partnersTable.items = _.uniqBy(activeApplicationsSection.partnersTable.items, function (item) {
+        return item.organisation.id;
+      });
 
       activeApplicationsSections.push(activeApplicationsSection)
 
+
     })
+
+
+
+
+
+    // dedupe
 
 
     res.render('overview', {

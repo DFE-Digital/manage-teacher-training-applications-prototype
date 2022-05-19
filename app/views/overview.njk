@@ -82,96 +82,101 @@
 
     {% if not activeApplicationsSection.organisation.isAccreditedBody %}
       {% set orgType = 'accreditedBody'%}
-      <h3 class="govuk-heading-s">
-        Applications by location
-      </h3>
 
-      <div class="app-scrollable-pane">
-        <div class="app-scrollable-pane__wrapper">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header" width="26%">
-                  Location
-                </th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Shortlisted</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Recruited</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              {% for item in activeApplicationsSection.locationsTable.items %}
+      {% if activeApplicationsSection.locationsTable.items.length > 1%}
+
+        <h3 class="govuk-heading-s">
+          Applications by location
+        </h3>
+
+        <div class="app-scrollable-pane">
+          <div class="app-scrollable-pane__wrapper">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                  <td class="govuk-table__cell govuk-table__header">
-                    {{item.location.name}}
-                  </td>
-                  <td class="govuk-table__cell govuk-table__header--numeric">
-                      {% if item.received.length %}
-                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
-                          {{item.received.length}}
-                        </a>
-                      {% else %}
-                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
-                      {% endif%}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__header--numeric">
-                      {% if item.shortlisted.length %}
-                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
-                          {{item.shortlisted.length}}
-                        </a>
-                      {% else %}
-                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
-                      {% endif%}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__header--numeric">
-                      {% if item.interviewing.length %}
-                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
-                          {{item.interviewing.length}}
-                        </a>
-                      {% else %}
-                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
-                      {% endif%}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__header--numeric">
-                      {% if item.offered.length %}
-                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
-                          {{item.offered.length}}
-                        </a>
-                      {% else %}
-                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
-                      {% endif%}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__header--numeric">
-                      {% if item.conditionsPending.length %}
-                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
-                          {{item.conditionsPending.length}}
-                        </a>
-                      {% else %}
-                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
-                      {% endif%}
-                    </td>
-                    <td class="govuk-table__cell govuk-table__header--numeric">
-                      {% if item.recruited.length %}
-                        <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
-                          {{item.recruited.length}}
-                        </a>
-                      {% else %}
-                        <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
-                      {% endif%}
-                    </td>
+                  <th scope="col" class="govuk-table__header" width="26%">
+                    Location
+                  </th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Received</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Shortlisted</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Interviewing</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Offered</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Conditions pending</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Recruited</th>
                 </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+              </thead>
+              <tbody class="govuk-table__body">
+                {% for item in activeApplicationsSection.locationsTable.items %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell govuk-table__header">
+                      {{item.location.name}}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.received.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{item.received.length}}
+                          </a>
+                        {% else %}
+                          <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.shortlisted.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{item.shortlisted.length}}
+                          </a>
+                        {% else %}
+                          <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.interviewing.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{item.interviewing.length}}
+                          </a>
+                        {% else %}
+                          <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.offered.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{item.offered.length}}
+                          </a>
+                        {% else %}
+                          <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.conditionsPending.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{item.conditionsPending.length}}
+                          </a>
+                        {% else %}
+                          <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                        {% endif%}
+                      </td>
+                      <td class="govuk-table__cell govuk-table__header--numeric">
+                        {% if item.recruited.length %}
+                          <a class="govuk-!-padding-left-2 govuk-!-padding-right-2" href="#">
+                            {{item.recruited.length}}
+                          </a>
+                        {% else %}
+                          <span class="govuk-!-padding-left-2 govuk-!-padding-right-2">0</span>
+                        {% endif%}
+                      </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <h3 class="govuk-heading-s">
+      {% endif %}
+
+      {# <h3 class="govuk-heading-s">
         Applications by accredited body
-      </h3>
+      </h3> #}
 
       <div class="app-scrollable-pane">
         <div class="app-scrollable-pane__wrapper">
