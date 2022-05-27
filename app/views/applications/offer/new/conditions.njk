@@ -24,6 +24,22 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
 
+      {% set referencesDetails %}
+
+        {{ govukTextarea({
+          name: "references-details",
+          id: "references-details",
+          rows: "5",
+          label: {
+            text: "Give details",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "Tell candidates how many referees they need to provide, and whether one of them needs to be an academic reference or a reference from their recent employer."
+          }
+        }) }}
+      {% endset %}
+
         {{ govukCheckboxes({
           idPrefix: "[new-offer][standard-conditions]",
           name: "[new-offer][standard-conditions]",
@@ -42,9 +58,12 @@
             text: "Disclosure and Barring Service (DBS) check",
             checked: checked("['new-offer']['standard-conditions']", "Disclosure and Barring Service (DBS) check")
           },{
-            value: "2 references",
-            text: "2 references",
-            checked: checked("['new-offer']['standard-conditions']", "2 references")
+            value: "References",
+            text: "References",
+            checked: checked("['new-offer']['standard-conditions']", "References"),
+            conditional: {
+              html: referencesDetails
+            }
           }]
         }) }}
 

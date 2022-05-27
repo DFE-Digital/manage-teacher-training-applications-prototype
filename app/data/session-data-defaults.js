@@ -91,14 +91,14 @@ defaults.user = user
 defaults["standard-conditions"] = [
   "Fitness to train to teach check",
   "Disclosure and Barring Service (DBS) check",
-  "2 references"
+  "References"
 ]
 
 defaults['new-offer'] = {
   'standard-conditions': [
     "Fitness to train to teach check",
     "Disclosure and Barring Service (DBS) check",
-    "2 references"
+    "References"
   ]
 }
 
