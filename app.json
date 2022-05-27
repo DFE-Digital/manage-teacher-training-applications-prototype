@@ -1,7 +1,4 @@
 {
-  "addons": [
-
-  ],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -22,8 +19,5 @@
     }
   },
   "name": "Apply (Prototype)",
-  "scripts": {
-    "postdeploy": "node start.js"
-  },
   "stack": "heroku-18"
 }
