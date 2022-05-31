@@ -43,7 +43,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "The University of Warwick",
     isAccreditedBody: true,
-    domain: "warwick.ac.uk"
+    domain: "warwick.ac.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Main site2 ',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }]
   }))
 
   organisations.push(generateFakeOrganisation({
@@ -468,7 +487,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "Southam Teaching Alliance",
     isAccreditedBody: false,
-    domain: "stowevalley.com"
+    domain: "stowevalley.com",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
   organisations.push(generateFakeOrganisation({
     name: "Springbank SCITT",

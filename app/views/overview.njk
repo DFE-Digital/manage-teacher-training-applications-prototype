@@ -261,13 +261,13 @@
         </div>
       </div>
     {% else %}
-      {% set orgType = 'provider'%}
+      {% set orgType = 'provider' %}
       <p>
-        {% if data.showLocations == 'true' %}
+        {# {% if data.showLocations == 'true' %}
           <a class="govuk-!-margin-right-1" href="/overview/?showLocations=false">Hide locations</a>
         {% else %}
           <a class="govuk-!-margin-right-1" href="/overview/?showLocations=true">Show locations</a>
-        {% endif %}
+        {% endif %} #}
       </p>
       <div class="app-scrollable-pane">
         <div class="app-scrollable-pane__wrapper">

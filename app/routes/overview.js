@@ -124,6 +124,7 @@ module.exports = router => {
         }
       })
 
+      // hack to hide locations
       activeApplicationsSection.partnersTable.items = _.uniqBy(activeApplicationsSection.partnersTable.items, function (item) {
         return item.organisation.id;
       });
@@ -132,7 +133,6 @@ module.exports = router => {
 
 
     })
-
 
 
 
