@@ -53,15 +53,6 @@ const generateFakeOrganisations = (count) => {
         town: 'Some town',
         postcode: 'AB1 2CD'
       }
-    }, {
-      name: 'Main site2 ',
-      address: {
-        address1: '123 Main Street',
-        // address2: '',
-        // address3: '',
-        town: 'Some town',
-        postcode: 'AB1 2CD'
-      }
     }]
   }))
 
