@@ -41,6 +41,12 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   organisations.push(generateFakeOrganisation({
+    name: "The University of Warwick",
+    isAccreditedBody: true,
+    domain: "warwick.ac.uk"
+  }))
+
+  organisations.push(generateFakeOrganisation({
     name: "Oxford University",
     isAccreditedBody: false,
     domain: "education.ox.ac.uk",
@@ -692,7 +698,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "The Lion Alliance",
     isAccreditedBody: false,
-    domain: "finhampark.co.uk"
+    domain: "finhampark.co.uk",
+    locations: [{
+      name: 'Limbrick Wood Primary School',
+      address: {
+        address1: 'Bush Close',
+        // address2: '',
+        // address3: '',
+        town: 'Coventry',
+        postcode: 'CV4 9QT'
+      }
+    }, {
+      name: 'Mount Nod Primary School campus',
+      address: {
+        address1: 'Greenleaf Close',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Coventry',
+        postcode: 'CV5 7BG'
+      }
+    }]
   }))
   organisations.push(generateFakeOrganisation({
     name: "The Millais Alliance",
