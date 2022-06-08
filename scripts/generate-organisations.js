@@ -41,6 +41,22 @@ const generateFakeOrganisations = (count) => {
   // ---------------------------------------------------------------------------
 
   organisations.push(generateFakeOrganisation({
+    name: "The University of Warwick",
+    isAccreditedBody: true,
+    domain: "warwick.ac.uk",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }]
+  }))
+
+  organisations.push(generateFakeOrganisation({
     name: "Oxford University",
     isAccreditedBody: false,
     domain: "education.ox.ac.uk",
@@ -462,7 +478,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "Southam Teaching Alliance",
     isAccreditedBody: false,
-    domain: "stowevalley.com"
+    domain: "stowevalley.com",
+    locations: [{
+      name: 'Main site',
+      address: {
+        address1: '123 Main Street',
+        // address2: '',
+        // address3: '',
+        town: 'Some town',
+        postcode: 'AB1 2CD'
+      }
+    }, {
+      name: 'Queen’s campus',
+      address: {
+        address1: 'Amory Building',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Big City',
+        postcode: 'SW1A 4AA'
+      }
+    }]
   }))
   organisations.push(generateFakeOrganisation({
     name: "Springbank SCITT",
@@ -692,7 +727,26 @@ const generateFakeOrganisations = (count) => {
   organisations.push(generateFakeOrganisation({
     name: "The Lion Alliance",
     isAccreditedBody: false,
-    domain: "finhampark.co.uk"
+    domain: "finhampark.co.uk",
+    locations: [{
+      name: 'Limbrick Wood Primary School',
+      address: {
+        address1: 'Bush Close',
+        // address2: '',
+        // address3: '',
+        town: 'Coventry',
+        postcode: 'CV4 9QT'
+      }
+    }, {
+      name: 'Mount Nod Primary School campus',
+      address: {
+        address1: 'Greenleaf Close',
+        address2: 'Rennes Drive',
+        // address3: '',
+        town: 'Coventry',
+        postcode: 'CV5 7BG'
+      }
+    }]
   }))
   organisations.push(generateFakeOrganisation({
     name: "The Millais Alliance",
