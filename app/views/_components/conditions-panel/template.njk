@@ -7,14 +7,18 @@
         {{condition.description | markdownToHtml | safe }}
       </dt>
       <dd class="govuk-summary-list__value app-conditions-list__tag">
-        {% if condition.status == "Met" %}
-          {% set statusClass = "app-tag--green" %}
-        {% elseif condition.status == "Not met" %}
-          {% set statusClass = "app-tag--red" %}
-        {% else %}
-          {% set statusClass = "app-tag--grey" %}
+        {% if params.changeStatus %}
+          {% if condition.status == "Met" %}
+            {% set statusClass = "app-tag--green" %}
+          {% elseif condition.status == "Not met" %}
+            {% set statusClass = "app-tag--red" %}
+          {% else %}
+            {% set statusClass = "app-tag--grey" %}
+          {% endif %}
+          {{govukTag({ text: condition.status, classes: statusClass})}}
+        {% elif params.changeConditions %}
+          <a href="#" class="govuk-link">Change</a>
         {% endif %}
-        {{govukTag({ text: condition.status, classes: statusClass})}}
       </dd>
     </div>
   {% endfor %}

@@ -145,13 +145,25 @@ module.exports = router => {
     if (req.session.data['new-offer']
       && req.session.data['new-offer']['standard-conditions']
       && req.session.data['new-offer']['standard-conditions'].length) {
-      application.offer.standardConditions = req.session.data['new-offer']['standard-conditions'].map(condition => {
-        return {
-          id: uuidv4(),
-          description: condition,
-          status: "Pending"
+
+
+      application.offer.standardConditions = []
+
+      for (standardCondition of req.session.data['new-offer']['standard-conditions']) {
+        if (standardCondition == 'References') {
+          application.offer.standardConditions.push({
+            id: uuidv4(),
+            description: req.session.data['new-offer']['reference-details'],
+            status: 'Pending'
+          })
+        } else {
+          application.offer.standardConditions.push({
+            id: uuidv4(),
+            description: standardCondition,
+            status: "Pending"
+          })
         }
-      })
+      }
     }
 
     // save further conditions
