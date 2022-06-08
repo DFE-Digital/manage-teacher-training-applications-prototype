@@ -48,7 +48,15 @@ module.exports = router => {
     if (req.session.data['new-offer']
       && req.session.data['new-offer']['standard-conditions']
       && req.session.data['new-offer']['standard-conditions'].length) {
-      conditions = conditions.concat(req.session.data['new-offer']['standard-conditions'])
+
+      for (standardCondition of req.session.data['new-offer']['standard-conditions']) {
+        if (standardCondition == 'References') {
+          conditions.push(req.session.data['new-offer']['reference-details'])
+        } else {
+          conditions.push(standardCondition)
+        }
+      }
+
     }
 
     if (req.session.data['new-offer']['conditions']) {

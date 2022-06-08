@@ -463,3 +463,7 @@ $statuses: (
     border-radius: govuk-spacing(1);
   }
 }
+
+.app-no-spacing-after-last-paragraph p:last-of-type {
+  margin-bottom: 0;
+}

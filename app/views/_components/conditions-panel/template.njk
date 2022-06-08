@@ -3,8 +3,8 @@
 <dl class="govuk-summary-list app-conditions-list">
   {% for condition in params.conditions %}
     <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{condition.description}}
+      <dt class="govuk-summary-list__key app-no-spacing-after-last-paragraph">
+        {{condition.description | markdownToHtml | safe }}
       </dt>
       <dd class="govuk-summary-list__value app-conditions-list__tag">
         {% if condition.status == "Met" %}

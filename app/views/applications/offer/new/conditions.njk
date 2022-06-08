@@ -27,9 +27,10 @@
       {% set referencesDetails %}
 
         {{ govukTextarea({
-          name: "references-details",
+          name: "[new-offer][reference-details]",
           id: "references-details",
           rows: "5",
+          value: data['new-offer']['reference-details'],
           label: {
             text: "Give details",
             classes: "govuk-label--s"
