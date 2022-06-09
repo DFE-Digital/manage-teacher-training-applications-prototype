@@ -39,6 +39,13 @@ module.exports = router => {
     })
   })
 
+  router.get('/applications/:applicationId/references', (req, res) => {
+    res.render('applications/references/index', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+
   router.get('/applications/:applicationId/timeline', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)

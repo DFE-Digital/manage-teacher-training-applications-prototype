@@ -1,0 +1,43 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "references" %}
+{% set name = application.personalDetails.name %}
+{% set pageName = 'Application' %}
+{% set title = pageName + ' - ' + application.personalDetails.name %}
+
+{% set mainClasses = 'govuk-!-padding-top-1' %}
+
+{% block afterHeader %}
+  {% include "_includes/applications/identity-bar.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# {% set flash = 'boom' %} #}
+
+  {{ govukNotificationBanner({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-4',
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash | falsify }}
+
+  {% include "_includes/applications/sub-nav.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l govuk-!-font-size-36">References</h1>
+
+      {% include "_includes/applications/references.njk" %}
+
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+  {% include "_includes/applications/scripts.njk" %}
+
+{% endblock %}

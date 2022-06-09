@@ -6,14 +6,18 @@
     href: '/applications/'+application.id,
     active: (subNavId == "application")
   }, {
-    html: 'Offer' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
-    href: '/applications/'+application.id+'/offer',
-    active: (subNavId == "offer")
-  } if application.offer, {
     html: 'Interviews' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/applications/'+application.id+'/interviews',
     active: (subNavId == "interviews")
   } if application.interviews.items.length, {
+    html: 'Offer' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
+    href: '/applications/'+application.id+'/offer',
+    active: (subNavId == "offer")
+  } if application.offer, {
+    html: 'References' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
+    href: '/applications/'+application.id+'/references',
+    active: (subNavId == "references")
+  } if application.status == 'Conditions pending' or application.status == 'Conditions not met' or application.status == 'Recruited', {
     html: 'Notes' + '<span class="govuk-visually-hidden">'+application.personalDetails.name+'</span>',
     href: '/applications/'+application.id+'/notes',
     active: (subNavId == "notes")
