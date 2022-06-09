@@ -1,7 +1,18 @@
-<h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
-{% set referenceId = "first" %}
-{% include "_includes/applications/reference.njk" %}
 
-<h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
-{% set referenceId = "second" %}
-{% include "_includes/applications/reference.njk" %}
+{% if application["references"]["first"] %}
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
+  {% set referenceId = "first" %}
+  {% include "_includes/applications/reference.njk" %}
+{% endif %}
+
+{% if application["references"]["second"] %}
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
+  {% set referenceId = "second" %}
+  {% include "_includes/applications/reference.njk" %}
+{% endif %}
+
+{% if application["references"]["third"] %}
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Third referee</h2>
+  {% set referenceId = "third" %}
+  {% include "_includes/applications/reference.njk" %}
+{% endif %}

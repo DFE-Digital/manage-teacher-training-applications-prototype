@@ -46,8 +46,21 @@ module.exports = () => {
     }
   }
 
-  return {
-    first: referee(),
-    second: referee()
+  const rand = Math.floor(Math.random() * 10);
+
+  var references = {}
+
+  if (rand > 1) {
+    references['first'] = referee()
   }
+
+  if (rand > 3) {
+    references['second'] = referee()
+  }
+
+  if (rand > 8) {
+    references['third'] = referee()
+  }
+
+  return references
 }
