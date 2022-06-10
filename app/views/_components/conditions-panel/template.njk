@@ -17,7 +17,7 @@
           {% endif %}
           {{govukTag({ text: condition.status, classes: statusClass})}}
         {% elif params.changeConditions %}
-          <a href="#" class="govuk-link">Change</a>
+          <a href="{{ params.changeConditions.href }}" class="govuk-link">Change</a>
         {% endif %}
       </dd>
     </div>
