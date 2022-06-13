@@ -43,13 +43,14 @@ module.exports = (params) => {
       id: faker.datatype.uuid(),
       description: 'Disclosure and Barring Service (DBS) check',
       status: conditionStatus
-    }]
-
-    conditions =  [{
+    },
+    {
       id: faker.datatype.uuid(),
-      description: 'You need to take English speaking course',
+      description: 'References',
       status: conditionStatus
-    }]
+    }
+    ]
+
   }
 
   return {
