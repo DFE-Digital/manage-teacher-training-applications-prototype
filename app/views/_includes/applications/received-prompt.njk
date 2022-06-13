@@ -2,13 +2,12 @@
   {% set promptHtml %}
 
     {% if canManageInterviews and canMakeOffersAndRejectApplications %}
-      {# <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Shortlist or reject application</h2> #}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Shortlist, set up an interview or make a decision</h2>
     {% elseif canManageInterviews %}
-      {# <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview</h2> #}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Set up an interview</h2>
     {% elseif canMakeOffersAndRejectApplications %}
-      {# <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Shortlist or make a decision</h2> #}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Shortlist or make a decision</h2>
     {% endif %}
-
     {% if application.daysToRespond == 0 %}
       <p>This application will be automatically rejected if a decision has not been made by the end of today ({{application.respondByDate | govukDate }} at 11:59pm).</p>
     {% elseif application.daysToRespond == 1 %}
@@ -17,39 +16,32 @@
       <p>This application will be automatically rejected if a decision has not been made within {{application.daysToRespond}} days ({{application.respondByDate | govukDate }} at 11:59pm).</p>
     {% endif %}
     {% if canMakeOffersAndRejectApplications %}
-      {# <form method="post" action="/applications/{{application.id}}/shortlist" style="display: inline-block">
+      <form method="post" action="/applications/{{application.id}}/shortlist" style="display: inline-block">
         {{ govukButton({
           text: "Shortlist",
-          classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondar"
+          classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary"
         }) }}
-      </form> #}
-
-      {# {{ govukButton({
-        text: "Reject application",
-        classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary ",
-        href: "/applications/" + application.id + "/interviews/new"
-      }) }} #}
-
+      </form>
     {% endif %}
     {% if canManageInterviews %}
-      {# {{ govukButton({
+      {{ govukButton({
         text: "Set up interview",
         classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary ",
         href: "/applications/" + application.id + "/interviews/new"
-      }) }} #}
+      }) }}
     {% endif %}
     {% if canMakeOffersAndRejectApplications %}
-      {# {{ govukButton({
+      {{ govukButton({
         text: "Make decision",
         classes: "govuk-!-margin-bottom-0 govuk-button--secondary",
         href: "/applications/" + application.id + "/decision"
-      }) }} #}
+      }) }}
     {% endif %}
   {% endset %}
 
   {{govukInsetText({
     html: promptHtml,
-    classes: 'govuk-!-margin-top- govuk-!-margin-bottom-0'
+    classes: 'govuk-!-margin-top-0'
   })}}
 {% endif %}
 
