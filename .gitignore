@@ -8,7 +8,6 @@ usage-data-config.json
 .sass-cache
 .start.pid
 .port.tmp
-package-lock.json
 node_modules/*
 .DS_Store
 

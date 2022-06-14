@@ -10,8 +10,7 @@
     "generate-data": "node ./scripts/generate-organisations.js && node ./scripts/generate-users.js && node ./scripts/generate-locations.js && node ./scripts/generate-courses.js && node ./scripts/generate-applications.js ",
     "postinstall": "npm run generate-data",
     "start": "node start.js",
-    "lint": "standard",
-    "test": "npm run lint && gulp generate-assets && jest",
+    "test": "gulp generate-assets",
     "generate-data-2": "node ./scripts/applications/generate.js",
     "generate-data-2-json": "node ./scripts/applications/generate.js > app/data/applications2.json",
     "generate-data-2-skeleton": "node ./scripts/applications/generate.js --skeleton --no-final-output"
@@ -64,12 +63,6 @@
     ]
   },
   "devDependencies": {
-    "glob": "^7.1.4",
-    "jest": "^27.3.1",
-    "standard": "^16.0.0",
-    "supertest": "^6.1.6"
-  },
-  "jest": {
-    "testRunner": "jest-jasmine2"
+    "glob": "^7.1.4"
   }
 }

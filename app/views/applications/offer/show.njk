@@ -6,23 +6,20 @@
 {% set name = application.personalDetails.name %}
 {% set pageName = "Offer" %}
 {% set title = pageName + " - " + application.personalDetails.name %}
-{% set mainClasses = 'govuk-!-padding-top-1' %}
-
-{% block afterHeader %}
-  {% include "_includes/applications/identity-bar.njk" %}
-{% endblock %}
 
 {% block content %}
   {{ govukNotificationBanner({
-    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-4',
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
     icon: false
   }) if flash | falsify }}
 
+  {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
-  <h1 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36"> {{ pageName }} </h1>
+  <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
+    {{ pageName }}
+  </h2>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -34,13 +31,15 @@
         </div>
       {% endif %}
 
+      {% set offerHtml %}
+
       <div class="app-bo">
         {{ appOfferPanel({
           transferred: query.transferred,
           showChangeOfferInstructions: application.status == "Conditions pending" or application.status == "Recruited",
           withdraw: {
             href: "/applications/" + application.id + "/offer/withdraw"
-          } if application.status == "Offered",
+          } if application.status == "Offered" or application.status == "Deferred",
           defer: {
             href: "/applications/" + application.id + "/offer/defer/check"
           } if application.status == "Conditions pending" or application.status == "Recruited",
@@ -80,16 +79,29 @@
           }
         })}}
 
+        {% endset %}
+
+        {# {{appSummaryCard({
+          titleText: application.offer.course,
+          classes: "govuk-!-margin-bottom-",
+          actions: {
+            items: [{
+              href: '/applications/' + application.id + '/offer/defer/check',
+              html: 'Defer offer'
+            } if application.status == "Conditions pending" or application.status == "Recruited", {
+              href: '/applications/' + application.id + '/offer/withdraw',
+              html: 'Withdraw offer'
+            } if application.status == "Offered" or application.status == "Deferred"]
+          },
+          html: offerHtml
+        })}} #}
+
+        {{offerHtml | safe}}
+
       </div>
     </div>
     <div class="govuk-grid-column-one-third">
 
     </div>
   </div>
-{% endblock %}
-
-{% block pageScripts %}
-
-  {% include "_includes/applications/scripts.njk" %}
-
 {% endblock %}
