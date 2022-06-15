@@ -10,12 +10,6 @@ const content = {
       title: 'Course updated'
     }
   },
-  addToShortlist: {
-    successMessage: 'Application shortlisted',
-    event: {
-      title: 'Application shortlisted'
-    }
-  },
   createInterview: {
     caption: 'Set up interview',
     successMessage: 'Interview set up',

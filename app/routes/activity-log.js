@@ -94,14 +94,15 @@ module.exports = router => {
     })
 
     // Get the pagination data
-    // let pagination = PaginationHelper.getPagination(activity, req.query.page, req.query.limit)
-    // activity = PaginationHelper.getDataByPage(activity, req.query.page, req.query.limit)
+    let pagination = PaginationHelper.getPagination(activity, req.query.page, req.query.limit)
+
+    activity = PaginationHelper.getDataByPage(activity, req.query.page, req.query.limit)
 
     activity = groupByDate(activity)
 
     res.render('activity/index', {
       activity: activity,
-      // pagination: pagination,
+      pagination: pagination,
       now: SystemHelper.now()
     })
   })

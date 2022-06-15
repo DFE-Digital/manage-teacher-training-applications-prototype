@@ -51,27 +51,6 @@ module.exports = (params) => {
     }
   }
 
-  if (faker.helpers.randomize([true, false]) && (params.interviews || params.offer)) {
-    date = DateHelper.getFutureDate(date)
-
-    events.items.push({
-      title: 'Shortlisted',
-      user: faker.name.findName(),
-      date: date,
-      meta: {
-        course: {
-          provider: params.provider,
-          course: params.course,
-          location: params.location,
-          studyMode: params.studyMode,
-          accreditedBody: params.accreditedBody,
-          fundingType: params.fundingType,
-          qualifications: params.qualifications
-        }
-      }
-    })
-  }
-
   // we know there are currently 2 interviews set up
 
   if (params.interviews && params.interviews.items[0]) {
