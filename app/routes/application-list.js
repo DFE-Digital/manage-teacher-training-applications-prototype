@@ -6,6 +6,199 @@ const subjects = require('../data/subjects')
 const locations = require('../data/locations')
 const { default: request } = require('sync-request')
 
+const getApplicationsByGroup = (applications) => {
+
+  const previousCyclePendingConditions = applications
+    .filter(app => app.status === "Conditions pending")
+    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
+
+  const deferredOffersPendingReconfirmation = applications
+    .filter(app => app.status === 'Deferred')
+    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
+
+  const rejectedWithoutFeedback = applications
+    .filter(app => app.status === 'Rejected')
+    .filter(app => !app.rejectedReasons)
+
+  const aboutToBeRejectedAutomatically = applications
+    .filter(app => (app.status === 'Received' || app.status === 'Interviewing'))
+    .filter(app => app.daysToRespond < 5)
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
+
+  const awaitingDecision = applications
+    .filter(app => (app.status === 'Received'))
+    .filter(app => app.daysToRespond >= 5)
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
+
+  const pendingInterview = applications
+    .filter(app => (app.status === 'Interviewing'))
+    .filter(app => app.daysToRespond >= 5)
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
+
+  const waitingOn = applications
+    .filter(app => app.status === 'Offered')
+    .sort(function(a, b) {
+      return a.offer.daysToDecline - b.offer.daysToDecline
+    })
+
+  const pendingConditions = applications
+    .filter(app => app.status === 'Conditions pending')
+    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
+
+  const conditionsMet = applications
+    .filter(app => app.status === 'Recruited')
+
+  const deferredOffers = applications
+    .filter(app => app.status === 'Deferred')
+    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
+
+  let other = applications
+    .filter(app => app.status !== 'Received')
+    .filter(app => app.status !== 'Interviewing')
+    .filter(app => app.status !== 'Deferred')
+    .filter(app => app.status !== 'Offered')
+    .filter(app => app.status !== 'Conditions pending')
+    .filter(app => app.status !== 'Recruited')
+    .filter(app => app.status !== 'Rejected')
+
+  // we have 5 of these
+  const rejectedWithFeedback = applications
+    .filter(app => app.status === 'Rejected')
+    .filter(function (app) {
+      return app.rejectedReasons
+    })
+
+  other = other.concat(rejectedWithFeedback)
+
+  return {
+    deferredOffersPendingReconfirmation,
+    previousCyclePendingConditions,
+    rejectedWithoutFeedback,
+    aboutToBeRejectedAutomatically,
+    awaitingDecision,
+    pendingInterview,
+    waitingOn,
+    pendingConditions,
+    conditionsMet,
+    deferredOffers,
+    other
+  }
+}
+
+const flattenGroup = (grouped) => {
+  let array = []
+  array = array.concat(grouped.deferredOffersPendingReconfirmation)
+  array = array.concat(grouped.previousCyclePendingConditions)
+  array = array.concat(grouped.aboutToBeRejectedAutomatically)
+  array = array.concat(grouped.rejectedWithoutFeedback)
+  array = array.concat(grouped.awaitingDecision)
+  array = array.concat(grouped.pendingInterview)
+  array = array.concat(grouped.waitingOn)
+  array = array.concat(grouped.pendingConditions)
+  array = array.concat(grouped.conditionsMet)
+  array = array.concat(grouped.deferredOffers)
+  array = array.concat(grouped.other)
+  return array
+}
+
+const addHeadings = (grouped) => {
+  let array = []
+  if (grouped.deferredOffersPendingReconfirmation.length) {
+    array.push({
+      heading: 'Confirm deferred offers'
+    })
+    array = array.concat(grouped.deferredOffersPendingReconfirmation)
+  }
+
+  if (grouped.previousCyclePendingConditions.length) {
+    array.push({
+      heading: 'Offers pending conditions (previous recruitment cycle)'
+    })
+    array = array.concat(grouped.previousCyclePendingConditions)
+  }
+
+  if (grouped.aboutToBeRejectedAutomatically.length) {
+    array.push({
+      heading: 'Deadline approaching: make decision about application'
+    })
+    array = array.concat(grouped.aboutToBeRejectedAutomatically)
+  }
+
+  if (grouped.rejectedWithoutFeedback.length) {
+    array.push({
+      heading: 'Give feedback: you did not make a decision in time'
+    })
+    array = array.concat(grouped.rejectedWithoutFeedback)
+  }
+
+  if (grouped.awaitingDecision.length) {
+    array.push({
+      heading: 'Awaiting review'
+    })
+    array = array.concat(grouped.awaitingDecision)
+  }
+
+  if (grouped.pendingInterview.length) {
+    array.push({
+      heading: 'Interviewing'
+    })
+    array = array.concat(grouped.pendingInterview)
+  }
+
+  if (grouped.waitingOn.length) {
+    array.push({
+      heading: 'Waiting for candidate to respond to offer'
+    })
+    array = array.concat(grouped.waitingOn)
+  }
+
+  if (grouped.pendingConditions.length) {
+    array.push({
+      heading: 'Offers pending conditions (current recruitment cycle)'
+    })
+    array = array.concat(grouped.pendingConditions)
+  }
+
+  if (grouped.conditionsMet.length) {
+    array.push({
+      heading: 'Successful candidates'
+    })
+    array = array.concat(grouped.conditionsMet)
+  }
+
+  if (grouped.deferredOffers.length) {
+    array.push({
+      heading: 'Deferred offers'
+    })
+    array = array.concat(grouped.deferredOffers)
+  }
+
+  if (grouped.other.length) {
+    if (  grouped.deferredOffersPendingReconfirmation.length ||
+          grouped.aboutToBeRejectedAutomatically.length ||
+          grouped.rejectedWithoutFeedback.length ||
+          grouped.awaitingDecision.length ||
+          grouped.waitingOn.length ||
+          grouped.pendingConditions.length ||
+          grouped.conditionsMet.length ||
+          grouped.pendingInterview.length
+    ) {
+      array.push({
+        heading: 'No action needed'
+      })
+    }
+    array = array.concat(grouped.other)
+  }
+  return array
+}
+
+
 const getSubjectItems = (selectedItems) => {
   const items = []
 
@@ -607,17 +800,15 @@ module.exports = router => {
     }
 
     // TODO: clean up
-    // let applications = apps;
+    let applications = apps;
 
-    // let allApplications = applications;
+    let allApplications = applications;
 
     // Whack all the grouped items into an array without headings
-    // let grouped = getApplicationsByGroup(applications)
+    let grouped = getApplicationsByGroup(applications)
 
     // Put groups into ordered array
-    // applications = flattenGroup(grouped)
-
-    let allApplications = applications = sortApplications(apps, sort)
+    applications = flattenGroup(grouped)
 
     // Get the pagination data
     let pagination = PaginationHelper.getPagination(applications, req.query.page)
@@ -634,8 +825,8 @@ module.exports = router => {
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
 
     // now mixin the headings
-    // grouped = getApplicationsByGroup(applications)
-    // applications = addHeadings(grouped)
+    grouped = getApplicationsByGroup(applications)
+    applications = addHeadings(grouped)
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)

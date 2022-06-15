@@ -32,9 +32,11 @@
             {%- for a in applications %}
 
 
-              {% include "_includes/application-card.njk" %}
-
-
+              {% if a.heading %}
+                <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
+              {% else %}
+                {% include "_includes/application-card.njk" %}
+              {% endif %}
             {% endfor -%}
           </div>
 
