@@ -7,8 +7,7 @@ module.exports = (params = {}) => {
     name: params.name,
     permissions: params.permissions,
     isAccreditedBody: params.isAccreditedBody,
-    partners: params.partner,
-    domain: params.domain,
-    locations: params.locations
+    partners: params.partners,
+    domain: params.domain
   }
 }

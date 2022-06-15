@@ -142,13 +142,13 @@ module.exports = (env) => {
       case 'Offer withdrawn':
         return 'govuk-tag--orange'
       case 'Application withdrawn':
-        return 'govuk-tag--orange'
+        return 'app-tag--red'
       case 'Declined':
-        return 'govuk-tag--orange'
+        return 'app-tag--red'
       case 'Rejected':
-        return 'govuk-tag--red'
+        return 'app-tag--orange'
       case 'Conditions not met':
-        return 'govuk-tag--orange'
+        return 'app-tag--red'
       case 'Conditions pending':
         return 'govuk-tag--blue'
       case 'Recruited':
@@ -159,6 +159,8 @@ module.exports = (env) => {
         return 'govuk-tag--purple'
       case 'Interviewing':
         return 'govuk-tag--yellow'
+      case 'Closed':
+        return 'app-tag--red'
     }
   }
 

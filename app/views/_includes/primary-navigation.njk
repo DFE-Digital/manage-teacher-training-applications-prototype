@@ -1,16 +1,5 @@
-{% set alertsLinkHtml %}
-  <span class="app-notification-link">
-    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
-  </span>
-{% endset %}
-
 {{ appPrimaryNavigation({
   items: [
-    {
-      href: "/overview",
-      text: "Overview",
-      active: primaryNavId == 'overview'
-    },
     {
       href: "/applications" + ('?keywords=' if data.keywords.length),
       text: "Applications",
@@ -30,12 +19,7 @@
       href: "/reports",
       text: "Reports",
       active: primaryNavId == 'reports',
-      classes: "app-primary-navigation__item--align-righ"
-    },
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
-    } if false
+      classes: "app-primary-navigation__item--align-right"
+    }
   ]
 }) }}
