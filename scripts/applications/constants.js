@@ -1,6 +1,5 @@
 exports.STATUS = {
   RECEIVED: 'Received',
-  SHORTLISTED: 'Shortlisted',
   INTERVIEWING: 'Interviewing',
   OFFERED: 'Offered',
   CONDITIONS_PENDING: 'Conditions pending',
@@ -15,7 +14,6 @@ exports.STATUS = {
 
 exports.EVENTS = {
   SUBMITTED: 'Application received',
-  SHORTLISTED: 'Application shortlisted',
   INTERVIEW_SET_UP: 'Interview set up',
   INTERVIEW_CHANGED: 'Interview updated',
   INTERVIEW_CANCELLED: 'Interview cancelled',

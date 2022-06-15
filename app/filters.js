@@ -137,30 +137,28 @@ module.exports = (env) => {
 
   filters.statusClass = (status) => {
     switch (status) {
-      case 'Received':
-        return 'govuk-tag--purple'
-      case 'Shortlisted':
-        return 'govuk-tag--pink'
-      case 'Interviewing':
-        return 'govuk-tag--yellow'
-      case 'Offered':
-        return 'govuk-tag--turquoise'
-      case 'Conditions pending':
-        return 'govuk-tag--blue'
-      case 'Recruited':
-        return 'govuk-tag--green'
       case 'Deferred':
         return 'govuk-tag--yellow'
-      case 'Conditions not met':
+      case 'Offer withdrawn':
+        return 'govuk-tag--orange'
+      case 'Application withdrawn':
         return 'govuk-tag--orange'
       case 'Declined':
         return 'govuk-tag--orange'
       case 'Rejected':
         return 'govuk-tag--red'
-      case 'Application withdrawn':
+      case 'Conditions not met':
         return 'govuk-tag--orange'
-      case 'Offer withdrawn':
-        return 'govuk-tag--orange'
+      case 'Conditions pending':
+        return 'govuk-tag--blue'
+      case 'Recruited':
+        return 'govuk-tag--green'
+      case 'Offered':
+        return 'govuk-tag--turquoise'
+      case 'Received':
+        return 'govuk-tag--purple'
+      case 'Interviewing':
+        return 'govuk-tag--yellow'
     }
   }
 

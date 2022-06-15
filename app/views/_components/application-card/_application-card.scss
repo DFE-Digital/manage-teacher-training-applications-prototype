@@ -19,7 +19,7 @@
 
 .app-application-card__primary {
   @include govuk-media-query($from: tablet) {
-    width: 392px;
+    width: 60%;
   }
 
   p {
@@ -32,7 +32,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 228px;
+    width: 40%;
     text-align: right;
   }
 }

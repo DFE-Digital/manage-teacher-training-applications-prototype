@@ -27,7 +27,6 @@ function getBreakdown(params) {
   }
 
   let received = applications.filter(app => app.status == 'Received')
-  let shortlisted = applications.filter(app => app.status == 'Shortlisted')
   let interviewing = applications.filter(app => app.status == 'Interviewing')
 
   let offered = applications.filter(app => app.status == 'Offered')
@@ -38,7 +37,6 @@ function getBreakdown(params) {
     organisation: organisation,
     location,
     received,
-    shortlisted,
     interviewing,
     offered,
     conditionsPending,
@@ -52,12 +50,8 @@ module.exports = router => {
   router.get('/overview', (req, res) => {
     let applications = req.session.data.applications.map(app => app).reverse()
 
-    let receivedTodayCount = applications.filter(app => {
-      return DateTime.fromISO(app.submittedDate).diffNow('days').days >= -1
-    }).length
-
     let aboutToBeAutomaticallyRejectedCount = applications.filter((app) => {
-      return app.daysToRespond < 5 && (app.status == 'Received' || app.status == 'Shortlisted' || app.status == 'Interviewing')
+      return app.daysToRespond < 5 && (app.status == 'Received' || app.status == 'Interviewing')
     }).length
 
     let needsFeedbackCount = applications.filter((app)=> {
@@ -145,8 +139,7 @@ module.exports = router => {
         aboutToBeAutomaticallyRejectedCount,
         needsFeedbackCount,
         deferredOffersReadyToConfirm,
-        conditionsPending,
-        receivedTodayCount
+        conditionsPending
       },
       activeApplicationsSections
     })
