@@ -193,10 +193,10 @@ exports.getCycleLabel = (code) => {
 
   for (const [year, data] of Object.entries(CYCLES)) {
     if (data.code === code) {
-      label = data.shortDesc
-
       if(data.code == getCurrentCycle().code) {
-        label += ' - current'
+        label = 'Current cycle (' + data.shortDesc + ')'
+      } else {
+        label = 'Previous cycle (' + data.shortDesc + ')'
       }
 
     }
