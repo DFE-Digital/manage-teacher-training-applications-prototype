@@ -6,10 +6,7 @@
 {% set pageName = 'Application' %}
 {% set title = pageName + ' - ' + application.personalDetails.name %}
 
-{% set mainClasses = 'govuk-!-padding-top-1' %}
-
 {% block content %}
-  {# {% set flash = 'boom' %} #}
 
   {{ govukNotificationBanner({
     classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-4',
@@ -18,11 +15,16 @@
     icon: false
   }) if flash | falsify }}
 
+  {% include "_includes/applications/h1.njk" %}
+
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l govuk-!-font-size-36">References</h1>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
+        References
+      </h2>
 
       {% if not application.references.first %}
         <p class="govuk-body">The candidate has not requested any references yet.</p>
