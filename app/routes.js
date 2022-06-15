@@ -16,7 +16,6 @@ router.get('/', (req, res) => {
 })
 
 require('./routes/interruption')(router)
-require('./routes/overview')(router)
 require('./routes/activity-log')(router)
 require('./routes/application-list')(router)
 require('./routes/applications')(router)

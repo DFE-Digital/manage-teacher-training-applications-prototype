@@ -7,11 +7,6 @@
 {{ appPrimaryNavigation({
   items: [
     {
-      href: "/overview",
-      text: "Overview",
-      active: primaryNavId == 'overview'
-    },
-    {
       href: "/applications" + ('?keywords=' if data.keywords.length),
       text: "Applications",
       active: primaryNavId == 'applications'
@@ -36,6 +31,6 @@
       href: "/notifications",
       html: alertsLinkHtml,
       active: primaryNavId == 'notifications'
-    } if false
+    }
   ]
 }) }}
