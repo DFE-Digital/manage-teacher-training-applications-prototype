@@ -10,18 +10,8 @@
         <span class="app-application-card__caption">{{ a.id }}</span>
       </h3>
       <p class="govuk-!-font-size-16 govuk-!-margin-top-1">Updated on {{a.events.items[a.events.items.length-1].date | govukShortDateAtTime}}</p>
-      <p class="govuk-!-margin-top-1 govuk-!-font-size-16">
-        {{ a.course }} – {{ a.studyMode | lower }}
-        {% if a.location.name %}
-         at {{ a.location.name }}
-        {% endif %}
-      </p>
-      <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">
-        {{ a.provider }}
-        {% if a.provider != a.accreditedBody %}
-          ({{a.accreditedBody}})
-        {% endif %}
-      </p>
+      <p class="govuk-!-margin-top-1 govuk-!-font-size-16">{{ a.course }} – {{ a.studyMode | lower }} at {{ a.location.name }}</p>
+      <p class="govuk-!-font-size-16 govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ a.provider }} ({{a.accreditedBody}})</p>
     </div>
     <div class="app-application-card__secondary">
       <div class="app-application-card__status">
@@ -39,7 +29,7 @@
         {% endif %}
 
         {% if a.status == 'Rejected' and not a.rejectedReasons %}
-          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Needs feedback</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-margin-bottom-1">Feedback needed</p>
         {% endif %}
 
         {% if a.status == 'Deferred' and data.settings == 'new-cycle' %}
