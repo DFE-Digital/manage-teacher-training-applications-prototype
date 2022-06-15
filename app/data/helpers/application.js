@@ -84,7 +84,10 @@ exports.getCondition = (offer, conditionId) => {
 }
 
 exports.hasMetAllConditions = (offer) => {
-  return this.getConditions(offer).filter(condition => condition.status === 'Pending').length === 0
+  const conditions = this.getConditions(offer);
+  const numberOfConditionsMet = conditions.filter(condition => condition.status === 'Met').length
+
+  return numberOfConditionsMet === conditions.length
 }
 
 exports.deleteCondition = (application, conditionId) => {
