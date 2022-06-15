@@ -1,9 +1,3 @@
-{% set alertsLinkHtml %}
-  <span class="app-notification-link">
-    <span class="app-notification-link__text">Notifications</span><span class="app-notification-link__number">7</span>
-  </span>
-{% endset %}
-
 {{ appPrimaryNavigation({
   items: [
     {
@@ -26,11 +20,6 @@
       text: "Reports",
       active: primaryNavId == 'reports',
       classes: "app-primary-navigation__item--align-righ"
-    },
-    {
-      href: "/notifications",
-      html: alertsLinkHtml,
-      active: primaryNavId == 'notifications'
     }
   ]
 }) }}
