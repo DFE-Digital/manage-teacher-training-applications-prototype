@@ -15,63 +15,6 @@
   }) }}
 
   {{ govukCheckboxes({
-    idPrefix: "importantItem",
-    name: "importantItem",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Important",
-        isPageHeading: false,
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: importantCheckboxItems
-  }) }}
-
-  {% if userItems.length >= userItemsDisplayLimit %}
-
-    {{ appCheckboxFilter({
-      idPrefix: 'assignedUser',
-      name: 'assignedUser',
-      legend: {
-        text: 'Assigned user'
-      },
-      items: userItems,
-      selectedItems: selectedUsers,
-      classes: 'govuk-!-margin-bottom-7'
-    }) }}
-
-  {% else %}
-
-    {{ govukCheckboxes({
-      idPrefix: 'assignedUser',
-      name: 'assignedUser',
-      fieldset: {
-        legend: {
-          text: 'Assigned user',
-          classes: 'govuk-fieldset__legend--s'
-        }
-      },
-      items: userItems,
-      classes: "govuk-checkboxes--small"
-    }) }}
-
-  {% endif %}
-
-  {{ govukCheckboxes({
-    idPrefix: 'noteItem',
-    name: 'noteItem',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Notes',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: noteCheckboxItems
-  }) }}
-
-  {{ govukCheckboxes({
     idPrefix: 'status',
     name: 'status',
     classes: "govuk-checkboxes--small",
