@@ -228,35 +228,120 @@ const generateFakeApplications = () => {
     minute: faker.helpers.randomize([0, 15, 30, 45])
   })
 
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code
-  }))
+//   applications.push(generateFakeApplication({
+//     status: 'Received',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+//
+//   applications.push(generateFakeApplication({
+//     status: 'Received',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
 
   applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code
-  }))
-
-  applications.push(generateFakeApplication({
+    id: '618451',
     status: 'Interviewing',
-    cycle: CycleHelper.CURRENT_CYCLE.code
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Jennifer',
+      familyName: 'Dyer',
+      sex: 'Female',
+      dateOfBirth: '1965-03-05',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    },
+    degree: [
+      {
+        type: 'BA',
+        subject: 'History',
+        institution: 'Aston University',
+        country: 'United Kingdom',
+        grade: 'Distinction',
+        predicted: true,
+        startYear: '2017',
+        graduationYear: '2020'
+      }
+    ],
+    gcse: {
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'C'
+          }
+        ],
+        year: 1982
+      },
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'B'
+          }
+        ],
+        year: 1982
+      }
+    },
+    otherQualifications: null,
+    references: {},
+    schoolExperience: [
+
+    ],
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Camp assistant',
+          org: 'XYZ Summer Camps Ltd',
+          type: 'Part time',
+          relevantToTeaching: 'No',
+          startDate: '1983-01-01',
+          endDate: '1985-10-01',
+          isStartDateApproximate: true,
+          isEndDateApproximate: true
+        }
+      ]
+    },
+    safeguarding: {
+      response: false
+    },
+    interviewNeeds: {
+      response: false
+    },
+    disability: {
+      response: false
+    },
+    personalStatement: {
+      vocation: "TODO",
+      subjectKnowledge: "TODO"
+    },
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Interviewing',
-    cycle: CycleHelper.CURRENT_CYCLE.code
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Conditions pending',
-    cycle: CycleHelper.CURRENT_CYCLE.code
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Conditions pending',
-    cycle: CycleHelper.CURRENT_CYCLE.code
-  }))
+//   applications.push(generateFakeApplication({
+//     status: 'Interviewing',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+//
+//   applications.push(generateFakeApplication({
+//     status: 'Conditions pending',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+//
+//   applications.push(generateFakeApplication({
+//     status: 'Conditions pending',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
 
   return applications
 }
