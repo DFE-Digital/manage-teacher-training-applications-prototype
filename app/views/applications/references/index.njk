@@ -26,6 +26,9 @@
         References
       </h2>
 
+
+      <p class="govuk-body">The candidate has received 2 references.</p>
+      {#
       {% if not application.references.first %}
         <p class="govuk-body">The candidate has not requested any references yet.</p>
 
@@ -55,7 +58,7 @@
         <p class="govuk-body">The candidate has received 3 references.</p>
 
       {% endif %}
-
+ #}
       {% include "_includes/applications/references.njk" %}
 
 

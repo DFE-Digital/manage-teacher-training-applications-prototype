@@ -368,6 +368,401 @@ const generateFakeApplications = () => {
     },
   }))
 
+
+  // TODO:
+  // * applying for English course
+  // * personal statement
+  applications.push(generateFakeApplication({
+    id: '736583',
+    status: 'Conditions pending',
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Sandra',
+      familyName: 'Smith',
+      sex: 'Female',
+      dateOfBirth: '1995-04-15',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    },
+    "submittedDate": "2022-06-01T14:50:44.481+01:00",
+    "interviews": {
+      "items": [
+        {
+          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
+          "details": "TODO",
+          "location": "TODO",
+          "organisation": "TODO",
+          "date": "2022-06-16T10:00:00"
+        }
+      ]
+    },
+    degree: [
+      {
+        type: 'BA',
+        subject: 'English and Journalism',
+        institution: 'University of Birmingham',
+        country: 'United Kingdom',
+        grade: '2:1',
+        predicted: false,
+        startYear: '2014',
+        graduationYear: '2017'
+      }
+    ],
+    gcse: {
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'B'
+          }
+        ],
+        year: 2011
+      },
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English language',
+            grade: 'A'
+          },
+          {
+            exam: 'English literature',
+            grade: 'A'
+          }
+        ],
+        year: 2011
+      }
+    },
+    otherQualifications: null,
+    "references": {
+      "first": {
+        "type": "School based",
+        "name": "Madie Olson",
+        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
+        "tel": "0500 471823",
+        "relationship": {
+          "summary": "SENCO lead at Birmingham High School where I’ve been working as a Teaching Assistant since 2017.",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "TODO\n\nTODO"
+      },
+      "second": {
+        "type": "Academic",
+        "name": "Stephon Lesch",
+        "email": "stephon66@birmingham.ac.uk",
+        "tel": "0915 358 2730",
+        "relationship": {
+          "summary": "Personal tutor at University.",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "TODO"
+      }
+    },
+    schoolExperience: [
+    ],
+    notes: {
+      items: [
+      ]
+    },
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Sales assistant',
+          org: 'Birmingham Superstore',
+          type: 'Part time',
+          relevantToTeaching: 'No',
+          startDate: '2017-07-14',
+          endDate: '2017-08-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Teaching assistant',
+          org: 'Birmingham High School',
+          type: 'Full time',
+          relevantToTeaching: 'Yes',
+          startDate: '2017-09-14',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        }
+      ]
+    },
+    safeguarding: {
+      response: false
+    },
+    interviewNeeds: {
+      response: false
+    },
+    disability: {
+      response: false
+    },
+    personalStatement: {
+      vocation: "TODO",
+      subjectKnowledge: "TODO"
+    },
+    "offer": {
+      "provider": "The University of Warwick",
+      "course": "French and German (MJOT)",
+      "courseCode": "MJOT",
+      "location": {
+        "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
+        "name": "Main site",
+        "address": {
+          "address1": "123 Main Street",
+          "town": "Some town",
+          "postcode": "AB1 2CD"
+        },
+        "organisation": {
+          "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
+          "name": "Oxford University"
+        }
+      },
+      "studyMode": "Full time",
+      "accreditedBody": "The University of Warwick",
+      "fundingType": "Fee paying",
+      "qualifications": [
+        "QTS"
+      ],
+      "madeDate": "2022-06-13T14:50:44.481+01:00",
+      "acceptedDate": "2022-06-14T14:50:44.481+01:00",
+      "standardConditions": [
+        {
+          "id": "b6928343-d052-4fb0-8f95-3e2fc853fed3",
+          "description": "Fitness to train to teach check",
+          "status": "Met"
+        },
+        {
+          "id": "32960a3a-eb2f-4acf-8a9e-3dc89bfa4685",
+          "description": "Disclosure and Barring Service (DBS) check",
+          "status": "Met"
+        },
+        {
+          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
+          "description": "Two references",
+          "status": "Pending"
+        }
+      ],
+      "withdrawalDate": null,
+      "withdrawalReasons": null
+    },
+  }))
+
+
+  applications.push(generateFakeApplication({
+    id: '647592',
+    status: 'Conditions pending',
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Andy',
+      familyName: 'Pascoe',
+      sex: 'Male',
+      dateOfBirth: '1995-04-15',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    },
+    "submittedDate": "2022-06-01T14:50:44.481+01:00",
+    "interviews": {
+      "items": [
+        {
+          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
+          "details": "TODO",
+          "location": "TODO",
+          "organisation": "TODO",
+          "date": "2022-06-16T10:00:00"
+        }
+      ]
+    },
+    degree: [
+      {
+        type: 'BA',
+        subject: 'English and Journalism',
+        institution: 'University of Birmingham',
+        country: 'United Kingdom',
+        grade: '2:1',
+        predicted: false,
+        startYear: '2014',
+        graduationYear: '2017'
+      }
+    ],
+    gcse: {
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'B'
+          }
+        ],
+        year: 2011
+      },
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English language',
+            grade: 'A'
+          },
+          {
+            exam: 'English literature',
+            grade: 'A'
+          }
+        ],
+        year: 2011
+      }
+    },
+    otherQualifications: null,
+    "references": {
+      "first": {
+        "type": "School based",
+        "name": "Madie Olson",
+        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
+        "tel": "0500 471823",
+        "relationship": {
+          "summary": "TODO",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "TODO\n\nTODO"
+      },
+      "second": {
+        "type": "Academic",
+        "name": "Stephon Lesch",
+        "email": "stephon66@birmingham.ac.uk",
+        "tel": "0915 358 2730",
+        "relationship": {
+          "summary": "TODO",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "TODO"
+      }
+    },
+    schoolExperience: [
+    ],
+    notes: {
+      items: [
+      ]
+    },
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Sales assistant',
+          org: 'Birmingham Superstore',
+          type: 'Part time',
+          relevantToTeaching: 'No',
+          startDate: '2017-07-14',
+          endDate: '2017-08-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Teaching assistant',
+          org: 'Birmingham High School',
+          type: 'Full time',
+          relevantToTeaching: 'Yes',
+          startDate: '2017-09-14',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        }
+      ]
+    },
+    safeguarding: {
+      response: false
+    },
+    interviewNeeds: {
+      response: false
+    },
+    disability: {
+      response: false
+    },
+    personalStatement: {
+      vocation: "TODO",
+      subjectKnowledge: "TODO"
+    },
+    "offer": {
+      "provider": "The University of Warwick",
+      "course": "French and German (MJOT)",
+      "courseCode": "MJOT",
+      "location": {
+        "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
+        "name": "Main site",
+        "address": {
+          "address1": "123 Main Street",
+          "town": "Some town",
+          "postcode": "AB1 2CD"
+        },
+        "organisation": {
+          "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
+          "name": "Oxford University"
+        }
+      },
+      "studyMode": "Full time",
+      "accreditedBody": "The University of Warwick",
+      "fundingType": "Fee paying",
+      "qualifications": [
+        "QTS"
+      ],
+      "madeDate": "2022-06-13T14:50:44.481+01:00",
+      "acceptedDate": "2022-06-14T14:50:44.481+01:00",
+      "standardConditions": [
+        {
+          "id": "b6928343-d052-4fb0-8f95-3e2fc853fed3",
+          "description": "Fitness to train to teach check",
+          "status": "Met"
+        },
+        {
+          "id": "32960a3a-eb2f-4acf-8a9e-3dc89bfa4685",
+          "description": "Disclosure and Barring Service (DBS) check",
+          "status": "Met"
+        },
+        {
+          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
+          "description": "Two references",
+          "status": "Pending"
+        }
+      ],
+      "withdrawalDate": null,
+      "withdrawalReasons": null
+    },
+  }))
+
+
+
 //   applications.push(generateFakeApplication({
 //     status: 'Interviewing',
 //     cycle: CycleHelper.CURRENT_CYCLE.code
