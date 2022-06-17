@@ -238,6 +238,9 @@ const generateFakeApplications = () => {
 //     cycle: CycleHelper.CURRENT_CYCLE.code
 //   }))
 
+  // TODO:
+  // * applying for history course
+  // * personal statement
   applications.push(generateFakeApplication({
     id: '618451',
     status: 'Interviewing',
@@ -247,22 +250,34 @@ const generateFakeApplications = () => {
       givenName: 'Jennifer',
       familyName: 'Dyer',
       sex: 'Female',
-      dateOfBirth: '1965-03-05',
+      dateOfBirth: '1996-01-03',
       nationalities: [
         'British'
       ],
       isInternationalCandidate: false
     },
+    "submittedDate": "2022-06-01T14:50:44.481+01:00",
+    "interviews": {
+      "items": [
+        {
+          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
+          "details": "TODO",
+          "location": "TODO",
+          "organisation": "TODO",
+          "date": "2022-06-16T10:00:00"
+        }
+      ]
+    },
     degree: [
       {
         type: 'BA',
         subject: 'History',
-        institution: 'Aston University',
+        institution: 'University of Central Lancashire',
         country: 'United Kingdom',
-        grade: 'Distinction',
-        predicted: true,
-        startYear: '2017',
-        graduationYear: '2020'
+        grade: '2:1',
+        predicted: false,
+        startYear: '2015',
+        graduationYear: '2018'
       }
     ],
     gcse: {
@@ -273,10 +288,10 @@ const generateFakeApplications = () => {
         country: 'United Kingdom',
         grade: [
           {
-            grade: 'C'
+            grade: 'B'
           }
         ],
-        year: 1982
+        year: 2012
       },
       english: {
         hasQualification: 'Yes',
@@ -286,30 +301,55 @@ const generateFakeApplications = () => {
         grade: [
           {
             exam: 'English',
-            grade: 'B'
+            grade: 'A'
           }
         ],
-        year: 1982
+        year: 2012
       }
     },
     otherQualifications: null,
     references: {},
     schoolExperience: [
-
     ],
+    notes: {
+      items: [
+      ]
+    },
     workHistory: {
       answer: 'yes',
       items: [
         {
           category: 'job',
-          role: 'Camp assistant',
-          org: 'XYZ Summer Camps Ltd',
+          role: 'Bar staff',
+          org: 'Berney Arms',
           type: 'Part time',
           relevantToTeaching: 'No',
-          startDate: '1983-01-01',
-          endDate: '1985-10-01',
-          isStartDateApproximate: true,
-          isEndDateApproximate: true
+          startDate: '2018-07-14',
+          endDate: '2018-12-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Gallery attendant',
+          org: 'Lancashire Museum',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2019-01-14',
+          endDate: '2019-06-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Family workshop leader',
+          org: 'Lancashire Museum',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2019-07-14',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
         }
       ]
     },
