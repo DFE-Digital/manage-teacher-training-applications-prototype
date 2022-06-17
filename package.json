@@ -16,7 +16,7 @@
     "generate-data-2-skeleton": "node ./scripts/applications/generate.js --skeleton --no-final-output"
   },
   "dependencies": {
-    "acorn": "^8.5.0",
+    "acorn": "^8.7.1",
     "ansi-colors": "^4.1.1",
     "archiver-promise": "^1.0.0",
     "basic-auth": "^2.0.0",
