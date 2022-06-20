@@ -87,7 +87,9 @@ const generateFakeApplication = (params = {}) => {
     })
   }
 
-  const notes = generateNotes()
+  const notes = {
+    items: []
+  }
 
   const interviews = params.interviews || generateInterviews({
     status,
@@ -237,8 +239,7 @@ const generateFakeApplications = () => {
 //     cycle: CycleHelper.CURRENT_CYCLE.code
 //   }))
 
-  // TODO:
-  // * personal statement
+
   applications.push(generateFakeApplication({
     course: 'History (HIS1)',
     courseCode: 'HIS1',
@@ -365,8 +366,8 @@ const generateFakeApplications = () => {
       response: false
     },
     personalStatement: {
-      vocation: "TODO",
-      subjectKnowledge: "TODO"
+      vocation: "The influence teachers have on young people cannot be understated. My memories of being a student are a testament to that, as my decision to become a teacher has been directly influenced by the positive experiences I had at secondary school.\n\nI feel I have the potential to inspire young people to reach their full potential, just as my teachers motivated me. I am passionate about supporting children to live a happy and healthy life, as well as helping them to develop the skills they need.\n\nWorking at a museum I’ve discovered that I’m able to listen and communicate well with children. I love to see the confidence a child can gain when they feel comfortable and secure.\n\nI have also recently completed a Level 1 in British Sign Language with the support of the museum where I work. This has helped broaden my communication skills as well as highlighting to me the importance of inclusion in education. This is something I hope to explore further when I train to become a teacher.",
+      subjectKnowledge: "My current role as a family workshop leader has strengthened my passion to become a teacher. I have gained experience supporting the teaching of the National Curriculum for history, as well as helping students to get the best out of their time at the museum.\n\nOur summer workshops have been particularly rewarding, as students attend daily for a week and I’ve been able to see them develop their confidence from start to finish.\n\nI feel that my current employment has also given me a range of transferable skills. I currently provide training to new members of staff and have also been asked to update existing members of the team on changes to policies and procedures. Therefore I have to ensure that I am adaptable in my approach as I am aware that people all learn differently."
     },
   }))
 
