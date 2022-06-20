@@ -20,10 +20,12 @@ const generateFakeCourses = (count) => {
   let historyCourse = generateFakeCourse({ trainingProvider: user_org, accreditedBody: user_org })
   historyCourse.name = 'History'
   historyCourse.code = 'HIS1'
+  historyCourse.subjects = [{code: 'V1', name: 'History'}]
 
   let englishCourse = generateFakeCourse({ trainingProvider: user_org, accreditedBody: user_org })
   englishCourse.name = 'English'
   englishCourse.code = 'E15P'
+  englishCourse.subjects = [{code: '13', name: 'English'}]
 
 
   courses.push(historyCourse)

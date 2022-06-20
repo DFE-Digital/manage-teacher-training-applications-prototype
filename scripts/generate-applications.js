@@ -249,6 +249,12 @@ const generateFakeApplications = () => {
     status: 'Interviewing',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
+    subject: [
+      {
+        "code": "V1",
+        "name": "History"
+      }
+    ],
     personalDetails: {
       givenName: 'Jennifer',
       familyName: 'Dyer',
@@ -382,6 +388,12 @@ const generateFakeApplications = () => {
     courseCode: 'E15P',
     studyMode: 'Full time',
     assignedUsers: [],
+    subject: [
+      {
+        "code": "13",
+        "name": "English"
+      }
+    ],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Sandra',
@@ -580,6 +592,12 @@ const generateFakeApplications = () => {
     courseCode: 'E15P',
     studyMode: 'Full time',
     assignedUsers: [],
+    subject: [
+      {
+        "code": "13",
+        "name": "English"
+      }
+    ],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
       givenName: 'Andy',
