@@ -6,14 +6,17 @@ const path = require('path')
 const OrgHelper = require('../app/data/helpers/organisation')
 
 const generateFakeLocations = (count) => {
-  const organisation = OrgHelper.findOrg('Oxford University')
+
+  let locations = []
+
+  const organisation = OrgHelper.findOrg('Birmingham SCITT')
 
   // remove unnecessary data
   delete organisation.isAccreditedBody
   delete organisation.domain
 
   // TODO: generate locations per organisation
-  const locations = [{
+  locations.push({
     id: faker.datatype.uuid(),
     name: 'Main site',
     address: {
@@ -24,29 +27,7 @@ const generateFakeLocations = (count) => {
       postcode: 'AB1 2CD'
     },
     organisation: organisation
-  }, {
-    id: faker.datatype.uuid(),
-    name: 'Queen’s campus',
-    address: {
-      address1: 'Amory Building',
-      address2: 'Rennes Drive',
-      // address3: '',
-      town: 'Big City',
-      postcode: 'SW1A 4AA'
-    },
-    organisation: organisation
-  }, {
-    id: faker.datatype.uuid(),
-    name: 'Malet Place',
-    address: {
-      address1: 'Gordon Square',
-      // address2: '',
-      // address3: '',
-      town: 'Small City',
-      postcode: 'BA2 3DC'
-    },
-    organisation: organisation
-  }]
+  })
 
   return locations
 }

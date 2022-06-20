@@ -94,7 +94,7 @@ const generateFakeApplication = (params = {}) => {
     submittedDate
   })
 
-  const assignedUsers = generateAssignedUsers(accreditedBody, provider, status)
+  // const assignedUsers = generateAssignedUsers(accreditedBody, provider, status)
 
   const events = generateEvents({
     offer,
@@ -109,8 +109,7 @@ const generateFakeApplication = (params = {}) => {
     accreditedBody: accreditedBody.name,
     fundingType,
     qualifications,
-    organisation,
-    assignedUsers
+    organisation
   })
 
   // delete any interviews that have been cancelled
@@ -239,9 +238,12 @@ const generateFakeApplications = () => {
 //   }))
 
   // TODO:
-  // * applying for history course
   // * personal statement
   applications.push(generateFakeApplication({
+    course: 'History (HIS1)',
+    courseCode: 'HIS1',
+    studyMode: 'Full time',
+    provider: user.organisation.name,
     id: '618451',
     status: 'Interviewing',
     assignedUsers: [],
@@ -261,9 +263,9 @@ const generateFakeApplications = () => {
       "items": [
         {
           "id": "02332342-787a-4e3d-bfec-c6a847d32247",
-          "details": "TODO",
-          "location": "TODO",
-          "organisation": "TODO",
+          "details": "As discussed by phone, please attend an interview with our panel.",
+          "location": "100 School Drive, Birmingham, BR1 4SQ",
+          "organisation": user.organisation.name,
           "date": "2022-06-16T10:00:00"
         }
       ]
@@ -375,6 +377,9 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: '736583',
     status: 'Conditions pending',
+    course: 'English (E15P)',
+    courseCode: 'E15P',
+    studyMode: 'Full time',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
@@ -392,10 +397,10 @@ const generateFakeApplications = () => {
       "items": [
         {
           "id": "02332342-787a-4e3d-bfec-c6a847d32247",
-          "details": "TODO",
-          "location": "TODO",
-          "organisation": "TODO",
-          "date": "2022-06-16T10:00:00"
+          "details": "As discussed by phone, please attend an interview with our panel.",
+          "location": "100 School Drive, Birmingham, BR1 4SQ",
+          "organisation": user.organisation.name,
+          "date": "2022-06-16T11:00:00"
         }
       ]
     },
@@ -520,24 +525,24 @@ const generateFakeApplications = () => {
       subjectKnowledge: "TODO"
     },
     "offer": {
-      "provider": "The University of Warwick",
-      "course": "French and German (MJOT)",
-      "courseCode": "MJOT",
+      "provider": "Birmingham SCITT",
+      "course": "English (E15P)",
+      "courseCode": "E15P",
       "location": {
         "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
         "name": "Main site",
         "address": {
           "address1": "123 Main Street",
-          "town": "Some town",
-          "postcode": "AB1 2CD"
+          "town": "Birmingham",
+          "postcode": "BR4 2CD"
         },
         "organisation": {
           "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
-          "name": "Oxford University"
+          "name": "Birmingham SCITT"
         }
       },
       "studyMode": "Full time",
-      "accreditedBody": "The University of Warwick",
+      "accreditedBody": "Birmingham SCITT",
       "fundingType": "Fee paying",
       "qualifications": [
         "QTS"
@@ -570,6 +575,9 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: '647592',
     status: 'Conditions pending',
+    course: 'English (E15P)',
+    courseCode: 'E15P',
+    studyMode: 'Full time',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
@@ -585,13 +593,6 @@ const generateFakeApplications = () => {
     "submittedDate": "2022-06-01T14:50:44.481+01:00",
     "interviews": {
       "items": [
-        {
-          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
-          "details": "TODO",
-          "location": "TODO",
-          "organisation": "TODO",
-          "date": "2022-06-16T10:00:00"
-        }
       ]
     },
     degree: [

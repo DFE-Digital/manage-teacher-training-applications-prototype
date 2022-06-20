@@ -13,23 +13,23 @@ let defaults = {}
 // get related training providers
 const trainingProviders = []
 const accreditedBodies = []
-user.organisations.forEach(org => {
-  if(org.isAccreditedBody) {
-    accreditedBodies.push(org)
-      relationships
-        .filter(relationship => relationship.org1.id == org.id)
-        .map(relationship => relationship.org2).forEach(org => {
-          trainingProviders.push(org)
-        })
-  } else {
-    trainingProviders.push(org)
-    relationships
-      .filter(relationship => relationship.org1.id == org.id)
-      .map(relationship => relationship.org2).forEach(org => {
-        accreditedBodies.push(org)
-      })
-  }
-})
+// user.organisations.forEach(org => {
+//   if(org.isAccreditedBody) {
+//     accreditedBodies.push(org)
+//       relationships
+//         .filter(relationship => relationship.org1.id == org.id)
+//         .map(relationship => relationship.org2).forEach(org => {
+//           trainingProviders.push(org)
+//         })
+//   } else {
+//     trainingProviders.push(org)
+//     relationships
+//       .filter(relationship => relationship.org1.id == org.id)
+//       .map(relationship => relationship.org2).forEach(org => {
+//         accreditedBodies.push(org)
+//       })
+//   }
+// })
 
 const organisations = trainingProviders.concat(accreditedBodies)
 

@@ -13,7 +13,7 @@ const generateFakeUser = (params = {}) => {
 const generateFakeUsers = (count) => {
   const organisations = require('../app/data/organisations.json')
   const users = []
-  const mainOrg = OrgHelper.findOrg('The University of Warwick')
+  const mainOrg = OrgHelper.findOrg('Birmingham SCITT')
 
   const firstName = 'Lydia'
   const lastName = 'Obirek'
@@ -35,27 +35,27 @@ const generateFakeUsers = (count) => {
     }
   })
 
-  organisations.forEach(organisation => {
-    for(var i = 0; i < 5; i++) {
-      let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
-      let lastName = generatorHelpers.lastName()
-      users.push({
-        id: faker.datatype.uuid(),
-        firstName,
-        lastName,
-        emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,
-        organisation,
-        permissions: {
-          manageOrganisation: faker.helpers.randomize([true, false]),
-          manageUsers: faker.helpers.randomize([true, false]),
-          setupInterviews: faker.helpers.randomize([true, false]),
-          makeDecisions: faker.helpers.randomize([true, false]),
-          viewSafeguardingInformation: faker.helpers.randomize([true, false]),
-          viewDiversityInformation: faker.helpers.randomize([true, false])
-        }
-      })
-    }
-  })
+  // organisations.forEach(organisation => {
+  //   for(var i = 0; i < 5; i++) {
+  //     let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
+  //     let lastName = generatorHelpers.lastName()
+  //     users.push({
+  //       id: faker.datatype.uuid(),
+  //       firstName,
+  //       lastName,
+  //       emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,
+  //       organisation,
+  //       permissions: {
+  //         manageOrganisation: faker.helpers.randomize([true, false]),
+  //         manageUsers: faker.helpers.randomize([true, false]),
+  //         setupInterviews: faker.helpers.randomize([true, false]),
+  //         makeDecisions: faker.helpers.randomize([true, false]),
+  //         viewSafeguardingInformation: faker.helpers.randomize([true, false]),
+  //         viewDiversityInformation: faker.helpers.randomize([true, false])
+  //       }
+  //     })
+  //   }
+  // })
 
   return users
 }
