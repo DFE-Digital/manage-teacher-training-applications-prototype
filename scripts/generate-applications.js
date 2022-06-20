@@ -678,7 +678,7 @@ const generateFakeApplications = () => {
         "comments": "I cannot comment on whether Andy has the potential to teach. I have never met him face to face but we’ve been in contact extensively by email as part of the personal tutoring aspect of his programme. \n\nI can say he has fairly good communication skills and good academic skills overall. \n\nThere have been times where I have thought his professionalism could be improved. I’ve had doubts about his way of handling difficulties which have come up over the course of his degree, particularly in terms of his communication skills. Perhaps this is an area which he can work on further."
       },
       "second": {
-        "type": "Character",
+        "type": "Professional",
         "name": "Julie Partridge",
         "email": "julie912@gmail.com",
         "tel": "07712 7649205",
