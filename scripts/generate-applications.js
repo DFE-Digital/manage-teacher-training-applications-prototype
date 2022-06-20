@@ -87,6 +87,10 @@ const generateFakeApplication = (params = {}) => {
     })
   }
 
+  if (offer && params.offer.standardConditions) {
+    offer.standardConditions = params.offer.standardConditions
+  }
+
   const notes = {
     items: []
   }
@@ -603,7 +607,7 @@ const generateFakeApplications = () => {
       givenName: 'Andy',
       familyName: 'Pascoe',
       sex: 'Male',
-      dateOfBirth: '1995-04-15',
+      dateOfBirth: '2000-12-03',
       nationalities: [
         'British'
       ],
@@ -617,13 +621,13 @@ const generateFakeApplications = () => {
     degree: [
       {
         type: 'BA',
-        subject: 'English and Journalism',
+        subject: 'English',
         institution: 'University of Birmingham',
         country: 'United Kingdom',
         grade: '2:1',
-        predicted: false,
-        startYear: '2014',
-        graduationYear: '2017'
+        predicted: true,
+        startYear: '2020',
+        graduationYear: null
       }
     ],
     gcse: {
@@ -660,32 +664,32 @@ const generateFakeApplications = () => {
     otherQualifications: null,
     "references": {
       "first": {
-        "type": "School based",
-        "name": "Madie Olson",
-        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
+        "type": "Academic",
+        "name": "Jason Barker",
+        "email": "j.barker@birmingham.ac.uk",
         "tel": "0500 471823",
         "relationship": {
-          "summary": "TODO",
+          "summary": "They are my Personal academic tutor (PAT) at university I have known them since starting university in September 2020.",
           "validated": true
         },
         "safeguarding": {
           "response": "no"
         },
-        "comments": "TODO\n\nTODO"
+        "comments": "I cannot comment on whether Andy has the potential to teach. I have never met him face to face but we’ve been in contact extensively by email as part of the personal tutoring aspect of his programme. \n\nI can say he has fairly good communication skills and good academic skills overall. \n\nThere have been times where I have thought his professionalism could be improved. I’ve had doubts about his way of handling difficulties which have come up over the course of his degree, particularly in terms of his communication skills. Perhaps this is an area which he can work on further."
       },
       "second": {
-        "type": "Academic",
-        "name": "Stephon Lesch",
-        "email": "stephon66@birmingham.ac.uk",
-        "tel": "0915 358 2730",
+        "type": "Character",
+        "name": "Julie Partridge",
+        "email": "julie912@gmail.com",
+        "tel": "07712 7649205",
         "relationship": {
-          "summary": "TODO",
+          "summary": "I tutored her child in English. I’ve known her for one year",
           "validated": true
         },
         "safeguarding": {
           "response": "no"
         },
-        "comments": "TODO"
+        "comments": "I have known Andy for a year. He tutored my 12 year old son in English. He was finding grammar in particular quite difficult but with Andy’s help he is now much more confident.\n\nAndy has always been reliable and shown great communication skills. There have never been any problems with organising dates and times to tutor my son. \n\nI’ve been impressed that Andy has always had clear lesson plans which he’s emailed to me in advance. This has helped to ensure both my son and I were aware of the area which would be taught. But Andy also always left room to amend the lesson if my son needed more attention in a specific area."
       }
     },
     schoolExperience: [
@@ -695,30 +699,8 @@ const generateFakeApplications = () => {
       ]
     },
     workHistory: {
-      answer: 'yes',
+      answer: 'no',
       items: [
-        {
-          category: 'job',
-          role: 'Sales assistant',
-          org: 'Birmingham Superstore',
-          type: 'Part time',
-          relevantToTeaching: 'No',
-          startDate: '2017-07-14',
-          endDate: '2017-08-06',
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        },
-        {
-          category: 'job',
-          role: 'Teaching assistant',
-          org: 'Birmingham High School',
-          type: 'Full time',
-          relevantToTeaching: 'Yes',
-          startDate: '2017-09-14',
-          endDate: false,
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        }
       ]
     },
     safeguarding: {
@@ -731,13 +713,13 @@ const generateFakeApplications = () => {
       response: false
     },
     personalStatement: {
-      vocation: "TODO",
-      subjectKnowledge: "TODO"
+      vocation: "Without good teachers, truly talented individuals may never discover their talents and passions. I have always thought that a good teacher is one who inspires pupils to expand their way of thinking. \n\nI was fortunate to have teachers who did this for me. Now I want to do this for future generations of children. I know that the reward of seeing a pupil's progression will inspire me to always improve my skills.\n\nAlthough I don’t have much professional experience, I’ve volunteered numerous times to teach and be responsible for children. This included volunteering at a primary school after school club, which taught me that I enjoy the challenge of working with children. But it also made me realise that I would prefer to teach at secondary level.\n\nI have also worked with children ages 13 and up, when volunteering as a rugby coach. I found this extremely rewarding as well as challenging, and it required me to develop excellent communication skills and the ability to lead a group. \n\nIn my time at university, I’ve also learned the importance of having peers to read through your work and give their feedback. As a deeply empathetic person I would welcome the chance to help others improve themselves.\n\nI am looking forward to learning more about the current curriculum. I am also excited to meet other people doing their PGCEs so that I can learn more about the subject and myself.",
+      subjectKnowledge: "My English Literature degree makes me suited to teach English. It will allow me not only to teach the National Curriculum fundamentals but to also help students who wish to go further.\n\nI have a wealth of knowledge of both literature and literary theory. The area that I would most need to work on would be the English language aspect, but I do not expect this to be a problem. I enjoy all aspects of English so revisiting grammar will be a welcome change.\n\nI want to teach English because of my experience with the subject throughout my education. It has helped me to think for myself and expanded my vocabulary. It has also given me the chance to discover and explore new ideas. \n\nFollowing the aims of the National Curriculum for English, I believe it is essential that a student can communicate effectively in essays and discussions. I look forward to encouraging students to read more for both recreation and information. As always, I am keen to learn and develop ideas with students. I believe that everyone can further expand their knowledge, whether they’re a teacher or student."
     },
     "offer": {
-      "provider": "The University of Warwick",
-      "course": "French and German (MJOT)",
-      "courseCode": "MJOT",
+      "provider": "Birmingham SCITT",
+      "course": "English (E15P)",
+      "courseCode": "E15P",
       "location": {
         "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
         "name": "Main site",
@@ -748,11 +730,10 @@ const generateFakeApplications = () => {
         },
         "organisation": {
           "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
-          "name": "Oxford University"
+          "name": "Birmingham SCITT"
         }
       },
       "studyMode": "Full time",
-      "accreditedBody": "The University of Warwick",
       "fundingType": "Fee paying",
       "qualifications": [
         "QTS"
@@ -773,6 +754,11 @@ const generateFakeApplications = () => {
         {
           "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
           "description": "Two references",
+          "status": "Pending"
+        },
+        {
+          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
+          "description": "An undergraduate degree at 2:2 or above",
           "status": "Pending"
         }
       ],
