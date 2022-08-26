@@ -49,16 +49,9 @@ const generateFakeApplication = (params = {}) => {
   const submittedDate = params.submittedDate || generateSubmittedDate({ status })
   const personalDetails = { ...generatePersonalDetails(), ...params.personalDetails }
 
-  let accreditedBody
-  let provider
-  let organisation = faker.helpers.randomize(organisations)
-  if(organisation.isAccreditedBody) {
-    accreditedBody = organisation
-    provider = faker.helpers.randomize(partners)
-  } else {
-    provider = organisation
-    accreditedBody = faker.helpers.randomize(partners)
-  }
+  let provider = user.organisation
+  let accreditedBody = user.organisation
+  let organisation = provider
 
   // ---------------------------------------------------------------------------
   // Get the course data
@@ -94,14 +87,20 @@ const generateFakeApplication = (params = {}) => {
     })
   }
 
-  const notes = generateNotes()
+  if (offer && params.offer.standardConditions) {
+    offer.standardConditions = params.offer.standardConditions
+  }
+
+  const notes = {
+    items: []
+  }
 
   const interviews = params.interviews || generateInterviews({
     status,
     submittedDate
   })
 
-  const assignedUsers = generateAssignedUsers(accreditedBody, provider, status)
+  // const assignedUsers = generateAssignedUsers(accreditedBody, provider, status)
 
   const events = generateEvents({
     offer,
@@ -116,8 +115,7 @@ const generateFakeApplication = (params = {}) => {
     accreditedBody: accreditedBody.name,
     fundingType,
     qualifications,
-    organisation,
-    assignedUsers
+    organisation
   })
 
   // delete any interviews that have been cancelled
@@ -235,2025 +233,67 @@ const generateFakeApplications = () => {
     minute: faker.helpers.randomize([0, 15, 30, 45])
   })
 
+//   applications.push(generateFakeApplication({
+//     status: 'Received',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+//
+//   applications.push(generateFakeApplication({
+//     status: 'Received',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+
+
   applications.push(generateFakeApplication({
+    course: 'History (HIS1)',
+    courseCode: 'HIS1',
+    studyMode: 'Full time',
+    provider: user.organisation.name,
+    id: '618451',
     status: 'Interviewing',
+    assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Adam',
-      familyName: 'Jenkins',
-      sex: 'Male'
-    },
-    contactDetails: {
-      tel: '01649 13062',
-      email: 'adam.jenkins@hotmail.com',
-      address: {
-        line1: '7127 Moen Knolls',
-        line2: '',
-        level2: 'East Flavieborough',
-        level1: 'County Fermanagh',
-        postcode: 'IS49 7MF'
-      },
-      addressType: 'uk'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    rejectedDate: faker.date.past(),
-    rejectedReasons: null,
-    status: 'Rejected',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Adam',
-      familyName: 'Jenkins',
-      sex: 'Male'
-    },
-    contactDetails: {
-      tel: '01649 13062',
-      email: 'adam.jenkins@hotmail.com',
-      address: {
-        line1: '7127 Moen Knolls',
-        line2: '',
-        level2: 'East Flavieborough',
-        level1: 'County Fermanagh',
-        postcode: 'IS49 7MF'
-      },
-      addressType: 'uk'
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   id: '111223',
-  //   status: 'Interviewing',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   submittedDate: SystemHelper.now().minus({ days: 36 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-  //   personalDetails: {
-  //     givenName: 'Sarah',
-  //     familyName: 'Fisher',
-  //     sex: 'Female'
-  //   },
-  //   interviews: {
-  //     items: [{
-  //       id: faker.datatype.uuid(),
-  //       date: future,
-  //       organisation: 'The Royal Borough Teaching School Alliance',
-  //       location: 'https://zoom.us/12345/'
-  //     }, {
-  //       id: faker.datatype.uuid(),
-  //       date: future.plus({
-  //         days: 1
-  //       }),
-  //       organisation: 'Kingston University',
-  //       location: 'https://zoom.us/z1234/'
-  //     }]
-  //   },
-  //   otherQualifications: null
-  // }))
-
-  // applications.push(generateFakeApplication({
-  //   id: '111224',
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   submittedDate: SystemHelper.now().minus({ days: 38 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-  //   personalDetails: {
-  //     givenName: 'Rachael',
-  //     familyName: 'Harvey',
-  //     sex: 'Female',
-  //     dateOfBirth: '1965-03-05',
-  //     isInternationalCandidate: false
-  //   },
-  //   degree: [
-  //     {
-  //       type: 'BA',
-  //       subject: 'History',
-  //       institution: 'Aston University',
-  //       country: 'United Kingdom',
-  //       grade: 'Distinction',
-  //       predicted: true,
-  //       startYear: '2017',
-  //       graduationYear: '2020'
-  //     }
-  //   ],
-  //   gcse: {
-  //     maths: {
-  //       hasQualification: 'Yes',
-  //       type: 'O level',
-  //       subject: 'Maths',
-  //       country: 'United Kingdom',
-  //       grade: [
-  //         {
-  //           grade: 'C'
-  //         }
-  //       ],
-  //       year: 1982
-  //     },
-  //     english: {
-  //       hasQualification: 'Yes',
-  //       type: 'O level',
-  //       subject: 'English',
-  //       country: 'United Kingdom',
-  //       grade: [
-  //         {
-  //           exam: 'English',
-  //           grade: 'B'
-  //         }
-  //       ],
-  //       year: 1982
-  //     },
-  //     science: {
-  //       hasQualification: 'Yes',
-  //       type: 'O level',
-  //       subject: 'Science',
-  //       country: 'United Kingdom',
-  //       grade: [
-  //         {
-  //           exam: 'Science',
-  //           grade: 'B'
-  //         }
-  //       ],
-  //       year: 1982
-  //     }
-  //   },
-  //   otherQualifications: null,
-  //   englishLanguageQualification: {
-  //     hasQualification: 'Not needed',
-  //     status: 'No, English is not a foreign language to me'
-  //   },
-  //   schoolExperience: [
-  //     {
-  //       "role": "Holiday club staff",
-  //       "org": "Heathcote Primary School",
-  //       "workedWithChildren": "Yes",
-  //       "startDate": "2019-07-01T23:14:28.205Z",
-  //       "endDate": "2019-08-30T05:13:38.382Z",
-  //       "timeCommitment": "3 afternoons a week over the summer"
-  //     }
-  //   ],
-  //   "references": {
-  //     "first": {
-  //       "type": "Professional",
-  //       "name": "Braeden Schultz",
-  //       "email": "braeden.schultz@gmail.com",
-  //       "tel": "01189 388018",
-  //       "relationship": {
-  //         "summary": "Deputy head at the school where I currently volunteer",
-  //         "validated": true
-  //       },
-  //       "safeguarding": {
-  //         "response": "no"
-  //       },
-  //       "comments": "A charismatic talented and able person."
-  //     },
-  //     "second": {
-  //       "type": "Professional",
-  //       "name": "Yolanda Ferry",
-  //       "email": "yolanda.ferry@yahoo.com",
-  //       "tel": "0800 435003",
-  //       "relationship": {
-  //         "summary": "Manager at R & T Ltd where I worked for 3 years.",
-  //         "validated": true
-  //       },
-  //       "safeguarding": {
-  //         "response": "no"
-  //       },
-  //       "comments": "Tricia is great, and will be a good teacher."
-  //     }
-  //   },
-  //   "safeguarding": {
-  //     "response": false
-  //   },
-  //   "disability": {
-  //     "response": false
-  //   },
-  //   workHistory: {
-  //     answer: 'yes',
-  //     items: [
-  //     {
-  //       category: 'job',
-  //       role: 'Camp assistant',
-  //       org: 'XYZ Summer Camps Ltd',
-  //       type: 'Part time',
-  //       relevantToTeaching: 'Yes',
-  //       startDate: '1983-01-01',
-  //       endDate: '1985-10-01',
-  //       isStartDateApproximate: true,
-  //       isEndDateApproximate: true
-  //     },
-  //     {
-  //       category: 'job',
-  //       role: 'Retail assistant',
-  //       org: 'Jones’s Stores',
-  //       type: 'Part time',
-  //       relevantToTeaching: 'No',
-  //       startDate: '1985-11-01',
-  //       endDate: '1986-08-01',
-  //       isStartDateApproximate: true,
-  //       isEndDateApproximate: true
-  //     },
-  //     {
-  //       category: 'job',
-  //       role: 'Deputy Manager',
-  //       org: 'Jones’s Stores',
-  //       type: 'Full time',
-  //       relevantToTeaching: 'No',
-  //       startDate: '1986-08-01',
-  //       endDate: '1991-11-01',
-  //       isStartDateApproximate: true,
-  //       isEndDateApproximate: true
-  //     },
-  //     {
-  //       category: 'job',
-  //       role: 'Deputy store manager',
-  //       org: 'Arnolds department store',
-  //       type: 'Full time',
-  //       relevantToTeaching: 'No',
-  //       startDate: '1991-11-01',
-  //       endDate: '1996-05-01',
-  //       isStartDateApproximate: true,
-  //       isEndDateApproximate: true
-  //     },
-  //     {
-  //       category: 'break',
-  //       // description: 'Bringing up my 4 children',
-  //       duration: '10 years and 3 months',
-  //       startDate: '1996-05-01',
-  //       endDate: '2006-08-01',
-  //       isStartDateApproximate: true,
-  //       isEndDateApproximate: false
-  //     },
-  //     {
-  //       category: 'job',
-  //       role: 'Buyer',
-  //       org: 'R & T Ltd',
-  //       type: 'Full time',
-  //       relevantToTeaching: 'No',
-  //       startDate: '2006-08-01',
-  //       endDate: '2017-06-01'
-  //     },
-  //     {
-  //       category: 'break',
-  //       description: 'Degree course',
-  //       duration: '2 years and 10 months',
-  //       startDate: '2017-09-01',
-  //       endDate: '2020-07-01'
-  //     }
-  //   ]
-  //   }
-  // }))
-
-  // applications.push(generateFakeApplication({
-  //   id: '111225',
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   submittedDate: SystemHelper.now().minus({ days: 40 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-  //   personalDetails: {
-  //     givenName: 'Alex',
-  //     familyName: 'Roberts',
-  //     sex: 'Female',
-  //     dateOfBirth: "1999-04-05"
-  //   },
-  //   safeguarding: {
-  //     "response": false
-  //   },
-  //   workHistory: {
-  //     answer: 'no--in-full-time-education',
-  //     items: []
-  //   },
-  //   schoolExperience: [
-  //     {
-  //       "role": "Volunteer",
-  //       "org": "Local nature reserve",
-  //       "workedWithChildren": "No",
-  //       "startDate": "2019-08-01T23:14:28.205Z",
-  //       "endDate": "2019-08-09T05:13:38.382Z",
-  //       "timeCommitment": "1 week"
-  //     }
-  //   ]
-  // }))
-
-  applications.push(generateFakeApplication({
-    id: '111226',
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 30 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Barbara',
-      familyName: 'Kite',
-      sex: 'Female',
-      dateOfBirth: '1991-05-01'
-    },
-    safeguarding: {
-      "response": false
-    },
-    workHistory: {
-      answer: 'no',
-      reason: 'Shortly after leaving school at 18 I became pregnant. After having my baby I suffered from post natal depression and anxiety, which prevented me from being able to work. After a mental health breakdown I received support from a councillor and medication. This enabled me to recover, and I decided to study for a degree part time to enable me to realise my goal of becoming a teacher. I have also volunteered with an after school club that my child goes to.',
-      items: []
-    },
-    schoolExperience: [
-      {
-        "role": "Peer support",
-        "org": "Bradshaw mental health charity",
-        "workedWithChildren": "No",
-        "startDate": "2017-08-01T23:14:28.205Z",
-        "endDate": "2018-08-09T05:13:38.382Z",
-        "timeCommitment": "1 evening a week"
-      }
-
-    ]
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Deferred',
-    cycle: CycleHelper.PREVIOUS_CYCLE.code,
-    personalDetails: {
-      givenName: 'Eloise',
-      familyName: 'Wells',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Deferred',
-    deferredOfferUnavailable: {
-      location: true
-    },
-    cycle: CycleHelper.PREVIOUS_CYCLE.code,
-    personalDetails: {
-      givenName: 'Becky',
-      familyName: 'Brother',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Deferred',
-    deferredOfferUnavailable: {
-      course: true
-    },
-    cycle: CycleHelper.PREVIOUS_CYCLE.code,
-    personalDetails: {
-      givenName: 'Laura',
-      familyName: 'Say',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Interviewing',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 35 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'James',
-      familyName: 'Sully',
-      sex: 'Male'
-    },
-    interviews: {
-      items: [{
-        id: faker.datatype.uuid(),
-        date: past,
-        details: "Some details of the interview go here"
-      }]
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   submittedDate: SystemHelper.now().minus({ days: 37 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-  //   personalDetails: {
-  //     givenName: 'Umar',
-  //     familyName: 'Smith',
-  //     sex: 'Male'
-  //   }
-  // }))
-
-  var organisation = organisations[0]
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Rejected',
-  //   cycle: '2019 to 2020',
-  //   submittedDate: SystemHelper.now().minus({ days: 1 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-  //   organisation: organisation,
-  //   givenName: 'Emma',
-  //   familyName: 'Hayes',
-  //   personalDetails: {
-  //     givenName: 'Emma',
-  //     familyName: 'Hayes',
-  //     sex: 'Female'
-  //   }
-  // }))
-
-  applications.push(generateFakeApplication({
-    status: 'Offered',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 19 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Sally',
-      familyName: 'Harvey',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Offered',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 18 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Rachael',
-      familyName: 'Wayne',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Offered',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Louise',
-      familyName: 'Jenkins',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Conditions pending',
-    cycle: CycleHelper.PREVIOUS_CYCLE.code,
-    personalDetails: {
-      givenName: 'Trent',
-      familyName: 'Skipp',
-      sex: 'Male'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Conditions pending',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Ed',
-      familyName: 'Lloyd',
-      sex: 'Male'
-    }
-  }))
-
- applications.push(generateFakeApplication({
-    status: 'Conditions pending',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Audree',
-      familyName: 'Bowen',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Recruited',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 60 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Bill',
-      familyName: 'Jones',
-      sex: 'Male'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Recruited',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 70 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Amy',
-      familyName: 'Black',
-      sex: 'Female'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Recruited',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 65 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      givenName: 'Tony',
-      familyName: 'Stark',
-      sex: 'Male'
-    }
-  }))
-
-  // ---------------------------------------------------------------------------
-  // International candidates
-  // ---------------------------------------------------------------------------
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Pip',
-      familyName: 'Love',
-      sex: 'Female',
-      dateOfBirth: '1998-01-25',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU settled status',
-      dateEnteredUK: '2015-10-26'
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Te Kura',
-  //     familyName: 'Ngata-Aerengamate',
-  //     sex: 'Female',
-  //     dateOfBirth: '1986-04-08',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     lengthOfStay: '',
-  //     rightToWorkStudy: 'Yes',
-  //     immigrationStatus: 'EU settled status',
-  //     dateEnteredUK: '2008-03-26'
-  //   }
-  // }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Aleisha',
-      familyName: 'Pearl-Nelson',
-      sex: 'Female',
-      dateOfBirth: '1995-05-18',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU settled status',
-      dateEnteredUK: '2016-06-29'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Eloise',
-      familyName: 'Blackwell',
-      sex: 'Female',
-      dateOfBirth: '1987-06-10',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU settled status',
-      dateEnteredUK: '2014-10-21'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Kelsie',
-      familyName: 'Wills',
-      sex: 'Female',
-      dateOfBirth: '1992-08-21',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU settled status',
-      dateEnteredUK: '2008-10-12'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Alana',
-      familyName: 'Bremner',
-      sex: 'Female',
-      dateOfBirth: '1989-11-21',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2019-12-07'
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Les',
-  //     familyName: 'Elder',
-  //     sex: 'Female',
-  //     dateOfBirth: '1976-04-09',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     lengthOfStay: '',
-  //     rightToWorkStudy: 'Yes',
-  //     immigrationStatus: 'EU pre-settled status',
-  //     dateEnteredUK: '2020-07-12'
-  //   }
-  // }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Dhys',
-      familyName: 'Faleafaga',
-      sex: 'Female',
-      dateOfBirth: '1998-07-26',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Kendra',
-  //     familyName: 'Cocksedge',
-  //     sex: 'Female',
-  //     dateOfBirth: '1989-05-31',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     lengthOfStay: '',
-  //     rightToWorkStudy: 'Yes',
-  //     immigrationStatus: 'Other',
-  //     immigrationStatusDetails: 'I have a family visa',
-  //     dateEnteredUK: '2010-10-05'
-  //   }
-  // }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Ruahei',
-      familyName: 'Demant',
-      sex: 'Female',
-      dateOfBirth: '1993-08-12',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      immigrationStatus: '',
-      immigrationStatusDetails: '',
-      dateEnteredUK: ''
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Ayesha',
-      familyName: 'Leti-I’iga',
-      sex: 'Female',
-      dateOfBirth: '2000-11-01',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      immigrationStatus: '',
-      immigrationStatusDetails: '',
-      dateEnteredUK: ''
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Chelsea',
-      familyName: 'Alley',
-      sex: 'Female',
-      dateOfBirth: '2000-01-03',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      lengthOfStay: '',
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'A visa sponsored by a course provider',
-      immigrationStatus: '',
-      immigrationStatusDetails: '',
-      dateEnteredUK: ''
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Stacey',
-  //     familyName: 'Fluhler',
-  //     sex: 'Female',
-  //     dateOfBirth: '1981-01-25',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     lengthOfStay: '',
-  //     rightToWorkStudy: 'Not yet',
-  //     rightToWorkStudyHow: 'A visa sponsored by a course provider',
-  //     immigrationStatus: '',
-  //     immigrationStatusDetails: '',
-  //     dateEnteredUK: ''
-  //   }
-  // }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Renee',
-  //     familyName: 'Wickliffe',
-  //     sex: 'Female',
-  //     dateOfBirth: '1994-05-24',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     lengthOfStay: '',
-  //     rightToWorkStudy: 'Not yet',
-  //     rightToWorkStudyHow: 'Another route',
-  //     rightToWorkStudyHowDetails: 'I’m applying for a permanent residence card',
-  //     immigrationStatus: '',
-  //     immigrationStatusDetails: '',
-  //     dateEnteredUK: ''
-  //   }
-  // }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Renee',
-  //     familyName: 'Holmes',
-  //     sex: 'Female',
-  //     dateOfBirth: '1999-05-25',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     lengthOfStay: '',
-  //     rightToWorkStudy: 'Not yet',
-  //     rightToWorkStudyHow: 'Another route',
-  //     rightToWorkStudyHowDetails: 'I’m applying for a visa',
-  //     immigrationStatus: '',
-  //     immigrationStatusDetails: '',
-  //     dateEnteredUK: ''
-  //   }
-  // }))
-
-  // ---------------------------------------------------------------------------
-  // Qualifications
-  // ---------------------------------------------------------------------------
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Audrey',
-      familyName: 'Abadie',
-      sex: 'Female',
-      dateOfBirth: '1998-01-25',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
     subject: [
       {
-        code: '00',
-        name: 'Primary'
+        "code": "V1",
+        "name": "History"
       }
     ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational Psychology',
-        startYear: 2016,
-        graduationYear: 2019,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 18
-          }
-        ],
-        year: 2014
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE grades A*-C/9-4'
-        },
-        grade: [
-          {
-            grade: 20
-          }
-        ],
-        year: 2014
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Yes',
-      type: 'IELTS',
-      grade: 7.5,
-      gradeLabel: 'Overall band score',
-      reference: '02GB0674SOOM599A',
-      referenceLabel: 'Test report form (TRF) number',
-      year: 2020
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
-      givenName: 'Julie',
-      familyName: 'Annery',
+      givenName: 'Jennifer',
+      familyName: 'Dyer',
       sex: 'Female',
-      dateOfBirth: '1986-04-08',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational Psychology',
-        startYear: 2004,
-        graduationYear: 2006,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 18
-          }
-        ],
-        year: 2002
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a maths equivalency test'
-        }
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Yes',
-      type: 'IELTS',
-      grade: 7.5,
-      gradeLabel: 'Overall band score',
-      reference: '02GB0674SOOM599A',
-      referenceLabel: 'Test report form (TRF) number',
-      year: 2009
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Lise',
-      familyName: 'Arricastre',
-      sex: 'Female',
-      dateOfBirth: '1995-05-18',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational Psychology',
-        startYear: 2013,
-        graduationYear: 2015,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take an English equivalency test'
-        }
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE grades A*-C/9-4'
-        },
-        grade: [
-          {
-            grade: 20
-          }
-        ],
-        year: 2011
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Yes',
-      type: 'IELTS',
-      grade: 7.5,
-      gradeLabel: 'Overall band score',
-      reference: '02GB0674SOOM599A',
-      referenceLabel: 'Test report form (TRF) number',
-      year: 2015
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Cyrielle',
-      familyName: 'Banet',
-      sex: 'Female',
-      dateOfBirth: '1987-06-10',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational Psychology',
-        startYear: 2006,
-        graduationYear: 2008,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take an English equivalency test'
-        }
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a maths equivalency test'
-        }
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Yes',
-      type: 'TOEFL',
-      grade: 92,
-      gradeLabel: 'Total score',
-      reference: '0000 0000 2500 2147',
-      referenceLabel: 'TOEFL registration number',
-      year: 2014
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Clara',
-  //     familyName: 'Joyeaux',
-  //     sex: 'Female',
-  //     dateOfBirth: '1998-07-26',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     rightToWorkStudy: 'Yes',
-  //     immigrationStatus: 'EU pre-settled status',
-  //     dateEnteredUK: '2020-01-04'
-  //   },
-  //   studyMode: 'Full time',
-  //   fundingType: 'Fee paying',
-  //   subject: [
-  //     {
-  //       code: 'W1',
-  //       name: 'Art and design'
-  //     }
-  //   ],
-  //   subjectLevel: 'Secondary',
-  //   course: 'Art and design (1NBJ)',
-  //   degree: [
-  //     {
-  //       subject: 'History of Art',
-  //       startYear: 2016,
-  //       graduationYear: 2019,
-  //       predicted: false,
-  //       type: 'Diplôme',
-  //       institution: 'University of Paris',
-  //       country: 'France',
-  //       grade: 'Pass',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'Bachelor (Honours) degree'
-  //       }
-  //     }
-  //   ],
-  //   gcse: {
-  //     english: {
-  //       hasQualification: 'Yes',
-  //       type: 'Baccalauréat Général',
-  //       subject: 'English',
-  //       country: 'France',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'GCSE (grades A*-C / 9-4)'
-  //       },
-  //       grade: [
-  //         {
-  //           grade: 18
-  //         }
-  //       ],
-  //       year: 2014
-  //     },
-  //     maths: {
-  //       hasQualification: 'Yes',
-  //       type: 'Baccalauréat Général',
-  //       subject: 'Maths',
-  //       country: 'France',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'GCSE (grades A*-C / 9-4)'
-  //       },
-  //       grade: [
-  //         {
-  //           grade: 20
-  //         }
-  //       ],
-  //       year: 2014
-  //     },
-  //     science: {
-  //       hasQualification: 'Yes',
-  //       type: 'Baccalauréat Général',
-  //       subject: 'Science',
-  //       country: 'France',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'GCSE (grades A*-C / 9-4)'
-  //       },
-  //       grade: [
-  //         {
-  //           grade: 13
-  //         }
-  //       ],
-  //       year: 2014
-  //     }
-  //   },
-  //   englishLanguageQualification: {
-  //     hasQualification: 'Yes',
-  //     status: 'Yes',
-  //     type: 'Other',
-  //     grade: 'B',
-  //     gradeLabel: 'Score or grade',
-  //     reference: 'Pearson Test of English (Academic)',
-  //     referenceLabel: 'Assessment name',
-  //     year: 2021
-  //   }
-  // }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Gaelle',
-      familyName: 'Hermet',
-      sex: 'Female',
-      dateOfBirth: '1989-05-31',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2007,
-        graduationYear: 2009,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 18
-          }
-        ],
-        year: 2005
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a maths equivalency test'
-        }
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Science',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 13
-          }
-        ],
-        year: 2005
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Yes',
-      type: 'Other',
-      grade: 'B',
-      gradeLabel: 'Score or grade',
-      reference: 'Pearson Test of English (Academic)',
-      referenceLabel: 'Assessment name',
-      year: 2020
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Morgane',
-      familyName: 'Peyronnet',
-      sex: 'Female',
-      dateOfBirth: '1993-08-12',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2012,
-        graduationYear: 2014,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'English',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 18
-          }
-        ],
-        year: 2011
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'No',
-          otherReason: 'I applied to NARIC for the equivalent'
-        }
-      },
-      science: {
-        hasQualification: 'No',
-        subject: 'Science',
-        missing: {
-          hasQualification: 'I don’t have a science qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a science equivalency test'
-        }
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Not needed',
-      status: 'No, English is not a foreign language to me'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Elise',
-      familyName: 'Pignot',
-      sex: 'Female',
-      dateOfBirth: '2000-11-01',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2019,
-        graduationYear: 2022,
-        predicted: true,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take an English equivalency test'
-        }
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Maths',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE grades A*-C/9-4'
-        },
-        grade: [
-          {
-            grade: 20
-          }
-        ],
-        year: 2017
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Science',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 13
-          }
-        ],
-        year: 2017
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'No',
-      status: 'No, I have not done an English as a foreign language assessment',
-      reason: 'I will take a Pearson English test'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Yanna',
-      familyName: 'Rivoalen',
-      sex: 'Female',
-      dateOfBirth: '2000-01-03',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 2018,
-        graduationYear: 2020,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'No',
-          otherReason: 'I applied to NARIC for the equivalent'
-        }
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'No',
-          otherReason: 'I applied to NARIC for the equivalent'
-        }
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'Baccalauréat Général',
-        subject: 'Science',
-        country: 'France',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
-        },
-        grade: [
-          {
-            grade: 13
-          }
-        ],
-        year: 2016
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'No',
-      status: 'No, I have not done an English as a foreign language assessment',
-      reason: 'I will take a Pearson English test'
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Laure',
-      familyName: 'Sansus',
-      sex: 'Female',
-      dateOfBirth: '1981-01-25',
-      nationalities: [
-        'French'
-      ],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Yes',
-      immigrationStatus: 'EU pre-settled status',
-      dateEnteredUK: '2020-01-04'
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
-    degree: [
-      {
-        subject: 'History of Art',
-        startYear: 1999,
-        graduationYear: 2002,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      },
-      {
-        subject: 'Sports coaching',
-        startYear: 2005,
-        graduationYear: 2008,
-        predicted: true,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take an English equivalency test'
-        }
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a maths equivalency test'
-        }
-      },
-      science: {
-        hasQualification: 'No',
-        subject: 'Science',
-        missing: {
-          hasQualification: 'I don’t have a science qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a science equivalency test'
-        }
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'No',
-      status: 'No, I have not done an English as a foreign language assessment',
-      reason: 'I will take a Pearson English test'
-    }
-  }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Agathe',
-  //     familyName: 'Sochat',
-  //     sex: 'Female',
-  //     dateOfBirth: '1994-05-24',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     rightToWorkStudy: 'Yes',
-  //     immigrationStatus: 'EU pre-settled status',
-  //     dateEnteredUK: '2020-01-04'
-  //   },
-  //   studyMode: 'Full time',
-  //   fundingType: 'Fee paying',
-  //   subject: [
-  //     {
-  //       code: 'W1',
-  //       name: 'Art and design'
-  //     }
-  //   ],
-  //   subjectLevel: 'Secondary',
-  //   course: 'Art and design (1NBJ)',
-  //   degree: [
-  //     {
-  //       subject: 'History of Art',
-  //       startYear: 2012,
-  //       graduationYear: 2015,
-  //       predicted: false,
-  //       type: 'Diplôme',
-  //       institution: 'University of Paris',
-  //       country: 'France',
-  //       grade: 'Pass',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'Bachelor (Honours) degree'
-  //       }
-  //     },
-  //     {
-  //       subject: 'Sports coaching',
-  //       startYear: 2020,
-  //       graduationYear: 2023,
-  //       predicted: true,
-  //       type: 'Diplôme',
-  //       institution: 'University of Paris',
-  //       country: 'France',
-  //       grade: 'Pass',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'Bachelor (Honours) degree'
-  //       }
-  //     }
-  //   ],
-  //   gcse: {
-  //     english: {
-  //       hasQualification: 'No',
-  //       subject: 'English',
-  //       missing: {
-  //         hasQualification: 'I don’t have an English qualification yet',
-  //         isStudying: 'No',
-  //         otherReason: 'I applied to NARIC for the equivalent'
-  //       }
-  //     },
-  //     maths: {
-  //       hasQualification: 'Yes',
-  //       type: 'Baccalauréat Général',
-  //       subject: 'Maths',
-  //       country: 'France',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'GCSE grades A*-C/9-4'
-  //       },
-  //       grade: [
-  //         {
-  //           grade: 20
-  //         }
-  //       ],
-  //       year: 2010
-  //     },
-  //     science: {
-  //       hasQualification: 'No',
-  //       subject: 'Science',
-  //       missing: {
-  //         hasQualification: 'I don’t have a science qualification yet',
-  //         isStudying: 'No',
-  //         otherReason: 'Not entered'
-  //       }
-  //     }
-  //   },
-  //   englishLanguageQualification: {
-  //     hasQualification: 'Not needed',
-  //     status: 'No, English is not a foreign language to me'
-  //   }
-  // }))
-
-  // applications.push(generateFakeApplication({
-  //   status: 'Received',
-  //   cycle: CycleHelper.CURRENT_CYCLE.code,
-  //   personalDetails: {
-  //     givenName: 'Dhia',
-  //     familyName: 'Traore',
-  //     sex: 'Female',
-  //     dateOfBirth: '1997-05-25',
-  //     nationalities: [
-  //       'French'
-  //     ],
-  //     isInternationalCandidate: true,
-  //     rightToWorkStudy: 'Yes',
-  //     immigrationStatus: 'EU pre-settled status',
-  //     dateEnteredUK: '2020-01-04'
-  //   },
-  //   studyMode: 'Full time',
-  //   fundingType: 'Fee paying',
-  //   subject: [
-  //     {
-  //       code: 'W1',
-  //       name: 'Art and design'
-  //     }
-  //   ],
-  //   subjectLevel: 'Secondary',
-  //   course: 'Art and design (1NBJ)',
-  //   degree: [
-  //     {
-  //       subject: 'History of Art',
-  //       startYear: 2015,
-  //       graduationYear: 2018,
-  //       predicted: false,
-  //       type: 'Diplôme',
-  //       institution: 'University of Paris',
-  //       country: 'France',
-  //       grade: 'Pass',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'Bachelor (Honours) degree'
-  //       }
-  //     },
-  //     {
-  //       subject: 'Sports coaching',
-  //       startYear: 2019,
-  //       graduationYear: 2022,
-  //       predicted: true,
-  //       type: 'Diplôme',
-  //       institution: 'University of Paris',
-  //       country: 'France',
-  //       grade: 'Pass',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'Bachelor (Honours) degree'
-  //       }
-  //     }
-  //   ],
-  //   gcse: {
-  //     english: {
-  //       hasQualification: 'Yes',
-  //       type: 'Baccalauréat Général',
-  //       subject: 'English',
-  //       country: 'France',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'GCSE (grades A*-C / 9-4)'
-  //       },
-  //       grade: [
-  //         {
-  //           grade: 18
-  //         }
-  //       ],
-  //       year: 2013
-  //     },
-  //     maths: {
-  //       hasQualification: 'Yes',
-  //       type: 'Baccalauréat Général',
-  //       subject: 'Maths',
-  //       country: 'France',
-  //       naric: {
-  //         reference: '4000228363',
-  //         comparable: 'GCSE grades A*-C/9-4'
-  //       },
-  //       grade: [
-  //         {
-  //           grade: 20
-  //         }
-  //       ],
-  //       year: 2013
-  //     },
-  //     science: {
-  //       hasQualification: 'No',
-  //       subject: 'Science',
-  //       missing: {
-  //         hasQualification: 'I don’t have a science qualification yet',
-  //         isStudying: 'Yes',
-  //         studyingDetails: 'I am planning to take a science equivalency test'
-  //       }
-  //     }
-  //   },
-  //   englishLanguageQualification: {
-  //     hasQualification: 'Not needed',
-  //     status: 'No, English is not a foreign language to me'
-  //   }
-  // }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Axelle',
-      familyName: 'Berthoumieu',
-      sex: 'Female',
-      dateOfBirth: '1992-08-21',
-      nationalities: [
-        'British',
-        'French'
-      ],
-      isInternationalCandidate: false,
-      lengthOfStay: 'Yes',
-      rightToWorkStudy: '',
-      immigrationStatus: '',
-      dateEnteredUK: ''
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational Psychology',
-        startYear: 2010,
-        graduationYear: 2012,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'AA'
-          }
-        ],
-        year: 2008
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Maths',
-        country: 'United Kingdom',
-        grade: [
-          {
-            grade: 'A'
-          }
-        ],
-        year: 2008
-      }
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Coralie',
-      familyName: 'Bertrand',
-      sex: 'Female',
-      dateOfBirth: '1989-11-21',
+      dateOfBirth: '1996-01-03',
       nationalities: [
         'British'
       ],
-      isInternationalCandidate: false,
-      lengthOfStay: 'Yes',
-      rightToWorkStudy: '',
-      immigrationStatus: '',
-      dateEnteredUK: ''
+      isInternationalCandidate: false
     },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: 'W1',
-        name: 'Art and design'
-      }
-    ],
-    subjectLevel: 'Secondary',
-    course: 'Art and design (1NBJ)',
+    "submittedDate": "2022-06-01T14:50:44.481+01:00",
+    "interviews": {
+      "items": [
+        {
+          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
+          "details": "As discussed by phone, please attend an interview with our panel.",
+          "location": "100 School Drive, Birmingham, BR1 4SQ",
+          "organisation": user.organisation.name,
+          "date": "2022-06-16T10:00:00"
+        }
+      ]
+    },
     degree: [
       {
-        subject: 'Art and Design',
-        startYear: 2007,
-        graduationYear: 2010,
+        type: 'BA',
+        subject: 'History',
+        institution: 'University of Central Lancashire',
+        country: 'United Kingdom',
+        grade: '2:1',
         predicted: false,
-        level: 6,
-        grade: 'First-class honours',
-        type: 'BA - Art and Design',
-        institution: 'Loughborough College of Art and Design',
-        country: 'United Kingdom'
+        startYear: '2015',
+        graduationYear: '2018'
       }
     ],
     gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'CC'
-          }
-        ],
-        year: 2005
-      },
       maths: {
         hasQualification: 'Yes',
         type: 'GCSE',
@@ -2264,141 +304,8 @@ const generateFakeApplications = () => {
             grade: 'B'
           }
         ],
-        year: 2005
+        year: 2012
       },
-      science: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Science',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'Double award',
-            grade: 'BC'
-          }
-        ],
-        year: 2005
-      }
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Madoussou',
-      familyName: 'Fall',
-      sex: 'Female',
-      dateOfBirth: '1976-04-09',
-      nationalities: [
-        'British',
-        'French'
-      ],
-      isInternationalCandidate: false,
-      lengthOfStay: 'Yes',
-      rightToWorkStudy: '',
-      immigrationStatus: '',
-      dateEnteredUK: ''
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational Psychology',
-        startYear: 1994,
-        graduationYear: 1997,
-        predicted: false,
-        type: 'Diplôme',
-        institution: 'University of Paris',
-        country: 'France',
-        grade: 'Pass',
-        naric: {
-          reference: '4000228363',
-          comparable: 'Bachelor (Honours) degree'
-        }
-      }
-    ],
-    gcse: {
-      english: {
-        hasQualification: 'No',
-        subject: 'English',
-        missing: {
-          hasQualification: 'I don’t have an English qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take an English equivalency test'
-        }
-      },
-      maths: {
-        hasQualification: 'No',
-        subject: 'Maths',
-        missing: {
-          hasQualification: 'I don’t have an maths qualification yet',
-          isStudying: 'Yes',
-          studyingDetails: 'I am planning to take a maths equivalency test'
-        }
-      }
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Connie',
-      familyName: 'Allen',
-      sex: 'Female',
-      dateOfBirth: '1992-08-21',
-      nationalities: [
-        'British',
-        'French'
-      ],
-      isInternationalCandidate: false,
-      lengthOfStay: 'Yes',
-      rightToWorkStudy: '',
-      immigrationStatus: '',
-      dateEnteredUK: ''
-    },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
-    degree: [
-      {
-        subject: 'Educational psychology',
-        startYear: 2010,
-        graduationYear: 2013,
-        predicted: false,
-        type: 'BSc - Bachelor of Science',
-        institution: 'University College London',
-        country: 'United Kingdom',
-        grade: 'Upper second-class honours (2:1)'
-      },
-      {
-        subject: 'Child psychology',
-        startYear: 2014,
-        graduationYear: 2015,
-        predicted: false,
-        type: 'MSc - Master of Science',
-        institution: 'King’s College London',
-        country: 'United Kingdom',
-        grade: 'Distinction'
-      }
-    ],
-    gcse: {
       english: {
         hasQualification: 'Yes',
         type: 'GCSE',
@@ -2407,102 +314,126 @@ const generateFakeApplications = () => {
         grade: [
           {
             exam: 'English',
-            grade: 'AA'
-          }
-        ],
-        year: 2008
-      },
-      maths: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Maths',
-        country: 'United Kingdom',
-        grade: [
-          {
             grade: 'A'
           }
         ],
-        year: 2008
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Science',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'Double award',
-            grade: 'AA'
-          }
-        ],
-        year: 2008
+        year: 2012
       }
-    }
+    },
+    otherQualifications: null,
+    references: {},
+    schoolExperience: [
+    ],
+    notes: {
+      items: [
+      ]
+    },
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Bar staff',
+          org: 'Berney Arms',
+          type: 'Part time',
+          relevantToTeaching: 'No',
+          startDate: '2018-07-14',
+          endDate: '2018-12-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Gallery attendant',
+          org: 'Lancashire Museum',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2019-01-14',
+          endDate: '2019-06-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Family workshop leader',
+          org: 'Lancashire Museum',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2019-07-14',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        }
+      ]
+    },
+    safeguarding: {
+      response: false
+    },
+    interviewNeeds: {
+      response: false
+    },
+    disability: {
+      response: false
+    },
+    personalStatement: {
+      vocation: "The influence teachers have on young people cannot be understated. My memories of being a student are a testament to that, as my decision to become a teacher has been directly influenced by the positive experiences I had at secondary school.\n\nI feel I have the potential to inspire young people to reach their full potential, just as my teachers motivated me. I am passionate about supporting children to live a happy and healthy life, as well as helping them to develop the skills they need.\n\nWorking at a museum I’ve discovered that I’m able to listen and communicate well with children. I love to see the confidence a child can gain when they feel comfortable and secure.\n\nI have also recently completed a Level 1 in British Sign Language with the support of the museum where I work. This has helped broaden my communication skills as well as highlighting to me the importance of inclusion in education. This is something I hope to explore further when I train to become a teacher.",
+      subjectKnowledge: "My current role as a family workshop leader has strengthened my passion to become a teacher. I have gained experience supporting the teaching of the National Curriculum for history, as well as helping students to get the best out of their time at the museum.\n\nOur summer workshops have been particularly rewarding, as students attend daily for a week and I’ve been able to see them develop their confidence from start to finish.\n\nI feel that my current employment has also given me a range of transferable skills. I currently provide training to new members of staff and have also been asked to update existing members of the team on changes to policies and procedures. Therefore I have to ensure that I am adaptable in my approach as I am aware that people all learn differently."
+    },
   }))
 
+
+  // TODO:
+  // * applying for English course
+  // * personal statement
   applications.push(generateFakeApplication({
-    status: 'Received',
+    id: '736583',
+    status: 'Conditions pending',
+    course: 'English (E15P)',
+    courseCode: 'E15P',
+    studyMode: 'Full time',
+    assignedUsers: [],
+    subject: [
+      {
+        "code": "13",
+        "name": "English"
+      }
+    ],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
-      givenName: 'Ronnie',
-      familyName: 'Riley',
-      sex: 'Male',
-      dateOfBirth: '1992-08-21',
+      givenName: 'Sandra',
+      familyName: 'Smith',
+      sex: 'Female',
+      dateOfBirth: '1995-04-15',
       nationalities: [
         'British'
       ],
-      isInternationalCandidate: false,
-      lengthOfStay: 'Yes',
-      rightToWorkStudy: '',
-      immigrationStatus: '',
-      dateEnteredUK: ''
+      isInternationalCandidate: false
     },
-    studyMode: 'Full time',
-    fundingType: 'Fee paying',
-    subject: [
-      {
-        code: '00',
-        name: 'Primary'
-      }
-    ],
-    subjectLevel: 'Primary',
-    course: 'Primary (5 to 11) (C1AH)',
+    "submittedDate": "2022-06-01T14:50:44.481+01:00",
+    "interviews": {
+      "items": [
+        {
+          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
+          "details": "As discussed by phone, please attend an interview with our panel.",
+          "location": "100 School Drive, Birmingham, BR1 4SQ",
+          "organisation": user.organisation.name,
+          "date": "2022-06-16T11:00:00"
+        }
+      ]
+    },
     degree: [
       {
-        subject: 'Educational psychology',
-        startYear: 2010,
-        graduationYear: 2013,
-        predicted: false,
-        type: 'BSc - Bachelor of Science',
-        institution: 'University College London',
+        type: 'BA',
+        subject: 'English and Journalism',
+        institution: 'University of Birmingham',
         country: 'United Kingdom',
-        grade: 'Upper second-class honours (2:1)'
-      },
-      {
-        subject: 'Child psychology',
-        startYear: 2014,
-        graduationYear: 2015,
+        grade: '2:1',
         predicted: false,
-        type: 'MSc - Master of Science',
-        institution: 'King’s College London',
-        country: 'United Kingdom',
-        grade: 'Distinction'
+        startYear: '2014',
+        graduationYear: '2017'
       }
     ],
     gcse: {
-      english: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'CD'
-          }
-        ],
-        year: 2008
-      },
       maths: {
         hasQualification: 'Yes',
         type: 'GCSE',
@@ -2510,311 +441,349 @@ const generateFakeApplications = () => {
         country: 'United Kingdom',
         grade: [
           {
-            grade: 'D'
+            grade: 'B'
           }
         ],
-        year: 2008
+        year: 2011
       },
-      science: {
+      english: {
         hasQualification: 'Yes',
         type: 'GCSE',
-        subject: 'Science',
+        subject: 'English',
         country: 'United Kingdom',
         grade: [
           {
-            exam: 'Double award',
-            grade: 'DD'
+            exam: 'English language',
+            grade: 'A'
+          },
+          {
+            exam: 'English literature',
+            grade: 'A'
           }
         ],
-        year: 2008
+        year: 2011
       }
-    }
+    },
+    otherQualifications: null,
+    "references": {
+      "first": {
+        "type": "School based",
+        "name": "Madie Olson",
+        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
+        "tel": "0500 471823",
+        "relationship": {
+          "summary": "SENCO lead at Birmingham High School where I’ve been working as a Teaching Assistant since 2017.",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "Sandra joined our school in September 2017 as a teaching assistant. In the first year, she was assigned to assist one student who has complex medical needs. \n\nAs a result of his illness, this student missed a lot of classes and needed support to catch up. Sandra forged a good relationship with this student and completed training to make sure she could support his healthcare needs. \n\nSandra showed that she was able to provide support in subjects across the curriculum up to GCSE. This year, she has widened her role to include supporting other students with a variety of SEND needs such as learning difficulties and ADHD. \n\nShe works well with teaching staff to ensure that the curriculum is accessible for the students. She is able to give constructive written feedback on learner progress to inform review paperwork and he has attended meetings with parents, learners and professionals. \n\nSandra has also supported students on school trips and coached them during sports sessions. During the pandemic, she kept in regular contact with students and their parents. She was able to give subject advice as well as helping with the use of software. \n\nHaving familiarised herself with the demands of working within a secondary school, Sandra now wants to take the next step and train to become a teacher. I feel she has more than enough experience to do so."
+      },
+      "second": {
+        "type": "Academic",
+        "name": "Stephon Lesch",
+        "email": "stephon66@birmingham.ac.uk",
+        "tel": "0915 358 2730",
+        "relationship": {
+          "summary": "Personal tutor at University.",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "I can confirm that Sandra performed very well in her studies. I have high hopes for the continued development of her career and think she would be well suited for further academic or professional studies, including a vocation such as teaching.\n\nSandra received praise from several tutors during her undergraduate career and was one of the strongest students in her peer group. Her tutors reported that she had a clear and strong motivation to do well in her chosen career. She also had ample experience of the work environment, including the world of journalism.\n\nIn the classes which I taught, Sandra was been attentive, well-read and very well prepared. She always performed the required reading before seminars and participated with strongly reasoned arguments. She was also able to express herself with great passion and clarity, which are useful attributes for teaching. \n\nThis clarity of expression was also reflected in good coursework marks, indicating a strong level of analytical ability based on sound research skills.\n\nI do not know of any reason why Sandra would not make an excellent teacher. I have no doubts about her honesty or integrity or any of the other personal qualities required when working with children. I would strongly recommend her as a candidate."
+      }
+    },
+    schoolExperience: [
+    ],
+    notes: {
+      items: [
+      ]
+    },
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Sales assistant',
+          org: 'Birmingham Superstore',
+          type: 'Part time',
+          relevantToTeaching: 'No',
+          startDate: '2017-07-14',
+          endDate: '2017-08-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Teaching assistant',
+          org: 'Birmingham High School',
+          type: 'Full time',
+          relevantToTeaching: 'Yes',
+          startDate: '2017-09-14',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        }
+      ]
+    },
+    safeguarding: {
+      response: false
+    },
+    interviewNeeds: {
+      response: false
+    },
+    disability: {
+      response: false
+    },
+    personalStatement: {
+      vocation: "My desire to teach stems from an appreciation of the impact that teachers have on the lives of students both inside and outside the classroom.\n\nOver the past few years, my position as a teaching assistant at Birmingham High School has given me the essential experience of being in a classroom and seeing the interactions between teachers and students. It has also made me aware of the demands of teaching. I realise that the classroom can be a high-pressure environment where things move quickly due to time constraints.\n\nAs a teaching assistant, most of my work involves supporting students who have special educational needs and disabilities. Working with these students has been extremely rewarding, particularly when I see them make progress.\n\nLooking further back, my degree in English and Journalism played a large role in developing my organisational skills, vocabulary and understanding of English grammar. This gives me a foundation to further enhance my skills by training to become a teacher.\n\nPerhaps unexpectedly, my job as a sales assistant also informed my decision to teach. It was a role in which good communication was essential, as I spent most of my time talking to customers. This taught me the significance of speaking in a clear and professional way, a skill which I would expect to need in the classroom.\n\nI would take great pleasure in training to become a teacher. Having worked with young people for the last few years, my decision to get into the profession was straightforward because I value the sense of achievement I feel when I see the impact I have on a student. I believe that my qualities would make me an effective teacher.",
+      subjectKnowledge: "I have been passionate about the study of English for as long as I can remember. From as early as year 6 it was my aim to go to university to study English. Now I’m driven by the idea that I could go back to school as a teacher and teach my favourite subject.\n\nMy passion began due to the time I spent with my own teachers, who taught me skills which I have used in every facet of my life. I feel that a secondary school environment is the perfect place for me to help shape the minds of young people.\n\nMy undergraduate degree in English and Journalism as well as my A level in English Language would of course by the foundation of my ability to teach English in a secondary school. My degree in particular equipped me with a broad knowledge of English language and literature. I was required to produce creative writing pieces throughout the course, as well as analyse literature for assignments.\n\nHaving worked as a teaching assistant for two years and assisted in English lessons, I am positive that secondary education is where I would be most effective. I have learned valuable skills such as different teaching strategies, behaviour management and lesson planning. I have also had experience of communicating in a professional manner with both students and parents.\n\nTeaching is a challenging profession but I believe that it will also be rewarding. Teaching at secondary level will let me continue to work with the age group I already have experience with. This will in turn allow me to hone my skills in order to give them the best possible chance to succeed."
+    },
+    "offer": {
+      "provider": "Birmingham SCITT",
+      "course": "English (E15P)",
+      "courseCode": "E15P",
+      "location": {
+        "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
+        "name": "Main site",
+        "address": {
+          "address1": "123 Main Street",
+          "town": "Birmingham",
+          "postcode": "BR4 2CD"
+        },
+        "organisation": {
+          "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
+          "name": "Birmingham SCITT"
+        }
+      },
+      "studyMode": "Full time",
+      "accreditedBody": "Birmingham SCITT",
+      "fundingType": "Fee paying",
+      "qualifications": [
+        "QTS"
+      ],
+      "madeDate": "2022-06-13T14:50:44.481+01:00",
+      "acceptedDate": "2022-06-14T14:50:44.481+01:00",
+      "standardConditions": [
+        {
+          "id": "b6928343-d052-4fb0-8f95-3e2fc853fed3",
+          "description": "Fitness to train to teach check",
+          "status": "Met"
+        },
+        {
+          "id": "32960a3a-eb2f-4acf-8a9e-3dc89bfa4685",
+          "description": "Disclosure and Barring Service (DBS) check",
+          "status": "Met"
+        },
+        {
+          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
+          "description": "Two references",
+          "status": "Pending"
+        }
+      ],
+      "withdrawalDate": null,
+      "withdrawalReasons": null
+    },
   }))
 
-  // ---------------------------------------------------------------------------
-  // ---------------------------------------------------------------------------
-  // ---------------------------------------------------------------------------
 
   applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 33 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      isInternationalCandidate: true,
-      givenName: 'Tiago',
-      familyName: 'Pereyra',
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a visa',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
-    },
-    contactDetails: {
-      tel: '07700 900978',
-      email: faker.internet.email('Tiago', 'Pereyra').toLowerCase(),
-      address: {
-        line1: '161 Portland Road',
-        line2: '',
-        level2: 'Birmingham',
-        level1: 'West Midlands',
-        postalCode: 'B16 6AS'
+    id: '647592',
+    status: 'Conditions pending',
+    course: 'English (E15P)',
+    courseCode: 'E15P',
+    studyMode: 'Full time',
+    assignedUsers: [],
+    subject: [
+      {
+        "code": "13",
+        "name": "English"
       }
+    ],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    personalDetails: {
+      givenName: 'Andy',
+      familyName: 'Pascoe',
+      sex: 'Male',
+      dateOfBirth: '2000-12-03',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
     },
-    degree: [{
-      type: 'Licenciatura',
-      subject: 'History of Contemporary Art and Visual Culture',
-      institution: 'Complutense University of Madrid',
-      country: 'Spain',
-      grade: 'Pass',
-      startYear: '2004',
-      graduationYear: '2009'
-    }],
+    "submittedDate": "2022-06-01T14:50:44.481+01:00",
+    "interviews": {
+      "items": [
+      ]
+    },
+    degree: [
+      {
+        type: 'BA',
+        subject: 'English',
+        institution: 'University of Birmingham',
+        country: 'United Kingdom',
+        grade: '2:1',
+        predicted: true,
+        startYear: '2020',
+        graduationYear: null
+      }
+    ],
     gcse: {
       maths: {
-        missing: 'false',
-        type: 'Título de Bachiller',
+        hasQualification: 'Yes',
+        type: 'GCSE',
         subject: 'Maths',
-        country: 'Spain',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE grades A*-C/9-4'
-        },
-        grade: [{
-          grade: 8
-        }],
-        year: '2001'
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'B'
+          }
+        ],
+        year: 2011
       },
       english: {
-        missing: 'false',
-        type: 'Título de Bachiller',
+        hasQualification: 'Yes',
+        type: 'GCSE',
         subject: 'English',
-        country: 'Spain',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English language',
+            grade: 'A'
+          },
+          {
+            exam: 'English literature',
+            grade: 'A'
+          }
+        ],
+        year: 2011
+      }
+    },
+    otherQualifications: null,
+    "references": {
+      "first": {
+        "type": "Academic",
+        "name": "Jason Barker",
+        "email": "j.barker@birmingham.ac.uk",
+        "tel": "0500 471823",
+        "relationship": {
+          "summary": "They are my Personal academic tutor (PAT) at university I have known them since starting university in September 2020.",
+          "validated": true
         },
-        grade: [{
-          grade: 5
-        }],
-        year: '2001'
-      },
-      science: {
-        missing: 'false',
-        type: 'Título de Bachiller',
-        subject: 'Science',
-        country: 'Spain',
-        naric: {
-          reference: '4000228363',
-          comparable: 'GCSE (grades A*-C / 9-4)'
+        "safeguarding": {
+          "response": "no"
         },
-        grade: [{
-          grade: 7
-        }],
-        year: '2001'
+        "comments": "I cannot comment on whether Andy has the potential to teach. I have never met him face to face but we’ve been in contact extensively by email as part of the personal tutoring aspect of his programme. \n\nI can say he has fairly good communication skills and good academic skills overall. \n\nThere have been times where I have thought his professionalism could be improved. I’ve had doubts about his way of handling difficulties which have come up over the course of his degree, particularly in terms of his communication skills. Perhaps this is an area which he can work on further."
+      },
+      "second": {
+        "type": "Professional",
+        "name": "Julie Partridge",
+        "email": "julie912@gmail.com",
+        "tel": "07712 7649205",
+        "relationship": {
+          "summary": "I tutored her child in English. I’ve known her for one year",
+          "validated": true
+        },
+        "safeguarding": {
+          "response": "no"
+        },
+        "comments": "I have known Andy for a year. He tutored my 12 year old son in English. He was finding grammar in particular quite difficult but with Andy’s help he is now much more confident.\n\nAndy has always been reliable and shown great communication skills. There have never been any problems with organising dates and times to tutor my son. \n\nI’ve been impressed that Andy has always had clear lesson plans which he’s emailed to me in advance. This has helped to ensure both my son and I were aware of the area which would be taught. But Andy also always left room to amend the lesson if my son needed more attention in a specific area."
       }
     },
-    englishLanguageQualification: {
-      hasQualification: 'Yes',
-      status: 'Candidate has an English as a foreign language qualification',
-      type: 'IELTS',
-      grade: '5.5',
-      gradeLabel: 'Overall band score',
-      reference: '02GB0674SOOM599A',
-      referenceLabel: 'Test report form (TRF) number',
-      year: 2011
+    schoolExperience: [
+    ],
+    notes: {
+      items: [
+      ]
     },
-    otherQualifications: {
-      1: {
-        type: 'Título de Bachiller',
-        subject: 'Geography',
-        provenance: 'international',
-        country: 'Spain',
-        grade: '8',
-        year: '2001'
+    workHistory: {
+      answer: 'no',
+      items: [
+      ]
+    },
+    safeguarding: {
+      response: false
+    },
+    interviewNeeds: {
+      response: false
+    },
+    disability: {
+      response: false
+    },
+    personalStatement: {
+      vocation: "Without good teachers, truly talented individuals may never discover their talents and passions. I have always thought that a good teacher is one who inspires pupils to expand their way of thinking. \n\nI was fortunate to have teachers who did this for me. Now I want to do this for future generations of children. I know that the reward of seeing a pupil's progression will inspire me to always improve my skills.\n\nAlthough I don’t have much professional experience, I’ve volunteered numerous times to teach and be responsible for children. This included volunteering at a primary school after school club, which taught me that I enjoy the challenge of working with children. But it also made me realise that I would prefer to teach at secondary level.\n\nI have also worked with children ages 13 and up, when volunteering as a rugby coach. I found this extremely rewarding as well as challenging, and it required me to develop excellent communication skills and the ability to lead a group. \n\nIn my time at university, I’ve also learned the importance of having peers to read through your work and give their feedback. As a deeply empathetic person I would welcome the chance to help others improve themselves.\n\nI am looking forward to learning more about the current curriculum. I am also excited to meet other people doing their PGCEs so that I can learn more about the subject and myself.",
+      subjectKnowledge: "My English Literature degree makes me suited to teach English. It will allow me not only to teach the National Curriculum fundamentals but to also help students who wish to go further.\n\nI have a wealth of knowledge of both literature and literary theory. The area that I would most need to work on would be the English language aspect, but I do not expect this to be a problem. I enjoy all aspects of English so revisiting grammar will be a welcome change.\n\nI want to teach English because of my experience with the subject throughout my education. It has helped me to think for myself and expanded my vocabulary. It has also given me the chance to discover and explore new ideas. \n\nFollowing the aims of the National Curriculum for English, I believe it is essential that a student can communicate effectively in essays and discussions. I look forward to encouraging students to read more for both recreation and information. As always, I am keen to learn and develop ideas with students. I believe that everyone can further expand their knowledge, whether they’re a teacher or student."
+    },
+    "offer": {
+      "provider": "Birmingham SCITT",
+      "course": "English (E15P)",
+      "courseCode": "E15P",
+      "location": {
+        "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
+        "name": "Main site",
+        "address": {
+          "address1": "123 Main Street",
+          "town": "Some town",
+          "postcode": "AB1 2CD"
+        },
+        "organisation": {
+          "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
+          "name": "Birmingham SCITT"
+        }
       },
-      2: {
-        type: 'Título de Bachiller',
-        subject: 'History',
-        provenance: 'international',
-        country: 'Spain',
-        grade: '7',
-        year: '2001'
-      },
-      3: {
-        type: 'Título de Bachiller',
-        subject: 'Information Systems',
-        provenance: 'international',
-        country: 'Spain',
-        grade: '6',
-        year: '2001'
-      }
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 34 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      isInternationalCandidate: true,
-      givenName: 'Kung',
-      familyName: 'Ha-Sun',
-      nationalities: ['South Korean', 'Australian'],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a visa',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
+      "studyMode": "Full time",
+      "fundingType": "Fee paying",
+      "qualifications": [
+        "QTS"
+      ],
+      "madeDate": "2022-06-13T14:50:44.481+01:00",
+      "acceptedDate": "2022-06-14T14:50:44.481+01:00",
+      "standardConditions": [
+        {
+          "id": "b6928343-d052-4fb0-8f95-3e2fc853fed3",
+          "description": "Fitness to train to teach check",
+          "status": "Met"
+        },
+        {
+          "id": "32960a3a-eb2f-4acf-8a9e-3dc89bfa4685",
+          "description": "Disclosure and Barring Service (DBS) check",
+          "status": "Met"
+        },
+        {
+          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
+          "description": "Two references",
+          "status": "Pending"
+        },
+        {
+          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
+          "description": "An undergraduate degree at 2:2 or above",
+          "status": "Pending"
+        }
+      ],
+      "withdrawalDate": null,
+      "withdrawalReasons": null
     },
-    contactDetails: {
-      tel: '+61 (08) 7225 5825',
-      email: faker.internet.email('Kung', 'Ha-Sun').toLowerCase(),
-      address: {
-        line1: '197 Gover St',
-        line2: '',
-        level2: 'North Adelaide',
-        level1: 'SA',
-        postalCode: '5006',
-        country: 'Australia'
-      }
-    },
-    degree: [{
-      type: 'Degree',
-      subject: 'Applied sociology',
-      institution: 'University of Adelaide',
-      country: 'Australia',
-      grade: '81% (Distinction)',
-      startYear: '2014',
-      graduationYear: '2017'
-    }],
-    gcse: {
-      maths: {
-        subject: 'Maths',
-        missing: '-'
-      },
-      english: {
-        missing: 'false',
-        type: 'General High School Diploma',
-        subject: 'English',
-        country: 'South Korea',
-        grade: [{
-          grade: 'A'
-        }],
-        year: '2012'
-      },
-      science: {
-        missing: 'false',
-        type: 'General High School Diploma',
-        subject: 'Science',
-        country: 'South Korea',
-        grade: [{
-          grade: 'B'
-        }],
-        year: '2012'
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'Not needed',
-      status: 'English is not a foreign language to the candidate'
-    },
-    otherQualifications: {
-      1: {
-        type: 'Vocational High School Diploma',
-        subject: '',
-        provenance: 'international',
-        country: 'South Korea',
-        grade: 'A',
-        year: '2014'
-      }
-    }
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Received',
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    submittedDate: SystemHelper.now().minus({ days: 35 }).plus({ hours: faker.datatype.number({ 'min': 8, 'max': 16 }) }).plus({ minutes: faker.datatype.number({ 'min': 1, 'max': 59 }) }).toISO(),
-    personalDetails: {
-      isInternationalCandidate: true,
-      givenName: 'Chitprem',
-      familyName: 'Sra',
-      nationalities: ['Indian'],
-      isInternationalCandidate: true,
-      rightToWorkStudy: 'Not yet',
-      rightToWorkStudyHow: 'Another route',
-      rightToWorkStudyHowDetails: 'I am applying for a visa',
-      dateEnteredUK: DateTime.fromJSDate(
-          faker.date.between('2007-01-01','2021-08-31')
-        ).toFormat('yyyy-LL-dd')
-    },
-    degree: [{
-      type: 'BCA',
-      subject: 'System Analysis & Design',
-      institution: 'Panjab University',
-      country: 'India',
-      grade: 'A',
-      startYear: '2012',
-      graduationYear: '2016'
-    }],
-    gcse: {
-      maths: {
-        subject: 'Maths',
-        missing: '-'
-      },
-      english: {
-        missing: 'false',
-        type: 'Indian School Certificate',
-        subject: 'English',
-        country: 'India',
-        grade: [{
-          grade: '3'
-        }],
-        year: '2010'
-      },
-      science: {
-        missing: 'false',
-        type: 'Indian School Certificate',
-        subject: 'Science',
-        country: 'India',
-        grade: [{
-          grade: '4'
-        }],
-        year: '2010'
-      }
-    },
-    englishLanguageQualification: {
-      hasQualification: 'No',
-      status: 'Candidate does not have an English as a foreign language qualification yet',
-      missing: '-'
-    },
-    otherQualifications: {}
   }))
 
 
-  for (const [key, value] of Object.entries(STATUS)) {
-    const count = faker.datatype.number({ 'min': 10, 'max': 15 })
-    let application
 
-    if(key === "DEFERRED") continue;
-    if(key === "RECEIVED") continue;
+//   applications.push(generateFakeApplication({
+//     status: 'Interviewing',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+//
+//   applications.push(generateFakeApplication({
+//     status: 'Conditions pending',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
+//
+//   applications.push(generateFakeApplication({
+//     status: 'Conditions pending',
+//     cycle: CycleHelper.CURRENT_CYCLE.code
+//   }))
 
-    for (let i = 0; i < count; i++) {
-      if (value === 'Offered') {
-        application = generateFakeApplication({
-          status: value,
-          cycle: CycleHelper.CURRENT_CYCLE.code
-        })
-      } else {
-        application = generateFakeApplication({
-          status: value
-        })
-      }
-      applications.push(application)
-    }
-  }
   return applications
 }
 

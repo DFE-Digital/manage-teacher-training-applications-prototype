@@ -85,6 +85,6 @@ exports.getCourseData = (provider) => {
   const filePath = path.join(__dirname, '../courses.json')
   const rawData = fs.readFileSync(filePath)
   let courses = JSON.parse(rawData)
-  courses = courses.filter(course => (course.trainingProvider.name === provider.name) || (course.accreditedBody.name === provider.name))
+  // courses = courses.filter(course => (course.trainingProvider.name === provider.name) || (course.accreditedBody.name === provider.name))
   return courses
 }

@@ -157,18 +157,21 @@
             <a href="{{params.changeStatus.href}}">Update status of conditions</a>
           {% endif %}
         {% endif %}
-
-        {% if params.changeConditions %}
-          <a href="{{params.changeConditions.href}}">Add or change conditions</a>
-        {% endif %}
       </p>
     {% endif %}
   {% endif %}
 
   {% if params.conditions.items.length %}
     {{appConditionsPanel({
-      conditions: params.conditions.items
+      conditions: params.conditions.items,
+      changeStatus: params.changeStatus,
+      changeConditions: params.changeConditions
     })}}
+
+    {% if params.changeConditions %}
+      <p class="govuk-body"><a href="{{params.changeConditions.href}}" class="govuk-link">Add conditions</a></p>
+    {% endif %}
+
   {% else %}
     <p>No conditions have been set for this offer.</p>
   {% endif %}

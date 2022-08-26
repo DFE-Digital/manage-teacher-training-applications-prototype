@@ -45,30 +45,6 @@
     },
     {
       key: {
-        text: "Will you have lived in the UK in the 3 years before your teacher training starts?"
-      },
-      value: {
-        text: application.personalDetails.lengthOfStay
-      }
-    } if (not application.personalDetails.isInternationalCandidate) and application.personalDetails.lengthOfStay.length,
-    {
-      key: {
-        text: "Do you have the right to work or study in the UK for the length of the teacher training course?"
-      },
-      value: {
-        text: application.personalDetails.rightToWorkStudy
-      }
-    } if application.personalDetails.rightToWorkStudy.length,
-    {
-      key: {
-        text: "How will you get the right to work or study in the UK?"
-      },
-      value: {
-        text: application.personalDetails.rightToWorkStudyHowDetails if application.personalDetails.rightToWorkStudyHowDetails.length else application.personalDetails.rightToWorkStudyHow
-      }
-    } if application.personalDetails.rightToWorkStudy == 'Not yet' and application.personalDetails.rightToWorkStudyHow.length,
-    {
-      key: {
         text: "What is your immigration status?"
       },
       value: {

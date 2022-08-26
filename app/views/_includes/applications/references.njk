@@ -1,9 +1,18 @@
-<h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-7">References</h2>
 
-<h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">First referee</h2>
-{% set referenceId = "first" %}
-{% include "_includes/applications/reference.njk" %}
+{% if application["references"]["first"] %}
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["first"].type }} reference from {{ application["references"]["first"].name }}</h2>
+  {% set referenceId = "first" %}
+  {% include "_includes/applications/reference.njk" %}
+{% endif %}
 
-<h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">Second referee</h2>
-{% set referenceId = "second" %}
-{% include "_includes/applications/reference.njk" %}
+{% if application["references"]["second"] %}
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["second"].type }} reference from {{ application["references"]["second"].name }}</h2>
+  {% set referenceId = "second" %}
+  {% include "_includes/applications/reference.njk" %}
+{% endif %}
+
+{% if application["references"]["third"] %}
+  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["third"].type }} reference from {{ application["references"]["third"].name }}</h2>
+  {% set referenceId = "third" %}
+  {% include "_includes/applications/reference.njk" %}
+{% endif %}

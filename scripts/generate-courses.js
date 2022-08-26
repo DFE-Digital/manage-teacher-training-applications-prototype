@@ -14,30 +14,22 @@ const generateFakeCourse = (params = {}) => {
 
 const generateFakeCourses = (count) => {
   const courses = []
-  const organisations = user.organisations.map(o => o.name)
 
-  organisations.forEach((organisation, i) => {
-    const org = OrgHelper.findOrg(organisation)
+  let user_org = user.organisation
 
-    if (org.isAccreditedBody) {
-      partners.forEach((partner) => {
-        for (let i = 0; i < count; i++) {
-          const course = generateFakeCourse({ trainingProvider: partner, accreditedBody: org })
-          courses.push(course)
-        }
-      })
-    } else {
-      partners.forEach((partner) => {
-        for (let i = 0; i < count; i++) {
-          const course = generateFakeCourse({ trainingProvider: org, accreditedBody: partner })
-          courses.push(course)
-        }
-      })
+  let historyCourse = generateFakeCourse({ trainingProvider: user_org, accreditedBody: user_org })
+  historyCourse.name = 'History'
+  historyCourse.code = 'HIS1'
+  historyCourse.subjects = [{code: 'V1', name: 'History'}]
 
-    }
+  let englishCourse = generateFakeCourse({ trainingProvider: user_org, accreditedBody: user_org })
+  englishCourse.name = 'English'
+  englishCourse.code = 'E15P'
+  englishCourse.subjects = [{code: '13', name: 'English'}]
 
 
-  })
+  courses.push(historyCourse)
+  courses.push(englishCourse)
 
   return courses
 }

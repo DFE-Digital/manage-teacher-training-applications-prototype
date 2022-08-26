@@ -38,18 +38,19 @@ module.exports = (params) => {
     standardConditions = [{
       id: faker.datatype.uuid(),
       description: 'Fitness to train to teach check',
-      status: conditionStatus
+      status: 'Met'
     }, {
       id: faker.datatype.uuid(),
       description: 'Disclosure and Barring Service (DBS) check',
-      status: conditionStatus
-    }]
-
-    conditions =  [{
+      status: 'Met'
+    },
+    {
       id: faker.datatype.uuid(),
-      description: 'You need to take English speaking course',
-      status: conditionStatus
-    }]
+      description: '2 references',
+      status: 'Pending'
+    }
+    ]
+
   }
 
   return {

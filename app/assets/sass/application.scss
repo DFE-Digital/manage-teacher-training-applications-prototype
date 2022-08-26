@@ -412,3 +412,11 @@ $statuses: (
     margin-bottom: govuk-spacing(6);
   }
 }
+
+.app-no-spacing-after-last-paragraph p {
+  margin: 0 0 govuk-spacing(2) 9;
+}
+
+.app-no-spacing-after-last-paragraph p:last-child {
+  margin-bottom: 0;
+}
