@@ -20,47 +20,13 @@
   {% include "_includes/applications/sub-nav.njk" %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">
         References
       </h2>
 
-
-      <p class="govuk-body">The candidate has received 2 references.</p>
-      {#
-      {% if not application.references.first %}
-        <p class="govuk-body">The candidate has not requested any references yet.</p>
-
-      {% elif application.references.first and not application.references.second %}
-
-        <p class="govuk-body">The candidate has received 1 reference.</p>
-
-        <p class="govuk-body">They have not yet received references from:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>1 professional reference requested on 3 June 2022</li>
-          <li>1 character reference requested on 5 June 2022</li>
-        </ul>
-
-      {% elif application.references.first and application.references.second and not application.references.third %}
-
-        <p class="govuk-body">The candidate has received 2 references.</p>
-
-        <p class="govuk-body">They have not yet received references from:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>1 professional reference requested on 3 June 2022</li>
-        </ul>
-
-      {% elif application.references.first and application.references.second and application.references.third %}
-
-        <p class="govuk-body">The candidate has received 3 references.</p>
-
-      {% endif %}
- #}
       {% include "_includes/applications/references.njk" %}
-
 
     </div>
   </div>

@@ -1,18 +1,141 @@
 
-{% if application["references"]["first"] %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["first"].type }} reference from {{ application["references"]["first"].name }}</h2>
-  {% set referenceId = "first" %}
-  {% include "_includes/applications/reference.njk" %}
+
+{% set referencesArray = application["references"] | toArray %}
+
+{% set referencesReceived = referencesArray | selectattr("comments") %}
+{% set referencesPending = referencesArray | rejectattr("comments") %}
+
+{% if referencesReceived | length > 0 %}
+  <h2 class="govuk-heading-m">Received references</h2>
+  {% for reference in referencesReceived %}
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{reference.type }} reference from {{  reference.name }}</h3>
+
+    {% set relationshipHtml %}
+      <p class="govuk-body">{{ reference.relationship.summary | nl2br }}</p>
+
+      {% if reference.relationship.validated %}
+        <p class="govuk-body">Confirmed by {{ reference.name }}</p>
+      {% else %}
+        <p class="govuk-body">No</p>
+      {% endif %}
+    {% endset %}
+
+    {% set safeguardingResponseHtml -%}
+      {%- if reference.safeguarding.response == "yes" -%}
+        <p class="govuk-body">Yes</p>
+      {%- elif reference.safeguarding.response == "no" -%}
+        <p class="govuk-body">No</p>
+      {%- endif -%}
+    {%- endset %}
+
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "Name"
+        },
+        value: {
+          text: reference.name
+        }
+      }, {
+        key: {
+          text: "Email address"
+        },
+        value: {
+          html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+        }
+      }, {
+        key: {
+          html: "Type"
+        },
+        value: {
+          html: reference.type
+        }
+      }, {
+        key: {
+          text: "How they are known and for how long"
+        },
+        value: {
+          text: relationshipHtml | safe
+        }
+      }, {
+        key: {
+          text: "Relationship amended by referee"
+        },
+        value: {
+          text: reference.relationship.correction
+        }
+      } if not reference.relationship.validated,
+      {
+        key: {
+          text: "Does referee know of any reason why this candidate should not work with children?"
+        },
+        value: {
+          html: safeguardingResponseHtml
+        }
+      },
+      {
+        key: {
+          text: "Reason(s) given by referee why this candidate should not work with children"
+        },
+        value: {
+          html: reference.safeguarding.concerns | nl2br
+        }
+      } if reference.safeguarding.response == "yes",
+      {
+        key: {
+          html: "Reference"
+        },
+        value: {
+          html: reference.comments | nl2br
+        }
+      }]
+    }) }}
+
+  {% endfor %}
 {% endif %}
 
-{% if application["references"]["second"] %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["second"].type }} reference from {{ application["references"]["second"].name }}</h2>
-  {% set referenceId = "second" %}
-  {% include "_includes/applications/reference.njk" %}
-{% endif %}
 
-{% if application["references"]["third"] %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["third"].type }} reference from {{ application["references"]["third"].name }}</h2>
-  {% set referenceId = "third" %}
-  {% include "_includes/applications/reference.njk" %}
+{% if referencesPending | length > 0 %}
+  <h2 class="govuk-heading-m">Requested references</h2>
+  {% for reference in referencesPending %}
+
+    {{ reference | dump }}
+
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{reference.type }} reference from {{  reference.name }}</h3>
+
+    {{ govukSummaryList({
+      rows: [{
+        key: {
+          text: "Name"
+        },
+        value: {
+          text: reference.name
+        }
+      }, {
+        key: {
+          text: "Email address"
+        },
+        value: {
+          html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+        }
+      }, {
+        key: {
+          html: "Type"
+        },
+        value: {
+          html: reference.type
+        }
+      }, {
+        key: {
+          text: "How they are known and for how long"
+        },
+        value: {
+          text: reference.relationship.summary | nl2br
+        }
+      }]
+    }) }}
+
+  {% endfor %}
 {% endif %}
