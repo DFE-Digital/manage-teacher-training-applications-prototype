@@ -5,11 +5,25 @@
 {% set referencesReceived = referencesArray | selectattr("comments") %}
 {% set referencesPending = referencesArray | rejectattr("comments") %}
 
+{% if application.status != 'Received' %}
+  <p class="govuk-body">{{ application.personalDetails.name }} has
+
+  {%- if referencesReceived | length > 0 %}
+    received {{ referencesReceived | length }} {{ "reference" if referencesReceived | length == 1 else "references" }}
+  {%- endif %}
+  {%- if referencesReceived | length > 0 and referencesPending | length > 0 %}
+    and
+  {%- endif %}
+  {%- if referencesPending | length > 0 %}
+    requested {{ referencesPending | length }} {{ "reference" if referencesPending | length == 1 else "references" }}
+  {%- endif %}
+.
+</p>
+{% endif %}
+
 {% if referencesReceived | length > 0 %}
   <h2 class="govuk-heading-m">Received references</h2>
   {% for reference in referencesReceived %}
-
-    <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{reference.type }} reference from {{  reference.name }}</h3>
 
     {% set relationshipHtml %}
       <p class="govuk-body">{{ reference.relationship.summary | nl2br }}</p>
@@ -23,119 +37,126 @@
 
     {% set safeguardingResponseHtml -%}
       {%- if reference.safeguarding.response == "yes" -%}
-        <p class="govuk-body">Yes</p>
+        <p class="govuk-body">
+          {{ reference.safeguarding.concerns }}
+        </p>
       {%- elif reference.safeguarding.response == "no" -%}
-        <p class="govuk-body">No</p>
+        <p class="govuk-body">No concerns</p>
       {%- endif -%}
     {%- endset %}
 
-    {{ govukSummaryList({
-      rows: [{
-        key: {
-          text: "Name"
+    {% set summaryCardHtml %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: reference.name
+          }
+        }, {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+          }
+        }, {
+          key: {
+            html: "Type"
+          },
+          value: {
+            html: reference.type
+          }
+        }, {
+          key: {
+            text: "How they are known and for how long"
+          },
+          value: {
+            text: relationshipHtml | safe
+          }
+        }, {
+          key: {
+            text: "Relationship amended by referee"
+          },
+          value: {
+            text: reference.relationship.correction
+          }
+        } if not reference.relationship.validated,
+        {
+          key: {
+            text: "Concerns about " + application.personalDetails.name + " working with children"
+          },
+          value: {
+            html: safeguardingResponseHtml
+          }
         },
-        value: {
-          text: reference.name
-        }
-      }, {
-        key: {
-          text: "Email address"
-        },
-        value: {
-          html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
-        }
-      }, {
-        key: {
-          html: "Type"
-        },
-        value: {
-          html: reference.type
-        }
-      }, {
-        key: {
-          text: "How they are known and for how long"
-        },
-        value: {
-          text: relationshipHtml | safe
-        }
-      }, {
-        key: {
-          text: "Relationship amended by referee"
-        },
-        value: {
-          text: reference.relationship.correction
-        }
-      } if not reference.relationship.validated,
-      {
-        key: {
-          text: "Does referee know of any reason why this candidate should not work with children?"
-        },
-        value: {
-          html: safeguardingResponseHtml
-        }
-      },
-      {
-        key: {
-          text: "Reason(s) given by referee why this candidate should not work with children"
-        },
-        value: {
-          html: reference.safeguarding.concerns | nl2br
-        }
-      } if reference.safeguarding.response == "yes",
-      {
-        key: {
-          html: "Reference"
-        },
-        value: {
-          html: reference.comments | nl2br
-        }
-      }]
-    }) }}
+        {
+          key: {
+            html: "Reference"
+          },
+          value: {
+            html: reference.comments | nl2br
+          }
+        }]
+      }) }}
+    {% endset %}
+
+    {{appSummaryCard({
+      titleText: reference.type + " reference from " + reference.name,
+      classes: "govuk-!-margin-bottom-6",
+      html: summaryCardHtml
+    })}}
 
   {% endfor %}
 {% endif %}
 
 
 {% if referencesPending | length > 0 %}
-  <h2 class="govuk-heading-m">Requested references</h2>
+  {% if application.status != 'Received' %}
+    <h2 class="govuk-heading-m">Requested references</h2>
+  {% endif %}
   {% for reference in referencesPending %}
 
-    {{ reference | dump }}
+    {% set summaryCardHtml %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: reference.name
+          }
+        }, {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+          }
+        }, {
+          key: {
+            html: "Type"
+          },
+          value: {
+            html: reference.type
+          }
+        }, {
+          key: {
+            text: "How they are known and for how long"
+          },
+          value: {
+            text: reference.relationship.summary | nl2br
+          }
+        }]
+      }) }}
+    {% endset %}
 
-
-    <h3 class="govuk-heading-s govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{reference.type }} reference from {{  reference.name }}</h3>
-
-    {{ govukSummaryList({
-      rows: [{
-        key: {
-          text: "Name"
-        },
-        value: {
-          text: reference.name
-        }
-      }, {
-        key: {
-          text: "Email address"
-        },
-        value: {
-          html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
-        }
-      }, {
-        key: {
-          html: "Type"
-        },
-        value: {
-          html: reference.type
-        }
-      }, {
-        key: {
-          text: "How they are known and for how long"
-        },
-        value: {
-          text: reference.relationship.summary | nl2br
-        }
-      }]
-    }) }}
+    {{appSummaryCard({
+      titleText: reference.type + " reference from " + reference.name,
+      classes: "govuk-!-margin-bottom-6",
+      html: summaryCardHtml
+    })}}
 
   {% endfor %}
 {% endif %}

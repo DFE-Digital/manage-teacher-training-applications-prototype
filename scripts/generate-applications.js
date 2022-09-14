@@ -212,7 +212,7 @@ const generateFakeApplication = (params = {}) => {
     englishLanguageQualification,
     otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
-    references: generateReferences(status),
+    references: params.references || generateReferences(status),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
     safeguarding: params.safeguarding || generateSafeguarding(),
     disability: params.disability || generateDisability()
@@ -252,7 +252,7 @@ const generateFakeApplications = () => {
     studyMode: 'Full time',
     provider: user.organisation.name,
     id: '618451',
-    status: 'Interviewing',
+    status: 'Received',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     subject: [
@@ -271,7 +271,6 @@ const generateFakeApplications = () => {
       ],
       isInternationalCandidate: false
     },
-    "submittedDate": "2022-06-01T14:50:44.481+01:00",
     "interviews": {
       "items": [
         {
@@ -486,7 +485,15 @@ const generateFakeApplications = () => {
     },
     otherQualifications: null,
     "references": {
-      "first": {
+      "52523": {
+        "type": "Academic",
+        "name": "Josie Blaine",
+        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
+        "relationship": {
+          "summary": "Lecturer at my university."
+        }
+      },
+      "12421": {
         "type": "School based",
         "name": "Madie Olson",
         "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
@@ -500,7 +507,7 @@ const generateFakeApplications = () => {
         },
         "comments": "Sandra joined our school in September 2017 as a teaching assistant. In the first year, she was assigned to assist one student who has complex medical needs. \n\nAs a result of his illness, this student missed a lot of classes and needed support to catch up. Sandra forged a good relationship with this student and completed training to make sure she could support his healthcare needs. \n\nSandra showed that she was able to provide support in subjects across the curriculum up to GCSE. This year, she has widened her role to include supporting other students with a variety of SEND needs such as learning difficulties and ADHD. \n\nShe works well with teaching staff to ensure that the curriculum is accessible for the students. She is able to give constructive written feedback on learner progress to inform review paperwork and he has attended meetings with parents, learners and professionals. \n\nSandra has also supported students on school trips and coached them during sports sessions. During the pandemic, she kept in regular contact with students and their parents. She was able to give subject advice as well as helping with the use of software. \n\nHaving familiarised herself with the demands of working within a secondary school, Sandra now wants to take the next step and train to become a teacher. I feel she has more than enough experience to do so."
       },
-      "second": {
+      "436346": {
         "type": "Academic",
         "name": "Stephon Lesch",
         "email": "stephon66@birmingham.ac.uk",
@@ -510,7 +517,8 @@ const generateFakeApplications = () => {
           "validated": true
         },
         "safeguarding": {
-          "response": "no"
+          "response": "yes",
+          "concerns": "There was an allegation that Sandra behaved innappropriately with another student. This was not substantiated."
         },
         "comments": "I can confirm that Sandra performed very well in her studies. I have high hopes for the continued development of her career and think she would be well suited for further academic or professional studies, including a vocation such as teaching.\n\nSandra received praise from several tutors during her undergraduate career and was one of the strongest students in her peer group. Her tutors reported that she had a clear and strong motivation to do well in her chosen career. She also had ample experience of the work environment, including the world of journalism.\n\nIn the classes which I taught, Sandra was been attentive, well-read and very well prepared. She always performed the required reading before seminars and participated with strongly reasoned arguments. She was also able to express herself with great passion and clarity, which are useful attributes for teaching. \n\nThis clarity of expression was also reflected in good coursework marks, indicating a strong level of analytical ability based on sound research skills.\n\nI do not know of any reason why Sandra would not make an excellent teacher. I have no doubts about her honesty or integrity or any of the other personal qualities required when working with children. I would strongly recommend her as a candidate."
       }

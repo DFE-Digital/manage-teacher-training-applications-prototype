@@ -51,21 +51,9 @@ module.exports = (status) => {
     return ref
   }
 
-  const rand = Math.floor(Math.random() * 10);
-
-  var references = {}
-
-  if (rand > 1) {
-    references['first'] = referee(status)
-  }
-
-  if (rand > 3) {
-    references['second'] = referee(status)
-  }
-
-  if (rand > 8) {
-    references['third'] = referee(status)
-  }
+  let references = {}
+  references['12446'] = referee(status)
+  references['26436'] = referee(status)
 
   return references
 }
