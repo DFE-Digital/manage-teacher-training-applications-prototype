@@ -6,16 +6,20 @@
 {% set referencesPending = referencesArray | rejectattr("comments") %}
 
 {% if application.status != 'Received' %}
-  <p class="govuk-body">{{ application.personalDetails.name }} has
+  <p class="govuk-body">The candidate has
 
   {%- if referencesReceived | length > 0 %}
     received {{ referencesReceived | length }} {{ "reference" if referencesReceived | length == 1 else "references" }}
   {%- endif %}
   {%- if referencesReceived | length > 0 and referencesPending | length > 0 %}
-    and
+    and has
   {%- endif %}
   {%- if referencesPending | length > 0 %}
-    requested {{ referencesPending | length }} {{ "reference" if referencesPending | length == 1 else "references" }}
+    requested {{ referencesPending | length }}
+  {%- if referencesReceived | length > 0 and referencesPending | length > 0 %}
+    other
+  {%- endif %}
+     {{ "reference" if referencesPending | length == 1 else "references" }}
   {%- endif %}
 .
 </p>
@@ -26,12 +30,21 @@
   {% for reference in referencesReceived %}
 
     {% set relationshipHtml %}
+
+      {% if not reference.relationship.validated %}
+        <p class="govuk-body">The candidate said:</p>
+      {% endif %}
+
       <p class="govuk-body">{{ reference.relationship.summary | nl2br }}</p>
 
       {% if reference.relationship.validated %}
-        <p class="govuk-body">Confirmed by {{ reference.name }}</p>
+        <p class="govuk-body">This was confirmed by {{ reference.name }}.</p>
       {% else %}
-        <p class="govuk-body">No</p>
+        <p class="govuk-body">{{ reference.name }} said:</p>
+
+        <p class="govuk-body">{{ reference.relationship.how_they_know_candidate }}</p>
+
+
       {% endif %}
     {% endset %}
 
@@ -41,7 +54,7 @@
           {{ reference.safeguarding.concerns }}
         </p>
       {%- elif reference.safeguarding.response == "no" -%}
-        <p class="govuk-body">No concerns</p>
+        <p class="govuk-body">No concerns.</p>
       {%- endif -%}
     {%- endset %}
 
@@ -59,33 +72,19 @@
             text: "Email address"
           },
           value: {
-            html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+            html: reference.email
           }
         }, {
           key: {
-            html: "Type"
-          },
-          value: {
-            html: reference.type
-          }
-        }, {
-          key: {
-            text: "How they are known and for how long"
+            text: "How the candidate knows them and how long for"
           },
           value: {
             text: relationshipHtml | safe
           }
-        }, {
-          key: {
-            text: "Relationship amended by referee"
-          },
-          value: {
-            text: reference.relationship.correction
-          }
-        } if not reference.relationship.validated,
+        },
         {
           key: {
-            text: "Concerns about " + application.personalDetails.name + " working with children"
+            text: "Concerns about the candidate working with children"
           },
           value: {
             html: safeguardingResponseHtml
@@ -93,7 +92,7 @@
         },
         {
           key: {
-            html: "Reference"
+            html: "Does the candidate have the potential to teach?<br><br> Reference<br><br> (depending on when asked)"
           },
           value: {
             html: reference.comments | nl2br
@@ -132,18 +131,11 @@
             text: "Email address"
           },
           value: {
-            html: "<a href=\"mailto:" + reference.email + "\">" + reference.email + "</a>"
+            html: reference.email
           }
         }, {
           key: {
-            html: "Type"
-          },
-          value: {
-            html: reference.type
-          }
-        }, {
-          key: {
-            text: "How they are known and for how long"
+            text: "How the candidate knows them and for how long"
           },
           value: {
             text: reference.relationship.summary | nl2br

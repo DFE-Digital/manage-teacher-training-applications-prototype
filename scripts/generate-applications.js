@@ -500,7 +500,8 @@ const generateFakeApplications = () => {
         "tel": "0500 471823",
         "relationship": {
           "summary": "SENCO lead at Birmingham High School where I’ve been working as a Teaching Assistant since 2017.",
-          "validated": true
+          "validated": false,
+          "how_they_know_candidate": "Sandra is a Teaching Assistant in my school. She joined in 2016."
         },
         "safeguarding": {
           "response": "no"
@@ -518,7 +519,7 @@ const generateFakeApplications = () => {
         },
         "safeguarding": {
           "response": "yes",
-          "concerns": "There was an allegation that Sandra behaved innappropriately with another student. This was not substantiated."
+          "concerns": "There was an allegation that Sandra behaved inappropriately with another student. This was not substantiated."
         },
         "comments": "I can confirm that Sandra performed very well in her studies. I have high hopes for the continued development of her career and think she would be well suited for further academic or professional studies, including a vocation such as teaching.\n\nSandra received praise from several tutors during her undergraduate career and was one of the strongest students in her peer group. Her tutors reported that she had a clear and strong motivation to do well in her chosen career. She also had ample experience of the work environment, including the world of journalism.\n\nIn the classes which I taught, Sandra was been attentive, well-read and very well prepared. She always performed the required reading before seminars and participated with strongly reasoned arguments. She was also able to express herself with great passion and clarity, which are useful attributes for teaching. \n\nThis clarity of expression was also reflected in good coursework marks, indicating a strong level of analytical ability based on sound research skills.\n\nI do not know of any reason why Sandra would not make an excellent teacher. I have no doubts about her honesty or integrity or any of the other personal qualities required when working with children. I would strongly recommend her as a candidate."
       }
