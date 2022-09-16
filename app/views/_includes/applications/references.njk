@@ -11,17 +11,12 @@
   {%- if referencesReceived | length > 0 %}
     received {{ referencesReceived | length }} {{ "reference" if referencesReceived | length == 1 else "references" }}
   {%- endif %}
-  {%- if referencesReceived | length > 0 and referencesPending | length > 0 %}
-    and has
-  {%- endif %}
-  {%- if referencesPending | length > 0 %}
-    requested {{ referencesPending | length }}
+  {%- if referencesReceived | length > 0 and referencesPending | length > 0 %} and has {%- endif %}
+  {%- if referencesPending | length > 0 %} requested {{ referencesPending | length }}
   {%- if referencesReceived | length > 0 and referencesPending | length > 0 %}
     other
   {%- endif %}
-     {{ "reference" if referencesPending | length == 1 else "references" }}
-  {%- endif %}
-.
+     {{ "reference" if referencesPending | length == 1 else "references" }}{%- endif %}.
 </p>
 {% endif %}
 
