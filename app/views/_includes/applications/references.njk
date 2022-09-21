@@ -1,18 +1,149 @@
 
-{% if application["references"]["first"] %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["first"].type }} reference from {{ application["references"]["first"].name }}</h2>
-  {% set referenceId = "first" %}
-  {% include "_includes/applications/reference.njk" %}
+
+{% set referencesArray = application["references"] | toArray %}
+
+{% set referencesReceived = referencesArray | selectattr("comments") %}
+{% set referencesPending = referencesArray | rejectattr("comments") %}
+
+{% if application.status != 'Received' %}
+  <p class="govuk-body">The candidate has
+
+  {%- if referencesReceived | length > 0 %}
+    received {{ referencesReceived | length }} {{ "reference" if referencesReceived | length == 1 else "references" }}
+  {%- endif %}
+  {%- if referencesReceived | length > 0 and referencesPending | length > 0 %} and has {%- endif %}
+  {%- if referencesPending | length > 0 %} requested {{ referencesPending | length }}
+  {%- if referencesReceived | length > 0 and referencesPending | length > 0 %}
+    other
+  {%- endif %}
+     {{ "reference" if referencesPending | length == 1 else "references" }}{%- endif %}.
+</p>
 {% endif %}
 
-{% if application["references"]["second"] %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["second"].type }} reference from {{ application["references"]["second"].name }}</h2>
-  {% set referenceId = "second" %}
-  {% include "_includes/applications/reference.njk" %}
+{% if referencesReceived | length > 0 %}
+  <h2 class="govuk-heading-m">Received references</h2>
+  {% for reference in referencesReceived %}
+
+    {% set relationshipHtml %}
+
+      {% if not reference.relationship.validated %}
+        <p class="govuk-body">The candidate said:</p>
+      {% endif %}
+
+      <p class="govuk-body">{{ reference.relationship.summary | nl2br }}</p>
+
+      {% if reference.relationship.validated %}
+        <p class="govuk-body">This was confirmed by {{ reference.name }}.</p>
+      {% else %}
+        <p class="govuk-body">{{ reference.name }} said:</p>
+
+        <p class="govuk-body">{{ reference.relationship.how_they_know_candidate }}</p>
+
+
+      {% endif %}
+    {% endset %}
+
+    {% set safeguardingResponseHtml -%}
+      {%- if reference.safeguarding.response == "yes" -%}
+        <p class="govuk-body">
+          {{ reference.safeguarding.concerns }}
+        </p>
+      {%- elif reference.safeguarding.response == "no" -%}
+        <p class="govuk-body">No concerns.</p>
+      {%- endif -%}
+    {%- endset %}
+
+    {% set summaryCardHtml %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: reference.name
+          }
+        }, {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            html: reference.email
+          }
+        }, {
+          key: {
+            text: "How the candidate knows them and how long for"
+          },
+          value: {
+            text: relationshipHtml | safe
+          }
+        },
+        {
+          key: {
+            text: "Concerns about the candidate working with children"
+          },
+          value: {
+            html: safeguardingResponseHtml
+          }
+        },
+        {
+          key: {
+            html: "Reference"
+          },
+          value: {
+            html: reference.comments | nl2br
+          }
+        }]
+      }) }}
+    {% endset %}
+
+    {{appSummaryCard({
+      titleText: reference.type + " reference from " + reference.name,
+      classes: "govuk-!-margin-bottom-6",
+      html: summaryCardHtml
+    })}}
+
+  {% endfor %}
 {% endif %}
 
-{% if application["references"]["third"] %}
-  <h2 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-2">{{ application["references"]["third"].type }} reference from {{ application["references"]["third"].name }}</h2>
-  {% set referenceId = "third" %}
-  {% include "_includes/applications/reference.njk" %}
+
+{% if referencesPending | length > 0 %}
+  {% if application.status != 'Received' %}
+    <h2 class="govuk-heading-m">Requested references</h2>
+  {% endif %}
+  {% for reference in referencesPending %}
+
+    {% set summaryCardHtml %}
+      {{ govukSummaryList({
+        rows: [{
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: reference.name
+          }
+        }, {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            html: reference.email
+          }
+        }, {
+          key: {
+            text: "How the candidate knows them and for how long"
+          },
+          value: {
+            text: reference.relationship.summary | nl2br
+          }
+        }]
+      }) }}
+    {% endset %}
+
+    {{appSummaryCard({
+      titleText: reference.type + " reference from " + reference.name,
+      classes: "govuk-!-margin-bottom-6",
+      html: summaryCardHtml
+    })}}
+
+  {% endfor %}
 {% endif %}

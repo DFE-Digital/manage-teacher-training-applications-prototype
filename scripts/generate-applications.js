@@ -212,7 +212,7 @@ const generateFakeApplication = (params = {}) => {
     englishLanguageQualification,
     otherQualifications,
     personalStatement: params.personalStatement || generatePersonalStatement(),
-    references: params.references || generateReferences(),
+    references: params.references || generateReferences(status),
     miscellaneous: params.miscellaneous || faker.lorem.paragraph(),
     safeguarding: params.safeguarding || generateSafeguarding(),
     disability: params.disability || generateDisability()
@@ -237,11 +237,13 @@ const generateFakeApplications = () => {
 //     status: 'Received',
 //     cycle: CycleHelper.CURRENT_CYCLE.code
 //   }))
-//
-//   applications.push(generateFakeApplication({
-//     status: 'Received',
-//     cycle: CycleHelper.CURRENT_CYCLE.code
-//   }))
+
+  applications.push(generateFakeApplication({
+    id: '46436',
+    status: 'Received',
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code
+  }))
 
 
   applications.push(generateFakeApplication({
@@ -250,7 +252,7 @@ const generateFakeApplications = () => {
     studyMode: 'Full time',
     provider: user.organisation.name,
     id: '618451',
-    status: 'Interviewing',
+    status: 'Received',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     subject: [
@@ -269,7 +271,6 @@ const generateFakeApplications = () => {
       ],
       isInternationalCandidate: false
     },
-    "submittedDate": "2022-06-01T14:50:44.481+01:00",
     "interviews": {
       "items": [
         {
@@ -379,6 +380,24 @@ const generateFakeApplications = () => {
       vocation: "The influence teachers have on young people cannot be understated. My memories of being a student are a testament to that, as my decision to become a teacher has been directly influenced by the positive experiences I had at secondary school.\n\nI feel I have the potential to inspire young people to reach their full potential, just as my teachers motivated me. I am passionate about supporting children to live a happy and healthy life, as well as helping them to develop the skills they need.\n\nWorking at a museum I’ve discovered that I’m able to listen and communicate well with children. I love to see the confidence a child can gain when they feel comfortable and secure.\n\nI have also recently completed a Level 1 in British Sign Language with the support of the museum where I work. This has helped broaden my communication skills as well as highlighting to me the importance of inclusion in education. This is something I hope to explore further when I train to become a teacher.",
       subjectKnowledge: "My current role as a family workshop leader has strengthened my passion to become a teacher. I have gained experience supporting the teaching of the National Curriculum for history, as well as helping students to get the best out of their time at the museum.\n\nOur summer workshops have been particularly rewarding, as students attend daily for a week and I’ve been able to see them develop their confidence from start to finish.\n\nI feel that my current employment has also given me a range of transferable skills. I currently provide training to new members of staff and have also been asked to update existing members of the team on changes to policies and procedures. Therefore I have to ensure that I am adaptable in my approach as I am aware that people all learn differently."
     },
+    "references": {
+      "first": {
+        "type": "Academic",
+        "name": "Jason Barker",
+        "email": "j.barker@birmingham.ac.uk",
+        "relationship": {
+          "summary": "They are my Personal academic tutor (PAT) at university I have known them since starting university in September 2020."
+        },
+      },
+      "second": {
+        "type": "Professional",
+        "name": "Julie Partridge",
+        "email": "julie912@gmail.com",
+        "relationship": {
+          "summary": "I tutored her child in English. I’ve known her for one year"
+        },
+      }
+    }
   }))
 
 
@@ -466,21 +485,30 @@ const generateFakeApplications = () => {
     },
     otherQualifications: null,
     "references": {
-      "first": {
+      "52523": {
+        "type": "Academic",
+        "name": "Josie Blaine",
+        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
+        "relationship": {
+          "summary": "Lecturer at my university."
+        }
+      },
+      "12421": {
         "type": "School based",
         "name": "Madie Olson",
         "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
         "tel": "0500 471823",
         "relationship": {
           "summary": "SENCO lead at Birmingham High School where I’ve been working as a Teaching Assistant since 2017.",
-          "validated": true
+          "validated": false,
+          "how_they_know_candidate": "Sandra is a Teaching Assistant in my school. She joined in 2016."
         },
         "safeguarding": {
           "response": "no"
         },
-        "comments": "Sandra joined our school in September 2017 as a teaching assistant. In the first year, she was assigned to assist one student who has complex medical needs. \n\nAs a result of his illness, this student missed a lot of classes and needed support to catch up. Sandra forged a good relationship with this student and completed training to make sure she could support his healthcare needs. \n\nSandra showed that she was able to provide support in subjects across the curriculum up to GCSE. This year, she has widened her role to include supporting other students with a variety of SEND needs such as learning difficulties and ADHD. \n\nShe works well with teaching staff to ensure that the curriculum is accessible for the students. She is able to give constructive written feedback on learner progress to inform review paperwork and he has attended meetings with parents, learners and professionals. \n\nSandra has also supported students on school trips and coached them during sports sessions. During the pandemic, she kept in regular contact with students and their parents. She was able to give subject advice as well as helping with the use of software. \n\nHaving familiarised herself with the demands of working within a secondary school, Sandra now wants to take the next step and train to become a teacher. I feel she has more than enough experience to do so."
+        "comments": "Sandra joined our school in September 2016 as a Teaching Assistant."
       },
-      "second": {
+      "436346": {
         "type": "Academic",
         "name": "Stephon Lesch",
         "email": "stephon66@birmingham.ac.uk",
@@ -490,9 +518,10 @@ const generateFakeApplications = () => {
           "validated": true
         },
         "safeguarding": {
-          "response": "no"
+          "response": "yes",
+          "concerns": "There was an allegation that Sandra behaved inappropriately with another student. This was not substantiated."
         },
-        "comments": "I can confirm that Sandra performed very well in her studies. I have high hopes for the continued development of her career and think she would be well suited for further academic or professional studies, including a vocation such as teaching.\n\nSandra received praise from several tutors during her undergraduate career and was one of the strongest students in her peer group. Her tutors reported that she had a clear and strong motivation to do well in her chosen career. She also had ample experience of the work environment, including the world of journalism.\n\nIn the classes which I taught, Sandra was been attentive, well-read and very well prepared. She always performed the required reading before seminars and participated with strongly reasoned arguments. She was also able to express herself with great passion and clarity, which are useful attributes for teaching. \n\nThis clarity of expression was also reflected in good coursework marks, indicating a strong level of analytical ability based on sound research skills.\n\nI do not know of any reason why Sandra would not make an excellent teacher. I have no doubts about her honesty or integrity or any of the other personal qualities required when working with children. I would strongly recommend her as a candidate."
+        "comments": "Sandra was a student at the University between 2014 and 2017. She graduated with a 2:1 Bachelor of Arts degree in English and journalism."
       }
     },
     schoolExperience: [
@@ -675,7 +704,7 @@ const generateFakeApplications = () => {
         "safeguarding": {
           "response": "no"
         },
-        "comments": "I cannot comment on whether Andy has the potential to teach. I have never met him face to face but we’ve been in contact extensively by email as part of the personal tutoring aspect of his programme. \n\nI can say he has fairly good communication skills and good academic skills overall. \n\nThere have been times where I have thought his professionalism could be improved. I’ve had doubts about his way of handling difficulties which have come up over the course of his degree, particularly in terms of his communication skills. Perhaps this is an area which he can work on further."
+        "comments": "Andy was a student here between 2020 and 2023 studying for a BA in English."
       },
       "second": {
         "type": "Professional",
@@ -689,7 +718,7 @@ const generateFakeApplications = () => {
         "safeguarding": {
           "response": "no"
         },
-        "comments": "I have known Andy for a year. He tutored my 12 year old son in English. He was finding grammar in particular quite difficult but with Andy’s help he is now much more confident.\n\nAndy has always been reliable and shown great communication skills. There have never been any problems with organising dates and times to tutor my son. \n\nI’ve been impressed that Andy has always had clear lesson plans which he’s emailed to me in advance. This has helped to ensure both my son and I were aware of the area which would be taught. But Andy also always left room to amend the lesson if my son needed more attention in a specific area."
+        "comments": "Andy has tutored my 12 year old son in English for the past year."
       }
     },
     schoolExperience: [

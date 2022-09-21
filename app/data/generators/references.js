@@ -1,7 +1,10 @@
 const faker = require('faker')
 faker.locale = 'en_GB'
 
-module.exports = () => {
+module.exports = (status) => {
+
+  console.log('generating reference for ' + status)
+
   const type = faker.helpers.randomize([
     'Academic',
     'Professional',
@@ -24,43 +27,33 @@ module.exports = () => {
     'Was the head coach for my athletics club. I’ve known them for 5 years'
   ])
 
-  const referee = () => {
+  const referee = (status) => {
     const firstName = faker.name.firstName()
     const lastName = faker.name.lastName()
 
-    return {
+    let ref =  {
       type,
       name: `${firstName} ${lastName}`,
       email: faker.internet.email(firstName, lastName).toLowerCase(),
-      tel: faker.phone.phoneNumber(),
       relationship: {
-        summary: relationshipSummary,
-        validated: faker.datatype.boolean(),
-        correction: 'We worked together over a period of a year, but did not wotk that closely.'
-      },
-      safeguarding: {
-        response: faker.helpers.randomize(['no', 'yes']),
-        concerns: 'Impatient and intolerant by nature, and therefore not suited to work with children.'
-      },
-      comments
+        summary: relationshipSummary
+      }
     }
+
+    if (status != 'Received') {
+      ref['comments'] = comments
+      ref.relationship.validated = true
+      ref['safeguarding'] = {
+        response:  'no'
+      }
+    }
+
+    return ref
   }
 
-  const rand = Math.floor(Math.random() * 10);
-
-  var references = {}
-
-  if (rand > 1) {
-    references['first'] = referee()
-  }
-
-  if (rand > 3) {
-    references['second'] = referee()
-  }
-
-  if (rand > 8) {
-    references['third'] = referee()
-  }
+  let references = {}
+  references['12446'] = referee(status)
+  references['26436'] = referee(status)
 
   return references
 }
