@@ -37,6 +37,33 @@ module.exports = router => {
     })
   })
 
+  router.get('/applications/:applicationId/offer/ske', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+
+    res.render('applications/offer/new/ske', {
+      application
+    })
+  })
+
+  router.get('/applications/:applicationId/offer/ske-reason', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+
+    res.render('applications/offer/new/ske-reason', {
+      application
+    })
+  })
+
+  router.get('/applications/:applicationId/offer/ske-length', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+
+    res.render('applications/offer/new/ske-length', {
+      application
+    })
+  })
+
   router.post('/applications/:applicationId/offer/new', (req, res) => {
     res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
   })

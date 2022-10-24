@@ -1,0 +1,55 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Conditions of offer' %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{ caption }}</span>
+      {{ govukCheckboxes({
+        name: "waste",
+        fieldset: {
+          legend: {
+            text: "Reason they need to take an SKE course",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply."
+        },
+        items: [
+          {
+            value: "carcasses",
+            text: "Degree is not in English"
+          },
+          {
+            value: "mines",
+            text: "Has not used subject knowledge for 5 years"
+          }
+        ]
+      }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}
