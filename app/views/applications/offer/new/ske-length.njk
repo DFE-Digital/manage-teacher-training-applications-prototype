@@ -1,0 +1,89 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Conditions of offer' %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{ caption }}</span>
+      <h1 class="govuk-heading-l">SKE course requirements</h1>
+
+
+      {{ govukRadios({
+        name: "course-length",
+        fieldset: {
+          legend: {
+            text: "Length of SKE course required",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "8 or 12 weeks (‘short’)"
+          },
+          {
+            value: "no",
+            text: "16 or 20 weeks (‘medium’)"
+          },
+          {
+            value: "no",
+            text: "24 or 28 weeks (‘long’)"
+          }
+        ]
+      }) }}
+
+        {{ govukRadios({
+          name: "deadline",
+          fieldset: {
+            legend: {
+              text: "Does course have to be completed before training starts?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No, so long as they’ve started it by then"
+            }
+          ]
+        }) }}
+
+      {{ govukTextarea({
+        name: "more-detail",
+        id: "more-detail",
+        label: {
+          text: "Other requirements (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        }
+      }) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Conditions of offer' %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{ caption }}</span>
+      <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) courses</h1>
+
+      <p class="govuk-body">The Department for Education will fund a course in English to help the candidate meet the subject standard.</p>
+
+
+    {{ govukRadios({
+      name: "where-do-you-live",
+      fieldset: {
+        legend: {
+          text: "Do they need to take a SKE course in English?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}
