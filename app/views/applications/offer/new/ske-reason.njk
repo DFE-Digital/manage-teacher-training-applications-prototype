@@ -5,7 +5,10 @@
 {% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
 
-{% block pageNavigation %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + applicationId + "/offer/ske"
+  })}}
 {% endblock %}
 
 {% block content %}
@@ -13,34 +16,38 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
-      {{ govukCheckboxes({
-        name: "waste",
-        fieldset: {
-          legend: {
-            text: "Reason they need to take an SKE course",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        hint: {
-          text: "Select all that apply."
-        },
-        items: [
-          {
-            value: "carcasses",
-            text: "Degree is not in English"
+
+
+      <form action="/applications/{{ applicationId }}/offer/ske-reason-answer" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukCheckboxes({
+          name: "skeReason",
+          fieldset: {
+            legend: {
+              text: "Reason they need to take an SKE course",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
           },
-          {
-            value: "mines",
-            text: "Has not used subject knowledge for 5 years"
-          }
-        ]
-      }) }}
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Degree is not in English",
+              text: "Degree is not in English"
+            },
+            {
+              value: "Has not used subject knowledge for 5 years",
+              text: "Has not used subject knowledge for 5 years"
+            }
+          ]
+        }) }}
 
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
     </div>
   </div>
 {% endblock %}

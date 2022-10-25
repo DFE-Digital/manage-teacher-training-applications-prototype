@@ -2,13 +2,13 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
-{% set heading = 'Conditions of offer' %}
+{% set heading = 'Further conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
 {{ govukBackLink({
   text: "Back",
-  href: actions.back
+  href: "/applications/" + applicationId + "/offer/ske-length"
 }) }}
 {% endblock %}
 
@@ -22,7 +22,7 @@
         {{ heading }}
       </h1>
 
-      <form action="{{ actions.save }}" method="post" accept-charset="UTF-8" novalidate>
+      <form action="/applications/{{ applicationId }}/offer/conditions-answer" method="post" accept-charset="UTF-8" novalidate>
 
       {% set referencesDetails %}
 
@@ -70,7 +70,7 @@
         <div class="app-add-another">
 
           <h2 class="govuk-heading-m govuk-!-margin-bottom-1 app-add-another__heading">Further conditions</h2>
-          <p class="govuk-body">For example, studying a subject knowledge enhancement course.</p>
+          <p class="govuk-body">For example, completing their degree with a certain grade.</p>
 
           {% if conditions.length %}
             {% for condition in conditions %}

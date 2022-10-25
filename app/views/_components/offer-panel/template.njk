@@ -2,6 +2,8 @@
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 {% from "_components/conditions-panel/macro.njk" import appConditionsPanel %}
 {% from "_components/location/macro.njk" import appLocation %}
+{% from "_components/summary-card/macro.njk" import appSummaryCard %}
+
 
 <div class="app-offer-panel">
   {% if not params.transferred %}
@@ -143,9 +145,94 @@
     ]
   }) }}
 
-  <h2 class="govuk-heading-m govuk-!-margin-top-6">
-    Conditions of offer
-  </h2>
+<h2 class="govuk-heading-m">Conditions</h2>
+
+{% if params.data.skeRequired == 'yes' %}
+
+  {% set reasonHtml %}
+    {% for reason in params.data.skeReason %}
+      {{ reason }} <br>
+    {% endfor %}
+  {% endset %}
+
+  {% set skeSummaryList %}
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Reason required"
+          },
+          value: {
+            text: reasonHtml | safe
+          },
+          actions: {
+            items: [
+              {
+                text: "Change",
+                href: "/applications/" + params.applicationId + "/offer/ske-reason"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Length"
+          },
+          value: {
+            text: params.data.skeCourseLengthRequired
+          },
+          actions: {
+            items: [
+              {
+                text: "Change",
+                href: "/applications/" + params.applicationId + "/offer/ske-length"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Deadline"
+          },
+          value: {
+            text: params.data.skeDeadline
+          },
+          actions: {
+            items: [
+              {
+                text: "Change",
+                href: "/applications/" + params.applicationId + "/offer/ske-length"
+              }
+            ]
+          }
+        }
+
+      ]
+
+    }) }}
+  {% endset %}
+
+  {{ appSummaryCard({
+    titleText: "Subject knowledge enhancement course",
+    classes: "govuk-!-margin-bottom-6",
+    html: skeSummaryList,
+    actions: {
+      items: [
+        {
+          text: "Remove condition",
+          href: "/applications/" + params.applicationId + "/offer/ske"
+
+        }
+      ]
+    }
+  })}}
+{% endif %}
+
+  {% if params.data.skeRequired == 'yes' %}
+    <h3 class="govuk-heading-s govuk-!-margin-top-6">
+      Other conditions
+    </h3>
+  {% endif %}
   {% if not params.transferred %}
     {% if params.changeStatus or params.changeConditions %}
       <p>

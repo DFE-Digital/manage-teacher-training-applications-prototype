@@ -8,42 +8,49 @@
 {% block pageNavigation %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + applicationId + "/decision"
+  })}}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
-      <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) courses</h1>
+      <h1 class="govuk-heading-l">Subject knowledge enhancement courses</h1>
 
-      <p class="govuk-body">The Department for Education will fund a course in English to help the candidate meet the subject standard.</p>
+      <p class="govuk-body">The Department for Education will fund a <a href="https://www.gov.uk/guidance/subject-knowledge-enhancement-an-introduction" class="govuk-link">subject knowledge enhancement course</a>  in English to help the candidate meet the teachers’ standards.</p>
+
+      <form action="/applications/{{ applicationId }}/offer/ske-answer" method="post" accept-charset="UTF-8" novalidate>
+
+        {{ govukRadios({
+          name: "skeRequired",
+          fieldset: {
+            legend: {
+              text: "Do they need to take a subject knowledge enhancement course in English?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
 
 
-    {{ govukRadios({
-      name: "where-do-you-live",
-      fieldset: {
-        legend: {
-          text: "Do they need to take a SKE course in English?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--s"
-        }
-      },
-      items: [
-        {
-          value: "yes",
-          text: "Yes"
-        },
-        {
-          value: "no",
-          text: "No"
-        }
-      ]
-    }) }}
-
-
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
     </div>
   </div>
 {% endblock %}
