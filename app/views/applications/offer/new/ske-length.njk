@@ -5,7 +5,10 @@
 {% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
 
-{% block pageNavigation %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + applicationId + "/offer/ske-reason"
+  })}}
 {% endblock %}
 
 {% block content %}
@@ -15,66 +18,57 @@
       <span class="govuk-caption-l">{{ caption }}</span>
       <h1 class="govuk-heading-l">SKE course requirements</h1>
 
-
-      {{ govukRadios({
-        name: "course-length",
-        fieldset: {
-          legend: {
-            text: "Length of SKE course required",
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-          {
-            value: "yes",
-            text: "8 or 12 weeks (‘short’)"
-          },
-          {
-            value: "no",
-            text: "16 or 20 weeks (‘medium’)"
-          },
-          {
-            value: "no",
-            text: "24 or 28 weeks (‘long’)"
-          }
-        ]
-      }) }}
+      <form action="/applications/{{ applicationId }}/offer/ske-length-answer" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
-          name: "deadline",
+          name: "skeCourseLengthRequired",
           fieldset: {
             legend: {
-              text: "Does course have to be completed before training starts?",
+              text: "Length of SKE course required",
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "8 or 12 weeks (‘short’)",
+              text: "8 or 12 weeks (‘short’)"
             },
             {
-              value: "no",
-              text: "No, so long as they’ve started it by then"
+              value: "16 or 20 weeks (‘medium’)",
+              text: "16 or 20 weeks (‘medium’)"
+            },
+            {
+              value: "24 or 28 weeks (‘long’)",
+              text: "24 or 28 weeks (‘long’)"
             }
           ]
         }) }}
 
-      {{ govukTextarea({
-        name: "more-detail",
-        id: "more-detail",
-        label: {
-          text: "Other requirements (optional)",
-          classes: "govuk-label--m",
-          isPageHeading: true
-        }
+          {{ govukRadios({
+            name: "skeDeadline",
+            fieldset: {
+              legend: {
+                text: "Does course have to be completed before training starts?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Completed before training starts",
+                text: "Yes"
+              },
+              {
+                value: "Enrolled before training starts",
+                text: "No, so long as they’ve started it by then"
+              }
+            ]
+          }) }}
+
+
+      {{ govukButton({
+        text: "Continue"
       }) }}
-
-
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
+      </form>
     </div>
   </div>
 {% endblock %}

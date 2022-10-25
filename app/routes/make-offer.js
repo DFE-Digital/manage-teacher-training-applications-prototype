@@ -26,41 +26,88 @@ module.exports = router => {
       back = `/applications/${req.params.applicationId}/offer/new/location`
     }
 
-    res.render('applications/offer/new/conditions', {
-      application,
-      conditions,
-      actions: {
-        back: back,
-        cancel: `/applications/${req.params.applicationId}/offer/new/cancel`,
-        save: `/applications/${req.params.applicationId}/offer/new`
-      }
-    })
+    res.redirect(`/applications/${req.params.applicationId}/offer/ske`)
+//
+//     res.render('applications/offer/new/conditions', {
+//       application,
+//       conditions,
+//       actions: {
+//         back: back,
+//         cancel: `/applications/${req.params.applicationId}/offer/new/cancel`,
+//         save: `/applications/${req.params.applicationId}/offer/new`
+//       }
+//     })
   })
 
   router.get('/applications/:applicationId/offer/ske', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
 
+    let applicationId = req.params.applicationId
 
     res.render('applications/offer/new/ske', {
-      application
+      application,
+      applicationId
     })
+  })
+
+  router.post('/applications/:applicationId/offer/ske-answer', (req, res) => {
+    let applicationId = req.params.applicationId
+
+    let answer = req.body.skeRequired
+
+    if (answer === 'yes') {
+      res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
+    } else if (answer === 'no') {
+      res.redirect(`/applications/${req.params.applicationId}/offer/conditions`)
+    } else {
+      res.redirect(`/applications/${req.params.applicationId}/offer/ske`)
+    }
+
   })
 
   router.get('/applications/:applicationId/offer/ske-reason', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    let applicationId = req.params.applicationId
 
 
     res.render('applications/offer/new/ske-reason', {
-      application
+      application,
+      applicationId
     })
+  })
+
+  router.post('/applications/:applicationId/offer/ske-reason-answer', (req, res) => {
+    let applicationId = req.params.applicationId
+
+
+    res.redirect(`/applications/${req.params.applicationId}/offer/ske-length`)
+
   })
 
   router.get('/applications/:applicationId/offer/ske-length', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
-
+    let applicationId = req.params.applicationId
 
     res.render('applications/offer/new/ske-length', {
-      application
+      application,
+      applicationId
+    })
+  })
+
+  router.post('/applications/:applicationId/offer/ske-length-answer', (req, res) => {
+    let applicationId = req.params.applicationId
+
+    res.redirect(`/applications/${req.params.applicationId}/offer/conditions`)
+
+  })
+
+  router.get('/applications/:applicationId/offer/conditions', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+    let applicationId = req.params.applicationId
+
+    res.render('applications/offer/new/conditions', {
+      application,
+      applicationId
     })
   })
 
@@ -68,7 +115,14 @@ module.exports = router => {
     res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
   })
 
+
+  router.post('/applications/:applicationId/offer/conditions-answer', (req, res) => {
+
+    res.redirect(`/applications/${req.params.applicationId}/offer/new/check`)
+  })
+
   router.get('/applications/:applicationId/offer/new/check', (req, res) => {
+    const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let conditions = []
 
@@ -125,6 +179,7 @@ module.exports = router => {
     res.render('applications/offer/new/check', {
       upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application,
+      applicationId,
       course,
       studyMode,
       location,
