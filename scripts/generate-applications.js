@@ -360,7 +360,7 @@ const generateFakeApplications = () => {
     courseCode: 'HIS1',
     studyMode: 'Full time',
     provider: user.organisation.name,
-    id: '618451',
+    id: '63633',
     status: 'Received',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,

@@ -248,6 +248,15 @@ module.exports = router => {
       }
     }
 
+    // Save SKE condition
+    if (req.session.data.skeRequired === 'yes') {
+      application.offer.skeCondition = {
+        reason: req.session.data.skeReason,
+        lengthRequired: req.session.data.skeCourseLengthRequired,
+        deadline: req.session.data.skeDeadline
+      }
+    }
+
     // save further conditions
     if (req.session.data['new-offer']['conditions']) {
       let furtherConditions = req.session.data['new-offer']['conditions']
@@ -285,6 +294,10 @@ module.exports = router => {
 
     delete req.session.data['new-offer']
     delete req.session.data.decision
+    delete req.session.data.skeRequired
+    delete req.session.data.skeReason
+    delete req.session.data.skeCourseLengthRequired
+    delete req.session.data.skeDeadline
 
     req.flash('success', content.makeOffer.successMessage)
     res.redirect(`/applications/${req.params.applicationId}/offer`)

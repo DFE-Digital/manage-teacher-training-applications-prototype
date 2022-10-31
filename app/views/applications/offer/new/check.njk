@@ -21,6 +21,18 @@
         {{ heading }}
       </h1>
 
+      {% if data.skeRequired == 'yes' %}
+        {% set skeCondition = {
+          reason: data.skeReason,
+          deadline: data.skeDeadline,
+          lengthRequired: data.skeCourseLengthRequired
+        }
+      %}
+      {% else %}
+        {% set skeCondition = false %}
+      {% endif %}
+      {{ data.skeRequired | dump }}
+
       <div class="app-bo">
       {{ appOfferPanel({
         provider: {
@@ -54,7 +66,7 @@
         changeConditions: {
           href: "/applications/" + application.id + "/offer/new?referrer=check"
         },
-        data: data,
+        skeCondition: skeCondition,
         applicationId: applicationId
       }) }}
       </div>

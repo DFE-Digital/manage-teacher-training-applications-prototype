@@ -147,10 +147,10 @@
 
 <h2 class="govuk-heading-m">Conditions</h2>
 
-{% if params.data.skeRequired == 'yes' %}
+{% if params.skeCondition %}
 
   {% set reasonHtml %}
-    {% for reason in params.data.skeReason %}
+    {% for reason in params.skeCondition.reason %}
       {{ reason }} <br>
     {% endfor %}
   {% endset %}
@@ -179,7 +179,7 @@
             text: "Length"
           },
           value: {
-            text: params.data.skeCourseLengthRequired
+            text: params.skeCondition.lengthRequired
           },
           actions: {
             items: [
@@ -195,7 +195,7 @@
             text: "Deadline"
           },
           value: {
-            text: params.data.skeDeadline
+            text: params.skeCondition.deadline
           },
           actions: {
             items: [
@@ -251,7 +251,7 @@
 
 {% endif %}
 
-  {% if params.data.skeRequired == 'yes' %}
+  {% if params.skeCondition %}
     <h3 class="govuk-heading-s govuk-!-margin-top-6">
       Other conditions
     </h3>
