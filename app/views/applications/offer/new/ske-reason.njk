@@ -4,6 +4,8 @@
 {% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
 {% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
+{% set firstSubject = application.subject | first %}
+{% set skeSubject = firstSubject.name %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -34,12 +36,12 @@
           },
           items: [
             {
-              value: "Degree is not in English",
-              text: "Degree is not in English"
+              value: "Degree is not in " + skeSubject,
+              text: "Degree is not in " + skeSubject
             },
             {
-              value: "Has not used subject knowledge for 5 years",
-              text: "Has not used subject knowledge for 5 years"
+              value: "Has not used degree knowledge for 5 years or more",
+              text: "Has not used degree knowledge for 5 years or more"
             }
           ]
         }) }}

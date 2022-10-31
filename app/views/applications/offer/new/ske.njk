@@ -4,6 +4,8 @@
 {% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
 {% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
+{% set firstSubject = application.subject | first %}
+{% set skeSubject = firstSubject.name %}
 
 {% block pageNavigation %}
 {% endblock %}
@@ -21,7 +23,7 @@
       <span class="govuk-caption-l">{{ caption }}</span>
       <h1 class="govuk-heading-l">Subject knowledge enhancement courses</h1>
 
-      <p class="govuk-body">The Department for Education will fund a <a href="https://www.gov.uk/guidance/subject-knowledge-enhancement-an-introduction" class="govuk-link">subject knowledge enhancement course</a>  in English to help the candidate meet the teachers’ standards.</p>
+      <p class="govuk-body">The Department for Education will fund a <a href="https://www.gov.uk/guidance/subject-knowledge-enhancement-an-introduction" class="govuk-link">subject knowledge enhancement course</a>  in {{ skeSubject }} to help the candidate meet the teachers’ standards.</p>
 
       <form action="/applications/{{ applicationId }}/offer/ske-answer" method="post" accept-charset="UTF-8" novalidate>
 
@@ -29,7 +31,7 @@
           name: "skeRequired",
           fieldset: {
             legend: {
-              text: "Do they need to take a subject knowledge enhancement course in English?",
+              text: "Do they need to take a subject knowledge enhancement course in " + skeSubject + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--s"
             }
