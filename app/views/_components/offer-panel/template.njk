@@ -226,6 +226,29 @@
       ]
     }
   })}}
+
+{% else %}
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Subject knowledge enhancement course"
+        },
+        value: {
+          text: "Not required"
+        },
+        actions: {
+          items: [
+            {
+              text: "Change",
+              href: "/applications/" + params.applicationId + "/offer/ske"
+            }
+          ]
+        }
+      }]
+
+  }) }}
+
 {% endif %}
 
   {% if params.data.skeRequired == 'yes' %}

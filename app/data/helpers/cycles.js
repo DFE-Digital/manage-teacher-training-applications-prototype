@@ -66,11 +66,24 @@ const CYCLES = {
     rejectByDefault: DateTime.fromISO('2023-09-29T23:59:59').toJSDate(),
     findCloses: DateTime.fromISO('2023-10-04T23:59:59').toJSDate(),
     ageCalculationDate: DateTime.fromISO('2023-08-31T23:59:59').toJSDate()
+  },
+  2024: {
+    code: '2023 to 2024',
+    shortDesc: '2023 to 2024',
+    longDesc: '2023 to 2023 (starts 2024)',
+    findOpens: DateTime.fromISO('2023-10-05T09:00:00').toJSDate(),
+    applyOpens: DateTime.fromISO('2023-10-12T09:00:00').toJSDate(),
+    showDeadlineBanner: DateTime.fromISO('2024-08-01T09:00:00').toJSDate(),
+    apply1Deadline: DateTime.fromISO('2024-09-07T18:00:00').toJSDate(),
+    apply2Deadline: DateTime.fromISO('2024-09-21T18:00:00').toJSDate(),
+    rejectByDefault: DateTime.fromISO('2024-09-29T23:59:59').toJSDate(),
+    findCloses: DateTime.fromISO('2024-10-04T23:59:59').toJSDate(),
+    ageCalculationDate: DateTime.fromISO('2024-08-31T23:59:59').toJSDate()
   }
 }
 
 const getCurrentCycle = () => {
-  const currentCycleYear = now.year
+  const currentCycleYear = '2023'
   let cycle = {}
 
   for (const [year, data] of Object.entries(CYCLES)) {
@@ -151,8 +164,8 @@ const getNextCycle = () => {
 exports.NEXT_CYCLE = getNextCycle()
 
 exports.getCycleOptions = (selectedItems) => {
-  const currentCycleYear = now.year
-  const previousCycleYear = now.year - 1
+  const currentCycleYear = '2023'
+  const previousCycleYear = '2022'
   const items = []
 
   for (const [year, data] of Object.entries(CYCLES)) {

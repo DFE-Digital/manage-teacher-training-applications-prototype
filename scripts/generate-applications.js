@@ -153,10 +153,10 @@ const generateFakeApplication = (params = {}) => {
 
   let otherQualifications
 
-  if(params.otherQualifications === null) {
-    otherQualifications = null
-  } else {
+  if(!params.otherQualifications) {
     otherQualifications = generateOtherQualifications()
+  } else {
+    otherQualifications = params.otherQualifications
   }
 
   const gcse = generateGcse({
@@ -233,67 +233,27 @@ const generateFakeApplications = () => {
     minute: faker.helpers.randomize([0, 15, 30, 45])
   })
 
-//   applications.push(generateFakeApplication({
-//     status: 'Received',
-//     cycle: CycleHelper.CURRENT_CYCLE.code
-//   }))
 
   applications.push(generateFakeApplication({
     id: '46436',
     status: 'Received',
-    assignedUsers: [],
-    cycle: CycleHelper.CURRENT_CYCLE.code
-  }))
-
-
-  applications.push(generateFakeApplication({
-    course: 'History (HIS1)',
-    courseCode: 'HIS1',
-    studyMode: 'Full time',
-    provider: user.organisation.name,
-    id: '618451',
-    status: 'Received',
-    assignedUsers: [],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
+    course: 'Mathematics (MA14)',
     subject: [
       {
-        "code": "V1",
-        "name": "History"
+        "code": "M1",
+        "name": "Mathematics"
       }
     ],
     personalDetails: {
-      givenName: 'Jennifer',
-      familyName: 'Dyer',
+      givenName: 'Jane',
+      familyName: 'Smith',
       sex: 'Female',
-      dateOfBirth: '1996-01-03',
+      dateOfBirth: '1994-01-03',
       nationalities: [
         'British'
       ],
       isInternationalCandidate: false
     },
-    "interviews": {
-      "items": [
-        {
-          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
-          "details": "As discussed by phone, please attend an interview with our panel.",
-          "location": "100 School Drive, Birmingham, BR1 4SQ",
-          "organisation": user.organisation.name,
-          "date": "2022-06-16T10:00:00"
-        }
-      ]
-    },
-    degree: [
-      {
-        type: 'BA',
-        subject: 'History',
-        institution: 'University of Central Lancashire',
-        country: 'United Kingdom',
-        grade: '2:1',
-        predicted: false,
-        startYear: '2015',
-        graduationYear: '2018'
-      }
-    ],
     gcse: {
       maths: {
         hasQualification: 'Yes',
@@ -302,10 +262,10 @@ const generateFakeApplications = () => {
         country: 'United Kingdom',
         grade: [
           {
-            grade: 'B'
+            grade: 'A'
           }
         ],
-        year: 2012
+        year: 2009
       },
       english: {
         hasQualification: 'Yes',
@@ -318,10 +278,170 @@ const generateFakeApplications = () => {
             grade: 'A'
           }
         ],
-        year: 2012
+        year: 2009
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Double Science',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'BB'
+          }
+        ],
+        year: 2009
       }
     },
-    otherQualifications: null,
+    degree: [
+      {
+        type: 'BSc',
+        subject: 'Mathematics',
+        institution: 'University of Central Lancashire',
+        country: 'United Kingdom',
+        grade: '2:1',
+        predicted: false,
+        startYear: '2011',
+        graduationYear: '2015'
+      }
+    ],
+    otherQualifications: [
+      {
+        "type": "A level",
+        "subject": "Mathematics",
+        "country": "United Kingdom",
+        "grade": "A",
+        "year": "2011"
+      }
+    ],
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Librarian',
+          org: 'Lancashire libraries service',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2015-07-14',
+          endDate: '2018-12-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Researcher',
+          org: 'University of Lancashire',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2019-01-01',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        }
+      ]
+    },
+    schoolExperience: [],
+    personalStatement: {
+      vocation: "I am passionate about mathematics and think I’ll be great at teaching it.",
+      subjectKnowledge: "I have a degree in maths and spend a lot of time reading maths books."
+    },
+    safeguarding: {
+      response: false
+    },
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code
+  }))
+
+
+  applications.push(generateFakeApplication({
+    course: 'Mathematics (MA14)',
+    courseCode: 'HIS1',
+    studyMode: 'Full time',
+    provider: user.organisation.name,
+    id: '618451',
+    status: 'Received',
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    subject: [
+      {
+        "code": "M1",
+        "name": "Mathematics"
+      }
+    ],
+    personalDetails: {
+      givenName: 'Tommy',
+      familyName: 'Doyle',
+      sex: 'Male',
+      dateOfBirth: '1996-01-03',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    },
+    degree: [
+      {
+        type: 'BSc',
+        subject: 'Mathematics',
+        institution: 'University of Leeds',
+        country: 'United Kingdom',
+        grade: '2:1',
+        predicted: false,
+        startYear: '2018',
+        graduationYear: '2021'
+      }
+    ],
+    gcse: {
+      maths: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'A'
+          }
+        ],
+        year: 2016
+      },
+      english: {
+        hasQualification: 'Yes',
+        type: 'GCSE',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            exam: 'English',
+            grade: 'A'
+          }
+        ],
+        year: 2016
+      }
+    },
+    otherQualifications: [
+      {
+        "type": "A level",
+        "subject": "Mathematics",
+        "country": "United Kingdom",
+        "grade": "A",
+        "year": "2018"
+      },
+      {
+        "type": "A level",
+        "subject": "Statistics",
+        "country": "United Kingdom",
+        "grade": "B",
+        "year": "2018"
+      },
+      {
+        "type": "A level",
+        "subject": "Economics",
+        "country": "United Kingdom",
+        "grade": "C",
+        "year": "2018"
+      }
+    ],
     references: {},
     schoolExperience: [
     ],
@@ -335,38 +455,18 @@ const generateFakeApplications = () => {
         {
           category: 'job',
           role: 'Bar staff',
-          org: 'Berney Arms',
-          type: 'Part time',
-          relevantToTeaching: 'No',
-          startDate: '2018-07-14',
-          endDate: '2018-12-06',
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        },
-        {
-          category: 'job',
-          role: 'Gallery attendant',
-          org: 'Lancashire Museum',
+          org: 'Red Lion pub',
           type: 'Full time',
           relevantToTeaching: 'No',
-          startDate: '2019-01-14',
-          endDate: '2019-06-06',
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        },
-        {
-          category: 'job',
-          role: 'Family workshop leader',
-          org: 'Lancashire Museum',
-          type: 'Full time',
-          relevantToTeaching: 'No',
-          startDate: '2019-07-14',
+          startDate: '2021-07-14',
           endDate: false,
           isStartDateApproximate: false,
           isEndDateApproximate: false
         }
       ]
     },
+    schoolExperience: [
+    ],
     safeguarding: {
       response: false
     },
@@ -377,79 +477,48 @@ const generateFakeApplications = () => {
       response: false
     },
     personalStatement: {
-      vocation: "The influence teachers have on young people cannot be understated. My memories of being a student are a testament to that, as my decision to become a teacher has been directly influenced by the positive experiences I had at secondary school.\n\nI feel I have the potential to inspire young people to reach their full potential, just as my teachers motivated me. I am passionate about supporting children to live a happy and healthy life, as well as helping them to develop the skills they need.\n\nWorking at a museum I’ve discovered that I’m able to listen and communicate well with children. I love to see the confidence a child can gain when they feel comfortable and secure.\n\nI have also recently completed a Level 1 in British Sign Language with the support of the museum where I work. This has helped broaden my communication skills as well as highlighting to me the importance of inclusion in education. This is something I hope to explore further when I train to become a teacher.",
-      subjectKnowledge: "My current role as a family workshop leader has strengthened my passion to become a teacher. I have gained experience supporting the teaching of the National Curriculum for history, as well as helping students to get the best out of their time at the museum.\n\nOur summer workshops have been particularly rewarding, as students attend daily for a week and I’ve been able to see them develop their confidence from start to finish.\n\nI feel that my current employment has also given me a range of transferable skills. I currently provide training to new members of staff and have also been asked to update existing members of the team on changes to policies and procedures. Therefore I have to ensure that I am adaptable in my approach as I am aware that people all learn differently."
-    },
-    "references": {
-      "first": {
-        "type": "Academic",
-        "name": "Jason Barker",
-        "email": "j.barker@birmingham.ac.uk",
-        "relationship": {
-          "summary": "They are my Personal academic tutor (PAT) at university I have known them since starting university in September 2020."
-        },
-      },
-      "second": {
-        "type": "Professional",
-        "name": "Julie Partridge",
-        "email": "julie912@gmail.com",
-        "relationship": {
-          "summary": "I tutored her child in English. I’ve known her for one year"
-        },
-      }
+      vocation: "I like maths and would love to teach this to secondary students.",
+      subjectKnowledge: "I have a degree in Mathematics, and A levels in maths and statistics. These have prepared me to be a maths teacher."
     }
   }))
 
 
-  // TODO:
-  // * applying for English course
-  // * personal statement
+
   applications.push(generateFakeApplication({
-    id: '736583',
-    status: 'Conditions pending',
-    course: 'English (E15P)',
-    courseCode: 'E15P',
+    course: 'Mathematics (MA14)',
+    courseCode: 'HIS1',
     studyMode: 'Full time',
+    provider: user.organisation.name,
+    id: '618451',
+    status: 'Received',
     assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
     subject: [
       {
-        "code": "13",
-        "name": "English"
+        "code": "M1",
+        "name": "Mathematics"
       }
     ],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
     personalDetails: {
-      givenName: 'Sandra',
-      familyName: 'Smith',
+      givenName: 'Aisha',
+      familyName: 'Fadel',
       sex: 'Female',
-      dateOfBirth: '1995-04-15',
+      dateOfBirth: '1996-01-03',
       nationalities: [
         'British'
       ],
       isInternationalCandidate: false
     },
-    "submittedDate": "2022-06-01T14:50:44.481+01:00",
-    "interviews": {
-      "items": [
-        {
-          "id": "02332342-787a-4e3d-bfec-c6a847d32247",
-          "details": "As discussed by phone, please attend an interview with our panel.",
-          "location": "100 School Drive, Birmingham, BR1 4SQ",
-          "organisation": user.organisation.name,
-          "date": "2022-06-16T11:00:00"
-        }
-      ]
-    },
     degree: [
       {
-        type: 'BA',
-        subject: 'English and Journalism',
-        institution: 'University of Birmingham',
+        type: 'BSc',
+        subject: 'Economics',
+        institution: 'University of Central Lancashire',
         country: 'United Kingdom',
         grade: '2:1',
         predicted: false,
-        startYear: '2014',
-        graduationYear: '2017'
+        startYear: '2018',
+        graduationYear: '2021'
       }
     ],
     gcse: {
@@ -463,7 +532,7 @@ const generateFakeApplications = () => {
             grade: 'B'
           }
         ],
-        year: 2011
+        year: 2016
       },
       english: {
         hasQualification: 'Yes',
@@ -472,58 +541,37 @@ const generateFakeApplications = () => {
         country: 'United Kingdom',
         grade: [
           {
-            exam: 'English language',
-            grade: 'A'
-          },
-          {
-            exam: 'English literature',
+            exam: 'English',
             grade: 'A'
           }
         ],
-        year: 2011
+        year: 2016
       }
     },
-    otherQualifications: null,
-    "references": {
-      "52523": {
-        "type": "Academic",
-        "name": "Josie Blaine",
-        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
-        "relationship": {
-          "summary": "Lecturer at my university."
-        }
+    otherQualifications: [
+      {
+        "type": "A level",
+        "subject": "Economics",
+        "country": "United Kingdom",
+        "grade": "A",
+        "year": "2018"
       },
-      "12421": {
-        "type": "School based",
-        "name": "Madie Olson",
-        "email": "madie.olson58@birminghamhigh.birmingham.sch.uk",
-        "tel": "0500 471823",
-        "relationship": {
-          "summary": "SENCO lead at Birmingham High School where I’ve been working as a Teaching Assistant since 2017.",
-          "validated": false,
-          "how_they_know_candidate": "Sandra is a Teaching Assistant in my school. She joined in 2016."
-        },
-        "safeguarding": {
-          "response": "no"
-        },
-        "comments": "Sandra joined our school in September 2016 as a Teaching Assistant."
+      {
+        "type": "A level",
+        "subject": "Mathematics",
+        "country": "United Kingdom",
+        "grade": "B",
+        "year": "2018"
       },
-      "436346": {
-        "type": "Academic",
-        "name": "Stephon Lesch",
-        "email": "stephon66@birmingham.ac.uk",
-        "tel": "0915 358 2730",
-        "relationship": {
-          "summary": "Personal tutor at University.",
-          "validated": true
-        },
-        "safeguarding": {
-          "response": "yes",
-          "concerns": "There was an allegation that Sandra behaved inappropriately with another student. This was not substantiated."
-        },
-        "comments": "Sandra was a student at the University between 2014 and 2017. She graduated with a 2:1 Bachelor of Arts degree in English and journalism."
+      {
+        "type": "A level",
+        "subject": "Chemistry",
+        "country": "United Kingdom",
+        "grade": "C",
+        "year": "2018"
       }
-    },
+    ],
+    references: {},
     schoolExperience: [
     ],
     notes: {
@@ -535,203 +583,19 @@ const generateFakeApplications = () => {
       items: [
         {
           category: 'job',
-          role: 'Sales assistant',
-          org: 'Birmingham Superstore',
-          type: 'Part time',
-          relevantToTeaching: 'No',
-          startDate: '2017-07-14',
-          endDate: '2017-08-06',
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        },
-        {
-          category: 'job',
-          role: 'Teaching assistant',
-          org: 'Birmingham High School',
+          role: 'Business Analyst',
+          org: 'Department for Work and Pensions',
           type: 'Full time',
-          relevantToTeaching: 'Yes',
-          startDate: '2017-09-14',
+          relevantToTeaching: 'No',
+          startDate: '2021-07-14',
           endDate: false,
           isStartDateApproximate: false,
           isEndDateApproximate: false
         }
       ]
     },
-    safeguarding: {
-      response: false
-    },
-    interviewNeeds: {
-      response: false
-    },
-    disability: {
-      response: false
-    },
-    personalStatement: {
-      vocation: "My desire to teach stems from an appreciation of the impact that teachers have on the lives of students both inside and outside the classroom.\n\nOver the past few years, my position as a teaching assistant at Birmingham High School has given me the essential experience of being in a classroom and seeing the interactions between teachers and students. It has also made me aware of the demands of teaching. I realise that the classroom can be a high-pressure environment where things move quickly due to time constraints.\n\nAs a teaching assistant, most of my work involves supporting students who have special educational needs and disabilities. Working with these students has been extremely rewarding, particularly when I see them make progress.\n\nLooking further back, my degree in English and Journalism played a large role in developing my organisational skills, vocabulary and understanding of English grammar. This gives me a foundation to further enhance my skills by training to become a teacher.\n\nPerhaps unexpectedly, my job as a sales assistant also informed my decision to teach. It was a role in which good communication was essential, as I spent most of my time talking to customers. This taught me the significance of speaking in a clear and professional way, a skill which I would expect to need in the classroom.\n\nI would take great pleasure in training to become a teacher. Having worked with young people for the last few years, my decision to get into the profession was straightforward because I value the sense of achievement I feel when I see the impact I have on a student. I believe that my qualities would make me an effective teacher.",
-      subjectKnowledge: "I have been passionate about the study of English for as long as I can remember. From as early as year 6 it was my aim to go to university to study English. Now I’m driven by the idea that I could go back to school as a teacher and teach my favourite subject.\n\nMy passion began due to the time I spent with my own teachers, who taught me skills which I have used in every facet of my life. I feel that a secondary school environment is the perfect place for me to help shape the minds of young people.\n\nMy undergraduate degree in English and Journalism as well as my A level in English Language would of course by the foundation of my ability to teach English in a secondary school. My degree in particular equipped me with a broad knowledge of English language and literature. I was required to produce creative writing pieces throughout the course, as well as analyse literature for assignments.\n\nHaving worked as a teaching assistant for two years and assisted in English lessons, I am positive that secondary education is where I would be most effective. I have learned valuable skills such as different teaching strategies, behaviour management and lesson planning. I have also had experience of communicating in a professional manner with both students and parents.\n\nTeaching is a challenging profession but I believe that it will also be rewarding. Teaching at secondary level will let me continue to work with the age group I already have experience with. This will in turn allow me to hone my skills in order to give them the best possible chance to succeed."
-    },
-    "offer": {
-      "provider": "Birmingham SCITT",
-      "course": "English (E15P)",
-      "courseCode": "E15P",
-      "location": {
-        "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
-        "name": "Main site",
-        "address": {
-          "address1": "123 Main Street",
-          "town": "Birmingham",
-          "postcode": "BR4 2CD"
-        },
-        "organisation": {
-          "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
-          "name": "Birmingham SCITT"
-        }
-      },
-      "studyMode": "Full time",
-      "accreditedBody": "Birmingham SCITT",
-      "fundingType": "Fee paying",
-      "qualifications": [
-        "QTS"
-      ],
-      "madeDate": "2022-06-13T14:50:44.481+01:00",
-      "acceptedDate": "2022-06-14T14:50:44.481+01:00",
-      "standardConditions": [
-        {
-          "id": "b6928343-d052-4fb0-8f95-3e2fc853fed3",
-          "description": "Fitness to train to teach check",
-          "status": "Met"
-        },
-        {
-          "id": "32960a3a-eb2f-4acf-8a9e-3dc89bfa4685",
-          "description": "Disclosure and Barring Service (DBS) check",
-          "status": "Met"
-        },
-        {
-          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
-          "description": "Two references",
-          "status": "Pending"
-        }
-      ],
-      "withdrawalDate": null,
-      "withdrawalReasons": null
-    },
-  }))
-
-
-  applications.push(generateFakeApplication({
-    id: '647592',
-    status: 'Conditions pending',
-    course: 'English (E15P)',
-    courseCode: 'E15P',
-    studyMode: 'Full time',
-    assignedUsers: [],
-    subject: [
-      {
-        "code": "13",
-        "name": "English"
-      }
-    ],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    personalDetails: {
-      givenName: 'Andy',
-      familyName: 'Pascoe',
-      sex: 'Male',
-      dateOfBirth: '2000-12-03',
-      nationalities: [
-        'British'
-      ],
-      isInternationalCandidate: false
-    },
-    "submittedDate": "2022-06-01T14:50:44.481+01:00",
-    "interviews": {
-      "items": [
-      ]
-    },
-    degree: [
-      {
-        type: 'BA',
-        subject: 'English',
-        institution: 'University of Birmingham',
-        country: 'United Kingdom',
-        grade: '2:1',
-        predicted: true,
-        startYear: '2020',
-        graduationYear: null
-      }
-    ],
-    gcse: {
-      maths: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Maths',
-        country: 'United Kingdom',
-        grade: [
-          {
-            grade: 'B'
-          }
-        ],
-        year: 2011
-      },
-      english: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English language',
-            grade: 'A'
-          },
-          {
-            exam: 'English literature',
-            grade: 'A'
-          }
-        ],
-        year: 2011
-      }
-    },
-    otherQualifications: null,
-    "references": {
-      "first": {
-        "type": "Academic",
-        "name": "Jason Barker",
-        "email": "j.barker@birmingham.ac.uk",
-        "tel": "0500 471823",
-        "relationship": {
-          "summary": "They are my Personal academic tutor (PAT) at university I have known them since starting university in September 2020.",
-          "validated": true
-        },
-        "safeguarding": {
-          "response": "no"
-        },
-        "comments": "Andy was a student here between 2020 and 2023 studying for a BA in English."
-      },
-      "second": {
-        "type": "Professional",
-        "name": "Julie Partridge",
-        "email": "julie912@gmail.com",
-        "tel": "07712 7649205",
-        "relationship": {
-          "summary": "I tutored her child in English. I’ve known her for one year",
-          "validated": true
-        },
-        "safeguarding": {
-          "response": "no"
-        },
-        "comments": "Andy has tutored my 12 year old son in English for the past year."
-      }
-    },
     schoolExperience: [
     ],
-    notes: {
-      items: [
-      ]
-    },
-    workHistory: {
-      answer: 'no',
-      items: [
-      ]
-    },
     safeguarding: {
       response: false
     },
@@ -742,76 +606,12 @@ const generateFakeApplications = () => {
       response: false
     },
     personalStatement: {
-      vocation: "Without good teachers, truly talented individuals may never discover their talents and passions. I have always thought that a good teacher is one who inspires pupils to expand their way of thinking. \n\nI was fortunate to have teachers who did this for me. Now I want to do this for future generations of children. I know that the reward of seeing a pupil's progression will inspire me to always improve my skills.\n\nAlthough I don’t have much professional experience, I’ve volunteered numerous times to teach and be responsible for children. This included volunteering at a primary school after school club, which taught me that I enjoy the challenge of working with children. But it also made me realise that I would prefer to teach at secondary level.\n\nI have also worked with children ages 13 and up, when volunteering as a rugby coach. I found this extremely rewarding as well as challenging, and it required me to develop excellent communication skills and the ability to lead a group. \n\nIn my time at university, I’ve also learned the importance of having peers to read through your work and give their feedback. As a deeply empathetic person I would welcome the chance to help others improve themselves.\n\nI am looking forward to learning more about the current curriculum. I am also excited to meet other people doing their PGCEs so that I can learn more about the subject and myself.",
-      subjectKnowledge: "My English Literature degree makes me suited to teach English. It will allow me not only to teach the National Curriculum fundamentals but to also help students who wish to go further.\n\nI have a wealth of knowledge of both literature and literary theory. The area that I would most need to work on would be the English language aspect, but I do not expect this to be a problem. I enjoy all aspects of English so revisiting grammar will be a welcome change.\n\nI want to teach English because of my experience with the subject throughout my education. It has helped me to think for myself and expanded my vocabulary. It has also given me the chance to discover and explore new ideas. \n\nFollowing the aims of the National Curriculum for English, I believe it is essential that a student can communicate effectively in essays and discussions. I look forward to encouraging students to read more for both recreation and information. As always, I am keen to learn and develop ideas with students. I believe that everyone can further expand their knowledge, whether they’re a teacher or student."
-    },
-    "offer": {
-      "provider": "Birmingham SCITT",
-      "course": "English (E15P)",
-      "courseCode": "E15P",
-      "location": {
-        "id": "6220db19-815a-4314-a2c4-c89ff69ed27b",
-        "name": "Main site",
-        "address": {
-          "address1": "123 Main Street",
-          "town": "Some town",
-          "postcode": "AB1 2CD"
-        },
-        "organisation": {
-          "id": "c908772c-81b1-4bdb-8f8c-fea1465b8f74",
-          "name": "Birmingham SCITT"
-        }
-      },
-      "studyMode": "Full time",
-      "fundingType": "Fee paying",
-      "qualifications": [
-        "QTS"
-      ],
-      "madeDate": "2022-06-13T14:50:44.481+01:00",
-      "acceptedDate": "2022-06-14T14:50:44.481+01:00",
-      "standardConditions": [
-        {
-          "id": "b6928343-d052-4fb0-8f95-3e2fc853fed3",
-          "description": "Fitness to train to teach check",
-          "status": "Met"
-        },
-        {
-          "id": "32960a3a-eb2f-4acf-8a9e-3dc89bfa4685",
-          "description": "Disclosure and Barring Service (DBS) check",
-          "status": "Met"
-        },
-        {
-          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
-          "description": "Two references",
-          "status": "Pending"
-        },
-        {
-          "id": "532d135e-b3b8-4a7e-94de-7702a5fca587",
-          "description": "An undergraduate degree at 2:2 or above",
-          "status": "Pending"
-        }
-      ],
-      "withdrawalDate": null,
-      "withdrawalReasons": null
-    },
+      vocation: "I have developed a love of mathematics, and I believe that more children can be encouraged to learn maths through better teaching.",
+      subjectKnowledge: "Whilst my degree was in economics, I spent a lot of time developing maths skills as part of calculations and modelling. I have since worked as an analyst at DWP, where I had to examine data and prepare presentations."
+    }
   }))
 
 
-
-//   applications.push(generateFakeApplication({
-//     status: 'Interviewing',
-//     cycle: CycleHelper.CURRENT_CYCLE.code
-//   }))
-//
-//   applications.push(generateFakeApplication({
-//     status: 'Conditions pending',
-//     cycle: CycleHelper.CURRENT_CYCLE.code
-//   }))
-//
-//   applications.push(generateFakeApplication({
-//     status: 'Conditions pending',
-//     cycle: CycleHelper.CURRENT_CYCLE.code
-//   }))
 
   return applications
 }
