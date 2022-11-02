@@ -21,19 +21,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
+      <!--
       <h1 class="govuk-heading-l">Subject knowledge enhancement courses</h1>
 
       <p class="govuk-body">The Department for Education will fund a <a href="https://www.gov.uk/guidance/subject-knowledge-enhancement-an-introduction" class="govuk-link">subject knowledge enhancement course</a>  in {{ skeSubject }} to help the candidate meet the teachers’ standards.</p>
-
+-->
       <form action="/applications/{{ applicationId }}/offer/ske-answer" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
           name: "skeRequired",
           fieldset: {
             legend: {
-              text: "Do they need to take a subject knowledge enhancement course in " + skeSubject + "?",
+              text: "Do you require them to take a subject knowledge enhancement course in " + (skeSubject | lower) + "?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--s"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
