@@ -16,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
-      <h1 class="govuk-heading-l">SKE course requirements</h1>
+      <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) course requirements</h1>
 
       <form action="/applications/{{ applicationId }}/offer/ske-length-answer" method="post" accept-charset="UTF-8" novalidate>
 
@@ -24,22 +24,34 @@
           name: "skeCourseLengthRequired",
           fieldset: {
             legend: {
-              text: "Length of SKE course required",
+              text: "How long must their SKE course be?",
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "8 or 12 weeks (‘short’)",
-              text: "8 or 12 weeks (‘short’)"
+              value: "8 weeks",
+              text: "8 weeks"
             },
             {
-              value: "16 or 20 weeks (‘medium’)",
-              text: "16 or 20 weeks (‘medium’)"
+              value: "12 weeks",
+              text: "12 weeks"
             },
             {
-              value: "24 or 28 weeks (‘long’)",
-              text: "24 or 28 weeks (‘long’)"
+              value: "16 weeks",
+              text: "16 weeks"
+            },
+            {
+              value: "20 weeks",
+              text: "20 weeks"
+            },
+            {
+              value: "24 weeks",
+              text: "24 weeks"
+            },
+            {
+              value: "28 weeks",
+              text: "28 weeks"
             }
           ]
         }) }}
@@ -54,11 +66,11 @@
             },
             items: [
               {
-                value: "Completed before training starts",
+                value: "Must be completed before training starts",
                 text: "Yes"
               },
               {
-                value: "Enrolled before training starts",
+                value: "Can be completed during training course",
                 text: "No, so long as they’ve started it by then"
               }
             ]
