@@ -160,22 +160,6 @@
       rows: [
         {
           key: {
-            text: "Reason"
-          },
-          value: {
-            text: reasonHtml | safe
-          },
-          actions: {
-            items: [
-              {
-                text: "Change",
-                href: "/applications/" + params.applicationId + "/offer/ske-reason"
-              }
-            ]
-          }
-        },
-        {
-          key: {
             text: "Subject"
           },
           value: {
@@ -194,6 +178,22 @@
               {
                 text: "Change",
                 href: "/applications/" + params.applicationId + "/offer/ske-length"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Reason"
+          },
+          value: {
+            text: reasonHtml | safe
+          },
+          actions: {
+            items: [
+              {
+                text: "Change",
+                href: "/applications/" + params.applicationId + "/offer/ske-reason"
               }
             ]
           }
