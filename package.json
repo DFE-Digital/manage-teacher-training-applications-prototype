@@ -63,6 +63,6 @@
     ]
   },
   "devDependencies": {
-    "glob": "^7.1.4"
+    "glob": "^8.0.3"
   }
 }
