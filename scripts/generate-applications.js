@@ -612,6 +612,60 @@ const generateFakeApplications = () => {
   }))
 
 
+  applications.push(generateFakeApplication({
+    id: '57261',
+    status: 'Received',
+    course: 'French with Spanish (FS23)',
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    provider: user.organisation.name,
+    subject: [
+      {
+        "code": "F1",
+        "name": "French"
+      },
+      {
+        "code": "S1",
+        "name": "Spanish"
+      }
+    ],
+    personalDetails: {
+      givenName: 'Michelle',
+      familyName: 'Aragon',
+      sex: 'Female',
+      dateOfBirth: '1994-01-03',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    }
+  }))
+
+applications.push(generateFakeApplication({
+    id: '3464',
+    status: 'Received',
+    course: 'PE with Ebacc (PE13)',
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code,
+    provider: user.organisation.name,
+    subject: [
+      {
+        "code": "F1",
+        "name": "PE with Ebacc"
+      }
+    ],
+    personalDetails: {
+      givenName: 'John',
+      familyName: 'Routledge',
+      sex: 'Males',
+      dateOfBirth: '1994-01-03',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    }
+  }))
+
 
   return applications
 }
