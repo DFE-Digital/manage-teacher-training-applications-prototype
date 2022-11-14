@@ -32,7 +32,7 @@
       {% if firstSubject.name == "French" %}
 
         {{ govukCheckboxes({
-          name: "skeRequired",
+          name: "skeLanguage",
           fieldset: {
             legend: {
               text: "Do you require them to take a subject knowledge enhancement course in any of these languages?",
@@ -72,8 +72,10 @@
 
       {% elif firstSubject.name == "PE with Ebacc" %}
 
+        <input type="hidden" name="skeRequired" value="">
+        <input type="hidden" name="skeReason" value="">
         {{ govukRadios({
-          name: "skeRequired",
+          name: "skeEbacc",
           fieldset: {
             legend: {
               text: "Do you require them to take an 8 week subject knowledge enhancement course in an Ebacc subject?",

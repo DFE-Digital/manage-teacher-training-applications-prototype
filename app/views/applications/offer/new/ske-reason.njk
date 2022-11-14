@@ -5,7 +5,15 @@
 {% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
 {% set firstSubject = application.subject | first %}
-{% set skeSubject = firstSubject.name %}
+
+{% if data.skeLanguage and data.skeLanguage | length == 1 %}
+
+  {% set firstLanguage = data.skeLanguage | first %}
+
+  {% set skeSubject = firstLanguage %}
+{% else %}
+  {% set skeSubject = firstSubject.name %}
+{% endif %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -19,32 +27,88 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
 
-
       <form action="/applications/{{ applicationId }}/offer/ske-reason-answer" method="post" accept-charset="UTF-8" novalidate>
 
-        {{ govukCheckboxes({
-          name: "skeReason",
-          fieldset: {
-            legend: {
-              text: "Why do they need to take a subject knowledge enhancement (SKE) course?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          hint: {
-            text: "Select at least 1 option for the candidate to receive the SKE course bursary of £175 a week. We’ll show your answer to the candidate."
-          },
-          items: [
-            {
-              value: "Their degree subject was not " + skeSubject,
-              text: "Their degree subject was not " + skeSubject
+        {% if data.skeLanguage and data.skeLanguage | length > 1 %}
+          <h1 class="govuk-heading-l">Reasons for needing to take a subject knowledge enhancement course</h1>
+
+          {% for language in data.skeLanguage %}
+            {% if language != '_unchecked' %}
+
+              {{ govukCheckboxes({
+                name: "skeReason-" + language,
+                fieldset: {
+                  legend: {
+                    text: "Why do they need to take a course in " + language + "?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--m"
+                  }
+                },
+                items: [
+                  {
+                    value: "Their degree subject was not " + language,
+                    text: "Their degree subject was not " + language
+                  },
+                  {
+                    value: "They have not used their degree knowledge for 5 years or more",
+                    text: "They have not used their degree knowledge for 5 years or more"
+                  }
+                ]
+              }) }}
+            {% endif %}
+
+          {% endfor %}
+
+        {% elif data.skeEbacc %}
+
+          {{ govukCheckboxes({
+            name: "skeReason[" + data.skeEbacc + "]",
+            fieldset: {
+              legend: {
+                text: "Why do they need to take a subject knowledge enhancement (SKE) course in " + data.skeEbacc + "?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
             },
-            {
-              value: "They have not used their degree knowledge for 5 years or more",
-              text: "They have not used their degree knowledge for 5 years or more"
-            }
-          ]
-        }) }}
+            items: [
+              {
+                value: "Their degree subject was not " + data.skeEbacc,
+                text: "Their degree subject was not " + data.skeEbacc
+              },
+              {
+                value: "They have not used their degree knowledge for 5 years or more",
+                text: "They have not used their degree knowledge for 5 years or more"
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+          {{ govukCheckboxes({
+            name: "skeReason",
+            fieldset: {
+              legend: {
+                text: "Why do they need to take a subject knowledge enhancement (SKE) course?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "Select at least 1 option for the candidate to receive the SKE course bursary of £175 a week. We’ll show your answer to the candidate."
+            },
+            items: [
+              {
+                value: "Their degree subject was not " + skeSubject,
+                text: "Their degree subject was not " + skeSubject
+              },
+              {
+                value: "They have not used their degree knowledge for 5 years or more",
+                text: "They have not used their degree knowledge for 5 years or more"
+              }
+            ]
+          }) }}
+
+        {% endif %}
 
         {{ govukButton({
           text: "Continue"
