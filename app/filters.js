@@ -417,5 +417,10 @@ filters.falsify = (input) => {
     return last
   }
 
+  filters.push = (array, item) => {
+    array.push(item)
+    return array
+  }
+
   return filters
 }

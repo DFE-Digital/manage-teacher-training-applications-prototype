@@ -147,93 +147,105 @@
 
 <h2 class="govuk-heading-m">Conditions</h2>
 
-{% if params.skeCondition %}
+{% if params.skeConditions %}
 
-  {% set reasonHtml %}
-    {% for reason in params.skeCondition.reason %}
-      {{ reason }} <br>
-    {% endfor %}
-  {% endset %}
+  {% for skeCondition in params.skeConditions %}
 
-  {% set skeSummaryList %}
-    {{ govukSummaryList({
-      rows: [
-        {
-          key: {
-            text: "Subject"
+    {% set reasonHtml %}
+      {% for reason in skeCondition.reason %}
+        {{ reason }} <br>
+      {% endfor %}
+    {% endset %}
+
+    {% set skeSummaryList %}
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Subject"
+            },
+            value: {
+              text: skeCondition.subject
+            },
+            actions: {
+              items: [
+                {
+                  text: "Change",
+                  href: "/applications/" + params.applicationId + "/offer/ske"
+                }
+              ]
+            } if skeCondition.subject != "Mathematics"
           },
-          value: {
-            text: "Mathematics"
+          {
+            key: {
+              text: "Length"
+            },
+            value: {
+              text: skeCondition.lengthRequired
+            },
+            actions: {
+              items: [
+                {
+                  text: "Change",
+                  href: "/applications/" + params.applicationId + "/offer/ske-length"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Reason"
+            },
+            value: {
+              text: reasonHtml | safe
+            },
+            actions: {
+              items: [
+                {
+                  text: "Change",
+                  href: "/applications/" + params.applicationId + "/offer/ske-reason"
+                }
+              ]
+            }
+          } if skeCondition.reason,
+          {
+            key: {
+              text: "Completed"
+            },
+            value: {
+              text: skeCondition.deadline
+            },
+            actions: {
+              items: [
+                {
+                  text: "Change",
+                  href: "/applications/" + params.applicationId + "/offer/ske-length"
+                }
+              ]
+            }
           }
-        },
-        {
-          key: {
-            text: "Length"
-          },
-          value: {
-            text: params.skeCondition.lengthRequired
-          },
-          actions: {
-            items: [
-              {
-                text: "Change",
-                href: "/applications/" + params.applicationId + "/offer/ske-length"
-              }
-            ]
+
+        ]
+
+      }) }}
+    {% endset %}
+
+    {{ appSummaryCard({
+      titleText: "Subject knowledge enhancement course",
+      classes: "govuk-!-margin-bottom-6",
+      html: skeSummaryList,
+      actions: {
+        items: [
+          {
+            text: "Remove condition",
+            href: "/applications/" + params.applicationId + "/offer/ske"
+
           }
-        },
-        {
-          key: {
-            text: "Reason"
-          },
-          value: {
-            text: reasonHtml | safe
-          },
-          actions: {
-            items: [
-              {
-                text: "Change",
-                href: "/applications/" + params.applicationId + "/offer/ske-reason"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Completed"
-          },
-          value: {
-            text: params.skeCondition.deadline
-          },
-          actions: {
-            items: [
-              {
-                text: "Change",
-                href: "/applications/" + params.applicationId + "/offer/ske-length"
-              }
-            ]
-          }
-        }
+        ]
+      }
+    })}}
 
-      ]
-
-    }) }}
-  {% endset %}
-
-  {{ appSummaryCard({
-    titleText: "Subject knowledge enhancement course",
-    classes: "govuk-!-margin-bottom-6",
-    html: skeSummaryList,
-    actions: {
-      items: [
-        {
-          text: "Remove condition",
-          href: "/applications/" + params.applicationId + "/offer/ske"
-
-        }
-      ]
-    }
-  })}}
+  {% endfor %}
 
 {% else %}
   {{ govukSummaryList({

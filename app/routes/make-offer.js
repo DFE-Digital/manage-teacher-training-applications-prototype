@@ -53,12 +53,20 @@ module.exports = router => {
   router.post('/applications/:applicationId/offer/ske-answer', (req, res) => {
     let applicationId = req.params.applicationId
 
-    let answer = req.body.skeRequired
+    let skeRequired = req.body.skeRequired
+    let skeLanguage = req.body['skeLanguage']
+    let skeEbacc = req.body.skeEbacc
 
-    if (answer === 'yes') {
-      res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
-    } else if (answer === 'no') {
+    console.log(skeLanguage)
+
+    if (skeEbacc === 'no' || skeLanguage === ['no'] || skeRequired === 'no' ) {
       res.redirect(`/applications/${req.params.applicationId}/offer/conditions`)
+    } else if (skeEbacc) {
+      res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
+    } else if (skeLanguage) {
+      res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
+    } else if (skeRequired === 'yes') {
+      res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
     } else {
       res.redirect(`/applications/${req.params.applicationId}/offer/ske`)
     }
@@ -250,12 +258,33 @@ module.exports = router => {
 
     // Save SKE condition
     if (req.session.data.skeRequired === 'yes') {
-      application.offer.skeCondition = {
+      application.offer.skeConditions = [{
+        subject: 'Mathematics',
         reason: req.session.data.skeReason,
         lengthRequired: req.session.data.skeCourseLengthRequired,
         deadline: req.session.data.skeDeadline
+      }]
+    } else if (req.session.data.skeEbacc) {
+      application.offer.skeConditions = [{
+        subject: req.session.data.skeEbacc,
+        lengthRequired: '8 weeks',
+        deadline: req.session.data.skeDeadline
+      }]
+    } else if (req.session.data['skeLanguage']) {
+
+      application.offer.skeConditions = []
+      for (language of req.session.data['skeLanguage']) {
+
+        application.offer.skeConditions.push({
+          subject: language,
+          lengthRequired: req.session.data.skeCourseLengthRequired[language],
+          reason: req.session.data['skeReason-' + language],
+          deadline: req.session.data.skeDeadline
+        })
       }
+
     }
+
 
     // save further conditions
     if (req.session.data['new-offer']['conditions']) {
@@ -298,6 +327,7 @@ module.exports = router => {
     delete req.session.data.skeReason
     delete req.session.data.skeCourseLengthRequired
     delete req.session.data.skeDeadline
+    delete req.session.data.skeLanguage
 
     req.flash('success', content.makeOffer.successMessage)
     res.redirect(`/applications/${req.params.applicationId}/offer`)

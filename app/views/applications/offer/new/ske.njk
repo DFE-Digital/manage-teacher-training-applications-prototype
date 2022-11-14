@@ -7,6 +7,7 @@
 {% set firstSubject = application.subject | first %}
 {% set skeSubject = firstSubject.name %}
 
+
 {% block pageNavigation %}
 {% endblock %}
 
@@ -28,11 +29,111 @@
 -->
       <form action="/applications/{{ applicationId }}/offer/ske-answer" method="post" accept-charset="UTF-8" novalidate>
 
+      {% if firstSubject.name == "French" %}
+
+        {{ govukCheckboxes({
+          name: "skeLanguage",
+          fieldset: {
+            legend: {
+              text: "Do you require them to take a subject knowledge enhancement course in any of these languages?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "You can select a maximum of 2"
+          },
+          items: [
+            {
+              value: "French",
+              text: "French"
+            },
+            {
+              value: "Spanish",
+              text: "Spanish"
+            },
+            {
+              value: "German",
+              text: "German"
+            },
+            {
+              value: "Ancient languages",
+              text: "Ancient languages"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "no",
+              text: "No, a subject knowledge enhancement course is not required"
+            }
+          ]
+        }) }}
+
+      {% elif firstSubject.name == "PE with Ebacc" %}
+
+        <input type="hidden" name="skeRequired" value="">
+        <input type="hidden" name="skeReason" value="">
+        {{ govukRadios({
+          name: "skeEbacc",
+          fieldset: {
+            legend: {
+              text: "Do you require them to take an 8 week subject knowledge enhancement course in an Ebacc subject?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Biology",
+              text: "Biology"
+            },
+            {
+              value: "Chemistry",
+              text: "Chemistry"
+            },
+            {
+              value: "English",
+              text: "English"
+            },
+            {
+              value: "Mathematics",
+              text: "Mathematics"
+            },
+            {
+              value: "Physics",
+              text: "Physics"
+            },
+            {
+              value: "French",
+              text: "French"
+            },
+            {
+              value: "Spanish",
+              text: "Spanish"
+            },
+            {
+              value: "German",
+              text: "German"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "no",
+              text: "No, a subject knowledge enhancement course is not required"
+            }
+          ]
+        }) }}
+
+
+      {% else %}
+
         {{ govukRadios({
           name: "skeRequired",
           fieldset: {
             legend: {
-              text: "Do you require them to take a subject knowledge enhancement course in " + (skeSubject | lower) + "?",
+              text: "Do you require them to take a subject knowledge enhancement course in " + (skeSubject) + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -49,6 +150,7 @@
           ]
         }) }}
 
+      {% endif %}
 
         {{ govukButton({
           text: "Continue"

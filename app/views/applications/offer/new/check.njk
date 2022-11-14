@@ -22,12 +22,39 @@
       </h1>
 
       {% if data.skeRequired == 'yes' %}
-        {% set skeCondition = {
-          reason: data.skeReason,
-          deadline: data.skeDeadline,
-          lengthRequired: data.skeCourseLengthRequired
-        }
-      %}
+        {% set skeConditions = [{
+            subject: "Mathematics",
+            reason: data.skeReason,
+            deadline: data.skeDeadline,
+            lengthRequired: data.skeCourseLengthRequired
+          }]
+        %}
+      {% elif data.skeEbacc %}
+        {% set skeConditions = [{
+            subject: data.skeEbacc,
+            deadline: data.skeDeadline,
+            lengthRequired: "8 weeks"
+          }]
+        %}
+      {% elif data['skeLanguage'] %}
+
+        {% set skeConditions = [] %}
+
+        {% for language in data['skeLanguage'] %}
+
+          {% set reason = data['skeReason-' + language] %}
+          {% set length = data.skeCourseLengthRequired[language] %}
+
+          {% set skeConditions = skeConditions | push({
+              subject: language,
+              reason: reason,
+              deadline: data.skeDeadline,
+              lengthRequired: length
+            ])
+          %}
+
+        {% endfor %}
+
       {% else %}
         {% set skeCondition = false %}
       {% endif %}
@@ -65,7 +92,7 @@
         changeConditions: {
           href: "/applications/" + application.id + "/offer/new?referrer=check"
         },
-        skeCondition: skeCondition,
+        skeConditions: skeConditions,
         applicationId: applicationId
       }) }}
       </div>

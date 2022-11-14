@@ -16,9 +16,101 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
+      <form action="/applications/{{ applicationId }}/offer/ske-length-answer" method="post" accept-charset="UTF-8" novalidate>
+
+      {% if data.skeLanguage and data.skeLanguage | length > 1 %}
+
+        <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) course requirements</h1>
+
+        {% for language in data.skeLanguage %}
+          {% if language != '_unchecked' %}
+
+            {{ govukRadios({
+              name: "skeCourseLengthRequired[" + language + "]",
+              fieldset: {
+                legend: {
+                  text: "How long must their SKE course in " + language + " be?",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "8 weeks",
+                  text: "8 weeks"
+                },
+                {
+                  value: "12 weeks",
+                  text: "12 weeks"
+                },
+                {
+                  value: "16 weeks",
+                  text: "16 weeks"
+                },
+                {
+                  value: "20 weeks",
+                  text: "20 weeks"
+                },
+                {
+                  value: "24 weeks",
+                  text: "24 weeks"
+                },
+                {
+                  value: "28 weeks",
+                  text: "28 weeks"
+                }
+              ]
+            }) }}
+
+          {% endif %}
+        {% endfor %}
+
+        {{ govukRadios({
+          name: "skeDeadline",
+          fieldset: {
+            legend: {
+              text: "Do their SKE courses have to be completed before their training course starts, in September 2023?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Must be completed before training starts",
+              text: "Yes"
+            },
+            {
+              value: "Can be completed during training course",
+              text: "No, so long as they’ve started it by then"
+            }
+          ]
+        }) }}
+
+      {% elif data.skeEbacc %}
+
+
+          {{ govukRadios({
+            name: "skeDeadline",
+            fieldset: {
+              legend: {
+                text: "Does their 8 week " + data.skeEbacc + " SKE course have to be completed before their training course starts, in September 2023?",
+                classes: "govuk-fieldset__legend--l",
+                isPageHeading: true
+              }
+            },
+            items: [
+              {
+                value: "Must be completed before training starts",
+                text: "Yes"
+              },
+              {
+                value: "Can be completed during training course",
+                text: "No, so long as they’ve started it by then"
+              }
+            ]
+          }) }}
+
+      {% else %}
       <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) course requirements</h1>
 
-      <form action="/applications/{{ applicationId }}/offer/ske-length-answer" method="post" accept-charset="UTF-8" novalidate>
 
         {{ govukRadios({
           name: "skeCourseLengthRequired",
@@ -76,6 +168,22 @@
             ]
           }) }}
 
+
+{#
+        {{ govukTextarea({
+          name: "more-detail",
+          id: "more-detail",
+          label: {
+            text: "Is there anything else you’d like to tell the candidate about doing a SKE course? (optional)",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "For example, if you recommend a particular SKE course provider."
+          }
+
+        }) }} #}
+
+      {% endif %}
 
       {{ govukButton({
         text: "Continue"
