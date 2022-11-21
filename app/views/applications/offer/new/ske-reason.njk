@@ -84,7 +84,7 @@
 
         {% else %}
 
-          {{ govukCheckboxes({
+          {{ govukRadios({
             name: "skeReason",
             fieldset: {
               legend: {
@@ -94,7 +94,7 @@
               }
             },
             hint: {
-              text: "Select at least 1 option for the candidate to receive the SKE course bursary of £175 a week. We’ll show your answer to the candidate."
+              text: "These are the criteria for the SKE course bursary of £175 a week. We’ll show your answer to the candidate."
             },
             items: [
               {
@@ -103,7 +103,7 @@
               },
               {
                 value: "They have not used their degree knowledge for 5 years or more",
-                text: "They have not used their degree knowledge for 5 years or more"
+                text: "They graduated with a degree in " + skeSubject + " over 5 years ago and have not used their subject knowledge since"
               }
             ]
           }) }}
