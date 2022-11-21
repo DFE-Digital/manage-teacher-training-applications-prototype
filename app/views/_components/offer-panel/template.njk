@@ -152,9 +152,7 @@
   {% for skeCondition in params.skeConditions %}
 
     {% set reasonHtml %}
-      {% for reason in skeCondition.reason %}
-        {{ reason }} <br>
-      {% endfor %}
+      {{ skeCondition.reason }}
     {% endset %}
 
     {% set skeSummaryList %}
@@ -207,23 +205,7 @@
                 }
               ]
             }
-          } if skeCondition.reason,
-          {
-            key: {
-              text: "Completed"
-            },
-            value: {
-              text: skeCondition.deadline
-            },
-            actions: {
-              items: [
-                {
-                  text: "Change",
-                  href: "/applications/" + params.applicationId + "/offer/ske-length"
-                }
-              ]
-            }
-          }
+          } if skeCondition.reason
 
         ]
 
