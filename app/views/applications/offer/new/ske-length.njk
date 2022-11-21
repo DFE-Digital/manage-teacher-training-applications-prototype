@@ -109,15 +109,14 @@
           }) }}
 
       {% else %}
-      <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) course requirements</h1>
-
 
         {{ govukRadios({
           name: "skeCourseLengthRequired",
           fieldset: {
             legend: {
               text: "How long must their SKE course be?",
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
             }
           },
           items: [
@@ -148,40 +147,6 @@
           ]
         }) }}
 
-          {{ govukRadios({
-            name: "skeDeadline",
-            fieldset: {
-              legend: {
-                text: "Does their SKE course have to be completed before their training course starts, in September 2023?",
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            items: [
-              {
-                value: "Must be completed before training starts",
-                text: "Yes"
-              },
-              {
-                value: "Can be completed during training course",
-                text: "No, so long as they’ve started it by then"
-              }
-            ]
-          }) }}
-
-
-{#
-        {{ govukTextarea({
-          name: "more-detail",
-          id: "more-detail",
-          label: {
-            text: "Is there anything else you’d like to tell the candidate about doing a SKE course? (optional)",
-            classes: "govuk-label--m"
-          },
-          hint: {
-            text: "For example, if you recommend a particular SKE course provider."
-          }
-
-        }) }} #}
 
       {% endif %}
 
