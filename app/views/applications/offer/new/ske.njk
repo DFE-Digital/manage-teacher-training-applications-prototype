@@ -5,7 +5,7 @@
 {% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
 {% set firstSubject = application.subject | first %}
-{% set skeSubject = firstSubject.name %}
+{% set skeSubject = firstSubject.name | lower %}
 
 
 {% block pageNavigation %}
@@ -22,22 +22,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{ caption }}</span>
-      <!--
-      <h1 class="govuk-heading-l">Subject knowledge enhancement courses</h1>
+        <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) courses</h1>
 
-      <p class="govuk-body">The Department for Education will fund a <a href="https://www.gov.uk/guidance/subject-knowledge-enhancement-an-introduction" class="govuk-link">subject knowledge enhancement course</a>  in {{ skeSubject }} to help the candidate meet the teachers’ standards.</p>
--->
+
       <form action="/applications/{{ applicationId }}/offer/ske-answer" method="post" accept-charset="UTF-8" novalidate>
 
       {% if firstSubject.name == "French" %}
+
+        <p class="govuk-body">The Department for Education (DfE) will pay candidates to take up to 2 language SKE courses if needed, so long as they:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>have a 2:2 degree or higher, or are expected to do so</li>
+        </ul>
 
         {{ govukCheckboxes({
           name: "skeLanguage",
           fieldset: {
             legend: {
-              text: "Do you require them to take a subject knowledge enhancement course in any of these languages?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Do you require them to take a SKE course in any of these languages?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
             }
           },
           hint: {
@@ -72,15 +76,24 @@
 
       {% elif firstSubject.name == "PE with Ebacc" %}
 
+
+        <p class="govuk-body">The Department for Education (DfE) will pay candidates to take a SKE course if needed, so long as they:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>have a 2:2 degree or higher, or are expected to do so</li>
+          <li>are eligible for student finance (home fee status)</li>
+        </ul>
+
+
         <input type="hidden" name="skeRequired" value="">
         <input type="hidden" name="skeReason" value="">
         {{ govukRadios({
           name: "skeEbacc",
           fieldset: {
             legend: {
-              text: "Do you require them to take an 8 week subject knowledge enhancement course in an Ebacc subject?",
+              text: "Do you require them to take an 8 week SKE course in an Ebacc subject?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
@@ -129,13 +142,20 @@
 
       {% else %}
 
+        <p class="govuk-body">The Department for Education (DfE) will pay candidates to take a SKE course if needed, so long as they:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>have a 2:2 degree or higher, or are expected to do so</li>
+          <li>are eligible for student finance (home fee status)</li>
+        </ul>
+
         {{ govukRadios({
           name: "skeRequired",
           fieldset: {
             legend: {
-              text: "Do you require them to take a subject knowledge enhancement course in " + (skeSubject) + "?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Do you require " + " to take a SKE course in " + (skeSubject) + " that will be funded by the DfE?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
             }
           },
           items: [

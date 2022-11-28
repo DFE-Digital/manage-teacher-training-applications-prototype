@@ -22,6 +22,8 @@
 
         <h1 class="govuk-heading-l">Subject knowledge enhancement (SKE) course requirements</h1>
 
+        <p class="govuk-body">The 2 courses must not add up to more than 36 weeks.</p>
+
         {% for language in data.skeLanguage %}
           {% if language != '_unchecked' %}
 
@@ -64,49 +66,10 @@
           {% endif %}
         {% endfor %}
 
-        {{ govukRadios({
-          name: "skeDeadline",
-          fieldset: {
-            legend: {
-              text: "Do their SKE courses have to be completed before their training course starts, in September 2023?",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Must be completed before training starts",
-              text: "Yes"
-            },
-            {
-              value: "Can be completed during training course",
-              text: "No, so long as they’ve started it by then"
-            }
-          ]
-        }) }}
 
       {% elif data.skeEbacc %}
 
 
-          {{ govukRadios({
-            name: "skeDeadline",
-            fieldset: {
-              legend: {
-                text: "Does their 8 week " + data.skeEbacc + " SKE course have to be completed before their training course starts, in September 2023?",
-                classes: "govuk-fieldset__legend--l",
-                isPageHeading: true
-              }
-            },
-            items: [
-              {
-                value: "Must be completed before training starts",
-                text: "Yes"
-              },
-              {
-                value: "Can be completed during training course",
-                text: "No, so long as they’ve started it by then"
-              }
-            ]
-          }) }}
 
       {% else %}
 
