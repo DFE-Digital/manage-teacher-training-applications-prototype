@@ -61,25 +61,25 @@
 
           {% endfor %}
 
-        {% elif data.skeEbacc %}
+        {% elif data.skeEBacc %}
 
           {{ govukRadios({
-            name: "skeReason[" + data.skeEbacc + "]",
+            name: "skeReason[" + data.skeEBacc + "]",
             fieldset: {
               legend: {
-                text: "Why do they need to take a subject knowledge enhancement (SKE) course in " + data.skeEbacc + "?",
+                text: "Why do they need to take a subject knowledge enhancement (SKE) course in " + data.skeEBacc + "?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             items: [
               {
-                value: "Their degree subject was not " + data.skeEbacc,
-                text: "Their degree subject was not " + data.skeEbacc
+                value: "Their degree subject was not " + data.skeEBacc,
+                text: "Their degree subject was not " + data.skeEBacc
               },
               {
-                value: "They have a degree in " + data.skeEbacc + ", but they graduated before September 2018",
-                text: "They have a degree in " + data.skeEbacc + ", but they graduated before September 2018"
+                value: "They have a degree in " + data.skeEBacc + ", but they graduated before September 2018",
+                text: "They have a degree in " + data.skeEBacc + ", but they graduated before September 2018"
               }
             ]
           }) }}

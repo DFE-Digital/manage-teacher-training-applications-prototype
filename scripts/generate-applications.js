@@ -644,14 +644,14 @@ const generateFakeApplications = () => {
 applications.push(generateFakeApplication({
     id: '3464',
     status: 'Received',
-    course: 'PE with Ebacc (PE13)',
+    course: 'PE with EBacc (PE13)',
     assignedUsers: [],
     cycle: CycleHelper.CURRENT_CYCLE.code,
     provider: user.organisation.name,
     subject: [
       {
         "code": "F1",
-        "name": "PE with Ebacc"
+        "name": "PE with EBacc"
       }
     ],
     personalDetails: {
