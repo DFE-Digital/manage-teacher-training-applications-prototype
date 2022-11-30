@@ -55,13 +55,13 @@ module.exports = router => {
 
     let skeRequired = req.body.skeRequired
     let skeLanguage = req.body['skeLanguage']
-    let skeEbacc = req.body.skeEbacc
+    let skeEBacc = req.body.skeEBacc
 
     console.log(skeLanguage)
 
-    if (skeEbacc === 'no' || skeLanguage === ['no'] || skeRequired === 'no' ) {
+    if (skeEBacc === 'no' || skeLanguage === ['no'] || skeRequired === 'no' ) {
       res.redirect(`/applications/${req.params.applicationId}/offer/conditions`)
-    } else if (skeEbacc) {
+    } else if (skeEBacc) {
       res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
     } else if (skeLanguage) {
       res.redirect(`/applications/${req.params.applicationId}/offer/ske-reason`)
@@ -264,9 +264,9 @@ module.exports = router => {
         lengthRequired: req.session.data.skeCourseLengthRequired,
         deadline: req.session.data.skeDeadline
       }]
-    } else if (req.session.data.skeEbacc) {
+    } else if (req.session.data.skeEBacc) {
       application.offer.skeConditions = [{
-        subject: req.session.data.skeEbacc,
+        subject: req.session.data.skeEBacc,
         lengthRequired: '8 weeks',
         deadline: req.session.data.skeDeadline
       }]

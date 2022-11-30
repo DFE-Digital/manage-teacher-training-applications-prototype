@@ -32,10 +32,12 @@
         {% if data.skeLanguage and data.skeLanguage | length > 1 %}
           <h1 class="govuk-heading-l">Reasons for needing to take a subject knowledge enhancement course</h1>
 
+          <p class="govuk-body">Your answers will be shown to the candidate.</p>
+
           {% for language in data.skeLanguage %}
             {% if language != '_unchecked' %}
 
-              {{ govukCheckboxes({
+              {{ govukRadios({
                 name: "skeReason-" + language,
                 fieldset: {
                   legend: {
@@ -50,8 +52,8 @@
                     text: "Their degree subject was not " + language
                   },
                   {
-                    value: "They have not used their degree knowledge for 5 years or more",
-                    text: "They have not used their degree knowledge for 5 years or more"
+                    value: "They have a degree in " + language + ", but they graduated before September 2018",
+                    text: "They have a degree in " + language + ", but they graduated before September 2018"
                   }
                 ]
               }) }}
@@ -59,25 +61,25 @@
 
           {% endfor %}
 
-        {% elif data.skeEbacc %}
+        {% elif data.skeEBacc %}
 
-          {{ govukCheckboxes({
-            name: "skeReason[" + data.skeEbacc + "]",
+          {{ govukRadios({
+            name: "skeReason[" + data.skeEBacc + "]",
             fieldset: {
               legend: {
-                text: "Why do they need to take a subject knowledge enhancement (SKE) course in " + data.skeEbacc + "?",
+                text: "Why do they need to take a subject knowledge enhancement (SKE) course in " + data.skeEBacc + "?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             items: [
               {
-                value: "Their degree subject was not " + data.skeEbacc,
-                text: "Their degree subject was not " + data.skeEbacc
+                value: "Their degree subject was not " + data.skeEBacc,
+                text: "Their degree subject was not " + data.skeEBacc
               },
               {
-                value: "They have not used their degree knowledge for 5 years or more",
-                text: "They have not used their degree knowledge for 5 years or more"
+                value: "They have a degree in " + data.skeEBacc + ", but they graduated before September 2018",
+                text: "They have a degree in " + data.skeEBacc + ", but they graduated before September 2018"
               }
             ]
           }) }}
@@ -94,7 +96,7 @@
               }
             },
             hint: {
-              text: "These are the criteria for the SKE course bursary of £175 a week. We’ll show your answer to the candidate."
+              text: "We’ll show your answer to the candidate."
             },
             items: [
               {
@@ -103,7 +105,7 @@
               },
               {
                 value: "They have not used their degree knowledge for 5 years or more",
-                text: "They graduated with a degree in " + skeSubject + " over 5 years ago and have not used their subject knowledge since"
+                text: "Their degree subject was " + skeSubject + ", but they graduated before September 2018"
               }
             ]
           }) }}
