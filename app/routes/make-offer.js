@@ -26,7 +26,7 @@ module.exports = router => {
       back = `/applications/${req.params.applicationId}/offer/new/location`
     }
 
-    res.redirect(`/applications/${req.params.applicationId}/offer/ske`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/degree`)
 //
 //     res.render('applications/offer/new/conditions', {
 //       application,
@@ -109,6 +109,40 @@ module.exports = router => {
 
   })
 
+
+  router.get('/applications/:applicationId/offer/degree', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let applicationId = req.params.applicationId
+
+    res.render('applications/offer/new/degree', {
+      application,
+      applicationId
+    })
+  })
+
+  router.get('/applications/:applicationId/offer/gcse-equivalency', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let applicationId = req.params.applicationId
+
+    res.render('applications/offer/new/gcse-equivalency', {
+      application,
+      applicationId
+    })
+  })
+
+  router.get('/applications/:applicationId/offer/references', (req, res) => {
+    let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
+
+    let applicationId = req.params.applicationId
+
+    res.render('applications/offer/new/references', {
+      application,
+      applicationId
+    })
+  })
+
   router.get('/applications/:applicationId/offer/conditions', (req, res) => {
     let application = req.session.data.applications.find(app => app.id === req.params.applicationId)
     let applicationId = req.params.applicationId
@@ -145,7 +179,6 @@ module.exports = router => {
           conditions.push(standardCondition)
         }
       }
-
     }
 
     if (req.session.data['new-offer']['conditions']) {
@@ -155,6 +188,11 @@ module.exports = router => {
         conditions.push(condition)
       })
     }
+
+    conditions.push("Provide evidence of degree")
+    conditions.push("Provide evidence of maths GCSE")
+    conditions.push("Provide evidence of English GCSE")
+    conditions.push("Provide evidence of science GCSE")
 
     conditions = conditions.map(condition => {
       return {
@@ -255,6 +293,12 @@ module.exports = router => {
         }
       }
     }
+
+    // application.offer.standardConditions.push({
+    //   id: uuidv4(),
+    //   description: "Testing",
+    //   status: "Pending"
+    // })
 
     // Save SKE condition
     if (req.session.data.skeRequired === 'yes') {

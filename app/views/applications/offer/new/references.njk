@@ -1,0 +1,89 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'References' %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/applications/" + applicationId + "/offer/ske-length"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">{{ caption }}</span>
+        {{ heading }}
+      </h1>
+
+      <p class="govuk-body">The candidate has provided details of 2 people who can give them a reference.</p>
+
+      {% include "_includes/applications/references.njk" %}
+
+      <form action="/applications/{{ applicationId }}/offer/conditions-answer" method="post" accept-charset="UTF-8" novalidate>
+
+
+        {% set referencesHtml %}
+          {{ govukTextarea({
+            name: "[new-offer][reference-details]",
+            id: "references-details",
+            rows: "5",
+            value: data['new-offer']['reference-details'],
+            label: {
+              text: "Give details (optional)",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "Tell the candidate if they need to make any changes to the people they’ll request a reference from."
+            }
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "skeRequired",
+          fieldset: {
+            legend: {
+              text: "Do you require references?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: { html: referencesHtml }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Conditions of offer' %}
+{% set title = heading + ' - ' + caption %}
+{% set firstSubject = application.subject | first %}
+{% set skeSubject = firstSubject.name | lower %}
+
+
+{% block pageNavigation %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + applicationId + "/decision"
+  })}}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{ caption }}</span>
+        <h1 class="govuk-heading-l">Maths</h1>
+
+        <p class="govuk-body">{{ application.personalDetails.name }} said on their application that they have not got a GCSE maths at A to C or equivalent.</p>
+
+        <p class="govuk-body govuk-!-margin-bottom-0">They said:</p>
+
+        <div class="govuk-inset-text govuk-!-margin-top-3">
+          I’ve used maths in my work experience as an administrator and I would be happy to sit an equivalency test.
+        </div>
+
+        <form action="/applications/{{ applicationId }}/offer/ske" method="post" accept-charset="UTF-8" novalidate>
+
+        {% set equivalencyTestDetailsHtml %}
+          {{ govukTextarea({
+            name: "equivalencyTestDetails",
+            value: "We use the ABC Tests service. You will be required to pay £40 and sit a test online.",
+            label: {
+              text: "Details about equivalency tests you offer or accept",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example, if you offer the tests or ask candidates to use a third party, and if there are any costs to pay"
+            }
+          }) }}
+        {% endset %}
+
+          {{ govukRadios({
+            name: "degree-requirement",
+            fieldset: {
+              legend: {
+                text: "Add maths equivalency test as an offer condition?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                  html: equivalencyTestDetailsHtml
+                }
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}

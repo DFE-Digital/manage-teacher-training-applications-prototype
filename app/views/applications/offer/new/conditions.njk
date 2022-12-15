@@ -24,111 +24,82 @@
 
       <form action="/applications/{{ applicationId }}/offer/conditions-answer" method="post" accept-charset="UTF-8" novalidate>
 
-      {% set referencesDetails %}
-
-        {{ govukTextarea({
-          name: "[new-offer][reference-details]",
-          id: "references-details",
-          rows: "5",
-          value: data['new-offer']['reference-details'],
-          label: {
-            text: "Give details",
-            classes: "govuk-label--s"
-          },
-          hint: {
-            text: "Tell the candidate how many references they need and what type they should be."
-          }
-        }) }}
-      {% endset %}
 
         {{ govukCheckboxes({
           idPrefix: "[new-offer][standard-conditions]",
           name: "[new-offer][standard-conditions]",
           fieldset: {
             legend: {
-              text: "Standard conditions",
+              text: "Statutory conditions",
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [{
             value: "Fitness to train to teach check",
-            text: "Fitness to train to teach check",
+            text: "Health check (fitness to train to teach)",
             checked: checked("['new-offer']['standard-conditions']", "Fitness to train to teach check")
           }, {
             value: "Disclosure and Barring Service (DBS) check",
-            text: "Disclosure and Barring Service (DBS) check",
+            text: "Enhanced criminal record check (DBS) check",
             checked: checked("['new-offer']['standard-conditions']", "Disclosure and Barring Service (DBS) check")
+          }, {
+            value: "Evidence of the right to study in the UK",
+            text: "Evidence of the right to study in the UK",
+            checked: true
           }]
         }) }}
 
-        <h2 class="govuk-heading-m">References</h2>
+        {{ govukCheckboxes({
+          name: "[new-offer][qualification-evidence]",
+          fieldset: {
+            legend: {
+              text: "Providing evidence of qualifications",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            value: "Degree certificate",
+            text: "Degree certificate"
+          }, {
+            value: "GCSE maths certificate",
+            text: "GCSE maths certificate"
+          }, {
+            value: "GCSE English certificate",
+            text: "GCSE English certificate"
+          }, {
+            value: "GCSE science certificates",
+            text: "GCSE science certificates"
+          },{
+            value: "IELTS English language test certificate",
+            text: "IELTS English language test certificate"
+          },{
+            value: "Test of English as a Foreign Language (TOEFL) certificate",
+            text: "Test of English as a Foreign Language (TOEFL) certificate"
+          }, {
+            value: "Other qualifications",
+            text: "Other qualifications"
+          }
+          ]
+        }) }}
 
-        <p class="govuk-body">The candidate will confirm which references they want to request when they accept your offer.</p>
+        {{ govukCheckboxes({
+          name: "[new-offer][other-safeguarding-checks]",
+          fieldset: {
+            legend: {
+              text: "Other safeguarding checks",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [{
+            text: "Criminal records check from another country",
+            text: "Criminal records check from another country",
+            hint: {
+              text: "For example, a police certificate of good conduct"
+            }
+          }
+          ]
+        }) }}
 
-        <p class="govuk-body">They’ll be told they need 2 references including:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-
-          <li>an academic tutor if they have graduated in the past 5 years or are still studying</li>
-          <li>the headteacher if they’ve been working in a school</li>
-
-        </ul>
-
-        <p class="govuk-body">Add a further condition if you have other requirements for references.</p>
-
-        <div class="app-add-another">
-
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-1 app-add-another__heading">Further conditions</h2>
-          <p class="govuk-body">For example, completing their degree with a certain grade.</p>
-
-          {% if conditions.length %}
-            {% for condition in conditions %}
-
-              <div class="app-add-another__item">
-                {{ govukTextarea({
-                  id: "[new-offer][conditions]["+loop.index0+"]",
-                  name: "[new-offer][conditions]["+loop.index0+"]",
-                  rows: 3,
-                  label: {
-                    text: "Condition " + loop.index,
-                    classes: "govuk-label--s"
-                  },
-                  value: condition,
-                  attributes: {
-                    'data-name': '[new-offer][conditions][%index%]',
-                    'data-id': '[new-offer][conditions][%index%]',
-                    'data-label': 'Condition %index%'
-                  }
-                }) }}
-                <button type="button" class="govuk-button govuk-button--secondary app-add-another__remove-button">Remove</button>
-              </div>
-            {% endfor %}
-          {% else %}
-            <div class="app-add-another__item govuk-!-display-none">
-              {{ govukTextarea({
-                id: "[new-offer][conditions][0]",
-                name: "[new-offer][conditions][0]",
-                rows: 3,
-                label: {
-                  text: "Condition " + 1,
-                  classes: "govuk-label--s"
-                },
-                attributes: {
-                  'data-name': '[new-offer][conditions][%index%]',
-                  'data-id': '[new-offer][conditions][%index%]',
-                  'data-label': 'Condition %index%'
-                }
-              }) }}
-            </div>
-          {% endif %}
-
-          <div class="app-button-action">
-            {{ govukButton({
-              text: 'Add another condition',
-              classes: 'govuk-button--secondary app-add-another__add-button govuk-!-margin-bottom-4'
-            }) }}
-          </div>
-        </div>
 
         {{ govukButton({
           text: "Continue"

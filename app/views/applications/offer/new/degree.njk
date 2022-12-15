@@ -1,0 +1,105 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = "applications" %}
+{% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Conditions of offer' %}
+{% set title = heading + ' - ' + caption %}
+{% set firstSubject = application.subject | first %}
+{% set skeSubject = firstSubject.name | lower %}
+
+
+{% block pageNavigation %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/applications/" + applicationId + "/decision"
+  })}}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{ caption }}</span>
+        <h1 class="govuk-heading-l">Degree completion</h1>
+
+        <p class="govuk-body">{{ application.personalDetails.name }} said on their application that they have not yet completed their BA History degree.</p>
+
+        <form action="/applications/{{ applicationId }}/offer/gcse-equivalency" method="post" accept-charset="UTF-8" novalidate>
+
+        {% set degreeRequiredHtml %}
+
+
+        {{ govukRadios({
+          name: "degree-class-requirement",
+          fieldset: {
+            legend: {
+              text: "Degree class required",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "21",
+              text: "2:1 or above"
+            },
+            {
+              value: "22",
+              text: "2:2 or above"
+            },
+            {
+              value: "third",
+              text: "Any honours degree class (3rd or above)"
+            },
+            {
+              value: "pass",
+              text: "Any degree class, including a pass or ‘ordinary degree’"
+            }
+          ]
+        }) }}
+
+        {% endset %}
+
+      {{ govukRadios({
+        name: "degree-requirement",
+        fieldset: {
+          legend: {
+            text: "Do they still need to complete their degree?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, add it as an offer condition",
+            conditional: {
+              html: degreeRequiredHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No, they’ve since completed their degree"
+          }
+        ]
+      }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    new AppFrontend.AddAnother({
+      container: $('.app-add-another'),
+      allowNoFields: true
+    });
+  </script>
+{% endblock %}
