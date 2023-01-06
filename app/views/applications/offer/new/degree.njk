@@ -24,7 +24,7 @@
       <span class="govuk-caption-l">{{ caption }}</span>
         <h1 class="govuk-heading-l">Degree completion</h1>
 
-        <p class="govuk-body">{{ application.personalDetails.name }} said on their application that they have not yet completed their BA History degree.</p>
+        <p class="govuk-body">{{ application.personalDetails.name }} said on their application that they have not completed their BA History degree yet.</p>
 
         <form action="/applications/{{ applicationId }}/offer/gcse-equivalency" method="post" accept-charset="UTF-8" novalidate>
 
@@ -81,7 +81,7 @@
           },
           {
             value: "no",
-            text: "No, they’ve since completed their degree"
+            text: "No, they’ve now completed their degree"
           }
         ]
       }) }}
