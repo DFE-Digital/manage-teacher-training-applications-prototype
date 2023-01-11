@@ -26,7 +26,7 @@ module.exports = router => {
       back = `/applications/${req.params.applicationId}/offer/new/location`
     }
 
-    res.redirect(`/applications/${req.params.applicationId}/offer/degree`)
+    res.redirect(`/applications/${req.params.applicationId}/offer/conditions`)
 //
 //     res.render('applications/offer/new/conditions', {
 //       application,

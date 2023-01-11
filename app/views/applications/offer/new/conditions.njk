@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "applications" %}
 {% set caption = content.makeOffer.caption + ' - ' + application.personalDetails.name %}
-{% set heading = 'Further conditions of offer' %}
+{% set heading = 'Conditions of offer' %}
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
@@ -24,6 +24,162 @@
 
       <form action="/applications/{{ applicationId }}/offer/conditions-answer" method="post" accept-charset="UTF-8" novalidate>
 
+
+        <h2 class="govuk-heading-m">Degree completion</h2>
+        <p class="govuk-body">{{ application.personalDetails.name }} said on their application that they have not completed their BA History degree yet.</p>
+
+
+        {% set degreeRequiredHtml %}
+
+
+        {{ govukRadios({
+          name: "degree-class-requirement",
+          fieldset: {
+            legend: {
+              text: "Degree class required",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "21",
+              text: "2:1 or above"
+            },
+            {
+              value: "22",
+              text: "2:2 or above"
+            },
+            {
+              value: "third",
+              text: "Any honours degree class (3rd or above)"
+            },
+            {
+              value: "pass",
+              text: "Any degree class, including a pass or ‘ordinary degree’"
+            }
+          ]
+        }) }}
+
+        {% endset %}
+
+      {{ govukRadios({
+        name: "degree-requirement",
+        fieldset: {
+          legend: {
+            text: "Do they still need to complete their degree?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, add it as an offer condition",
+            conditional: {
+              html: degreeRequiredHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No, they’ve now completed their degree"
+          }
+        ]
+      }) }}
+
+
+
+        <h2 class="govuk-heading-m">Maths GCSE</h2>
+
+        <p class="govuk-body">{{ application.personalDetails.name }} said on their application that they have not got a GCSE maths at A to C or equivalent.</p>
+
+        <p class="govuk-body govuk-!-margin-bottom-0">They said:</p>
+
+        <div class="govuk-inset-text govuk-!-margin-top-3">
+          I’ve used maths in my work experience as an administrator and I would be happy to sit an equivalency test.
+        </div>
+
+
+        {% set equivalencyTestDetailsHtml %}
+          {{ govukTextarea({
+            name: "equivalencyTestDetails",
+            value: "We use the ABC Tests service. You will be required to pay £40 and sit a test online.",
+            label: {
+              text: "Give details about equivalency tests you offer or accept",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example, if you offer the tests or ask candidates to use a third party, and if there are any costs to pay"
+            }
+          }) }}
+        {% endset %}
+
+          {{ govukRadios({
+            name: "maths-gcse",
+            fieldset: {
+              legend: {
+                text: "Add a maths equivalency test as an offer condition?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                  html: equivalencyTestDetailsHtml
+                }
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+        <h2 class="govuk-heading-m">References</h2>
+
+      <p class="govuk-body">The candidate has provided details of 2 people who can give them a reference.</p>
+
+        {% set referencesHtml %}
+          {{ govukTextarea({
+            name: "[new-offer][reference-details]",
+            id: "references-details",
+            rows: "5",
+            value: data['new-offer']['reference-details'],
+            label: {
+              text: "Give details (optional)",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "Tell the candidate if they need to make any changes to the people they’ll request a reference from."
+            }
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "skeRequired",
+          fieldset: {
+            legend: {
+              text: "Do you require references?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: { html: referencesHtml }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
 
         {{ govukCheckboxes({
           idPrefix: "[new-offer][standard-conditions]",
