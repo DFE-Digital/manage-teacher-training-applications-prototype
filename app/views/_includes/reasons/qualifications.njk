@@ -22,41 +22,19 @@
     }
   },
   items: [{
-    value: "No maths GCSE at minimum grade 4 or C, or equivalent",
-    html: "No maths GCSE at minimum grade 4 or C, or equivalent",
-    checked: checked("['rejection']['" + category + "-reasons']", "No maths GCSE at minimum grade 4 or C, or equivalent")
-  }, {
-    value: "No English GCSE at minimum grade 4 or C, or equivalent",
-    text: "No English GCSE at minimum grade 4 or C, or equivalent",
-    checked: checked("['rejection']['" + category + "-reasons']", "No English GCSE at minimum grade 4 or C, or equivalent")
-  }, {
-    value: "No science GCSE at minimum grade 4 or C, or equivalent",
-    text: "No science GCSE at minimum grade 4 or C, or equivalent",
-    checked: checked("['rejection']['" + category + "-reasons']", "No science GCSE at minimum grade 4 or C, or equivalent")
-  }, {
-    value: "No bachelor’s degree or equivalent",
-    text: "No bachelor’s degree or equivalent",
-    checked: checked("['rejection']['" + category + "-reasons']", "No bachelor’s degree or equivalent")
-  }, {
-    value: "Degree does not meet course requirements",
-    text: "Degree does not meet course requirements",
+    value: "Degree subject does not meet course requirements",
+    text: "Degree subject does not meet course requirements",
     checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
     conditional: {
       html: degreeDoesNotMeetRequirementsHtml
     }
-  }, {
-    value: "Could not verify qualifications",
-    text: "Could not verify qualifications",
-    checked: checked("['rejection']['" + category + "-reasons']", "Could not verify qualifications"),
+  },
+  {
+    value: "Degree class does not meet course requirements",
+    text: "Degree class does not meet course requirements",
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
     conditional: {
-      html: couldNotVertifyQualificationsHtml
+      html: degreeDoesNotMeetRequirementsHtml
     }
-  }, {
-      value: "Other",
-      text: "Other",
-      checked: checked("['rejection']['" + category + "-reasons']", "Other"),
-      conditional: {
-        html: otherHtml
-      }
-    }]
+  }]
 }) }}

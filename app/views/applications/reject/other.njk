@@ -8,7 +8,7 @@
   {% set heading = "Reasons the application was rejected" %}
 {% else %}
   {% set caption = content.rejectApplication.caption + ' - ' + name %}
-  {% set heading = "Reasons for rejecting the application" %}
+  {% set heading = "Tell " + name + " why you are rejecting their application" %}
 {% endif %}
 {% set title = heading + ' - ' + caption %}
 
@@ -27,7 +27,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set h1 %}
-        <span class="govuk-caption-l">{{caption}}</span>
         {{heading}}
       {% endset %}
 

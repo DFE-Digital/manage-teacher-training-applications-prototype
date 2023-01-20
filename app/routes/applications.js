@@ -149,7 +149,7 @@ module.exports = router => {
     } else if (decision === '2') {
       res.redirect(`/applications/${applicationId}/offer/new/course?referrer=decision`)
     } else {
-      res.redirect(`/applications/${applicationId}/reject`)
+      res.redirect(`/applications/${applicationId}/reject/degree`)
     }
   })
 

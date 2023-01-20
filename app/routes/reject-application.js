@@ -2,15 +2,45 @@ const ApplicationHelper = require('../data/helpers/application')
 const content = require('../data/content')
 
 module.exports = router => {
-  router.get('/applications/:applicationId/reject', (req, res) => {
-    res.render('applications/reject/index', {
+
+  router.get('/applications/:applicationId/reject/degree', (req, res) => {
+    res.render('applications/reject/degree', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
 
-  router.post('/applications/:applicationId/reject', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/reject/check`)
+  router.get('/applications/:applicationId/reject/maths', (req, res) => {
+    res.render('applications/reject/maths', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
   })
+
+  router.get('/applications/:applicationId/reject/english', (req, res) => {
+    res.render('applications/reject/english', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+  router.get('/applications/:applicationId/reject/science', (req, res) => {
+    res.render('applications/reject/science', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+
+  router.get('/applications/:applicationId/reject/other', (req, res) => {
+    res.render('applications/reject/other', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+  // router.get('/applications/:applicationId/reject', (req, res) => {
+  //   res.render('applications/reject/index', {
+  //     application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+  //     applicationId: req.params.applicationId
+  //   })
+  // })
+
 
   router.get('/applications/:applicationId/reject/check', (req, res) => {
     const applicationId = req.params.applicationId
