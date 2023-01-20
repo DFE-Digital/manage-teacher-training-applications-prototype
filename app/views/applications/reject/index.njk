@@ -31,129 +31,55 @@
         {{heading}}
       {% endset %}
 
-      <form method="post">
+      <form method="post" action="/applications/{{ applicationId }}/reject/other">
 
-        {% set qualificationReasonsHtml %}
-          {% include "_includes/reasons/qualifications.njk" %}
-        {% endset %}
+      <h1 class="govuk-heading-l">ITT criteria</h1>
 
-        {% set personalStatementReasonsHtml %}
-          {% include "_includes/reasons/personal-statement.njk" %}
-        {% endset %}
+      <p class="govuk-body">Contact <a href="#" class="govuk-link">becomingateacher@digital.education.gov.uk</a> if you are unsure whether the candidate meets the criteria.</p>
 
-        {% set teachingKnowledgeReasonsHtml %}
-          {% include "_includes/reasons/teaching-knowledge.njk" %}
-        {% endset %}
+      <h2 class="govuk-heading-m">Degree</h2>
+      <p class="govuk-body">They must have degree comprising of 300 HE credit points, of which 60 must be at level 6 of the QCF. Applicants with a foundation degree will need to supplement this qualification with at least 60 credits at level 6 (HE level 3) in order to attain an equivalent single qualification.</p>
 
-        {% set communicationReasonsHtml %}
-          {% include "_includes/reasons/communication.njk" %}
-        {% endset %}
+      <h2 class="govuk-heading-m">GCSE standard</h2>
+      <p class="govuk-body">You can give candidates without a qualification the opportunity to show they meet the required standard by taking an equivalence test or giving other evidence they meet the standard.</p>
 
-        {% set referencesHtml %}
-          {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
-        {% endset %}
 
-        {% set safeguardingHtml %}
-          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
-        {% endset %}
-
-        {% set sponsorshipHtml %}
-          {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
-        {% endset %}
-
-        {% set otherDetailsHtml %}
-          {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
-        {% endset %}
-
-        {{ govukCheckboxes({
-          idPrefix: "rejection-categories",
-          name: "rejection[categories]",
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+      {{ govukCheckboxes({
+        name: "waste",
+        fieldset: {
+          legend: {
+            text: "Does " + name + " meet the criteria?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "carcasses",
+            text: "They have a degree or equivalent"
           },
-          items: [
-            {
-              value: "Qualifications",
-              text: "Qualifications",
-              checked: checked("['rejection']['categories']", "Qualifications"),
-              conditional: {
-                html: qualificationReasonsHtml
-              }
-            },
-            {
-              value: "Personal statement",
-              text: "Personal statement",
-              checked: checked("['rejection']['categories']", "Personal statement"),
-              conditional: {
-                html: personalStatementReasonsHtml
-              }
-            },
-            {
-              value: "Teaching knowledge and ability",
-              text: "Teaching knowledge and ability",
-              checked: checked("['rejection']['categories']", "Teaching knowledge and ability"),
-              conditional: {
-                html: teachingKnowledgeReasonsHtml
-              }
-            },
-            {
-              value: "Communication, attendance and scheduling",
-              text: "Communication, attendance and scheduling",
-              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
-              conditional: {
-                html: communicationReasonsHtml
-              }
-            },
-            {
-              value: "References",
-              text: "References",
-              checked: checked("['rejection']['categories']", "References"),
-              conditional: {
-                html: referencesHtml
-              }
-            },
-            {
-              value: "Safeguarding",
-              text: "Safeguarding",
-              checked: checked("['rejection']['categories']", "Safeguarding"),
-              conditional: {
-                html: safeguardingHtml
-              }
-            },
-            {
-              value: "Visa sponsorship",
-              text: "Visa sponsorship",
-              checked: checked("['rejection']['categories']", "Visa sponsorship"),
-              conditional: {
-                html: sponsorshipHtml
-              }
-            },
-            {
-              value: "Course full",
-              text: "Course full",
-              checked: checked("['rejection']['categories']", "Course full")
-            },
-            {
-              value: "Other",
-              text: "Other",
-              checked: checked("['rejection']['categories']", "Other"),
-              conditional: {
-                html: otherDetailsHtml
-              }
-            }
-          ]
-        }) }}
+          {
+            value: "mines",
+            text: "They meet the maths standard of GCSE C/4"
+          },
+          {
+            value: "farm",
+            text: "They meet the science standard of GCSE C/4"
+          },
+          {
+            value: "farm",
+            text: "They meet the English standard of GCSE C/4"
+          }
+
+        ]
+      }) }}
 
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
 
-      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
     </div>
   </div>
 {% endblock %}

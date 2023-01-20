@@ -4,12 +4,15 @@ const content = require('../data/content')
 module.exports = router => {
   router.get('/applications/:applicationId/reject', (req, res) => {
     res.render('applications/reject/index', {
-      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId),
+      applicationId: req.params.applicationId
     })
   })
 
-  router.post('/applications/:applicationId/reject', (req, res) => {
-    res.redirect(`/applications/${req.params.applicationId}/reject/check`)
+  router.get('/applications/:applicationId/reject/other', (req, res) => {
+    res.render('applications/reject/other', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
   })
 
   router.get('/applications/:applicationId/reject/check', (req, res) => {
