@@ -33,120 +33,84 @@
 
       <form method="post">
 
-        {% set qualificationReasonsHtml %}
-          {% include "_includes/reasons/qualifications.njk" %}
-        {% endset %}
+      <h1 class="govuk-heading-l">ITT criteria</h1>
 
-        {% set personalStatementReasonsHtml %}
-          {% include "_includes/reasons/personal-statement.njk" %}
-        {% endset %}
+      <p class="govuk-body">If you are unsure whether the candidate’s qualifications meet the ITT criteria...</p>
 
-        {% set teachingKnowledgeReasonsHtml %}
-          {% include "_includes/reasons/teaching-knowledge.njk" %}
-        {% endset %}
 
-        {% set communicationReasonsHtml %}
-          {% include "_includes/reasons/communication.njk" %}
-        {% endset %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{{ govukCheckboxes({
+  name: "waste",
+  fieldset: {
+    legend: {
+      text: "Why are you rejecting them?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "carcasses",
+      text: "They don’t have a degree or equivalent"
+    },
+    {
+      value: "mines",
+      text: "They don’t meet the maths standard of GCSE C/4"
+    },
+    {
+      value: "farm",
+      text: "They don’t meet the science standard of GCSE C/4"
+    },
+    {
+      value: "farm",
+      text: "They don’t meet the English standard of GCSE C/4"
+    },
+    {
+      divider: "or"
+    }
+    ,
+    {
+      value: "farm",
+      text: "They meet the ITT criteria but I’m rejecting them for another reason"
+    }
 
-        {% set referencesHtml %}
-          {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
-        {% endset %}
+  ]
+}) }}
 
-        {% set safeguardingHtml %}
-          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
-        {% endset %}
+{#
 
-        {% set sponsorshipHtml %}
-          {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
-        {% endset %}
+      <h1 class="govuk-heading-l">Degree</h1>
 
-        {% set otherDetailsHtml %}
-          {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
-        {% endset %}
+      <p class="govuk-body">{{ name }} has these degrees:</p>
 
-        {{ govukCheckboxes({
-          idPrefix: "rejection-categories",
-          name: "rejection[categories]",
-          fieldset: {
-            legend: {
-              html: h1,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+      {% include "_includes/applications/degrees.njk" %}
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        name: "degree",
+        fieldset: {
+          legend: {
+            text: "Do they have an equivalent of a bachelors degree?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "england",
+            text: "Yes"
           },
-          items: [
-            {
-              value: "Qualifications",
-              text: "Qualifications",
-              checked: checked("['rejection']['categories']", "Qualifications"),
-              conditional: {
-                html: qualificationReasonsHtml
-              }
-            },
-            {
-              value: "Personal statement",
-              text: "Personal statement",
-              checked: checked("['rejection']['categories']", "Personal statement"),
-              conditional: {
-                html: personalStatementReasonsHtml
-              }
-            },
-            {
-              value: "Teaching knowledge and ability",
-              text: "Teaching knowledge and ability",
-              checked: checked("['rejection']['categories']", "Teaching knowledge and ability"),
-              conditional: {
-                html: teachingKnowledgeReasonsHtml
-              }
-            },
-            {
-              value: "Communication, attendance and scheduling",
-              text: "Communication, attendance and scheduling",
-              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
-              conditional: {
-                html: communicationReasonsHtml
-              }
-            },
-            {
-              value: "References",
-              text: "References",
-              checked: checked("['rejection']['categories']", "References"),
-              conditional: {
-                html: referencesHtml
-              }
-            },
-            {
-              value: "Safeguarding",
-              text: "Safeguarding",
-              checked: checked("['rejection']['categories']", "Safeguarding"),
-              conditional: {
-                html: safeguardingHtml
-              }
-            },
-            {
-              value: "Visa sponsorship",
-              text: "Visa sponsorship",
-              checked: checked("['rejection']['categories']", "Visa sponsorship"),
-              conditional: {
-                html: sponsorshipHtml
-              }
-            },
-            {
-              value: "Course full",
-              text: "Course full",
-              checked: checked("['rejection']['categories']", "Course full")
-            },
-            {
-              value: "Other",
-              text: "Other",
-              checked: checked("['rejection']['categories']", "Other"),
-              conditional: {
-                html: otherDetailsHtml
-              }
-            }
-          ]
-        }) }}
+          {
+            value: "scotland",
+            text: "No"
+          },
+          {
+            value: "wales",
+            text: "I’m not sure"
+          }
+        ]
+      }) }} #}
 
         {{ govukButton({
           text: "Continue"
