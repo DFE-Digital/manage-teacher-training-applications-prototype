@@ -26,9 +26,16 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set h1 %}
-        {{heading}}
-      {% endset %}
+
+      {# <h1 class="govuk-heading-l">Feedback for {{ name }}</h1>
+
+      <p class="govuk-body">
+        You’ve said {{ name }} does not meet the ITT criteria because:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>they do not have a degree or equivalent</li>
+      </ul> #}
 
       <form method="post">
 
@@ -41,11 +48,37 @@
         {% endset %}
 
         {% set teachingKnowledgeReasonsHtml %}
-          {% include "_includes/reasons/teaching-knowledge.njk" %}
+        {{ govukTextarea({
+          name: "more-detail",
+          id: "more-detail",
+          label: {
+            text: "Give details",
+            classes: "govuk-label--s"
+          }
+        }) }}
         {% endset %}
 
         {% set communicationReasonsHtml %}
-          {% include "_includes/reasons/communication.njk" %}
+                  {{ govukTextarea({
+          name: "more-detail",
+          id: "more-detail",
+          label: {
+            text: "Give details",
+            classes: "govuk-label--s"
+          }
+        }) }}
+
+        {% endset %}
+
+        {% set adviceHtml %}
+        {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Give details",
+              classes: "govuk-label--s"
+            }
+          }) }}
         {% endset %}
 
         {% set referencesHtml %}
@@ -64,60 +97,100 @@
           {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
         {% endset %}
 
+        {% set courseFullHtml %}
+        {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Give details",
+              classes: "govuk-label--s"
+            }
+          }) }}
+        {% endset %}
+
+        {% set degreeDoesNotMeetRequirementsHtml %}
+           {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Give details",
+              classes: "govuk-label--s"
+            }
+          }) }}
+        {% endset %}
+
+        {% set degreeClassDoesNotMeetRequirementsHtml %}
+           {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Give details",
+              classes: "govuk-label--s"
+            }
+          }) }}
+        {% endset %}
+
         {{ govukCheckboxes({
           idPrefix: "rejection-categories",
           name: "rejection[categories]",
           fieldset: {
             legend: {
-              html: h1,
+              text: "Tell " + name + " why you are rejecting them",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
-            {
-              value: "Qualifications",
-              text: "Qualifications",
-              checked: checked("['rejection']['categories']", "Qualifications"),
-              conditional: {
-                html: qualificationReasonsHtml
-              }
-            },
+          {
+    value: "Degree subject does not meet course requirements",
+    text: "Does not have a degree or A level in physics",
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    conditional: {
+      html: degreeDoesNotMeetRequirementsHtml
+    }
+  },
+  {
+    value: "Degree class does not meet course requirements",
+    text: "Degree class does not meet course requirements",
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    conditional: {
+      html: degreeClassDoesNotMeetRequirementsHtml
+    }
+  },
             {
               value: "Personal statement",
-              text: "Personal statement",
+              text: "Personal statement is not strong enough",
               checked: checked("['rejection']['categories']", "Personal statement"),
               conditional: {
                 html: personalStatementReasonsHtml
               }
             },
             {
-              value: "Teaching knowledge and ability",
-              text: "Teaching knowledge and ability",
-              checked: checked("['rejection']['categories']", "Teaching knowledge and ability"),
+              value: "Personal statement",
+              text: "Interview performance was not strong enough",
+              checked: checked("['rejection']['categories']", "Personal statement"),
               conditional: {
-                html: teachingKnowledgeReasonsHtml
+                html: personalStatementReasonsHtml
+              }
+            },
+            {
+              value: "Visa sponsorship",
+              text: "Not enough knowledge of the teaching profession",
+              conditional: {
+                html: sponsorshipHtml
               }
             },
             {
               value: "Communication, attendance and scheduling",
-              text: "Communication, attendance and scheduling",
+              text: "Could not get in touch with them",
               checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
               conditional: {
                 html: communicationReasonsHtml
               }
             },
             {
-              value: "References",
-              text: "References",
-              checked: checked("['rejection']['categories']", "References"),
-              conditional: {
-                html: referencesHtml
-              }
-            },
-            {
               value: "Safeguarding",
-              text: "Safeguarding",
+              text: "We have safeguarding concerns",
               checked: checked("['rejection']['categories']", "Safeguarding"),
               conditional: {
                 html: safeguardingHtml
@@ -125,16 +198,26 @@
             },
             {
               value: "Visa sponsorship",
-              text: "Visa sponsorship",
+              text: "We cannot sponsor a visa",
               checked: checked("['rejection']['categories']", "Visa sponsorship"),
               conditional: {
                 html: sponsorshipHtml
               }
             },
             {
+              value: "Visa sponsorship",
+              text: "Could not arrange an interview",
+              conditional: {
+                html: sponsorshipHtml
+              }
+            },
+            {
               value: "Course full",
-              text: "Course full",
-              checked: checked("['rejection']['categories']", "Course full")
+              text: "The course is now full",
+              checked: checked("['rejection']['categories']", "Course full"),
+              conditional: {
+                html: courseFullHtml
+              }
             },
             {
               value: "Other",
@@ -146,6 +229,22 @@
             }
           ]
         }) }}
+
+
+{{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  label: {
+    text: "Give " + name + " advice on what to do next",
+    classes: "govuk-label--m"
+  },
+  hint: {
+    text: "For example, ‘You should apply again to a different course’"
+  }
+}) }}
+
+
+
 
         {{ govukButton({
           text: "Continue"

@@ -51,6 +51,34 @@
 
       {% endif %}
 
+{{ govukRadios({
+        name: "degree",
+        fieldset: {
+          legend: {
+            text: "Would you recommend this candidate?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "These candidates will be invited to join a list of candidates who  providers can contact to directly offer places or interviews."
+        },
+        items: [
+          {
+            value: "england",
+            text: "Yes, they should be invited"
+          },
+          {
+            value: "scotland",
+            text: "No",
+            hint: {
+              text: "Your answer will not be shown to the candidate"
+            }
+          }
+        ]
+      }) }}
+
+
       <form method="post">
         {{ govukButton({
           text: buttonText

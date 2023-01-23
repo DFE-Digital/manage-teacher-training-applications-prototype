@@ -1,0 +1,172 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% if application.status == "Rejected" %}
+  {% set caption = content.giveFeedback.caption + ' - ' + name %}
+  {% set heading = "Reasons the application was rejected" %}
+{% else %}
+  {% set caption = content.rejectApplication.caption + ' - ' + name %}
+  {% set heading = "Tell " + name + " why you are rejecting their application" %}
+{% endif %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id + "/decision" %}
+  {% if application.status == "Rejected" %}
+    {% set backUrl = "/applications/" + application.id %}
+  {% endif %}
+
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {# <h1 class="govuk-heading-l">Feedback for {{ name }}</h1>
+
+      <p class="govuk-body">
+        You’ve said {{ name }} does not meet the ITT criteria because:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>they do not have a degree or equivalent</li>
+      </ul> #}
+
+      <form method="post">
+
+        {% set qualificationReasonsHtml %}
+          {% include "_includes/reasons/qualifications.njk" %}
+        {% endset %}
+
+        {% set personalStatementReasonsHtml %}
+          {% include "_includes/reasons/personal-statement.njk" %}
+        {% endset %}
+
+        {% set teachingKnowledgeReasonsHtml %}
+        {{ govukTextarea({
+          name: "more-detail",
+          id: "more-detail",
+          label: {
+            text: "Give details",
+            classes: "govuk-label--s"
+          }
+        }) }}
+        {% endset %}
+
+        {% set communicationReasonsHtml %}
+                  {{ govukTextarea({
+          name: "more-detail",
+          id: "more-detail",
+          label: {
+            text: "Give details",
+            classes: "govuk-label--s"
+          }
+        }) }}
+
+        {% endset %}
+
+        {% set referencesHtml %}
+          {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set safeguardingHtml %}
+          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set sponsorshipHtml %}
+          {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set otherDetailsHtml %}
+          {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
+        {% endset %}
+
+        {{ govukCheckboxes({
+          idPrefix: "rejection-categories",
+          name: "rejection[categories]",
+          fieldset: {
+            legend: {
+              text: "Give " + name + " any other feedback (optional)",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+          {
+    value: "Degree subject does not meet course requirements",
+    text: "Degree subject does not meet course requirements",
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    conditional: {
+      html: degreeDoesNotMeetRequirementsHtml
+    }
+  },
+  {
+    value: "Degree class does not meet course requirements",
+    text: "Degree class does not meet course requirements",
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    conditional: {
+      html: degreeDoesNotMeetRequirementsHtml
+    }
+  },
+            {
+              value: "Personal statement",
+              text: "Personal statement could be improved",
+              checked: checked("['rejection']['categories']", "Personal statement"),
+              conditional: {
+                html: personalStatementReasonsHtml
+              }
+            },
+            {
+              value: "Communication, attendance and scheduling",
+              text: "Could not get in touch with them",
+              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
+              conditional: {
+                html: communicationReasonsHtml
+              }
+            },
+            {
+              value: "Safeguarding",
+              text: "We have safeguarding concerns",
+              checked: checked("['rejection']['categories']", "Safeguarding"),
+              conditional: {
+                html: safeguardingHtml
+              }
+            },
+            {
+              value: "Visa sponsorship",
+              text: "We cannot sponsor a visa",
+              checked: checked("['rejection']['categories']", "Visa sponsorship"),
+              conditional: {
+                html: sponsorshipHtml
+              }
+            },
+            {
+              value: "Course full",
+              text: "The course is now full",
+              checked: checked("['rejection']['categories']", "Course full")
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked("['rejection']['categories']", "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

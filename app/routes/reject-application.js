@@ -28,8 +28,20 @@ module.exports = router => {
   })
 
 
-  router.get('/applications/:applicationId/reject/other', (req, res) => {
-    res.render('applications/reject/other', {
+  router.get('/applications/:applicationId/reject/reasons', (req, res) => {
+    res.render('applications/reject/reasons', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+  router.get('/applications/:applicationId/reject/other-reasons', (req, res) => {
+    res.render('applications/reject/other-reasons', {
+      application: req.session.data.applications.find(app => app.id === req.params.applicationId)
+    })
+  })
+
+  router.get('/applications/:applicationId/reject/recommend', (req, res) => {
+    res.render('applications/reject/recommend', {
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })
