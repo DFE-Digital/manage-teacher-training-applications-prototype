@@ -27,17 +27,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {# <h1 class="govuk-heading-l">Feedback for {{ name }}</h1>
+      <h1 class="govuk-heading-l">Feedback for {{ name }}</h1>
 
-      <p class="govuk-body">
-        You’ve said {{ name }} does not meet the ITT criteria because:
-      </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>they do not have a degree or equivalent</li>
-      </ul> #}
 
       <form method="post">
+
+        {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+        {{ govukWarningText({
+          text: "You must not use lack of school experience as a reason for rejecting an otherwise suitable applicant.",
+          iconFallbackText: "Warning"
+        }) }}
 
         {% set qualificationReasonsHtml %}
           {% include "_includes/reasons/qualifications.njk" %}
@@ -136,8 +135,8 @@
           fieldset: {
             legend: {
               text: "Tell " + name + " why you are rejecting them",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
