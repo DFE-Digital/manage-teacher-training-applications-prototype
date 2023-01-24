@@ -33,12 +33,10 @@
 
       <form method="post" action="/applications/{{ applicationId }}/reject/other">
 
-      <h1 class="govuk-heading-l">ITT criteria</h1>
-
-      <p class="govuk-body">Contact <a href="#" class="govuk-link">becomingateacher@digital.education.gov.uk</a> if you are unsure whether the candidate meets the criteria.</p>
+      <h1 class="govuk-heading-l">Intial teacher training (ITT) criteria</h1>
 
       <h2 class="govuk-heading-m">Degree</h2>
-      <p class="govuk-body">They must have degree comprising of 300 HE credit points, of which 60 must be at level 6 of the QCF. Applicants with a foundation degree will need to supplement this qualification with at least 60 credits at level 6 (HE level 3) in order to attain an equivalent single qualification.</p>
+      <p class="govuk-body">Candidates must have degree comprising of 300 HE credit points, of which 60 must be at level 6 of the QCF. Applicants with a foundation degree will need to supplement this qualification with at least 60 credits at level 6 (HE level 3) in order to attain an equivalent single qualification.</p>
 
       <h2 class="govuk-heading-m">GCSE standard</h2>
       <p class="govuk-body">You can give candidates without a qualification the opportunity to show they meet the required standard by taking an equivalence test or giving other evidence they meet the standard.</p>
@@ -49,7 +47,7 @@
         name: "waste",
         fieldset: {
           legend: {
-            text: "Does " + name + " meet the criteria?",
+            text: "Does " + name + " meet the ITT criteria?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--m"
           }
@@ -61,19 +59,21 @@
           },
           {
             value: "mines",
-            text: "They meet the maths standard of GCSE C/4"
+            text: "They have a maths GCSE at minimum grade 4 or C, or equivalent"
           },
           {
             value: "farm",
-            text: "They meet the science standard of GCSE C/4"
+            text: "They have an English GCSE at minimum grade 4 or C, or equivalent"
           },
           {
             value: "farm",
-            text: "They meet the English standard of GCSE C/4"
+            text: "They have a science GCSE at minimum grade 4 or C, or equivalent"
           }
 
         ]
       }) }}
+
+      <p class="govuk-body">Contact <a href="#" class="govuk-link">becomingateacher@digital.education.gov.uk</a> if you're unsure whether the candidate meets the criteria.</p>
 
         {{ govukButton({
           text: "Continue"
