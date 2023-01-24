@@ -34,7 +34,7 @@
 
         {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
         {{ govukWarningText({
-          text: "You must not use lack of school experience as a reason for rejecting an otherwise suitable applicant.",
+          text: "You must not reject candidates for lack of experience working in a school.",
           iconFallbackText: "Warning"
         }) }}
 
@@ -134,18 +134,19 @@
           name: "rejection[categories]",
           fieldset: {
             legend: {
-              text: "Tell " + name + " why you are rejecting them",
+              text: "Tell " + name + " why you are rejecting their application",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--m"
             }
           },
-          items: [
-          {
+  items: [
+
+  {
     value: "Degree subject does not meet course requirements",
     text: "Does not have a degree or A level in physics",
     checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
     conditional: {
-      html: degreeDoesNotMeetRequirementsHtml
+    html: degreeDoesNotMeetRequirementsHtml
     }
   },
   {
@@ -153,74 +154,74 @@
     text: "Degree class does not meet course requirements",
     checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
     conditional: {
-      html: degreeClassDoesNotMeetRequirementsHtml
+    html: degreeClassDoesNotMeetRequirementsHtml
     }
   },
-            {
-              value: "Personal statement",
-              text: "Personal statement is not strong enough",
-              checked: checked("['rejection']['categories']", "Personal statement"),
-              conditional: {
-                html: personalStatementReasonsHtml
-              }
-            },
-            {
-              value: "Personal statement",
-              text: "Interview performance was not strong enough",
-              checked: checked("['rejection']['categories']", "Personal statement"),
-              conditional: {
-                html: personalStatementReasonsHtml
-              }
-            },
-            {
-              value: "Communication, attendance and scheduling",
-              text: "Could not get in touch with them",
-              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
-              conditional: {
-                html: communicationReasonsHtml
-              }
-            },
-            {
-              value: "Safeguarding",
-              text: "We have safeguarding concerns",
-              checked: checked("['rejection']['categories']", "Safeguarding"),
-              conditional: {
-                html: safeguardingHtml
-              }
-            },
-            {
-              value: "Visa sponsorship",
-              text: "We cannot sponsor a visa",
-              checked: checked("['rejection']['categories']", "Visa sponsorship"),
-              conditional: {
-                html: sponsorshipHtml
-              }
-            },
-            {
-              value: "Visa sponsorship",
-              text: "Could not arrange an interview",
-              conditional: {
-                html: sponsorshipHtml
-              }
-            },
-            {
-              value: "Course full",
-              text: "The course is now full",
-              checked: checked("['rejection']['categories']", "Course full"),
-              conditional: {
-                html: courseFullHtml
-              }
-            },
-            {
-              value: "Other",
-              text: "Other",
-              checked: checked("['rejection']['categories']", "Other"),
-              conditional: {
-                html: otherDetailsHtml
-              }
-            }
-          ]
-        }) }}
+  {
+    value: "Personal statement",
+    text: "Personal statement did not demonstrate they are suitable to teach",
+    checked: checked("['rejection']['categories']", "Personal statement"),
+    conditional: {
+    html: personalStatementReasonsHtml
+    }
+  },
+  {
+    value: "Communication, attendance and scheduling",
+    text: "Could not get in touch with them",
+    checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
+    conditional: {
+    html: communicationReasonsHtml
+    }
+  },
+  {
+    value: "Visa sponsorship",
+    text: "Could not arrange an interview",
+    conditional: {
+    html: sponsorshipHtml
+    }
+  },
+  {
+    value: "Personal statement",
+    text: "Interview performance was not strong enough",
+    checked: checked("['rejection']['categories']", "Personal statement"),
+    conditional: {
+    html: personalStatementReasonsHtml
+    }
+  },
+  {
+    value: "Safeguarding",
+    text: "We have safeguarding concerns",
+    checked: checked("['rejection']['categories']", "Safeguarding"),
+    conditional: {
+    html: safeguardingHtml
+    }
+  },
+  {
+    value: "Visa sponsorship",
+    text: "We cannot sponsor a visa",
+    checked: checked("['rejection']['categories']", "Visa sponsorship"),
+    conditional: {
+    html: sponsorshipHtml
+    }
+  },
+  {
+    value: "Course full",
+    text: "The course is now full",
+    checked: checked("['rejection']['categories']", "Course full"),
+    conditional: {
+    html: courseFullHtml
+    }
+  },
+  {
+    value: "Other",
+    text: "Other",
+    checked: checked("['rejection']['categories']", "Other"),
+    conditional: {
+    html: otherDetailsHtml
+    }
+  }
+        ]
+   }) }}
 
 
 {{ govukTextarea({

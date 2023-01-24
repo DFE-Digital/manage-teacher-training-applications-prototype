@@ -33,11 +33,13 @@
 
       <form method="post" action="/applications/{{ application.id }}/reject/science">
 
-      <h1 class="govuk-heading-l">English</h1>
+      <h1 class="govuk-heading-l">English GCSE equivalent</h1>
 
       <p class="govuk-body">Candidates must have achieved a standard equivalent to a grade 4 (C) in the GCSE examinations in English.</p>
 
       <p class="govuk-body">It is the standard, not the certificate, that matters. Candidates who are otherwise suitable but have not successfully achieved a GCSE grade 4 may be given an opportunity to show that they can meet the required standard either by taking an equivalence test or by offering other evidence of attainment, which should demonstrate a similar level and breadth.</p>
+
+       <p class="govuk-body">Contact <a href="#">becomingateacher@digital.education.gov.uk</a> if you're not sure this candidate meets the criteria.</p>
 
 
       <p class="govuk-body">{{ name }} has said this:</p>
@@ -195,7 +197,7 @@
         name: "degree",
         fieldset: {
           legend: {
-            text: "Do they meet the standard equivalent to grade 4 English GCSE?",
+            text: "Do they meet the standard equivalent to a grade 4 (C) English GCSE?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--m"
           }
@@ -207,11 +209,11 @@
           },
           {
             value: "scotland",
-            text: "Yes, they have demonstrated they meet the standard in some other way"
+            text: "Yes, they’ve demonstrated they meet the standard in another way"
           },
           {
             value: "wales",
-            text: "They don’t have GCSE grade 4 (C) or an an equivalent qualification and we are not able to offer a GCSE equivalency test"
+            text: "They do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test"
           }
         ]
       }) }}
