@@ -30,7 +30,7 @@
       <h1 class="govuk-heading-l">Feedback for {{ name }}</h1>
 
 
-      <form method="post">
+      <form method="get" action="/applications/{{ applicationId }}/reject/check">
 
         {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
         {{ govukWarningText({
@@ -43,7 +43,14 @@
         {% endset %}
 
         {% set personalStatementReasonsHtml %}
-          {% include "_includes/reasons/personal-statement.njk" %}
+          {{ govukTextarea({
+            name: "rejection[personalStatementDetails]",
+            value: data.rejection.personalStatementDetails,
+            label: {
+              text: "Give details",
+              classes: "govuk-label--s"
+            }
+          }) }}
         {% endset %}
 
         {% set teachingKnowledgeReasonsHtml %}
@@ -69,16 +76,6 @@
 
         {% endset %}
 
-        {% set adviceHtml %}
-        {{ govukTextarea({
-            name: "more-detail",
-            id: "more-detail",
-            label: {
-              text: "Give details",
-              classes: "govuk-label--s"
-            }
-          }) }}
-        {% endset %}
 
         {% set referencesHtml %}
           {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
@@ -89,7 +86,14 @@
         {% endset %}
 
         {% set sponsorshipHtml %}
-          {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
+          {{ govukTextarea({
+            name: "rejection[visaSponsorshipDetails]",
+            value: data.rejection.visaSponsorshipDetails,
+            label: {
+              text: "Give details",
+              classes: "govuk-label--s"
+            }
+          }) }}
         {% endset %}
 
         {% set otherDetailsHtml %}
@@ -109,8 +113,8 @@
 
         {% set degreeDoesNotMeetRequirementsHtml %}
            {{ govukTextarea({
-            name: "more-detail",
-            id: "more-detail",
+            name: "rejection[degreeSubjectDetails]",
+            value: data.rejection.degreeSubjectDetails,
             label: {
               text: "Give details",
               classes: "govuk-label--s"
@@ -120,8 +124,8 @@
 
         {% set degreeClassDoesNotMeetRequirementsHtml %}
            {{ govukTextarea({
-            name: "more-detail",
-            id: "more-detail",
+            name: "rejection[degreeClassDetails]",
+            value: data.rejection.degreeClassDetails,
             label: {
               text: "Give details",
               classes: "govuk-label--s"
@@ -142,80 +146,81 @@
   items: [
 
   {
-    value: "Degree subject does not meet course requirements",
-    text: "Does not have a degree or A level in physics",
-    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    value: "degree-subject",
+    text: "Does not have a degree or A level in " + application.subject[0].name,
+    checked: checked("['rejection']['categories']", "degree-subject"),
     conditional: {
     html: degreeDoesNotMeetRequirementsHtml
     }
   },
   {
-    value: "Degree class does not meet course requirements",
+    value: "degree-class",
     text: "Degree class does not meet course requirements",
-    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    checked: checked("['rejection']['categories']", "degree-class"),
     conditional: {
     html: degreeClassDoesNotMeetRequirementsHtml
     }
   },
   {
-    value: "Personal statement",
+    value: "personal-statement",
     text: "Personal statement did not demonstrate they are suitable to teach",
-    checked: checked("['rejection']['categories']", "Personal statement"),
+    checked: checked("['rejection']['categories']", "personal-statement"),
     conditional: {
     html: personalStatementReasonsHtml
     }
   },
   {
-    value: "Communication, attendance and scheduling",
+    value: "communication",
     text: "Could not get in touch with them",
-    checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
+    checked: checked("['rejection']['categories']", "communication"),
     conditional: {
     html: communicationReasonsHtml
     }
   },
   {
-    value: "Visa sponsorship",
+    value: "interview",
     text: "Could not arrange an interview",
+    checked: checked("['rejection']['categories']", "interview"),
     conditional: {
     html: sponsorshipHtml
     }
   },
   {
-    value: "Personal statement",
+    value: "interview-performance",
     text: "Interview performance was not strong enough",
-    checked: checked("['rejection']['categories']", "Personal statement"),
+    checked: checked("['rejection']['categories']", "interview-performance"),
     conditional: {
     html: personalStatementReasonsHtml
     }
   },
   {
-    value: "Safeguarding",
+    value: "safeguarding",
     text: "We have safeguarding concerns",
-    checked: checked("['rejection']['categories']", "Safeguarding"),
+    checked: checked("['rejection']['categories']", "safeguarding"),
     conditional: {
     html: safeguardingHtml
     }
   },
   {
-    value: "Visa sponsorship",
+    value: "visa-sponsorship",
     text: "We cannot sponsor a visa",
-    checked: checked("['rejection']['categories']", "Visa sponsorship"),
+    checked: checked("['rejection']['categories']", "visa-sponsorship"),
     conditional: {
     html: sponsorshipHtml
     }
   },
   {
-    value: "Course full",
+    value: "course-full",
     text: "The course is now full",
-    checked: checked("['rejection']['categories']", "Course full"),
+    checked: checked("['rejection']['categories']", "course-full"),
     conditional: {
     html: courseFullHtml
     }
   },
   {
-    value: "Other",
+    value: "other",
     text: "Other",
-    checked: checked("['rejection']['categories']", "Other"),
+    checked: checked("['rejection']['categories']", "other"),
     conditional: {
     html: otherDetailsHtml
     }
@@ -224,19 +229,17 @@
    }) }}
 
 
-{{ govukTextarea({
-  name: "more-detail",
-  id: "more-detail",
-  label: {
-    text: "Give " + name + " advice on what to do next",
-    classes: "govuk-label--m"
-  },
-  hint: {
-    text: "For example, ‘You should apply again to a different course’"
-  }
-}) }}
-
-
+    {{ govukTextarea({
+      name: "rejection[advice]",
+      value: data.rejection.advice,
+      label: {
+        text: "Give " + name + " advice on what to do next",
+        classes: "govuk-label--m"
+      },
+      hint: {
+        text: "For example, ‘You should apply again to a different course’"
+      }
+    }) }}
 
 
         {{ govukButton({

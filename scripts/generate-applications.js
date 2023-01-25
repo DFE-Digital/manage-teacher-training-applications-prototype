@@ -237,16 +237,16 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: '46436',
     status: 'Received',
-    course: 'Mathematics (MA14)',
+    course: 'Modern languages (French) (MD9Q)',
     subject: [
       {
-        "code": "M1",
-        "name": "Mathematics"
+        "code": "F1",
+        "name": "French"
       }
     ],
     personalDetails: {
-      givenName: 'Jane',
-      familyName: 'Smith',
+      givenName: 'Malika',
+      familyName: 'Boutella',
       sex: 'Female',
       dateOfBirth: '1994-01-03',
       nationalities: [
@@ -262,10 +262,10 @@ const generateFakeApplications = () => {
         country: 'United Kingdom',
         grade: [
           {
-            grade: 'A'
+            grade: 'C'
           }
         ],
-        year: 2009
+        year: 2017
       },
       english: {
         hasQualification: 'Yes',
@@ -275,35 +275,22 @@ const generateFakeApplications = () => {
         grade: [
           {
             exam: 'English',
-            grade: 'A'
+            grade: 'C'
           }
         ],
-        year: 2009
-      },
-      science: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Double Science',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'BB'
-          }
-        ],
-        year: 2009
+        year: 2017
       }
     },
     degree: [
       {
-        type: 'BSc',
-        subject: 'Mathematics',
-        institution: 'University of Central Lancashire',
+        type: 'BA',
+        subject: 'English',
+        institution: 'University of Sheffield',
         country: 'United Kingdom',
-        grade: '2:1',
+        grade: '3rd',
         predicted: false,
-        startYear: '2011',
-        graduationYear: '2015'
+        startYear: '2019',
+        graduationYear: '2022'
       }
     ],
     otherQualifications: [
@@ -355,316 +342,6 @@ const generateFakeApplications = () => {
   }))
 
 
-  applications.push(generateFakeApplication({
-    course: 'Mathematics (MA14)',
-    courseCode: 'HIS1',
-    studyMode: 'Full time',
-    provider: user.organisation.name,
-    id: '63633',
-    status: 'Received',
-    assignedUsers: [],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    subject: [
-      {
-        "code": "M1",
-        "name": "Mathematics"
-      }
-    ],
-    personalDetails: {
-      givenName: 'Tommy',
-      familyName: 'Doyle',
-      sex: 'Male',
-      dateOfBirth: '1996-01-03',
-      nationalities: [
-        'British'
-      ],
-      isInternationalCandidate: false
-    },
-    degree: [
-      {
-        type: 'BSc',
-        subject: 'Mathematics',
-        institution: 'University of Leeds',
-        country: 'United Kingdom',
-        grade: '2:1',
-        predicted: false,
-        startYear: '2018',
-        graduationYear: '2021'
-      }
-    ],
-    gcse: {
-      maths: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Maths',
-        country: 'United Kingdom',
-        grade: [
-          {
-            grade: 'A'
-          }
-        ],
-        year: 2016
-      },
-      english: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'A'
-          }
-        ],
-        year: 2016
-      }
-    },
-    otherQualifications: [
-      {
-        "type": "A level",
-        "subject": "Mathematics",
-        "country": "United Kingdom",
-        "grade": "A",
-        "year": "2018"
-      },
-      {
-        "type": "A level",
-        "subject": "Statistics",
-        "country": "United Kingdom",
-        "grade": "B",
-        "year": "2018"
-      },
-      {
-        "type": "A level",
-        "subject": "Economics",
-        "country": "United Kingdom",
-        "grade": "C",
-        "year": "2018"
-      }
-    ],
-    references: {},
-    schoolExperience: [
-    ],
-    notes: {
-      items: [
-      ]
-    },
-    workHistory: {
-      answer: 'yes',
-      items: [
-        {
-          category: 'job',
-          role: 'Bar staff',
-          org: 'Red Lion pub',
-          type: 'Full time',
-          relevantToTeaching: 'No',
-          startDate: '2021-07-14',
-          endDate: false,
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        }
-      ]
-    },
-    schoolExperience: [
-    ],
-    safeguarding: {
-      response: false
-    },
-    interviewNeeds: {
-      response: false
-    },
-    disability: {
-      response: false
-    },
-    personalStatement: {
-      vocation: "My primary motivation for wanting to become a teacher is that I love working with children and supporting them in developing as individuals and reaching their full potential. I believe teaching would be an enjoyable and rewarding career for me and one to which I am well-suited.\n\n I received advice from a Teaching Advisor that becoming a teacher would be the best way to pursue a career in education and one that was open to me as a holder of a Mathematics degree. After reflection on this advice I came to the conclusion that this was something I was interested in.\n\n My first experience of working with children was as a support worker at a community centre in my area. During my time at the centre I had the privilege to work with a wide range of students and learned a huge amount about working with young people.\n\n My work as a support worker (both with adults and children) has required me to support people in accessing their communities and taking part in outings and activities of a wide variety. I also have led after school and lunchtime clubs related to my own interests, including maths and music. I believe this experience would be invaluable in contributing to a school inside and outside the classroom.\n\n In addition, my experience as a performer has helped me build the confidence to stand in front of a classroom. I have also received extensive training in safeguarding and behaviour support having worked with adults and children with SEND for many years. I believe it is paramount to the development of healthy and happy young people that the professionals working with them are good role-models, and that with vigilance, dedication and compassion a teacher can make a huge difference to their lives. It would be an enormous honour to be given the opportunity to become a teacher.",
-      subjectKnowledge: "Mathematics has always been one of my strongest subjects and I chose to study this subject at A-Level and for my degree because of the satisfaction I gained from working through complex problems. I am already confident with the curriculum so I feel I am well placed to teach it.\n\n I studied a BSc in Maths at Leeds University and I found the subjects I studied fascinating and this knowledge of high-level Mathematics would be beneficial when working with students who have the ability and inclination to take their study of the subject further.\n\n I also have experience of organising and delivering a study clubs to groups of SEND students at a community centre in my area. This was enormously rewarding, particularly in the way I saw the students develop and begin to enjoy the practice over many months.\n\n I have had a lifelong interest in music. I have played and sung in various different groups over the years in front of many audiences, and this has helped me build confidence in public speaking and presentation. I am always keen to inspire and encourage a love for music in young people and would welcome any opportunities a career in teaching presented me with to do this."
-    }
-  }))
-
-
-
-  applications.push(generateFakeApplication({
-    course: 'Mathematics (MA14)',
-    courseCode: 'HIS1',
-    studyMode: 'Full time',
-    provider: user.organisation.name,
-    id: '618451',
-    status: 'Received',
-    assignedUsers: [],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    subject: [
-      {
-        "code": "M1",
-        "name": "Mathematics"
-      }
-    ],
-    personalDetails: {
-      givenName: 'Aisha',
-      familyName: 'Fadel',
-      sex: 'Female',
-      dateOfBirth: '1996-01-03',
-      nationalities: [
-        'British'
-      ],
-      isInternationalCandidate: false
-    },
-    degree: [
-      {
-        type: 'BSc',
-        subject: 'Economics',
-        institution: 'University of Central Lancashire',
-        country: 'United Kingdom',
-        grade: '2:1',
-        predicted: false,
-        startYear: '2018',
-        graduationYear: '2021'
-      }
-    ],
-    gcse: {
-      maths: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'Maths',
-        country: 'United Kingdom',
-        grade: [
-          {
-            grade: 'B'
-          }
-        ],
-        year: 2016
-      },
-      english: {
-        hasQualification: 'Yes',
-        type: 'GCSE',
-        subject: 'English',
-        country: 'United Kingdom',
-        grade: [
-          {
-            exam: 'English',
-            grade: 'A'
-          }
-        ],
-        year: 2016
-      }
-    },
-    otherQualifications: [
-      {
-        "type": "A level",
-        "subject": "Economics",
-        "country": "United Kingdom",
-        "grade": "A",
-        "year": "2018"
-      },
-      {
-        "type": "A level",
-        "subject": "Mathematics",
-        "country": "United Kingdom",
-        "grade": "B",
-        "year": "2018"
-      },
-      {
-        "type": "A level",
-        "subject": "Chemistry",
-        "country": "United Kingdom",
-        "grade": "C",
-        "year": "2018"
-      }
-    ],
-    references: {},
-    schoolExperience: [
-    ],
-    notes: {
-      items: [
-      ]
-    },
-    workHistory: {
-      answer: 'yes',
-      items: [
-        {
-          category: 'job',
-          role: 'Business Analyst',
-          org: 'Department for Work and Pensions',
-          type: 'Full time',
-          relevantToTeaching: 'No',
-          startDate: '2021-07-14',
-          endDate: false,
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        }
-      ]
-    },
-    schoolExperience: [
-    ],
-    safeguarding: {
-      response: false
-    },
-    interviewNeeds: {
-      response: false
-    },
-    disability: {
-      response: false
-    },
-    personalStatement: {
-      vocation: "I want to become a teacher because I’m passionate about learning, I love working with youth groups and I want to have a positive impact on the future of humanity. I believe education has the power to transform and empower the world. Our children are our most valuable asset and education is the key by which their true value can be realised.\n\n My teachers played a pivotal role in educating, inspiring, and shaping my life, and now I aspire to do the same for my students. For me, contributing to children's education, growth and development is exciting, meaningful, and satisfying. This is also a way for me to give back to society, what I have been privileged to receive, which brings me joy.\n\n Every teacher has a different personality but teachers who were my role models had some common traits, which I deem to be essential for being a good teacher. They were always trustworthy, understood their students, relationship builders, and excellent presenters and listeners. In my short career, I have worked on weaving these traits into my job.",
-      subjectKnowledge: "My educational background includes A levels in Maths, Chemistry and Economics, and a degree in Economics. I believe these credentials will enable me to teach the curriculum to students as I know the subject matter very well because I am familiar with the curriculum having only finished my A levels 3 years ago.\n\n I am also currently volunteering as an exam invigilator at local schools in my area. I am responsible for ensuring that exam rules are being followed and that students are being supervised in an appropriate manner. I have performed my invigilator duties with utmost responsibility and am good at managing special and/or unforeseen circumstances such as a student feeling sick or a fire alarm going off. This experience has helped me see how things are run at a school and has helped me form good relationships with other teachers."
-    }
-  }))
-
-
-  applications.push(generateFakeApplication({
-    id: '57261',
-    status: 'Received',
-    course: 'French with Spanish (FS23)',
-    assignedUsers: [],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    provider: user.organisation.name,
-    subject: [
-      {
-        "code": "F1",
-        "name": "French"
-      },
-      {
-        "code": "S1",
-        "name": "Spanish"
-      }
-    ],
-    personalDetails: {
-      givenName: 'Michelle',
-      familyName: 'Aragon',
-      sex: 'Female',
-      dateOfBirth: '1994-01-03',
-      nationalities: [
-        'British'
-      ],
-      isInternationalCandidate: false
-    }
-  }))
-
-applications.push(generateFakeApplication({
-    id: '3464',
-    status: 'Received',
-    course: 'PE with EBacc (PE13)',
-    assignedUsers: [],
-    cycle: CycleHelper.CURRENT_CYCLE.code,
-    provider: user.organisation.name,
-    subject: [
-      {
-        "code": "F1",
-        "name": "PE with EBacc"
-      }
-    ],
-    personalDetails: {
-      givenName: 'John',
-      familyName: 'Routledge',
-      sex: 'Males',
-      dateOfBirth: '1994-01-03',
-      nationalities: [
-        'British'
-      ],
-      isInternationalCandidate: false
-    }
-  }))
 
 
   return applications

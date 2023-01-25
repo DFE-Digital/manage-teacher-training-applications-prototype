@@ -420,3 +420,10 @@ $statuses: (
 .app-no-spacing-after-last-paragraph p:last-child {
   margin-bottom: 0;
 }
+
+.app-email-preview {
+  margin-top: 20px;
+  border: 5px solid #b1b4b6;
+  padding: 20px;
+  margin-bottom: 30px;
+}

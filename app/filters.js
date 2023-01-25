@@ -422,5 +422,13 @@ filters.falsify = (input) => {
     return array
   }
 
+  /**
+   * Get number of days from today’s date
+   * @type {String} str
+   */
+  filters.includes = (array, item) => {
+    return array.includes(item)
+  }
+
   return filters
 }

@@ -29,7 +29,9 @@ module.exports = router => {
 
 
   router.get('/applications/:applicationId/reject/reasons', (req, res) => {
+    const applicationId = req.params.applicationId
     res.render('applications/reject/reasons', {
+      applicationId: applicationId,
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
   })

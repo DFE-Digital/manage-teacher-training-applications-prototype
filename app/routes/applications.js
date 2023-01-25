@@ -133,6 +133,7 @@ module.exports = router => {
 
   router.post('/applications/:applicationId/decision', (req, res) => {
     const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
     const { decision, option } = req.body
 
     const data = req.session.data;
@@ -149,7 +150,58 @@ module.exports = router => {
     } else if (decision === '2') {
       res.redirect(`/applications/${applicationId}/offer/new/course?referrer=decision`)
     } else {
-      res.redirect(`/applications/${applicationId}/reject/degree`)
+
+      const ukBachelorDegrees = application.degree.filter(degree => {
+        return (degree.country == 'United Kingdom') &&
+          (degree.type == 'BA')
+      })
+
+      console.log(application.gcse.english)
+
+      const hasEnglishGCSE = (
+        application.gcse.english.type == 'GCSE' &&
+        application.gcse.english.country == 'United Kingdom' &&
+        (
+         ["A", "B", "C"].includes(application.gcse.english.grade[0].grade)
+        )
+      )
+
+      const hasMathsGCSE = (
+        application.gcse.maths.type == 'GCSE' &&
+        application.gcse.maths.country == 'United Kingdom' &&
+        (
+         ["A", "B", "C"].includes(application.gcse.maths.grade[0].grade)
+        )
+      )
+
+      const hasScienceGCSE = (
+        application.gcse.science &&
+        application.gcse.science.type == 'GCSE' &&
+        application.gcse.science.country == 'United Kingdom' &&
+        (
+         ["A", "B", "C"].includes(application.gcse.science.grade[0].grade)
+        )
+      )
+
+      /* If they don’t clearly meet the degree criteria */
+      if (ukBachelorDegrees.length == 0) {
+        res.redirect(`/applications/${applicationId}/reject/degree`)
+
+      /* If they have a degree but not an English GCSE */
+      } else if (!hasEnglishGCSE) {
+        res.redirect(`/applications/${applicationId}/reject/english`)
+
+      /* If they have a degree but not an Maths GCSE */
+      } else if (!hasMathsGCSE) {
+        res.redirect(`/applications/${applicationId}/reject/maths`)
+
+      /* If they don’t have a science GCSE and are applying to a Primary course */
+      } else if (!hasScienceGCSE && application.subject[0].name == 'Primary') {
+        res.redirect(`/applications/${applicationId}/reject/science`)
+      } else {
+        res.redirect(`/applications/${applicationId}/reject/reasons`)
+      }
+
     }
   })
 
