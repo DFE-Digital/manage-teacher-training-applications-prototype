@@ -69,30 +69,15 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
-    ApplicationHelper.getUpcomingInterviews(application).forEach((interview) => {
-      ApplicationHelper.cancelInterview({ application, interview, cancellationReason: "Your application was unsuccessful." })
+    application.status = 'Rejected'
+    application.rejectedDate = application.rejectedFeedbackDate = new Date().toISOString()
+    application.rejectedReasons = JSON.parse(JSON.stringify(req.session.data.rejection))
+    req.flash('success', content.rejectApplication.successMessage)
+    ApplicationHelper.addEvent(application, {
+      "title": content.rejectApplication.event.title,
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
     })
-
-    if(application.status == "Rejected") {
-      application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
-      application.rejectedFeedbackDate = new Date().toISOString()
-      req.flash('success', content.giveFeedback.successMessage)
-      ApplicationHelper.addEvent(application, {
-        "title": content.giveFeedback.event.title,
-        "user": "Ben Brown",
-        "date": new Date().toISOString()
-      })
-    } else {
-      application.status = 'Rejected'
-      application.rejectedDate = application.rejectedFeedbackDate = new Date().toISOString()
-      application.rejectedReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
-      req.flash('success', content.rejectApplication.successMessage)
-      ApplicationHelper.addEvent(application, {
-        "title": content.rejectApplication.event.title,
-        "user": "Ben Brown",
-        "date": new Date().toISOString()
-      })
-    }
 
     delete req.session.data.rejection
     res.redirect(`/applications/${applicationId}/feedback`)

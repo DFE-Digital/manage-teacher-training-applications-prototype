@@ -30,44 +30,9 @@
       {% set showChangeLinks = true %}
 
       <p class="govuk-body">The candidate will be sent this email:</p>
+      {% include "_includes/candidate-feedback.njk" %}
 
-      <div class="app-email-preview">
-        <p class="govuk-body">Dear {{ name }},</p>
-
-        <p class="govuk-body">Thank you for your application to study {{ application.course }} at {{ application.provider }}.</p>
-
-        <p class="govuk-body">On this occasion, the provider is not offering you a place on this course.</p>
-
-        <p class="govuk-body">They’ve given the following feedback to explain their decision:</p>
-
-        <div class="govuk-inset-text">
-          {% if rejectionReasons.categories | includes("degree-subject") %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Subject knowledge:</p>
-            <p class="govuk-body">{{ rejectionReasons.degreeSubjectDetails }}</p>
-          {% endif %}
-
-          {% if rejectionReasons.categories | includes("degree-class") %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Degree class:</p>
-            <p class="govuk-body">{{ rejectionReasons.degreeClassDetails }}</p>
-          {% endif %}
-
-          {% if rejectionReasons.categories | includes("personal-statement") %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Personal statement:</p>
-            <p class="govuk-body">{{ rejectionReasons.personalStatementDetails }}</p>
-          {% endif %}
-
-          {% if rejectionReasons.categories | includes("visa-sponsorship") %}
-            <p class="govuk-body govuk-!-margin-bottom-1">Visa sponsorship:</p>
-            <p class="govuk-body">{{ rejectionReasons.visaSponsorshipDetails }}</p>
-          {% endif %}
-
-          <p class="govuk-body">{{ rejectionReasons.advice }}</p>
-        </div>
-
-         <p class="govuk-body">Contact {{ application.provider }} if you would like to talk about their feedback.</p>
-      </div>
-
-{{ govukRadios({
+    {{ govukRadios({
         name: "degree",
         fieldset: {
           legend: {
