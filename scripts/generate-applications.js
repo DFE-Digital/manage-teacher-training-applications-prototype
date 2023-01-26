@@ -274,7 +274,6 @@ const generateFakeApplications = () => {
         country: 'United Kingdom',
         grade: [
           {
-            exam: 'English',
             grade: 'C'
           }
         ],
