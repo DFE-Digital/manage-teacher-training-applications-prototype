@@ -96,14 +96,26 @@ module.exports = router => {
 
     const rejection = req.session.data.rejection
 
+    const hasScienceGCSE = (
+      application.gcse.science.type == 'GCSE' &&
+      application.gcse.science.country == 'United Kingdom' &&
+      (
+       ["A", "B", "C"].includes(application.gcse.science.grade[0].grade)
+      )
+    )
+
     const metDegreeCriteria = (rejection.degreeCriteria == 'met')
     const metEnglishCriteria = (rejection.englishCriteria == 'met-qualification' || rejection.englishCriteria == 'met-standard')
     const metMathsCriteria = (rejection.mathsCriteria == 'met-qualification' || rejection.mathsCriteria == 'met-standard')
 
     const metAllITTCriteria = (metDegreeCriteria && metEnglishCriteria && metMathsCriteria)
 
+    /* If it’s a primary course and they don’t have a GCSE in a Science of C/4 or above */
+    if (application.subject[0].name == "Primary" && !hasScienceGCSE) {
+
+      res.redirect(`/applications/${applicationId}/reject/science`)
     /* If they met the degree, English and maths criteria */
-    if (metAllITTCriteria) {
+    } else if (metAllITTCriteria) {
       res.redirect(`/applications/${applicationId}/reject/reasons`)
 
     /* If they didn’t meet one of the ITT criteria */
@@ -121,6 +133,30 @@ module.exports = router => {
     })
   })
 
+  router.post('/applications/:applicationId/reject/science-answer', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    const rejection = req.session.data.rejection
+
+    const metDegreeCriteria = (rejection.degreeCriteria == 'met')
+    const metEnglishCriteria = (rejection.englishCriteria == 'met-qualification' || rejection.englishCriteria == 'met-standard')
+    const metMathsCriteria = (rejection.mathsCriteria == 'met-qualification' || rejection.mathsCriteria == 'met-standard')
+    const metScienceCriteria = (rejection.scienceCriteria == 'met-qualification' || rejection.scienceCriteria == 'met-standard')
+
+
+    const metAllITTCriteria = (metDegreeCriteria && metEnglishCriteria && metMathsCriteria && metScienceCriteria)
+
+    /* If they met the degree, English, maths and science criteria */
+    if (metAllITTCriteria) {
+      res.redirect(`/applications/${applicationId}/reject/reasons`)
+
+    /* If they didn’t meet one of the ITT criteria */
+    } else {
+      res.redirect(`/applications/${applicationId}/reject/other-reasons`)
+    }
+
+  })
 
   router.get('/applications/:applicationId/reject/reasons', (req, res) => {
     const applicationId = req.params.applicationId

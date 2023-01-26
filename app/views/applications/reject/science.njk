@@ -31,7 +31,7 @@
         {{heading}}
       {% endset %}
 
-      <form method="post" action="/applications/{{ application.id }}/reject/other">
+      <form method="post" action="/applications/{{ application.id }}/reject/science-answer">
 
       <h1 class="govuk-heading-l">Science GCSE equivalent</h1>
 
@@ -116,36 +116,6 @@
             {% endif %}
           {% endif %}
 
-          {% if item.naric %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                UK ENIC reference number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ item.naric.reference }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Comparable UK qualification
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ item.naric.comparable }}
-              </dd>
-            </div>
-          {% else %}
-            {% if application.personalDetails.isInternationalCandidate %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Do you have a UK ENIC statement of comparability?
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  No
-                </dd>
-              </div>
-            {% endif %}
-          {% endif %}
-
         {% else %}
 
           <div class="govuk-summary-list__row">
@@ -194,7 +164,7 @@
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
-        name: "degree",
+        name: "rejection[scienceCriteria]",
         fieldset: {
           legend: {
             text: "Do they meet the standard equivalent to grade 4 (C) in a science GCSE?",
@@ -204,16 +174,19 @@
         },
         items: [
           {
-            value: "england",
-            text: "Yes, they have an equivalent qualification"
+            value: "met-qualification",
+            text: "Yes, they have an equivalent qualification",
+            checked: (data.rejection.scienceCriteria == 'met-qualification')
           },
           {
-            value: "scotland",
-            text: "Yes, they’ve demonstrated they meet the standard in another way"
+            value: "met-standard",
+            text: "Yes, they’ve demonstrated they meet the standard in another way",
+            checked: (data.rejection.scienceCriteria == 'met-standard')
           },
           {
-            value: "wales",
-            text: "They do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test"
+            value: "not-met",
+            text: "They do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test",
+            checked: (data.rejection.scienceCriteria == 'met-standard')
           }
         ]
       }) }}

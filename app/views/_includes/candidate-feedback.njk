@@ -21,6 +21,10 @@
       <p class="govuk-body">You do not have an GCSE in Maths at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
     {% endif %}
 
+    {% if rejectionReasons.scienceCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have an GCSE in a science at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
+    {% endif %}
+
     {% if rejectionReasons.categories | includes("degree-subject") %}
       <p class="govuk-body govuk-!-margin-bottom-1">Subject knowledge:</p>
       <p class="govuk-body">{{ rejectionReasons.degreeSubjectDetails }}</p>

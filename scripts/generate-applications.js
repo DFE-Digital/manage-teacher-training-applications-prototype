@@ -455,6 +455,125 @@ const generateFakeApplications = () => {
   }))
 
 
+  applications.push(generateFakeApplication({
+    id: '18571512',
+    status: 'Received',
+    course: 'Primary (2S8T)',
+    subject: [
+      {
+        "code": "P1",
+        "name": "Primary"
+      }
+    ],
+    personalDetails: {
+      givenName: 'Freida',
+      familyName: 'Jackson',
+      sex: 'Female',
+      dateOfBirth: '1964-05-11',
+      nationalities: [
+        'British'
+      ],
+      isInternationalCandidate: false
+    },
+    gcse: {
+      maths: {
+        hasQualification: 'Yes',
+        type: 'O level',
+        subject: 'Maths',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'C'
+          }
+        ],
+        year: 1980
+      },
+      english: {
+        hasQualification: 'Yes',
+        type: 'O level',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            grade: 'B'
+          }
+        ],
+        year: 1980
+      },
+      science: {
+        hasQualification: 'Yes',
+        type: 'O level',
+        subject: 'English',
+        country: 'United Kingdom',
+        grade: [
+          {
+            subject: 'Biology',
+            grade: 'C'
+          }
+        ],
+        year: 1980
+      }
+    },
+    degree: [
+      {
+        type: 'BA',
+        subject: 'German language',
+        institution: 'University of East Anglia',
+        country: 'United Kingdom',
+        grade: 'First-class honours',
+        predicted: false,
+        startYear: '1982',
+        graduationYear: '1986'
+      }
+    ],
+    otherQualifications: [
+      {
+        "type": "Higher Diploma",
+        "subject": "Higher Diploma",
+        "country": "Ghana",
+        "grade": "Pass",
+        "year": "2015"
+      }
+    ],
+    workHistory: {
+      answer: 'yes',
+      items: [
+        {
+          category: 'job',
+          role: 'Librarian',
+          org: 'Lancashire libraries service',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2015-07-14',
+          endDate: '2018-12-06',
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        },
+        {
+          category: 'job',
+          role: 'Researcher',
+          org: 'University of Lancashire',
+          type: 'Full time',
+          relevantToTeaching: 'No',
+          startDate: '2019-01-01',
+          endDate: false,
+          isStartDateApproximate: false,
+          isEndDateApproximate: false
+        }
+      ]
+    },
+    schoolExperience: [],
+    personalStatement: {
+      vocation: "During my school days it was my maths teacher who inspired and taught me to love maths. I discovered that through good teaching methods and stirring up a student’s love and passion for learning anything is possible. I learned from this teacher that mathematics is fun and not as horrible as I thought, the hatred for mathematics was replaced by love and interest to study and practice. This inspired and made me develop an interest in teaching to help students who might be having similar issues.\n\n When I studied maths at university, I discovered that with the right teaching methods, love, patience, understanding, and helping the students develop love and interest in learning, there is virtually no student that can’t learn mathematics. Sound knowledge of the concepts by the teacher builds his/her confidence and also builds the student's trust in the teacher which in turn motivates them to learn.\n\n From working at a university (although I was a researcher) I learned that a lot is expected from teachers as students look up to them as role models and mentors and as such, it is expected that the teacher should be a person of integrity. Because of this I try and model the right attitudes and virtues to every student I have come in contact with at my job.\n\n From being both a librarian and researcher, I have also discovered that learning is not limited to the four walls of the classroom and learning can take place anywhere and anytime. Students tend to retain information or ideas learned during fun or personal discovery for a longer period, so extracurricular activities also help to produce a balanced student and I believe it is an important aspect of learning.\n\n The education system and curriculum should have the well-being and development of the child at their centre. The interest and wholesome development of the child should be the goal of educational policies and the curriculum. Having children who are developed in all areas will eventually result in an organised and a developed society.\n\n I strongly believe that obtaining the Qualified Teachers Status certificate will boost and increase my chances of working and impacting the lives of students.",
+      subjectKnowledge: "I studied mathematics at the university. This helped to sharpen my critical thinking skills and also aided my reasoning. I naturally appreciate numbers and possess a strong affinity for patterns and logic.\n\n I am familiar with the curriculum and I have prepared my own children for their own maths exams. I have also informally helped students at the university with their lessons and mathematical concepts. These experiences have enabled me to acquire the necessary skills to excel as a teacher. Having good communication skills and being an adept listener have given me room for mutual understanding and improved student-teacher relationships.\n\n I enjoy working with students in my current role as a university researcher. I believe that this stage of their life is crucial in making career decisions, and I love to see that they do not allow their former hatred for mathematics to stop them from pursuing their careers."
+    },
+    safeguarding: {
+      response: false
+    },
+    assignedUsers: [],
+    cycle: CycleHelper.CURRENT_CYCLE.code
+  }))
+
 
   return applications
 }
