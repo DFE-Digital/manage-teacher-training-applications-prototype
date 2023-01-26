@@ -8,6 +8,19 @@
   <p class="govuk-body">They’ve given the following feedback to explain their decision:</p>
 
   <div class="govuk-inset-text">
+
+    {% if rejectionReasons.degreeCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have an undergraduate degree, or equivalent.</p>
+    {% endif %}
+
+    {% if rejectionReasons.englishCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have an GCSE in English at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
+    {% endif %}
+
+    {% if rejectionReasons.mathsCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have an GCSE in Maths at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
+    {% endif %}
+
     {% if rejectionReasons.categories | includes("degree-subject") %}
       <p class="govuk-body govuk-!-margin-bottom-1">Subject knowledge:</p>
       <p class="govuk-body">{{ rejectionReasons.degreeSubjectDetails }}</p>

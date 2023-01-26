@@ -156,8 +156,6 @@ module.exports = router => {
           (degree.type == 'BA')
       })
 
-      console.log(application.gcse.english)
-
       const hasEnglishGCSE = (
         application.gcse.english.type == 'GCSE' &&
         application.gcse.english.country == 'United Kingdom' &&

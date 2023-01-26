@@ -31,7 +31,7 @@
         {{heading}}
       {% endset %}
 
-      <form method="post" action="/applications/{{ application.id }}/reject/science">
+      <form method="post" action="/applications/{{ application.id }}/reject/english-answer">
 
       <h1 class="govuk-heading-l">English GCSE equivalent</h1>
 
@@ -194,7 +194,7 @@
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
-        name: "degree",
+        name: "rejection[englishCriteria]",
         fieldset: {
           legend: {
             text: "Do they meet the standard equivalent to a grade 4 (C) English GCSE?",
@@ -204,16 +204,19 @@
         },
         items: [
           {
-            value: "england",
-            text: "Yes, they have an equivalent qualification"
+            value: "met-qualification",
+            text: "Yes, they have an equivalent qualification",
+            checked: (data.rejection.englishCriteria == 'met-qualification')
           },
           {
-            value: "scotland",
-            text: "Yes, they’ve demonstrated they meet the standard in another way"
+            value: "met-standard",
+            text: "Yes, they’ve demonstrated they meet the standard in another way",
+            checked: (data.rejection.englishCriteria == 'met-standard')
           },
           {
-            value: "wales",
-            text: "They do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test"
+            value: "not-met",
+            text: "They do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test",
+            checked: (data.rejection.englishCriteria == 'met-standard')
           }
         ]
       }) }}

@@ -427,7 +427,8 @@ filters.falsify = (input) => {
    * @type {String} str
    */
   filters.includes = (array, item) => {
-    return array.includes(item)
+
+    return array && array.includes(item)
   }
 
   return filters

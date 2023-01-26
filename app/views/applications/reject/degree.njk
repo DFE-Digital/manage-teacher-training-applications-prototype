@@ -34,7 +34,7 @@
         {{heading}}
       {% endset %}
 
-      <form method="post" action="/applications/{{ application.id }}/reject/maths">
+      <form method="post" action="/applications/{{ application.id }}/reject/degree-answer">
 
       <h1 class="govuk-heading-l">Degree criteria</h1>
 
@@ -133,7 +133,7 @@
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
-        name: "degree",
+        name: "rejection[degreeCriteria]",
         fieldset: {
           legend: {
             text: "Do they meet the degree criteria?",
@@ -143,12 +143,14 @@
         },
         items: [
           {
-            value: "england",
-            text: "Yes"
+            value: "met",
+            text: "Yes",
+            checked: (data.rejection.degreeCriteria == 'met')
           },
           {
-            value: "scotland",
-            text: "No"
+            value: "not-met",
+            text: "No",
+            checked: (data.rejection.degreeCriteria == 'not-met')
           }
         ]
       }) }}

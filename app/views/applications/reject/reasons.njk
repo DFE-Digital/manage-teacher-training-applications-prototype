@@ -29,6 +29,7 @@
 
       <h1 class="govuk-heading-l">Feedback for {{ name }}</h1>
 
+      {{ data.rejection | dump }}
 
       <form method="get" action="/applications/{{ applicationId }}/reject/check">
 
