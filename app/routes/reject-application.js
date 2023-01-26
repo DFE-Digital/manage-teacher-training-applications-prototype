@@ -96,9 +96,9 @@ module.exports = router => {
 
     const rejection = req.session.data.rejection
 
-    const metDegreeCriteria = (rejection.metDegreeCriteria == 'met')
-    const metEnglishCriteria = (rejection.englishCriteria == 'met-qualifications' || rejection.englishCriteria == 'met-standard')
-    const metMathsCriteria = (rejection.mathsCriteria == 'met-qualifications' || rejection.mathsCriteria == 'met-standard')
+    const metDegreeCriteria = (rejection.degreeCriteria == 'met')
+    const metEnglishCriteria = (rejection.englishCriteria == 'met-qualification' || rejection.englishCriteria == 'met-standard')
+    const metMathsCriteria = (rejection.mathsCriteria == 'met-qualification' || rejection.mathsCriteria == 'met-standard')
 
     const metAllITTCriteria = (metDegreeCriteria && metEnglishCriteria && metMathsCriteria)
 
