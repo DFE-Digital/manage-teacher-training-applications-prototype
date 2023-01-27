@@ -153,7 +153,7 @@ const generateFakeApplication = (params = {}) => {
 
   let otherQualifications
 
-  if(!params.otherQualifications) {
+  if(!params.otherQualifications == null) {
     otherQualifications = generateOtherQualifications()
   } else {
     otherQualifications = params.otherQualifications
@@ -492,7 +492,7 @@ const generateFakeApplications = () => {
       science: {
         hasQualification: 'Yes',
         type: 'O level',
-        subject: 'Biology',
+        subject: 'Science',
         country: 'United Kingdom',
         grade: [
           {
@@ -515,6 +515,7 @@ const generateFakeApplications = () => {
         graduationYear: '1986'
       }
     ],
+    otherQualifications: false,
     workHistory: {
       answer: 'yes',
       items: [
