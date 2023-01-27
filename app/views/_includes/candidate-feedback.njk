@@ -10,23 +10,23 @@
   <div class="govuk-inset-text">
 
     {% if rejectionReasons.degreeCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have an undergraduate degree, or equivalent.</p>
+      <p class="govuk-body">You do not have an undergraduate degree or a qualification that meets the same standard.</p>
     {% endif %}
 
     {% if rejectionReasons.englishCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have an GCSE in English at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
+      <p class="govuk-body">You do not have a qualification that’s equivalent to an English GCSE at grade 4 ( C) or above. We also cannot offer an equivalency test.</p>
     {% endif %}
 
     {% if rejectionReasons.mathsCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have an GCSE in Maths at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
+      <p class="govuk-body">You do not have a qualification that’s equivalent to a maths GCSE at grade 4 ( C) or above. We also cannot offer an equivalency test.</p>
     {% endif %}
 
     {% if rejectionReasons.scienceCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have an GCSE in a science at grade C (4) or above, or equivalent, and we are not able to offer you an equivalency test.</p>
+      <p class="govuk-body">You do not have a qualification that’s equivalent to a GCSE in a science subject at grade 4 ( C) or above. We also cannot offer an equivalency test.</p>
     {% endif %}
 
     {% if rejectionReasons.categories | includes("degree-subject") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Subject knowledge:</p>
+      <p class="govuk-body govuk-!-margin-bottom-1">Knowledge of the subject you want to teach:</p>
       <p class="govuk-body">{{ rejectionReasons.degreeSubjectDetails }}</p>
     {% endif %}
 
@@ -41,7 +41,7 @@
     {% endif %}
 
     {% if rejectionReasons.categories | includes("communication") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">We could not get in touch with you:</p>
+      <p class="govuk-body govuk-!-margin-bottom-1">Could not contact you:</p>
       <p class="govuk-body">{{ rejectionReasons.communicationDetails }}</p>
     {% endif %}
 
@@ -51,12 +51,12 @@
     {% endif %}
 
     {% if rejectionReasons.categories | includes("interview-performance") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Interview:</p>
+      <p class="govuk-body govuk-!-margin-bottom-1">Feedback on your interview:</p>
       <p class="govuk-body">{{ rejectionReasons.interviewPerformanceDetails }}</p>
     {% endif %}
 
     {% if rejectionReasons.categories | includes("safeguarding") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Safeguarding:</p>
+      <p class="govuk-body govuk-!-margin-bottom-1">Safeguarding concerns:</p>
       <p class="govuk-body">{{ rejectionReasons.safeguardingDetails }}</p>
     {% endif %}
 
@@ -64,6 +64,12 @@
       <p class="govuk-body govuk-!-margin-bottom-1">Visa sponsorship:</p>
       <p class="govuk-body">{{ rejectionReasons.visaSponsorshipDetails }}</p>
     {% endif %}
+
+        {% if rejectionReasons.categories | includes("course-full") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">The course is full:</p>
+      <p class="govuk-body">{{ rejectionReasons.courseFullDetails }}</p>
+    {% endif %}
+
 
     <p class="govuk-body">{{ rejectionReasons.advice }}</p>
   </div>
