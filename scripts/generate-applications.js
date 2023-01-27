@@ -313,17 +313,6 @@ const generateFakeApplications = () => {
       items: [
         {
           category: 'job',
-          role: 'School placement experience',
-          org: 'Bishop Vesey Grammar School',
-          type: 'Full time',
-          relevantToTeaching: 'Yes',
-          startDate: '2022-09-14',
-          endDate: '2022-10-14',
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        },
-        {
-          category: 'job',
           role: 'Waiter',
           org: 'Turtle Bay',
           type: 'Full time',
@@ -337,8 +326,8 @@ const generateFakeApplications = () => {
     },
     schoolExperience: [],
     personalStatement: {
-      vocation: "I feel I’m well placed to teach French having grown up in a french speaking family and being fluent in the language. Sharing my knowledge of this wonderful language and leading the way has always been one of my dreams for a long time. Teaching can be both very rewarding and challenging, which I have experienced through going to Bishop Vesey Grammar School on a 1 month school experience program to observe how teachers operate. Education is not the process of filling a bucket. It’s the experience of helping someone achieve whatever they want. Being part of that process and helping to shape young people’s future is what I’m passionate about.",
-      subjectKnowledge: "Thinking about my own experience in education, I appreciate the incredible impact my teachers had on my life. I know that teachers provide skills and knowledge used by young people throughout life. My greatest aim as a teacher is to be a role model. I want to cultivate open minds and help pupils believe in their own capacity to make positive contributions to society."
+      vocation: "I feel I’m well placed to teach French having grown up in a french speaking family and being fluent in the language.",
+      subjectKnowledge: "Thinking about my own experience in education, I appreciate the incredible impact my teachers had on my life."
     },
     safeguarding: {
       response: false
