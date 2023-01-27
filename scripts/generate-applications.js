@@ -362,7 +362,7 @@ const generateFakeApplications = () => {
       givenName: 'Peter',
       familyName: 'Essien',
       sex: 'Male',
-      dateOfBirth: '1994-01-03',
+      dateOfBirth: '1997-09-19',
       nationalities: [
         'British'
       ],
@@ -420,19 +420,8 @@ const generateFakeApplications = () => {
       items: [
         {
           category: 'job',
-          role: 'Librarian',
-          org: 'Lancashire libraries service',
-          type: 'Full time',
-          relevantToTeaching: 'No',
-          startDate: '2015-07-14',
-          endDate: '2018-12-06',
-          isStartDateApproximate: false,
-          isEndDateApproximate: false
-        },
-        {
-          category: 'job',
-          role: 'Researcher',
-          org: 'University of Lancashire',
+          role: 'School Health and Education Coordinator',
+          org: 'Ghana Education Service',
           type: 'Full time',
           relevantToTeaching: 'No',
           startDate: '2019-01-01',
@@ -444,8 +433,8 @@ const generateFakeApplications = () => {
     },
     schoolExperience: [],
     personalStatement: {
-      vocation: "During my school days it was my maths teacher who inspired and taught me to love maths. I discovered that through good teaching methods and stirring up a student’s love and passion for learning anything is possible. I learned from this teacher that mathematics is fun and not as horrible as I thought, the hatred for mathematics was replaced by love and interest to study and practice. This inspired and made me develop an interest in teaching to help students who might be having similar issues.\n\n When I studied maths at university, I discovered that with the right teaching methods, love, patience, understanding, and helping the students develop love and interest in learning, there is virtually no student that can’t learn mathematics. Sound knowledge of the concepts by the teacher builds his/her confidence and also builds the student's trust in the teacher which in turn motivates them to learn.\n\n From working at a university (although I was a researcher) I learned that a lot is expected from teachers as students look up to them as role models and mentors and as such, it is expected that the teacher should be a person of integrity. Because of this I try and model the right attitudes and virtues to every student I have come in contact with at my job.\n\n From being both a librarian and researcher, I have also discovered that learning is not limited to the four walls of the classroom and learning can take place anywhere and anytime. Students tend to retain information or ideas learned during fun or personal discovery for a longer period, so extracurricular activities also help to produce a balanced student and I believe it is an important aspect of learning.\n\n The education system and curriculum should have the well-being and development of the child at their centre. The interest and wholesome development of the child should be the goal of educational policies and the curriculum. Having children who are developed in all areas will eventually result in an organised and a developed society.\n\n I strongly believe that obtaining the Qualified Teachers Status certificate will boost and increase my chances of working and impacting the lives of students.",
-      subjectKnowledge: "I studied mathematics at the university. This helped to sharpen my critical thinking skills and also aided my reasoning. I naturally appreciate numbers and possess a strong affinity for patterns and logic.\n\n I am familiar with the curriculum and I have prepared my own children for their own maths exams. I have also informally helped students at the university with their lessons and mathematical concepts. These experiences have enabled me to acquire the necessary skills to excel as a teacher. Having good communication skills and being an adept listener have given me room for mutual understanding and improved student-teacher relationships.\n\n I enjoy working with students in my current role as a university researcher. I believe that this stage of their life is crucial in making career decisions, and I love to see that they do not allow their former hatred for mathematics to stop them from pursuing their careers."
+      vocation: "In my current role as a School Health and Education Coordinator, has opened my eyes to the fascinating subject of teaching. Seeing such young poverty-stricken children with so much life and eagerness to learn posed many questions: could sparking enthusiasm in children and engaging them to learn through their studies be for me? Am I destined to be a teacher? Where do I learn more about education and inspiring others through teaching? My wish to find out more about child development, education and school curriculum started my interest in teaching. My interest in schools and learning developed further in Sunday school, where I was introduced to areas of Special Education Needs and Disability learning support: child development and 1:1 mentoring, and the differing aspects of teaching in church as opposed to teaching in primary and secondary schools. I became interested in SEND, SENCOs and learning support challenges, leading me to embark upon a SEN training course. The course taught me about the SEN needs background and how the introduction of SEN children into mainstream schools impacted schools in their planning for communication, interaction, social, emotional and mental health difficulties. Beyond teaching, due to my infectious enthusiasm and brilliance in my role as a School Health and Education Coordinator I have learnt a lot about how a teacher should conduct themselves inside and outside the classroom.",
+      subjectKnowledge: "I am personable, energetic and always up for a challenge. I have done a teaching internship at a secondary school where I supported SEN students with reading, writing, maths and French activities and lessons. While working in secondary education, I gained knowledge on child development, teaching strategies and behaviour management. I have also been familiarising myself with the English national curriculum and during my internship at Achimota Senior High School I was given the opportunity to assist teachers in planning lessons, managing behaviours in the classroom and supporting student learning whilst adhering to the national curriculum and child safeguarding guidelines. Through my work, I have a unique ability to see where students need support, I also communicate well with teachers and other teaching staff, to support a team atmosphere. I inspire a love for learning and find that children gravitate towards me in all areas of my life, this allows me to accomplish my classroom aims of supporting their understanding of subjects and encouragement in their healthy peer relationships."
     },
     safeguarding: {
       response: false
@@ -503,7 +492,7 @@ const generateFakeApplications = () => {
       science: {
         hasQualification: 'Yes',
         type: 'O level',
-        subject: 'English',
+        subject: 'Biology',
         country: 'United Kingdom',
         grade: [
           {
@@ -526,36 +515,27 @@ const generateFakeApplications = () => {
         graduationYear: '1986'
       }
     ],
-    otherQualifications: [
-      {
-        "type": "Higher Diploma",
-        "subject": "Higher Diploma",
-        "country": "Ghana",
-        "grade": "Pass",
-        "year": "2015"
-      }
-    ],
     workHistory: {
       answer: 'yes',
       items: [
         {
           category: 'job',
-          role: 'Librarian',
-          org: 'Lancashire libraries service',
+          role: 'Observing a classroom (unpaid)',
+          org: 'St Marys Community Primary School',
           type: 'Full time',
-          relevantToTeaching: 'No',
-          startDate: '2015-07-14',
-          endDate: '2018-12-06',
+          relevantToTeaching: 'Yes',
+          startDate: '2022-09-1',
+          endDate: '2022-11-30',
           isStartDateApproximate: false,
           isEndDateApproximate: false
         },
         {
           category: 'job',
-          role: 'Researcher',
-          org: 'University of Lancashire',
+          role: 'Administrative assistant',
+          org: 'Mitchell and Mcgill Law Firm',
           type: 'Full time',
           relevantToTeaching: 'No',
-          startDate: '2019-01-01',
+          startDate: '2002-03-04',
           endDate: false,
           isStartDateApproximate: false,
           isEndDateApproximate: false
@@ -564,8 +544,8 @@ const generateFakeApplications = () => {
     },
     schoolExperience: [],
     personalStatement: {
-      vocation: "During my school days it was my maths teacher who inspired and taught me to love maths. I discovered that through good teaching methods and stirring up a student’s love and passion for learning anything is possible. I learned from this teacher that mathematics is fun and not as horrible as I thought, the hatred for mathematics was replaced by love and interest to study and practice. This inspired and made me develop an interest in teaching to help students who might be having similar issues.\n\n When I studied maths at university, I discovered that with the right teaching methods, love, patience, understanding, and helping the students develop love and interest in learning, there is virtually no student that can’t learn mathematics. Sound knowledge of the concepts by the teacher builds his/her confidence and also builds the student's trust in the teacher which in turn motivates them to learn.\n\n From working at a university (although I was a researcher) I learned that a lot is expected from teachers as students look up to them as role models and mentors and as such, it is expected that the teacher should be a person of integrity. Because of this I try and model the right attitudes and virtues to every student I have come in contact with at my job.\n\n From being both a librarian and researcher, I have also discovered that learning is not limited to the four walls of the classroom and learning can take place anywhere and anytime. Students tend to retain information or ideas learned during fun or personal discovery for a longer period, so extracurricular activities also help to produce a balanced student and I believe it is an important aspect of learning.\n\n The education system and curriculum should have the well-being and development of the child at their centre. The interest and wholesome development of the child should be the goal of educational policies and the curriculum. Having children who are developed in all areas will eventually result in an organised and a developed society.\n\n I strongly believe that obtaining the Qualified Teachers Status certificate will boost and increase my chances of working and impacting the lives of students.",
-      subjectKnowledge: "I studied mathematics at the university. This helped to sharpen my critical thinking skills and also aided my reasoning. I naturally appreciate numbers and possess a strong affinity for patterns and logic.\n\n I am familiar with the curriculum and I have prepared my own children for their own maths exams. I have also informally helped students at the university with their lessons and mathematical concepts. These experiences have enabled me to acquire the necessary skills to excel as a teacher. Having good communication skills and being an adept listener have given me room for mutual understanding and improved student-teacher relationships.\n\n I enjoy working with students in my current role as a university researcher. I believe that this stage of their life is crucial in making career decisions, and I love to see that they do not allow their former hatred for mathematics to stop them from pursuing their careers."
+      vocation: "My education journey is firmly rooted in the inspiring primary school teachers I had growing up. I remember feeling fully supported, gently guided and made to feel I could achieve my goals. I now hope to become this type of teacher, to guide young children in a positive direction. I have volunteered at the school listening to readers in Key Stage 1 and Lower Key Stage 2. I particularly enjoyed engaging with the children and helping to reinforce their phonics knowledge, as well as watching the children develop their love of stories and reading for pleasure. I have also helped my own children throughout their schooling in helping them understand subjects they struggled with like Maths and foreign languages. Through observing teachers at St Mary’s Community Primary School, I have seen first-hand the demands of the profession; classroom and behaviour management within a mixed ability class, periods of assessment, and managing the expectations of parents and carers. However, I have also seen the unwavering commitment of all teachers towards their pupils, and the hundreds of ‘little wins’ that show how rewarding the role of teacher can be. I am particularly looking forward to being challenged and ultimately making a small difference. Though my intention will be to strive for perfection in my role as a teacher, I have realistic expectations. External factors such as a child’s behaviour, homelife and special educational needs may hinder my ability to succeed in this aim and it may at times feel like a struggle. However, I will aim to provide a stimulating learning environment for the children in my care, in conjunction with being supportive and encouraging while offering a safe space for children to make mistakes and learn from them.",
+      subjectKnowledge: "Primary teaching offers a wide range of learning opportunities for children, and I hope to introduce the children to many different subjects and experiences. I have always loved languages and I carried this love through to completing a degree in German at the University of East Anglia. I firmly believe that introducing a second language to young children is vital. Not only will the children have their first experience of a different language, but it will also start a conversation about different cultures and the multicultural world that we live in. I hope to be able to use my enthusiasm for foreign languages in my role as a primary school teacher to start these conversations, and perhaps to inspire other children to seek out opportunities to learn and use a foreign language. I also have a particular love of literature and feel it is important to promote reading and storytelling from a young age. I hope to give children the confidence to learn to read, to broaden their vocabulary and ultimately to enjoy retrieving information from a written text. While studying for my English Literature A-level, I enjoyed reading poetry and comparing poems. I found the analysis of the structure of the poems and the use of rhythm and words chosen to be of particular interest. I look forward to introducing the children to poetry in the form of simple poems and nursery rhymes."
     },
     safeguarding: {
       response: false
