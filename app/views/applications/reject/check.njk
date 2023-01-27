@@ -16,7 +16,7 @@
 
 {% block pageNavigation %}
   {{ govukBackLink({
-    href: "/applications/" + application.id + "/reject"
+    href: "/applications/" + application.id + "/reject/reasons"
   }) }}
 {% endblock %}
 
@@ -28,27 +28,40 @@
 
       {% set rejectionReasons = data.rejection %}
       {% set showChangeLinks = true %}
+
+      <p class="govuk-body">The candidate will be sent this email:</p>
       {% include "_includes/candidate-feedback.njk" %}
 
-      {% if upcomingInterviews.length == 1 %}
-         {{ govukWarningText({
-          text: "The candidate will be sent emails to tell them why you rejected their application and that the upcoming interview has been cancelled."
-        }) }}
-      {% elseif upcomingInterviews.length > 1 %}
-        {{ govukWarningText({
-          text: "The candidate will be sent emails to tell them why you rejected their application and that the upcoming interviews have been cancelled."
-        }) }}
-      {% else %}
-        {% if application.status == "Rejected" %}
-          {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them why their application was rejected."
-        }) }}
-        {% else %}
-          {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them why you rejected their application."
-        }) }}
-        {% endif %}
 
+    {% if rejectionReasons.degreeCriteria == 'not-met' or rejectionReasons.englishCriteria == 'not-met' or rejectionReasons.mathsCriteria == 'not-met'  or rejectionReasons.scienceCriteria == 'not-met' %}
+
+    {% else %}
+      {{ govukRadios({
+          name: "degree",
+          fieldset: {
+            legend: {
+              text: "Would you recommend this candidate?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Candidates that meet the ITT criteria will be invited to join a shortlist where providers can contact them directly to offer places or interviews."
+          },
+          items: [
+            {
+              value: "england",
+              text: "Yes, they should be invited"
+            },
+            {
+              value: "scotland",
+              text: "No",
+              hint: {
+                text: "Your answer will not be shown to the candidate"
+              }
+            }
+          ]
+        }) }}
       {% endif %}
 
       <form method="post">

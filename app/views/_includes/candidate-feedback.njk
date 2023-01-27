@@ -1,291 +1,78 @@
-{% if showChangeLinks %}
-{% set changeHtml %}
-  <dd class="govuk-summary-list__actions">
-    <a class="govuk-link" href="/applications/{{application.id}}/reject">
-      Change<span class="govuk-visually-hidden"> name</span>
-    </a>
-  </dd>
-{% endset %}
-{% endif %}
+<div class="app-email-preview">
+  <p class="govuk-body">Dear {{ name }},</p>
 
-<dl class="govuk-summary-list">
-  {% set checkboxValue = 'Qualifications' %}
-  {% set category = 'qualifications' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <ul class="govuk-list app-list--spaced">
-        {% set checkboxValue = "No maths GCSE at minimum grade 4 or C, or equivalent" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
+  <p class="govuk-body">Thank you for your application to study {{ application.course }} at {{ application.provider }}.</p>
 
-        {% set checkboxValue = "No English GCSE at minimum grade 4 or C, or equivalent" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
+  <p class="govuk-body">On this occasion, the provider is not offering you a place on this course.</p>
 
-        {% set checkboxValue = "No science GCSE at minimum grade 4 or C, or equivalent" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
+  <p class="govuk-body">They’ve given the following feedback to explain their decision:</p>
 
-        {% set checkboxValue = "No bachelor’s degree or equivalent" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>{{checkboxValue}}.</li>
-        {% endif %}
+  <div class="govuk-inset-text">
 
-        {% set checkboxValue = "Degree does not meet course requirements" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>
-            <p>{{checkboxValue}}:</p>
-            <p>{{rejectionReasons[groupName + '-degree-does-not-meet-course-requirements'] | nl2br | safe}}</p>
-          </li>
-        {% endif %}
+    {% if rejectionReasons.degreeCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have an undergraduate degree or a qualification that meets the same standard.</p>
+    {% endif %}
 
-        {% set checkboxValue = "Could not verify qualifications" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>
-            <p>{{checkboxValue}}:</p>
-            <p>{{rejectionReasons[groupName + '-could-not-verify-qualifications'] | nl2br | safe}}</p>
-          </li>
-        {% endif %}
+    {% if rejectionReasons.englishCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have an English GCSE at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
+    {% endif %}
 
-        {% set checkboxValue = "Other" %}
-        {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-          <li>
-            <p>Other:</p>
-            <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
-          </li>
-        {% endif %}
+    {% if rejectionReasons.mathsCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have a maths GCSE at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
+    {% endif %}
 
-      </ul>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
+    {% if rejectionReasons.scienceCriteria == 'not-met' %}
+      <p class="govuk-body">You do not have a GCSE in a science subject at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
+    {% endif %}
 
-  {% set checkboxValue = 'Personal statement' %}
-  {% set category = 'personal-statement' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <ul class="govuk-list app-list--spaced">
+    {% if rejectionReasons.categories | includes("degree-subject") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Knowledge of the subject you want to teach:</p>
+      <p class="govuk-body">{{ rejectionReasons.degreeSubjectDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Quality of writing" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-quality-of-writing'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
+    {% if rejectionReasons.categories | includes("degree-class") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Degree class:</p>
+      <p class="govuk-body">{{ rejectionReasons.degreeClassDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Other" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>Other:</p>
-              <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
+    {% if rejectionReasons.categories | includes("personal-statement") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Personal statement:</p>
+      <p class="govuk-body">{{ rejectionReasons.personalStatementDetails }}</p>
+    {% endif %}
 
-        </ul>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
+    {% if rejectionReasons.categories | includes("communication") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Could not contact you:</p>
+      <p class="govuk-body">{{ rejectionReasons.communicationDetails }}</p>
+    {% endif %}
 
-  {% set checkboxValue = 'Teaching knowledge and ability' %}
-  {% set category = 'teaching-knowledge' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <ul class="govuk-list app-list--spaced">
+    {% if rejectionReasons.categories | includes("interview") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Could not arrange interview:</p>
+      <p class="govuk-body">{{ rejectionReasons.couldNotArrangeInterviewDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Subject knowledge" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-subject'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
+    {% if rejectionReasons.categories | includes("interview-performance") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Feedback on your interview:</p>
+      <p class="govuk-body">{{ rejectionReasons.interviewPerformanceDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Safeguarding knowledge" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-safeguarding'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
+    {% if rejectionReasons.categories | includes("safeguarding") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Safeguarding concerns:</p>
+      <p class="govuk-body">{{ rejectionReasons.safeguardingDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Teaching method knowledge" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-teaching-method'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
+    {% if rejectionReasons.categories | includes("visa-sponsorship") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Visa sponsorship:</p>
+      <p class="govuk-body">{{ rejectionReasons.visaSponsorshipDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Teaching role knowledge" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-teaching-role'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
+        {% if rejectionReasons.categories | includes("course-full") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">The course is full:</p>
+      <p class="govuk-body">{{ rejectionReasons.courseFullDetails }}</p>
+    {% endif %}
 
-          {% set checkboxValue = "Teaching demonstration" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-teaching-demonstration'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
 
-          {% set checkboxValue = "Other" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>Other:</p>
-              <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
-        </ul>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
+    <p class="govuk-body">{{ rejectionReasons.advice }}</p>
+  </div>
 
-  {% set checkboxValue = 'Communication, attendance and scheduling' %}
-  {% set category = 'communication' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <ul class="govuk-list app-list--spaced">
-
-          {% set checkboxValue = "Did not reply to messages" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-did-not-reply-to-messages'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
-
-          {% set checkboxValue = "Did not attend interview" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-did-not-attend-interview'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
-
-          {% set checkboxValue = "Could not arrange interview" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>{{checkboxValue}}:</p>
-              <p>{{rejectionReasons[groupName + '-could-not-arrange-interview'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
-
-          {% set checkboxValue = "Other" %}
-          {% if rejectionReasons[groupName] and checkboxValue in rejectionReasons[groupName] %}
-            <li>
-              <p>Other:</p>
-              <p>{{rejectionReasons[groupName + '-other'] | nl2br | safe}}</p>
-            </li>
-          {% endif %}
-
-        </ul>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
-
-  {% set checkboxValue = 'References' %}
-  {% set category = 'references' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details']}}</p>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
-
-  {% set checkboxValue = 'Safeguarding' %}
-  {% set category = 'safeguarding' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details'] | nl2br | safe}}</p>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
-
-  {% set checkboxValue = 'Visa sponsorship' %}
-  {% set category = 'sponsorship' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details'] | nl2br | safe}}</p>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
-
-  {% set checkboxValue = 'Course full' %}
-  {% set category = 'course-full' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <p>The course is full.</p>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
-
-  {% set checkboxValue = 'Other' %}
-  {% set category = 'other' %}
-  {% set groupName = category + '-reasons' %}
-  {% if rejectionReasons.categories and checkboxValue in rejectionReasons.categories %}
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        {{checkboxValue}}
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <p>{{rejectionReasons[groupName + '-details'] | nl2br | safe}}</p>
-      </dd>
-      {{changeHtml | safe}}
-    </div>
-  {% endif %}
-</dl>
+   <p class="govuk-body">Contact {{ application.provider }} if you would like to talk about their feedback.</p>
+</div>

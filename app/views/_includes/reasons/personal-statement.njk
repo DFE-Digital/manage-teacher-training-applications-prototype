@@ -1,5 +1,16 @@
 {% set category = 'personal-statement' %}
 
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  label: {
+    text: "Give details",
+    classes: "govuk-label--s"
+  }
+}) }}
+
+{#
 {% set qualityOfWritingHtml %}
   {{appRejectionDetails({ category: category, reason: 'quality-of-writing', data: data })}}
 {% endset %}
@@ -34,4 +45,4 @@
         html: otherHtml
       }
     }]
-}) }}
+}) }} #}

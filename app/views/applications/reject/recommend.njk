@@ -1,0 +1,67 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% if application.status == "Rejected" %}
+  {% set caption = content.giveFeedback.caption + ' - ' + name %}
+  {% set heading = "Reasons the application was rejected" %}
+{% else %}
+  {% set caption = content.rejectApplication.caption + ' - ' + name %}
+  {% set heading = "Reasons for rejecting the application" %}
+{% endif %}
+{% set title = heading + ' - ' + caption %}
+
+{% block pageNavigation %}
+  {% set backUrl = "/applications/" + application.id + "/decision" %}
+  {% if application.status == "Rejected" %}
+    {% set backUrl = "/applications/" + application.id %}
+  {% endif %}
+
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set h1 %}
+        <span class="govuk-caption-l">{{caption}}</span>
+        {{heading}}
+      {% endset %}
+
+      <form method="post" action="/applications/{{ application.id }}/reject/science">
+
+{{ govukRadios({
+        name: "degree",
+        fieldset: {
+          legend: {
+            text: "Would you recommend this candidate?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Your answer will not be shown to the candidate"
+        },
+        items: [
+          {
+            value: "england",
+            text: "Yes, they should go into a shortlist of recommended candidates"
+          },
+          {
+            value: "scotland",
+            text: "No"
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
