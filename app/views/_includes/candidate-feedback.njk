@@ -14,15 +14,15 @@
     {% endif %}
 
     {% if rejectionReasons.englishCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have a qualification that’s equivalent to an English GCSE at grade 4 ( C) or above. We also cannot offer an equivalency test.</p>
+      <p class="govuk-body">You do not have an English GCSE at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
     {% endif %}
 
     {% if rejectionReasons.mathsCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have a qualification that’s equivalent to a maths GCSE at grade 4 ( C) or above. We also cannot offer an equivalency test.</p>
+      <p class="govuk-body">You do not have a maths GCSE at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
     {% endif %}
 
     {% if rejectionReasons.scienceCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have a qualification that’s equivalent to a GCSE in a science subject at grade 4 ( C) or above. We also cannot offer an equivalency test.</p>
+      <p class="govuk-body">You do not have a GCSE in a science subject at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
     {% endif %}
 
     {% if rejectionReasons.categories | includes("degree-subject") %}

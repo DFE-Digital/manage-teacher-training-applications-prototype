@@ -33,7 +33,7 @@
 
       <form method="post" action="/applications/{{ application.id }}/reject/english-answer">
 
-      <h1 class="govuk-heading-l">English GCSE equivalent</h1>
+      <h1 class="govuk-heading-l">English GCSE criteria</h1>
 
       <p class="govuk-body">Candidates must have achieved a standard equivalent to a grade 4 (C) in the GCSE examinations in English.</p>
 
@@ -215,7 +215,7 @@
           },
           {
             value: "not-met",
-            text: "They do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test",
+            text: "No, they do not have an equivalent qualification and we’re not able to offer a GCSE equivalency test",
             checked: (data.rejection.englishCriteria == 'met-standard')
           }
         ]
