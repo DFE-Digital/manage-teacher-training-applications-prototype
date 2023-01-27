@@ -49,7 +49,7 @@
       {% set gradesHtml %}
         <ul class="govuk-list">
         {% for grade in item.grade %}
-          <li>{{ grade.grade }}{% if grade.exam %} ({{ grade.exam }}){% endif %}</li>
+          <li>{{ grade.grade }}{% if grade.subject %} ({{ grade.subject }}){% endif %}</li>
         {% endfor %}
         </ul>
       {% endset %}
