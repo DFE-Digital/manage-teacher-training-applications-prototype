@@ -97,6 +97,7 @@ module.exports = router => {
     const rejection = req.session.data.rejection
 
     const hasScienceGCSE = (
+      application.gcse.science &&
       application.gcse.science.type == 'GCSE' &&
       application.gcse.science.country == 'United Kingdom' &&
       (
