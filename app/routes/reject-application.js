@@ -105,7 +105,7 @@ module.exports = router => {
       )
     )
 
-    const metDegreeCriteria = (rejection.degreeCriteria == 'met')
+    const metDegreeCriteria = (rejection.degreeCriteria != 'not-met')
     const metEnglishCriteria = (rejection.englishCriteria == 'met-qualification' || rejection.englishCriteria == 'met-standard')
     const metMathsCriteria = (rejection.mathsCriteria == 'met-qualification' || rejection.mathsCriteria == 'met-standard')
 
@@ -140,7 +140,7 @@ module.exports = router => {
 
     const rejection = req.session.data.rejection
 
-    const metDegreeCriteria = (rejection.degreeCriteria == 'met')
+    const metDegreeCriteria = (rejection.degreeCriteria != 'not-met')
     const metEnglishCriteria = (rejection.englishCriteria == 'met-qualification' || rejection.englishCriteria == 'met-standard')
     const metMathsCriteria = (rejection.mathsCriteria == 'met-qualification' || rejection.mathsCriteria == 'met-standard')
     const metScienceCriteria = (rejection.scienceCriteria == 'met-qualification' || rejection.scienceCriteria == 'met-standard')
