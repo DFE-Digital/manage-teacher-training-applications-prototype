@@ -1,34 +1,5 @@
-{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
-{%- set assetPath = "/govuk/assets" -%}
 
-{% extends "govuk/template.njk" %}
-
-{% from "govuk/components/accordion/macro.njk"                import govukAccordion %}
-{% from "govuk/components/back-link/macro.njk"                import govukBackLink %}
-{% from "govuk/components/breadcrumbs/macro.njk"              import govukBreadcrumbs %}
-{% from "govuk/components/button/macro.njk"                   import govukButton %}
-{% from "govuk/components/character-count/macro.njk"          import govukCharacterCount %}
-{% from "govuk/components/checkboxes/macro.njk"               import govukCheckboxes %}
-{% from "govuk/components/date-input/macro.njk"               import govukDateInput %}
-{% from "govuk/components/details/macro.njk"                  import govukDetails %}
-{% from "govuk/components/error-message/macro.njk"            import govukErrorMessage %}
-{% from "govuk/components/error-summary/macro.njk"            import govukErrorSummary %}
-{% from "govuk/components/fieldset/macro.njk"                 import govukFieldset %}
-{% from "govuk/components/file-upload/macro.njk"              import govukFileUpload %}
-{% from "govuk/components/input/macro.njk"                    import govukInput %}
-{% from "govuk/components/inset-text/macro.njk"               import govukInsetText %}
-{% from "govuk/components/notification-banner/macro.njk"      import govukNotificationBanner %}
-{% from "govuk/components/panel/macro.njk"                    import govukPanel %}
-{% from "govuk/components/phase-banner/macro.njk"             import govukPhaseBanner %}
-{% from "govuk/components/radios/macro.njk"                   import govukRadios %}
-{% from "govuk/components/select/macro.njk"                   import govukSelect %}
-{% from "govuk/components/skip-link/macro.njk"                import govukSkipLink %}
-{% from "govuk/components/summary-list/macro.njk"             import govukSummaryList %}
-{% from "govuk/components/table/macro.njk"                    import govukTable %}
-{% from "govuk/components/tabs/macro.njk"                     import govukTabs %}
-{% from "govuk/components/tag/macro.njk"                      import govukTag %}
-{% from "govuk/components/textarea/macro.njk"                 import govukTextarea %}
-{% from "govuk/components/warning-text/macro.njk"             import govukWarningText %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
 
 {% from "_components/applicable-permissions-inline/macro.njk" import appApplicablePermissionsInline %}
 {% from "_components/applicable-permissions/macro.njk" import appApplicablePermissions %}
@@ -130,35 +101,3 @@
   {% endblock %}
 {% endblock %}
 
-{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
-
-{% if not chatStatus %}
-  {% set chatStatus = ["online", "offline", "unavailable"] | random %}
-{% endif %}
-
-
-{% set chatOnlineHtml %}<a href="#" class="app-web-chat__button govuk-footer__link">Speak to an adviser now (opens in new window)</a>{% endset %}
-
-{% set chatOfflineHtml %}<span class="app-web-chat__offline">Available Monday to Friday,  10am to midday (except public holidays).</span>{% endset %}
-
-{% block footer %}
-  {% include "_includes/footer.njk" %}
-  {% include "_includes/footer-settings.njk" %}
-{% endblock %}
-
-{% block bodyEnd %}
-  </div>
-
-  {% block scripts %}
-    {% include "_includes/scripts.njk" %}
-
-    <script>
-      if("{{chatStatus}}" == "online") {
-        $('.app-web-chat').html('{{chatOnlineHtml | safe}}')
-      } else if("{{chatStatus}}" == "offline") {
-        $('.app-web-chat').html('{{chatOfflineHtml | safe}}')
-      }
-    </script>
-    {% block pageScripts %}{% endblock %}
-  {% endblock %}
-{% endblock %}
