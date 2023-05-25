@@ -98,7 +98,7 @@
             text: "Qualification"
           },
           value: {
-            html: course.qualifications | formatList
+            html: course.qualifications | arrayToList(', ',' with ')
           }
         }, {
           key: {

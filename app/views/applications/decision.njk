@@ -65,7 +65,7 @@
               text: "Qualification"
             },
             value: {
-              html: application.qualifications | formatList
+              html: application.qualifications | arrayToList(', ',' with ')
             }
           }, {
             key: {

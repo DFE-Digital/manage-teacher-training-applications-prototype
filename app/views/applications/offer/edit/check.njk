@@ -41,7 +41,7 @@
           value: application.offer.accreditedBody
         } if application.offer.accreditedBody != (data['edit-offer'].provider or application.offer.provider),
         qualifications: {
-          value: course.qualifications | formatList
+          value: course.qualifications | arrayToList(', ',' with ')
         },
         fundingType: {
           value: application.offer.fundingType

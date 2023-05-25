@@ -81,7 +81,7 @@
           value: course.accreditedBody.name
         } if course.accreditedBody.name != course.provider.name,
         qualifications: {
-          value: course.qualifications | formatList
+          value: course.qualifications | arrayToList(', ',' with ')
         },
         fundingType: {
           value: course.fundingType
