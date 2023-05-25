@@ -21,7 +21,7 @@
           {% if not isAutomaticRejection and not isAutomaticDecline %}
             {{ event.event.user }},
           {% endif %}
-          <time datetime="{{ event.event.date | formatDate }}">
+          <time datetime="{{ event.event.date }}">
             {{- event.event.date | govukDateAtTime -}}
           </time>
         </p>

@@ -104,9 +104,4 @@
     color: govuk-colour("black"); // Focus colour on yellow should really be black.
   }
 
-  // IE8 does not support box shadow, so use a standard border.
-  @include govuk-if-ie8 {
-    // background-image: url(#{$app-images-path}icon-document.png);
-  }
-
 }

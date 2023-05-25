@@ -69,10 +69,10 @@
           <div class="govuk-inset-text govuk-!-margin-bottom-0 govuk-!-margin-top-0 govuk-!-padding-bottom-0 govuk-!-padding-top-0">
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Unexplained break ({{item.duration}})</h3>
             <p class="govuk-caption-m govuk-!-margin-bottom-0">
-              {{item.startDate | date("LLLL yyyy")}}
+              {{item.startDate}}
               to
               {% if item.endDate  %}
-                {{item.endDate | date("LLLL yyyy")}}
+                {{item.endDate}}
               {% else %}
                 Present
               {% endif %}
@@ -81,10 +81,10 @@
         {% else %}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Break ({{item.duration}})</h3>
             <p class="govuk-caption-m govuk-!-margin-bottom-0">
-              {{item.startDate | date("LLLL yyyy")}}
+              {{item.startDate }}
               to
               {% if item.endDate  %}
-                {{item.endDate | date("LLLL yyyy")}}
+                {{item.endDate }}
               {% else %}
                 Present
               {% endif %}
@@ -95,10 +95,10 @@
         <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ item.role }} (unpaid)</h3>
         <p class="govuk-body govuk-!-margin-bottom-0">{{item.org}}</p>
         <p class="govuk-caption-m govuk-!-margin-bottom-0">
-            {{item.startDate | date("LLLL yyyy")}}
+            {{item.startDate }}
             to
             {% if item.endDate  %}
-              {{item.endDate | date("LLLL yyyy")}}
+              {{item.endDate }}
             {% else %}
               Present
             {% endif %}
@@ -120,13 +120,13 @@
         <p class="govuk-body govuk-!-margin-bottom-0">{{item.org}}</p>
 
         <p class="govuk-caption-m govuk-!-margin-bottom-0">
-        {{item.startDate | date("LLLL yyyy")}}
+        {{item.startDate }}
         {% if item.isStartDateApproximate and item.category != "break" %}
           (approximate)
         {% endif %}
         to
         {% if item.endDate  %}
-          {{item.endDate | date("LLLL yyyy")}}
+          {{item.endDate }}
           {% if item.isEndDateApproximate and item.category != "break" %}
             (approximate)
           {% endif %}

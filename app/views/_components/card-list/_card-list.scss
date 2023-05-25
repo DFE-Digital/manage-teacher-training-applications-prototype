@@ -8,9 +8,9 @@
 }
 
 .app-card-list__item {
-  @include govuk-media-query($from: tablet) {
-    @include govuk-grid-column("one-fifth");
-  }
+  // @include govuk-media-query($from: tablet) {
+  //   @include govuk-grid-column(one-fifth);
+  // }
   display: flex;
 }
 

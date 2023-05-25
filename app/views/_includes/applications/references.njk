@@ -1,6 +1,6 @@
 
 
-{% set referencesArray = application["references"] | toArray %}
+{% set referencesArray = application["references"] | objectToArray %}
 
 {% set referencesReceived = referencesArray | selectattr("comments") %}
 {% set referencesPending = referencesArray | rejectattr("comments") %}
