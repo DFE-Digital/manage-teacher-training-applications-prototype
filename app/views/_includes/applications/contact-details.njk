@@ -2,6 +2,14 @@
   Contact information
 </h2>
 
+{% set contactAddress %}
+  {{ application.contactDetails.address.line1 }}<br>
+  {{ application.contactDetails.address.line2 }}<br>
+  {{ application.contactDetails.address.level2 }}<br>
+  {{ application.contactDetails.address.level1 }}<br>
+  {{ application.contactDetails.address.postcode }}
+{% endset %}
+
 {{ govukSummaryList({
   rows: [{
     key: {
@@ -24,7 +32,7 @@
       text: "Contact address"
     },
     value: {
-      html: application.contactDetails.address | toArray | join("<br>")
+      html: contactAddress
     }
   }]
 }) }}

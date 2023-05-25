@@ -67,7 +67,7 @@
             text: "Full time or part time"
           },
           value: {
-            html: course.studyModes | arrayToList(', ',' or ')
+            html: course.studyModes | formatList
           }
         }, {
           key: {
@@ -88,7 +88,7 @@
             text: "Qualification"
           },
           value: {
-            html: course.qualifications | arrayToList(', ',' with ')
+            html: course.qualifications | formatList
           }
         }, {
           key: {

@@ -51,7 +51,7 @@
             href: "/applications/" + application.id + "/offer/edit/course?referrer=offer" if application.status == "Offered" and not query.transferred
           },
           qualifications: {
-            value: application.offer.qualifications | arrayToList(', ',' with ')
+            value: application.offer.qualifications | formatList
           },
           studyMode: {
             value: application.offer.studyMode,

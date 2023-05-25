@@ -8,9 +8,6 @@
   "env": {
     "PASSWORD": {
       "required": true
-    },
-    "USERNAME": {
-      "required": true
     }
   },
   "formation": {
@@ -18,6 +15,6 @@
       "quantity": 1
     }
   },
-  "name": "Apply (Prototype)",
+  "name": "Manage (Prototype)",
   "stack": "heroku-22"
 }
