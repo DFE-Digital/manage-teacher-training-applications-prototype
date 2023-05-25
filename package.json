@@ -1,8 +1,6 @@
 {
   "name": "manage-teacher-training-applications-prototype",
   "description": "Prototype for the ‘Manage teacher training applications’ service",
-  "version": "13.0.0",
-  "private": true,
   "engines": {
     "node": "18.x"
   },
