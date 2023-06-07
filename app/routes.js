@@ -1,15 +1,6 @@
-const express = require('express')
-const router = express.Router()
-const content = require('./data/content')
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
 
-router.all('*', (req, res, next) => {
-  const referrer = req.query.referrer
-  res.locals.referrer = referrer
-  res.locals.query = req.query
-  res.locals.content = content
-  res.locals.flash = req.flash('success') // pass through 'success' messages only
-  next()
-})
 
 router.get('/', (req, res) => {
   res.redirect('/start')
@@ -46,5 +37,3 @@ require('./routes/withdraw-offer')(router)
 
 // examples
 require('./routes/examples')(router)
-
-module.exports = router

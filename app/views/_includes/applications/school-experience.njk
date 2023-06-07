@@ -1,5 +1,5 @@
 {% set schoolExperience = application.schoolExperience
-  | toArray
+  | objectToArray
   | sort(attribute="startDate") | reverse
 %}
 
