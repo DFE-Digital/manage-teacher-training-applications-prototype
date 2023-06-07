@@ -16,12 +16,6 @@
 
 {% block content %}
 
-  {{ govukNotificationBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
-    type: "success",
-    icon: false
-  }) if flash | falsify }}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{org.name}}</span>

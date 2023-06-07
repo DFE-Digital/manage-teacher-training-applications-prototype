@@ -8,11 +8,6 @@
 {% set title = pageName + " - " + application.personalDetails.name %}
 
 {% block content %}
-  {{ govukNotificationBanner({
-    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
-    type: "success",
-    icon: false
-  }) if flash | falsify }}
 
   {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}

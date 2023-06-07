@@ -329,7 +329,6 @@ module.exports = router => {
     delete req.session.data.skeDeadline
     delete req.session.data.skeLanguage
 
-    req.flash('success', content.makeOffer.successMessage)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 
