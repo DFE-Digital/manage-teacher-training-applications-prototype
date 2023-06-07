@@ -8,13 +8,7 @@
     {% elseif canMakeOffersAndRejectApplications %}
       <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% endif %}
-    {% if application.daysToRespond == 0 %}
-      <p>This application will be automatically rejected if a decision has not been made by the end of today ({{application.respondByDate | govukDate }} at 11:59pm).</p>
-    {% elseif application.daysToRespond == 1 %}
-      <p>This application will be automatically rejected if a decision has not been made by the end of tomorrow ({{application.respondByDate | govukDate }} at 11:59pm).</p>
-    {% else %}
-      <p>This application will be automatically rejected if a decision has not been made within {{application.daysToRespond}} days ({{application.respondByDate | govukDate }} at 11:59pm).</p>
-    {% endif %}
+      <p>This application was received 28 days ago. You should try and respond to the candidate within 30 days.</p>
     {% if canManageInterviews %}
       {{ govukButton({
         text: "Set up interview",

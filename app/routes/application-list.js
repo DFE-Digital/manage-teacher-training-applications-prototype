@@ -16,20 +16,8 @@ const getApplicationsByGroup = (applications) => {
     .filter(app => app.status === 'Deferred')
     .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
 
-  const rejectedWithoutFeedback = applications
-    .filter(app => app.status === 'Rejected')
-    .filter(app => !app.rejectedReasons)
-
-  const aboutToBeRejectedAutomatically = applications
-    .filter(app => (app.status === 'Received' || app.status === 'Interviewing'))
-    .filter(app => app.daysToRespond < 5)
-    .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
-
   const awaitingDecision = applications
     .filter(app => (app.status === 'Received'))
-    .filter(app => app.daysToRespond >= 5)
     .sort(function(a, b) {
       return a.daysToRespond - b.daysToRespond
     })
@@ -79,8 +67,6 @@ const getApplicationsByGroup = (applications) => {
   return {
     deferredOffersPendingReconfirmation,
     previousCyclePendingConditions,
-    rejectedWithoutFeedback,
-    aboutToBeRejectedAutomatically,
     awaitingDecision,
     pendingInterview,
     waitingOn,
@@ -95,8 +81,6 @@ const flattenGroup = (grouped) => {
   let array = []
   array = array.concat(grouped.deferredOffersPendingReconfirmation)
   array = array.concat(grouped.previousCyclePendingConditions)
-  array = array.concat(grouped.aboutToBeRejectedAutomatically)
-  array = array.concat(grouped.rejectedWithoutFeedback)
   array = array.concat(grouped.awaitingDecision)
   array = array.concat(grouped.pendingInterview)
   array = array.concat(grouped.waitingOn)
@@ -123,23 +107,9 @@ const addHeadings = (grouped) => {
     array = array.concat(grouped.previousCyclePendingConditions)
   }
 
-  if (grouped.aboutToBeRejectedAutomatically.length) {
-    array.push({
-      heading: 'Deadline approaching: make decision about application'
-    })
-    array = array.concat(grouped.aboutToBeRejectedAutomatically)
-  }
-
-  if (grouped.rejectedWithoutFeedback.length) {
-    array.push({
-      heading: 'Give feedback: you did not make a decision in time'
-    })
-    array = array.concat(grouped.rejectedWithoutFeedback)
-  }
-
   if (grouped.awaitingDecision.length) {
     array.push({
-      heading: 'Awaiting review'
+      heading: 'Received – make a decision'
     })
     array = array.concat(grouped.awaitingDecision)
   }
@@ -181,8 +151,6 @@ const addHeadings = (grouped) => {
 
   if (grouped.other.length) {
     if (  grouped.deferredOffersPendingReconfirmation.length ||
-          grouped.aboutToBeRejectedAutomatically.length ||
-          grouped.rejectedWithoutFeedback.length ||
           grouped.awaitingDecision.length ||
           grouped.waitingOn.length ||
           grouped.pendingConditions.length ||

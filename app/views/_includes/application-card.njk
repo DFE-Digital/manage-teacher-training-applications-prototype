@@ -31,8 +31,8 @@
     <div class="govuk-grid-column-one-third">
       <dl class="app-application-card__list app-application-card__list--secondary">
         {% if a.status == 'Received' or a.status == 'Interviewing' %}
-          <dt class="govuk-visually-hidden">Days left to respond</dt>
-          <dd class="govuk-body-s">{{ a.daysToRespond }} day{{'s' if a.daysToRespond > 1}}  to make decision</dd>
+          <dd class="govuk-body-s">Received 28 days ago
+          </dd>
         {% elif a.status == 'Offered' %}
           <dt class="govuk-visually-hidden">Days left for candidate to respond</dt>
           <dd class="govuk-body-s">{{a.offer.daysToDecline}} day{{'s' if a.offer.daysToDecline > 1}} for candidate to respond</dd>
