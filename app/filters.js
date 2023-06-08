@@ -101,3 +101,9 @@ function arrayToList (array, join = ', ', final = ' and ') {
   return last
 }
 addFilter('arrayToList', arrayToList)
+
+function includes (array, string) {
+  return array.includes(string)
+}
+addFilter('includes', includes)
+
