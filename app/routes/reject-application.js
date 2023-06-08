@@ -199,7 +199,7 @@ module.exports = router => {
     application.status = 'Rejected'
     application.rejectedDate = application.rejectedFeedbackDate = new Date().toISOString()
     application.rejectedReasons = JSON.parse(JSON.stringify(req.session.data.rejection))
-    req.flash('success', content.rejectApplication.successMessage)
+
     ApplicationHelper.addEvent(application, {
       "title": content.rejectApplication.event.title,
       "user": "Ben Brown",

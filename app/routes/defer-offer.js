@@ -21,7 +21,6 @@ module.exports = router => {
       }
     })
 
-    req.flash('success', content.deferOffer.successMessage)
     res.redirect(`/applications/${applicationId}/offer`)
   })
 

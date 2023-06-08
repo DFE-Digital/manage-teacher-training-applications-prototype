@@ -275,7 +275,6 @@ module.exports = router => {
     delete req.session.data.course
     delete req.session.data.referrer
 
-    req.flash('success', content.updateCourse.successMessage)
     res.redirect(`/applications/${req.params.applicationId}`)
   })
 

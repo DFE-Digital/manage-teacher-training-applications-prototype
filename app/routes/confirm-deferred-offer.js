@@ -107,7 +107,6 @@ module.exports = router => {
 
     delete req.session.data['confirm-deferred-offer']
 
-    req.flash('success', content.confirmDeferredOffer.successMessage)
     res.redirect(`/applications/${applicationId}/offer`)
   })
 

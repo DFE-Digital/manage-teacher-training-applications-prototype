@@ -56,11 +56,9 @@ module.exports = router => {
       condition.status = req.session.data['edit-condition-statuses']['conditions'][condition.id]
     })
 
-    var flash
 
     if (ApplicationHelper.hasMetAllConditions(application.offer)) {
       application.status = 'Recruited';
-      flash = content.markConditionsAsMet.successMessage;
       ApplicationHelper.addEvent(application, {
         title: content.markConditionsAsMet.event.title,
         user: "Ben Brown",
@@ -77,7 +75,6 @@ module.exports = router => {
       })
     } else if(ApplicationHelper.getConditions(application.offer).some(c => c.status == "Not met")) {
       application.status = 'Conditions not met';
-      flash = content.markConditionsAsNotMet.successMessage;
       ApplicationHelper.addEvent(application, {
         title: content.markConditionsAsNotMet.event.title,
         user: "Ben Brown",
@@ -93,7 +90,6 @@ module.exports = router => {
         }
       })
     } else {
-      flash = "Status of conditions updated"
       ApplicationHelper.addEvent(application, {
         title: content.updateStatusOfConditions.event.title,
         user: "Ben Brown",
@@ -110,7 +106,6 @@ module.exports = router => {
       })
     }
 
-    req.flash('success', flash)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 

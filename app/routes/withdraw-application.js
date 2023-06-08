@@ -50,7 +50,6 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Application withdrawn'
-    req.flash('success', content.withdrawApplication.successMessage)
 
     application.withdrawal = {
       date: new Date().toISOString(),

@@ -125,7 +125,6 @@ module.exports = router => {
 
     delete req.session.data.newuser
 
-    req.flash('success', content.createUser.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/users/`)
   })
 
@@ -212,7 +211,6 @@ module.exports = router => {
 
     data = null
 
-    req.flash('success', content.updateUserPermissions.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/users/${req.params.userId}`)
   })
 
@@ -246,7 +244,6 @@ module.exports = router => {
       req.session.data.assignedUser = req.session.data.assignedUser.filter(item => item !== req.params.userId)
     }
 
-    req.flash('success', content.removeUser.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/users`)
   })
 

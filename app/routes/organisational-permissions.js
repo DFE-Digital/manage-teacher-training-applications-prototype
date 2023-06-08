@@ -98,7 +98,6 @@ module.exports = router => {
 
     delete data
 
-    req.flash('success', content.updateOrganisationPermission.successMessage)
     res.redirect(`/organisation-settings/${req.params.orgId}/organisational-permissions`)
   })
 }
