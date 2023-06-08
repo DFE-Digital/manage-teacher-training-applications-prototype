@@ -179,7 +179,7 @@
           attributes: {
             id: "interview-" + interview.id
           },
-          titleText: interview.date | govukDateAtTime,
+          titleText: (interview.date | govukDate) + " " + (interview.date | govukTime),
           classes: "govuk-!-margin-bottom-6",
           actions: {
             items: [{

@@ -107,3 +107,18 @@ function includes (array, string) {
 }
 addFilter('includes', includes)
 
+
+function dayFromDate (string) {
+  return new Date(string).getDate()
+}
+addFilter('dayFromDate', dayFromDate)
+
+function monthFromDate (string) {
+  return new Date(string).getMonth()
+}
+addFilter('monthFromDate', monthFromDate)
+
+function yearFromDate (string) {
+  return new Date(string).getFullYear()
+}
+addFilter('yearFromDate', yearFromDate)

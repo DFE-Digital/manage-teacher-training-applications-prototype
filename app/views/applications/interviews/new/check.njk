@@ -33,7 +33,7 @@
               text: "Date"
             },
             value: {
-              text: [data.interview.date.day, data.interview.date.month, data.interview.date.year] | govukDate
+              text: (data.interview.date | isoDateFromDateInput() | govukDate )
             },
             actions: {
               items: [
