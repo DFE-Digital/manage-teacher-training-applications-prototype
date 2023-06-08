@@ -4,7 +4,6 @@ module.exports = router => {
 
     req.session.data.emailsettings = req.body.emailsettings
 
-    req.flash('success', 'Email notification settings updated')
     res.redirect("/account/notifications")
   })
 }

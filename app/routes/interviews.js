@@ -155,7 +155,8 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('applications/interviews/new/index', {
-      application
+      application,
+      content
     })
   })
 
@@ -168,7 +169,8 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
 
     res.render('applications/interviews/new/check', {
-      application
+      application,
+      content
     })
   })
 
@@ -210,7 +212,6 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', content.createInterview.successMessage)
     res.redirect(`/applications/${applicationId}/interviews`)
 
   })
@@ -232,7 +233,8 @@ module.exports = router => {
 
     res.render('applications/interviews/edit/index', {
       application,
-      interview
+      interview,
+      content
     })
   })
 
@@ -247,6 +249,7 @@ module.exports = router => {
 
     res.render('applications/interviews/edit/check', {
       application,
+      content,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
@@ -279,7 +282,6 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    req.flash('success', content.updateInterview.successMessage)
     res.redirect(`/applications/${applicationId}/interviews`)
 
   })
@@ -291,6 +293,7 @@ module.exports = router => {
 
     res.render('applications/interviews/delete/index', {
       application,
+      content,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
@@ -306,6 +309,7 @@ module.exports = router => {
 
     res.render('applications/interviews/delete/check', {
       application,
+      content,
       interview: application.interviews.items.find(interview => interview.id === interviewId)
     })
   })
@@ -324,8 +328,6 @@ module.exports = router => {
 
     // rollback the status
     application.status = 'Received'
-
-    req.flash('success', content.cancelInterview.successMessage)
 
     if(application.interviews.items.length) {
       res.redirect(`/applications/${req.params.applicationId}/interviews/`)

@@ -362,7 +362,6 @@ module.exports = router => {
 
     delete req.session.data['edit-offer']
 
-    req.flash('success', content.updateOffer.successMessage)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 

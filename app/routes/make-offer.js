@@ -46,7 +46,8 @@ module.exports = router => {
 
     res.render('applications/offer/new/ske', {
       application,
-      applicationId
+      applicationId,
+      content
     })
   })
 
@@ -80,7 +81,8 @@ module.exports = router => {
 
     res.render('applications/offer/new/ske-reason', {
       application,
-      applicationId
+      applicationId,
+      content
     })
   })
 
@@ -98,7 +100,8 @@ module.exports = router => {
 
     res.render('applications/offer/new/ske-length', {
       application,
-      applicationId
+      applicationId,
+      content
     })
   })
 
@@ -115,7 +118,8 @@ module.exports = router => {
 
     res.render('applications/offer/new/conditions', {
       application,
-      applicationId
+      applicationId,
+      content
     })
   })
 
@@ -192,6 +196,7 @@ module.exports = router => {
       studyMode,
       location,
       conditions,
+      content,
       actions: {
         back: `/applications/${req.params.applicationId}/offer/new`,
         cancel: `/applications/${req.params.applicationId}/offer/new/cancel`,
@@ -329,7 +334,6 @@ module.exports = router => {
     delete req.session.data.skeDeadline
     delete req.session.data.skeLanguage
 
-    req.flash('success', content.makeOffer.successMessage)
     res.redirect(`/applications/${req.params.applicationId}/offer`)
   })
 

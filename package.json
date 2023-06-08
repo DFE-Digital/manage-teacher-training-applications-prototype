@@ -15,7 +15,6 @@
     "@govuk-prototype-kit/common-templates": "^1.1.1",
     "@x-govuk/govuk-prototype-filters": "^1.0.0",
     "archiver-promise": "^1.0.0",
-    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
     "csv-writer": "^1.6.0",
@@ -23,11 +22,11 @@
     "faker": "^5.5.3",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^4.6.0",
-    "govuk-prototype-kit": "^13.7.0",
+    "govuk-prototype-kit": "^13.8.1",
     "gray-matter": "^4.0.3",
-    "inquirer": "^8.2.5",
-    "luxon": "^3.2.1",
-    "marked": "^4.2.12",
+    "inquirer": "^9.2.7",
+    "luxon": "^3.3.0",
+    "marked": "^5.0.5",
     "numeral": "^2.0.6",
     "universal-analytics": "^0.5.1",
     "uuid": "^9.0.0",
@@ -39,6 +38,6 @@
     ]
   },
   "devDependencies": {
-    "glob": "^8.0.3"
+    "glob": "^10.2.7"
   }
 }

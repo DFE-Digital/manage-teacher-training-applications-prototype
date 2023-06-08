@@ -61,7 +61,6 @@ module.exports = router => {
 
     req.session.data.note = null
 
-    req.flash('success', content.createNote.successMessage)
     res.redirect(`/applications/${applicationId}/notes`)
   })
 
@@ -91,8 +90,6 @@ module.exports = router => {
     })
 
     req.session.data.note = null
-
-    req.flash('success', content.updateNote.successMessage)
     res.redirect(`/applications/${applicationId}/notes`)
   })
 
@@ -125,7 +122,6 @@ module.exports = router => {
     // delete
     application.notes.items = application.notes.items.filter(note => note.id !== req.params.noteId)
 
-    req.flash('success', content.deleteNote.successMessage)
     res.redirect(`/applications/${applicationId}/notes`)
   })
 }

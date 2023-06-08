@@ -25,7 +25,6 @@ module.exports = router => {
     application.status = 'Offer withdrawn'
     application.offer.withdrawalDate = new Date().toISOString()
     application.offer.withdrawalReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
-    req.flash('success', content.withdrawOffer.successMessage)
 
     ApplicationHelper.addEvent(application, {
       "title": content.withdrawOffer.event.title,

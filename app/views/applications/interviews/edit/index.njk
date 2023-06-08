@@ -30,9 +30,6 @@
 
       <form method="post">
 
-      {{interview | log}}
-      {{interview.date | toDateArray | log}}
-
         {{ govukDateInput({
           id: "interview",
           fieldset: {
@@ -42,23 +39,23 @@
             }
           },
           hint: {
-            text: "No later than " + (application.respondByDate | govukDate) + ", after which the application will be automatically rejected - enter numbers, for example, " + (application.respondByDate | minusDays(1) | govukExampleHintDate)
+            text: "No later than " + (application.respondByDate | govukDate) + ", after which the application will be automatically rejected - enter numbers, for example, 30 11 2023"
           },
           items: [{
             name: "interview[date][day]",
             label: "Day",
             classes: "govuk-input--width-2",
-            value: (interview.date | toDateArray)[0]
+            value: (interview.date | dayFromDate)
           }, {
             name: "interview[date][month]",
             label: "Month",
             classes: "govuk-input--width-2",
-            value: (interview.date | toDateArray)[1]
+            value: (interview.date | monthFromDate)
           }, {
             name: "interview[date][year]",
             label: "Year",
             classes: "govuk-input--width-4",
-            value: (interview.date | toDateArray)[2]
+            value: (interview.date | yearFromDate)
           }]
         }) }}
 
@@ -73,7 +70,7 @@
           hint: {
             text: "For example, 2pm or 14:30"
           },
-          value: interview.date | time
+          value: interview.date | govukTime
         }) }}
 
         {{ govukRadios({
@@ -88,13 +85,11 @@
           items: [
             {
               value: "The Royal Borough Teaching School Alliance",
-              text: "The Royal Borough Teaching School Alliance",
-              checked: checked(interview.organisation, "The Royal Borough Teaching School Alliance")
+              text: "The Royal Borough Teaching School Alliance"
             },
             {
               value: "Kingston University",
-              text: "Kingston University",
-              checked: checked(interview.organisation, "Kingston University")
+              text: "Kingston University"
             }
           ]
       }) }}

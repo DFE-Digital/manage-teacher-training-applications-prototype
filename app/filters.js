@@ -101,3 +101,24 @@ function arrayToList (array, join = ', ', final = ' and ') {
   return last
 }
 addFilter('arrayToList', arrayToList)
+
+function includes (array, string) {
+  return array.includes(string)
+}
+addFilter('includes', includes)
+
+
+function dayFromDate (string) {
+  return new Date(string).getDate()
+}
+addFilter('dayFromDate', dayFromDate)
+
+function monthFromDate (string) {
+  return new Date(string).getMonth()
+}
+addFilter('monthFromDate', monthFromDate)
+
+function yearFromDate (string) {
+  return new Date(string).getFullYear()
+}
+addFilter('yearFromDate', yearFromDate)
