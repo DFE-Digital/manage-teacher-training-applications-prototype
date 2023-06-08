@@ -45,12 +45,12 @@
           {% set reason = data['skeReason-' + language] %}
           {% set length = data.skeCourseLengthRequired[language] %}
 
-          {% set skeConditions = skeConditions | push({
+          {% set skeConditions = skeConditions.push(skeConditions, {
               subject: language,
               reason: reason,
               deadline: data.skeDeadline,
               lengthRequired: length
-            ])
+            })
           %}
 
         {% endfor %}
