@@ -87,7 +87,7 @@ const generateFakeApplication = (params = {}) => {
     })
   }
 
-  if (offer && params.offer.standardConditions) {
+  if (offer && params.offer && params.offer.standardConditions) {
     offer.standardConditions = params.offer.standardConditions
   }
 
@@ -544,6 +544,18 @@ const generateFakeApplications = () => {
     cycle: CycleHelper.CURRENT_CYCLE.code
   }))
 
+
+  applications.push(generateFakeApplication({
+    id: '5346436346',
+    status: 'Received',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    id: '78562646',
+    status: 'Offered',
+    assignedUsers: []
+  }))
 
   return applications
 }

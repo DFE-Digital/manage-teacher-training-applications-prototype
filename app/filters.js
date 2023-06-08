@@ -122,3 +122,14 @@ function yearFromDate (string) {
   return new Date(string).getFullYear()
 }
 addFilter('yearFromDate', yearFromDate)
+
+
+function daysAgo (string) {
+
+  const datetime = new Date(string)
+  const dateNow = new Date()
+  const millisecondsBetweenDates = dateNow.getTime() - datetime.getTime();
+
+  return Math.ceil(millisecondsBetweenDates / (1000 * 3600 * 24));
+}
+addFilter('daysAgo', daysAgo)
