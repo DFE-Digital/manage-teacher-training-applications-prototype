@@ -47,7 +47,7 @@
             }
           },
           hint: {
-            text: "No later than " + (application.respondByDate | govukDate) + ", after which the application will be automatically rejected - enter numbers, for example, " + (application.respondByDate | minusDays(1) | govukExampleHintDate)
+            text: "No later than " + (application.respondByDate | govukDate) + ", after which the application will be automatically rejected - enter numbers, for example, 30 11 2023"
           },
           items: [{
             name: "interview[date][day]",
