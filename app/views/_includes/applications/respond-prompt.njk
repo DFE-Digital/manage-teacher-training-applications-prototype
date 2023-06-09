@@ -8,7 +8,7 @@
     {% elseif canMakeOffersAndRejectApplications %}
       <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% endif %}
-      <p>This application was received 28 days ago. You should try and respond to the candidate within 30 days.</p>
+      <p>This application was received {{ application.submittedDate | daysAgo }} days ago. You should try and respond to the candidate within 30 days.</p>
     {% if canManageInterviews %}
       {{ govukButton({
         text: "Set up interview",

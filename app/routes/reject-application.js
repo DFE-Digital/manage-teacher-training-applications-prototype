@@ -187,6 +187,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     res.render('applications/reject/check', {
+      content,
       upcomingInterviews: ApplicationHelper.getUpcomingInterviews(application),
       application: req.session.data.applications.find(app => app.id === req.params.applicationId)
     })
