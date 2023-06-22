@@ -38,6 +38,6 @@
     ]
   },
   "devDependencies": {
-    "glob": "^10.2.7"
+    "glob": "^10.3.0"
   }
 }
