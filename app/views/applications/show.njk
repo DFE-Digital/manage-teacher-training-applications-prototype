@@ -28,9 +28,9 @@
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
       {% if not query.transferred %}
-        <p class="govuk-body">
           {% if application.status not in ["Rejected","Declined","Offer withdrawn","Application withdrawn","Conditions not met"] %}
-            <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw application</a>
+            <p class="govuk-body">{{name}} will be able to edit some sections of their application. You'll get a notification if they add any new information.</p>
+            <p class="govuk-body"><a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw application</a>
           {% endif %}
           <a class="govuk-link" href="#" download>Download application (PDF)</a>
         </p>
