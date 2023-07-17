@@ -22,7 +22,7 @@
     "faker": "^5.5.3",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^4.6.0",
-    "govuk-prototype-kit": "^13.8.1",
+    "govuk-prototype-kit": "^13.10.1",
     "gray-matter": "^4.0.3",
     "inquirer": "^9.2.7",
     "luxon": "^3.3.0",
