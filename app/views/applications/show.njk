@@ -8,7 +8,7 @@
 
 {% block content %}
 
-  {% if name == 'Peter Essien'%}
+  {% if application.status == 'Offered'%}
     {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
     {% set html %}

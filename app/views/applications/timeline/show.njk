@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Timeline</h2>
-      {% if name == 'Peter Essien'%}
+      {# {% if application.status == 'Offered'%}
         <h3 class="govuk-heading-s govuk-!-font-size-24 govuk-!-margin-bottom-1">Application updated</h3>
         <p class="app-activity-log__byline">
           Candidate,<time datetime="2023-07-09t09:01:54.251+01:00">2023-07-31T12:01:54.251+01:00</time>
@@ -47,7 +47,7 @@
             <a href="/applications/{{ application.id}}">View changes</a>
           </p>
         </div>
-      {% endif %}
+      {% endif %} #}
 
       <div class="app-activity-log">
         {%- for event in events | reverse %}
