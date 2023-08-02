@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Timeline</h2>
-      {# {% if application.status == 'Offered'%}
+      {% if application.personalDetails.name == 'Peter Essien'%}
         <h3 class="govuk-heading-s govuk-!-font-size-24 govuk-!-margin-bottom-1">Application updated</h3>
         <p class="app-activity-log__byline">
           Candidate,<time datetime="2023-07-09t09:01:54.251+01:00">2023-07-31T12:01:54.251+01:00</time>
@@ -30,7 +30,7 @@
         text: "Phone number"
       },
       value: {
-        text: "078536374"
+        text: "0785453457"
       }
     },
     {
@@ -44,10 +44,41 @@
   ]
 }) }}</div>
           <p class="app-log-card__note--link">
-            <a href="/applications/{{ application.id}}">View changes</a>
+            <a href="/applications/{{ application.id}}">View application</a>
           </p>
         </div>
-      {% endif %} #}
+       {%  elif application.personalDetails.name == 'Freida Jackson'%}
+               <h3 class="govuk-heading-s govuk-!-font-size-24 govuk-!-margin-bottom-1">Application updated</h3>
+        <p class="app-activity-log__byline">
+          Candidate,<time datetime="2023-07-09t09:01:54.251+01:00">2023-07-31T12:01:54.251+01:00</time>
+        </p>
+        <div class="app-activity-log__item">
+          <div class="app-activity-log__box">
+            {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Phone number"
+      },
+      value: {
+        text: "0782536373"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "100 Brent close<br>Kent<br>KT23 6FH"
+      }
+    }
+  ]
+}) }}</div>
+          <p class="app-log-card__note--link">
+            <a href="/applications/{{ application.id}}">View application</a>
+          </p>
+        </div>
+      {% endif %}
 
       <div class="app-activity-log">
         {%- for event in events | reverse %}

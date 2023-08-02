@@ -8,7 +8,7 @@
 
 {% block content %}
 
-  {% if application.status == 'Offered'%}
+  {% if application.personalDetails.name == 'Peter Essien'%}
     {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
     {% set html %}
@@ -22,7 +22,26 @@
     {{ govukNotificationBanner({
     html: html
     }) }}
-  {% endif %}
+
+ {%  elif application.personalDetails.name == 'Freida Jackson'%}
+       {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+    {% set html %}
+    <p class="govuk-notification-banner__heading">
+      {{name}}
+      updated their application.<br><br>
+      <a class="govuk-notification-banner__link" href="/applications/{{application.id}}/timeline">View the timeline to see their updates</a>.
+    </p>
+    {% endset %}
+
+    {{ govukNotificationBanner({
+    html: html
+    }) }}
+
+
+{% endif %}
+
+
 
   {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
