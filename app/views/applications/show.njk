@@ -14,7 +14,7 @@
     {% set html %}
     <p class="govuk-notification-banner__heading">
       {{name}}
-      updated their application 3 days ago.<br><br>
+      updated their application on 20 July 2023 at 11:46am<br><br>
       <a class="govuk-notification-banner__link" href="/applications/{{application.id}}/timeline">View the timeline to see their updates</a>.
     </p>
     {% endset %}
@@ -23,20 +23,20 @@
     html: html
     }) }}
 
- {%  elif application.personalDetails.name == 'Freida Jackson'%}
+ {# {%  elif application.personalDetails.name == 'Freida Jackson'%}
        {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
     {% set html %}
     <p class="govuk-notification-banner__heading">
       {{name}}
-      updated their application.<br><br>
+      updated their application on 31 July 2023 at 9:15am.<br><br>
       <a class="govuk-notification-banner__link" href="/applications/{{application.id}}/timeline">View the timeline to see their updates</a>.
     </p>
     {% endset %}
 
     {{ govukNotificationBanner({
     html: html
-    }) }}
+    }) }} #}
 
 
 {% endif %}
