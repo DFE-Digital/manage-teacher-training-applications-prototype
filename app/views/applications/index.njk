@@ -102,8 +102,8 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/components/filter-toggle-button/filter-toggle-button.js"></script>
-  <script>
+  <script type="module" src="/public/javascripts/components/filter-toggle-button/filter-toggle-button.js"></script>
+  <script> type="module"
     new AppFrontend.FilterToggleButton({
       bigModeMediaQuery: '(min-width: 48.063em)',
       startHidden: false,
@@ -124,8 +124,8 @@
   </script>
 
   {% if userItems.length >= userItemsDisplayLimit %}
-    <script type="text/javascript" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
-    <script type="text/javascript">
+    <script type="module" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
+    <script type="module">
       new AppFrontend.CheckboxFilter({
         container: $('#assignedUser'),
         textBox: {
@@ -136,8 +136,8 @@
   {% endif %}
 
   {% if subjectItems.length >= subjectItemsDisplayLimit %}
-    <script type="text/javascript" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
-    <script type="text/javascript">
+    <script type="module" src="/public/javascripts/components/checkbox-filter/checkbox-filter.js"></script>
+    <script type="module">
       new AppFrontend.CheckboxFilter({
         container: $('#subject'),
         textBox: {
