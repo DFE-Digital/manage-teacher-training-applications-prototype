@@ -12,7 +12,7 @@
     "postinstall": "npm run generate-data"
   },
   "dependencies": {
-    "@govuk-prototype-kit/common-templates": "^1.1.1",
+    "@govuk-prototype-kit/common-templates": "^1.2.2",
     "@x-govuk/govuk-prototype-filters": "^1.0.0",
     "archiver-promise": "^1.0.0",
     "cookie-parser": "^1.4.6",
