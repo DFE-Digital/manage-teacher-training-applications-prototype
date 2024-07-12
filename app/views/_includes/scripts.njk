@@ -1,23 +1,23 @@
-<script type="text/javascript">
+<script type="module">
   var AppFrontend = {}
 </script>
 
-<script src="/public/javascripts/jquery-1.11.3.js"></script>
-<script src="/public/javascripts/modules.js"></script>
-<script src="/public/javascripts/modules/edge.js"></script>
-<script src="/public/javascripts/modules/sortable-table.js"></script>
-<script src="/extension-assets/govuk-frontend/govuk/all.js"></script>
-<script src="/public/javascripts/components/add-another/add-another.js"></script>
-<script src="/public/javascripts/components/sortable-table/sortable-table.js"></script>
-<script src="//cdn.loop11.com/embed.js" type="text/javascript" async="async"></script>
+<script type="module" src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="module" src="/public/javascripts/modules.js"></script>
+<script type="module" src="/public/javascripts/modules/edge.js"></script>
+<script type="module" src="/public/javascripts/modules/sortable-table.js"></script>
+<script type="module" src="/extension-assets/govuk-frontend/dist/govuk/all.js"></script>
+<script type="module" src="/public/javascripts/components/add-another/add-another.js"></script>
+<script type="module" src="/public/javascripts/components/sortable-table/sortable-table.js"></script>
+<script type="module" src="//cdn.loop11.com/embed.js" type="text/javascript" async="async"></script>
 
 
 {# {% for scriptUrl in extensionConfig.scripts %}
   <script src="{{ scriptUrl }}"></script>
 {% endfor %} #}
 
-<script src="/public/javascripts/application.js"></script>
+<script type="module" src="/public/javascripts/application.js"></script>
 
 {% if useAutoStoreData %}
-  <script src="/public/javascripts/auto-store-data.js"></script>
+  <script type="module" src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}

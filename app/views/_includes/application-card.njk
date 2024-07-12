@@ -11,7 +11,7 @@
       </span>
     </h3>
     {{ govukTag({
-      classes: a.status | statusClass + " govuk-!-margin-bottom-1 govuk-!-font-size-14",
+      classes: a.status | statusClass + " govuk-!-margin-bottom-1",
       text: a.status
     }) }}
   </header>
@@ -31,7 +31,7 @@
          <dd class="govuk-hint govuk-!-font-size-16 govuk-!-margin-top-0">
           {# <span style="color: #f47738">&bull;</span>  #}
          Peter Essien updated on 20 July 2023 at 11:46am</dd>
-{# 
+{#
           {% elif a.personalDetails.givenName == 'Freida'%}
           <dd class="govuk-hint govuk-!-font-size-16 govuk-!-margin-top-0">
           Freida Jackson updated on 31 July 2023 at 9:15am</dd> #}
