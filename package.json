@@ -2,7 +2,7 @@
   "name": "manage-teacher-training-applications-prototype",
   "description": "Prototype for the ‘Manage teacher training applications’ service",
   "engines": {
-    "node": "18.x"
+    "node": "20.11.0"
   },
   "scripts": {
     "dev": "govuk-prototype-kit dev",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@govuk-prototype-kit/common-templates": "^1.2.2",
-    "@x-govuk/govuk-prototype-filters": "^1.1.0",
+    "@x-govuk/govuk-prototype-filters": "^1.4.0",
     "archiver-promise": "^1.0.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
@@ -21,8 +21,8 @@
     "del": "^7.1.0",
     "faker": "^5.5.3",
     "fancy-log": "^2.0.0",
-    "govuk-frontend": "5.0.0",
-    "govuk-prototype-kit": "^13.8.1",
+    "govuk-frontend": "^5.4.1",
+    "govuk-prototype-kit": "^13.16.2",
     "gray-matter": "^4.0.3",
     "inquirer": "^9.2.10",
     "luxon": "^3.4.3",

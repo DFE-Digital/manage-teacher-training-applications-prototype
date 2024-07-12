@@ -4,7 +4,7 @@
       "url": "heroku/nodejs"
     }
   ],
-  "description": "Prototype for the ‘Apply for postgraduate teacher training’ service",
+  "description": "Prototype for the ‘Manage teacher training applications’ service",
   "env": {
     "PASSWORD": {
       "required": true
@@ -16,5 +16,5 @@
     }
   },
   "name": "Manage (Prototype)",
-  "stack": "heroku-22"
+  "stack": "heroku-24"
 }
