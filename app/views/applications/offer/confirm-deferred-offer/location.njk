@@ -50,8 +50,8 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/autocomplete.min.js"></script>
-  <script>
+  <script type="module" src="/public/javascripts/autocomplete.min.js"></script>
+  <script type="module">
     accessibleAutocomplete({
       name: "course",
       element: document.querySelector('#course-autocomplete-container'),
