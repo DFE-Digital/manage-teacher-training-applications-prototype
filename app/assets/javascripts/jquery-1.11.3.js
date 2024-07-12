@@ -1220,20 +1220,6 @@ setDocument = Sizzle.setDocument = function( node ) {
         "<select id='" + expando + "-\f]' msallowcapture=''>" +
         "<option selected=''></option></select>";
 
-      // Support: IE8, Opera 11-12.16
-      // Nothing should be selected when empty strings follow ^= or $= or *=
-      // The test attribute must be unknown in Opera but "safe" for WinRT
-      // http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
-      if ( div.querySelectorAll("[msallowcapture^='']").length ) {
-        rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
-      }
-
-      // Support: IE8
-      // Boolean attributes and "value" are not treated correctly
-      if ( !div.querySelectorAll("[selected]").length ) {
-        rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
-      }
-
       // Support: Chrome<29, Android<4.2+, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.7+
       if ( !div.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
         rbuggyQSA.push("~=");
@@ -1260,12 +1246,6 @@ setDocument = Sizzle.setDocument = function( node ) {
       var input = doc.createElement("input");
       input.setAttribute( "type", "hidden" );
       div.appendChild( input ).setAttribute( "name", "D" );
-
-      // Support: IE8
-      // Enforce case-sensitivity of name attribute
-      if ( div.querySelectorAll("[name=d]").length ) {
-        rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
-      }
 
       // FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
       // IE8 throws error here and will not see later tests
@@ -6404,27 +6384,7 @@ function addGetHookIf( conditionFn, hookFn ) {
       div.removeChild( contents );
     }
 
-    // Support: IE8
-    // Check if table cells still have offsetWidth/Height when they are set
-    // to display:none and there are still other visible table cells in a
-    // table row; if so, offsetWidth/Height are not reliable for use when
-    // determining if an element has been hidden directly using
-    // display:none (it is still safe to use offsets if a parent element is
-    // hidden; don safety goggles and see bug #4512 for more information).
-    div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>";
-    contents = div.getElementsByTagName( "td" );
-    contents[ 0 ].style.cssText = "margin:0;border:0;padding:0;display:none";
-    reliableHiddenOffsetsVal = contents[ 0 ].offsetHeight === 0;
-    if ( reliableHiddenOffsetsVal ) {
-      contents[ 0 ].style.display = "";
-      contents[ 1 ].style.display = "none";
-      reliableHiddenOffsetsVal = contents[ 0 ].offsetHeight === 0;
-    }
-
-    body.removeChild( container );
-  }
-
-})();
+}})();
 
 
 // A method for quickly swapping in/out CSS properties to get correct calculations.
@@ -7735,12 +7695,6 @@ jQuery.fn.delay = function( time, type ) {
   // (WebKit marks them as disabled)
   select.disabled = true;
   support.optDisabled = !opt.disabled;
-
-  // Support: IE8 only
-  // Check if we can trust getAttribute("value")
-  input = document.createElement( "input" );
-  input.setAttribute( "value", "" );
-  support.input = input.getAttribute( "value" ) === "";
 
   // Check if an input maintains its value after becoming a radio
   input.value = "t";
