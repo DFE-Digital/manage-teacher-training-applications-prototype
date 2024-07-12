@@ -1,8 +1,8 @@
 .app-status {
-  @include govuk-font($size: 16, $weight: bold);
+  @include govuk-font($size: 16, $weight: lighter);
 
   @include govuk-media-query($from: desktop) {
-    @include govuk-font($size: 19, $weight: bold);
+    @include govuk-font($size: 19, $weight: lighter);
   }
 
   [aria-current="page"] {
@@ -27,9 +27,9 @@
 }
 
 .app-status__count {
-  @include govuk-font($size: 48, $weight: bold);
+  @include govuk-font($size: 48, $weight: lighter);
   @include govuk-media-query($from: desktop) {
-    @include govuk-font($size: 80, $weight: bold, $line-height: 0.9);
+    @include govuk-font($size: 80, $weight: lighter, $line-height: 0.9);
   }
   display: block;
 }

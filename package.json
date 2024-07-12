@@ -12,20 +12,20 @@
     "postinstall": "npm run generate-data"
   },
   "dependencies": {
-    "@govuk-prototype-kit/common-templates": "^1.1.1",
+    "@govuk-prototype-kit/common-templates": "^1.2.2",
     "@x-govuk/govuk-prototype-filters": "^1.0.0",
     "archiver-promise": "^1.0.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
     "csv-writer": "^1.6.0",
-    "del": "^7.0.0",
+    "del": "^7.1.0",
     "faker": "^5.5.3",
     "fancy-log": "^2.0.0",
-    "govuk-frontend": "^4.6.0",
+    "govuk-frontend": "5.0.0",
     "govuk-prototype-kit": "^13.8.1",
     "gray-matter": "^4.0.3",
-    "inquirer": "^9.2.7",
-    "luxon": "^3.3.0",
+    "inquirer": "^9.2.10",
+    "luxon": "^3.4.3",
     "marked": "^8.0.1",
     "numeral": "^2.0.6",
     "universal-analytics": "^0.5.1",
@@ -38,6 +38,6 @@
     ]
   },
   "devDependencies": {
-    "glob": "^10.2.7"
+    "glob": "^10.3.4"
   }
 }
