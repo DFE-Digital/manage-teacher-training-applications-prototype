@@ -1,4 +1,4 @@
-const faker = require('faker');
+const faker = require('@faker-js/faker').faker;
 
 const { EVENTS } = require('./constants');
 const users = require('../../app/data/users.json');
@@ -93,4 +93,3 @@ exports.generateInterviews = (applications) => applications.map((application) =>
 
   return application;
 });
-

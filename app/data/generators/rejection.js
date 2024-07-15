@@ -1,4 +1,4 @@
-const faker = require('faker')
+const faker = require('@faker-js/faker').faker
 faker.locale = 'en_GB'
 
 function buildReasons(params) {

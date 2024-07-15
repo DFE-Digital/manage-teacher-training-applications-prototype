@@ -1,4 +1,4 @@
-const faker = require('faker');
+const faker = require('@faker-js/faker').faker;
 
 const { EVENTS } = require('./constants');
 
@@ -41,4 +41,3 @@ exports.generateNotes = (applications) => applications.map((application) => {
 
   return application;
 });
-

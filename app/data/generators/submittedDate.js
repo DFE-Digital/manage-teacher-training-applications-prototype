@@ -1,5 +1,5 @@
 const SystemHelper = require('../helpers/system');
-const faker = require('faker')
+const faker = require('@faker-js/faker').faker
 faker.locale = 'en_GB'
 
 module.exports = (params) => {
