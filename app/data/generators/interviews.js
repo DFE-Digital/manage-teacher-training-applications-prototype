@@ -1,4 +1,4 @@
-const faker = require('@faker-js/faker').faker
+const { fakerUK: faker } = require('@faker-js/faker')
 const { DateTime } = require('luxon')
 const SystemHelper = require('../helpers/system')
 
@@ -19,8 +19,6 @@ function getInterview(params) {
   var interview = {};
   interview.id = faker.string.uuid()
   interview.details = faker.helpers.arrayElement([faker.lorem.sentence(20), ''])
-
-  faker.locale = 'en_GB'
 
   interview.location = faker.address.streetAddress() + ', ' + faker.address.city() + ', ' + faker.address.zipCode()
 

@@ -1,4 +1,4 @@
-const faker = require('@faker-js/faker').faker
+const { fakerUK: faker } = require('@faker-js/faker')
 const weighted = require('weighted')
 
 const arrayToList = (array, join = ', ', final = ' and ') => {

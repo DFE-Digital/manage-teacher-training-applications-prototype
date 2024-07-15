@@ -1,4 +1,4 @@
-const faker = require('@faker-js/faker').faker
+const { fakerUK: faker } = require('@faker-js/faker')
 
 module.exports = (params = {}) => {
   return {

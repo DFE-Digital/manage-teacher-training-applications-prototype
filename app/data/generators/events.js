@@ -1,6 +1,6 @@
 const DateHelper = require('../helpers/dates');
 const ApplicationHelper = require('../helpers/application');
-const faker = require('@faker-js/faker').faker
+const { fakerUK: faker } = require('@faker-js/faker')
 const _ = require('lodash')
 const { DateTime } = require('luxon')
 const weighted = require('weighted')

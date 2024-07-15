@@ -1,4 +1,4 @@
-const faker = require('@faker-js/faker').faker
+const { fakerUK: faker } = require('@faker-js/faker')
 
 const path = require('path')
 const directoryPath = path.join(__dirname, '../views/feedback/_content/')

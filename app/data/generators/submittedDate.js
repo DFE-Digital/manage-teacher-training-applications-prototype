@@ -1,5 +1,5 @@
 const SystemHelper = require('../helpers/system');
-const faker = require('@faker-js/faker').faker
+const { fakerUK: faker } = require('@faker-js/faker')
 
 module.exports = (params) => {
   let submittedDate
