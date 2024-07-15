@@ -1,25 +1,44 @@
-# Manage teacher training applications (prototype)
+# Manage teacher training applications prototype
 
-This prototype is based on the [GOV.UK prototype kit](https://github.com/alphagov/govuk-prototype-kit)
+Manage teacher training applications is a service for training providers to see, manage and make decisions on applications they receive.
+
+This prototype is based on the:
+
+- [GOV.UK Design System](https://design-system.service.gov.uk/)
+- [GOV.UK Prototype Kit](https://prototype-kit.service.gov.uk/docs/)
 
 ## Requirements
 
-* node.js - version 10.x.x
+- Node.js - version 20.x.x
 
-## Install dependencies
+## Installation
 
-```sh
-npm install
-```
+- Clone this repository to a folder on your computer
+- Open Terminal
+- In Terminal, change the path to the repository
+- Type `npm install` to install the dependencies
 
-## Generate data and start the app
+## Working locally
 
-```sh
-npm start
-```
+- In Terminal, change the path to the repository
+- Type `npm run dev`  and start the application
 
-## Generate new data
+## Generating data
 
-```sh
-npm run generate-data
-```
+The prototype uses seed data.
+
+You can regenerate the data:
+
+- In Terminal, change the path to the repository
+- Type `npm run generate-data`
+
+## Tools
+
+If you’re using [Visual Studio (VS) Code](https://code.visualstudio.com/) for prototyping, we recommend you install the following extensions:
+
+- [GOV.UK Design System snippets](https://marketplace.visualstudio.com/items?itemName=simonwhatley.govuk-design-system-snippets)
+- [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [Nunjucks for VS Code](https://marketplace.visualstudio.com/items?itemName=ronnidc.nunjucks)
+- [Nunjucks snippets](https://marketplace.visualstudio.com/items?itemName=luwenjiechn.nunjucks-vscode-snippets)
+
+We also recommend you update your VS Code settings to make sure you’re trimming whitespace: `Files: Trim Trailing Whitespace`.
