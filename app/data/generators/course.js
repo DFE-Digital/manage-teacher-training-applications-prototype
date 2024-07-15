@@ -1,5 +1,4 @@
 const faker = require('@faker-js/faker').faker
-faker.locale = 'en_GB'
 const weighted = require('weighted')
 
 const arrayToList = (array, join = ', ', final = ' and ') => {

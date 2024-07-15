@@ -1,5 +1,4 @@
 const faker = require('@faker-js/faker').faker
-faker.locale = 'en_GB'
 const fs = require('fs')
 const path = require('path')
 

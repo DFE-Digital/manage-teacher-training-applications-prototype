@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const faker = require('@faker-js/faker').faker
-faker.locale = 'en_GB'
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')

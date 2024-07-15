@@ -1,6 +1,5 @@
 const faker = require('@faker-js/faker').faker
 const user = require('../user')
-faker.locale = 'en_GB'
 
 module.exports = () => {
 

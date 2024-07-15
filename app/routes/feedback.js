@@ -1,5 +1,4 @@
 const faker = require('@faker-js/faker').faker
-faker.locale = 'en_GB'
 
 const path = require('path')
 const directoryPath = path.join(__dirname, '../views/feedback/_content/')
