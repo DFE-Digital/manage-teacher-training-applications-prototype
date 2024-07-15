@@ -27,13 +27,13 @@ module.exports = (params) => {
 
     // Start year for second degree must be after first
     if (i > 0) {
-      degree.startYear = degrees[i-1].startYear + faker.datatype.number({ 'min': 1, 'max': 10 })
+      degree.startYear = degrees[i-1].startYear + faker.number.int({ 'min': 1, 'max': 10 })
     } else {
       degree.startYear = year
     }
 
     // Set the graduation year to be between 3 and 4 years after start year
-    degree.graduationYear = degree.startYear + faker.datatype.number({ 'min': 3, 'max': 4 })
+    degree.graduationYear = degree.startYear + faker.number.int({ 'min': 3, 'max': 4 })
 
     // If graduation year is after the current year, set predicted to true
     degree.predicted = (degree.graduationYear > currentYear) ? true : false

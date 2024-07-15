@@ -467,7 +467,7 @@ module.exports = (params) => {
           comparable: 'GCSE (grades A*-C / 9-4)'
         },
         grade: [{
-          grade: faker.datatype.number({ min: 10, max: 20 })
+          grade: faker.number.int({ min: 10, max: 20 })
         }],
         year
       }
@@ -490,7 +490,7 @@ module.exports = (params) => {
           comparable: 'GCSE grades A*-C/9-4'
         },
         grade: [{
-          grade: faker.datatype.number({ min: 10, max: 20 })
+          grade: faker.number.int({ min: 10, max: 20 })
         }],
         year
       }
@@ -514,7 +514,7 @@ module.exports = (params) => {
             comparable: 'GCSE (grades A*-C / 9-4)'
           },
           grade: [{
-            grade: faker.datatype.number({ min: 10, max: 20 })
+            grade: faker.number.int({ min: 10, max: 20 })
           }],
           year
         }

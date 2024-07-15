@@ -177,7 +177,7 @@ const generateFakeApplication = (params = {}) => {
   }
 
   return {
-    id: params.id || ('' + faker.datatype.number({min: 123456, max: 999999})),
+    id: params.id || ('' + faker.number.int({min: 123456, max: 999999})),
     assignedUsers: params.assignedUsers || assignedUsers,
     deferredOfferUnavailable,
     cycle,
@@ -222,7 +222,7 @@ const generateFakeApplications = () => {
   const organisations = user.organisations
   const applications = []
   const now = SystemHelper.now()
-  const randomNumber = faker.datatype.number({ 'min': 1, 'max': 20 })
+  const randomNumber = faker.number.int({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])

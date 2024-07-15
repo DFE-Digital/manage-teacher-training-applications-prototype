@@ -7,17 +7,17 @@ function getInterview(params) {
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])
   })
-  const past = now.minus({ days: faker.datatype.number({ 'min': 1, 'max': 20 }) }).set({
+  const past = now.minus({ days: faker.number.int({ 'min': 1, 'max': 20 }) }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])
   });
-  const future = now.plus({ days: faker.datatype.number({ 'min': 0, 'max': 10 }) }).set({
+  const future = now.plus({ days: faker.number.int({ 'min': 0, 'max': 10 }) }).set({
     hour: faker.helpers.randomize([9, 10, 11]),
     minute: faker.helpers.randomize([0, 15, 30, 45])
   });
 
   var interview = {};
-  interview.id = faker.datatype.uuid()
+  interview.id = faker.string.uuid()
   interview.details = faker.helpers.randomize([faker.lorem.sentence(20), ''])
 
   faker.locale = 'en_GB'

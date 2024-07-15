@@ -16,7 +16,7 @@ const generateFakeLocations = (count) => {
 
   // TODO: generate locations per organisation
   locations.push({
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: 'Main site',
     address: {
       address1: '123 Main Street',

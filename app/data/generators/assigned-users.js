@@ -16,7 +16,7 @@ module.exports = (accreditedBody, provider, status) => {
       return user.organisation.id == accreditedBody.id
     })
 
-    const accreditedBodyUserCount = faker.datatype.number({ min: 1, max: 3 })
+    const accreditedBodyUserCount = faker.number.int({ min: 1, max: 3 })
 
     for (let i = 0; i < accreditedBodyUserCount; i++) {
       let accreditedBodyUser = {}
@@ -42,7 +42,7 @@ module.exports = (accreditedBody, provider, status) => {
       return user.organisation.id == provider.id
     })
 
-    const providerUserCount = faker.datatype.number({ min: 1, max: 3 })
+    const providerUserCount = faker.number.int({ min: 1, max: 3 })
 
     for (let i = 0; i < providerUserCount; i++) {
       let providerUser = {}

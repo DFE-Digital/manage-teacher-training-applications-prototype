@@ -4,7 +4,7 @@ const DateHelper = require('../helpers/dates');
 module.exports = (submittedDate) => {
   const hasExperience = faker.helpers.randomize([true, false])
   if(hasExperience) {
-    const count = faker.datatype.number({ min: 1, max: 4 })
+    const count = faker.number.int({ min: 1, max: 4 })
     const items = []
 
     // get a date previously to the application submitted date

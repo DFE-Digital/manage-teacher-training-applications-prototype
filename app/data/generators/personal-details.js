@@ -320,7 +320,7 @@ module.exports = () => {
 
     disabled = disabledOptions[selectedDisabled]
 
-    let disabilityCount = faker.datatype.number(3) // up to 3 disabilities
+    let disabilityCount = faker.number.int(3) // up to 3 disabilities
 
     let disabilityChoices = [
       'Blind',

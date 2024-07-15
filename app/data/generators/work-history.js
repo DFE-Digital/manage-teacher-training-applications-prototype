@@ -5,7 +5,7 @@ module.exports = (submittedDate) => {
   const answer = faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education'])
   const reason = (answer === 'no-work-history') ? 'I was unemployed': null;
   const items = []
-  const count = faker.datatype.number({ min: 0, max: 8 })
+  const count = faker.number.int({ min: 0, max: 8 })
 
   // get a date previously to the application submitted date
   let endDate = DateHelper.getPastDate(submittedDate, 30, 150)
@@ -53,7 +53,7 @@ module.exports = (submittedDate) => {
         items.push({
           description: description,
           category: 'break',
-          duration: `${faker.datatype.number({ min: 1, max: 12 })} months`,
+          duration: `${faker.number.int({ min: 1, max: 12 })} months`,
           startDate: startDate,
           endDate: endDate
         })

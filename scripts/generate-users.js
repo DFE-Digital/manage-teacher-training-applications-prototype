@@ -19,7 +19,7 @@ const generateFakeUsers = (count) => {
   const emailAddress = 'l.obirek@warwick.ac.uk'
 
   users.push({
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     firstName: firstName,
     lastName: lastName,
     emailAddress: emailAddress,
@@ -39,7 +39,7 @@ const generateFakeUsers = (count) => {
   //     let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
   //     let lastName = generatorHelpers.lastName()
   //     users.push({
-  //       id: faker.datatype.uuid(),
+  //       id: faker.string.uuid(),
   //       firstName,
   //       lastName,
   //       emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,

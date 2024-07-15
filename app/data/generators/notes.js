@@ -35,7 +35,7 @@ module.exports = () => {
 
   if(faker.helpers.randomize([true, false])) {
     notes.items = [{
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       message: message,
       sender: faker.helpers.randomize([
         faker.name.findName(),
