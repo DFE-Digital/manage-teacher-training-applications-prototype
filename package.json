@@ -12,6 +12,7 @@
     "postinstall": "npm run generate-data"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@govuk-prototype-kit/common-templates": "^1.2.2",
     "@x-govuk/govuk-prototype-filters": "^1.4.0",
     "archiver-promise": "^1.0.0",
@@ -19,7 +20,6 @@
     "cross-spawn": "^7.0.3",
     "csv-writer": "^1.6.0",
     "del": "^7.1.0",
-    "faker": "^5.5.3",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^5.4.1",
     "govuk-prototype-kit": "^13.16.2",
