@@ -21,7 +21,7 @@ module.exports = (accreditedBody, provider, status) => {
     for (let i = 0; i < accreditedBodyUserCount; i++) {
       let accreditedBodyUser = {}
 
-      accreditedBodyUser = faker.helpers.randomize(accreditedBodyUsers)
+      accreditedBodyUser = faker.helpers.arrayElement(accreditedBodyUsers)
 
       // clone the users so we can clean the data and only use what we need
       accreditedBodyUser = _.cloneDeep(accreditedBodyUser)
@@ -47,7 +47,7 @@ module.exports = (accreditedBody, provider, status) => {
     for (let i = 0; i < providerUserCount; i++) {
       let providerUser = {}
 
-      providerUser = faker.helpers.randomize(providerUsers)
+      providerUser = faker.helpers.arrayElement(providerUsers)
 
       // clone the users so we can clean the data and only use what we need
       providerUser = _.cloneDeep(providerUser)

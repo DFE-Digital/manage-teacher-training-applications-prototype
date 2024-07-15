@@ -4,14 +4,14 @@ module.exports = (status) => {
 
   console.log('generating reference for ' + status)
 
-  const type = faker.helpers.randomize([
+  const type = faker.helpers.arrayElement([
     'Academic',
     'Professional',
     'School based',
     'Character'
   ])
 
-  const comments = faker.helpers.randomize([
+  const comments = faker.helpers.arrayElement([
     'A charismatic talented and able person. Great with people, fantastic personality and a strong communicator passionate about teaching. Great potential. Go for them!',
     'Fantastic personality. Great with people. Strong communicator. Excellent character. Passionate about teaching with great potential.',
     'A very smart young person who I have had the pleasure of working with since spring last year (2019).\n\nWe rely on bar staff to be responsible, reliable, trustworthy with stock and takings, and maintain excellent time-keeping. In all of these respects they exceeded expectations, remaining calm in difficult situations and always equally happy to work independently or as part of a team.',
@@ -19,7 +19,7 @@ module.exports = (status) => {
     'Their enthusiasm and love of the subject made them an inspiration to be around.\n\nIf they’re able to bring the same patience, people skills and good humour to teaching, I believe that they will make a fantastic teacher.'
   ])
 
-  const relationshipSummary = faker.helpers.randomize([
+  const relationshipSummary = faker.helpers.arrayElement([
     'Course supervisor at university. I’ve known them for a year',
     'Was my line manager in my last job. I’ve known them for 2 years',
     'Deputy head at the school where I currently volunteer. I’ve known them for 3 years',

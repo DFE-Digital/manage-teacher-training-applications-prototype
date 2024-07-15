@@ -63,7 +63,7 @@ module.exports = () => {
     personalStatement: true
   })
 
-  return faker.helpers.randomize([all, qualifications, personalStatement])
+  return faker.helpers.arrayElement([all, qualifications, personalStatement])
 
 
 }

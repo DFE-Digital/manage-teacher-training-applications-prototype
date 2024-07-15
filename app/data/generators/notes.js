@@ -7,7 +7,7 @@ module.exports = () => {
     items: []
   }
 
-  var message = faker.helpers.randomize([
+  var message = faker.helpers.arrayElement([
     'The candidate has appropriate qualifications. Personal statement looks good too – I think we should get them in for interview.',
     'I’d like a second opinion on the personal statement as I’m not sure they’re suitable for the course they’ve applied for.',
     'Several grammar and spelling issues in the personal statement.',
@@ -33,11 +33,11 @@ module.exports = () => {
     'We rejected this candidate last year but they’ve gained some relevant experience since then. Worth a second look, I think.'
   ])
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     notes.items = [{
       id: faker.string.uuid(),
       message: message,
-      sender: faker.helpers.randomize([
+      sender: faker.helpers.arrayElement([
         faker.name.findName(),
         user.firstName + ' ' + user.lastName
       ]),

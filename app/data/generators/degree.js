@@ -8,7 +8,7 @@ module.exports = (params) => {
 
   // Start year - 18 or 19 years after date of birth
   let year = DateTime.fromISO(params.dateOfBirth).toObject().year
-  year += faker.helpers.randomize([18,19])
+  year += faker.helpers.arrayElement([18,19])
 
   const currentYear = DateTime.now().year
 
@@ -23,7 +23,7 @@ module.exports = (params) => {
   for (let i = 0; i < count; i++) {
     let degree = {}
 
-    degree.subject = faker.helpers.randomize(DegreeHelper.getSubjects())
+    degree.subject = faker.helpers.arrayElement(DegreeHelper.getSubjects())
 
     // Start year for second degree must be after first
     if (i > 0) {
@@ -51,11 +51,11 @@ module.exports = (params) => {
 
     } else {
 
-      const qualification = faker.helpers.randomize(DegreeHelper.getQualifications())
+      const qualification = faker.helpers.arrayElement(DegreeHelper.getQualifications())
 
       degree.level = qualification.level
 
-      degree.grade = faker.helpers.randomize([
+      degree.grade = faker.helpers.arrayElement([
         'First-class honours',
         'Upper second-class honours (2:1)',
         'Lower second-class honours (2:2)',
@@ -69,7 +69,7 @@ module.exports = (params) => {
 
       degree.type = qualification.text + (degree.grade.includes('honours') ? ' (Hons)' : '')
 
-      degree.institution = faker.helpers.randomize(DegreeHelper.getInstitutions())
+      degree.institution = faker.helpers.arrayElement(DegreeHelper.getInstitutions())
       degree.country = 'United Kingdom'
     }
 

@@ -38,25 +38,25 @@ module.exports = (params) => {
   const englishGradeOptions = {
     singleAwardEnglish: [{
       exam: 'English Language',
-      grade: faker.helpers.randomize(singleGrades)
+      grade: faker.helpers.arrayElement(singleGrades)
     }],
     doubleAwardEnglish: [{
       exam: 'English',
-      grade: faker.helpers.randomize(doubleGrades)
+      grade: faker.helpers.arrayElement(doubleGrades)
     }],
     separateEnglish1: [{
       exam: 'English Language',
-      grade: faker.helpers.randomize(singleGrades)
+      grade: faker.helpers.arrayElement(singleGrades)
     }, {
       exam: 'English Literature',
-      grade: faker.helpers.randomize(singleGrades)
+      grade: faker.helpers.arrayElement(singleGrades)
     }],
     separateEnglish2: [{
       exam: 'English Language',
-      grade: faker.helpers.randomize(singleGrades)
+      grade: faker.helpers.arrayElement(singleGrades)
     }, {
       exam: 'English Studies',
-      grade: faker.helpers.randomize(singleGrades)
+      grade: faker.helpers.arrayElement(singleGrades)
     }]
   }
 
@@ -73,7 +73,7 @@ module.exports = (params) => {
   // Maths
   // ---------------------------------------------------------------------------
   const mathsGrade = [{
-    grade: faker.helpers.randomize(singleGrades)
+    grade: faker.helpers.arrayElement(singleGrades)
   }]
 
   // ---------------------------------------------------------------------------
@@ -85,21 +85,21 @@ module.exports = (params) => {
     const scienceGradeOptions = {
       singleAwardScience: [{
         exam: 'Single award',
-        grade: faker.helpers.randomize(singleGrades)
+        grade: faker.helpers.arrayElement(singleGrades)
       }],
       doubleAwardScience: [{
         exam: 'Double award',
-        grade: faker.helpers.randomize(doubleGrades)
+        grade: faker.helpers.arrayElement(doubleGrades)
       }],
       tripleAwardScience: [{
         exam: 'Biology',
-        grade: faker.helpers.randomize(singleGrades)
+        grade: faker.helpers.arrayElement(singleGrades)
       }, {
         exam: 'Chemistry',
-        grade: faker.helpers.randomize(singleGrades)
+        grade: faker.helpers.arrayElement(singleGrades)
       }, {
         exam: 'Physics',
-        grade: faker.helpers.randomize(singleGrades)
+        grade: faker.helpers.arrayElement(singleGrades)
       }]
     }
 
@@ -289,16 +289,16 @@ module.exports = (params) => {
   }
 
   if (hasEnglishQualification !== 'Yes' && isStudyingEnglish !== 'Yes') {
-    missingEnglishReason = faker.helpers.randomize(missingEnglishReasonOptions)
+    missingEnglishReason = faker.helpers.arrayElement(missingEnglishReasonOptions)
   }
 
   if (hasMathsQualification !== 'Yes' && isStudyingMaths !== 'Yes') {
-    missingMathsReason = faker.helpers.randomize(missingMathsReasonOptions)
+    missingMathsReason = faker.helpers.arrayElement(missingMathsReasonOptions)
   }
 
   if (params.subjectLevel === 'Primary') {
     if (hasScienceQualification !== 'Yes' && isStudyingScience !== 'Yes') {
-      missingScienceReason = faker.helpers.randomize(missingScienceReasonOptions)
+      missingScienceReason = faker.helpers.arrayElement(missingScienceReasonOptions)
     }
   }
 
@@ -380,7 +380,7 @@ module.exports = (params) => {
     ]
 
     if (isRetakingEnglish === 'No') {
-      evidenceRetakingEnglish = faker.helpers.randomize(evidenceRetakingEnglishOptions)
+      evidenceRetakingEnglish = faker.helpers.arrayElement(evidenceRetakingEnglishOptions)
     }
   }
 
@@ -410,7 +410,7 @@ module.exports = (params) => {
     ]
 
     if (isRetakingMaths === 'No') {
-      evidenceRetakingMaths = faker.helpers.randomize(evidenceRetakingMathsOptions)
+      evidenceRetakingMaths = faker.helpers.arrayElement(evidenceRetakingMathsOptions)
     }
   }
 
@@ -442,7 +442,7 @@ module.exports = (params) => {
       ]
 
       if (isRetakingScience === 'No') {
-        evidenceRetakingScience = faker.helpers.randomize(evidenceRetakingScienceOptions)
+        evidenceRetakingScience = faker.helpers.arrayElement(evidenceRetakingScienceOptions)
       }
     }
   }

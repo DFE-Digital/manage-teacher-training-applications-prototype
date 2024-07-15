@@ -2,7 +2,7 @@ const faker = require('@faker-js/faker').faker
 const DateHelper = require('../helpers/dates');
 
 module.exports = (submittedDate) => {
-  const hasExperience = faker.helpers.randomize([true, false])
+  const hasExperience = faker.helpers.arrayElement([true, false])
   if(hasExperience) {
     const count = faker.number.int({ min: 1, max: 4 })
     const items = []
@@ -21,7 +21,7 @@ module.exports = (submittedDate) => {
       items.push({
         role: faker.name.jobTitle(),
         org: faker.company.companyName(),
-        workedWithChildren: faker.helpers.randomize(['Yes', 'No']),
+        workedWithChildren: faker.helpers.arrayElement(['Yes', 'No']),
         startDate: startDate,
         endDate: endDate,
         timeCommitment: faker.lorem.sentences(1)

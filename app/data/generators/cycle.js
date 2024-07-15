@@ -3,7 +3,7 @@ const faker = require('@faker-js/faker').faker
 const CycleHelper = require('../helpers/cycles')
 
 module.exports = (params = {}) => {
-  let cycleCode = faker.helpers.randomize([
+  let cycleCode = faker.helpers.arrayElement([
     CycleHelper.PREVIOUS_CYCLE.code,
     CycleHelper.CURRENT_CYCLE.code
   ])

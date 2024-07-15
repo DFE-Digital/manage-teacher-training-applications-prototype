@@ -4,7 +4,7 @@ const path = require('path')
 
 exports.firstName = (sex) => {
   if (sex === 'male') {
-    return faker.helpers.randomize([
+    return faker.helpers.arrayElement([
       'Bruce',
       'Clinton',
       'Harold',
@@ -26,7 +26,7 @@ exports.firstName = (sex) => {
       'Wade'
     ])
   } else {
-    return faker.helpers.randomize([
+    return faker.helpers.arrayElement([
       'Barbara',
       'Bonita',
       'Carol',
@@ -48,7 +48,7 @@ exports.firstName = (sex) => {
 }
 
 exports.lastName = () => {
-  return faker.helpers.randomize([
+  return faker.helpers.arrayElement([
     'Banner',
     'Barton',
     'Carpenter',

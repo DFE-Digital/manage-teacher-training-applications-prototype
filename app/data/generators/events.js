@@ -79,7 +79,7 @@ module.exports = (params) => {
       }
     })
 
-    if (faker.helpers.randomize([true])) {
+    if (faker.helpers.arrayElement([true])) {
       date = DateHelper.getFutureDate(date)
 
       var interview = _.clone(params.interviews.items[1])
@@ -97,7 +97,7 @@ module.exports = (params) => {
 
     }
 
-    if (faker.helpers.randomize([true])) {
+    if (faker.helpers.arrayElement([true])) {
       date = DateHelper.getFutureDate(date)
 
       events.items.push({
@@ -224,7 +224,7 @@ module.exports = (params) => {
   } else if (params.status === 'Declined') {
     date = DateHelper.getFutureDate(date)
 
-    if(faker.helpers.randomize([true, false])) {
+    if(faker.helpers.arrayElement([true, false])) {
       events.items.push({
         title: 'Offer automatically declined',
         date: date,

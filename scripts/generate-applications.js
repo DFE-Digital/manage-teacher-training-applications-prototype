@@ -58,13 +58,13 @@ const generateFakeApplication = (params = {}) => {
   // ---------------------------------------------------------------------------
   const courses = GeneratorsHelper.getCourseData(provider)
 
-  const tempCourse = faker.helpers.randomize(courses)
+  const tempCourse = faker.helpers.arrayElement(courses)
 
   const courseCode = tempCourse.code
   const course = `${tempCourse.name} (${tempCourse.code})`
   const subjects = tempCourse.subjects
-  const location = faker.helpers.randomize(tempCourse.locations)
-  const studyMode = faker.helpers.randomize(tempCourse.studyModes)
+  const location = faker.helpers.arrayElement(tempCourse.locations)
+  const studyMode = faker.helpers.arrayElement(tempCourse.studyModes)
   const subjectLevel = tempCourse.subjectLevel
   const fundingType = tempCourse.fundingType
   const qualifications = tempCourse.qualifications
@@ -224,12 +224,12 @@ const generateFakeApplications = () => {
   const now = SystemHelper.now()
   const randomNumber = faker.number.int({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
-    hour: faker.helpers.randomize([9, 10, 11]),
-    minute: faker.helpers.randomize([0, 15, 30, 45])
+    hour: faker.helpers.arrayElement([9, 10, 11]),
+    minute: faker.helpers.arrayElement([0, 15, 30, 45])
   })
   const future = now.plus({ days: randomNumber }).set({
-    hour: faker.helpers.randomize([9, 10, 11]),
-    minute: faker.helpers.randomize([0, 15, 30, 45])
+    hour: faker.helpers.arrayElement([9, 10, 11]),
+    minute: faker.helpers.arrayElement([0, 15, 30, 45])
   })
 
 

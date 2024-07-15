@@ -1,7 +1,7 @@
 const faker = require('@faker-js/faker').faker
 
 module.exports = () => {
-  let response = faker.helpers.randomize([true])
+  let response = faker.helpers.arrayElement([true])
 
   let details;
 
