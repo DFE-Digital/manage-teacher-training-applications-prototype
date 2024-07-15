@@ -20,7 +20,7 @@ function getInterview(params) {
   interview.id = faker.string.uuid()
   interview.details = faker.helpers.arrayElement([faker.lorem.sentence(20), ''])
 
-  interview.location = faker.address.streetAddress() + ', ' + faker.address.city() + ', ' + faker.address.zipCode()
+  interview.location = faker.location.streetAddress() + ', ' + faker.location.city() + ', ' + faker.location.zipCode()
 
   interview.organisation = faker.helpers.arrayElement(["The Royal Borough Teaching School Alliance", "Kingston University"])
 

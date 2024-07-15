@@ -19,7 +19,7 @@ exports.generateNotes = (applications) => applications.map((application) => {
             'Waiting on candidate to send information about teaching skills aquired during their Saturday job.',
             'Waiting on academic tutor to confirm availability before scheduling an interview'
           ]),
-          sender: faker.name.findName(),
+          sender: faker.person.fullName(),
           date,
         }
 

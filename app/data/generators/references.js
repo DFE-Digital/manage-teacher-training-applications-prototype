@@ -27,13 +27,16 @@ module.exports = (status) => {
   ])
 
   const referee = (status) => {
-    const firstName = faker.name.firstName()
-    const lastName = faker.name.lastName()
+    const firstName = faker.person.firstName()
+    const lastName = faker.person.lastName()
 
     let ref =  {
       type,
       name: `${firstName} ${lastName}`,
-      email: faker.internet.email(firstName, lastName).toLowerCase(),
+      email: faker.internet.email({
+        firstName,
+        lastName
+      }).toLowerCase(),
       relationship: {
         summary: relationshipSummary
       }

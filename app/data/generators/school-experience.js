@@ -19,8 +19,8 @@ module.exports = (submittedDate) => {
       startDate = DateHelper.getPastDate(endDate, 30, 500)
 
       items.push({
-        role: faker.name.jobTitle(),
-        org: faker.company.companyName(),
+        role: faker.person.jobTitle(),
+        org: faker.company.name(),
         workedWithChildren: faker.helpers.arrayElement(['Yes', 'No']),
         startDate: startDate,
         endDate: endDate,

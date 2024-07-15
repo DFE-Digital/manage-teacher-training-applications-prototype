@@ -38,7 +38,7 @@ module.exports = () => {
       id: faker.string.uuid(),
       message: message,
       sender: faker.helpers.arrayElement([
-        faker.name.findName(),
+        faker.person.fullName(),
         user.firstName + ' ' + user.lastName
       ]),
       date: faker.date.past()

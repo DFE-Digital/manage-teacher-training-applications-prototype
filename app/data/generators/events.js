@@ -43,7 +43,7 @@ module.exports = (params) => {
 //
 //       events.items.push({
 //         title: eventTitle,
-//         user: faker.name.findName(),
+//         user: faker.person.fullName(),
 //         date: date,
 //         assignedUsers: assignedUsers
 //       })
@@ -57,7 +57,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Interview set up',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         interview: params.interviews.items[0],
@@ -71,7 +71,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Interview set up',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         interview: params.interviews.items[1],
@@ -87,7 +87,7 @@ module.exports = (params) => {
 
       events.items.push({
         title: 'Interview updated',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           interview: interview,
@@ -102,7 +102,7 @@ module.exports = (params) => {
 
       events.items.push({
         title: 'Interview cancelled',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           interview: interview,
@@ -134,7 +134,7 @@ module.exports = (params) => {
 
       events.items.push({
       title: 'Application rejected',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date
     })
 
@@ -157,7 +157,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Offer made',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         offer: {
@@ -269,7 +269,7 @@ module.exports = (params) => {
       date = DateHelper.getFutureDate(date)
       events.items.push({
         title: 'Offer accepted',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           offer: {
@@ -287,7 +287,7 @@ module.exports = (params) => {
       date = DateHelper.getFutureDate(date)
       events.items.push({
         title: 'Conditions marked as met',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           offer: {
@@ -306,7 +306,7 @@ module.exports = (params) => {
       date = DateHelper.getFutureDate(date)
       events.items.push({
         title: 'Offer accepted',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           offer: {
@@ -330,7 +330,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Conditions marked as not met',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         offer: {
@@ -352,7 +352,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Offer deferred',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         offer: {

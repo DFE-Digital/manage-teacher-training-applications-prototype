@@ -34,7 +34,7 @@ module.exports = (submittedDate) => {
             'Legal executive',
             'Planner',
           ]),
-          org: faker.company.companyName(),
+          org: faker.company.name(),
           type: faker.helpers.arrayElement(['Full time', 'Part time']),
           relevantToTeaching: faker.helpers.arrayElement(['Yes', 'No']),
           category: 'job',
