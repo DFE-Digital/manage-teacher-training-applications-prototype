@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 
 const generateOrganisation = require('../app/data/generators/organisation')
 

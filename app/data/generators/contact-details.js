@@ -1,22 +1,22 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
-
 module.exports = (personalDetails) => {
+  let faker = require('@faker-js/faker').fakerUK
   if (personalDetails.isInternationalCandidate) {
-    faker.locale = 'fr'
-  } else {
-    faker.locale = 'en_GB'
+    faker = require('@faker-js/faker').fakerFR
   }
 
   return {
-    tel: faker.phone.phoneNumber(),
-    email: faker.internet.email(personalDetails.givenName, personalDetails.familyName).toLowerCase(),
+    tel: faker.phone.number(),
+    email: faker.internet.email({
+      firstName: personalDetails.givenName,
+      lastName: personalDetails.familyName
+    }
+    ).toLowerCase(),
     address: {
-      line1: faker.address.streetAddress(),
+      line1: faker.location.streetAddress(),
       line2: '',
-      level2: faker.address.city(),
-      level1: personalDetails.isInternationalCandidate ? faker.address.state() : faker.address.county(),
-      postcode: faker.address.zipCode(),
+      level2: faker.location.city(),
+      level1: personalDetails.isInternationalCandidate ? faker.location.state() : faker.location.county(),
+      postcode: faker.location.zipCode(),
       ...(personalDetails.isInternationalCandidate && { country: 'France' })
     },
     addressType: personalDetails.isInternationalCandidate ? 'international' : 'uk'

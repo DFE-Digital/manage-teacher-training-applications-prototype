@@ -1,9 +1,9 @@
-const faker = require('faker');
+const { fakerUK: faker } = require('@faker-js/faker');
 const { DateTime } = require('luxon');
 
 const SystemHelper = require('../../app/data/helpers/system');
 
-const randomNumber = ( min, max ) => faker.datatype.number({ min, max });
+const randomNumber = ( min, max ) => faker.number.int({ min, max });
 const dateFrom = (date, days) => DateTime.fromISO(date).minus({days}).toISO();
 const randomDateFrom = (date, min, max) => dateFrom(date, randomNumber(min, max));
 

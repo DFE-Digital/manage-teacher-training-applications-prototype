@@ -1,5 +1,4 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 const fs = require('fs')
 const path = require('path')
 
@@ -49,6 +48,6 @@ const generateCoursesFile = (filePath, count) => {
   )
 }
 
-// faker.datatype.number({ 'min': 10, 'max': 25 })
+// faker.number.int({ 'min': 10, 'max': 25 })
 
 generateCoursesFile(path.join(__dirname, '../app/data/courses.json'), 25)

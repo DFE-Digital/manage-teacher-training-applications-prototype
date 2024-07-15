@@ -1,12 +1,11 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 
 module.exports = () => {
 
   let withdrawal = {
     date: faker.date.past(),
     feedback: {
-      reason: faker.helpers.randomize([
+      reason: faker.helpers.arrayElement([
         'Candidate asked to withdraw their application',
         'Candidate did not reply to messages',
         'Other'

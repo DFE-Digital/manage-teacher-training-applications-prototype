@@ -1,5 +1,4 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 const fs = require('fs')
 const path = require('path')
 
@@ -17,7 +16,7 @@ const generateFakeLocations = (count) => {
 
   // TODO: generate locations per organisation
   locations.push({
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: 'Main site',
     address: {
       address1: '123 Main Street',

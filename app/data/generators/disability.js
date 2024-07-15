@@ -1,8 +1,7 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 
 module.exports = () => {
-  let response = faker.helpers.randomize([true])
+  let response = faker.helpers.arrayElement([true])
 
   let details;
 

@@ -1,9 +1,8 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 
 module.exports = (params = {}) => {
   return {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: params.name,
     permissions: params.permissions,
     isAccreditedBody: params.isAccreditedBody,

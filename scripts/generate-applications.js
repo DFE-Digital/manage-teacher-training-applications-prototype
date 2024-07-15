@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 const { DateTime } = require('luxon')
 const _ = require('lodash')
 const SystemHelper = require('../app/data/helpers/system')
@@ -59,13 +58,13 @@ const generateFakeApplication = (params = {}) => {
   // ---------------------------------------------------------------------------
   const courses = GeneratorsHelper.getCourseData(provider)
 
-  const tempCourse = faker.helpers.randomize(courses)
+  const tempCourse = faker.helpers.arrayElement(courses)
 
   const courseCode = tempCourse.code
   const course = `${tempCourse.name} (${tempCourse.code})`
   const subjects = tempCourse.subjects
-  const location = faker.helpers.randomize(tempCourse.locations)
-  const studyMode = faker.helpers.randomize(tempCourse.studyModes)
+  const location = faker.helpers.arrayElement(tempCourse.locations)
+  const studyMode = faker.helpers.arrayElement(tempCourse.studyModes)
   const subjectLevel = tempCourse.subjectLevel
   const fundingType = tempCourse.fundingType
   const qualifications = tempCourse.qualifications
@@ -178,7 +177,7 @@ const generateFakeApplication = (params = {}) => {
   }
 
   return {
-    id: params.id || ('' + faker.datatype.number({min: 123456, max: 999999})),
+    id: params.id || ('' + faker.number.int({min: 123456, max: 999999})),
     assignedUsers: params.assignedUsers || assignedUsers,
     deferredOfferUnavailable,
     cycle,
@@ -223,14 +222,14 @@ const generateFakeApplications = () => {
   const organisations = user.organisations
   const applications = []
   const now = SystemHelper.now()
-  const randomNumber = faker.datatype.number({ 'min': 1, 'max': 20 })
+  const randomNumber = faker.number.int({ 'min': 1, 'max': 20 })
   const past = now.minus({ days: randomNumber }).set({
-    hour: faker.helpers.randomize([9, 10, 11]),
-    minute: faker.helpers.randomize([0, 15, 30, 45])
+    hour: faker.helpers.arrayElement([9, 10, 11]),
+    minute: faker.helpers.arrayElement([0, 15, 30, 45])
   })
   const future = now.plus({ days: randomNumber }).set({
-    hour: faker.helpers.randomize([9, 10, 11]),
-    minute: faker.helpers.randomize([0, 15, 30, 45])
+    hour: faker.helpers.arrayElement([9, 10, 11]),
+    minute: faker.helpers.arrayElement([0, 15, 30, 45])
   })
 
 

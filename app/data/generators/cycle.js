@@ -1,10 +1,9 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerUK: faker } = require('@faker-js/faker')
 
 const CycleHelper = require('../helpers/cycles')
 
 module.exports = (params = {}) => {
-  let cycleCode = faker.helpers.randomize([
+  let cycleCode = faker.helpers.arrayElement([
     CycleHelper.PREVIOUS_CYCLE.code,
     CycleHelper.CURRENT_CYCLE.code
   ])
