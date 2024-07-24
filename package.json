@@ -14,7 +14,7 @@
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@govuk-prototype-kit/common-templates": "^1.2.2",
-    "@x-govuk/govuk-prototype-filters": "^1.4.0",
+    "@x-govuk/govuk-prototype-filters": "^1.4.1",
     "archiver-promise": "^1.0.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
