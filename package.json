@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@govuk-prototype-kit/common-templates": "^1.2.2",
+    "@govuk-prototype-kit/common-templates": "^2.0.1",
     "@x-govuk/govuk-prototype-filters": "^1.4.1",
     "archiver-promise": "^1.0.0",
     "cookie-parser": "^1.4.6",
