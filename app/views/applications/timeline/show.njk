@@ -101,7 +101,7 @@
                   {{ event.user }},
                 {% endif %}
                 <time datetime="{{ event.date }}">
-                  {{- event.date | govukDateAtTime -}}
+                  {{- event.date | govukDateTime -}}
                 </time>
               </p>
             </div>
