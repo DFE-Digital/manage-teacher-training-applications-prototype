@@ -82,13 +82,6 @@ function falsify (input) {
 }
 addFilter('falsify', falsify)
 
-// TODO: refactor to using a plugin
-function govukDateAtTime (input) {
-  return input
-}
-addFilter('govukDateAtTime', govukDateAtTime)
-
-
 function arrayToList (array, join = ', ', final = ' and ') {
   const arr = array.slice(0)
 
