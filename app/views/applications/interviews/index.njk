@@ -95,15 +95,15 @@
             attributes: {
               id: "interview-" + interview.id
             },
-            titleText: interview.date | govukDateAtTime,
+            titleText: interview.date | govukDateTime,
             classes: "govuk-!-margin-bottom-6",
             actions: {
               items: [{
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
-                html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
+                html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateTime + '</span>'
               } if application.status == "Received" or application.status == "Interviewing", {
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
-                html: 'Cancel interview <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
+                html: 'Cancel interview <span class="govuk-visually-hidden">' + interview.date | govukDateTime + '</span>'
               } if application.status == "Received" or application.status == "Interviewing"]
             } if canManageInterviews,
             html: interviewSummaryListHtml
@@ -184,10 +184,10 @@
           actions: {
             items: [{
               href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
-              html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateAtTime + '</span>'
+              html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateTime + '</span>'
             } if application.status == "Received" or application.status == "Interviewing", {
               href: '/applications/' + application.id + '/interviews/'+ interview.id + '/delete',
-              html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateAtTime+'</span>'
+              html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateTime+'</span>'
             } if application.status == "Received" or application.status == "Interviewing"]
           } if canManageInterviews,
           html: interviewSummaryListHtml

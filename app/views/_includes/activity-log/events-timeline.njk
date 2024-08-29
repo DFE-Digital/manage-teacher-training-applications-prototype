@@ -15,14 +15,14 @@
             {{ event.event.title }}
           {% endif %}
           ({{ name }})
-          <span class="govuk-visually-hidden">{{- event.event.date | govukDateAtTime -}}</span>
+          <span class="govuk-visually-hidden">{{- event.event.date | govukDateTime -}}</span>
         </h2>
         <p class="app-activity-log__byline govuk-body-">
           {% if not isAutomaticRejection and not isAutomaticDecline %}
             {{ event.event.user }},
           {% endif %}
           <time datetime="{{ event.event.date }}">
-            {{- event.event.date | govukDateAtTime -}}
+            {{- event.event.date | govukDateTime -}}
           </time>
         </p>
       </div>
@@ -44,7 +44,7 @@
                 View note
                 <span class="govuk-visually-hidden">
                   Candidate {{ event.application.personalDetails.name }}
-                  Event date {{ event.event.date | govukDateAtTime }}
+                  Event date {{ event.event.date | govukDateTime }}
                 </span>
               </a>
             </p>
@@ -80,7 +80,7 @@
           </div>
 
           {% if event.event.meta.interviewExists %}
-            <p class="app-log-card__note--link"><a href="/applications/{{ event.application.id }}/interviews/#interview{{ event.meta.interview.id }}">View interview <span class="govuk-visually-hidden">{{ event.meta.interview.date | govukDateAtTime }}</span></a></p>
+            <p class="app-log-card__note--link"><a href="/applications/{{ event.application.id }}/interviews/#interview{{ event.meta.interview.id }}">View interview <span class="govuk-visually-hidden">{{ event.meta.interview.date | govukDateTime }}</span></a></p>
           {% endif %}
 
         {% endif %}
@@ -95,7 +95,7 @@
               View offer
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
-                Event date {{ event.event.date | govukDateAtTime }}
+                Event date {{ event.event.date | govukDateTime }}
               </span>
             </a></p>
         {% endif %}
@@ -111,7 +111,7 @@
               View feedback
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
-                Event date {{ event.event.date | govukDateAtTime }}
+                Event date {{ event.event.date | govukDateTime }}
               </span>
             </a></p>
           {% else %}
@@ -119,7 +119,7 @@
               View offer
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
-                Event date {{ event.event.date | govukDateAtTime }}
+                Event date {{ event.event.date | govukDateTime }}
               </span>
             </a></p>
           {% endif %}
@@ -136,7 +136,7 @@
               View feedback
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
-                Event date {{ event.event.date | govukDateAtTime }}
+                Event date {{ event.event.date | govukDateTime }}
               </span>
             </a></p>
           {% else %}
@@ -144,7 +144,7 @@
               View application
               <span class="govuk-visually-hidden">
                 Candidate {{ event.application.personalDetails.name }}
-                Event date {{ event.event.date | govukDateAtTime }}
+                Event date {{ event.event.date | govukDateTime }}
               </span>
             </a></p>
           {% endif %}

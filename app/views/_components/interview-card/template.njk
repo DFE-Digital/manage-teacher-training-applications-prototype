@@ -6,7 +6,7 @@
     <p class="govuk-!-margin-bottom-1">
       <a href="{{params.link}}" class="govuk-link--no-visited-state">
       <time datetime="{{ params.date }}">
-        {{ params.date | time }}
+        {{ params.date | govukTime }}
       </time>
       <span class="govuk-visually-hidden"> on {{ params.date | govukDate }} with {{params.name}}</span>
       </a>
