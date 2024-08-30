@@ -9,65 +9,143 @@
 
   <div class="govuk-inset-text">
 
-    {% if rejectionReasons.degreeCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have an undergraduate degree or a qualification that meets the same standard.</p>
+    {% if rejectionReasons.categories | includes("qualifications") %}
+    <h1 class="govuk-heading-m">Qualifications</h1>
     {% endif %}
 
-    {% if rejectionReasons.englishCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have an English GCSE at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("maths") %}
+      <p class="govuk-body">No maths GCSE at minimum grade 4 or C, or equivalent</p>
     {% endif %}
 
-    {% if rejectionReasons.mathsCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have a maths GCSE at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("english") %}
+      <p class="govuk-body">No English GCSE at minimum grade 4 or C, or equivalent</p>
     {% endif %}
 
-    {% if rejectionReasons.scienceCriteria == 'not-met' %}
-      <p class="govuk-body">You do not have a GCSE in a science subject at grade 4(C) or above, or an equivalent qualification. We also cannot offer an equivalency test.</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("science") %}
+      <p class="govuk-body">No science GCSE at minimum grade 4 or C, or equivalent</p>
     {% endif %}
 
-    {% if rejectionReasons.categories | includes("degree-subject") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Knowledge of the subject you want to teach:</p>
-      <p class="govuk-body">{{ rejectionReasons.degreeSubjectDetails }}</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("degree") %}
+      <p class="govuk-body">No bachelor’s degree or equivalent</p>
     {% endif %}
 
-    {% if rejectionReasons.categories | includes("degree-class") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Degree class:</p>
-      <p class="govuk-body">{{ rejectionReasons.degreeClassDetails }}</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("degreeRequirements") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Degree does not meet course requirements:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.qualifications.degreeRequirements }}</p>
     {% endif %}
 
-    {% if rejectionReasons.categories | includes("personal-statement") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Personal statement:</p>
-      <p class="govuk-body">{{ rejectionReasons.personalStatementDetails }}</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("verification") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Could not verify qualifications:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.qualifications.verification }}</p>
     {% endif %}
 
-    {% if rejectionReasons.categories | includes("communication") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Could not contact you:</p>
-      <p class="govuk-body">{{ rejectionReasons.communicationDetails }}</p>
+    {% if rejectionReasons.subCategories.qualifications | includes("other") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Other:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.qualifications.other }}</p>
     {% endif %}
+
+
+    {% if rejectionReasons.categories | includes("personalStatement") %}
+    <h1 class="govuk-heading-m">Personal statement</h1>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.personalStatement | includes("writing") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Quality of writing:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.personalStatement.writing }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.personalStatement | includes("other") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Other:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.personalStatement.other }}</p>
+    {% endif %}
+
+
 
     {% if rejectionReasons.categories | includes("interview") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Could not arrange interview:</p>
-      <p class="govuk-body">{{ rejectionReasons.couldNotArrangeInterviewDetails }}</p>
+    <h1 class="govuk-heading-m">Teaching knowledge, ability and interview performance</h1>
     {% endif %}
 
-    {% if rejectionReasons.categories | includes("interview-performance") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Feedback on your interview:</p>
-      <p class="govuk-body">{{ rejectionReasons.interviewPerformanceDetails }}</p>
+    {% if rejectionReasons.subCategories.interview | includes("subject") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Subject knowledge:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.interview.subject }}</p>
     {% endif %}
+
+    {% if rejectionReasons.subCategories.interview | includes("safeguarding") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Safeguarding knowledge:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.interview.safeguarding }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.interview | includes("method") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Teaching method knowledge:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.interview.method }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.interview | includes("role") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Teaching role knowledge:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.interview.role }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.interview | includes("demo") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Teaching demonstration:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.interview.demo }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.interview | includes("other") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Other:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.interview.other }}</p>
+    {% endif %}
+
+
+
+    {% if rejectionReasons.categories | includes("communication") %}
+    <h1 class="govuk-heading-m">Communication, interview attendance and scheduling</h1>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.communication | includes("reply") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Did not reply to messages:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.communication.reply }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.communication | includes("attend") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Did not attend interview:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.communication.attend }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.communication | includes("arrange") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Could not arrange interview:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.communication.arrange }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.subCategories.communication | includes("other") %}
+      <p class="govuk-body govuk-!-margin-bottom-1">Other:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.communication.other }}</p>
+    {% endif %}
+
+
 
     {% if rejectionReasons.categories | includes("safeguarding") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">Safeguarding concerns:</p>
-      <p class="govuk-body">{{ rejectionReasons.safeguardingDetails }}</p>
+      <h1 class="govuk-heading-m">Safeguarding</h1>
+      <p class="govuk-body govuk-!-margin-bottom-1">Safeguarding:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.safeguarding }}</p>
     {% endif %}
 
-    {% if rejectionReasons.categories | includes("visa-sponsorship") %}
+
+    {% if rejectionReasons.categories | includes("visaSponsorship") %}
+      <h1 class="govuk-heading-m">Visa sponsorship</h1>
       <p class="govuk-body govuk-!-margin-bottom-1">Visa sponsorship:</p>
-      <p class="govuk-body">{{ rejectionReasons.visaSponsorshipDetails }}</p>
+      <p class="govuk-body">{{ rejectionReasons.details.visaSponsorship }}</p>
     {% endif %}
 
-        {% if rejectionReasons.categories | includes("course-full") %}
-      <p class="govuk-body govuk-!-margin-bottom-1">The course is full:</p>
-      <p class="govuk-body">{{ rejectionReasons.courseFullDetails }}</p>
+    {% if rejectionReasons.categories | includes("courseFull") %}
+      <h1 class="govuk-heading-m">Course full</h1>
+      <p class="govuk-body govuk-!-margin-bottom-1">Course full:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.courseFull }}</p>
+    {% endif %}
+
+    {% if rejectionReasons.categories | includes("other") %}
+      <h1 class="govuk-heading-m">Other</h1>
+      <p class="govuk-body govuk-!-margin-bottom-1">Other:</p>
+      <p class="govuk-body">{{ rejectionReasons.details.other }}</p>
     {% endif %}
 
 
