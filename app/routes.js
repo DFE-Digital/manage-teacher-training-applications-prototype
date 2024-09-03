@@ -39,13 +39,14 @@ require('./routes/withdraw-offer')(router)
 require('./routes/examples')(router)
 
 // viewing session data
-router.get('*/manage-prototype/view-data', function(req, res){
-
-    querystring = '';
-    for ( var key in req.session.data )
-    {
-        querystring += key +'=' + req.session.data[key] + '&';
-    }
-
-    res.render('manage-prototype/view-data', { data: JSON.stringify( req.session, null, 2), querystring: querystring } );
+router.get('*/manage-prototype/view-data', (req, res) => {
+  let querystring = ''
+  for (let key in req.session.data) {
+    querystring += key + '=' + req.session.data[key] + '&'
+  }
+  
+  res.render('manage-prototype/view-data', { 
+    data: JSON.stringify(req.session, null, 2), 
+    querystring
   })
+})
