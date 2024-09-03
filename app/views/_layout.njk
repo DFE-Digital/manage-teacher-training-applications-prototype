@@ -90,6 +90,28 @@
 
 {% endblock %}
 
+
+{% block footer %}
+  {{ appFooter({
+    meta: {
+        items: [
+          {
+            text: 'Manage your prototype',
+            href: '/manage-prototype'
+          },
+          {
+            text: 'View data',
+            href: '/manage-prototype/view-data'
+          },
+          {
+            text: 'Clear data',
+            href: '/manage-prototype/clear-data'
+          }
+        ]
+      }
+  }) }}
+{% endblock %}
+
 {% block bodyStart %}
   <div data-module="edge">
 {% endblock %}
