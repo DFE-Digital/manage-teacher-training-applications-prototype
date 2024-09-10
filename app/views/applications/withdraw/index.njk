@@ -1,0 +1,31 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set title = "Confirm that the candidate wants to withdraw their application" %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{name}}</span>
+      <h1 class="govuk-heading-l">Confirm that the candidate wants to withdraw their application</h1>
+      <p class="govuk-body">The candidate will be told that their application has been withdrawn</p>
+
+      <form method="post" action="/applications/{{application.id}}/withdraw">
+        <input type="hidden" name="withdraw-application[reason]" value="Candidate asked to withdraw the application" />
+        {{ govukButton({
+          text: "Withdraw application"
+        }) }}
+      </form>
+
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

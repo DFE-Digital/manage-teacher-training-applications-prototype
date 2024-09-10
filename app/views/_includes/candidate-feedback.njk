@@ -24,18 +24,32 @@
         <p class="govuk-body">No science GCSE at minimum grade 4 or C, or equivalent</p>
       {% endif %}
 
+      {% if rejectionReasons.subCategories.qualifications | includes("alevels") %}
+        <p class="govuk-body">A levels do not meet course requirements</p>
+      {% endif %}
+
       {% if rejectionReasons.subCategories.qualifications | includes("degree") %}
         <p class="govuk-body">No bachelor’s degree or equivalent</p>
       {% endif %}
 
-      {% if rejectionReasons.subCategories.qualifications | includes("degreeRequirements") %}
-        <p class="govuk-body govuk-!-margin-bottom-1">Degree does not meet course requirements:</p>
-        <p class="govuk-body">{{ rejectionReasons.details.qualifications.degreeRequirements }}</p>
+      {% if rejectionReasons.subCategories.qualifications | includes("degreeGrade") %}
+        <p class="govuk-body govuk-!-margin-bottom-1">Degree grade does not meet course requirements:</p>
+        <p class="govuk-body">{{ rejectionReasons.details.qualifications.degreeGrade }}</p>
+      {% endif %}
+
+      {% if rejectionReasons.subCategories.qualifications | includes("degreeSubject") %}
+        <p class="govuk-body govuk-!-margin-bottom-1">Degree subject does not meet course requirements:</p>
+        <p class="govuk-body">{{ rejectionReasons.details.qualifications.degreeSubject }}</p>
       {% endif %}
 
       {% if rejectionReasons.subCategories.qualifications | includes("verification") %}
         <p class="govuk-body govuk-!-margin-bottom-1">Could not verify qualifications:</p>
         <p class="govuk-body">{{ rejectionReasons.details.qualifications.verification }}</p>
+      {% endif %}
+
+      {% if rejectionReasons.subCategories.qualifications | includes("equivalency") %}
+        <p class="govuk-body govuk-!-margin-bottom-1">Could not verify equivalency of qualifications:</p>
+        <p class="govuk-body">{{ rejectionReasons.details.qualifications.equivalency }}</p>
       {% endif %}
 
       {% if rejectionReasons.subCategories.qualifications | includes("other") %}
@@ -114,6 +128,11 @@
       {% if rejectionReasons.subCategories.communication | includes("arrange") %}
         <p class="govuk-body govuk-!-margin-bottom-1">Could not arrange interview:</p>
         <p class="govuk-body">{{ rejectionReasons.details.communication.arrange }}</p>
+      {% endif %}
+
+      {% if rejectionReasons.subCategories.communication | includes("english") %}
+        <p class="govuk-body govuk-!-margin-bottom-1">English language ability below expected standard:</p>
+        <p class="govuk-body">{{ rejectionReasons.details.communication.english }}</p>
       {% endif %}
 
       {% if rejectionReasons.subCategories.communication | includes("other") %}
