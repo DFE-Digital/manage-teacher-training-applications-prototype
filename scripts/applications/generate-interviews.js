@@ -1,4 +1,4 @@
-const { fakerUK: faker } = require('@faker-js/faker');
+const { fakerEN_GB: faker } = require('@faker-js/faker');
 
 const { EVENTS } = require('./constants');
 const users = require('../../app/data/users.json');
