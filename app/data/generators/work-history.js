@@ -1,4 +1,4 @@
-const { fakerUK: faker } = require('@faker-js/faker')
+const { fakerEN_GB: faker } = require('@faker-js/faker')
 const DateHelper = require('../helpers/dates');
 
 module.exports = (submittedDate) => {

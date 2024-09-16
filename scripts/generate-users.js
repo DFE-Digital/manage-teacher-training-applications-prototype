@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { fakerUK: faker } = require('@faker-js/faker')
+const { fakerEN_GB: faker } = require('@faker-js/faker')
 const generatorHelpers = require('../app/data/helpers/generators')
 const OrgHelper = require('../app/data/helpers/organisation')
 const generateUser = require('../app/data/generators/user')

@@ -1,5 +1,5 @@
 module.exports = (personalDetails) => {
-  let faker = require('@faker-js/faker').fakerUK
+  let faker = require('@faker-js/faker').fakerEN_GB
   if (personalDetails.isInternationalCandidate) {
     faker = require('@faker-js/faker').fakerFR
   }
