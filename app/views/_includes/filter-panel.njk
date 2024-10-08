@@ -14,19 +14,6 @@
     items: cycleItems
   }) }}
 
-  {{ govukCheckboxes({
-    idPrefix: 'status',
-    name: 'status',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Status',
-        classes: 'govuk-fieldset__legend--s'
-      }
-    },
-    items: statusCheckboxItems
-  }) }}
-
   {% if trainingProviderItems.length > 1 %}
 
     {{ govukCheckboxes({
@@ -158,6 +145,22 @@
       }
     ]
   }) }}
+
+  <div class="app-checkbox-filter__container">
+  {{ govukCheckboxes({
+    idPrefix: 'status',
+    name: 'status',
+    classes: "govuk-checkboxes--small app-checkbox-filter__container-inner",
+    fieldset: {
+      legend: {
+        text: 'Status',
+        classes: 'govuk-fieldset__legend--s'
+      }
+    },
+    items: statusCheckboxItems
+  }) }}
+  </div>
+
 {% endset %}
 
 <div class="app-filter">
