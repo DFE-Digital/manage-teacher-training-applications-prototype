@@ -222,7 +222,7 @@ const generateFakeApplications = () => {
   const organisations = user.organisations
   const applications = []
   const now = SystemHelper.now()
-  const randomNumber = faker.number.int({ 'min': 1, 'max': 20 })
+  const randomNumber = faker.number.int({ 'min': 1, 'max': 40 })
   const past = now.minus({ days: randomNumber }).set({
     hour: faker.helpers.arrayElement([9, 10, 11]),
     minute: faker.helpers.arrayElement([0, 15, 30, 45])
@@ -553,6 +553,206 @@ const generateFakeApplications = () => {
   applications.push(generateFakeApplication({
     id: '78562646',
     status: 'Offered',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'New',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'New',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'In review',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'In review',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'In review',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Shortlisted',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Shortlisted',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Shortlisted',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Interviewing',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Interviewing',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Interviewing',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Offered',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Offered',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Conditions pending',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Conditions pending',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Recruited',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Recruited',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Recruited',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Recruited',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Recruited',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Recruited',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Deferred',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Deferred',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Conditions not met',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Conditions not met',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Offer withdrawn',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Offer withdrawn',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Application withdrawn',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Application withdrawn',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Application withdrawn',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Declined',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Declined',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Declined',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Rejected',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Closed',
+    assignedUsers: []
+  }))
+
+  applications.push(generateFakeApplication({
+    status: 'Closed',
     assignedUsers: []
   }))
 

@@ -31,6 +31,7 @@ You can regenerate the data:
 
 - In Terminal, change the path to the repository
 - Type `npm run generate-data`
+- Clear the data in your prototype
 
 ## Tools
 
