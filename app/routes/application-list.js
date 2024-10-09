@@ -8,6 +8,7 @@ const { default: request } = require('sync-request')
 
 const getApplicationsByGroup = (applications) => {
 
+  /*
   const actionReceivedNew = applications
     .filter(app => app.status === "New")
     .sort(function(a, b) {
@@ -25,6 +26,7 @@ const getApplicationsByGroup = (applications) => {
   .sort(function(a, b) {
     return a.daysToRespond - b.daysToRespond
   })
+*/
 
   const previousCyclePendingConditions = applications
     .filter(app => app.status === "Conditions pending")
@@ -473,12 +475,13 @@ module.exports = router => {
 
     if ( statusTab == 'action' ) {
       statuses = [ 'New', 'In review' ]
+    } else if ( statusTab == 'Unsuccessful' ) {
+      statuses = [ 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn' ]
     } else if ( statusTab == 'all' ) {
       statuses = null
     } else {
       statuses = [ statusTab ]
     }
-
 
     var filters = [
       'cycle',
@@ -505,7 +508,12 @@ module.exports = router => {
       })
     }
 
-    let apps = req.session.data.applications.map(app => app).reverse()
+    let apps = req.session.data.applications.map(app => app).sort(function(a, b) {
+      return new Date( a.submittedDate ) - new Date( b.submittedDate )
+    })
+
+
+
 
     let appsNewCount
     let appsReviewCount
@@ -725,7 +733,7 @@ module.exports = router => {
         appsRecruitedCount = appsRecruited.length
 
         let appsUnsuccessful = apps.filter((app) => {
-          return app.status == 'Unsuccessful'
+          return [ 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn' ].includes(app.status)
         })
         appsUnsuccessfulCount = appsUnsuccessful.length
 
