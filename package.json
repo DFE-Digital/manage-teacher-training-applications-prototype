@@ -16,7 +16,7 @@
     "@govuk-prototype-kit/common-templates": "^1.2.2",
     "@x-govuk/govuk-prototype-filters": "^1.4.3",
     "archiver-promise": "^1.0.0",
-    "cookie-parser": "^1.4.6",
+    "cookie-parser": "^1.4.7",
     "cross-spawn": "^7.0.3",
     "csv-writer": "^1.6.0",
     "del": "^7.1.0",
