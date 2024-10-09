@@ -746,16 +746,6 @@ const generateFakeApplications = () => {
     assignedUsers: []
   }))
 
-  applications.push(generateFakeApplication({
-    status: 'Closed',
-    assignedUsers: []
-  }))
-
-  applications.push(generateFakeApplication({
-    status: 'Closed',
-    assignedUsers: []
-  }))
-
   return applications
 }
 

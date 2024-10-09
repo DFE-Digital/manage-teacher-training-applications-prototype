@@ -513,6 +513,9 @@ module.exports = router => {
     let appsInterviewingCount
     let appsOfferedCount
     let appsConditionsCount
+    let appsRecruitedCount
+    let appsUnsuccessfulCount
+    let appsDeferredCount
 
     // for use in the filters
     const users = req.session.data.users.filter(user => {
@@ -711,6 +714,25 @@ module.exports = router => {
           return app.status == 'Conditions pending'
         })
         appsConditionsCount = appsConditions.length
+
+      }
+
+
+      if ( statusTab == 'Recruited' || statusTab == 'Unsuccessful' || statusTab == 'Deferred' ) {
+        let appsRecruited = apps.filter((app) => {
+          return app.status == 'Recruited'
+        })
+        appsRecruitedCount = appsRecruited.length
+
+        let appsUnsuccessful = apps.filter((app) => {
+          return app.status == 'Unsuccessful'
+        })
+        appsUnsuccessfulCount = appsUnsuccessful.length
+
+        let appsDeferred = apps.filter((app) => {
+          return app.status == 'Deferred'
+        })
+        appsDeferredCount = appsDeferred.length
 
       }
 
@@ -914,7 +936,11 @@ module.exports = router => {
       appsShortlistedCount,
       appsInterviewingCount,
       appsOfferedCount,
-      appsConditionsCount
+      appsConditionsCount,
+      appsShortlistedCount,
+      appsRecruitedCount,
+      appsUnsuccessfulCount,
+      appsDeferredCount
     })
   })
 

@@ -10,19 +10,19 @@ function statusClass (status) {
       case 'Shortlisted':
         return 'govuk-tag--green'
       case 'Deferred':
-        return 'app-tag--orange'
+        return 'govuk-tag--orange'
       case 'Offer withdrawn':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
       case 'Application withdrawn':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
       case 'Declined':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
       case 'Rejected':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
       case 'Conditions not met':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
       case 'Conditions pending':
-        return 'app-tag--orange'
+        return 'govuk-tag--orange'
       case 'Recruited':
         return 'govuk-tag--green'
       case 'Offered':
@@ -32,7 +32,7 @@ function statusClass (status) {
       case 'Interviewing':
         return 'govuk-tag--yellow'
       case 'Closed':
-        return 'app-tag--red'
+        return 'govuk-tag--red'
     }
   }
 
