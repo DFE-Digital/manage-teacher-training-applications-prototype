@@ -507,6 +507,13 @@ module.exports = router => {
 
     let apps = req.session.data.applications.map(app => app).reverse()
 
+    let appsNewCount
+    let appsReviewCount
+    let appsShortlistedCount
+    let appsInterviewingCount
+    let appsOfferedCount
+    let appsConditionsCount
+
     // for use in the filters
     const users = req.session.data.users.filter(user => {
       return user.organisation.id == req.session.data.user.organisation.id
@@ -561,7 +568,6 @@ module.exports = router => {
     if (hasFilters) {
       apps = apps.filter((app) => {
         let cycleValid = true
-        let statusValid = true
         let providerValid = true
         let locationValid = true
         let accreditedBodyValid = true
@@ -576,11 +582,6 @@ module.exports = router => {
           cycleValid = cycles.includes(app.cycle)
         }
 
-        if (statuses && statuses.length) {
-          statusValid = statuses.includes(app.status)
-//          console.log(app.status)
-//          console.log(statuses.includes(app.status))
-        }
 
         if (locations && locations.length) {
           locationValid = locations.includes(app.location.name)
@@ -666,7 +667,6 @@ module.exports = router => {
         }
 
         return cycleValid
-          && statusValid
           && locationValid
           && providerValid
           && accreditedBodyValid
@@ -677,6 +677,52 @@ module.exports = router => {
           && importantItemValid
           && noteItemValid
       })
+
+      if ( statusTab == 'New' || statusTab == 'In review' || statusTab == 'Shortlisted' ) {
+        let appsNew = apps.filter((app) => {
+          return app.status == 'New'
+        })
+        appsNewCount = appsNew.length
+
+        let appsReview = apps.filter((app) => {
+          return app.status == 'In review'
+        })
+        appsReviewCount = appsReview.length
+
+        let appsShortlisted = apps.filter((app) => {
+          return app.status == 'Shortlisted'
+        })
+        appsShortlistedCount = appsShortlisted.length
+
+      }
+
+      if ( statusTab == 'Interviewing' || statusTab == 'Offered' || statusTab == 'Conditions pending' ) {
+        let appsInterviewing = apps.filter((app) => {
+          return app.status == 'Interviewing'
+        })
+        appsInterviewingCount = appsInterviewing.length
+
+        let appsOffered = apps.filter((app) => {
+          return app.status == 'Offered'
+        })
+        appsOfferedCount = appsOffered.length
+
+        let appsConditions = apps.filter((app) => {
+          return app.status == 'Conditions pending'
+        })
+        appsConditionsCount = appsConditions.length
+
+      }
+
+
+      apps = apps.filter((app) => {
+        let statusValid = true
+        if (statuses && statuses.length) {
+          statusValid = statuses.includes(app.status)
+        }
+        return statusValid
+      })
+
     }
 
     let selectedFilters = null
@@ -862,7 +908,13 @@ module.exports = router => {
       cycleItems,
       statusCheckboxItems,
       importantCheckboxItems,
-      noteCheckboxItems
+      noteCheckboxItems,
+      appsNewCount,
+      appsReviewCount,
+      appsShortlistedCount,
+      appsInterviewingCount,
+      appsOfferedCount,
+      appsConditionsCount
     })
   })
 
