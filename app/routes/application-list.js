@@ -8,6 +8,24 @@ const { default: request } = require('sync-request')
 
 const getApplicationsByGroup = (applications) => {
 
+  const actionReceivedNew = applications
+    .filter(app => app.status === "New")
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
+
+  const actionReceivedInReview = applications
+    .filter(app => app.status === "In review")
+    .sort(function(a, b) {
+      return a.daysToRespond - b.daysToRespond
+    })
+
+  const actionReceivedShortlisted = applications
+  .filter(app => app.status === "Shortlisted")
+  .sort(function(a, b) {
+    return a.daysToRespond - b.daysToRespond
+  })
+
   const previousCyclePendingConditions = applications
     .filter(app => app.status === "Conditions pending")
     .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
@@ -191,7 +209,7 @@ const getSubjectItems = (selectedItems) => {
 const getStatusCheckboxItems = (selectedItems) => {
   const items = []
 
-  const statuses = ['Received', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
+  const statuses = ['Received', 'New', 'In review', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
 
   statuses.forEach((status, i) => {
     const item = {}
@@ -447,6 +465,20 @@ module.exports = router => {
   router.all('/applications', (req, res) => {
 
     var sort = req.session.data.sort = req.query.sort || req.session.data.sort
+    var statusTab = req.session.data.statusTab
+    var statuses
+
+// console.log('statusTab');
+// console.log(statusTab);
+
+    if ( statusTab == 'action' ) {
+      statuses = [ 'New', 'In review' ]
+    } else if ( statusTab == 'all' ) {
+      statuses = null
+    } else {
+      statuses = [ statusTab ]
+    }
+
 
     var filters = [
       'cycle',
@@ -485,7 +517,14 @@ module.exports = router => {
     keywords = keywords || req.session.data.keywords
 
     const cycles = getCheckboxValues(cycle, req.session.data.cycle)
-    const statuses = getCheckboxValues(status, req.session.data.status)
+
+    if (!statusTab) {
+      statuses = getCheckboxValues(status, req.session.data.status)
+    }
+//    console.log('statuses')
+//    console.log(statuses)
+
+
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locations = getCheckboxValues(location, req.session.data.location)
     const accreditedBodies = getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
@@ -539,6 +578,8 @@ module.exports = router => {
 
         if (statuses && statuses.length) {
           statusValid = statuses.includes(app.status)
+//          console.log(app.status)
+//          console.log(statuses.includes(app.status))
         }
 
         if (locations && locations.length) {
@@ -594,7 +635,7 @@ module.exports = router => {
           importantItemValid = false
 
           if(importantItems.includes('5 days or fewer to make decision')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond < 5) {
+            if((app.status == 'Received' || app.status == 'New' || app.status == 'In review' || app.status == 'Shortlisted' || app.status == 'Interviewing') && app.daysToRespond < 5) {
               importantItemValid = true
             }
           }

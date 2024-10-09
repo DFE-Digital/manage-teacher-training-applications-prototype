@@ -235,7 +235,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: '46436',
-    status: 'Received',
+    status: 'In review',
     course: 'Modern languages (French) (MD9Q)',
     subject: [
       {
@@ -338,7 +338,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: '9475924',
-    status: 'Received',
+    status: 'New',
     course: 'History (H152)',
     subject: [
       {
@@ -434,7 +434,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: '18571512',
-    status: 'Received',
+    status: 'Shortlisted',
     course: 'Primary (2S8T)',
     subject: [
       {

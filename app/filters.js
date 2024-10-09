@@ -3,24 +3,30 @@ const addFilter = govukPrototypeKit.views.addFilter
 
 function statusClass (status) {
     switch (status) {
-      case 'Deferred':
+      case 'New':
+        return 'govuk-tag--blue'
+      case 'In review':
         return 'govuk-tag--yellow'
+      case 'Shortlisted':
+        return 'govuk-tag--green'
+      case 'Deferred':
+        return 'app-tag--orange'
       case 'Offer withdrawn':
-        return 'govuk-tag--orange'
+        return 'app-tag--red'
       case 'Application withdrawn':
         return 'app-tag--red'
       case 'Declined':
         return 'app-tag--red'
       case 'Rejected':
-        return 'app-tag--orange'
+        return 'app-tag--red'
       case 'Conditions not met':
         return 'app-tag--red'
       case 'Conditions pending':
-        return 'govuk-tag--blue'
+        return 'app-tag--orange'
       case 'Recruited':
         return 'govuk-tag--green'
       case 'Offered':
-        return 'govuk-tag--turquoise'
+        return 'govuk-tag--green'
       case 'Received':
         return 'govuk-tag--purple'
       case 'Interviewing':
