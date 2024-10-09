@@ -500,3 +500,7 @@ $app-colour-failed: govuk-colour("red");
 .app-application-header h1, .app-application-header a {
   margin-bottom: 0;
 }
+
+.app-status-indicator--red {
+  color: $govuk-error-colour;
+}
