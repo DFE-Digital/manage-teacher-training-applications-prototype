@@ -411,6 +411,22 @@ $statuses: (
   margin-bottom: 30px;
 }
 
+.app-status-header {
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.app-status-header a {
+  background-color: govuk-colour("light-grey");
+  border-bottom-color: $govuk-secondary-text-colour;
+  color: $govuk-secondary-text-colour;
+  width: 100%;
+}
+
+.app-status-header a:hover {
+  background-color: govuk-tint( govuk-colour("mid-grey"), 65%);
+}
 
 .app-status-blocks {
   width: 100%;
@@ -419,33 +435,33 @@ $statuses: (
   gap: 10px;
 }
 
-.app-status-blocks a {
+.app-status-blocks a, .app-status-header a {
   display: block;
   padding: 10px;
   padding-bottom: 16px;
 }
 
-.app-status-blocks a.selected, .app-status-blocks a:hover {
+.app-status-blocks a.selected, .app-status-blocks a:hover, .app-status-header a.selected, .app-status-header a:hover {
   border-bottom-style: solid;
   border-bottom-width: 6px;
   padding-bottom: 10px;
 }
 
-.app-status-blocks a.selected {
+.app-status-blocks a.selected, .app-status-header a.selected {
   font-weight: bold;
 }
 
-.app-status-blocks a:focus {
+.app-status-blocks a:focus, .app-status-header a:focus {
   box-shadow: none;
   border-bottom-style: solid;
   border-bottom-width: 6px;
   padding-bottom: 10px;
 }
-.app-status-blocks a {
+.app-status-blocks a, .app-status-header a {
   text-decoration: none;
 }
 
-.app-status-blocks a:hover {
+.app-status-blocks a:hover, .app-status-header a:hover {
   text-decoration: underline;
 }
 
@@ -460,6 +476,9 @@ $app-colour-failed: govuk-colour("red");
   background-color: govuk-tint($app-colour-new, 70%);
   color: govuk-shade($app-colour-new, 60%);
 }
+.app-status-blocks a.new:hover {
+  background-color: govuk-tint($app-colour-new, 65%);
+}
 
 .app-status-blocks a.progress {
   border-bottom-color: govuk-shade($app-colour-progress, 65%);
@@ -467,10 +486,17 @@ $app-colour-failed: govuk-colour("red");
   color: govuk-shade($app-colour-progress, 65%);
 }
 
+.app-status-blocks a.progress:hover {
+  background-color: govuk-tint($app-colour-progress, 65%);
+}
+
 .app-status-blocks a.success {
   border-bottom-color: govuk-shade($app-colour-success, 20%);
   background-color: govuk-tint($app-colour-success, 80%);
   color: govuk-shade($app-colour-success, 20%);
+}
+.app-status-blocks a.success:hover {
+  background-color: govuk-tint($app-colour-success, 65%);
 }
 
 .app-status-blocks a.waiting {
@@ -478,15 +504,22 @@ $app-colour-failed: govuk-colour("red");
   background-color: govuk-tint($app-colour-waiting, 80%);
   color: govuk-shade($app-colour-waiting, 20%);
 }
+.app-status-blocks a.waiting:hover {
+  background-color: govuk-tint($app-colour-waiting, 65%);
+}
 
 .app-status-blocks a.failed {
   border-bottom-color: govuk-shade($app-colour-failed, 20%);
   background-color: govuk-tint($app-colour-failed, 80%);
   color: govuk-shade($app-colour-failed, 20%);
 }
+.app-status-blocks a.failed:hover {
+  background-color: govuk-tint($app-colour-failed, 65%);
+}
 
-.app-status-blocks a strong {
+.app-status-blocks a strong, .app-status-header a strong {
     display: block;
+    font-size: x-large;
 }
 
 .app-application-header {

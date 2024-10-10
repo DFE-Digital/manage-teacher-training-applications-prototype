@@ -33,18 +33,18 @@
               Action required
             </a>
           </li>
-          <li class="govuk-tabs__list-item{% if data['statusTab'] == 'New' or data['statusTab'] == 'In review' or data['statusTab'] == 'Shortlisted' %} govuk-tabs__list-item--selected{% endif %}">
+          <li class="govuk-tabs__list-item{% if data['statusTab'] == 'New' or data['statusTab'] == 'In review' or data['statusTab'] == 'Shortlisted' or data['statusTab'] == 'Received' %} govuk-tabs__list-item--selected{% endif %}">
             <a class="govuk-tabs__tab" href="applications?statusTab=New">
               Received
             </a>
           </li>
-          <li class="govuk-tabs__list-item{% if data['statusTab'] == 'Interviewing' or data['statusTab'] == 'Offered' or data['statusTab'] == 'Conditions pending' %} govuk-tabs__list-item--selected{% endif %}">
-            <a class="govuk-tabs__tab" href="applications?statusTab=Interviewing">
+          <li class="govuk-tabs__list-item{% if data['statusTab'] == 'In progress' or data['statusTab'] == 'Interviewing' or data['statusTab'] == 'Offered' or data['statusTab'] == 'Conditions pending' %} govuk-tabs__list-item--selected{% endif %}">
+            <a class="govuk-tabs__tab" href="applications?statusTab=In progress">
               In progress
             </a>
           </li>
-          <li class="govuk-tabs__list-item{% if data['statusTab'] == 'Recruited' or data['statusTab'] == 'Unsuccessful' or data['statusTab'] == 'Deferred' %} govuk-tabs__list-item--selected{% endif %}">
-            <a class="govuk-tabs__tab" href="applications?statusTab=Recruited">
+          <li class="govuk-tabs__list-item{% if data['statusTab'] == 'Complete' or data['statusTab'] == 'Recruited' or data['statusTab'] == 'Unsuccessful' or data['statusTab'] == 'Deferred' %} govuk-tabs__list-item--selected{% endif %}">
+            <a class="govuk-tabs__tab" href="applications?statusTab=Complete">
               Complete
             </a>
           </li>
@@ -67,15 +67,20 @@
               html: bannerHtml
             }) }}
 
-          {% elseif data['statusTab'] == 'New' or data['statusTab'] == 'In review' or data['statusTab'] == 'Shortlisted' %}
+          {% elseif data['statusTab'] == 'New' or data['statusTab'] == 'In review' or data['statusTab'] == 'Shortlisted' or data['statusTab'] == 'Received' %}
+            <div class="app-status-header"><a href="applications?statusTab=Received" {% if data['statusTab'] == 'Received' %}class="selected"{% endif %}><strong>{{ appsNewCount + appsReviewCount + appsShortlistedCount }}</strong> applications received</a></div>
             <div class="app-status-blocks">
               <p><a href="applications?statusTab=New" class="new{% if data['statusTab'] == 'New' %} selected{% endif %}"><strong>{{appsNewCount}}</strong> new applications to review</a></p>
               <p><a href="applications?statusTab=In review" class="progress{% if data['statusTab'] == 'In review' %} selected{% endif %}"><strong>{{appsReviewCount}}</strong> applications in review</a></p>
               <p><a href="applications?statusTab=Shortlisted" class="success{% if data['statusTab'] == 'Shortlisted' %} selected{% endif %}"><strong>{{appsShortlistedCount}}</strong> shortlisted applications</a></p>
             </div>
 
-              {% if data['statusTab'] == 'New' %}
+              {% if data['statusTab'] == 'Received' %}
+              <h1 class="govuk-heading-s">
+                Applications received ({{ appsNewCount + appsReviewCount + appsShortlistedCount }})
+              </h1>
 
+              {% elseif data['statusTab'] == 'New' %}
               <div class="app-application-header">
                 <h1 class="govuk-heading-s">
                   New applications to review ({{allApplications.length}})
@@ -98,14 +103,20 @@
 
               {% endif %}
 
-          {% elseif data['statusTab'] == 'Interviewing' or data['statusTab'] == 'Offered' or data['statusTab'] == 'Conditions pending' %}
+          {% elseif data['statusTab'] == 'In progress' or data['statusTab'] == 'Interviewing' or data['statusTab'] == 'Offered' or data['statusTab'] == 'Conditions pending' %}
+            <div class="app-status-header"><a href="applications?statusTab=In progress" {% if data['statusTab'] == 'In progress' %}class="selected"{% endif %}><strong>{{ appsInterviewingCount + appsOfferedCount + appsConditionsCount }}</strong> applications in progress</a></div>
             <div class="app-status-blocks">
               <p><a href="applications?statusTab=Interviewing" class="progress{% if data['statusTab'] == 'Interviewing' %} selected{% endif %}"><strong>{{appsInterviewingCount}}</strong> in interview</a></p>
               <p><a href="applications?statusTab=Offered" class="success{% if data['statusTab'] == 'Offered' %} selected{% endif %}"><strong>{{appsOfferedCount}}</strong> offers made</a></p>
               <p><a href="applications?statusTab=Conditions pending" class="waiting{% if data['statusTab'] == 'Conditions pending' %} selected{% endif %}"><strong>{{appsConditionsCount}}</strong> pending conditions</a></p>
             </div>
 
-            {% if data['statusTab'] == 'Interviewing' %}
+            {% if data['statusTab'] == 'In progress' %}
+            <h1 class="govuk-heading-s">
+              Applications in progress ({{ appsInterviewingCount + appsOfferedCount + appsConditionsCount }})
+            </h1>
+
+            {% elseif data['statusTab'] == 'Interviewing' %}
             <h1 class="govuk-heading-s">
               Applications in interview ({{allApplications.length}})
             </h1>
@@ -122,14 +133,20 @@
 
           {% endif %}
 
-          {% elseif data['statusTab'] == 'Recruited' or data['statusTab'] == 'Unsuccessful' or data['statusTab'] == 'Deferred' %}
+          {% elseif data['statusTab'] == 'Complete' or data['statusTab'] == 'Recruited' or data['statusTab'] == 'Unsuccessful' or data['statusTab'] == 'Deferred' %}
+            <div class="app-status-header"><a href="applications?statusTab=Complete" {% if data['statusTab'] == 'Complete' %}class="selected"{% endif %}><strong>{{ appsRecruitedCount + appsUnsuccessfulCount + appsDeferredCount }}</strong> applications completed</a></div>
             <div class="app-status-blocks">
               <p><a href="applications?statusTab=Recruited" class="success{% if data['statusTab'] == 'Recruited' %} selected{% endif %}"><strong>{{appsRecruitedCount}}</strong> recruited</a></p>
               <p><a href="applications?statusTab=Unsuccessful" class="failed{% if data['statusTab'] == 'Unsuccessful' %} selected{% endif %}"><strong>{{appsUnsuccessfulCount}}</strong> unsuccessful</a></p>
               <p><a href="applications?statusTab=Deferred" class="waiting{% if data['statusTab'] == 'Deferred' %} selected{% endif %}"><strong>{{appsDeferredCount}}</strong> deferred</a></p>
             </div>
 
-            {% if data['statusTab'] == 'Recruited' %}
+            {% if data['statusTab'] == 'Complete' %}
+            <h1 class="govuk-heading-s">
+              Applications completed ({{ appsRecruitedCount + appsUnsuccessfulCount + appsDeferredCount }})
+            </h1>
+
+            {% elseif data['statusTab'] == 'Recruited' %}
             <h1 class="govuk-heading-s">
               Candidates recruited ({{allApplications.length}})
             </h1>

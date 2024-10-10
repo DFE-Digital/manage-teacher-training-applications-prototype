@@ -470,11 +470,12 @@ module.exports = router => {
     var statusTab = req.session.data.statusTab
     var statuses
 
-// console.log('statusTab');
-// console.log(statusTab);
-
-    if ( statusTab == 'action' ) {
+    if ( statusTab == 'action' || statusTab == 'Received' ) {
       statuses = [ 'New', 'In review', 'Shortlisted' ]
+    } else if ( statusTab == 'In progress' ) {
+      statuses = [ 'Interviewing', 'Offered', 'Conditions pending' ]
+    } else if ( statusTab == 'Complete' ) {
+      statuses = [ 'Recruited', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn', 'Deferred' ]
     } else if ( statusTab == 'Unsuccessful' ) {
       statuses = [ 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn' ]
     } else if ( statusTab == 'all' ) {
@@ -536,9 +537,6 @@ module.exports = router => {
     if (!statusTab) {
       statuses = getCheckboxValues(status, req.session.data.status)
     }
-//    console.log('statuses')
-//    console.log(statuses)
-
 
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locations = getCheckboxValues(location, req.session.data.location)
@@ -694,7 +692,7 @@ module.exports = router => {
           && ageValid
       })
 
-      if ( statusTab == 'New' || statusTab == 'In review' || statusTab == 'Shortlisted' ) {
+      if ( statusTab == 'New' || statusTab == 'In review' || statusTab == 'Shortlisted' || statusTab == 'Received' ) {
         let appsNew = apps.filter((app) => {
           return app.status == 'New'
         })
@@ -712,7 +710,7 @@ module.exports = router => {
 
       }
 
-      if ( statusTab == 'Interviewing' || statusTab == 'Offered' || statusTab == 'Conditions pending' ) {
+      if ( statusTab == 'In progress' || statusTab == 'Interviewing' || statusTab == 'Offered' || statusTab == 'Conditions pending' ) {
         let appsInterviewing = apps.filter((app) => {
           return app.status == 'Interviewing'
         })
@@ -731,7 +729,7 @@ module.exports = router => {
       }
 
 
-      if ( statusTab == 'Recruited' || statusTab == 'Unsuccessful' || statusTab == 'Deferred' ) {
+      if ( statusTab == 'Complete' || statusTab == 'Recruited' || statusTab == 'Unsuccessful' || statusTab == 'Deferred' ) {
         let appsRecruited = apps.filter((app) => {
           return app.status == 'Recruited'
         })
