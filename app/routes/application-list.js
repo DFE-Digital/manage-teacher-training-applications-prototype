@@ -474,7 +474,7 @@ module.exports = router => {
 // console.log(statusTab);
 
     if ( statusTab == 'action' ) {
-      statuses = [ 'New', 'In review' ]
+      statuses = [ 'New', 'In review', 'Shortlisted' ]
     } else if ( statusTab == 'Unsuccessful' ) {
       statuses = [ 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn' ]
     } else if ( statusTab == 'all' ) {
@@ -511,9 +511,6 @@ module.exports = router => {
     let apps = req.session.data.applications.map(app => app).sort(function(a, b) {
       return new Date( a.submittedDate ) - new Date( b.submittedDate )
     })
-
-
-
 
     let appsNewCount
     let appsReviewCount
@@ -588,11 +585,18 @@ module.exports = router => {
         let unassignedUserValid = true
         let importantItemValid = true
         let noteItemValid = true
+        let ageValid = true
+
+        const appAge =  Math.round( ( new Date().getTime() - new Date( app.submittedDate ).getTime() ) / (24 * 60 * 60 * 1000) );
+
+        if ( statusTab == 'action' ) {
+          const appAge =  Math.round( ( new Date().getTime() - new Date( app.submittedDate ).getTime() ) / (24 * 60 * 60 * 1000) );
+          ageValid = appAge >= 30
+        }
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
         }
-
 
         if (locations && locations.length) {
           locationValid = locations.includes(app.location.name)
@@ -687,6 +691,7 @@ module.exports = router => {
           && unassignedUserValid
           && importantItemValid
           && noteItemValid
+          && ageValid
       })
 
       if ( statusTab == 'New' || statusTab == 'In review' || statusTab == 'Shortlisted' ) {

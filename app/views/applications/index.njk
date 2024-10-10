@@ -21,8 +21,6 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-
-
       {% include "_includes/search-panel.njk" %}
 
       <div class="govuk-tabs">
@@ -61,7 +59,7 @@
           {% if data['statusTab'] == '' or data['statusTab'] == 'action' %}
 
             {% set bannerHtml %}
-              <p class="govuk-notification-banner__heading">You have XX applications requiring action.</p>
+              <p class="govuk-notification-banner__heading">You have {{applications.length}} applications requiring action.</p>
               <p class="govuk-body">You received these applications over 30 working days ago. You need to make a decision as soon as possible or the candidate may choose to withdraw and apply to another provider.</a>
             {% endset %}
 
