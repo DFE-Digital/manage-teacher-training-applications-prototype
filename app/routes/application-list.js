@@ -467,7 +467,7 @@ module.exports = router => {
   router.all('/applications', (req, res) => {
 
     var sort = req.session.data.sort = req.query.sort || req.session.data.sort
-    var statusTab = req.session.data.statusTab
+    var statusTab = req.session.data.statusTab || 'action'
     var statuses
 
     if ( statusTab == 'action' || statusTab == 'Received' ) {
@@ -788,7 +788,7 @@ module.exports = router => {
         })
       }
 
-      if (statuses && statuses.length) {
+      if (statuses && statuses.length && !statusTab) {
         selectedFilters.categories.push({
           heading: { text: 'Statuses' },
           items: statuses.map((status) => {
@@ -951,7 +951,8 @@ module.exports = router => {
       appsShortlistedCount,
       appsRecruitedCount,
       appsUnsuccessfulCount,
-      appsDeferredCount
+      appsDeferredCount,
+      statusTab
     })
   })
 
