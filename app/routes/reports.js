@@ -589,7 +589,11 @@ module.exports = router => {
   })
 
   router.get('/reports/export', (req, res) => {
-    const organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    let organisation
+
+    if ( req.session.data.user.organisations[0] ) {
+      organisation = req.session.data.user.organisations.find(org => org.id === req.params.organisationId)
+    }
     const cycleItems = CycleHelper.getCycleOptions(req.session.data.export_cycle)
     res.render('reports/applications/index', {
       organisation,
