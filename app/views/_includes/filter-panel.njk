@@ -162,7 +162,6 @@
   </div>
 
 {% endset %}
-
 <div class="app-filter">
   <div class="app-filter__header">
     <div class="app-filter__header-title">
@@ -173,7 +172,7 @@
     </div>
   </div>
   <div class="app-filter__content">
-    {% if selectedFilters %}
+    {% if selectedFilters.categories | length %}
       <div class="app-filter__selected">
         <div class="app-filter__selected-heading">
           <div class="app-filter__heading-title">

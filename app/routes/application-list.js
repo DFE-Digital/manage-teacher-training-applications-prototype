@@ -208,7 +208,7 @@ const getSubjectItems = (selectedItems) => {
   return items
 }
 
-const getStatusCheckboxItems = (selectedItems) => {
+const getStatusCheckboxItems = (selectedItems, ) => {
   const items = []
 
   const statuses = ['Received', 'New', 'In review', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
@@ -471,6 +471,10 @@ module.exports = router => {
     var statusTab = req.session.data.statusTab || 'action'
     var statuses
 
+    if ( req.query.status && req.query.status != '_unchecked'  ) {
+      statusTab = 'all'
+    }
+
     if ( statusTab == 'action' || statusTab == 'Received' ) {
       statuses = [ 'New', 'In review', 'Shortlisted' ]
     } else if ( statusTab == 'In progress' ) {
@@ -484,6 +488,7 @@ module.exports = router => {
     } else {
       statuses = [ statusTab ]
     }
+
 
     var filters = [
       'cycle',
@@ -535,9 +540,11 @@ module.exports = router => {
 
     const cycles = getCheckboxValues(cycle, req.session.data.cycle)
 
-    if (!statusTab) {
+     if (!statusTab || statusTab == 'all' ) {
       statuses = getCheckboxValues(status, req.session.data.status)
-    }
+     } else {
+      req.session.data.status = null
+     }
 
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locations = getCheckboxValues(location, req.session.data.location)
@@ -748,7 +755,6 @@ module.exports = router => {
 
       }
 
-
       apps = apps.filter((app) => {
         let statusValid = true
         if (statuses && statuses.length) {
@@ -789,7 +795,7 @@ module.exports = router => {
         })
       }
 
-      if (statuses && statuses.length && !statusTab) {
+      if (statuses && statuses.length && ( !statusTab || statusTab == 'all' ) ) {
         selectedFilters.categories.push({
           heading: { text: 'Statuses' },
           items: statuses.map((status) => {
@@ -886,6 +892,8 @@ module.exports = router => {
         })
       }
 
+    } else {
+      delete req.session.data.statusTab
     }
 
     // TODO: clean up
