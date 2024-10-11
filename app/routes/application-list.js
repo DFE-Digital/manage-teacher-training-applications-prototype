@@ -447,7 +447,8 @@ const sortApplications = (applications, sort) => {
 }
 
 const getCheckboxValues = (name, data) => {
-  return name && (Array.isArray(name) ? name : [name].filter((name) => {
+
+  return name && ((Array.isArray(name) ? name : [name]).filter((name) => {
     return name !== '_unchecked'
   })) || data && (Array.isArray(data) ? data : [data])
 }
