@@ -55,10 +55,10 @@
                   {% endif %}
                 </span>
                 <span class="govuk-!-margin-bottom-1 govuk-hint govuk-!-margin-left-1 govuk-!-font-size-16">
-                  {{note.date | govukShortDateAtTime }}
+                  {{note.date | govukDateTime }}
 
                   {% if note.lastUpdatedDate %}
-                    (last updated {{note.lastUpdatedDate | govukShortDateAtTime}})
+                    (last updated {{note.lastUpdatedDate | govukDateTime}})
                   {% endif %}
                 </span>
               </p>

@@ -7,7 +7,13 @@ module.exports = router => {
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
     const course = courses.find(course => course.code === application.courseCode)
-    const showWithdrawnBanner = typeof req.session.data['withdraw-application'] !== 'undefined'
+    let showBanner
+
+    if ( typeof req.session.data['withdraw-application'] !== 'undefined' ) {
+      showBanner = 'withdraw'
+    } else {
+      showBanner = req.query.confirm
+    }
 
     // remove the search keywords if present to reset the search
     delete req.session.data.keywords
@@ -38,7 +44,7 @@ module.exports = router => {
       course,
       hasOtherNonUkQualifications,
       assignedUsers,
-      showWithdrawnBanner,
+      showBanner,
       otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
     })
   })
@@ -155,6 +161,27 @@ module.exports = router => {
     } else {
       res.redirect(`/applications/${applicationId}/reject/reasons`)
     }
+  })
+
+
+  router.get('/applications/:applicationId/review', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    application.status = 'In review'
+
+    res.redirect(`/applications/${applicationId}?confirm=review`)
+
+  })
+
+  router.get('/applications/:applicationId/shortlist', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    application.status = 'Shortlisted'
+
+    res.redirect(`/applications/${applicationId}?confirm=shortlist`)
+
   })
 
 }
