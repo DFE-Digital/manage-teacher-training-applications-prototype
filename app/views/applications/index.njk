@@ -163,7 +163,7 @@
           {% endif %}
 
 
-          {% elseif statusTab == 'all' and selectedFilters %}
+          {% elseif statusTab == 'all' and ( selectedFilters or hasSearch ) %}
           <h1 class="govuk-heading-s">
             All matching applications ({{allApplications.length}})
           </h1>

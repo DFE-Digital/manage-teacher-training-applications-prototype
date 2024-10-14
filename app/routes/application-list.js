@@ -8,26 +8,6 @@ const { default: request } = require('sync-request')
 
 const getApplicationsByGroup = (applications) => {
 
-  /*
-  const actionReceivedNew = applications
-    .filter(app => app.status === "New")
-    .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
-
-  const actionReceivedInReview = applications
-    .filter(app => app.status === "In review")
-    .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
-    })
-
-  const actionReceivedShortlisted = applications
-  .filter(app => app.status === "Shortlisted")
-  .sort(function(a, b) {
-    return a.daysToRespond - b.daysToRespond
-  })
-*/
-
   const previousCyclePendingConditions = applications
     .filter(app => app.status === "Conditions pending")
     .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
@@ -471,7 +451,7 @@ module.exports = router => {
     var statusTab = req.session.data.statusTab || 'action'
     var statuses
 
-    if ( req.query.status && req.query.status != '_unchecked'  ) {
+    if ( ( req.query.status && req.query.status != '_unchecked' ) || ( req.query.keywords || req.session.data.keywords ) ) {
       statusTab = 'all'
     }
 
@@ -892,7 +872,7 @@ module.exports = router => {
         })
       }
 
-    } else {
+    } else if ( statusTab != 'all' ) {
       delete req.session.data.statusTab
     }
 
@@ -938,6 +918,7 @@ module.exports = router => {
       pagination,
       selectedFilters,
       hasFilters,
+      hasSearch,
       subjectItems,
       trainingProviderItems,
       accreditedBodyItems,
