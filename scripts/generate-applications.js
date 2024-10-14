@@ -546,7 +546,7 @@ const generateFakeApplications = () => {
 
   applications.push(generateFakeApplication({
     id: '5346436346',
-    status: 'Received',
+    status: 'New',
     assignedUsers: []
   }))
 
