@@ -79,7 +79,7 @@ const getSubjectItems = (selectedItems) => {
 const getStatusCheckboxItems = (selectedItems, ) => {
   const items = []
 
-  const statuses = ['Received', 'New', 'In review', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
+  const statuses = ['New', 'In review', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
 
   statuses.forEach((status, i) => {
     const item = {}

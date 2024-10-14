@@ -59,9 +59,19 @@
             },
             items: [
               {
-                value: 'Received',
-                text: 'Received',
-                checked: checked("export_status", "Received") == "checked"
+                value: 'New',
+                text: 'New',
+                checked: checked("export_status", "New") == "checked"
+              },
+              {
+                value: 'In review',
+                text: 'In review',
+                checked: checked("export_status", "In review") == "checked"
+              },
+              {
+                value: 'Shortlisted',
+                text: 'Shortlisted',
+                checked: checked("export_status", "Shortlisted") == "checked"
               },
               {
                 value: 'Interviewing',
@@ -84,14 +94,14 @@
                 checked: checked("export_status", "Recruited") == "checked"
               },
               {
-                value: 'Conditions not met',
-                text: 'Conditions not met',
-                checked: checked("export_status", "Conditions not met") == "checked"
-              },
-              {
                 value: 'Deferred',
                 text: 'Deferred',
                 checked: checked("export_status", "Deferred") == "checked"
+              },
+              {
+                value: 'Conditions not met',
+                text: 'Conditions not met',
+                checked: checked("export_status", "Conditions not met") == "checked"
               },
               {
                 value: 'Declined',
@@ -117,6 +127,23 @@
           }) }}
         {% endset %}
 
+        {% set newHtml %}
+
+        {{ govukCheckboxes({
+          idPrefix: 'mark_review',
+          name: 'mark_review',
+          items: [
+            {
+              value: "mark_review",
+              text: "Mark exported applications as in review",
+              checked: true
+            }
+         ]
+        }) }}
+
+        {% endset %}
+
+
         {{ govukRadios({
           idPrefix: "status",
           name: "status",
@@ -127,6 +154,14 @@
             }
           },
           items: [
+            {
+              value: "New applications",
+              text: "New applications",
+              conditional: {
+                html: newHtml
+              },
+              checked: checked("status", "new") == "checked"
+            },
             {
               value: "All statuses",
               text: "All statuses"
