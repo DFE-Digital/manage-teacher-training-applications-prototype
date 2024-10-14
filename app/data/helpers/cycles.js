@@ -70,7 +70,7 @@ const CYCLES = {
   2024: {
     code: '2023 to 2024',
     shortDesc: '2023 to 2024',
-    longDesc: '2023 to 2022 (starts 2024)',
+    longDesc: '2023 to 2024 (starts 2024)',
     findOpens: DateTime.fromISO('2023-10-05T09:00:00').toJSDate(),
     applyOpens: DateTime.fromISO('2023-10-12T09:00:00').toJSDate(),
     showDeadlineBanner: DateTime.fromISO('2024-08-01T09:00:00').toJSDate(),
