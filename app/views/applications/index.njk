@@ -22,6 +22,9 @@
       </div>
 
       {% include "_includes/search-panel.njk" %}
+
+      {%- if applications.length %}
+
       <div class="govuk-tabs">
         <h2 class="govuk-tabs__title">
           Contents
@@ -169,35 +172,30 @@
           </h1>
 
           {% elseif statusTab == 'all' %}
-          <h1 class="govuk-heading-s">
+          <h1 class="govuk-heading-m">
             All applications ({{allApplications.length}})
           </h1>
           {% endif %}
 
           <div>
-            {%- if allApplications.length %}
 
               <div class="app-application-cards">
-                {%- for a in allApplications %}
-
+                {%- for a in applications %}
 
                   {% if a.heading %}
-                    <h2 class="govuk-heading-m app-application-cards__heading">{{a.heading}}</h2>
+                    <h2 class="govuk-heading-s app-application-cards__heading">{{a.heading}}</h2>
                   {% else %}
                     {% include "_includes/application-card.njk" %}
                   {% endif %}
                 {% endfor -%}
               </div>
 
-            {% endif -%}
           </div>
 
         </div>
       </div>
 
-
-
-
+    {% endif %}
 
 
       {% if applications.length and pagination %}

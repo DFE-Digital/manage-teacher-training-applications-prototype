@@ -8,164 +8,52 @@ const { default: request } = require('sync-request')
 
 const getApplicationsByGroup = (applications) => {
 
-  const previousCyclePendingConditions = applications
-    .filter(app => app.status === "Conditions pending")
-    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
-
-  const deferredOffersPendingReconfirmation = applications
-    .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
-
-  const awaitingDecision = applications
-    .filter(app => (app.status === 'Received'))
+  const completedApplications = applications.filter(app => {
+      return [ 'Recruited', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn', 'Deferred' ].includes(app.status)
+    })
     .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
+      return new Date( a.submittedDate ) - new Date( b.submittedDate )
     })
 
-  const pendingInterview = applications
-    .filter(app => (app.status === 'Interviewing'))
-    .filter(app => app.daysToRespond >= 5)
+  const liveApplications = applications.filter((app) => {
+      return !([ 'Recruited', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn', 'Deferred' ].includes(app.status))
+    })
     .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
+      return new Date( a.submittedDate ) - new Date( b.submittedDate )
     })
-
-  const waitingOn = applications
-    .filter(app => app.status === 'Offered')
-    .sort(function(a, b) {
-      return a.offer.daysToDecline - b.offer.daysToDecline
-    })
-
-  const pendingConditions = applications
-    .filter(app => app.status === 'Conditions pending')
-    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
-
-  const conditionsMet = applications
-    .filter(app => app.status === 'Recruited')
-
-  const deferredOffers = applications
-    .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
-
-  let other = applications
-    .filter(app => app.status !== 'Received')
-    .filter(app => app.status !== 'Interviewing')
-    .filter(app => app.status !== 'Deferred')
-    .filter(app => app.status !== 'Offered')
-    .filter(app => app.status !== 'Conditions pending')
-    .filter(app => app.status !== 'Recruited')
-    .filter(app => app.status !== 'Rejected')
-
-  // we have 5 of these
-  const rejectedWithFeedback = applications
-    .filter(app => app.status === 'Rejected')
-    .filter(function (app) {
-      return app.rejectedReasons
-    })
-
-  other = other.concat(rejectedWithFeedback)
 
   return {
-    deferredOffersPendingReconfirmation,
-    previousCyclePendingConditions,
-    awaitingDecision,
-    pendingInterview,
-    waitingOn,
-    pendingConditions,
-    conditionsMet,
-    deferredOffers,
-    other
+    completedApplications,
+    liveApplications
   }
 }
 
 const flattenGroup = (grouped) => {
   let array = []
-  array = array.concat(grouped.deferredOffersPendingReconfirmation)
-  array = array.concat(grouped.previousCyclePendingConditions)
-  array = array.concat(grouped.awaitingDecision)
-  array = array.concat(grouped.pendingInterview)
-  array = array.concat(grouped.waitingOn)
-  array = array.concat(grouped.pendingConditions)
-  array = array.concat(grouped.conditionsMet)
-  array = array.concat(grouped.deferredOffers)
-  array = array.concat(grouped.other)
+  array = array.concat(grouped.liveApplications)
+  array = array.concat(grouped.completedApplications)
   return array
 }
 
 const addHeadings = (grouped) => {
   let array = []
-  if (grouped.deferredOffersPendingReconfirmation.length) {
+
+  if (grouped.liveApplications.length) {
     array.push({
-      heading: 'Confirm deferred offers'
+      heading: 'Live applications'
     })
-    array = array.concat(grouped.deferredOffersPendingReconfirmation)
+    array = array.concat(grouped.liveApplications)
   }
 
-  if (grouped.previousCyclePendingConditions.length) {
+  if (grouped.completedApplications.length) {
     array.push({
-      heading: 'Offers pending conditions (previous recruitment cycle)'
+      heading: 'Completed applications'
     })
-    array = array.concat(grouped.previousCyclePendingConditions)
+    array = array.concat(grouped.completedApplications)
   }
 
-  if (grouped.awaitingDecision.length) {
-    array.push({
-      heading: 'Received – make a decision'
-    })
-    array = array.concat(grouped.awaitingDecision)
-  }
-
-  if (grouped.pendingInterview.length) {
-    array.push({
-      heading: 'Interviewing'
-    })
-    array = array.concat(grouped.pendingInterview)
-  }
-
-  if (grouped.waitingOn.length) {
-    array.push({
-      heading: 'Waiting for candidate to respond to offer'
-    })
-    array = array.concat(grouped.waitingOn)
-  }
-
-  if (grouped.pendingConditions.length) {
-    array.push({
-      heading: 'Offers pending conditions (current recruitment cycle)'
-    })
-    array = array.concat(grouped.pendingConditions)
-  }
-
-  if (grouped.conditionsMet.length) {
-    array.push({
-      heading: 'Successful candidates'
-    })
-    array = array.concat(grouped.conditionsMet)
-  }
-
-  if (grouped.deferredOffers.length) {
-    array.push({
-      heading: 'Deferred offers'
-    })
-    array = array.concat(grouped.deferredOffers)
-  }
-
-  if (grouped.other.length) {
-    if (  grouped.deferredOffersPendingReconfirmation.length ||
-          grouped.awaitingDecision.length ||
-          grouped.waitingOn.length ||
-          grouped.pendingConditions.length ||
-          grouped.conditionsMet.length ||
-          grouped.pendingInterview.length
-    ) {
-      array.push({
-        heading: 'No action needed'
-      })
-    }
-    array = array.concat(grouped.other)
-  }
   return array
 }
-
 
 const getSubjectItems = (selectedItems) => {
   const items = []
@@ -495,9 +383,7 @@ module.exports = router => {
       })
     }
 
-    let apps = req.session.data.applications.map(app => app).sort(function(a, b) {
-      return new Date( a.submittedDate ) - new Date( b.submittedDate )
-    })
+    let apps = req.session.data.applications.map(app => app)
 
     let appsNewCount
     let appsReviewCount
@@ -902,8 +788,10 @@ module.exports = router => {
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
 
     // now mixin the headings
-    grouped = getApplicationsByGroup(applications)
-    applications = addHeadings(grouped)
+
+    if ( statusTab == 'all' ) {
+      applications = addHeadings(grouped)
+    }
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
