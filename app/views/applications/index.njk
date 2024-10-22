@@ -32,7 +32,7 @@
         <ul class="govuk-tabs__list">
           <li class="govuk-tabs__list-item{% if not statusTab or statusTab == 'action' %} govuk-tabs__list-item--selected{% endif %}">
             <a class="govuk-tabs__tab" href="applications?statusTab=action">
-              Action required
+              Priority
             </a>
           </li>
           <li class="govuk-tabs__list-item{% if statusTab == 'New' or statusTab == 'In review' or statusTab == 'Shortlisted' or statusTab == 'Received' %} govuk-tabs__list-item--selected{% endif %}">
@@ -61,8 +61,8 @@
           {% if not selectedFilters.length and ( not statusTab or statusTab == 'action' ) %}
 
             {% set bannerHtml %}
-              <p class="govuk-notification-banner__heading">You have {{applications.length}} applications requiring action.</p>
-              <p class="govuk-body">You received these applications over 30 working days ago. You need to make a decision as soon as possible or the candidate may choose to withdraw and apply to another provider.</a>
+              <p class="govuk-notification-banner__heading">Make a decision about these {{applications.length}} applications</p>
+              <p class="govuk-body">They were submitted over 30 working days ago. 80% of providers respond within 8 days. Candidates could withdraw their application and apply to another provider if you do not respond soon.</p>
             {% endset %}
 
             {{ govukNotificationBanner({
@@ -70,9 +70,9 @@
             }) }}
 
           {% elseif statusTab == 'New' or statusTab == 'In review' or statusTab == 'Shortlisted' or statusTab == 'Received' %}
-            <div class="app-status-header"><a href="applications?statusTab=Received" {% if statusTab == 'Received' %}class="selected"{% endif %}><strong>{{ appsNewCount + appsReviewCount + appsShortlistedCount }}</strong> applications received</a></div>
+            <div class="app-status-header"><a href="applications?statusTab=Received" {% if statusTab == 'Received' %}class="selected"{% endif %}><strong>{{ appsNewCount + appsReviewCount + appsShortlistedCount }}</strong> total applications received</a></div>
             <div class="app-status-blocks">
-              <p><a href="applications?statusTab=New" class="new{% if statusTab == 'New' %} selected{% endif %}"><strong>{{appsNewCount}}</strong> new applications to review</a></p>
+              <p><a href="applications?statusTab=New" class="new{% if statusTab == 'New' %} selected{% endif %}"><strong>{{appsNewCount}}</strong> new applications</a></p>
               <p><a href="applications?statusTab=In review" class="progress{% if statusTab == 'In review' %} selected{% endif %}"><strong>{{appsReviewCount}}</strong> applications in review</a></p>
               <p><a href="applications?statusTab=Shortlisted" class="success{% if statusTab == 'Shortlisted' %} selected{% endif %}"><strong>{{appsShortlistedCount}}</strong> shortlisted applications</a></p>
             </div>
@@ -85,7 +85,7 @@
               {% elseif statusTab == 'New' %}
               <div class="app-application-header">
                 <h1 class="govuk-heading-s">
-                  New applications to review ({{allApplications.length}})
+                  New applications ({{allApplications.length}})
                 </h1>
                 {{ govukButton({
                   text: "Export new applications",
@@ -106,11 +106,11 @@
               {% endif %}
 
           {% elseif statusTab == 'In progress' or statusTab == 'Interviewing' or statusTab == 'Offered' or statusTab == 'Conditions pending' %}
-            <div class="app-status-header"><a href="applications?statusTab=In progress" {% if statusTab == 'In progress' %}class="selected"{% endif %}><strong>{{ appsInterviewingCount + appsOfferedCount + appsConditionsCount }}</strong> applications in progress</a></div>
+            <div class="app-status-header"><a href="applications?statusTab=In progress" {% if statusTab == 'In progress' %}class="selected"{% endif %}><strong>{{ appsInterviewingCount + appsOfferedCount + appsConditionsCount }}</strong> total applications in progress</a></div>
             <div class="app-status-blocks">
-              <p><a href="applications?statusTab=Interviewing" class="progress{% if statusTab == 'Interviewing' %} selected{% endif %}"><strong>{{appsInterviewingCount}}</strong> in interview</a></p>
-              <p><a href="applications?statusTab=Offered" class="success{% if statusTab == 'Offered' %} selected{% endif %}"><strong>{{appsOfferedCount}}</strong> offers made</a></p>
-              <p><a href="applications?statusTab=Conditions pending" class="waiting{% if statusTab == 'Conditions pending' %} selected{% endif %}"><strong>{{appsConditionsCount}}</strong> pending conditions</a></p>
+              <p><a href="applications?statusTab=Interviewing" class="progress{% if statusTab == 'Interviewing' %} selected{% endif %}"><strong>{{appsInterviewingCount}}</strong> applications at interview stage</a></p>
+              <p><a href="applications?statusTab=Offered" class="success{% if statusTab == 'Offered' %} selected{% endif %}"><strong>{{appsOfferedCount}}</strong> applications with offers made</a></p>
+              <p><a href="applications?statusTab=Conditions pending" class="waiting{% if statusTab == 'Conditions pending' %} selected{% endif %}"><strong>{{appsConditionsCount}}</strong> applications with pending conditions</a></p>
             </div>
 
             {% if statusTab == 'In progress' %}
@@ -136,11 +136,11 @@
           {% endif %}
 
           {% elseif statusTab == 'Complete' or statusTab == 'Recruited' or statusTab == 'Unsuccessful' or statusTab == 'Deferred' %}
-            <div class="app-status-header"><a href="applications?statusTab=Complete" {% if statusTab == 'Complete' %}class="selected"{% endif %}><strong>{{ appsRecruitedCount + appsUnsuccessfulCount + appsDeferredCount }}</strong> applications completed</a></div>
+            <div class="app-status-header"><a href="applications?statusTab=Complete" {% if statusTab == 'Complete' %}class="selected"{% endif %}><strong>{{ appsRecruitedCount + appsUnsuccessfulCount + appsDeferredCount }}</strong> total applications completed</a></div>
             <div class="app-status-blocks">
-              <p><a href="applications?statusTab=Recruited" class="success{% if statusTab == 'Recruited' %} selected{% endif %}"><strong>{{appsRecruitedCount}}</strong> recruited</a></p>
-              <p><a href="applications?statusTab=Unsuccessful" class="failed{% if statusTab == 'Unsuccessful' %} selected{% endif %}"><strong>{{appsUnsuccessfulCount}}</strong> unsuccessful</a></p>
-              <p><a href="applications?statusTab=Deferred" class="waiting{% if statusTab == 'Deferred' %} selected{% endif %}"><strong>{{appsDeferredCount}}</strong> deferred</a></p>
+              <p><a href="applications?statusTab=Recruited" class="success{% if statusTab == 'Recruited' %} selected{% endif %}"><strong>{{appsRecruitedCount}}</strong> recruited applications</a></p>
+              <p><a href="applications?statusTab=Unsuccessful" class="failed{% if statusTab == 'Unsuccessful' %} selected{% endif %}"><strong>{{appsUnsuccessfulCount}}</strong> unsuccessful applications</a></p>
+              <p><a href="applications?statusTab=Deferred" class="waiting{% if statusTab == 'Deferred' %} selected{% endif %}"><strong>{{appsDeferredCount}}</strong> deferred applications</a></p>
             </div>
 
             {% if statusTab == 'Complete' %}

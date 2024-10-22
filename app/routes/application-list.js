@@ -40,14 +40,14 @@ const addHeadings = (grouped) => {
 
   if (grouped.liveApplications.length) {
     array.push({
-      heading: 'Live applications'
+      heading: 'Open applications'
     })
     array = array.concat(grouped.liveApplications)
   }
 
   if (grouped.completedApplications.length) {
     array.push({
-      heading: 'Completed applications'
+      heading: 'Closed applications'
     })
     array = array.concat(grouped.completedApplications)
   }
