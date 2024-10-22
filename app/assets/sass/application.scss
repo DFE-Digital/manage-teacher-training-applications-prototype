@@ -435,6 +435,11 @@ $statuses: (
   gap: 10px;
 }
 
+
+.app-status-blocks a {
+  height: 80px;
+}
+
 .app-status-blocks a, .app-status-header a {
   display: block;
   padding: 10px;
