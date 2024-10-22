@@ -8,9 +8,23 @@
 
 {% block content %}
 
-  {% if showWithdrawnBanner %}
+  {% if showBanner %}
+
+    {% if showBanner == 'withdraw' %}
+      {% set showBannerText = 'Application withdrawn' %}
+    {% elseif showBanner == 'review' %}
+     {% set showBannerText = 'Application marked as In review' %}
+    {% elseif showBanner == 'shortlist' %}
+      {% set showBannerText = 'Application shortlisted' %}
+    {% endif %}
+
+    {% set showBannerHtml %}
+      <h3 class="govuk-notification-banner__heading">{{ showBannerText }}</h3>
+    <p class="govuk-body"><a class="govuk-notification-banner__link" href="/applications/{{application.id}}/notes/new">Add a note</a></p>
+    {% endset %}
+
     {{ govukNotificationBanner({
-      text: "Application withdrawn",
+      html: showBannerHtml,
       type: 'success'
     }) }}
   {% endif %}

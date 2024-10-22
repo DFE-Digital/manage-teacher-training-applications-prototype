@@ -8,164 +8,52 @@ const { default: request } = require('sync-request')
 
 const getApplicationsByGroup = (applications) => {
 
-  const previousCyclePendingConditions = applications
-    .filter(app => app.status === "Conditions pending")
-    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
-
-  const deferredOffersPendingReconfirmation = applications
-    .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CycleHelper.PREVIOUS_CYCLE.code)
-
-  const awaitingDecision = applications
-    .filter(app => (app.status === 'Received'))
+  const completedApplications = applications.filter(app => {
+      return [ 'Recruited', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn', 'Deferred' ].includes(app.status)
+    })
     .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
+      return new Date( a.submittedDate ) - new Date( b.submittedDate )
     })
 
-  const pendingInterview = applications
-    .filter(app => (app.status === 'Interviewing'))
-    .filter(app => app.daysToRespond >= 5)
+  const liveApplications = applications.filter((app) => {
+      return !([ 'Recruited', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn', 'Deferred' ].includes(app.status))
+    })
     .sort(function(a, b) {
-      return a.daysToRespond - b.daysToRespond
+      return new Date( a.submittedDate ) - new Date( b.submittedDate )
     })
-
-  const waitingOn = applications
-    .filter(app => app.status === 'Offered')
-    .sort(function(a, b) {
-      return a.offer.daysToDecline - b.offer.daysToDecline
-    })
-
-  const pendingConditions = applications
-    .filter(app => app.status === 'Conditions pending')
-    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
-
-  const conditionsMet = applications
-    .filter(app => app.status === 'Recruited')
-
-  const deferredOffers = applications
-    .filter(app => app.status === 'Deferred')
-    .filter(app => app.cycle === CycleHelper.CURRENT_CYCLE.code)
-
-  let other = applications
-    .filter(app => app.status !== 'Received')
-    .filter(app => app.status !== 'Interviewing')
-    .filter(app => app.status !== 'Deferred')
-    .filter(app => app.status !== 'Offered')
-    .filter(app => app.status !== 'Conditions pending')
-    .filter(app => app.status !== 'Recruited')
-    .filter(app => app.status !== 'Rejected')
-
-  // we have 5 of these
-  const rejectedWithFeedback = applications
-    .filter(app => app.status === 'Rejected')
-    .filter(function (app) {
-      return app.rejectedReasons
-    })
-
-  other = other.concat(rejectedWithFeedback)
 
   return {
-    deferredOffersPendingReconfirmation,
-    previousCyclePendingConditions,
-    awaitingDecision,
-    pendingInterview,
-    waitingOn,
-    pendingConditions,
-    conditionsMet,
-    deferredOffers,
-    other
+    completedApplications,
+    liveApplications
   }
 }
 
 const flattenGroup = (grouped) => {
   let array = []
-  array = array.concat(grouped.deferredOffersPendingReconfirmation)
-  array = array.concat(grouped.previousCyclePendingConditions)
-  array = array.concat(grouped.awaitingDecision)
-  array = array.concat(grouped.pendingInterview)
-  array = array.concat(grouped.waitingOn)
-  array = array.concat(grouped.pendingConditions)
-  array = array.concat(grouped.conditionsMet)
-  array = array.concat(grouped.deferredOffers)
-  array = array.concat(grouped.other)
+  array = array.concat(grouped.liveApplications)
+  array = array.concat(grouped.completedApplications)
   return array
 }
 
 const addHeadings = (grouped) => {
   let array = []
-  if (grouped.deferredOffersPendingReconfirmation.length) {
+
+  if (grouped.liveApplications.length) {
     array.push({
-      heading: 'Confirm deferred offers'
+      heading: 'Live applications'
     })
-    array = array.concat(grouped.deferredOffersPendingReconfirmation)
+    array = array.concat(grouped.liveApplications)
   }
 
-  if (grouped.previousCyclePendingConditions.length) {
+  if (grouped.completedApplications.length) {
     array.push({
-      heading: 'Offers pending conditions (previous recruitment cycle)'
+      heading: 'Completed applications'
     })
-    array = array.concat(grouped.previousCyclePendingConditions)
+    array = array.concat(grouped.completedApplications)
   }
 
-  if (grouped.awaitingDecision.length) {
-    array.push({
-      heading: 'Received – make a decision'
-    })
-    array = array.concat(grouped.awaitingDecision)
-  }
-
-  if (grouped.pendingInterview.length) {
-    array.push({
-      heading: 'Interviewing'
-    })
-    array = array.concat(grouped.pendingInterview)
-  }
-
-  if (grouped.waitingOn.length) {
-    array.push({
-      heading: 'Waiting for candidate to respond to offer'
-    })
-    array = array.concat(grouped.waitingOn)
-  }
-
-  if (grouped.pendingConditions.length) {
-    array.push({
-      heading: 'Offers pending conditions (current recruitment cycle)'
-    })
-    array = array.concat(grouped.pendingConditions)
-  }
-
-  if (grouped.conditionsMet.length) {
-    array.push({
-      heading: 'Successful candidates'
-    })
-    array = array.concat(grouped.conditionsMet)
-  }
-
-  if (grouped.deferredOffers.length) {
-    array.push({
-      heading: 'Deferred offers'
-    })
-    array = array.concat(grouped.deferredOffers)
-  }
-
-  if (grouped.other.length) {
-    if (  grouped.deferredOffersPendingReconfirmation.length ||
-          grouped.awaitingDecision.length ||
-          grouped.waitingOn.length ||
-          grouped.pendingConditions.length ||
-          grouped.conditionsMet.length ||
-          grouped.pendingInterview.length
-    ) {
-      array.push({
-        heading: 'No action needed'
-      })
-    }
-    array = array.concat(grouped.other)
-  }
   return array
 }
-
 
 const getSubjectItems = (selectedItems) => {
   const items = []
@@ -191,7 +79,7 @@ const getSubjectItems = (selectedItems) => {
 const getStatusCheckboxItems = (selectedItems) => {
   const items = []
 
-  const statuses = ['Received', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
+  const statuses = ['New', 'In review', 'Shortlisted', 'Interviewing', 'Offered', 'Conditions pending', 'Recruited', 'Deferred', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn']
 
   statuses.forEach((status, i) => {
     const item = {}
@@ -427,7 +315,8 @@ const sortApplications = (applications, sort) => {
 }
 
 const getCheckboxValues = (name, data) => {
-  return name && (Array.isArray(name) ? name : [name].filter((name) => {
+
+  return name && ((Array.isArray(name) ? name : [name]).filter((name) => {
     return name !== '_unchecked'
   })) || data && (Array.isArray(data) ? data : [data])
 }
@@ -447,6 +336,27 @@ module.exports = router => {
   router.all('/applications', (req, res) => {
 
     var sort = req.session.data.sort = req.query.sort || req.session.data.sort
+    var statusTab = req.session.data.statusTab || 'action'
+    var statuses
+
+    if ( ( req.query.status && req.query.status != '_unchecked' ) || ( req.query.keywords || req.session.data.keywords ) ) {
+      statusTab = 'all'
+    }
+
+    if ( statusTab == 'action' || statusTab == 'Received' ) {
+      statuses = [ 'New', 'In review', 'Shortlisted' ]
+    } else if ( statusTab == 'In progress' ) {
+      statuses = [ 'Interviewing', 'Offered', 'Conditions pending' ]
+    } else if ( statusTab == 'Complete' ) {
+      statuses = [ 'Recruited', 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn', 'Deferred' ]
+    } else if ( statusTab == 'Unsuccessful' ) {
+      statuses = [ 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn' ]
+    } else if ( statusTab == 'all' ) {
+      statuses = null
+    } else {
+      statuses = [ statusTab ]
+    }
+
 
     var filters = [
       'cycle',
@@ -473,7 +383,17 @@ module.exports = router => {
       })
     }
 
-    let apps = req.session.data.applications.map(app => app).reverse()
+    let apps = req.session.data.applications.map(app => app)
+
+    let appsNewCount
+    let appsReviewCount
+    let appsShortlistedCount
+    let appsInterviewingCount
+    let appsOfferedCount
+    let appsConditionsCount
+    let appsRecruitedCount
+    let appsUnsuccessfulCount
+    let appsDeferredCount
 
     // for use in the filters
     const users = req.session.data.users.filter(user => {
@@ -485,7 +405,13 @@ module.exports = router => {
     keywords = keywords || req.session.data.keywords
 
     const cycles = getCheckboxValues(cycle, req.session.data.cycle)
-    const statuses = getCheckboxValues(status, req.session.data.status)
+
+     if (!statusTab || statusTab == 'all' ) {
+      statuses = getCheckboxValues(status, req.session.data.status)
+     } else {
+      req.session.data.status = null
+     }
+
     const providers = getCheckboxValues(provider, req.session.data.provider)
     const locations = getCheckboxValues(location, req.session.data.location)
     const accreditedBodies = getCheckboxValues(accreditedBody, req.session.data.accreditedBody)
@@ -522,7 +448,6 @@ module.exports = router => {
     if (hasFilters) {
       apps = apps.filter((app) => {
         let cycleValid = true
-        let statusValid = true
         let providerValid = true
         let locationValid = true
         let accreditedBodyValid = true
@@ -532,13 +457,17 @@ module.exports = router => {
         let unassignedUserValid = true
         let importantItemValid = true
         let noteItemValid = true
+        let ageValid = true
+
+        const appAge =  Math.round( ( new Date().getTime() - new Date( app.submittedDate ).getTime() ) / (24 * 60 * 60 * 1000) );
+
+        if ( statusTab == 'action' ) {
+          const appAge =  Math.round( ( new Date().getTime() - new Date( app.submittedDate ).getTime() ) / (24 * 60 * 60 * 1000) );
+          ageValid = appAge >= 30
+        }
 
         if (cycles && cycles.length) {
           cycleValid = cycles.includes(app.cycle)
-        }
-
-        if (statuses && statuses.length) {
-          statusValid = statuses.includes(app.status)
         }
 
         if (locations && locations.length) {
@@ -594,7 +523,7 @@ module.exports = router => {
           importantItemValid = false
 
           if(importantItems.includes('5 days or fewer to make decision')) {
-            if((app.status == 'Received' || app.status == 'Interviewing') && app.daysToRespond < 5) {
+            if((app.status == 'Received' || app.status == 'New' || app.status == 'In review' || app.status == 'Shortlisted' || app.status == 'Interviewing') && app.daysToRespond < 5) {
               importantItemValid = true
             }
           }
@@ -625,7 +554,6 @@ module.exports = router => {
         }
 
         return cycleValid
-          && statusValid
           && locationValid
           && providerValid
           && accreditedBodyValid
@@ -635,7 +563,72 @@ module.exports = router => {
           && unassignedUserValid
           && importantItemValid
           && noteItemValid
+          && ageValid
       })
+
+      if ( statusTab == 'New' || statusTab == 'In review' || statusTab == 'Shortlisted' || statusTab == 'Received' ) {
+        let appsNew = apps.filter((app) => {
+          return app.status == 'New'
+        })
+        appsNewCount = appsNew.length
+
+        let appsReview = apps.filter((app) => {
+          return app.status == 'In review'
+        })
+        appsReviewCount = appsReview.length
+
+        let appsShortlisted = apps.filter((app) => {
+          return app.status == 'Shortlisted'
+        })
+        appsShortlistedCount = appsShortlisted.length
+
+      }
+
+      if ( statusTab == 'In progress' || statusTab == 'Interviewing' || statusTab == 'Offered' || statusTab == 'Conditions pending' ) {
+        let appsInterviewing = apps.filter((app) => {
+          return app.status == 'Interviewing'
+        })
+        appsInterviewingCount = appsInterviewing.length
+
+        let appsOffered = apps.filter((app) => {
+          return app.status == 'Offered'
+        })
+        appsOfferedCount = appsOffered.length
+
+        let appsConditions = apps.filter((app) => {
+          return app.status == 'Conditions pending'
+        })
+        appsConditionsCount = appsConditions.length
+
+      }
+
+
+      if ( statusTab == 'Complete' || statusTab == 'Recruited' || statusTab == 'Unsuccessful' || statusTab == 'Deferred' ) {
+        let appsRecruited = apps.filter((app) => {
+          return app.status == 'Recruited'
+        })
+        appsRecruitedCount = appsRecruited.length
+
+        let appsUnsuccessful = apps.filter((app) => {
+          return [ 'Conditions not met', 'Declined', 'Rejected', 'Application withdrawn', 'Offer withdrawn' ].includes(app.status)
+        })
+        appsUnsuccessfulCount = appsUnsuccessful.length
+
+        let appsDeferred = apps.filter((app) => {
+          return app.status == 'Deferred'
+        })
+        appsDeferredCount = appsDeferred.length
+
+      }
+
+      apps = apps.filter((app) => {
+        let statusValid = true
+        if (statuses && statuses.length) {
+          statusValid = statuses.includes(app.status)
+        }
+        return statusValid
+      })
+
     }
 
     let selectedFilters = null
@@ -668,7 +661,7 @@ module.exports = router => {
         })
       }
 
-      if (statuses && statuses.length) {
+      if (statuses && statuses.length && ( !statusTab || statusTab == 'all' ) ) {
         selectedFilters.categories.push({
           heading: { text: 'Statuses' },
           items: statuses.map((status) => {
@@ -765,6 +758,8 @@ module.exports = router => {
         })
       }
 
+    } else if ( statusTab != 'all' ) {
+      delete req.session.data.statusTab
     }
 
     // TODO: clean up
@@ -793,8 +788,10 @@ module.exports = router => {
     const selectedUsers = getSelectedUserItems(userItems.filter(user => user.checked === true))
 
     // now mixin the headings
-    grouped = getApplicationsByGroup(applications)
-    applications = addHeadings(grouped)
+
+    if ( statusTab == 'all' ) {
+      applications = addHeadings(grouped)
+    }
 
     const trainingProviderItems = getTrainingProviderItems(req.session.data.trainingProviders, req.session.data.provider)
     const accreditedBodyItems = getAccreditedBodyItems(req.session.data.accreditedBodies, req.session.data.accreditedBody)
@@ -809,6 +806,7 @@ module.exports = router => {
       pagination,
       selectedFilters,
       hasFilters,
+      hasSearch,
       subjectItems,
       trainingProviderItems,
       accreditedBodyItems,
@@ -821,7 +819,18 @@ module.exports = router => {
       cycleItems,
       statusCheckboxItems,
       importantCheckboxItems,
-      noteCheckboxItems
+      noteCheckboxItems,
+      appsNewCount,
+      appsReviewCount,
+      appsShortlistedCount,
+      appsInterviewingCount,
+      appsOfferedCount,
+      appsConditionsCount,
+      appsShortlistedCount,
+      appsRecruitedCount,
+      appsUnsuccessfulCount,
+      appsDeferredCount,
+      statusTab
     })
   })
 

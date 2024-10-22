@@ -39,3 +39,19 @@
   overflow-x: auto;
 }
 
+
+.app-checkbox-filter__container {
+  position: relative;
+
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-color: govuk-colour("white");
+  border-bottom: 1px solid $govuk-border-colour;
+}
+
+.app-checkbox-filter__container-inner {
+  @include govuk-clearfix;
+  padding: govuk-spacing(1) govuk-spacing(2);
+}

@@ -1,4 +1,4 @@
-{% if application.status == 'Received' %}
+{% if application.status == 'Received' or application.status == 'New' or application.status == 'In review' or application.status == 'Shortlisted' %}
   {% set promptHtml %}
 
     {% if canManageInterviews and canMakeOffersAndRejectApplications %}
@@ -9,10 +9,24 @@
       <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Make a decision</h2>
     {% endif %}
       <p>This application was received {{ application.submittedDate | daysAgo }} days ago. You should try and respond to the candidate within 30 days.</p>
+      {% if application.status == 'Received' or application.status == 'New' %}
+        {{ govukButton({
+          text: "Mark as in review",
+          classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary",
+          href: "/applications/" + application.id + "/review"
+        }) }}
+      {% endif %}
+      {% if application.status == 'Received' or application.status == 'New' or application.status == 'In review' %}
+        {{ govukButton({
+          text: "Shortlist",
+          classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary",
+          href: "/applications/" + application.id + "/shortlist"
+        }) }}
+      {% endif %}
     {% if canManageInterviews %}
       {{ govukButton({
         text: "Set up interview",
-        classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2",
+        classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary",
         href: "/applications/" + application.id + "/interviews/new"
       }) }}
     {% endif %}
