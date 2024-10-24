@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.7",
     "cross-spawn": "^7.0.3",
     "csv-writer": "^1.6.0",
-    "del": "^7.1.0",
+    "del": "^8.0.0",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^5.7.1",
     "govuk-prototype-kit": "^13.16.2",
