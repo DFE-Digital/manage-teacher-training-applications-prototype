@@ -26,13 +26,14 @@ module.exports = (status) => {
     'Was the head coach for my athletics club. I’ve known them for 5 years'
   ])
 
-  const referee = (status) => {
+  const referee = (status, confidential) => {
     const firstName = faker.person.firstName()
     const lastName = faker.person.lastName()
 
     let ref =  {
       type,
       name: `${firstName} ${lastName}`,
+      confidential,
       email: faker.internet.email({
         firstName,
         lastName
@@ -54,8 +55,8 @@ module.exports = (status) => {
   }
 
   let references = {}
-  references['12446'] = referee(status)
-  references['26436'] = referee(status)
+  references['12446'] = referee(status, true )
+  references['26436'] = referee(status, false )
 
   return references
 }

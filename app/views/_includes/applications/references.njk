@@ -22,6 +22,7 @@
 
 {% if referencesReceived | length > 0 %}
   <h2 class="govuk-heading-m">Received references</h2>
+
   {% for reference in referencesReceived %}
 
     {% set relationshipHtml %}
@@ -53,7 +54,26 @@
       {%- endif -%}
     {%- endset %}
 
+    {% set condfidentialResponseHtml -%}
+      {%- if reference['confidential'] -%}
+        <p class="govuk-body">No, this reference is confidential. Do not share it.</p>
+      {% else %}
+        <p class="govuk-body">Yes, if they request it.</p>
+      {%- endif -%}
+    {%- endset %}
+
     {% set summaryCardHtml %}
+
+      {%- if reference['confidential'] -%}
+
+      {{ govukWarningText({
+        text: "Confidential do not share with the candidate",
+        iconFallbackText: "Warning"
+      }) }}
+
+      {% endif %}
+
+
       {{ govukSummaryList({
         rows: [{
           key: {
@@ -92,9 +112,19 @@
           value: {
             html: reference.comments | nl2br
           }
+        },
+        {
+          key: {
+            html: "Can this reference be shared with the candidate?"
+          },
+          value: {
+            html: condfidentialResponseHtml
+          }
         }]
       }) }}
     {% endset %}
+
+
 
     {{appSummaryCard({
       titleText: reference.type + " reference from " + reference.name,
