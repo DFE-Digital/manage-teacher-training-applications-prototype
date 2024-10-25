@@ -1,5 +1,4 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
-
 const { DateTime } = require('luxon')
 const weighted = require('weighted')
 
@@ -100,7 +99,7 @@ module.exports = () => {
           'I’m applying for a spousal visa'
         ]
 
-        let rightToWorkStudyHowDetails = faker.helpers.randomize(rightToWorkStudyHowChoices)
+        let rightToWorkStudyHowDetails = faker.helpers.arrayElement(rightToWorkStudyHowChoices)
       }
     }
   }
@@ -143,7 +142,7 @@ module.exports = () => {
   if (isInternationalCandidate) {
 
     if (rightToWorkStudy === 'Yes') {
-      dateEnteredUK = faker.date.between('2000-01-01','2016-08-31')
+      dateEnteredUK = faker.date.between({ from: '2000-01-01', to: '2016-08-31'})
       // faker creates a time, which isn't necessary, so we remove it
       dateEnteredUK = DateTime.fromJSDate(dateEnteredUK).toFormat('yyyy-LL-dd')
     }
@@ -153,17 +152,17 @@ module.exports = () => {
   // Date of birth
   // ---------------------------------------------------------------------------
   const dateOfBirthOptions = {
-    y21_under: faker.date.between('2000-01-01', '2001-12-31'),
-    y22_to_24: faker.date.between('1997-01-01', '1999-12-31'),
-    y25_to_29: faker.date.between('1992-01-01', '1996-12-31'),
-    y30_to_34: faker.date.between('1987-01-01', '1991-12-31'),
-    y35_to_39: faker.date.between('1982-01-01', '1986-12-31'),
-    y40_to_44: faker.date.between('1977-01-01', '1981-12-31'),
-    y45_to_49: faker.date.between('1972-01-01', '1976-12-31'),
-    y50_to_54: faker.date.between('1967-01-01', '1971-12-31'),
-    y55_to_59: faker.date.between('1962-01-01', '1966-12-31'),
-    y60_to_64: faker.date.between('1957-01-01', '1961-12-31'),
-    y65_over: faker.date.between('1950-01-01', '1956-12-31')
+    y21_under: faker.date.between({ from: '2000-01-01', to: '2001-12-31'}),
+    y22_to_24: faker.date.between({ from: '1997-01-01', to: '1999-12-31'}),
+    y25_to_29: faker.date.between({ from: '1992-01-01', to: '1996-12-31'}),
+    y30_to_34: faker.date.between({ from: '1987-01-01', to: '1991-12-31'}),
+    y35_to_39: faker.date.between({ from: '1982-01-01', to: '1986-12-31'}),
+    y40_to_44: faker.date.between({ from: '1977-01-01', to: '1981-12-31'}),
+    y45_to_49: faker.date.between({ from: '1972-01-01', to: '1976-12-31'}),
+    y50_to_54: faker.date.between({ from: '1967-01-01', to: '1971-12-31'}),
+    y55_to_59: faker.date.between({ from: '1962-01-01', to: '1966-12-31'}),
+    y60_to_64: faker.date.between({ from: '1957-01-01', to: '1961-12-31'}),
+    y65_over: faker.date.between({ from: '1950-01-01', to: '1956-12-31'})
   }
 
   const selectedDateOfBirth = weighted.select({
@@ -193,7 +192,7 @@ module.exports = () => {
   let ethnicGroup
   let ethnicBackground
 
-  const diversityQuestionnaireAnswered = faker.helpers.randomize(['Yes', 'Yes', 'No'])
+  const diversityQuestionnaireAnswered = faker.helpers.arrayElement(['Yes', 'Yes', 'No'])
 
   // Candidate's sex
   const sexOptions = {
@@ -321,7 +320,7 @@ module.exports = () => {
 
     disabled = disabledOptions[selectedDisabled]
 
-    let disabilityCount = faker.datatype.number(3) // up to 3 disabilities
+    let disabilityCount = faker.number.int(3) // up to 3 disabilities
 
     let disabilityChoices = [
       'Blind',

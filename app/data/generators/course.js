@@ -1,5 +1,4 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
-
 const weighted = require('weighted')
 
 const arrayToList = (array, join = ', ', final = ' and ') => {
@@ -233,7 +232,7 @@ module.exports = (params = {}) => {
     }
 
     if (['French','German','Italian','Spanish'].includes(subject.name)) {
-      const languageCount = faker.datatype.number({ 'min': 1, 'max': 2 })
+      const languageCount = faker.number.int({ 'min': 1, 'max': 2 })
 
       const languageChoices = [
         { code: '15', name: 'French' },
@@ -254,7 +253,7 @@ module.exports = (params = {}) => {
     }
 
     if (['Japanese','Mandarin','Russian'].includes(subject.name)) {
-      const languageCount = faker.datatype.number({ 'min': 1, 'max': 2 })
+      const languageCount = faker.number.int({ 'min': 1, 'max': 2 })
 
       const languageChoices = [
         { code: '19', name: 'Japanese' },
@@ -274,7 +273,7 @@ module.exports = (params = {}) => {
     }
 
     if (['Biology','Chemistry','Physics'].includes(subject.name)) {
-      const scienceCount = faker.datatype.number({ 'min': 1, 'max': 2 })
+      const scienceCount = faker.number.int({ 'min': 1, 'max': 2 })
 
       const scienceChoices = [
         { code: 'C1', name: 'Biology' },
@@ -477,7 +476,7 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   // Locations
   // ---------------------------------------------------------------------------
-  const locationCount = faker.datatype.number({ 'min': 1, 'max': 2 })
+  const locationCount = faker.number.int({ 'min': 1, 'max': 2 })
 
   const locationChoices = require('../locations')
 
@@ -568,7 +567,7 @@ module.exports = (params = {}) => {
   // ---------------------------------------------------------------------------
   const course = {}
 
-  course.code = faker.random.alphaNumeric(4).toUpperCase()
+  course.code = faker.string.alphanumeric({length: 4, casing: 'upper'})
   course.name = courseName
 
   course.subjects = subjects

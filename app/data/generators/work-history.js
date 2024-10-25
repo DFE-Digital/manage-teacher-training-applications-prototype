@@ -1,12 +1,11 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
-
 const DateHelper = require('../helpers/dates');
 
 module.exports = (submittedDate) => {
-  const answer = faker.helpers.randomize(['yes', 'no-work-history', 'no--in-full-time-education'])
+  const answer = faker.helpers.arrayElement(['yes', 'no-work-history', 'no--in-full-time-education'])
   const reason = (answer === 'no-work-history') ? 'I was unemployed': null;
   const items = []
-  const count = faker.datatype.number({ min: 0, max: 8 })
+  const count = faker.number.int({ min: 0, max: 8 })
 
   // get a date previously to the application submitted date
   let endDate = DateHelper.getPastDate(submittedDate, 30, 150)
@@ -20,11 +19,11 @@ module.exports = (submittedDate) => {
       // get a start date that is between 30 and 500 days prior to the end date
       startDate = DateHelper.getPastDate(endDate, 30, 500)
 
-      const jobType = faker.helpers.randomize(['job', 'break'])
+      const jobType = faker.helpers.arrayElement(['job', 'break'])
       if (jobType === 'job') {
 
         items.push({
-          role: faker.helpers.randomize([
+          role: faker.helpers.arrayElement([
             'Analyst',
             'Consultant',
             'Life coach',
@@ -35,18 +34,18 @@ module.exports = (submittedDate) => {
             'Legal executive',
             'Planner',
           ]),
-          org: faker.company.companyName(),
-          type: faker.helpers.randomize(['Full time', 'Part time']),
-          relevantToTeaching: faker.helpers.randomize(['Yes', 'No']),
+          org: faker.company.name(),
+          type: faker.helpers.arrayElement(['Full time', 'Part time']),
+          relevantToTeaching: faker.helpers.arrayElement(['Yes', 'No']),
           category: 'job',
           startDate: startDate,
-          isStartDateApproximate: faker.helpers.randomize([true, false, false, false]),
-          endDate: faker.helpers.randomize([endDate, false]),
+          isStartDateApproximate: faker.helpers.arrayElement([true, false, false, false]),
+          endDate: faker.helpers.arrayElement([endDate, false]),
           isEndDateApproximate: false
         })
       } else {
 
-        let description = faker.helpers.randomize([
+        let description = faker.helpers.arrayElement([
           null,
           'I volunteered with a marine conservation charity in the Seychelles as part of a career break.'
         ])
@@ -54,7 +53,7 @@ module.exports = (submittedDate) => {
         items.push({
           description: description,
           category: 'break',
-          duration: `${faker.datatype.number({ min: 1, max: 12 })} months`,
+          duration: `${faker.number.int({ min: 1, max: 12 })} months`,
           startDate: startDate,
           endDate: endDate
         })

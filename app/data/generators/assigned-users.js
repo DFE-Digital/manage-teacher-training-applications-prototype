@@ -1,6 +1,5 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
 
-
 const _ = require('lodash')
 
 let users = require('../users.json')
@@ -17,12 +16,12 @@ module.exports = (accreditedBody, provider, status) => {
       return user.organisation.id == accreditedBody.id
     })
 
-    const accreditedBodyUserCount = faker.datatype.number({ min: 1, max: 3 })
+    const accreditedBodyUserCount = faker.number.int({ min: 1, max: 3 })
 
     for (let i = 0; i < accreditedBodyUserCount; i++) {
       let accreditedBodyUser = {}
 
-      accreditedBodyUser = faker.helpers.randomize(accreditedBodyUsers)
+      accreditedBodyUser = faker.helpers.arrayElement(accreditedBodyUsers)
 
       // clone the users so we can clean the data and only use what we need
       accreditedBodyUser = _.cloneDeep(accreditedBodyUser)
@@ -43,12 +42,12 @@ module.exports = (accreditedBody, provider, status) => {
       return user.organisation.id == provider.id
     })
 
-    const providerUserCount = faker.datatype.number({ min: 1, max: 3 })
+    const providerUserCount = faker.number.int({ min: 1, max: 3 })
 
     for (let i = 0; i < providerUserCount; i++) {
       let providerUser = {}
 
-      providerUser = faker.helpers.randomize(providerUsers)
+      providerUser = faker.helpers.arrayElement(providerUsers)
 
       // clone the users so we can clean the data and only use what we need
       providerUser = _.cloneDeep(providerUser)

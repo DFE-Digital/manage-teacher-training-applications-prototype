@@ -35,9 +35,9 @@ exports.generateInterviews = (applications) => applications.map((application) =>
       for(let i = 0; i < totalInterviews; i++){
         const isSuccessful = i === successfulInterview;
         const interview = {
-          id: faker.datatype.uuid(),
+          id: faker.string.uuid(),
           details: randomize([faker.lorem.sentence(20), '']),
-          location: randomize([[faker.address.streetAddress(), faker.address.city(), faker.address.zipCode()].join(', '), 'https://zoom.us/z1234/']),
+          location: randomize([[faker.location.streetAddress(), faker.location.city(), faker.location.zipCode()].join(', '), 'https://zoom.us/z1234/']),
           organisation: randomize(["The Royal Borough Teaching School Alliance", "Kingston University"]),
           date: isSuccessful ? dateFrom(offerMade.date, randomNumber(1,3)) : randomDateTo(randomDate(1,5), randomNumber(1, 10)),
         };

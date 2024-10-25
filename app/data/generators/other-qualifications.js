@@ -1,11 +1,10 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
 
-
 module.exports = () => {
 
   let qualifications = []
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'ABRSM',
       subject: 'Piano (practical)',
@@ -23,7 +22,7 @@ module.exports = () => {
     year: '2012'
   })
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'GCSE',
       subject: 'Graphics',
@@ -33,7 +32,7 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'GCSE',
       subject: 'Religious Studies',
@@ -43,7 +42,7 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'AS level',
       subject: 'Maths',
@@ -53,7 +52,7 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'A level',
       subject: 'French',
@@ -63,7 +62,7 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'A level',
       subject: 'Religious Studies',
@@ -73,7 +72,7 @@ module.exports = () => {
     })
   }
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'A level',
       subject: 'English',
@@ -92,7 +91,7 @@ module.exports = () => {
     year: '2014'
   })
 
-  if(faker.helpers.randomize([true, false])) {
+  if(faker.helpers.arrayElement([true, false])) {
     qualifications.push({
       type: 'ABRSM',
       subject: 'Music Theory',
@@ -110,5 +109,5 @@ module.exports = () => {
     year: '2013'
   })
 
-  return faker.helpers.randomize([qualifications, qualifications, qualifications, qualifications, qualifications, qualifications, null])
+  return faker.helpers.arrayElement([qualifications, qualifications, qualifications, qualifications, qualifications, qualifications, null])
 }

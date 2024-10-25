@@ -5,14 +5,18 @@ module.exports = (personalDetails) => {
   }
 
   return {
-    tel: faker.phone.phoneNumber(),
-    email: faker.internet.email(personalDetails.givenName, personalDetails.familyName).toLowerCase(),
+    tel: faker.phone.number(),
+    email: faker.internet.email({
+      firstName: personalDetails.givenName,
+      lastName: personalDetails.familyName
+    }
+    ).toLowerCase(),
     address: {
-      line1: faker.address.streetAddress(),
+      line1: faker.location.streetAddress(),
       line2: '',
-      level2: faker.address.city(),
-      level1: personalDetails.isInternationalCandidate ? faker.address.state() : faker.address.county(),
-      postcode: faker.address.zipCode(),
+      level2: faker.location.city(),
+      level1: personalDetails.isInternationalCandidate ? faker.location.state() : faker.location.county(),
+      postcode: faker.location.zipCode(),
       ...(personalDetails.isInternationalCandidate && { country: 'France' })
     },
     addressType: personalDetails.isInternationalCandidate ? 'international' : 'uk'

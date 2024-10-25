@@ -1,12 +1,11 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
-
 const { DateTime } = require('luxon')
 let generateWithdrawal = require('./withdrawal')
 
 module.exports = (params) => {
   let status = params.status
   let submittedDate = params.submittedDate
-  let madeDate = DateTime.fromISO(submittedDate).plus({ days: faker.datatype.number({ min: 3, max: 19 }) }).toISO()
+  let madeDate = DateTime.fromISO(submittedDate).plus({ days: faker.number.int({ min: 3, max: 19 }) }).toISO()
 
   let conditionStatus = 'Pending'
   if (status === 'Recruited') {
@@ -22,34 +21,35 @@ module.exports = (params) => {
   let withdrawalDate = null;
   let withdrawalReasons = null;
   if(status === 'Offer withdrawn') {
-    withdrawalDate = DateTime.fromISO(madeDate).plus({ days: faker.datatype.number({ min: 1, max: 5 })}).toISO()
+    withdrawalDate = DateTime.fromISO(madeDate).plus({ days: faker.number.int({ min: 1, max: 5 })}).toISO()
     withdrawalReasons = generateWithdrawal()
   }
 
   let acceptedDate = null
   if(status === 'Conditions pending' || status === 'Recruited' || status === 'Conditions not met' || status === 'Deferred') {
-    acceptedDate = DateTime.fromISO(madeDate).plus({ days: faker.datatype.number({ min: 1, max: 3 })}).toISO()
+    acceptedDate = DateTime.fromISO(madeDate).plus({ days: faker.number.int({ min: 1, max: 3 })}).toISO()
   }
 
   let standardConditions
   let conditions
 
-  if(params.status == 'Deferred' || params.status == 'Conditions pending' || faker.helpers.randomize([true, false])) {
+  if(params.status == 'Deferred' || params.status == 'Conditions pending' || faker.helpers.arrayElement([true, false])) {
     standardConditions = [{
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       description: 'Fitness to train to teach check',
-      status: conditionStatus
+      status: 'Met'
     }, {
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       description: 'Disclosure and Barring Service (DBS) check',
-      status: conditionStatus
-    }]
+      status: 'Met'
+    },
+    {
+      id: faker.string.uuid(),
+      description: '2 references',
+      status: 'Pending'
+    }
+    ]
 
-    conditions =  [{
-      id: faker.datatype.uuid(),
-      description: 'You need to take English speaking course',
-      status: conditionStatus
-    }]
   }
 
   return {

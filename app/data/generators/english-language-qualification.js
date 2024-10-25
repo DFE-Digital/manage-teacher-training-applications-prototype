@@ -1,6 +1,5 @@
 const { fakerEN_GB: faker } = require('@faker-js/faker')
 
-
 const { DateTime } = require('luxon')
 const weighted = require('weighted')
 
@@ -10,19 +9,19 @@ module.exports = (params) => {
 
   // To create qaulification year add n years after date of birth
   let year = DateTime.fromISO(params.dateOfBirth).toObject().year
-  year += faker.helpers.randomize([18,19,20,21,22])
+  year += faker.helpers.arrayElement([18,19,20,21,22])
 
   if (year > currentYear) {
     year = currentYear
   }
 
-  const type = faker.helpers.randomize([
+  const type = faker.helpers.arrayElement([
     'IELTS',
     'TOEFL',
     'Other'
   ])
 
-  const reason = faker.helpers.randomize([
+  const reason = faker.helpers.arrayElement([
     'I have booked to take an IELTS test next month',
     'I am taking a TOEFL test next month',
     'I will take a Pearson English test',
@@ -47,7 +46,7 @@ module.exports = (params) => {
   } else {
     grade = 'B'
     gradeLabel = 'Score or grade'
-    reference = faker.helpers.randomize([
+    reference = faker.helpers.arrayElement([
       'Pearson Test of English (Academic)',
       'Cambridge IGCSE English as a Second Language'
     ])
