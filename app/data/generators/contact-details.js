@@ -1,11 +1,7 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
-
 module.exports = (personalDetails) => {
+  let faker = require('@faker-js/faker').fakerEN_GB
   if (personalDetails.isInternationalCandidate) {
-    faker.locale = 'fr'
-  } else {
-    faker.locale = 'en_GB'
+    faker = require('@faker-js/faker').fakerFR
   }
 
   return {

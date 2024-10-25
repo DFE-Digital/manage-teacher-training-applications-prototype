@@ -1,5 +1,5 @@
-const faker = require('faker')
-faker.locale = 'en_GB'
+const { fakerEN_GB: faker } = require('@faker-js/faker')
+
 const { DateTime } = require('luxon')
 const weighted = require('weighted')
 

@@ -1,4 +1,4 @@
-const faker = require('faker');
+const { fakerEN_GB: faker } = require('@faker-js/faker');
 
 const { STATUS, EVENTS } = require('./constants');
 const { randomDate, randomNumber } = require('./helpers');

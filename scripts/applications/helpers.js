@@ -1,4 +1,4 @@
-const faker = require('faker');
+const { fakerEN_GB: faker } = require('@faker-js/faker');
 const { DateTime } = require('luxon');
 
 const SystemHelper = require('../../app/data/helpers/system');
