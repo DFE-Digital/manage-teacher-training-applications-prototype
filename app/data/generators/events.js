@@ -44,19 +44,19 @@ module.exports = (params) => {
 
       events.items.push({
         title: eventTitle,
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         assignedUsers: assignedUsers
       })
     }
   }
 
-  if (faker.helpers.randomize([true, false]) && (params.interviews || params.offer)) {
+  if (faker.helpers.arrayElement([true, false]) && (params.interviews || params.offer)) {
     date = DateHelper.getFutureDate(date)
 
     events.items.push({
       title: 'Shortlisted',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         course: {
@@ -79,7 +79,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Interview set up',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         interview: params.interviews.items[0],
@@ -93,7 +93,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Interview set up',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         interview: params.interviews.items[1],
@@ -101,7 +101,7 @@ module.exports = (params) => {
       }
     })
 
-    if (faker.helpers.randomize([true])) {
+    if (faker.helpers.arrayElement([true])) {
       date = DateHelper.getFutureDate(date)
 
       var interview = _.clone(params.interviews.items[1])
@@ -109,7 +109,7 @@ module.exports = (params) => {
 
       events.items.push({
         title: 'Interview updated',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           interview: interview,
@@ -119,12 +119,12 @@ module.exports = (params) => {
 
     }
 
-    if (faker.helpers.randomize([true])) {
+    if (faker.helpers.arrayElement([true])) {
       date = DateHelper.getFutureDate(date)
 
       events.items.push({
         title: 'Interview cancelled',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           interview: interview,
@@ -156,7 +156,7 @@ module.exports = (params) => {
 
       events.items.push({
       title: 'Application rejected',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date
     })
 
@@ -179,7 +179,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Offer made',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         offer: {
@@ -246,7 +246,7 @@ module.exports = (params) => {
   } else if (params.status === 'Declined') {
     date = DateHelper.getFutureDate(date)
 
-    if(faker.helpers.randomize([true, false])) {
+    if(faker.helpers.arrayElement([true, false])) {
       events.items.push({
         title: 'Offer automatically declined',
         date: date,
@@ -291,7 +291,7 @@ module.exports = (params) => {
       date = DateHelper.getFutureDate(date)
       events.items.push({
         title: 'Offer accepted',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           offer: {
@@ -309,7 +309,7 @@ module.exports = (params) => {
       date = DateHelper.getFutureDate(date)
       events.items.push({
         title: 'Conditions marked as met',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           offer: {
@@ -328,7 +328,7 @@ module.exports = (params) => {
       date = DateHelper.getFutureDate(date)
       events.items.push({
         title: 'Offer accepted',
-        user: faker.name.findName(),
+        user: faker.person.fullName(),
         date: date,
         meta: {
           offer: {
@@ -352,7 +352,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Conditions marked as not met',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         offer: {
@@ -374,7 +374,7 @@ module.exports = (params) => {
 
     events.items.push({
       title: 'Offer deferred',
-      user: faker.name.findName(),
+      user: faker.person.fullName(),
       date: date,
       meta: {
         offer: {

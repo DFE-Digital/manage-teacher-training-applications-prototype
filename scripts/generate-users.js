@@ -21,7 +21,7 @@ const generateFakeUsers = (count) => {
   const emailAddress = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${mainOrg.domain}`
 
   users.push({
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     firstName: firstName,
     lastName: lastName,
     emailAddress: emailAddress,
@@ -38,21 +38,21 @@ const generateFakeUsers = (count) => {
 
   organisations.forEach(organisation => {
     for(var i = 0; i < 5; i++) {
-      let firstName = generatorHelpers.firstName(faker.helpers.randomize([0,1]))
+      let firstName = generatorHelpers.firstName(faker.helpers.arrayElement([0,1]))
       let lastName = generatorHelpers.lastName()
       users.push({
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         firstName,
         lastName,
         emailAddress: `${firstName.replace(/\s/g, '').toLowerCase()}.${lastName.toLowerCase()}@${organisation.domain}`,
         organisation,
         permissions: {
-          manageOrganisation: faker.helpers.randomize([true, false]),
-          manageUsers: faker.helpers.randomize([true, false]),
-          setupInterviews: faker.helpers.randomize([true, false]),
-          makeDecisions: faker.helpers.randomize([true, false]),
-          viewSafeguardingInformation: faker.helpers.randomize([true, false]),
-          viewDiversityInformation: faker.helpers.randomize([true, false])
+          manageOrganisation: faker.helpers.arrayElement([true, false]),
+          manageUsers: faker.helpers.arrayElement([true, false]),
+          setupInterviews: faker.helpers.arrayElement([true, false]),
+          makeDecisions: faker.helpers.arrayElement([true, false]),
+          viewSafeguardingInformation: faker.helpers.arrayElement([true, false]),
+          viewDiversityInformation: faker.helpers.arrayElement([true, false])
         }
       })
     }

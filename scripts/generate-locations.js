@@ -14,7 +14,7 @@ const generateFakeLocations = (count) => {
 
   // TODO: generate locations per organisation
   const locations = [{
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: 'Main site',
     address: {
       address1: '123 Main Street',
@@ -25,7 +25,7 @@ const generateFakeLocations = (count) => {
     },
     organisation: organisation
   }, {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: 'Queen’s campus',
     address: {
       address1: 'Amory Building',
@@ -36,7 +36,7 @@ const generateFakeLocations = (count) => {
     },
     organisation: organisation
   }, {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: 'Malet Place',
     address: {
       address1: 'Gordon Square',
