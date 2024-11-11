@@ -29,7 +29,7 @@
     "marked": "^14.1.4",
     "numeral": "^2.0.6",
     "universal-analytics": "^0.5.1",
-    "uuid": "^10.0.0",
+    "uuid": "^11.0.3",
     "weighted": "^1.0.0"
   },
   "greenkeeper": {
