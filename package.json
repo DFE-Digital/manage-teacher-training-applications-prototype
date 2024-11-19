@@ -17,7 +17,7 @@
     "@x-govuk/govuk-prototype-filters": "^1.4.3",
     "archiver-promise": "^1.0.0",
     "cookie-parser": "^1.4.7",
-    "cross-spawn": "^7.0.5",
+    "cross-spawn": "^7.0.6",
     "csv-writer": "^1.6.0",
     "del": "^7.1.0",
     "fancy-log": "^2.0.0",
