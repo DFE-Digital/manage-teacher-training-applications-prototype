@@ -18,7 +18,7 @@
       {% set showBannerHeading = 'Application shortlisted' %}
     {% elseif showBanner == 'withdraw-request' %}
       {% set showBannerHeading = 'We have contacted the candidate to confirm they want to withdraw' %}
-      {% set showBannerText%}If they do not respond by {{ date | date("h:mma")}} on on {{ date | date("add", 2, "days") | date("D MMMM Y")}}, their application will be withdrawn automatically.{% endset %}
+      {% set showBannerText%}If they do not respond by {{ application.pendingWithdrawalDate | govukDateTime("on") }}, their application will be withdrawn automatically.{% endset %}
     {% endif %}
 
     {% set showBannerHtml %}
@@ -69,7 +69,7 @@
           </div>
           <div class="govuk-notification-banner__content">
             <p class="govuk-body">
-              This application is pending withdrawal. The candidate has until {{ date | date("h:mma")}} on {{ date | date("add", 2, "days") | date("D MMMM Y")}} to confirm, or their application will be withdrawn.
+              This application is pending withdrawal. The candidate has until {{ application.pendingWithdrawalDate | govukDateTime("on") }} to confirm, or their application will be withdrawn.
             </p>
           </div>
         </div>
