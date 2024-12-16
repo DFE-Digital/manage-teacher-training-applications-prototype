@@ -1,5 +1,4 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
-const dateFilter = require('nunjucks-date-filter')
 
 const addFilter = govukPrototypeKit.views.addFilter
 
@@ -37,8 +36,6 @@ function statusClass (status) {
         return 'govuk-tag--red'
     }
   }
-
-addFilter('date', dateFilter)
 
 addFilter('statusClass', statusClass)
 

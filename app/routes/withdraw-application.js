@@ -18,6 +18,11 @@ module.exports = router => {
       res.redirect(`/applications/${applicationId}/offer/withdraw` )
     } else {
       application.pendingWithdrawal = true
+
+      var dateWithdrawn = new Date()
+      dateWithdrawn.setDate(new Date().getDate()+2);
+      application.pendingWithdrawalDate = dateWithdrawn.toISOString()
+
       res.redirect(`/applications/${applicationId}?confirm=withdraw-request` )
     }
 
