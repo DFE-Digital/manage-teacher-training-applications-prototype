@@ -40,7 +40,9 @@
     </div>
     <div class="govuk-grid-column-one-third">
       <dl class="app-application-card__list app-application-card__list--secondary">
-        {% if a.status == 'Received' or a.status == 'New' or a.status == 'In review' or a.status == 'Interviewing' or a.status == 'Shortlisted' %}
+        {% if a.pendingWithdrawal %}
+          <dd class="govuk-body-s app-status-indicator--red">Pending withdrawal</dd>
+        {% elif a.status == 'Received' or a.status == 'New' or a.status == 'In review' or a.status == 'Interviewing' or a.status == 'Shortlisted' %}
           <dd class="govuk-body-s{% if ( a.submittedDate | daysAgo ) >= 30 %} app-status-indicator--red{% endif %}">Received {{ a.submittedDate | daysAgo }} days ago
           </dd>
         {% elif a.status == 'Offered' %}

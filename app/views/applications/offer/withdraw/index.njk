@@ -2,8 +2,15 @@
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set caption = content.withdrawOffer.caption + ' - ' + name %}
-{% set heading = "Tell the candidate why you’re withdrawing their offer" %}
+
+{% set caption %}
+{% if content.withdrawOffer.caption %}
+{{ content.withdrawOffer.caption }} -
+{% endif %}
+{{ name }}
+{% endset %}
+
+{% set heading = "Tell the candidate why you do not want to offer them a place" %}
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
@@ -51,6 +58,14 @@
 
         {% set sponsorshipHtml %}
           {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set conditionsHtml %}
+          {{appRejectionDetails({ category: 'conditions', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set fundingHtml %}
+          {{appRejectionDetails({ category: 'fundingHtml', reason: 'details', data: data })}}
         {% endset %}
 
         {% set otherDetailsHtml %}
@@ -129,6 +144,22 @@
               text: "Course full",
               checked: checked("['rejection']['categories']", "Course full")
             },
+            {
+              value: "Candidate has not met the conditions of this offer",
+              text: "Candidate has not met the conditions of this offer",
+              checked: checked("['rejection']['categories']", "Candidate has not met the conditions of this offer"),
+              conditional: {
+                html: conditionsHtml
+              }
+            } if data['withdrawal-reason'] == "withdraw-offer",
+            {
+              value: "Funding",
+              text: "Funding",
+              checked: checked("['rejection']['categories']", "Funding"),
+              conditional: {
+                html: fundingHtml
+              }
+            } if data['withdrawal-reason'] == "withdraw-offer",
             {
               value: "Other",
               text: "Other",
