@@ -11,16 +11,20 @@
   {% if showBanner %}
 
     {% if showBanner == 'withdraw' %}
-      {% set showBannerText = 'Application withdrawn' %}
+      {% set showBannerHeading = 'Application withdrawn' %}
     {% elseif showBanner == 'review' %}
-     {% set showBannerText = 'Application marked as In review' %}
+     {% set showBannerHeading = 'Application marked as In review' %}
     {% elseif showBanner == 'shortlist' %}
-      {% set showBannerText = 'Application shortlisted' %}
+      {% set showBannerHeading = 'Application shortlisted' %}
+    {% elseif showBanner == 'withdraw-request' %}
+      {% set showBannerHeading = 'We have contacted the candidate to confirm they want to withdraw' %}
+      {% set showBannerText%}If they do not respond by {{ date | date("h:mma")}} on on {{ date | date("add", 2, "days") | date("D MMMM Y")}}, their application will be withdrawn automatically.{% endset %}
     {% endif %}
 
     {% set showBannerHtml %}
-      <h3 class="govuk-notification-banner__heading">{{ showBannerText }}</h3>
-    <p class="govuk-body"><a class="govuk-notification-banner__link" href="/applications/{{application.id}}/notes/new">Add a note</a></p>
+      <h3 class="govuk-notification-banner__heading">{{ showBannerHeading }}</h3>
+      {% if showBannerText %}<p class="govuk-body">{{ showBannerText }}</p>{% endif %}
+      <p class="govuk-body"><a class="govuk-notification-banner__link" href="/applications/{{application.id}}/notes/new">Add a note</a></p>
     {% endset %}
 
     {{ govukNotificationBanner({
@@ -44,37 +48,41 @@
     html: html
     }) }}
 
- {# {%  elif application.personalDetails.name == 'Freida Jackson'%}
-       {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-
-    {% set html %}
-    <p class="govuk-notification-banner__heading">
-      {{name}}
-      updated their application on 31 July 2023 at 9:15am.<br><br>
-      <a class="govuk-notification-banner__link" href="/applications/{{application.id}}/timeline">View the timeline to see their updates</a>.
-    </p>
-    {% endset %}
-
-    {{ govukNotificationBanner({
-    html: html
-    }) }} #}
-
-
 {% endif %}
 
 
   {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Application</h2>
+
+
+      {% if application.pendingWithdrawal and showBanner != 'withdraw-request' %}
+        <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-body">
+              This application is pending withdrawal. The candidate has until {{ date | date("h:mma")}} on {{ date | date("add", 2, "days") | date("D MMMM Y")}} to confirm, or their application will be withdrawn.
+            </p>
+          </div>
+        </div>
+      {% endif %}
+
       {% if not query.transferred %}
         {% if application.status not in["Rejected", "Declined", "Offer withdrawn", "Application withdrawn", "Conditions not met"] %}
           <p class="govuk-body">{{name}}
             will be able to edit some sections of their application. You'll get a notification if they add any new information.</p>
           <p class="govuk-body">
-            <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Withdraw application</a>
+            {% if not application.pendingWithdrawal %}
+              <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Close this application</a>
+            {% endif %}
           {% endif %}
           <a class="govuk-link" href="#" download>Download application (PDF)</a>
         </p>

@@ -1,10 +1,11 @@
 {% extends "_layout.njk" %}
+{% from "_components/rejection-reasons/macro.njk" import rejectionReasons %}
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
-{% set caption = content.withdrawOffer.caption + ' - ' + name %}
-{% set heading = content.withdrawOffer.checkAnswers.heading %}
-{% set title = heading + ' - ' + caption %}
+
+{% set heading = 'Check and confirm withdrawal' %}
+{% set title = heading %}
 {% set buttonText = 'Withdraw offer' %}
 
 {% block pageNavigation %}
@@ -13,24 +14,87 @@
   }) }}
 {% endblock %}
 
+{% set withdrawalReasons %}
+
+{% for reasonCategory in data['rejection']['categories'] %}
+  <p class="govuk-body">{{reasonCategory}}</p>
+  {% if reasonCategory == 'Qualifications' %}
+    {% set reasons =  data['rejection']['qualifications-reasons'] %}
+  {% else %}
+    {% set reasons = null %}
+  {% endif %}
+
+  {% for reason in reasons %}
+  <p class="govuk-body"> - {{reason}}{{reasonDetails}}</p>
+  {% endfor %}
+
+{% endfor %}
+
+
+{% endset %}
+
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{heading}}</h1>
 
-      {% set rejectionReasons = data.rejection %}
       {% set showChangeLinks = true %}
-      {% include "_includes/candidate-feedback.njk" %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Full name"
+            },
+            value: {
+              text: name
+            }
+          },
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              text: application.course
+            }
+          },
+          {
+            key: {
+              text: "Starting"
+            },
+            value: {
+              text: '2025'
+            }
+          },
+          {
+            key: {
+              text: "Preferred location"
+            },
+            value: {
+              html: appLocation(application.location) if application.location.name else application.location
+            }
+          },
+          {
+            key: {
+              text: "Reason for withdrawal"
+            },
+            value: {
+              html: withdrawalReasons
+            }
+          }
+        ]
+      }) }}
 
       {{ govukWarningText({
-        text: "The candidate will be sent an email to tell them why you withdrew the offer.",
+        text: "We will tell the candidate you withdrew your offer, and share your reasons.",
         iconFallbackText: "Fallback text"
       }) }}
 
       <form method="post">
         {{ govukButton({
-          text: buttonText
+          text: buttonText,
+          classes: "govuk-button--warning"
         }) }}
       </form>
 

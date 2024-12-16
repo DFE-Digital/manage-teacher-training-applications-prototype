@@ -12,7 +12,16 @@ module.exports = router => {
   router.post('/applications/:applicationId/withdraw', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const reason = req.session.data['withdrawal-reason']
 
+    if ( reason == 'withdraw-offer' ) {
+      res.redirect(`/applications/${applicationId}/offer/withdraw` )
+    } else {
+      application.pendingWithdrawal = true
+      res.redirect(`/applications/${applicationId}?confirm=withdraw-request` )
+    }
+
+    /*
     application.status = 'Application withdrawn'
 
     application.withdrawal = {
@@ -35,6 +44,8 @@ module.exports = router => {
     })
 
     res.redirect(`/applications/${applicationId}/` )
+
+    */
   })
 
 }

@@ -7,14 +7,9 @@
 
 <div class="app-offer-panel">
   {% if not params.transferred %}
-    {% if params.withdraw or params.defer %}
+    {% if params.defer %}
       <p class="govuk-body govuk-!-margin-bottom-2">
-        {% if params.withdraw %}
-          <a class="govuk-!-margin-right-2" href="{{params.withdraw.href}}">Withdraw offer</a>
-        {% endif %}
-        {% if params.defer %}
           <a href="{{params.defer.href}}">Defer offer</a>
-        {% endif %}
       </p>
     {% endif %}
   {% endif %}
