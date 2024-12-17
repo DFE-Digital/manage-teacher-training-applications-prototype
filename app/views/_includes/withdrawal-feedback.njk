@@ -1,0 +1,65 @@
+{% for reasonCategory in data['rejection']['categories'] %}
+
+    {% if reasonCategory == 'Personal statement' and data['rejection']['rejection-personal-statement'] %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['rejection-personal-statement'] %}
+    {% elseif reasonCategory == 'References' and data['rejection']['references-reasons-details'] %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['references-reasons-details'] %}
+    {% elseif reasonCategory == 'Safeguarding' and data['rejection']['safeguarding-reasons-details'] %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['safeguarding-reasons-details'] %}
+    {% elseif reasonCategory == 'Visa sponsorship' and data['rejection']['sponsorship-reasons-details'] %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['sponsorship-reasons-details'] %}
+    {% elseif reasonCategory == 'Candidate has not met the conditions of this offer' and data['rejection']['conditions-reasons-details'] %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['conditions-reasons-details'] %}
+    {% elseif reasonCategory == 'Funding' and data['rejection']['funding-reasons-details']%}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['funding-reasons-details'] %}
+    {% elseif reasonCategory == 'Other' and data['rejection']['other-reasons-details'] %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['other-reasons-details'] %}
+    {% else %}
+      {% set reasonCategoryDetails = '' %}
+    {% endif %}
+
+  <p class="govuk-body">{{reasonCategory}}{{reasonCategoryDetails}}</p>
+  {% if reasonCategory == 'Qualifications' %}
+    {% set reasons =  data['rejection']['qualifications-reasons'] %}
+  {% elseif reasonCategory == 'Teaching knowledge and ability' %}
+    {% set reasons =  data['rejection']['teaching-knowledge-reasons'] %}
+  {% elseif reasonCategory == 'Communication, attendance and scheduling' %}
+    {% set reasons =  data['rejection']['communication-reasons'] %}
+  {% else %}
+    {% set reasons = null %}
+  {% endif %}
+
+  {% for reason in reasons %}
+
+    {% if reason == 'Degree subject does not meet course requirements' and data['rejection']['qualifications-reasons-degree-class-does-not-meet-course-requirements'] %}
+      {% set reasonDetails = ': ' + data['rejection']['qualifications-reasons-degree-class-does-not-meet-course-requirements'] %}
+    {% elseif reason == 'Degree class does not meet course requirements' and data['rejection']['qualifications-reasons-degree-subject-does-not-meet-course-requirements'] %}
+      {% set reasonDetails = ': ' + data['rejection']['qualifications-reasons-degree-subject-does-not-meet-course-requirements'] %}
+    {% elseif reason == 'Subject knowledge' and data['rejection']['teaching-knowledge-reasons-subject'] %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-subject'] %}
+    {% elseif reason == 'Safeguarding knowledge' and data['rejection']['teaching-knowledge-reasons-safeguarding'] %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-safeguarding'] %}
+    {% elseif reason == 'Teaching method knowledge' and data['rejection']['teaching-knowledge-reasons-teaching-method'] %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-teaching-method'] %}
+    {% elseif reason == 'Teaching role knowledge' and data['rejection']['teaching-knowledge-reasons-teaching-role'] %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-teaching-role'] %}
+    {% elseif reason == 'Teaching demonstration' and data['rejection']['teaching-knowledge-reasons-teaching-demonstration']%}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-teaching-demonstration'] %}
+    {% elseif reason == 'Other' and reasonCategory == 'Teaching knowledge and ability' and data['rejection']['teaching-knowledge-reasons-other'] %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-other'] %}
+    {% elseif reason == 'Did not reply to messages' and data['rejection']['communication-reasons-did-not-reply-to-messages'] %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-did-not-reply-to-messages'] %}
+    {% elseif reason == 'Did not attend interview' and data['rejection']['communication-reasons-did-not-attend-interview'] %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-did-not-attend-interview'] %}
+    {% elseif reason == 'Could not arrange interview' and data['rejection']['communication-reasons-could-not-arrange-interview'] %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-could-not-arrange-interview'] %}
+    {% elseif reason == 'Other' and data['rejection']['communication-reasons-other'] %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-other'] %}
+    {% else %}
+      {% set reasonDetails = '' %}
+    {% endif %}
+
+  <p class="govuk-body"> - {{reason}}{{reasonDetails}}</p>
+  {% endfor %}
+
+{% endfor %}

@@ -8,6 +8,13 @@
 
 {% block content %}
 
+  {% if data['confirm'] == 'withdrawn' %}
+    {{ govukNotificationBanner({
+      text: 'Offer successfully withdrawn',
+      type: 'success'
+    }) }}
+  {% endif %}
+
   {% include "_includes/applications/h1.njk" %}
   {% include "_includes/applications/sub-nav.njk" %}
 
@@ -28,7 +35,9 @@
         <p>Your offer was withdrawn on {{application.offer.withdrawalDate | govukDate}}. The following feedback was sent to the candidate.</p>
         {% set rejectionReasons = application.offer.withdrawalReasons %}
         {% set whyHeading = "Why your offer was withdrawn" %}
-        {% include "_includes/candidate-feedback.njk" %}
+        <div class="govuk-inset-text">
+        {% include "_includes/withdrawal-feedback.njk" %}
+        </div>
       {% elseif application.status == "Application withdrawn" %}
         <p>The application was withdrawn on {{application.withdrawal.date | govukDate}}. The following feedback was sent to the candidate.</p>
 

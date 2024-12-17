@@ -26,9 +26,6 @@ module.exports = router => {
     application.offer.withdrawalDate = new Date().toISOString()
     application.offer.withdrawalReasons = ApplicationHelper.getRejectReasons(req.session.data.rejection)
 
-    // console.log(req.session.data.rejection);
-    // console.log(application.offer.withdrawalReasons);
-
     ApplicationHelper.addEvent(application, {
       "title": content.withdrawOffer.event.title,
       "user": "Ben Brown",
@@ -38,8 +35,7 @@ module.exports = router => {
       }
     })
 
-    delete req.session.data.rejectionReasons
-    res.redirect(`/applications/${applicationId}/feedback`)
+    res.redirect(`/applications/${applicationId}/feedback?confirm=withdrawn`)
   })
 
 }
