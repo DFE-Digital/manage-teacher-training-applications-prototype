@@ -23,16 +23,43 @@ module.exports = router => {
       dateWithdrawn.setDate(new Date().getDate()+2);
       application.pendingWithdrawalDate = dateWithdrawn.toISOString()
 
-      res.redirect(`/applications/${applicationId}?confirm=withdraw-request` )
-    }
+      ApplicationHelper.addEvent(application, {
+        "title": "Request to withdraw application on candidate's behalf",
+        "user": "Ben Brown",
+        "date": new Date().toISOString()
+      })
 
-    /*
+      res.redirect(`/applications/${applicationId}?confirm=withdraw-request` )
+      }
+
+    })
+
+  router.get('/applications/:applicationId/withdrawal-reject', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    ApplicationHelper.addEvent(application, {
+      "title": "Request to withdraw on candidate's behalf rejected",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
+    })
+
+    delete application.pendingWithdrawal
+    delete application.pendingWithdrawalDate
+
+    res.redirect(`/applications/${applicationId}`)
+
+  })
+
+  router.get('/applications/:applicationId/withdrawal-confirm', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
     application.status = 'Application withdrawn'
 
     application.withdrawal = {
       date: new Date().toISOString(),
       feedback: {
-        reason: req.session.data['withdraw-application'].reason
+        reason: 'XXX'
       }
     }
 
@@ -48,9 +75,12 @@ module.exports = router => {
       "date": new Date().toISOString()
     })
 
+    delete application.pendingWithdrawal
+    delete application.pendingWithdrawalDate
+
     res.redirect(`/applications/${applicationId}/` )
 
-    */
   })
+
 
 }

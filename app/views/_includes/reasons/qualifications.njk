@@ -1,7 +1,11 @@
 {% set category = 'qualifications' %}
 
-{% set degreeDoesNotMeetRequirementsHtml %}
-  {{appRejectionDetails({ category: category, reason: 'degree-does-not-meet-course-requirements', data: data })}}
+{% set degreeClassDoesNotMeetRequirementsHtml %}
+  {{appRejectionDetails({ category: category, reason: 'degree-subject-does-not-meet-course-requirements', data: data })}}
+{% endset%}
+
+{% set degreeSubjectDoesNotMeetRequirementsHtml %}
+  {{appRejectionDetails({ category: category, reason: 'degree-class-does-not-meet-course-requirements', data: data })}}
 {% endset%}
 
 {% set couldNotVertifyQualificationsHtml %}
@@ -24,17 +28,17 @@
   items: [{
     value: "Degree subject does not meet course requirements",
     text: "Degree subject does not meet course requirements",
-    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree subject does not meet course requirements"),
     conditional: {
-      html: degreeDoesNotMeetRequirementsHtml
+      html: degreeSubjectDoesNotMeetRequirementsHtml
     }
   },
   {
     value: "Degree class does not meet course requirements",
     text: "Degree class does not meet course requirements",
-    checked: checked("['rejection']['" + category + "-reasons']", "Degree does not meet course requirements"),
+    checked: checked("['rejection']['" + category + "-reasons']", "Degree class does not meet course requirements"),
     conditional: {
-      html: degreeDoesNotMeetRequirementsHtml
+      html: degreeClassDoesNotMeetRequirementsHtml
     }
   }]
 }) }}

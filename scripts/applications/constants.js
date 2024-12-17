@@ -28,6 +28,7 @@ exports.EVENTS = {
   CONDITIONS_NOT_MET: 'Conditions marked as not met',
   REJECTED: 'Application rejected',
   FEEDBACK_SENT: 'Feedback given',
+  WITHDRAWAL_REQUEST: 'Withdrawal request',
   WITHDRAWN: 'Application withdrawn',
   OFFER_CONDITIONS_UPDATED: 'Status of conditions updated',
   NOTE_ADDED: 'Note added'

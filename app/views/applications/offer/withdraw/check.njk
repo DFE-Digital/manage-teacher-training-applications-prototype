@@ -1,5 +1,4 @@
 {% extends "_layout.njk" %}
-{% from "_components/rejection-reasons/macro.njk" import rejectionReasons %}
 
 {% set primaryNavId = 'applications' %}
 {% set name = application.personalDetails.name %}
@@ -17,14 +16,66 @@
 {% set withdrawalReasons %}
 
 {% for reasonCategory in data['rejection']['categories'] %}
-  <p class="govuk-body">{{reasonCategory}}</p>
+
+    {% if reasonCategory == 'Personal statement' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['rejection-personal-statement'] %}
+    {% elseif reasonCategory == 'References' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['references-reasons-details'] %}
+    {% elseif reasonCategory == 'Safeguarding' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['safeguarding-reasons-details'] %}
+    {% elseif reasonCategory == 'Visa sponsorship' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['sponsorship-reasons-details'] %}
+    {% elseif reasonCategory == 'Candidate has not met the conditions of this offer' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['conditions-reasons-details'] %}
+    {% elseif reasonCategory == 'Funding' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['funding-reasons-details'] %}
+    {% elseif reasonCategory == 'Other' %}
+      {% set reasonCategoryDetails = ': ' + data['rejection']['other-reasons-details'] %}
+    {% else %}
+      {% set reasonCategoryDetails = '' %}
+    {% endif %}
+
+  <p class="govuk-body">{{reasonCategory}}{{reasonCategoryDetails}}</p>
   {% if reasonCategory == 'Qualifications' %}
     {% set reasons =  data['rejection']['qualifications-reasons'] %}
+  {% elseif reasonCategory == 'Teaching knowledge and ability' %}
+    {% set reasons =  data['rejection']['teaching-knowledge-reasons'] %}
+  {% elseif reasonCategory == 'Communication, attendance and scheduling' %}
+    {% set reasons =  data['rejection']['communication-reasons'] %}
   {% else %}
     {% set reasons = null %}
   {% endif %}
 
   {% for reason in reasons %}
+
+    {% if reason == 'Degree subject does not meet course requirements' %}
+      {% set reasonDetails = ': ' + data['rejection']['qualifications-reasons-degree-class-does-not-meet-course-requirements'] %}
+    {% elseif reason == 'Degree class does not meet course requirements' %}
+      {% set reasonDetails = ': ' + data['rejection']['qualifications-reasons-degree-subject-does-not-meet-course-requirements'] %}
+    {% elseif reason == 'Subject knowledge' %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-subject'] %}
+    {% elseif reason == 'Safeguarding knowledge' %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-safeguarding'] %}
+    {% elseif reason == 'Teaching method knowledge' %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-teaching-method'] %}
+    {% elseif reason == 'Teaching role knowledge' %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-teaching-role'] %}
+    {% elseif reason == 'Teaching demonstration' %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-teaching-demonstration'] %}
+    {% elseif reason == 'Other' and reasonCategory == 'Teaching knowledge and ability' %}
+      {% set reasonDetails = ': ' + data['rejection']['teaching-knowledge-reasons-other'] %}
+    {% elseif reason == 'Did not reply to messages' %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-did-not-reply-to-messages'] %}
+    {% elseif reason == 'Did not attend interview' %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-did-not-attend-interview'] %}
+    {% elseif reason == 'Could not arrange interview' %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-could-not-arrange-interview'] %}
+    {% elseif reason == 'Other' %}
+      {% set reasonDetails = ': ' + data['rejection']['communication-reasons-other'] %}
+    {% else %}
+      {% set reasonDetails = '' %}
+    {% endif %}
+
   <p class="govuk-body"> - {{reason}}{{reasonDetails}}</p>
   {% endfor %}
 
