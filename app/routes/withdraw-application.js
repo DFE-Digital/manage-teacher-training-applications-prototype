@@ -59,7 +59,7 @@ module.exports = router => {
     application.withdrawal = {
       date: new Date().toISOString(),
       feedback: {
-        reason: 'XXX'
+        reason: 'I do not want to train to teach anymore'
       }
     }
 
