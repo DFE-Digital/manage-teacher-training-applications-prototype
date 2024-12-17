@@ -1,0 +1,19 @@
+{% extends "_email.njk" %}
+
+{% set name = application.personalDetails.name %}
+{% set title = "Manage teacher training applications: " + name + " has declined your offer to join " + application.course %}
+{% set from = "apply-for-teacher-training@education.gov.uk" %}
+{% set to = "admin@provider-name.example" %}
+
+{% block content %}
+  <p class="govuk-body">Dear [Provider name],</p>
+  <p class="govuk-body"><strong>{{ name }}</strong> does not want to withdraw their application to <strong>{{ application.course }}</strong> at <strong>{{ application.provider }}</strong>.</p>
+  <p class="govuk-body">You should contact them to discuss their application.</p>
+
+  <p class="govuk-body">View the application:</p>
+  <p class="govuk-body"><a href="/applications/{{ application.id }}/withdrawal-reject">http://apply-for-teacher-training.service.gov.uk/applications/{{ application.id }}</a></p>
+
+  <p class="govuk-body">Regards,
+  <p class="govuk-body">Apply for teacher training<br>
+    Department for Education</p>
+{% endblock %}
