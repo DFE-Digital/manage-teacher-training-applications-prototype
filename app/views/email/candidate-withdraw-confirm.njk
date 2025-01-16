@@ -7,7 +7,7 @@
 
 {% block content %}
   <p class="govuk-body">Dear [Provider name],</p>
-  <p class="govuk-body"><strong>{{ name }}</strong> withdraw their application for <strong>{{ application.course }}</strong> at <strong>{{ application.provider }}</strong>.</p>
+  <p class="govuk-body"><strong>{{ name }}</strong> withdrew their application for <strong>{{ application.course }}</strong> at <strong>{{ application.provider }}</strong>.</p>
 
   <p class="govuk-body">View the application:</p>
   <p class="govuk-body"><a href="/applications/{{ application.id }}/withdrawal-confirm">http://apply-for-teacher-training.service.gov.uk/applications/{{ application.id }}</a></p>
