@@ -1,0 +1,75 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set name = application.personalDetails.name %}
+
+{% set heading = "Withdraw at the candidate's request" %}
+{% set title = heading %}
+{% set buttonText = 'Request withdrawal' %}
+
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: "/applications/" + application.id
+  }) }}
+{% endblock %}
+
+{% set withdrawalReasons %}
+{% include "_includes/withdrawal-feedback.njk" %}
+{% endset %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{heading}}</h1>
+
+      <p class="govuk-body">{{name}} will have 48 hours to confirm if they want to withdraw. If they do not respond in this time, their application will be withdrawn automatically. If they say that they do not want their application to be withdrawn, you will be notified.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Full name"
+            },
+            value: {
+              text: name
+            }
+          },
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              text: application.course
+            }
+          },
+          {
+            key: {
+              text: "Starting"
+            },
+            value: {
+              text: '2025'
+            }
+          },
+          {
+            key: {
+              text: "Preferred location"
+            },
+            value: {
+              html: appLocation(application.location) if application.location.name else application.location
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post" action="/applications/{{ application.id }}/withdraw">
+        <input type="hidden" name="withdrawal-reason" value="candidate-behalf" />
+        {{ govukButton({
+          text: buttonText
+        }) }}
+      </form>
+
+      <p class="govuk-body"><a class="govuk-link--no-visited-state" href="/applications/{{ application.id }}">Cancel</a></p>
+    </div>
+  </div>
+{% endblock %}

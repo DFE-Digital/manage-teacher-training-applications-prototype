@@ -34,6 +34,14 @@ module.exports = router => {
 
     })
 
+  router.get('/applications/:applicationId/withdraw/request', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    res.render(`/applications/withdraw/request`, { application })
+
+  })
+
   router.get('/applications/:applicationId/withdrawal-reject', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
