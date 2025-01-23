@@ -80,8 +80,8 @@
           <p class="govuk-body">{{name}}
             will be able to edit some sections of their application. You'll get a notification if they add any new information.</p>
           <p class="govuk-body">
-            {% if not application.pendingWithdrawal %}
-              <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw">Close this application</a>
+            {% if not application.pendingWithdrawal and not application.offer %}
+              <a class="govuk-link govuk-!-margin-right-2" href="/applications/{{application.id}}/withdraw/request">Withdraw at candidate's request</a>
             {% endif %}
           {% endif %}
           <a class="govuk-link" href="#" download>Download application (PDF)</a>
