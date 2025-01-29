@@ -28,22 +28,6 @@
 
       <form method="post">
 
-        {% set qualificationReasonsHtml %}
-          {% include "_includes/reasons/qualifications.njk" %}
-        {% endset %}
-
-        {% set personalStatementReasonsHtml %}
-          {% include "_includes/reasons/personal-statement.njk" %}
-        {% endset %}
-
-        {% set teachingKnowledgeReasonsHtml %}
-          {% include "_includes/reasons/teaching-knowledge.njk" %}
-        {% endset %}
-
-        {% set communicationReasonsHtml %}
-          {% include "_includes/reasons/communication.njk" %}
-        {% endset %}
-
         {% set fitnessHtml %}
           {{appRejectionDetails({ category: 'fitness', reason: 'details', data: data })}}
         {% endset %}
@@ -52,28 +36,32 @@
           {{appRejectionDetails({ category: 'dbs', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set skeHtml %}
-          {{appRejectionDetails({ category: 'ske', reason: 'details', data: data })}}
-        {% endset %}
-
         {% set referencesHtml %}
           {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set safeguardingHtml %}
-          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
+        {% set skeHtml %}
+          {{appRejectionDetails({ category: 'ske', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set qualificationsHtml %}
+          {{appRejectionDetails({ category: 'qualifications', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set errorHtml %}
+          {{appRejectionDetails({ category: 'error', reason: 'details', data: data })}}
         {% endset %}
 
         {% set sponsorshipHtml %}
           {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set conditionsHtml %}
-          {{appRejectionDetails({ category: 'conditions', reason: 'details', data: data })}}
+        {% set fullHtml %}
+          {{appRejectionDetails({ category: 'full', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set fundingHtml %}
-          {{appRejectionDetails({ category: 'funding', reason: 'details', data: data })}}
+        {% set placementHtml %}
+          {{appRejectionDetails({ category: 'placement', reason: 'details', data: data })}}
         {% endset %}
 
         {% set otherDetailsHtml %}
@@ -151,43 +139,19 @@
           },
           items: [
             {
-              value: "Qualifications",
-              text: "Qualifications",
-              checked: checked("['rejection']['categories']", "Qualifications"),
+              value: "Qualifications cannot be verified",
+              text: "Qualifications cannot be verified",
+              checked: checked("['rejection']['categories']", "Qualifications cannot be verified"),
               conditional: {
-                html: qualificationReasonsHtml
+                html: qualificationsHtml
               }
             },
             {
-              value: "Personal statement",
-              text: "Personal statement",
-              checked: checked("['rejection']['categories']", "Personal statement"),
+              value: "Offer made in error",
+              text: "Offer made in error",
+              checked: checked("['rejection']['categories']", "Offer made in error"),
               conditional: {
-                html: personalStatementReasonsHtml
-              }
-            },
-            {
-              value: "Teaching knowledge and ability",
-              text: "Teaching knowledge and ability",
-              checked: checked("['rejection']['categories']", "Teaching knowledge and ability"),
-              conditional: {
-                html: teachingKnowledgeReasonsHtml
-              }
-            },
-            {
-              value: "Communication, attendance and scheduling",
-              text: "Communication, attendance and scheduling",
-              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
-              conditional: {
-                html: communicationReasonsHtml
-              }
-            },
-            {
-              value: "Safeguarding",
-              text: "Safeguarding",
-              checked: checked("['rejection']['categories']", "Safeguarding"),
-              conditional: {
-                html: safeguardingHtml
+                html: errorHtml
               }
             },
             {
@@ -201,16 +165,19 @@
             {
               value: "Course full",
               text: "Course full",
-              checked: checked("['rejection']['categories']", "Course full")
+              checked: checked("['rejection']['categories']", "Course full"),
+              conditional: {
+                html: fullHtml
+              }
             },
             {
-              value: "Funding",
-              text: "Funding",
-              checked: checked("['rejection']['categories']", "Funding"),
+              value: "No placement school available",
+              text: "No placement school available",
+              checked: checked("['rejection']['categories']", "No placement school available"),
               conditional: {
-                html: fundingHtml
+                html: placementHtml
               }
-            } if data['withdrawal-reason'] == "withdraw-offer",
+            },
             {
               value: "Other",
               text: "Other",
