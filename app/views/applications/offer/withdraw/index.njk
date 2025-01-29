@@ -10,7 +10,7 @@
 {{ name }}
 {% endset %}
 
-{% set heading = "Tell the candidate why you do not want to offer them a place" %}
+{% set heading = "Tell the candidate why you want to withdraw the offer" %}
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
@@ -24,13 +24,9 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{heading}}</h1>
+      <p class="govuk-hint">Select all that apply</p>
 
       <form method="post">
-
-        {# Comms
-        Course full
-        Safeguarding
-        Other #}
 
         {% set qualificationReasonsHtml %}
           {% include "_includes/reasons/qualifications.njk" %}
@@ -46,6 +42,18 @@
 
         {% set communicationReasonsHtml %}
           {% include "_includes/reasons/communication.njk" %}
+        {% endset %}
+
+        {% set fitnessHtml %}
+          {{appRejectionDetails({ category: 'fitness', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set dbsHtml %}
+          {{appRejectionDetails({ category: 'dbs', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set skeHtml %}
+          {{appRejectionDetails({ category: 'ske', reason: 'details', data: data })}}
         {% endset %}
 
         {% set referencesHtml %}
@@ -72,8 +80,67 @@
           {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
         {% endset %}
 
+
+      <h2 class="govuk-heading-m">Offer conditions not met</h2>
+
         {{ govukCheckboxes({
           idPrefix: "rejection-categories",
+          name: "rejection[categories]",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Fitness to train to teach check",
+              text: "Fitness to train to teach check",
+              checked: checked("['rejection']['categories']", "Fitness"),
+              conditional: {
+                html: fitnessHtml
+              }
+            },
+            {
+              value: "Disclosure and Barring Service (DBS) check",
+              text: "Disclosure and Barring Service (DBS) check",
+              checked: checked("['rejection']['categories']", "dbs"),
+              conditional: {
+                html: dbsHtml
+              }
+            },
+            {
+              value: "References",
+              text: "References",
+              checked: checked("['rejection']['categories']", "References"),
+              conditional: {
+                html: referencesHtml
+              }
+            },
+            {
+              value: "Completion of subject knowledge enhancement (SKE) course",
+              text: "Completion of subject knowledge enhancement (SKE) course",
+              checked: checked("['rejection']['categories']", "ske"),
+              conditional: {
+                html: skeHtml
+              }
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked("['rejection']['categories']", "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              }
+            }
+          ]
+        }) }}
+
+      <h2 class="govuk-heading-m">Other reasons</h2>
+
+        {{ govukCheckboxes({
+          idPrefix: "rejection-categories2",
           name: "rejection[categories]",
           fieldset: {
             legend: {
@@ -116,14 +183,6 @@
               }
             },
             {
-              value: "References",
-              text: "References",
-              checked: checked("['rejection']['categories']", "References"),
-              conditional: {
-                html: referencesHtml
-              }
-            },
-            {
               value: "Safeguarding",
               text: "Safeguarding",
               checked: checked("['rejection']['categories']", "Safeguarding"),
@@ -144,14 +203,6 @@
               text: "Course full",
               checked: checked("['rejection']['categories']", "Course full")
             },
-            {
-              value: "Candidate has not met the conditions of this offer",
-              text: "Candidate has not met the conditions of this offer",
-              checked: checked("['rejection']['categories']", "Candidate has not met the conditions of this offer"),
-              conditional: {
-                html: conditionsHtml
-              }
-            } if data['withdrawal-reason'] == "withdraw-offer",
             {
               value: "Funding",
               text: "Funding",
