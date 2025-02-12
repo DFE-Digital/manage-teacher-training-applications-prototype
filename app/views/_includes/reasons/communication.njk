@@ -29,21 +29,24 @@
     conditional: {
       html: didNotReplyToMessagesHtml
     }
-  }, {
+  },
+  {
     value: "Did not attend interview",
     text: "Did not attend interview",
     checked: checked("['rejection']['" + category + "-reasons']", "Did not attend interview"),
     conditional: {
       html: didNotAttendInterviewHtml
     }
-  }, {
+  } if data['withdrawal-reason'] != "withdraw-offer",
+  {
     value: "Could not arrange interview",
     text: "Could not arrange interview",
     checked: checked("['rejection']['" + category + "-reasons']", "Could not arrange interview"),
     conditional: {
       html: couldNotArrangeInterviewHtml
     }
-  }, {
+  } if data['withdrawal-reason'] != "withdraw-offer",
+  {
       value: "Other",
       text: "Other",
       checked: checked("['rejection']['" + category + "-reasons']", "Other"),

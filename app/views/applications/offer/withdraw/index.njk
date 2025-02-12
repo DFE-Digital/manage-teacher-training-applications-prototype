@@ -10,7 +10,7 @@
 {{ name }}
 {% endset %}
 
-{% set heading = "Tell the candidate why you do not want to offer them a place" %}
+{% set heading = "Tell the candidate why you want to withdraw the offer" %}
 {% set title = heading + ' - ' + caption %}
 
 {% block pageNavigation %}
@@ -24,53 +24,52 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">{{caption}}</span>
       <h1 class="govuk-heading-l">{{heading}}</h1>
+      <p class="govuk-hint">Select all that apply</p>
 
       <form method="post">
 
-        {# Comms
-        Course full
-        Safeguarding
-        Other #}
-
-        {% set qualificationReasonsHtml %}
-          {% include "_includes/reasons/qualifications.njk" %}
+        {% set fitnessHtml %}
+          {{appRejectionDetails({ category: 'fitness', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set personalStatementReasonsHtml %}
-          {% include "_includes/reasons/personal-statement.njk" %}
-        {% endset %}
-
-        {% set teachingKnowledgeReasonsHtml %}
-          {% include "_includes/reasons/teaching-knowledge.njk" %}
-        {% endset %}
-
-        {% set communicationReasonsHtml %}
-          {% include "_includes/reasons/communication.njk" %}
+        {% set dbsHtml %}
+          {{appRejectionDetails({ category: 'dbs', reason: 'details', data: data })}}
         {% endset %}
 
         {% set referencesHtml %}
           {{appRejectionDetails({ category: 'references', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set safeguardingHtml %}
-          {{appRejectionDetails({ category: 'safeguarding', reason: 'details', data: data })}}
+        {% set skeHtml %}
+          {{appRejectionDetails({ category: 'ske', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set qualificationsHtml %}
+          {{appRejectionDetails({ category: 'qualifications', reason: 'details', data: data })}}
+        {% endset %}
+
+        {% set errorHtml %}
+          {{appRejectionDetails({ category: 'error', reason: 'details', data: data })}}
         {% endset %}
 
         {% set sponsorshipHtml %}
           {{appRejectionDetails({ category: 'sponsorship', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set conditionsHtml %}
-          {{appRejectionDetails({ category: 'conditions', reason: 'details', data: data })}}
+        {% set fullHtml %}
+          {{appRejectionDetails({ category: 'full', reason: 'details', data: data })}}
         {% endset %}
 
-        {% set fundingHtml %}
-          {{appRejectionDetails({ category: 'funding', reason: 'details', data: data })}}
+        {% set placementHtml %}
+          {{appRejectionDetails({ category: 'placement', reason: 'details', data: data })}}
         {% endset %}
 
         {% set otherDetailsHtml %}
           {{appRejectionDetails({ category: 'other', reason: 'details', data: data })}}
         {% endset %}
+
+
+      <h2 class="govuk-heading-m">Offer conditions not met</h2>
 
         {{ govukCheckboxes({
           idPrefix: "rejection-categories",
@@ -84,35 +83,19 @@
           },
           items: [
             {
-              value: "Qualifications",
-              text: "Qualifications",
-              checked: checked("['rejection']['categories']", "Qualifications"),
+              value: "Fitness to train to teach check",
+              text: "Fitness to train to teach check",
+              checked: checked("['rejection']['categories']", "Fitness"),
               conditional: {
-                html: qualificationReasonsHtml
+                html: fitnessHtml
               }
             },
             {
-              value: "Personal statement",
-              text: "Personal statement",
-              checked: checked("['rejection']['categories']", "Personal statement"),
+              value: "Disclosure and Barring Service (DBS) check",
+              text: "Disclosure and Barring Service (DBS) check",
+              checked: checked("['rejection']['categories']", "dbs"),
               conditional: {
-                html: personalStatementReasonsHtml
-              }
-            },
-            {
-              value: "Teaching knowledge and ability",
-              text: "Teaching knowledge and ability",
-              checked: checked("['rejection']['categories']", "Teaching knowledge and ability"),
-              conditional: {
-                html: teachingKnowledgeReasonsHtml
-              }
-            },
-            {
-              value: "Communication, attendance and scheduling",
-              text: "Communication, attendance and scheduling",
-              checked: checked("['rejection']['categandies']", "Communication, attendance or scheduling"),
-              conditional: {
-                html: communicationReasonsHtml
+                html: dbsHtml
               }
             },
             {
@@ -124,11 +107,51 @@
               }
             },
             {
-              value: "Safeguarding",
-              text: "Safeguarding",
-              checked: checked("['rejection']['categories']", "Safeguarding"),
+              value: "Completion of subject knowledge enhancement (SKE) course",
+              text: "Completion of subject knowledge enhancement (SKE) course",
+              checked: checked("['rejection']['categories']", "ske"),
               conditional: {
-                html: safeguardingHtml
+                html: skeHtml
+              }
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked("['rejection']['categories']", "Other"),
+              conditional: {
+                html: otherDetailsHtml
+              }
+            }
+          ]
+        }) }}
+
+      <h2 class="govuk-heading-m">Other reasons</h2>
+
+        {{ govukCheckboxes({
+          idPrefix: "rejection-categories2",
+          name: "rejection[categories]",
+          fieldset: {
+            legend: {
+              html: h1,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Qualifications cannot be verified",
+              text: "Qualifications cannot be verified",
+              checked: checked("['rejection']['categories']", "Qualifications cannot be verified"),
+              conditional: {
+                html: qualificationsHtml
+              }
+            },
+            {
+              value: "Offer made in error",
+              text: "Offer made in error",
+              checked: checked("['rejection']['categories']", "Offer made in error"),
+              conditional: {
+                html: errorHtml
               }
             },
             {
@@ -142,24 +165,19 @@
             {
               value: "Course full",
               text: "Course full",
-              checked: checked("['rejection']['categories']", "Course full")
+              checked: checked("['rejection']['categories']", "Course full"),
+              conditional: {
+                html: fullHtml
+              }
             },
             {
-              value: "Candidate has not met the conditions of this offer",
-              text: "Candidate has not met the conditions of this offer",
-              checked: checked("['rejection']['categories']", "Candidate has not met the conditions of this offer"),
+              value: "No placement school available",
+              text: "No placement school available",
+              checked: checked("['rejection']['categories']", "No placement school available"),
               conditional: {
-                html: conditionsHtml
+                html: placementHtml
               }
-            } if data['withdrawal-reason'] == "withdraw-offer",
-            {
-              value: "Funding",
-              text: "Funding",
-              checked: checked("['rejection']['categories']", "Funding"),
-              conditional: {
-                html: fundingHtml
-              }
-            } if data['withdrawal-reason'] == "withdraw-offer",
+            },
             {
               value: "Other",
               text: "Other",

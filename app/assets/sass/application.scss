@@ -542,3 +542,7 @@ $app-colour-failed: govuk-colour("red");
 .app-status-indicator--red {
   color: $govuk-error-colour;
 }
+
+.app-tag span {
+  vertical-align: middle;
+}

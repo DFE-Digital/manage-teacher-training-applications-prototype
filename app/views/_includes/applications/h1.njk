@@ -4,7 +4,14 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
         {{name}}
         <span class="govuk-visually-hidden">{{pageName}}</span>
+
+        <div class="app-tag">
         {{ govukTag({ classes: application.status | statusClass, text: application.status }) }}
+
+        {% if application.pendingWithdrawal %}
+          <span class="govuk-body-s app-status-indicator--red">Pending withdrawal</span>
+        {% endif %}
+        </div>
       </h1>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds govuk-!-padding-right-0">
