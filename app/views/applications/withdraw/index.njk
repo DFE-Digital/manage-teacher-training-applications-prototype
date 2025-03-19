@@ -34,11 +34,13 @@
           } if application.status != 'New' and application.status != 'In review' and application.status != 'Shortlisted' and application.status != 'Interviewing',
           {
             value: "no-response",
-            text: "The candidate has not responded to communications"
+            text: "The candidate has not responded to communications",
+            checked: ( data['withdrawal-reason'] == "no-response")
           },
           {
             value: "candidate-behalf",
-            text: "The candidate has asked us to withdraw their application"
+            text: "The candidate has asked us to withdraw their application",
+            checked: ( data['withdrawal-reason'] == "candidate-behalf")
           }
         ]
       }) }}
