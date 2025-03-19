@@ -17,8 +17,8 @@
     {% elseif showBanner == 'shortlist' %}
       {% set showBannerHeading = 'Application shortlisted' %}
     {% elseif showBanner == 'withdraw-request' %}
-      {% set showBannerHeading = 'We have contacted the candidate to confirm they want to withdraw' %}
-      {% set showBannerText%}If they do not respond by {{ application.pendingWithdrawalDate | govukDateTime("on") }}, their application will be withdrawn automatically.{% endset %}
+      {% set showBannerHeading = 'We have emailed the candidate' %}
+      {% set showBannerText%}They will confirm that they want you to withdraw their offer. If they do not respond by {{ application.pendingWithdrawalDate | govukDateTime("on") }}, their offer will be withdrawn automatically.{% endset %}
     {% endif %}
 
     {% set showBannerHtml %}

@@ -17,22 +17,39 @@ module.exports = router => {
     if ( reason == 'withdraw-offer' ) {
       res.redirect(`/applications/${applicationId}/offer/withdraw` )
     } else {
-      application.pendingWithdrawal = true
+      res.redirect(`/applications/${applicationId}/withdraw/check` )
+    }
+  })
 
-      var dateWithdrawn = new Date()
-      dateWithdrawn.setDate(new Date().getDate()+2);
-      application.pendingWithdrawalDate = dateWithdrawn.toISOString()
 
-      ApplicationHelper.addEvent(application, {
-        "title": "Request to withdraw application on candidate's behalf",
-        "user": "Ben Brown",
-        "date": new Date().toISOString()
-      })
+  router.get('/applications/:applicationId/withdraw/check', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
 
-      res.redirect(`/applications/${applicationId}?confirm=withdraw-request` )
-      }
+    res.render(`/applications/withdraw/check`, { application })
 
+  })
+
+  router.post('/applications/:applicationId/check', (req, res) => {
+
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+
+    application.pendingWithdrawal = true
+
+    var dateWithdrawn = new Date()
+    dateWithdrawn.setDate(new Date().getDate()+30);
+    application.pendingWithdrawalDate = dateWithdrawn.toISOString()
+
+    ApplicationHelper.addEvent(application, {
+      "title": "Request to withdraw application on candidate's behalf",
+      "user": "Ben Brown",
+      "date": new Date().toISOString()
     })
+
+    res.redirect(`/applications/${applicationId}?confirm=withdraw-request` )
+
+  })
 
   router.get('/applications/:applicationId/withdraw/request', (req, res) => {
     const applicationId = req.params.applicationId
