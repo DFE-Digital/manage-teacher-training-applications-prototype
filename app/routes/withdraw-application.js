@@ -13,6 +13,9 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const reason = req.session.data['withdrawal-reason']
+    delete req.session.data['withdrawal-reason']
+
+    application.withdrawalReason = reason
 
     if ( reason == 'withdraw-offer' ) {
       res.redirect(`/applications/${applicationId}/offer/withdraw` )
