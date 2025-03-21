@@ -35,12 +35,12 @@
           {
             value: "no-response",
             text: "The candidate has not responded to communications",
-            checked: ( data['withdrawal-reason'] == "no-response")
+            checked: ( application.withdrawalReason == "no-response")
           },
           {
             value: "candidate-behalf",
             text: "The candidate has asked us to withdraw their application",
-            checked: ( data['withdrawal-reason'] == "candidate-behalf")
+            checked: ( application.withdrawalReason == "candidate-behalf")
           }
         ]
       }) }}

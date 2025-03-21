@@ -60,7 +60,7 @@
               text: "Reason for withdrawal"
             },
             value: {
-              text: ( "The candidate has not responded to communications" if data['withdrawal-reason'] == 'no-response' else "The candidate has asked us to withdraw their application" )
+              text: ( "The candidate has not responded to communications" if application.withdrawalReason == 'no-response' else "The candidate has asked us to withdraw their application" )
             },
             actions: {
               items: [
@@ -71,7 +71,7 @@
                 }
               ]
             }
-          }
+          } if application.withdrawalReason
         ]
       }) }}
 
