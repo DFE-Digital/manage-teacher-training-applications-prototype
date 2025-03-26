@@ -25,7 +25,7 @@
     "govuk-prototype-kit": "^13.16.2",
     "gray-matter": "^4.0.3",
     "inquirer": "^9.2.10",
-    "luxon": "^3.5.0",
+    "luxon": "^3.6.0",
     "marked": "^14.1.4",
     "numeral": "^2.0.6",
     "universal-analytics": "^0.5.1",
