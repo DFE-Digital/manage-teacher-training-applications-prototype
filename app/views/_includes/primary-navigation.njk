@@ -1,9 +1,16 @@
-{{ appPrimaryNavigation({
-  items: [
+{{ govukServiceNavigation({
+  serviceName: serviceName,
+  serviceUrl: "#",
+  navigation: [
     {
       href: "/applications" + ('?keywords=' if data.keywords.length),
       text: "Applications",
       active: primaryNavId == 'applications'
+    },
+    {
+      href: "#",
+      text: "Find candidates",
+      active: primaryNavId == 'interviews'
     },
     {
       href: "/interviews",
@@ -11,15 +18,15 @@
       active: primaryNavId == 'interviews'
     },
     {
-      href: "/activity",
-      text: "Activity log",
-      active: primaryNavId == 'activity'
-    },
-    {
       href: "/reports",
       text: "Reports",
       active: primaryNavId == 'reports',
       classes: "app-primary-navigation__item--align-right"
+    },
+    {
+      href: "/activity",
+      text: "Activity log",
+      active: primaryNavId == 'activity'
     }
   ]
 }) }}
