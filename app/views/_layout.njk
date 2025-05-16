@@ -1,6 +1,11 @@
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
 
+{% set govukRebrand = true %}
+
+{% set assetPath = '/public/rebrand' %}
+
+
 {% from "_components/applicable-permissions-inline/macro.njk" import appApplicablePermissionsInline %}
 {% from "_components/applicable-permissions/macro.njk" import appApplicablePermissions %}
 {% from "_components/autocomplete/macro.njk" import appAutocomplete %}
@@ -92,7 +97,8 @@
 
 
 {% block footer %}
-  {{ appFooter({
+  {{ govukFooter({
+    rebrand: true,
     meta: {
         items: [
           {
