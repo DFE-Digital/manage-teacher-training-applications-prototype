@@ -20,6 +20,7 @@
     "cross-spawn": "^7.0.6",
     "csv-writer": "^1.6.0",
     "del": "^7.1.0",
+    "express": "^5.1.0",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^5.11.0",
     "govuk-prototype-kit": "^13.17.0",
@@ -28,6 +29,7 @@
     "luxon": "^3.6.1",
     "marked": "^14.1.4",
     "numeral": "^2.0.6",
+    "sync-request": "^6.1.0",
     "universal-analytics": "^0.5.1",
     "uuid": "^10.0.0",
     "weighted": "^1.0.0"
