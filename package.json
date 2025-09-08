@@ -31,7 +31,7 @@
     "numeral": "^2.0.6",
     "sync-request": "^6.1.0",
     "universal-analytics": "^0.5.1",
-    "uuid": "^10.0.0",
+    "uuid": "^12.0.0",
     "weighted": "^1.0.0"
   },
   "greenkeeper": {
