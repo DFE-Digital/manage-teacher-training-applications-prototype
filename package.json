@@ -23,7 +23,7 @@
     "express": "^5.1.0",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^5.11.2",
-    "govuk-prototype-kit": "^13.18.0",
+    "govuk-prototype-kit": "^13.18.1",
     "gray-matter": "^4.0.3",
     "inquirer": "^9.2.10",
     "luxon": "^3.7.2",
