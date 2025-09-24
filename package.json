@@ -27,7 +27,7 @@
     "gray-matter": "^4.0.3",
     "inquirer": "^9.2.10",
     "luxon": "^3.7.2",
-    "marked": "^14.1.4",
+    "marked": "^16.3.0",
     "numeral": "^2.0.6",
     "sync-request": "^6.1.0",
     "universal-analytics": "^0.5.1",
