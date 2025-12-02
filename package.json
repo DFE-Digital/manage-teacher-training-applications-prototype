@@ -20,7 +20,7 @@
     "cross-spawn": "^7.0.6",
     "csv-writer": "^1.6.0",
     "del": "^7.1.0",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "fancy-log": "^2.0.0",
     "govuk-frontend": "^5.13.0",
     "govuk-prototype-kit": "^13.18.1",
