@@ -24,6 +24,7 @@ const generateFakeUsers = (count) => {
     lastName: lastName,
     emailAddress: emailAddress,
     organisation: mainOrg,
+    organisations: organisations,
     permissions: {
       manageOrganisation: true,
       manageUsers: true,
