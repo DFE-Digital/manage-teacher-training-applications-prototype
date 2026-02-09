@@ -12,7 +12,7 @@
     "postinstall": "npm run generate-data"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.9.0",
+    "@faker-js/faker": "^10.3.0",
     "@govuk-prototype-kit/common-templates": "^1.2.2",
     "@x-govuk/govuk-prototype-filters": "^1.5.0",
     "archiver-promise": "^1.0.0",
