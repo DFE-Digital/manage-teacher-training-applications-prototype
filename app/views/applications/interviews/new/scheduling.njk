@@ -1,0 +1,103 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'applications' %}
+{% set subNavId = "interviews" %}
+{% set status = application.status %}
+{% set caption = content.createInterview.caption + ' - ' + application.personalDetails.name %}
+{% set heading = 'Interview details' %}
+{% set title = heading + ' - ' + caption %}
+
+{% set backUrl %}/applications/{{application.id}}{% endset %}
+{% if application.interviews.items.length > 0 %}
+{% set backUrl %}/applications/{{application.id}}/interviews{% endset %}
+{% endif %}
+
+{% set cancelUrl %}{{backUrl}}{% endset %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: backUrl
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post" action="/applications/{{ application.id }}/interviews/new/scheduling">
+
+        {{ govukRadios({
+          idPrefix: "interviewScheduled",
+          name: "interviewScheduled",
+          fieldset: {
+            legend: {
+                text: "Has the candidate already been informed of the interview details?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Such as the date, time and location"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <p class="govuk-body"><a href="{{cancelUrl}}">Cancel</a></p>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script type="module" src="/public/javascripts/autocomplete.min.js"></script>
+  <script type="module">
+    // accessibleAutocomplete({
+      name: "time",
+      element: document.querySelector('.app-time'),
+      id: 'time',
+      showAllValues: true,
+      displayMenu: 'overlay',
+      source: [
+        '9am',
+        '9:15am',
+        '9:30am',
+        '9:45am',
+        '10am',
+        '10:15am',
+        '10:30am',
+        '10:45am',
+        '11am',
+        '11:15am',
+        '11:30am',
+        '11:45am',
+        '12pm (midday)',
+        '12:15pm',
+        '12:30pm',
+        '12:45pm',
+        '1pm (midday)',
+        '1:15pm',
+        '1:30pm',
+        '1:45pm',
+        '12am (midnight)',
+        '12:15am',
+        '12:30am',
+        '12:45am',
+      ]
+    })
+  </script>
+{% endblock %}

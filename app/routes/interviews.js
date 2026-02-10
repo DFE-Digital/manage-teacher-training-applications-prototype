@@ -36,7 +36,7 @@ function getTimeObject(time) {
     }
 
     // convert to 24 hour only if not 12, if it's 12pm it's fine as 12
-    if(hours != "12") {
+    if(hours <= "12") {
       hours = parseInt(hours, 10) + 12;
     }
   }
@@ -89,6 +89,30 @@ module.exports = router => {
     let now = SystemHelper.now()
 
     let interviews = getInterviews(req.session.data.applications).filter(interview => {
+      return !interview.interview.date
+    })
+
+    // Get the pagination data
+    let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
+
+    interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
+
+    res.render('interviews/index', {
+      now,
+      interviews,
+      pagination
+    })
+  })
+
+  router.get('/interviews/upcoming', (req, res) => {
+    // remove the search keywords if present to reset the search
+    delete req.session.data.keywords
+
+    let now = SystemHelper.now()
+
+    let interviews = getInterviews(req.session.data.applications).filter(interview => {
+      return interview.interview.date
+    }).filter(interview => {
       return DateTime.fromISO(interview.interview.date) >= DateTime.fromISO(now)
     })
 
@@ -98,7 +122,7 @@ module.exports = router => {
     interviews = PaginationHelper.getDataByPage(interviews, req.query.page, req.query.limit)
     interviews = groupInterviewsByDate(interviews)
 
-    res.render('interviews/index', {
+    res.render('interviews/upcoming', {
       now,
       interviews,
       pagination
@@ -108,6 +132,8 @@ module.exports = router => {
   router.get('/interviews/past', (req, res) => {
     let now = SystemHelper.now()
     let interviews = getInterviews(req.session.data.applications).filter(interview => {
+      return interview.interview.date
+    }).filter(interview => {
       return DateTime.fromISO(interview.interview.date) < DateTime.fromISO(now)
     }).reverse()
     let pagination = PaginationHelper.getPagination(interviews, req.query.page, req.query.limit)
@@ -127,13 +153,18 @@ module.exports = router => {
 
     const now = SystemHelper.now()
 
+    let externalInterviews = [];
     let upcomingInterviews = [];
     let pastInterviews = [];
 
     if(application.status == "Received" || application.status == "Interviewing") {
+
+      externalInterviews = ApplicationHelper.getExternalInterviews(application)
       upcomingInterviews = ApplicationHelper.getUpcomingInterviews(application)
 
       pastInterviews = application.interviews.items.filter(interview => {
+        return interview.date
+      }).filter(interview => {
         return DateTime.fromISO(interview.date) < now;
       })
 
@@ -143,6 +174,7 @@ module.exports = router => {
 
     res.render('applications/interviews/index', {
       application,
+      externalInterviews,
       upcomingInterviews,
       pastInterviews,
       assignedUsers,
@@ -153,12 +185,70 @@ module.exports = router => {
   router.get('/applications/:applicationId/interviews/new', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
+    const interviewPref = req.session.data.user.organisation['interviewPref']
 
-    res.render('applications/interviews/new/index', {
-      application,
-      content
-    })
+    if ( interviewPref == 'manage' ) {
+
+      res.render('applications/interviews/new/index', {
+        application,
+        content
+      })
+    } else if ( interviewPref == 'external' ) {
+      // TODO move to interviewing
+      res.redirect(`/applications/${applicationId}/interviews`)
+    } else {
+      res.render('applications/interviews/new/scheduling', {
+        application,
+        content
+      })
+    }
   })
+
+
+  router.post('/applications/:applicationId/interviews/new/scheduling', (req, res) => {
+    const applicationId = req.params.applicationId
+    const application = req.session.data.applications.find(app => app.id === applicationId)
+    const interviewScheduled = req.session.data.interviewScheduled
+    delete req.session.data.interviewScheduled
+
+    if ( interviewScheduled == 'no' ) {
+      res.render('applications/interviews/new/index', {
+        application,
+        content
+      })
+    } else {
+
+        application.interviews.items = application.interviews.items || [];
+
+        const id = uuidv4();
+
+        const interview = {
+          id,
+          organisation: req.session.data.user.organisation.name
+        }
+
+        application.interviews.items.push(interview)
+
+        application.events.items.push({
+          title: content.createInterview.event.title,
+          user: "Angela Mode",
+          date: new Date().toISOString(),
+          meta: {
+            interviewId: id,
+            interview: _.clone(interview)
+          }
+        })
+
+        // set the new status
+        application.status = 'Interviewing'
+
+        delete req.session.data.interview
+
+        res.redirect(`/applications/${applicationId}/interviews`)
+    }
+
+  })
+
 
   router.post('/applications/:applicationId/interviews/new', (req, res) => {
     res.redirect(`/applications/${req.params.applicationId}/interviews/new/check`)

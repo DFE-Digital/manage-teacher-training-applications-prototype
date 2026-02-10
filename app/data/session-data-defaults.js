@@ -31,7 +31,9 @@ const accreditedBodies = []
 //   }
 // })
 
-const organisations = trainingProviders.concat(accreditedBodies)
+// const organisations = trainingProviders.concat(accreditedBodies)
+
+const organisations = require('../data/organisations.json')
 
 applications = applications.map(application => {
   Object.defineProperty(application.personalDetails, 'name', {

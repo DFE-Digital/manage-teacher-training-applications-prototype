@@ -5,6 +5,7 @@
 {% set caption = content.updateOrganisationPermission.caption + ' - ' + org + ' and ' + partner  %}
 {% set heading = 'Organisation permissions' %}
 {% set title = heading + ' - ' +  caption  %}
+{% set primaryNavId = 'organisation-settings' %}
 
 {% set backLinkUrl %}/organisation-settings/{{relationship.org1.id}}/organisational-permissions{% endset %}
 {% block beforeContent %}

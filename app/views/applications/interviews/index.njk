@@ -27,6 +27,74 @@
         {% endif %}
       {% endif %}
 
+
+        {% set interviewCount = 1 %}
+        {% if externalInterviews.length > 0 %}
+          <h2 class="govuk-heading-m">
+            Externally scheduled interviews
+          </h2>
+          {% for interview in externalInterviews %}
+
+
+          {% set interviewSummaryListHtml %}
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Course"
+                  },
+                  value: {
+                    text: application.course
+                  }
+                },
+                {
+                  key: {
+                    text: "Funding type"
+                  },
+                  value: {
+                    text: application.fundingType
+                  }
+                },
+                {
+                  key: {
+                    text: "Interview preferences"
+                  },
+                  value: {
+                    text: application.interviewNeeds.details
+                  }
+                } if application.interviewNeeds.details,
+                {
+                  key: {
+                    text: "Organisation carrying out interview"
+                  },
+                  value: {
+                    text: interview.organisation
+                  }
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {{appSummaryCard({
+            attributes: {
+              id: "interview-" + interview.id
+            },
+            titleText: "Interview " + interviewCount,
+            classes: "govuk-!-margin-bottom-6",
+            actions: {
+              items: [{
+                href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
+                html: 'Cancel interview <span class="govuk-visually-hidden">' + interviewCount + '</span>'
+              } if application.status == "Received" or application.status == "Interviewing"]
+            } if canManageInterviews,
+            html: interviewSummaryListHtml
+          })}}
+
+          {% set interviewCount = interviewCount + 1 %}
+          {% endfor %}
+
+        {% endif %}
+
       {% if not query.transferred %}
         {% if upcomingInterviews.length > 0 %}
           <h2 class="govuk-heading-m">
