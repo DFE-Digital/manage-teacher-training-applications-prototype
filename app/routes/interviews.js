@@ -36,7 +36,7 @@ function getTimeObject(time) {
     }
 
     // convert to 24 hour only if not 12, if it's 12pm it's fine as 12
-    if(hours != "12") {
+    if(hours <= "12") {
       hours = parseInt(hours, 10) + 12;
     }
   }

@@ -36,7 +36,7 @@
         </div>
       {% endif %}
 
-      <form method="post">
+      <form method="post" action="/applications/{{ application.id }}/interviews/new">
 
         {{ govukDateInput({
           id: "interview",
