@@ -1,0 +1,64 @@
+{% extends "_layout.njk" %}
+
+{% set primaryNavId = 'organisation-settings' %}
+{% set title = "Interview preferences" %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Organisation settings",
+      href: "/organisation-settings"
+    }, {
+      text: title
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {% if showBanner %}
+
+    {{ govukNotificationBanner({
+      type: 'success',
+      html: 'Interview preferences updated'
+    }) }}
+  {% endif %}
+
+  {% if data.user.organisation['interviewPref'] == 'manage' %}
+    {% set interviewPref = 'on Manage' %}
+  {% elseif data.user.organisation['interviewPref'] == 'external' %}
+    {% set interviewPref = 'External' %}
+  {% else %}
+    {% set interviewPref = 'Not set' %}
+  {% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">{{org.name}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Interviews scheduled"
+              },
+              value: {
+                text: interviewPref
+              },
+              actions: {
+                items: [
+                  {
+                    href: "interview-preferences/edit",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+    </div>
+  </div>
+
+{% endblock %}
