@@ -2,6 +2,7 @@
 {% from "govuk/components/tag/macro.njk"              import govukTag %}
 
 <div class="app-interview-card">
+{% if params.date %}
   <div class="app-interview-card__time">
     <p class="govuk-!-margin-bottom-1">
       <a href="{{params.link}}" class="govuk-link--no-visited-state">
@@ -12,8 +13,9 @@
       </a>
     </p>
   </div>
+{% endif %}
   <div class="app-interview-card__candidate">
-    <p class="govuk-!-margin-bottom-1">{{params.name}}</p>
+    <p class="govuk-!-margin-bottom-1">{% if params.date %}{{params.name}}{% else %}<a href="{{params.link}}" class="govuk-link--no-visited-state">{{params.name}}</a>{% endif %}</p>
     {% if params.hasInterviewPreferences %}<p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Has interview preferences</p>{% endif %}
   </div>
   <div class="app-interview-card__course">

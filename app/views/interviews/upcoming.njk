@@ -13,11 +13,11 @@
         label: 'Sub navigation',
         items: [{
           text: 'Externally scheduled interviews',
-          href: '/interviews',
-          active: true
+          href: '/interviews'
         }, {
           text: 'Upcoming interviews',
-          href: '/interviews/upcoming'
+          href: '/interviews/upcoming',
+          active: true
         }, {
           text: 'Past interviews',
           href: '/interviews/past'
@@ -25,9 +25,21 @@
       }) }}
 
       {% if not interviews %}
-        <p>No externally scheduled interviews.</p>
+        <p>No upcoming interviews.</p>
       {% else %}
         <div class="app-interviews">
+          {% for day, interviews in interviews %}
+
+            <h2 class="govuk-heading-s govuk-!-margin-top-7 govuk-!-margin-bottom-3">
+              {% if day | daysAgo == 0 %}
+                Today ({{ day | govukDate }})
+              {% elseif day | daysAgo == -1 %}
+                Tomorrow ({{ day | govukDate }})
+              {% else %}
+                {{ day | govukDate }}
+              {% endif %}
+            </h2>
+
             {% for interview in interviews %}
               {{appInterviewCard({
                 link: '/applications/'+interview.app.id+'/interviews#interview-'+interview.interview.id,
@@ -38,6 +50,7 @@
                 hasInterviewPreferences: interview.app.interviewNeeds.details
               })}}
             {% endfor %}
+          {% endfor %}
         </div>
         {% include "_includes/pagination.njk" %}
       {% endif %}
