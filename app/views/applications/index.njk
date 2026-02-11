@@ -23,8 +23,6 @@
 
       {% include "_includes/search-panel.njk" %}
 
-      {%- if applications.length %}
-
       <div class="govuk-tabs">
         <h2 class="govuk-tabs__title">
           Contents
@@ -58,6 +56,7 @@
         </ul>
         <div class="govuk-tabs__panel">
 
+      {%- if applications.length %}
           {% if not selectedFilters.length and ( not statusTab or statusTab == 'action' ) %}
 
             {% set bannerHtml %}
@@ -236,7 +235,7 @@
 
               {%- else -%}
 
-                There are no results for the selected filter.
+                There are no applications in this state.
 
               {%- endif -%}
 

@@ -1,7 +1,7 @@
 {% extends "_layout.njk" %}
 
 {% set primaryNavId = 'organisation-settings' %}
-{% set title = "Interview preferences" %}
+{% set title = "Interview scheduling" %}
 
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -20,16 +20,16 @@
 
     {{ govukNotificationBanner({
       type: 'success',
-      html: 'Interview preferences updated'
+      html: '<p class="govuk-notification-banner__heading">Interview scheduling preferences updated</p>'
     }) }}
   {% endif %}
 
   {% if data.user.organisation['interviewPref'] == 'manage' %}
-    {% set interviewPref = 'on Manage' %}
+    {% set interviewPref = 'Using Manage' %}
   {% elseif data.user.organisation['interviewPref'] == 'external' %}
-    {% set interviewPref = 'External' %}
+    {% set interviewPref = 'Using our own system' %}
   {% else %}
-    {% set interviewPref = 'Not set' %}
+    {% set interviewPref = 'Using Manage or our own systems' %}
   {% endif %}
 
   <div class="govuk-grid-row">
@@ -41,7 +41,7 @@
           rows: [
             {
               key: {
-                text: "Interviews scheduled"
+                text: "How will you schedule interviews?"
               },
               value: {
                 text: interviewPref

@@ -27,18 +27,18 @@ function getTimeObject(time) {
     }
   } else {
     time = time.split('pm')[0].trim()
+    
     if(time.indexOf(":") > -1) {
       hours = time.split(":")[0]
       mins = time.split(":")[1]
+    } else if (time.length == 4 )  {
+      hours = time.slice(0,2)
+      mins = time.slice(-2)
     } else {
       hours = time
       mins = "00"
     }
 
-    // convert to 24 hour only if not 12, if it's 12pm it's fine as 12
-    if(hours <= "12") {
-      hours = parseInt(hours, 10) + 12;
-    }
   }
 
   return {hours, mins}
@@ -146,11 +146,13 @@ module.exports = router => {
   })
 
 
-  router.get('/applications/:applicationId/interviews', (req, res) => {
+  // router.get('/applications/:applicationId/interviews(-logged)?', (req, res) => {
+  router.get('/applications/:applicationId/interviews:banner?', (req, res) => {
+
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const assignedUsers = ApplicationHelper.getAssignedUsers(application, req.session.data.user.id, req.session.data.user.organisation.id)
-
+    const showBanner = req.params.banner ? req.params.banner.substring(1) : null
     const now = SystemHelper.now()
 
     let externalInterviews = [];
@@ -178,7 +180,8 @@ module.exports = router => {
       upcomingInterviews,
       pastInterviews,
       assignedUsers,
-      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications)
+      otherApplications: ApplicationHelper.getOtherApplications(application, req.session.data.applications),
+      showBanner
     })
   })
 
@@ -194,8 +197,8 @@ module.exports = router => {
         content
       })
     } else if ( interviewPref == 'external' ) {
-      // TODO move to interviewing
-      res.redirect(`/applications/${applicationId}/interviews`)
+        addExternalInterview( application, req )
+        res.redirect(`/applications/${applicationId}/interviews-logged`)
     } else {
       res.render('applications/interviews/new/scheduling', {
         application,
@@ -217,6 +220,13 @@ module.exports = router => {
         content
       })
     } else {
+        addExternalInterview( application, req )
+        res.redirect(`/applications/${applicationId}/interviews-logged`)
+    }
+
+  })
+
+  function addExternalInterview( application, req ) {
 
         application.interviews.items = application.interviews.items || [];
 
@@ -244,11 +254,7 @@ module.exports = router => {
 
         delete req.session.data.interview
 
-        res.redirect(`/applications/${applicationId}/interviews`)
-    }
-
-  })
-
+  }
 
   router.post('/applications/:applicationId/interviews/new', (req, res) => {
     res.redirect(`/applications/${req.params.applicationId}/interviews/new/check`)
@@ -302,7 +308,7 @@ module.exports = router => {
 
     delete req.session.data.interview
 
-    res.redirect(`/applications/${applicationId}/interviews`)
+    res.redirect(`/applications/${applicationId}/interviews-setup`)
 
   })
 
