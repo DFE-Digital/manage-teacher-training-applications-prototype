@@ -18,6 +18,8 @@
 @import "utilities/hidden";
 @import "utilities/overrides";
 
+$govuk-suppressed-warnings: (legacy-colour-param);
+
 // App-specific styles
 
 .app-checkboxes__hint {
