@@ -423,7 +423,7 @@ module.exports = router => {
     })
 
     // rollback the status
-    application.status = 'Received'
+    application.status = 'In review'
 
     if(application.interviews.items.length) {
       res.redirect(`/applications/${req.params.applicationId}/interviews/`)
