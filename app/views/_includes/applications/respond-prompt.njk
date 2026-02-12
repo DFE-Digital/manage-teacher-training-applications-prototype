@@ -25,7 +25,7 @@
       {% endif %}
     {% if canManageInterviews %}
       {{ govukButton({
-        text: "Set up interview",
+        text: "Move to interview",
         classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-2 govuk-button--secondary",
         href: "/applications/" + application.id + "/interviews/new"
       }) }}
@@ -45,7 +45,7 @@
 
   {{govukInsetText({
     html: promptHtml,
-    classes: 'govuk-!-margin-top-0'
+    classes: 'govuk-!-margin-top-0, govuk-!-padding-right-0'
   })}}
 {% endif %}
 

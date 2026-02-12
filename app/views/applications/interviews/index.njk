@@ -44,7 +44,7 @@
         {% if application.status == "Interviewing" %}
           {% if canManageInterviews %}
             {{ govukButton({
-              text: "Set up interview",
+              text: "Add interview" if (externalInterviews.length or upcomingInterviews.length or pastInterviews.length ) else "Move to interview",
               href: "/applications/" + application.id + "/interviews/new",
               classes: "govuk-button--secondary"
             }) }}
@@ -53,7 +53,7 @@
       {% endif %}
 
 
-        {% set interviewCount = 1 %}
+        {% set interviewCount = upcomingInterviews.length + pastInterviews.length + 1 %}
         {% if externalInterviews.length > 0 %}
           <h2 class="govuk-heading-m">
             Externally scheduled interviews
@@ -109,7 +109,7 @@
             actions: {
               items: [{
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
-                html: 'Cancel interview <span class="govuk-visually-hidden">' + interviewCount + '</span>'
+                html: 'Remove interview <span class="govuk-visually-hidden">' + interviewCount + '</span>'
               } if application.status == "Received" or application.status == "Interviewing"]
             } if canManageInterviews,
             html: interviewSummaryListHtml
@@ -274,15 +274,6 @@
           },
           titleText: (interview.date | govukDate) + " " + (interview.date | govukTime),
           classes: "govuk-!-margin-bottom-6",
-          actions: {
-            items: [{
-              href: '/applications/' + application.id + '/interviews/' + interview.id + '/edit',
-              html: 'Change details <span class="govuk-visually-hidden">' + interview.date | govukDateTime + '</span>'
-            } if application.status == "Received" or application.status == "Interviewing", {
-              href: '/applications/' + application.id + '/interviews/'+ interview.id + '/delete',
-              html: 'Cancel interview <span class="govuk-visually-hidden">'+interview.date | govukDateTime+'</span>'
-            } if application.status == "Received" or application.status == "Interviewing"]
-          } if canManageInterviews,
           html: interviewSummaryListHtml
         })}}
 

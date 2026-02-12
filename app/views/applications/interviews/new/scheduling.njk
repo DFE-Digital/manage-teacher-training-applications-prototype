@@ -28,11 +28,11 @@
       <form method="post" action="/applications/{{ application.id }}/interviews/new/scheduling">
 
         {{ govukRadios({
-          idPrefix: "interviewScheduled",
-          name: "interviewScheduled",
+          idPrefix: "scheduleWithManage",
+          name: "scheduleWithManage",
           fieldset: {
             legend: {
-                text: "Has the candidate already been informed of the interview details?",
+                text: "Are you using this service to set up the interview?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
             }

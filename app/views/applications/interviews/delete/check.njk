@@ -46,7 +46,7 @@
         }) }}
 
         {{ govukWarningText({
-          text: "The candidate will be sent an email to tell them that the interview has been cancelled.",
+          text: "The candidate will be sent an email to tell them that the interview has been cancelled." if interview.date else "You must inform the candidate yourself. As this interview was set up outside this service, we will not contact the candidate to tell them the interview is cancelled.",
           iconFallbackText: "Fallback text"
         }) }}
 
