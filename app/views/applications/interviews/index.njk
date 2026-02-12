@@ -44,7 +44,7 @@
         {% if application.status == "Interviewing" %}
           {% if canManageInterviews %}
             {{ govukButton({
-              text: "Set up interview",
+              text: "Move to interview",
               href: "/applications/" + application.id + "/interviews/new",
               classes: "govuk-button--secondary"
             }) }}
@@ -109,7 +109,7 @@
             actions: {
               items: [{
                 href: '/applications/' + application.id + '/interviews/' + interview.id + '/delete',
-                html: 'Cancel interview <span class="govuk-visually-hidden">' + interviewCount + '</span>'
+                html: 'Renove interview <span class="govuk-visually-hidden">' + interviewCount + '</span>'
               } if application.status == "Received" or application.status == "Interviewing"]
             } if canManageInterviews,
             html: interviewSummaryListHtml

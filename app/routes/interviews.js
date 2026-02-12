@@ -27,7 +27,7 @@ function getTimeObject(time) {
     }
   } else {
     time = time.split('pm')[0].trim()
-    
+
     if(time.indexOf(":") > -1) {
       hours = time.split(":")[0]
       mins = time.split(":")[1]
@@ -211,10 +211,10 @@ module.exports = router => {
   router.post('/applications/:applicationId/interviews/new/scheduling', (req, res) => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
-    const interviewScheduled = req.session.data.interviewScheduled
-    delete req.session.data.interviewScheduled
+    const scheduleWithManage = req.session.data.scheduleWithManage
+    delete req.session.data.scheduleWithManage
 
-    if ( interviewScheduled == 'no' ) {
+    if ( scheduleWithManage == 'yes' ) {
       res.render('applications/interviews/new/index', {
         application,
         content
