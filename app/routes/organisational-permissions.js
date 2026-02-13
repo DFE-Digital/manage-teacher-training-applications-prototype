@@ -3,6 +3,10 @@ const content = require('../data/content')
 function getRelationships(params) {
   let relationships = []
 
+
+  return relationships
+
+  //below is broken. Removing for now to faciliate testing
   params.relationships
     .filter(relationship => {
       return relationship.org1.id == params.org.id || relationship.org2.id == params.org.id

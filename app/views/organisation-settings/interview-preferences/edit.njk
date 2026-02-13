@@ -33,9 +33,9 @@ ed{% extends "_layout.njk" %}
           items: [
             {
               value: "manage",
-              text: "Using DfE Manage",
+              text: "Using this service",
               hint: {
-                text: 'Set the interview details and we will email them to the candidate'
+                text: 'Enter the interview details and we will email them to the candidate'
               },
               checked: ( data.user.organisation['interviewPref'] == 'manage' )
             },
@@ -43,12 +43,12 @@ ed{% extends "_layout.njk" %}
               value: "external",
               text: "Using our own scheduling systems",
               hint: {
-                text: 'Arrange the interviews offline and just let us know you are interviewing the candidate'
+                text: 'Arrange the interviews yourself and just let us know you are interviewing the candidate'
               },
               checked: ( data.user.organisation['interviewPref'] == 'external' )
             },
             {
-              value: "external",
+              value: "",
               text: "A mixture of both",
               hint: {
                 text: 'We will ask you each time you move a candidate into Interviewing'
