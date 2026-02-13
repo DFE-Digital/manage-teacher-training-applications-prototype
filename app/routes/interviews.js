@@ -189,6 +189,7 @@ module.exports = router => {
     const applicationId = req.params.applicationId
     const application = req.session.data.applications.find(app => app.id === applicationId)
     const interviewPref = req.session.data.user.organisation['interviewPref']
+    const orgId = req.session.data.user.organisation.id
 
     if ( interviewPref == 'manage' ) {
 
@@ -202,7 +203,8 @@ module.exports = router => {
     } else {
       res.render('applications/interviews/new/scheduling', {
         application,
-        content
+        content,
+        orgId
       })
     }
   })
