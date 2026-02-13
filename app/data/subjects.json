@@ -5,8 +5,18 @@
     "level": "Secondary"
   },
   {
+    "code": "F1",
+    "name": "French",
+    "level": "Secondary"
+  },
+  {
     "code": "V1",
     "name": "History",
     "level": "Secondary"
+  },
+  {
+    "code": "X4",
+    "name": "Primary",
+    "level": "Primary"
   }
 ]
