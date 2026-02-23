@@ -25,7 +25,7 @@ ed{% extends "_layout.njk" %}
           name: "interviewPref",
           fieldset: {
             legend: {
-              text: "How will you schedule interviews?",
+              text: "How do you want to arrange interviews?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -33,17 +33,17 @@ ed{% extends "_layout.njk" %}
           items: [
             {
               value: "manage",
-              text: "Using this service",
+              text: "Use this service to schedule the interview",
               hint: {
-                text: 'Enter the interview details and we will email them to the candidate'
+                text: 'You\’ll be able to enter the date and time. This service will email the details to the candidate'
               },
               checked: ( data.user.organisation['interviewPref'] == 'manage' )
             },
             {
               value: "external",
-              text: "Using our own scheduling systems",
+              text: "I'll arrange the interview on a different system",
               hint: {
-                text: 'Arrange the interviews yourself and just let us know you are interviewing the candidate'
+                text: 'This will log the candidate as \'interviewing\'. You\’ll need to contact the candidate yourself to organise the date and time with them'
               },
               checked: ( data.user.organisation['interviewPref'] == 'external' )
             },
@@ -51,9 +51,9 @@ ed{% extends "_layout.njk" %}
               value: "",
               text: "A mixture of both",
               hint: {
-                text: 'We will ask you each time you move a candidate into Interviewing'
+                text: 'We will ask you each time you move a candidate to \'interviewing\''
               },
-              checked: ( data.user.organisation['interviewPref'] == null )
+              checked: ( data.user.organisation['interviewPref'] != 'manage' and data.user.organisation['interviewPref'] != 'external' )
             }
           ]
         }) }}

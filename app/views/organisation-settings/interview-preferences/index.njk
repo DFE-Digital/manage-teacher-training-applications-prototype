@@ -25,11 +25,11 @@
   {% endif %}
 
   {% if data.user.organisation['interviewPref'] == 'manage' %}
-    {% set interviewPref = 'Using Manage' %}
+    {% set interviewPref = 'Using this service' %}
   {% elseif data.user.organisation['interviewPref'] == 'external' %}
-    {% set interviewPref = 'Using our own system' %}
+    {% set interviewPref = 'Using a different system' %}
   {% else %}
-    {% set interviewPref = 'Using Manage or our own systems' %}
+    {% set interviewPref = 'Using either this service or a different system' %}
   {% endif %}
 
   <div class="govuk-grid-row">
@@ -41,7 +41,7 @@
           rows: [
             {
               key: {
-                text: "How will you schedule interviews?"
+                text: "How do you want to arrange interviews?"
               },
               value: {
                 text: interviewPref
