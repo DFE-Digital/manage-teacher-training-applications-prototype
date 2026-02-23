@@ -32,22 +32,25 @@
           name: "scheduleWithManage",
           fieldset: {
             legend: {
-                text: "Are you using this service to set up the interview?",
+                text: "How do you want to arrange this interview?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "Such as the date, time and location"
-          },
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Use this service to schedule the interview",
+              hint: {
+                text: "You’ll be able to enter the date and time. This service will email the details to the candidate"
+              }
             },
             {
               value: "no",
-              text: "No"
+              text: "I'll arrange the interview on a different system",
+              hint: {
+                text: "This will log the candidate as 'interviewing'. You’ll need to contact the candidate yourself to organise the date and time with them"
+              }
             }
           ]
         }) }}
